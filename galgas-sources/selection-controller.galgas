@@ -1,0 +1,194 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @selectionControllerDeclaration : @abstractSecondaryProperty {
+  @lstring mSelectionControllerName
+  @lstring mModelControllerName
+  @lstring mModelControllerPropertyName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <array_controller_declaration>
+    ?!@secondaryPropertyList ioSecondaryPropertyList
+  {
+    $selectionController$
+    $identifier$ ?let @lstring selectionControllerName
+    $:$
+    $identifier$ ?let @lstring modelControllerName
+    $.$
+    $identifier$ ?let @lstring propertyName
+    $;$
+    ioSecondaryPropertyList += !@selectionControllerDeclaration.new {
+      !selectionControllerName
+      !modelControllerName
+      !propertyName
+    }
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @selectionControllerDeclaration typeInventory
+  ?@string unused inDependencyGraphPrefix # i.e. prefs.preferencesName.
+  ?!@unifiedTypeMap unused ioUnifiedTypeMap
+  ?!@transientDependencyGraph unused ioTransientDependencyGraph
+{
+}
+
+#......................................................................................................................*
+
+override method @selectionControllerDeclaration tryToSolveSecondaryProperty
+  ?!@semanticContext unused ioSemanticContext
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
+{
+  if [ioObservableProperties hasKey !mModelControllerName.string] then
+  #--- Get model controller
+    [ioObservableProperties searchKey
+      !mModelControllerName
+      ?let type
+      ?let kind
+      ?let multiplicity
+      ?2*
+    ]
+  #--- Check kind
+    if kind != .arrayController then
+      error mModelControllerName : "the model should be an array controller"
+    end
+  #--- Check multiplicity
+    if multiplicity != .collection then
+      error mModelControllerName : "the model should be an array controller"
+    end
+  #--- Check type
+    @string entityName
+    switch type
+    case stringType, boolType, colorType, dateType, doubleType, integerType :
+      error mModelControllerName : "the array controller model should be an entity" : entityName
+    case enumType (* *) :
+      error mModelControllerName : "the array controller model should be an entity" : entityName
+    case entityType (kEntityName) :
+      entityName = kEntityName
+    end
+  #--- Store selection controller
+    [!?ioObservableProperties insertKey
+      !mSelectionControllerName
+      !type
+      !.selectionController
+      !.single
+      !"" # No inverse relationship
+      !{} # No action
+    ]
+  
+  else
+    ioUnsolvedProperties += !self
+  end
+}
+
+#......................................................................................................................*
+
+override method @selectionControllerDeclaration secondaryPropertySemanticAnalysis
+  ?let @string inOwnerName
+  ?let @string unused inRootEntityName
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inObservableProperties
+  ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
+  ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
+{
+#--- Get model controller
+  [inObservableProperties searchKey
+    !mModelControllerName
+    ?let type
+    ?let unused kind
+    ?let unused multiplicity
+    ?2*
+  ]
+#--- Check type
+  @string selectionEntityName
+  switch type
+  case stringType, boolType, colorType, dateType, doubleType, integerType :
+    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+  case enumType (* *) :
+    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+  case entityType (kEntityName) :
+    selectionEntityName = kEntityName
+  end
+#--- Find root entity observable properties
+  [inSemanticContext.mEntityObservablePropertyMap searchKey
+    !.new {!selectionEntityName !mSelectionControllerName.location}
+    ?let @observablePropertyMap selectionObservablePropertyMap
+  ]
+#--- Generation
+  ioSelectionControllerForGeneration +=
+    !inOwnerName
+    !mSelectionControllerName.string
+    !mModelControllerName.string
+    !mModelControllerPropertyName.string
+    !selectionEntityName
+    !selectionObservablePropertyMap
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @selectionControllerForGeneration {
+  @string mOwnerName # document name, prefs name, ...
+  @string mSelectionControllerName
+  @string mBoundControllerName
+  @string mBoundControllerPropertyName
+  @string mSelectionTypeName
+  @observablePropertyMap mSelectionObservablePropertyMap
+}
+
+#......................................................................................................................*
+
+private filewrapper selectionControllerGenerationTemplate in "../generation-templates" {
+  "txt"
+}{
+}{
+  template selectionControllerImplementation "selection-controller.swift.galgasTemplate"
+    ?@string OWNER_NAME
+    ?@string SELECTION_CONTROLLER_NAME
+    ?@string ELEMENT_TYPE_NAME
+    ?@observablePropertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateSelectionControllers
+  ?let @selectionControllerForGeneration inArrayControllerListForGeneration
+  ?let @string inOutputDirectory {
+  for () in inArrayControllerListForGeneration do
+    let s = [filewrapper selectionControllerGenerationTemplate.selectionControllerImplementation
+      !mOwnerName
+      !mSelectionControllerName
+      !mSelectionTypeName
+      !mSelectionObservablePropertyMap
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !"selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+      !s
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

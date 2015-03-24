@@ -319,7 +319,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?2*
     ]
     if (optionName.string != "") && (outMultiplicity == .single) then
-      error optionName : "a property cannot accet any option"
+      error optionName : "a single property cannot accept any option"
     elsif (outMultiplicity == .collection) && (optionName.string != "") then
       outKind = .transient
       outMultiplicity = .single
@@ -331,19 +331,51 @@ method @observablePropertyAST analyzeObservableProperty
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case controllerProperty (@lstring controllerName @lstring propertyName) :
-    [inObservablePropertyMap searchKey !controllerName ?let @typeKind type ?4*]
-    if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
-      outMultiplicity = .collection
-      outKind = .transient
-      outType = type
-    else
-      error propertyName
-        : "uknown option (accepted : 'sortedArray' or 'selectedArray')"
-        : outMultiplicity, outKind, outType
+    [inObservablePropertyMap searchKey
+      !controllerName
+      ?let @typeKind type
+      ?let @propertyKind propertyKind
+      ?3*
+    ]
+    switch propertyKind
+    case selectionController :
+      switch type
+      case stringType, boolType, colorType, dateType, doubleType, integerType :
+        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
+      case enumType (* *) :
+        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
+      case entityType (entityName) :
+        [inSemanticContext.mEntityObservablePropertyMap searchKey
+          !.new {!entityName !controllerName.location}
+          ?let @observablePropertyMap observablePropertyMap
+        ]
+        [observablePropertyMap searchKey
+          !propertyName
+          ?outType
+          ?outKind
+          ?outMultiplicity
+          ?2*
+        ]
+      end
+    case arrayController :
+      if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
+        outMultiplicity = .collection
+        outKind = .transient
+        outType = type
+      else
+        error propertyName
+          : "uknown option (accepted : 'sortedArray' or 'selectedArray')"
+          : outMultiplicity, outKind, outType
+      end
+    case stored, transient :
+      error controllerName : "this property should be a controller" : outMultiplicity, outKind, outType
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    [inObservablePropertyMap searchKey !controllerName ?5*]
+    [inObservablePropertyMap searchKey
+      !controllerName
+      ?5*
+    ]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outMultiplicity = .single
       outKind = .transient

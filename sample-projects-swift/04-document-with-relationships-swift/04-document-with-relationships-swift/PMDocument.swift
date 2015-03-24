@@ -45,7 +45,13 @@ import Cocoa
 
   private var nameController = ArrayController_PMDocument_nameController ()
   private var otherController = ArrayController_PMDocument_otherController ()
-  private var selectionController = ArrayController_PMDocument_selectionController ()
+  private var selController = ArrayController_PMDocument_selController ()
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //    Selection Controllers                                                                                          *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  private var detailController = SelectionController_PMDocument_detailController ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    windowNibName                                                                                                  *
@@ -158,16 +164,22 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
-    selectionController.bind_modelAndView (
+    selController.bind_modelAndView (
       nameController.selectedArray,
       tableViewArray:[mSelectionTableView!],
       file:__FILE__,
       line:__LINE__
     )
+  //--------------------------- Selection controller
+    detailController.bind_selection (
+      nameController.selectedArray,
+      file:__FILE__,
+      line:__LINE__
+    )
     selectionCountString.computeFunction = {
-      let selectionKind = self.selectionController.sortedArray.count.prop.1
+      let selectionKind = self.selController.sortedArray.count.prop.1
       if selectionKind == .singleSelection {
-        return (compute_PMDocument_selectionCountString (self.selectionController.sortedArray.count.prop.0), .singleSelection)
+        return (compute_PMDocument_selectionCountString (self.selController.sortedArray.count.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
@@ -205,7 +217,7 @@ import Cocoa
       }
     }
   //--- Install property observers for transients
-    selectionController.sortedArray.count.addObserver (selectionCountString, postEvent:true)
+    selController.sortedArray.count.addObserver (selectionCountString, postEvent:true)
     otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
     nameController.selectedArray.count.addObserver (canRemoveString, postEvent:true)
     rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
@@ -217,6 +229,7 @@ import Cocoa
     countItemTextField?.bind_readOnlyValue (self.rootObject.mNames.count, file:__FILE__, line:__LINE__)
     countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
     totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
+    nameDetailTextField?.bind_value (self.detailController.name, file:__FILE__, line:__LINE__, sendContinously:true)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
@@ -282,6 +295,7 @@ import Cocoa
     countItemTextField?.unbind_readOnlyValue ()
     countItemMessageTextField?.unbind_readOnlyValue ()
     totalTextField?.unbind_readOnlyValue ()
+    nameDetailTextField?.unbind_value ()
   //--- Unbind multiple bindings
     removePathButton?.unbind_enabled ()
     incrementButton?.unbind_enabled ()
@@ -295,9 +309,11 @@ import Cocoa
   //--------------------------- Unbind array controllers
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()
-    selectionController.unbind_modelAndView ()
+    selController.unbind_modelAndView ()
+  //--------------------------- Unbind selection controllers
+    detailController.unbind_selection ()
   //--- Uninstall property observers for transients
-    selectionController.sortedArray.count.removeObserver (selectionCountString, postEvent:false)
+    selController.sortedArray.count.removeObserver (selectionCountString, postEvent:false)
     otherController.sortedArray.count.removeObserver (evenValueString, postEvent:false)
     nameController.selectedArray.count.removeObserver (canRemoveString, postEvent:false)
     rootObject.mNames.count.removeObserver (countItemMessage, postEvent:false)

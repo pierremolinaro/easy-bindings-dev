@@ -444,6 +444,70 @@ class PMReadOnlyProperty_Int : PMAbstractProperty {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadWriteProperty_Int                                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadWriteProperty_Int : PMReadOnlyProperty_Int {
+  func setProp (inValue : Int) { } // Abstract method
+  func validateAndSetProp (candidateValue : Int, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMPropertyProxy_Int                                                                                               *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMPropertyProxy_Int : PMReadWriteProperty_Int {
+  var readModelFunction : Optional < () -> (Int, PMSelectionKind) >
+  var writeModelFunction : Optional < (Int) -> Void >
+  var validateAndWriteModelFunction : Optional < (Int, NSWindow?) -> Bool >
+  
+  private var prop_cache : (Int, PMSelectionKind)?
+  
+  override init () {
+    super.init ()
+  }
+  
+  override func postEvent() {
+    if prop_cache != nil {
+      prop_cache = nil
+      super.postEvent()
+    }
+  }
+
+  override var prop : (Int, PMSelectionKind) {
+    get {
+      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+        prop_cache = unReadModelFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = (0, .noSelection)
+      }
+      return prop_cache!
+    }
+  }
+
+  
+  override func setProp (inValue : Int) {
+    if let unWriteModelFunction = writeModelFunction {
+      unWriteModelFunction (inValue)
+    }
+  }
+
+  override func validateAndSetProp (candidateValue : Int,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
+    var result = false
+    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
+      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
+    }
+    return result
+  }
+  
+  
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   PMStoredProperty_Int                                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -484,14 +548,17 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
   var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction
   
   func validateAndSetProp (candidateValue : Int,
-                           windowForSheet inWindow:NSWindow?) {
+                           windowForSheet inWindow:NSWindow?) -> Bool {
+    var result = true
     let validationResult = validationFunction (candidateValue)
     switch validationResult {
     case PMValidationResult.ok :
       setProp (candidateValue)
     case PMValidationResult.rejectWithBeep :
+      result = false
       NSBeep ()
     case PMValidationResult.rejectWithAlert (let informativeText) :
+      result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%d” is invalid.", candidateValue)
       alert.informativeText = informativeText
@@ -507,6 +574,7 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
         alert.runModal ()
       }
     }
+    return result
   }
 
 }

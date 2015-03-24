@@ -124,8 +124,8 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
       break ;
     case GALGAS_tableValueBinding::kEnum_tableValueBinding:
       {
-        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_7047 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_5863.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_controllerName = extractPtr_7047->mAssociatedValue0 ;
+        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_7059 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_5863.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_controllerName = extractPtr_7059->mAssociatedValue0 ;
         const enumGalgasBool test_0 = var_handlesTableViewBinding.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 169)).boolEnum () ;
         if (kBoolTrue == test_0) {
           GALGAS_location location_1 (enumerator_5863.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -137,10 +137,10 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
           GALGAS_string joker_6673_2 ; // Joker input parameter
           GALGAS_actionMap joker_6673_1 ; // Joker input parameter
           constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_type, var_kind, var_multiplicity, joker_6673_2, joker_6673_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 172)) ;
-          const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_controller (SOURCE_FILE ("outlet-declaration.galgas", 179)))).boolEnum () ;
+          const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_arrayController (SOURCE_FILE ("outlet-declaration.galgas", 179)))).boolEnum () ;
           if (kBoolTrue == test_2) {
             GALGAS_location location_3 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_3, GALGAS_string ("the bound model should be a controller")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 180)) ;
+            inCompiler->emitSemanticError (location_3, GALGAS_string ("the bound model should be an array controller")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 180)) ;
           }
           const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("outlet-declaration.galgas", 182)))).boolEnum () ;
           if (kBoolTrue == test_4) {
@@ -161,9 +161,9 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
       break ;
     case GALGAS_runActionDescriptor::kEnum_action:
       {
-        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_7779 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_5863.current_mRunDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_target = extractPtr_7779->mAssociatedValue0 ;
-        const GALGAS_lstring extractedValue_action = extractPtr_7779->mAssociatedValue1 ;
+        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_7791 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_5863.current_mRunDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_target = extractPtr_7791->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_action = extractPtr_7791->mAssociatedValue1 ;
         const enumGalgasBool test_6 = var_handlesRunAction.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 192)).boolEnum () ;
         if (kBoolTrue == test_6) {
           GALGAS_location location_7 (enumerator_5863.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
@@ -175,11 +175,11 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
             outArgument_outTargetActionList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("self"), extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 196)) ;
           }else if (kBoolFalse == test_8) {
             GALGAS_actionMap var_controllerActionMap ;
-            GALGAS_typeKind joker_7594_4 ; // Joker input parameter
-            GALGAS_propertyKind joker_7594_3 ; // Joker input parameter
-            GALGAS_propertyMultiplicity joker_7594_2 ; // Joker input parameter
-            GALGAS_string joker_7594_1 ; // Joker input parameter
-            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_7594_4, joker_7594_3, joker_7594_2, joker_7594_1, var_controllerActionMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 201)) ;
+            GALGAS_typeKind joker_7606_4 ; // Joker input parameter
+            GALGAS_propertyKind joker_7606_3 ; // Joker input parameter
+            GALGAS_propertyMultiplicity joker_7606_2 ; // Joker input parameter
+            GALGAS_string joker_7606_1 ; // Joker input parameter
+            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_7606_4, joker_7606_3, joker_7606_2, joker_7606_1, var_controllerActionMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 201)) ;
             var_controllerActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 202)) ;
             outArgument_outTargetActionList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, extractedValue_target.mAttribute_string, extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 203)) ;
           }
@@ -196,8 +196,8 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
       break ;
     case GALGAS_multipleBindingDescriptor::kEnum_enabledBinding:
       {
-        const cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding * extractPtr_8493 = (const cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding *) (enumerator_5863.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_8493->mAssociatedValue0 ;
+        const cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding * extractPtr_8505 = (const cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding *) (enumerator_5863.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_8505->mAssociatedValue0 ;
         GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression ;
         GALGAS_typeKind var_type ;
         GALGAS_location var_errorLocation ;
@@ -210,64 +210,64 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
       }
       break ;
     }
-    cEnumerator_regularBindingList enumerator_8566 (enumerator_5863.current_mRegularBindingList (HERE), kEnumeration_up) ;
-    while (enumerator_8566.hasCurrentObject ()) {
+    cEnumerator_regularBindingList enumerator_8578 (enumerator_5863.current_mRegularBindingList (HERE), kEnumeration_up) ;
+    while (enumerator_8578.hasCurrentObject ()) {
       GALGAS_outletBindingModelList var_boundModelTypeList = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
       GALGAS_stringlist var_boundModelStringListForGeneration = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 230)) ;
-      cEnumerator_observablePropertyList enumerator_8751 (enumerator_8566.current_mObservablePropertyList (HERE), kEnumeration_up) ;
-      while (enumerator_8751.hasCurrentObject ()) {
-        var_boundModelStringListForGeneration.addAssign_operation (categoryReader_modelString (enumerator_8751.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
+      cEnumerator_observablePropertyList enumerator_8763 (enumerator_8578.current_mObservablePropertyList (HERE), kEnumeration_up) ;
+      while (enumerator_8763.hasCurrentObject ()) {
+        var_boundModelStringListForGeneration.addAssign_operation (categoryReader_modelString (enumerator_8763.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
         GALGAS_typeKind var_type ;
         GALGAS_propertyKind var_kind ;
         GALGAS_propertyMultiplicity var_multiplicity ;
         GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
-        categoryMethod_analyzeObservableProperty (enumerator_8751.current_mObservableProperty (HERE), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_type, var_kind, var_multiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 233)) ;
+        categoryMethod_analyzeObservableProperty (enumerator_8763.current_mObservableProperty (HERE), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_type, var_kind, var_multiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 233)) ;
         const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("outlet-declaration.galgas", 242)))).boolEnum () ;
         if (kBoolTrue == test_10) {
-          inCompiler->emitSemanticError (categoryReader_location (enumerator_8751.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)), GALGAS_string ("a collection cannot be bound")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)) ;
+          inCompiler->emitSemanticError (categoryReader_location (enumerator_8763.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)), GALGAS_string ("a collection cannot be bound")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)) ;
         }
-        var_boundModelTypeList.addAssign_operation (var_type, var_kind, categoryReader_location (enumerator_8751.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 245))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 245)) ;
-        enumerator_8751.gotoNextObject () ;
+        var_boundModelTypeList.addAssign_operation (var_type, var_kind, categoryReader_location (enumerator_8763.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 245))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 245)) ;
+        enumerator_8763.gotoNextObject () ;
       }
       GALGAS_outletBindingSpecificationMap var_bindingMap ;
       constinArgument_inSemanticContext.mAttribute_mBindingSpecificationMap.method_searchKey (enumerator_5863.current_mOutletTypeName (HERE), var_bindingMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 248)) ;
       GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList ;
       GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList ;
-      var_bindingMap.method_searchKey (enumerator_8566.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 252)) ;
+      var_bindingMap.method_searchKey (enumerator_8578.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 252)) ;
       const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 257)).objectCompare (var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 257)))).boolEnum () ;
       if (kBoolTrue == test_11) {
-        GALGAS_location location_12 (enumerator_8566.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        GALGAS_location location_12 (enumerator_8578.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
         inCompiler->emitSemanticError (location_12, var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 258)).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 258)).add_operation (GALGAS_string (" model(s) required for this binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258)) ;
       }else if (kBoolFalse == test_11) {
-        cEnumerator_outletBindingSpecificationModelList enumerator_10099 (var_outletBindingSpecificationModelList, kEnumeration_up) ;
-        cEnumerator_outletBindingModelList enumerator_10132 (var_boundModelTypeList, kEnumeration_up) ;
-        while (enumerator_10099.hasCurrentObject () && enumerator_10132.hasCurrentObject ()) {
-          GALGAS_bool test_13 = enumerator_10099.current_mModelShouldBeWritableProperty (HERE) ;
+        cEnumerator_outletBindingSpecificationModelList enumerator_10111 (var_outletBindingSpecificationModelList, kEnumeration_up) ;
+        cEnumerator_outletBindingModelList enumerator_10144 (var_boundModelTypeList, kEnumeration_up) ;
+        while (enumerator_10111.hasCurrentObject () && enumerator_10144.hasCurrentObject ()) {
+          GALGAS_bool test_13 = enumerator_10111.current_mModelShouldBeWritableProperty (HERE) ;
           if (kBoolTrue == test_13.boolEnum ()) {
-            test_13 = GALGAS_bool (kIsEqual, enumerator_10132.current_mKind (HERE).objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("outlet-declaration.galgas", 261)))) ;
+            test_13 = GALGAS_bool (kIsEqual, enumerator_10144.current_mKind (HERE).objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("outlet-declaration.galgas", 261)))) ;
           }
           const enumGalgasBool test_14 = test_13.boolEnum () ;
           if (kBoolTrue == test_14) {
-            inCompiler->emitSemanticError (enumerator_10132.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 262)) ;
+            inCompiler->emitSemanticError (enumerator_10144.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 262)) ;
           }
-          GALGAS_bool test_15 = enumerator_10099.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
+          GALGAS_bool test_15 = enumerator_10111.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
           if (kBoolTrue == test_15.boolEnum ()) {
-            test_15 = enumerator_10132.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
+            test_15 = enumerator_10144.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
           }
           const enumGalgasBool test_16 = test_15.boolEnum () ;
           if (kBoolTrue == test_16) {
           }else if (kBoolFalse == test_16) {
-            const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, categoryReader_swiftTypeName (enumerator_10099.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)).objectCompare (categoryReader_swiftTypeName (enumerator_10132.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)))).boolEnum () ;
+            const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, categoryReader_swiftTypeName (enumerator_10111.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)).objectCompare (categoryReader_swiftTypeName (enumerator_10144.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)))).boolEnum () ;
             if (kBoolTrue == test_17) {
-              inCompiler->emitSemanticError (enumerator_10132.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (categoryReader_swiftTypeName (enumerator_10099.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)) ;
+              inCompiler->emitSemanticError (enumerator_10144.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (categoryReader_swiftTypeName (enumerator_10111.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)) ;
             }
           }
-          enumerator_10099.gotoNextObject () ;
-          enumerator_10132.gotoNextObject () ;
+          enumerator_10111.gotoNextObject () ;
+          enumerator_10144.gotoNextObject () ;
         }
       }
       GALGAS_string var_bindingOptionString = GALGAS_string::makeEmptyString () ;
-      const enumGalgasBool test_18 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 272)).objectCompare (enumerator_8566.current_mBindingOptionList (HERE).reader_length (SOURCE_FILE ("outlet-declaration.galgas", 272)))).boolEnum () ;
+      const enumGalgasBool test_18 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 272)).objectCompare (enumerator_8578.current_mBindingOptionList (HERE).reader_length (SOURCE_FILE ("outlet-declaration.galgas", 272)))).boolEnum () ;
       if (kBoolTrue == test_18) {
         GALGAS_string var_s ;
         const enumGalgasBool test_19 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 274)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
@@ -275,35 +275,35 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
           var_s = GALGAS_string ("this binding has no option") ;
         }else if (kBoolFalse == test_19) {
           var_s = GALGAS_string ("this binding requires the following options:") ;
-          cEnumerator_controllerBindingOptionDecoratedList enumerator_11081 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
-          while (enumerator_11081.hasCurrentObject ()) {
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_11093 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+          while (enumerator_11093.hasCurrentObject ()) {
             var_s.dotAssign_operation (GALGAS_string ("\n"
-              "  - ").add_operation (enumerator_11081.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (categoryReader_swiftTypeName (enumerator_11081.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)) ;
-            enumerator_11081.gotoNextObject () ;
+              "  - ").add_operation (enumerator_11093.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (categoryReader_swiftTypeName (enumerator_11093.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)) ;
+            enumerator_11093.gotoNextObject () ;
           }
         }
-        GALGAS_location location_20 (enumerator_8566.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        GALGAS_location location_20 (enumerator_8578.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
         inCompiler->emitSemanticError (location_20, var_s  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 282)) ;
       }else if (kBoolFalse == test_18) {
-        cEnumerator_controllerBindingOptionDecoratedList enumerator_11297 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
-        cEnumerator_bindingOptionList enumerator_11332 (enumerator_8566.current_mBindingOptionList (HERE), kEnumeration_up) ;
-        while (enumerator_11297.hasCurrentObject () && enumerator_11332.hasCurrentObject ()) {
-          const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, enumerator_11297.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_11332.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
+        cEnumerator_controllerBindingOptionDecoratedList enumerator_11309 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+        cEnumerator_bindingOptionList enumerator_11344 (enumerator_8578.current_mBindingOptionList (HERE), kEnumeration_up) ;
+        while (enumerator_11309.hasCurrentObject () && enumerator_11344.hasCurrentObject ()) {
+          const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, enumerator_11309.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_11344.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
           if (kBoolTrue == test_21) {
-            GALGAS_location location_22 (enumerator_11332.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_22, GALGAS_string ("the option name should be '").add_operation (enumerator_11297.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 286)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)) ;
+            GALGAS_location location_22 (enumerator_11344.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_22, GALGAS_string ("the option name should be '").add_operation (enumerator_11309.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 286)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)) ;
           }
           GALGAS_string var_optionValueAsString ;
           GALGAS_typeKindList temp_23 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
-          temp_23.addAssign_operation (enumerator_11297.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
-          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_11332.current_mOptionValue (HERE).ptr (), temp_23, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 288)) ;
-          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_11297.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)) ;
-          enumerator_11297.gotoNextObject () ;
-          enumerator_11332.gotoNextObject () ;
+          temp_23.addAssign_operation (enumerator_11309.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
+          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_11344.current_mOptionValue (HERE).ptr (), temp_23, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 288)) ;
+          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_11309.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)) ;
+          enumerator_11309.gotoNextObject () ;
+          enumerator_11344.gotoNextObject () ;
         }
       }
-      outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, enumerator_8566.current_mBindingName (HERE).mAttribute_string, var_boundModelStringListForGeneration, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 296)) ;
-      enumerator_8566.gotoNextObject () ;
+      outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, enumerator_8578.current_mBindingName (HERE).mAttribute_string, var_boundModelStringListForGeneration, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 296)) ;
+      enumerator_8578.gotoNextObject () ;
     }
     enumerator_5863.gotoNextObject () ;
   }
@@ -753,18 +753,18 @@ void routine_generateTransients (const GALGAS_string constinArgument_inSourceFil
                                  const GALGAS_transientDefinitionListForGeneration constinArgument_inTransientListForGeneration,
                                  C_Compiler * inCompiler
                                  COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_transientDefinitionListForGeneration enumerator_10043 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
-  while (enumerator_10043.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_10043.current_mOwnerName (HERE), enumerator_10043.current_mTransientName (HERE), enumerator_10043.current_mDependencyList (HERE), enumerator_10043.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 233))) ;
-    GALGAS_string var_fileName = enumerator_10043.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 239)).add_operation (enumerator_10043.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 239)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 239)) ;
+  cEnumerator_transientDefinitionListForGeneration enumerator_10123 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
+  while (enumerator_10123.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_10123.current_mOwnerName (HERE), enumerator_10123.current_mTransientName (HERE), enumerator_10123.current_mDependencyList (HERE), enumerator_10123.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 234))) ;
+    GALGAS_string var_fileName = enumerator_10123.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 240)).add_operation (enumerator_10123.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 240)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 240)) ;
     {
-    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("transient-property.galgas", 241)), var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("transient-property.galgas", 242)), var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
       "\n"), var_s, GALGAS_string ("\n"
       "\n"), GALGAS_string ("}\n"
       "\n"
-      "//----------------------------------------------------------------------------*\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 240)) ;
+      "//----------------------------------------------------------------------------*\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 241)) ;
     }
-    enumerator_10043.gotoNextObject () ;
+    enumerator_10123.gotoNextObject () ;
   }
 }
 
@@ -915,920 +915,6 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-//--- File '/cell-Int-PMNumberField.txt'
-
-const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "    //--- From cell-Int-PMNumberField.txt file\n"
-  "      let tf : PMNumberField = result.textField as! PMNumberField\n"
-  "      switch object.$MODEL$.prop.1 {\n"
-  "      case .noSelection :\n"
-  "        tf.stringValue = \"No Selection\"\n"
-  "        tf.enabled = false\n"
-  "      case .singleSelection :\n"
-  "        tf.integerValue = object.$MODEL$.prop.0\n"
-  "        tf.enabled = true\n"
-  "        tf.target = self\n"
-  "        tf.action = \"set_$MODEL$_Action:\"\n"
-  "       case .multipleSelection :\n"
-  "        tf.stringValue = \"Multiple Selection\"\n"
-  "        tf.enabled = false\n"
-  "     }\n"
-  "    //--- end\n" ;
-
-const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate (
-  "cell-Int-PMNumberField.txt",
-  "txt",
-  true, // Text file
-  541, // Text length
-  gWrapperFileContent_0_collectionControllerGenerationTemplate
-) ;
-
-//--- File '/cell-String-PMTextField.txt'
-
-const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "    //--- From cell-String-PMTextField.txt file\n"
-  "     let tf : PMTextField = result.textField as! PMTextField\n"
-  "      switch object.$MODEL$.prop.1 {\n"
-  "      case .noSelection :\n"
-  "        tf.stringValue = \"No Selection\"\n"
-  "        tf.enabled = false\n"
-  "      case .singleSelection :\n"
-  "        tf.stringValue = object.$MODEL$.prop.0\n"
-  "        tf.enabled = true\n"
-  "        tf.target = self\n"
-  "        tf.action = \"set_$MODEL$_Action:\"\n"
-  "       case .multipleSelection :\n"
-  "        tf.stringValue = \"Multiple Selection\"\n"
-  "        tf.enabled = false\n"
-  "     }\n"
-  "    //--- End\n" ;
-
-const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate (
-  "cell-String-PMTextField.txt",
-  "txt",
-  true, // Text file
-  536, // Text length
-  gWrapperFileContent_1_collectionControllerGenerationTemplate
-) ;
-
-//--- All files of '' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_collectionControllerGenerationTemplate_0 [3] = {
-  & gWrapperFile_0_collectionControllerGenerationTemplate,
-  & gWrapperFile_1_collectionControllerGenerationTemplate,
-  NULL
-} ;
-
-//--- All sub-directories of '' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_collectionControllerGenerationTemplate_0 [1] = {
-  NULL
-} ;
-
-//--- Directory ''
-
-const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate (
-  "",
-  2,
-  gWrapperAllFiles_collectionControllerGenerationTemplate_0,
-  0,
-  gWrapperAllDirectories_collectionControllerGenerationTemplate_0
-) ;
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (C_Compiler * inCompiler,
-                                                                                                               const GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                               const GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                                               const GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
-                                                                                                               const GALGAS_string & /* in_MODEL_5F_STRING */,
-                                                                                                               const GALGAS_bool & in_MODEL_5F_IS_5F_TRANSIENT,
-                                                                                                               const GALGAS_string & /* in_MODEL_5F_TYPE_5F_NAME */,
-                                                                                                               const GALGAS_string & in_MODEL_5F_TYPE_5F_NAME_5F__32_,
-                                                                                                               const GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
-                                                                                                               const GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const GALGAS_filewrapper & in_FILE_5F_WRAPPER
-                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  C_String result ;
-  result << "import Cocoa\n"
-    "\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "//    " ;
-  result << GALGAS_string ("DataSource_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).stringValue () ;
-  result << "*\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "\n"
-    "class DataSource_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " : ReadOnlyArrayOf_" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ", PMTableViewDataSource {\n"
-    "  private weak var mModel : ReadOnlyArrayOf_" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "\?\n"
-    "  var count = PMTransientProperty_Int ()\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  override init () {\n"
-    "    super.init ()\n"
-    "    count.computeFunction = { [weak self] in\n"
-    "      if let unwrappedSelf = self, model = unwrappedSelf.mModel {\n"
-    "        return (unwrappedSelf.prop.0.count, unwrappedSelf.prop.1)\n"
-    "      }else{\n"
-    "        return (0, .noSelection)\n"
-    "      }\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  override func postEvent () {\n"
-    "    if (prop_cache != nil) {\n"
-    "      prop_cache = nil\n"
-    "      count.postEvent ()\n"
-    "      super.postEvent ()\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  private func filterAndSort () -> (Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ">, PMSelectionKind) {\n"
-    "    let sortedObjectArray : Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ">\n"
-    "    var selection = PMSelectionKind.singleSelection\n"
-    "    if let model = mModel {\n"
-    "      selection = model.prop.1\n" ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, in_FILTER_5F_PROPERTIES.reader_length (SOURCE_FILE ("array-controller.swift.galgasTemplate", 41)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    result << "      var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop.0)\n"
-      "      currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)\n"
-      "      sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << ">\n" ;
-  }else if (kBoolFalse == test_0) {
-    result << "      var array = Array<" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << "> ()\n"
-      "      for object in model.prop.0 {\n" ;
-    GALGAS_uint index_2088_ (0) ;
-    if (in_FILTER_5F_PROPERTIES.isValid ()) {
-      cEnumerator_arrayControllerFilterListForGeneration enumerator_2088 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
-      while (enumerator_2088.hasCurrentObject ()) {
-        result << "        selection &= object." ;
-        result << enumerator_2088.current_mFilterPropertyName (HERE).stringValue () ;
-        result << ".prop.1\n" ;
-        index_2088_.increment () ;
-        enumerator_2088.gotoNextObject () ;
-      }
-    }
-    result << "        if arrayControllerFilter_" ;
-    result << in_OWNER_5F_NAME.stringValue () ;
-    result << "_" ;
-    result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-    result << " (" ;
-    GALGAS_uint index_2304_ (0) ;
-    if (in_FILTER_5F_PROPERTIES.isValid ()) {
-      cEnumerator_arrayControllerFilterListForGeneration enumerator_2304 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
-      while (enumerator_2304.hasCurrentObject ()) {
-        result << "object." ;
-        result << enumerator_2304.current_mFilterPropertyName (HERE).stringValue () ;
-        result << ".prop.0" ;
-        if (enumerator_2304.hasNextObject ()) {
-          result << ", " ;
-        }
-        index_2304_.increment () ;
-        enumerator_2304.gotoNextObject () ;
-      }
-    }
-    result << ") {\n"
-      "          array.append (object)\n"
-      "        }\n"
-      "      }\n"
-      "      if selection == .singleSelection {\n"
-      "        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n"
-      "        currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)\n"
-      "        sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << ">\n"
-      "      }else{\n"
-      "        sortedObjectArray = Array<" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << "> ()\n"
-      "      }\n" ;
-  }
-  result << "    }else{\n"
-    "      sortedObjectArray = Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> ()\n"
-    "      selection = .noSelection\n"
-    "    }\n"
-    "    return (sortedObjectArray, selection)\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  \n"
-    "  private var mSet = Set<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> ()\n"
-    "\n"
-    "  var prop_cache : Optional < (Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ">, PMSelectionKind) >\n"
-    "\n"
-    "  override var prop : (Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ">, PMSelectionKind) {\n"
-    "    get {\n"
-    "      if prop_cache == nil {\n"
-    "        prop_cache = filterAndSort ()\n"
-    "        let newObjectSet = Set<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> (prop_cache!.0)\n"
-    "        if mSet != newObjectSet {\n"
-    "        //--- Removed object set\n"
-    "          var removedObjectSet = mSet\n"
-    "          removedObjectSet.subtractInPlace (newObjectSet)\n" ;
-  GALGAS_uint index_3743_ (0) ;
-  if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_3743 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_3743.hasCurrentObject ()) {
-      result << "          for managedObject : " ;
-      result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " in removedObjectSet {\n"
-        "            for observer in mObserversOf_" ;
-      result << enumerator_3743.current_mObservablePropertyName (HERE).stringValue () ;
-      result << " {\n"
-        "              managedObject." ;
-      result << enumerator_3743.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".removeObserver (observer, postEvent:true)\n"
-        "            }\n"
-        "          }\n" ;
-      index_3743_.increment () ;
-      enumerator_3743.gotoNextObject () ;
-    }
-  }
-  result << "        //--- Added object set\n"
-    "          var addedObjectSet = newObjectSet\n"
-    "          addedObjectSet.subtractInPlace (mSet)\n" ;
-  GALGAS_uint index_4166_ (0) ;
-  if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_4166 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_4166.hasCurrentObject ()) {
-      result << "          for managedObject : " ;
-      result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " in addedObjectSet {\n"
-        "            for observer in mObserversOf_" ;
-      result << enumerator_4166.current_mObservablePropertyName (HERE).stringValue () ;
-      result << " {\n"
-        "              managedObject." ;
-      result << enumerator_4166.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".addObserver (observer, postEvent:true)\n"
-        "            }\n"
-        "          }\n"
-        " " ;
-      index_4166_.increment () ;
-      enumerator_4166.gotoNextObject () ;
-    }
-  }
-  result << "       //--- Update object set\n"
-    "          mSet = newObjectSet\n"
-    "        }\n"
-    "      }\n"
-    "      return prop_cache!\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    Sort descriptors                                                                                               *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  \n"
-    "  private var mSortDescriptors : [AnyObject] = [AnyObject] () {\n"
-    "    didSet {\n"
-    "      postEvent () // Force sorting\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  \n"
-    "  func setSortDescriptors (sortDescriptors : [AnyObject]) {\n"
-    "    mSortDescriptors = sortDescriptors\n"
-    "  }\n"
-    "  \n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:                                 *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func tableView (aTableView: NSTableView,\n"
-    "                  sortDescriptorsDidChange oldDescriptors: [AnyObject]) {\n"
-    "    // NSLog (\"%@\", __FUNCTION__)\n"
-    "    mSortDescriptors = aTableView.sortDescriptors\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView                                             *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func numberOfRowsInTableView (NSTableView) -> Int {\n"
-    "    // NSLog (\"%@ (%ld objects)\", __FUNCTION__, prop.count)\n"
-    "    return prop.0.count\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "}\n"
-    "\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "//    " ;
-  result << GALGAS_string ("Delegate_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).stringValue () ;
-  result << "*\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "\n"
-    "@objc(Delegate_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << ") class Delegate_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " : PMAbstractProperty, PMTableViewDelegate {\n"
-    "  private var mSet = Set<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> ()\n"
-    "  private var mSetShouldBeComputed = true\n"
-    "  private var mSortedArray : DataSource_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << "\n"
-    "  private var mIgnoreTableViewSelectionDidChange = true\n"
-    "  var count = PMTransientProperty_Int ()\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  init (model:DataSource_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << ") {\n"
-    "    mSortedArray = model\n"
-    "    super.init ()\n"
-    "    count.computeFunction = { [weak self] in\n"
-    "      if let unwrappedSelf = self {\n"
-    "        return (unwrappedSelf.prop.0.count, unwrappedSelf.prop.1)\n"
-    "      }else{\n"
-    "        return (0, .noSelection)\n"
-    "      }\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  \n"
-    "  override func postEvent () {\n"
-    "    if !mSetShouldBeComputed {\n"
-    "      mSetShouldBeComputed = true\n"
-    "      count.postEvent ()\n"
-    "      super.postEvent ()\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  \n"
-    "  var prop : (Set<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ">, PMSelectionKind) {\n"
-    "    get {\n"
-    "      if mSetShouldBeComputed {\n"
-    "        mSetShouldBeComputed = false\n"
-    "        // NSLog (\"mSet %d\", mSet.count)\n"
-    "        mSet.intersectInPlace (mSortedArray.prop.0)\n"
-    "        // NSLog (\"mSet %d\", mSet.count)\n"
-    "        if (mSet.count == 0) && (mSortedArray.prop.0.count > 0) {\n"
-    "          mSet.insert (mSortedArray.prop.0 [0])\n"
-    "        }\n"
-    "      //--- DEBUG :Dictionary of object indexes\n"
-    "        /* var objectDictionary = [" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << " : Int] ()\n"
-    "        for (index, object) in enumerate (mSortedArray.prop.0) {\n"
-    "          objectDictionary [object] = index\n"
-    "        }\n"
-    "        for object in mSet {\n"
-    "          if let index = objectDictionary [object] {\n"
-    "            NSLog (\"SELECTED : %d, %@\", index, object)\n"
-    "          }\n"
-    "        } */\n"
-    "      //--- DEBUG end\n"
-    "      }\n"
-    "      return (mSet, mSortedArray.prop.1)\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func setProp (value : Set<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << ">) {\n"
-    "    mSet = value\n"
-    "    postEvent ()\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func selectedObjectIndexSet () -> NSIndexSet {\n"
-    "    var indexSet = NSMutableIndexSet ()\n"
-    "    if mSortedArray.prop.1 == .singleSelection {\n"
-    "    //--- Dictionary of object indexes\n"
-    "      var objectDictionary = [" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << " : Int] ()\n"
-    "      for (index, object) in enumerate (mSortedArray.prop.0) {\n"
-    "        objectDictionary [object] = index\n"
-    "      }\n"
-    "      for object in prop.0 {\n"
-    "        if let index = objectDictionary [object] {\n"
-    "          indexSet.addIndex (index)\n"
-    "        }\n"
-    "      }\n"
-    "    }\n"
-    "    return indexSet\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:                                            *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func tableViewSelectionDidChange (notication : NSNotification) {\n"
-    "    // NSLog (\"%@ %d\", __FUNCTION__, mIgnoreTableViewSelectionDidChange)\n"
-    "    if !mIgnoreTableViewSelectionDidChange {\n"
-    "      let tableView = notication.object as! PMTableView\n"
-    "      var newSelectedObjectSet = Set <" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> ()\n"
-    "      for index in tableView.selectedRowIndexes {\n"
-    "        newSelectedObjectSet.insert (mSortedArray.prop.0.objectAtIndex (index, file: __FILE__, line: __LINE__))\n"
-    "      }\n"
-    "      setProp (newSelectedObjectSet)\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:                                       *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func tableView (tableView : NSTableView,\n"
-    "                  viewForTableColumn inTableColumn: NSTableColumn\?,\n"
-    "                  row inRowIndex: Int) -> NSView\? {\n"
-    " //   NSLog (\"%@, row %d, column %@\", __FUNCTION__, inRowIndex, inTableColumn!.identifier)\n"
-    "    let columnIdentifier = inTableColumn!.identifier\n"
-    "    var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView\n"
-    "    result.textField\?.tag = inRowIndex\n"
-    "    let object = mSortedArray.prop.0.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
-    "    " ;
-  GALGAS_uint index_11665_ (0) ;
-  if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_11665 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_11665 = enumerator_11665.hasCurrentObject () ;
-    while (enumerator_11665.hasCurrentObject ()) {
-      result << "if columnIdentifier == \"" ;
-      result << enumerator_11665.current_mColumnName (HERE).stringValue () ;
-      result << "\" {\n" ;
-      result << in_FILE_5F_WRAPPER.reader_textFileContentsAtPath (GALGAS_string ("cell-").add_operation (categoryReader_swiftTypeName (enumerator_11665.current_mPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).add_operation (enumerator_11665.current_mColumnOutletTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).add_operation (GALGAS_string (".txt"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).reader_stringByReplacingStringByString (GALGAS_string ("$MODEL$"), enumerator_11665.current_mObservablePropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 274)).stringValue () ;
-      result << "    " ;
-      if (enumerator_11665.hasNextObject ()) {
-        result << "}else " ;
-      }
-      index_11665_.increment () ;
-      enumerator_11665.gotoNextObject () ;
-    }
-    if (nonEmpty_enumerator_11665) {
-      result << "}\n" ;
-    }
-  }
-  result << "    return result\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func willReload () {\n"
-    "    mIgnoreTableViewSelectionDidChange = true\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  \n"
-    "  func didReload () {\n"
-    "    mIgnoreTableViewSelectionDidChange = false\n"
-    "  }\n"
-    "\n" ;
-  GALGAS_uint index_12405_ (0) ;
-  if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_12405 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_12405.hasCurrentObject ()) {
-      result << "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-        "\n"
-        "  func set_" ;
-      result << enumerator_12405.current_mObservablePropertyName (HERE).stringValue () ;
-      result << "_Action (sender : " ;
-      result << enumerator_12405.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << ") {\n"
-        "    let row = sender.tag\n"
-        "    let object = mSortedArray.prop.0.objectAtIndex (row, file:__FILE__, line:__LINE__)\n"
-        "    object." ;
-      result << enumerator_12405.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".validateAndSetProp (" ;
-      result << categoryReader_transformerForTableViewAction (enumerator_12405.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 301)).stringValue () ;
-      result << ", windowForSheet:sender.window)\n"
-        "  }\n" ;
-      index_12405_.increment () ;
-      enumerator_12405.gotoNextObject () ;
-    }
-  }
-  result << "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "}\n"
-    "\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "//    " ;
-  result << GALGAS_string ("ArrayController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).stringValue () ;
-  result << "*\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "\n"
-    "class ArrayController_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " : PMObject {\n"
-    "  private let mAllowsEmptySelection = false\n"
-    "  private let mAllowsMultipleSelection = true\n"
-    "\n"
-    "  var sortedArray = DataSource_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " ()\n"
-    "\n"
-    "  var selectedArray = TransientArrayOf_" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << " ()\n"
-    "\n"
-    "  private var mSelectedSet : Delegate_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << "\?\n"
-    "\n"
-    "  private var mTableViewControllerArray = [Controller_PMTableView_controller] ()\n"
-    "\n"
-    "  private var mModel : " ;
-  result << in_MODEL_5F_TYPE_5F_NAME_5F__32_.stringValue () ;
-  result << "\?\n"
-    " \n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    init                                                                                                           *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  override init () {\n"
-    "    super.init ()\n"
-    "    selectedArray.computeFunction = {\n"
-    "      var result = Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> ()\n"
-    "      var selection = PMSelectionKind.singleSelection\n"
-    "      if let selectedSet = self.mSelectedSet {\n"
-    "        selection = self.sortedArray.prop.1 & selectedSet.prop.1\n"
-    "        for object in self.sortedArray.prop.0 {\n"
-    "          if selectedSet.prop.0.contains (object) {\n"
-    "            result.append (object)\n"
-    "          }\n"
-    "        }\n"
-    "      }\n"
-    "      if selection != .singleSelection {\n"
-    "        result = Array<" ;
-  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "> ()\n"
-    "      }\n"
-    "      return (result, selection)\n"
-    "    }\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    bind_modelAndView                                                                                              *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func bind_modelAndView (model:" ;
-  result << in_MODEL_5F_TYPE_5F_NAME_5F__32_.stringValue () ;
-  result << ", tableViewArray:[PMTableView], file:String, line:Int) {\n"
-    "    mModel = model\n"
-    "    sortedArray.mModel = model\n"
-    "    let selectedSet = Delegate_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " (model:sortedArray)\n"
-    "    mSelectedSet = selectedSet\n"
-    "    for tableView in tableViewArray {\n"
-    "      let tableViewController = Controller_PMTableView_controller (\n"
-    "        delegate:selectedSet,\n"
-    "        tableView:tableView,\n"
-    "        file:file,\n"
-    "        line:line\n"
-    "      )\n"
-    "      mTableViewControllerArray.append (tableViewController)\n"
-    "      tableView.allowsEmptySelection = mAllowsEmptySelection\n"
-    "      tableView.allowsMultipleSelection = mAllowsMultipleSelection\n" ;
-  GALGAS_uint index_15901_ (0) ;
-  if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_15901 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_15901.hasCurrentObject ()) {
-      result << "    //--- Check '" ;
-      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
-      result << "' column\n"
-        "      if let anyObject: AnyObject = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
-      result << "\", owner:self) {\n"
-        "        if let unwrappedTableCellView = anyObject as\? NSTableCellView {\n"
-        "          if !(unwrappedTableCellView.textField is " ;
-      result << enumerator_15901.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << ") {\n"
-        "            presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column view is not an instance of " ;
-      result << enumerator_15901.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << "\")\n"
-        "          }\n"
-        "        }else{\n"
-        "          presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column cell view is not an instance of NSTableCellView\")\n"
-        "        }\n"
-        "      }else{\n"
-        "        presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column view unknown\")\n"
-        "      }\n"
-        "      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
-      result << "\") {\n"
-        "        columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_15901.current_mObservablePropertyName (HERE).stringValue () ;
-      result << "_keyCodingValue\", ascending:true)\n"
-        "      }\n" ;
-      index_15901_.increment () ;
-      enumerator_15901.gotoNextObject () ;
-    }
-  }
-  result << "    //--- Set descriptors from first column of table view\n"
-    "      let columns = tableView.tableColumns as NSArray\n"
-    "      if columns.count > 0 {\n"
-    "        let firstColumn = columns [0] as! NSTableColumn\n"
-    "        if let sdp = firstColumn.sortDescriptorPrototype {\n"
-    "          let sortDescriptorArray = NSArray (object:sdp) as! [AnyObject]\n"
-    "          tableView.sortDescriptors = sortDescriptorArray\n"
-    "          sortedArray.setSortDescriptors (sortDescriptorArray)\n"
-    "        }\n"
-    "      }\n"
-    "      sortedArray.addObserver (tableViewController, postEvent:true)\n"
-    "      selectedSet.addObserver (tableViewController, postEvent:true)\n"
-    "   //--- Set table view delegate and data source\n"
-    "      tableView.setDataSource (sortedArray)\n"
-    "      tableView.setDelegate (selectedSet)\n"
-    "   }\n"
-    "  //--- Add observers\n"
-    "    model.addObserverOf_name (sortedArray, postEvent:true)\n"
-    "    model.addObserverOf_aValue (sortedArray, postEvent:true)\n"
-    "    model.addObserver (sortedArray, postEvent:true)\n"
-    "    sortedArray.addObserver (selectedSet, postEvent:true)\n"
-    "    selectedSet.addObserver (selectedArray, postEvent:true)\n"
-    "  }\n"
-    "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "  //    unbind_modelAndView                                                                                            *\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "  func unbind_modelAndView () {\n"
-    "    mModel\?.removeObserverOf_name (sortedArray, postEvent:false)\n"
-    "    mModel\?.removeObserverOf_aValue (sortedArray, postEvent:false)\n"
-    "    mModel\?.removeObserver (sortedArray, postEvent:false)\n"
-    "    if let selectedSet = mSelectedSet {\n"
-    "      sortedArray.removeObserver (selectedSet, postEvent:false)\n"
-    "    }\n"
-    "    mSelectedSet\?.removeObserver (selectedArray, postEvent:false)\n"
-    "     for tableViewController in mTableViewControllerArray {\n"
-    "      sortedArray.removeObserver (tableViewController, postEvent:false)\n"
-    "      mSelectedSet\?.removeObserver (tableViewController, postEvent:false)\n"
-    "    }\n"
-    "    mTableViewControllerArray = []\n"
-    "    selectedArray.computeFunction = nil\n"
-    "    mSelectedSet = nil\n"
-    "    mModel = nil\n"
-    " }\n"
-    " \n" ;
-  const enumGalgasBool test_1 = in_MODEL_5F_IS_5F_TRANSIENT.operator_not (SOURCE_FILE ("array-controller.swift.galgasTemplate", 434)).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    result << " \n"
-      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-      "  //    add                                                                                                            *\n"
-      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-      "\n"
-      "   func add (inSender : NSButton\?) {\n"
-      "    if let model = mModel,\n"
-      "           owner = model.owner,\n"
-      "           undoManager = owner.undoManager (),\n"
-      "           selectedSet = mSelectedSet where model.prop.1 == .singleSelection {\n"
-      "      var newObject : " ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << " = " ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << " (undoManager:undoManager)\n"
-      "      var array = model.prop.0\n"
-      "      array.append (newObject)\n"
-      "    //--- New object is the selection\n"
-      "      var newSelectedObjectSet = Set <" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << "> ()\n"
-      "      newSelectedObjectSet.insert (newObject)\n"
-      "      selectedSet.setProp (newSelectedObjectSet)\n"
-      "      model.setProp (array)\n"
-      "    }\n"
-      "  }\n"
-      "\n"
-      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-      "  //    remove                                                                                                         *\n"
-      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-      "\n"
-      "  func remove (inSender : NSButton\?) {\n"
-      "    if let model = mModel,\n"
-      "           selectedSet = mSelectedSet where (selectedSet.prop.0.count > 0) && (model.prop.1 == .singleSelection){\n"
-      "    //------------- Find the object to be selected after selected object removing\n"
-      "    //--- Dictionary of object sorted indexes\n"
-      "      var sortedObjectDictionary = [" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << " : Int] ()\n"
-      "      for (index, object) in enumerate (sortedArray.prop.0) {\n"
-      "        sortedObjectDictionary [object] = index\n"
-      "      }\n"
-      "      var indexArrayOfSelectedObjects = [Int] ()\n"
-      "      for object in selectedSet.prop.0 {\n"
-      "        let index = sortedObjectDictionary [object]\n"
-      "        if let idx = index {\n"
-      "          indexArrayOfSelectedObjects.append (idx)\n"
-      "        }\n"
-      "      }\n"
-      "    //--- Sort\n"
-      "      indexArrayOfSelectedObjects.sort { $0 < $1 }\n"
-      "    //--- Find the first index of a non selected object\n"
-      "      var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n"
-      "      for index in indexArrayOfSelectedObjects {\n"
-      "        if newSelectionIndex < index {\n"
-      "          break\n"
-      "        }else{\n"
-      "          newSelectionIndex = index + 1\n"
-      "        }\n"
-      "      }\n"
-      "      var newSelectedObject : " ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << "\? = nil\n"
-      "      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.0.count) {\n"
-      "        newSelectedObject = sortedArray.prop.0 [newSelectionIndex]\n"
-      "      }\n"
-      "    //----------------------------------------- Remove selected object\n"
-      "    //--- Dictionary of object absolute indexes\n"
-      "      var objectDictionary = [" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << " : Int] ()\n"
-      "      for (index, object) in enumerate (model.prop.0) {\n"
-      "        objectDictionary [object] = index\n"
-      "      }\n"
-      "    //--- Build selected objects index array\n"
-      "      var selectedObjectIndexArray = [Int] ()\n"
-      "      for object in selectedSet.prop.0 {\n"
-      "        let index = objectDictionary [object]\n"
-      "        if let idx = index {\n"
-      "          selectedObjectIndexArray.append (idx)\n"
-      "        }\n"
-      "      }\n"
-      "    //--- Sort in reverse order\n"
-      "      selectedObjectIndexArray.sort { $1 < $0 }\n"
-      "    //--- Remove objects, in reverse of order of their index\n"
-      "      var newObjectArray = model.prop.0\n"
-      "      for index in selectedObjectIndexArray {\n"
-      "        newObjectArray.removeAtIndex (index)\n"
-      "      }\n"
-      "    //----------------------------------------- Set new selection\n"
-      "      var newSelectionSet = Set <" ;
-    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << "> ()\n"
-      "      if let object = newSelectedObject {\n"
-      "        newSelectionSet.insert (object)\n"
-      "      }\n"
-      "      mSelectedSet\?.setProp (newSelectionSet)\n"
-      "    //----------------------------------------- Set new object array\n"
-      "      model.setProp (newObjectArray)\n"
-      "    }\n"
-      "  }\n" ;
-  }else if (kBoolFalse == test_1) {
-  }
-  result << "\n"
-    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-    "\n"
-    "}\n"
-    "\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
-    "\n" ;
-  return GALGAS_string (result) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (C_Compiler * inCompiler,
-                                                                                         const GALGAS_string & in_OWNER_5F_NAME,
-                                                                                         const GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                         const GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  C_String result ;
-  uint32_t columnMarker = 0 ;
-  result << "import Cocoa\n"
-    "\n"
-    "//----------------------------------------------------------------------------*\n"
-    "\n"
-    "func arrayControllerFilter_" ;
-  result << in_OWNER_5F_NAME.stringValue () ;
-  result << "_" ;
-  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " (" ;
-  columnMarker = result.currentColumn () ;
-  GALGAS_uint index_195_ (0) ;
-  if (in_FILTER_5F_PROPERTIES.isValid ()) {
-    cEnumerator_arrayControllerFilterListForGeneration enumerator_195 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
-    while (enumerator_195.hasCurrentObject ()) {
-      result << enumerator_195.current_mFilterPropertyName (HERE).stringValue () ;
-      result << " : " ;
-      result << categoryReader_swiftTypeName (enumerator_195.current_mFilterPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-filter-function.swift.galgasTemplate", 7)).stringValue () ;
-      if (enumerator_195.hasNextObject ()) {
-        result << ",\n" ;
-        result.appendSpacesUntilColumn (columnMarker) ;
-      }
-      index_195_.increment () ;
-      enumerator_195.gotoNextObject () ;
-    }
-  }
-  result << ") -> Bool {\n"
-    "\n" ;
-  return GALGAS_string (result) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         Routine 'generateArrayControllers'                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration constinArgument_inArrayControllerListForGeneration,
-                                       const GALGAS_string constinArgument_inOutputDirectory,
-                                       C_Compiler * inCompiler
-                                       COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_arrayControllerForGeneration enumerator_16881 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_16881.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_16881.current_mOwnerName (HERE), enumerator_16881.current_mControllerName (HERE), enumerator_16881.current_mArrayControllerFilterListForGeneration (HERE), enumerator_16881.current_mModelString (HERE), enumerator_16881.current_mModelIsTransient (HERE), enumerator_16881.current_mModelTypeName (HERE), enumerator_16881.current_mModelTypeName_32_ (HERE), enumerator_16881.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_16881.current_mElementTypeName (HERE), GALGAS_filewrapper (gWrapperDirectory_0_collectionControllerGenerationTemplate) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 442))) ;
-    {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_16881.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)).add_operation (enumerator_16881.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 456)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 454)) ;
-    }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_16881.current_mArrayControllerFilterListForGeneration (HERE).reader_length (SOURCE_FILE ("array-controller-declaration.galgas", 459)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_16881.current_mOwnerName (HERE), enumerator_16881.current_mControllerName (HERE), enumerator_16881.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 460))) ;
-      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_16881.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)).add_operation (enumerator_16881.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 465)) ;
-      {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
-        "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
-        "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 473)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 473)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 473)), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 466)) ;
-      }
-    }
-    enumerator_16881.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                               Routine 'typeInventory'                                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1839,48 +925,48 @@ void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
                             C_Compiler * inCompiler
                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUnifiedTypeMap.drop () ; // Release 'out' argument
-  outArgument_outUnifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 104)) ;
-  GALGAS_transientDependencyGraph var_transientDependencyGraph = GALGAS_transientDependencyGraph::constructor_emptyGraph (SOURCE_FILE ("unified-type.galgas", 105)) ;
+  outArgument_outUnifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 105)) ;
+  GALGAS_transientDependencyGraph var_transientDependencyGraph = GALGAS_transientDependencyGraph::constructor_emptyGraph (SOURCE_FILE ("unified-type.galgas", 106)) ;
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 107)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 107)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 108)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 108)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Color").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 108)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 108)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Color").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 109)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 109)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Date").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 109)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 109)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Date").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 110)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 110)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 110)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 110)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 111)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 111)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 111)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 111)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 112)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 112)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 112)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 112))  COMMA_SOURCE_FILE ("unified-type.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 112)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").reader_nowhere (SOURCE_FILE ("unified-type.galgas", 113)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 113))  COMMA_SOURCE_FILE ("unified-type.galgas", 113)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 113)) ;
   }
-  cEnumerator_astDeclarationList enumerator_4667 (constinArgument_inDeclarationList, kEnumeration_up) ;
-  while (enumerator_4667.hasCurrentObject ()) {
-    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_4667.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, var_transientDependencyGraph, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 115)) ;
-    enumerator_4667.gotoNextObject () ;
+  cEnumerator_astDeclarationList enumerator_4699 (constinArgument_inDeclarationList, kEnumeration_up) ;
+  while (enumerator_4699.hasCurrentObject ()) {
+    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_4699.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, var_transientDependencyGraph, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 116)) ;
+    enumerator_4699.gotoNextObject () ;
   }
   const enumGalgasBool test_0 = GALGAS_bool (gOption_easyBindings_5F_options_outputClassDependencyGraph.reader_value ()).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = outArgument_outUnifiedTypeMap.reader_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 119)) ;
-    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 120)) ;
-    GALGAS_bool joker_5031 ; // Joker input parameter
-    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5031, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 121)) ;
+    GALGAS_string var_s = outArgument_outUnifiedTypeMap.reader_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 120)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 121)) ;
+    GALGAS_bool joker_5063 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5063, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 122)) ;
   }
-  GALGAS_bool test_1 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("unified-type.galgas", 124)).objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
+  GALGAS_bool test_1 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("unified-type.galgas", 125)).objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
   if (kBoolTrue == test_1.boolEnum ()) {
     test_1 = GALGAS_bool (gOption_easyBindings_5F_options_outputTransientDependencyGraph.reader_value ()) ;
   }
   const enumGalgasBool test_2 = test_1.boolEnum () ;
   if (kBoolTrue == test_2) {
-    GALGAS_string var_s = var_transientDependencyGraph.reader_graphviz (SOURCE_FILE ("unified-type.galgas", 125)) ;
-    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".transientDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 126)) ;
-    GALGAS_bool joker_5352 ; // Joker input parameter
-    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5352, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 127)) ;
+    GALGAS_string var_s = var_transientDependencyGraph.reader_graphviz (SOURCE_FILE ("unified-type.galgas", 126)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".transientDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 127)) ;
+    GALGAS_bool joker_5384 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5384, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 128)) ;
   }
 }
 
@@ -1965,35 +1051,38 @@ void routine_generateCode (const GALGAS_structForGeneration constinArgument_inGe
                            C_Compiler * inCompiler
                            COMMA_UNUSED_LOCATION_ARGS) {
   {
-  routine_generateTransients (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mTransientListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 24)) ;
+  routine_generateTransients (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mTransientListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 25)) ;
   }
   {
-  routine_generateActions (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mActionListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 28)) ;
+  routine_generateActions (constinArgument_inSourceFile, constinArgument_inGeneration.mAttribute_mActionListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 29)) ;
   }
-  GALGAS_string var_outputDirectory = constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("code-generation.galgas", 32)) ;
+  GALGAS_string var_outputDirectory = constinArgument_inSourceFile.reader_stringByDeletingLastPathComponent (SOURCE_FILE ("code-generation.galgas", 33)) ;
   {
-  routine_generatePreferences (constinArgument_inGeneration.mAttribute_mPreferenceListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 33)) ;
-  }
-  {
-  routine_generateOutletClasses (constinArgument_inGeneration.mAttribute_mNeededOutletClasses, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 37)) ;
+  routine_generatePreferences (constinArgument_inGeneration.mAttribute_mPreferenceListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 34)) ;
   }
   {
-  routine_generateEntities (constinArgument_inGeneration.mAttribute_mEntityListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 41)) ;
+  routine_generateOutletClasses (constinArgument_inGeneration.mAttribute_mNeededOutletClasses, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 38)) ;
   }
   {
-  routine_generateEnums (constinArgument_inGeneration.mAttribute_mEnumListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 45)) ;
+  routine_generateEntities (constinArgument_inGeneration.mAttribute_mEntityListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 42)) ;
   }
   {
-  routine_generateDocuments (constinArgument_inGeneration.mAttribute_mDocumentListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 49)) ;
+  routine_generateEnums (constinArgument_inGeneration.mAttribute_mEnumListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 46)) ;
   }
   {
-  routine_generateArrayControllers (constinArgument_inGeneration.mAttribute_mAllArrayControllerForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 53)) ;
+  routine_generateDocuments (constinArgument_inGeneration.mAttribute_mDocumentListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 50)) ;
   }
   {
-  routine_generateSwiftApplicationFiles (var_outputDirectory, GALGAS_bool (kIsStrictSup, constinArgument_inGeneration.mAttribute_mEntityListForGeneration.reader_length (SOURCE_FILE ("code-generation.galgas", 59)).objectCompare (GALGAS_uint ((uint32_t) 0U))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 57)) ;
+  routine_generateArrayControllers (constinArgument_inGeneration.mAttribute_mAllArrayControllerForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 54)) ;
   }
   {
-  routine_generateValidationRoutineStubs (var_outputDirectory, constinArgument_inGeneration.mAttribute_mValidationStubRoutineListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 61)) ;
+  routine_generateSelectionControllers (constinArgument_inGeneration.mAttribute_mSelectionControllerListForGeneration, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 58)) ;
+  }
+  {
+  routine_generateSwiftApplicationFiles (var_outputDirectory, GALGAS_bool (kIsStrictSup, constinArgument_inGeneration.mAttribute_mEntityListForGeneration.reader_length (SOURCE_FILE ("code-generation.galgas", 64)).objectCompare (GALGAS_uint ((uint32_t) 0U))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 62)) ;
+  }
+  {
+  routine_generateValidationRoutineStubs (var_outputDirectory, constinArgument_inGeneration.mAttribute_mValidationStubRoutineListForGeneration, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 66)) ;
   }
 }
 
@@ -6689,6 +5778,70 @@ const char * gWrapperFileContent_11_swift_5F_sources = "import Cocoa\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMReadWriteProperty_Int                                                                                           *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMReadWriteProperty_Int : PMReadOnlyProperty_Int {\n"
+  "  func setProp (inValue : Int) { } // Abstract method\n"
+  "  func validateAndSetProp (candidateValue : Int, windowForSheet inWindow:NSWindow\?) -> Bool {\n"
+  "    return false\n"
+  "  } // Abstract method\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   PMPropertyProxy_Int                                                                                               *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "class PMPropertyProxy_Int : PMReadWriteProperty_Int {\n"
+  "  var readModelFunction : Optional < () -> (Int, PMSelectionKind) >\n"
+  "  var writeModelFunction : Optional < (Int) -> Void >\n"
+  "  var validateAndWriteModelFunction : Optional < (Int, NSWindow\?) -> Bool >\n"
+  "  \n"
+  "  private var prop_cache : (Int, PMSelectionKind)\?\n"
+  "  \n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "  }\n"
+  "  \n"
+  "  override func postEvent() {\n"
+  "    if prop_cache != nil {\n"
+  "      prop_cache = nil\n"
+  "      super.postEvent()\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override var prop : (Int, PMSelectionKind) {\n"
+  "    get {\n"
+  "      if let unReadModelFunction = readModelFunction where prop_cache == nil {\n"
+  "        prop_cache = unReadModelFunction ()\n"
+  "      }\n"
+  "      if prop_cache == nil {\n"
+  "        prop_cache = (0, .noSelection)\n"
+  "      }\n"
+  "      return prop_cache!\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  \n"
+  "  override func setProp (inValue : Int) {\n"
+  "    if let unWriteModelFunction = writeModelFunction {\n"
+  "      unWriteModelFunction (inValue)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  override func validateAndSetProp (candidateValue : Int,\n"
+  "                                    windowForSheet inWindow:NSWindow\?) -> Bool {\n"
+  "    var result = false\n"
+  "    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {\n"
+  "      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "  \n"
+  "  \n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "//   PMStoredProperty_Int                                                                                              *\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "\n"
@@ -6729,14 +5882,17 @@ const char * gWrapperFileContent_11_swift_5F_sources = "import Cocoa\n"
   "  var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction\n"
   "  \n"
   "  func validateAndSetProp (candidateValue : Int,\n"
-  "                           windowForSheet inWindow:NSWindow\?) {\n"
+  "                           windowForSheet inWindow:NSWindow\?) -> Bool {\n"
+  "    var result = true\n"
   "    let validationResult = validationFunction (candidateValue)\n"
   "    switch validationResult {\n"
   "    case PMValidationResult.ok :\n"
   "      setProp (candidateValue)\n"
   "    case PMValidationResult.rejectWithBeep :\n"
+  "      result = false\n"
   "      NSBeep ()\n"
   "    case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "      result = false\n"
   "      let alert = NSAlert ()\n"
   "      alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%d\xE2""\x80""\x9D"" is invalid.\", candidateValue)\n"
   "      alert.informativeText = informativeText\n"
@@ -6752,6 +5908,7 @@ const char * gWrapperFileContent_11_swift_5F_sources = "import Cocoa\n"
   "        alert.runModal ()\n"
   "      }\n"
   "    }\n"
+  "    return result\n"
   "  }\n"
   "\n"
   "}\n"
@@ -6880,7 +6037,7 @@ const cRegularFileWrapper gWrapperFile_11_swift_5F_sources (
   "standard-properties.swift",
   "swift",
   true, // Text file
-  22628, // Text length
+  24964, // Text length
   gWrapperFileContent_11_swift_5F_sources
 ) ;
 
@@ -6929,40 +6086,40 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             const GALGAS_bool constinArgument_inHasEntities,
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 86)) ;
-  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("code-generation.galgas", 81)) ;
-  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 82)) ;
-  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("code-generation.galgas", 83)) ;
-  temp_0.addAssign_operation (GALGAS_string ("standard-properties")  COMMA_SOURCE_FILE ("code-generation.galgas", 84)) ;
-  temp_0.addAssign_operation (GALGAS_string ("generic-bindings")  COMMA_SOURCE_FILE ("code-generation.galgas", 85)) ;
-  temp_0.addAssign_operation (GALGAS_string ("application")  COMMA_SOURCE_FILE ("code-generation.galgas", 86)) ;
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 91)) ;
+  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("code-generation.galgas", 86)) ;
+  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 87)) ;
+  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("code-generation.galgas", 88)) ;
+  temp_0.addAssign_operation (GALGAS_string ("standard-properties")  COMMA_SOURCE_FILE ("code-generation.galgas", 89)) ;
+  temp_0.addAssign_operation (GALGAS_string ("generic-bindings")  COMMA_SOURCE_FILE ("code-generation.galgas", 90)) ;
+  temp_0.addAssign_operation (GALGAS_string ("application")  COMMA_SOURCE_FILE ("code-generation.galgas", 91)) ;
   GALGAS_stringlist var_swiftFiles = temp_0 ;
   const enumGalgasBool test_1 = constinArgument_inHasEntities.boolEnum () ;
   if (kBoolTrue == test_1) {
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 89)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("code-generation.galgas", 90)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 91)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 92)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 94)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("code-generation.galgas", 95)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 96)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 97)) ;
   }
-  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 94)) ;
-  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 94)) ;
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 99)) ;
+  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 99)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_3202 (var_swiftFiles, kEnumeration_up) ;
-  while (enumerator_3202.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_3202.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 97)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 97)) ;
+  cEnumerator_stringlist enumerator_3390 (var_swiftFiles, kEnumeration_up) ;
+  while (enumerator_3390.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_3390.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 102)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_3202.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 100)), var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 98)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_3390.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 105)), var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 103)) ;
     }
-    enumerator_3202.gotoNextObject () ;
+    enumerator_3390.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_3395 (var_xibFiles, kEnumeration_up) ;
-  while (enumerator_3395.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_3395.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 105)) ;
+  cEnumerator_stringlist enumerator_3583 (var_xibFiles, kEnumeration_up) ;
+  while (enumerator_3583.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_3583.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 110)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_3395.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 108)), var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 106)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, enumerator_3583.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 113)), var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 111)) ;
     }
-    enumerator_3395.gotoNextObject () ;
+    enumerator_3583.gotoNextObject () ;
   }
 }
 
@@ -7114,6 +6271,1281 @@ void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument
       "//---------------------------------------------------------------------------------------------------------------------*\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 41)) ;
     }
     enumerator_1749.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- File '/cell-Int-PMNumberField.txt'
+
+const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "    //--- From cell-Int-PMNumberField.txt file\n"
+  "      let tf : PMNumberField = result.textField as! PMNumberField\n"
+  "      switch object.$MODEL$.prop.1 {\n"
+  "      case .noSelection :\n"
+  "        tf.stringValue = \"No Selection\"\n"
+  "        tf.enabled = false\n"
+  "      case .singleSelection :\n"
+  "        tf.integerValue = object.$MODEL$.prop.0\n"
+  "        tf.enabled = true\n"
+  "        tf.target = self\n"
+  "        tf.action = \"set_$MODEL$_Action:\"\n"
+  "       case .multipleSelection :\n"
+  "        tf.stringValue = \"Multiple Selection\"\n"
+  "        tf.enabled = false\n"
+  "     }\n"
+  "    //--- end\n" ;
+
+const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate (
+  "cell-Int-PMNumberField.txt",
+  "txt",
+  true, // Text file
+  541, // Text length
+  gWrapperFileContent_0_collectionControllerGenerationTemplate
+) ;
+
+//--- File '/cell-String-PMTextField.txt'
+
+const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "    //--- From cell-String-PMTextField.txt file\n"
+  "     let tf : PMTextField = result.textField as! PMTextField\n"
+  "      switch object.$MODEL$.prop.1 {\n"
+  "      case .noSelection :\n"
+  "        tf.stringValue = \"No Selection\"\n"
+  "        tf.enabled = false\n"
+  "      case .singleSelection :\n"
+  "        tf.stringValue = object.$MODEL$.prop.0\n"
+  "        tf.enabled = true\n"
+  "        tf.target = self\n"
+  "        tf.action = \"set_$MODEL$_Action:\"\n"
+  "       case .multipleSelection :\n"
+  "        tf.stringValue = \"Multiple Selection\"\n"
+  "        tf.enabled = false\n"
+  "     }\n"
+  "    //--- End\n" ;
+
+const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate (
+  "cell-String-PMTextField.txt",
+  "txt",
+  true, // Text file
+  536, // Text length
+  gWrapperFileContent_1_collectionControllerGenerationTemplate
+) ;
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_collectionControllerGenerationTemplate_0 [3] = {
+  & gWrapperFile_0_collectionControllerGenerationTemplate,
+  & gWrapperFile_1_collectionControllerGenerationTemplate,
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_collectionControllerGenerationTemplate_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate (
+  "",
+  2,
+  gWrapperAllFiles_collectionControllerGenerationTemplate_0,
+  0,
+  gWrapperAllDirectories_collectionControllerGenerationTemplate_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (C_Compiler * inCompiler,
+                                                                                                               const GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                               const GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                                               const GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
+                                                                                                               const GALGAS_string & /* in_MODEL_5F_STRING */,
+                                                                                                               const GALGAS_bool & in_MODEL_5F_IS_5F_TRANSIENT,
+                                                                                                               const GALGAS_string & /* in_MODEL_5F_TYPE_5F_NAME */,
+                                                                                                               const GALGAS_string & in_MODEL_5F_TYPE_5F_NAME_5F__32_,
+                                                                                                               const GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
+                                                                                                               const GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                               const GALGAS_filewrapper & in_FILE_5F_WRAPPER
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "import Cocoa\n"
+    "\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "//    " ;
+  result << GALGAS_string ("DataSource_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 4)).stringValue () ;
+  result << "*\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n"
+    "class DataSource_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " : ReadOnlyArrayOf_" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ", PMTableViewDataSource {\n"
+    "  private weak var mModel : ReadOnlyArrayOf_" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "\?\n"
+    "  var count = PMTransientProperty_Int ()\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  override init () {\n"
+    "    super.init ()\n"
+    "    count.computeFunction = { [weak self] in\n"
+    "      if let unwrappedSelf = self, model = unwrappedSelf.mModel {\n"
+    "        return (unwrappedSelf.prop.0.count, unwrappedSelf.prop.1)\n"
+    "      }else{\n"
+    "        return (0, .noSelection)\n"
+    "      }\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  override func postEvent () {\n"
+    "    if (prop_cache != nil) {\n"
+    "      prop_cache = nil\n"
+    "      count.postEvent ()\n"
+    "      super.postEvent ()\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  private func filterAndSort () -> (Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">, PMSelectionKind) {\n"
+    "    let sortedObjectArray : Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">\n"
+    "    var selection = PMSelectionKind.singleSelection\n"
+    "    if let model = mModel {\n"
+    "      selection = model.prop.1\n" ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, in_FILTER_5F_PROPERTIES.reader_length (SOURCE_FILE ("array-controller.swift.galgasTemplate", 41)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    result << "      var currentObjectArrayAsMutableArray = NSMutableArray (array:model.prop.0)\n"
+      "      currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)\n"
+      "      sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << ">\n" ;
+  }else if (kBoolFalse == test_0) {
+    result << "      var array = Array<" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << "> ()\n"
+      "      for object in model.prop.0 {\n" ;
+    GALGAS_uint index_2088_ (0) ;
+    if (in_FILTER_5F_PROPERTIES.isValid ()) {
+      cEnumerator_arrayControllerFilterListForGeneration enumerator_2088 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
+      while (enumerator_2088.hasCurrentObject ()) {
+        result << "        selection &= object." ;
+        result << enumerator_2088.current_mFilterPropertyName (HERE).stringValue () ;
+        result << ".prop.1\n" ;
+        index_2088_.increment () ;
+        enumerator_2088.gotoNextObject () ;
+      }
+    }
+    result << "        if arrayControllerFilter_" ;
+    result << in_OWNER_5F_NAME.stringValue () ;
+    result << "_" ;
+    result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+    result << " (" ;
+    GALGAS_uint index_2304_ (0) ;
+    if (in_FILTER_5F_PROPERTIES.isValid ()) {
+      cEnumerator_arrayControllerFilterListForGeneration enumerator_2304 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
+      while (enumerator_2304.hasCurrentObject ()) {
+        result << "object." ;
+        result << enumerator_2304.current_mFilterPropertyName (HERE).stringValue () ;
+        result << ".prop.0" ;
+        if (enumerator_2304.hasNextObject ()) {
+          result << ", " ;
+        }
+        index_2304_.increment () ;
+        enumerator_2304.gotoNextObject () ;
+      }
+    }
+    result << ") {\n"
+      "          array.append (object)\n"
+      "        }\n"
+      "      }\n"
+      "      if selection == .singleSelection {\n"
+      "        var currentObjectArrayAsMutableArray = NSMutableArray (array:array)\n"
+      "        currentObjectArrayAsMutableArray.sortUsingDescriptors (mSortDescriptors)\n"
+      "        sortedObjectArray = currentObjectArrayAsMutableArray.mutableCopy () as! Array<" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << ">\n"
+      "      }else{\n"
+      "        sortedObjectArray = Array<" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << "> ()\n"
+      "      }\n" ;
+  }
+  result << "    }else{\n"
+    "      sortedObjectArray = Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> ()\n"
+    "      selection = .noSelection\n"
+    "    }\n"
+    "    return (sortedObjectArray, selection)\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  \n"
+    "  private var mSet = Set<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> ()\n"
+    "\n"
+    "  var prop_cache : Optional < (Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">, PMSelectionKind) >\n"
+    "\n"
+    "  override var prop : (Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">, PMSelectionKind) {\n"
+    "    get {\n"
+    "      if prop_cache == nil {\n"
+    "        prop_cache = filterAndSort ()\n"
+    "        let newObjectSet = Set<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> (prop_cache!.0)\n"
+    "        if mSet != newObjectSet {\n"
+    "        //--- Removed object set\n"
+    "          var removedObjectSet = mSet\n"
+    "          removedObjectSet.subtractInPlace (newObjectSet)\n" ;
+  GALGAS_uint index_3743_ (0) ;
+  if (in_BOUND_5F_COLUMNS.isValid ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_3743 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_3743.hasCurrentObject ()) {
+      result << "          for managedObject : " ;
+      result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+      result << " in removedObjectSet {\n"
+        "            for observer in mObserversOf_" ;
+      result << enumerator_3743.current_mObservablePropertyName (HERE).stringValue () ;
+      result << " {\n"
+        "              managedObject." ;
+      result << enumerator_3743.current_mObservablePropertyName (HERE).stringValue () ;
+      result << ".removeObserver (observer, postEvent:true)\n"
+        "            }\n"
+        "          }\n" ;
+      index_3743_.increment () ;
+      enumerator_3743.gotoNextObject () ;
+    }
+  }
+  result << "        //--- Added object set\n"
+    "          var addedObjectSet = newObjectSet\n"
+    "          addedObjectSet.subtractInPlace (mSet)\n" ;
+  GALGAS_uint index_4166_ (0) ;
+  if (in_BOUND_5F_COLUMNS.isValid ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_4166 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_4166.hasCurrentObject ()) {
+      result << "          for managedObject : " ;
+      result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+      result << " in addedObjectSet {\n"
+        "            for observer in mObserversOf_" ;
+      result << enumerator_4166.current_mObservablePropertyName (HERE).stringValue () ;
+      result << " {\n"
+        "              managedObject." ;
+      result << enumerator_4166.current_mObservablePropertyName (HERE).stringValue () ;
+      result << ".addObserver (observer, postEvent:true)\n"
+        "            }\n"
+        "          }\n"
+        " " ;
+      index_4166_.increment () ;
+      enumerator_4166.gotoNextObject () ;
+    }
+  }
+  result << "       //--- Update object set\n"
+    "          mSet = newObjectSet\n"
+    "        }\n"
+    "      }\n"
+    "      return prop_cache!\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    Sort descriptors                                                                                               *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  \n"
+    "  private var mSortDescriptors : [AnyObject] = [AnyObject] () {\n"
+    "    didSet {\n"
+    "      postEvent () // Force sorting\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  \n"
+    "  func setSortDescriptors (sortDescriptors : [AnyObject]) {\n"
+    "    mSortDescriptors = sortDescriptors\n"
+    "  }\n"
+    "  \n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:                                 *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func tableView (aTableView: NSTableView,\n"
+    "                  sortDescriptorsDidChange oldDescriptors: [AnyObject]) {\n"
+    "    // NSLog (\"%@\", __FUNCTION__)\n"
+    "    mSortDescriptors = aTableView.sortDescriptors\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView                                             *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func numberOfRowsInTableView (NSTableView) -> Int {\n"
+    "    // NSLog (\"%@ (%ld objects)\", __FUNCTION__, prop.count)\n"
+    "    return prop.0.count\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "}\n"
+    "\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "//    " ;
+  result << GALGAS_string ("Delegate_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 153)).stringValue () ;
+  result << "*\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n"
+    "@objc(Delegate_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << ") class Delegate_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " : PMAbstractProperty, PMTableViewDelegate {\n"
+    "  private var mSet = Set<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> ()\n"
+    "  private var mSetShouldBeComputed = true\n"
+    "  private var mSortedArray : DataSource_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << "\n"
+    "  private var mIgnoreTableViewSelectionDidChange = true\n"
+    "  var count = PMTransientProperty_Int ()\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  init (model:DataSource_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << ") {\n"
+    "    mSortedArray = model\n"
+    "    super.init ()\n"
+    "    count.computeFunction = { [weak self] in\n"
+    "      if let unwrappedSelf = self {\n"
+    "        return (unwrappedSelf.prop.0.count, unwrappedSelf.prop.1)\n"
+    "      }else{\n"
+    "        return (0, .noSelection)\n"
+    "      }\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  \n"
+    "  override func postEvent () {\n"
+    "    if !mSetShouldBeComputed {\n"
+    "      mSetShouldBeComputed = true\n"
+    "      count.postEvent ()\n"
+    "      super.postEvent ()\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  \n"
+    "  var prop : (Set<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">, PMSelectionKind) {\n"
+    "    get {\n"
+    "      if mSetShouldBeComputed {\n"
+    "        mSetShouldBeComputed = false\n"
+    "        // NSLog (\"mSet %d\", mSet.count)\n"
+    "        mSet.intersectInPlace (mSortedArray.prop.0)\n"
+    "        // NSLog (\"mSet %d\", mSet.count)\n"
+    "        if (mSet.count == 0) && (mSortedArray.prop.0.count > 0) {\n"
+    "          mSet.insert (mSortedArray.prop.0 [0])\n"
+    "        }\n"
+    "      //--- DEBUG :Dictionary of object indexes\n"
+    "        /* var objectDictionary = [" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << " : Int] ()\n"
+    "        for (index, object) in enumerate (mSortedArray.prop.0) {\n"
+    "          objectDictionary [object] = index\n"
+    "        }\n"
+    "        for object in mSet {\n"
+    "          if let index = objectDictionary [object] {\n"
+    "            NSLog (\"SELECTED : %d, %@\", index, object)\n"
+    "          }\n"
+    "        } */\n"
+    "      //--- DEBUG end\n"
+    "      }\n"
+    "      return (mSet, mSortedArray.prop.1)\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func setProp (value : Set<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">) {\n"
+    "    mSet = value\n"
+    "    postEvent ()\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func selectedObjectIndexSet () -> NSIndexSet {\n"
+    "    var indexSet = NSMutableIndexSet ()\n"
+    "    if mSortedArray.prop.1 == .singleSelection {\n"
+    "    //--- Dictionary of object indexes\n"
+    "      var objectDictionary = [" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << " : Int] ()\n"
+    "      for (index, object) in enumerate (mSortedArray.prop.0) {\n"
+    "        objectDictionary [object] = index\n"
+    "      }\n"
+    "      for object in prop.0 {\n"
+    "        if let index = objectDictionary [object] {\n"
+    "          indexSet.addIndex (index)\n"
+    "        }\n"
+    "      }\n"
+    "    }\n"
+    "    return indexSet\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:                                            *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func tableViewSelectionDidChange (notication : NSNotification) {\n"
+    "    // NSLog (\"%@ %d\", __FUNCTION__, mIgnoreTableViewSelectionDidChange)\n"
+    "    if !mIgnoreTableViewSelectionDidChange {\n"
+    "      let tableView = notication.object as! PMTableView\n"
+    "      var newSelectedObjectSet = Set <" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> ()\n"
+    "      for index in tableView.selectedRowIndexes {\n"
+    "        newSelectedObjectSet.insert (mSortedArray.prop.0.objectAtIndex (index, file: __FILE__, line: __LINE__))\n"
+    "      }\n"
+    "      setProp (newSelectedObjectSet)\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:                                       *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func tableView (tableView : NSTableView,\n"
+    "                  viewForTableColumn inTableColumn: NSTableColumn\?,\n"
+    "                  row inRowIndex: Int) -> NSView\? {\n"
+    " //   NSLog (\"%@, row %d, column %@\", __FUNCTION__, inRowIndex, inTableColumn!.identifier)\n"
+    "    let columnIdentifier = inTableColumn!.identifier\n"
+    "    var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView\n"
+    "    result.textField\?.tag = inRowIndex\n"
+    "    let object = mSortedArray.prop.0.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
+    "    " ;
+  GALGAS_uint index_11665_ (0) ;
+  if (in_BOUND_5F_COLUMNS.isValid ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_11665 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_11665 = enumerator_11665.hasCurrentObject () ;
+    while (enumerator_11665.hasCurrentObject ()) {
+      result << "if columnIdentifier == \"" ;
+      result << enumerator_11665.current_mColumnName (HERE).stringValue () ;
+      result << "\" {\n" ;
+      result << in_FILE_5F_WRAPPER.reader_textFileContentsAtPath (GALGAS_string ("cell-").add_operation (categoryReader_swiftTypeName (enumerator_11665.current_mPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).add_operation (enumerator_11665.current_mColumnOutletTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).add_operation (GALGAS_string (".txt"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 273)).reader_stringByReplacingStringByString (GALGAS_string ("$MODEL$"), enumerator_11665.current_mObservablePropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 274)).stringValue () ;
+      result << "    " ;
+      if (enumerator_11665.hasNextObject ()) {
+        result << "}else " ;
+      }
+      index_11665_.increment () ;
+      enumerator_11665.gotoNextObject () ;
+    }
+    if (nonEmpty_enumerator_11665) {
+      result << "}\n" ;
+    }
+  }
+  result << "    return result\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func willReload () {\n"
+    "    mIgnoreTableViewSelectionDidChange = true\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  \n"
+    "  func didReload () {\n"
+    "    mIgnoreTableViewSelectionDidChange = false\n"
+    "  }\n"
+    "\n" ;
+  GALGAS_uint index_12405_ (0) ;
+  if (in_BOUND_5F_COLUMNS.isValid ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_12405 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_12405.hasCurrentObject ()) {
+      result << "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+        "\n"
+        "  func set_" ;
+      result << enumerator_12405.current_mObservablePropertyName (HERE).stringValue () ;
+      result << "_Action (sender : " ;
+      result << enumerator_12405.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << ") {\n"
+        "    let row = sender.tag\n"
+        "    let object = mSortedArray.prop.0.objectAtIndex (row, file:__FILE__, line:__LINE__)\n"
+        "    object." ;
+      result << enumerator_12405.current_mObservablePropertyName (HERE).stringValue () ;
+      result << ".validateAndSetProp (" ;
+      result << categoryReader_transformerForTableViewAction (enumerator_12405.current_mPropertyType (HERE), GALGAS_string ("sender"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 301)).stringValue () ;
+      result << ", windowForSheet:sender.window)\n"
+        "  }\n" ;
+      index_12405_.increment () ;
+      enumerator_12405.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "}\n"
+    "\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "//    " ;
+  result << GALGAS_string ("ArrayController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 311)).stringValue () ;
+  result << "*\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n"
+    "class ArrayController_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " : PMObject {\n"
+    "  private let mAllowsEmptySelection = false\n"
+    "  private let mAllowsMultipleSelection = true\n"
+    "\n"
+    "  var sortedArray = DataSource_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " ()\n"
+    "\n"
+    "  var selectedArray = TransientArrayOf_" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << " ()\n"
+    "\n"
+    "  private var mSelectedSet : Delegate_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << "\?\n"
+    "\n"
+    "  private var mTableViewControllerArray = [Controller_PMTableView_controller] ()\n"
+    "\n"
+    "  private var mModel : " ;
+  result << in_MODEL_5F_TYPE_5F_NAME_5F__32_.stringValue () ;
+  result << "\?\n"
+    " \n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    init                                                                                                           *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  override init () {\n"
+    "    super.init ()\n"
+    "    selectedArray.computeFunction = {\n"
+    "      var result = Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> ()\n"
+    "      var selection = PMSelectionKind.singleSelection\n"
+    "      if let selectedSet = self.mSelectedSet {\n"
+    "        selection = self.sortedArray.prop.1 & selectedSet.prop.1\n"
+    "        for object in self.sortedArray.prop.0 {\n"
+    "          if selectedSet.prop.0.contains (object) {\n"
+    "            result.append (object)\n"
+    "          }\n"
+    "        }\n"
+    "      }\n"
+    "      if selection != .singleSelection {\n"
+    "        result = Array<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> ()\n"
+    "      }\n"
+    "      return (result, selection)\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    bind_modelAndView                                                                                              *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func bind_modelAndView (model:" ;
+  result << in_MODEL_5F_TYPE_5F_NAME_5F__32_.stringValue () ;
+  result << ", tableViewArray:[PMTableView], file:String, line:Int) {\n"
+    "    mModel = model\n"
+    "    sortedArray.mModel = model\n"
+    "    let selectedSet = Delegate_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " (model:sortedArray)\n"
+    "    mSelectedSet = selectedSet\n"
+    "    for tableView in tableViewArray {\n"
+    "      let tableViewController = Controller_PMTableView_controller (\n"
+    "        delegate:selectedSet,\n"
+    "        tableView:tableView,\n"
+    "        file:file,\n"
+    "        line:line\n"
+    "      )\n"
+    "      mTableViewControllerArray.append (tableViewController)\n"
+    "      tableView.allowsEmptySelection = mAllowsEmptySelection\n"
+    "      tableView.allowsMultipleSelection = mAllowsMultipleSelection\n" ;
+  GALGAS_uint index_15901_ (0) ;
+  if (in_BOUND_5F_COLUMNS.isValid ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_15901 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_15901.hasCurrentObject ()) {
+      result << "    //--- Check '" ;
+      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
+      result << "' column\n"
+        "      if let anyObject: AnyObject = tableView.makeViewWithIdentifier (\"" ;
+      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
+      result << "\", owner:self) {\n"
+        "        if let unwrappedTableCellView = anyObject as\? NSTableCellView {\n"
+        "          if !(unwrappedTableCellView.textField is " ;
+      result << enumerator_15901.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << ") {\n"
+        "            presentErrorWindow (file, line, \"\\\"" ;
+      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
+      result << "\\\" column view is not an instance of " ;
+      result << enumerator_15901.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << "\")\n"
+        "          }\n"
+        "        }else{\n"
+        "          presentErrorWindow (file, line, \"\\\"" ;
+      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
+      result << "\\\" column cell view is not an instance of NSTableCellView\")\n"
+        "        }\n"
+        "      }else{\n"
+        "        presentErrorWindow (file, line, \"\\\"" ;
+      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
+      result << "\\\" column view unknown\")\n"
+        "      }\n"
+        "      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
+      result << enumerator_15901.current_mColumnName (HERE).stringValue () ;
+      result << "\") {\n"
+        "        columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
+      result << enumerator_15901.current_mObservablePropertyName (HERE).stringValue () ;
+      result << "_keyCodingValue\", ascending:true)\n"
+        "      }\n" ;
+      index_15901_.increment () ;
+      enumerator_15901.gotoNextObject () ;
+    }
+  }
+  result << "    //--- Set descriptors from first column of table view\n"
+    "      let columns = tableView.tableColumns as NSArray\n"
+    "      if columns.count > 0 {\n"
+    "        let firstColumn = columns [0] as! NSTableColumn\n"
+    "        if let sdp = firstColumn.sortDescriptorPrototype {\n"
+    "          let sortDescriptorArray = NSArray (object:sdp) as! [AnyObject]\n"
+    "          tableView.sortDescriptors = sortDescriptorArray\n"
+    "          sortedArray.setSortDescriptors (sortDescriptorArray)\n"
+    "        }\n"
+    "      }\n"
+    "      sortedArray.addObserver (tableViewController, postEvent:true)\n"
+    "      selectedSet.addObserver (tableViewController, postEvent:true)\n"
+    "   //--- Set table view delegate and data source\n"
+    "      tableView.setDataSource (sortedArray)\n"
+    "      tableView.setDelegate (selectedSet)\n"
+    "   }\n"
+    "  //--- Add observers\n"
+    "    model.addObserverOf_name (sortedArray, postEvent:true)\n"
+    "    model.addObserverOf_aValue (sortedArray, postEvent:true)\n"
+    "    model.addObserver (sortedArray, postEvent:true)\n"
+    "    sortedArray.addObserver (selectedSet, postEvent:true)\n"
+    "    selectedSet.addObserver (selectedArray, postEvent:true)\n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //    unbind_modelAndView                                                                                            *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func unbind_modelAndView () {\n"
+    "    mModel\?.removeObserverOf_name (sortedArray, postEvent:false)\n"
+    "    mModel\?.removeObserverOf_aValue (sortedArray, postEvent:false)\n"
+    "    mModel\?.removeObserver (sortedArray, postEvent:false)\n"
+    "    if let selectedSet = mSelectedSet {\n"
+    "      sortedArray.removeObserver (selectedSet, postEvent:false)\n"
+    "    }\n"
+    "    mSelectedSet\?.removeObserver (selectedArray, postEvent:false)\n"
+    "     for tableViewController in mTableViewControllerArray {\n"
+    "      sortedArray.removeObserver (tableViewController, postEvent:false)\n"
+    "      mSelectedSet\?.removeObserver (tableViewController, postEvent:false)\n"
+    "    }\n"
+    "    mTableViewControllerArray = []\n"
+    "    selectedArray.computeFunction = nil\n"
+    "    mSelectedSet = nil\n"
+    "    mModel = nil\n"
+    " }\n"
+    " \n" ;
+  const enumGalgasBool test_1 = in_MODEL_5F_IS_5F_TRANSIENT.operator_not (SOURCE_FILE ("array-controller.swift.galgasTemplate", 434)).boolEnum () ;
+  if (kBoolTrue == test_1) {
+    result << " \n"
+      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+      "  //    add                                                                                                            *\n"
+      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+      "\n"
+      "   func add (inSender : NSButton\?) {\n"
+      "    if let model = mModel,\n"
+      "           owner = model.owner,\n"
+      "           undoManager = owner.undoManager (),\n"
+      "           selectedSet = mSelectedSet where model.prop.1 == .singleSelection {\n"
+      "      var newObject : " ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << " = " ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << " (undoManager:undoManager)\n"
+      "      var array = model.prop.0\n"
+      "      array.append (newObject)\n"
+      "    //--- New object is the selection\n"
+      "      var newSelectedObjectSet = Set <" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << "> ()\n"
+      "      newSelectedObjectSet.insert (newObject)\n"
+      "      selectedSet.setProp (newSelectedObjectSet)\n"
+      "      model.setProp (array)\n"
+      "    }\n"
+      "  }\n"
+      "\n"
+      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+      "  //    remove                                                                                                         *\n"
+      "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+      "\n"
+      "  func remove (inSender : NSButton\?) {\n"
+      "    if let model = mModel,\n"
+      "           selectedSet = mSelectedSet where (selectedSet.prop.0.count > 0) && (model.prop.1 == .singleSelection){\n"
+      "    //------------- Find the object to be selected after selected object removing\n"
+      "    //--- Dictionary of object sorted indexes\n"
+      "      var sortedObjectDictionary = [" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << " : Int] ()\n"
+      "      for (index, object) in enumerate (sortedArray.prop.0) {\n"
+      "        sortedObjectDictionary [object] = index\n"
+      "      }\n"
+      "      var indexArrayOfSelectedObjects = [Int] ()\n"
+      "      for object in selectedSet.prop.0 {\n"
+      "        let index = sortedObjectDictionary [object]\n"
+      "        if let idx = index {\n"
+      "          indexArrayOfSelectedObjects.append (idx)\n"
+      "        }\n"
+      "      }\n"
+      "    //--- Sort\n"
+      "      indexArrayOfSelectedObjects.sort { $0 < $1 }\n"
+      "    //--- Find the first index of a non selected object\n"
+      "      var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n"
+      "      for index in indexArrayOfSelectedObjects {\n"
+      "        if newSelectionIndex < index {\n"
+      "          break\n"
+      "        }else{\n"
+      "          newSelectionIndex = index + 1\n"
+      "        }\n"
+      "      }\n"
+      "      var newSelectedObject : " ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << "\? = nil\n"
+      "      if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray.prop.0.count) {\n"
+      "        newSelectedObject = sortedArray.prop.0 [newSelectionIndex]\n"
+      "      }\n"
+      "    //----------------------------------------- Remove selected object\n"
+      "    //--- Dictionary of object absolute indexes\n"
+      "      var objectDictionary = [" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << " : Int] ()\n"
+      "      for (index, object) in enumerate (model.prop.0) {\n"
+      "        objectDictionary [object] = index\n"
+      "      }\n"
+      "    //--- Build selected objects index array\n"
+      "      var selectedObjectIndexArray = [Int] ()\n"
+      "      for object in selectedSet.prop.0 {\n"
+      "        let index = objectDictionary [object]\n"
+      "        if let idx = index {\n"
+      "          selectedObjectIndexArray.append (idx)\n"
+      "        }\n"
+      "      }\n"
+      "    //--- Sort in reverse order\n"
+      "      selectedObjectIndexArray.sort { $1 < $0 }\n"
+      "    //--- Remove objects, in reverse of order of their index\n"
+      "      var newObjectArray = model.prop.0\n"
+      "      for index in selectedObjectIndexArray {\n"
+      "        newObjectArray.removeAtIndex (index)\n"
+      "      }\n"
+      "    //----------------------------------------- Set new selection\n"
+      "      var newSelectionSet = Set <" ;
+    result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+    result << "> ()\n"
+      "      if let object = newSelectedObject {\n"
+      "        newSelectionSet.insert (object)\n"
+      "      }\n"
+      "      mSelectedSet\?.setProp (newSelectionSet)\n"
+      "    //----------------------------------------- Set new object array\n"
+      "      model.setProp (newObjectArray)\n"
+      "    }\n"
+      "  }\n" ;
+  }else if (kBoolFalse == test_1) {
+  }
+  result << "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "}\n"
+    "\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (C_Compiler * inCompiler,
+                                                                                         const GALGAS_string & in_OWNER_5F_NAME,
+                                                                                         const GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                         const GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  uint32_t columnMarker = 0 ;
+  result << "import Cocoa\n"
+    "\n"
+    "//----------------------------------------------------------------------------*\n"
+    "\n"
+    "func arrayControllerFilter_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " (" ;
+  columnMarker = result.currentColumn () ;
+  GALGAS_uint index_195_ (0) ;
+  if (in_FILTER_5F_PROPERTIES.isValid ()) {
+    cEnumerator_arrayControllerFilterListForGeneration enumerator_195 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
+    while (enumerator_195.hasCurrentObject ()) {
+      result << enumerator_195.current_mFilterPropertyName (HERE).stringValue () ;
+      result << " : " ;
+      result << categoryReader_swiftTypeName (enumerator_195.current_mFilterPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller-filter-function.swift.galgasTemplate", 7)).stringValue () ;
+      if (enumerator_195.hasNextObject ()) {
+        result << ",\n" ;
+        result.appendSpacesUntilColumn (columnMarker) ;
+      }
+      index_195_.increment () ;
+      enumerator_195.gotoNextObject () ;
+    }
+  }
+  result << ") -> Bool {\n"
+    "\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         Routine 'generateArrayControllers'                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration constinArgument_inArrayControllerListForGeneration,
+                                       const GALGAS_string constinArgument_inOutputDirectory,
+                                       C_Compiler * inCompiler
+                                       COMMA_UNUSED_LOCATION_ARGS) {
+  cEnumerator_arrayControllerForGeneration enumerator_16971 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_16971.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_16971.current_mOwnerName (HERE), enumerator_16971.current_mControllerName (HERE), enumerator_16971.current_mArrayControllerFilterListForGeneration (HERE), enumerator_16971.current_mModelString (HERE), enumerator_16971.current_mModelIsTransient (HERE), enumerator_16971.current_mModelTypeName (HERE), enumerator_16971.current_mModelTypeName_32_ (HERE), enumerator_16971.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_16971.current_mElementTypeName (HERE), GALGAS_filewrapper (gWrapperDirectory_0_collectionControllerGenerationTemplate) COMMA_SOURCE_FILE ("array-controller.galgas", 443))) ;
+    {
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_16971.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 457)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 457)).add_operation (enumerator_16971.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 457)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 457)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 455)) ;
+    }
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_16971.current_mArrayControllerFilterListForGeneration (HERE).reader_length (SOURCE_FILE ("array-controller.galgas", 460)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_16971.current_mOwnerName (HERE), enumerator_16971.current_mControllerName (HERE), enumerator_16971.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 461))) ;
+      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_16971.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 466)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 466)).add_operation (enumerator_16971.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 466)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 466)) ;
+      {
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+        "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
+        "\n"
+        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 474)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 474)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 474)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 467)) ;
+      }
+    }
+    enumerator_16971.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- File 'collection-controller-templates/cell-Int-PMNumberField.txt'
+
+const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "    //--- From cell-Int-PMNumberField.txt file\n"
+  "      let tf : PMNumberField = result.textField as! PMNumberField\n"
+  "      switch object.$MODEL$.prop.1 {\n"
+  "      case .noSelection :\n"
+  "        tf.stringValue = \"No Selection\"\n"
+  "        tf.enabled = false\n"
+  "      case .singleSelection :\n"
+  "        tf.integerValue = object.$MODEL$.prop.0\n"
+  "        tf.enabled = true\n"
+  "        tf.target = self\n"
+  "        tf.action = \"set_$MODEL$_Action:\"\n"
+  "       case .multipleSelection :\n"
+  "        tf.stringValue = \"Multiple Selection\"\n"
+  "        tf.enabled = false\n"
+  "     }\n"
+  "    //--- end\n" ;
+
+const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTemplate (
+  "cell-Int-PMNumberField.txt",
+  "txt",
+  true, // Text file
+  541, // Text length
+  gWrapperFileContent_0_selectionControllerGenerationTemplate
+) ;
+
+//--- File 'collection-controller-templates/cell-String-PMTextField.txt'
+
+const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "    //--- From cell-String-PMTextField.txt file\n"
+  "     let tf : PMTextField = result.textField as! PMTextField\n"
+  "      switch object.$MODEL$.prop.1 {\n"
+  "      case .noSelection :\n"
+  "        tf.stringValue = \"No Selection\"\n"
+  "        tf.enabled = false\n"
+  "      case .singleSelection :\n"
+  "        tf.stringValue = object.$MODEL$.prop.0\n"
+  "        tf.enabled = true\n"
+  "        tf.target = self\n"
+  "        tf.action = \"set_$MODEL$_Action:\"\n"
+  "       case .multipleSelection :\n"
+  "        tf.stringValue = \"Multiple Selection\"\n"
+  "        tf.enabled = false\n"
+  "     }\n"
+  "    //--- End\n" ;
+
+const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate (
+  "cell-String-PMTextField.txt",
+  "txt",
+  true, // Text file
+  536, // Text length
+  gWrapperFileContent_1_selectionControllerGenerationTemplate
+) ;
+
+//--- All files of 'collection-controller-templates' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_1 [3] = {
+  & gWrapperFile_0_selectionControllerGenerationTemplate,
+  & gWrapperFile_1_selectionControllerGenerationTemplate,
+  NULL
+} ;
+
+//--- All sub-directories of 'collection-controller-templates' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_1 [1] = {
+  NULL
+} ;
+
+//--- Directory 'collection-controller-templates'
+
+const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGenerationTemplate (
+  "collection-controller-templates",
+  2,
+  gWrapperAllFiles_selectionControllerGenerationTemplate_1,
+  0,
+  gWrapperAllDirectories_selectionControllerGenerationTemplate_1
+) ;
+
+//--- All files of 'outlet-classes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_2 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'outlet-classes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_2 [1] = {
+  NULL
+} ;
+
+//--- Directory 'outlet-classes'
+
+const cDirectoryWrapper gWrapperDirectory_2_selectionControllerGenerationTemplate (
+  "outlet-classes",
+  0,
+  gWrapperAllFiles_selectionControllerGenerationTemplate_2,
+  0,
+  gWrapperAllDirectories_selectionControllerGenerationTemplate_2
+) ;
+
+//--- All files of 'swift-sources' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_3 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'swift-sources' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_3 [1] = {
+  NULL
+} ;
+
+//--- Directory 'swift-sources'
+
+const cDirectoryWrapper gWrapperDirectory_3_selectionControllerGenerationTemplate (
+  "swift-sources",
+  0,
+  gWrapperAllFiles_selectionControllerGenerationTemplate_3,
+  0,
+  gWrapperAllDirectories_selectionControllerGenerationTemplate_3
+) ;
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_0 [4] = {
+  & gWrapperDirectory_1_selectionControllerGenerationTemplate,
+  & gWrapperDirectory_2_selectionControllerGenerationTemplate,
+  & gWrapperDirectory_3_selectionControllerGenerationTemplate,
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate (
+  "",
+  0,
+  gWrapperAllFiles_selectionControllerGenerationTemplate_0,
+  3,
+  gWrapperAllDirectories_selectionControllerGenerationTemplate_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//           Filewrapper template 'selectionControllerGenerationTemplate selectionControllerImplementation'            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (C_Compiler * inCompiler,
+                                                                                                           const GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                           const GALGAS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
+                                                                                                           const GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                           const GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "import Cocoa\n"
+    "\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "//    " ;
+  result << GALGAS_string ("SelectionController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 4)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 4)).add_operation (in_SELECTION_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 4)).reader_stringByRightPadding (GALGAS_uint ((uint32_t) 113U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 4)).stringValue () ;
+  result << "*\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n"
+    "class SelectionController_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " : PMObject {\n"
+    "  private var mModel : ReadOnlyArrayOf_" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "\?\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //   SELECTION OBSERVABLE PROPERTIES                                                                                 *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n" ;
+  GALGAS_uint index_924_ (0) ;
+  if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
+    cEnumerator_observablePropertyMap enumerator_924 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_924.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = enumerator_924.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 15)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 15)).boolEnum () ;
+      if (kBoolTrue == test_0) {
+        result << "  var " ;
+        result << enumerator_924.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << " = PMPropertyProxy_" ;
+        result << categoryReader_swiftTypeName (enumerator_924.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 16)).stringValue () ;
+        result << " () \n" ;
+      }else if (kBoolFalse == test_0) {
+      }
+      index_924_.increment () ;
+      enumerator_924.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //   BIND SELECTION                                                                                                  *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func bind_selection (model : ReadOnlyArrayOf_" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << ", file:String, line:Int) {\n"
+    "    mModel = model\n" ;
+  GALGAS_uint index_1563_ (0) ;
+  if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
+    cEnumerator_observablePropertyMap enumerator_1563 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_1563.hasCurrentObject ()) {
+      const enumGalgasBool test_1 = enumerator_1563.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 26)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 26)).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        result << "    " ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".readModelFunction = {\n"
+          "      if let model = self.mModel where model.prop.1 == .singleSelection {\n"
+          "        var s = Set<" ;
+        result << categoryReader_swiftTypeName (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 29)).stringValue () ;
+        result << "> ()\n"
+          "        var selection = PMSelectionKind.singleSelection\n"
+          "        for object in model.prop.0 {\n"
+          "          selection &= object." ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".prop.1\n"
+          "          s.insert (object." ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".prop.0)\n"
+          "        }\n"
+          "        if selection == .singleSelection {\n"
+          "          if s.count == 0 {\n"
+          "            return (" ;
+        result << categoryReader_defaultSwiftTypeValueAsString (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 37)).stringValue () ;
+        result << ", .noSelection)\n"
+          "          }else if s.count == 1 {\n"
+          "            return (s.first!, .singleSelection)\n"
+          "          }else{\n"
+          "            return (" ;
+        result << categoryReader_defaultSwiftTypeValueAsString (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 41)).stringValue () ;
+        result << ", .multipleSelection)\n"
+          "          }\n"
+          "        }else{\n"
+          "          return (" ;
+        result << categoryReader_defaultSwiftTypeValueAsString (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 44)).stringValue () ;
+        result << ", selection)\n"
+          "        }\n"
+          "      }else{\n"
+          "        return (" ;
+        result << categoryReader_defaultSwiftTypeValueAsString (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 47)).stringValue () ;
+        result << ", .noSelection)\n"
+          "      }\n"
+          "    }\n"
+          "    " ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".writeModelFunction = { (inValue : " ;
+        result << categoryReader_swiftTypeName (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 50)).stringValue () ;
+        result << ") in\n"
+          "      if let model = self.mModel {\n"
+          "        for object in model.prop.0 {\n"
+          "          object." ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".setProp (inValue)\n"
+          "        }\n"
+          "      }\n"
+          "    }\n"
+          "    " ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".validateAndWriteModelFunction = { (candidateValue : " ;
+        result << categoryReader_swiftTypeName (enumerator_1563.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 57)).stringValue () ;
+        result << ", windowForSheet : NSWindow\?) in\n"
+          "      if let model = self.mModel {\n"
+          "        for object in model.prop.0 {\n"
+          "          let result = object." ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
+          "          if !result {\n"
+          "            return false\n"
+          "          }\n"
+          "        }\n"
+          "        return true\n"
+          "      }else{\n"
+          "        return false\n"
+          "      }\n"
+          "    }\n"
+          "    model.addObserver (" ;
+        result << enumerator_1563.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ", postEvent:true)\n" ;
+      }else if (kBoolFalse == test_1) {
+      }
+      index_1563_.increment () ;
+      enumerator_1563.gotoNextObject () ;
+    }
+  }
+  result << "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "  //   UNBIND SELECTION                                                                                                *\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "  func unbind_selection () {\n" ;
+  GALGAS_uint index_3863_ (0) ;
+  if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
+    cEnumerator_observablePropertyMap enumerator_3863 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_3863.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = enumerator_3863.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 80)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 80)).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        result << "    " ;
+        result << enumerator_3863.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".readModelFunction = nil \n"
+          "    " ;
+        result << enumerator_3863.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ".writeModelFunction = nil \n"
+          "    mModel\?.removeObserver (" ;
+        result << enumerator_3863.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << ", postEvent:false)\n" ;
+      }else if (kBoolFalse == test_2) {
+      }
+      index_3863_.increment () ;
+      enumerator_3863.gotoNextObject () ;
+    }
+  }
+  result << "    mModel = nil    \n"
+    "  }\n"
+    "\n"
+    "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+    "\n"
+    "}\n"
+    "\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+    "\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'generateSelectionControllers'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateSelectionControllers (const GALGAS_selectionControllerForGeneration constinArgument_inArrayControllerListForGeneration,
+                                           const GALGAS_string constinArgument_inOutputDirectory,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  cEnumerator_selectionControllerForGeneration enumerator_7347 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_7347.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_7347.current_mOwnerName (HERE), enumerator_7347.current_mSelectionControllerName (HERE), enumerator_7347.current_mSelectionTypeName (HERE), enumerator_7347.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 180))) ;
+    {
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("selectionController-").add_operation (enumerator_7347.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 188)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 188)).add_operation (enumerator_7347.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 188)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 188)), var_s, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 186)) ;
+    }
+    enumerator_7347.gotoNextObject () ;
   }
 }
 
@@ -10696,6 +11128,217 @@ GALGAS_arrayControllerDeclaration GALGAS_arrayControllerDeclaration::extractObje
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
+typeComparisonResult cPtr_selectionControllerDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_selectionControllerDeclaration * p = (const cPtr_selectionControllerDeclaration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_selectionControllerDeclaration) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mSelectionControllerName.objectCompare (p->mAttribute_mSelectionControllerName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mModelControllerName.objectCompare (p->mAttribute_mModelControllerName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mModelControllerPropertyName.objectCompare (p->mAttribute_mModelControllerPropertyName) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_selectionControllerDeclaration::objectCompare (const GALGAS_selectionControllerDeclaration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_selectionControllerDeclaration::GALGAS_selectionControllerDeclaration (void) :
+GALGAS_abstractSecondaryProperty () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_selectionControllerDeclaration GALGAS_selectionControllerDeclaration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_selectionControllerDeclaration::constructor_new (GALGAS_lstring::constructor_default (HERE),
+                                                                 GALGAS_lstring::constructor_default (HERE),
+                                                                 GALGAS_lstring::constructor_default (HERE)
+                                                                 COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_selectionControllerDeclaration::GALGAS_selectionControllerDeclaration (const cPtr_selectionControllerDeclaration * inSourcePtr) :
+GALGAS_abstractSecondaryProperty (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_selectionControllerDeclaration) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_selectionControllerDeclaration GALGAS_selectionControllerDeclaration::constructor_new (const GALGAS_lstring & inAttribute_mSelectionControllerName,
+                                                                                              const GALGAS_lstring & inAttribute_mModelControllerName,
+                                                                                              const GALGAS_lstring & inAttribute_mModelControllerPropertyName
+                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_selectionControllerDeclaration result ;
+  if (inAttribute_mSelectionControllerName.isValid () && inAttribute_mModelControllerName.isValid () && inAttribute_mModelControllerPropertyName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_selectionControllerDeclaration (inAttribute_mSelectionControllerName, inAttribute_mModelControllerName, inAttribute_mModelControllerPropertyName COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_selectionControllerDeclaration::reader_mSelectionControllerName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_selectionControllerDeclaration * p = (const cPtr_selectionControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_selectionControllerDeclaration) ;
+    result = p->mAttribute_mSelectionControllerName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_selectionControllerDeclaration::reader_mSelectionControllerName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mSelectionControllerName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_selectionControllerDeclaration::reader_mModelControllerName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_selectionControllerDeclaration * p = (const cPtr_selectionControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_selectionControllerDeclaration) ;
+    result = p->mAttribute_mModelControllerName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_selectionControllerDeclaration::reader_mModelControllerName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mModelControllerName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_selectionControllerDeclaration::reader_mModelControllerPropertyName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_selectionControllerDeclaration * p = (const cPtr_selectionControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_selectionControllerDeclaration) ;
+    result = p->mAttribute_mModelControllerPropertyName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_selectionControllerDeclaration::reader_mModelControllerPropertyName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mModelControllerPropertyName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                               Pointer class for @selectionControllerDeclaration class                               *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_selectionControllerDeclaration::cPtr_selectionControllerDeclaration (const GALGAS_lstring & in_mSelectionControllerName,
+                                                                          const GALGAS_lstring & in_mModelControllerName,
+                                                                          const GALGAS_lstring & in_mModelControllerPropertyName
+                                                                          COMMA_LOCATION_ARGS) :
+cPtr_abstractSecondaryProperty (THERE),
+mAttribute_mSelectionControllerName (in_mSelectionControllerName),
+mAttribute_mModelControllerName (in_mModelControllerName),
+mAttribute_mModelControllerPropertyName (in_mModelControllerPropertyName) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_selectionControllerDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_selectionControllerDeclaration ;
+}
+
+void cPtr_selectionControllerDeclaration::description (C_String & ioString,
+                                                       const int32_t inIndentation) const {
+  ioString << "[@selectionControllerDeclaration:" ;
+  mAttribute_mSelectionControllerName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mModelControllerName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mModelControllerPropertyName.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_selectionControllerDeclaration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_selectionControllerDeclaration (mAttribute_mSelectionControllerName, mAttribute_mModelControllerName, mAttribute_mModelControllerPropertyName COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @selectionControllerDeclaration type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_selectionControllerDeclaration ("selectionControllerDeclaration",
+                                                       & kTypeDescriptor_GALGAS_abstractSecondaryProperty) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_selectionControllerDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_selectionControllerDeclaration ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_selectionControllerDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_selectionControllerDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_selectionControllerDeclaration GALGAS_selectionControllerDeclaration::extractObject (const GALGAS_object & inObject,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_selectionControllerDeclaration result ;
+  const GALGAS_selectionControllerDeclaration * p = (const GALGAS_selectionControllerDeclaration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_selectionControllerDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("selectionControllerDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
 typeComparisonResult cPtr_transientAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_transientAST * p = (const cPtr_transientAST *) inOperandPtr ;
@@ -12430,6 +13073,7 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const cPtr_abstractSe
                                                            const GALGAS_observablePropertyMap constin_inObservableProperties,
                                                            GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
                                                            GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
+                                                           GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
@@ -12455,7 +13099,7 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const cPtr_abstractSe
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inOwnerName, constin_inRootEntityName, constin_inRootObservableProperties, constin_inSemanticContext, constin_inObservableProperties, io_ioTransientDefinitionListForGeneration, io_ioArrayControllerForGeneration, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inOwnerName, constin_inRootEntityName, constin_inRootObservableProperties, constin_inSemanticContext, constin_inObservableProperties, io_ioTransientDefinitionListForGeneration, io_ioArrayControllerForGeneration, io_ioSelectionControllerForGeneration, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -12539,28 +13183,28 @@ GALGAS_string categoryReader_preferencesSwiftSetter (const GALGAS_typeKind & inO
     break ;
   case GALGAS_typeKind::kEnum_boolType:
     {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 229)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 229)) ;
+      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 230)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 230)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_integerType:
     {
-      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 230)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 230)) ;
+      result_outResult = GALGAS_string ("NSNumber (integer:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 231)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 231)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_doubleType:
     {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 231)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 231)) ;
+      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 232)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 232)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_colorType:
     {
-      result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 232)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 232)) ;
+      result_outResult = GALGAS_string ("NSArchiver.archivedDataWithRootObject (").add_operation (constinArgument_inPropertyName, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 233)).add_operation (GALGAS_string (".prop.0)"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 233)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_dateType:
   case GALGAS_typeKind::kEnum_stringType:
     {
-      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".prop.0"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 233)) ;
+      result_outResult = constinArgument_inPropertyName.add_operation (GALGAS_string (".prop.0"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 234)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_enumType:
@@ -12825,1016 +13469,6 @@ GALGAS_stringset callCategoryReader_observedModelSet (const cPtr_abstractBoolean
     }else{
       result = f (inObject, inCompiler COMMA_THERE) ;
     }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static TC_UniqueArray <categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString> gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryReader_expressionString (const int32_t inClassIndex,
-                                           categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inReader) {
-  gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString.forceObjectAtIndex (inClassIndex, inReader, NULL COMMA_HERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void freeCategoryReader_abstractBooleanMultipleBindingExpressionForGeneration_expressionString (void) {
-  gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString.free () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gReader_abstractBooleanMultipleBindingExpressionForGeneration_expressionString (NULL,
-                                                                                                   freeCategoryReader_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string callCategoryReader_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
-  GALGAS_string result ;
-//--- Find Reader
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractBooleanMultipleBindingExpressionForGeneration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString f = NULL ;
-    if (classIndex < gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString.count ()) {
-      f = gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString.count ()) {
-           f = gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gCategoryReaderTable_abstractBooleanMultipleBindingExpressionForGeneration_expressionString.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      result = f (inObject, inCompiler COMMA_THERE) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@simpleStoredPropertyList typeInventory'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const GALGAS_simpleStoredPropertyList inObject,
-                                   GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                   C_Compiler * /* inCompiler */
-                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_simpleStoredPropertyList temp_0 = inObject ;
-  cEnumerator_simpleStoredPropertyList enumerator_2160 (temp_0, kEnumeration_up) ;
-  while (enumerator_2160.hasCurrentObject ()) {
-    {
-    GALGAS_unifiedTypeMap_2D_proxy joker_2258 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_2160.current_mPropertyTypeName (HERE), joker_2258 COMMA_SOURCE_FILE ("simple-stored-property.galgas", 55)) ;
-    }
-    enumerator_2160.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category method '@simpleStoredPropertyList buildObservablePropertyMap'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const GALGAS_simpleStoredPropertyList inObject,
-                                                const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
-                                                C_Compiler * inCompiler
-                                                COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_simpleStoredPropertyList temp_0 = inObject ;
-  cEnumerator_simpleStoredPropertyList enumerator_2807 (temp_0, kEnumeration_up) ;
-  while (enumerator_2807.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_2807.current_mPropertyTypeName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 73)) ;
-    GALGAS_typeKindList var_typeList ;
-    switch (var_type.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_colorType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-      {
-        GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 78)) ;
-        temp_1.addAssign_operation (var_type  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 78)) ;
-        var_typeList = temp_1 ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_typeKindList temp_2 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 80)) ;
-        temp_2.addAssign_operation (var_type  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 80)) ;
-        var_typeList = temp_2 ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-        GALGAS_location location_3 (enumerator_2807.current_mPropertyName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("an entity cannot be used as simple property type")  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 82)) ;
-        var_typeList.drop () ; // Release error dropped variable
-      }
-      break ;
-    }
-    {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_2807.current_mPropertyName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("simple-stored-property.galgas", 88)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("simple-stored-property.galgas", 89)), GALGAS_string::makeEmptyString (), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("simple-stored-property.galgas", 91)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 85)) ;
-    }
-    enumerator_2807.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category method '@simpleStoredPropertyList semanticAnalysis'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const GALGAS_simpleStoredPropertyList inObject,
-                                      const GALGAS_string constinArgument_inSwiftClassName,
-                                      const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                      GALGAS_validationStubRoutineListForGeneration & ioArgument_ioValidationStubRoutineListForGeneration,
-                                      GALGAS_simpleStoredPropertyListForGeneration & outArgument_outSimpleStoredPropertyListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outSimpleStoredPropertyListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outSimpleStoredPropertyListForGeneration = GALGAS_simpleStoredPropertyListForGeneration::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 104)) ;
-  const GALGAS_simpleStoredPropertyList temp_0 = inObject ;
-  cEnumerator_simpleStoredPropertyList enumerator_3899 (temp_0, kEnumeration_up) ;
-  while (enumerator_3899.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_3899.current_mPropertyTypeName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 107)) ;
-    GALGAS_typeKindList var_typeList ;
-    switch (var_type.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_colorType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-      {
-        GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 112)) ;
-        temp_1.addAssign_operation (var_type  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 112)) ;
-        var_typeList = temp_1 ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_typeKindList temp_2 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 114)) ;
-        temp_2.addAssign_operation (var_type  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 114)) ;
-        var_typeList = temp_2 ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-        GALGAS_location location_3 (enumerator_3899.current_mPropertyName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("an entity cannot be used as simple property type")  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 116)) ;
-        var_typeList.drop () ; // Release error dropped variable
-      }
-      break ;
-    }
-    GALGAS_string var_swiftDefaultValueAsString ;
-    callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_3899.current_mDefaultValue (HERE).ptr (), var_typeList, var_swiftDefaultValueAsString, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 119)) ;
-    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (var_type, enumerator_3899.current_mPropertyName (HERE).mAttribute_string, var_swiftDefaultValueAsString, enumerator_3899.current_mNeedsValidation (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 121)) ;
-    const enumGalgasBool test_4 = enumerator_3899.current_mNeedsValidation (HERE).boolEnum () ;
-    if (kBoolTrue == test_4) {
-      ioArgument_ioValidationStubRoutineListForGeneration.addAssign_operation (constinArgument_inSwiftClassName, enumerator_3899.current_mPropertyName (HERE).mAttribute_string, categoryReader_swiftTypeName (var_type, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 130))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 127)) ;
-    }
-    enumerator_3899.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category Reader '@typeKind transformerForTableViewAction'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_transformerForTableViewAction (const GALGAS_typeKind & inObject,
-                                                            const GALGAS_string & constinArgument_inSenderOutletName,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_typeKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 379)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 380)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 382)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 383)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 383)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller-declaration.galgas", 384)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("<unhandled enum for transformerForTableViewAction>") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_entityType:
-    {
-      result_outResult = GALGAS_string ("<unhandled entity for transformerForTableViewAction>") ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Category Reader '@typeKind formatterStringForFormatPrinting'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_formatterStringForFormatPrinting (const GALGAS_typeKind & inObject,
-                                                               C_Compiler * /* inCompiler */
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_typeKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("%d") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("%d") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("%g") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("%@") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      result_outResult = GALGAS_string ("<internal error enum, formatterStringForFormatPrinting' >") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_entityType:
-    {
-      result_outResult = GALGAS_string ("<internal error entity, formatterStringForFormatPrinting' >") ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@toOneRelationshipList typeInventory'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
-                                   GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                   C_Compiler * /* inCompiler */
-                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_3100 (temp_0, kEnumeration_up) ;
-  while (enumerator_3100.hasCurrentObject ()) {
-    {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3203 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3100.current_mDestinationEntityName (HERE), joker_3203 COMMA_SOURCE_FILE ("relationships.galgas", 82)) ;
-    }
-    enumerator_3100.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@toManyRelationshipList typeInventory'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const GALGAS_toManyRelationshipList inObject,
-                                   GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                   C_Compiler * /* inCompiler */
-                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_3442 (temp_0, kEnumeration_up) ;
-  while (enumerator_3442.hasCurrentObject ()) {
-    {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3545 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3442.current_mDestinationEntityName (HERE), joker_3545 COMMA_SOURCE_FILE ("relationships.galgas", 96)) ;
-    }
-    enumerator_3442.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Category method '@toOneRelationshipList buildObservablePropertyMap'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipList inObject,
-                                                const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
-                                                C_Compiler * inCompiler
-                                                COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_4091 (temp_0, kEnumeration_up) ;
-  while (enumerator_4091.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4091.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 114)) ;
-    switch (var_type.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_colorType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-      {
-        GALGAS_location location_1 (enumerator_4091.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 118)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_location location_2 (enumerator_4091.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 120)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
-    }
-    {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_4091.current_mToOneRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 127)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 128)), enumerator_4091.current_mInverseRelationshipName (HERE).mAttribute_string, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("relationships.galgas", 130)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 124)) ;
-    }
-    enumerator_4091.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        Category method '@toManyRelationshipList buildObservablePropertyMap'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipList inObject,
-                                                const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
-                                                C_Compiler * inCompiler
-                                                COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_5037 (temp_0, kEnumeration_up) ;
-  while (enumerator_5037.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5037.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 143)) ;
-    switch (var_type.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_colorType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-      {
-        GALGAS_location location_1 (enumerator_5037.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 147)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_location location_2 (enumerator_5037.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 149)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
-    }
-    {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_5037.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 156)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 157)), enumerator_5037.current_mInverseRelationshipName (HERE).mAttribute_string, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("relationships.galgas", 159)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 153)) ;
-    }
-    enumerator_5037.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObject,
-                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                      GALGAS_toOneEntityRelationshipListForGeneration & outArgument_outToOneEntityRelationshipListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outToOneEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 172)) ;
-  const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_6311 (temp_0, kEnumeration_up) ;
-  while (enumerator_6311.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_6311.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 174)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_6311.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 175)) ;
-    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_6311.current_mToOneRelationshipName (HERE).mAttribute_string, var_type, enumerator_6311.current_mInverseRelationshipName (HERE).mAttribute_string, enumerator_6311.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 179)) ;
-    GALGAS_typeKind var_oppositeType ;
-    GALGAS_propertyKind var_oppositeKind ;
-    GALGAS_propertyMultiplicity var_oppositeMultiplicity ;
-    GALGAS_string var_oppositeOfOpposite ;
-    GALGAS_actionMap joker_7103 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_6311.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_7103, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 186)) ;
-    switch (var_oppositeType.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_colorType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-      {
-        GALGAS_location location_1 (enumerator_6311.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 197)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_location location_2 (enumerator_6311.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 199)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
-    }
-    const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 202)))).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      GALGAS_location location_4 (enumerator_6311.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_4, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 203)) ;
-    }
-    const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_6311.current_mInverseRelationMultiplicity (HERE).objectCompare (var_oppositeMultiplicity)).boolEnum () ;
-    if (kBoolTrue == test_5) {
-      GALGAS_location location_6 (enumerator_6311.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_6, GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)")  COMMA_SOURCE_FILE ("relationships.galgas", 206)) ;
-    }
-    const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_6311.current_mToOneRelationshipName (HERE).mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_7) {
-      GALGAS_location location_8 (enumerator_6311.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_8, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_6311.current_mToOneRelationshipName (HERE).reader_string (SOURCE_FILE ("relationships.galgas", 209)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 209)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 210))  COMMA_SOURCE_FILE ("relationships.galgas", 209)) ;
-    }
-    enumerator_6311.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@toManyRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObject,
-                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                      GALGAS_toManyEntityRelationshipListForGeneration & outArgument_outToManyEntityRelationshipListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outToManyEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 221)) ;
-  const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_8391 (temp_0, kEnumeration_up) ;
-  while (enumerator_8391.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_8391.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 223)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_8391.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 224)) ;
-    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_8391.current_mToManyRelationshipName (HERE).mAttribute_string, var_type, enumerator_8391.current_mInverseRelationshipName (HERE).mAttribute_string, var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 228)) ;
-    GALGAS_typeKind var_oppositeType ;
-    GALGAS_propertyKind var_oppositeKind ;
-    GALGAS_propertyMultiplicity var_oppositeMultiplicity ;
-    GALGAS_string var_oppositeOfOpposite ;
-    GALGAS_actionMap joker_9149 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_8391.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_9149, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 234)) ;
-    switch (var_oppositeType.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_colorType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-      {
-        GALGAS_location location_1 (enumerator_8391.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 244)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_location location_2 (enumerator_8391.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 246)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
-    }
-    const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 249)))).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      GALGAS_location location_4 (enumerator_8391.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_4, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 250)) ;
-    }
-    const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_oppositeMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 252)))).boolEnum () ;
-    if (kBoolTrue == test_5) {
-      GALGAS_location location_6 (enumerator_8391.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_6, GALGAS_string ("the inverse relationship should be toOne")  COMMA_SOURCE_FILE ("relationships.galgas", 253)) ;
-    }
-    const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_8391.current_mToManyRelationshipName (HERE).mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_7) {
-      GALGAS_location location_8 (enumerator_8391.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_8, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8391.current_mToManyRelationshipName (HERE).reader_string (SOURCE_FILE ("relationships.galgas", 256)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 256)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 257))  COMMA_SOURCE_FILE ("relationships.galgas", 256)) ;
-    }
-    enumerator_8391.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category Reader '@typeKind defaultSwiftTypeValueAsString'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_defaultSwiftTypeValueAsString (const GALGAS_typeKind & inObject,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_typeKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("false") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("0") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("0.0") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("\"\"") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSColor.blackColor ()") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate ()") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      const cEnumAssociatedValues_typeKind_enumType * extractPtr_1201 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_enumTypeName = extractPtr_1201->mAssociatedValue0 ;
-      const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_1201->mAssociatedValue1 ;
-      result_outResult = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 27)).add_operation (extractedValue_constantMap.reader_keyList (SOURCE_FILE ("unified-type.galgas", 27)).reader_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 27)).reader_string (SOURCE_FILE ("unified-type.galgas", 27)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 27)) ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_entityType:
-    {
-      result_outResult = GALGAS_string ("<<invalid defaultSwiftTypeValueAsString for entity>>") ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      Category Reader '@typeKind swiftTypeName'                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string categoryReader_swiftTypeName (const GALGAS_typeKind & inObject,
-                                            C_Compiler * /* inCompiler */
-                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_typeKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GALGAS_typeKind::kNotBuilt:
-    break ;
-  case GALGAS_typeKind::kEnum_stringType:
-    {
-      result_outResult = GALGAS_string ("String") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_boolType:
-    {
-      result_outResult = GALGAS_string ("Bool") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_colorType:
-    {
-      result_outResult = GALGAS_string ("NSColor") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_dateType:
-    {
-      result_outResult = GALGAS_string ("NSDate") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_doubleType:
-    {
-      result_outResult = GALGAS_string ("Double") ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_entityType:
-    {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_6058 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_entityName = extractPtr_6058->mAssociatedValue0 ;
-      result_outResult = extractedValue_entityName ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_enumType:
-    {
-      const cEnumAssociatedValues_typeKind_enumType * extractPtr_6126 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_enumTypeName = extractPtr_6126->mAssociatedValue0 ;
-      result_outResult = extractedValue_enumTypeName ;
-    }
-    break ;
-  case GALGAS_typeKind::kEnum_integerType:
-    {
-      result_outResult = GALGAS_string ("Int") ;
-    }
-    break ;
-  }
-//---
-  return result_outResult ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                  Abstract category method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static TC_UniqueArray <categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty> gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
-                                                      categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) {
-  gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void freeCategoryMethod_abstractSecondaryProperty_tryToSolveSecondaryProperty (void) {
-  gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty.free () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_abstractSecondaryProperty_tryToSolveSecondaryProperty (NULL,
-                                                                                  freeCategoryMethod_abstractSecondaryProperty_tryToSolveSecondaryProperty) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_tryToSolveSecondaryProperty (const cPtr_abstractSecondaryProperty * inObject,
-                                                     GALGAS_semanticContext & io_ioSemanticContext,
-                                                     const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                     GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                     GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractSecondaryProperty) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty f = NULL ;
-    if (classIndex < gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty.count ()) {
-      f = gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty.count ()) {
-           f = gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gCategoryMethodTable_abstractSecondaryProperty_tryToSolveSecondaryProperty.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, io_ioSemanticContext, constin_inRootObservableProperties, io_ioObservableProperties, io_ioUnsolvedProperties, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_semanticContext::GALGAS_semanticContext (void) :
-mAttribute_mUnifiedTypeMap (),
-mAttribute_mOutletClassMap (),
-mAttribute_mBindingSpecificationMap (),
-mAttribute_mPrefsObservablePropertyMap (),
-mAttribute_mDocumentObservablePropertyMap (),
-mAttribute_mEntityObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_semanticContext::~ GALGAS_semanticContext (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_semanticContext::GALGAS_semanticContext (const GALGAS_unifiedTypeMap & inOperand0,
-                                                const GALGAS_outletClassMap & inOperand1,
-                                                const GALGAS_bindingSpecificationMap & inOperand2,
-                                                const GALGAS_prefsObservablePropertyMap & inOperand3,
-                                                const GALGAS_documentObservablePropertyMap & inOperand4,
-                                                const GALGAS_entityObservablePropertyMap & inOperand5) :
-mAttribute_mUnifiedTypeMap (inOperand0),
-mAttribute_mOutletClassMap (inOperand1),
-mAttribute_mBindingSpecificationMap (inOperand2),
-mAttribute_mPrefsObservablePropertyMap (inOperand3),
-mAttribute_mDocumentObservablePropertyMap (inOperand4),
-mAttribute_mEntityObservablePropertyMap (inOperand5) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_semanticContext GALGAS_semanticContext::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_semanticContext (GALGAS_unifiedTypeMap::constructor_emptyMap (HERE),
-                                 GALGAS_outletClassMap::constructor_emptyMap (HERE),
-                                 GALGAS_bindingSpecificationMap::constructor_emptyMap (HERE),
-                                 GALGAS_prefsObservablePropertyMap::constructor_emptyMap (HERE),
-                                 GALGAS_documentObservablePropertyMap::constructor_emptyMap (HERE),
-                                 GALGAS_entityObservablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_semanticContext GALGAS_semanticContext::constructor_new (const GALGAS_unifiedTypeMap & inOperand0,
-                                                                const GALGAS_outletClassMap & inOperand1,
-                                                                const GALGAS_bindingSpecificationMap & inOperand2,
-                                                                const GALGAS_prefsObservablePropertyMap & inOperand3,
-                                                                const GALGAS_documentObservablePropertyMap & inOperand4,
-                                                                const GALGAS_entityObservablePropertyMap & inOperand5 
-                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_semanticContext result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_semanticContext (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_semanticContext::objectCompare (const GALGAS_semanticContext & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mUnifiedTypeMap.objectCompare (inOperand.mAttribute_mUnifiedTypeMap) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletClassMap.objectCompare (inOperand.mAttribute_mOutletClassMap) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mBindingSpecificationMap.objectCompare (inOperand.mAttribute_mBindingSpecificationMap) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mPrefsObservablePropertyMap.objectCompare (inOperand.mAttribute_mPrefsObservablePropertyMap) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mDocumentObservablePropertyMap.objectCompare (inOperand.mAttribute_mDocumentObservablePropertyMap) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mEntityObservablePropertyMap.objectCompare (inOperand.mAttribute_mEntityObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_semanticContext::isValid (void) const {
-  return mAttribute_mUnifiedTypeMap.isValid () && mAttribute_mOutletClassMap.isValid () && mAttribute_mBindingSpecificationMap.isValid () && mAttribute_mPrefsObservablePropertyMap.isValid () && mAttribute_mDocumentObservablePropertyMap.isValid () && mAttribute_mEntityObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_semanticContext::drop (void) {
-  mAttribute_mUnifiedTypeMap.drop () ;
-  mAttribute_mOutletClassMap.drop () ;
-  mAttribute_mBindingSpecificationMap.drop () ;
-  mAttribute_mPrefsObservablePropertyMap.drop () ;
-  mAttribute_mDocumentObservablePropertyMap.drop () ;
-  mAttribute_mEntityObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_semanticContext::description (C_String & ioString,
-                                          const int32_t inIndentation) const {
-  ioString << "<struct @semanticContext:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mUnifiedTypeMap.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletClassMap.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mBindingSpecificationMap.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mPrefsObservablePropertyMap.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mDocumentObservablePropertyMap.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mEntityObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_unifiedTypeMap GALGAS_semanticContext::reader_mUnifiedTypeMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mUnifiedTypeMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap GALGAS_semanticContext::reader_mOutletClassMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletClassMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bindingSpecificationMap GALGAS_semanticContext::reader_mBindingSpecificationMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mBindingSpecificationMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap GALGAS_semanticContext::reader_mPrefsObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mPrefsObservablePropertyMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap GALGAS_semanticContext::reader_mDocumentObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDocumentObservablePropertyMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap GALGAS_semanticContext::reader_mEntityObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEntityObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                                @semanticContext type                                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_semanticContext ("semanticContext",
-                                        NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_semanticContext::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_semanticContext ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_semanticContext::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_semanticContext (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_semanticContext GALGAS_semanticContext::extractObject (const GALGAS_object & inObject,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_semanticContext result ;
-  const GALGAS_semanticContext * p = (const GALGAS_semanticContext *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_semanticContext *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("semanticContext", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
   }
   return result ;
 }

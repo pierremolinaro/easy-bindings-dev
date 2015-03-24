@@ -178,7 +178,8 @@ override method @documentDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  @arrayControllerForGeneration documentArrayControllerForGeneration = {}
+  @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
+  @selectionControllerForGeneration selectionControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mDocumentName.string
@@ -187,11 +188,13 @@ override method @documentDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
-      !?documentArrayControllerForGeneration
+      !?documentArrayControllerListForGeneration
+      !?selectionControllerListForGeneration
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-  ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerForGeneration
+  ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerListForGeneration
+  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do
@@ -223,8 +226,9 @@ override method @documentDeclaration semanticAnalysis
     !actionBindingListForGeneration
     !regularBindingsGenerationList
     !multipleBindingGenerationList
-    !documentArrayControllerForGeneration
+    !documentArrayControllerListForGeneration
     !tableViewBindingGenerationList
+    !selectionControllerListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -242,6 +246,7 @@ list @documentListForGeneration {
   @multipleBindingGenerationList multipleBindingGenerationList
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
+  @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
 #......................................................................................................................*
@@ -260,6 +265,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
+    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -282,6 +288,7 @@ proc generateDocuments
       !mRegularBindingsGenerationList
       !multipleBindingGenerationList
       !mTableViewBindingGenerationList
+      !mSelectionControllerListForGeneration
     ]
     [@string generateFile
       !inOutputDirectory

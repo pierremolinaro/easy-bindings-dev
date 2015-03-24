@@ -1,10 +1,10 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    DataSource_PMDocument_selectionController                                                                        *
+//    DataSource_PMDocument_selController                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_PMDocument_selectionController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
+class DataSource_PMDocument_selController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_NameEntity?
   var count = PMTransientProperty_Int ()
 
@@ -134,19 +134,19 @@ class DataSource_PMDocument_selectionController : ReadOnlyArrayOf_NameEntity, PM
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    Delegate_PMDocument_selectionController                                                                          *
+//    Delegate_PMDocument_selController                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Delegate_PMDocument_selectionController) class Delegate_PMDocument_selectionController : PMAbstractProperty, PMTableViewDelegate {
+@objc(Delegate_PMDocument_selController) class Delegate_PMDocument_selController : PMAbstractProperty, PMTableViewDelegate {
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
-  private var mSortedArray : DataSource_PMDocument_selectionController
+  private var mSortedArray : DataSource_PMDocument_selController
   private var mIgnoreTableViewSelectionDidChange = true
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (model:DataSource_PMDocument_selectionController) {
+  init (model:DataSource_PMDocument_selController) {
     mSortedArray = model
     super.init ()
     count.computeFunction = { [weak self] in
@@ -320,18 +320,18 @@ class DataSource_PMDocument_selectionController : ReadOnlyArrayOf_NameEntity, PM
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    ArrayController_PMDocument_selectionController                                                                   *
+//    ArrayController_PMDocument_selController                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_PMDocument_selectionController : PMObject {
+class ArrayController_PMDocument_selController : PMObject {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 
-  var sortedArray = DataSource_PMDocument_selectionController ()
+  var sortedArray = DataSource_PMDocument_selController ()
 
   var selectedArray = TransientArrayOf_NameEntity ()
 
-  private var mSelectedSet : Delegate_PMDocument_selectionController?
+  private var mSelectedSet : Delegate_PMDocument_selController?
 
   private var mTableViewControllerArray = [Controller_PMTableView_controller] ()
 
@@ -368,7 +368,7 @@ class ArrayController_PMDocument_selectionController : PMObject {
   func bind_modelAndView (model:ReadOnlyArrayOf_NameEntity, tableViewArray:[PMTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
-    let selectedSet = Delegate_PMDocument_selectionController (model:sortedArray)
+    let selectedSet = Delegate_PMDocument_selController (model:sortedArray)
     mSelectedSet = selectedSet
     for tableView in tableViewArray {
       let tableViewController = Controller_PMTableView_controller (

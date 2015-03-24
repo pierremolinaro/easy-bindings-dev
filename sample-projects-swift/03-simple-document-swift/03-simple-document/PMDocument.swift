@@ -32,6 +32,11 @@ import Cocoa
 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //    Selection Controllers                                                                                          *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    windowNibName                                                                                                  *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -90,6 +95,7 @@ import Cocoa
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is not an instance of 'PMReadOnlyTextField'") ;
     }
   //--------------------------- Array controller
+  //--------------------------- Selection controller
   //--- Install property observers for transients
   //--- Install regular bindings
     myTextField?.bind_value (self.rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)
@@ -122,6 +128,7 @@ import Cocoa
   //--- Unbind multiple bindings
   //--- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
+  //--------------------------- Unbind selection controllers
   //--- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   }
