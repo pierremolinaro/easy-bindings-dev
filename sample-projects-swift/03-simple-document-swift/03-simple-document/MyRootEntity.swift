@@ -241,46 +241,58 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    myStringMaj.computeFunction = {
-      switch self.myString.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let v1) :
-        return .singleSelection (compute_MyRootEntity_myStringMaj (v1))
-      }
-    }
-    myStringMin.computeFunction = {
-      switch self.myString.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let v1) :
-        return .singleSelection (compute_MyRootEntity_myStringMin (v1))
-      }
-    }
-    myStringConcat.computeFunction = {
-      switch self.myStringMaj.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        switch self.myStringMin.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection, .singleSelection :
-          return .multipleSelection
-        }
-      case .singleSelection (let v1) :
-        switch self.myStringMin.prop {
+    myStringMaj.computeFunction = {  [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.myString.prop {
         case .noSelection :
           return .noSelection
         case .multipleSelection :
           return .multipleSelection
-        case .singleSelection (let v2) :
-          return .singleSelection (compute_MyRootEntity_myStringConcat (v1, v2))
+        case .singleSelection (let v1) :
+          return .singleSelection (compute_MyRootEntity_myStringMaj (v1))
         }
+      }else{
+        return .noSelection
+      }
+    }
+    myStringMin.computeFunction = {  [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.myString.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v1) :
+          return .singleSelection (compute_MyRootEntity_myStringMin (v1))
+        }
+      }else{
+        return .noSelection
+      }
+    }
+    myStringConcat.computeFunction = {  [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.myStringMaj.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          switch unwSelf.myStringMin.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection, .singleSelection :
+            return .multipleSelection
+          }
+        case .singleSelection (let v1) :
+          switch unwSelf.myStringMin.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection :
+            return .multipleSelection
+          case .singleSelection (let v2) :
+            return .singleSelection (compute_MyRootEntity_myStringConcat (v1, v2))
+          }
+        }
+      }else{
+        return .noSelection
       }
     }
   //--- Install property observers for transients

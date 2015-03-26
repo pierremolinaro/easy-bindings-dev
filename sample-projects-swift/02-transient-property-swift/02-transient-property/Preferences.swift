@@ -77,36 +77,44 @@ var g_Preferences : Preferences? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.computeFunction = {
-      switch self.mName.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        switch self.mFirstName.prop {
+    mFullName.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.mName.prop {
         case .noSelection :
           return .noSelection
-        case .multipleSelection, .singleSelection :
-          return .multipleSelection
+        case .multipleSelection :
+          switch unwSelf.mFirstName.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection, .singleSelection :
+            return .multipleSelection
+          }
+        case .singleSelection (let v1) :
+          switch unwSelf.mFirstName.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection :
+            return .multipleSelection
+          case .singleSelection (let v2) :
+            return .singleSelection (compute_Preferences_mFullName (v1, v2))
+          }
         }
-      case .singleSelection (let v1) :
-        switch self.mFirstName.prop {
+      }else{
+        return .noSelection
+      }
+    }
+    mUpperCaseFullName.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.mFullName.prop {
         case .noSelection :
           return .noSelection
         case .multipleSelection :
           return .multipleSelection
-        case .singleSelection (let v2) :
-          return .singleSelection (compute_Preferences_mFullName (v1, v2))
+        case .singleSelection (let v1) :
+          return .singleSelection (compute_Preferences_mUpperCaseFullName (v1))
         }
-      }
-    }
-    mUpperCaseFullName.computeFunction = {
-      switch self.mFullName.prop {
-      case .noSelection :
+      }else{
         return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let v1) :
-        return .singleSelection (compute_Preferences_mUpperCaseFullName (v1))
       }
     }
   //--- Install property observers for transients

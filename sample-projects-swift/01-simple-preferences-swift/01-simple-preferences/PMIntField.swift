@@ -71,7 +71,7 @@ import Cocoa
   private var mValueController : Controller_PMIntField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMStoredProperty_Int, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:PMReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMIntField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -93,12 +93,12 @@ import Cocoa
 @objc(Controller_PMIntField_value)
 class Controller_PMIntField_value : PMOutletEvent {
 
-  var mObject : PMStoredProperty_Int
+  var mObject : PMReadWriteProperty_Int
   var mOutlet : PMIntField
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMStoredProperty_Int, outlet : PMIntField, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMReadWriteProperty_Int, outlet : PMIntField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()

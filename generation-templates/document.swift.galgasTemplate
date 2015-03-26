@@ -112,30 +112,16 @@ for () in SELECTION_CONTROLLER_LIST do
       line:__LINE__
     )\n%
 end
+%  //--- Transient compute functions
+%
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = {\n%
+  %    %!mTransientName%.computeFunction = { [weak self] in\n%
+  %      if let unwSelf = self {\n%
   ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName]
-  %    }\n%
-end
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  % /*   %!mTransientName%.computeFunction = {\n%
-  %      let selectionKind = %
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.1%
-    between % & %
-  end
-  %\n%
-  %      if selectionKind == .singleSelection {\n%
-  %        return (compute_%!DOCUMENT_NAME%_%!mTransientName% (%
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.0%
-    between %, %
-  end
-  %), .singleSelection)\n%
   %      }else{\n%
-  %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
+  %        return .noSelection\n%
   %      }\n%
-  %    } */\n%
+  %    }\n%
 end
 %  //--- Install property observers for transients
 %
@@ -171,30 +157,6 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
 end
 %  //--- Install multiple bindings
 %
-for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %    /* %!mOutletName%?.bind_%!mBindingName% (\n%
-  %      [%
-  for () in [mBoundObjectExpression observedModelSet]
-  do !key%%
-  between %, %  
-  end
-  %],\n%
-  %      computeFunction:{\n%
-  %        let selection = %
-   for () in [mBoundObjectExpression observedModelSet]
-   do !key%.prop.1%
-   between % & %
-   end
-  %\n%
-  %        if selection == .singleSelection {\n%
-  %          return (%![mBoundObjectExpression expressionString]%, .singleSelection)\n%
-  %        }else{\n%
-  %          return (false, selection)\n%
-  %        }\n%
-  %      },\n%
-  %      file:__FILE__, line:__LINE__\n%
-  %    ) */\n%
-end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
 %    %!mOutletName%?.target = %!mTargetName%\n%

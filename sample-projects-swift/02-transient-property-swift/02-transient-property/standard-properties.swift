@@ -1,7 +1,7 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMSelectionKind                                                                                                   *
+//   PMProperty                                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 enum PMProperty<T> {
@@ -710,7 +710,7 @@ class PMPropertyProxy_Int : PMReadWriteProperty_Int {
 //   PMStoredProperty_Int                                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_Int : PMReadOnlyProperty_Int {
+class PMStoredProperty_Int : PMReadWriteProperty_Int {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -742,14 +742,14 @@ class PMStoredProperty_Int : PMReadOnlyProperty_Int {
 
   var propval : Int { get { return mValue } }
 
-  func setProp (inValue : Int) { mValue = inValue }
+  override func setProp (inValue : Int) { mValue = inValue }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
   var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction
   
-  func validateAndSetProp (candidateValue : Int,
-                           windowForSheet inWindow:NSWindow?) -> Bool {
+  override func validateAndSetProp (candidateValue : Int,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
     let validationResult = validationFunction (candidateValue)
     switch validationResult {

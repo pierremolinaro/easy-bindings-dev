@@ -148,48 +148,56 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override init (undoManager : NSUndoManager) {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
-    transientConcatString.computeFunction = {
-      switch self.docString.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        switch g_Preferences!.myPrefString.prop {
+    transientConcatString.computeFunction = {  [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.docString.prop {
         case .noSelection :
           return .noSelection
-        case .multipleSelection, .singleSelection :
-          switch g_Preferences!.prefTransientString.prop {
+        case .multipleSelection :
+          switch g_Preferences!.myPrefString.prop {
           case .noSelection :
             return .noSelection
           case .multipleSelection, .singleSelection :
+            switch g_Preferences!.prefTransientString.prop {
+            case .noSelection :
+              return .noSelection
+            case .multipleSelection, .singleSelection :
+              return .multipleSelection
+            }
+          }
+        case .singleSelection (let v1) :
+          switch g_Preferences!.myPrefString.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection :
             return .multipleSelection
+          case .singleSelection (let v2) :
+            switch g_Preferences!.prefTransientString.prop {
+            case .noSelection :
+              return .noSelection
+            case .multipleSelection :
+              return .multipleSelection
+            case .singleSelection (let v3) :
+              return .singleSelection (compute_MyRootEntity_transientConcatString (v1, v2, v3))
+            }
           }
         }
-      case .singleSelection (let v1) :
+      }else{
+        return .noSelection
+      }
+    }
+    otherTransientConcatString.computeFunction = {  [weak self] in
+      if let unwSelf = self {
         switch g_Preferences!.myPrefString.prop {
         case .noSelection :
           return .noSelection
         case .multipleSelection :
           return .multipleSelection
-        case .singleSelection (let v2) :
-          switch g_Preferences!.prefTransientString.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            return .multipleSelection
-          case .singleSelection (let v3) :
-            return .singleSelection (compute_MyRootEntity_transientConcatString (v1, v2, v3))
-          }
+        case .singleSelection (let v1) :
+          return .singleSelection (compute_MyRootEntity_otherTransientConcatString (v1))
         }
-      }
-    }
-    otherTransientConcatString.computeFunction = {
-      switch g_Preferences!.myPrefString.prop {
-      case .noSelection :
+      }else{
         return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let v1) :
-        return .singleSelection (compute_MyRootEntity_otherTransientConcatString (v1))
       }
     }
   //--- Install property observers for transients

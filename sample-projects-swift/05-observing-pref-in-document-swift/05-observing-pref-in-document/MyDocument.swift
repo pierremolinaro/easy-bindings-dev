@@ -84,6 +84,7 @@ import Cocoa
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller
+  //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
     docStringTextField?.bind_value (self.rootObject.docString, file:__FILE__, line:__LINE__, sendContinously:true)

@@ -95,16 +95,16 @@ syntax extension easyBindings_syntax {
 #  SEMANTICS                                                                                                           *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-getter @observablePropertyAST modelString -> @string outResult {
+getter @observablePropertyAST modelString ?let @string inSelf -> @string outResult {
   switch self
   case rootProperty (@lstring propertyName) :
-    outResult = "self.rootObject." + propertyName
+    outResult = inSelf + ".rootObject." + propertyName
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = "self.rootObject." + propertyName + "." + optionName
+    outResult = inSelf + ".rootObject." + propertyName + "." + optionName
   case rootPropertyRelationship (@lstring relationshipName *) :
-    outResult = "self.rootObject." + relationshipName
+    outResult = inSelf + ".rootObject." + relationshipName
   case selfProperty (@lstring propertyName @lstring optionName) :
-    outResult = "self." + propertyName
+    outResult = inSelf + "." + propertyName
     if optionName.string != "" then
       outResult += "." + optionName
     end
@@ -114,9 +114,9 @@ getter @observablePropertyAST modelString -> @string outResult {
       outResult += "." + optionName
     end
   case controllerProperty (@lstring controllerName @lstring propertyName) :
-    outResult = "self." + controllerName + "." + propertyName
+    outResult = inSelf + "." + controllerName + "." + propertyName
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    outResult = "self." + controllerName + "." + propertyName + "." + secondaryPropertyName
+    outResult = inSelf + "." + controllerName + "." + propertyName + "." + secondaryPropertyName
   end  
 }
 
