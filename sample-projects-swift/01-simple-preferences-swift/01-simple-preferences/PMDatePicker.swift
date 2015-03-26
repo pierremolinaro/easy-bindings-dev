@@ -68,13 +68,13 @@ class Controller_PMDatePicker_date : PMOutletEvent {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    switch mObject.prop.1 {
+    switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "No Selection"
-    case .singleSelection :
+    case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.dateValue = mObject.prop.0
+      mOutlet.dateValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
@@ -85,9 +85,7 @@ class Controller_PMDatePicker_date : PMOutletEvent {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : AnyObject!) {
-    if !mOutlet.dateValue.isEqualToDate (mObject.prop.0) {
-      mObject.setProp (mOutlet.dateValue)
-    }
+    mObject.setProp (mOutlet.dateValue)
   }
 
 }

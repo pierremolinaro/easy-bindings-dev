@@ -3029,6 +3029,18 @@ class GALGAS_string categoryReader_outletNameListForController (const class GALG
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                Category Reader '@transientDependencyListForGeneration transientComputeFunctionCall'                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
+                                                                 const class GALGAS_string & constinArgument0,
+                                                                 const class GALGAS_string & constinArgument1,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                              Category Reader '@typeKind defaultSwiftTypeValueAsString'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3104,17 +3116,6 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityFactoryImplemen
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category Reader '@typeKind transformForSavingInDictionary'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_transformForSavingInDictionary (const class GALGAS_typeKind & inObject,
-                                                                   const class GALGAS_string & constinArgument0,
-                                                                   class C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                             Routine 'generateEntities'                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3146,16 +3147,16 @@ extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Filewrapper template 'prefsGenerationTemplate preferencesInSwift'                          *
+//                             Filewrapper template 'prefsGenerationTemplate preferences'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (class C_Compiler * inCompiler,
-                                                                              const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                              const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                              const class GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
-                                                                              const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST
-                                                                              COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_Compiler * inCompiler,
+                                                                       const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                       const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                       const class GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
+                                                                       const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3165,27 +3166,6 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferencesInSwift (cl
 
 class GALGAS_string function_preferencesName (class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category Reader '@typeKind preferencesSwiftGetter'                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_preferencesSwiftGetter (const class GALGAS_typeKind & inObject,
-                                                           class C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category Reader '@typeKind preferencesSwiftSetter'                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_preferencesSwiftSetter (const class GALGAS_typeKind & inObject,
-                                                           const class GALGAS_string & constinArgument0,
-                                                           class C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3307,6 +3287,7 @@ extern const char * gWrapperFileContent_8_outletClassGeneration ;
 extern const char * gWrapperFileContent_9_outletClassGeneration ;
 extern const char * gWrapperFileContent_10_outletClassGeneration ;
 extern const char * gWrapperFileContent_11_outletClassGeneration ;
+extern const char * gWrapperFileContent_12_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3325,6 +3306,7 @@ extern const cRegularFileWrapper gWrapperFile_8_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_9_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_10_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_11_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_12_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

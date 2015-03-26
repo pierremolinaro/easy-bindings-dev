@@ -84,9 +84,18 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    if mOutlet.stringValue != mObject.prop.0 {
-      mOutlet.stringValue = mObject.prop.0
+    switch mObject.prop {
+    case .noSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "No Selection"
+    case .singleSelection (let v):
+      mOutlet.enableFromValue (true)
+      mOutlet.stringValue = v
+    case .multipleSelection :
+      mOutlet.enableFromValue (false)
+      mOutlet.stringValue = "Multiple Selection"
     }
+    mOutlet.updateEnabledState()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

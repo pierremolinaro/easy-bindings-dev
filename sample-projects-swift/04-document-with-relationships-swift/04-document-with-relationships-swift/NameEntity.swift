@@ -6,7 +6,7 @@ import Cocoa
 
 class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
-  var prop : (Array<NameEntity>, PMSelectionKind) { get { return (Array<NameEntity> (), .noSelection) } }
+  var prop : PMProperty <Array<NameEntity> > { get { return .noSelection } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -14,15 +14,25 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
   func addObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.insert (inObserver)
-    for managedObject in prop.0 {
-      managedObject.name.addObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.name.addObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
   func removeObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.remove (inObserver)
-    for managedObject in prop.0 {
-      managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
@@ -32,15 +42,25 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
   func addObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.insert (inObserver)
-    for managedObject in prop.0 {
-      managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
   func removeObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.remove (inObserver)
-    for managedObject in prop.0 {
-      managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
@@ -54,11 +74,11 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
-  var computeFunction : Optional<() -> (Array<NameEntity>, PMSelectionKind) >
+  var computeFunction : Optional<() -> PMProperty <Array<NameEntity> > >
   
   var count = PMTransientProperty_Int ()
 
-  private var prop_cache : (Array<NameEntity>, PMSelectionKind)? 
+  private var prop_cache : PMProperty <Array<NameEntity> >? 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -66,22 +86,29 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwSelf = self {
-        return (unwSelf.prop.0.count, unwSelf.prop.1)
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override var prop : (Array<NameEntity>, PMSelectionKind) {
+  override var prop : PMProperty <Array<NameEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
-        prop_cache = (Array<NameEntity> (), .noSelection)
+        prop_cache = .noSelection
       }
       return prop_cache!
     }
@@ -122,31 +149,31 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   weak var owner : NameEntity? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
-        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
+        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (propval, button : unwrappedExplorer)
       }
     }
   }
  
-  weak var prop : MyRootEntity? = nil {
+  weak private var mValue : MyRootEntity? {
     didSet {
-      if let unwrappedOwner = owner where oldValue !== prop {
+      if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
         unwrappedOwner.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = explorer {
-          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (mValue, button : unwrappedExplorer)
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
           if unwrappedOldValue.mNames.mSet.contains (unwrappedOwner) {
-            var array = unwrappedOldValue.mNames.prop.0
+            var array = unwrappedOldValue.mNames.propval
             let idx = find (array, unwrappedOwner)
             array.removeAtIndex (idx!)
             unwrappedOldValue.mNames.setProp (array)
           }
         }
       //--- Set new opposite relation ship
-        if let unwrappedValue = prop {
+        if let unwrappedValue = mValue {
           if !unwrappedValue.mNames.mSet.contains (unwrappedOwner) {
             unwrappedValue.mNames.mValue.append (unwrappedOwner)
           }
@@ -157,24 +184,30 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     }
   }
 
+  var propval : MyRootEntity? { get { return mValue } }
+
+  var prop : PMProperty <MyRootEntity?> { get { return .singleSelection (mValue) } }
+
+  func setProp (value : MyRootEntity?) { mValue = value }
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func performUndo (oldValue : MyRootEntity?) {
-    prop = oldValue
+    mValue = oldValue
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (object : MyRootEntity) {
-    if prop === object {
-      prop = nil
+    if mValue === object {
+      mValue = nil
     }
   }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func add (object : MyRootEntity) {
-    prop = object
+    mValue = object
   }
 
 }
@@ -190,10 +223,28 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var name = PMStoredProperty_String ("Name")
-  var name_keyCodingValue : String { get {return name.prop.0 } }
+  var name_keyCodingValue : String {
+    get {
+      switch name.prop {
+      case .noSelection, .multipleSelection :
+        return ""
+      case .singleSelection (let v) :
+        return v
+      }
+    }
+  }
 
   var aValue = PMStoredProperty_Int (100)
-  var aValue_keyCodingValue : Int { get {return aValue.prop.0 } }
+  var aValue_keyCodingValue : Int {
+    get {
+      switch aValue.prop {
+      case .noSelection, .multipleSelection :
+        return 0
+      case .singleSelection (let v) :
+        return v
+      }
+    }
+  }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
@@ -249,8 +300,8 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (name.prop.0, forKey: "name")
-    ioDictionary.setValue (NSNumber (integer:aValue.prop.0), forKey: "aValue")
+    name.storeInDictionary (ioDictionary, forKey: "name")
+    aValue.storeInDictionary (ioDictionary, forKey: "aValue")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -260,8 +311,8 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    name.setProp (inDictionary.readString ("name"))
-    aValue.setProp (inDictionary.readInt ("aValue"))
+    name.readFromDictionary (inDictionary, forKey:"name")
+    aValue.readFromDictionary (inDictionary, forKey:"aValue")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -270,7 +321,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-    if let object = mRoot.prop.0 {
+    if let object = mRoot.propval {
       objects.addObject (object)
     }
   }

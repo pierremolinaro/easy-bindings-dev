@@ -86,15 +86,15 @@ class Controller_PMTextField_value : PMOutletEvent {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    switch mObject.prop.1 {
+    switch mObject.prop {
     case .noSelection :
       mOutlet.stringValue = "No selection"
       mOutlet.enableFromValue (false)
     case .multipleSelection :
       mOutlet.stringValue = "Multiple selection"
       mOutlet.enableFromValue (false)
-    case .singleSelection :
-      mOutlet.stringValue = mObject.prop.0
+    case .singleSelection (let propertyValue) :
+      mOutlet.stringValue = propertyValue
       mOutlet.enableFromValue (true)
     }
     mOutlet.updateEnabledState ()

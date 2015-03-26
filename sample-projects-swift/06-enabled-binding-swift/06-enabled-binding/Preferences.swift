@@ -37,13 +37,8 @@ var g_Preferences : Preferences? = nil
   override init () {
     super.init ()
     g_Preferences = self ;
-    var ud = NSUserDefaults.standardUserDefaults ()
-  //---
-    var value : AnyObject?
-    value = ud.objectForKey ("Preferences:prefBoolean")
-    if value != nil {
-      prefBoolean.setProp ((value as! NSNumber).boolValue)
-    }
+  //--- Read from preferences
+    prefBoolean.readInPreferencesWithKey ("Preferences:prefBoolean")
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
@@ -73,12 +68,11 @@ var g_Preferences : Preferences? = nil
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func applicationWillTerminateAction (NSNotification) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (bool:prefBoolean.prop.0), forKey:"Preferences:prefBoolean")
+    prefBoolean.storeInPreferencesWithKey ("Preferences:prefBoolean")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
 
-//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

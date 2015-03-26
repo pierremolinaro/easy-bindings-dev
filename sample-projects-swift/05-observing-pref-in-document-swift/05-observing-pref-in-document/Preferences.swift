@@ -38,13 +38,8 @@ var g_Preferences : Preferences? = nil
   override init () {
     super.init ()
     g_Preferences = self ;
-    var ud = NSUserDefaults.standardUserDefaults ()
-  //---
-    var value : AnyObject?
-    value = ud.objectForKey ("Preferences:myPrefString")
-    if value != nil {
-      myPrefString.setProp (value as! String)
-    }
+  //--- Read from preferences
+    myPrefString.readInPreferencesWithKey ("Preferences:myPrefString")
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
@@ -65,11 +60,13 @@ var g_Preferences : Preferences? = nil
     }
   //--- Install compute functions for transients
     prefTransientString.computeFunction = {
-      let selectionKind = self.myPrefString.prop.1
-      if selectionKind == .singleSelection {
-        return (compute_Preferences_prefTransientString (self.myPrefString.prop.0), .singleSelection)
-      }else{
-        return ("", selectionKind)
+      switch self.myPrefString.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_Preferences_prefTransientString (v1))
       }
     }
   //--- Install property observers for transients
@@ -83,12 +80,11 @@ var g_Preferences : Preferences? = nil
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func applicationWillTerminateAction (NSNotification) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (myPrefString.prop.0, forKey:"Preferences:myPrefString")
+    myPrefString.storeInPreferencesWithKey ("Preferences:myPrefString")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
 
-//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

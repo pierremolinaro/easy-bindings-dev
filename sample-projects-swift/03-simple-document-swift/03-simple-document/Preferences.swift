@@ -35,6 +35,7 @@ var g_Preferences : Preferences? = nil
   override init () {
     super.init ()
     g_Preferences = self ;
+  //--- Read from preferences
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
@@ -65,4 +66,4 @@ var g_Preferences : Preferences? = nil
 
 }
 
-//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

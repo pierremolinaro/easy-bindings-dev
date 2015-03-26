@@ -73,13 +73,13 @@ class Controller_PMColorWell_color : PMOutletEvent {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    switch mObject.prop.1 {
+    switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "No Selection"
-    case .singleSelection :
+    case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.color = mObject.prop.0
+      mOutlet.color = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
@@ -108,7 +108,7 @@ class Controller_PMColorWell_color : PMOutletEvent {
         alert.addButtonWithTitle ("Discard Change")
         alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mOutlet.color = self.mObject.prop.0
+            self.mObject.postEvent ()
           }
         })
       }

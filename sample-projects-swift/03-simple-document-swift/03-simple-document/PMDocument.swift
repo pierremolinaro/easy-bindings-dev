@@ -105,6 +105,7 @@ import Cocoa
     myMatrix?.bind_selectedIndex (self.rootObject.myEnumeration, file:__FILE__, line:__LINE__)
     myColorWell?.bind_color (self.rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
   //--- Install multiple bindings
+  //--- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)

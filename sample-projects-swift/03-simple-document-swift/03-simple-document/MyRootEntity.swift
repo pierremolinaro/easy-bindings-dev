@@ -6,7 +6,7 @@ import Cocoa
 
 class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
-  var prop : (Array<MyRootEntity>, PMSelectionKind) { get { return (Array<MyRootEntity> (), .noSelection) } }
+  var prop : PMProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -14,15 +14,25 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   func addObserverOf_myString (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.insert (inObserver)
-    for managedObject in prop.0 {
-      managedObject.myString.addObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myString.addObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
   func removeObserverOf_myString (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.remove (inObserver)
-    for managedObject in prop.0 {
-      managedObject.myString.removeObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myString.removeObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
@@ -32,15 +42,25 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   func addObserverOf_myEnumeration (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_myEnumeration.insert (inObserver)
-    for managedObject in prop.0 {
-      managedObject.myEnumeration.addObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myEnumeration.addObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
   func removeObserverOf_myEnumeration (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_myEnumeration.remove (inObserver)
-    for managedObject in prop.0 {
-      managedObject.myEnumeration.removeObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myEnumeration.removeObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
@@ -50,15 +70,25 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   func addObserverOf_myColor (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.insert (inObserver)
-    for managedObject in prop.0 {
-      managedObject.myColor.addObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myColor.addObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
   func removeObserverOf_myColor (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.remove (inObserver)
-    for managedObject in prop.0 {
-      managedObject.myColor.removeObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myColor.removeObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
@@ -72,11 +102,11 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> (Array<MyRootEntity>, PMSelectionKind) >
+  var computeFunction : Optional<() -> PMProperty <Array<MyRootEntity> > >
   
   var count = PMTransientProperty_Int ()
 
-  private var prop_cache : (Array<MyRootEntity>, PMSelectionKind)? 
+  private var prop_cache : PMProperty <Array<MyRootEntity> >? 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -84,22 +114,29 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwSelf = self {
-        return (unwSelf.prop.0.count, unwSelf.prop.1)
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override var prop : (Array<MyRootEntity>, PMSelectionKind) {
+  override var prop : PMProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
-        prop_cache = (Array<MyRootEntity> (), .noSelection)
+        prop_cache = .noSelection
       }
       return prop_cache!
     }
@@ -149,13 +186,40 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   var myString = PMStoredProperty_String ("Hello")
-  var myString_keyCodingValue : String { get {return myString.prop.0 } }
+  var myString_keyCodingValue : String {
+    get {
+      switch myString.prop {
+      case .noSelection, .multipleSelection :
+        return ""
+      case .singleSelection (let v) :
+        return v
+      }
+    }
+  }
 
   var myEnumeration = PMStoredProperty_MonEnumeration (MonEnumeration.deuxieme)
-  var myEnumeration_keyCodingValue : MonEnumeration { get {return myEnumeration.prop.0 } }
+  var myEnumeration_keyCodingValue : MonEnumeration {
+    get {
+      switch myEnumeration.prop {
+      case .noSelection, .multipleSelection :
+        return MonEnumeration.deuxieme
+      case .singleSelection (let v) :
+        return v
+      }
+    }
+  }
 
   var myColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
-  var myColor_keyCodingValue : NSColor { get {return myColor.prop.0 } }
+  var myColor_keyCodingValue : NSColor {
+    get {
+      switch myColor.prop {
+      case .noSelection, .multipleSelection :
+        return NSColor.blackColor ()
+      case .singleSelection (let v) :
+        return v
+      }
+    }
+  }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
@@ -178,27 +242,45 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     super.init (undoManager:undoManager)
   //--- Install compute functions for transients
     myStringMaj.computeFunction = {
-      let selectionKind = self.myString.prop.1
-      if selectionKind == .singleSelection {
-        return (compute_MyRootEntity_myStringMaj (self.myString.prop.0), .singleSelection)
-      }else{
-        return ("", selectionKind)
+      switch self.myString.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_MyRootEntity_myStringMaj (v1))
       }
     }
     myStringMin.computeFunction = {
-      let selectionKind = self.myString.prop.1
-      if selectionKind == .singleSelection {
-        return (compute_MyRootEntity_myStringMin (self.myString.prop.0), .singleSelection)
-      }else{
-        return ("", selectionKind)
+      switch self.myString.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_MyRootEntity_myStringMin (v1))
       }
     }
     myStringConcat.computeFunction = {
-      let selectionKind = self.myStringMaj.prop.1 & self.myStringMin.prop.1
-      if selectionKind == .singleSelection {
-        return (compute_MyRootEntity_myStringConcat (self.myStringMaj.prop.0, self.myStringMin.prop.0), .singleSelection)
-      }else{
-        return ("", selectionKind)
+      switch self.myStringMaj.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        switch self.myStringMin.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection, .singleSelection :
+          return .multipleSelection
+        }
+      case .singleSelection (let v1) :
+        switch self.myStringMin.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v2) :
+          return .singleSelection (compute_MyRootEntity_myStringConcat (v1, v2))
+        }
       }
     }
   //--- Install property observers for transients
@@ -241,9 +323,9 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    ioDictionary.setValue (myString.prop.0, forKey: "myString")
-    ioDictionary.setValue (NSNumber (integer:myEnumeration.prop.rawValue), forKey: "myEnumeration")
-    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (myColor.prop.0), forKey: "myColor")
+    myString.storeInDictionary (ioDictionary, forKey: "myString")
+    myEnumeration.storeInDictionary (ioDictionary, forKey: "myEnumeration")
+    myColor.storeInDictionary (ioDictionary, forKey: "myColor")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -253,9 +335,9 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override func setUpWithDictionary (inDictionary : NSDictionary,
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
-    myString.setProp (inDictionary.readString ("myString"))
-    myEnumeration.setProp (inDictionary.readMonEnumeration ("myEnumeration"))
-    myColor.setProp (inDictionary.readNSColor ("myColor"))
+    myString.readFromDictionary (inDictionary, forKey:"myString")
+    myEnumeration.readFromDictionary (inDictionary, forKey:"myEnumeration")
+    myColor.readFromDictionary (inDictionary, forKey:"myColor")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

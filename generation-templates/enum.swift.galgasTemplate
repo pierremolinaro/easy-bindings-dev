@@ -29,28 +29,12 @@ end
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extension NSDictionary {
-  func read%!ENUM_TYPE_NAME%  (inKey : String) -> %!ENUM_TYPE_NAME% {
-    let v : Int? = objectForKey (inKey)?.integerValue
-    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
-    if v != nil {
-      let e : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME% (rawValue:v!)
-      if e != nil {
-        result = e!
-      }
-    }
-    return result
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    %!["PMReadOnlyProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, PMReadOnlyEnumPropertyProtocol {
 
-  var prop : %!ENUM_TYPE_NAME% { get { return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string% } } // Abstract method
+  var prop : PMProperty <%!ENUM_TYPE_NAME%> { get { return .noSelection } } // Abstract method
 
   func rawValue () -> Int { return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%.rawValue }  // Abstract method
 
@@ -91,7 +75,7 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
     }
   }
 
-  override var prop :  %!ENUM_TYPE_NAME% { get { return mValue } }
+  override var prop : PMProperty <%!ENUM_TYPE_NAME%> { get { return .singleSelection (mValue) } }
 
   func setProp (inValue : %!ENUM_TYPE_NAME%) { mValue = inValue }
 
@@ -102,6 +86,30 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
   func setFromRawValue (rawValue : Int) {
     if let v = %!ENUM_TYPE_NAME% (rawValue:rawValue) {
       mValue = v
+    }
+  }
+
+  func readInPreferencesWithKey (inKey : String) {
+    var ud = NSUserDefaults.standardUserDefaults ()
+    var value : AnyObject? = ud.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSNumber {
+      setFromRawValue ((unwValue as! NSNumber).integerValue)
+    }
+  }
+  
+  func storeInPreferencesWithKey (inKey : String) {
+    var ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (NSNumber (integer:mValue.rawValue), forKey:inKey)
+  }
+
+  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
+    ioDictionary.setValue (NSNumber (integer:mValue.rawValue), forKey:inKey)
+  }
+
+  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
+    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSNumber {
+      setFromRawValue ((unwValue as! NSNumber).integerValue)
     }
   }
 
@@ -120,21 +128,21 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME% {
-  private var mValueCache : %!ENUM_TYPE_NAME%? = nil
+  private var mValueCache : PMProperty <%!ENUM_TYPE_NAME%>?
 
-  var computeFunction : Optional<() -> %!ENUM_TYPE_NAME%>
+  var computeFunction : Optional<() -> PMProperty <%!ENUM_TYPE_NAME%> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : %!ENUM_TYPE_NAME% {
+  override var prop : PMProperty <%!ENUM_TYPE_NAME%> {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
           mValueCache = unwrappedComputeFunction ()
         }else{
-          mValueCache = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
+          mValueCache = .noSelection
         }
       }
       return mValueCache!

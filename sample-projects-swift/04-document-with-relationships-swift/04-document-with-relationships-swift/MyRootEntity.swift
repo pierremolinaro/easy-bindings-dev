@@ -6,7 +6,7 @@ import Cocoa
 
 class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
-  var prop : (Array<MyRootEntity>, PMSelectionKind) { get { return (Array<MyRootEntity> (), .noSelection) } }
+  var prop : PMProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -18,11 +18,11 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> (Array<MyRootEntity>, PMSelectionKind) >
+  var computeFunction : Optional<() -> PMProperty <Array<MyRootEntity> > >
   
   var count = PMTransientProperty_Int ()
 
-  private var prop_cache : (Array<MyRootEntity>, PMSelectionKind)? 
+  private var prop_cache : PMProperty <Array<MyRootEntity> >? 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -30,22 +30,29 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwSelf = self {
-        return (unwSelf.prop.0.count, unwSelf.prop.1)
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override var prop : (Array<MyRootEntity>, PMSelectionKind) {
+  override var prop : PMProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
-        prop_cache = (Array<MyRootEntity> (), .noSelection)
+        prop_cache = .noSelection
       }
       return prop_cache!
     }
@@ -75,7 +82,12 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   var explorer : NSPopUpButton? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
-        unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (prop.0, popUpButton:unwrappedExplorer)
+        switch prop {
+        case .noSelection, .multipleSelection :
+          break ;
+        case .singleSelection (let v) :
+          unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (v, popUpButton:unwrappedExplorer)
+        }
       }
     }
   }
@@ -86,9 +98,16 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwSelf = self {
-        return (unwSelf.prop.0.count, unwSelf.prop.1)
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
   }
@@ -132,25 +151,26 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
           for observer in mObserversOf_name {
             managedObject.name.addObserver (observer, postEvent:true)
           }
-          managedObject.mRoot.prop = owner
+          managedObject.mRoot.setProp (owner)
         }
       //--- Notify observers object count did change
         postEvent ()
-        if oldValue.count != prop.0.count {
+        if oldValue.count != mValue.count {
           count.postEvent ()
         }
       }
     }
   }
 
-  override var prop :  (Array<NameEntity>, PMSelectionKind) {
+  override var prop : PMProperty <Array<NameEntity> > {
     get {
-      return (mValue, .singleSelection)
+      return .singleSelection (mValue)
     }
   }
 
   func setProp (inValue :  Array<NameEntity>) { mValue = inValue }
 
+  var propval : Array<NameEntity> { get { return mValue } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -162,7 +182,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   func remove (object : NameEntity) {
     if mSet.contains (object) {
-      var array = prop.0
+      var array = mValue
       let idx = find (array, object)
       array.removeAtIndex (idx!)
       mValue = array
@@ -173,7 +193,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   func add (object : NameEntity) {
     if !mSet.contains (object) {
-      var array = prop.0
+      var array = mValue
       array.append (object)
       mValue = array
     }
@@ -241,7 +261,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    storeEntityArrayInDictionary (mNames.prop.0, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
+    storeEntityArrayInDictionary (mNames.propval, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -264,7 +284,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   override func accessibleObjects (inout objects : NSMutableArray) {
     super.accessibleObjects (&objects)
-    for managedObject : PMManagedObject in mNames.prop.0 {
+    for managedObject : PMManagedObject in mNames.propval {
       objects.addObject (managedObject)
     }
   }

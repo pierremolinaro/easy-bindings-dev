@@ -6,7 +6,7 @@ import Cocoa
 
 class ReadOnlyArrayOf_%!ENTITY_NAME% : PMAbstractProperty {
 
-  var prop : (Array<%!ENTITY_NAME%>, PMSelectionKind) { get { return (Array<%!ENTITY_NAME%> (), .noSelection) } }
+  var prop : PMProperty <Array<%!ENTITY_NAME%> > { get { return .noSelection } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -16,15 +16,25 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   func addObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
-    for managedObject in prop.0 {
-      managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
   func removeObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
-    for managedObject in prop.0 {
-      managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
+      }
     }
   }
 
@@ -40,11 +50,11 @@ end
 
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
-  var computeFunction : Optional<() -> (Array<%!ENTITY_NAME%>, PMSelectionKind) >
+  var computeFunction : Optional<() -> PMProperty <Array<%!ENTITY_NAME%> > >
   
   var count = PMTransientProperty_Int ()
 
-  private var prop_cache : (Array<%!ENTITY_NAME%>, PMSelectionKind)? 
+  private var prop_cache : PMProperty <Array<%!ENTITY_NAME%> >? 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -52,22 +62,29 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwSelf = self {
-        return (unwSelf.prop.0.count, unwSelf.prop.1)
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override var prop : (Array<%!ENTITY_NAME%>, PMSelectionKind) {
+  override var prop : PMProperty <Array<%!ENTITY_NAME%> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
-        prop_cache = (Array<%!ENTITY_NAME%> (), .noSelection)
+        prop_cache = .noSelection
       }
       return prop_cache!
     }
@@ -109,7 +126,12 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
   var explorer : NSPopUpButton? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
-        unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (prop.0, popUpButton:unwrappedExplorer)
+        switch prop {
+        case .noSelection, .multipleSelection :
+          break ;
+        case .singleSelection (let v) :
+          unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (v, popUpButton:unwrappedExplorer)
+        }
       }
     }
   }
@@ -120,9 +142,16 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
     super.init ()
     count.computeFunction = { [weak self] in
       if let unwSelf = self {
-        return (unwSelf.prop.0.count, unwSelf.prop.1)
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
   }
@@ -168,25 +197,26 @@ if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
           }
 %end
 end
-%          managedObject.%!mOppositeRelationshipName%.prop = owner
+%          managedObject.%!mOppositeRelationshipName%.setProp (owner)
         }
       //--- Notify observers object count did change
         postEvent ()
-        if oldValue.count != prop.0.count {
+        if oldValue.count != mValue.count {
           count.postEvent ()
         }
       }
     }
   }
 
-  override var prop :  (Array<%![mRelationshipType swiftTypeName]%>, PMSelectionKind) {
+  override var prop : PMProperty <Array<%![mRelationshipType swiftTypeName]%> > {
     get {
-      return (mValue, .singleSelection)
+      return .singleSelection (mValue)
     }
   }
 
   func setProp (inValue :  Array<%![mRelationshipType swiftTypeName]%>) { mValue = inValue }
 
+  var propval : Array<%![mRelationshipType swiftTypeName]%> { get { return mValue } }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -198,7 +228,7 @@ end
 
   func remove (object : %![mRelationshipType swiftTypeName]%) {
     if mSet.contains (object) {
-      var array = prop.0
+      var array = mValue
       let idx = find (array, object)
       array.removeAtIndex (idx!)
       mValue = array
@@ -209,7 +239,7 @@ end
 
   func add (object : %![mRelationshipType swiftTypeName]%) {
     if !mSet.contains (object) {
-      var array = prop.0
+      var array = mValue
       array.append (object)
       mValue = array
     }
@@ -231,32 +261,32 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
   weak var owner : %!ENTITY_NAME%? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
-        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
+        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (propval, button : unwrappedExplorer)
       }
     }
   }
  
-  weak var prop : %![mRelationshipType swiftTypeName]%? = nil {
+  weak private var mValue : %![mRelationshipType swiftTypeName]%? {
     didSet {
-      if let unwrappedOwner = owner where oldValue !== prop {
+      if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
         unwrappedOwner.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = explorer {
-          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (prop, button : unwrappedExplorer)
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (mValue, button : unwrappedExplorer)
         }
 %    if [mInverseRelationMultiplicity isCollection] then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
           if unwrappedOldValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
-            var array = unwrappedOldValue.%!mOppositeRelationshipName%.prop.0
+            var array = unwrappedOldValue.%!mOppositeRelationshipName%.propval
             let idx = find (array, unwrappedOwner)
             array.removeAtIndex (idx!)
             unwrappedOldValue.%!mOppositeRelationshipName%.setProp (array)
           }
         }
       //--- Set new opposite relation ship
-        if let unwrappedValue = prop {
+        if let unwrappedValue = mValue {
           if !unwrappedValue.%!mOppositeRelationshipName%.mSet.contains (unwrappedOwner) {
             unwrappedValue.%!mOppositeRelationshipName%.mValue.append (unwrappedOwner)
           }
@@ -273,24 +303,30 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
     }
   }
 
+  var propval : %![mRelationshipType swiftTypeName]%? { get { return mValue } }
+
+  var prop : PMProperty <%![mRelationshipType swiftTypeName]%?> { get { return .singleSelection (mValue) } }
+
+  func setProp (value : %![mRelationshipType swiftTypeName]%?) { mValue = value }
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func performUndo (oldValue : %![mRelationshipType swiftTypeName]%?) {
-    prop = oldValue
+    mValue = oldValue
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (object : %![mRelationshipType swiftTypeName]%) {
-    if prop === object {
-      prop = nil
+    if mValue === object {
+      mValue = nil
     }
   }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func add (object : %![mRelationshipType swiftTypeName]%) {
-    prop = object
+    mValue = object
   }
 
 }
@@ -314,7 +350,16 @@ end
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
-  %  var %!mStoredPropertyName%_keyCodingValue : %![mType swiftTypeName]% { get {return %!mStoredPropertyName%.prop.0 } }\n\n%
+  %  var %!mStoredPropertyName%_keyCodingValue : %![mType swiftTypeName]% {\n%
+  %    get {\n%
+  %      switch %!mStoredPropertyName%.prop {\n%
+  %      case .noSelection, .multipleSelection :\n%
+  %        return %![mType defaultSwiftTypeValueAsString]%\n%
+  %      case .singleSelection (let v) :\n%
+  %        return v\n%
+  %      }\n%
+  %    }\n%
+  %  }\n\n%
 end
 %  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
@@ -355,22 +400,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {\n%
-  %      let selectionKind = %
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.1%
-    between % & %
-  end
-  %\n%
-  %      if selectionKind == .singleSelection {\n%
-  %        return (compute_%!ENTITY_NAME%_%!mTransientName% (%
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.0%
-    between %, %
-  end
-  %), .singleSelection)\n%
-  %      }else{\n%
-  %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
-  %      }\n%
+  ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName]
   %    }\n%
 end
 %  //--- Install property observers for transients
@@ -435,14 +465,14 @@ end
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    ioDictionary.setValue (%![mType transformForSavingInDictionary !mStoredPropertyName]%, forKey: "%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.storeInDictionary (ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    storeEntityArrayInDictionary (%!mToManyRelationshipName%.prop.0, inRelationshipName:"%!mToManyRelationshipName%", ioDictionary:ioDictionary) ;\n%
+%    storeEntityArrayInDictionary (%!mToManyRelationshipName%.propval, inRelationshipName:"%!mToManyRelationshipName%", ioDictionary:ioDictionary) ;\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mInverseRelationMultiplicity isSingle] then
-%    storeEntityInDictionary (%!mToOneRelationshipName%.prop.0, inRelationshipName:"%!mToOneRelationshipName%", ioDictionary:ioDictionary) ;\n%
+%    storeEntityInDictionary (%!mToOneRelationshipName%.propval, inRelationshipName:"%!mToOneRelationshipName%", ioDictionary:ioDictionary) ;\n%
 end
 end
 %  }
@@ -455,7 +485,7 @@ end
                                      managedObjectArray : Array<PMManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.setProp (inDictionary.read%![mType swiftTypeName]% ("%!mStoredPropertyName%"))\n%
+%    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    %!mToManyRelationshipName%.setProp (readEntityArrayFromDictionary (
@@ -483,12 +513,12 @@ end
     super.accessibleObjects (&objects)
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    for managedObject : PMManagedObject in %!mToManyRelationshipName%.prop.0 {
+%    for managedObject : PMManagedObject in %!mToManyRelationshipName%.propval {
       objects.addObject (managedObject)
     }\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-%    if let object = %!mToOneRelationshipName%.prop.0 {\n%
+%    if let object = %!mToOneRelationshipName%.propval {\n%
 %      objects.addObject (object)\n%
 %    }\n%
 end

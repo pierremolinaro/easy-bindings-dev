@@ -114,6 +114,11 @@ for () in SELECTION_CONTROLLER_LIST do
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {\n%
+  ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName]
+  %    }\n%
+end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  % /*   %!mTransientName%.computeFunction = {\n%
   %      let selectionKind = %
   for () in mDependencyList
     do ![mDependency modelString]%.prop.1%
@@ -130,7 +135,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      }else{\n%
   %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
   %      }\n%
-  %    }\n%
+  %    } */\n%
 end
 %  //--- Install property observers for transients
 %
@@ -159,6 +164,22 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   end
   %],\n%
   %      computeFunction:{\n%
+  %        return %![mBoundObjectExpression expressionString]%\n%
+  %      },\n%
+  %      file:__FILE__, line:__LINE__\n%
+  %    )\n%
+end
+%  //--- Install multiple bindings
+%
+for () in MULTIPLE_BINDING_GENERATION_LIST do
+  %    /* %!mOutletName%?.bind_%!mBindingName% (\n%
+  %      [%
+  for () in [mBoundObjectExpression observedModelSet]
+  do !key%%
+  between %, %  
+  end
+  %],\n%
+  %      computeFunction:{\n%
   %        let selection = %
    for () in [mBoundObjectExpression observedModelSet]
    do !key%.prop.1%
@@ -172,7 +193,7 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %        }\n%
   %      },\n%
   %      file:__FILE__, line:__LINE__\n%
-  %    )\n%
+  %    ) */\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do

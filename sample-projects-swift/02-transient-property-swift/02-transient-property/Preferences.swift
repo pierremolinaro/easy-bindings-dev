@@ -43,17 +43,9 @@ var g_Preferences : Preferences? = nil
   override init () {
     super.init ()
     g_Preferences = self ;
-    var ud = NSUserDefaults.standardUserDefaults ()
-  //---
-    var value : AnyObject?
-    value = ud.objectForKey ("Preferences:mName")
-    if value != nil {
-      mName.setProp (value as! String)
-    }
-    value = ud.objectForKey ("Preferences:mFirstName")
-    if value != nil {
-      mFirstName.setProp (value as! String)
-    }
+  //--- Read from preferences
+    mName.readInPreferencesWithKey ("Preferences:mName")
+    mFirstName.readInPreferencesWithKey ("Preferences:mFirstName")
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
@@ -86,19 +78,35 @@ var g_Preferences : Preferences? = nil
     }
   //--- Install compute functions for transients
     mFullName.computeFunction = {
-      let selectionKind = self.mName.prop.1 & self.mFirstName.prop.1
-      if selectionKind == .singleSelection {
-        return (compute_Preferences_mFullName (self.mName.prop.0, self.mFirstName.prop.0), .singleSelection)
-      }else{
-        return ("", selectionKind)
+      switch self.mName.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        switch self.mFirstName.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection, .singleSelection :
+          return .multipleSelection
+        }
+      case .singleSelection (let v1) :
+        switch self.mFirstName.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v2) :
+          return .singleSelection (compute_Preferences_mFullName (v1, v2))
+        }
       }
     }
     mUpperCaseFullName.computeFunction = {
-      let selectionKind = self.mFullName.prop.1
-      if selectionKind == .singleSelection {
-        return (compute_Preferences_mUpperCaseFullName (self.mFullName.prop.0), .singleSelection)
-      }else{
-        return ("", selectionKind)
+      switch self.mFullName.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_Preferences_mUpperCaseFullName (v1))
       }
     }
   //--- Install property observers for transients
@@ -117,13 +125,12 @@ var g_Preferences : Preferences? = nil
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func applicationWillTerminateAction (NSNotification) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mName.prop.0, forKey:"Preferences:mName")
-    ud.setObject (mFirstName.prop.0, forKey:"Preferences:mFirstName")
+    mName.storeInPreferencesWithKey ("Preferences:mName")
+    mFirstName.storeInPreferencesWithKey ("Preferences:mFirstName")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
 
-//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
