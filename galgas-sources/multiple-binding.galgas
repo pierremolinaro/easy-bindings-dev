@@ -252,7 +252,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "an entity cannot be observed"
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
-    ![mProperty modelString]
+    ![mProperty modelString !"self"]
   }
   outErrorLocation = [mProperty location]
 }

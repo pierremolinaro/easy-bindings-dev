@@ -61,6 +61,7 @@ document PMDocument root MyRootEntity {
   
   selectionController detailController : nameController.selectedArray ;
   outlet PMTextField nameDetailTextField $value detailController.name { sendContinously : yes} ;
+  outlet PMIntField valueDetailTextField $value detailController.aValue { sendContinously : yes} ;
 }
 
 #--------------------------------------------------------------*

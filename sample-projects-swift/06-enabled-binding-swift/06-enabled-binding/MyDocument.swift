@@ -72,6 +72,7 @@ import Cocoa
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller
+  //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
     docBoolCheckBox?.bind_value (self.rootObject.docBool, file:__FILE__, line:__LINE__)
@@ -84,18 +85,6 @@ import Cocoa
       file:__FILE__, line:__LINE__
     )
   //--- Install multiple bindings
-    /* myButton?.bind_enabled (
-      [g_Preferences!.prefBoolean, self.rootObject.docBool],
-      computeFunction:{
-        let selection = g_Preferences!.prefBoolean.prop.1 & self.rootObject.docBool.prop.1
-        if selection == .singleSelection {
-          return ((!self.rootObject.docBool.prop && g_Preferences!.prefBoolean.prop), .singleSelection)
-        }else{
-          return (false, selection)
-        }
-      },
-      file:__FILE__, line:__LINE__
-    ) */
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)

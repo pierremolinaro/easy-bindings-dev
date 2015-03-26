@@ -130,7 +130,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
     end
     dependencies +=
       !mObservableProperty
-      ![[mObservableProperty modelString] nameRepresentation]
+      ![[mObservableProperty modelString !"self"] nameRepresentation]
       !swiftTypeStringForTransientFunctionArgument
   end
 #--- Code generation
@@ -169,15 +169,16 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
 {
   var dependencies = self
   [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
-  @string ident = "      "
-  outResult = ident + "switch " + [first modelString] + ".prop {\n"
+  @string ident = "        "
+  outResult = ident + "switch " + [first modelString !"unwSelf"] + ".prop {\n"
   outResult += ident + "case .noSelection :\n"
   outResult += ident + "  return .noSelection\n"
   outResult += ident + "case .multipleSelection :\n"
+  let finalCloseString = ident + "}\n"
   var closeString = ""
   for () in dependencies do
     ident += "  "
-    outResult += ident + "switch " + [mDependency modelString] + ".prop {\n"
+    outResult += ident + "switch " + [mDependency modelString !"unwSelf"] + ".prop {\n"
     outResult += ident + "case .noSelection :\n"
     outResult += ident + "  return .noSelection\n"
     outResult += ident + "case .multipleSelection, .singleSelection :\n"
@@ -185,13 +186,13 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   end
   outResult += ident + "  return .multipleSelection\n"
   outResult += closeString
-  ident = "      "
+  ident = "        "
   outResult += ident + "case .singleSelection (let v1) :\n"
   var idx = 2
   var args = ""
   for () in dependencies do
     ident += "  "
-    outResult += ident + "switch " + [mDependency modelString] + ".prop {\n"
+    outResult += ident + "switch " + [mDependency modelString !"unwSelf"] + ".prop {\n"
     outResult += ident + "case .noSelection :\n"
     outResult += ident + "  return .noSelection\n"
     outResult += ident + "case .multipleSelection :\n"
@@ -202,7 +203,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   end
   outResult += ident + "  return .singleSelection (compute_" + inOwnerName + "_" + inTransientName + " (v1" + args + "))\n"
   outResult += closeString
-  outResult += "      }\n"
+  outResult += finalCloseString
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

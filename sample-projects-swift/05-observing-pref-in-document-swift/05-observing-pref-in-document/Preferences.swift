@@ -59,14 +59,18 @@ var g_Preferences : Preferences? = nil
       presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    prefTransientString.computeFunction = {
-      switch self.myPrefString.prop {
-      case .noSelection :
+    prefTransientString.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.myPrefString.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v1) :
+          return .singleSelection (compute_Preferences_prefTransientString (v1))
+        }
+      }else{
         return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let v1) :
-        return .singleSelection (compute_Preferences_prefTransientString (v1))
       }
     }
   //--- Install property observers for transients

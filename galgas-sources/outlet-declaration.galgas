@@ -229,7 +229,7 @@ proc analyzeOutlets
       var @outletBindingModelList boundModelTypeList = {}
       var @stringlist boundModelStringListForGeneration = {}
       for () in mObservablePropertyList do
-        boundModelStringListForGeneration += ![mObservableProperty modelString]
+        boundModelStringListForGeneration += ![mObservableProperty modelString !"self"]
         [mObservableProperty analyzeObservableProperty
           !inRootObservablePropertyMap
           !inSemanticContext

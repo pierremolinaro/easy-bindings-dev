@@ -3008,16 +3008,6 @@ class GALGAS_string categoryReader_generateRemoveObserverCall (const class GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Reader '@observablePropertyAST modelString'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_modelString (const class GALGAS_observablePropertyAST & inObject,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                    Category Reader '@tableViewBindingGenerationList outletNameListForController'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3038,16 +3028,6 @@ class GALGAS_string categoryReader_transientComputeFunctionCall (const class GAL
                                                                  const class GALGAS_string & constinArgument1,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category Reader '@typeKind defaultSwiftTypeValueAsString'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_defaultSwiftTypeValueAsString (const class GALGAS_typeKind & inObject,
-                                                                  class C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -3116,6 +3096,16 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityFactoryImplemen
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                              Category Reader '@typeKind defaultSwiftTypeValueAsString'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_defaultSwiftTypeValueAsString (const class GALGAS_typeKind & inObject,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                             Routine 'generateEntities'                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3166,6 +3156,17 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
 
 class GALGAS_string function_preferencesName (class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@observablePropertyAST modelString'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_modelString (const class GALGAS_observablePropertyAST & inObject,
+                                                const class GALGAS_string & constinArgument0,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
