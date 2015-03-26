@@ -48,25 +48,11 @@ var g_Preferences : Preferences? = nil
   override init () {
     super.init ()
     g_Preferences = self ;
-    var ud = NSUserDefaults.standardUserDefaults ()
-  //---
-    var value : AnyObject?
-    value = ud.objectForKey ("Preferences:myString")
-    if value != nil {
-      myString.setProp (value as! String)
-    }
-    value = ud.objectForKey ("Preferences:mColor")
-    if value != nil {
-      mColor.setProp (NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor)
-    }
-    value = ud.objectForKey ("Preferences:mDate")
-    if value != nil {
-      mDate.setProp (value as! NSDate)
-    }
-    value = ud.objectForKey ("Preferences:mIntegerValue")
-    if value != nil {
-      mIntegerValue.setProp ((value as! NSNumber).integerValue)
-    }
+  //--- Read from preferences
+    myString.readInPreferencesWithKey ("Preferences:myString")
+    mColor.readInPreferencesWithKey ("Preferences:mColor")
+    mDate.readInPreferencesWithKey ("Preferences:mDate")
+    mIntegerValue.readInPreferencesWithKey ("Preferences:mIntegerValue")
   //--- Property validation function
     mIntegerValue.validationFunction = self.validate_mIntegerValue
   //---
@@ -137,15 +123,14 @@ var g_Preferences : Preferences? = nil
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func applicationWillTerminateAction (NSNotification) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (myString.prop.0, forKey:"Preferences:myString")
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mColor.prop.0), forKey:"Preferences:mColor")
-    ud.setObject (mDate.prop.0, forKey:"Preferences:mDate")
-    ud.setObject (NSNumber (integer:mIntegerValue.prop.0), forKey:"Preferences:mIntegerValue")
+    myString.storeInPreferencesWithKey ("Preferences:myString")
+    mColor.storeInPreferencesWithKey ("Preferences:mColor")
+    mDate.storeInPreferencesWithKey ("Preferences:mDate")
+    mIntegerValue.storeInPreferencesWithKey ("Preferences:mIntegerValue")
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 }
 
-//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

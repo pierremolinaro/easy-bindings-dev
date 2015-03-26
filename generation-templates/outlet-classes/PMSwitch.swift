@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------------------------------------------------*
-
 import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -77,15 +75,15 @@ import Cocoa
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    switch mObject.prop.1 {
+    switch mObject.prop {
     case .noSelection :
       mOutlet.state = NSOffState
       mOutlet.enabled = false
     case .multipleSelection :
       mOutlet.state = NSMixedState
       mOutlet.enabled = false
-    case .singleSelection :
-      mOutlet.state = mObject.prop.0 ? NSOnState : NSOffState
+    case .singleSelection (let v) :
+      mOutlet.state = v ? NSOnState : NSOffState
       mOutlet.enabled = true
     }
     mOutlet.updateEnabledState ()

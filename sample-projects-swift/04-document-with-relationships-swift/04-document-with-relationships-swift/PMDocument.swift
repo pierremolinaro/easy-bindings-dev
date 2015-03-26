@@ -177,45 +177,95 @@ import Cocoa
       line:__LINE__
     )
     selectionCountString.computeFunction = {
+      switch self.selController.sortedArray.count.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_PMDocument_selectionCountString (v1))
+      }
+    }
+    evenValueString.computeFunction = {
+      switch self.otherController.sortedArray.count.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_PMDocument_evenValueString (v1))
+      }
+    }
+    canRemoveString.computeFunction = {
+      switch self.nameController.selectedArray.count.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_PMDocument_canRemoveString (v1))
+      }
+    }
+    countItemMessage.computeFunction = {
+      switch self.rootObject.mNames.count.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_PMDocument_countItemMessage (v1))
+      }
+    }
+    total.computeFunction = {
+      switch self.rootObject.mNames.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v1) :
+        return .singleSelection (compute_PMDocument_total (v1))
+      }
+    }
+ /*   selectionCountString.computeFunction = {
       let selectionKind = self.selController.sortedArray.count.prop.1
       if selectionKind == .singleSelection {
         return (compute_PMDocument_selectionCountString (self.selController.sortedArray.count.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
-    }
-    evenValueString.computeFunction = {
+    } */
+ /*   evenValueString.computeFunction = {
       let selectionKind = self.otherController.sortedArray.count.prop.1
       if selectionKind == .singleSelection {
         return (compute_PMDocument_evenValueString (self.otherController.sortedArray.count.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
-    }
-    canRemoveString.computeFunction = {
+    } */
+ /*   canRemoveString.computeFunction = {
       let selectionKind = self.nameController.selectedArray.count.prop.1
       if selectionKind == .singleSelection {
         return (compute_PMDocument_canRemoveString (self.nameController.selectedArray.count.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
-    }
-    countItemMessage.computeFunction = {
+    } */
+ /*   countItemMessage.computeFunction = {
       let selectionKind = self.rootObject.mNames.count.prop.1
       if selectionKind == .singleSelection {
         return (compute_PMDocument_countItemMessage (self.rootObject.mNames.count.prop.0), .singleSelection)
       }else{
         return ("", selectionKind)
       }
-    }
-    total.computeFunction = {
+    } */
+ /*   total.computeFunction = {
       let selectionKind = self.rootObject.mNames.prop.1
       if selectionKind == .singleSelection {
         return (compute_PMDocument_total (self.rootObject.mNames.prop.0), .singleSelection)
       }else{
         return (0, selectionKind)
       }
-    }
+    } */
   //--- Install property observers for transients
     selController.sortedArray.count.addObserver (selectionCountString, postEvent:true)
     otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
@@ -234,39 +284,61 @@ import Cocoa
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
       computeFunction:{
-        let selection = self.nameController.selectedArray.count.prop.1
-        if selection == .singleSelection {
-          return ((self.nameController.selectedArray.count.prop.0 > 0), .singleSelection)
-        }else{
-          return (false, selection)
-        }
+        return (self.nameController.selectedArray.count.prop > 0)
       },
       file:__FILE__, line:__LINE__
     )
     incrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
-        let selection = self.rootObject.mNames.count.prop.1
-        if selection == .singleSelection {
-          return ((self.rootObject.mNames.count.prop.0 > 0), .singleSelection)
-        }else{
-          return (false, selection)
-        }
+        return (self.rootObject.mNames.count.prop > 0)
       },
       file:__FILE__, line:__LINE__
     )
     decrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
-        let selection = self.rootObject.mNames.count.prop.1
+        return (self.rootObject.mNames.count.prop > 0)
+      },
+      file:__FILE__, line:__LINE__
+    )
+  //--- Install multiple bindings
+    /* removePathButton?.bind_enabled (
+      [self.nameController.selectedArray.count],
+      computeFunction:{
+        let selection = self.nameController.selectedArray.count.prop.1
         if selection == .singleSelection {
-          return ((self.rootObject.mNames.count.prop.0 > 0), .singleSelection)
+          return ((self.nameController.selectedArray.count.prop > 0), .singleSelection)
         }else{
           return (false, selection)
         }
       },
       file:__FILE__, line:__LINE__
-    )
+    ) */
+    /* incrementButton?.bind_enabled (
+      [self.rootObject.mNames.count],
+      computeFunction:{
+        let selection = self.rootObject.mNames.count.prop.1
+        if selection == .singleSelection {
+          return ((self.rootObject.mNames.count.prop > 0), .singleSelection)
+        }else{
+          return (false, selection)
+        }
+      },
+      file:__FILE__, line:__LINE__
+    ) */
+    /* decrementButton?.bind_enabled (
+      [self.rootObject.mNames.count],
+      computeFunction:{
+        let selection = self.rootObject.mNames.count.prop.1
+        if selection == .singleSelection {
+          return ((self.rootObject.mNames.count.prop > 0), .singleSelection)
+        }else{
+          return (false, selection)
+        }
+      },
+      file:__FILE__, line:__LINE__
+    ) */
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"

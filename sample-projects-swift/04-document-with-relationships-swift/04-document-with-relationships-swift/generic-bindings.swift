@@ -11,7 +11,7 @@ private var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
 extension NSControl {
 
-  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> (Bool, PMSelectionKind), file:String, line:Int) {
+  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> PMProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSControl_enabled (
       objectArray:object,
       outlet:self,
@@ -74,11 +74,11 @@ extension NSControl {
 
   var mObjectArray : [PMAbstractProperty]
   var mOutlet : NSControl
-  var mComputeFunction : Optional <() -> (Bool, PMSelectionKind)>
+  var mComputeFunction : Optional <() -> PMProperty <Bool> >
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> (Bool, PMSelectionKind), file : String, line : Int) {
+  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> PMProperty <Bool>, file : String, line : Int) {
     mObjectArray = objectArray
     mOutlet = outlet
     mComputeFunction = computeFunction
@@ -100,15 +100,21 @@ extension NSControl {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    let result : (Bool, PMSelectionKind)
+    let result : PMProperty <Bool>
     if let computeFunction = mComputeFunction {
       result = computeFunction ()
     }else{
-      result = (false, .noSelection)
+      result = .noSelection
     }
-    let enable = result.0 && (result.1 == .singleSelection)
-    gEnabledBindingValueDictionary [mOutlet] = enable
-    mOutlet.enabled = enable
+    switch result {
+    case .noSelection :
+      gEnabledBindingValueDictionary [mOutlet] = false
+    case .multipleSelection :
+      gEnabledBindingValueDictionary [mOutlet] = false
+    case .singleSelection (let v) :
+      gEnabledBindingValueDictionary [mOutlet] = v
+    }
+    mOutlet.updateEnabledState ()
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

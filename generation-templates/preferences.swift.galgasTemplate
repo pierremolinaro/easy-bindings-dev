@@ -52,19 +52,10 @@ end
   override init () {
     super.init ()
     g_%!preferencesName ()% = self ;
+  //--- Read from preferences
 %
-if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length] ) > 0 then
-  %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-  %  //---\n%
-end
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
-  before
-    %    var value : AnyObject?\n%
-  do
-    %    value = ud.objectForKey ("%!preferencesName ()%:%!mStoredPropertyName%")\n%
-    %    if value != nil {\n%
-    %      %!mStoredPropertyName%.setProp (%![mType preferencesSwiftGetter]%)\n%
-    %    }\n%
+for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+  %    %!mStoredPropertyName%.readInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
 end
 %  //--- Property validation function
 %
@@ -97,22 +88,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    %!mTransientName%.computeFunction = {\n%
-  %      let selectionKind = %
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.1%
-    between % & %
-  end
-  %\n%
-  %      if selectionKind == .singleSelection {\n%
-  %        return (compute_%!preferencesName ()%_%!mTransientName% (%
-  for () in mDependencyList
-    do ![mDependency modelString]%.prop.0%
-    between %, %
-  end
-  %), .singleSelection)\n%
-  %      }else{\n%
-  %        return (%![mTransientType defaultSwiftTypeValueAsString]%, selectionKind)\n%
-  %      }\n%
+  ![mDependencyList transientComputeFunctionCall !preferencesName () !mTransientName]
   %    }\n%
 end
 %  //--- Install property observers for transients
@@ -139,11 +115,8 @@ end
 
   func applicationWillTerminateAction (NSNotification) {
 %
-if ([SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION length]) > 0 then
-  %    var ud = NSUserDefaults.standardUserDefaults ()\n%
-end
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    ud.setObject (%![mType preferencesSwiftSetter !mStoredPropertyName]%, forKey:"%!preferencesName ()%:%!mStoredPropertyName%")\n%
+  %    %!mStoredPropertyName%.storeInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
 end
 %  }
 
@@ -151,4 +124,4 @@ end
 
 }
 
-//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

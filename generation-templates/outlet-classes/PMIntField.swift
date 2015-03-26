@@ -124,13 +124,13 @@ class Controller_PMIntField_value : PMOutletEvent {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
-    switch mObject.prop.1 {
+    switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "No Selection"
-    case .singleSelection :
+    case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.integerValue = mObject.prop.0
+      mOutlet.integerValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"

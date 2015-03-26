@@ -27,28 +27,12 @@ enum MonEnumeration : Int {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extension NSDictionary {
-  func readMonEnumeration  (inKey : String) -> MonEnumeration {
-    let v : Int? = objectForKey (inKey)?.integerValue
-    var result = MonEnumeration.premier
-    if v != nil {
-      let e : MonEnumeration? = MonEnumeration (rawValue:v!)
-      if e != nil {
-        result = e!
-      }
-    }
-    return result
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    PMReadOnlyProperty_MonEnumeration                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMReadOnlyProperty_MonEnumeration : PMAbstractProperty, PMReadOnlyEnumPropertyProtocol {
 
-  var prop : MonEnumeration { get { return MonEnumeration.premier } } // Abstract method
+  var prop : PMProperty <MonEnumeration> { get { return .noSelection } } // Abstract method
 
   func rawValue () -> Int { return MonEnumeration.premier.rawValue }  // Abstract method
 
@@ -89,7 +73,7 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
     }
   }
 
-  override var prop :  MonEnumeration { get { return mValue } }
+  override var prop : PMProperty <MonEnumeration> { get { return .singleSelection (mValue) } }
 
   func setProp (inValue : MonEnumeration) { mValue = inValue }
 
@@ -100,6 +84,30 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
   func setFromRawValue (rawValue : Int) {
     if let v = MonEnumeration (rawValue:rawValue) {
       mValue = v
+    }
+  }
+
+  func readInPreferencesWithKey (inKey : String) {
+    var ud = NSUserDefaults.standardUserDefaults ()
+    var value : AnyObject? = ud.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSNumber {
+      setFromRawValue ((unwValue as! NSNumber).integerValue)
+    }
+  }
+  
+  func storeInPreferencesWithKey (inKey : String) {
+    var ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (NSNumber (integer:mValue.rawValue), forKey:inKey)
+  }
+
+  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
+    ioDictionary.setValue (NSNumber (integer:mValue.rawValue), forKey:inKey)
+  }
+
+  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
+    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSNumber {
+      setFromRawValue ((unwValue as! NSNumber).integerValue)
     }
   }
 
@@ -118,21 +126,21 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration {
-  private var mValueCache : MonEnumeration? = nil
+  private var mValueCache : PMProperty <MonEnumeration>?
 
-  var computeFunction : Optional<() -> MonEnumeration>
+  var computeFunction : Optional<() -> PMProperty <MonEnumeration> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : MonEnumeration {
+  override var prop : PMProperty <MonEnumeration> {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {
           mValueCache = unwrappedComputeFunction ()
         }else{
-          mValueCache = MonEnumeration.premier
+          mValueCache = .noSelection
         }
       }
       return mValueCache!

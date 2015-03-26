@@ -160,6 +160,51 @@ list @transientDependencyListForGeneration {
   @string mFunctionArgumentTypeString
 }
 
+#......................................................................................................................*
+
+getter @transientDependencyListForGeneration transientComputeFunctionCall
+  ?let @string inOwnerName
+  ?let @string inTransientName
+  -> @string outResult
+{
+  var dependencies = self
+  [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
+  @string ident = "      "
+  outResult = ident + "switch " + [first modelString] + ".prop {\n"
+  outResult += ident + "case .noSelection :\n"
+  outResult += ident + "  return .noSelection\n"
+  outResult += ident + "case .multipleSelection :\n"
+  var closeString = ""
+  for () in dependencies do
+    ident += "  "
+    outResult += ident + "switch " + [mDependency modelString] + ".prop {\n"
+    outResult += ident + "case .noSelection :\n"
+    outResult += ident + "  return .noSelection\n"
+    outResult += ident + "case .multipleSelection, .singleSelection :\n"
+    closeString = ident + "}\n" + closeString
+  end
+  outResult += ident + "  return .multipleSelection\n"
+  outResult += closeString
+  ident = "      "
+  outResult += ident + "case .singleSelection (let v1) :\n"
+  var idx = 2
+  var args = ""
+  for () in dependencies do
+    ident += "  "
+    outResult += ident + "switch " + [mDependency modelString] + ".prop {\n"
+    outResult += ident + "case .noSelection :\n"
+    outResult += ident + "  return .noSelection\n"
+    outResult += ident + "case .multipleSelection :\n"
+    outResult += ident + "  return .multipleSelection\n"
+    outResult += ident + "case .singleSelection (let v" + idx + ") :\n"
+    args += ", v" + idx
+    idx ++
+  end
+  outResult += ident + "  return .singleSelection (compute_" + inOwnerName + "_" + inTransientName + " (v1" + args + "))\n"
+  outResult += closeString
+  outResult += "      }\n"
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   GENERATION                                                                                                         *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

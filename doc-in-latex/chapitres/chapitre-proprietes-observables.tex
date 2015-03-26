@@ -48,3 +48,53 @@ Un seul objet sélectionné par le contrôleur
 controlleur.selection.unique
 \end{ebcode}
 
+
+% var prop : (String, PMSelectionKind) \{ get\}
+% PMReadOnlyProperty\_String
+
+\section{Graphe d'héritage des classes des simples propriétés}
+
+\begin{figure}[t]
+  \newcommand\classe[2] {
+   {\nodepart{one}\textbf{#1}\nodepart {two}\small #2}
+  }
+  \centering
+  \texttt{
+    \begin{tikzpicture}
+      \tikzset{
+         bnode2/.style = {
+            rectangle, draw,
+            rectangle split,
+            rectangle split parts=2
+         },
+         bnode3/.style = {
+            rectangle, draw,
+            rectangle split,
+            rectangle split parts=3
+         }
+      }
+      \node[bnode3]{\nodepart{one}\bf PMAbstractProperty\nodepart{two}\footnotesize addObserver \nodepart{three}\footnotesize removeObserver}
+        child{
+          node[bnode2]{
+            \nodepart{one}\bf PMReadOnlyProperty\_String
+            \nodepart {two}\footnotesize var prop : (String, PMSelectionKind) \{ get \}
+          }[sibling distance=9cm]
+          child{node[bnode3]{
+            \nodepart{one}\bf PMReadWriteProperty\_String
+            \nodepart{two}\footnotesize func setProp (inValue : String)
+            \nodepart{three}\footnotesize func validateAndSetProp (candidateValue:String, windowForSheet:NSWindow?) -> Bool
+          }
+          child{node[rectangle,draw]{\bf PMPropertyProxy\_String}}
+          child{node[rectangle,draw]{\bf PMStoredProperty\_String}}
+        }
+        child{node[rectangle,draw]{\bf PMTransientProperty\_String}}
+        }
+      ;
+    \end{tikzpicture}
+  }
+  \caption{Graphe d'héritage de la propriété \texttt{String}}
+  \labelFigure{figureRepertoireLOGOapresCompGALGAS}
+  \ligne
+\end{figure}
+
+

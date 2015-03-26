@@ -163,38 +163,6 @@ method @prefDeclaration semanticAnalysis
 #   GENERATION TYPES                                                                                                   *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-getter @typeKind preferencesSwiftGetter -> @string outResult {
-  switch self
-  case boolType : outResult = "(value as! NSNumber).boolValue"
-  case integerType : outResult = "(value as! NSNumber).integerValue"
-  case doubleType : outResult = "à compléter preferencesSwiftGetter"
-  case stringType : outResult = "value as! String"
-  case colorType : outResult = "NSUnarchiver.unarchiveObjectWithData (value as! NSData) as! NSColor"
-  case dateType : outResult = "value as! NSDate"
-  case enumType (* *) : outResult = "à compléter preferencesSwiftGetter"
-  case entityType (*) :
-    outResult = "<invalid entity type>"
-  end
-}
-
-#......................................................................................................................*
-
-getter @typeKind preferencesSwiftSetter ?let @string inPropertyName -> @string outResult
-{
-  switch self
-  case boolType : outResult = "NSNumber (bool:" + inPropertyName + ".prop.0)"
-  case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop.0)"
-  case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".prop.0)"
-  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop.0)"
-  case dateType, stringType : outResult = inPropertyName + ".prop.0"
-  case enumType (* *) : outResult = "à compléter preferencesSwiftSetter"
-  case entityType (*) :
-    outResult = "<invalid entity type>"
-  end
-}
-
-#......................................................................................................................*
-
 struct @preferencesForGeneration {
   @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
@@ -209,7 +177,7 @@ struct @preferencesForGeneration {
 private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template preferencesInSwift "preferences.swift.galgasTemplate"
+  template preferences "preferences.swift.galgasTemplate"
     ?@simpleStoredPropertyListForGeneration SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
@@ -224,7 +192,7 @@ proc generatePreferences
   ?let @preferencesForGeneration inPreferenceListForGeneration
   ?let @string inOutputDirectory
 {
-  let s = [filewrapper prefsGenerationTemplate.preferencesInSwift
+  let s = [filewrapper prefsGenerationTemplate.preferences
     !inPreferenceListForGeneration.mSimpleStoredPropertyListForGeneration
     !inPreferenceListForGeneration.mTransientDefinitionListForGeneration
     !inPreferenceListForGeneration.mOutletMap

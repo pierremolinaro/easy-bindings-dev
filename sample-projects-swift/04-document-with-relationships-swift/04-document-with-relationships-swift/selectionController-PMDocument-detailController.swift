@@ -21,88 +21,130 @@ class SelectionController_PMDocument_detailController : PMObject {
   func bind_selection (model : ReadOnlyArrayOf_NameEntity, file:String, line:Int) {
     mModel = model
     aValue.readModelFunction = {
-      if let model = self.mModel where model.prop.1 == .singleSelection {
-        var s = Set<Int> ()
-        var selection = PMSelectionKind.singleSelection
-        for object in model.prop.0 {
-          selection &= object.aValue.prop.1
-          s.insert (object.aValue.prop.0)
-        }
-        if selection == .singleSelection {
-          if s.count == 0 {
-            return (0, .noSelection)
-          }else if s.count == 1 {
-            return (s.first!, .singleSelection)
-          }else{
-            return (0, .multipleSelection)
+      if let model = self.mModel {
+        switch model.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          var s = Set<Int> ()
+          var isMultipleSelection = false
+          for object in v {
+            switch object.aValue.prop {
+            case .noSelection :
+              return .noSelection
+            case .multipleSelection :
+              isMultipleSelection = true
+            case .singleSelection (let vProp) :
+              s.insert (vProp)
+            }
           }
-        }else{
-          return (0, selection)
+          if isMultipleSelection {
+            return .multipleSelection
+          }else if s.count == 0 {
+            return .noSelection
+          }else if s.count == 1 {
+            return .singleSelection (s.first!)
+          }else{
+            return .multipleSelection
+          }
         }
       }else{
-        return (0, .noSelection)
+        return .noSelection
       }
     }
     aValue.writeModelFunction = { (inValue : Int) in
       if let model = self.mModel {
-        for object in model.prop.0 {
-          object.aValue.setProp (inValue)
+        switch model.prop {
+        case .noSelection, .multipleSelection :
+          break
+        case .singleSelection (let v) :
+          for object in v {
+            object.aValue.setProp (inValue)
+          }
         }
       }
     }
     aValue.validateAndWriteModelFunction = { (candidateValue : Int, windowForSheet : NSWindow?) in
       if let model = self.mModel {
-        for object in model.prop.0 {
-          let result = object.aValue.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
-          if !result {
-            return false
+        switch model.prop {
+        case .noSelection, .multipleSelection :
+          return false
+        case .singleSelection (let v) :
+          for object in v {
+            let result = object.aValue.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
+            if !result {
+              return false
+            }
           }
+          return true
         }
-        return true
       }else{
         return false
       }
     }
     model.addObserver (aValue, postEvent:true)
     name.readModelFunction = {
-      if let model = self.mModel where model.prop.1 == .singleSelection {
-        var s = Set<String> ()
-        var selection = PMSelectionKind.singleSelection
-        for object in model.prop.0 {
-          selection &= object.name.prop.1
-          s.insert (object.name.prop.0)
-        }
-        if selection == .singleSelection {
-          if s.count == 0 {
-            return ("", .noSelection)
-          }else if s.count == 1 {
-            return (s.first!, .singleSelection)
-          }else{
-            return ("", .multipleSelection)
+      if let model = self.mModel {
+        switch model.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          var s = Set<String> ()
+          var isMultipleSelection = false
+          for object in v {
+            switch object.name.prop {
+            case .noSelection :
+              return .noSelection
+            case .multipleSelection :
+              isMultipleSelection = true
+            case .singleSelection (let vProp) :
+              s.insert (vProp)
+            }
           }
-        }else{
-          return ("", selection)
+          if isMultipleSelection {
+            return .multipleSelection
+          }else if s.count == 0 {
+            return .noSelection
+          }else if s.count == 1 {
+            return .singleSelection (s.first!)
+          }else{
+            return .multipleSelection
+          }
         }
       }else{
-        return ("", .noSelection)
+        return .noSelection
       }
     }
     name.writeModelFunction = { (inValue : String) in
       if let model = self.mModel {
-        for object in model.prop.0 {
-          object.name.setProp (inValue)
+        switch model.prop {
+        case .noSelection, .multipleSelection :
+          break
+        case .singleSelection (let v) :
+          for object in v {
+            object.name.setProp (inValue)
+          }
         }
       }
     }
     name.validateAndWriteModelFunction = { (candidateValue : String, windowForSheet : NSWindow?) in
       if let model = self.mModel {
-        for object in model.prop.0 {
-          let result = object.name.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
-          if !result {
-            return false
+        switch model.prop {
+        case .noSelection, .multipleSelection :
+          return false
+        case .singleSelection (let v) :
+          for object in v {
+            let result = object.name.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
+            if !result {
+              return false
+            }
           }
+          return true
         }
-        return true
       }else{
         return false
       }

@@ -18,7 +18,6 @@
 		CFA946591AACA979001C5C57 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA946581AACA979001C5C57 /* application.swift */; };
 		CFABCF631AB0CB790024372A /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABCF621AB0CB790024372A /* generic-bindings.swift */; };
 		CFAD6CBB1AAC533D00958004 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6CBA1AAC533D00958004 /* standard-properties.swift */; };
-		CFBE8C0719C47F91001F0735 /* PMReadOnlyNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */; };
 		CFE72D1C194A3849004114D6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE72D1B194A3849004114D6 /* MainMenu.xib */; };
 		CFEA713E1AAAFF4B00302BC0 /* PMIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */; };
 		CFEA713F1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEA713D1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift */; };
@@ -41,7 +40,6 @@
 		CFA946581AACA979001C5C57 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CFABCF621AB0CB790024372A /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFAD6CBA1AAC533D00958004 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
-		CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyNumberField.swift; sourceTree = "<group>"; };
 		CFE72D1B194A3849004114D6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMIntField.swift; sourceTree = "<group>"; };
 		CFEA713D1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMReadOnlyIntField.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 				CFFBB839199E87B10044D8B0 /* PMDatePicker.swift */,
 				CFEA713C1AAAFF4B00302BC0 /* PMIntField.swift */,
 				CFEA713D1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift */,
-				CFBE8C0619C47F91001F0735 /* PMReadOnlyNumberField.swift */,
 				CFFBB83A199E87B10044D8B0 /* PMTextField.swift */,
 				CF1D1ECF1AC1DC200060431A /* Preferences.swift */,
 				CF1D1ED11AC1DE1B0060431A /* Preferences+action+autreAction.swift */,
@@ -184,7 +181,6 @@
 				CFEA713F1AAAFF4B00302BC0 /* PMReadOnlyIntField.swift in Sources */,
 				CF71E6571940938500021EDF /* main.swift in Sources */,
 				CFFBB83D199E87B10044D8B0 /* PMTextField.swift in Sources */,
-				CFBE8C0719C47F91001F0735 /* PMReadOnlyNumberField.swift in Sources */,
 				CFA38984194094BA00F20FFB /* easy-bindings-utilities.swift in Sources */,
 				CFEA713E1AAAFF4B00302BC0 /* PMIntField.swift in Sources */,
 				CFABCF631AB0CB790024372A /* generic-bindings.swift in Sources */,

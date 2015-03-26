@@ -846,6 +846,17 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                        Category Reader '@arrayControllerFilterListForGeneration filterCode'                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_filterCode (const class GALGAS_arrayControllerFilterListForGeneration & inObject,
+                                               const class GALGAS_string & constinArgument0,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                              Category Reader '@typeKind transformerForTableViewAction'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1467,42 +1478,5 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abst
                                                            GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@simpleStoredPropertyList typeInventory'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category method '@simpleStoredPropertyList buildObservablePropertyMap'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                  Category method '@simpleStoredPropertyList simpleStoredPropertySemanticAnalysis'                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
-                                                          const class GALGAS_string constin_inSwiftClassName,
-                                                          const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                          class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
-                                                          class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                                          class C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
 
 #endif

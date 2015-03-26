@@ -25,44 +25,65 @@ end%
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
 %    %!lkey.string%.readModelFunction = {\n%
-%      if let model = self.mModel where model.prop.1 == .singleSelection {\n%
-%        var s = Set<%![mType swiftTypeName]%> ()\n%
-%        var selection = PMSelectionKind.singleSelection\n%
-%        for object in model.prop.0 {\n%
-%          selection &= object.%!lkey.string%.prop.1\n%
-%          s.insert (object.%!lkey.string%.prop.0)\n%
-%        }\n%
-%        if selection == .singleSelection {\n%
-%          if s.count == 0 {\n%
-%            return (%![mType defaultSwiftTypeValueAsString]%, .noSelection)\n%
-%          }else if s.count == 1 {\n%
-%            return (s.first!, .singleSelection)\n%
-%          }else{\n%
-%            return (%![mType defaultSwiftTypeValueAsString]%, .multipleSelection)\n%
+%      if let model = self.mModel {\n%
+%        switch model.prop {\n%
+%        case .noSelection :\n%
+%          return .noSelection\n%
+%        case .multipleSelection :\n%
+%          return .multipleSelection\n%
+%        case .singleSelection (let v) :\n%
+%          var s = Set<%![mType swiftTypeName]%> ()\n%
+%          var isMultipleSelection = false\n%
+%          for object in v {\n%
+%            switch object.%!lkey.string%.prop {\n%
+%            case .noSelection :\n%
+%              return .noSelection\n%
+%            case .multipleSelection :\n%
+%              isMultipleSelection = true\n%
+%            case .singleSelection (let vProp) :\n%
+%              s.insert (vProp)\n%
+%            }\n%
 %          }\n%
-%        }else{\n%
-%          return (%![mType defaultSwiftTypeValueAsString]%, selection)\n%
+%          if isMultipleSelection {\n%
+%            return .multipleSelection\n%
+%          }else if s.count == 0 {\n%
+%            return .noSelection\n%
+%          }else if s.count == 1 {\n%
+%            return .singleSelection (s.first!)\n%
+%          }else{\n%
+%            return .multipleSelection\n%
+%          }\n%
 %        }\n%
 %      }else{\n%
-%        return (%![mType defaultSwiftTypeValueAsString]%, .noSelection)\n%
+%        return .noSelection\n%
 %      }\n%
 %    }\n%
 %    %!lkey.string%.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
-%        for object in model.prop.0 {\n%
-%          object.%!lkey.string%.setProp (inValue)\n%
+%        switch model.prop {\n%
+%        case .noSelection, .multipleSelection :\n%
+%          break\n%
+%        case .singleSelection (let v) :\n%
+%          for object in v {\n%
+%            object.%!lkey.string%.setProp (inValue)\n%
+%          }\n%
 %        }\n%
 %      }\n%
 %    }\n%
 %    %!lkey.string%.validateAndWriteModelFunction = { (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
 %      if let model = self.mModel {\n%
-%        for object in model.prop.0 {\n%
-%          let result = object.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
-%          if !result {\n%
-%            return false\n%
+%        switch model.prop {\n%
+%        case .noSelection, .multipleSelection :\n%
+%          return false\n%
+%        case .singleSelection (let v) :\n%
+%          for object in v {\n%
+%            let result = object.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
+%            if !result {\n%
+%              return false\n%
+%            }\n%
 %          }\n%
+%          return true\n%
 %        }\n%
-%        return true\n%
 %      }else{\n%
 %        return false\n%
 %      }\n%
