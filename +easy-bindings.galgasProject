@@ -9,24 +9,25 @@ project (0:0:1) -> "eb" {
   "galgas-sources/grammar-syntax.galgas"
   "galgas-sources/easyBindings-cocoa.galgas"
   "galgas-sources/program.galgas"
-  
+
+#--- Components  
   "galgas-sources/enumeration.galgas"
-  "galgas-sources/document.galgas"
+  "galgas-sources/relationships.galgas"
   "galgas-sources/entity.galgas"
+  "galgas-sources/document.galgas"
   "galgas-sources/preferences.galgas"
+
+#--- Oulet classes
   "galgas-sources/outlet-class.galgas"
   "galgas-sources/binding-specification.galgas"
   "galgas-sources/outlet-declaration.galgas"
+
+#--- Properties
   "galgas-sources/observable-property.galgas"
-  "galgas-sources/explicit-default-value.galgas"
-  "galgas-sources/run-action.galgas"
   "galgas-sources/transient-property.galgas"
   "galgas-sources/simple-stored-property.galgas"
-  "galgas-sources/relationships.galgas"
-  "galgas-sources/unified-type.galgas"
-  "galgas-sources/semantic-analysis.galgas"
-  "galgas-sources/code-generation.galgas"
   "galgas-sources/property-validation-stub-routine.galgas"
+  "galgas-sources/run-action.galgas"
 
 #--- Bindings
   "galgas-sources/multiple-binding.galgas"
@@ -35,6 +36,15 @@ project (0:0:1) -> "eb" {
 #--- Controllers
   "galgas-sources/array-controller.galgas"
   "galgas-sources/selection-controller.galgas"
-}
 
+#--- Semantics, code generation
+  "galgas-sources/explicit-default-value.galgas"
+  "galgas-sources/unified-type.galgas"
+  "galgas-sources/semantic-analysis.galgas"
+  "galgas-sources/code-generation.galgas"
+  
+#--- Xcode project
+  "galgas-sources/xcode-project.galgas"
+  "galgas-sources/XcodeProjectNewGeneration.galgas"
+}
 

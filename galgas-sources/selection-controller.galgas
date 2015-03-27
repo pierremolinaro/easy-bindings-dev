@@ -173,7 +173,9 @@ private filewrapper selectionControllerGenerationTemplate in "../generation-temp
 
 proc generateSelectionControllers
   ?let @selectionControllerForGeneration inArrayControllerListForGeneration
-  ?let @string inOutputDirectory {
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
   for () in inArrayControllerListForGeneration do
     let s = [filewrapper selectionControllerGenerationTemplate.selectionControllerImplementation
       !mOwnerName
@@ -181,9 +183,11 @@ proc generateSelectionControllers
       !mSelectionTypeName
       !mSelectionObservablePropertyMap
     ]
+    let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory
-      !"selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+      !fileName
       !s
     ]
   end

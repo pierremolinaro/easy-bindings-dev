@@ -19,53 +19,74 @@ struct @structForGeneration {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 proc generateCode
+  ?let @string inXcodeProjectString
   ?let @structForGeneration inGeneration
   ?let @string inSourceFile
 {
+  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
+  let projectName = [[inSourceFile lastPathComponent] stringByDeletingPathExtension]
+  let fileOutputDirectory = outputDirectory + "/" + projectName
+  @stringset generatedFileSet = {}
   generateTransients (
-    !inSourceFile
+    !fileOutputDirectory
     !inGeneration.mTransientListForGeneration
+    !?generatedFileSet
   )
   generateActions (
-    !inSourceFile
+    !fileOutputDirectory
     !inGeneration.mActionListForGeneration
+    !?generatedFileSet
   )
-  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
   generatePreferences (
     !inGeneration.mPreferencesForGeneration
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateOutletClasses (
     !inGeneration.mNeededOutletClasses
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateEntities (
     !inGeneration.mEntityListForGeneration
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateEnums (
     !inGeneration.mEnumListForGeneration
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateDocuments (
     !inGeneration.mDocumentListForGeneration
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateArrayControllers (
     !inGeneration.mAllArrayControllerForGeneration
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateSelectionControllers (
     !inGeneration.mSelectionControllerListForGeneration
-    !outputDirectory
+    !fileOutputDirectory
+    !?generatedFileSet
   )
   generateSwiftApplicationFiles (
-    !outputDirectory
+    !fileOutputDirectory
     ![inGeneration.mEntityListForGeneration length] > 0
+    !?generatedFileSet
   )
   generateValidationRoutineStubs (
-    !outputDirectory
+    !fileOutputDirectory
     !inGeneration.mValidationStubRoutineListForGeneration
+    !?generatedFileSet
+  )
+  generateXcodeProject (
+    !outputDirectory
+    !inXcodeProjectString
+    !generatedFileSet
+    !projectName
   )
 }
 
@@ -81,7 +102,9 @@ filewrapper swift_sources in "../generation-templates/swift-sources" {
 
 private proc generateSwiftApplicationFiles
   ?let @string inOutputDirectory
-  ?let @bool inHasEntities {
+  ?let @bool inHasEntities
+  ?!@stringset ioGeneratedFileSet
+{
   @stringlist swiftFiles = {
     !"main",
     !"PMAllocationDebug",
@@ -100,17 +123,21 @@ private proc generateSwiftApplicationFiles
   var fw = [filewrapper swift_sources]
   for (@string s) in swiftFiles do
     let contents = [fw textFileContentsAtPath !s + ".swift"]
+    let fileName = s + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory
-      !s + ".swift"
+      !fileName
       !contents
     ]
   end
   for (@string s) in xibFiles do
     let contents = [fw textFileContentsAtPath !s + ".xib"]
+    let fileName = s + ".xib"
+    ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory
-      !s + ".xib"
+      !fileName
       !contents
     ]
   end

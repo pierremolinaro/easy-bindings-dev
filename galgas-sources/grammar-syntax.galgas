@@ -31,6 +31,7 @@ struct @astDeclarationStruct {
   @outletClassDeclarationList mOutletClassDeclarationList
   @bindingSpecificationListMap mBindingSpecificationListMap
   @prefDeclaration mPreferences
+  @lstring mXcodeProject
 }
 
 #......................................................................................................................*
@@ -82,8 +83,10 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST.mOutletClassDeclarationList
     while
       <binding_specification> !inIsUserDefined !?ioDeclarationAST.mBindingSpecificationListMap
+    while
+      <xcode_project> !?ioDeclarationAST.mXcodeProject
     end
-    outEndOfFile = @location.here
+    outEndOfFile = .here
   }
 
   #....................................................................................................................*

@@ -191,6 +191,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 proc generatePreferences
   ?let @preferencesForGeneration inPreferenceListForGeneration
   ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
 {
   let s = [filewrapper prefsGenerationTemplate.preferences
     !inPreferenceListForGeneration.mSimpleStoredPropertyListForGeneration
@@ -198,9 +199,11 @@ proc generatePreferences
     !inPreferenceListForGeneration.mOutletMap
     !inPreferenceListForGeneration.mRegularBindingsGenerationList
   ]
+  let fileName = preferencesName () + ".swift"
+  ioGeneratedFileSet += !fileName
   [@string generateFile
     !inOutputDirectory
-    !preferencesName () + ".swift"
+    !fileName
     !s
   ]
 }

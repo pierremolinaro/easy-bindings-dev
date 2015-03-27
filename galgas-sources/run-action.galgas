@@ -64,18 +64,20 @@ list @actionListForGeneration {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 proc generateActions
-  ?let @string inSourceFile
+  ?let @string inOutputDirectory
   ?let @actionListForGeneration inActionListForGeneration
+  ?!@stringset ioGeneratedFileSet
 {
-  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
   for () in inActionListForGeneration do
     let s = [filewrapper actionGenerationTemplate.actionGeneration
       !mClassName
       !mActionName
     ]
+    let fileName = mClassName + "+action+" + mActionName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      !outputDirectory
-      !mClassName + "+action+" + mActionName + ".swift"
+      !inOutputDirectory
+      !fileName
       !"//"
       !"\n\n" # Defaut user zone1
       !s

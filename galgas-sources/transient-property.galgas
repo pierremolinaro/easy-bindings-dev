@@ -255,8 +255,10 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 proc generateTransients
-  ?let @string inSourceFile
-  ?let @transientDefinitionListForGeneration inTransientListForGeneration {
+  ?let @string inOutputDirectory
+  ?let @transientDefinitionListForGeneration inTransientListForGeneration
+  ?!@stringset ioGeneratedFileSet
+{
 #--------------------------- Generate transient routines
   for () in inTransientListForGeneration do
     let s = [filewrapper transientManager.transientComputationFunctionFile
@@ -266,8 +268,9 @@ proc generateTransients
       !mTransientType 
     ]
     let fileName = mOwnerName + "+transient+" + mTransientName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      ![inSourceFile stringByDeletingLastPathComponent]
+      !inOutputDirectory
       !fileName
       !"//"
       !"\n\n" # Defaut user zone1
