@@ -1,5 +1,15 @@
 xcodeproject "fr.irccyn" ;
 
+mainxib {
+  "hello"
+  "world"
+  PMTextField mNameTextField
+  PMTextField mFirstNameTextField
+  PMReadOnlyTextField mFullNameTextField
+  PMReadOnlyTextField mUpperCaseFullNameTextField
+  PMButton myButton
+}
+
 prefs {
   property String mName default "Amédée" ;
   property String mFirstName default "Schmurtz" ;
@@ -11,5 +21,6 @@ prefs {
   outlet PMReadOnlyTextField mUpperCaseFullNameTextField $readOnlyValue self.mUpperCaseFullName ;
   
   action monAction ;
+  outlet PMButton myButton $run self.monAction ;
 }
 

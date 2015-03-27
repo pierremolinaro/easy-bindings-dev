@@ -7,6 +7,7 @@ struct @prefDeclaration {
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
   @secondaryPropertyList mSecondaryPropertyList
+  @mainXibDescriptorList mMainXibDescriptorList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -157,6 +158,7 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mActionBindingListForGeneration = actionBindingListForGeneration
   ioGeneration.mPreferencesForGeneration.mMultipleBindingGenerationList = multipleBindingGenerationList
   ioGeneration.mPreferencesForGeneration.mOutletMap = outletMap
+  ioGeneration.mPreferencesForGeneration.mMainXibDescriptorList = mMainXibDescriptorList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -170,6 +172,7 @@ struct @preferencesForGeneration {
   @multipleBindingGenerationList mMultipleBindingGenerationList
   @actionBindingListForGeneration mActionBindingListForGeneration
   @decoratedOutletMap mOutletMap
+  @mainXibDescriptorList mMainXibDescriptorList
 }
 
 #......................................................................................................................*
@@ -182,6 +185,8 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+    ?@mainXibDescriptorList MAIN_XIB_DESCRIPTOR_LIST
+    ?@actionBindingListForGeneration TARGET_ACTION_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -198,6 +203,8 @@ proc generatePreferences
     !inPreferenceListForGeneration.mTransientDefinitionListForGeneration
     !inPreferenceListForGeneration.mOutletMap
     !inPreferenceListForGeneration.mRegularBindingsGenerationList
+    !inPreferenceListForGeneration.mMainXibDescriptorList
+    !inPreferenceListForGeneration.mActionBindingListForGeneration
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName

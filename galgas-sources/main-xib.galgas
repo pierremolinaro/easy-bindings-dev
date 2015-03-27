@@ -1,0 +1,72 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @mainXibDescriptorList {
+  @mainXibElement mElement
+}
+
+#......................................................................................................................*
+
+enum @mainXibElement {
+  case text (@lstring text)
+  case outlet (@lstring outletType @lstring outletName)
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <main_xib>
+    ?!@mainXibDescriptorList ioElementList
+  {
+    $mainxib$
+    ${$
+    repeat
+    while
+      $Identifier$ ?let @lstring outletType
+      $identifier$ ?let @lstring outletName
+      ioElementList += !.outlet {!outletType:outletType !outletName:outletName}
+    while
+      $literal_string$ ?let @lstring s
+      ioElementList += !.text {!text:s}
+    end
+    $}$
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   CODE GENERATION                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @mainXibDescriptorList generateCode -> @string outResult {
+  outResult =  "    var r = NSRect (x:10.0, y:0.0, width:200.0, height:22.0)\n"
+  outResult += "    let view = NSView (frame:r)\n"
+  for () in self do
+    switch mElement
+    case text (t) :
+      outResult += "  //--- Text " + t + "\n"
+      outResult += "    createTextFieldForText (" + [t utf8Representation] + ", rect:&r, view:view)\n"
+    case outlet (outletType outletName) :
+      outResult += "  //--- Outlet " + outletName + "\n"
+      outResult += "    r.origin.y += r.size.height / 2.0\n"
+      outResult += "    " + outletName + " = " + outletType + "(frame:r)\n"
+      outResult += "    view.addSubview (" + outletName + "!)\n"
+      outResult += "    r.origin.y += r.size.height\n"
+    end
+  end
+  outResult += "  //--- Set pref window content view\n"
+  outResult += "    view.frame = r\n"
+  outResult += "    window?.contentView = view\n"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

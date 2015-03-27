@@ -896,7 +896,11 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (C_Compiler *
     "                <autoresizingMask key=\"autoresizingMask\"/>\n"
     "            </view>\n"
     "        </window>\n"
-    "        <customObject id=\"536\" userLabel=\"Prefs\" customClass=\"Preferences\"/>\n"
+    "        <customObject id=\"536\" userLabel=\"Prefs\" customClass=\"Preferences\">\n"
+    "            <connections>\n"
+    "                <outlet property=\"window\" destination=\"371\" id=\"MyW-LM-hi6\"/>\n"
+    "            </connections>\n"
+    "        </customObject>\n"
     "        <customObject id=\"420\" customClass=\"NSFontManager\"/>\n"
     "    </objects>\n"
     "</document>\n" ;
@@ -7547,7 +7551,8 @@ mAttribute_mTransientDefinitionListForGeneration (),
 mAttribute_mRegularBindingsGenerationList (),
 mAttribute_mMultipleBindingGenerationList (),
 mAttribute_mActionBindingListForGeneration (),
-mAttribute_mOutletMap () {
+mAttribute_mOutletMap (),
+mAttribute_mMainXibDescriptorList () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7562,13 +7567,15 @@ GALGAS_preferencesForGeneration::GALGAS_preferencesForGeneration (const GALGAS_s
                                                                   const GALGAS_regularBindingsGenerationList & inOperand2,
                                                                   const GALGAS_multipleBindingGenerationList & inOperand3,
                                                                   const GALGAS_actionBindingListForGeneration & inOperand4,
-                                                                  const GALGAS_decoratedOutletMap & inOperand5) :
+                                                                  const GALGAS_decoratedOutletMap & inOperand5,
+                                                                  const GALGAS_mainXibDescriptorList & inOperand6) :
 mAttribute_mSimpleStoredPropertyListForGeneration (inOperand0),
 mAttribute_mTransientDefinitionListForGeneration (inOperand1),
 mAttribute_mRegularBindingsGenerationList (inOperand2),
 mAttribute_mMultipleBindingGenerationList (inOperand3),
 mAttribute_mActionBindingListForGeneration (inOperand4),
-mAttribute_mOutletMap (inOperand5) {
+mAttribute_mOutletMap (inOperand5),
+mAttribute_mMainXibDescriptorList (inOperand6) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7579,7 +7586,8 @@ GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_def
                                           GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE),
                                           GALGAS_multipleBindingGenerationList::constructor_emptyList (HERE),
                                           GALGAS_actionBindingListForGeneration::constructor_emptyList (HERE),
-                                          GALGAS_decoratedOutletMap::constructor_emptyMap (HERE)) ;
+                                          GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
+                                          GALGAS_mainXibDescriptorList::constructor_emptyList (HERE)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7589,11 +7597,12 @@ GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_new
                                                                                   const GALGAS_regularBindingsGenerationList & inOperand2,
                                                                                   const GALGAS_multipleBindingGenerationList & inOperand3,
                                                                                   const GALGAS_actionBindingListForGeneration & inOperand4,
-                                                                                  const GALGAS_decoratedOutletMap & inOperand5 
+                                                                                  const GALGAS_decoratedOutletMap & inOperand5,
+                                                                                  const GALGAS_mainXibDescriptorList & inOperand6 
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_preferencesForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_preferencesForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_preferencesForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -7620,13 +7629,16 @@ typeComparisonResult GALGAS_preferencesForGeneration::objectCompare (const GALGA
   if (result == kOperandEqual) {
     result = mAttribute_mOutletMap.objectCompare (inOperand.mAttribute_mOutletMap) ;
   }
+  if (result == kOperandEqual) {
+    result = mAttribute_mMainXibDescriptorList.objectCompare (inOperand.mAttribute_mMainXibDescriptorList) ;
+  }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_preferencesForGeneration::isValid (void) const {
-  return mAttribute_mSimpleStoredPropertyListForGeneration.isValid () && mAttribute_mTransientDefinitionListForGeneration.isValid () && mAttribute_mRegularBindingsGenerationList.isValid () && mAttribute_mMultipleBindingGenerationList.isValid () && mAttribute_mActionBindingListForGeneration.isValid () && mAttribute_mOutletMap.isValid () ;
+  return mAttribute_mSimpleStoredPropertyListForGeneration.isValid () && mAttribute_mTransientDefinitionListForGeneration.isValid () && mAttribute_mRegularBindingsGenerationList.isValid () && mAttribute_mMultipleBindingGenerationList.isValid () && mAttribute_mActionBindingListForGeneration.isValid () && mAttribute_mOutletMap.isValid () && mAttribute_mMainXibDescriptorList.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7638,6 +7650,7 @@ void GALGAS_preferencesForGeneration::drop (void) {
   mAttribute_mMultipleBindingGenerationList.drop () ;
   mAttribute_mActionBindingListForGeneration.drop () ;
   mAttribute_mOutletMap.drop () ;
+  mAttribute_mMainXibDescriptorList.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7659,6 +7672,8 @@ void GALGAS_preferencesForGeneration::description (C_String & ioString,
     mAttribute_mActionBindingListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mOutletMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -7697,6 +7712,12 @@ GALGAS_actionBindingListForGeneration GALGAS_preferencesForGeneration::reader_mA
 
 GALGAS_decoratedOutletMap GALGAS_preferencesForGeneration::reader_mOutletMap (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mOutletMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_mainXibDescriptorList GALGAS_preferencesForGeneration::reader_mMainXibDescriptorList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mMainXibDescriptorList ;
 }
 
 
@@ -8835,6 +8856,57 @@ GALGAS_semanticContext GALGAS_semanticContext::extractObject (const GALGAS_objec
   }
   return result ;
 }
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@mainXibDescriptorList generateCode'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string categoryReader_generateCode (const GALGAS_mainXibDescriptorList & inObject,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outResult ; // Returned variable
+  result_outResult = GALGAS_string ("    var r = NSRect (x:10.0, y:0.0, width:200.0, height:22.0)\n") ;
+  result_outResult.dotAssign_operation (GALGAS_string ("    let view = NSView (frame:r)\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 51)) ;
+  const GALGAS_mainXibDescriptorList temp_0 = inObject ;
+  cEnumerator_mainXibDescriptorList enumerator_2271 (temp_0, kEnumeration_up) ;
+  while (enumerator_2271.hasCurrentObject ()) {
+    switch (enumerator_2271.current_mElement (HERE).enumValue ()) {
+    case GALGAS_mainXibElement::kNotBuilt:
+      break ;
+    case GALGAS_mainXibElement::kEnum_text:
+      {
+        const cEnumAssociatedValues_mainXibElement_text * extractPtr_2463 = (const cEnumAssociatedValues_mainXibElement_text *) (enumerator_2271.current_mElement (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_t = extractPtr_2463->mAssociatedValue0 ;
+        result_outResult.dotAssign_operation (GALGAS_string ("  //--- Text ").add_operation (extractedValue_t.reader_string (SOURCE_FILE ("main-xib.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 55)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 55))  COMMA_SOURCE_FILE ("main-xib.galgas", 55)) ;
+        result_outResult.dotAssign_operation (GALGAS_string ("    createTextFieldForText (").add_operation (extractedValue_t.mAttribute_string.reader_utf_38_Representation (SOURCE_FILE ("main-xib.galgas", 56)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 56)).add_operation (GALGAS_string (", rect:&r, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 56))  COMMA_SOURCE_FILE ("main-xib.galgas", 56)) ;
+      }
+      break ;
+    case GALGAS_mainXibElement::kEnum_outlet:
+      {
+        const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_2819 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_2271.current_mElement (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_outletType = extractPtr_2819->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_outletName = extractPtr_2819->mAssociatedValue1 ;
+        result_outResult.dotAssign_operation (GALGAS_string ("  //--- Outlet ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 58)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 58)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 58))  COMMA_SOURCE_FILE ("main-xib.galgas", 58)) ;
+        result_outResult.dotAssign_operation (GALGAS_string ("    r.origin.y += r.size.height / 2.0\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 59)) ;
+        result_outResult.dotAssign_operation (GALGAS_string ("    ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 60)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 60)).add_operation (GALGAS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 60)).add_operation (extractedValue_outletType.reader_string (SOURCE_FILE ("main-xib.galgas", 60)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 60)).add_operation (GALGAS_string ("(frame:r)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 60))  COMMA_SOURCE_FILE ("main-xib.galgas", 60)) ;
+        result_outResult.dotAssign_operation (GALGAS_string ("    view.addSubview (").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 61)).add_operation (GALGAS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 61))  COMMA_SOURCE_FILE ("main-xib.galgas", 61)) ;
+        result_outResult.dotAssign_operation (GALGAS_string ("    r.origin.y += r.size.height\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 62)) ;
+      }
+      break ;
+    }
+    enumerator_2271.gotoNextObject () ;
+  }
+  result_outResult.dotAssign_operation (GALGAS_string ("  //--- Set pref window content view\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
+  result_outResult.dotAssign_operation (GALGAS_string ("    view.frame = r\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 66)) ;
+  result_outResult.dotAssign_operation (GALGAS_string ("    window\?.contentView = view\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 67)) ;
+//---
+  return result_outResult ;
+}
+
+
+
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -13534,7 +13606,8 @@ GALGAS_prefDeclaration::GALGAS_prefDeclaration (void) :
 mAttribute_mOutletDeclarationList (),
 mAttribute_mSimpleStoredAttributeList (),
 mAttribute_mActionDeclarationList (),
-mAttribute_mSecondaryPropertyList () {
+mAttribute_mSecondaryPropertyList (),
+mAttribute_mMainXibDescriptorList () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13547,11 +13620,13 @@ GALGAS_prefDeclaration::~ GALGAS_prefDeclaration (void) {
 GALGAS_prefDeclaration::GALGAS_prefDeclaration (const GALGAS_outletDeclarationList & inOperand0,
                                                 const GALGAS_simpleStoredPropertyList & inOperand1,
                                                 const GALGAS_lstringlist & inOperand2,
-                                                const GALGAS_secondaryPropertyList & inOperand3) :
+                                                const GALGAS_secondaryPropertyList & inOperand3,
+                                                const GALGAS_mainXibDescriptorList & inOperand4) :
 mAttribute_mOutletDeclarationList (inOperand0),
 mAttribute_mSimpleStoredAttributeList (inOperand1),
 mAttribute_mActionDeclarationList (inOperand2),
-mAttribute_mSecondaryPropertyList (inOperand3) {
+mAttribute_mSecondaryPropertyList (inOperand3),
+mAttribute_mMainXibDescriptorList (inOperand4) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13560,7 +13635,8 @@ GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_default (UNUSED_LOCAT
   return GALGAS_prefDeclaration (GALGAS_outletDeclarationList::constructor_emptyList (HERE),
                                  GALGAS_simpleStoredPropertyList::constructor_emptyList (HERE),
                                  GALGAS_lstringlist::constructor_emptyList (HERE),
-                                 GALGAS_secondaryPropertyList::constructor_emptyList (HERE)) ;
+                                 GALGAS_secondaryPropertyList::constructor_emptyList (HERE),
+                                 GALGAS_mainXibDescriptorList::constructor_emptyList (HERE)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13568,11 +13644,12 @@ GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_default (UNUSED_LOCAT
 GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_new (const GALGAS_outletDeclarationList & inOperand0,
                                                                 const GALGAS_simpleStoredPropertyList & inOperand1,
                                                                 const GALGAS_lstringlist & inOperand2,
-                                                                const GALGAS_secondaryPropertyList & inOperand3 
+                                                                const GALGAS_secondaryPropertyList & inOperand3,
+                                                                const GALGAS_mainXibDescriptorList & inOperand4 
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_prefDeclaration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_prefDeclaration (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_prefDeclaration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
   }
   return result ;
 }
@@ -13593,13 +13670,16 @@ typeComparisonResult GALGAS_prefDeclaration::objectCompare (const GALGAS_prefDec
   if (result == kOperandEqual) {
     result = mAttribute_mSecondaryPropertyList.objectCompare (inOperand.mAttribute_mSecondaryPropertyList) ;
   }
+  if (result == kOperandEqual) {
+    result = mAttribute_mMainXibDescriptorList.objectCompare (inOperand.mAttribute_mMainXibDescriptorList) ;
+  }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_prefDeclaration::isValid (void) const {
-  return mAttribute_mOutletDeclarationList.isValid () && mAttribute_mSimpleStoredAttributeList.isValid () && mAttribute_mActionDeclarationList.isValid () && mAttribute_mSecondaryPropertyList.isValid () ;
+  return mAttribute_mOutletDeclarationList.isValid () && mAttribute_mSimpleStoredAttributeList.isValid () && mAttribute_mActionDeclarationList.isValid () && mAttribute_mSecondaryPropertyList.isValid () && mAttribute_mMainXibDescriptorList.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13609,6 +13689,7 @@ void GALGAS_prefDeclaration::drop (void) {
   mAttribute_mSimpleStoredAttributeList.drop () ;
   mAttribute_mActionDeclarationList.drop () ;
   mAttribute_mSecondaryPropertyList.drop () ;
+  mAttribute_mMainXibDescriptorList.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13626,6 +13707,8 @@ void GALGAS_prefDeclaration::description (C_String & ioString,
     mAttribute_mActionDeclarationList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mSecondaryPropertyList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -13652,6 +13735,12 @@ GALGAS_lstringlist GALGAS_prefDeclaration::reader_mActionDeclarationList (UNUSED
 
 GALGAS_secondaryPropertyList GALGAS_prefDeclaration::reader_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mSecondaryPropertyList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_mainXibDescriptorList GALGAS_prefDeclaration::reader_mMainXibDescriptorList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mMainXibDescriptorList ;
 }
 
 
@@ -13709,11 +13798,11 @@ void categoryMethod_typeInventory (const GALGAS_prefDeclaration inObject,
                                    GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
                                    C_Compiler * inCompiler
                                    COMMA_UNUSED_LOCATION_ARGS) {
-  categoryMethod_typeInventory (inObject.mAttribute_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 50)) ;
-  cEnumerator_secondaryPropertyList enumerator_2331 (inObject.mAttribute_mSecondaryPropertyList, kEnumeration_up) ;
-  while (enumerator_2331.hasCurrentObject ()) {
-    callCategoryMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_2331.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 52)) ;
-    enumerator_2331.gotoNextObject () ;
+  categoryMethod_typeInventory (inObject.mAttribute_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 51)) ;
+  cEnumerator_secondaryPropertyList enumerator_2379 (inObject.mAttribute_mSecondaryPropertyList, kEnumeration_up) ;
+  while (enumerator_2379.hasCurrentObject ()) {
+    callCategoryMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_2379.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 53)) ;
+    enumerator_2379.gotoNextObject () ;
   }
 }
 
@@ -13732,12 +13821,12 @@ void categoryMethod_solveSecondaryProperty (const GALGAS_prefDeclaration /* inOb
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUnsolvedProperties.drop () ; // Release 'out' argument
-  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 66)) ;
+  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 67)) ;
   GALGAS_observablePropertyMap var_preferencesObservablePropertyMap = ioArgument_ioSemanticContext.mAttribute_mPreferencesObservablePropertyMap ;
-  cEnumerator_secondaryPropertyList enumerator_2915 (constinArgument_inPropertiesToSolve, kEnumeration_up) ;
-  while (enumerator_2915.hasCurrentObject ()) {
-    callCategoryMethod_tryToSolveSecondaryProperty ((const cPtr_abstractSecondaryProperty *) enumerator_2915.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioSemanticContext, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 71)), var_preferencesObservablePropertyMap, outArgument_outUnsolvedProperties, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 69)) ;
-    enumerator_2915.gotoNextObject () ;
+  cEnumerator_secondaryPropertyList enumerator_2963 (constinArgument_inPropertiesToSolve, kEnumeration_up) ;
+  while (enumerator_2963.hasCurrentObject ()) {
+    callCategoryMethod_tryToSolveSecondaryProperty ((const cPtr_abstractSecondaryProperty *) enumerator_2963.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioSemanticContext, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 72)), var_preferencesObservablePropertyMap, outArgument_outUnsolvedProperties, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 70)) ;
+    enumerator_2963.gotoNextObject () ;
   }
   ioArgument_ioSemanticContext.mAttribute_mPreferencesObservablePropertyMap = var_preferencesObservablePropertyMap ;
 }
@@ -13754,7 +13843,7 @@ void categoryMethod_buildObservablePropertyMapsFromStoredProperties (const GALGA
                                                                      GALGAS_semanticContext & ioArgument_ioSemanticContext,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  categoryMethod_buildObservablePropertyMap (inObject.mAttribute_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, ioArgument_ioSemanticContext.mAttribute_mPreferencesObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 98)) ;
+  categoryMethod_buildObservablePropertyMap (inObject.mAttribute_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, ioArgument_ioSemanticContext.mAttribute_mPreferencesObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 99)) ;
 }
 
 
@@ -13770,24 +13859,24 @@ void categoryMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
                                       C_Compiler * inCompiler
                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration ;
-  categoryMethod_simpleStoredPropertySemanticAnalysis (inObject.mAttribute_mSimpleStoredAttributeList, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 112)), constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap, ioArgument_ioGeneration.mAttribute_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 111)) ;
-  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration = GALGAS_transientDefinitionListForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 118)) ;
-  cEnumerator_secondaryPropertyList enumerator_5177 (inObject.mAttribute_mSecondaryPropertyList, kEnumeration_up) ;
-  while (enumerator_5177.hasCurrentObject ()) {
-    GALGAS_arrayControllerForGeneration joker_5447 = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 127)) ;
-    GALGAS_selectionControllerForGeneration joker_5479 = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 128)) ;
-    callCategoryMethod_secondaryPropertySemanticAnalysis ((const cPtr_abstractSecondaryProperty *) enumerator_5177.current_mSecondaryProperty (HERE).ptr (), function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 121)), GALGAS_string::makeEmptyString (), GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 123)), constinArgument_inSemanticContext, constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap, var_transientDefinitionListForGeneration, joker_5447, joker_5479, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 120)) ;
-    enumerator_5177.gotoNextObject () ;
+  categoryMethod_simpleStoredPropertySemanticAnalysis (inObject.mAttribute_mSimpleStoredAttributeList, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 113)), constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap, ioArgument_ioGeneration.mAttribute_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 112)) ;
+  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration = GALGAS_transientDefinitionListForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 119)) ;
+  cEnumerator_secondaryPropertyList enumerator_5225 (inObject.mAttribute_mSecondaryPropertyList, kEnumeration_up) ;
+  while (enumerator_5225.hasCurrentObject ()) {
+    GALGAS_arrayControllerForGeneration joker_5495 = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 128)) ;
+    GALGAS_selectionControllerForGeneration joker_5527 = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 129)) ;
+    callCategoryMethod_secondaryPropertySemanticAnalysis ((const cPtr_abstractSecondaryProperty *) enumerator_5225.current_mSecondaryProperty (HERE).ptr (), function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 122)), GALGAS_string::makeEmptyString (), GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 124)), constinArgument_inSemanticContext, constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap, var_transientDefinitionListForGeneration, joker_5495, joker_5527, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 121)) ;
+    enumerator_5225.gotoNextObject () ;
   }
-  ioArgument_ioGeneration.mAttribute_mTransientListForGeneration.dotAssign_operation (var_transientDefinitionListForGeneration  COMMA_SOURCE_FILE ("preferences.galgas", 131)) ;
+  ioArgument_ioGeneration.mAttribute_mTransientListForGeneration.dotAssign_operation (var_transientDefinitionListForGeneration  COMMA_SOURCE_FILE ("preferences.galgas", 132)) ;
   GALGAS_actionMap var_actionMap ;
   {
-  routine_buildActionMap (inObject.mAttribute_mActionDeclarationList, var_actionMap, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 133)) ;
+  routine_buildActionMap (inObject.mAttribute_mActionDeclarationList, var_actionMap, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 134)) ;
   }
-  cEnumerator_actionMap enumerator_5714 (var_actionMap, kEnumeration_up) ;
-  while (enumerator_5714.hasCurrentObject ()) {
-    ioArgument_ioGeneration.mAttribute_mActionListForGeneration.addAssign_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 136)), enumerator_5714.current_lkey (HERE).mAttribute_string  COMMA_SOURCE_FILE ("preferences.galgas", 135)) ;
-    enumerator_5714.gotoNextObject () ;
+  cEnumerator_actionMap enumerator_5762 (var_actionMap, kEnumeration_up) ;
+  while (enumerator_5762.hasCurrentObject ()) {
+    ioArgument_ioGeneration.mAttribute_mActionListForGeneration.addAssign_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 137)), enumerator_5762.current_lkey (HERE).mAttribute_string  COMMA_SOURCE_FILE ("preferences.galgas", 136)) ;
+    enumerator_5762.gotoNextObject () ;
   }
   GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList ;
   GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList ;
@@ -13795,7 +13884,7 @@ void categoryMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
   GALGAS_decoratedOutletMap var_outletMap ;
   GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList ;
   {
-  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 141)), constinArgument_inSemanticContext, inObject.mAttribute_mOutletDeclarationList, constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap, var_actionMap, ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, var_tableViewBindingGenerationList, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 140)) ;
+  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 142)), constinArgument_inSemanticContext, inObject.mAttribute_mOutletDeclarationList, constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap, var_actionMap, ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, var_tableViewBindingGenerationList, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 141)) ;
   }
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mSimpleStoredPropertyListForGeneration = var_simpleStoredPropertyListForGeneration ;
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mTransientDefinitionListForGeneration = var_transientDefinitionListForGeneration ;
@@ -13803,6 +13892,7 @@ void categoryMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mActionBindingListForGeneration = var_actionBindingListForGeneration ;
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mMultipleBindingGenerationList = var_multipleBindingGenerationList ;
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mOutletMap = var_outletMap ;
+  ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mMainXibDescriptorList = inObject.mAttribute_mMainXibDescriptorList ;
 }
 
 
@@ -17594,143 +17684,6 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::extractObject
       result = *p ;
     }else{
       inCompiler->castError ("outletClassMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element::GALGAS_controllerBindingOptionList_2D_element (void) :
-mAttribute_mOptionName (),
-mAttribute_mOptionTypeName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element::~ GALGAS_controllerBindingOptionList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element::GALGAS_controllerBindingOptionList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                              const GALGAS_lstring & inOperand1) :
-mAttribute_mOptionName (inOperand0),
-mAttribute_mOptionTypeName (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_controllerBindingOptionList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                        GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                              const GALGAS_lstring & inOperand1 
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_controllerBindingOptionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_controllerBindingOptionList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_controllerBindingOptionList_2D_element::objectCompare (const GALGAS_controllerBindingOptionList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionName.objectCompare (inOperand.mAttribute_mOptionName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOptionTypeName.objectCompare (inOperand.mAttribute_mOptionTypeName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_controllerBindingOptionList_2D_element::isValid (void) const {
-  return mAttribute_mOptionName.isValid () && mAttribute_mOptionTypeName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_controllerBindingOptionList_2D_element::drop (void) {
-  mAttribute_mOptionName.drop () ;
-  mAttribute_mOptionTypeName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_controllerBindingOptionList_2D_element::description (C_String & ioString,
-                                                                 const int32_t inIndentation) const {
-  ioString << "<struct @controllerBindingOptionList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mOptionName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOptionTypeName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_controllerBindingOptionList_2D_element::reader_mOptionName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_controllerBindingOptionList_2D_element::reader_mOptionTypeName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOptionTypeName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @controllerBindingOptionList-element type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_controllerBindingOptionList_2D_element ("controllerBindingOptionList-element",
-                                                               NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_controllerBindingOptionList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_controllerBindingOptionList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_controllerBindingOptionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_controllerBindingOptionList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_controllerBindingOptionList_2D_element result ;
-  const GALGAS_controllerBindingOptionList_2D_element * p = (const GALGAS_controllerBindingOptionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_controllerBindingOptionList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("controllerBindingOptionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

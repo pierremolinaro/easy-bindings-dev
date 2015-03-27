@@ -14,6 +14,14 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    self.delegate = self
+    noteObjectAllocation (self)
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
