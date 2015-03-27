@@ -1,12 +1,10 @@
 xcodeproject "fr.irccyn" ;
 
 mainxib {
-  "hello"
-  "world"
-  PMTextField mNameTextField
-  PMTextField mFirstNameTextField
-  PMReadOnlyTextField mFullNameTextField
-  PMReadOnlyTextField mUpperCaseFullNameTextField
+  {"Name: ", PMTextField mNameTextField},
+  {"First Name:", PMTextField mFirstNameTextField},
+  {"Full Name:", PMReadOnlyTextField mFullNameTextField},
+  {"Uppercase full Name:", PMReadOnlyTextField mUpperCaseFullNameTextField},
   PMButton myButton
 }
 
@@ -15,7 +13,7 @@ prefs {
   property String mFirstName default "Schmurtz" ;
   transient String mFullName dependsFrom self.mName, self.mFirstName ;
   transient String mUpperCaseFullName dependsFrom self.mFullName ;
-  outlet PMTextField mNameTextField $value self.mName {sendContinously:no} ;
+  outlet PMTextField mNameTextField $value self.mName {sendContinously:yes} ;
   outlet PMTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
   outlet PMReadOnlyTextField mFullNameTextField $readOnlyValue self.mFullName ;
   outlet PMReadOnlyTextField mUpperCaseFullNameTextField $readOnlyValue self.mUpperCaseFullName ;

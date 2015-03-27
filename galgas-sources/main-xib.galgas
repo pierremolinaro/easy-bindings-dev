@@ -3,6 +3,12 @@
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 list @mainXibDescriptorList {
+  @mainXibLineDescriptorList mLine
+}
+
+#......................................................................................................................*
+
+list @mainXibLineDescriptorList {
   @mainXibElement mElement
 }
 
@@ -27,15 +33,43 @@ syntax extension easyBindings_syntax {
     $mainxib$
     ${$
     repeat
+      select
+        $Identifier$ ?let @lstring outletType
+        $identifier$ ?let @lstring outletName
+        ioElementList += !{!.outlet {!outletType:outletType !outletName:outletName}}
+      or
+        $literal_string$ ?let @lstring s
+        ioElementList += !{!.text {!text:s}}
+      or
+        ${$
+        <main_xib_line> ?let @mainXibLineDescriptorList lineDescription
+        ioElementList += !lineDescription
+        $}$
+      end
     while
-      $Identifier$ ?let @lstring outletType
-      $identifier$ ?let @lstring outletName
-      ioElementList += !.outlet {!outletType:outletType !outletName:outletName}
-    while
-      $literal_string$ ?let @lstring s
-      ioElementList += !.text {!text:s}
+      $,$
     end
     $}$
+  }
+
+  #....................................................................................................................*
+  
+  rule <main_xib_line>
+    !@mainXibLineDescriptorList outLineDescription
+  {
+    outLineDescription = {}
+    repeat
+      select
+        $Identifier$ ?let @lstring outletType
+        $identifier$ ?let @lstring outletName
+        outLineDescription += !.outlet {!outletType:outletType !outletName:outletName}
+      or
+        $literal_string$ ?let @lstring s
+        outLineDescription += !.text {!text:s}
+      end
+    while
+      $,$
+    end
   }
 
   #....................................................................................................................*
@@ -49,29 +83,37 @@ syntax extension easyBindings_syntax {
 getter @mainXibDescriptorList generateCode -> @string outResult {
   outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + [self length] + ".0\n"
   outResult += "    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"
-  for () in self do (idx)
-    switch mElement
-    case text (t) :
-      outResult += "  //--- Text " + t + "\n"
-      outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
-      outResult += "    y -= OUTLET_HEIGHT\n"
-      outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
-      outResult += "    tf" + idx + ".stringValue = " + [t utf8Representation] + "\n"
-      outResult += "    tf" + idx + ".editable = false\n"
-      outResult += "    tf" + idx + ".drawsBackground = false\n"
-      outResult += "    tf" + idx + ".bordered = false\n"
-      outResult += "    view.addSubview (tf" + idx + ")\n"
-      outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
-    case outlet (outletType outletName) :
-      outResult += "  //--- Outlet " + outletName + "\n"
-      outResult += "    y -= OUTLET_HEIGHT\n"
-      outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
-      outResult += "    view.addSubview (" + outletName + "!)\n"
-      outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
+  var idx = 0
+  var columnMax = 1
+  for () in self do
+    var column = 0
+    outResult += "    y -= OUTLET_HEIGHT\n"
+    for () in mLine do
+      switch mElement
+      case text (t) :
+        idx ++
+        outResult += "  //--- Text " + t + "\n"
+        outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
+        outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
+        outResult += "    tf" + idx + ".stringValue = " + [t utf8Representation] + "\n"
+        outResult += "    tf" + idx + ".editable = false\n"
+        outResult += "    tf" + idx + ".drawsBackground = false\n"
+        outResult += "    tf" + idx + ".bordered = false\n"
+        outResult += "    view.addSubview (tf" + idx + ")\n"
+      case outlet (outletType outletName) :
+        outResult += "  //--- Outlet " + outletName + "\n"
+        outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
+        outResult += "    view.addSubview (" + outletName + "!)\n"
+      end
+      column ++
     end
-  end
+    if column > columnMax then
+      columnMax = column
+    end
+    outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
+ end
   outResult += "  //--- Set pref window content view\n"
-  outResult += "    window?.setContentSize (NSSize (width:OUTLET_WIDTH + 20.0, height:OUTLET_HEIGHT * 1.5 * 7))\n"
+  outResult += "    window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * " + columnMax + ".0, height:OUTLET_HEIGHT * (1.5 * " + [self length] + ".0 + 0.5)))\n"
   outResult += "    window?.contentView = view\n"
 }
 
