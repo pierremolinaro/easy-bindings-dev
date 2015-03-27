@@ -47,26 +47,32 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 getter @mainXibDescriptorList generateCode -> @string outResult {
-  outResult =  "    var r = NSRect (x:10.0, y:0.0, width:200.0, height:22.0)\n"
-  outResult += "    let view = NSView (frame:r)\n"
-  for () in self do
+  outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + [self length] + ".0\n"
+  outResult += "    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"
+  for () in self do (idx)
     switch mElement
     case text (t) :
       outResult += "  //--- Text " + t + "\n"
-      outResult += "    createTextFieldForText (" + [t utf8Representation] + ", rect:&r, view:view)\n"
+      outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
+      outResult += "    y -= OUTLET_HEIGHT\n"
+      outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
+      outResult += "    tf" + idx + ".stringValue = " + [t utf8Representation] + "\n"
+      outResult += "    tf" + idx + ".editable = false\n"
+      outResult += "    tf" + idx + ".drawsBackground = false\n"
+      outResult += "    tf" + idx + ".bordered = false\n"
+      outResult += "    view.addSubview (tf" + idx + ")\n"
+      outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
     case outlet (outletType outletName) :
       outResult += "  //--- Outlet " + outletName + "\n"
-      outResult += "    r.origin.y += r.size.height / 2.0\n"
-      outResult += "    " + outletName + " = " + outletType + "(frame:r)\n"
+      outResult += "    y -= OUTLET_HEIGHT\n"
+      outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
       outResult += "    view.addSubview (" + outletName + "!)\n"
-      outResult += "    r.origin.y += r.size.height\n"
+      outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
     end
   end
   outResult += "  //--- Set pref window content view\n"
-  outResult += "    view.frame = r\n"
+  outResult += "    window?.setContentSize (NSSize (width:OUTLET_WIDTH + 20.0, height:OUTLET_HEIGHT * 1.5 * 7))\n"
   outResult += "    window?.contentView = view\n"
 }
-
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

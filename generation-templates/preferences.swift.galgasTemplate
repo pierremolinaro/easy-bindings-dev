@@ -77,19 +77,8 @@ if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then
 %  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   @IBOutlet private var window : NSWindow?
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func createTextFieldForText (text : String, inout rect ioRect : NSRect, view:NSView) {
-    ioRect.origin.y += ioRect.size.height / 2.0
-    var tf = NSTextField (frame:ioRect)
-    tf.stringValue = text
-    tf.editable = false
-    tf.drawsBackground = false
-    tf.bordered = false
-    view.addSubview (tf)
-    ioRect.origin.y += ioRect.size.height
-  }
+  let OUTLET_WIDTH = 200.0
+  let OUTLET_HEIGHT = 22.0
 
 %
 end
