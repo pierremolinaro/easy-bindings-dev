@@ -470,7 +470,9 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
 
 proc generateArrayControllers
   ?let @arrayControllerForGeneration inArrayControllerListForGeneration
-  ?let @string inOutputDirectory {
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
   for () in inArrayControllerListForGeneration do
     let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
       !mOwnerName
@@ -496,6 +498,7 @@ proc generateArrayControllers
       !mArrayControllerFilterListForGeneration
     ]
     let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !inOutputDirectory
       !fileName

@@ -25,7 +25,9 @@ filewrapper validationStubExtension in "../generation-templates" {
 
 proc generateValidationRoutineStubs
   ?let @string inOutputDirectory
-  ?let @validationStubRoutineListForGeneration inValidationStubRoutineListForGeneration {
+  ?let @validationStubRoutineListForGeneration inValidationStubRoutineListForGeneration
+  ?!@stringset ioGeneratedFileSet
+{
   let defaultUserZone2 = "    var result = PMValidationResult.ok\n"
     + "    let validates = false // Add your validation condition here\n"
     + "    if !validates {\n"
@@ -38,9 +40,11 @@ proc generateValidationRoutineStubs
       !mModelName
       !mModelTypeName
     ]
+    let fileName = mObjectTypeName + "+validation+" + mModelName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !inOutputDirectory
-      !mObjectTypeName + "+validation+" + mModelName + ".swift"
+      !fileName
       !"//"
       !"\n\n" # Defaut user zone1
       !s

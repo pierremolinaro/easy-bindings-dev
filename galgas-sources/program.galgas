@@ -46,6 +46,7 @@ case . "eb"
       )
       if @uint.errorCount == 0 then
         generateCode (
+          !declarationStruct.mXcodeProject.string
           !generation
           !inSourceFile.string
         )

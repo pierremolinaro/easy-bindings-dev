@@ -252,6 +252,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
 proc generateEntities
   ?let @entityListForGeneration inEntityListForGeneration
   ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
 {
   for () in inEntityListForGeneration do
     let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
@@ -261,9 +262,11 @@ proc generateEntities
       !mToOneEntityRelationshipList
       !mToManyEntityRelationshipList
     ]
+    let fileName = mEntityName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory
-      !mEntityName + ".swift"
+      !fileName
       !s
     ]
   end

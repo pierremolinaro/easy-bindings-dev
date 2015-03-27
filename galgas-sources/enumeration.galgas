@@ -127,16 +127,20 @@ private filewrapper enumGenerationTemplate in "../generation-templates" {
 
 proc generateEnums
   ?let @enumListForGeneration inEnumListForGeneration
-  ?let @string inOutputDirectory {
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
   for () in inEnumListForGeneration do
     if [mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
       let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
         !mEnumName
         !mEnumConstantList
       ]
+      let fileName = mEnumName + ".swift"
+      ioGeneratedFileSet += !fileName
       [@string generateFile
         !inOutputDirectory
-        !mEnumName + ".swift"
+        !fileName
         !s
       ]
     end

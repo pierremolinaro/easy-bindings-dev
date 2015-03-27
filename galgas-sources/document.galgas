@@ -272,6 +272,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
 proc generateDocuments
   ?let @documentListForGeneration inDocumentListForGeneration
   ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
 {
   for () in inDocumentListForGeneration do
     let s = [filewrapper documentGenerationTemplate.documentImplementation
@@ -287,9 +288,11 @@ proc generateDocuments
       !mTableViewBindingGenerationList
       !mSelectionControllerListForGeneration
     ]
+    let fileName = mDocumentName + ".swift"
+    ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory
-      !mDocumentName + ".swift"
+      !fileName
       !s
     ]
   end

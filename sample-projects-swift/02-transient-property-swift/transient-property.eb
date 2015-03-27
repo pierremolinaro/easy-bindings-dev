@@ -1,3 +1,5 @@
+xcodeproject "fr.irccyn" ;
+
 prefs {
   property String mName default "Amédée" ;
   property String mFirstName default "Schmurtz" ;
