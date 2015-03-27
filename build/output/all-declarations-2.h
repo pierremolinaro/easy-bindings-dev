@@ -11,6 +11,122 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                             Routine 'generateEntities'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateEntities (const class GALGAS_entityListForGeneration constinArgument0,
+                               const class GALGAS_string constinArgument1,
+                               class GALGAS_stringset & ioArgument2,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Filewrapper 'documentGenerationTemplate'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_documentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_documentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_documentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_documentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_documentGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Filewrapper template 'documentGenerationTemplate documentImplementation'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
+                                                                                     const class GALGAS_string & in_DOCUMENT_5F_NAME,
+                                                                                     const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
+                                                                                     const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                     const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                     const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
+                                                                                     const class GALGAS_arrayControllerForGeneration & in_ARRAY_5F_CONTROLLER_5F_LIST,
+                                                                                     const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
+                                                                                     const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
+                                                                                     const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                     const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                     const class GALGAS_selectionControllerForGeneration & in_SELECTION_5F_CONTROLLER_5F_LIST
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//         Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef class GALGAS_string (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                                               class C_Compiler * inCompiler
+                                                                                                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryReader_expressionString (const int32_t inClassIndex,
+                                           categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string callCategoryReader_expressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//         Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef class GALGAS_stringset (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                                                  class C_Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryReader_observedModelSet (const int32_t inClassIndex,
+                                           categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringset callCategoryReader_observedModelSet (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Category Reader '@observablePropertyAST generateRemoveObserverCall'                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_generateRemoveObserverCall (const class GALGAS_observablePropertyAST & inObject,
+                                                               class C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                    Category Reader '@tableViewBindingGenerationList outletNameListForController'                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_outletNameListForController (const class GALGAS_tableViewBindingGenerationList & inObject,
+                                                                const class GALGAS_string & constinArgument0,
+                                                                class C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                             Routine 'generateDocuments'                                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -52,7 +168,9 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
                                                                        const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                        const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                        const class GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
-                                                                       const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST
+                                                                       const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
+                                                                       const class GALGAS_mainXibDescriptorList & in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST,
+                                                                       const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST
                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -63,6 +181,16 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
 
 class GALGAS_string function_preferencesName (class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category Reader '@mainXibDescriptorList generateCode'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_generateCode (const class GALGAS_mainXibDescriptorList & inObject,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -101,6 +229,7 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
   public : GALGAS_multipleBindingGenerationList mAttribute_mMultipleBindingGenerationList ;
   public : GALGAS_actionBindingListForGeneration mAttribute_mActionBindingListForGeneration ;
   public : GALGAS_decoratedOutletMap mAttribute_mOutletMap ;
+  public : GALGAS_mainXibDescriptorList mAttribute_mMainXibDescriptorList ;
 
 
 //--------------------------------- Accessors
@@ -122,7 +251,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                             const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                             const GALGAS_multipleBindingGenerationList & in_mMultipleBindingGenerationList,
                                             const GALGAS_actionBindingListForGeneration & in_mActionBindingListForGeneration,
-                                            const GALGAS_decoratedOutletMap & in_mOutletMap) ;
+                                            const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                            const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList) ;
 
 //-- Start of generic part --*
 
@@ -140,7 +270,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                    const class GALGAS_regularBindingsGenerationList & inOperand2,
                                                                    const class GALGAS_multipleBindingGenerationList & inOperand3,
                                                                    const class GALGAS_actionBindingListForGeneration & inOperand4,
-                                                                   const class GALGAS_decoratedOutletMap & inOperand5
+                                                                   const class GALGAS_decoratedOutletMap & inOperand5,
+                                                                   const class GALGAS_mainXibDescriptorList & inOperand6
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -156,6 +287,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration reader_mActionBindingListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_mainXibDescriptorList reader_mMainXibDescriptorList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList reader_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
 
@@ -196,7 +329,6 @@ extern const char * gWrapperFileContent_8_outletClassGeneration ;
 extern const char * gWrapperFileContent_9_outletClassGeneration ;
 extern const char * gWrapperFileContent_10_outletClassGeneration ;
 extern const char * gWrapperFileContent_11_outletClassGeneration ;
-extern const char * gWrapperFileContent_12_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -215,7 +347,6 @@ extern const cRegularFileWrapper gWrapperFile_8_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_9_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_10_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_11_outletClassGeneration ;
-extern const cRegularFileWrapper gWrapperFile_12_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

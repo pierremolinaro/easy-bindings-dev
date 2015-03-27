@@ -6,7 +6,7 @@ import Cocoa
 
 @objc(PMTextField) class PMTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
@@ -14,6 +14,14 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    self.delegate = self
+    noteObjectAllocation (self)
+  }
+  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   deinit {

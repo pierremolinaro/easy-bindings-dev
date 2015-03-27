@@ -72,12 +72,34 @@ end
     )
   }
 
+%
+if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then
+%  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  @IBOutlet private var window : NSWindow?
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func createTextFieldForText (text : String, inout rect ioRect : NSRect, view:NSView) {
+    ioRect.origin.y += ioRect.size.height / 2.0
+    var tf = NSTextField (frame:ioRect)
+    tf.stringValue = text
+    tf.editable = false
+    tf.drawsBackground = false
+    tf.bordered = false
+    view.addSubview (tf)
+    ioRect.origin.y += ioRect.size.height
+  }
+
+%
+end
+%  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    awakeFromNib                                                                                                   *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func awakeFromNib () {
 %
+![MAIN_XIB_DESCRIPTOR_LIST generateCode]
 for () in OUTLET_MAP do
    %  //--- Check %!lkey.string%' outlet not nil\n%
    %    if nil == %!lkey.string% {\n%
@@ -110,6 +132,11 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
     !mValue%, %
   end
   %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
+end
+%  //--------------------------- Set targets / actions
+%for () in TARGET_ACTION_LIST do
+%    %!mOutletName%?.target = %!mTargetName%\n%
+%    %!mOutletName%?.action = "%!mActionName%:"\n%
 end
 %  }
   

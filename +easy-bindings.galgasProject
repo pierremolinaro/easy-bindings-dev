@@ -46,5 +46,6 @@ project (0:0:1) -> "eb" {
 #--- Xcode project
   "galgas-sources/xcode-project.galgas"
   "galgas-sources/XcodeProjectNewGeneration.galgas"
+  "galgas-sources/main-xib.galgas"
 }
 

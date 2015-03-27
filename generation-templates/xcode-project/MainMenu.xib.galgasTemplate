@@ -653,7 +653,11 @@
                 <autoresizingMask key="autoresizingMask"/>
             </view>
         </window>
-        <customObject id="536" userLabel="Prefs" customClass="Preferences"/>
+        <customObject id="536" userLabel="Prefs" customClass="Preferences">
+            <connections>
+                <outlet property="window" destination="371" id="MyW-LM-hi6"/>
+            </connections>
+        </customObject>
         <customObject id="420" customClass="NSFontManager"/>
     </objects>
 </document>
