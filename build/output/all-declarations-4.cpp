@@ -2860,35 +2860,35 @@ GALGAS_secondaryDeclarationListWorkingList_2D_element GALGAS_secondaryDeclaratio
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibDescriptorList_2D_element::GALGAS_mainXibDescriptorList_2D_element (void) :
+GALGAS_mainXibLineDescriptorList_2D_element::GALGAS_mainXibLineDescriptorList_2D_element (void) :
 mAttribute_mElement () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibDescriptorList_2D_element::~ GALGAS_mainXibDescriptorList_2D_element (void) {
+GALGAS_mainXibLineDescriptorList_2D_element::~ GALGAS_mainXibLineDescriptorList_2D_element (void) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibDescriptorList_2D_element::GALGAS_mainXibDescriptorList_2D_element (const GALGAS_mainXibElement & inOperand0) :
+GALGAS_mainXibLineDescriptorList_2D_element::GALGAS_mainXibLineDescriptorList_2D_element (const GALGAS_mainXibElement & inOperand0) :
 mAttribute_mElement (inOperand0) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibDescriptorList_2D_element GALGAS_mainXibDescriptorList_2D_element::constructor_new (const GALGAS_mainXibElement & inOperand0 
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_mainXibDescriptorList_2D_element result ;
+GALGAS_mainXibLineDescriptorList_2D_element GALGAS_mainXibLineDescriptorList_2D_element::constructor_new (const GALGAS_mainXibElement & inOperand0 
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_mainXibLineDescriptorList_2D_element result ;
   if (inOperand0.isValid ()) {
-    result = GALGAS_mainXibDescriptorList_2D_element (inOperand0) ;
+    result = GALGAS_mainXibLineDescriptorList_2D_element (inOperand0) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-typeComparisonResult GALGAS_mainXibDescriptorList_2D_element::objectCompare (const GALGAS_mainXibDescriptorList_2D_element & inOperand) const {
+typeComparisonResult GALGAS_mainXibLineDescriptorList_2D_element::objectCompare (const GALGAS_mainXibLineDescriptorList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
   if (result == kOperandEqual) {
     result = mAttribute_mElement.objectCompare (inOperand.mAttribute_mElement) ;
@@ -2898,21 +2898,21 @@ typeComparisonResult GALGAS_mainXibDescriptorList_2D_element::objectCompare (con
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-bool GALGAS_mainXibDescriptorList_2D_element::isValid (void) const {
+bool GALGAS_mainXibLineDescriptorList_2D_element::isValid (void) const {
   return mAttribute_mElement.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList_2D_element::drop (void) {
+void GALGAS_mainXibLineDescriptorList_2D_element::drop (void) {
   mAttribute_mElement.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList_2D_element::description (C_String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString << "<struct @mainXibDescriptorList-element:" ;
+void GALGAS_mainXibLineDescriptorList_2D_element::description (C_String & ioString,
+                                                               const int32_t inIndentation) const {
+  ioString << "<struct @mainXibLineDescriptorList-element:" ;
   if (! isValid ()) {
     ioString << " not built" ;
   }else{
@@ -2923,7 +2923,7 @@ void GALGAS_mainXibDescriptorList_2D_element::description (C_String & ioString,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibElement GALGAS_mainXibDescriptorList_2D_element::reader_mElement (UNUSED_LOCATION_ARGS) const {
+GALGAS_mainXibElement GALGAS_mainXibLineDescriptorList_2D_element::reader_mElement (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mElement ;
 }
 
@@ -2931,42 +2931,42 @@ GALGAS_mainXibElement GALGAS_mainXibDescriptorList_2D_element::reader_mElement (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                         @mainXibDescriptorList-element type                                         *
+//                                       @mainXibLineDescriptorList-element type                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_mainXibDescriptorList_2D_element ("mainXibDescriptorList-element",
-                                                         NULL) ;
+kTypeDescriptor_GALGAS_mainXibLineDescriptorList_2D_element ("mainXibLineDescriptorList-element",
+                                                             NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-const C_galgas_type_descriptor * GALGAS_mainXibDescriptorList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_mainXibDescriptorList_2D_element ;
+const C_galgas_type_descriptor * GALGAS_mainXibLineDescriptorList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_mainXibLineDescriptorList_2D_element ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-AC_GALGAS_root * GALGAS_mainXibDescriptorList_2D_element::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_mainXibLineDescriptorList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_mainXibDescriptorList_2D_element (*this)) ;
+    macroMyNew (result, GALGAS_mainXibLineDescriptorList_2D_element (*this)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibDescriptorList_2D_element GALGAS_mainXibDescriptorList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_mainXibDescriptorList_2D_element result ;
-  const GALGAS_mainXibDescriptorList_2D_element * p = (const GALGAS_mainXibDescriptorList_2D_element *) inObject.embeddedObject () ;
+GALGAS_mainXibLineDescriptorList_2D_element GALGAS_mainXibLineDescriptorList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                        C_Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_mainXibLineDescriptorList_2D_element result ;
+  const GALGAS_mainXibLineDescriptorList_2D_element * p = (const GALGAS_mainXibLineDescriptorList_2D_element *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_mainXibDescriptorList_2D_element *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_mainXibLineDescriptorList_2D_element *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("mainXibDescriptorList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("mainXibLineDescriptorList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

@@ -4753,52 +4753,145 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i27_ (GALGAS_mainXibDescriptorList & ioArgument_ioElementList,
                                                                                    C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_mainxib) COMMA_SOURCE_FILE ("main-xib.galgas", 27)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 28)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_mainxib) COMMA_SOURCE_FILE ("main-xib.galgas", 33)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
-    case 2: {
+    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+    case 1: {
       GALGAS_lstring var_outletType = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 31)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
       GALGAS_lstring var_outletName = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 32)) ;
-      ioArgument_ioElementList.addAssign_operation (GALGAS_mainXibElement::constructor_outlet (var_outletType, var_outletName  COMMA_SOURCE_FILE ("main-xib.galgas", 33))  COMMA_SOURCE_FILE ("main-xib.galgas", 33)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
+      GALGAS_mainXibLineDescriptorList temp_1 = GALGAS_mainXibLineDescriptorList::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 39)) ;
+      temp_1.addAssign_operation (GALGAS_mainXibElement::constructor_outlet (var_outletType, var_outletName  COMMA_SOURCE_FILE ("main-xib.galgas", 39))  COMMA_SOURCE_FILE ("main-xib.galgas", 39)) ;
+      ioArgument_ioElementList.addAssign_operation (temp_1  COMMA_SOURCE_FILE ("main-xib.galgas", 39)) ;
+    } break ;
+    case 2: {
+      GALGAS_lstring var_s = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("main-xib.galgas", 41)) ;
+      GALGAS_mainXibLineDescriptorList temp_2 = GALGAS_mainXibLineDescriptorList::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 42)) ;
+      temp_2.addAssign_operation (GALGAS_mainXibElement::constructor_text (var_s  COMMA_SOURCE_FILE ("main-xib.galgas", 42))  COMMA_SOURCE_FILE ("main-xib.galgas", 42)) ;
+      ioArgument_ioElementList.addAssign_operation (temp_2  COMMA_SOURCE_FILE ("main-xib.galgas", 42)) ;
     } break ;
     case 3: {
-      GALGAS_lstring var_s = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("main-xib.galgas", 35)) ;
-      ioArgument_ioElementList.addAssign_operation (GALGAS_mainXibElement::constructor_text (var_s  COMMA_SOURCE_FILE ("main-xib.galgas", 36))  COMMA_SOURCE_FILE ("main-xib.galgas", 36)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 44)) ;
+      GALGAS_mainXibLineDescriptorList var_lineDescription ;
+      nt_main_5F_xib_5F_line_ (var_lineDescription, inCompiler) ;
+      ioArgument_ioElementList.addAssign_operation (var_lineDescription  COMMA_SOURCE_FILE ("main-xib.galgas", 46)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("main-xib.galgas", 47)) ;
+    } break ;
+    default:
+      break ;
+    }
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 50)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i27_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_mainxib) COMMA_SOURCE_FILE ("main-xib.galgas", 27)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 28)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_mainxib) COMMA_SOURCE_FILE ("main-xib.galgas", 33)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+    case 1: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
+    } break ;
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 31)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 32)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("main-xib.galgas", 41)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("main-xib.galgas", 35)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 44)) ;
+      nt_main_5F_xib_5F_line_parse (inCompiler) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("main-xib.galgas", 47)) ;
+    } break ;
+    default:
+      break ;
+    }
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 50)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
+  inCompiler->resetTemplateString () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i28_ (GALGAS_mainXibLineDescriptorList & outArgument_outLineDescription,
+                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  outArgument_outLineDescription.drop () ; // Release 'out' argument
+  outArgument_outLineDescription = GALGAS_mainXibLineDescriptorList::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 60)) ;
+  bool repeatFlag_0 = true ;
+  while (repeatFlag_0) {
+    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+    case 1: {
+      GALGAS_lstring var_outletType = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 63)) ;
+      GALGAS_lstring var_outletName = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 64)) ;
+      outArgument_outLineDescription.addAssign_operation (GALGAS_mainXibElement::constructor_outlet (var_outletType, var_outletName  COMMA_SOURCE_FILE ("main-xib.galgas", 65))  COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
+    } break ;
+    case 2: {
+      GALGAS_lstring var_s = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("main-xib.galgas", 67)) ;
+      outArgument_outLineDescription.addAssign_operation (GALGAS_mainXibElement::constructor_text (var_s  COMMA_SOURCE_FILE ("main-xib.galgas", 68))  COMMA_SOURCE_FILE ("main-xib.galgas", 68)) ;
+    } break ;
+    default:
+      break ;
+    }
+    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 71)) ;
+    } break ;
+    default:
+      repeatFlag_0 = false ;
+      break ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i28_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  bool repeatFlag_0 = true ;
+  while (repeatFlag_0) {
+    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+    case 1: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 63)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 64)) ;
+    } break ;
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("main-xib.galgas", 67)) ;
+    } break ;
+    default:
+      break ;
+    }
+    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 71)) ;
+    } break ;
+    default:
+      repeatFlag_0 = false ;
+      break ;
+    }
+  }
   inCompiler->resetTemplateString () ;
 }
 
@@ -17843,7 +17936,7 @@ class cCollectionElement_mainXibDescriptorList : public cCollectionElement {
   public : GALGAS_mainXibDescriptorList_2D_element mObject ;
 
 //--- Constructor
-  public : cCollectionElement_mainXibDescriptorList (const GALGAS_mainXibElement & in_mElement
+  public : cCollectionElement_mainXibDescriptorList (const GALGAS_mainXibLineDescriptorList & in_mLine
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -17861,10 +17954,10 @@ class cCollectionElement_mainXibDescriptorList : public cCollectionElement {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-cCollectionElement_mainXibDescriptorList::cCollectionElement_mainXibDescriptorList (const GALGAS_mainXibElement & in_mElement
+cCollectionElement_mainXibDescriptorList::cCollectionElement_mainXibDescriptorList (const GALGAS_mainXibLineDescriptorList & in_mLine
                                                                                     COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mElement) {
+mObject (in_mLine) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17877,7 +17970,7 @@ bool cCollectionElement_mainXibDescriptorList::isValid (void) const {
 
 cCollectionElement * cCollectionElement_mainXibDescriptorList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_mainXibDescriptorList (mObject.mAttribute_mElement COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_mainXibDescriptorList (mObject.mAttribute_mLine COMMA_HERE)) ;
   return result ;
 }
 
@@ -17886,8 +17979,8 @@ cCollectionElement * cCollectionElement_mainXibDescriptorList::copy (void) {
 void cCollectionElement_mainXibDescriptorList::description (C_String & ioString, const int32_t inIndentation) const {
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mElement" ":" ;
-  mObject.mAttribute_mElement.description (ioString, inIndentation) ;
+  ioString << "mLine" ":" ;
+  mObject.mAttribute_mLine.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17923,7 +18016,7 @@ GALGAS_mainXibDescriptorList GALGAS_mainXibDescriptorList::constructor_emptyList
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibDescriptorList GALGAS_mainXibDescriptorList::constructor_listWithValue (const GALGAS_mainXibElement & inOperand0
+GALGAS_mainXibDescriptorList GALGAS_mainXibDescriptorList::constructor_listWithValue (const GALGAS_mainXibLineDescriptorList & inOperand0
                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_mainXibDescriptorList result ;
   if (inOperand0.isValid ()) {
@@ -17938,17 +18031,17 @@ GALGAS_mainXibDescriptorList GALGAS_mainXibDescriptorList::constructor_listWithV
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_mainXibDescriptorList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                              const GALGAS_mainXibElement & in_mElement
+                                                              const GALGAS_mainXibLineDescriptorList & in_mLine
                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement_mainXibDescriptorList * p = NULL ;
-  macroMyNew (p, cCollectionElement_mainXibDescriptorList (in_mElement COMMA_THERE)) ;
+  macroMyNew (p, cCollectionElement_mainXibDescriptorList (in_mLine COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::addAssign_operation (const GALGAS_mainXibElement & inOperand0
+void GALGAS_mainXibDescriptorList::addAssign_operation (const GALGAS_mainXibLineDescriptorList & inOperand0
                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
@@ -17962,7 +18055,7 @@ void GALGAS_mainXibDescriptorList::addAssign_operation (const GALGAS_mainXibElem
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::modifier_insertAtIndex (const GALGAS_mainXibElement inOperand0,
+void GALGAS_mainXibDescriptorList::modifier_insertAtIndex (const GALGAS_mainXibLineDescriptorList inOperand0,
                                                            const GALGAS_uint inInsertionIndex,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
@@ -17978,7 +18071,7 @@ void GALGAS_mainXibDescriptorList::modifier_insertAtIndex (const GALGAS_mainXibE
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::modifier_removeAtIndex (GALGAS_mainXibElement & outOperand0,
+void GALGAS_mainXibDescriptorList::modifier_removeAtIndex (GALGAS_mainXibLineDescriptorList & outOperand0,
                                                            const GALGAS_uint inRemoveIndex,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
@@ -17990,14 +18083,14 @@ void GALGAS_mainXibDescriptorList::modifier_removeAtIndex (GALGAS_mainXibElement
       outOperand0.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-      outOperand0 = p->mObject.mAttribute_mElement ;
+      outOperand0 = p->mObject.mAttribute_mLine ;
     }
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::modifier_popFirst (GALGAS_mainXibElement & outOperand0,
+void GALGAS_mainXibDescriptorList::modifier_popFirst (GALGAS_mainXibLineDescriptorList & outOperand0,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -18007,13 +18100,13 @@ void GALGAS_mainXibDescriptorList::modifier_popFirst (GALGAS_mainXibElement & ou
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-    outOperand0 = p->mObject.mAttribute_mElement ;
+    outOperand0 = p->mObject.mAttribute_mLine ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::modifier_popLast (GALGAS_mainXibElement & outOperand0,
+void GALGAS_mainXibDescriptorList::modifier_popLast (GALGAS_mainXibLineDescriptorList & outOperand0,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -18023,13 +18116,13 @@ void GALGAS_mainXibDescriptorList::modifier_popLast (GALGAS_mainXibElement & out
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-    outOperand0 = p->mObject.mAttribute_mElement ;
+    outOperand0 = p->mObject.mAttribute_mLine ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::method_first (GALGAS_mainXibElement & outOperand0,
+void GALGAS_mainXibDescriptorList::method_first (GALGAS_mainXibLineDescriptorList & outOperand0,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -18039,13 +18132,13 @@ void GALGAS_mainXibDescriptorList::method_first (GALGAS_mainXibElement & outOper
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-    outOperand0 = p->mObject.mAttribute_mElement ;
+    outOperand0 = p->mObject.mAttribute_mLine ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_mainXibDescriptorList::method_last (GALGAS_mainXibElement & outOperand0,
+void GALGAS_mainXibDescriptorList::method_last (GALGAS_mainXibLineDescriptorList & outOperand0,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -18055,7 +18148,7 @@ void GALGAS_mainXibDescriptorList::method_last (GALGAS_mainXibElement & outOpera
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-    outOperand0 = p->mObject.mAttribute_mElement ;
+    outOperand0 = p->mObject.mAttribute_mLine ;
   }
 }
 
@@ -18113,15 +18206,15 @@ void GALGAS_mainXibDescriptorList::dotAssign_operation (const GALGAS_mainXibDesc
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibElement GALGAS_mainXibDescriptorList::reader_mElementAtIndex (const GALGAS_uint & inIndex,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const {
+GALGAS_mainXibLineDescriptorList GALGAS_mainXibDescriptorList::reader_mLineAtIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_mainXibDescriptorList * p = (cCollectionElement_mainXibDescriptorList *) attributes.ptr () ;
-  GALGAS_mainXibElement result ;
+  GALGAS_mainXibLineDescriptorList result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-    result = p->mObject.mAttribute_mElement ;
+    result = p->mObject.mAttribute_mLine ;
   }
   return result ;
 }
@@ -18147,10 +18240,10 @@ GALGAS_mainXibDescriptorList_2D_element cEnumerator_mainXibDescriptorList::curre
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_mainXibElement cEnumerator_mainXibDescriptorList::current_mElement (LOCATION_ARGS) const {
+GALGAS_mainXibLineDescriptorList cEnumerator_mainXibDescriptorList::current_mLine (LOCATION_ARGS) const {
   const cCollectionElement_mainXibDescriptorList * p = (const cCollectionElement_mainXibDescriptorList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
-  return p->mObject.mAttribute_mElement ;
+  return p->mObject.mAttribute_mLine ;
 }
 
 
