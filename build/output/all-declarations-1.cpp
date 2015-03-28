@@ -12336,7 +12336,7 @@ static const int16_t gProductions_easyBindings_grammar [] = {
 , NONTERMINAL (59) // <select_easyBindings_5F_syntax_34>
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) // $}$
 , END_PRODUCTION
-// At index 147 : <main_xib_line>, in file 'easyBindings_syntax.ggs', line 60
+// At index 147 : <main_xib_line>, in file 'easyBindings_syntax.ggs', line 59
 , NONTERMINAL (62) // <select_easyBindings_5F_syntax_37>
 , NONTERMINAL (61) // <select_easyBindings_5F_syntax_36>
 , END_PRODUCTION
@@ -12722,32 +12722,30 @@ static const int16_t gProductions_easyBindings_grammar [] = {
 // At index 428 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) // $Identifier$
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) // $identifier$
+, END_PRODUCTION
+// At index 431 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) // $literal_string$
 , END_PRODUCTION
-// At index 432 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
-, TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) // $literal_string$
-, END_PRODUCTION
-// At index 434 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
+// At index 433 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) // ${$
 , NONTERMINAL (24) // <main_xib_line>
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) // $}$
 , END_PRODUCTION
-// At index 438 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 64
+// At index 437 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 63
 , END_PRODUCTION
-// At index 439 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 64
+// At index 438 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 63
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) // $,$
 , NONTERMINAL (62) // <select_easyBindings_5F_syntax_37>
 , NONTERMINAL (61) // <select_easyBindings_5F_syntax_36>
 , END_PRODUCTION
-// At index 443 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 65
+// At index 442 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 64
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) // $Identifier$
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) // $identifier$
+, END_PRODUCTION
+// At index 445 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 64
 , TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) // $literal_string$
 , END_PRODUCTION
-// At index 447 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 65
-, TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) // $literal_string$
-, END_PRODUCTION
-// At index 449 : <>, in file '.ggs', line 0
+// At index 447 : <>, in file '.ggs', line 0
 , NONTERMINAL (0) // <start_symbol>
 , END_PRODUCTION
 } ;
@@ -12889,13 +12887,13 @@ static const cProductionNameDescriptor gProductionNames_easyBindings_grammar [13
  {"<select_easyBindings_5F_syntax_34>", "easyBindings_syntax", 423}, // at index 127
  {"<select_easyBindings_5F_syntax_34>", "easyBindings_syntax", 424}, // at index 128
  {"<select_easyBindings_5F_syntax_35>", "easyBindings_syntax", 428}, // at index 129
- {"<select_easyBindings_5F_syntax_35>", "easyBindings_syntax", 432}, // at index 130
- {"<select_easyBindings_5F_syntax_35>", "easyBindings_syntax", 434}, // at index 131
- {"<select_easyBindings_5F_syntax_36>", "easyBindings_syntax", 438}, // at index 132
- {"<select_easyBindings_5F_syntax_36>", "easyBindings_syntax", 439}, // at index 133
- {"<select_easyBindings_5F_syntax_37>", "easyBindings_syntax", 443}, // at index 134
- {"<select_easyBindings_5F_syntax_37>", "easyBindings_syntax", 447}, // at index 135
- {"<>", "", 449} // at index 136
+ {"<select_easyBindings_5F_syntax_35>", "easyBindings_syntax", 431}, // at index 130
+ {"<select_easyBindings_5F_syntax_35>", "easyBindings_syntax", 433}, // at index 131
+ {"<select_easyBindings_5F_syntax_36>", "easyBindings_syntax", 437}, // at index 132
+ {"<select_easyBindings_5F_syntax_36>", "easyBindings_syntax", 438}, // at index 133
+ {"<select_easyBindings_5F_syntax_37>", "easyBindings_syntax", 442}, // at index 134
+ {"<select_easyBindings_5F_syntax_37>", "easyBindings_syntax", 445}, // at index 135
+ {"<>", "", 447} // at index 136
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12933,7 +12931,7 @@ static const int16_t gProductionIndexes_easyBindings_grammar [137] = {
 135, // index 25 : <explicit_value>, in file 'easyBindings_syntax.ggs', line 59
 137, // index 26 : <xcode_project>, in file 'easyBindings_syntax.ggs', line 9
 141, // index 27 : <main_xib>, in file 'easyBindings_syntax.ggs', line 30
-147, // index 28 : <main_xib_line>, in file 'easyBindings_syntax.ggs', line 60
+147, // index 28 : <main_xib_line>, in file 'easyBindings_syntax.ggs', line 59
 150, // index 29 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 61
 151, // index 30 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 61
 156, // index 31 : <select_easyBindings_5F_syntax_0>, in file 'easyBindings_syntax.ggs', line 61
@@ -13035,13 +13033,13 @@ static const int16_t gProductionIndexes_easyBindings_grammar [137] = {
 423, // index 127 : <select_easyBindings_5F_syntax_34>, in file 'easyBindings_syntax.ggs', line 35
 424, // index 128 : <select_easyBindings_5F_syntax_34>, in file 'easyBindings_syntax.ggs', line 35
 428, // index 129 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
-432, // index 130 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
-434, // index 131 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
-438, // index 132 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 64
-439, // index 133 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 64
-443, // index 134 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 65
-447, // index 135 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 65
-449 // index 136 : <>, in file '.ggs', line 0
+431, // index 130 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
+433, // index 131 : <select_easyBindings_5F_syntax_35>, in file 'easyBindings_syntax.ggs', line 36
+437, // index 132 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 63
+438, // index 133 : <select_easyBindings_5F_syntax_36>, in file 'easyBindings_syntax.ggs', line 63
+442, // index 134 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 64
+445, // index 135 : <select_easyBindings_5F_syntax_37>, in file 'easyBindings_syntax.ggs', line 64
+447 // index 136 : <>, in file '.ggs', line 0
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13478,7 +13476,7 @@ void cGrammar_easyBindings_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * i
   macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText () != NULL) {
     scanner->performTopDownParsing (gProductions_easyBindings_grammar, gProductionNames_easyBindings_grammar, gProductionIndexes_easyBindings_grammar,
-                                    gFirstProductionIndexes_easyBindings_grammar, gDecision_easyBindings_grammar, gDecisionIndexes_easyBindings_grammar, 449) ;
+                                    gFirstProductionIndexes_easyBindings_grammar, gDecision_easyBindings_grammar, gDecisionIndexes_easyBindings_grammar, 447) ;
   }
   macroDetachSharedObject (scanner) ;
 }
@@ -13506,7 +13504,7 @@ void cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (C_Compiler * 
     macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, "", "", filePath COMMA_HERE)) ;
     if (scanner->sourceText () != NULL) {
       const bool ok = scanner->performTopDownParsing (gProductions_easyBindings_grammar, gProductionNames_easyBindings_grammar, gProductionIndexes_easyBindings_grammar,
-                                                      gFirstProductionIndexes_easyBindings_grammar, gDecision_easyBindings_grammar, gDecisionIndexes_easyBindings_grammar, 449) ;
+                                                      gFirstProductionIndexes_easyBindings_grammar, gDecision_easyBindings_grammar, gDecisionIndexes_easyBindings_grammar, 447) ;
       if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
         cGrammar_easyBindings_5F_grammar grammar ;
         grammar.nt_start_5F_symbol_ (parameter_1, parameter_2, parameter_3, scanner) ;
@@ -13540,7 +13538,7 @@ void cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (C_Compiler 
     C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
     macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, sourceString, "" COMMA_HERE)) ;
     const bool ok = scanner->performTopDownParsing (gProductions_easyBindings_grammar, gProductionNames_easyBindings_grammar, gProductionIndexes_easyBindings_grammar,
-                                                    gFirstProductionIndexes_easyBindings_grammar, gDecision_easyBindings_grammar, gDecisionIndexes_easyBindings_grammar, 449) ;
+                                                    gFirstProductionIndexes_easyBindings_grammar, gDecision_easyBindings_grammar, gDecisionIndexes_easyBindings_grammar, 447) ;
     if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
       cGrammar_easyBindings_5F_grammar grammar ;
       grammar.nt_start_5F_symbol_ (parameter_1, parameter_2, parameter_3, scanner) ;
@@ -15614,13 +15612,11 @@ typeComparisonResult cEnumAssociatedValues_mainXibElement_text::compare (const c
 //---------------------------------------------------------------------------------------------------------------------*
 
 cEnumAssociatedValues_mainXibElement_outlet::cEnumAssociatedValues_mainXibElement_outlet (const GALGAS_lstring & inAssociatedValue0,
-                                                                                          const GALGAS_lstring & inAssociatedValue1,
-                                                                                          const GALGAS_lstring & inAssociatedValue2
+                                                                                          const GALGAS_lstring & inAssociatedValue1
                                                                                           COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
 mAssociatedValue0 (inAssociatedValue0),
-mAssociatedValue1 (inAssociatedValue1),
-mAssociatedValue2 (inAssociatedValue2) {
+mAssociatedValue1 (inAssociatedValue1) {
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -15630,7 +15626,6 @@ void cEnumAssociatedValues_mainXibElement_outlet::description (C_String & ioStri
   ioString << "(\n" ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  mAssociatedValue2.description (ioString, inIndentation) ;
   ioString << ")" ;
 }
 
@@ -15645,9 +15640,6 @@ typeComparisonResult cEnumAssociatedValues_mainXibElement_outlet::compare (const
   }
   if (result == kOperandEqual) {
     result = mAssociatedValue1.objectCompare (ptr->mAssociatedValue1) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAssociatedValue2.objectCompare (ptr->mAssociatedValue2) ;
   }
   return result ;
 }
@@ -15677,14 +15669,13 @@ GALGAS_mainXibElement GALGAS_mainXibElement::constructor_text (const GALGAS_lstr
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_mainXibElement GALGAS_mainXibElement::constructor_outlet (const GALGAS_lstring & inAssociatedValue0,
-                                                                 const GALGAS_lstring & inAssociatedValue1,
-                                                                 const GALGAS_lstring & inAssociatedValue2
+                                                                 const GALGAS_lstring & inAssociatedValue1
                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_mainXibElement result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid ()) {
+  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
     result.mEnum = kEnum_outlet ;
     cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_mainXibElement_outlet (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2 COMMA_THERE)) ;
+    macroMyNew (ptr, cEnumAssociatedValues_mainXibElement_outlet (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
     result.mAssociatedValues.setPointer (ptr) ;
     macroDetachSharedObject (ptr) ;
   }
@@ -15943,6 +15934,9 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
   result << "outletClass PMButton $run $enabled ;\n"
+    "\n"
+    "outletClass PMReadOnlyColorWell $enabled ;\n"
+    "binding PMReadOnlyColorWell $readOnlyColor : property Color ;\n"
     "\n"
     "outletClass PMColorWell $enabled ;\n"
     "binding PMColorWell $color : property Color {sendContinously : Bool} ;\n"

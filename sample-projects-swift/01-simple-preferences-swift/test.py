@@ -1,83 +1,97 @@
 #!/usr/bin/python
+# coding=utf-8
+
 # https://pypi.python.org/pypi/atomac
 # https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py
 
-import atomac, sys, time, os
+#--- START OF USER ZONE 1
+#--- END OF USER ZONE 1
 
-# http://stackoverflow.com/questions/2257441/python-random-string-generation-with-upper-case-letters-and-digits
+#------------------------------------------------------------------------------*
 
 import random, string
 
-scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
-atomac.launchAppByBundlePath (scriptDir + "/build/Release/01-simple-preferences-swift.app")
+import subprocess, os, sys, atexit
+import atomac, sys, time, inspect
 
-bundleName = 'fr.free.pcmolinaro.-1-simple-preferences-swift'
-monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep (0.8)
+#------------------------------------------------------------------------------*
+#   GET SOURCE LINE NUMBER                                                     *
+#------------------------------------------------------------------------------*
 
-window = monAppli.windows('01-simple-preferences')[0]
+def lineno():
+  return inspect.currentframe().f_back.f_lineno
 
-text1 = window.findFirst (AXDescription='texte1')
-text2 = window.findFirst (AXDescription='texte2')
+#------------------------------------------------------------------------------*
+#   LAUNCH APPLICATION                                                         *
+#------------------------------------------------------------------------------*
 
-testValue = ''.join (random.choice (string.ascii_uppercase + string.digits) for x in range (16))
-#--- Enter text via 'text1'
-text1.AXValue = testValue
-monAppli.sendKey ('\n')
-time.sleep(.5)
-if text2.AXValue != testValue:
-    print '*** Erreur 1 ***'
+def launchApplication ():
+  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
+  atomac.launchAppByBundlePath (scriptDir + "/build/Default/simple-preferences.app")
+  time.sleep (0.5)
+  application = atomac.getAppRefByBundleId ('fr.irccyn.molinaro.simple-preferences')
+  return application
+
+#------------------------------------------------------------------------------*
+#   QUIT APPLICATION                                                           *
+#------------------------------------------------------------------------------*
+
+def quitApplication ():
+  atomac.terminateAppByBundleId ('fr.irccyn.molinaro.simple-preferences')
+  time.sleep (0.5)
+
+#------------------------------------------------------------------------------*
+#   PREFERENCES WINDOW                                                         *
+#------------------------------------------------------------------------------*
+
+def setUpPreferencesWindow (application) :
+  time.sleep (0.5)
+  window = application.windows ('simple-preferences')[0]
+  global myTextField
+  myTextField = window.findFirst (AXIdentifier='myTextField')
+  global myOtherTextField
+  myOtherTextField = window.findFirst (AXIdentifier='myOtherTextField')
+  global myObserverTextField
+  myObserverTextField = window.findFirst (AXIdentifier='myObserverTextField')
+  global mColorWell
+  mColorWell = window.findFirst (AXIdentifier='mColorWell')
+  global mContinousColorWell
+  mContinousColorWell = window.findFirst (AXIdentifier='mContinousColorWell')
+  global mObserverColorWell
+  mObserverColorWell = window.findFirst (AXIdentifier='mObserverColorWell')
+  global mDatePicker
+  mDatePicker = window.findFirst (AXIdentifier='mDatePicker')
+  global mInteger32TextField
+  mInteger32TextField = window.findFirst (AXIdentifier='mInteger32TextField')
+  global mInteger32ObserverTextField
+  mInteger32ObserverTextField = window.findFirst (AXIdentifier='mInteger32ObserverTextField')
+
+#------------------------------------------------------------------------------*
+#   CHECK TEXT FIELD VALUE                                                     *
+#------------------------------------------------------------------------------*
+
+def checkTextFieldValue (textField, expectedValue, line):
+  if textField.AXValue != expectedValue :
+    print '*** Check error at line ' + str (line) + ' ***'
     sys.exit (1)
 
-#----------------------- Enter color
-color1 = window.findFirst (AXDescription='color1')
-color1.Press ()
-time.sleep(.5)
-colorPicker = monAppli.windows ('Colors')[0]
-toolbar = colorPicker.findFirst (AXRole='AXToolbar')
-toolbar.findAll ()[2].Press () # Selects RGB
-time.sleep(.5)
-colorRows = colorPicker.rowsR ()
-selectedRowIndex = random.randrange (0, len (colorRows) - 1)
-colorRows [selectedRowIndex].AXSelected = True ;
-time.sleep(.5)
+#------------------------------------------------------------------------------*
+#   SET TEXT FIELD                                                             *
+#------------------------------------------------------------------------------*
 
-#--- Quit
-atomac.terminateAppByBundleId (bundleName)
-time.sleep(.5)
+def setTextFieldValue (textField, value):
+  textField.AXFocused = True
+  textField.AXValue = value
+  textField.Confirm ()
+  time.sleep (0.5)
 
-#--- Relaunch application to check preferences have recorded the new value
-atomac.launchAppByBundlePath (scriptDir + "/build/Release/01-simple-preferences-swift.app")
-monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep(.5)
+#------------------------------------------------------------------------------*
+#   MAIN                                                                       *
+#------------------------------------------------------------------------------*
 
-window = monAppli.windows()[0]
-text1 = window.findFirst (AXDescription='texte1')
-text2 = window.findFirst (AXDescription='texte2')
+#--- START OF USER ZONE 2
+#    ENTER USER CODE HERE
+#--- END OF USER ZONE 2
 
-if text1.AXValue != testValue:
-    print '*** Erreur 11 ***'
-    sys.exit (1)
 
-if text2.AXValue != testValue:
-    print '*** Erreur 12 ***'
-    sys.exit (1)
-
-color1 = window.findFirst (AXDescription='color1')
-color1.Press ()
-time.sleep(.5)
-colorPicker = monAppli.windows ('Colors')[0]
-toolbar = colorPicker.findFirst (AXRole='AXToolbar')
-toolbar.findAll ()[2].Press () # Selects RGB
-time.sleep(.5)
-colorRows = colorPicker.rowsR ()
-colorRows [selectedRowIndex].AXSelected = True ;
-time.sleep(.5)
-
-if not colorRows [selectedRowIndex].AXSelected:
-    print '*** Erreur 13 ***'
-    sys.exit (1)
-
-atomac.terminateAppByBundleId (bundleName)
-
-print 'Success !'
+#----------------------------------------------------------------------------*

@@ -40,8 +40,8 @@ def setUpPreferencesWindow (application) :
   window = application.windows ('%!PROJECT_NAME%')[0]
 %
 for () in OUTLET_IDENTIFIER_LIST do
-%  global %!mValue0%\n%
-%  %!mValue0% = window.findFirst (AXIdentifier='%!mValue1%')\n%
+%  global %!mValue%\n%
+%  %!mValue% = window.findFirst (AXIdentifier='%!mValue%')\n%
 end
 %
 #------------------------------------------------------------------------------*

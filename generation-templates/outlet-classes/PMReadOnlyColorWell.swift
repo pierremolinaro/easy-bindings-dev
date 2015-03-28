@@ -2,13 +2,14 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
+@objc(PMReadOnlyColorWell) class PMReadOnlyColorWell : NSColorWell, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
+    self.enabled = false
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -16,6 +17,7 @@ import Cocoa
   override init (frame:NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
+    self.enabled = false
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -28,15 +30,13 @@ import Cocoa
   //  color binding                                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMColorWell_color?
-  var mSendContinously = false
+  private var mValueController : Controller_PMReadOnlyColorWell_color?
 
-  func bind_color (object:PMReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
-    mSendContinously = sendContinously
-    mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
+  func bind_readOnlyColor (object:PMReadWriteProperty_NSColor, file:String, line:Int) {
+    mValueController = Controller_PMReadOnlyColorWell_color (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_color () {
+  func unbind_readOnlyColor () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -49,55 +49,35 @@ import Cocoa
 //   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMColorWell_color : PMOutletEvent {
+class Controller_PMReadOnlyColorWell_color : PMOutletEvent {
 
   var mObject : PMReadWriteProperty_NSColor
-  var mOutlet: PMColorWell
-  var mSendContinously : Bool
+  var mOutlet: PMReadOnlyColorWell
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMReadWriteProperty_NSColor, outlet : PMReadOnlyColorWell, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    mSendContinously = sendContinously
     super.init ()
-    mOutlet.target = self
-    mOutlet.action = "action:"
-    mOutlet.continuous = true
     mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
-    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
     switch mObject.prop {
-    case .noSelection :
-      mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
+    case .noSelection, .multipleSelection :
+      mOutlet.color = NSColor.whiteColor ()
     case .singleSelection (let v) :
-      mOutlet.enableFromValue (true)
       mOutlet.color = v
-    case .multipleSelection :
-      mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
     }
-    mOutlet.updateEnabledState()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func action (sender : PMColorWell) {
-    mObject.validateAndSetProp (mOutlet.color, windowForSheet:sender.window)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
