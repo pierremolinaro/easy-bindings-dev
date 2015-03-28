@@ -15,10 +15,10 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mColorWell : PMColorWell? = nil
   @IBOutlet var mContinousColorWell : PMColorWell? = nil
   @IBOutlet var mDatePicker : PMDatePicker? = nil
-  @IBOutlet var mInteger32ObserverTextField : PMReadOnlyIntField? = nil
+  @IBOutlet var mInteger32ObserverTextField : PMIntFieldObserver? = nil
   @IBOutlet var mInteger32TextField : PMIntField? = nil
-  @IBOutlet var mObserverColorWell : PMReadOnlyColorWell? = nil
-  @IBOutlet var myObserverTextField : PMReadOnlyTextField? = nil
+  @IBOutlet var mObserverColorWell : PMColorWellObserver? = nil
+  @IBOutlet var myObserverTextField : PMTextFieldObserver? = nil
   @IBOutlet var myOtherTextField : PMTextField? = nil
   @IBOutlet var myTextField : PMTextField? = nil
  
@@ -114,7 +114,7 @@ var g_Preferences : Preferences? = nil
     tf3.bordered = false
     view.addSubview (tf3)
   //--- Outlet myObserverTextField
-    myObserverTextField = PMReadOnlyTextField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    myObserverTextField = PMTextFieldObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     myObserverTextField?.setAccessibilityIdentifier ("myObserverTextField")
     view.addSubview (myObserverTextField!)
     y -= OUTLET_HEIGHT / 2.0
@@ -156,7 +156,7 @@ var g_Preferences : Preferences? = nil
     tf6.bordered = false
     view.addSubview (tf6)
   //--- Outlet mObserverColorWell
-    mObserverColorWell = PMReadOnlyColorWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mObserverColorWell = PMColorWellObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mObserverColorWell?.setAccessibilityIdentifier ("mObserverColorWell")
     view.addSubview (mObserverColorWell!)
     y -= OUTLET_HEIGHT / 2.0
@@ -198,7 +198,7 @@ var g_Preferences : Preferences? = nil
     tf9.bordered = false
     view.addSubview (tf9)
   //--- Outlet mInteger32ObserverTextField
-    mInteger32ObserverTextField = PMReadOnlyIntField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mInteger32ObserverTextField = PMIntFieldObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mInteger32ObserverTextField?.setAccessibilityIdentifier ("mInteger32ObserverTextField")
     view.addSubview (mInteger32ObserverTextField!)
     y -= OUTLET_HEIGHT / 2.0
@@ -246,13 +246,13 @@ var g_Preferences : Preferences? = nil
   //--- Install bindings
     myTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:false)
     myOtherTextField?.bind_value (self.myString, file:__FILE__, line:__LINE__, sendContinously:true)
-    myObserverTextField?.bind_readOnlyValue (self.myString, file:__FILE__, line:__LINE__)
+    myObserverTextField?.bind_valueObserver (self.myString, file:__FILE__, line:__LINE__)
     mContinousColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:true)
     mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
-    mObserverColorWell?.bind_readOnlyColor (self.mColor, file:__FILE__, line:__LINE__)
+    mObserverColorWell?.bind_colorObserver (self.mColor, file:__FILE__, line:__LINE__)
     mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
     mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true)
-    mInteger32ObserverTextField?.bind_readOnlyValue (self.mIntegerValue, file:__FILE__, line:__LINE__)
+    mInteger32ObserverTextField?.bind_valueObserver (self.mIntegerValue, file:__FILE__, line:__LINE__)
   //--------------------------- Set targets / actions
   }
   

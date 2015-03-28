@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMReadOnlyColorWell) class PMReadOnlyColorWell : NSColorWell, PMUserClassName {
+@objc(PMColorWellObserver) class PMColorWellObserver : NSColorWell, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -32,11 +32,11 @@ import Cocoa
 
   private var mValueController : Controller_PMReadOnlyColorWell_color?
 
-  func bind_readOnlyColor (object:PMReadWriteProperty_NSColor, file:String, line:Int) {
+  func bind_colorObserver (object:PMReadWriteProperty_NSColor, file:String, line:Int) {
     mValueController = Controller_PMReadOnlyColorWell_color (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_readOnlyColor () {
+  func unbind_colorObserver () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -52,11 +52,11 @@ import Cocoa
 class Controller_PMReadOnlyColorWell_color : PMOutletEvent {
 
   var mObject : PMReadWriteProperty_NSColor
-  var mOutlet: PMReadOnlyColorWell
+  var mOutlet: PMColorWellObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_NSColor, outlet : PMReadOnlyColorWell, file : String, line : Int) {
+  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWellObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

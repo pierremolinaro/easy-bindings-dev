@@ -31,37 +31,37 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  22BCC25A6F606EB525FFDC56 /* PMDatePicker.swift */ = {
+  22BCC25A6F606EB525FFDC56 /* PMColorWellObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = C124A10E0DB5E4B97FC2AF39 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  1EAE257E44AA9D5BADE97BAF /* PMIntField.swift */ = {
+  1EAE257E44AA9D5BADE97BAF /* PMDatePicker.swift */ = {
     isa = PBXBuildFile;
     fileRef = F062936A96D3C8BD1F8F2FF3 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  5568161A8CDF4AD2299F6D23 /* PMReadOnlyColorWell.swift */ = {
+  5568161A8CDF4AD2299F6D23 /* PMIntField.swift */ = {
     isa = PBXBuildFile;
     fileRef = C9B086079795C442636B55FB ;
     settings = {ATTRIBUTES = (); };
   };
 
-  210194C475687BE6106A3B84 /* PMReadOnlyIntField.swift */ = {
+  210194C475687BE6106A3B84 /* PMIntFieldObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = 99908345F7439F8FFABDFFC4 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F8ED5D21A44B0E5886680CB9 /* PMReadOnlyTextField.swift */ = {
+  F8ED5D21A44B0E5886680CB9 /* PMTextField.swift */ = {
     isa = PBXBuildFile;
     fileRef = 8E8850243BE8079A5C74D079 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  4005F8DA13F42943881C655F /* PMTextField.swift */ = {
+  4005F8DA13F42943881C655F /* PMTextFieldObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = 748049E45D87B8C7D8B9AACD ;
     settings = {ATTRIBUTES = (); };
@@ -134,7 +134,16 @@
     sourceTree = "<group>";
   };
 
-  C124A10E0DB5E4B97FC2AF39 /* PMDatePicker.swift */ = {
+  C124A10E0DB5E4B97FC2AF39 /* PMColorWellObserver.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMColorWellObserver.swift";
+    path = "PMColorWellObserver.swift";
+    sourceTree = "<group>";
+  };
+
+  F062936A96D3C8BD1F8F2FF3 /* PMDatePicker.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -143,7 +152,7 @@
     sourceTree = "<group>";
   };
 
-  F062936A96D3C8BD1F8F2FF3 /* PMIntField.swift */ = {
+  C9B086079795C442636B55FB /* PMIntField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -152,39 +161,30 @@
     sourceTree = "<group>";
   };
 
-  C9B086079795C442636B55FB /* PMReadOnlyColorWell.swift */ = {
+  99908345F7439F8FFABDFFC4 /* PMIntFieldObserver.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
-    name = "PMReadOnlyColorWell.swift";
-    path = "PMReadOnlyColorWell.swift";
+    name = "PMIntFieldObserver.swift";
+    path = "PMIntFieldObserver.swift";
     sourceTree = "<group>";
   };
 
-  99908345F7439F8FFABDFFC4 /* PMReadOnlyIntField.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "PMReadOnlyIntField.swift";
-    path = "PMReadOnlyIntField.swift";
-    sourceTree = "<group>";
-  };
-
-  8E8850243BE8079A5C74D079 /* PMReadOnlyTextField.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "PMReadOnlyTextField.swift";
-    path = "PMReadOnlyTextField.swift";
-    sourceTree = "<group>";
-  };
-
-  748049E45D87B8C7D8B9AACD /* PMTextField.swift */ = {
+  8E8850243BE8079A5C74D079 /* PMTextField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "PMTextField.swift";
     path = "PMTextField.swift";
+    sourceTree = "<group>";
+  };
+
+  748049E45D87B8C7D8B9AACD /* PMTextFieldObserver.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMTextFieldObserver.swift";
+    path = "PMTextFieldObserver.swift";
     sourceTree = "<group>";
   };
 

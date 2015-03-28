@@ -3,13 +3,13 @@ xcodeproject "fr.irccyn.molinaro" ;
 mainxib {
   {"String:", PMTextField myTextField},
   {"String (send continously): ", PMTextField myOtherTextField},
-  {"String observer:", PMReadOnlyTextField myObserverTextField},
+  {"String observer:", PMTextFieldObserver myObserverTextField},
   {"Color:", PMColorWell mColorWell},
   {"Color (send continously):", PMColorWell mContinousColorWell},
-  {"Color Observer:", PMReadOnlyColorWell mObserverColorWell},
+  {"Color Observer:", PMColorWellObserver mObserverColorWell},
   {"Date:", PMDatePicker mDatePicker},
   {"Even Integer:", PMIntField mInteger32TextField},
-  {"Even Integer Observer:", PMReadOnlyIntField mInteger32ObserverTextField}
+  {"Even Integer Observer:", PMIntFieldObserver mInteger32ObserverTextField}
 }
 
 
@@ -18,19 +18,19 @@ prefs {
   property String myString default "hello" ;
   outlet PMTextField myTextField $value self.myString {sendContinously : no} ;
   outlet PMTextField myOtherTextField $value self.myString {sendContinously : yes} ;
-  outlet PMReadOnlyTextField myObserverTextField $readOnlyValue self.myString ;
+  outlet PMTextFieldObserver myObserverTextField $valueObserver self.myString ;
 #--- Color
   property Color mColor default yellowColor ;
   outlet PMColorWell mContinousColorWell $color self.mColor {sendContinously : yes} ;
   outlet PMColorWell mColorWell $color self.mColor {sendContinously : no} ;
-  outlet PMReadOnlyColorWell mObserverColorWell $readOnlyColor self.mColor ;
+  outlet PMColorWellObserver mObserverColorWell $colorObserver self.mColor ;
 #--- Date
   property Date mDate default date ;
   outlet PMDatePicker mDatePicker $date self.mDate  ;
 #--- Number
   property validates Int mIntegerValue default 123 ;
   outlet PMIntField mInteger32TextField $value self.mIntegerValue {sendContinously : yes} ;
-  outlet PMReadOnlyIntField mInteger32ObserverTextField $readOnlyValue self.mIntegerValue ;
+  outlet PMIntFieldObserver mInteger32ObserverTextField $valueObserver self.mIntegerValue ;
 }
 
 #--------------------------------------------------------------*

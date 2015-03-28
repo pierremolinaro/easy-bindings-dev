@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMReadOnlyIntField) class PMReadOnlyIntField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMIntFieldObserver) class PMIntFieldObserver : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -64,11 +64,11 @@ import Cocoa
 
   private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue?
 
-  func bind_readOnlyValue (object:PMReadOnlyProperty_Int, file:String, line:Int) {
+  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int) {
     mValueController = Controller_PMReadOnlyIntField_readOnlyValue (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_readOnlyValue () {
+  func unbind_valueObserver () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -83,11 +83,11 @@ import Cocoa
 @objc(Controller_PMReadOnlyIntField_readOnlyValue) class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
 
   var mObject : PMReadOnlyProperty_Int
-  var mOutlet : PMReadOnlyIntField
+  var mOutlet : PMIntFieldObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMReadOnlyIntField, file : String, line : Int) {
+  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

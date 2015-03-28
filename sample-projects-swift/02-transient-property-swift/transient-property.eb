@@ -3,8 +3,8 @@ xcodeproject "fr.irccyn.molinaro" ;
 mainxib {
   {"First Name:", PMTextField mFirstNameTextField},
   {"Name: ", PMTextField mLastNameTextField},
-  {"Full Name:", PMReadOnlyTextField mFullNameTextField},
-  {"Uppercase full Name:", PMReadOnlyTextField mUpperCaseFullNameTextField},
+  {"Full Name:", PMTextFieldObserver mFullNameTextField},
+  {"Uppercase full Name:", PMTextFieldObserver mUpperCaseFullNameTextField},
   PMButton myButton
 }
 
@@ -15,8 +15,8 @@ prefs {
   transient String mUpperCaseFullName dependsFrom self.mFullName ;
   outlet PMTextField mLastNameTextField $value self.mLastName {sendContinously:yes} ;
   outlet PMTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
-  outlet PMReadOnlyTextField mFullNameTextField $readOnlyValue self.mFullName ;
-  outlet PMReadOnlyTextField mUpperCaseFullNameTextField $readOnlyValue self.mUpperCaseFullName ;
+  outlet PMTextFieldObserver mFullNameTextField $valueObserver self.mFullName ;
+  outlet PMTextFieldObserver mUpperCaseFullNameTextField $valueObserver self.mUpperCaseFullName ;
   
   action monAction ;
   outlet PMButton myButton $run self.monAction ;
