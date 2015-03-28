@@ -2,28 +2,22 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMReadOnlyTextField) class PMReadOnlyTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMColorWellObserver) class PMColorWellObserver : NSColorWell, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
-    self.delegate = self
-    self.editable = false
-    self.drawsBackground = false
-    self.bordered = false
     noteObjectAllocation (self)
+    self.enabled = false
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init (frame:NSRect) {
     super.init (frame:frame)
-    self.delegate = self
-    self.editable = false
-    self.drawsBackground = false
-    self.bordered = false
     noteObjectAllocation (self)
+    self.enabled = false
   }
   
   //-------------------------------------------------------------------------------------------------------------------*
@@ -33,84 +27,57 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromEnableBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
+  //  color binding                                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  var enableFromValueBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
+  private var mValueController : Controller_PMReadOnlyColorWell_color?
+
+  func bind_colorObserver (object:PMReadWriteProperty_NSColor, file:String, line:Int) {
+    mValueController = Controller_PMReadOnlyColorWell_color (object:object, outlet:self, file:file, line:line)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  readOnlyBalue binding                                                                                            *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  private var mValueController : Controller_PMReadOnlyTextField_value?
-
-  func bind_readOnlyValue (object:PMReadOnlyProperty_String, file:String, line:Int) {
-    mValueController = Controller_PMReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
-  }
-
-  func unbind_readOnlyValue () {
+  func unbind_colorObserver () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
     mValueController = nil
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Controller_PMReadOnlyTextField_value                                                                   *
+//   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMReadOnlyTextField_value) class Controller_PMReadOnlyTextField_value : PMOutletEvent {
+class Controller_PMReadOnlyColorWell_color : PMOutletEvent {
 
-  private var mOutlet : PMReadOnlyTextField
-  private var mObject : PMReadOnlyProperty_String
+  var mObject : PMReadWriteProperty_NSColor
+  var mOutlet: PMColorWellObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object:PMReadOnlyProperty_String, outlet : PMReadOnlyTextField, file : String, line : Int) {
+  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWellObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    if mOutlet.formatter != nil {
-      presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
-    }
-    object.addObserver (self, postEvent:true)
+    mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
     mObject.removeObserver (self, postEvent:false)
-    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func updateOutlet () {
     switch mObject.prop {
-    case .noSelection :
-      mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
-    case .singleSelection (let v):
-      mOutlet.enableFromValue (true)
-      mOutlet.stringValue = v
-    case .multipleSelection :
-      mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
+    case .noSelection, .multipleSelection :
+      mOutlet.color = NSColor.whiteColor ()
+    case .singleSelection (let v) :
+      mOutlet.color = v
     }
-    mOutlet.updateEnabledState()
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

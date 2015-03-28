@@ -15935,8 +15935,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
   C_String result ;
   result << "outletClass PMButton $run $enabled ;\n"
     "\n"
-    "outletClass PMReadOnlyColorWell $enabled ;\n"
-    "binding PMReadOnlyColorWell $readOnlyColor : property Color ;\n"
+    "outletClass PMColorWellObserver $enabled ;\n"
+    "binding PMColorWellObserver $colorObserver : property Color ;\n"
     "\n"
     "outletClass PMColorWell $enabled ;\n"
     "binding PMColorWell $color : property Color {sendContinously : Bool} ;\n"
@@ -15950,8 +15950,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding PMMatrix $selectedIndex : property enum ;\n"
     "\n"
     "\n"
-    "outletClass PMReadOnlyIntField ;\n"
-    "binding PMReadOnlyIntField $readOnlyValue : transient Int ;\n"
+    "outletClass PMIntFieldObserver ;\n"
+    "binding PMIntFieldObserver $valueObserver : transient Int ;\n"
     "\n"
     "\n"
     "outletClass PMIntField ;\n"
@@ -15968,8 +15968,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "outletClass PMTextField $enabled ;\n"
     "binding PMTextField $value : property String {sendContinously : Bool} ;\n"
     "\n"
-    "outletClass PMReadOnlyTextField ;\n"
-    "binding PMReadOnlyTextField $readOnlyValue : transient String ;\n" ;
+    "outletClass PMTextFieldObserver ;\n"
+    "binding PMTextFieldObserver $valueObserver : transient String ;\n" ;
   return GALGAS_string (result) ;
 }
 

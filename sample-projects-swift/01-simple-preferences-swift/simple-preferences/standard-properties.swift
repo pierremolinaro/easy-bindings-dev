@@ -465,36 +465,9 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
  
   var validationFunction : (NSColor) -> PMValidationResult = defaultValidationFunction
   
-  override func validateAndSetProp (candidateValue : NSColor,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
-    var result = true
-    switch validationResult {
-    case PMValidationResult.ok :
-      setProp (candidateValue)
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
-      }else{
-        alert.runModal ()
-      }
-    }
-    return result
+  func validate (proposedValue : NSColor) -> PMValidationResult {
+    return validationFunction (proposedValue)
   }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func readInPreferencesWithKey (inKey : String) {
     var ud = NSUserDefaults.standardUserDefaults ()

@@ -1,15 +1,11 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyNumberField                                                                                             *
+//   PMNumberFieldObserver                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMReadOnlyNumberField) class PMReadOnlyNumberField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMNumberFieldObserver) class PMNumberFieldObserver : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func userClassName () -> String { return "PMReadOnlyNumberField" }
- 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   required init? (coder: NSCoder) {
@@ -39,16 +35,16 @@ import Cocoa
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  readOnlyValue binding                                                                                            *
+  //  valueObserver binding                                                                                            *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   private var mValueController : Controller_PMNumberField_readOnlyValue?
 
-  func bind_readOnlyValue (object:PMReadOnlyProperty_Int, file:String, line:Int) {
+  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int) {
     mValueController = Controller_PMNumberField_readOnlyValue (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_readOnlyValue () {
+  func unbind_valueObserver () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -64,11 +60,11 @@ import Cocoa
 class Controller_PMNumberField_readOnlyValue : PMOutletEvent {
 
   var mObject : PMReadOnlyProperty_Int
-  var mOutlet : PMReadOnlyNumberField
+  var mOutlet : PMNumberFieldObserver
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMReadOnlyNumberField, file : String, line : Int) {
+  init (object : PMReadOnlyProperty_Int, outlet : PMNumberFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

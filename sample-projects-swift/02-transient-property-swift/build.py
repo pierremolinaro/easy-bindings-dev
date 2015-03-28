@@ -7,7 +7,7 @@ import subprocess, os, sys, atexit
 
 #------------------------------------------------------------------------------*
 
-def cleanup():
+def cleanup () :
   if buildProcess.poll () == None :
     buildProcess.kill ()
     print 'Build process killed'
@@ -23,8 +23,9 @@ os.chdir (scriptDir)
 buildProcess = subprocess.Popen (["eb", "-v", "transient-property.eb"])
 buildProcess.wait ()
 #------------------- Xcode build
-buildProcess = subprocess.Popen (["/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild"])
-buildProcess.wait ()
+if buildProcess.returncode == 0 :
+  buildProcess = subprocess.Popen (["/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild"])
+  buildProcess.wait ()
 #-------------------
 
 #------------------------------------------------------------------------------*
