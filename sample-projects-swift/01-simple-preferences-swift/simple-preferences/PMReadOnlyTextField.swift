@@ -2,15 +2,30 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
+@objc(PMReadOnlyTextField) class PMReadOnlyTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
+    noteObjectAllocation (self)
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
@@ -18,54 +33,65 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  color binding                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMColorWell_color?
-  var mSendContinously = false
-
-  func bind_color (object:PMStoredProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
-    mSendContinously = sendContinously
-    mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
+  var enableFromEnableBinding : Bool = true {
+    didSet {
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
+    }
   }
 
-  func unbind_color () {
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var enableFromValueBinding : Bool = true {
+    didSet {
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  readOnlyBalue binding                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mValueController : Controller_PMReadOnlyTextField_value?
+
+  func bind_readOnlyValue (object:PMReadOnlyProperty_String, file:String, line:Int) {
+    mValueController = Controller_PMReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
+  }
+
+  func unbind_readOnlyValue () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
     mValueController = nil
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMColorWell_color                                                                                      *
+//   Controller Controller_PMReadOnlyTextField_value                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMColorWell_color : PMOutletEvent {
+@objc(Controller_PMReadOnlyTextField_value) class Controller_PMReadOnlyTextField_value : PMOutletEvent {
 
-  var mObject : PMStoredProperty_NSColor
-  var mOutlet: PMColorWell
-  var mSendContinously : Bool
+  private var mOutlet : PMReadOnlyTextField
+  private var mObject : PMReadOnlyProperty_String
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMStoredProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
+  init (object:PMReadOnlyProperty_String, outlet : PMReadOnlyTextField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    mSendContinously = sendContinously
     super.init ()
-    mOutlet.target = self
-    mOutlet.action = "action:"
-    mOutlet.continuous = true
-    mObject.addObserver (self, postEvent:true)
+    if mOutlet.formatter != nil {
+      presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
+    }
+    object.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -77,42 +103,14 @@ class Controller_PMColorWell_color : PMOutletEvent {
     case .noSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "No Selection"
-    case .singleSelection (let v) :
+    case .singleSelection (let v):
       mOutlet.enableFromValue (true)
-      mOutlet.color = v
+      mOutlet.stringValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
     }
     mOutlet.updateEnabledState()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func action (sender : PMColorWell) {
-    let validationResult = mObject.validate (mOutlet.color)
-    switch validationResult {
-    case PMValidationResult.ok :
-      mObject.setProp (mOutlet.color)
-      if mSendContinously {
-        flushOutletEvents ()
-      }
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      if let window = sender.window {
-        let alert = NSAlert ()
-        alert.messageText = String (format:"The color “%@” is invalid.", mOutlet.color)
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mObject.postEvent ()
-          }
-        })
-      }
-    }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

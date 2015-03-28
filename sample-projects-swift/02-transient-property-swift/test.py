@@ -50,15 +50,15 @@ def setUpPreferencesWindow (application) :
   time.sleep (0.5)
   window = application.windows ('transient-property')[0]
   global mFirstNameTextField
-  mFirstNameTextField = window.findFirst (AXIdentifier='firstName')
+  mFirstNameTextField = window.findFirst (AXIdentifier='mFirstNameTextField')
   global mLastNameTextField
-  mLastNameTextField = window.findFirst (AXIdentifier='lastName')
+  mLastNameTextField = window.findFirst (AXIdentifier='mLastNameTextField')
   global mFullNameTextField
-  mFullNameTextField = window.findFirst (AXIdentifier='firstLastName')
+  mFullNameTextField = window.findFirst (AXIdentifier='mFullNameTextField')
   global mUpperCaseFullNameTextField
-  mUpperCaseFullNameTextField = window.findFirst (AXIdentifier='uppercaseFirstLastName')
+  mUpperCaseFullNameTextField = window.findFirst (AXIdentifier='mUpperCaseFullNameTextField')
   global myButton
-  myButton = window.findFirst (AXIdentifier='amedeeSchmurtz')
+  myButton = window.findFirst (AXIdentifier='myButton')
 
 #------------------------------------------------------------------------------*
 #   CHECK TEXT FIELD VALUE                                                     *

@@ -1,11 +1,11 @@
 xcodeproject "fr.irccyn.molinaro" ;
 
 mainxib {
-  {"First Name:", PMTextField mFirstNameTextField "firstName"},
-  {"Name: ", PMTextField mLastNameTextField "lastName"},
-  {"Full Name:", PMReadOnlyTextField mFullNameTextField "firstLastName"},
-  {"Uppercase full Name:", PMReadOnlyTextField mUpperCaseFullNameTextField "uppercaseFirstLastName"},
-  PMButton myButton "amedeeSchmurtz"
+  {"First Name:", PMTextField mFirstNameTextField},
+  {"Name: ", PMTextField mLastNameTextField},
+  {"Full Name:", PMReadOnlyTextField mFullNameTextField},
+  {"Uppercase full Name:", PMReadOnlyTextField mUpperCaseFullNameTextField},
+  PMButton myButton
 }
 
 prefs {

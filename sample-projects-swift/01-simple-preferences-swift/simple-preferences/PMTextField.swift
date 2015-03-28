@@ -1,15 +1,11 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyNumberField                                                                                             *
+//   CPMTextField                                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMReadOnlyNumberField) class PMReadOnlyNumberField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMTextField) class PMTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func userClassName () -> String { return "PMReadOnlyNumberField" }
- 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   required init? (coder: NSCoder) {
@@ -20,55 +16,77 @@ import Cocoa
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    self.delegate = self
+    noteObjectAllocation (self)
+  }
+  
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
   deinit {
     noteObjectDeallocation (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  readOnlyValue binding                                                                                            *
+  //  value binding                                                                                                    *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private var mValueController : Controller_PMNumberField_readOnlyValue?
+  private var mValueController : Controller_PMTextField_value?
+  private var mSendContinously : Bool = false
 
-  func bind_readOnlyValue (object:PMReadOnlyProperty_Int, file:String, line:Int) {
-    mValueController = Controller_PMNumberField_readOnlyValue (object:object, outlet:self, file:file, line:line)
+  func bind_value (object:PMReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
+    mSendContinously = sendContinously
+    mValueController = Controller_PMTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
 
-  func unbind_readOnlyValue () {
+  func unbind_value () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
     mValueController = nil
   }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMNumberField_readOnlyValue                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-@objc(Controller_PMNumberField_readOnlyValue)
-class Controller_PMNumberField_readOnlyValue : PMOutletEvent {
-
-  var mObject : PMReadOnlyProperty_Int
-  var mOutlet : PMReadOnlyNumberField
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMReadOnlyNumberField, file : String, line : Int) {
+  override func controlTextDidChange (inNotification : NSNotification) {
+    if mSendContinously {
+      NSApp.sendAction (self.action, to: self.target, from: self)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Controller Controller_PMTextField_value                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Controller_PMTextField_value)
+class Controller_PMTextField_value : PMOutletEvent {
+
+  private var mOutlet: PMTextField
+  private var mObject : PMReadWriteProperty_String
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  init (object:PMReadWriteProperty_String, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    if mOutlet.formatter == nil {
-      presentErrorWindow (file, line, "the outlet has no formatter")
-    }else if !(mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+    mOutlet.target = self
+    mOutlet.action = "action:"
+    if mOutlet.formatter != nil {
+      presentErrorWindow (file, line, "the PMTextField outlet has a formatter")
     }
-    mObject.addObserver (self, postEvent:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
+    mOutlet.target = nil
+    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -76,21 +94,25 @@ class Controller_PMNumberField_readOnlyValue : PMOutletEvent {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    switch mObject.prop.1 {
+    switch mObject.prop {
     case .noSelection :
+      mOutlet.stringValue = "No selection"
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
-    case .singleSelection :
-      mOutlet.enableFromValue (true)
-      mOutlet.integerValue = mObject.prop.0
     case .multipleSelection :
+      mOutlet.stringValue = "Multiple selection"
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
+    case .singleSelection (let propertyValue) :
+      mOutlet.stringValue = propertyValue
+      mOutlet.enableFromValue (true)
     }
-    mOutlet.updateEnabledState()
+    mOutlet.updateEnabledState ()
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func action (sender : PMTextField) {
+    mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

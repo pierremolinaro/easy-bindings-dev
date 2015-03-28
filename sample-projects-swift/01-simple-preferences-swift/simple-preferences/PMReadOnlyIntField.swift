@@ -1,13 +1,19 @@
+//---------------------------------------------------------------------------------------------------------------------*
+
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
+@objc(PMReadOnlyIntField) class PMReadOnlyIntField : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
 
@@ -15,6 +21,10 @@ import Cocoa
 
   override init (frame:NSRect) {
     super.init (frame:frame)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
   
@@ -25,54 +35,73 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  color binding                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMColorWell_color?
-  var mSendContinously = false
-
-  func bind_color (object:PMReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
-    mSendContinously = sendContinously
-    mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
+  var enableFromEnableBinding : Bool = true {
+    didSet {
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
+    }
   }
 
-  func unbind_color () {
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var enableFromValueBinding : Bool = true {
+    didSet {
+      self.enabled = enableFromEnableBinding && enableFromValueBinding
+    }
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var myIntegerValue : Int = 0 {
+    didSet {
+      self.integerValue = myIntegerValue
+    }
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  readOnlyValue binding                                                                                            *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue?
+
+  func bind_readOnlyValue (object:PMReadOnlyProperty_Int, file:String, line:Int) {
+    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (object:object, outlet:self, file:file, line:line)
+  }
+
+  func unbind_readOnlyValue () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
     mValueController = nil
   }
-
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMColorWell_color                                                                                      *
+//   Controller_PMReadOnlyIntField_readOnlyValue                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMColorWell_color : PMOutletEvent {
+@objc(Controller_PMReadOnlyIntField_readOnlyValue) class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
 
-  var mObject : PMReadWriteProperty_NSColor
-  var mOutlet: PMColorWell
-  var mSendContinously : Bool
+  var mObject : PMReadOnlyProperty_Int
+  var mOutlet : PMReadOnlyIntField
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMReadOnlyProperty_Int, outlet : PMReadOnlyIntField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    mSendContinously = sendContinously
     super.init ()
-    mOutlet.target = self
-    mOutlet.action = "action:"
-    mOutlet.continuous = true
+    if mOutlet.formatter == nil {
+      presentErrorWindow (file, line, "the outlet has no formatter")
+    }else if !(mOutlet.formatter is NSNumberFormatter) {
+      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+    }
     mObject.addObserver (self, postEvent:true)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -86,18 +115,12 @@ class Controller_PMColorWell_color : PMOutletEvent {
       mOutlet.stringValue = "No Selection"
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.color = v
+      mOutlet.integerValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
     }
     mOutlet.updateEnabledState()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func action (sender : PMColorWell) {
-    mObject.validateAndSetProp (mOutlet.color, windowForSheet:sender.window)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

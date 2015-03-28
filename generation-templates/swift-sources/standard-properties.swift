@@ -413,10 +413,21 @@ class PMReadOnlyProperty_NSColor : PMAbstractProperty {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadWriteProperty_NSColor                                                                                       *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadWriteProperty_NSColor : PMReadOnlyProperty_NSColor {
+  func setProp (inValue : NSColor) { } // Abstract method
+  func validateAndSetProp (candidateValue : NSColor, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   PMStoredProperty_NSColor                                                                                          *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
+class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -448,7 +459,7 @@ class PMStoredProperty_NSColor : PMReadOnlyProperty_NSColor {
 
   var propval : NSColor { get { return mValue } }
 
-  func setProp (inValue : NSColor) { mValue = inValue }
+  override func setProp (inValue : NSColor) { mValue = inValue }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  

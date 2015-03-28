@@ -16,7 +16,7 @@ list @mainXibLineDescriptorList {
 
 enum @mainXibElement {
   case text (@lstring text)
-  case outlet (@lstring outletType @lstring outletName @lstring accessibilityIdentifier)
+  case outlet (@lstring outletType @lstring outletName)
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -36,9 +36,8 @@ syntax extension easyBindings_syntax {
       select
         $Identifier$ ?let @lstring outletType
         $identifier$ ?let @lstring outletName
-        $literal_string$ ?let @lstring accessibilityIdentifier
         ioElementList += !{
-          !.outlet {!outletType:outletType !outletName:outletName !accessibilityIdentifier:accessibilityIdentifier}
+          !.outlet {!outletType:outletType !outletName:outletName}
         }
       or
         $literal_string$ ?let @lstring s
@@ -65,9 +64,8 @@ syntax extension easyBindings_syntax {
       select
         $Identifier$ ?let @lstring outletType
         $identifier$ ?let @lstring outletName
-        $literal_string$ ?let @lstring accessibilityIdentifier
         outLineDescription +=
-          !.outlet {!outletType:outletType !outletName:outletName !accessibilityIdentifier:accessibilityIdentifier}
+          !.outlet {!outletType:outletType !outletName:outletName}
       or
         $literal_string$ ?let @lstring s
         outLineDescription += !.text {!text:s}
@@ -105,10 +103,10 @@ getter @mainXibDescriptorList generateCode -> @string outResult {
         outResult += "    tf" + idx + ".drawsBackground = false\n"
         outResult += "    tf" + idx + ".bordered = false\n"
         outResult += "    view.addSubview (tf" + idx + ")\n"
-      case outlet (outletType outletName accessibilityIdentifier) :
+      case outlet (outletType outletName) :
         outResult += "  //--- Outlet " + outletName + "\n"
         outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
-        outResult += "    " + outletName + "?.setAccessibilityIdentifier (" + [accessibilityIdentifier utf8Representation] + ")\n"
+        outResult += "    " + outletName + "?.setAccessibilityIdentifier (" + [outletName utf8Representation] + ")\n"
         outResult += "    view.addSubview (" + outletName + "!)\n"
       end
       column ++
@@ -132,13 +130,13 @@ proc generateTestFile
   ?let @string inOutputDirectory
 {
   if ([inMainXibDescriptorList length] > 0) && (inBundleIdentifier != "") then
-    @2stringlist outlet_identifier_list = {}
+    @stringlist outlet_identifier_list = {}
     for () in inMainXibDescriptorList do
       for () in mLine do
         switch mElement
         case text (*) :
-        case outlet (* outletName accessibilityIdentifier) :
-          outlet_identifier_list += !outletName.string !accessibilityIdentifier.string
+        case outlet (* outletName) :
+          outlet_identifier_list += !outletName.string
         end
       end
     end
@@ -173,7 +171,7 @@ private filewrapper testFiles in "../generation-templates/xcode-project" {
   template test_py "test.py.galgasTemplate"
     ?@string BUNDLE_IDENTIFIER
     ?@string PROJECT_NAME
-    ?@2stringlist OUTLET_IDENTIFIER_LIST
+    ?@stringlist OUTLET_IDENTIFIER_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

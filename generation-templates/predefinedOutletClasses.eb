@@ -1,5 +1,8 @@
 outletClass PMButton $run $enabled ;
 
+outletClass PMReadOnlyColorWell $enabled ;
+binding PMReadOnlyColorWell $readOnlyColor : property Color ;
+
 outletClass PMColorWell $enabled ;
 binding PMColorWell $color : property Color {sendContinously : Bool} ;
 

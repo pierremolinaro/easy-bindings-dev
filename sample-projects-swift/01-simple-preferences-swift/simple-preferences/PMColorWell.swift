@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMDatePicker) class PMDatePicker : NSDatePicker, PMUserClassName {
+@objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -11,6 +11,13 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    noteObjectAllocation (self)
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
@@ -18,41 +25,46 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  date binding                                                                                                     *
+  //  color binding                                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMDatePicker_date?
+  private var mValueController : Controller_PMColorWell_color?
+  var mSendContinously = false
 
-  func bind_date (object:PMStoredProperty_NSDate, file:String, line:Int) {
-    mValueController = Controller_PMDatePicker_date (object:object, outlet:self, file:file, line:line)
+  func bind_color (object:PMReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
+    mSendContinously = sendContinously
+    mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
 
-  func unbind_date () {
+  func unbind_color () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
     mValueController = nil
   }
+
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMDatePicker_date                                                                                      *
+//   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMDatePicker_date)
-class Controller_PMDatePicker_date : PMOutletEvent {
+class Controller_PMColorWell_color : PMOutletEvent {
 
-  var mObject : PMStoredProperty_NSDate
-  var mOutlet: PMDatePicker
+  var mObject : PMReadWriteProperty_NSColor
+  var mOutlet: PMColorWell
+  var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMStoredProperty_NSDate, outlet : PMDatePicker, file : String, line : Int) {
+  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
+    mSendContinously = sendContinously
     super.init ()
     mOutlet.target = self
     mOutlet.action = "action:"
+    mOutlet.continuous = true
     mObject.addObserver (self, postEvent:true)
   }
 
@@ -74,7 +86,7 @@ class Controller_PMDatePicker_date : PMOutletEvent {
       mOutlet.stringValue = "No Selection"
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.dateValue = v
+      mOutlet.color = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
@@ -84,10 +96,11 @@ class Controller_PMDatePicker_date : PMOutletEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func action (sender : AnyObject!) {
-    mObject.setProp (mOutlet.dateValue)
+  func action (sender : PMColorWell) {
+    mObject.validateAndSetProp (mOutlet.color, windowForSheet:sender.window)
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
