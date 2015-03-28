@@ -1,19 +1,19 @@
-xcodeproject "fr.irccyn" ;
+xcodeproject "fr.irccyn.molinaro" ;
 
 mainxib {
-  {"Name: ", PMTextField mNameTextField},
-  {"First Name:", PMTextField mFirstNameTextField},
-  {"Full Name:", PMReadOnlyTextField mFullNameTextField},
-  {"Uppercase full Name:", PMReadOnlyTextField mUpperCaseFullNameTextField},
-  PMButton myButton
+  {"First Name:", PMTextField mFirstNameTextField "firstName"},
+  {"Name: ", PMTextField mLastNameTextField "lastName"},
+  {"Full Name:", PMReadOnlyTextField mFullNameTextField "firstLastName"},
+  {"Uppercase full Name:", PMReadOnlyTextField mUpperCaseFullNameTextField "uppercaseFirstLastName"},
+  PMButton myButton "amedeeSchmurtz"
 }
 
 prefs {
-  property String mName default "Amédée" ;
-  property String mFirstName default "Schmurtz" ;
-  transient String mFullName dependsFrom self.mName, self.mFirstName ;
+  property String mFirstName default "Amédée" ;
+  property String mLastName default "Schmurtz" ;
+  transient String mFullName dependsFrom self.mFirstName, self.mLastName ;
   transient String mUpperCaseFullName dependsFrom self.mFullName ;
-  outlet PMTextField mNameTextField $value self.mName {sendContinously:yes} ;
+  outlet PMTextField mLastNameTextField $value self.mLastName {sendContinously:yes} ;
   outlet PMTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
   outlet PMReadOnlyTextField mFullNameTextField $readOnlyValue self.mFullName ;
   outlet PMReadOnlyTextField mUpperCaseFullNameTextField $readOnlyValue self.mUpperCaseFullName ;

@@ -1221,6 +1221,19 @@ void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                             Routine 'generateTestFile'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateTestFile (const class GALGAS_string constinArgument0,
+                               const class GALGAS_string constinArgument1,
+                               const class GALGAS_mainXibDescriptorList constinArgument2,
+                               const class GALGAS_string constinArgument3,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                           Routine 'generateXcodeProject'                                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

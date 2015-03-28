@@ -4,121 +4,134 @@
 # https://pypi.python.org/pypi/atomac
 # https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py
 
-import atomac, sys, time
-import os
+#--- START OF USER ZONE 1
 
-# http://stackoverflow.com/questions/2257441/python-random-string-generation-with-upper-case-letters-and-digits
+
+#--- END OF USER ZONE 1
+
+#------------------------------------------------------------------------------*
 
 import random, string
 
-scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
-atomac.launchAppByBundlePath (scriptDir + "/build/Release/02-transient-property-swift.app")
+import subprocess, os, sys, atexit
+import atomac, sys, time, inspect
 
-bundleName = 'fr.free.pcmolinaro.-2-transient-property-swift'
-monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep(.5)
+#------------------------------------------------------------------------------*
+#   GET SOURCE LINE NUMBER                                                     *
+#------------------------------------------------------------------------------*
 
-window = monAppli.windows('02-transient-property')[0]
+def lineno():
+  return inspect.currentframe().f_back.f_lineno
 
-firstName = window.findFirst (AXDescription='firstName')
-lastName = window.findFirst (AXDescription='lastName')
-firstLastName = window.findFirst (AXDescription='firstLastName')
-uppercaseFirstLastName = window.findFirst (AXDescription='uppercaseFirstLastName')
-amedeeSchmurtzButton = window.findFirst (AXDescription='amedeeSchmurtz')
+#------------------------------------------------------------------------------*
+#   LAUNCH APPLICATION                                                         *
+#------------------------------------------------------------------------------*
 
-#--- Enter names via 'firstName'
-amedeeSchmurtzButton.Press () ;
-time.sleep(0.5)
-if firstName.AXValue != u'Amédée' :
-    print '*** Erreur 1 ***'
+def launchApplication ():
+  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
+  atomac.launchAppByBundlePath (scriptDir + "/build/Default/transient-property.app")
+  time.sleep (0.5)
+  application = atomac.getAppRefByBundleId ('fr.irccyn.molinaro.transient-property')
+  return application
+
+#------------------------------------------------------------------------------*
+#   QUIT APPLICATION                                                           *
+#------------------------------------------------------------------------------*
+
+def quitApplication ():
+  atomac.terminateAppByBundleId ('fr.irccyn.molinaro.transient-property')
+  time.sleep (0.5)
+
+#------------------------------------------------------------------------------*
+#   PREFERENCES WINDOW                                                         *
+#------------------------------------------------------------------------------*
+
+def setUpPreferencesWindow (application) :
+  time.sleep (0.5)
+  window = application.windows ('transient-property')[0]
+  global mFirstNameTextField
+  mFirstNameTextField = window.findFirst (AXIdentifier='firstName')
+  global mLastNameTextField
+  mLastNameTextField = window.findFirst (AXIdentifier='lastName')
+  global mFullNameTextField
+  mFullNameTextField = window.findFirst (AXIdentifier='firstLastName')
+  global mUpperCaseFullNameTextField
+  mUpperCaseFullNameTextField = window.findFirst (AXIdentifier='uppercaseFirstLastName')
+  global myButton
+  myButton = window.findFirst (AXIdentifier='amedeeSchmurtz')
+
+#------------------------------------------------------------------------------*
+#   CHECK TEXT FIELD VALUE                                                     *
+#------------------------------------------------------------------------------*
+
+def checkTextFieldValue (textField, expectedValue, line):
+  if textField.AXValue != expectedValue :
+    print '*** Check error at line ' + str (line) + ' ***'
     sys.exit (1)
 
-#--- Enter lastNameValue via 'lastName'
-if lastName.AXValue != "Schmurtz":
-    print '*** Erreur 2 ***'
-    sys.exit (1)
+#------------------------------------------------------------------------------*
+#   SET TEXT FIELD                                                             *
+#------------------------------------------------------------------------------*
 
-#--- check 'firstLastName'
+def setTextFieldValue (textField, value):
+  textField.AXFocused = True
+  textField.AXValue = value
+  textField.Confirm ()
+  time.sleep (0.5)
+
+#------------------------------------------------------------------------------*
+#   MAIN                                                                       *
+#------------------------------------------------------------------------------*
+
+#--- START OF USER ZONE 2
+
+application = launchApplication ()
+setUpPreferencesWindow (application)
+
+myButton.Press () ;
+
+checkTextFieldValue (mFirstNameTextField, u'Amédée', lineno())
+checkTextFieldValue (mLastNameTextField, 'Schmurtz', lineno())
+
 response = u"Amédée" + " " + "Schmurtz"
-if firstLastName.AXValue != response:
-    print '*** Erreur 3 ***'
-    sys.exit (1)
-
-#--- check 'uppercaseFirstLastName'
-if uppercaseFirstLastName.AXValue !=  response.upper ():
-    print '*** Erreur 4 ***'
-    sys.exit (1)
-
-
+checkTextFieldValue (mFullNameTextField, response, lineno())
+checkTextFieldValue (mUpperCaseFullNameTextField, response.upper (), lineno())
 
 #--- Enter firstNameValue via 'firstName'
 firstNameValue = ''.join (random.choice (string.ascii_lowercase + string.digits) for x in range(8))
 lastNameValue = ''.join (random.choice (string.ascii_lowercase + string.digits) for x in range(8))
-#print firstName.getActions ()
-#print firstName.getAttributes ()
-firstName.AXFocused = True
-firstName.AXValue = firstNameValue
-firstName.Confirm ()
-time.sleep(0.5)
-if firstName.AXValue != firstNameValue:
-    print '*** Erreur 11 ***'
-    sys.exit (1)
+
+setTextFieldValue (mFirstNameTextField, firstNameValue)
+checkTextFieldValue (mFirstNameTextField, firstNameValue, lineno())
 
 #--- Enter lastNameValue via 'lastName'
-lastName.AXFocused = True
-lastName.AXValue = lastNameValue
-lastName.Confirm ()
-time.sleep(0.5)
-if lastName.AXValue != lastNameValue:
-    print '*** Erreur 12 ***'
-    sys.exit (1)
+setTextFieldValue (mLastNameTextField, lastNameValue)
+checkTextFieldValue (mLastNameTextField, lastNameValue, lineno())
 
 #--- check 'firstLastName'
 response = firstNameValue + ' ' + lastNameValue
-if firstLastName.AXValue != response:
-    print '*** Erreur 13 ***'
-    sys.exit (1)
+checkTextFieldValue (mFullNameTextField, response, lineno())
 
-#--- check 'uppercaseFirstLastName'
-if uppercaseFirstLastName.AXValue !=  response.upper ():
-    print '*** Erreur 14 ***'
-    sys.exit (1)
-
-
+#--- check 'mUpperCaseFullNameTextField'
+checkTextFieldValue (mUpperCaseFullNameTextField, response.upper (), lineno())
 
 #--- Quit
-atomac.terminateAppByBundleId (bundleName)
-time.sleep(.5)
+quitApplication ()
 
 #--- Relaunch application to check preferences have recorded the new value
-atomac.launchAppByBundlePath (scriptDir + "/build/Release/02-transient-property-swift.app")
-monAppli = atomac.getAppRefByBundleId (bundleName)
-time.sleep(.5)
+application = launchApplication ()
+setUpPreferencesWindow (application)
 
-window = monAppli.windows ('02-transient-property')[0]
-firstName = window.findFirst (AXDescription='firstName')
-lastName = window.findFirst (AXDescription='lastName')
-firstLastName = window.findFirst (AXDescription='firstLastName')
-uppercaseFirstLastName = window.findFirst (AXDescription='uppercaseFirstLastName')
+checkTextFieldValue (mFirstNameTextField, firstNameValue, lineno())
+checkTextFieldValue (mLastNameTextField, lastNameValue, lineno())
+checkTextFieldValue (mFullNameTextField, response, lineno())
+checkTextFieldValue (mUpperCaseFullNameTextField, response.upper (), lineno())
 
-if firstName.AXValue != firstNameValue:
-    print '*** Erreur 21 ***'
-    sys.exit (1)
-
-if lastName.AXValue != lastNameValue:
-    print '*** Erreur 22 ***'
-    sys.exit (1)
-
-#--- check 'firstLastName'
-if firstLastName.AXValue != response:
-    print '*** Erreur 23 ***'
-    sys.exit (1)
-
-#--- check 'uppercaseFirstLastName'
-if uppercaseFirstLastName.AXValue !=  response.upper ():
-    print '*** Erreur 24 ***'
-    sys.exit (1)
-
-atomac.terminateAppByBundleId (bundleName)
+quitApplication ()
 
 print 'Success !'
+
+#--- END OF USER ZONE 2
+
+
+#----------------------------------------------------------------------------*

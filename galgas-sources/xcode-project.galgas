@@ -162,6 +162,13 @@ private proc generateXcodeProjectInternal
     !"MainMenu.xib"
     !s
   ]
+  s = [filewrapper additionalXcodeFiles.build_command
+    !projectName
+  ]
+  [s writeToExecutableFileWhenDifferentContents
+    !inOutputDirectory + "/build.py"
+    ?*
+  ]
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
@@ -179,7 +186,8 @@ private filewrapper additionalXcodeFiles in "../generation-templates/xcode-proje
     ?@string VERSION_STRING
     ?@stringset HANDLED_EXTENSION_SET
 
-  template build_command "build.command"
+  template build_command "build.py.galgasTemplate"
+    ?@string PROJECT_NAME
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

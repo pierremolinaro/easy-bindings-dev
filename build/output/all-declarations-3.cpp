@@ -19,44 +19,44 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 114)) ;
-  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("code-generation.galgas", 109)) ;
-  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 110)) ;
-  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("code-generation.galgas", 111)) ;
-  temp_0.addAssign_operation (GALGAS_string ("standard-properties")  COMMA_SOURCE_FILE ("code-generation.galgas", 112)) ;
-  temp_0.addAssign_operation (GALGAS_string ("generic-bindings")  COMMA_SOURCE_FILE ("code-generation.galgas", 113)) ;
-  temp_0.addAssign_operation (GALGAS_string ("application")  COMMA_SOURCE_FILE ("code-generation.galgas", 114)) ;
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 120)) ;
+  temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("code-generation.galgas", 115)) ;
+  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 116)) ;
+  temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("code-generation.galgas", 117)) ;
+  temp_0.addAssign_operation (GALGAS_string ("standard-properties")  COMMA_SOURCE_FILE ("code-generation.galgas", 118)) ;
+  temp_0.addAssign_operation (GALGAS_string ("generic-bindings")  COMMA_SOURCE_FILE ("code-generation.galgas", 119)) ;
+  temp_0.addAssign_operation (GALGAS_string ("application")  COMMA_SOURCE_FILE ("code-generation.galgas", 120)) ;
   GALGAS_stringlist var_swiftFiles = temp_0 ;
   const enumGalgasBool test_1 = constinArgument_inHasEntities.boolEnum () ;
   if (kBoolTrue == test_1) {
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 117)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("code-generation.galgas", 118)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 119)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 120)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 123)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("code-generation.galgas", 124)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 126)) ;
   }
-  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 122)) ;
-  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 122)) ;
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 128)) ;
+  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 128)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_4053 (var_swiftFiles, kEnumeration_up) ;
-  while (enumerator_4053.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4053.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
-    GALGAS_string var_fileName = enumerator_4053.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 126)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 127)) ;
+  cEnumerator_stringlist enumerator_4209 (var_swiftFiles, kEnumeration_up) ;
+  while (enumerator_4209.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4209.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 131)) ;
+    GALGAS_string var_fileName = enumerator_4209.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 132)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 133)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 128)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 134)) ;
     }
-    enumerator_4053.gotoNextObject () ;
+    enumerator_4209.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_4310 (var_xibFiles, kEnumeration_up) ;
-  while (enumerator_4310.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4310.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 135)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 135)) ;
-    GALGAS_string var_fileName = enumerator_4310.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 136)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 137)) ;
+  cEnumerator_stringlist enumerator_4466 (var_xibFiles, kEnumeration_up) ;
+  while (enumerator_4466.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4466.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 141)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 141)) ;
+    GALGAS_string var_fileName = enumerator_4466.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 142)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 143)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 138)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 144)) ;
     }
-    enumerator_4310.gotoNextObject () ;
+    enumerator_4466.gotoNextObject () ;
   }
 }
 
@@ -184,6 +184,9 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   {
   GALGAS_string::class_method_generateFile (var_sourceDir, GALGAS_string ("MainMenu.xib"), var_s, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 160)) ;
   }
+  var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_build_5F_command (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.galgas", 165))) ;
+  GALGAS_bool joker_6044 ; // Joker input parameter
+  var_s.method_writeToExecutableFileWhenDifferentContents (constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/build.py"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 169)), joker_6044, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 168)) ;
 }
 
 
@@ -1003,11 +1006,42 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (C_Compiler
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compiler * /* inCompiler */
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compiler * /* inCompiler */,
+                                                                         const GALGAS_string & in_PROJECT_5F_NAME
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "#!/bin/sh\n"
-    "cd `dirname $0` && xcodebuild -alltargets -configuration Default\n" ;
+  result << "#! /usr/bin/env python\n"
+    "# -*- coding: UTF-8 -*-\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "import subprocess, os, sys, atexit\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def cleanup():\n"
+    "  if buildProcess.poll () == None :\n"
+    "    buildProcess.kill ()\n"
+    "    print 'Build process killed'\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "#--- Register a function for killing build subprocess\n"
+    "atexit.register (cleanup)\n"
+    "#------------------- Get script absolute path\n"
+    "scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
+    "os.chdir (scriptDir)\n"
+    "#------------------- Build\n"
+    "buildProcess = subprocess.Popen ([\"eb\", \"-v\", \"" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << ".eb\"])\n"
+    "buildProcess.wait ()\n"
+    "#------------------- Xcode build\n"
+    "buildProcess = subprocess.Popen ([\"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"])\n"
+    "buildProcess.wait ()\n"
+    "#-------------------\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n" ;
   return GALGAS_string (result) ;
 }
 
@@ -1912,6 +1946,200 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   result << in_PROJECT_5F_REF.stringValue () ;
   result << " /* Project object */;\n"
     "}\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             Routine 'generateTestFile'                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdentifier,
+                               const GALGAS_string constinArgument_inProjectName,
+                               const GALGAS_mainXibDescriptorList constinArgument_inMainXibDescriptorList,
+                               const GALGAS_string constinArgument_inOutputDirectory,
+                               C_Compiler * inCompiler
+                               COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_bool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inMainXibDescriptorList.reader_length (SOURCE_FILE ("main-xib.galgas", 134)).objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
+  if (kBoolTrue == test_0.boolEnum ()) {
+    test_0 = GALGAS_bool (kIsNotEqual, constinArgument_inBundleIdentifier.objectCompare (GALGAS_string::makeEmptyString ())) ;
+  }
+  const enumGalgasBool test_1 = test_0.boolEnum () ;
+  if (kBoolTrue == test_1) {
+    GALGAS__32_stringlist var_outlet_5F_identifier_5F_list = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 135)) ;
+    cEnumerator_mainXibDescriptorList enumerator_5790 (constinArgument_inMainXibDescriptorList, kEnumeration_up) ;
+    while (enumerator_5790.hasCurrentObject ()) {
+      cEnumerator_mainXibLineDescriptorList enumerator_5815 (enumerator_5790.current_mLine (HERE), kEnumeration_up) ;
+      while (enumerator_5815.hasCurrentObject ()) {
+        switch (enumerator_5815.current_mElement (HERE).enumValue ()) {
+        case GALGAS_mainXibElement::kNotBuilt:
+          break ;
+        case GALGAS_mainXibElement::kEnum_text:
+          {
+          }
+          break ;
+        case GALGAS_mainXibElement::kEnum_outlet:
+          {
+            const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_6014 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_5815.current_mElement (HERE).unsafePointer ()) ;
+            const GALGAS_lstring extractedValue_outletName = extractPtr_6014->mAssociatedValue1 ;
+            const GALGAS_lstring extractedValue_accessibilityIdentifier = extractPtr_6014->mAssociatedValue2 ;
+            var_outlet_5F_identifier_5F_list.addAssign_operation (extractedValue_outletName.mAttribute_string, extractedValue_accessibilityIdentifier.mAttribute_string  COMMA_SOURCE_FILE ("main-xib.galgas", 141)) ;
+          }
+          break ;
+        }
+        enumerator_5815.gotoNextObject () ;
+      }
+      enumerator_5790.gotoNextObject () ;
+    }
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_testFiles_test_5F_py (inCompiler, constinArgument_inBundleIdentifier, constinArgument_inProjectName, var_outlet_5F_identifier_5F_list COMMA_SOURCE_FILE ("main-xib.galgas", 145))) ;
+    GALGAS_string var_header = GALGAS_string ("#!/usr/bin/python\n"
+      "# coding=utf-8\n"
+      "\n"
+      "# https://pypi.python.org/pypi/atomac\n"
+      "# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n"
+      "\n") ;
+    {
+    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, GALGAS_string ("test.py"), GALGAS_string ("#"), var_header, GALGAS_string::makeEmptyString (), var_s, GALGAS_string ("#    ENTER USER CODE HERE\n"), GALGAS_string ("\n"
+      "#----------------------------------------------------------------------------*\n"), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 154)) ;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                               Filewrapper 'testFiles'                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_testFiles_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_testFiles_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_testFiles (
+  "",
+  0,
+  gWrapperAllFiles_testFiles_0,
+  0,
+  gWrapperAllDirectories_testFiles_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Filewrapper template 'testFiles test_py'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_testFiles_test_5F_py (C_Compiler * /* inCompiler */,
+                                                        const GALGAS_string & in_BUNDLE_5F_IDENTIFIER,
+                                                        const GALGAS_string & in_PROJECT_5F_NAME,
+                                                        const GALGAS__32_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
+                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "import random, string\n"
+    "\n"
+    "import subprocess, os, sys, atexit\n"
+    "import atomac, sys, time, inspect\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   GET SOURCE LINE NUMBER                                                     *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def lineno():\n"
+    "  return inspect.currentframe().f_back.f_lineno\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   LAUNCH APPLICATION                                                         *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def launchApplication ():\n"
+    "  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
+    "  atomac.launchAppByBundlePath (scriptDir + \"/build/Default/" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << ".app\")\n"
+    "  time.sleep (0.5)\n"
+    "  application = atomac.getAppRefByBundleId ('" ;
+  result << in_BUNDLE_5F_IDENTIFIER.stringValue () ;
+  result << "." ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "')\n"
+    "  return application\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   QUIT APPLICATION                                                           *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def quitApplication ():\n"
+    "  atomac.terminateAppByBundleId ('" ;
+  result << in_BUNDLE_5F_IDENTIFIER.stringValue () ;
+  result << "." ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "')\n"
+    "  time.sleep (0.5)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   PREFERENCES WINDOW                                                         *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def setUpPreferencesWindow (application) :\n"
+    "  time.sleep (0.5)\n"
+    "  window = application.windows ('" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "')[0]\n" ;
+  GALGAS_uint index_1779_ (0) ;
+  if (in_OUTLET_5F_IDENTIFIER_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1779 (in_OUTLET_5F_IDENTIFIER_5F_LIST, kEnumeration_up) ;
+    while (enumerator_1779.hasCurrentObject ()) {
+      result << "  global " ;
+      result << enumerator_1779.current_mValue_30_ (HERE).stringValue () ;
+      result << "\n"
+        "  " ;
+      result << enumerator_1779.current_mValue_30_ (HERE).stringValue () ;
+      result << " = window.findFirst (AXIdentifier='" ;
+      result << enumerator_1779.current_mValue_31_ (HERE).stringValue () ;
+      result << "')\n" ;
+      index_1779_.increment () ;
+      enumerator_1779.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   CHECK TEXT FIELD VALUE                                                     *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def checkTextFieldValue (textField, expectedValue, line):\n"
+    "  if textField.AXValue != expectedValue :\n"
+    "    print '*** Check error at line ' + str (line) + ' ***'\n"
+    "    sys.exit (1)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   SET TEXT FIELD                                                             *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def setTextFieldValue (textField, value):\n"
+    "  textField.AXFocused = True\n"
+    "  textField.AXValue = value\n"
+    "  textField.Confirm ()\n"
+    "  time.sleep (0.5)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   MAIN                                                                       *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n" ;
   return GALGAS_string (result) ;
 }
 
@@ -8868,60 +9096,62 @@ GALGAS_string categoryReader_generateCode (const GALGAS_mainXibDescriptorList & 
                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_mainXibDescriptorList temp_0 = inObject ;
-  result_outResult = GALGAS_string ("    var y = OUTLET_HEIGHT * 1.5 * ").add_operation (temp_0.reader_length (SOURCE_FILE ("main-xib.galgas", 84)).reader_string (SOURCE_FILE ("main-xib.galgas", 84)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 84)).add_operation (GALGAS_string (".0\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 84)) ;
-  result_outResult.dotAssign_operation (GALGAS_string ("    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 85)) ;
+  result_outResult = GALGAS_string ("    var y = OUTLET_HEIGHT * 1.5 * ").add_operation (temp_0.reader_length (SOURCE_FILE ("main-xib.galgas", 89)).reader_string (SOURCE_FILE ("main-xib.galgas", 89)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 89)).add_operation (GALGAS_string (".0\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 89)) ;
+  result_outResult.dotAssign_operation (GALGAS_string ("    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 90)) ;
   GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 0U) ;
   GALGAS_uint var_columnMax = GALGAS_uint ((uint32_t) 1U) ;
   const GALGAS_mainXibDescriptorList temp_1 = inObject ;
-  cEnumerator_mainXibDescriptorList enumerator_3309 (temp_1, kEnumeration_up) ;
-  while (enumerator_3309.hasCurrentObject ()) {
+  cEnumerator_mainXibDescriptorList enumerator_3596 (temp_1, kEnumeration_up) ;
+  while (enumerator_3596.hasCurrentObject ()) {
     GALGAS_uint var_column = GALGAS_uint ((uint32_t) 0U) ;
-    result_outResult.dotAssign_operation (GALGAS_string ("    y -= OUTLET_HEIGHT\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 90)) ;
-    cEnumerator_mainXibLineDescriptorList enumerator_3395 (enumerator_3309.current_mLine (HERE), kEnumeration_up) ;
-    while (enumerator_3395.hasCurrentObject ()) {
-      switch (enumerator_3395.current_mElement (HERE).enumValue ()) {
+    result_outResult.dotAssign_operation (GALGAS_string ("    y -= OUTLET_HEIGHT\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 95)) ;
+    cEnumerator_mainXibLineDescriptorList enumerator_3682 (enumerator_3596.current_mLine (HERE), kEnumeration_up) ;
+    while (enumerator_3682.hasCurrentObject ()) {
+      switch (enumerator_3682.current_mElement (HERE).enumValue ()) {
       case GALGAS_mainXibElement::kNotBuilt:
         break ;
       case GALGAS_mainXibElement::kEnum_text:
         {
-          const cEnumAssociatedValues_mainXibElement_text * extractPtr_4118 = (const cEnumAssociatedValues_mainXibElement_text *) (enumerator_3395.current_mElement (HERE).unsafePointer ()) ;
-          const GALGAS_lstring extractedValue_t = extractPtr_4118->mAssociatedValue0 ;
-          var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("main-xib.galgas", 94)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("  //--- Text ").add_operation (extractedValue_t.reader_string (SOURCE_FILE ("main-xib.galgas", 95)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 95)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 95))  COMMA_SOURCE_FILE ("main-xib.galgas", 95)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("  //  createTextFieldForText (").add_operation (extractedValue_t.mAttribute_string.reader_utf_38_Representation (SOURCE_FILE ("main-xib.galgas", 96)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 96)).add_operation (GALGAS_string (", y:&y, col:0, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 96))  COMMA_SOURCE_FILE ("main-xib.galgas", 96)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    let tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 97)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 97)).add_operation (GALGAS_string (" = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 97)).add_operation (var_column.reader_string (SOURCE_FILE ("main-xib.galgas", 97)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 97)).add_operation (GALGAS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 97))  COMMA_SOURCE_FILE ("main-xib.galgas", 97)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 98)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 98)).add_operation (GALGAS_string (".stringValue = "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 98)).add_operation (extractedValue_t.mAttribute_string.reader_utf_38_Representation (SOURCE_FILE ("main-xib.galgas", 98)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 98)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 98))  COMMA_SOURCE_FILE ("main-xib.galgas", 98)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 99)).add_operation (GALGAS_string (".editable = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 99))  COMMA_SOURCE_FILE ("main-xib.galgas", 99)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 100)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 100)).add_operation (GALGAS_string (".drawsBackground = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 100))  COMMA_SOURCE_FILE ("main-xib.galgas", 100)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 101)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 101)).add_operation (GALGAS_string (".bordered = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 101))  COMMA_SOURCE_FILE ("main-xib.galgas", 101)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    view.addSubview (tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 102)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 102))  COMMA_SOURCE_FILE ("main-xib.galgas", 102)) ;
+          const cEnumAssociatedValues_mainXibElement_text * extractPtr_4405 = (const cEnumAssociatedValues_mainXibElement_text *) (enumerator_3682.current_mElement (HERE).unsafePointer ()) ;
+          const GALGAS_lstring extractedValue_t = extractPtr_4405->mAssociatedValue0 ;
+          var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("main-xib.galgas", 99)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("  //--- Text ").add_operation (extractedValue_t.reader_string (SOURCE_FILE ("main-xib.galgas", 100)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 100)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 100))  COMMA_SOURCE_FILE ("main-xib.galgas", 100)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("  //  createTextFieldForText (").add_operation (extractedValue_t.mAttribute_string.reader_utf_38_Representation (SOURCE_FILE ("main-xib.galgas", 101)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 101)).add_operation (GALGAS_string (", y:&y, col:0, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 101))  COMMA_SOURCE_FILE ("main-xib.galgas", 101)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    let tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 102)).add_operation (GALGAS_string (" = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 102)).add_operation (var_column.reader_string (SOURCE_FILE ("main-xib.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 102)).add_operation (GALGAS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 102))  COMMA_SOURCE_FILE ("main-xib.galgas", 102)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 103)).add_operation (GALGAS_string (".stringValue = "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 103)).add_operation (extractedValue_t.mAttribute_string.reader_utf_38_Representation (SOURCE_FILE ("main-xib.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 103)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 103))  COMMA_SOURCE_FILE ("main-xib.galgas", 103)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 104)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 104)).add_operation (GALGAS_string (".editable = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 104))  COMMA_SOURCE_FILE ("main-xib.galgas", 104)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105)).add_operation (GALGAS_string (".drawsBackground = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105))  COMMA_SOURCE_FILE ("main-xib.galgas", 105)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 106)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 106)).add_operation (GALGAS_string (".bordered = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 106))  COMMA_SOURCE_FILE ("main-xib.galgas", 106)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    view.addSubview (tf").add_operation (var_idx.reader_string (SOURCE_FILE ("main-xib.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 107)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 107))  COMMA_SOURCE_FILE ("main-xib.galgas", 107)) ;
         }
         break ;
       case GALGAS_mainXibElement::kEnum_outlet:
         {
-          const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_4461 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_3395.current_mElement (HERE).unsafePointer ()) ;
-          const GALGAS_lstring extractedValue_outletType = extractPtr_4461->mAssociatedValue0 ;
-          const GALGAS_lstring extractedValue_outletName = extractPtr_4461->mAssociatedValue1 ;
-          result_outResult.dotAssign_operation (GALGAS_string ("  //--- Outlet ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 104)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 104)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 104))  COMMA_SOURCE_FILE ("main-xib.galgas", 104)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105)).add_operation (GALGAS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105)).add_operation (extractedValue_outletType.reader_string (SOURCE_FILE ("main-xib.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105)).add_operation (GALGAS_string ("(frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105)).add_operation (var_column.reader_string (SOURCE_FILE ("main-xib.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105)).add_operation (GALGAS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 105))  COMMA_SOURCE_FILE ("main-xib.galgas", 105)) ;
-          result_outResult.dotAssign_operation (GALGAS_string ("    view.addSubview (").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 106)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 106)).add_operation (GALGAS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 106))  COMMA_SOURCE_FILE ("main-xib.galgas", 106)) ;
+          const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_4903 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_3682.current_mElement (HERE).unsafePointer ()) ;
+          const GALGAS_lstring extractedValue_outletType = extractPtr_4903->mAssociatedValue0 ;
+          const GALGAS_lstring extractedValue_outletName = extractPtr_4903->mAssociatedValue1 ;
+          const GALGAS_lstring extractedValue_accessibilityIdentifier = extractPtr_4903->mAssociatedValue2 ;
+          result_outResult.dotAssign_operation (GALGAS_string ("  //--- Outlet ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 109)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 109))  COMMA_SOURCE_FILE ("main-xib.galgas", 109)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 110)).add_operation (GALGAS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 110)).add_operation (extractedValue_outletType.reader_string (SOURCE_FILE ("main-xib.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 110)).add_operation (GALGAS_string ("(frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 110)).add_operation (var_column.reader_string (SOURCE_FILE ("main-xib.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 110)).add_operation (GALGAS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 110))  COMMA_SOURCE_FILE ("main-xib.galgas", 110)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    ").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 111)).add_operation (GALGAS_string ("\?.setAccessibilityIdentifier ("), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 111)).add_operation (extractedValue_accessibilityIdentifier.mAttribute_string.reader_utf_38_Representation (SOURCE_FILE ("main-xib.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 111)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 111))  COMMA_SOURCE_FILE ("main-xib.galgas", 111)) ;
+          result_outResult.dotAssign_operation (GALGAS_string ("    view.addSubview (").add_operation (extractedValue_outletName.reader_string (SOURCE_FILE ("main-xib.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 112)).add_operation (GALGAS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 112))  COMMA_SOURCE_FILE ("main-xib.galgas", 112)) ;
         }
         break ;
       }
-      var_column.increment_operation (inCompiler  COMMA_SOURCE_FILE ("main-xib.galgas", 108)) ;
-      enumerator_3395.gotoNextObject () ;
+      var_column.increment_operation (inCompiler  COMMA_SOURCE_FILE ("main-xib.galgas", 114)) ;
+      enumerator_3682.gotoNextObject () ;
     }
     const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, var_column.objectCompare (var_columnMax)).boolEnum () ;
     if (kBoolTrue == test_2) {
       var_columnMax = var_column ;
     }
-    result_outResult.dotAssign_operation (GALGAS_string ("    y -= OUTLET_HEIGHT / 2.0\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 113)) ;
-    enumerator_3309.gotoNextObject () ;
+    result_outResult.dotAssign_operation (GALGAS_string ("    y -= OUTLET_HEIGHT / 2.0\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 119)) ;
+    enumerator_3596.gotoNextObject () ;
   }
-  result_outResult.dotAssign_operation (GALGAS_string ("  //--- Set pref window content view\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 115)) ;
+  result_outResult.dotAssign_operation (GALGAS_string ("  //--- Set pref window content view\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 121)) ;
   const GALGAS_mainXibDescriptorList temp_3 = inObject ;
-  result_outResult.dotAssign_operation (GALGAS_string ("    window\?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * ").add_operation (var_columnMax.reader_string (SOURCE_FILE ("main-xib.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 116)).add_operation (GALGAS_string (".0, height:OUTLET_HEIGHT * (1.5 * "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 116)).add_operation (temp_3.reader_length (SOURCE_FILE ("main-xib.galgas", 116)).reader_string (SOURCE_FILE ("main-xib.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 116)).add_operation (GALGAS_string (".0 + 0.5)))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 116))  COMMA_SOURCE_FILE ("main-xib.galgas", 116)) ;
-  result_outResult.dotAssign_operation (GALGAS_string ("    window\?.contentView = view\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 117)) ;
+  result_outResult.dotAssign_operation (GALGAS_string ("    window\?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * ").add_operation (var_columnMax.reader_string (SOURCE_FILE ("main-xib.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 122)).add_operation (GALGAS_string (".0, height:OUTLET_HEIGHT * (1.5 * "), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 122)).add_operation (temp_3.reader_length (SOURCE_FILE ("main-xib.galgas", 122)).reader_string (SOURCE_FILE ("main-xib.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 122)).add_operation (GALGAS_string (".0 + 0.5)))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.galgas", 122))  COMMA_SOURCE_FILE ("main-xib.galgas", 122)) ;
+  result_outResult.dotAssign_operation (GALGAS_string ("    window\?.contentView = view\n")  COMMA_SOURCE_FILE ("main-xib.galgas", 123)) ;
 //---
   return result_outResult ;
 }
@@ -17346,331 +17576,6 @@ GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropert
       result = *p ;
     }else{
       inCompiler->castError ("documentObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::~ GALGAS_prefsObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_prefsObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                            const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_prefsObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_prefsObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_prefsObservablePropertyMap_2D_element::objectCompare (const GALGAS_prefsObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_prefsObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_prefsObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_prefsObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                const int32_t inIndentation) const {
-  ioString << "<struct @prefsObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_prefsObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_prefsObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @prefsObservablePropertyMap-element type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_prefsObservablePropertyMap_2D_element ("prefsObservablePropertyMap-element",
-                                                              NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_prefsObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_prefsObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_prefsObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_prefsObservablePropertyMap_2D_element result ;
-  const GALGAS_prefsObservablePropertyMap_2D_element * p = (const GALGAS_prefsObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_prefsObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("prefsObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (void) :
-mAttribute_mUserDefined (),
-mAttribute_mOutletClassName (),
-mAttribute_mHasRunAction (),
-mAttribute_mHasEnabled (),
-mAttribute_mHandlesTableViewBinding () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::~ GALGAS_outletClassDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (const GALGAS_bool & inOperand0,
-                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                            const GALGAS_bool & inOperand2,
-                                                                                            const GALGAS_bool & inOperand3,
-                                                                                            const GALGAS_bool & inOperand4) :
-mAttribute_mUserDefined (inOperand0),
-mAttribute_mOutletClassName (inOperand1),
-mAttribute_mHasRunAction (inOperand2),
-mAttribute_mHasEnabled (inOperand3),
-mAttribute_mHandlesTableViewBinding (inOperand4) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassDeclarationList_2D_element (GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_new (const GALGAS_bool & inOperand0,
-                                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                                            const GALGAS_bool & inOperand2,
-                                                                                                            const GALGAS_bool & inOperand3,
-                                                                                                            const GALGAS_bool & inOperand4 
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare (const GALGAS_outletClassDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mUserDefined.objectCompare (inOperand.mAttribute_mUserDefined) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletClassName.objectCompare (inOperand.mAttribute_mOutletClassName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHasRunAction.objectCompare (inOperand.mAttribute_mHasRunAction) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHasEnabled.objectCompare (inOperand.mAttribute_mHasEnabled) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHandlesTableViewBinding.objectCompare (inOperand.mAttribute_mHandlesTableViewBinding) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mUserDefined.isValid () && mAttribute_mOutletClassName.isValid () && mAttribute_mHasRunAction.isValid () && mAttribute_mHasEnabled.isValid () && mAttribute_mHandlesTableViewBinding.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
-  mAttribute_mUserDefined.drop () ;
-  mAttribute_mOutletClassName.drop () ;
-  mAttribute_mHasRunAction.drop () ;
-  mAttribute_mHasEnabled.drop () ;
-  mAttribute_mHandlesTableViewBinding.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioString,
-                                                                const int32_t inIndentation) const {
-  ioString << "<struct @outletClassDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mUserDefined.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletClassName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHasRunAction.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHasEnabled.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mUserDefined (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mUserDefined ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassDeclarationList_2D_element::reader_mOutletClassName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletClassName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHasRunAction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHasRunAction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHasEnabled (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHasEnabled ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHandlesTableViewBinding (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesTableViewBinding ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @outletClassDeclarationList-element type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassDeclarationList_2D_element ("outletClassDeclarationList-element",
-                                                              NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassDeclarationList_2D_element result ;
-  const GALGAS_outletClassDeclarationList_2D_element * p = (const GALGAS_outletClassDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

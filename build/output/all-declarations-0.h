@@ -4353,7 +4353,8 @@ class GALGAS_mainXibElement : public AC_GALGAS_root {
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_mainXibElement constructor_outlet (const class GALGAS_lstring & inOperand0,
-                                                            const class GALGAS_lstring & inOperand1
+                                                            const class GALGAS_lstring & inOperand1,
+                                                            const class GALGAS_lstring & inOperand2
                                                             COMMA_LOCATION_ARGS) ;
 
   public : static GALGAS_mainXibElement constructor_text (const class GALGAS_lstring & inOperand0
@@ -4411,10 +4412,12 @@ class cEnumAssociatedValues_mainXibElement_text : public cEnumAssociatedValues {
 class cEnumAssociatedValues_mainXibElement_outlet : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
   public : const GALGAS_lstring mAssociatedValue1 ;
+  public : const GALGAS_lstring mAssociatedValue2 ;
 
 //--- Constructor
   public : cEnumAssociatedValues_mainXibElement_outlet (const GALGAS_lstring & inAssociatedValue0,
-                                                        const GALGAS_lstring & inAssociatedValue1
+                                                        const GALGAS_lstring & inAssociatedValue1,
+                                                        const GALGAS_lstring & inAssociatedValue2
                                                         COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,

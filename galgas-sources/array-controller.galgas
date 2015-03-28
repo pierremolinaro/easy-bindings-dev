@@ -500,13 +500,15 @@ proc generateArrayControllers
     let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      !inOutputDirectory
-      !fileName
-      !"//"
-      !"\n\n" # Defaut user zone1
-      !s
-      !"  return WHAT ?\n" # Defaut user zone2
-      !"}\n\n//" + ["" stringByRightPadding !116 !'—'] + "*\n"
+      !startPath:inOutputDirectory
+      !fileName:fileName
+      !lineComment:"//"
+      !header:""
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"  return WHAT ?\n" # Defaut user zone2
+      !generatedZone3:"}\n\n//" + ["" stringByRightPadding !116 !'—'] + "*\n"
+      !makeExecutable:false
     ]
     end
   end
