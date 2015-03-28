@@ -1,0 +1,69 @@
+#------------------------------------------------------------------------------*
+
+import random, string
+
+import subprocess, os, sys, atexit
+import atomac, sys, time, inspect
+
+#------------------------------------------------------------------------------*
+#   GET SOURCE LINE NUMBER                                                     *
+#------------------------------------------------------------------------------*
+
+def lineno():
+  return inspect.currentframe().f_back.f_lineno
+
+#------------------------------------------------------------------------------*
+#   LAUNCH APPLICATION                                                         *
+#------------------------------------------------------------------------------*
+
+def launchApplication ():
+  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
+  atomac.launchAppByBundlePath (scriptDir + "/build/Default/%!PROJECT_NAME%.app")
+  time.sleep (0.5)
+  application = atomac.getAppRefByBundleId ('%!BUNDLE_IDENTIFIER%.%!PROJECT_NAME%')
+  return application
+
+#------------------------------------------------------------------------------*
+#   QUIT APPLICATION                                                           *
+#------------------------------------------------------------------------------*
+
+def quitApplication ():
+  atomac.terminateAppByBundleId ('%!BUNDLE_IDENTIFIER%.%!PROJECT_NAME%')
+  time.sleep (0.5)
+
+#------------------------------------------------------------------------------*
+#   PREFERENCES WINDOW                                                         *
+#------------------------------------------------------------------------------*
+
+def setUpPreferencesWindow (application) :
+  time.sleep (0.5)
+  window = application.windows ('%!PROJECT_NAME%')[0]
+%
+for () in OUTLET_IDENTIFIER_LIST do
+%  global %!mValue0%\n%
+%  %!mValue0% = window.findFirst (AXIdentifier='%!mValue1%')\n%
+end
+%
+#------------------------------------------------------------------------------*
+#   CHECK TEXT FIELD VALUE                                                     *
+#------------------------------------------------------------------------------*
+
+def checkTextFieldValue (textField, expectedValue, line):
+  if textField.AXValue != expectedValue :
+    print '*** Check error at line ' + str (line) + ' ***'
+    sys.exit (1)
+
+#------------------------------------------------------------------------------*
+#   SET TEXT FIELD                                                             *
+#------------------------------------------------------------------------------*
+
+def setTextFieldValue (textField, value):
+  textField.AXFocused = True
+  textField.AXValue = value
+  textField.Confirm ()
+  time.sleep (0.5)
+
+#------------------------------------------------------------------------------*
+#   MAIN                                                                       *
+#------------------------------------------------------------------------------*
+

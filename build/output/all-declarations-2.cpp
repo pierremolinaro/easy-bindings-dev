@@ -2916,11 +2916,11 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
     GALGAS_string var_fileName = enumerator_11493.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 270)).add_operation (enumerator_11493.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 270)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 270)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 271)) ;
     {
-    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, GALGAS_string ("\n"
       "\n"), GALGAS_string ("}\n"
       "\n"
-      "//----------------------------------------------------------------------------*\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 272)) ;
+      "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 272)) ;
     }
     enumerator_11493.gotoNextObject () ;
   }
@@ -3260,11 +3260,11 @@ void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument
     GALGAS_string var_fileName = enumerator_1783.current_mObjectTypeName (HERE).add_operation (GALGAS_string ("+validation+"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (enumerator_1783.current_mModelName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 44)) ;
     {
-    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, var_defaultUserZone_32_, GALGAS_string ("  }\n"
       "}\n"
       "\n"
-      "//---------------------------------------------------------------------------------------------------------------------*\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 45)) ;
+      "//---------------------------------------------------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 45)) ;
     }
     enumerator_1783.gotoNextObject () ;
   }
@@ -3310,11 +3310,11 @@ void routine_generateActions (const GALGAS_string constinArgument_inOutputDirect
     GALGAS_string var_fileName = enumerator_3368.current_mClassName (HERE).add_operation (GALGAS_string ("+action+"), inCompiler COMMA_SOURCE_FILE ("run-action.galgas", 76)).add_operation (enumerator_3368.current_mActionName (HERE), inCompiler COMMA_SOURCE_FILE ("run-action.galgas", 76)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("run-action.galgas", 76)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("run-action.galgas", 77)) ;
     {
-    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, GALGAS_string ("    ENTER USER CODE HERE\n"), GALGAS_string ("  }\n"
       "}\n"
       "\n"
-      "//----------------------------------------------------------------------------*\n"), inCompiler COMMA_SOURCE_FILE ("run-action.galgas", 78)) ;
+      "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("run-action.galgas", 78)) ;
     }
     enumerator_3368.gotoNextObject () ;
   }
@@ -4437,10 +4437,10 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
       GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_18330.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)).add_operation (enumerator_18330.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)) ;
       ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("array-controller.galgas", 501)) ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string ("\n"
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
         "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 509)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 509)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 509)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 502)) ;
+        "//").add_operation (GALGAS_string::makeEmptyString ().reader_stringByRightPadding (GALGAS_uint ((uint32_t) 116U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 510)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 510)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 510)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 502)) ;
       }
     }
     enumerator_18330.gotoNextObject () ;
@@ -5362,6 +5362,9 @@ void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectStr
   }
   {
   routine_generateXcodeProject (var_outputDirectory, constinArgument_inXcodeProjectString, var_generatedFileSet, var_projectName, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 85)) ;
+  }
+  {
+  routine_generateTestFile (constinArgument_inXcodeProjectString, var_projectName, constinArgument_inGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mMainXibDescriptorList, var_outputDirectory, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 91)) ;
   }
 }
 
