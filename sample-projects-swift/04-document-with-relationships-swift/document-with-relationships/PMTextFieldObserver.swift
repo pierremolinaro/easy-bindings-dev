@@ -2,16 +2,30 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMReadOnlyTextField) class PMReadOnlyTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMTextFieldObserver) class PMTextFieldObserver : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
+    noteObjectAllocation (self)
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
@@ -35,16 +49,16 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  readOnlyBalue binding                                                                                            *
+  //  valueObserver binding                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var mValueController : Controller_PMReadOnlyTextField_value?
 
-  func bind_readOnlyValue (object:PMReadOnlyProperty_String, file:String, line:Int) {
+  func bind_valueObserver (object:PMReadOnlyProperty_String, file:String, line:Int) {
     mValueController = Controller_PMReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_readOnlyValue () {
+  func unbind_valueObserver () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -60,17 +74,17 @@ import Cocoa
 
 @objc(Controller_PMReadOnlyTextField_value) class Controller_PMReadOnlyTextField_value : PMOutletEvent {
 
-  private var mOutlet : PMReadOnlyTextField
+  private var mOutlet : PMTextFieldObserver
   private var mObject : PMReadOnlyProperty_String
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object:PMReadOnlyProperty_String, outlet : PMReadOnlyTextField, file : String, line : Int) {
+  init (object:PMReadOnlyProperty_String, outlet : PMTextFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
     if mOutlet.formatter != nil {
-      presentErrorWindow (file, line, "the PMReadOnlyTextField outlet has a formatter")
+      presentErrorWindow (file, line, "the PMTextFieldObserver outlet has a formatter")
     }
     object.addObserver (self, postEvent:true)
   }

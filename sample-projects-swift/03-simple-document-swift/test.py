@@ -14,16 +14,16 @@ import random, string
 #print os.path.dirname(__file__)
 
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
-bundlePath = scriptDir + "/build/Release/03-simple-document-swift.app"
+bundlePath = scriptDir + "/build/Release/simple-document.app"
 atomac.launchAppByBundlePath (bundlePath)
 
-sourceFilePath = os.path.dirname (__file__) + '/z.03-simple-document-swift'
+sourceFilePath = os.path.dirname (__file__) + '/z.simple-document'
 ok = AppKit.NSWorkspace.sharedWorkspace().openFile_ (sourceFilePath) 
 if not ok:
     print '*** Erreur 1 ***'
     sys.exit (1)
 
-bundleName = 'fr.free.pcmolinaro.-3-simple-document-swift'
+bundleName = 'fr.irccyn.molinaro.simple-document'
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.8)
 
@@ -80,7 +80,7 @@ matrixSelectedRowIndex = random.randrange (0, 2, 1)
 matrix.AXChildren [matrixSelectedRowIndex].Press ()
 
 #--- Save
-monAppli.menuItem ('File', 'Save').Press()
+monAppli.menuItem ('File', u'Save…').Press()
 time.sleep(.5)
 
 #--- Quit

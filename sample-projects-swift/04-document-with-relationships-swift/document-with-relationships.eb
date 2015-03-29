@@ -1,6 +1,3 @@
-xcodeproject "fr.irccyn.molinaro" ;
-
-#--------------------------------------------------------------*
 
 entity MyRootEntity {
   toMany NameEntity mNames inverse toOne mRoot ;
@@ -20,19 +17,19 @@ document PMDocument root MyRootEntity {
   outlet PMTableView mNamesTableView $tableValue nameController ;
   arrayController nameController : root.mNames
      column "name" PMTextField name { sendContinously : no}
-     column "int"  PMNumberField aValue { sendContinously : no}
+     column "int"  PMIntField aValue { sendContinously : no}
   ;
 
   outlet PMTableView mOtherTableView $tableValue otherController ;
   arrayController otherController : root.mNames filter aValue
      column "name" PMTextField name { sendContinously : no}
-     column "int"  PMNumberField aValue { sendContinously : no}
+     column "int"  PMIntField aValue { sendContinously : no}
   ;
 
   outlet PMTableView mSelectionTableView $tableValue selController ;
   arrayController selController : nameController.selectedArray
      column "name" PMTextField name { sendContinously : no}
-     column "int"  PMNumberField aValue { sendContinously : no}
+     column "int"  PMIntField aValue { sendContinously : no}
   ;
 
   transient String selectionCountString dependsFrom selController.sortedArray.count ;

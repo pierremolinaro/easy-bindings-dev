@@ -5,13 +5,13 @@
 import atomac, sys, time, os, AppKit
 
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
-bundlePath = scriptDir + "/build/Release/04-document-with-relationships-swift.app"
+bundlePath = scriptDir + "/build/Default/document-with-relationships.app"
 atomac.launchAppByBundlePath (bundlePath)
 
-sourceFilePath = os.path.dirname (__file__) + '/z.04-document-with-relationships-swift'
-ok = AppKit.NSWorkspace.sharedWorkspace().openFile_ (sourceFilePath) 
+#sourceFilePath = os.path.dirname (__file__) + '/z.document-with-relationships'
+#ok = AppKit.NSWorkspace.sharedWorkspace().openFile_ (sourceFilePath) 
 
-bundleName = 'fr.free.pcmolinaro.-4-document-with-relationships-swift'
+bundleName = 'fr.irccyn.molinaro.document-with-relationships'
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep(.8)
 

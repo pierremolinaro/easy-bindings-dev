@@ -10,19 +10,19 @@ import Cocoa
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   @IBOutlet var addPathButton : PMButton?
-  @IBOutlet var canRemoveTextField : PMReadOnlyTextField?
-  @IBOutlet var countItemMessageTextField : PMReadOnlyTextField?
-  @IBOutlet var countItemTextField : PMReadOnlyIntField?
+  @IBOutlet var canRemoveTextField : PMTextFieldObserver?
+  @IBOutlet var countItemMessageTextField : PMTextFieldObserver?
+  @IBOutlet var countItemTextField : PMIntFieldObserver?
   @IBOutlet var decrementButton : PMButton?
-  @IBOutlet var evenValueTextField : PMReadOnlyTextField?
+  @IBOutlet var evenValueTextField : PMTextFieldObserver?
   @IBOutlet var incrementButton : PMButton?
   @IBOutlet var mNamesTableView : PMTableView?
   @IBOutlet var mOtherTableView : PMTableView?
-  @IBOutlet var mSelectionCountTextField : PMReadOnlyTextField?
+  @IBOutlet var mSelectionCountTextField : PMTextFieldObserver?
   @IBOutlet var mSelectionTableView : PMTableView?
   @IBOutlet var nameDetailTextField : PMTextField?
   @IBOutlet var removePathButton : PMButton?
-  @IBOutlet var totalTextField : PMReadOnlyIntField?
+  @IBOutlet var totalTextField : PMIntFieldObserver?
   @IBOutlet var valueDetailTextField : PMIntField?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -89,18 +89,18 @@ import Cocoa
     }
     if nil == canRemoveTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'canRemoveTextField' outlet is nil") ;
-    }else if !canRemoveTextField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'canRemoveTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !canRemoveTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'canRemoveTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == countItemMessageTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'countItemMessageTextField' outlet is nil") ;
-    }else if !countItemMessageTextField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'countItemMessageTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !countItemMessageTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'countItemMessageTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == countItemTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'countItemTextField' outlet is nil") ;
-    }else if !countItemTextField!.isKindOfClass (PMReadOnlyIntField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'countItemTextField' outlet is not an instance of 'PMReadOnlyIntField'") ;
+    }else if !countItemTextField!.isKindOfClass (PMIntFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'countItemTextField' outlet is not an instance of 'PMIntFieldObserver'") ;
     }
     if nil == decrementButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'decrementButton' outlet is nil") ;
@@ -109,8 +109,8 @@ import Cocoa
     }
     if nil == evenValueTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'evenValueTextField' outlet is nil") ;
-    }else if !evenValueTextField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'evenValueTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !evenValueTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'evenValueTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == incrementButton {
       presentErrorWindow (__FILE__, __LINE__, "the 'incrementButton' outlet is nil") ;
@@ -129,8 +129,8 @@ import Cocoa
     }
     if nil == mSelectionCountTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionCountTextField' outlet is nil") ;
-    }else if !mSelectionCountTextField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionCountTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !mSelectionCountTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionCountTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == mSelectionTableView {
       presentErrorWindow (__FILE__, __LINE__, "the 'mSelectionTableView' outlet is nil") ;
@@ -149,8 +149,8 @@ import Cocoa
     }
     if nil == totalTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is nil") ;
-    }else if !totalTextField!.isKindOfClass (PMReadOnlyIntField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is not an instance of 'PMReadOnlyIntField'") ;
+    }else if !totalTextField!.isKindOfClass (PMIntFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'totalTextField' outlet is not an instance of 'PMIntFieldObserver'") ;
     }
     if nil == valueDetailTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'valueDetailTextField' outlet is nil") ;
@@ -260,14 +260,14 @@ import Cocoa
     rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
     self.rootObject.mNames.addObserverOf_aValue (total, postEvent:true)
   //--- Install regular bindings
-    mSelectionCountTextField?.bind_readOnlyValue (self.selectionCountString, file:__FILE__, line:__LINE__)
-    evenValueTextField?.bind_readOnlyValue (self.evenValueString, file:__FILE__, line:__LINE__)
-    canRemoveTextField?.bind_readOnlyValue (self.canRemoveString, file:__FILE__, line:__LINE__)
-    countItemTextField?.bind_readOnlyValue (self.rootObject.mNames.count, file:__FILE__, line:__LINE__)
-    countItemMessageTextField?.bind_readOnlyValue (self.countItemMessage, file:__FILE__, line:__LINE__)
-    totalTextField?.bind_readOnlyValue (self.total, file:__FILE__, line:__LINE__)
+    mSelectionCountTextField?.bind_valueObserver (self.selectionCountString, file:__FILE__, line:__LINE__)
+    evenValueTextField?.bind_valueObserver (self.evenValueString, file:__FILE__, line:__LINE__)
+    canRemoveTextField?.bind_valueObserver (self.canRemoveString, file:__FILE__, line:__LINE__)
+    countItemTextField?.bind_valueObserver (self.rootObject.mNames.count, file:__FILE__, line:__LINE__, autoFormatter:false)
+    countItemMessageTextField?.bind_valueObserver (self.countItemMessage, file:__FILE__, line:__LINE__)
+    totalTextField?.bind_valueObserver (self.total, file:__FILE__, line:__LINE__, autoFormatter:false)
     nameDetailTextField?.bind_value (self.detailController.name, file:__FILE__, line:__LINE__, sendContinously:true)
-    valueDetailTextField?.bind_value (self.detailController.aValue, file:__FILE__, line:__LINE__, sendContinously:true)
+    valueDetailTextField?.bind_value (self.detailController.aValue, file:__FILE__, line:__LINE__, sendContinously:true, autoFormatter:false)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
@@ -313,12 +313,12 @@ import Cocoa
     undoManager?.removeAllActions ()
     undoManager = nil
   //--- Unbind regular bindings
-    mSelectionCountTextField?.unbind_readOnlyValue ()
-    evenValueTextField?.unbind_readOnlyValue ()
-    canRemoveTextField?.unbind_readOnlyValue ()
-    countItemTextField?.unbind_readOnlyValue ()
-    countItemMessageTextField?.unbind_readOnlyValue ()
-    totalTextField?.unbind_readOnlyValue ()
+    mSelectionCountTextField?.unbind_valueObserver ()
+    evenValueTextField?.unbind_valueObserver ()
+    canRemoveTextField?.unbind_valueObserver ()
+    countItemTextField?.unbind_valueObserver ()
+    countItemMessageTextField?.unbind_valueObserver ()
+    totalTextField?.unbind_valueObserver ()
     nameDetailTextField?.unbind_value ()
     valueDetailTextField?.unbind_value ()
   //--- Unbind multiple bindings
