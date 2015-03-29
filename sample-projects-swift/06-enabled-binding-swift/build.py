@@ -20,7 +20,7 @@ atexit.register (cleanup)
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
 os.chdir (scriptDir)
 #------------------- Build
-buildProcess = subprocess.Popen (["eb", "-v", "observing-pref-in-documents.eb"])
+buildProcess = subprocess.Popen (["eb", "-v", "enabled-binding.eb"])
 buildProcess.wait ()
 #------------------- Xcode build
 if buildProcess.returncode == 0 :

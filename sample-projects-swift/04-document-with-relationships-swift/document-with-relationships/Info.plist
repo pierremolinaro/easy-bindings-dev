@@ -9,12 +9,12 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>observingPrefsInDocument-swift</string>
+				<string>document-with-relationships</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>document-with-relationships_icns</string>
 			<key>CFBundleTypeName</key>
-			<string>observingPrefsInDocument-swift</string>
+			<string>document-with-relationships</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>TEXT</string>
@@ -24,7 +24,7 @@
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>MyDocument</string>
+			<string>PMDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -32,7 +32,7 @@
 	<key>CFBundleIconFile</key>
 	<string>application_icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>fr.irccyn.molinaro.observingPrefsInDocument</string>
+	<string>fr.irccyn.molinaro.document-with-relationships</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
