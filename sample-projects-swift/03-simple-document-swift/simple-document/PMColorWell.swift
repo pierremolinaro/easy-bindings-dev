@@ -11,6 +11,13 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    noteObjectAllocation (self)
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
@@ -24,7 +31,7 @@ import Cocoa
   private var mValueController : Controller_PMColorWell_color?
   var mSendContinously = false
 
-  func bind_color (object:PMStoredProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
+  func bind_color (object:PMReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -44,13 +51,13 @@ import Cocoa
 
 class Controller_PMColorWell_color : PMOutletEvent {
 
-  var mObject : PMStoredProperty_NSColor
+  var mObject : PMReadWriteProperty_NSColor
   var mOutlet: PMColorWell
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMStoredProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously
@@ -90,29 +97,7 @@ class Controller_PMColorWell_color : PMOutletEvent {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func action (sender : PMColorWell) {
-    let validationResult = mObject.validate (mOutlet.color)
-    switch validationResult {
-    case PMValidationResult.ok :
-      mObject.setProp (mOutlet.color)
-      if mSendContinously {
-        flushOutletEvents ()
-      }
-    case PMValidationResult.rejectWithBeep :
-      NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
-      if let window = sender.window {
-        let alert = NSAlert ()
-        alert.messageText = String (format:"The color “%@” is invalid.", mOutlet.color)
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle ("Ok")
-        alert.addButtonWithTitle ("Discard Change")
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.mObject.postEvent ()
-          }
-        })
-      }
-    }
+    mObject.validateAndSetProp (mOutlet.color, windowForSheet:sender.window)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

@@ -28,9 +28,13 @@ prefs {
   property Date mDate default date ;
   outlet PMDatePicker mDatePicker $date self.mDate  ;
 #--- Number
-  property validates Int mIntegerValue default 123 ;
-  outlet PMIntField mInteger32TextField $value self.mIntegerValue {sendContinously : yes} ;
-  outlet PMIntFieldObserver mInteger32ObserverTextField $valueObserver self.mIntegerValue ;
+  property validates Int mIntegerValue default 12 ;
+  outlet PMIntField mInteger32TextField
+    $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
+  ;
+  outlet PMIntFieldObserver mInteger32ObserverTextField
+    $valueObserver self.mIntegerValue {autoFormatter:yes}
+  ;
 }
 
 #--------------------------------------------------------------*

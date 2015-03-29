@@ -83,6 +83,10 @@ def setTextFieldValue (textField, value):
 #   MAIN                                                                       *
 #------------------------------------------------------------------------------*
 
+application = launchApplication ()
+setUpPreferencesWindow (application)
+
+
 #--- START OF USER ZONE 2
 
 application = launchApplication ()
@@ -133,5 +137,7 @@ print 'Success !'
 
 #--- END OF USER ZONE 2
 
+
+quitApplication ()
 
 #----------------------------------------------------------------------------*

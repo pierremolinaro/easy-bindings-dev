@@ -35,37 +35,19 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromEnableBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromValueBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var myIntegerValue : Int = 0 {
-    didSet {
-      self.integerValue = myIntegerValue
-    }
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  readOnlyValue binding                                                                                            *
+  //  valueObserver binding                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue?
 
-  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int) {
-    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (object:object, outlet:self, file:file, line:line)
+  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
+    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (
+      object:object,
+      outlet:self,
+      file:file,
+      line:line,
+      autoFormatter:autoFormatter
+    )
   }
 
   func unbind_valueObserver () {
@@ -87,11 +69,14 @@ import Cocoa
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int) {
+  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    if mOutlet.formatter == nil {
+    if autoFormatter {
+      let formatter = NSNumberFormatter ()
+      mOutlet.formatter = formatter
+    }else if mOutlet.formatter == nil {
       presentErrorWindow (file, line, "the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")

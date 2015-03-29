@@ -79,9 +79,16 @@ import Cocoa
   private var mValueController : Controller_PMIntField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:PMReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
-    mValueController = Controller_PMIntField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
+    mValueController = Controller_PMIntField_value (
+      object:object,
+      outlet:self,
+      file:file,
+      line:line,
+      sendContinously:sendContinously,
+      autoFormatter:autoFormatter
+    )
   }
 
   func unbind_value () {
@@ -106,13 +113,22 @@ class Controller_PMIntField_value : PMOutletEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_Int, outlet : PMIntField, file : String, line : Int, sendContinously : Bool) {
+  init (object : PMReadWriteProperty_Int,
+        outlet : PMIntField,
+        file : String,
+        line : Int,
+        sendContinously : Bool,
+        autoFormatter : Bool)
+  {
     mObject = object
     mOutlet = outlet
     super.init ()
     mOutlet.target = self
     mOutlet.action = "action:"
-    if mOutlet.formatter == nil {
+    if autoFormatter {
+      let formatter = NSNumberFormatter ()
+      mOutlet.formatter = formatter
+    }else if mOutlet.formatter == nil {
       presentErrorWindow (file, line, "the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")

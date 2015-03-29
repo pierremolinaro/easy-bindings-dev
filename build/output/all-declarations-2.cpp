@@ -31,9 +31,11 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
   }
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 274)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 275))) ;
+    GALGAS_string var_fileName = GALGAS_string ("PMManagedDocument+extension+factory.swift") ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("entity.galgas", 276)) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 277))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("PMManagedDocument+extension+factory.swift"), var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 278)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 280)) ;
     }
   }
 }
@@ -1618,9 +1620,16 @@ const char * gWrapperFileContent_4_outletClassGeneration = "//------------------
   "  private var mValueController : Controller_PMIntField_value\?\n"
   "  private var mSendContinously : Bool = false\n"
   "\n"
-  "  func bind_value (object:PMReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {\n"
+  "  func bind_value (object:PMReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {\n"
   "    mSendContinously = sendContinously\n"
-  "    mValueController = Controller_PMIntField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)\n"
+  "    mValueController = Controller_PMIntField_value (\n"
+  "      object:object,\n"
+  "      outlet:self,\n"
+  "      file:file,\n"
+  "      line:line,\n"
+  "      sendContinously:sendContinously,\n"
+  "      autoFormatter:autoFormatter\n"
+  "    )\n"
   "  }\n"
   "\n"
   "  func unbind_value () {\n"
@@ -1645,13 +1654,22 @@ const char * gWrapperFileContent_4_outletClassGeneration = "//------------------
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  init (object : PMReadWriteProperty_Int, outlet : PMIntField, file : String, line : Int, sendContinously : Bool) {\n"
+  "  init (object : PMReadWriteProperty_Int,\n"
+  "        outlet : PMIntField,\n"
+  "        file : String,\n"
+  "        line : Int,\n"
+  "        sendContinously : Bool,\n"
+  "        autoFormatter : Bool)\n"
+  "  {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
   "    super.init ()\n"
   "    mOutlet.target = self\n"
   "    mOutlet.action = \"action:\"\n"
-  "    if mOutlet.formatter == nil {\n"
+  "    if autoFormatter {\n"
+  "      let formatter = NSNumberFormatter ()\n"
+  "      mOutlet.formatter = formatter\n"
+  "    }else if mOutlet.formatter == nil {\n"
   "      presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
   "    }else if !(mOutlet.formatter is NSNumberFormatter) {\n"
   "      presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
@@ -1700,7 +1718,7 @@ const cRegularFileWrapper gWrapperFile_4_outletClassGeneration (
   "PMIntField.swift",
   "swift",
   true, // Text file
-  6498, // Text length
+  6761, // Text length
   gWrapperFileContent_4_outletClassGeneration
 ) ;
 
@@ -1743,37 +1761,19 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//------------------
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
-  "\n"
-  "  var enableFromEnableBinding : Bool = true {\n"
-  "    didSet {\n"
-  "      self.enabled = enableFromEnableBinding && enableFromValueBinding\n"
-  "    }\n"
-  "  }\n"
-  "\n"
-  "  //-------------------------------------------------------------------------------------------------------------------*\n"
-  "\n"
-  "  var enableFromValueBinding : Bool = true {\n"
-  "    didSet {\n"
-  "      self.enabled = enableFromEnableBinding && enableFromValueBinding\n"
-  "    }\n"
-  "  }\n"
-  "\n"
-  "  //-------------------------------------------------------------------------------------------------------------------*\n"
-  "\n"
-  "  var myIntegerValue : Int = 0 {\n"
-  "    didSet {\n"
-  "      self.integerValue = myIntegerValue\n"
-  "    }\n"
-  "  }\n"
-  "  \n"
-  "  //-------------------------------------------------------------------------------------------------------------------*\n"
-  "  //  readOnlyValue binding                                                                                            *\n"
+  "  //  valueObserver binding                                                                                            *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue\?\n"
   "\n"
-  "  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int) {\n"
-  "    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (object:object, outlet:self, file:file, line:line)\n"
+  "  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {\n"
+  "    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (\n"
+  "      object:object,\n"
+  "      outlet:self,\n"
+  "      file:file,\n"
+  "      line:line,\n"
+  "      autoFormatter:autoFormatter\n"
+  "    )\n"
   "  }\n"
   "\n"
   "  func unbind_valueObserver () {\n"
@@ -1795,11 +1795,14 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//------------------
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int) {\n"
+  "  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
   "    super.init ()\n"
-  "    if mOutlet.formatter == nil {\n"
+  "    if autoFormatter {\n"
+  "      let formatter = NSNumberFormatter ()\n"
+  "      mOutlet.formatter = formatter\n"
+  "    }else if mOutlet.formatter == nil {\n"
   "      presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
   "    }else if !(mOutlet.formatter is NSNumberFormatter) {\n"
   "      presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
@@ -1840,7 +1843,7 @@ const cRegularFileWrapper gWrapperFile_5_outletClassGeneration (
   "PMIntFieldObserver.swift",
   "swift",
   true, // Text file
-  4952, // Text length
+  4418, // Text length
   gWrapperFileContent_5_outletClassGeneration
 ) ;
 
@@ -1859,13 +1862,6 @@ const char * gWrapperFileContent_6_outletClassGeneration = "import Cocoa\n"
   "    noteObjectAllocation (self)\n"
   "  }\n"
   "\n"
-  "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
-  "\n"
-  "  override init (frame:NSRect) {\n"
-  "    super.init (frame:frame)\n"
-  "    noteObjectAllocation (self)\n"
-  "  }\n"
-  "  \n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  deinit {\n"
@@ -1942,7 +1938,7 @@ const cRegularFileWrapper gWrapperFile_6_outletClassGeneration (
   "PMMatrix.swift",
   "swift",
   true, // Text file
-  3480, // Text length
+  3257, // Text length
   gWrapperFileContent_6_outletClassGeneration
 ) ;
 
@@ -10159,8 +10155,33 @@ const char * gWrapperFileContent_11_swift_5F_sources = "import Cocoa\n"
   " \n"
   "  var validationFunction : (NSColor) -> PMValidationResult = defaultValidationFunction\n"
   "  \n"
-  "  func validate (proposedValue : NSColor) -> PMValidationResult {\n"
-  "    return validationFunction (proposedValue)\n"
+  "  override func validateAndSetProp (candidateValue : NSColor,\n"
+  "                                    windowForSheet inWindow:NSWindow\?) -> Bool {\n"
+  "    let validationResult = validationFunction (candidateValue)\n"
+  "    var result = true\n"
+  "    switch validationResult {\n"
+  "    case PMValidationResult.ok :\n"
+  "      setProp (candidateValue)\n"
+  "    case PMValidationResult.rejectWithBeep :\n"
+  "      NSBeep ()\n"
+  "    case PMValidationResult.rejectWithAlert (let informativeText) :\n"
+  "      result = false\n"
+  "      let alert = NSAlert ()\n"
+  "      alert.messageText = String (format:\"The value \xE2""\x80""\x9C""%@\xE2""\x80""\x9D"" is invalid.\", candidateValue)\n"
+  "      alert.informativeText = informativeText\n"
+  "      alert.addButtonWithTitle (\"Ok\")\n"
+  "      alert.addButtonWithTitle (\"Discard Change\")\n"
+  "      if let window = inWindow {\n"
+  "        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in\n"
+  "          if response == NSAlertSecondButtonReturn { // Discard Change\n"
+  "            self.postEvent ()\n"
+  "          }\n"
+  "        })\n"
+  "      }else{\n"
+  "        alert.runModal ()\n"
+  "      }\n"
+  "    }\n"
+  "    return result\n"
   "  }\n"
   "\n"
   "  func readInPreferencesWithKey (inKey : String) {\n"
@@ -10660,7 +10681,7 @@ const cRegularFileWrapper gWrapperFile_11_swift_5F_sources (
   "standard-properties.swift",
   "swift",
   true, // Text file
-  33528, // Text length
+  34465, // Text length
   gWrapperFileContent_11_swift_5F_sources
 ) ;
 

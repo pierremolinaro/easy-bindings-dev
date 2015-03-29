@@ -16,11 +16,11 @@ binding PMMatrix $selectedIndex : property enum ;
 
 
 outletClass PMIntFieldObserver ;
-binding PMIntFieldObserver $valueObserver : transient Int ;
+binding PMIntFieldObserver $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
 outletClass PMIntField ;
-binding PMIntField $value : property Int {sendContinously : Bool} ;
+binding PMIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
 outletClass PMSwitch $enabled ;

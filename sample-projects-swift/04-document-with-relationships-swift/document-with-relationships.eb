@@ -1,3 +1,7 @@
+xcodeproject "fr.irccyn.molinaro" ;
+
+#--------------------------------------------------------------*
+
 entity MyRootEntity {
   toMany NameEntity mNames inverse toOne mRoot ;
 }
@@ -32,26 +36,26 @@ document PMDocument root MyRootEntity {
   ;
 
   transient String selectionCountString dependsFrom selController.sortedArray.count ;
-  outlet PMReadOnlyTextField mSelectionCountTextField $readOnlyValue self.selectionCountString ;
+  outlet PMTextFieldObserver mSelectionCountTextField $valueObserver self.selectionCountString ;
 
   transient String evenValueString dependsFrom otherController.sortedArray.count ;
-  outlet PMReadOnlyTextField evenValueTextField $readOnlyValue self.evenValueString ;
+  outlet PMTextFieldObserver evenValueTextField $valueObserver self.evenValueString ;
 
   transient String canRemoveString dependsFrom nameController.selectedArray.count ;
-  outlet PMReadOnlyTextField canRemoveTextField $readOnlyValue self.canRemoveString ;
+  outlet PMTextFieldObserver canRemoveTextField $valueObserver self.canRemoveString ;
 
   outlet PMButton addPathButton $run nameController.add ;
 
   outlet PMButton removePathButton $run nameController.remove $enabled nameController.selectedArray.count > 0 ;
 
-  outlet PMReadOnlyIntField countItemTextField $readOnlyValue root.mNames.count ;
+  outlet PMIntFieldObserver countItemTextField $valueObserver root.mNames.count {autoFormatter:no} ;
 
   transient String countItemMessage dependsFrom root.mNames.count ;
 
-  outlet PMReadOnlyTextField countItemMessageTextField $readOnlyValue self.countItemMessage  ;
+  outlet PMTextFieldObserver countItemMessageTextField $valueObserver self.countItemMessage  ;
 
   transient Int total dependsFrom root.mNames.all.aValue ;
-  outlet PMReadOnlyIntField totalTextField $readOnlyValue self.total  ;
+  outlet PMIntFieldObserver totalTextField $valueObserver self.total {autoFormatter:no} ;
   
   action increment ;
   outlet PMButton incrementButton $run self.increment $enabled root.mNames.count > 0 ;
@@ -61,7 +65,7 @@ document PMDocument root MyRootEntity {
   
   selectionController detailController : nameController.selectedArray ;
   outlet PMTextField nameDetailTextField $value detailController.name { sendContinously : yes} ;
-  outlet PMIntField valueDetailTextField $value detailController.aValue { sendContinously : yes} ;
+  outlet PMIntField valueDetailTextField $value detailController.aValue { sendContinously : yes, autoFormatter:no} ;
 }
 
 #--------------------------------------------------------------*

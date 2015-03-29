@@ -11,10 +11,10 @@ import Cocoa
 
   @IBOutlet var myColorWell : PMColorWell?
   @IBOutlet var myMatrix : PMMatrix?
-  @IBOutlet var myTextConcatField : PMReadOnlyTextField?
+  @IBOutlet var myTextConcatField : PMTextFieldObserver?
   @IBOutlet var myTextField : PMTextField?
-  @IBOutlet var myTextMajField : PMReadOnlyTextField?
-  @IBOutlet var myTextMinField : PMReadOnlyTextField?
+  @IBOutlet var myTextMajField : PMTextFieldObserver?
+  @IBOutlet var myTextMinField : PMTextFieldObserver?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -76,8 +76,8 @@ import Cocoa
     }
     if nil == myTextConcatField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextConcatField' outlet is nil") ;
-    }else if !myTextConcatField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myTextConcatField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !myTextConcatField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextConcatField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == myTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is nil") ;
@@ -86,13 +86,13 @@ import Cocoa
     }
     if nil == myTextMajField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMajField' outlet is nil") ;
-    }else if !myTextMajField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myTextMajField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !myTextMajField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextMajField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == myTextMinField {
       presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is nil") ;
-    }else if !myTextMinField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !myTextMinField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'myTextMinField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller
@@ -100,9 +100,9 @@ import Cocoa
   //--- Install property observers for transients
   //--- Install regular bindings
     myTextField?.bind_value (self.rootObject.myString, file:__FILE__, line:__LINE__, sendContinously:true)
-    myTextMajField?.bind_readOnlyValue (self.rootObject.myStringMaj, file:__FILE__, line:__LINE__)
-    myTextMinField?.bind_readOnlyValue (self.rootObject.myStringMin, file:__FILE__, line:__LINE__)
-    myTextConcatField?.bind_readOnlyValue (self.rootObject.myStringConcat, file:__FILE__, line:__LINE__)
+    myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj, file:__FILE__, line:__LINE__)
+    myTextMinField?.bind_valueObserver (self.rootObject.myStringMin, file:__FILE__, line:__LINE__)
+    myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat, file:__FILE__, line:__LINE__)
     myMatrix?.bind_selectedIndex (self.rootObject.myEnumeration, file:__FILE__, line:__LINE__)
     myColorWell?.bind_color (self.rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
   //--- Install multiple bindings
@@ -122,9 +122,9 @@ import Cocoa
     undoManager = nil
   //--- Unbind regular bindings
     myTextField?.unbind_value ()
-    myTextMajField?.unbind_readOnlyValue ()
-    myTextMinField?.unbind_readOnlyValue ()
-    myTextConcatField?.unbind_readOnlyValue ()
+    myTextMajField?.unbind_valueObserver ()
+    myTextMinField?.unbind_valueObserver ()
+    myTextConcatField?.unbind_valueObserver ()
     myMatrix?.unbind_selectedIndex ()
     myColorWell?.unbind_color ()
   //--- Unbind multiple bindings

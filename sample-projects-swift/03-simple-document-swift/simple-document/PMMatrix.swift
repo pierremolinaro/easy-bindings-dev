@@ -16,8 +16,9 @@ import Cocoa
   deinit {
     noteObjectDeallocation (self)
   }
+
   //-------------------------------------------------------------------------------------------------------------------*
-  //  color binding                                                                                                    *
+  //  selectedIndex binding                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var mValueController : Controller_PMMatrix_selectedIndex?

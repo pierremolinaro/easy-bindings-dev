@@ -9,9 +9,9 @@ cd `dirname $0` &&
 
 for d in `ls`
 do
-  if [ -d $d ] && [ -e $d/build.command ]
+  if [ -d $d ] && [ -e $d/build.py ]
   then
     echo "----- Building in '`dirname $0`/$d' directory"
-    $d/build.command || exit
+    $d/build.py || exit
   fi
 done

@@ -89,9 +89,57 @@ def setTextFieldValue (textField, value):
 #   MAIN                                                                       *
 #------------------------------------------------------------------------------*
 
+application = launchApplication ()
+setUpPreferencesWindow (application)
+
+
 #--- START OF USER ZONE 2
-#    ENTER USER CODE HERE
+
+#--- Text field
+testValue = ''.join (random.choice (string.ascii_uppercase + string.digits) for x in range (16))
+setTextFieldValue (myTextField, testValue)
+checkTextFieldValue (myOtherTextField, testValue, lineno ())
+checkTextFieldValue (myObserverTextField, testValue, lineno ())
+
+#--- Color
+mColorWell.Press ()
+time.sleep(.5)
+colorPicker = application.windows ('Colors')[0]
+toolbar = colorPicker.findFirst (AXRole='AXToolbar')
+toolbar.findAll ()[2].Press () # Selects RGB
+time.sleep(.5)
+colorRows = colorPicker.rowsR ()
+selectedRowIndex = random.randrange (0, len (colorRows) - 1)
+colorRows [selectedRowIndex].AXSelected = True ;
+time.sleep(.5)
+
+#--- Quit and relaunch
+quitApplication ()
+application = launchApplication ()
+setUpPreferencesWindow (application)
+
+#--- Check text fields
+checkTextFieldValue (myTextField, testValue, lineno ())
+checkTextFieldValue (myOtherTextField, testValue, lineno ())
+checkTextFieldValue (myObserverTextField, testValue, lineno ())
+
+#--- Check coloe wells
+mContinousColorWell.Press ()
+time.sleep(.5)
+colorPicker = application.windows ('Colors')[0]
+toolbar = colorPicker.findFirst (AXRole='AXToolbar')
+toolbar.findAll ()[2].Press () # Selects RGB
+time.sleep(.5)
+colorRows = colorPicker.rowsR ()
+time.sleep(.5)
+
+if not colorRows [selectedRowIndex].AXSelected:
+    print '*** Erreur 13 ***'
+    sys.exit (1)
+
 #--- END OF USER ZONE 2
 
+
+quitApplication ()
 
 #----------------------------------------------------------------------------*

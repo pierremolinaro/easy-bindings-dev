@@ -67,3 +67,7 @@ def setTextFieldValue (textField, value):
 #   MAIN                                                                       *
 #------------------------------------------------------------------------------*
 
+application = launchApplication ()
+setUpPreferencesWindow (application)
+
+
