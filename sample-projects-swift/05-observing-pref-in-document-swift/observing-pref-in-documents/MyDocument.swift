@@ -10,9 +10,9 @@ import Cocoa
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   @IBOutlet var docStringTextField : PMTextField?
-  @IBOutlet var prefStringTextField : PMTextField?
-  @IBOutlet var prefTransientStringTextField : PMReadOnlyTextField?
-  @IBOutlet var transientConcatStringTextField : PMReadOnlyTextField?
+  @IBOutlet var prefStringTextField : PMTextFieldObserver?
+  @IBOutlet var prefTransientStringTextField : PMTextFieldObserver?
+  @IBOutlet var transientConcatStringTextField : PMTextFieldObserver?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -69,18 +69,18 @@ import Cocoa
     }
     if nil == prefStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'prefStringTextField' outlet is nil") ;
-    }else if !prefStringTextField!.isKindOfClass (PMTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'prefStringTextField' outlet is not an instance of 'PMTextField'") ;
+    }else if !prefStringTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'prefStringTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == prefTransientStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'prefTransientStringTextField' outlet is nil") ;
-    }else if !prefTransientStringTextField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'prefTransientStringTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !prefTransientStringTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'prefTransientStringTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
     if nil == transientConcatStringTextField {
       presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is nil") ;
-    }else if !transientConcatStringTextField!.isKindOfClass (PMReadOnlyTextField) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is not an instance of 'PMReadOnlyTextField'") ;
+    }else if !transientConcatStringTextField!.isKindOfClass (PMTextFieldObserver) {
+      presentErrorWindow (__FILE__, __LINE__, "the 'transientConcatStringTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller
@@ -88,9 +88,9 @@ import Cocoa
   //--- Install property observers for transients
   //--- Install regular bindings
     docStringTextField?.bind_value (self.rootObject.docString, file:__FILE__, line:__LINE__, sendContinously:true)
-    prefStringTextField?.bind_value (g_Preferences!.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
-    prefTransientStringTextField?.bind_readOnlyValue (g_Preferences!.prefTransientString, file:__FILE__, line:__LINE__)
-    transientConcatStringTextField?.bind_readOnlyValue (self.rootObject.transientConcatString, file:__FILE__, line:__LINE__)
+    prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString, file:__FILE__, line:__LINE__)
+    prefTransientStringTextField?.bind_valueObserver (g_Preferences!.prefTransientString, file:__FILE__, line:__LINE__)
+    transientConcatStringTextField?.bind_valueObserver (self.rootObject.transientConcatString, file:__FILE__, line:__LINE__)
   //--- Install multiple bindings
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
@@ -108,9 +108,9 @@ import Cocoa
     undoManager = nil
   //--- Unbind regular bindings
     docStringTextField?.unbind_value ()
-    prefStringTextField?.unbind_value ()
-    prefTransientStringTextField?.unbind_readOnlyValue ()
-    transientConcatStringTextField?.unbind_readOnlyValue ()
+    prefStringTextField?.unbind_valueObserver ()
+    prefTransientStringTextField?.unbind_valueObserver ()
+    transientConcatStringTextField?.unbind_valueObserver ()
   //--- Unbind multiple bindings
   //--- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers

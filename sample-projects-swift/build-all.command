@@ -12,6 +12,6 @@ do
   if [ -d $d ] && [ -e $d/build.py ]
   then
     echo "----- Building in '`dirname $0`/$d' directory"
-    $d/build.py || exit
+    $d/build.py && $d/test.py || exit
   fi
 done

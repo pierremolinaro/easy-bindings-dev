@@ -18,11 +18,11 @@ prefs {
 document MyDocument root MyRootEntity {
   outlet PMTextField docStringTextField $value root.docString {sendContinously : yes} ;
 
-  outlet PMTextField prefStringTextField $value prefs.myPrefString {sendContinously : no} ;
+  outlet PMTextFieldObserver prefStringTextField $valueObserver prefs.myPrefString ;
 
-  outlet PMReadOnlyTextField prefTransientStringTextField $readOnlyValue prefs.prefTransientString ;
+  outlet PMTextFieldObserver prefTransientStringTextField $valueObserver prefs.prefTransientString ;
 
-  outlet PMReadOnlyTextField transientConcatStringTextField $readOnlyValue root.transientConcatString ;
+  outlet PMTextFieldObserver transientConcatStringTextField $valueObserver root.transientConcatString ;
 }
 
 #--------------------------------------------------------------*

@@ -11,7 +11,7 @@ if not ok:
     print '*** Erreur 0 ***'
     sys.exit (1)
 
-bundleName = 'fr.free.pcmolinaro.-5-observing-pref-in-document-swift'
+bundleName = 'fr.irccyn.molinaro.observingPrefsInDocument'
 #atomac.launchAppByBundleId (bundleName)
 monAppli = atomac.getAppRefByBundleId (bundleName)
 time.sleep (0.5)
