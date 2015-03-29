@@ -272,12 +272,14 @@ proc generateEntities
   end
 #----- 
   if [inEntityListForGeneration length] > 0 then
+    let fileName = "PMManagedDocument+extension+factory.swift"
+    ioGeneratedFileSet += !fileName
     let s = [filewrapper entityGenerationTemplate.entityFactoryImplementationFileInSwift
       !inEntityListForGeneration
     ]
     [@string generateFile
       !inOutputDirectory
-      !"PMManagedDocument+extension+factory.swift"
+      !fileName
       !s
     ]
   end

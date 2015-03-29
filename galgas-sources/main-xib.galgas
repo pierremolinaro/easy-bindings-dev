@@ -84,41 +84,44 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 getter @mainXibDescriptorList generateCode -> @string outResult {
-  outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + [self length] + ".0\n"
-  outResult += "    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"
-  var idx = 0
-  var columnMax = 1
-  for () in self do
-    var column = 0
-    outResult += "    y -= OUTLET_HEIGHT\n"
-    for () in mLine do
-      switch mElement
-      case text (t) :
-        idx ++
-        outResult += "  //--- Text " + t + "\n"
-        outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
-        outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
-        outResult += "    tf" + idx + ".stringValue = " + [t utf8Representation] + "\n"
-        outResult += "    tf" + idx + ".editable = false\n"
-        outResult += "    tf" + idx + ".drawsBackground = false\n"
-        outResult += "    tf" + idx + ".bordered = false\n"
-        outResult += "    view.addSubview (tf" + idx + ")\n"
-      case outlet (outletType outletName) :
-        outResult += "  //--- Outlet " + outletName + "\n"
-        outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
-        outResult += "    " + outletName + "?.setAccessibilityIdentifier (" + [outletName utf8Representation] + ")\n"
-        outResult += "    view.addSubview (" + outletName + "!)\n"
+  outResult = ""
+  if [self length] > 0 then
+    outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + [self length] + ".0\n"
+    outResult += "    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"
+    var idx = 0
+    var columnMax = 1
+    for () in self do
+      var column = 0
+      outResult += "    y -= OUTLET_HEIGHT\n"
+      for () in mLine do
+        switch mElement
+        case text (t) :
+          idx ++
+          outResult += "  //--- Text " + t + "\n"
+          outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
+          outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
+          outResult += "    tf" + idx + ".stringValue = " + [t utf8Representation] + "\n"
+          outResult += "    tf" + idx + ".editable = false\n"
+          outResult += "    tf" + idx + ".drawsBackground = false\n"
+          outResult += "    tf" + idx + ".bordered = false\n"
+          outResult += "    view.addSubview (tf" + idx + ")\n"
+        case outlet (outletType outletName) :
+          outResult += "  //--- Outlet " + outletName + "\n"
+          outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
+          outResult += "    " + outletName + "?.setAccessibilityIdentifier (" + [outletName utf8Representation] + ")\n"
+          outResult += "    view.addSubview (" + outletName + "!)\n"
+        end
+        column ++
       end
-      column ++
-    end
-    if column > columnMax then
-      columnMax = column
-    end
-    outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
- end
-  outResult += "  //--- Set pref window content view\n"
-  outResult += "    window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * " + columnMax + ".0, height:OUTLET_HEIGHT * (1.5 * " + [self length] + ".0 + 0.5)))\n"
-  outResult += "    window?.contentView = view\n"
+      if column > columnMax then
+        columnMax = column
+      end
+      outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
+   end
+    outResult += "  //--- Set pref window content view\n"
+    outResult += "    window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * " + columnMax + ".0, height:OUTLET_HEIGHT * (1.5 * " + [self length] + ".0 + 0.5)))\n"
+    outResult += "    window?.contentView = view\n"
+  end
 }
 
 #......................................................................................................................*
@@ -157,7 +160,7 @@ proc generateTestFile
       !defaultUserZone1:"" # Defaut user zone1
       !generatedZone2:s
       !defaultUserZone2:"#    ENTER USER CODE HERE\n" # Defaut user zone2
-      !generatedZone3:"\n#----------------------------------------------------------------------------*\n"
+      !generatedZone3:"\nquitApplication ()\n\n#----------------------------------------------------------------------------*\n"
       !makeExecutable:true
     ]
   end

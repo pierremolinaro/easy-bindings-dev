@@ -29,7 +29,7 @@ var g_Preferences : Preferences? = nil
   var myString = PMStoredProperty_String ("hello")
   var mColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
   var mDate = PMStoredProperty_NSDate (NSDate ())
-  var mIntegerValue = PMStoredProperty_Int (123)
+  var mIntegerValue = PMStoredProperty_Int (12)
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *
@@ -251,8 +251,8 @@ var g_Preferences : Preferences? = nil
     mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
     mObserverColorWell?.bind_colorObserver (self.mColor, file:__FILE__, line:__LINE__)
     mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
-    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true)
-    mInteger32ObserverTextField?.bind_valueObserver (self.mIntegerValue, file:__FILE__, line:__LINE__)
+    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true, autoFormatter:true)
+    mInteger32ObserverTextField?.bind_valueObserver (self.mIntegerValue, file:__FILE__, line:__LINE__, autoFormatter:true)
   //--------------------------- Set targets / actions
   }
   

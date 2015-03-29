@@ -1,3 +1,4 @@
+xcodeproject "fr.irccyn.molinaro" ;
 
 enum MonEnumeration {premier, deuxieme, troisieme}
 
@@ -18,11 +19,11 @@ entity MyRootEntity {
 document PMDocument root MyRootEntity {
   outlet PMTextField myTextField $value root.myString {sendContinously : yes} ;
 
-  outlet PMReadOnlyTextField myTextMajField $readOnlyValue root.myStringMaj ;
+  outlet PMTextFieldObserver myTextMajField $valueObserver root.myStringMaj ;
 
-  outlet PMReadOnlyTextField myTextMinField $readOnlyValue root.myStringMin ;
+  outlet PMTextFieldObserver myTextMinField $valueObserver root.myStringMin ;
 
-  outlet PMReadOnlyTextField myTextConcatField $readOnlyValue root.myStringConcat ;
+  outlet PMTextFieldObserver myTextConcatField $valueObserver root.myStringConcat ;
 
   outlet PMMatrix myMatrix $selectedIndex root.myEnumeration  ;
 

@@ -11,9 +11,9 @@ extension Preferences {
   func validate_mIntegerValue (proposedValue : Int) -> PMValidationResult {
 //--- START OF USER ZONE 2
     var result = PMValidationResult.ok
-    let validates = false // Add your validation condition here
+    let validates = (proposedValue & 1) == 0 // Even value
     if !validates {
-      result = PMValidationResult.rejectWithAlert ("Rejected in \(__FILE__), line \(__LINE__)")
+      result = PMValidationResult.rejectWithAlert ("An even value is required here")
     }
     return result
 //--- END OF USER ZONE 2

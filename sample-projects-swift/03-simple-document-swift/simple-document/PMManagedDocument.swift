@@ -467,7 +467,8 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     panel.display ()
     let reachableObjects : NSArray = reachableObjectsFromRootObject ()
   //---
-    panel.orderOut (nil) ; NSApp.endSheet (panel)
+    panel.endSheet (windowForSheet!)
+ //   panel.orderOut (nil) ; NSApp.endSheet (panel)
   //---
     let reachableCount = reachableObjects.count
     var alert = NSAlert ()
