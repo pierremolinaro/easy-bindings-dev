@@ -1,10 +1,10 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    DataSource_PMDocument_nameController                                                                             *
+//    DataSource_PMDocument_otherController                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
+class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_NameEntity?
   var count = PMTransientProperty_Int ()
 
@@ -48,10 +48,27 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
       case .multipleSelection :
         return .multipleSelection
       case .singleSelection (let modelArray) :
-        var array = NSMutableArray (array:modelArray)
-        array.sortUsingDescriptors (mSortDescriptors)
-        let sortedObjectArray = array.mutableCopy () as! Array<NameEntity>
-        return .singleSelection (sortedObjectArray)
+        var array = NSMutableArray ()
+        var isMultiple = false
+        for object in modelArray {
+          switch object.aValue.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection :
+            isMultiple = true
+          case .singleSelection (let v1) :
+            if arrayControllerFilter_PMDocument_otherController (v1) {
+              array.addObject (object)
+            }
+          }
+        }
+        if isMultiple {
+          return .multipleSelection
+        }else{
+          array.sortUsingDescriptors (mSortDescriptors)
+          let sortedObjectArray = array.mutableCopy () as! Array<NameEntity>
+          return .singleSelection (sortedObjectArray)
+        }
      }
     }else{
       return .noSelection
@@ -155,19 +172,19 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    Delegate_PMDocument_nameController                                                                               *
+//    Delegate_PMDocument_otherController                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Delegate_PMDocument_nameController) class Delegate_PMDocument_nameController : PMAbstractProperty, PMTableViewDelegate {
+@objc(Delegate_PMDocument_otherController) class Delegate_PMDocument_otherController : PMAbstractProperty, PMTableViewDelegate {
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
-  private var mSortedArray : DataSource_PMDocument_nameController
+  private var mSortedArray : DataSource_PMDocument_otherController
   private var mIgnoreTableViewSelectionDidChange = true
   var count = PMTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (model:DataSource_PMDocument_nameController) {
+  init (model:DataSource_PMDocument_otherController) {
     mSortedArray = model
     super.init ()
     count.computeFunction = { [weak self] in
@@ -333,8 +350,8 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
         }
       //--- End
       }else if columnIdentifier == "int" {
-      //--- From cell-Int-PMNumberField.txt file
-        let tf : PMNumberField = result.textField as! PMNumberField
+      //--- From cell-Int-PMIntField.txt file
+        let tf : PMIntField = result.textField as! PMIntField
         switch object.aValue.prop {
         case .noSelection :
           tf.stringValue = "No Selection"
@@ -385,7 +402,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func set_aValue_Action (sender : PMNumberField) {
+  func set_aValue_Action (sender : PMIntField) {
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       break
@@ -401,18 +418,18 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    ArrayController_PMDocument_nameController                                                                        *
+//    ArrayController_PMDocument_otherController                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_PMDocument_nameController : PMObject {
+class ArrayController_PMDocument_otherController : PMObject {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 
-  var sortedArray = DataSource_PMDocument_nameController ()
+  var sortedArray = DataSource_PMDocument_otherController ()
 
   var selectedArray = TransientArrayOf_NameEntity ()
 
-  private var mSelectedSet : Delegate_PMDocument_nameController?
+  private var mSelectedSet : Delegate_PMDocument_otherController?
 
   private var mTableViewControllerArray = [Controller_PMTableView_controller] ()
 
@@ -460,7 +477,7 @@ class ArrayController_PMDocument_nameController : PMObject {
   func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[PMTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
-    let selectedSet = Delegate_PMDocument_nameController (model:sortedArray)
+    let selectedSet = Delegate_PMDocument_otherController (model:sortedArray)
     mSelectedSet = selectedSet
     for tableView in tableViewArray {
       let tableViewController = Controller_PMTableView_controller (
@@ -490,8 +507,8 @@ class ArrayController_PMDocument_nameController : PMObject {
     //--- Check 'int' column
       if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("int", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is PMNumberField) {
-            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMNumberField")
+          if !(unwrappedTableCellView.textField is PMIntField) {
+            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMIntField")
           }
         }else{
           presentErrorWindow (file, line, "\"int\" column cell view is not an instance of NSTableCellView")

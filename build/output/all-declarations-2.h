@@ -839,6 +839,7 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
 
 extern const char * gWrapperFileContent_0_collectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_1_collectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_2_collectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -847,6 +848,7 @@ extern const char * gWrapperFileContent_1_collectionControllerGenerationTemplate
 
 extern const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_2_collectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -926,6 +928,7 @@ void routine_generateArrayControllers (const class GALGAS_arrayControllerForGene
 extern const char * gWrapperFileContent_0_selectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_1_selectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_2_selectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_3_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -935,6 +938,7 @@ extern const char * gWrapperFileContent_2_selectionControllerGenerationTemplate 
 extern const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_2_selectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_3_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

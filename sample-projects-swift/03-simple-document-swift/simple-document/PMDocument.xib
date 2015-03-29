@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1090</int>
-		<string key="IBDocument.SystemVersion">14C109</string>
-		<string key="IBDocument.InterfaceBuilderVersion">7519.1</string>
+		<int key="IBDocument.SystemTarget">101000</int>
+		<string key="IBDocument.SystemVersion">14C1514</string>
+		<string key="IBDocument.InterfaceBuilderVersion">7528.3</string>
 		<string key="IBDocument.AppKitVersion">1344.72</string>
 		<string key="IBDocument.HIToolboxVersion">757.30</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">7519.1</string>
+			<string key="NS.object.0">7528.3</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSButtonCell</string>
@@ -831,7 +831,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				</object>
 				<string key="100027.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100028.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100033.CustomClassName">PMReadOnlyTextField</string>
+				<string key="100033.CustomClassName">PMTextFieldObserver</string>
 				<object class="NSMutableDictionary" key="100033.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">AccessibilityDescription</string>
 					<object class="IBAccessibilityAttribute" key="NS.object.0">
@@ -842,7 +842,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				</object>
 				<string key="100033.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100034.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100046.CustomClassName">PMReadOnlyTextField</string>
+				<string key="100046.CustomClassName">PMTextFieldObserver</string>
 				<object class="NSMutableDictionary" key="100046.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">AccessibilityDescription</string>
 					<object class="IBAccessibilityAttribute" key="NS.object.0">
@@ -853,7 +853,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				</object>
 				<string key="100046.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100047.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100052.CustomClassName">PMReadOnlyTextField</string>
+				<string key="100052.CustomClassName">PMTextFieldObserver</string>
 				<object class="NSMutableDictionary" key="100052.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">AccessibilityDescription</string>
 					<object class="IBAccessibilityAttribute" key="NS.object.0">
@@ -909,20 +909,11 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<bool key="requiresClassNameFormatting">YES</bool>
-					<string key="superclassName">EntityPropertyProtocol</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/easy-bindings-utilities.swift</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">PMColorWell</string>
 					<string key="superclassName">NSColorWell</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/PMColorWell.swift</string>
+						<string key="minorKey">../simple-document/PMColorWell.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -931,10 +922,10 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="myColorWell">PMColorWell</string>
 						<string key="myMatrix">PMMatrix</string>
-						<string key="myTextConcatField">PMReadOnlyTextField</string>
+						<string key="myTextConcatField">PMTextFieldObserver</string>
 						<string key="myTextField">PMTextField</string>
-						<string key="myTextMajField">PMReadOnlyTextField</string>
-						<string key="myTextMinField">PMReadOnlyTextField</string>
+						<string key="myTextMajField">PMTextFieldObserver</string>
+						<string key="myTextMinField">PMTextFieldObserver</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="myColorWell">
@@ -947,7 +938,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 						</object>
 						<object class="IBToOneOutletInfo" key="myTextConcatField">
 							<string key="name">myTextConcatField</string>
-							<string key="candidateClassName">PMReadOnlyTextField</string>
+							<string key="candidateClassName">PMTextFieldObserver</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="myTextField">
 							<string key="name">myTextField</string>
@@ -955,16 +946,16 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 						</object>
 						<object class="IBToOneOutletInfo" key="myTextMajField">
 							<string key="name">myTextMajField</string>
-							<string key="candidateClassName">PMReadOnlyTextField</string>
+							<string key="candidateClassName">PMTextFieldObserver</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="myTextMinField">
 							<string key="name">myTextMinField</string>
-							<string key="candidateClassName">PMReadOnlyTextField</string>
+							<string key="candidateClassName">PMTextFieldObserver</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/PMDocument.swift</string>
+						<string key="minorKey">../simple-document/PMDocument.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -987,7 +978,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/PMManagedDocument.swift</string>
+						<string key="minorKey">../simple-document/PMManagedDocument.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -995,15 +986,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 					<string key="superclassName">NSMatrix</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/PMMatrix.swift</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PMReadOnlyTextField</string>
-					<string key="superclassName">NSTextField</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/PMReadOnlyTextField.swift</string>
+						<string key="minorKey">../simple-document/PMMatrix.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1011,7 +994,15 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 					<string key="superclassName">NSTextField</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../03-simple-document/PMTextField.swift</string>
+						<string key="minorKey">../simple-document/PMTextField.swift</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PMTextFieldObserver</string>
+					<string key="superclassName">NSTextField</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../simple-document/PMTextFieldObserver.swift</string>
 					</object>
 				</object>
 			</array>

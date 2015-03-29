@@ -4,16 +4,30 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMReadOnlyIntField) class PMReadOnlyIntField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMIntFieldObserver) class PMIntFieldObserver : NSTextField, PMUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
+    noteObjectAllocation (self)
+  }
+  
   //-------------------------------------------------------------------------------------------------------------------*
 
   deinit {
@@ -21,40 +35,22 @@ import Cocoa
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromEnableBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var enableFromValueBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  var myIntegerValue : Int = 0 {
-    didSet {
-      self.integerValue = myIntegerValue
-    }
-  }
-  
-  //-------------------------------------------------------------------------------------------------------------------*
-  //  readOnlyValue binding                                                                                            *
+  //  valueObserver binding                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
   private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue?
 
-  func bind_readOnlyValue (object:PMReadOnlyProperty_Int, file:String, line:Int) {
-    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (object:object, outlet:self, file:file, line:line)
+  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
+    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (
+      object:object,
+      outlet:self,
+      file:file,
+      line:line,
+      autoFormatter:autoFormatter
+    )
   }
 
-  func unbind_readOnlyValue () {
+  func unbind_valueObserver () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -69,15 +65,18 @@ import Cocoa
 @objc(Controller_PMReadOnlyIntField_readOnlyValue) class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
 
   var mObject : PMReadOnlyProperty_Int
-  var mOutlet : PMReadOnlyIntField
+  var mOutlet : PMIntFieldObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMReadOnlyIntField, file : String, line : Int) {
+  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    if mOutlet.formatter == nil {
+    if autoFormatter {
+      let formatter = NSNumberFormatter ()
+      mOutlet.formatter = formatter
+    }else if mOutlet.formatter == nil {
       presentErrorWindow (file, line, "the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")

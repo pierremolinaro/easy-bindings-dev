@@ -3540,10 +3540,10 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (C_C
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- File '/cell-Int-PMNumberField.txt'
+//--- File '/cell-Int-PMIntField.txt'
 
-const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "      //--- From cell-Int-PMNumberField.txt file\n"
-  "        let tf : PMNumberField = result.textField as! PMNumberField\n"
+const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "      //--- From cell-Int-PMIntField.txt file\n"
+  "        let tf : PMIntField = result.textField as! PMIntField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
   "          tf.stringValue = \"No Selection\"\n"
@@ -3564,16 +3564,47 @@ const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "   
   "      //--- end\n" ;
 
 const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate (
+  "cell-Int-PMIntField.txt",
+  "txt",
+  true, // Text file
+  653, // Text length
+  gWrapperFileContent_0_collectionControllerGenerationTemplate
+) ;
+
+//--- File '/cell-Int-PMNumberField.txt'
+
+const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "      //--- From cell-Int-PMNumberField.txt file\n"
+  "        let tf : PMNumberField = result.textField as! PMNumberField\n"
+  "        switch object.$MODEL$.prop {\n"
+  "        case .noSelection :\n"
+  "          tf.stringValue = \"No Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        case .singleSelection (let v) :\n"
+  "          tf.integerValue = v\n"
+  "          tf.enabled = true\n"
+  "          tf.target = self\n"
+  "          tf.action = \"set_$MODEL$_Action:\"\n"
+  "         case .multipleSelection :\n"
+  "          tf.stringValue = \"Multiple Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        }\n"
+  "      //--- end\n" ;
+
+const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate (
   "cell-Int-PMNumberField.txt",
   "txt",
   true, // Text file
   662, // Text length
-  gWrapperFileContent_0_collectionControllerGenerationTemplate
+  gWrapperFileContent_1_collectionControllerGenerationTemplate
 ) ;
 
 //--- File '/cell-String-PMTextField.txt'
 
-const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "      //--- From cell-String-PMTextField.txt file\n"
+const char * gWrapperFileContent_2_collectionControllerGenerationTemplate = "      //--- From cell-String-PMTextField.txt file\n"
   "        let tf : PMTextField = result.textField as! PMTextField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
@@ -3594,19 +3625,20 @@ const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "   
   "        }\n"
   "      //--- End\n" ;
 
-const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate (
+const cRegularFileWrapper gWrapperFile_2_collectionControllerGenerationTemplate (
   "cell-String-PMTextField.txt",
   "txt",
   true, // Text file
   658, // Text length
-  gWrapperFileContent_1_collectionControllerGenerationTemplate
+  gWrapperFileContent_2_collectionControllerGenerationTemplate
 ) ;
 
 //--- All files of '' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_collectionControllerGenerationTemplate_0 [3] = {
+static const cRegularFileWrapper * gWrapperAllFiles_collectionControllerGenerationTemplate_0 [4] = {
   & gWrapperFile_0_collectionControllerGenerationTemplate,
   & gWrapperFile_1_collectionControllerGenerationTemplate,
+  & gWrapperFile_2_collectionControllerGenerationTemplate,
   NULL
 } ;
 
@@ -3620,7 +3652,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_collectionControllerGene
 
 const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate (
   "",
-  2,
+  3,
   gWrapperAllFiles_collectionControllerGenerationTemplate_0,
   0,
   gWrapperAllDirectories_collectionControllerGenerationTemplate_0
@@ -4522,10 +4554,10 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- File 'collection-controller-templates/cell-Int-PMNumberField.txt'
+//--- File 'collection-controller-templates/cell-Int-PMIntField.txt'
 
-const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "      //--- From cell-Int-PMNumberField.txt file\n"
-  "        let tf : PMNumberField = result.textField as! PMNumberField\n"
+const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "      //--- From cell-Int-PMIntField.txt file\n"
+  "        let tf : PMIntField = result.textField as! PMIntField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
   "          tf.stringValue = \"No Selection\"\n"
@@ -4546,16 +4578,47 @@ const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "    
   "      //--- end\n" ;
 
 const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTemplate (
+  "cell-Int-PMIntField.txt",
+  "txt",
+  true, // Text file
+  653, // Text length
+  gWrapperFileContent_0_selectionControllerGenerationTemplate
+) ;
+
+//--- File 'collection-controller-templates/cell-Int-PMNumberField.txt'
+
+const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "      //--- From cell-Int-PMNumberField.txt file\n"
+  "        let tf : PMNumberField = result.textField as! PMNumberField\n"
+  "        switch object.$MODEL$.prop {\n"
+  "        case .noSelection :\n"
+  "          tf.stringValue = \"No Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        case .singleSelection (let v) :\n"
+  "          tf.integerValue = v\n"
+  "          tf.enabled = true\n"
+  "          tf.target = self\n"
+  "          tf.action = \"set_$MODEL$_Action:\"\n"
+  "         case .multipleSelection :\n"
+  "          tf.stringValue = \"Multiple Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        }\n"
+  "      //--- end\n" ;
+
+const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate (
   "cell-Int-PMNumberField.txt",
   "txt",
   true, // Text file
   662, // Text length
-  gWrapperFileContent_0_selectionControllerGenerationTemplate
+  gWrapperFileContent_1_selectionControllerGenerationTemplate
 ) ;
 
 //--- File 'collection-controller-templates/cell-String-PMTextField.txt'
 
-const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "      //--- From cell-String-PMTextField.txt file\n"
+const char * gWrapperFileContent_2_selectionControllerGenerationTemplate = "      //--- From cell-String-PMTextField.txt file\n"
   "        let tf : PMTextField = result.textField as! PMTextField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
@@ -4576,19 +4639,20 @@ const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "    
   "        }\n"
   "      //--- End\n" ;
 
-const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate (
+const cRegularFileWrapper gWrapperFile_2_selectionControllerGenerationTemplate (
   "cell-String-PMTextField.txt",
   "txt",
   true, // Text file
   658, // Text length
-  gWrapperFileContent_1_selectionControllerGenerationTemplate
+  gWrapperFileContent_2_selectionControllerGenerationTemplate
 ) ;
 
 //--- All files of 'collection-controller-templates' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_1 [3] = {
+static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_1 [4] = {
   & gWrapperFile_0_selectionControllerGenerationTemplate,
   & gWrapperFile_1_selectionControllerGenerationTemplate,
+  & gWrapperFile_2_selectionControllerGenerationTemplate,
   NULL
 } ;
 
@@ -4602,7 +4666,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGener
 
 const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGenerationTemplate (
   "collection-controller-templates",
-  2,
+  3,
   gWrapperAllFiles_selectionControllerGenerationTemplate_1,
   0,
   gWrapperAllDirectories_selectionControllerGenerationTemplate_1
@@ -4654,7 +4718,7 @@ const cDirectoryWrapper gWrapperDirectory_3_selectionControllerGenerationTemplat
 
 //--- File 'xcode-project/Info.plist.txt'
 
-const char * gWrapperFileContent_2_selectionControllerGenerationTemplate = "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
+const char * gWrapperFileContent_3_selectionControllerGenerationTemplate = "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
   "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n"
   "<plist version=\"1.0\">\n"
   "<dict>\n"
@@ -4710,18 +4774,18 @@ const char * gWrapperFileContent_2_selectionControllerGenerationTemplate = "<\?x
   "</dict>\n"
   "</plist>\n" ;
 
-const cRegularFileWrapper gWrapperFile_2_selectionControllerGenerationTemplate (
+const cRegularFileWrapper gWrapperFile_3_selectionControllerGenerationTemplate (
   "Info.plist.txt",
   "txt",
   true, // Text file
   1547, // Text length
-  gWrapperFileContent_2_selectionControllerGenerationTemplate
+  gWrapperFileContent_3_selectionControllerGenerationTemplate
 ) ;
 
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_4 [2] = {
-  & gWrapperFile_2_selectionControllerGenerationTemplate,
+  & gWrapperFile_3_selectionControllerGenerationTemplate,
   NULL
 } ;
 
