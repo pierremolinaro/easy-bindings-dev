@@ -22,6 +22,7 @@ list @outletDeclarationList {
   @tableValueBinding mTableValueBindingDescriptor
   @runActionDescriptor mRunDescriptor
   @multipleBindingDescriptor mEnabledBindingDescriptor
+  @multipleBindingDescriptor mHiddenBindingDescriptor
   @regularBindingList mRegularBindingList
 }
 
@@ -39,7 +40,8 @@ syntax extension easyBindings_syntax {
     $identifier$ ?let outletName
     var tableValueBinding = @tableValueBinding.noTableValueBinding 
     var runActionDescriptor = @runActionDescriptor.noAction 
-    var enabledBindingDescriptor = @multipleBindingDescriptor.noEnabledBinding
+    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
+    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
     @regularBindingList regularBindingList = {}
     repeat
     while
@@ -67,11 +69,19 @@ syntax extension easyBindings_syntax {
   #--- Enabled
     while
       $enabled$
-      if enabledBindingDescriptor != @multipleBindingDescriptor. noEnabledBinding then
+      if enabledBindingDescriptor != .noBinding then
         error @location.here : "duplicated $enabled binding"
       end
       <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
-      enabledBindingDescriptor = @multipleBindingDescriptor.enabledBinding {!expression:bindingExpression}
+      enabledBindingDescriptor = .binding {!expression:bindingExpression}
+  #--- Hidden
+    while
+      $hidden$
+      if hiddenBindingDescriptor != .noBinding then
+        error @location.here : "duplicated $hidden binding"
+      end
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      hiddenBindingDescriptor = .binding {!expression:bindingExpression}
   #--- Regular binding
     while
       $bindingName$ ?let @lstring bindingName
@@ -96,6 +106,7 @@ syntax extension easyBindings_syntax {
       !tableValueBinding
       !runActionDescriptor
       !enabledBindingDescriptor
+      !hiddenBindingDescriptor
       !regularBindingList
   }
 }
@@ -205,8 +216,8 @@ proc analyzeOutlets
     end
   #--- Enabled
     switch outlet_mEnabledBindingDescriptor
-    case noEnabledBinding :
-    case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression) :
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
         !inRootObservablePropertyMap
         !inSemanticContext
@@ -222,6 +233,26 @@ proc analyzeOutlets
         !outlet_mOutletName.string
         !"enabled"
         !enableExpression
+    end
+  #--- Hidden
+    switch outlet_mHiddenBindingDescriptor
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+      [expression analyzeExpressionForMultipleBinding
+        !inRootObservablePropertyMap
+        !inSemanticContext
+        !inObservablePropertyMap
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+        ?let @typeKind type
+        ?let @location errorLocation
+      ]
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
+      outMultipleBindingGenerationList +=
+        !outlet_mOutletName.string
+        !"hidden"
+        !hiddenExpression
     end
   #--- Regular bindings
     for () in outlet_mRegularBindingList do

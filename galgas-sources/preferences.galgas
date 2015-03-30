@@ -187,6 +187,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@mainXibDescriptorList MAIN_XIB_DESCRIPTOR_LIST
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
+    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -205,6 +206,7 @@ proc generatePreferences
     !inPreferenceListForGeneration.mRegularBindingsGenerationList
     !inPreferenceListForGeneration.mMainXibDescriptorList
     !inPreferenceListForGeneration.mActionBindingListForGeneration
+    !inPreferenceListForGeneration.mMultipleBindingGenerationList
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName

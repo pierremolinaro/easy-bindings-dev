@@ -3,8 +3,8 @@
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 enum @multipleBindingDescriptor {
-  case noEnabledBinding 
-  case enabledBinding (@abstractBooleanMultipleBindingExpressionAST expression)
+  case noBinding 
+  case binding (@abstractBooleanMultipleBindingExpressionAST expression)
 }
 
 #......................................................................................................................*

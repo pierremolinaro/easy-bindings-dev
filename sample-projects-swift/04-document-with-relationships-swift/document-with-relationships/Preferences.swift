@@ -53,6 +53,7 @@ var g_Preferences : Preferences? = nil
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
+  //--- Install multiple bindings
   //--------------------------- Set targets / actions
   }
   

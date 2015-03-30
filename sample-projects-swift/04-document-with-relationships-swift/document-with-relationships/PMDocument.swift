@@ -290,7 +290,6 @@ import Cocoa
       },
       file:__FILE__, line:__LINE__
     )
-  //--- Install multiple bindings
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = "add:"

@@ -491,24 +491,23 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
       enumerator_6493.gotoNextObject () ;
     }
   }
-  result << "  //--- Install multiple bindings\n"
-    "  //--------------------------- Set targets / actions\n" ;
-  GALGAS_uint index_6945_ (0) ;
+  result << "  //--------------------------- Set targets / actions\n" ;
+  GALGAS_uint index_6908_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_6945 (in_TARGET_5F_ACTION_5F_LIST, kEnumeration_up) ;
-    while (enumerator_6945.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_6908 (in_TARGET_5F_ACTION_5F_LIST, kEnumeration_up) ;
+    while (enumerator_6908.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_6945.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_6908.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = " ;
-      result << enumerator_6945.current_mTargetName (HERE).stringValue () ;
+      result << enumerator_6908.current_mTargetName (HERE).stringValue () ;
       result << "\n"
         "    " ;
-      result << enumerator_6945.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_6908.current_mOutletName (HERE).stringValue () ;
       result << "\?.action = \"" ;
-      result << enumerator_6945.current_mActionName (HERE).stringValue () ;
+      result << enumerator_6908.current_mActionName (HERE).stringValue () ;
       result << ":\"\n" ;
-      index_6945_.increment () ;
-      enumerator_6945.gotoNextObject () ;
+      index_6908_.increment () ;
+      enumerator_6908.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Update display\n"
@@ -524,101 +523,101 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
     "    undoManager\?.removeAllActions ()\n"
     "    undoManager = nil\n"
     "  //--- Unbind regular bindings\n" ;
-  GALGAS_uint index_7720_ (0) ;
+  GALGAS_uint index_7683_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_regularBindingsGenerationList enumerator_7720 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kEnumeration_up) ;
-    while (enumerator_7720.hasCurrentObject ()) {
+    cEnumerator_regularBindingsGenerationList enumerator_7683 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kEnumeration_up) ;
+    while (enumerator_7683.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_7720.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_7683.current_mOutletName (HERE).stringValue () ;
       result << "\?.unbind_" ;
-      result << enumerator_7720.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_7683.current_mBindingName (HERE).stringValue () ;
       result << " ()\n" ;
-      index_7720_.increment () ;
-      enumerator_7720.gotoNextObject () ;
+      index_7683_.increment () ;
+      enumerator_7683.gotoNextObject () ;
     }
   }
   result << "  //--- Unbind multiple bindings\n" ;
-  GALGAS_uint index_7858_ (0) ;
+  GALGAS_uint index_7821_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_7858 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kEnumeration_up) ;
-    while (enumerator_7858.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_7821 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kEnumeration_up) ;
+    while (enumerator_7821.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_7858.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_7821.current_mOutletName (HERE).stringValue () ;
       result << "\?.unbind_" ;
-      result << enumerator_7858.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_7821.current_mBindingName (HERE).stringValue () ;
       result << " ()\n" ;
-      index_7858_.increment () ;
-      enumerator_7858.gotoNextObject () ;
+      index_7821_.increment () ;
+      enumerator_7821.gotoNextObject () ;
     }
   }
   result << "  //--- Uninstall compute functions for transients\n" ;
-  GALGAS_uint index_8015_ (0) ;
+  GALGAS_uint index_7978_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientDefinitionListForGeneration enumerator_8015 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kEnumeration_up) ;
-    while (enumerator_8015.hasCurrentObject ()) {
+    cEnumerator_transientDefinitionListForGeneration enumerator_7978 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kEnumeration_up) ;
+    while (enumerator_7978.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_8015.current_mTransientName (HERE).stringValue () ;
+      result << enumerator_7978.current_mTransientName (HERE).stringValue () ;
       result << ".computeFunction = nil\n" ;
-      index_8015_.increment () ;
-      enumerator_8015.gotoNextObject () ;
+      index_7978_.increment () ;
+      enumerator_7978.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Unbind array controllers\n" ;
-  GALGAS_uint index_8164_ (0) ;
+  GALGAS_uint index_8127_ (0) ;
   if (in_ARRAY_5F_CONTROLLER_5F_LIST.isValid ()) {
-    cEnumerator_arrayControllerForGeneration enumerator_8164 (in_ARRAY_5F_CONTROLLER_5F_LIST, kEnumeration_up) ;
-    while (enumerator_8164.hasCurrentObject ()) {
+    cEnumerator_arrayControllerForGeneration enumerator_8127 (in_ARRAY_5F_CONTROLLER_5F_LIST, kEnumeration_up) ;
+    while (enumerator_8127.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_8164.current_mControllerName (HERE).stringValue () ;
+      result << enumerator_8127.current_mControllerName (HERE).stringValue () ;
       result << ".unbind_modelAndView ()\n" ;
-      index_8164_.increment () ;
-      enumerator_8164.gotoNextObject () ;
+      index_8127_.increment () ;
+      enumerator_8127.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Unbind selection controllers\n" ;
-  GALGAS_uint index_8321_ (0) ;
+  GALGAS_uint index_8284_ (0) ;
   if (in_SELECTION_5F_CONTROLLER_5F_LIST.isValid ()) {
-    cEnumerator_selectionControllerForGeneration enumerator_8321 (in_SELECTION_5F_CONTROLLER_5F_LIST, kEnumeration_up) ;
-    while (enumerator_8321.hasCurrentObject ()) {
+    cEnumerator_selectionControllerForGeneration enumerator_8284 (in_SELECTION_5F_CONTROLLER_5F_LIST, kEnumeration_up) ;
+    while (enumerator_8284.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_8321.current_mSelectionControllerName (HERE).stringValue () ;
+      result << enumerator_8284.current_mSelectionControllerName (HERE).stringValue () ;
       result << ".unbind_selection ()\n" ;
-      index_8321_.increment () ;
-      enumerator_8321.gotoNextObject () ;
+      index_8284_.increment () ;
+      enumerator_8284.gotoNextObject () ;
     }
   }
   result << "  //--- Uninstall property observers for transients\n" ;
-  GALGAS_uint index_8483_ (0) ;
+  GALGAS_uint index_8446_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientDefinitionListForGeneration enumerator_8483 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kEnumeration_up) ;
-    while (enumerator_8483.hasCurrentObject ()) {
-      GALGAS_uint index_8512_ (0) ;
-      if (enumerator_8483.current_mDependencyList (HERE).isValid ()) {
-        cEnumerator_transientDependencyListForGeneration enumerator_8512 (enumerator_8483.current_mDependencyList (HERE), kEnumeration_up) ;
-        while (enumerator_8512.hasCurrentObject ()) {
+    cEnumerator_transientDefinitionListForGeneration enumerator_8446 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kEnumeration_up) ;
+    while (enumerator_8446.hasCurrentObject ()) {
+      GALGAS_uint index_8475_ (0) ;
+      if (enumerator_8446.current_mDependencyList (HERE).isValid ()) {
+        cEnumerator_transientDependencyListForGeneration enumerator_8475 (enumerator_8446.current_mDependencyList (HERE), kEnumeration_up) ;
+        while (enumerator_8475.hasCurrentObject ()) {
           result << "    " ;
-          result << categoryReader_generateRemoveObserverCall (enumerator_8512.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 206)).stringValue () ;
+          result << categoryReader_generateRemoveObserverCall (enumerator_8475.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 204)).stringValue () ;
           result << " (" ;
-          result << enumerator_8483.current_mTransientName (HERE).stringValue () ;
+          result << enumerator_8446.current_mTransientName (HERE).stringValue () ;
           result << ", postEvent:false)\n" ;
-          index_8512_.increment () ;
-          enumerator_8512.gotoNextObject () ;
+          index_8475_.increment () ;
+          enumerator_8475.gotoNextObject () ;
         }
       }
-      index_8483_.increment () ;
-      enumerator_8483.gotoNextObject () ;
+      index_8446_.increment () ;
+      enumerator_8446.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Remove targets / actions\n" ;
-  GALGAS_uint index_8700_ (0) ;
+  GALGAS_uint index_8663_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_8700 (in_TARGET_5F_ACTION_5F_LIST, kEnumeration_up) ;
-    while (enumerator_8700.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_8663 (in_TARGET_5F_ACTION_5F_LIST, kEnumeration_up) ;
+    while (enumerator_8663.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_8700.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_8663.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = nil\n" ;
-      index_8700_.increment () ;
-      enumerator_8700.gotoNextObject () ;
+      index_8663_.increment () ;
+      enumerator_8663.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -796,7 +795,8 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
                                                                        const GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
                                                                        const GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
                                                                        const GALGAS_mainXibDescriptorList & in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST,
-                                                                       const GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST
+                                                                       const GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
+                                                                       const GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
   result << "import Cocoa\n"
@@ -1028,23 +1028,58 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
       enumerator_4919.gotoNextObject () ;
     }
   }
-  result << "  //--------------------------- Set targets / actions\n" ;
-  GALGAS_uint index_5178_ (0) ;
-  if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_5178 (in_TARGET_5F_ACTION_5F_LIST, kEnumeration_up) ;
-    while (enumerator_5178.hasCurrentObject ()) {
+  result << "  //--- Install multiple bindings\n" ;
+  GALGAS_uint index_5173_ (0) ;
+  if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_5173 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kEnumeration_up) ;
+    while (enumerator_5173.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_5178.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5173.current_mOutletName (HERE).stringValue () ;
+      result << "\?.bind_" ;
+      result << enumerator_5173.current_mBindingName (HERE).stringValue () ;
+      result << " (\n"
+        "      [" ;
+      GALGAS_uint index_5293_ (0) ;
+      if (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5173.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 130)).isValid ()) {
+        cEnumerator_stringset enumerator_5293 (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5173.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 130)), kEnumeration_up) ;
+        while (enumerator_5293.hasCurrentObject ()) {
+          result << enumerator_5293.current_key (HERE).stringValue () ;
+          if (enumerator_5293.hasNextObject ()) {
+            result << ", " ;
+          }
+          index_5293_.increment () ;
+          enumerator_5293.gotoNextObject () ;
+        }
+      }
+      result << "],\n"
+        "      computeFunction:{\n"
+        "        return " ;
+      result << callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5173.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 136)).stringValue () ;
+      result << "\n"
+        "      },\n"
+        "      file:__FILE__, line:__LINE__\n"
+        "    )\n" ;
+      index_5173_.increment () ;
+      enumerator_5173.gotoNextObject () ;
+    }
+  }
+  result << "  //--------------------------- Set targets / actions\n" ;
+  GALGAS_uint index_5588_ (0) ;
+  if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_5588 (in_TARGET_5F_ACTION_5F_LIST, kEnumeration_up) ;
+    while (enumerator_5588.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_5588.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = " ;
-      result << enumerator_5178.current_mTargetName (HERE).stringValue () ;
+      result << enumerator_5588.current_mTargetName (HERE).stringValue () ;
       result << "\n"
         "    " ;
-      result << enumerator_5178.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5588.current_mOutletName (HERE).stringValue () ;
       result << "\?.action = \"" ;
-      result << enumerator_5178.current_mActionName (HERE).stringValue () ;
+      result << enumerator_5588.current_mActionName (HERE).stringValue () ;
       result << ":\"\n" ;
-      index_5178_.increment () ;
-      enumerator_5178.gotoNextObject () ;
+      index_5588_.increment () ;
+      enumerator_5588.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -1054,17 +1089,17 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
     "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
     "\n"
     "  func applicationWillTerminateAction (NSNotification) {\n" ;
-  GALGAS_uint index_5768_ (0) ;
+  GALGAS_uint index_6178_ (0) ;
   if (in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_simpleStoredPropertyListForGeneration enumerator_5768 (in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kEnumeration_up) ;
-    while (enumerator_5768.hasCurrentObject ()) {
+    cEnumerator_simpleStoredPropertyListForGeneration enumerator_6178 (in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kEnumeration_up) ;
+    while (enumerator_6178.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_5768.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_6178.current_mStoredPropertyName (HERE).stringValue () ;
       result << ".storeInPreferencesWithKey (\"Preferences:" ;
-      result << enumerator_5768.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_6178.current_mStoredPropertyName (HERE).stringValue () ;
       result << "\")\n" ;
-      index_5768_.increment () ;
-      enumerator_5768.gotoNextObject () ;
+      index_6178_.increment () ;
+      enumerator_6178.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -1088,11 +1123,11 @@ void routine_generatePreferences (const GALGAS_preferencesForGeneration constinA
                                   GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                   C_Compiler * inCompiler
                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, constinArgument_inPreferenceListForGeneration.mAttribute_mSimpleStoredPropertyListForGeneration, constinArgument_inPreferenceListForGeneration.mAttribute_mTransientDefinitionListForGeneration, constinArgument_inPreferenceListForGeneration.mAttribute_mOutletMap, constinArgument_inPreferenceListForGeneration.mAttribute_mRegularBindingsGenerationList, constinArgument_inPreferenceListForGeneration.mAttribute_mMainXibDescriptorList, constinArgument_inPreferenceListForGeneration.mAttribute_mActionBindingListForGeneration COMMA_SOURCE_FILE ("preferences.galgas", 201))) ;
-  GALGAS_string var_fileName = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 209)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 209)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("preferences.galgas", 210)) ;
+  GALGAS_string var_s = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, constinArgument_inPreferenceListForGeneration.mAttribute_mSimpleStoredPropertyListForGeneration, constinArgument_inPreferenceListForGeneration.mAttribute_mTransientDefinitionListForGeneration, constinArgument_inPreferenceListForGeneration.mAttribute_mOutletMap, constinArgument_inPreferenceListForGeneration.mAttribute_mRegularBindingsGenerationList, constinArgument_inPreferenceListForGeneration.mAttribute_mMainXibDescriptorList, constinArgument_inPreferenceListForGeneration.mAttribute_mActionBindingListForGeneration, constinArgument_inPreferenceListForGeneration.mAttribute_mMultipleBindingGenerationList COMMA_SOURCE_FILE ("preferences.galgas", 202))) ;
+  GALGAS_string var_fileName = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 211)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 211)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("preferences.galgas", 212)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 211)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 213)) ;
   }
 }
 
@@ -2166,6 +2201,7 @@ const char * gWrapperFileContent_9_outletClassGeneration = "import Cocoa\n"
   "  required init\? (coder: NSCoder) {\n"
   "    super.init (coder:coder)\n"
   "    noteObjectAllocation (self)\n"
+  "    self.setButtonType(.SwitchButton)\n"
   "  }\n"
   "\n"
   "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
@@ -2173,6 +2209,7 @@ const char * gWrapperFileContent_9_outletClassGeneration = "import Cocoa\n"
   "  override init (frame:NSRect) {\n"
   "    super.init (frame:frame)\n"
   "    noteObjectAllocation (self)\n"
+  "    self.setButtonType(.SwitchButton)\n"
   "  }\n"
   "  \n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -2266,7 +2303,7 @@ const cRegularFileWrapper gWrapperFile_9_outletClassGeneration (
   "PMSwitch.swift",
   "swift",
   true, // Text file
-  3954, // Text length
+  4030, // Text length
   gWrapperFileContent_9_outletClassGeneration
 ) ;
 
@@ -2758,21 +2795,21 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
   outArgument_outTargetActionList.drop () ; // Release 'out' argument
   outArgument_outletMap.drop () ; // Release 'out' argument
   outArgument_outTableViewBindingGenerationList.drop () ; // Release 'out' argument
-  outArgument_outRegularBindingsGenerationList = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 152)) ;
-  outArgument_outTargetActionList = GALGAS_actionBindingListForGeneration::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 153)) ;
-  outArgument_outMultipleBindingGenerationList = GALGAS_multipleBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 154)) ;
-  outArgument_outletMap = GALGAS_decoratedOutletMap::constructor_emptyMap (SOURCE_FILE ("outlet-declaration.galgas", 155)) ;
-  outArgument_outTableViewBindingGenerationList = GALGAS_tableViewBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 156)) ;
-  cEnumerator_outletDeclarationList enumerator_5863 (constinArgument_inOutletDeclarationList, kEnumeration_up) ;
-  while (enumerator_5863.hasCurrentObject ()) {
+  outArgument_outRegularBindingsGenerationList = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 163)) ;
+  outArgument_outTargetActionList = GALGAS_actionBindingListForGeneration::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 164)) ;
+  outArgument_outMultipleBindingGenerationList = GALGAS_multipleBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 165)) ;
+  outArgument_outletMap = GALGAS_decoratedOutletMap::constructor_emptyMap (SOURCE_FILE ("outlet-declaration.galgas", 166)) ;
+  outArgument_outTableViewBindingGenerationList = GALGAS_tableViewBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 167)) ;
+  cEnumerator_outletDeclarationList enumerator_6288 (constinArgument_inOutletDeclarationList, kEnumeration_up) ;
+  while (enumerator_6288.hasCurrentObject ()) {
     {
-    outArgument_outletMap.modifier_insertKey (enumerator_5863.current_mOutletName (HERE), enumerator_5863.current_mOutletTypeName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 158)) ;
+    outArgument_outletMap.modifier_insertKey (enumerator_6288.current_mOutletName (HERE), enumerator_6288.current_mOutletTypeName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 169)) ;
     }
     GALGAS_bool var_handlesRunAction ;
     GALGAS_bool var_handlesTableViewBinding ;
-    constinArgument_inSemanticContext.mAttribute_mOutletClassMap.method_searchKey (enumerator_5863.current_mOutletTypeName (HERE), var_handlesRunAction, var_handlesTableViewBinding, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 159)) ;
-    ioArgument_ioGeneration.mAttribute_mNeededOutletClasses.addAssign_operation (enumerator_5863.current_mOutletTypeName (HERE).mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 164)) ;
-    switch (enumerator_5863.current_mTableValueBindingDescriptor (HERE).enumValue ()) {
+    constinArgument_inSemanticContext.mAttribute_mOutletClassMap.method_searchKey (enumerator_6288.current_mOutletTypeName (HERE), var_handlesRunAction, var_handlesTableViewBinding, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 170)) ;
+    ioArgument_ioGeneration.mAttribute_mNeededOutletClasses.addAssign_operation (enumerator_6288.current_mOutletTypeName (HERE).mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 175)) ;
+    switch (enumerator_6288.current_mTableValueBindingDescriptor (HERE).enumValue ()) {
     case GALGAS_tableValueBinding::kNotBuilt:
       break ;
     case GALGAS_tableValueBinding::kEnum_noTableValueBinding:
@@ -2781,35 +2818,35 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
       break ;
     case GALGAS_tableValueBinding::kEnum_tableValueBinding:
       {
-        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_7059 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_5863.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_controllerName = extractPtr_7059->mAssociatedValue0 ;
-        const enumGalgasBool test_0 = var_handlesTableViewBinding.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 169)).boolEnum () ;
+        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_7484 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_6288.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_controllerName = extractPtr_7484->mAssociatedValue0 ;
+        const enumGalgasBool test_0 = var_handlesTableViewBinding.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 180)).boolEnum () ;
         if (kBoolTrue == test_0) {
-          GALGAS_location location_1 (enumerator_5863.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_1, GALGAS_string ("the '").add_operation (enumerator_5863.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 170)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 170)).add_operation (GALGAS_string ("' type does not handle the $tableView binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 170))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 170)) ;
+          GALGAS_location location_1 (enumerator_6288.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+          inCompiler->emitSemanticError (location_1, GALGAS_string ("the '").add_operation (enumerator_6288.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 181)).add_operation (GALGAS_string ("' type does not handle the $tableView binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 181))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 181)) ;
         }else if (kBoolFalse == test_0) {
           GALGAS_typeKind var_type ;
           GALGAS_propertyKind var_kind ;
           GALGAS_propertyMultiplicity var_multiplicity ;
-          GALGAS_string joker_6673_2 ; // Joker input parameter
-          GALGAS_actionMap joker_6673_1 ; // Joker input parameter
-          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_type, var_kind, var_multiplicity, joker_6673_2, joker_6673_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 172)) ;
-          const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_arrayController (SOURCE_FILE ("outlet-declaration.galgas", 179)))).boolEnum () ;
+          GALGAS_string joker_7098_2 ; // Joker input parameter
+          GALGAS_actionMap joker_7098_1 ; // Joker input parameter
+          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_type, var_kind, var_multiplicity, joker_7098_2, joker_7098_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 183)) ;
+          const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_arrayController (SOURCE_FILE ("outlet-declaration.galgas", 190)))).boolEnum () ;
           if (kBoolTrue == test_2) {
             GALGAS_location location_3 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_3, GALGAS_string ("the bound model should be an array controller")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 180)) ;
+            inCompiler->emitSemanticError (location_3, GALGAS_string ("the bound model should be an array controller")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 191)) ;
           }
-          const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("outlet-declaration.galgas", 182)))).boolEnum () ;
+          const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("outlet-declaration.galgas", 193)))).boolEnum () ;
           if (kBoolTrue == test_4) {
             GALGAS_location location_5 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_5, GALGAS_string ("the controller is not bound to a collection")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 183)) ;
+            inCompiler->emitSemanticError (location_5, GALGAS_string ("the controller is not bound to a collection")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 194)) ;
           }
-          outArgument_outTableViewBindingGenerationList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, extractedValue_controllerName.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 185)) ;
+          outArgument_outTableViewBindingGenerationList.addAssign_operation (enumerator_6288.current_mOutletName (HERE).mAttribute_string, extractedValue_controllerName.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 196)) ;
         }
       }
       break ;
     }
-    switch (enumerator_5863.current_mRunDescriptor (HERE).enumValue ()) {
+    switch (enumerator_6288.current_mRunDescriptor (HERE).enumValue ()) {
     case GALGAS_runActionDescriptor::kNotBuilt:
       break ;
     case GALGAS_runActionDescriptor::kEnum_noAction:
@@ -2818,151 +2855,174 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
       break ;
     case GALGAS_runActionDescriptor::kEnum_action:
       {
-        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_7791 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_5863.current_mRunDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_target = extractPtr_7791->mAssociatedValue0 ;
-        const GALGAS_lstring extractedValue_action = extractPtr_7791->mAssociatedValue1 ;
-        const enumGalgasBool test_6 = var_handlesRunAction.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 192)).boolEnum () ;
+        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_8216 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_6288.current_mRunDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_target = extractPtr_8216->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_action = extractPtr_8216->mAssociatedValue1 ;
+        const enumGalgasBool test_6 = var_handlesRunAction.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 203)).boolEnum () ;
         if (kBoolTrue == test_6) {
-          GALGAS_location location_7 (enumerator_5863.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_7, GALGAS_string ("the '").add_operation (enumerator_5863.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 193)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 193)).add_operation (GALGAS_string ("' type does not handle run action"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 193))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 193)) ;
+          GALGAS_location location_7 (enumerator_6288.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+          inCompiler->emitSemanticError (location_7, GALGAS_string ("the '").add_operation (enumerator_6288.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 204)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 204)).add_operation (GALGAS_string ("' type does not handle run action"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 204))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 204)) ;
         }else if (kBoolFalse == test_6) {
           const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, extractedValue_target.mAttribute_string.objectCompare (GALGAS_string ("self"))).boolEnum () ;
           if (kBoolTrue == test_8) {
-            constinArgument_inActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 195)) ;
-            outArgument_outTargetActionList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("self"), extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 196)) ;
+            constinArgument_inActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 206)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_6288.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("self"), extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 207)) ;
           }else if (kBoolFalse == test_8) {
             GALGAS_actionMap var_controllerActionMap ;
-            GALGAS_typeKind joker_7606_4 ; // Joker input parameter
-            GALGAS_propertyKind joker_7606_3 ; // Joker input parameter
-            GALGAS_propertyMultiplicity joker_7606_2 ; // Joker input parameter
-            GALGAS_string joker_7606_1 ; // Joker input parameter
-            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_7606_4, joker_7606_3, joker_7606_2, joker_7606_1, var_controllerActionMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 201)) ;
-            var_controllerActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 202)) ;
-            outArgument_outTargetActionList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, extractedValue_target.mAttribute_string, extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 203)) ;
+            GALGAS_typeKind joker_8031_4 ; // Joker input parameter
+            GALGAS_propertyKind joker_8031_3 ; // Joker input parameter
+            GALGAS_propertyMultiplicity joker_8031_2 ; // Joker input parameter
+            GALGAS_string joker_8031_1 ; // Joker input parameter
+            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_8031_4, joker_8031_3, joker_8031_2, joker_8031_1, var_controllerActionMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 212)) ;
+            var_controllerActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 213)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_6288.current_mOutletName (HERE).mAttribute_string, extractedValue_target.mAttribute_string, extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 214)) ;
           }
         }
       }
       break ;
     }
-    switch (enumerator_5863.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
+    switch (enumerator_6288.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
     case GALGAS_multipleBindingDescriptor::kNotBuilt:
       break ;
-    case GALGAS_multipleBindingDescriptor::kEnum_noEnabledBinding:
+    case GALGAS_multipleBindingDescriptor::kEnum_noBinding:
       {
       }
       break ;
-    case GALGAS_multipleBindingDescriptor::kEnum_enabledBinding:
+    case GALGAS_multipleBindingDescriptor::kEnum_binding:
       {
-        const cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding * extractPtr_8505 = (const cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding *) (enumerator_5863.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_8505->mAssociatedValue0 ;
+        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_8916 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_6288.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_8916->mAssociatedValue0 ;
         GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression ;
         GALGAS_typeKind var_type ;
         GALGAS_location var_errorLocation ;
-        callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression, var_type, var_errorLocation, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 210)) ;
-        const enumGalgasBool test_9 = var_type.reader_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 218)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 218)).boolEnum () ;
+        callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression, var_type, var_errorLocation, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 221)) ;
+        const enumGalgasBool test_9 = var_type.reader_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 229)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 229)).boolEnum () ;
         if (kBoolTrue == test_9) {
-          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("expression is not boolean")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)) ;
+          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("expression is not boolean")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 230)) ;
         }
-        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("enabled"), var_enableExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 221)) ;
+        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_6288.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("enabled"), var_enableExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
       }
       break ;
     }
-    cEnumerator_regularBindingList enumerator_8578 (enumerator_5863.current_mRegularBindingList (HERE), kEnumeration_up) ;
-    while (enumerator_8578.hasCurrentObject ()) {
-      GALGAS_outletBindingModelList var_boundModelTypeList = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 229)) ;
-      GALGAS_stringlist var_boundModelStringListForGeneration = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 230)) ;
-      cEnumerator_observablePropertyList enumerator_8763 (enumerator_8578.current_mObservablePropertyList (HERE), kEnumeration_up) ;
-      while (enumerator_8763.hasCurrentObject ()) {
-        var_boundModelStringListForGeneration.addAssign_operation (categoryReader_modelString (enumerator_8763.current_mObservableProperty (HERE), GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 232)) ;
+    switch (enumerator_6288.current_mHiddenBindingDescriptor (HERE).enumValue ()) {
+    case GALGAS_multipleBindingDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_multipleBindingDescriptor::kEnum_noBinding:
+      {
+      }
+      break ;
+    case GALGAS_multipleBindingDescriptor::kEnum_binding:
+      {
+        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_9613 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_6288.current_mHiddenBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_9613->mAssociatedValue0 ;
+        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_hiddenExpression ;
+        GALGAS_typeKind var_type ;
+        GALGAS_location var_errorLocation ;
+        callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_hiddenExpression, var_type, var_errorLocation, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 241)) ;
+        const enumGalgasBool test_10 = var_type.reader_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 249)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 249)).boolEnum () ;
+        if (kBoolTrue == test_10) {
+          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("expression is not boolean")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 250)) ;
+        }
+        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_6288.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("hidden"), var_hiddenExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 252)) ;
+      }
+      break ;
+    }
+    cEnumerator_regularBindingList enumerator_9686 (enumerator_6288.current_mRegularBindingList (HERE), kEnumeration_up) ;
+    while (enumerator_9686.hasCurrentObject ()) {
+      GALGAS_outletBindingModelList var_boundModelTypeList = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 260)) ;
+      GALGAS_stringlist var_boundModelStringListForGeneration = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 261)) ;
+      cEnumerator_observablePropertyList enumerator_9871 (enumerator_9686.current_mObservablePropertyList (HERE), kEnumeration_up) ;
+      while (enumerator_9871.hasCurrentObject ()) {
+        var_boundModelStringListForGeneration.addAssign_operation (categoryReader_modelString (enumerator_9871.current_mObservableProperty (HERE), GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 263))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 263)) ;
         GALGAS_typeKind var_type ;
         GALGAS_propertyKind var_kind ;
         GALGAS_propertyMultiplicity var_multiplicity ;
         GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
-        categoryMethod_analyzeObservableProperty (enumerator_8763.current_mObservableProperty (HERE), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_type, var_kind, var_multiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 233)) ;
-        const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("outlet-declaration.galgas", 242)))).boolEnum () ;
-        if (kBoolTrue == test_10) {
-          inCompiler->emitSemanticError (categoryReader_location (enumerator_8763.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)), GALGAS_string ("a collection cannot be bound")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)) ;
+        categoryMethod_analyzeObservableProperty (enumerator_9871.current_mObservableProperty (HERE), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_type, var_kind, var_multiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
+        const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("outlet-declaration.galgas", 273)))).boolEnum () ;
+        if (kBoolTrue == test_11) {
+          inCompiler->emitSemanticError (categoryReader_location (enumerator_9871.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 274)), GALGAS_string ("a collection cannot be bound")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 274)) ;
         }
-        var_boundModelTypeList.addAssign_operation (var_type, var_kind, categoryReader_location (enumerator_8763.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 245))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 245)) ;
-        enumerator_8763.gotoNextObject () ;
+        var_boundModelTypeList.addAssign_operation (var_type, var_kind, categoryReader_location (enumerator_9871.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 276))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 276)) ;
+        enumerator_9871.gotoNextObject () ;
       }
       GALGAS_outletBindingSpecificationMap var_bindingMap ;
-      constinArgument_inSemanticContext.mAttribute_mBindingSpecificationMap.method_searchKey (enumerator_5863.current_mOutletTypeName (HERE), var_bindingMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 248)) ;
+      constinArgument_inSemanticContext.mAttribute_mBindingSpecificationMap.method_searchKey (enumerator_6288.current_mOutletTypeName (HERE), var_bindingMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)) ;
       GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList ;
       GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList ;
-      var_bindingMap.method_searchKey (enumerator_8578.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 252)) ;
-      const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 257)).objectCompare (var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 257)))).boolEnum () ;
-      if (kBoolTrue == test_11) {
-        GALGAS_location location_12 (enumerator_8578.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_12, var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 258)).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 258)).add_operation (GALGAS_string (" model(s) required for this binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258)) ;
-      }else if (kBoolFalse == test_11) {
-        cEnumerator_outletBindingSpecificationModelList enumerator_10119 (var_outletBindingSpecificationModelList, kEnumeration_up) ;
-        cEnumerator_outletBindingModelList enumerator_10152 (var_boundModelTypeList, kEnumeration_up) ;
-        while (enumerator_10119.hasCurrentObject () && enumerator_10152.hasCurrentObject ()) {
-          GALGAS_bool test_13 = enumerator_10119.current_mModelShouldBeWritableProperty (HERE) ;
-          if (kBoolTrue == test_13.boolEnum ()) {
-            test_13 = GALGAS_bool (kIsEqual, enumerator_10152.current_mKind (HERE).objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("outlet-declaration.galgas", 261)))) ;
+      var_bindingMap.method_searchKey (enumerator_9686.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 283)) ;
+      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 288)).objectCompare (var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 288)))).boolEnum () ;
+      if (kBoolTrue == test_12) {
+        GALGAS_location location_13 (enumerator_9686.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_13, var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 289)).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 289)).add_operation (GALGAS_string (" model(s) required for this binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 289))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
+      }else if (kBoolFalse == test_12) {
+        cEnumerator_outletBindingSpecificationModelList enumerator_11227 (var_outletBindingSpecificationModelList, kEnumeration_up) ;
+        cEnumerator_outletBindingModelList enumerator_11260 (var_boundModelTypeList, kEnumeration_up) ;
+        while (enumerator_11227.hasCurrentObject () && enumerator_11260.hasCurrentObject ()) {
+          GALGAS_bool test_14 = enumerator_11227.current_mModelShouldBeWritableProperty (HERE) ;
+          if (kBoolTrue == test_14.boolEnum ()) {
+            test_14 = GALGAS_bool (kIsEqual, enumerator_11260.current_mKind (HERE).objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("outlet-declaration.galgas", 292)))) ;
           }
-          const enumGalgasBool test_14 = test_13.boolEnum () ;
-          if (kBoolTrue == test_14) {
-            inCompiler->emitSemanticError (enumerator_10152.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 262)) ;
+          const enumGalgasBool test_15 = test_14.boolEnum () ;
+          if (kBoolTrue == test_15) {
+            inCompiler->emitSemanticError (enumerator_11260.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 293)) ;
           }
-          GALGAS_bool test_15 = enumerator_10119.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
-          if (kBoolTrue == test_15.boolEnum ()) {
-            test_15 = enumerator_10152.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
+          GALGAS_bool test_16 = enumerator_11227.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 295)) ;
+          if (kBoolTrue == test_16.boolEnum ()) {
+            test_16 = enumerator_11260.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 295)) ;
           }
-          const enumGalgasBool test_16 = test_15.boolEnum () ;
-          if (kBoolTrue == test_16) {
-          }else if (kBoolFalse == test_16) {
-            const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, categoryReader_swiftTypeName (enumerator_10119.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)).objectCompare (categoryReader_swiftTypeName (enumerator_10152.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)))).boolEnum () ;
-            if (kBoolTrue == test_17) {
-              inCompiler->emitSemanticError (enumerator_10152.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (categoryReader_swiftTypeName (enumerator_10119.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)) ;
+          const enumGalgasBool test_17 = test_16.boolEnum () ;
+          if (kBoolTrue == test_17) {
+          }else if (kBoolFalse == test_17) {
+            const enumGalgasBool test_18 = GALGAS_bool (kIsNotEqual, categoryReader_swiftTypeName (enumerator_11227.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 296)).objectCompare (categoryReader_swiftTypeName (enumerator_11260.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 296)))).boolEnum () ;
+            if (kBoolTrue == test_18) {
+              inCompiler->emitSemanticError (enumerator_11260.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (categoryReader_swiftTypeName (enumerator_11227.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297)) ;
             }
           }
-          enumerator_10119.gotoNextObject () ;
-          enumerator_10152.gotoNextObject () ;
+          enumerator_11227.gotoNextObject () ;
+          enumerator_11260.gotoNextObject () ;
         }
       }
       GALGAS_string var_bindingOptionString = GALGAS_string::makeEmptyString () ;
-      const enumGalgasBool test_18 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 272)).objectCompare (enumerator_8578.current_mBindingOptionList (HERE).reader_length (SOURCE_FILE ("outlet-declaration.galgas", 272)))).boolEnum () ;
-      if (kBoolTrue == test_18) {
+      const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 303)).objectCompare (enumerator_9686.current_mBindingOptionList (HERE).reader_length (SOURCE_FILE ("outlet-declaration.galgas", 303)))).boolEnum () ;
+      if (kBoolTrue == test_19) {
         GALGAS_string var_s ;
-        const enumGalgasBool test_19 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 274)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_19) {
+        const enumGalgasBool test_20 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 305)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        if (kBoolTrue == test_20) {
           var_s = GALGAS_string ("this binding has no option") ;
-        }else if (kBoolFalse == test_19) {
+        }else if (kBoolFalse == test_20) {
           var_s = GALGAS_string ("this binding requires the following options:") ;
-          cEnumerator_controllerBindingOptionDecoratedList enumerator_11101 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
-          while (enumerator_11101.hasCurrentObject ()) {
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_12209 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+          while (enumerator_12209.hasCurrentObject ()) {
             var_s.dotAssign_operation (GALGAS_string ("\n"
-              "  - ").add_operation (enumerator_11101.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (categoryReader_swiftTypeName (enumerator_11101.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)) ;
-            enumerator_11101.gotoNextObject () ;
+              "  - ").add_operation (enumerator_12209.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 310)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 310)).add_operation (categoryReader_swiftTypeName (enumerator_12209.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 310))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 310)) ;
+            enumerator_12209.gotoNextObject () ;
           }
         }
-        GALGAS_location location_20 (enumerator_8578.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_20, var_s  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 282)) ;
-      }else if (kBoolFalse == test_18) {
-        cEnumerator_controllerBindingOptionDecoratedList enumerator_11317 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
-        cEnumerator_bindingOptionList enumerator_11352 (enumerator_8578.current_mBindingOptionList (HERE), kEnumeration_up) ;
-        while (enumerator_11317.hasCurrentObject () && enumerator_11352.hasCurrentObject ()) {
-          const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, enumerator_11317.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_11352.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
-          if (kBoolTrue == test_21) {
-            GALGAS_location location_22 (enumerator_11352.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_22, GALGAS_string ("the option name should be '").add_operation (enumerator_11317.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 286)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)) ;
+        GALGAS_location location_21 (enumerator_9686.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_21, var_s  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)) ;
+      }else if (kBoolFalse == test_19) {
+        cEnumerator_controllerBindingOptionDecoratedList enumerator_12425 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+        cEnumerator_bindingOptionList enumerator_12460 (enumerator_9686.current_mBindingOptionList (HERE), kEnumeration_up) ;
+        while (enumerator_12425.hasCurrentObject () && enumerator_12460.hasCurrentObject ()) {
+          const enumGalgasBool test_22 = GALGAS_bool (kIsNotEqual, enumerator_12425.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_12460.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
+          if (kBoolTrue == test_22) {
+            GALGAS_location location_23 (enumerator_12460.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_23, GALGAS_string ("the option name should be '").add_operation (enumerator_12425.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 317)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317)) ;
           }
           GALGAS_string var_optionValueAsString ;
-          GALGAS_typeKindList temp_23 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
-          temp_23.addAssign_operation (enumerator_11317.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
-          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_11352.current_mOptionValue (HERE).ptr (), temp_23, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 288)) ;
-          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_11317.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)) ;
-          enumerator_11317.gotoNextObject () ;
-          enumerator_11352.gotoNextObject () ;
+          GALGAS_typeKindList temp_24 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 320)) ;
+          temp_24.addAssign_operation (enumerator_12425.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 320)) ;
+          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_12460.current_mOptionValue (HERE).ptr (), temp_24, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 319)) ;
+          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_12425.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 323)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 323)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 323))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 323)) ;
+          enumerator_12425.gotoNextObject () ;
+          enumerator_12460.gotoNextObject () ;
         }
       }
-      outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_5863.current_mOutletName (HERE).mAttribute_string, enumerator_8578.current_mBindingName (HERE).mAttribute_string, var_boundModelStringListForGeneration, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 296)) ;
-      enumerator_8578.gotoNextObject () ;
+      outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_6288.current_mOutletName (HERE).mAttribute_string, enumerator_9686.current_mBindingName (HERE).mAttribute_string, var_boundModelStringListForGeneration, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 327)) ;
+      enumerator_9686.gotoNextObject () ;
     }
-    enumerator_5863.gotoNextObject () ;
+    enumerator_6288.gotoNextObject () ;
   }
 }
 
@@ -9603,13 +9663,99 @@ const cRegularFileWrapper gWrapperFile_8_swift_5F_sources (
 const char * gWrapperFileContent_9_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   Hidden binding                                                                                                    *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "\n"
-  "private var gEnabledBindingControllerDictionary = [NSControl : Controller_NSControl_enabled] ()\n"
-  "private var gEnabledBindingValueDictionary = [NSControl : Bool] ()\n"
+  "private var gHiddenBindingControllerDictionary = [NSView : Controller_NSView_hidden] ()\n"
+  "\n"
+  "//\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""**\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+  "\n"
+  "extension NSView {\n"
+  "\n"
+  "  func bind_hidden (object:[PMAbstractProperty], computeFunction: () -> PMProperty <Bool>, file:String, line:Int) {\n"
+  "    let controller = Controller_NSView_hidden (\n"
+  "      objectArray:object,\n"
+  "      outlet:self,\n"
+  "      computeFunction:computeFunction,\n"
+  "      file:file,\n"
+  "      line:line\n"
+  "    )\n"
+  "    gHiddenBindingControllerDictionary [self] = controller\n"
+  "  }\n"
+  "\n"
+  "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+  "\n"
+  "  func unbind_hidden () {\n"
+  "    if let controller = gHiddenBindingControllerDictionary [self] {\n"
+  "      controller.unregister ()\n"
+  "      gHiddenBindingControllerDictionary [self] = nil\n"
+  "    }\n"
+  "  }\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "//   Controller_NSView_hidden                                                                                          *\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "@objc(Controller_NSView_hidden) class Controller_NSView_hidden : PMOutletEvent {\n"
+  "\n"
+  "  var mObjectArray : [PMAbstractProperty]\n"
+  "  var mOutlet : NSView\n"
+  "  var mComputeFunction : Optional <() -> PMProperty <Bool> >\n"
+  "\n"
+  "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+  "\n"
+  "  init (objectArray : [PMAbstractProperty],\n"
+  "        outlet : NSView,\n"
+  "        computeFunction: () -> PMProperty <Bool>,\n"
+  "        file : String,\n"
+  "        line : Int) {\n"
+  "    mObjectArray = objectArray\n"
+  "    mOutlet = outlet\n"
+  "    mComputeFunction = computeFunction\n"
+  "    super.init ()\n"
+  "    for object in mObjectArray {\n"
+  "      object.addObserver (self, postEvent:true)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+  "  \n"
+  "  func unregister () {\n"
+  "    mComputeFunction = nil\n"
+  "    for object in mObjectArray {\n"
+  "      object.removeObserver (self, postEvent:false)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+  "\n"
+  "  override func updateOutlet () {\n"
+  "    let result : PMProperty <Bool>\n"
+  "    if let computeFunction = mComputeFunction {\n"
+  "      result = computeFunction ()\n"
+  "    }else{\n"
+  "      result = .noSelection\n"
+  "    }\n"
+  "    switch result {\n"
+  "    case .noSelection, .multipleSelection :\n"
+  "      break\n"
+  "    case .singleSelection (let v) :\n"
+  "      mOutlet.hidden = v\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
+  "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
   "//   Enabled binding                                                                                                   *\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
+  "\n"
+  "private var gEnabledBindingControllerDictionary = [NSControl : Controller_NSControl_enabled] ()\n"
+  "private var gEnabledBindingValueDictionary = [NSControl : Bool] ()\n"
+  "\n"
+  "//\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""**\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
   "\n"
   "extension NSControl {\n"
   "\n"
@@ -9728,7 +9874,7 @@ const cRegularFileWrapper gWrapperFile_9_swift_5F_sources (
   "generic-bindings.swift",
   "swift",
   true, // Text file
-  5085, // Text length
+  8265, // Text length
   gWrapperFileContent_9_swift_5F_sources
 ) ;
 

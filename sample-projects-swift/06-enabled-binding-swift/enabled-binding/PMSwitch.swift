@@ -9,6 +9,7 @@ import Cocoa
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
+    self.setButtonType(.SwitchButton)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -16,6 +17,7 @@ import Cocoa
   override init (frame:NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
+    self.setButtonType(.SwitchButton)
   }
   
   //-------------------------------------------------------------------------------------------------------------------*

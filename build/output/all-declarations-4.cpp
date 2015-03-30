@@ -1491,6 +1491,7 @@ mAttribute_mOutletName (),
 mAttribute_mTableValueBindingDescriptor (),
 mAttribute_mRunDescriptor (),
 mAttribute_mEnabledBindingDescriptor (),
+mAttribute_mHiddenBindingDescriptor (),
 mAttribute_mRegularBindingList () {
 }
 
@@ -1506,13 +1507,15 @@ GALGAS_outletDeclarationList_2D_element::GALGAS_outletDeclarationList_2D_element
                                                                                   const GALGAS_tableValueBinding & inOperand2,
                                                                                   const GALGAS_runActionDescriptor & inOperand3,
                                                                                   const GALGAS_multipleBindingDescriptor & inOperand4,
-                                                                                  const GALGAS_regularBindingList & inOperand5) :
+                                                                                  const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                                  const GALGAS_regularBindingList & inOperand6) :
 mAttribute_mOutletTypeName (inOperand0),
 mAttribute_mOutletName (inOperand1),
 mAttribute_mTableValueBindingDescriptor (inOperand2),
 mAttribute_mRunDescriptor (inOperand3),
 mAttribute_mEnabledBindingDescriptor (inOperand4),
-mAttribute_mRegularBindingList (inOperand5) {
+mAttribute_mHiddenBindingDescriptor (inOperand5),
+mAttribute_mRegularBindingList (inOperand6) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1522,11 +1525,12 @@ GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element:
                                                                                                   const GALGAS_tableValueBinding & inOperand2,
                                                                                                   const GALGAS_runActionDescriptor & inOperand3,
                                                                                                   const GALGAS_multipleBindingDescriptor & inOperand4,
-                                                                                                  const GALGAS_regularBindingList & inOperand5 
+                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                                                  const GALGAS_regularBindingList & inOperand6 
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_outletDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_outletDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -1551,6 +1555,9 @@ typeComparisonResult GALGAS_outletDeclarationList_2D_element::objectCompare (con
     result = mAttribute_mEnabledBindingDescriptor.objectCompare (inOperand.mAttribute_mEnabledBindingDescriptor) ;
   }
   if (result == kOperandEqual) {
+    result = mAttribute_mHiddenBindingDescriptor.objectCompare (inOperand.mAttribute_mHiddenBindingDescriptor) ;
+  }
+  if (result == kOperandEqual) {
     result = mAttribute_mRegularBindingList.objectCompare (inOperand.mAttribute_mRegularBindingList) ;
   }
   return result ;
@@ -1559,7 +1566,7 @@ typeComparisonResult GALGAS_outletDeclarationList_2D_element::objectCompare (con
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_outletDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mOutletTypeName.isValid () && mAttribute_mOutletName.isValid () && mAttribute_mTableValueBindingDescriptor.isValid () && mAttribute_mRunDescriptor.isValid () && mAttribute_mEnabledBindingDescriptor.isValid () && mAttribute_mRegularBindingList.isValid () ;
+  return mAttribute_mOutletTypeName.isValid () && mAttribute_mOutletName.isValid () && mAttribute_mTableValueBindingDescriptor.isValid () && mAttribute_mRunDescriptor.isValid () && mAttribute_mEnabledBindingDescriptor.isValid () && mAttribute_mHiddenBindingDescriptor.isValid () && mAttribute_mRegularBindingList.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1570,6 +1577,7 @@ void GALGAS_outletDeclarationList_2D_element::drop (void) {
   mAttribute_mTableValueBindingDescriptor.drop () ;
   mAttribute_mRunDescriptor.drop () ;
   mAttribute_mEnabledBindingDescriptor.drop () ;
+  mAttribute_mHiddenBindingDescriptor.drop () ;
   mAttribute_mRegularBindingList.drop () ;
 }
 
@@ -1590,6 +1598,8 @@ void GALGAS_outletDeclarationList_2D_element::description (C_String & ioString,
     mAttribute_mRunDescriptor.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mEnabledBindingDescriptor.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mHiddenBindingDescriptor.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mRegularBindingList.description (ioString, inIndentation+1) ;
   }
@@ -1624,6 +1634,12 @@ GALGAS_runActionDescriptor GALGAS_outletDeclarationList_2D_element::reader_mRunD
 
 GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList_2D_element::reader_mEnabledBindingDescriptor (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEnabledBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList_2D_element::reader_mHiddenBindingDescriptor (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mHiddenBindingDescriptor ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

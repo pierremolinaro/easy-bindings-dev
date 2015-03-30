@@ -8036,19 +8036,19 @@ GALGAS_string categoryReader_outletNameListForController (const GALGAS_tableView
   result_outResult = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_first = GALGAS_bool (true) ;
   const GALGAS_tableViewBindingGenerationList temp_0 = inObject ;
-  cEnumerator_tableViewBindingGenerationList enumerator_4759 (temp_0, kEnumeration_up) ;
-  while (enumerator_4759.hasCurrentObject ()) {
-    const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, enumerator_4759.current_mTableValueBindingControllerName (HERE).objectCompare (constinArgument_inControllerName)).boolEnum () ;
+  cEnumerator_tableViewBindingGenerationList enumerator_5184 (temp_0, kEnumeration_up) ;
+  while (enumerator_5184.hasCurrentObject ()) {
+    const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, enumerator_5184.current_mTableValueBindingControllerName (HERE).objectCompare (constinArgument_inControllerName)).boolEnum () ;
     if (kBoolTrue == test_1) {
       const enumGalgasBool test_2 = var_first.boolEnum () ;
       if (kBoolTrue == test_2) {
         var_first = GALGAS_bool (false) ;
       }else if (kBoolFalse == test_2) {
-        result_outResult.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 130)) ;
+        result_outResult.dotAssign_operation (GALGAS_string (", ")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 141)) ;
       }
-      result_outResult.dotAssign_operation (enumerator_4759.current_mTableValueBindingOutletName (HERE).add_operation (GALGAS_string ("!"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 132))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 132)) ;
+      result_outResult.dotAssign_operation (enumerator_5184.current_mTableValueBindingOutletName (HERE).add_operation (GALGAS_string ("!"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 143))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 143)) ;
     }
-    enumerator_4759.gotoNextObject () ;
+    enumerator_5184.gotoNextObject () ;
   }
 //---
   return result_outResult ;
