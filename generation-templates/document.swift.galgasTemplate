@@ -155,8 +155,6 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %      file:__FILE__, line:__LINE__\n%
   %    )\n%
 end
-%  //--- Install multiple bindings
-%
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
 %    %!mOutletName%?.target = %!mTargetName%\n%

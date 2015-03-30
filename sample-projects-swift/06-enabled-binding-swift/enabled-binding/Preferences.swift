@@ -61,6 +61,7 @@ var g_Preferences : Preferences? = nil
   //--- Install property observers for transients
   //--- Install bindings
     prefBoolCheckBox?.bind_value (self.prefBoolean, file:__FILE__, line:__LINE__)
+  //--- Install multiple bindings
   //--------------------------- Set targets / actions
   }
   

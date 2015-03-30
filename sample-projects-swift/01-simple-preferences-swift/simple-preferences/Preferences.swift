@@ -253,6 +253,7 @@ var g_Preferences : Preferences? = nil
     mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
     mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true, autoFormatter:true)
     mInteger32ObserverTextField?.bind_valueObserver (self.mIntegerValue, file:__FILE__, line:__LINE__, autoFormatter:true)
+  //--- Install multiple bindings
   //--------------------------- Set targets / actions
   }
   

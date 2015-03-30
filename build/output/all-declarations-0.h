@@ -116,6 +116,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_xcodeproject,
    kToken_yes,
    kToken_enabled,
+   kToken_hidden,
    kToken_tableValue,
    kToken_run,
    kToken__3A_,
@@ -168,7 +169,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 57 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 58 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -1847,6 +1848,7 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                   const class GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
                                                   const class GALGAS_runActionDescriptor & in_mRunDescriptor,
                                                   const class GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                  const class GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                                   const class GALGAS_regularBindingList & in_mRegularBindingList
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -1868,7 +1870,8 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                                           const class GALGAS_tableValueBinding & inOperand2,
                                                                           const class GALGAS_runActionDescriptor & inOperand3,
                                                                           const class GALGAS_multipleBindingDescriptor & inOperand4,
-                                                                          const class GALGAS_regularBindingList & inOperand5
+                                                                          const class GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                          const class GALGAS_regularBindingList & inOperand6
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -1881,7 +1884,8 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                       const class GALGAS_tableValueBinding & inOperand2,
                                                       const class GALGAS_runActionDescriptor & inOperand3,
                                                       const class GALGAS_multipleBindingDescriptor & inOperand4,
-                                                      const class GALGAS_regularBindingList & inOperand5
+                                                      const class GALGAS_multipleBindingDescriptor & inOperand5,
+                                                      const class GALGAS_regularBindingList & inOperand6
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_outletDeclarationList operator_concat (const GALGAS_outletDeclarationList & inOperand
@@ -1899,8 +1903,9 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                          class GALGAS_tableValueBinding constinArgument2,
                                                          class GALGAS_runActionDescriptor constinArgument3,
                                                          class GALGAS_multipleBindingDescriptor constinArgument4,
-                                                         class GALGAS_regularBindingList constinArgument5,
-                                                         class GALGAS_uint constinArgument6,
+                                                         class GALGAS_multipleBindingDescriptor constinArgument5,
+                                                         class GALGAS_regularBindingList constinArgument6,
+                                                         class GALGAS_uint constinArgument7,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -1909,7 +1914,8 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                     class GALGAS_tableValueBinding & outArgument2,
                                                     class GALGAS_runActionDescriptor & outArgument3,
                                                     class GALGAS_multipleBindingDescriptor & outArgument4,
-                                                    class GALGAS_regularBindingList & outArgument5,
+                                                    class GALGAS_multipleBindingDescriptor & outArgument5,
+                                                    class GALGAS_regularBindingList & outArgument6,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -1918,7 +1924,8 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                    class GALGAS_tableValueBinding & outArgument2,
                                                    class GALGAS_runActionDescriptor & outArgument3,
                                                    class GALGAS_multipleBindingDescriptor & outArgument4,
-                                                   class GALGAS_regularBindingList & outArgument5,
+                                                   class GALGAS_multipleBindingDescriptor & outArgument5,
+                                                   class GALGAS_regularBindingList & outArgument6,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -1927,8 +1934,9 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                          class GALGAS_tableValueBinding & outArgument2,
                                                          class GALGAS_runActionDescriptor & outArgument3,
                                                          class GALGAS_multipleBindingDescriptor & outArgument4,
-                                                         class GALGAS_regularBindingList & outArgument5,
-                                                         class GALGAS_uint constinArgument6,
+                                                         class GALGAS_multipleBindingDescriptor & outArgument5,
+                                                         class GALGAS_regularBindingList & outArgument6,
+                                                         class GALGAS_uint constinArgument7,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -1939,7 +1947,8 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                                class GALGAS_tableValueBinding & outArgument2,
                                                class GALGAS_runActionDescriptor & outArgument3,
                                                class GALGAS_multipleBindingDescriptor & outArgument4,
-                                               class GALGAS_regularBindingList & outArgument5,
+                                               class GALGAS_multipleBindingDescriptor & outArgument5,
+                                               class GALGAS_regularBindingList & outArgument6,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -1948,7 +1957,8 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
                                               class GALGAS_tableValueBinding & outArgument2,
                                               class GALGAS_runActionDescriptor & outArgument3,
                                               class GALGAS_multipleBindingDescriptor & outArgument4,
-                                              class GALGAS_regularBindingList & outArgument5,
+                                              class GALGAS_multipleBindingDescriptor & outArgument5,
+                                              class GALGAS_regularBindingList & outArgument6,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -1958,6 +1968,10 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor reader_mEnabledBindingDescriptorAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                             C_Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor reader_mHiddenBindingDescriptorAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                           C_Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mOutletNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                             C_Compiler * inCompiler
@@ -2010,6 +2024,7 @@ class cEnumerator_outletDeclarationList : public cGenericAbstractEnumerator {
   public : class GALGAS_tableValueBinding current_mTableValueBindingDescriptor (LOCATION_ARGS) const ;
   public : class GALGAS_runActionDescriptor current_mRunDescriptor (LOCATION_ARGS) const ;
   public : class GALGAS_multipleBindingDescriptor current_mEnabledBindingDescriptor (LOCATION_ARGS) const ;
+  public : class GALGAS_multipleBindingDescriptor current_mHiddenBindingDescriptor (LOCATION_ARGS) const ;
   public : class GALGAS_regularBindingList current_mRegularBindingList (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletDeclarationList_2D_element current (LOCATION_ARGS) const ;
@@ -4437,8 +4452,8 @@ class GALGAS_multipleBindingDescriptor : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_noEnabledBinding,
-    kEnum_enabledBinding
+    kEnum_noBinding,
+    kEnum_binding
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -4465,10 +4480,10 @@ class GALGAS_multipleBindingDescriptor : public AC_GALGAS_root {
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_multipleBindingDescriptor constructor_enabledBinding (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0
-                                                                               COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_multipleBindingDescriptor constructor_binding (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0
+                                                                        COMMA_LOCATION_ARGS) ;
 
-  public : static GALGAS_multipleBindingDescriptor constructor_noEnabledBinding (LOCATION_ARGS) ;
+  public : static GALGAS_multipleBindingDescriptor constructor_noBinding (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -4482,9 +4497,9 @@ class GALGAS_multipleBindingDescriptor : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isEnabledBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isBinding (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isNoEnabledBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isNoBinding (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -4503,18 +4518,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingDesc
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding : public cEnumAssociatedValues {
+class cEnumAssociatedValues_multipleBindingDescriptor_binding : public cEnumAssociatedValues {
   public : const GALGAS_abstractBooleanMultipleBindingExpressionAST mAssociatedValue0 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding (const GALGAS_abstractBooleanMultipleBindingExpressionAST & inAssociatedValue0
-                                                                           COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_multipleBindingDescriptor_binding (const GALGAS_abstractBooleanMultipleBindingExpressionAST & inAssociatedValue0
+                                                                    COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_multipleBindingDescriptor_enabledBinding (void) {}
+  public : virtual ~ cEnumAssociatedValues_multipleBindingDescriptor_binding (void) {}
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9508,6 +9523,7 @@ class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
   public : GALGAS_tableValueBinding mAttribute_mTableValueBindingDescriptor ;
   public : GALGAS_runActionDescriptor mAttribute_mRunDescriptor ;
   public : GALGAS_multipleBindingDescriptor mAttribute_mEnabledBindingDescriptor ;
+  public : GALGAS_multipleBindingDescriptor mAttribute_mHiddenBindingDescriptor ;
   public : GALGAS_regularBindingList mAttribute_mRegularBindingList ;
 
 
@@ -9527,6 +9543,7 @@ class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
                                                     const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
                                                     const GALGAS_runActionDescriptor & in_mRunDescriptor,
                                                     const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                    const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                                     const GALGAS_regularBindingList & in_mRegularBindingList) ;
 
 //-- Start of generic part --*
@@ -9545,7 +9562,8 @@ class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
                                                                            const class GALGAS_tableValueBinding & inOperand2,
                                                                            const class GALGAS_runActionDescriptor & inOperand3,
                                                                            const class GALGAS_multipleBindingDescriptor & inOperand4,
-                                                                           const class GALGAS_regularBindingList & inOperand5
+                                                                           const class GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                           const class GALGAS_regularBindingList & inOperand6
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -9561,6 +9579,8 @@ class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor reader_mEnabledBindingDescriptor (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor reader_mHiddenBindingDescriptor (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mOutletName (LOCATION_ARGS) const ;
 

@@ -1284,6 +1284,32 @@ static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_enabled [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Syntax error message for terminal '$hidden$' :
+static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_hidden [] = {
+  TO_UNICODE ('t'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('e'),
+  TO_UNICODE (' '),
+  TO_UNICODE ('\''),
+  TO_UNICODE ('$'),
+  TO_UNICODE ('h'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('n'),
+  TO_UNICODE ('\''),
+  TO_UNICODE (' '),
+  TO_UNICODE ('k'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('y'),
+  TO_UNICODE ('w'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('d'),
+  TO_UNICODE (0)
+} ;
+
 //--- Syntax error message for terminal '$tableValue$' :
 static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_tableValue [] = {
   TO_UNICODE ('t'),
@@ -1672,7 +1698,7 @@ static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__3E_ [] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [58] = {kEndOfSourceLexicalErrorMessage,
+  static const utf32 * syntaxErrorMessageArray [59] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
     gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
     gSyntaxErrorMessage_easyBindings_5F_lexique_bindingName,
@@ -1713,6 +1739,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
     gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject,
     gSyntaxErrorMessage_easyBindings_5F_lexique_yes,
     gSyntaxErrorMessage_easyBindings_5F_lexique_enabled,
+    gSyntaxErrorMessage_easyBindings_5F_lexique_hidden,
     gSyntaxErrorMessage_easyBindings_5F_lexique_tableValue,
     gSyntaxErrorMessage_easyBindings_5F_lexique_run,
     gSyntaxErrorMessage_easyBindings_5F_lexique__3A_,
@@ -1972,6 +1999,17 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_filter [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$hidden$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_hidden [] = {
+  TO_UNICODE ('h'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('n'),
   TO_UNICODE (0)
 } ;
 
@@ -2320,10 +2358,11 @@ int16_t C_Lexique_easyBindings_5F_lexique::search_into_lowerCaseKeyWordList (con
 //             Key words table 'reservedBindingNameKeyWordList'                            *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int32_t ktable_size_easyBindings_5F_lexique_reservedBindingNameKeyWordList = 3 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_reservedBindingNameKeyWordList = 4 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_reservedBindingNameKeyWordList [ktable_size_easyBindings_5F_lexique_reservedBindingNameKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_run, 3, C_Lexique_easyBindings_5F_lexique::kToken_run),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_hidden, 6, C_Lexique_easyBindings_5F_lexique::kToken_hidden),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_enabled, 7, C_Lexique_easyBindings_5F_lexique::kToken_enabled),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_tableValue, 10, C_Lexique_easyBindings_5F_lexique::kToken_tableValue)
 } ;
@@ -2559,6 +2598,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_enabled:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("enabled") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_hidden:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("hidden") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_tableValue:
@@ -2964,6 +3008,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("xcodeproject") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("yes") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("enabled") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("hidden") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("tableValue") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("run") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string (":") COMMA_THERE) ;
@@ -2989,7 +3034,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [58] = {0,
+  static const uint32_t kTerminalSymbolStyles [59] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1_bindingName */,
@@ -3030,6 +3075,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_xcodeproject */,
     1 /* easyBindings_lexique_1_yes */,
     5 /* easyBindings_lexique_1_enabled */,
+    5 /* easyBindings_lexique_1_hidden */,
     5 /* easyBindings_lexique_1_tableValue */,
     5 /* easyBindings_lexique_1_run */,
     9 /* easyBindings_lexique_1__3A_ */,
@@ -3747,133 +3793,148 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i9_ (GALGAS_outletDeclarationList & ioArgument_ioOutletDeclarationList,
                                                                                             C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_outlet) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 37)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_outlet) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 38)) ;
   GALGAS_lstring var_outletTypeName = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 38)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 39)) ;
   GALGAS_lstring var_outletName = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 39)) ;
-  GALGAS_tableValueBinding var_tableValueBinding = GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 40)) ;
-  GALGAS_runActionDescriptor var_runActionDescriptor = GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 41)) ;
-  GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor = GALGAS_multipleBindingDescriptor::constructor_noEnabledBinding (SOURCE_FILE ("outlet-declaration.galgas", 42)) ;
-  GALGAS_regularBindingList var_regularBindingList = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 43)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 40)) ;
+  GALGAS_tableValueBinding var_tableValueBinding = GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 41)) ;
+  GALGAS_runActionDescriptor var_runActionDescriptor = GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 42)) ;
+  GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor = GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 43)) ;
+  GALGAS_multipleBindingDescriptor var_hiddenBindingDescriptor = GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 44)) ;
+  GALGAS_regularBindingList var_regularBindingList = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 45)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_tableValue) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 46)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_tableValueBinding.objectCompare (GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 47)))).boolEnum () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_tableValue) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_tableValueBinding.objectCompare (GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 49)))).boolEnum () ;
       if (kBoolTrue == test_1) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)), GALGAS_string ("duplicated $tableValue binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)), GALGAS_string ("duplicated $tableValue binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)) ;
       }
       GALGAS_lstring var_controllerName = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)) ;
-      var_tableValueBinding = GALGAS_tableValueBinding::constructor_tableValueBinding (var_controllerName  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 51)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 52)) ;
+      var_tableValueBinding = GALGAS_tableValueBinding::constructor_tableValueBinding (var_controllerName  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 53)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_run) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 53)) ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor.objectCompare (GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 54)))).boolEnum () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_run) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 55)) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor.objectCompare (GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 56)))).boolEnum () ;
       if (kBoolTrue == test_2) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 55)), GALGAS_string ("duplicated $run binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 55)) ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)), GALGAS_string ("duplicated $run binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)) ;
       }
       GALGAS_lstring var_runTargetName ;
       switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
       case 1: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 59)) ;
-        var_runTargetName = GALGAS_lstring::constructor_new (GALGAS_string ("self"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 60))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 60)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 61)) ;
+        var_runTargetName = GALGAS_lstring::constructor_new (GALGAS_string ("self"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 62))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 62)) ;
       } break ;
       case 2: {
         var_runTargetName = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 62)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 64)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 64)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)) ;
       GALGAS_lstring var_runActionName = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 65)) ;
-      var_runActionDescriptor = GALGAS_runActionDescriptor::constructor_action (var_runTargetName, var_runActionName  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 67)) ;
+      var_runActionDescriptor = GALGAS_runActionDescriptor::constructor_action (var_runTargetName, var_runActionName  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 68)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_enabled) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 69)) ;
-      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noEnabledBinding (SOURCE_FILE ("outlet-declaration.galgas", 70)))).boolEnum () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_enabled) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 71)) ;
+      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 72)))).boolEnum () ;
       if (kBoolTrue == test_3) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 71)), GALGAS_string ("duplicated $enabled binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 71)) ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 73)), GALGAS_string ("duplicated $enabled binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 73)) ;
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression, inCompiler) ;
-      var_enabledBindingDescriptor = GALGAS_multipleBindingDescriptor::constructor_enabledBinding (var_bindingExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 74)) ;
+      var_enabledBindingDescriptor = GALGAS_multipleBindingDescriptor::constructor_binding (var_bindingExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 76)) ;
     } break ;
     case 5: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_hidden) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 79)) ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 80)))).boolEnum () ;
+      if (kBoolTrue == test_4) {
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)), GALGAS_string ("duplicated $hidden binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)) ;
+      }
+      GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression ;
+      nt_booleanMultipleBindingExpression_ (var_bindingExpression, inCompiler) ;
+      var_hiddenBindingDescriptor = GALGAS_multipleBindingDescriptor::constructor_binding (var_bindingExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 84)) ;
+    } break ;
+    case 6: {
       GALGAS_lstring var_bindingName = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_bindingName) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 77)) ;
-      GALGAS_observablePropertyList var_observablePropertyList = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 78)) ;
-      bool repeatFlag_4 = true ;
-      while (repeatFlag_4) {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_bindingName) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 87)) ;
+      GALGAS_observablePropertyList var_observablePropertyList = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 88)) ;
+      bool repeatFlag_5 = true ;
+      while (repeatFlag_5) {
         GALGAS_observablePropertyAST var_observableProperty ;
         nt_observable_5F_property_ (var_observableProperty, inCompiler) ;
-        var_observablePropertyList.addAssign_operation (var_observableProperty  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)) ;
+        var_observablePropertyList.addAssign_operation (var_observableProperty  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 91)) ;
         switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 83)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 93)) ;
         } break ;
         default:
-          repeatFlag_4 = false ;
+          repeatFlag_5 = false ;
           break ;
         }
       }
       GALGAS_bindingOptionList var_bindingOptions ;
       nt_binding_5F_option_5F_list_ (var_bindingOptions, inCompiler) ;
-      var_regularBindingList.addAssign_operation (var_bindingName, var_observablePropertyList, var_bindingOptions  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 86)) ;
+      var_regularBindingList.addAssign_operation (var_bindingName, var_observablePropertyList, var_bindingOptions  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 96)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 92)) ;
-  ioArgument_ioOutletDeclarationList.addAssign_operation (var_outletTypeName, var_outletName, var_tableValueBinding, var_runActionDescriptor, var_enabledBindingDescriptor, var_regularBindingList  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 93)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 102)) ;
+  ioArgument_ioOutletDeclarationList.addAssign_operation (var_outletTypeName, var_outletName, var_tableValueBinding, var_runActionDescriptor, var_enabledBindingDescriptor, var_hiddenBindingDescriptor, var_regularBindingList  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 103)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i9_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_outlet) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 37)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 38)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 39)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_outlet) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 38)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 39)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 40)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_tableValue) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 46)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_tableValue) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 52)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_run) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 53)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_run) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 55)) ;
       switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
       case 1: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 59)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 61)) ;
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 62)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 64)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 64)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 65)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 67)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_enabled) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 69)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_enabled) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 71)) ;
       nt_booleanMultipleBindingExpression_parse (inCompiler) ;
     } break ;
     case 5: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_bindingName) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 77)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_hidden) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 79)) ;
+      nt_booleanMultipleBindingExpression_parse (inCompiler) ;
+    } break ;
+    case 6: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_bindingName) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 87)) ;
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         nt_observable_5F_property_parse (inCompiler) ;
         switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 83)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 93)) ;
         } break ;
         default:
           repeatFlag_1 = false ;
@@ -3887,7 +3948,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 92)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 102)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -12171,6 +12232,7 @@ class cCollectionElement_outletDeclarationList : public cCollectionElement {
                                                      const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
                                                      const GALGAS_runActionDescriptor & in_mRunDescriptor,
                                                      const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                     const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                                      const GALGAS_regularBindingList & in_mRegularBindingList
                                                      COMMA_LOCATION_ARGS) ;
 
@@ -12194,10 +12256,11 @@ cCollectionElement_outletDeclarationList::cCollectionElement_outletDeclarationLi
                                                                                     const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
                                                                                     const GALGAS_runActionDescriptor & in_mRunDescriptor,
                                                                                     const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                                                    const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                                                                     const GALGAS_regularBindingList & in_mRegularBindingList
                                                                                     COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mOutletTypeName, in_mOutletName, in_mTableValueBindingDescriptor, in_mRunDescriptor, in_mEnabledBindingDescriptor, in_mRegularBindingList) {
+mObject (in_mOutletTypeName, in_mOutletName, in_mTableValueBindingDescriptor, in_mRunDescriptor, in_mEnabledBindingDescriptor, in_mHiddenBindingDescriptor, in_mRegularBindingList) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12210,7 +12273,7 @@ bool cCollectionElement_outletDeclarationList::isValid (void) const {
 
 cCollectionElement * cCollectionElement_outletDeclarationList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_outletDeclarationList (mObject.mAttribute_mOutletTypeName, mObject.mAttribute_mOutletName, mObject.mAttribute_mTableValueBindingDescriptor, mObject.mAttribute_mRunDescriptor, mObject.mAttribute_mEnabledBindingDescriptor, mObject.mAttribute_mRegularBindingList COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_outletDeclarationList (mObject.mAttribute_mOutletTypeName, mObject.mAttribute_mOutletName, mObject.mAttribute_mTableValueBindingDescriptor, mObject.mAttribute_mRunDescriptor, mObject.mAttribute_mEnabledBindingDescriptor, mObject.mAttribute_mHiddenBindingDescriptor, mObject.mAttribute_mRegularBindingList COMMA_HERE)) ;
   return result ;
 }
 
@@ -12237,6 +12300,10 @@ void cCollectionElement_outletDeclarationList::description (C_String & ioString,
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mEnabledBindingDescriptor" ":" ;
   mObject.mAttribute_mEnabledBindingDescriptor.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mHiddenBindingDescriptor" ":" ;
+  mObject.mAttribute_mHiddenBindingDescriptor.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mRegularBindingList" ":" ;
@@ -12281,13 +12348,14 @@ GALGAS_outletDeclarationList GALGAS_outletDeclarationList::constructor_listWithV
                                                                                       const GALGAS_tableValueBinding & inOperand2,
                                                                                       const GALGAS_runActionDescriptor & inOperand3,
                                                                                       const GALGAS_multipleBindingDescriptor & inOperand4,
-                                                                                      const GALGAS_regularBindingList & inOperand5
+                                                                                      const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                                      const GALGAS_regularBindingList & inOperand6
                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_outletDeclarationList result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
     result.createNewEmptyList (THERE) ;
     capCollectionElement attributes ;
-    GALGAS_outletDeclarationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE) ;
+    GALGAS_outletDeclarationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE) ;
     result.addObject (attributes) ;
   }
   return result ;
@@ -12301,6 +12369,7 @@ void GALGAS_outletDeclarationList::makeAttributesFromObjects (capCollectionEleme
                                                               const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
                                                               const GALGAS_runActionDescriptor & in_mRunDescriptor,
                                                               const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                              const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                                               const GALGAS_regularBindingList & in_mRegularBindingList
                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement_outletDeclarationList * p = NULL ;
@@ -12309,6 +12378,7 @@ void GALGAS_outletDeclarationList::makeAttributesFromObjects (capCollectionEleme
                                                            in_mTableValueBindingDescriptor,
                                                            in_mRunDescriptor,
                                                            in_mEnabledBindingDescriptor,
+                                                           in_mHiddenBindingDescriptor,
                                                            in_mRegularBindingList COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -12321,11 +12391,12 @@ void GALGAS_outletDeclarationList::addAssign_operation (const GALGAS_lstring & i
                                                         const GALGAS_tableValueBinding & inOperand2,
                                                         const GALGAS_runActionDescriptor & inOperand3,
                                                         const GALGAS_multipleBindingDescriptor & inOperand4,
-                                                        const GALGAS_regularBindingList & inOperand5
+                                                        const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                        const GALGAS_regularBindingList & inOperand6
                                                         COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_outletDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_outletDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -12340,13 +12411,14 @@ void GALGAS_outletDeclarationList::modifier_insertAtIndex (const GALGAS_lstring 
                                                            const GALGAS_tableValueBinding inOperand2,
                                                            const GALGAS_runActionDescriptor inOperand3,
                                                            const GALGAS_multipleBindingDescriptor inOperand4,
-                                                           const GALGAS_regularBindingList inOperand5,
+                                                           const GALGAS_multipleBindingDescriptor inOperand5,
+                                                           const GALGAS_regularBindingList inOperand6,
                                                            const GALGAS_uint inInsertionIndex,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_outletDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_outletDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -12361,7 +12433,8 @@ void GALGAS_outletDeclarationList::modifier_removeAtIndex (GALGAS_lstring & outO
                                                            GALGAS_tableValueBinding & outOperand2,
                                                            GALGAS_runActionDescriptor & outOperand3,
                                                            GALGAS_multipleBindingDescriptor & outOperand4,
-                                                           GALGAS_regularBindingList & outOperand5,
+                                                           GALGAS_multipleBindingDescriptor & outOperand5,
+                                                           GALGAS_regularBindingList & outOperand6,
                                                            const GALGAS_uint inRemoveIndex,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
@@ -12376,6 +12449,7 @@ void GALGAS_outletDeclarationList::modifier_removeAtIndex (GALGAS_lstring & outO
       outOperand3.drop () ;
       outOperand4.drop () ;
       outOperand5.drop () ;
+      outOperand6.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
       outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
@@ -12383,7 +12457,8 @@ void GALGAS_outletDeclarationList::modifier_removeAtIndex (GALGAS_lstring & outO
       outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
       outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
       outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
-      outOperand5 = p->mObject.mAttribute_mRegularBindingList ;
+      outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+      outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
     }
   }
 }
@@ -12395,7 +12470,8 @@ void GALGAS_outletDeclarationList::modifier_popFirst (GALGAS_lstring & outOperan
                                                       GALGAS_tableValueBinding & outOperand2,
                                                       GALGAS_runActionDescriptor & outOperand3,
                                                       GALGAS_multipleBindingDescriptor & outOperand4,
-                                                      GALGAS_regularBindingList & outOperand5,
+                                                      GALGAS_multipleBindingDescriptor & outOperand5,
+                                                      GALGAS_regularBindingList & outOperand6,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -12408,6 +12484,7 @@ void GALGAS_outletDeclarationList::modifier_popFirst (GALGAS_lstring & outOperan
     outOperand3.drop () ;
     outOperand4.drop () ;
     outOperand5.drop () ;
+    outOperand6.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
     outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
@@ -12415,7 +12492,8 @@ void GALGAS_outletDeclarationList::modifier_popFirst (GALGAS_lstring & outOperan
     outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
     outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
     outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
-    outOperand5 = p->mObject.mAttribute_mRegularBindingList ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
   }
 }
 
@@ -12426,7 +12504,8 @@ void GALGAS_outletDeclarationList::modifier_popLast (GALGAS_lstring & outOperand
                                                      GALGAS_tableValueBinding & outOperand2,
                                                      GALGAS_runActionDescriptor & outOperand3,
                                                      GALGAS_multipleBindingDescriptor & outOperand4,
-                                                     GALGAS_regularBindingList & outOperand5,
+                                                     GALGAS_multipleBindingDescriptor & outOperand5,
+                                                     GALGAS_regularBindingList & outOperand6,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -12439,6 +12518,7 @@ void GALGAS_outletDeclarationList::modifier_popLast (GALGAS_lstring & outOperand
     outOperand3.drop () ;
     outOperand4.drop () ;
     outOperand5.drop () ;
+    outOperand6.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
     outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
@@ -12446,7 +12526,8 @@ void GALGAS_outletDeclarationList::modifier_popLast (GALGAS_lstring & outOperand
     outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
     outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
     outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
-    outOperand5 = p->mObject.mAttribute_mRegularBindingList ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
   }
 }
 
@@ -12457,7 +12538,8 @@ void GALGAS_outletDeclarationList::method_first (GALGAS_lstring & outOperand0,
                                                  GALGAS_tableValueBinding & outOperand2,
                                                  GALGAS_runActionDescriptor & outOperand3,
                                                  GALGAS_multipleBindingDescriptor & outOperand4,
-                                                 GALGAS_regularBindingList & outOperand5,
+                                                 GALGAS_multipleBindingDescriptor & outOperand5,
+                                                 GALGAS_regularBindingList & outOperand6,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -12470,6 +12552,7 @@ void GALGAS_outletDeclarationList::method_first (GALGAS_lstring & outOperand0,
     outOperand3.drop () ;
     outOperand4.drop () ;
     outOperand5.drop () ;
+    outOperand6.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
     outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
@@ -12477,7 +12560,8 @@ void GALGAS_outletDeclarationList::method_first (GALGAS_lstring & outOperand0,
     outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
     outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
     outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
-    outOperand5 = p->mObject.mAttribute_mRegularBindingList ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
   }
 }
 
@@ -12488,7 +12572,8 @@ void GALGAS_outletDeclarationList::method_last (GALGAS_lstring & outOperand0,
                                                 GALGAS_tableValueBinding & outOperand2,
                                                 GALGAS_runActionDescriptor & outOperand3,
                                                 GALGAS_multipleBindingDescriptor & outOperand4,
-                                                GALGAS_regularBindingList & outOperand5,
+                                                GALGAS_multipleBindingDescriptor & outOperand5,
+                                                GALGAS_regularBindingList & outOperand6,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -12501,6 +12586,7 @@ void GALGAS_outletDeclarationList::method_last (GALGAS_lstring & outOperand0,
     outOperand3.drop () ;
     outOperand4.drop () ;
     outOperand5.drop () ;
+    outOperand6.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
     outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
@@ -12508,7 +12594,8 @@ void GALGAS_outletDeclarationList::method_last (GALGAS_lstring & outOperand0,
     outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
     outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
     outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
-    outOperand5 = p->mObject.mAttribute_mRegularBindingList ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
   }
 }
 
@@ -12641,6 +12728,21 @@ GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList::reader_mEnabledBi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList::reader_mHiddenBindingDescriptorAtIndex (const GALGAS_uint & inIndex,
+                                                                                                       C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_multipleBindingDescriptor result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_regularBindingList GALGAS_outletDeclarationList::reader_mRegularBindingListAtIndex (const GALGAS_uint & inIndex,
                                                                                            C_Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) const {
@@ -12711,6 +12813,14 @@ GALGAS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mEna
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mAttribute_mEnabledBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mHiddenBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mHiddenBindingDescriptor ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

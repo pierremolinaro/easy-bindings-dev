@@ -84,7 +84,6 @@ import Cocoa
       },
       file:__FILE__, line:__LINE__
     )
-  //--- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
