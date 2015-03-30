@@ -243,6 +243,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       mTokenCode = easyBindings_lexique_1__7C_ ;
     }else if (scanningOk && [self testForInputString:@"{" advance:YES]) {
       mTokenCode = easyBindings_lexique_1__7B_ ;
+    }else if (scanningOk && [self testForInputString:@"^" advance:YES]) {
+      mTokenCode = easyBindings_lexique_1__5E_ ;
     }else if (scanningOk && [self testForInputString:@"]" advance:YES]) {
       mTokenCode = easyBindings_lexique_1__5D_ ;
     }else if (scanningOk && [self testForInputString:@"[" advance:YES]) {
@@ -297,7 +299,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 58 ;
+  return 59 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -327,7 +329,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [59] = {0,
+  static const NSUInteger kTerminalSymbolStyles [60] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1_bindingName */,
@@ -385,7 +387,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     9 /* easyBindings_lexique_1__7C_ */,
     9 /* easyBindings_lexique_1__26_ */,
     9 /* easyBindings_lexique_1__3C_ */,
-    9 /* easyBindings_lexique_1__3E_ */
+    9 /* easyBindings_lexique_1__3E_ */,
+    9 /* easyBindings_lexique_1__5E_ */
   } ;
   return kTerminalSymbolStyles [inTerminal] ;
 }
@@ -397,7 +400,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [59] = {NO,
+  static const BOOL kTerminalAtomicSelection [60] = {NO,
     YES /* easyBindings_lexique_1_identifier */,
     YES /* easyBindings_lexique_1_Identifier */,
     YES /* easyBindings_lexique_1_bindingName */,
@@ -455,7 +458,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1__7C_ */,
     YES /* easyBindings_lexique_1__26_ */,
     YES /* easyBindings_lexique_1__3C_ */,
-    YES /* easyBindings_lexique_1__3E_ */
+    YES /* easyBindings_lexique_1__3E_ */,
+    YES /* easyBindings_lexique_1__5E_ */
   } ;
   return kTerminalAtomicSelection [inTokenIndex] ;
 }

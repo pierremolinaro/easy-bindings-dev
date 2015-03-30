@@ -272,21 +272,21 @@ import Cocoa
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
       computeFunction:{
-        return (self.nameController.selectedArray.count.prop > 0)
+        return (self.nameController.selectedArray.count.prop > PMProperty.singleSelection (0))
       },
       file:__FILE__, line:__LINE__
     )
     incrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
-        return (self.rootObject.mNames.count.prop > 0)
+        return (self.rootObject.mNames.count.prop > PMProperty.singleSelection (0))
       },
       file:__FILE__, line:__LINE__
     )
     decrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
-        return (self.rootObject.mNames.count.prop > 0)
+        return (self.rootObject.mNames.count.prop > PMProperty.singleSelection (0))
       },
       file:__FILE__, line:__LINE__
     )

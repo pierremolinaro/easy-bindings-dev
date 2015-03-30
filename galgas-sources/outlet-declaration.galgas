@@ -47,14 +47,14 @@ syntax extension easyBindings_syntax {
     while
       $tableValue$
       if tableValueBinding != .noTableValueBinding then
-        error @location.here : "duplicated $tableValue binding"
+        error .here : "duplicated $tableValue binding"
       end
       $identifier$ ?let @lstring controllerName
       tableValueBinding = .tableValueBinding {!controllerName:controllerName}
     while
       $run$
       if runActionDescriptor != .noAction then
-        error @location.here : "duplicated $run binding"
+        error .here : "duplicated $run binding"
       end
       @lstring runTargetName
       select
@@ -70,7 +70,7 @@ syntax extension easyBindings_syntax {
     while
       $enabled$
       if enabledBindingDescriptor != .noBinding then
-        error @location.here : "duplicated $enabled binding"
+        error .here : "duplicated $enabled binding"
       end
       <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
       enabledBindingDescriptor = .binding {!expression:bindingExpression}
@@ -78,7 +78,7 @@ syntax extension easyBindings_syntax {
     while
       $hidden$
       if hiddenBindingDescriptor != .noBinding then
-        error @location.here : "duplicated $hidden binding"
+        error .here : "duplicated $hidden binding"
       end
       <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
       hiddenBindingDescriptor = .binding {!expression:bindingExpression}

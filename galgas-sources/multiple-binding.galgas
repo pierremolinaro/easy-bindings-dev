@@ -46,7 +46,8 @@ class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingE
 #......................................................................................................................*
 
 class @andBooleanMultipleBindingExpressionAST,
-       @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+       @orBooleanMultipleBindingExpressionAST,
+       @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
@@ -102,6 +103,10 @@ syntax extension easyBindings_syntax {
       $|$
       <booleanMultipleBindingOperand> ?let @abstractBooleanMultipleBindingExpressionAST binding
       outBinding = @orBooleanMultipleBindingExpressionAST. new { !outBinding !binding}
+    while
+      $^$
+      <booleanMultipleBindingOperand> ?let @abstractBooleanMultipleBindingExpressionAST binding
+      outBinding = @xorBooleanMultipleBindingExpressionAST. new { !outBinding !binding}
     end
   }
   
@@ -170,7 +175,7 @@ class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abst
 
 #......................................................................................................................*
 
-class @negateBooleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+class @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @uint mValue
 }
 
@@ -183,7 +188,8 @@ class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMul
 #......................................................................................................................*
 
 class @orBooleanMultipleBindingExpressionForGeneration,
-       @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+      @xorBooleanMultipleBindingExpressionForGeneration,
+      @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
@@ -218,7 +224,7 @@ override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMult
   !@typeKind outType
   !@location outErrorLocation
 {
-  outEnableExpression = @negateBooleanMultipleBindingLiteralIntForGeneration.new {!mValue.uint}
+  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration.new {!mValue.uint}
   outType = .integerType
   outErrorLocation = mValue.location
 }
@@ -320,6 +326,43 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
 
 #......................................................................................................................*
 
+override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mLeftBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'or': left operand is not boolean"
+  end
+  [mRightBinding analyzeExpressionForMultipleBinding
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'or': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#......................................................................................................................*
+
 override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContext inSemanticContext
@@ -403,7 +446,7 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedM
 
 #......................................................................................................................*
 
-override getter @negateBooleanMultipleBindingLiteralIntForGeneration observedModelSet
+override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
   outObservedModelSet = {}
@@ -435,6 +478,14 @@ override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSe
 
 #......................................................................................................................*
 
+override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelSet
+  -> @stringset outObservedModelSet
+{
+  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+}
+
+#......................................................................................................................*
+
 override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
@@ -456,9 +507,9 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressio
 
 #......................................................................................................................*
 
-override getter @negateBooleanMultipleBindingLiteralIntForGeneration expressionString
+override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = [mValue string]
+  outExpressionString = "PMProperty.singleSelection (" + [mValue string] + ")"
 }
 
 #......................................................................................................................*
@@ -480,6 +531,13 @@ override getter @negateBooleanMultipleBindingExpressionForGeneration expressionS
 override getter @orBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = "(" + [mLeftBinding expressionString] +  " || " + [mRightBinding expressionString] + ")"
+}
+
+#......................................................................................................................*
+
+override getter @xorBooleanMultipleBindingExpressionForGeneration expressionString
+  -> @string outExpressionString {
+  outExpressionString = "(" + [mLeftBinding expressionString] +  " ^ " + [mRightBinding expressionString] + ")"
 }
 
 #......................................................................................................................*
