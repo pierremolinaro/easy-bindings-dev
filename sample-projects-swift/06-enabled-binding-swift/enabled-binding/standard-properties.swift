@@ -10,9 +10,9 @@ enum PMProperty<T> {
   case multipleSelection
 }
 
-//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-internal func compareIntProperties (left:PMProperty<Int>,
+private func compareIntProperties (left:PMProperty<Int>,
                                     right:PMProperty<Int>,
                                     function : (Int, Int) -> Bool) -> PMProperty<Bool> {
   switch left {
@@ -73,9 +73,11 @@ func != (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
   return compareIntProperties (left, right, {$0 != $1})
 }
 
-//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-func && (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
+private func combineBoolProperties (left:PMProperty<Bool>,
+                                     right:PMProperty<Bool>,
+                                     function : (Bool, Bool) -> Bool) -> PMProperty<Bool> {
   switch left {
   case .noSelection :
     return .noSelection
@@ -93,37 +95,30 @@ func && (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
     case .multipleSelection :
       return .multipleSelection
     case .singleSelection (let vd) :
-      return .singleSelection (vg && vd)
+      return .singleSelection (function (vg, vd))
     }
   }
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func && (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
+  return combineBoolProperties (left, right, {$0 && $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func || (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
-  switch left {
-  case .noSelection :
-    return .noSelection
-  case .multipleSelection :
-    switch right {
-    case .noSelection :
-      return .noSelection
-    case .multipleSelection, .singleSelection :
-      return .multipleSelection
-    }
-  case .singleSelection (let vg) :
-    switch right {
-    case .noSelection :
-      return .noSelection
-    case .multipleSelection :
-      return .multipleSelection
-    case .singleSelection (let vd) :
-      return .singleSelection (vg || vd)
-    }
-  }
+  return combineBoolProperties (left, right, {$0 || $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func ^ (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
+  return combineBoolProperties (left, right, {$0 != $1})
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 prefix func ! (operand:PMProperty<Bool>) -> PMProperty<Bool> {
   switch operand {
