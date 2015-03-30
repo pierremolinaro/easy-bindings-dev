@@ -1026,13 +1026,17 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
     "\n"
     "#------------------------------------------------------------------------------*\n"
     "\n"
-    "#--- Register a function for killing build subprocess\n"
+    "#------------------- Register a function for killing build subprocess\n"
     "atexit.register (cleanup)\n"
+    "#------------------- Get compiler as first argument\n"
+    "compiler = \"eb\" # Default compiler\n"
+    "if len (sys.argv) > 1 :\n"
+    "  compiler = sys.argv [1]\n"
     "#------------------- Get script absolute path\n"
     "scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
     "os.chdir (scriptDir)\n"
     "#------------------- Build\n"
-    "buildProcess = subprocess.Popen ([\"eb\", \"-v\", \"" ;
+    "buildProcess = subprocess.Popen ([compiler, \"-v\", \"" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << ".eb\"])\n"
     "buildProcess.wait ()\n"
