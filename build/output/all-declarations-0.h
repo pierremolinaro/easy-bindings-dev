@@ -133,7 +133,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken__7C_,
    kToken__26_,
    kToken__3C_,
-   kToken__3E_} ;
+   kToken__3E_,
+   kToken__5E_} ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public : static int16_t search_into_lowerCaseKeyWordList (const C_String & inSearchedString) ;
@@ -169,7 +170,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 58 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 59 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -4316,6 +4317,93 @@ class cPtr_transientAST : public cPtr_abstractSecondaryProperty {
   public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mTransientTypeName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring reader_mTransientName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_observablePropertyList reader_mDependencyList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                    @xorBooleanMultipleBindingExpressionAST class                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_xorBooleanMultipleBindingExpressionAST : public GALGAS_abstractBooleanMultipleBindingExpressionAST {
+//--- Constructor
+  public : GALGAS_xorBooleanMultipleBindingExpressionAST (void) ;
+
+//---
+  public : inline const class cPtr_xorBooleanMultipleBindingExpressionAST * ptr (void) const { return (const cPtr_xorBooleanMultipleBindingExpressionAST *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_xorBooleanMultipleBindingExpressionAST (const cPtr_xorBooleanMultipleBindingExpressionAST * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_xorBooleanMultipleBindingExpressionAST extractObject (const GALGAS_object & inObject,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_xorBooleanMultipleBindingExpressionAST constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
+                                                                                 const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_xorBooleanMultipleBindingExpressionAST & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractBooleanMultipleBindingExpressionAST reader_mLeftBinding (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractBooleanMultipleBindingExpressionAST reader_mRightBinding (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_xorBooleanMultipleBindingExpressionAST class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleBindingExpressionAST ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Pointer class for @xorBooleanMultipleBindingExpressionAST class                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+//--- Attributes
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mLeftBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mRightBinding ;
+
+//--- Constructor
+  public : cPtr_xorBooleanMultipleBindingExpressionAST (const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mLeftBinding,
+                                                        const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mRightBinding
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_abstractBooleanMultipleBindingExpressionAST reader_mLeftBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_abstractBooleanMultipleBindingExpressionAST reader_mRightBinding (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

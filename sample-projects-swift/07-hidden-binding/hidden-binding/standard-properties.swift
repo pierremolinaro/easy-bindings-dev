@@ -12,80 +12,65 @@ enum PMProperty<T> {
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func > (left:PMProperty<Int>, right:Int) -> PMProperty<Bool> {
+internal func compareIntProperties (left:PMProperty<Int>,
+                                    right:PMProperty<Int>,
+                                    function : (Int, Int) -> Bool) -> PMProperty<Bool> {
   switch left {
   case .noSelection :
     return .noSelection
   case .multipleSelection :
-    return .multipleSelection
-  case .singleSelection (let v) :
-    return .singleSelection (v > right)
+    switch right {
+    case .noSelection :
+      return .noSelection
+    case .multipleSelection, .singleSelection :
+      return .multipleSelection
+    }
+  case .singleSelection (let vg) :
+    switch right {
+    case .noSelection :
+      return .noSelection
+    case .multipleSelection :
+      return .multipleSelection
+    case .singleSelection (let vd) :
+      return .singleSelection (function (vg, vd))
+    }
   }
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func >= (left:PMProperty<Int>, right:Int) -> PMProperty<Bool> {
-  switch left {
-  case .noSelection :
-    return .noSelection
-  case .multipleSelection :
-    return .multipleSelection
-  case .singleSelection (let v) :
-    return .singleSelection (v >= right)
-  }
+func > (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+  return compareIntProperties (left, right, {$0 > $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func < (left:PMProperty<Int>, right:Int) -> PMProperty<Bool> {
-  switch left {
-  case .noSelection :
-    return .noSelection
-  case .multipleSelection :
-    return .multipleSelection
-  case .singleSelection (let v) :
-    return .singleSelection (v < right)
-  }
+func >= (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+  return compareIntProperties (left, right, {$0 >= $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func <= (left:PMProperty<Int>, right:Int) -> PMProperty<Bool> {
-  switch left {
-  case .noSelection :
-    return .noSelection
-  case .multipleSelection :
-    return .multipleSelection
-  case .singleSelection (let v) :
-    return .singleSelection (v <= right)
-  }
+func < (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+  return compareIntProperties (left, right, {$0 < $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func == (left:PMProperty<Int>, right:Int) -> PMProperty<Bool> {
-  switch left {
-  case .noSelection :
-    return .noSelection
-  case .multipleSelection :
-    return .multipleSelection
-  case .singleSelection (let v) :
-    return .singleSelection (v == right)
-  }
+func <= (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+  return compareIntProperties (left, right, {$0 <= $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func != (left:PMProperty<Int>, right:Int) -> PMProperty<Bool> {
-  switch left {
-  case .noSelection :
-    return .noSelection
-  case .multipleSelection :
-    return .multipleSelection
-  case .singleSelection (let v) :
-    return .singleSelection (v != right)
-  }
+func == (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+  return compareIntProperties (left, right, {$0 == $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func != (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+  return compareIntProperties (left, right, {$0 != $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

@@ -10,6 +10,434 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (void) :
+mAttribute_mDestinationEntityName (),
+mAttribute_mToManyRelationshipName (),
+mAttribute_mInverseRelationshipName () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_toManyRelationshipList_2D_element::~ GALGAS_toManyRelationshipList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                    const GALGAS_lstring & inOperand1,
+                                                                                    const GALGAS_lstring & inOperand2) :
+mAttribute_mDestinationEntityName (inOperand0),
+mAttribute_mToManyRelationshipName (inOperand1),
+mAttribute_mInverseRelationshipName (inOperand2) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_toManyRelationshipList_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                                   GALGAS_lstring::constructor_default (HERE),
+                                                   GALGAS_lstring::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                    const GALGAS_lstring & inOperand1,
+                                                                                                    const GALGAS_lstring & inOperand2 
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_toManyRelationshipList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_toManyRelationshipList_2D_element (inOperand0, inOperand1, inOperand2) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_toManyRelationshipList_2D_element::objectCompare (const GALGAS_toManyRelationshipList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mDestinationEntityName.objectCompare (inOperand.mAttribute_mDestinationEntityName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mToManyRelationshipName.objectCompare (inOperand.mAttribute_mToManyRelationshipName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mInverseRelationshipName.objectCompare (inOperand.mAttribute_mInverseRelationshipName) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_toManyRelationshipList_2D_element::isValid (void) const {
+  return mAttribute_mDestinationEntityName.isValid () && mAttribute_mToManyRelationshipName.isValid () && mAttribute_mInverseRelationshipName.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_toManyRelationshipList_2D_element::drop (void) {
+  mAttribute_mDestinationEntityName.drop () ;
+  mAttribute_mToManyRelationshipName.drop () ;
+  mAttribute_mInverseRelationshipName.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_toManyRelationshipList_2D_element::description (C_String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString << "<struct @toManyRelationshipList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mDestinationEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mToManyRelationshipName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mInverseRelationshipName.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mDestinationEntityName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDestinationEntityName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mToManyRelationshipName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mToManyRelationshipName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mInverseRelationshipName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mInverseRelationshipName ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @toManyRelationshipList-element type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_toManyRelationshipList_2D_element ("toManyRelationshipList-element",
+                                                          NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_toManyRelationshipList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyRelationshipList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_toManyRelationshipList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_toManyRelationshipList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_toManyRelationshipList_2D_element result ;
+  const GALGAS_toManyRelationshipList_2D_element * p = (const GALGAS_toManyRelationshipList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_toManyRelationshipList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toManyRelationshipList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap_2D_element::GALGAS_entityObservablePropertyMap_2D_element (void) :
+mAttribute_lkey (),
+mAttribute_mObservablePropertyMap () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap_2D_element::~ GALGAS_entityObservablePropertyMap_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap_2D_element::GALGAS_entityObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                              const GALGAS_observablePropertyMap & inOperand1) :
+mAttribute_lkey (inOperand0),
+mAttribute_mObservablePropertyMap (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_entityObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                                        GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                              const GALGAS_observablePropertyMap & inOperand1 
+                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_entityObservablePropertyMap_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_entityObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_entityObservablePropertyMap_2D_element::objectCompare (const GALGAS_entityObservablePropertyMap_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_entityObservablePropertyMap_2D_element::isValid (void) const {
+  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_entityObservablePropertyMap_2D_element::drop (void) {
+  mAttribute_lkey.drop () ;
+  mAttribute_mObservablePropertyMap.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_entityObservablePropertyMap_2D_element::description (C_String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString << "<struct @entityObservablePropertyMap-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_lkey.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_entityObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_lkey ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyMap GALGAS_entityObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mObservablePropertyMap ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @entityObservablePropertyMap-element type                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ("entityObservablePropertyMap-element",
+                                                               NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_entityObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_entityObservablePropertyMap_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_entityObservablePropertyMap_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                            C_Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_entityObservablePropertyMap_2D_element result ;
+  const GALGAS_entityObservablePropertyMap_2D_element * p = (const GALGAS_entityObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_entityObservablePropertyMap_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("entityObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap_2D_element::GALGAS_documentObservablePropertyMap_2D_element (void) :
+mAttribute_lkey (),
+mAttribute_mObservablePropertyMap () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap_2D_element::~ GALGAS_documentObservablePropertyMap_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap_2D_element::GALGAS_documentObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                                  const GALGAS_observablePropertyMap & inOperand1) :
+mAttribute_lkey (inOperand0),
+mAttribute_mObservablePropertyMap (inOperand1) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_documentObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                                          GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                                  const GALGAS_observablePropertyMap & inOperand1 
+                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_documentObservablePropertyMap_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_documentObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_documentObservablePropertyMap_2D_element::objectCompare (const GALGAS_documentObservablePropertyMap_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_documentObservablePropertyMap_2D_element::isValid (void) const {
+  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_documentObservablePropertyMap_2D_element::drop (void) {
+  mAttribute_lkey.drop () ;
+  mAttribute_mObservablePropertyMap.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_documentObservablePropertyMap_2D_element::description (C_String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString << "<struct @documentObservablePropertyMap-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_lkey.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_documentObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_lkey ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_observablePropertyMap GALGAS_documentObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mObservablePropertyMap ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                     @documentObservablePropertyMap-element type                                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_documentObservablePropertyMap_2D_element ("documentObservablePropertyMap-element",
+                                                                 NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_documentObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentObservablePropertyMap_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_documentObservablePropertyMap_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_documentObservablePropertyMap_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_documentObservablePropertyMap_2D_element result ;
+  const GALGAS_documentObservablePropertyMap_2D_element * p = (const GALGAS_documentObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_documentObservablePropertyMap_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("documentObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (void) :
 mAttribute_lkey (),
 mAttribute_mObservablePropertyMap () {
@@ -4203,8 +4631,8 @@ static void categoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpress
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_literalIntMultipleBindingExpressionAST * object = (const cPtr_literalIntMultipleBindingExpressionAST *) inObject ;
   macroValidSharedObject (object, cPtr_literalIntMultipleBindingExpressionAST) ;
-  outArgument_outEnableExpression = GALGAS_negateBooleanMultipleBindingLiteralIntForGeneration::constructor_new (object->mAttribute_mValue.mAttribute_uint  COMMA_SOURCE_FILE ("multiple-binding.galgas", 221)) ;
-  outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("multiple-binding.galgas", 222)) ;
+  outArgument_outEnableExpression = GALGAS_booleanMultipleBindingLiteralIntForGeneration::constructor_new (object->mAttribute_mValue.mAttribute_uint  COMMA_SOURCE_FILE ("multiple-binding.galgas", 227)) ;
+  outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("multiple-binding.galgas", 228)) ;
   outArgument_outErrorLocation = object->mAttribute_mValue.mAttribute_location ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4238,10 +4666,10 @@ static void categoryMethod_observablePropertyInMultipleBindingExpressionAST_anal
   GALGAS_propertyKind var_outKind ;
   GALGAS_propertyMultiplicity var_outMultiplicity ;
   GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
-  categoryMethod_analyzeObservableProperty (object->mAttribute_mProperty, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, outArgument_outType, var_outKind, var_outMultiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 236)) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("multiple-binding.galgas", 245)))).boolEnum () ;
+  categoryMethod_analyzeObservableProperty (object->mAttribute_mProperty, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, outArgument_outType, var_outKind, var_outMultiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 242)) ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("multiple-binding.galgas", 251)))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 246)), GALGAS_string ("a collection cannot be observed")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 246)) ;
+    inCompiler->emitSemanticError (categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 252)), GALGAS_string ("a collection cannot be observed")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 252)) ;
   }
   switch (outArgument_outType.enumValue ()) {
   case GALGAS_typeKind::kNotBuilt:
@@ -4261,12 +4689,12 @@ static void categoryMethod_observablePropertyInMultipleBindingExpressionAST_anal
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      inCompiler->emitSemanticError (categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 252)), GALGAS_string ("an entity cannot be observed")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 252)) ;
+      inCompiler->emitSemanticError (categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 258)), GALGAS_string ("an entity cannot be observed")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 258)) ;
     }
     break ;
   }
-  outArgument_outEnableExpression = GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::constructor_new (categoryReader_modelString (object->mAttribute_mProperty, GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 255))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 254)) ;
-  outArgument_outErrorLocation = categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 257)) ;
+  outArgument_outEnableExpression = GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::constructor_new (categoryReader_modelString (object->mAttribute_mProperty, GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 261))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 260)) ;
+  outArgument_outErrorLocation = categoryReader_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 263)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4297,12 +4725,12 @@ static void categoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpr
   const cPtr_negateBooleanMultipleBindingExpressionAST * object = (const cPtr_negateBooleanMultipleBindingExpressionAST *) inObject ;
   macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionAST) ;
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_expression ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_expression, outArgument_outType, outArgument_outErrorLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 270)) ;
-  const enumGalgasBool test_0 = outArgument_outType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 278)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 278)).boolEnum () ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_expression, outArgument_outType, outArgument_outErrorLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 276)) ;
+  const enumGalgasBool test_0 = outArgument_outType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 284)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 284)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (outArgument_outErrorLocation, GALGAS_string ("cannot apply negation: operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 279)) ;
+    inCompiler->emitSemanticError (outArgument_outErrorLocation, GALGAS_string ("cannot apply negation: operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 285)) ;
   }
-  outArgument_outEnableExpression = GALGAS_negateBooleanMultipleBindingExpressionForGeneration::constructor_new (var_expression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 281)) ;
+  outArgument_outEnableExpression = GALGAS_negateBooleanMultipleBindingExpressionForGeneration::constructor_new (var_expression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 287)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4335,22 +4763,22 @@ static void categoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressi
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
   GALGAS_typeKind var_outLeftType ;
   GALGAS_location var_outLeftLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 294)) ;
-  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 302)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 302)).boolEnum () ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 300)) ;
+  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 308)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 308)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'or': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 303)) ;
+    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'or': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 309)) ;
   }
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
   GALGAS_typeKind var_outRightType ;
   GALGAS_location var_outRightLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 305)) ;
-  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 313)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 313)).boolEnum () ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 311)) ;
+  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 319)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 319)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'or': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 314)) ;
+    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'or': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 320)) ;
   }
-  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 316)) ;
+  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 322)) ;
   outArgument_outErrorLocation = var_outRightLocation ;
-  outArgument_outEnableExpression = GALGAS_orBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 318)) ;
+  outArgument_outEnableExpression = GALGAS_orBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 324)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4362,6 +4790,54 @@ static void defineCategoryMethod_orBooleanMultipleBindingExpressionAST_analyzeEx
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//      Overriding category method '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                                                                       const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                                                       const GALGAS_observablePropertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                                       GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                                       GALGAS_typeKind & outArgument_outType,
+                                                                                                       GALGAS_location & outArgument_outErrorLocation,
+                                                                                                       C_Compiler * inCompiler
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_xorBooleanMultipleBindingExpressionAST * object = (const cPtr_xorBooleanMultipleBindingExpressionAST *) inObject ;
+  macroValidSharedObject (object, cPtr_xorBooleanMultipleBindingExpressionAST) ;
+  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
+  GALGAS_typeKind var_outLeftType ;
+  GALGAS_location var_outLeftLocation ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 337)) ;
+  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 345)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 345)).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'or': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 346)) ;
+  }
+  GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
+  GALGAS_typeKind var_outRightType ;
+  GALGAS_location var_outRightLocation ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 348)) ;
+  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 356)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 356)).boolEnum () ;
+  if (kBoolTrue == test_1) {
+    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'or': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 357)) ;
+  }
+  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 359)) ;
+  outArgument_outErrorLocation = var_outRightLocation ;
+  outArgument_outEnableExpression = GALGAS_xorBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 361)) ;
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
+  enterCategoryMethod_analyzeExpressionForMultipleBinding (kTypeDescriptor_GALGAS_xorBooleanMultipleBindingExpressionAST.mSlotID,
+                                                           categoryMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (defineCategoryMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding, NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4383,22 +4859,22 @@ static void categoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpress
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
   GALGAS_typeKind var_outLeftType ;
   GALGAS_location var_outLeftLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 331)) ;
-  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 339)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 339)).boolEnum () ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 374)) ;
+  const enumGalgasBool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 382)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 382)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'and': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 340)) ;
+    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot apply 'and': left operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 383)) ;
   }
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
   GALGAS_typeKind var_outRightType ;
   GALGAS_location var_outRightLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 342)) ;
-  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 350)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 350)).boolEnum () ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 385)) ;
+  const enumGalgasBool test_1 = var_outRightType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 393)).operator_not (SOURCE_FILE ("multiple-binding.galgas", 393)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'and': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 351)) ;
+    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot apply 'and': right operand is not boolean")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 394)) ;
   }
-  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 353)) ;
+  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 396)) ;
   outArgument_outErrorLocation = var_outRightLocation ;
-  outArgument_outEnableExpression = GALGAS_andBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 355)) ;
+  outArgument_outEnableExpression = GALGAS_andBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 398)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4431,26 +4907,26 @@ static void categoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpress
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression ;
   GALGAS_typeKind var_outLeftType ;
   GALGAS_location var_outLeftLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 368)) ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mLeftBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_leftExpression, var_outLeftType, var_outLeftLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 411)) ;
   GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression ;
   GALGAS_typeKind var_outRightType ;
   GALGAS_location var_outRightLocation ;
-  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 376)) ;
-  GALGAS_bool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 384)) ;
+  callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) object->mAttribute_mRightBinding.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, var_rightExpression, var_outRightType, var_outRightLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 419)) ;
+  GALGAS_bool test_0 = var_outLeftType.reader_isBoolType (SOURCE_FILE ("multiple-binding.galgas", 427)) ;
   if (kBoolTrue != test_0.boolEnum ()) {
-    test_0 = var_outLeftType.reader_isIntegerType (SOURCE_FILE ("multiple-binding.galgas", 384)) ;
+    test_0 = var_outLeftType.reader_isIntegerType (SOURCE_FILE ("multiple-binding.galgas", 427)) ;
   }
-  const enumGalgasBool test_1 = test_0.operator_not (SOURCE_FILE ("multiple-binding.galgas", 384)).boolEnum () ;
+  const enumGalgasBool test_1 = test_0.operator_not (SOURCE_FILE ("multiple-binding.galgas", 427)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot compare: left operand is neither boolean nor integer")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 385)) ;
+    inCompiler->emitSemanticError (var_outLeftLocation, GALGAS_string ("cannot compare: left operand is neither boolean nor integer")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 428)) ;
   }
   const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_outRightType.objectCompare (var_outLeftType)).boolEnum () ;
   if (kBoolTrue == test_2) {
-    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot compare: right operand type is different than left operand type")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 388)) ;
+    inCompiler->emitSemanticError (var_outRightLocation, GALGAS_string ("cannot compare: right operand type is different than left operand type")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 431)) ;
   }
-  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 390)) ;
+  outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("multiple-binding.galgas", 433)) ;
   outArgument_outErrorLocation = var_outRightLocation ;
-  outArgument_outEnableExpression = GALGAS_comparisonMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, object->mAttribute_mOperator, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 392)) ;
+  outArgument_outEnableExpression = GALGAS_comparisonMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, object->mAttribute_mOperator, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 435)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4465,15 +4941,15 @@ C_PrologueEpilogue gMethod_comparisonMultipleBindingExpressionAST_analyzeExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category reader '@negateBooleanMultipleBindingLiteralIntForGeneration observedModelSet'          *
+//            Overriding category reader '@booleanMultipleBindingLiteralIntForGeneration observedModelSet'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static GALGAS_stringset categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * /* inObject */,
-                                                                                                             C_Compiler * /* inCompiler */
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_stringset categoryReader_booleanMultipleBindingLiteralIntForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * /* inObject */,
+                                                                                                       C_Compiler * /* inCompiler */
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_outObservedModelSet ; // Returned variable
-  result_outObservedModelSet = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 409)) ;
+  result_outObservedModelSet = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 452)) ;
 //---
   return result_outObservedModelSet ;
 }
@@ -4481,14 +4957,14 @@ static GALGAS_stringset categoryReader_negateBooleanMultipleBindingLiteralIntFor
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet (void) {
-  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingLiteralIntForGeneration.mSlotID,
-                                        categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet) ;
+static void defineCategoryReader_booleanMultipleBindingLiteralIntForGeneration_observedModelSet (void) {
+  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_booleanMultipleBindingLiteralIntForGeneration.mSlotID,
+                                        categoryReader_booleanMultipleBindingLiteralIntForGeneration_observedModelSet) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-C_PrologueEpilogue gReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet (defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_observedModelSet, NULL) ;
+C_PrologueEpilogue gReader_booleanMultipleBindingLiteralIntForGeneration_observedModelSet (defineCategoryReader_booleanMultipleBindingLiteralIntForGeneration_observedModelSet, NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4502,8 +4978,8 @@ static GALGAS_stringset categoryReader_observablePropertyAsBooleanMultipleBindin
   GALGAS_stringset result_outObservedModelSet ; // Returned variable
   const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 417)) ;
-  temp_0.addAssign_operation (object->mAttribute_mObservedModel  COMMA_SOURCE_FILE ("multiple-binding.galgas", 417)) ;
+  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 460)) ;
+  temp_0.addAssign_operation (object->mAttribute_mObservedModel  COMMA_SOURCE_FILE ("multiple-binding.galgas", 460)) ;
   result_outObservedModelSet = temp_0 ;
 //---
   return result_outObservedModelSet ;
@@ -4533,7 +5009,7 @@ static GALGAS_stringset categoryReader_negateBooleanMultipleBindingExpressionFor
   GALGAS_stringset result_outObservedModelSet ; // Returned variable
   const cPtr_negateBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_negateBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionForGeneration) ;
-  result_outObservedModelSet = callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 425)) ;
+  result_outObservedModelSet = callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 468)) ;
 //---
   return result_outObservedModelSet ;
 }
@@ -4562,9 +5038,9 @@ static GALGAS_stringset categoryReader_orBooleanMultipleBindingExpressionForGene
   GALGAS_stringset result_outObservedModelSet ; // Returned variable
   const cPtr_orBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_orBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_orBooleanMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 433)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 433))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 433)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 433))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 433)) ;
+  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 476)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 476))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 476)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 476))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 476)) ;
   result_outObservedModelSet = temp_0 ;
 //---
   return result_outObservedModelSet ;
@@ -4584,6 +5060,38 @@ C_PrologueEpilogue gReader_orBooleanMultipleBindingExpressionForGeneration_obser
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//           Overriding category reader '@xorBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static GALGAS_stringset categoryReader_xorBooleanMultipleBindingExpressionForGeneration_observedModelSet (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringset result_outObservedModelSet ; // Returned variable
+  const cPtr_xorBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_xorBooleanMultipleBindingExpressionForGeneration *) inObject ;
+  macroValidSharedObject (object, cPtr_xorBooleanMultipleBindingExpressionForGeneration) ;
+  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 484)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 484))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 484)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 484))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 484)) ;
+  result_outObservedModelSet = temp_0 ;
+//---
+  return result_outObservedModelSet ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryReader_xorBooleanMultipleBindingExpressionForGeneration_observedModelSet (void) {
+  enterCategoryReader_observedModelSet (kTypeDescriptor_GALGAS_xorBooleanMultipleBindingExpressionForGeneration.mSlotID,
+                                        categoryReader_xorBooleanMultipleBindingExpressionForGeneration_observedModelSet) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gReader_xorBooleanMultipleBindingExpressionForGeneration_observedModelSet (defineCategoryReader_xorBooleanMultipleBindingExpressionForGeneration_observedModelSet, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //           Overriding category reader '@andBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4594,9 +5102,9 @@ static GALGAS_stringset categoryReader_andBooleanMultipleBindingExpressionForGen
   GALGAS_stringset result_outObservedModelSet ; // Returned variable
   const cPtr_andBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_andBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_andBooleanMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 441)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 441))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 441)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 441))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 441)) ;
+  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 492)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 492))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 492)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 492))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 492)) ;
   result_outObservedModelSet = temp_0 ;
 //---
   return result_outObservedModelSet ;
@@ -4626,9 +5134,9 @@ static GALGAS_stringset categoryReader_comparisonMultipleBindingExpressionForGen
   GALGAS_stringset result_outObservedModelSet ; // Returned variable
   const cPtr_comparisonMultipleBindingExpressionForGeneration * object = (const cPtr_comparisonMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_comparisonMultipleBindingExpressionForGeneration) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 449)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 449))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 449)) ;
-  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 449))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 449)) ;
+  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("multiple-binding.galgas", 500)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 500))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 500)) ;
+  temp_0.dotAssign_operation (callCategoryReader_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 500))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 500)) ;
   result_outObservedModelSet = temp_0 ;
 //---
   return result_outObservedModelSet ;
@@ -4648,17 +5156,17 @@ C_PrologueEpilogue gReader_comparisonMultipleBindingExpressionForGeneration_obse
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category reader '@negateBooleanMultipleBindingLiteralIntForGeneration expressionString'          *
+//            Overriding category reader '@booleanMultipleBindingLiteralIntForGeneration expressionString'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static GALGAS_string categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                          C_Compiler * /* inCompiler */
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string categoryReader_booleanMultipleBindingLiteralIntForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outExpressionString ; // Returned variable
-  const cPtr_negateBooleanMultipleBindingLiteralIntForGeneration * object = (const cPtr_negateBooleanMultipleBindingLiteralIntForGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingLiteralIntForGeneration) ;
-  result_outExpressionString = object->mAttribute_mValue.reader_string (SOURCE_FILE ("multiple-binding.galgas", 461)) ;
+  const cPtr_booleanMultipleBindingLiteralIntForGeneration * object = (const cPtr_booleanMultipleBindingLiteralIntForGeneration *) inObject ;
+  macroValidSharedObject (object, cPtr_booleanMultipleBindingLiteralIntForGeneration) ;
+  result_outExpressionString = GALGAS_string ("PMProperty.singleSelection (").add_operation (object->mAttribute_mValue.reader_string (SOURCE_FILE ("multiple-binding.galgas", 512)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 512)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 512)) ;
 //---
   return result_outExpressionString ;
 }
@@ -4666,14 +5174,14 @@ static GALGAS_string categoryReader_negateBooleanMultipleBindingLiteralIntForGen
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString (void) {
-  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_negateBooleanMultipleBindingLiteralIntForGeneration.mSlotID,
-                                        categoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString) ;
+static void defineCategoryReader_booleanMultipleBindingLiteralIntForGeneration_expressionString (void) {
+  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_booleanMultipleBindingLiteralIntForGeneration.mSlotID,
+                                        categoryReader_booleanMultipleBindingLiteralIntForGeneration_expressionString) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-C_PrologueEpilogue gReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString (defineCategoryReader_negateBooleanMultipleBindingLiteralIntForGeneration_expressionString, NULL) ;
+C_PrologueEpilogue gReader_booleanMultipleBindingLiteralIntForGeneration_expressionString (defineCategoryReader_booleanMultipleBindingLiteralIntForGeneration_expressionString, NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4687,7 +5195,7 @@ static GALGAS_string categoryReader_observablePropertyAsBooleanMultipleBindingEx
   GALGAS_string result_outExpressionString ; // Returned variable
   const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = object->mAttribute_mObservedModel.add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 468)) ;
+  result_outExpressionString = object->mAttribute_mObservedModel.add_operation (GALGAS_string (".prop"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 519)) ;
 //---
   return result_outExpressionString ;
 }
@@ -4716,7 +5224,7 @@ static GALGAS_string categoryReader_negateBooleanMultipleBindingExpressionForGen
   GALGAS_string result_outExpressionString ; // Returned variable
   const cPtr_negateBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_negateBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("!").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 475)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 475)) ;
+  result_outExpressionString = GALGAS_string ("!").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 526)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 526)) ;
 //---
   return result_outExpressionString ;
 }
@@ -4745,7 +5253,7 @@ static GALGAS_string categoryReader_orBooleanMultipleBindingExpressionForGenerat
   GALGAS_string result_outExpressionString ; // Returned variable
   const cPtr_orBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_orBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_orBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)).add_operation (GALGAS_string (" || "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 482)) ;
+  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 533)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 533)).add_operation (GALGAS_string (" || "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 533)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 533)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 533)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 533)) ;
 //---
   return result_outExpressionString ;
 }
@@ -4764,6 +5272,35 @@ C_PrologueEpilogue gReader_orBooleanMultipleBindingExpressionForGeneration_expre
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//           Overriding category reader '@xorBooleanMultipleBindingExpressionForGeneration expressionString'           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static GALGAS_string categoryReader_xorBooleanMultipleBindingExpressionForGeneration_expressionString (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                       C_Compiler * inCompiler
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outExpressionString ; // Returned variable
+  const cPtr_xorBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_xorBooleanMultipleBindingExpressionForGeneration *) inObject ;
+  macroValidSharedObject (object, cPtr_xorBooleanMultipleBindingExpressionForGeneration) ;
+  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 540)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 540)).add_operation (GALGAS_string (" ^ "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 540)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 540)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 540)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 540)) ;
+//---
+  return result_outExpressionString ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryReader_xorBooleanMultipleBindingExpressionForGeneration_expressionString (void) {
+  enterCategoryReader_expressionString (kTypeDescriptor_GALGAS_xorBooleanMultipleBindingExpressionForGeneration.mSlotID,
+                                        categoryReader_xorBooleanMultipleBindingExpressionForGeneration_expressionString) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gReader_xorBooleanMultipleBindingExpressionForGeneration_expressionString (defineCategoryReader_xorBooleanMultipleBindingExpressionForGeneration_expressionString, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //           Overriding category reader '@andBooleanMultipleBindingExpressionForGeneration expressionString'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4774,7 +5311,7 @@ static GALGAS_string categoryReader_andBooleanMultipleBindingExpressionForGenera
   GALGAS_string result_outExpressionString ; // Returned variable
   const cPtr_andBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_andBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_andBooleanMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)).add_operation (GALGAS_string (" && "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 489)) ;
+  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 547)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 547)).add_operation (GALGAS_string (" && "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 547)).add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 547)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 547)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 547)) ;
 //---
   return result_outExpressionString ;
 }
@@ -4803,42 +5340,42 @@ static GALGAS_string categoryReader_comparisonMultipleBindingExpressionForGenera
   GALGAS_string result_outExpressionString ; // Returned variable
   const cPtr_comparisonMultipleBindingExpressionForGeneration * object = (const cPtr_comparisonMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_comparisonMultipleBindingExpressionForGeneration) ;
-  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 496)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 496)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 496)) ;
+  result_outExpressionString = GALGAS_string ("(").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mLeftBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 554)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 554)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 554)) ;
   switch (object->mAttribute_mOperator.enumValue ()) {
   case GALGAS_multipleBindingComparisonAST::kNotBuilt:
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_equal:
     {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("==")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 498)) ;
+      result_outExpressionString.dotAssign_operation (GALGAS_string ("==")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 556)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_notEqual:
     {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("!=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 499)) ;
+      result_outExpressionString.dotAssign_operation (GALGAS_string ("!=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 557)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_lower:
     {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("<")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 500)) ;
+      result_outExpressionString.dotAssign_operation (GALGAS_string ("<")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 558)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_lowerOrEqual:
     {
-      result_outExpressionString.dotAssign_operation (GALGAS_string ("<=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 501)) ;
+      result_outExpressionString.dotAssign_operation (GALGAS_string ("<=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 559)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_greater:
     {
-      result_outExpressionString.dotAssign_operation (GALGAS_string (">")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 502)) ;
+      result_outExpressionString.dotAssign_operation (GALGAS_string (">")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 560)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_greaterOrEqual:
     {
-      result_outExpressionString.dotAssign_operation (GALGAS_string (">=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 503)) ;
+      result_outExpressionString.dotAssign_operation (GALGAS_string (">=")  COMMA_SOURCE_FILE ("multiple-binding.galgas", 561)) ;
     }
     break ;
   }
-  result_outExpressionString.dotAssign_operation (GALGAS_string (" ").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 505)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 505)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 505))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 505)) ;
+  result_outExpressionString.dotAssign_operation (GALGAS_string (" ").add_operation (callCategoryReader_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) object->mAttribute_mRightBinding.ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 563)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 563)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 563))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 563)) ;
 //---
   return result_outExpressionString ;
 }
