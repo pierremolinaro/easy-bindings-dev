@@ -124,7 +124,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
       if oldValue != mValue {
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
           owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
@@ -228,8 +228,8 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override init (undoManager : NSUndoManager) {
-    super.init (undoManager:undoManager)
+  override init (managedObjectContext : PMManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties

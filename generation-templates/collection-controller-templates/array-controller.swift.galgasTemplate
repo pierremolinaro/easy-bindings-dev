@@ -509,13 +509,13 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
    func add (inSender : NSButton?) {
     if let model = mModel,
            owner = model.owner,
-           undoManager = owner.undoManager (),
+           managedObjectContext = owner.managedObjectContext (),
            selectedSet = mSelectedSet {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let v) :
-        var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (undoManager:undoManager)
+        var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (managedObjectContext:managedObjectContext)
         var array = v
         array.append (newObject)
       //--- New object is the selection

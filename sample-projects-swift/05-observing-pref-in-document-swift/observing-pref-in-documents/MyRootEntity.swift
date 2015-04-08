@@ -145,8 +145,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override init (undoManager : NSUndoManager) {
-    super.init (undoManager:undoManager)
+  override init (managedObjectContext : PMManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
     transientConcatString.computeFunction = {  [weak self] in
       if let unwSelf = self {
@@ -206,7 +206,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     g_Preferences?.prefTransientString.addObserver (transientConcatString, postEvent:true)
     g_Preferences?.myPrefString.addObserver (otherTransientConcatString, postEvent:true)
   //--- Install undoers for properties
-    docString.undoManager = undoManager
+    docString.undoManager = undoManager ()
   //--- Install owner for relationships
   }
 

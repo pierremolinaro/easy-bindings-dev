@@ -2,7 +2,10 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-private let kFormatSignature = "PM-BINARY-FORMAT"
+let kFormatSignature = "PM-BINARY-FORMAT"
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 private var gDebugMenuItemsAdded = false
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -23,21 +26,23 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   var mRootObject : PMManagedObject?
   private var mReadMetadataStatus : UInt8 = 0
   private var mMetadataDictionary : NSMutableDictionary = [:]
-  var mManagedObjectSet = Set <PMManagedObject> ()
+  private var mManagedObjectContext : PMManagedObjectContext
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init () {
+    let theUndoManager = PMUndoManager ()
+    mManagedObjectContext = PMManagedObjectContext (undoManager:theUndoManager)
     super.init ()
     noteObjectAllocation (self)
-    undoManager = PMUndoManager ()
+    undoManager = theUndoManager
     hookOfInit ()
-    undoManager?.disableUndoRegistration ()
-    mRootObject = newInstanceOfEntityNamed (rootEntityClassName ())
+    theUndoManager.disableUndoRegistration ()
+    mRootObject = mManagedObjectContext.newInstanceOfEntityNamed (rootEntityClassName ())
     hookOfNewDocumentCreation ()
-    undoManager?.enableUndoRegistration ()
+    theUndoManager.enableUndoRegistration ()
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -68,14 +73,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 
   func rootEntityClassName () -> String {
     return ""
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //    removeManagedObject                                                                                            *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func removeManagedObject (object : PMManagedObject) {
-    mManagedObjectSet.remove (object)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -394,7 +391,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     var objectArray : Array<PMManagedObject> = Array  ()
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as! String
-      let object = newInstanceOfEntityNamed (className)
+      let object = mManagedObjectContext.newInstanceOfEntityNamed (className)
       objectArray.append (object!)
     }
     if logReadFileDuration {
@@ -525,22 +522,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     return reachableObjectArray ;
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  newInstanceOfEntityNamed                                                                                         *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
-    var result : PMManagedObject?
-    if let unwrappedUndoManager = undoManager {
-      if inEntityTypeName == "MyRootEntity" {
-        result = MyRootEntity (undoManager:unwrappedUndoManager)
-      }
-    }
-    if let unwResult = result {
-      mManagedObjectSet.insert (unwResult)
-    }
-    return result
-  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -550,7 +531,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSMutableData {
-
   func writeSignature (inout trace: String) {
     trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
@@ -604,4 +584,3 @@ extension NSMutableData {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-

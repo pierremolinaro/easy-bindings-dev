@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-private let kFormatSignature = "PM-BINARY-FORMAT"
+let kFormatSignature = "PM-BINARY-FORMAT"
 private var gDebugMenuItemsAdded = false
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -23,21 +23,23 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   var mRootObject : PMManagedObject?
   private var mReadMetadataStatus : UInt8 = 0
   private var mMetadataDictionary : NSMutableDictionary = [:]
-  var mManagedObjectSet = Set <PMManagedObject> ()
+  private var mManagedObjectContext : PMManagedObjectContext
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override init () {
+    let theUndoManager = PMUndoManager ()
+    mManagedObjectContext = PMManagedObjectContext (undoManager:theUndoManager)
     super.init ()
     noteObjectAllocation (self)
-    undoManager = PMUndoManager ()
+    undoManager = theUndoManager
     hookOfInit ()
-    undoManager?.disableUndoRegistration ()
-    mRootObject = newInstanceOfEntityNamed (rootEntityClassName ())
+    theUndoManager.disableUndoRegistration ()
+    mRootObject = mManagedObjectContext.newInstanceOfEntityNamed (rootEntityClassName ())
     hookOfNewDocumentCreation ()
-    undoManager?.enableUndoRegistration ()
+    theUndoManager.enableUndoRegistration ()
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -68,14 +70,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 
   func rootEntityClassName () -> String {
     return ""
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //    removeManagedObject                                                                                            *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func removeManagedObject (object : PMManagedObject) {
-    mManagedObjectSet.remove (object)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -394,7 +388,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     var objectArray : Array<PMManagedObject> = Array  ()
     for d in dictionaryArray {
       let className = d.objectForKey ("--entity") as! String
-      let object = newInstanceOfEntityNamed (className)
+      let object = mManagedObjectContext.newInstanceOfEntityNamed (className)
       objectArray.append (object!)
     }
     if logReadFileDuration {
@@ -525,83 +519,6 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     return reachableObjectArray ;
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  newInstanceOfEntityNamed                                                                                         *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func newInstanceOfEntityNamed (inEntityTypeName : String) -> PMManagedObject? {
-    var result : PMManagedObject?
-    if let unwrappedUndoManager = undoManager {
-      if inEntityTypeName == "MyRootEntity" {
-        result = MyRootEntity (undoManager:unwrappedUndoManager)
-      }
-    }
-    if let unwResult = result {
-      mManagedObjectSet.insert (unwResult)
-    }
-    return result
-  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//     NSMutableData extension                                                                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extension NSMutableData {
-
-  func writeSignature (inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    for c in kFormatSignature.utf8 {
-      var byte : UInt8 = UInt8 (c)
-      appendBytes (&byte, length:1)
-      trace += String (format:"%02hhX ", byte)
-    }
-    trace += "\n"
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func writeAutosizedData (inData: NSData,
-                           inout trace: String) {
-    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    appendData (inData)
-    trace += "(data, length \(inData.length))\n"
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func writeByte (inByte: UInt8,
-                  inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += String (format:"%02hhX ", inByte)
-    var byte = inByte
-    appendBytes (&byte, length:1)
-    trace += "\n"
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func writeAutosizedUnsigned (inValue: UInt64,
-                               inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += "U "
-    var value = inValue
-    do{
-      var byte : UInt8 = UInt8 (value & 0x7F)
-      value >>= 7
-      if (value != 0) {
-        byte |= 0x80
-      }
-      trace += String (format:"%02hhX ", byte)
-      appendBytes (&byte, length:1)
-    }while value != 0
-    trace += "\n"
-  }
-
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-

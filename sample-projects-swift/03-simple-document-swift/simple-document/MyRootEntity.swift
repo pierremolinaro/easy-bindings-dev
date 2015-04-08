@@ -238,8 +238,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override init (undoManager : NSUndoManager) {
-    super.init (undoManager:undoManager)
+  override init (managedObjectContext : PMManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
     myStringMaj.computeFunction = {  [weak self] in
       if let unwSelf = self {
@@ -301,9 +301,9 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     myStringMaj.addObserver (myStringConcat, postEvent:true)
     myStringMin.addObserver (myStringConcat, postEvent:true)
   //--- Install undoers for properties
-    myString.undoManager = undoManager
-    myEnumeration.undoManager = undoManager
-    myColor.undoManager = undoManager
+    myString.undoManager = undoManager ()
+    myEnumeration.undoManager = undoManager ()
+    myColor.undoManager = undoManager ()
   //--- Install owner for relationships
   }
 

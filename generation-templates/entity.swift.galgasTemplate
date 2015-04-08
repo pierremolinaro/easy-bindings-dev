@@ -168,7 +168,7 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
       if oldValue != mValue {
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
           owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
@@ -270,7 +270,7 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
     didSet {
       if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
-        unwrappedOwner.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = explorer {
           unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (mValue, button : unwrappedExplorer)
@@ -388,8 +388,8 @@ end
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override init (undoManager : NSUndoManager) {
-    super.init (undoManager:undoManager)
+  override init (managedObjectContext : PMManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   if mNeedsValidation then
@@ -417,7 +417,7 @@ end
 %  //--- Install undoers for properties
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.undoManager = undoManager\n%
+  %    %!mStoredPropertyName%.undoManager = undoManager ()\n%
 end
 %  //--- Install owner for relationships
 %

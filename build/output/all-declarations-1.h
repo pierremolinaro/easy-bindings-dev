@@ -4626,13 +4626,13 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Filewrapper template 'entityGenerationTemplate managedDocument'                           *
+//                        Filewrapper template 'entityGenerationTemplate managedObjectContext'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedDocument (class C_Compiler * inCompiler,
-                                                                            const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
-                                                                            COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext (class C_Compiler * inCompiler,
+                                                                                 const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
