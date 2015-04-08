@@ -30,33 +30,32 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
   const enumGalgasBool test_1 = constinArgument_inHasEntities.boolEnum () ;
   if (kBoolTrue == test_1) {
     var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 123)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedDocument")  COMMA_SOURCE_FILE ("code-generation.galgas", 124)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 126)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 124)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
   }
-  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 128)) ;
-  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 128)) ;
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 127)) ;
+  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 127)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_4209 (var_swiftFiles, kEnumeration_up) ;
-  while (enumerator_4209.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4209.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 131)) ;
-    GALGAS_string var_fileName = enumerator_4209.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 132)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 133)) ;
+  cEnumerator_stringlist enumerator_4170 (var_swiftFiles, kEnumeration_up) ;
+  while (enumerator_4170.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4170.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 130)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 130)) ;
+    GALGAS_string var_fileName = enumerator_4170.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 131)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 132)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 134)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 133)) ;
     }
-    enumerator_4209.gotoNextObject () ;
+    enumerator_4170.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_4466 (var_xibFiles, kEnumeration_up) ;
-  while (enumerator_4466.hasCurrentObject ()) {
-    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4466.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 141)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 141)) ;
-    GALGAS_string var_fileName = enumerator_4466.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 142)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 143)) ;
+  cEnumerator_stringlist enumerator_4427 (var_xibFiles, kEnumeration_up) ;
+  while (enumerator_4427.hasCurrentObject ()) {
+    GALGAS_string var_contents = var_fw.reader_textFileContentsAtPath (enumerator_4427.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 140)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 140)) ;
+    GALGAS_string var_fileName = enumerator_4427.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 141)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 142)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 144)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 143)) ;
     }
-    enumerator_4466.gotoNextObject () ;
+    enumerator_4427.gotoNextObject () ;
   }
 }
 
@@ -1036,6 +1035,9 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
     "scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
     "os.chdir (scriptDir)\n"
     "#------------------- Build\n"
+    "print \"+ \" + compiler + \" -v " ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << ".eb\"\n"
     "buildProcess = subprocess.Popen ([compiler, \"-v\", \"" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << ".eb\"])\n"

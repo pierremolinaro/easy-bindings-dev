@@ -121,7 +121,6 @@ private proc generateSwiftApplicationFiles
   }
   if inHasEntities then
     swiftFiles += !"PMManagedObject"
-    swiftFiles += !"PMManagedDocument"
     swiftFiles += !"PMUndoManager"
     swiftFiles += !"PMDataScanner"
   end

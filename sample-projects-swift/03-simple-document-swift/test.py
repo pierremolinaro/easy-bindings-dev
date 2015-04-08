@@ -80,7 +80,7 @@ matrixSelectedRowIndex = random.randrange (0, 2, 1)
 matrix.AXChildren [matrixSelectedRowIndex].Press ()
 
 #--- Save
-monAppli.menuItem ('File', u'Save…').Press()
+monAppli.menuItem ('File', u'Save').Press()
 time.sleep(.5)
 
 #--- Quit
