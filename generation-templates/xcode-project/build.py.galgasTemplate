@@ -24,6 +24,7 @@ if len (sys.argv) > 1 :
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
 os.chdir (scriptDir)
 #------------------- Build
+print "+ " + compiler + " -v %!PROJECT_NAME%.eb"
 buildProcess = subprocess.Popen ([compiler, "-v", "%!PROJECT_NAME%.eb"])
 buildProcess.wait ()
 #------------------- Xcode build

@@ -4626,13 +4626,13 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Filewrapper template 'entityGenerationTemplate entityFactoryImplementationFileInSwift'                *
+//                           Filewrapper template 'entityGenerationTemplate managedDocument'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityFactoryImplementationFileInSwift (class C_Compiler * inCompiler,
-                                                                                                   const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
-                                                                                                   COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedDocument (class C_Compiler * inCompiler,
+                                                                            const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

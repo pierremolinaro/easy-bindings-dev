@@ -77,6 +77,7 @@ var g_Preferences : Preferences? = nil
     self.myPrefString.addObserver (prefTransientString, postEvent:true)
   //--- Install bindings
     myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
+  //--- Install multiple bindings
   //--------------------------- Set targets / actions
   }
   
