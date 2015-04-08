@@ -579,7 +579,10 @@ class ArrayController_PMDocument_nameController : PMObject {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   func remove (inSender : NSButton?) {
-    if let model = mModel, selectedSet = mSelectedSet {
+    if let model = mModel,
+           owner = model.owner,
+           managedObjectContext = owner.managedObjectContext (),
+          selectedSet = mSelectedSet {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
@@ -600,6 +603,7 @@ class ArrayController_PMDocument_nameController : PMObject {
             }
             var indexArrayOfSelectedObjects = [Int] ()
             for object in selectedSet_prop {
+              managedObjectContext.removeManagedObject (object)
               let index = sortedObjectDictionary [object]
               if let idx = index {
                 indexArrayOfSelectedObjects.append (idx)
