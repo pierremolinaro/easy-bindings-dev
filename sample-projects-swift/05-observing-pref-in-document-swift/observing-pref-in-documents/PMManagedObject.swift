@@ -1,21 +1,4 @@
-//
-//  PMManagedObject.swift
-//  essai
-//
-//  Created by Pierre Molinaro on 28/06/13.
-//  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.
-//
-//---------------------------------------------------------------------------------------------------------------------*
-
 import Cocoa
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   PMSignatureObserverProtocol                                                                                       *
-//---------------------------------------------------------------------------------------------------------------------*
-
-@objc(PMSignatureObserverProtocol) protocol PMSignatureObserverProtocol {
-  func triggerSignatureComputing ()
-}
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -26,13 +9,9 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : PMObject, PMSignatureObserverProtocol {
+class PMManagedObject : PMObject {
+  private weak var mManagedObjectContext : PMManagedObjectContext?
   var savingIndex = 0
-  weak var mUndoManager : NSUndoManager?
-//--- Signature
-  var mSignatureCache = 0
-  var mSignatureObserverSet = NSMutableSet () // : Array<PMSignatureObserverProtocol> = []
-  var mSignatureHasBeenComputed = false
 
   let mExplorerObjectIndex : Int
   var mExplorerWindow : NSWindow?
@@ -41,8 +20,8 @@ class PMManagedObject : PMObject, PMSignatureObserverProtocol {
   //  init                                                                                                             *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (undoManager : NSUndoManager) {
-    mUndoManager = undoManager
+  init (managedObjectContext : PMManagedObjectContext) {
+    mManagedObjectContext = managedObjectContext
     gAllocatedEntityCount += 1
     mExplorerObjectIndex = gExplorerObjectIndex
     gExplorerObjectIndex += 1
@@ -63,55 +42,15 @@ class PMManagedObject : PMObject, PMSignatureObserverProtocol {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  Signature                                                                                                        *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func addSignatureObserver (inObserver : PMSignatureObserverProtocol) {
-    mSignatureObserverSet.addObject (inObserver)
-    inObserver.triggerSignatureComputing ()
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func removeSignatureObserver (inObserver : PMSignatureObserverProtocol) {
-    inObserver.triggerSignatureComputing ()
-    mSignatureObserverSet.removeObject (inObserver)
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func triggerSignatureComputing () {
-    if mSignatureHasBeenComputed {
-      mSignatureHasBeenComputed = false ;
-      for anyObject in mSignatureObserverSet {
-        let object = anyObject as! PMSignatureObserverProtocol
-        object.triggerSignatureComputing ()
-      }
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func signature () -> Int {
-    if !mSignatureHasBeenComputed {
-      mSignatureHasBeenComputed = true
-      mSignatureCache = computeSignature ()
-    }
-    return mSignatureCache ;
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func computeSignature () -> Int {
-    return 0
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //  Getters                                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func undoManager () -> PMUndoManager? {
-    return mUndoManager as! PMUndoManager?
+    return mManagedObjectContext?.undoManager ()
+  }
+
+  func managedObjectContext () -> PMManagedObjectContext? {
+    return mManagedObjectContext
   }
 
   func explorerObjectIndex () -> Int {

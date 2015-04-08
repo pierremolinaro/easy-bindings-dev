@@ -143,12 +143,12 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override init (undoManager : NSUndoManager) {
-    super.init (undoManager:undoManager)
+  override init (managedObjectContext : PMManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    docBool.undoManager = undoManager
+    docBool.undoManager = undoManager ()
   //--- Install owner for relationships
   }
 

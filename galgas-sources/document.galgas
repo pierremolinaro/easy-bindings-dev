@@ -263,6 +263,8 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
+
+  template managedDocument "PMManagedDocument.swift.galgasTemplate"
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -274,6 +276,16 @@ proc generateDocuments
   ?let @string inOutputDirectory
   ?!@stringset ioGeneratedFileSet
 {
+  if [inDocumentListForGeneration length] > 0 then
+    let fileName = "PMManagedDocument.swift"
+    ioGeneratedFileSet += !fileName
+    let s = [filewrapper documentGenerationTemplate.managedDocument]
+    [@string generateFile
+      !inOutputDirectory
+      !fileName
+      !s
+    ]
+  end
   for () in inDocumentListForGeneration do
     let s = [filewrapper documentGenerationTemplate.documentImplementation
       !mDocumentName

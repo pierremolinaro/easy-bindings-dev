@@ -158,7 +158,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     didSet {
       if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
-        unwrappedOwner.mUndoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = explorer {
           unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (mValue, button : unwrappedExplorer)
@@ -261,13 +261,13 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   //    init                                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override init (undoManager : NSUndoManager) {
-    super.init (undoManager:undoManager)
+  override init (managedObjectContext : PMManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    name.undoManager = undoManager
-    aValue.undoManager = undoManager
+    name.undoManager = undoManager ()
+    aValue.undoManager = undoManager ()
   //--- Install owner for relationships
     mRoot.owner = self
   }

@@ -257,3 +257,62 @@ func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//     NSMutableData extension                                                                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extension NSMutableData {
+  func writeSignature (inout trace: String) {
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    for c in kFormatSignature.utf8 {
+      var byte : UInt8 = UInt8 (c)
+      appendBytes (&byte, length:1)
+      trace += String (format:"%02hhX ", byte)
+    }
+    trace += "\n"
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func writeAutosizedData (inData: NSData,
+                           inout trace: String) {
+    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    appendData (inData)
+    trace += "(data, length \(inData.length))\n"
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func writeByte (inByte: UInt8,
+                  inout trace: String) {
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%02hhX ", inByte)
+    var byte = inByte
+    appendBytes (&byte, length:1)
+    trace += "\n"
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func writeAutosizedUnsigned (inValue: UInt64,
+                               inout trace: String) {
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += "U "
+    var value = inValue
+    do{
+      var byte : UInt8 = UInt8 (value & 0x7F)
+      value >>= 7
+      if (value != 0) {
+        byte |= 0x80
+      }
+      trace += String (format:"%02hhX ", byte)
+      appendBytes (&byte, length:1)
+    }while value != 0
+    trace += "\n"
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
