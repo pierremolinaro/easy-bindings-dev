@@ -26,6 +26,7 @@ class PMManagedObject : PMObject {
     mExplorerObjectIndex = gExplorerObjectIndex
     gExplorerObjectIndex += 1
     super.init ()
+    mManagedObjectContext?.insertManagedObject (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -73,7 +74,7 @@ class PMManagedObject : PMObject {
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func accessibleObjects (inout objects : NSMutableArray) {
+  func accessibleObjects (inout objects : Array<PMManagedObject>) {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

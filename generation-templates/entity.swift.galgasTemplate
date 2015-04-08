@@ -163,7 +163,7 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
   //···················································································································*
 
   private var mSet = Set<%![mRelationshipType swiftTypeName]%> ()
-  private var mValue : Array<%![mRelationshipType swiftTypeName]%> = Array<%![mRelationshipType swiftTypeName]%> () {
+  private var mValue = Array<%![mRelationshipType swiftTypeName]%> () {
     didSet {
       if oldValue != mValue {
         mSet = Set (mValue)
@@ -210,13 +210,13 @@ end
 
   override var prop : PMProperty <Array<%![mRelationshipType swiftTypeName]%> > {
     get {
-      return .singleSelection (mValue)
+      return .singleSelection (mValue ?? Array<%![mRelationshipType swiftTypeName]%> ())
     }
   }
 
   func setProp (inValue :  Array<%![mRelationshipType swiftTypeName]%>) { mValue = inValue }
 
-  var propval : Array<%![mRelationshipType swiftTypeName]%> { get { return mValue } }
+  var propval : Array<%![mRelationshipType swiftTypeName]%> { get { return mValue ?? Array<%![mRelationshipType swiftTypeName]%> () } }
 
   //···················································································································*
 
@@ -506,17 +506,17 @@ end
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
-  override func accessibleObjects (inout objects : NSMutableArray) {
+  override func accessibleObjects (inout objects : Array<PMManagedObject>) {
     super.accessibleObjects (&objects)
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    for managedObject : PMManagedObject in %!mToManyRelationshipName%.propval {
-      objects.addObject (managedObject)
+      objects.append (managedObject)
     }\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
 %    if let object = %!mToOneRelationshipName%.propval {\n%
-%      objects.addObject (object)\n%
+%      objects.append (object)\n%
 %    }\n%
 end
 %  }
