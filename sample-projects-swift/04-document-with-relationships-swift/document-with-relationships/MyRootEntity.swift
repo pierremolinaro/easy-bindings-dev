@@ -119,20 +119,18 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   //···················································································································*
 
   private var mSet = Set<NameEntity> ()
-  private var mValue : Array<NameEntity>? = Array<NameEntity> () {
+  private var mValue = Array<NameEntity> () {
     didSet {
-      let unwOldValue = oldValue ?? Array<NameEntity> ()
-      let unwNewValue = mValue ?? Array<NameEntity> ()
-      if unwOldValue != unwNewValue {
-        mSet = Set (unwNewValue)
+      if oldValue != mValue {
+        mSet = Set (mValue)
       //--- Register old value in undo manager
         owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
         if explorer != nil {
-          owner?.updateManagedObjectToManyRelationshipDisplay (unwNewValue, popUpButton:explorer!)
+          owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
         }
       //--- Removed object set
-        var removedObjectSet : Set<NameEntity> = Set (unwOldValue)
+        var removedObjectSet : Set<NameEntity> = Set (oldValue)
         removedObjectSet.subtractInPlace (mValue)
         for managedObject : NameEntity in removedObjectSet {
           for observer in mObserversOf_aValue {
@@ -166,13 +164,13 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   override var prop : PMProperty <Array<NameEntity> > {
     get {
-      return .singleSelection (mValue)
+      return .singleSelection (mValue ?? Array<NameEntity> ())
     }
   }
 
   func setProp (inValue :  Array<NameEntity>) { mValue = inValue }
 
-  var propval : Array<NameEntity> { get { return mValue } }
+  var propval : Array<NameEntity> { get { return mValue ?? Array<NameEntity> () } }
 
   //···················································································································*
 
@@ -284,10 +282,10 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
-  override func accessibleObjects (inout objects : NSMutableArray) {
+  override func accessibleObjects (inout objects : Array<PMManagedObject>) {
     super.accessibleObjects (&objects)
     for managedObject : PMManagedObject in mNames.propval {
-      objects.addObject (managedObject)
+      objects.append (managedObject)
     }
   }
 

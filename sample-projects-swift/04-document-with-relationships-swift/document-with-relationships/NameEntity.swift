@@ -312,10 +312,10 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
-  override func accessibleObjects (inout objects : NSMutableArray) {
+  override func accessibleObjects (inout objects : Array<PMManagedObject>) {
     super.accessibleObjects (&objects)
     if let object = mRoot.propval {
-      objects.addObject (object)
+      objects.append (object)
     }
   }
 
