@@ -1,0 +1,369 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF04ACE619ACF4D00078EF4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04ACE519ACF4D00078EF4C /* main.m */; };
+		CF04ACE919ACF4D00078EF4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04ACE819ACF4D00078EF4C /* AppDelegate.m */; };
+		CF04AD0519ACF5B30078EF4C /* MySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04AD0419ACF5B30078EF4C /* MySQLConnection.m */; };
+		CF04AD0719ACF9900078EF4C /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF04AD0619ACF9900078EF4C /* libmysqlclient.a */; };
+		CF04AD0A19ACFA5F0078EF4C /* green20.png in Resources */ = {isa = PBXBuildFile; fileRef = CF04AD0819ACFA5F0078EF4C /* green20.png */; };
+		CF04AD0B19ACFA5F0078EF4C /* red20.png in Resources */ = {isa = PBXBuildFile; fileRef = CF04AD0919ACFA5F0078EF4C /* red20.png */; };
+		CF04AD0E19AD039A0078EF4C /* PMParution.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04AD0D19AD039A0078EF4C /* PMParution.m */; };
+		CF04AD1119AD070D0078EF4C /* PMGestionParutions.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04AD1019AD070D0078EF4C /* PMGestionParutions.m */; };
+		CF2428A919CD7E0400C11B2E /* PMBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2428A819CD7E0400C11B2E /* PMBackgroundView.m */; };
+		CFA3552C1AD5B07B0025BB9C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA3552B1AD5B07B0025BB9C /* MainMenu.xib */; };
+		CFE9362F19B6051600891268 /* PMEncart.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE9362E19B6051600891268 /* PMEncart.m */; };
+		CFE9363219B60CAE00891268 /* PMGestionEncarts.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE9363119B60CAE00891268 /* PMGestionEncarts.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF04ACE019ACF4D00078EF4C /* reservationEncarts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reservationEncarts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF04ACE419ACF4D00078EF4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF04ACE519ACF4D00078EF4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF04ACE719ACF4D00078EF4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CF04ACE819ACF4D00078EF4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CF04AD0319ACF5B30078EF4C /* MySQLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySQLConnection.h; sourceTree = "<group>"; };
+		CF04AD0419ACF5B30078EF4C /* MySQLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySQLConnection.m; sourceTree = "<group>"; };
+		CF04AD0619ACF9900078EF4C /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmysqlclient.a; path = "MySQL-client/lib/libmysqlclient.a"; sourceTree = "<group>"; };
+		CF04AD0819ACFA5F0078EF4C /* green20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green20.png; sourceTree = "<group>"; };
+		CF04AD0919ACFA5F0078EF4C /* red20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red20.png; sourceTree = "<group>"; };
+		CF04AD0C19AD039A0078EF4C /* PMParution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMParution.h; sourceTree = "<group>"; };
+		CF04AD0D19AD039A0078EF4C /* PMParution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMParution.m; sourceTree = "<group>"; };
+		CF04AD0F19AD070D0078EF4C /* PMGestionParutions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMGestionParutions.h; sourceTree = "<group>"; };
+		CF04AD1019AD070D0078EF4C /* PMGestionParutions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMGestionParutions.m; sourceTree = "<group>"; };
+		CF2428A719CD7E0400C11B2E /* PMBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMBackgroundView.h; sourceTree = "<group>"; };
+		CF2428A819CD7E0400C11B2E /* PMBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMBackgroundView.m; sourceTree = "<group>"; };
+		CFA3552B1AD5B07B0025BB9C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		CFE9362D19B6051600891268 /* PMEncart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEncart.h; sourceTree = "<group>"; };
+		CFE9362E19B6051600891268 /* PMEncart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEncart.m; sourceTree = "<group>"; };
+		CFE9363019B60CAE00891268 /* PMGestionEncarts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMGestionEncarts.h; sourceTree = "<group>"; };
+		CFE9363119B60CAE00891268 /* PMGestionEncarts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMGestionEncarts.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF04ACDD19ACF4D00078EF4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF04AD0719ACF9900078EF4C /* libmysqlclient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF04ACD719ACF4D00078EF4C = {
+			isa = PBXGroup;
+			children = (
+				CF04AD0619ACF9900078EF4C /* libmysqlclient.a */,
+				CF04ACE219ACF4D00078EF4C /* reservationEncarts */,
+				CF04ACE119ACF4D00078EF4C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF04ACE119ACF4D00078EF4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF04ACE019ACF4D00078EF4C /* reservationEncarts.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF04ACE219ACF4D00078EF4C /* reservationEncarts */ = {
+			isa = PBXGroup;
+			children = (
+				CFA3552B1AD5B07B0025BB9C /* MainMenu.xib */,
+				CF04ACE719ACF4D00078EF4C /* AppDelegate.h */,
+				CF04ACE819ACF4D00078EF4C /* AppDelegate.m */,
+				CF04AD0819ACFA5F0078EF4C /* green20.png */,
+				CF04ACE419ACF4D00078EF4C /* Info.plist */,
+				CF04ACE519ACF4D00078EF4C /* main.m */,
+				CF04AD0319ACF5B30078EF4C /* MySQLConnection.h */,
+				CF04AD0419ACF5B30078EF4C /* MySQLConnection.m */,
+				CF2428A719CD7E0400C11B2E /* PMBackgroundView.h */,
+				CF2428A819CD7E0400C11B2E /* PMBackgroundView.m */,
+				CFE9362D19B6051600891268 /* PMEncart.h */,
+				CFE9362E19B6051600891268 /* PMEncart.m */,
+				CFE9363019B60CAE00891268 /* PMGestionEncarts.h */,
+				CFE9363119B60CAE00891268 /* PMGestionEncarts.m */,
+				CF04AD0F19AD070D0078EF4C /* PMGestionParutions.h */,
+				CF04AD1019AD070D0078EF4C /* PMGestionParutions.m */,
+				CF04AD0C19AD039A0078EF4C /* PMParution.h */,
+				CF04AD0D19AD039A0078EF4C /* PMParution.m */,
+				CF04AD0919ACFA5F0078EF4C /* red20.png */,
+			);
+			path = reservationEncarts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF04ACDF19ACF4D00078EF4C /* reservationEncarts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF04ACFD19ACF4D10078EF4C /* Build configuration list for PBXNativeTarget "reservationEncarts" */;
+			buildPhases = (
+				CF04ACDC19ACF4D00078EF4C /* Sources */,
+				CF04ACDD19ACF4D00078EF4C /* Frameworks */,
+				CF04ACDE19ACF4D00078EF4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = reservationEncarts;
+			productName = reservationEncarts;
+			productReference = CF04ACE019ACF4D00078EF4C /* reservationEncarts.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF04ACD819ACF4D00078EF4C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Pierre Molinaro";
+				TargetAttributes = {
+					CF04ACDF19ACF4D00078EF4C = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = CF04ACDB19ACF4D00078EF4C /* Build configuration list for PBXProject "reservationEncarts" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF04ACD719ACF4D00078EF4C;
+			productRefGroup = CF04ACE119ACF4D00078EF4C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF04ACDF19ACF4D00078EF4C /* reservationEncarts */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF04ACDE19ACF4D00078EF4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF04AD0A19ACFA5F0078EF4C /* green20.png in Resources */,
+				CF04AD0B19ACFA5F0078EF4C /* red20.png in Resources */,
+				CFA3552C1AD5B07B0025BB9C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF04ACDC19ACF4D00078EF4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF04ACE919ACF4D00078EF4C /* AppDelegate.m in Sources */,
+				CFE9362F19B6051600891268 /* PMEncart.m in Sources */,
+				CF04ACE619ACF4D00078EF4C /* main.m in Sources */,
+				CF04AD0E19AD039A0078EF4C /* PMParution.m in Sources */,
+				CFE9363219B60CAE00891268 /* PMGestionEncarts.m in Sources */,
+				CF04AD1119AD070D0078EF4C /* PMGestionParutions.m in Sources */,
+				CF2428A919CD7E0400C11B2E /* PMBackgroundView.m in Sources */,
+				CF04AD0519ACF5B30078EF4C /* MySQLConnection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CF04ACFB19ACF4D10078EF4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_ASM_KEYWORD = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"MySQL-client/include/**",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.9;
+			};
+			name = Debug;
+		};
+		CF04ACFC19ACF4D10078EF4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_ASM_KEYWORD = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"MySQL-client/include/**",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx10.9;
+			};
+			name = Release;
+		};
+		CF04ACFE19ACF4D10078EF4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = reservationEncarts/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MySQL-client/lib",
+					"$(PROJECT_DIR)/reservationEncarts",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CF04ACFF19ACF4D10078EF4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = reservationEncarts/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MySQL-client/lib",
+					"$(PROJECT_DIR)/reservationEncarts",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF04ACDB19ACF4D00078EF4C /* Build configuration list for PBXProject "reservationEncarts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF04ACFB19ACF4D10078EF4C /* Debug */,
+				CF04ACFC19ACF4D10078EF4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF04ACFD19ACF4D10078EF4C /* Build configuration list for PBXNativeTarget "reservationEncarts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF04ACFE19ACF4D10078EF4C /* Debug */,
+				CF04ACFF19ACF4D10078EF4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF04ACD819ACF4D00078EF4C /* Project object */;
+}
