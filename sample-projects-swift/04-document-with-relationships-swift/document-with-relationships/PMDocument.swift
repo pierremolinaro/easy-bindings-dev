@@ -308,9 +308,7 @@ import Cocoa
   //   removeWindowController                                                                                          *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private func removeUserInterface () {
-    undoManager?.removeAllActions ()
-    undoManager = nil
+  override func removeUserInterface () {
   //--- Unbind regular bindings
     mSelectionCountTextField?.unbind_valueObserver ()
     evenValueTextField?.unbind_valueObserver ()
@@ -347,13 +345,6 @@ import Cocoa
     removePathButton?.target = nil
     incrementButton?.target = nil
     decrementButton?.target = nil
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  override func removeWindowController (inWindowController : NSWindowController) {
-    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { self.removeUserInterface () }
-    super.removeWindowController (inWindowController)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

@@ -451,6 +451,23 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     mRootObject?.showExplorerWindow ()
   }
 
+  //···················································································································*
+  //   removeWindowController                                                                                          *
+  //···················································································································*
+
+  func removeUserInterface () {
+    mManagedObjectContext.reset ()
+  }
+
+  //···················································································································*
+
+  override func removeWindowController (inWindowController : NSWindowController) {
+    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { self.removeUserInterface () }
+    super.removeWindowController (inWindowController)
+  }
+
+  //···················································································································*
+
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
