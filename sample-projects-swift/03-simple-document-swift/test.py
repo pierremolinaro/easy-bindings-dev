@@ -76,7 +76,7 @@ time.sleep(.5)
 
 #--- Select matrix
 matrix = window.findFirst (AXDescription='matrix')
-matrixSelectedRowIndex = random.randrange (0, 2, 1)
+matrixSelectedRowIndex = int (time.time()) % 3
 matrix.AXChildren [matrixSelectedRowIndex].Press ()
 
 #--- Save

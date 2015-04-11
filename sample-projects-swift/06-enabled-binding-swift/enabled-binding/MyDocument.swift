@@ -94,9 +94,7 @@ import Cocoa
   //   removeWindowController                                                                                          *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private func removeUserInterface () {
-    undoManager?.removeAllActions ()
-    undoManager = nil
+  override func removeUserInterface () {
   //--- Unbind regular bindings
     docBoolCheckBox?.unbind_value ()
   //--- Unbind multiple bindings
@@ -106,13 +104,6 @@ import Cocoa
   //--------------------------- Unbind selection controllers
   //--- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  override func removeWindowController (inWindowController : NSWindowController) {
-    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { self.removeUserInterface () }
-    super.removeWindowController (inWindowController)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

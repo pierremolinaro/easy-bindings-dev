@@ -7,7 +7,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class PMManagedObjectContext : PMObject {
-  private var mUndoManager : PMUndoManager
+  private var mUndoManager : PMUndoManager?
   private var mManagedObjectSet = Set <PMManagedObject> ()
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -23,7 +23,7 @@ class PMManagedObjectContext : PMObject {
   //    undoManager                                                                                                    *
   //···················································································································*
   
-  func undoManager () -> PMUndoManager {
+  func undoManager () -> PMUndoManager? {
     return mUndoManager
   }
 
@@ -34,7 +34,7 @@ class PMManagedObjectContext : PMObject {
   func insertManagedObject (object : PMManagedObject) {
     if !mManagedObjectSet.contains(object) {
       mManagedObjectSet.insert (object)
-      mUndoManager.registerUndoWithTarget(self, selector: "removeManagedObject:", object: object)
+      mUndoManager?.registerUndoWithTarget(self, selector: "removeManagedObject:", object: object)
     }
   }
 
@@ -44,13 +44,31 @@ class PMManagedObjectContext : PMObject {
   
   func removeManagedObject (object : PMManagedObject) {
     if mManagedObjectSet.contains(object) {
+      object.resetToManyRelationships ()
+      object.resetToOneRelationships ()
       mManagedObjectSet.remove (object)
-      mUndoManager.registerUndoWithTarget(self, selector: "insertManagedObject:", object: object)
+      mUndoManager?.registerUndoWithTarget(self, selector: "insertManagedObject:", object: object)
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //  checkEntityReachability                                                                                         *
+  //    reset                                                                                                          *
+  //···················································································································*
+  
+  func reset () {
+    mUndoManager?.removeAllActions ()
+    mUndoManager = nil
+    for object in mManagedObjectSet {
+      object.resetToManyRelationships ()
+    }
+    for object in mManagedObjectSet {
+      object.resetToOneRelationships ()
+    }
+    mManagedObjectSet = Set ()
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //  checkEntityReachability                                                                                          *
   //···················································································································*
 
   func checkEntityReachabilityFromObject (rootObject : PMManagedObject, windowForSheet : NSWindow) {

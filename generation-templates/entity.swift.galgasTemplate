@@ -502,7 +502,36 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 end
 %  }
 
+%if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
+%  //···················································································································*
+  //   resetToManyRelationships                                                                                        *
   //···················································································································*
+
+  override func resetToManyRelationships () {
+    super.resetToManyRelationships ()
+%
+for () in TO_MANY_RELATIONSHIP_LIST do
+%    %!mToManyRelationshipName%.setProp (Array ())\n%
+end
+%  }
+
+%end
+
+if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
+%  //···················································································································*
+  //   resetToOneRelationships                                                                                         *
+  //···················································································································*
+
+  override func resetToOneRelationships () {
+    super.resetToOneRelationships ()
+%
+for () in TO_ONE_RELATIONSHIP_LIST do
+%    %!mToOneRelationshipName%.setProp (nil)\n%
+end
+%  }
+
+%end
+%  //···················································································································*
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
