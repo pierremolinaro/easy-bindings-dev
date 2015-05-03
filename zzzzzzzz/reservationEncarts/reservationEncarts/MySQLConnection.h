@@ -21,7 +21,7 @@
 @property BOOL mConnected ;
 
 - (instancetype) initWithServer: (NSString *) inServer
-                 dateBase: (NSString *) inDataBase
+                 dataBase: (NSString *) inDataBase
                  user : (NSString *) inUser
                  password: (NSString *) inPassword ;
 

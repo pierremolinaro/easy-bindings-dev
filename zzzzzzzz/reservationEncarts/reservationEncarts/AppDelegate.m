@@ -34,7 +34,7 @@ AppDelegate * gAppDelegate ;
     mModeProduction = YES ;
     mConnection = [[MySQLConnection alloc]
       initWithServer:@"www.m2mimpressions.fr"
-      dateBase:@"mmimpres_reservationEncarts"
+      dataBase:@"mmimpres_reservationEncarts"
       user:@"mmimpres_userRes"
       password:@"Ne2Uopec9Ruqe2"
     ] ;

@@ -1122,7 +1122,7 @@ void categoryMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category Reader '@typeKind transformForSavingInDictionary'                              *
+//                      Category Getter '@typeKind transformForSavingInDictionary' (as function)                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1170,7 +1170,7 @@ void categoryMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_sim
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Category Reader '@typeKind formatterStringForFormatPrinting'                             *
+//                     Category Getter '@typeKind formatterStringForFormatPrinting' (as function)                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1220,7 +1220,7 @@ void categoryMethod_typeInventory (const class GALGAS_prefDeclaration inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category Reader '@observablePropertyAST isPropertyDefined'                              *
+//                      Category Getter '@observablePropertyAST isPropertyDefined' (as function)                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1233,7 +1233,7 @@ class GALGAS_bool categoryReader_isPropertyDefined (const class GALGAS_observabl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category Reader '@arrayControllerModel modelString'                                 *
+//                          Category Getter '@arrayControllerModel modelString' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1243,7 +1243,7 @@ class GALGAS_string categoryReader_modelString (const class GALGAS_arrayControll
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Reader '@arrayControllerModel modelTypeName'                                *
+//                         Category Getter '@arrayControllerModel modelTypeName' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1255,7 +1255,7 @@ class GALGAS_string categoryReader_modelTypeName (const class GALGAS_arrayContro
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category Reader '@arrayControllerModel modelTypeName2'                                *
+//                        Category Getter '@arrayControllerModel modelTypeName2' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

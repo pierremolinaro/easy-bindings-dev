@@ -115,7 +115,7 @@ class GALGAS_stringset callCategoryReader_observedModelSet (const class cPtr_abs
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Reader '@observablePropertyAST generateRemoveObserverCall'                         *
+//                  Category Getter '@observablePropertyAST generateRemoveObserverCall' (as function)                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -125,7 +125,7 @@ class GALGAS_string categoryReader_generateRemoveObserverCall (const class GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Category Reader '@tableViewBindingGenerationList outletNameListForController'                    *
+//             Category Getter '@tableViewBindingGenerationList outletNameListForController' (as function)             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -194,7 +194,7 @@ class GALGAS_string function_preferencesName (class C_Compiler * inCompiler
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Reader '@mainXibDescriptorList generateCode'                                *
+//                         Category Getter '@mainXibDescriptorList generateCode' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -204,7 +204,7 @@ class GALGAS_string categoryReader_generateCode (const class GALGAS_mainXibDescr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category Reader '@observablePropertyAST modelString'                                 *
+//                         Category Getter '@observablePropertyAST modelString' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -410,7 +410,7 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                  Category Reader '@observablePropertyAST location'                                  *
+//                           Category Getter '@observablePropertyAST location' (as function)                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -897,7 +897,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category Reader '@arrayControllerFilterListForGeneration filterCode'                         *
+//                 Category Getter '@arrayControllerFilterListForGeneration filterCode' (as function)                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -908,7 +908,7 @@ class GALGAS_string categoryReader_filterCode (const class GALGAS_arrayControlle
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category Reader '@typeKind transformerForTableViewAction'                              *
+//                       Category Getter '@typeKind transformerForTableViewAction' (as function)                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

@@ -27,7 +27,7 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (instancetype) initWithServer: (NSString *) inServer
-                 dateBase: (NSString *) inDataBase
+                 dataBase: (NSString *) inDataBase
                  user : (NSString *) inUser
                  password: (NSString *) inPassword {
   self = [super init] ;
