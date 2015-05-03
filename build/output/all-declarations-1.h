@@ -4636,7 +4636,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category Reader '@observablePropertyAST generateAddObserverCall'                           *
+//                   Category Getter '@observablePropertyAST generateAddObserverCall' (as function)                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4646,7 +4646,7 @@ class GALGAS_string categoryReader_generateAddObserverCall (const class GALGAS_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Category Reader '@transientDependencyListForGeneration transientComputeFunctionCall'                 *
+//         Category Getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4658,7 +4658,7 @@ class GALGAS_string categoryReader_transientComputeFunctionCall (const class GAL
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category Reader '@typeKind defaultSwiftTypeValueAsString'                              *
+//                       Category Getter '@typeKind defaultSwiftTypeValueAsString' (as function)                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4668,7 +4668,7 @@ class GALGAS_string categoryReader_defaultSwiftTypeValueAsString (const class GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                      Category Reader '@typeKind swiftTypeName'                                      *
+//                               Category Getter '@typeKind swiftTypeName' (as function)                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

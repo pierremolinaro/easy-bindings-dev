@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF57E92D1AE7A0610067B847 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF57E92C1AE7A0610067B847 /* MainMenu.xib */; };
+		CF57E92F1AE7A06F0067B847 /* PMDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF57E92E1AE7A06F0067B847 /* PMDatabase.swift */; };
+		CF57E9311AE7A0790067B847 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF57E9301AE7A0790067B847 /* AppDelegate.swift */; };
+		CF57E9331AE7A0960067B847 /* libmysqlclient.18.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF57E9321AE7A0960067B847 /* libmysqlclient.18.dylib */; };
+		CFCC017D1AE7A50C000E71F1 /* PMTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC017C1AE7A50C000E71F1 /* PMTable.swift */; };
+		CFCC017F1AE7B9AE000E71F1 /* FicheParution.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC017E1AE7B9AE000E71F1 /* FicheParution.swift */; };
+		CFCC01811AE7BA24000E71F1 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC01801AE7BA24000E71F1 /* standard-properties.swift */; };
+		CFCC01851AE7BA81000E71F1 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC01821AE7BA81000E71F1 /* application.swift */; };
+		CFCC01861AE7BA81000E71F1 /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC01831AE7BA81000E71F1 /* PMAllocationDebug.swift */; };
+		CFCC01871AE7BA81000E71F1 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCC01841AE7BA81000E71F1 /* PMAllocationDebug.xib */; };
+		CFCC01891AE7BAB3000E71F1 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC01881AE7BAB3000E71F1 /* easy-bindings-utilities.swift */; };
+		CFCC018B1AE7BB22000E71F1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCC018A1AE7BB22000E71F1 /* Preferences.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF1D97541AE69E5D008F2C52 /* reservationEncartsSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reservationEncartsSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1D97E31AE6A35A008F2C52 /* reservationEncartsSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "reservationEncartsSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		CF57E92A1AE7A05D0067B847 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF57E92C1AE7A0610067B847 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		CF57E92E1AE7A06F0067B847 /* PMDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDatabase.swift; sourceTree = "<group>"; };
+		CF57E9301AE7A0790067B847 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CF57E9321AE7A0960067B847 /* libmysqlclient.18.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmysqlclient.18.dylib; sourceTree = "<group>"; };
+		CFCC017C1AE7A50C000E71F1 /* PMTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTable.swift; sourceTree = "<group>"; };
+		CFCC017E1AE7B9AE000E71F1 /* FicheParution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FicheParution.swift; sourceTree = "<group>"; };
+		CFCC01801AE7BA24000E71F1 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
+		CFCC01821AE7BA81000E71F1 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
+		CFCC01831AE7BA81000E71F1 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
+		CFCC01841AE7BA81000E71F1 /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
+		CFCC01881AE7BAB3000E71F1 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
+		CFCC018A1AE7BB22000E71F1 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF1D97511AE69E5D008F2C52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF57E9331AE7A0960067B847 /* libmysqlclient.18.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF1D974B1AE69E5D008F2C52 = {
+			isa = PBXGroup;
+			children = (
+				CF57E9301AE7A0790067B847 /* AppDelegate.swift */,
+				CFCC01821AE7BA81000E71F1 /* application.swift */,
+				CFCC01881AE7BAB3000E71F1 /* easy-bindings-utilities.swift */,
+				CFCC017E1AE7B9AE000E71F1 /* FicheParution.swift */,
+				CF57E92A1AE7A05D0067B847 /* Info.plist */,
+				CF57E9321AE7A0960067B847 /* libmysqlclient.18.dylib */,
+				CF57E92C1AE7A0610067B847 /* MainMenu.xib */,
+				CFCC01831AE7BA81000E71F1 /* PMAllocationDebug.swift */,
+				CFCC01841AE7BA81000E71F1 /* PMAllocationDebug.xib */,
+				CF57E92E1AE7A06F0067B847 /* PMDatabase.swift */,
+				CFCC017C1AE7A50C000E71F1 /* PMTable.swift */,
+				CFCC018A1AE7BB22000E71F1 /* Preferences.swift */,
+				CF1D97551AE69E5D008F2C52 /* Products */,
+				CF1D97E31AE6A35A008F2C52 /* reservationEncartsSwift-Bridging-Header.h */,
+				CFCC01801AE7BA24000E71F1 /* standard-properties.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		CF1D97551AE69E5D008F2C52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF1D97541AE69E5D008F2C52 /* reservationEncartsSwift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF1D97531AE69E5D008F2C52 /* reservationEncartsSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF1D976E1AE69E5D008F2C52 /* Build configuration list for PBXNativeTarget "reservationEncartsSwift" */;
+			buildPhases = (
+				CF1D97501AE69E5D008F2C52 /* Sources */,
+				CF1D97511AE69E5D008F2C52 /* Frameworks */,
+				CF1D97521AE69E5D008F2C52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = reservationEncartsSwift;
+			productName = reservationEncartsSwift;
+			productReference = CF1D97541AE69E5D008F2C52 /* reservationEncartsSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF1D974C1AE69E5D008F2C52 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Pierre Molinaro";
+				TargetAttributes = {
+					CF1D97531AE69E5D008F2C52 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = CF1D974F1AE69E5D008F2C52 /* Build configuration list for PBXProject "reservationEncartsSwift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1D974B1AE69E5D008F2C52;
+			productRefGroup = CF1D97551AE69E5D008F2C52 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF1D97531AE69E5D008F2C52 /* reservationEncartsSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF1D97521AE69E5D008F2C52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCC01871AE7BA81000E71F1 /* PMAllocationDebug.xib in Resources */,
+				CF57E92D1AE7A0610067B847 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF1D97501AE69E5D008F2C52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCC017D1AE7A50C000E71F1 /* PMTable.swift in Sources */,
+				CFCC01811AE7BA24000E71F1 /* standard-properties.swift in Sources */,
+				CF57E9311AE7A0790067B847 /* AppDelegate.swift in Sources */,
+				CF57E92F1AE7A06F0067B847 /* PMDatabase.swift in Sources */,
+				CFCC01851AE7BA81000E71F1 /* application.swift in Sources */,
+				CFCC01861AE7BA81000E71F1 /* PMAllocationDebug.swift in Sources */,
+				CFCC01891AE7BAB3000E71F1 /* easy-bindings-utilities.swift in Sources */,
+				CFCC017F1AE7B9AE000E71F1 /* FicheParution.swift in Sources */,
+				CFCC018B1AE7BB22000E71F1 /* Preferences.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CF1D976C1AE69E5D008F2C52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MySQL-client/lib",
+					"$(PROJECT_DIR)/reservationEncarts",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CF1D976D1AE69E5D008F2C52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MySQL-client/lib",
+					"$(PROJECT_DIR)/reservationEncarts",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CF1D976F1AE69E5D008F2C52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(TARGET_NAME)",
+					"$(PROJECT_DIR)/reservationEncartsSwift",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "reservationEncartsSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = "include-mysql/**";
+			};
+			name = Debug;
+		};
+		CF1D97701AE69E5D008F2C52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(TARGET_NAME)",
+					"$(PROJECT_DIR)/reservationEncartsSwift",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "reservationEncartsSwift-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "include-mysql/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF1D974F1AE69E5D008F2C52 /* Build configuration list for PBXProject "reservationEncartsSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF1D976C1AE69E5D008F2C52 /* Debug */,
+				CF1D976D1AE69E5D008F2C52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF1D976E1AE69E5D008F2C52 /* Build configuration list for PBXNativeTarget "reservationEncartsSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF1D976F1AE69E5D008F2C52 /* Debug */,
+				CF1D97701AE69E5D008F2C52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF1D974C1AE69E5D008F2C52 /* Project object */;
+}
