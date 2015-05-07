@@ -8722,6 +8722,41 @@ GALGAS_typeKind GALGAS_typeKind::constructor_entityType (const GALGAS_string & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+void GALGAS_typeKind::method_enumType (GALGAS_string & outAssociatedValue0,
+                                       GALGAS_enumConstantMap & outAssociatedValue1,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_enumType) {
+    outAssociatedValue0.drop () ;
+    outAssociatedValue1.drop () ;
+    C_String s ;
+    s << "method @typeKind enumType invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_typeKind_enumType * ptr = (const cEnumAssociatedValues_typeKind_enumType *) unsafePointer () ;
+     outAssociatedValue0 = ptr->mAssociatedValue0 ;
+     outAssociatedValue1 = ptr->mAssociatedValue1 ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue0,
+                                         C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_entityType) {
+    outAssociatedValue0.drop () ;
+    C_String s ;
+    s << "method @typeKind entityType invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_typeKind_entityType * ptr = (const cEnumAssociatedValues_typeKind_entityType *) unsafePointer () ;
+     outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 static const char * gEnumNameArrayFor_typeKind [9] = {
   "(not built)",
   "boolType",
