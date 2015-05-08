@@ -8734,8 +8734,8 @@ void GALGAS_typeKind::method_enumType (GALGAS_string & outAssociatedValue0,
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_enumType * ptr = (const cEnumAssociatedValues_typeKind_enumType *) unsafePointer () ;
-     outAssociatedValue0 = ptr->mAssociatedValue0 ;
-     outAssociatedValue1 = ptr->mAssociatedValue1 ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
   }
 }
 
@@ -8751,7 +8751,7 @@ void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue0,
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_entityType * ptr = (const cEnumAssociatedValues_typeKind_entityType *) unsafePointer () ;
-     outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
   }
 }
 
