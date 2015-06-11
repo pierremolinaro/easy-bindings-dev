@@ -207,39 +207,39 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mColorWell' outlet not nil
     if nil == mColorWell {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mColorWell' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mColorWell' outlet is nil")
     }
   //--- Check mContinousColorWell' outlet not nil
     if nil == mContinousColorWell {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mContinousColorWell' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mContinousColorWell' outlet is nil")
     }
   //--- Check mDatePicker' outlet not nil
     if nil == mDatePicker {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mDatePicker' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mDatePicker' outlet is nil")
     }
   //--- Check mInteger32ObserverTextField' outlet not nil
     if nil == mInteger32ObserverTextField {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mInteger32ObserverTextField' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mInteger32ObserverTextField' outlet is nil")
     }
   //--- Check mInteger32TextField' outlet not nil
     if nil == mInteger32TextField {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mInteger32TextField' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mInteger32TextField' outlet is nil")
     }
   //--- Check mObserverColorWell' outlet not nil
     if nil == mObserverColorWell {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mObserverColorWell' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mObserverColorWell' outlet is nil")
     }
   //--- Check myObserverTextField' outlet not nil
     if nil == myObserverTextField {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myObserverTextField' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myObserverTextField' outlet is nil")
     }
   //--- Check myOtherTextField' outlet not nil
     if nil == myOtherTextField {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myOtherTextField' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myOtherTextField' outlet is nil")
     }
   //--- Check myTextField' outlet not nil
     if nil == myTextField {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myTextField' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myTextField' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients

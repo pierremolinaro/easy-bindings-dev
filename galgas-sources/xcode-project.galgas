@@ -50,7 +50,8 @@ private proc generateXcodeProjectInternal
 {
   var xcodeProject = @XcodeProjectDescriptor.default
 #--- Default build configuration
-  let SDK = "macosx"
+  let SDK = "macosx10.11"
+  let DEPLOYMENT = "10.10"
   [!?xcodeProject addSettingsToDefaultConfiguration !settingList:{
     !"ALWAYS_SEARCH_USER_PATHS = NO",
     !"ARCHS = \"$(ARCHS_STANDARD_64_BIT)\"",
@@ -85,6 +86,7 @@ private proc generateXcodeProjectInternal
     !"GCC_WARN_UNUSED_VALUE = YES",
     !"GCC_WARN_UNUSED_VARIABLE = YES",
     !"HEADER_SEARCH_PATHS = ()",
+    !"MACOSX_DEPLOYMENT_TARGET = " + DEPLOYMENT,
     !"SDKROOT = " + SDK,
     !"COPY_PHASE_STRIP = NO",
     !"LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\""

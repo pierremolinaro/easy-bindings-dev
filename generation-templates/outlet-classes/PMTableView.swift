@@ -69,7 +69,7 @@ import Cocoa
   //---------------- Reload data
     mTableView.reloadData ()
   //---------------- Update table view selection
-    var newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
+    let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
     // NSLog ("newTableViewSelectionIndexSet %@", newTableViewSelectionIndexSet)
     self.mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
   //---------------- Scroll first selected row to visible

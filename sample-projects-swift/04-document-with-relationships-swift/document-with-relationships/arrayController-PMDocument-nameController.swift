@@ -48,7 +48,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
       case .multipleSelection :
         return .multipleSelection
       case .singleSelection (let modelArray) :
-        var array = NSMutableArray (array:modelArray)
+        let array = NSMutableArray (array:modelArray)
         array.sortUsingDescriptors (mSortDescriptors)
         let sortedObjectArray = array.mutableCopy () as! Array<NameEntity>
         return .singleSelection (sortedObjectArray)
@@ -114,7 +114,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
   //    Sort descriptors                                                                                               *
   //···················································································································*
   
-  private var mSortDescriptors : [AnyObject] = [AnyObject] () {
+  private var mSortDescriptors : [NSSortDescriptor] = [NSSortDescriptor] () {
     didSet {
       postEvent () // Force sorting
     }
@@ -122,7 +122,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
 
   //···················································································································*
   
-  func setSortDescriptors (sortDescriptors : [AnyObject]) {
+  func setSortDescriptors (sortDescriptors : [NSSortDescriptor]) {
     mSortDescriptors = sortDescriptors
   }
   
@@ -131,7 +131,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
   //···················································································································*
 
   func tableView (aTableView: NSTableView,
-                  sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
+                  sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
     // NSLog ("%@", __FUNCTION__)
     mSortDescriptors = aTableView.sortDescriptors
   }
@@ -260,10 +260,10 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
       case .singleSelection (let vv) :
       //--- Dictionary of object indexes
         var objectDictionary = [NameEntity : Int] ()
-        for (index, object) in enumerate (v) {
+        for (index, object) in v.enumerate () {
           objectDictionary [object] = index
         }
-        var indexSet = NSMutableIndexSet ()
+        let indexSet = NSMutableIndexSet ()
         for object in vv {
           if let index = objectDictionary [object] {
             indexSet.addIndex (index)
@@ -308,7 +308,7 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, PMTable
       return nil
     case .singleSelection (let v) :
       let columnIdentifier = inTableColumn!.identifier
-      var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
       result.textField?.tag = inRowIndex
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
@@ -476,13 +476,19 @@ class ArrayController_PMDocument_nameController : PMObject {
       if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("name", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
           if !(unwrappedTableCellView.textField is PMTextField) {
-            presentErrorWindow (file, line, "\"name\" column view is not an instance of PMTextField")
+            presentErrorWindow (file,
+                                line: line,
+                                errorMessage:"\"name\" column view is not an instance of PMTextField")
           }
         }else{
-          presentErrorWindow (file, line, "\"name\" column cell view is not an instance of NSTableCellView")
+          presentErrorWindow (file,
+                              line: line,
+                              errorMessage:"\"name\" column cell view is not an instance of NSTableCellView")
         }
       }else{
-        presentErrorWindow (file, line, "\"name\" column view unknown")
+        presentErrorWindow (file,
+                            line: line,
+                            errorMessage:"\"name\" column view unknown")
       }
       if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
         columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
@@ -491,13 +497,19 @@ class ArrayController_PMDocument_nameController : PMObject {
       if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("int", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
           if !(unwrappedTableCellView.textField is PMIntField) {
-            presentErrorWindow (file, line, "\"int\" column view is not an instance of PMIntField")
+            presentErrorWindow (file,
+                                line: line,
+                                errorMessage:"\"int\" column view is not an instance of PMIntField")
           }
         }else{
-          presentErrorWindow (file, line, "\"int\" column cell view is not an instance of NSTableCellView")
+          presentErrorWindow (file,
+                              line: line,
+                              errorMessage:"\"int\" column cell view is not an instance of NSTableCellView")
         }
       }else{
-        presentErrorWindow (file, line, "\"int\" column view unknown")
+        presentErrorWindow (file,
+                            line: line,
+                            errorMessage:"\"int\" column view unknown")
       }
       if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
         columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
@@ -507,7 +519,7 @@ class ArrayController_PMDocument_nameController : PMObject {
       if columns.count > 0 {
         let firstColumn = columns [0] as! NSTableColumn
         if let sdp = firstColumn.sortDescriptorPrototype {
-          let sortDescriptorArray = NSArray (object:sdp) as! [AnyObject]
+          let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
           tableView.sortDescriptors = sortDescriptorArray
           sortedArray.setSortDescriptors (sortDescriptorArray)
         }
@@ -562,7 +574,7 @@ class ArrayController_PMDocument_nameController : PMObject {
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let v) :
-        var newObject : NameEntity = NameEntity (managedObjectContext:managedObjectContext)
+        let newObject : NameEntity = NameEntity (managedObjectContext:managedObjectContext)
         var array = v
         array.append (newObject)
       //--- New object is the selection
@@ -598,7 +610,7 @@ class ArrayController_PMDocument_nameController : PMObject {
           //------------- Find the object to be selected after selected object removing
           //--- Dictionary of object sorted indexes
             var sortedObjectDictionary = [NameEntity : Int] ()
-            for (index, object) in enumerate (sortedArray_prop) {
+            for (index, object) in sortedArray_prop.enumerate () {
               sortedObjectDictionary [object] = index
             }
             var indexArrayOfSelectedObjects = [Int] ()
@@ -610,7 +622,7 @@ class ArrayController_PMDocument_nameController : PMObject {
               }
             }
           //--- Sort
-            indexArrayOfSelectedObjects.sort { $0 < $1 }
+            indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
           //--- Find the first index of a non selected object
             var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
             for index in indexArrayOfSelectedObjects {
@@ -627,7 +639,7 @@ class ArrayController_PMDocument_nameController : PMObject {
           //----------------------------------------- Remove selected object
           //--- Dictionary of object absolute indexes
             var objectDictionary = [NameEntity : Int] ()
-            for (index, object) in enumerate (model_prop) {
+            for (index, object) in model_prop.enumerate () {
               objectDictionary [object] = index
             }
           //--- Build selected objects index array
@@ -639,7 +651,7 @@ class ArrayController_PMDocument_nameController : PMObject {
               }
             }
           //--- Sort in reverse order
-            selectedObjectIndexArray.sort { $1 < $0 }
+            selectedObjectIndexArray.sortInPlace { $1 < $0 }
           //--- Remove objects, in reverse of order of their index
             var newObjectArray = model_prop
             for index in selectedObjectIndexArray {

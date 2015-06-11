@@ -3,7 +3,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument, PMUserClassName {
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
@@ -86,9 +86,13 @@ end
 
 for () in OUTLET_GENERATION_MAP do
    %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil") ;\n%
+   %      presentErrorWindow (__FILE__,
+                              line:__LINE__,
+                              errorMessage:"the '%!lkey.string%' outlet is nil") ;\n%
    %    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName%) {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
+   %      presentErrorWindow (__FILE__,
+                              line:__LINE__,
+                              errorMessage:"the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
    %    }\n%
 end
 %  //--------------------------- Array controller

@@ -183,7 +183,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   func remove (object : NameEntity) {
     if mSet.contains (object) {
       var array = mValue
-      let idx = find (array, object)
+      let idx = array.indexOf (object)
       array.removeAtIndex (idx!)
       mValue = array
     }
