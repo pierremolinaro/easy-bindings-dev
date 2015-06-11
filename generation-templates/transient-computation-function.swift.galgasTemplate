@@ -5,7 +5,7 @@ import Cocoa
 func compute_%!OWNER_NAME%_%!TRANSIENT_NAME% (%?^
 for () in DEPENDENCY_LIST
 do !mFunctionArgumentName% : %!mFunctionArgumentTypeString
-between %,\n%!^
+between %,\n%!^%_ %
 end
 %) -> %![TRANSIENT_TYPE swiftTypeName]
 % {

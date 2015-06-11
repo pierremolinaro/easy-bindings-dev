@@ -56,7 +56,7 @@ var g_Preferences : Preferences? = nil
   override func awakeFromNib () {
   //--- Check myPrefStringTextField' outlet not nil
     if nil == myPrefStringTextField {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myPrefStringTextField' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
     prefTransientString.computeFunction = { [weak self] in

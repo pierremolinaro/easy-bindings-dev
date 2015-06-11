@@ -122,6 +122,27 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
 
 #......................................................................................................................*
 
+getter @observablePropertyAST needs_unwSelf -> @bool outResult {
+  switch self
+  case rootProperty (*) :
+    outResult = true
+  case rootPropertyWithOption (* *) :
+    outResult = true
+  case rootPropertyRelationship (* *) :
+    outResult = true
+  case selfProperty (* *) :
+    outResult = true
+  case prefsProperty (* *) :
+    outResult = false
+  case controllerProperty (* *) :
+    outResult = true
+  case controllerSecondaryProperty (* * *) :
+    outResult = true
+  end  
+}
+
+#......................................................................................................................*
+
 getter @observablePropertyAST isPropertyDefined
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inRootObservableProperties

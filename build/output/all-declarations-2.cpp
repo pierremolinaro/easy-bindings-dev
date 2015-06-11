@@ -3575,19 +3575,19 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
                                  GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                  C_Compiler * inCompiler
                                  COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_transientDefinitionListForGeneration enumerator_11493 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
-  while (enumerator_11493.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_11493.current_mOwnerName (HERE), enumerator_11493.current_mTransientName (HERE), enumerator_11493.current_mDependencyList (HERE), enumerator_11493.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 264))) ;
-    GALGAS_string var_fileName = enumerator_11493.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 270)).add_operation (enumerator_11493.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 270)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 270)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 271)) ;
+  cEnumerator_transientDefinitionListForGeneration enumerator_11809 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
+  while (enumerator_11809.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_11809.current_mOwnerName (HERE), enumerator_11809.current_mTransientName (HERE), enumerator_11809.current_mDependencyList (HERE), enumerator_11809.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 275))) ;
+    GALGAS_string var_fileName = enumerator_11809.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 281)).add_operation (enumerator_11809.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 281)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 281)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 282)) ;
     {
     GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, GALGAS_string ("\n"
       "\n"), GALGAS_string ("}\n"
       "\n"
-      "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 272)) ;
+      "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 283)) ;
     }
-    enumerator_11493.gotoNextObject () ;
+    enumerator_11809.gotoNextObject () ;
   }
 }
 
@@ -3747,6 +3747,7 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
       if (enumerator_172.hasNextObject ()) {
         result << ",\n" ;
         result.appendSpacesUntilColumn (columnMarker) ;
+        result << "_ " ;
       }
       index_172_.increment () ;
       enumerator_172.gotoNextObject () ;

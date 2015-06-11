@@ -206,6 +206,17 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult += finalCloseString
 }
 
+#......................................................................................................................*
+
+getter @transientDependencyListForGeneration needs_unwSelf
+  -> @bool outResult
+{
+  outResult = false
+  for (dep * *) in self while not outResult do
+    outResult = [dep needs_unwSelf]
+  end
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   GENERATION                                                                                                         *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

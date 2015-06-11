@@ -30,12 +30,12 @@ func addItemToDebugMenu (item : NSMenuItem) {
 
 private func installDebugMenu () {
   if nil == gDebugObject {
-    var debugObject = PMAllocationDebug ()
+    let debugObject = PMAllocationDebug ()
     gDebugObject = debugObject
-    var mainBundle = NSBundle.mainBundle ()
+    let mainBundle = NSBundle.mainBundle ()
     let ok = mainBundle.loadNibNamed ("PMAllocationDebug", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
     if !ok {
-      presentErrorWindow (__FILE__, __LINE__, "Cannot load 'PMAllocationDebug' nib file") ;
+      presentErrorWindow (__FILE__, line: __LINE__, errorMessage: "Cannot load 'PMAllocationDebug' nib file") ;
     }
   }
 }
@@ -137,15 +137,17 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   private func pmInstallDebugMenu () {
-    if let menu = NSApp.mainMenu! where !mDebugMenuInstalled && NSApp.mainMenu != nil {
-      var item = NSMenuItem (
-        title:"",
-        action:nil,
-        keyEquivalent:""
-      )
-      item.submenu = mDebugMenu
-      menu.addItem (item)
-      mDebugMenuInstalled = true
+    if !mDebugMenuInstalled {
+      if let menu = NSApp.mainMenu {
+        let item = NSMenuItem (
+          title:"",
+          action:nil,
+          keyEquivalent:""
+        )
+        item.submenu = mDebugMenu
+        menu.addItem (item)
+        mDebugMenuInstalled = true
+      }
     }
   }
 
@@ -156,7 +158,7 @@ private var gDebugObject : PMAllocationDebug? = nil
   override func awakeFromNib () {
   // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
   //--- Allocation Window visibility
-    var df = NSUserDefaults.standardUserDefaults ()
+    let df = NSUserDefaults.standardUserDefaults ()
     mAllocationStatsWindowVisibleAtLaunch = df.boolForKey ("PMAllocationDebug:allocationStatsWindowVisible")
     mDisplayFilter = df.integerForKey ("PMAllocationDebug:allocationStatsDisplayFilter")
   //--- will call windowDidBecomeKey: and windowWillClose:
@@ -175,7 +177,7 @@ private var gDebugObject : PMAllocationDebug? = nil
     let columns = mStatsTableView!.tableColumns as NSArray
     if columns.count > 0 {
       let firstColumn = columns [0] as! NSTableColumn
-      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [AnyObject]
+      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [NSSortDescriptor]
     }
     pmInstallDebugMenu ()
   }
@@ -250,7 +252,7 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
   
   func applicationWillTerminateAction (NSNotification) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setBool (mAllocationStatsWindowVisibleAtLaunch,
       forKey:"PMAllocationDebug:allocationStatsWindowVisible"
     )
@@ -332,7 +334,7 @@ private var gDebugObject : PMAllocationDebug? = nil
       mAllocatedObjectCount = liveObjectCount ;
       mTotalAllocatedObjectCount = totalObjectCount ;
     //---
-      let sortDescriptors : [AnyObject]! = mStatsTableView?.sortDescriptors
+      let sortDescriptors : [NSSortDescriptor]! = mStatsTableView?.sortDescriptors
       mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)
       mStatsTableView?.setDataSource (self)
       mStatsTableView?.reloadData ()
@@ -347,7 +349,7 @@ private var gDebugObject : PMAllocationDebug? = nil
   func tableView (aTableView : NSTableView,
                   objectValueForTableColumn: NSTableColumn?,
                   row:Int) -> AnyObject? {
-    var theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as! PMAllocationItemDisplay
+    let theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as! PMAllocationItemDisplay
     return theRecord.valueForKey (objectValueForTableColumn!.identifier as String)
   }
   
@@ -362,9 +364,9 @@ private var gDebugObject : PMAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
 
   func tableView (aTableView: NSTableView,
-                 sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
-    let sortDescriptors : [AnyObject]! = mStatsTableView?.sortDescriptors
-    mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)
+                 sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+    let sortDescriptors = mStatsTableView?.sortDescriptors
+    mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors!)
     mStatsTableView?.reloadData ()
   }
 

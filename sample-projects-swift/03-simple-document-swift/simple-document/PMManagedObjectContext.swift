@@ -82,7 +82,7 @@ class PMManagedObjectContext : PMObject {
     let panel = NSPanel (contentRect:panelRect,
       styleMask:NSTitledWindowMask,
       backing:NSBackingStoreType.Buffered,
-      defer:false
+      `defer`:false
     )
     let textRect = NSRect (
      x:17.0,
@@ -90,7 +90,7 @@ class PMManagedObjectContext : PMObject {
      width:261.0,
      height:17.0
     )
-    var tf = NSTextField (frame:textRect)
+    let tf = NSTextField (frame:textRect)
     tf.stringValue = "Checking Document Relationships..."
     tf.bezeled = false
     tf.bordered = false
@@ -107,7 +107,7 @@ class PMManagedObjectContext : PMObject {
     let unregisteredObjectSet = Set <PMManagedObject> (reachableObjects).subtract (mManagedObjectSet)
   //---
     if (unreachableObjectSet.count + unregisteredObjectSet.count) == 0 { // Ok
-      var alert = NSAlert ()
+      let alert = NSAlert ()
       alert.messageText = "Object Graph is consistent"
       alert.informativeText = String (format:"%lu managed object%@.",
         mManagedObjectSet.count, (mManagedObjectSet.count > 1) ? "s" : ""
@@ -116,7 +116,7 @@ class PMManagedObjectContext : PMObject {
         completionHandler:nil
       )
     }else{ // Error
-      var alert = NSAlert ()
+      let alert = NSAlert ()
       alert.messageText = "Object Graph Error"
       alert.informativeText = String (format:"%lu managed object%@, %lu unreachable object%@, %lu unregistered object%@.",
         mManagedObjectSet.count,

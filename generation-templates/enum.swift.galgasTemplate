@@ -90,15 +90,15 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).integerValue)
     }
   }
   
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (NSNumber (integer:mValue.rawValue), forKey:inKey)
   }
 
@@ -107,7 +107,7 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).integerValue)
     }

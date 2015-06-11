@@ -88,15 +88,15 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).integerValue)
     }
   }
   
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (NSNumber (integer:mValue.rawValue), forKey:inKey)
   }
 
@@ -105,7 +105,7 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).integerValue)
     }

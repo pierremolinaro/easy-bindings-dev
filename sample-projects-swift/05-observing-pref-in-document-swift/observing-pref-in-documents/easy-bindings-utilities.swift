@@ -10,25 +10,25 @@ var origin = NSPoint (x:20.0, y:20.0)
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 func presentErrorWindow (file : String!,
-                         lineNumber : Int,
+                         line : Int,
                          errorMessage : String) {
   var message = ""
   message += "File: " + file + "\n"
-  message += "Line: \(lineNumber)\n"
+  message += "Line: \(line)\n"
   message += "Message: " + errorMessage + "\n"
   let r = NSRect (origin:origin, size:NSSize (width:300.0, height:200.0))
   origin.x += 20.0 ;
   origin.y += 20.0 ;
-  var window = NSWindow.init (
+  let window = NSWindow.init (
     contentRect:r,
     styleMask:NSTitledWindowMask | NSClosableWindowMask,
     backing:NSBackingStoreType.Buffered,
-    defer:true
+    `defer`:true
   )
   window.title = "Outlet Error"
-  let contentView : NSView! = window.contentView as! NSView
+  let contentView : NSView! = window.contentView as NSView
   let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)
-  var tf = NSTextField.init (frame:tfRect)
+  let tf = NSTextField.init (frame:tfRect)
   tf.editable = false
   tf.selectable = true
   tf.font = NSFont.boldSystemFontOfSize (0.0)
@@ -254,65 +254,6 @@ extension NSTextView {
 
 func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
   return PMValidationResult.ok
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//     NSMutableData extension                                                                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extension NSMutableData {
-  func writeSignature (inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    for c in kFormatSignature.utf8 {
-      var byte : UInt8 = UInt8 (c)
-      appendBytes (&byte, length:1)
-      trace += String (format:"%02hhX ", byte)
-    }
-    trace += "\n"
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func writeAutosizedData (inData: NSData,
-                           inout trace: String) {
-    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    appendData (inData)
-    trace += "(data, length \(inData.length))\n"
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func writeByte (inByte: UInt8,
-                  inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += String (format:"%02hhX ", inByte)
-    var byte = inByte
-    appendBytes (&byte, length:1)
-    trace += "\n"
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func writeAutosizedUnsigned (inValue: UInt64,
-                               inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += "U "
-    var value = inValue
-    do{
-      var byte : UInt8 = UInt8 (value & 0x7F)
-      value >>= 7
-      if (value != 0) {
-        byte |= 0x80
-      }
-      trace += String (format:"%02hhX ", byte)
-      appendBytes (&byte, length:1)
-    }while value != 0
-    trace += "\n"
-  }
-
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

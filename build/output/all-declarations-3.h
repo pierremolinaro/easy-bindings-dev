@@ -1133,6 +1133,16 @@ class GALGAS_string categoryReader_transformForSavingInDictionary (const class G
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                        Category Getter '@observablePropertyAST needs_unwSelf' (as function)                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_bool categoryReader_needs_5F_unwSelf (const class GALGAS_observablePropertyAST & inObject,
+                                                   class C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                              Category method '@simpleStoredPropertyList typeInventory'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

@@ -147,7 +147,6 @@ extension NSControl {
 extension NSControl {
 
   func updateEnabledState () {
-    var result = true
     self.enabled = (gEnabledBindingValueDictionary [self] ?? true) && (gEnabledFromValueBindingDictionary [self] ?? true)
   }
 }
