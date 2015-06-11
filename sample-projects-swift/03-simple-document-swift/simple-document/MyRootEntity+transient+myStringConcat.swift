@@ -8,7 +8,7 @@ import Cocoa
 //----------------------------------------------------------------------------*
 
 func compute_MyRootEntity_myStringConcat (self_2E_myStringMaj : String,
-                                          self_2E_myStringMin : String) -> String {
+                                          _ self_2E_myStringMin : String) -> String {
 
 //--- START OF USER ZONE 2
 

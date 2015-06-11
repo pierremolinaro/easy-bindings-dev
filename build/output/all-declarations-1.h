@@ -4646,6 +4646,16 @@ class GALGAS_string categoryReader_generateAddObserverCall (const class GALGAS_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                 Category Getter '@transientDependencyListForGeneration needs_unwSelf' (as function)                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_bool categoryReader_needs_5F_unwSelf (const class GALGAS_transientDependencyListForGeneration & inObject,
+                                                   class C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //         Category Getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

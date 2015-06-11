@@ -26,6 +26,7 @@ class PMManagedObject : PMObject {
     mExplorerObjectIndex = gExplorerObjectIndex
     gExplorerObjectIndex += 1
     super.init ()
+    mManagedObjectContext?.insertManagedObject (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -68,12 +69,25 @@ class PMManagedObject : PMObject {
     mExplorerWindow?.makeKeyAndOrderFront (nil)
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //   resetToManyRelationships                                                                                        *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func resetToManyRelationships () {
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //   resetToOneRelationships                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func resetToOneRelationships () {
+  }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //   accessibleObjects                                                                                               *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func accessibleObjects (inout objects : NSMutableArray) {
+  func accessibleObjects (inout objects : Array<PMManagedObject>) {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -101,12 +115,12 @@ class PMManagedObject : PMObject {
                                      inout ioRect : NSRect,
                                      view : NSView) -> NSTextField {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    var tf = NSTextField (frame:ioRect)
+    let tf = NSTextField (frame:ioRect)
     tf.enabled = false
     tf.stringValue = attributeName
     tf.font = font
     view.addSubview (tf)
-    var tff = NSTextField (frame:secondColumn (ioRect))
+    let tff = NSTextField (frame:secondColumn (ioRect))
     tff.enabled = false
     tff.font = font
     view.addSubview (tff)
@@ -122,12 +136,12 @@ class PMManagedObject : PMObject {
                                              inout ioRect : NSRect,
                                              view : NSView) -> NSButton {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    var tf = NSTextField (frame:ioRect)
+    let tf = NSTextField (frame:ioRect)
     tf.enabled = false
     tf.stringValue = relationshipName
     tf.font = font
     view.addSubview (tf)
-    var bt = NSButton (frame:secondColumn (ioRect))
+    let bt = NSButton (frame:secondColumn (ioRect))
     bt.font = font
     view.addSubview (bt)
     ioRect.origin.y += ioRect.size.height
@@ -142,12 +156,12 @@ class PMManagedObject : PMObject {
                                               inout ioRect : NSRect,
                                               view : NSView) -> NSPopUpButton {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    var tf = NSTextField (frame:ioRect)
+    let tf = NSTextField (frame:ioRect)
     tf.enabled = false
     tf.stringValue = relationshipName
     tf.font = font
     view.addSubview (tf)
-    var bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
+    let bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
     bt.font = font
     view.addSubview (bt)
     ioRect.origin.y += ioRect.size.height ;
@@ -165,13 +179,13 @@ class PMManagedObject : PMObject {
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
       backing:NSBackingStoreType.Buffered,
-      defer:true,
+      `defer`:true,
       screen:nil
     )
   //-------------------------------------------------- Adding properties
     var nameRect = NSRect (x:0.0, y:0.0, width:300.0, height:22.0)
-    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    var view = NSView (frame:nameRect)
+ //   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+    let view = NSView (frame:nameRect)
     populateExplorerWindowWithRect (&nameRect, view:view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
@@ -180,7 +194,7 @@ class PMManagedObject : PMObject {
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, height:fmin (600.0, NSMaxY (nameRect))))
   //--- Set close button as 'remove window' button
-    var closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
     closeButton!.action = "deleteWindowAction:"
   //--- Set window title
@@ -188,7 +202,7 @@ class PMManagedObject : PMObject {
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
-    var sw = NSScrollView (frame:frame)
+    let sw = NSScrollView (frame:frame)
     sw.hasVerticalScroller = true
     sw.documentView = view
     mExplorerWindow!.contentView = sw
@@ -212,7 +226,7 @@ class PMManagedObject : PMObject {
       let objectIndex = object.explorerObjectIndex ()
       let stringValue = String (format:"#%d (%@) %p", objectIndex, object.className, object)
       popUpButton?.addItemWithTitle (stringValue)
-      var item = popUpButton?.lastItem
+      let item = popUpButton?.lastItem
       item?.target = object
       item?.action = "showObjectWindowFromExplorerButton:"
     }
@@ -256,7 +270,7 @@ class PMManagedObject : PMObject {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func clearObjectExplorer () {
-    var closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -271,10 +285,10 @@ class PMManagedObject : PMObject {
                                      ioDictionary : NSMutableDictionary) {
 
     if inEntityArray.count > 0 {
-      var indexArray = NSMutableArray ()
+      let indexArray = NSMutableArray ()
       for object : AnyObject in inEntityArray {
         let managedObject = object as! PMManagedObject
-        indexArray.addObject (NSNumber (unsignedInteger:object.savingIndex))
+        indexArray.addObject (NSNumber (unsignedInteger:managedObject.savingIndex))
       }
       ioDictionary.setObject (indexArray, forKey:inRelationshipName)
     }

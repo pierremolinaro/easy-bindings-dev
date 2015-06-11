@@ -392,13 +392,19 @@ end
 %  //--- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = {  [weak self] in\n%
-  %      if let unwSelf = self {\n%
-  ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName]
-  %      }else{\n%
-  %        return .noSelection\n%
-  %      }\n%
-  %    }\n%
+  if [mDependencyList needs_unwSelf] then
+    %    %!mTransientName%.computeFunction = { [weak self] in\n%
+    %      if let unwSelf = self {\n%
+    ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName]
+    %      }else{\n%
+    %        return .noSelection\n%
+    %      }\n%
+    %    }\n%
+  else
+    %    %!mTransientName%.computeFunction = {\n%
+    ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName]
+    %    }\n%
+  end
 end
 %  //--- Install property observers for transients
 %

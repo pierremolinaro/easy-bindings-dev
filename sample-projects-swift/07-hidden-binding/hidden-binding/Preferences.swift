@@ -112,15 +112,15 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mButton' outlet not nil
     if nil == mButton {
-      presentErrorWindow (__FILE__, __LINE__, "the 'mButton' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mButton' outlet is nil")
     }
   //--- Check myHidden1Switch' outlet not nil
     if nil == myHidden1Switch {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myHidden1Switch' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myHidden1Switch' outlet is nil")
     }
   //--- Check myHidden2Switch' outlet not nil
     if nil == myHidden2Switch {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myHidden2Switch' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myHidden2Switch' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients

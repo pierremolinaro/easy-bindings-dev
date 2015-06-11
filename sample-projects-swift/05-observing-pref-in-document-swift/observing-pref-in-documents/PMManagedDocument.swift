@@ -3,6 +3,9 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 let kFormatSignature = "PM-BINARY-FORMAT"
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 private var gDebugMenuItemsAdded = false
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -25,9 +28,9 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   private var mMetadataDictionary : NSMutableDictionary = [:]
   private var mManagedObjectContext : PMManagedObjectContext
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    init                                                                                                           *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   override init () {
     let theUndoManager = PMUndoManager ()
@@ -42,39 +45,39 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     theUndoManager.enableUndoRegistration ()
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    deinit                                                                                                         *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    hookOfInit                                                                                                     *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func hookOfInit () {
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    hookOfNewDocumentCreation                                                                                      *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func hookOfNewDocumentCreation () {
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    rootEntityClassName                                                                                            *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func rootEntityClassName () -> String {
     return ""
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    windowControllerDidLoadNib:                                                                                    *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
@@ -109,30 +112,30 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       }*/
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //  S A V E    T O    D A T A                                                                                        *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func metadataStatusForSaving () -> UInt8 {
     return 0 ;
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func compressDataOnSaving () -> PMDocumentCompressionEnum {
     return PMDocumentCompressionEnum.PMDocumentBZ2Compression ;
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func hookOfWillSave () {
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    dataOfType                                                                                                     *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
-  override func dataOfType (typeName: String?, error outError: NSErrorPointer) -> NSData? {
+  override func dataOfType (typeName: String?) throws -> NSData {
   //---
     hookOfWillSave ()
   //--- Add to metadata dictionary the witdth and the height of main window
@@ -154,22 +157,21 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       }*/
     }
   //---
-    var fileData = NSMutableData ()
+    let fileData = NSMutableData ()
     var trace : String = ""
   //--- Append signature
     fileData.writeSignature (&trace)
   //--- Write status
     fileData.writeByte (metadataStatusForSaving (), trace:&trace)
   //--- Append metadata dictionary
-    let metaData = NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,
+    let metaData = try NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,
       format:NSPropertyListFormat.BinaryFormat_v1_0,
-      options:0,
-      error:nil
-    )!
+      options:0
+    )
     fileData.writeByte (1, trace:&trace)
     fileData.writeAutosizedData (metaData, trace:&trace)
   //--- Append document data
-    let documentData = dataForSavingFromRootObject ()
+    let documentData = try dataForSavingFromRootObject ()
     fileData.writeByte (6, trace:&trace)
     fileData.writeAutosizedData (documentData, trace:&trace)
 /*    switch ([self compressDataOnSaving]) {
@@ -195,44 +197,39 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     return fileData ;
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
-  func dataForSavingFromRootObject () -> NSData {
-    let objectsToSaveArray : NSArray = reachableObjectsFromRootObject ()
+  func dataForSavingFromRootObject () throws -> NSData {
+    let objectsToSaveArray : Array<PMManagedObject> = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)
   //--- Set savingIndex for each object
     var idx = 0 ;
-    for anyObject in objectsToSaveArray {
-      let object = anyObject as! PMManagedObject
+    for object in objectsToSaveArray {
       object.savingIndex = idx
       idx += 1
     }
   //---
     var saveDataArray : [NSDictionary] = []
-    for anyObject in objectsToSaveArray {
-      let object = anyObject as! PMManagedObject
-      var d : NSMutableDictionary = [
+    for object in objectsToSaveArray {
+      let d : NSMutableDictionary = [
         "--entity" : object.className
       ]
       object.saveIntoDictionary (d)
       saveDataArray.append (d)
     }
-    return NSPropertyListSerialization.dataWithPropertyList (saveDataArray,
+    return try NSPropertyListSerialization.dataWithPropertyList (saveDataArray,
       format:NSPropertyListFormat.BinaryFormat_v1_0,
-      options:0,
-      error:nil
-    )!
+      options:0
+    )
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //    readFromData                                                                                                   *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
-  override func readFromData (data: NSData?,
-                              ofType typeName: String?,
-                              error outError: NSErrorPointer) -> Bool {
+  override func readFromData (data: NSData?, ofType typeName: String?) throws {
     undoManager?.disableUndoRegistration ()
   //---- Define input data scanner
-    var dataScanner = PMDataScanner (
+    let dataScanner = PMDataScanner (
       data:data!,
       displayProgressWindowTitle:(data!.length > 30000) ? lastComponentOfFileName.stringByDeletingPathExtension : nil
     )
@@ -247,10 +244,9 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   //--- Read metadata dictionary
     var error : NSError?
     let dictionaryData = dataScanner.parseAutosizedData ()
-    let metadataDictionary = NSPropertyListSerialization.propertyListWithData (dictionaryData,
-      options:0, // NSPropertyListReadOptions.Immutable,
-      format:nil,
-      error:nil
+    let metadataDictionary = try NSPropertyListSerialization.propertyListWithData (dictionaryData,
+      options:NSPropertyListReadOptions.Immutable,
+      format:nil
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
      //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
@@ -259,7 +255,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     switch dataFormat {
     case 6 :
       let data = dataScanner.parseAutosizedData ()
-      readManagedObjectsFromData (data)
+      try readManagedObjectsFromData (data)
     default:
       NSLog ("unknowm data format: %u", dataFormat)
     }
@@ -359,27 +355,21 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       )
     }
   //---
-    if (nil != outError) {
-      outError.memory = error
-    }
     undoManager?.enableUndoRegistration ()
-  //---
-    return nil == error
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   let logReadFileDuration = false
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
-  func readManagedObjectsFromData (inData : NSData) {
+  func readManagedObjectsFromData (inData : NSData) throws {
     let startDate = NSDate ()
-    let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
-      options:0, // NSPropertyListReadOptions.Immutable,
-      format:nil,
-      error:nil
-    )!
+    let v : AnyObject = try NSPropertyListSerialization.propertyListWithData (inData,
+      options:NSPropertyListReadOptions.Immutable,
+      format:nil
+    )
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
     if logReadFileDuration {
       let timeTaken = NSDate().timeIntervalSinceDate (startDate)
@@ -397,7 +387,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     }
     var idx = 0
     for d in dictionaryArray {
-      var object : PMManagedObject = objectArray [idx]
+      let object : PMManagedObject = objectArray [idx]
       object.setUpWithDictionary (d, managedObjectArray:objectArray)
       idx += 1
     }
@@ -406,19 +396,22 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       NSLog ("Read: +%g s", timeTaken)
     }
   //--- Set root object
+    if let rootObject = mRootObject {
+      mManagedObjectContext.removeManagedObject (rootObject)
+    }
     mRootObject = objectArray [0]
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //   showWindows                                                                                                     *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   override func showWindows () {
     super.showWindows ()
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
       if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
-        var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
-        var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
+        let windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
+        let windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
         if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
           let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))
           var windowFrame : NSRect = unwrappedWindowForSheet.frame
@@ -429,94 +422,98 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     }
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //   C H E C K    E N T I T Y   R E A C H A B I L I T Y                                                              *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   @IBAction func checkEntityReachability (AnyObject!) {
-  //--- Build and show Panel
-    let panelRect = NSRect (
-      x:0.0,
-      y:0.0,
-      width:295.0,
-      height:107.0
-    )
-    let panel = NSPanel (contentRect:panelRect,
-      styleMask:NSTitledWindowMask,
-      backing:NSBackingStoreType.Buffered,
-      defer:false
-    )
-    let textRect = NSRect (
-     x:17.0,
-     y:45.0,
-     width:261.0,
-     height:17.0
-    )
-    var tf = NSTextField (frame:textRect)
-    tf.stringValue = "Checking Document Relationships..."
-    tf.bezeled = false
-    tf.bordered = false
-    tf.drawsBackground = false
-    tf.editable = false
-    tf.font = NSFont.boldSystemFontOfSize (0.0)
-    panel.contentView.addSubview (tf)
-    windowForSheet?.beginSheet(panel, completionHandler:nil)
-    let reachableObjects : NSArray = reachableObjectsFromRootObject ()
-    windowForSheet?.endSheet(panel)
-  //---
-    let reachableCount = reachableObjects.count
-    var alert = NSAlert ()
-    alert.messageText = "Object Graph Analysis"
-    alert.informativeText = String (format:"There are %lu reachable objects from root object.",
-      reachableCount
-    )
-    alert.beginSheetModalForWindow (windowForSheet!,
-      completionHandler:nil
-    )
+    if let rootObject = mRootObject, window = windowForSheet {
+      mManagedObjectContext.checkEntityReachabilityFromObject (rootObject, windowForSheet:window)
+    }
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
   //   showObjectExplorerWindow:                                                                                       *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   @IBAction func showObjectExplorerWindow (AnyObject!) {
     mRootObject?.showExplorerWindow ()
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T                                                      *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
+  //   removeWindowController                                                                                          *
+  //···················································································································*
 
-  func reachableObjectsFromRootObject () -> NSArray {
-    var reachableObjectArray = NSMutableArray ()
-    if let rootObject = mRootObject {
-      var reachableObjectSet = NSMutableSet ()
-      reachableObjectSet.addObject (rootObject)
-      var objectsToExploreArray = NSMutableArray ()
-      objectsToExploreArray.addObject (rootObject)
-      rootObject.savingIndex = reachableObjectArray.count
-      reachableObjectArray.addObject (rootObject)
-      // let start = NSDate()
-      //   NSLog ("start")
-      while (objectsToExploreArray.count > 0) {
-        let objectToExplore : PMManagedObject = objectsToExploreArray.lastObject as! PMManagedObject
-        objectsToExploreArray.removeLastObject ()
-        var accessible = NSMutableArray ()
-        objectToExplore.accessibleObjects (&accessible)
-        for object : AnyObject in accessible {
-          let managedObject = object as! PMManagedObject
-          if !reachableObjectSet.containsObject (managedObject) {
-            reachableObjectSet.addObject (managedObject)
-            managedObject.savingIndex = reachableObjectArray.count
-            reachableObjectArray.addObject (managedObject)
-            objectsToExploreArray.addObject (managedObject)
-          }
-        }
-      }
-      // let timeTaken = NSDate().timeIntervalSinceDate(start) * 1000
-      // NSLog ("%f ms", timeTaken)
+  func removeUserInterface () {
+    mManagedObjectContext.reset ()
+  }
+
+  //···················································································································*
+
+  override func removeWindowController (inWindowController : NSWindowController) {
+    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { self.removeUserInterface () }
+    super.removeWindowController (inWindowController)
+  }
+
+  //···················································································································*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//     NSMutableData extension                                                                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extension NSMutableData {
+  func writeSignature (inout trace: String) {
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    for c in kFormatSignature.utf8 {
+      var byte : UInt8 = UInt8 (c)
+      appendBytes (&byte, length:1)
+      trace += String (format:"%02hhX ", byte)
     }
-    return reachableObjectArray ;
+    trace += "\n"
+  }
+
+  //···················································································································*
+
+  func writeAutosizedData (inData: NSData,
+                           inout trace: String) {
+    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    appendData (inData)
+    trace += "(data, length \(inData.length))\n"
+  }
+
+  //···················································································································*
+
+  func writeByte (inByte: UInt8,
+                  inout trace: String) {
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%02hhX ", inByte)
+    var byte = inByte
+    appendBytes (&byte, length:1)
+    trace += "\n"
+  }
+
+  //···················································································································*
+
+  func writeAutosizedUnsigned (inValue: UInt64,
+                               inout trace: String) {
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += "U "
+    var value = inValue
+    repeat{
+      var byte : UInt8 = UInt8 (value & 0x7F)
+      value >>= 7
+      if (value != 0) {
+        byte |= 0x80
+      }
+      trace += String (format:"%02hhX ", byte)
+      appendBytes (&byte, length:1)
+    }while value != 0
+    trace += "\n"
   }
 
 }
