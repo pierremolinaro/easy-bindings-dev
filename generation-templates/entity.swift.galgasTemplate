@@ -229,7 +229,7 @@ end
   func remove (object : %![mRelationshipType swiftTypeName]%) {
     if mSet.contains (object) {
       var array = mValue
-      let idx = find (array, object)
+      let idx = array.indexOf (object)
       array.removeAtIndex (idx!)
       mValue = array
     }

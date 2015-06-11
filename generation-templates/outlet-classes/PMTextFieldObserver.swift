@@ -84,7 +84,7 @@ import Cocoa
     mOutlet = outlet
     super.init ()
     if mOutlet.formatter != nil {
-      presentErrorWindow (file, line, "the PMTextFieldObserver outlet has a formatter")
+      presentErrorWindow (file, line:line, errorMessage:"the PMTextFieldObserver outlet has a formatter")
     }
     object.addObserver (self, postEvent:true)
   }

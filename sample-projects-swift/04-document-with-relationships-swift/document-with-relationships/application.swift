@@ -35,7 +35,7 @@ func postOutletEvent (event : PMOutletEvent) {
     if !gPendingOutletEvents.contains (event) {
       appendMessageString (str)
     }else{ // Event already posted
-      appendMessageString (str, NSColor.brownColor ())
+      appendMessageString (str, color: NSColor.brownColor ())
     }
   }
   gPendingOutletEvents.insert (event)
@@ -68,28 +68,28 @@ func flushOutletEvents () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func logEvents () -> Bool {
-  var theApp = NSApp as! PMApplication
+  let theApp = NSApp as! PMApplication
   return theApp.logEvents ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendToTransientEventLog (message : String) {
-  var theApp = NSApp as! PMApplication
+  let theApp = NSApp as! PMApplication
   theApp.appendToTransientEventLog (message)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendMessageString (message : String) {
-  var theApp = NSApp as! PMApplication
+  let theApp = NSApp as! PMApplication
   theApp.mTransientEventExplorerTextView?.appendMessageString (message)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendMessageString (message : String, color:NSColor) {
-  var theApp = NSApp as! PMApplication
+  let theApp = NSApp as! PMApplication
   theApp.mTransientEventExplorerTextView?.appendMessageString (message, color:color)
 }
 
@@ -111,7 +111,7 @@ func appendMessageString (message : String, color:NSColor) {
   //-------------------------------------------------------------------------------------------------------------------*
 
   override func awakeFromNib () {
-    var menuItem = NSMenuItem (
+    let menuItem = NSMenuItem (
       title:"Show Transient Event Log Window",
       action:"showTransientEventLogWindow:",
       keyEquivalent:""

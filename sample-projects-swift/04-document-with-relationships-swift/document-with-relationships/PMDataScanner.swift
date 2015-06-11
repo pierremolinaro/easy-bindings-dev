@@ -11,7 +11,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 
-class PMDataScanner : PMObject, PMUserClassName {
+class PMDataScanner : PMObject {
   var mData : NSData
   var mReadIndex : Int = 0
   var mReadOk : Bool = true
@@ -58,7 +58,7 @@ class PMDataScanner : PMObject, PMUserClassName {
         contentRect:windowRect,
         styleMask:NSTitledWindowMask,
         backing:NSBackingStoreType.Buffered,
-        defer:false
+        `defer`:false
       )
       mProgressWindow = progressWindow
       progressWindow.excludedFromWindowsMenu = true
@@ -71,7 +71,7 @@ class PMDataScanner : PMObject, PMUserClassName {
         width:NSMaxX (contientViewRect) - 40.0,
         height:20.0
       )
-      var ts = NSTextField (frame:ts_r)
+      let ts = NSTextField (frame:ts_r)
       ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
       ts.stringValue = String (format:"Opening %@…", inTitle)
       ts.bezeled = false
@@ -135,7 +135,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
      //   let ptr = offsetPointer (mData.bytes, CInt(mReadIndex))
      //   var array : COpaquePointer = mData.bytes ()
      //   var byteArray : CConstPointer<UInt8> = CConstPointer<UInt8> (mData.bytes ())
@@ -166,7 +166,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         result = (byte >= lowerBound) && (byte <= upperBound) ;
         if (result) {
           value = byte
@@ -195,7 +195,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         if (byte == inByte) {
           mReadIndex += 1
           mExpectedBytes = []
@@ -246,7 +246,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         let w : UInt = UInt (byte) & 0x7F
         result |= (w << shift)
         shift += 7

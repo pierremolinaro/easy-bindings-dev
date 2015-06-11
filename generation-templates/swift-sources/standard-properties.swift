@@ -40,37 +40,37 @@ private func compareIntProperties (left:PMProperty<Int>,
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func > (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
-  return compareIntProperties (left, right, {$0 > $1})
+  return compareIntProperties (left, right: right, function: {$0 > $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func >= (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
-  return compareIntProperties (left, right, {$0 >= $1})
+  return compareIntProperties (left, right: right, function: {$0 >= $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func < (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
-  return compareIntProperties (left, right, {$0 < $1})
+  return compareIntProperties (left, right: right, function: {$0 < $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func <= (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
-  return compareIntProperties (left, right, {$0 <= $1})
+  return compareIntProperties (left, right: right, function: {$0 <= $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func == (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
-  return compareIntProperties (left, right, {$0 == $1})
+  return compareIntProperties (left, right: right, function: {$0 == $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func != (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
-  return compareIntProperties (left, right, {$0 != $1})
+  return compareIntProperties (left, right: right, function: {$0 != $1})
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -103,19 +103,19 @@ private func combineBoolProperties (left:PMProperty<Bool>,
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func && (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
-  return combineBoolProperties (left, right, {$0 && $1})
+  return combineBoolProperties (left, right: right, function: {$0 && $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func || (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
-  return combineBoolProperties (left, right, {$0 || $1})
+  return combineBoolProperties (left, right: right, function: {$0 || $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 func ^ (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
-  return combineBoolProperties (left, right, {$0 != $1})
+  return combineBoolProperties (left, right: right, function: {$0 != $1})
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -327,15 +327,15 @@ class PMStoredProperty_String : PMReadWriteProperty_String {
   }
   
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is String {
       setProp (unwValue as! String)
     }
   }
   
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (mValue, forKey:inKey)
   }
 
@@ -344,7 +344,7 @@ class PMStoredProperty_String : PMReadWriteProperty_String {
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is String {
       setProp (unwValue as! String)
     }
@@ -475,10 +475,10 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSData {
-      var possibleColor : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
+      let possibleColor : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
       if let unwPossibleColor : AnyObject = possibleColor where unwPossibleColor is NSColor {
         setProp (unwPossibleColor as! NSColor)
       }
@@ -486,7 +486,7 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
   }
 
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
   }
 
@@ -495,9 +495,9 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSData {
-      var possibleColor : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
+      let possibleColor : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
       if let unwPossibleColor : AnyObject = possibleColor where unwPossibleColor is NSColor {
         setProp (unwPossibleColor as! NSColor)
       }
@@ -593,15 +593,15 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSDate {
       setProp (unwValue as! NSDate)
     }
   }
 
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (mValue, forKey:inKey)
   }
 
@@ -610,7 +610,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSDate {
       setProp (unwValue as! NSDate)
     }
@@ -795,15 +795,15 @@ class PMStoredProperty_Int : PMReadWriteProperty_Int {
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setProp ((unwValue as! NSNumber).integerValue)
     }
   }
 
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (NSNumber (integer:mValue), forKey:inKey)
   }
 
@@ -812,7 +812,7 @@ class PMStoredProperty_Int : PMReadWriteProperty_Int {
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setProp ((unwValue as! NSNumber).integerValue)
     }
@@ -907,8 +907,8 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
-    var value : AnyObject? = ud.objectForKey (inKey)
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setProp ((unwValue as! NSNumber).boolValue)
     }
@@ -916,7 +916,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 
   
   func storeInPreferencesWithKey (inKey : String) {
-    var ud = NSUserDefaults.standardUserDefaults ()
+    let ud = NSUserDefaults.standardUserDefaults ()
     ud.setObject (NSNumber (bool:mValue), forKey:inKey)
   }
 
@@ -925,7 +925,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
   }
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    var value : AnyObject? = inDictionary.objectForKey (inKey)
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setProp ((unwValue as! NSNumber).boolValue)
     }

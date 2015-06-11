@@ -49,13 +49,13 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEM
         return .multipleSelection
       case .singleSelection (let modelArray) :
 %if [FILTER_PROPERTIES length] == 0 then
-%        var array = NSMutableArray (array:modelArray)
+%        let array = NSMutableArray (array:modelArray)
         array.sortUsingDescriptors (mSortDescriptors)
         let sortedObjectArray = array.mutableCopy () as! Array<%!ELEMENT_TYPE_NAME%>
         return .singleSelection (sortedObjectArray)
 %
 else
-%        var array = NSMutableArray ()\n%
+%        let array = NSMutableArray ()\n%
 %        var isMultiple = false\n%
 %        for object in modelArray {\n%
 ![FILTER_PROPERTIES filterCode !"arrayControllerFilter_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME]
@@ -122,7 +122,7 @@ else
   //    Sort descriptors                                                                                               *
   //···················································································································*
   
-  private var mSortDescriptors : [AnyObject] = [AnyObject] () {
+  private var mSortDescriptors : [NSSortDescriptor] = [NSSortDescriptor] () {
     didSet {
       postEvent () // Force sorting
     }
@@ -130,7 +130,7 @@ else
 
   //···················································································································*
   
-  func setSortDescriptors (sortDescriptors : [AnyObject]) {
+  func setSortDescriptors (sortDescriptors : [NSSortDescriptor]) {
     mSortDescriptors = sortDescriptors
   }
   
@@ -139,7 +139,7 @@ else
   //···················································································································*
 
   func tableView (aTableView: NSTableView,
-                  sortDescriptorsDidChange oldDescriptors: [AnyObject]) {
+                  sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
     // NSLog ("\%@", __FUNCTION__)
     mSortDescriptors = aTableView.sortDescriptors
   }
@@ -268,10 +268,10 @@ else
       case .singleSelection (let vv) :
       //--- Dictionary of object indexes
         var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-        for (index, object) in enumerate (v) {
+        for (index, object) in v.enumerate () {
           objectDictionary [object] = index
         }
-        var indexSet = NSMutableIndexSet ()
+        let indexSet = NSMutableIndexSet ()
         for object in vv {
           if let index = objectDictionary [object] {
             indexSet.addIndex (index)
@@ -316,7 +316,7 @@ else
       return nil
     case .singleSelection (let v) :
       let columnIdentifier = inTableColumn!.identifier
-      var result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
       result.textField?.tag = inRowIndex
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       %
@@ -443,13 +443,19 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
       if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
           if !(unwrappedTableCellView.textField is %!mColumnOutletTypeName%) {
-            presentErrorWindow (file, line, "\"%!mColumnName%\" column view is not an instance of %!mColumnOutletTypeName%")
+            presentErrorWindow (file,
+                                line: line,
+                                errorMessage:"\"%!mColumnName%\" column view is not an instance of %!mColumnOutletTypeName%")
           }
         }else{
-          presentErrorWindow (file, line, "\"%!mColumnName%\" column cell view is not an instance of NSTableCellView")
+          presentErrorWindow (file,
+                              line: line,
+                              errorMessage:"\"%!mColumnName%\" column cell view is not an instance of NSTableCellView")
         }
       }else{
-        presentErrorWindow (file, line, "\"%!mColumnName%\" column view unknown")
+        presentErrorWindow (file,
+                            line: line,
+                            errorMessage:"\"%!mColumnName%\" column view unknown")
       }
       if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
         columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true)
@@ -460,7 +466,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
       if columns.count > 0 {
         let firstColumn = columns [0] as! NSTableColumn
         if let sdp = firstColumn.sortDescriptorPrototype {
-          let sortDescriptorArray = NSArray (object:sdp) as! [AnyObject]
+          let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
           tableView.sortDescriptors = sortDescriptorArray
           sortedArray.setSortDescriptors (sortDescriptorArray)
         }
@@ -515,7 +521,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let v) :
-        var newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (managedObjectContext:managedObjectContext)
+        let newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (managedObjectContext:managedObjectContext)
         var array = v
         array.append (newObject)
       //--- New object is the selection
@@ -551,7 +557,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
           //------------- Find the object to be selected after selected object removing
           //--- Dictionary of object sorted indexes
             var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-            for (index, object) in enumerate (sortedArray_prop) {
+            for (index, object) in sortedArray_prop.enumerate () {
               sortedObjectDictionary [object] = index
             }
             var indexArrayOfSelectedObjects = [Int] ()
@@ -563,7 +569,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
               }
             }
           //--- Sort
-            indexArrayOfSelectedObjects.sort { $0 < $1 }
+            indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
           //--- Find the first index of a non selected object
             var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
             for index in indexArrayOfSelectedObjects {
@@ -580,7 +586,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
           //----------------------------------------- Remove selected object
           //--- Dictionary of object absolute indexes
             var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-            for (index, object) in enumerate (model_prop) {
+            for (index, object) in model_prop.enumerate () {
               objectDictionary [object] = index
             }
           //--- Build selected objects index array
@@ -592,7 +598,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
               }
             }
           //--- Sort in reverse order
-            selectedObjectIndexArray.sort { $1 < $0 }
+            selectedObjectIndexArray.sortInPlace { $1 < $0 }
           //--- Remove objects, in reverse of order of their index
             var newObjectArray = model_prop
             for index in selectedObjectIndexArray {

@@ -77,9 +77,9 @@ import Cocoa
       let formatter = NSNumberFormatter ()
       mOutlet.formatter = formatter
     }else if mOutlet.formatter == nil {
-      presentErrorWindow (file, line, "the outlet has no formatter")
+      presentErrorWindow (file, line:line, errorMessage:"the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+      presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
     mObject.addObserver (self, postEvent:true)
   }

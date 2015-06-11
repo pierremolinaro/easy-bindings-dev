@@ -77,7 +77,7 @@ class Controller_PMTextField_value : PMOutletEvent {
     mOutlet.target = self
     mOutlet.action = "action:"
     if mOutlet.formatter != nil {
-      presentErrorWindow (file, line, "the PMTextField outlet has a formatter")
+      presentErrorWindow (file, line:line, errorMessage:"the PMTextField outlet has a formatter")
     }
     object.addObserver (self, postEvent:true)
   }

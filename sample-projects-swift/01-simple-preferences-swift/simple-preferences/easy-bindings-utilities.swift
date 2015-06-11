@@ -10,25 +10,25 @@ var origin = NSPoint (x:20.0, y:20.0)
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 func presentErrorWindow (file : String!,
-                         lineNumber : Int,
+                         line : Int,
                          errorMessage : String) {
   var message = ""
   message += "File: " + file + "\n"
-  message += "Line: \(lineNumber)\n"
+  message += "Line: \(line)\n"
   message += "Message: " + errorMessage + "\n"
   let r = NSRect (origin:origin, size:NSSize (width:300.0, height:200.0))
   origin.x += 20.0 ;
   origin.y += 20.0 ;
-  var window = NSWindow.init (
+  let window = NSWindow.init (
     contentRect:r,
     styleMask:NSTitledWindowMask | NSClosableWindowMask,
     backing:NSBackingStoreType.Buffered,
-    defer:true
+    `defer`:true
   )
   window.title = "Outlet Error"
-  let contentView : NSView! = window.contentView as! NSView
+  let contentView : NSView! = window.contentView as NSView
   let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)
-  var tf = NSTextField.init (frame:tfRect)
+  let tf = NSTextField.init (frame:tfRect)
   tf.editable = false
   tf.selectable = true
   tf.font = NSFont.boldSystemFontOfSize (0.0)

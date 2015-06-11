@@ -41,7 +41,7 @@
 		C9B086079795C442636B55FB /* PMIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMIntField.swift; sourceTree = "<group>"; };
 		CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CEEA167A5A36DEDD4BEA2543 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
-		CF9B92731AD572B00014C60C /* simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE4C8371B29C7D500373E87 /* simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9CAA6E02C990B0A82652DCA /* PMColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWell.swift; sourceTree = "<group>"; };
 		E0327AD868D138F2B4FDD6F0 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F062936A96D3C8BD1F8F2FF3 /* PMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDatePicker.swift; sourceTree = "<group>"; };
@@ -64,17 +64,13 @@
 			children = (
 				A2F3E71D9181A67B7542122C /* Sources */,
 				F4C10BF22AA353E27879133C /* Resources */,
-				CF9B92741AD572B00014C60C /* Products */,
+				CFE4C8381B29C7D500373E87 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		A2F3E71D9181A67B7542122C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AA0EFB9E19094440C317E21B /* application.swift */,
-				FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */,
-				CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */,
-				0B7C298AB50293ADFECB7B18 /* main.swift */,
 				BBCE2345D7772B0674A318D5 /* MainMenu.xib */,
 				CEEA167A5A36DEDD4BEA2543 /* PMAllocationDebug.swift */,
 				2E2D7FBDEA1AFC51C7C6AD26 /* PMAllocationDebug.xib */,
@@ -85,18 +81,22 @@
 				99908345F7439F8FFABDFFC4 /* PMIntFieldObserver.swift */,
 				8E8850243BE8079A5C74D079 /* PMTextField.swift */,
 				748049E45D87B8C7D8B9AACD /* PMTextFieldObserver.swift */,
-				E0327AD868D138F2B4FDD6F0 /* Preferences.swift */,
 				7A37563370DED05F5A3BF3EC /* Preferences+validation+mIntegerValue.swift */,
+				E0327AD868D138F2B4FDD6F0 /* Preferences.swift */,
+				AA0EFB9E19094440C317E21B /* application.swift */,
+				FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */,
+				CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */,
+				0B7C298AB50293ADFECB7B18 /* main.swift */,
 				7964F8DDDEB95FC584CD965D /* standard-properties.swift */,
 			);
 			name = Sources;
 			path = "simple-preferences";
 			sourceTree = "<group>";
 		};
-		CF9B92741AD572B00014C60C /* Products */ = {
+		CFE4C8381B29C7D500373E87 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF9B92731AD572B00014C60C /* simple-preferences.app */,
+				CFE4C8371B29C7D500373E87 /* simple-preferences.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,7 +128,7 @@
 			name = "simple-preferences";
 			productInstallPath = "$(HOME)/bin";
 			productName = "simple-preferences";
-			productReference = CF9B92731AD572B00014C60C /* simple-preferences.app */;
+			productReference = CFE4C8371B29C7D500373E87 /* simple-preferences.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,6 +137,7 @@
 		95D565EF66E7DFF9F98764DA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 			};
 			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "simple-preferences" */;
 			compatibilityVersion = "Xcode 2.4";
@@ -146,7 +147,7 @@
 				en,
 			);
 			mainGroup = 4B5CE2FE28308FD9F2A7BAF3;
-			productRefGroup = CF9B92741AD572B00014C60C /* Products */;
+			productRefGroup = CFE4C8381B29C7D500373E87 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -241,7 +242,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx10.11;
 			};
 			name = Default;
 		};

@@ -59,7 +59,7 @@ import Cocoa
                 errorDescription error: String?) -> Bool {
     let alert = NSAlert ()
     if let window = control.window {
-      alert.messageText = error
+      alert.messageText = error!
       alert.informativeText = "Please provide a valid value."
       alert.addButtonWithTitle ("Ok")
       alert.addButtonWithTitle ("Discard Change")
@@ -129,9 +129,9 @@ class Controller_PMIntField_value : PMOutletEvent {
       let formatter = NSNumberFormatter ()
       mOutlet.formatter = formatter
     }else if mOutlet.formatter == nil {
-      presentErrorWindow (file, line, "the outlet has no formatter")
+      presentErrorWindow (file, line:line, errorMessage:"the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+      presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
     mObject.addObserver (self, postEvent:true)
   }

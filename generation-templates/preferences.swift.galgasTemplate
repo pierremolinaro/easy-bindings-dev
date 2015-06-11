@@ -92,7 +92,7 @@ end
 for () in OUTLET_MAP do
    %  //--- Check %!lkey.string%' outlet not nil\n%
    %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (__FILE__, __LINE__, "the '%!lkey.string%' outlet is nil")\n%
+   %      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the '%!lkey.string%' outlet is nil")\n%
    %    }\n%
 end
 %  //--- Install compute functions for transients
