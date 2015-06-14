@@ -135,7 +135,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   //    dataOfType                                                                                                     *
   //···················································································································*
 
-  override func dataOfType (typeName: String?, error outError: NSErrorPointer) -> NSData? {
+  override func dataOfType (typeName: String?) throws -> NSData {
   //---
     hookOfWillSave ()
   //--- Add to metadata dictionary the witdth and the height of main window
@@ -157,22 +157,21 @@ class PMManagedDocument : NSDocument, PMUserClassName {
       }*/
     }
   //---
-    var fileData = NSMutableData ()
+    let fileData = NSMutableData ()
     var trace : String = ""
   //--- Append signature
     fileData.writeSignature (&trace)
   //--- Write status
     fileData.writeByte (metadataStatusForSaving (), trace:&trace)
   //--- Append metadata dictionary
-    let metaData = NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,
+    let metaData = try NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,
       format:NSPropertyListFormat.BinaryFormat_v1_0,
-      options:0,
-      error:nil
-    )!
+      options:0
+    )
     fileData.writeByte (1, trace:&trace)
     fileData.writeAutosizedData (metaData, trace:&trace)
   //--- Append document data
-    let documentData = dataForSavingFromRootObject ()
+    let documentData = try dataForSavingFromRootObject ()
     fileData.writeByte (6, trace:&trace)
     fileData.writeAutosizedData (documentData, trace:&trace)
 /*    switch ([self compressDataOnSaving]) {
@@ -200,7 +199,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 
   //···················································································································*
 
-  func dataForSavingFromRootObject () -> NSData {
+  func dataForSavingFromRootObject () throws -> NSData {
     let objectsToSaveArray : Array<PMManagedObject> = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)
   //--- Set savingIndex for each object
     var idx = 0 ;
@@ -211,32 +210,26 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   //---
     var saveDataArray : [NSDictionary] = []
     for object in objectsToSaveArray {
-      var d : NSMutableDictionary = [
+      let d : NSMutableDictionary = [
         "--entity" : object.className
       ]
       object.saveIntoDictionary (d)
       saveDataArray.append (d)
     }
-    return NSPropertyListSerialization.dataWithPropertyList (saveDataArray,
+    return try NSPropertyListSerialization.dataWithPropertyList (saveDataArray,
       format:NSPropertyListFormat.BinaryFormat_v1_0,
-      options:0,
-      error:nil
-    )!
+      options:0
+    )
   }
 
   //···················································································································*
   //    readFromData                                                                                                   *
   //···················································································································*
 
-  override func readFromData (data: NSData?,
-                              ofType typeName: String?,
-                              error outError: NSErrorPointer) -> Bool {
+  override func readFromData (data: NSData?, ofType typeName: String?) throws {
     undoManager?.disableUndoRegistration ()
   //---- Define input data scanner
-    var dataScanner = PMDataScanner (
-      data:data!,
-      displayProgressWindowTitle:(data!.length > 30000) ? lastComponentOfFileName.stringByDeletingPathExtension : nil
-    )
+    let dataScanner = PMDataScanner (data:data!)
   //--- Check Signature
     for c in kFormatSignature.utf8 {
       dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)
@@ -246,12 +239,10 @@ class PMManagedDocument : NSDocument, PMUserClassName {
   //--- if ok, check byte is 1
     dataScanner.acceptRequiredByte (1, sourceFile:__FUNCTION__)
   //--- Read metadata dictionary
-    var error : NSError?
     let dictionaryData = dataScanner.parseAutosizedData ()
-    let metadataDictionary = NSPropertyListSerialization.propertyListWithData (dictionaryData,
-      options:0, // NSPropertyListReadOptions.Immutable,
-      format:nil,
-      error:nil
+    let metadataDictionary = try NSPropertyListSerialization.propertyListWithData (dictionaryData,
+      options:NSPropertyListReadOptions.Immutable,
+      format:nil
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
      //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
@@ -260,7 +251,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     switch dataFormat {
     case 6 :
       let data = dataScanner.parseAutosizedData ()
-      readManagedObjectsFromData (data)
+      try readManagedObjectsFromData (data)
     default:
       NSLog ("unknowm data format: %u", dataFormat)
     }
@@ -327,7 +318,7 @@ class PMManagedDocument : NSDocument, PMUserClassName {
         "Cannot Open Document" :  NSLocalizedDescriptionKey,
         "The file has an invalid format" :  NSLocalizedRecoverySuggestionErrorKey
       ]
-      error = NSError (
+      throw NSError (
         domain:NSBundle.mainBundle ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
@@ -341,31 +332,26 @@ class PMManagedDocument : NSDocument, PMUserClassName {
         nil
       ] ;
       macroReleaseSetToNil (error) ;
-      error = [[NSError alloc]
+      throw [[NSError alloc]
         initWithDomain:[NSBundle mainBundle].bundleIdentifier
         code:1
         userInfo:dictionary
       ] ;
     }*/
   //---
-    if (error == nil) && (mRootObject == nil) {
+    if mRootObject == nil {
       let dictionary = [
         "Cannot Open Document" :  NSLocalizedDescriptionKey,
         "Root object cannot be read" :  NSLocalizedRecoverySuggestionErrorKey
       ]
-      error = NSError (
+      throw NSError (
         domain:NSBundle.mainBundle ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
     }
   //---
-    if (nil != outError) {
-      outError.memory = error
-    }
     undoManager?.enableUndoRegistration ()
-  //---
-    return nil == error
   }
 
   //···················································································································*
@@ -374,43 +360,68 @@ class PMManagedDocument : NSDocument, PMUserClassName {
 
   //···················································································································*
 
-  func readManagedObjectsFromData (inData : NSData) {
+  func readManagedObjectsFromData (inData : NSData) throws {
     let startDate = NSDate ()
-    let v : AnyObject = NSPropertyListSerialization.propertyListWithData (inData,
-      options:0, // NSPropertyListReadOptions.Immutable,
-      format:nil,
-      error:nil
-    )!
+    let v : AnyObject = try NSPropertyListSerialization.propertyListWithData (inData,
+      options:NSPropertyListReadOptions.Immutable,
+      format:nil
+    )
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
     if logReadFileDuration {
       let timeTaken = NSDate().timeIntervalSinceDate (startDate)
       NSLog ("Dictionary array: +%g s", timeTaken)
     }
-    var objectArray : Array<PMManagedObject> = Array  ()
-    for d in dictionaryArray {
-      let className = d.objectForKey ("--entity") as! String
-      let object = mManagedObjectContext.newInstanceOfEntityNamed (className)
-      objectArray.append (object!)
+    let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)
+    var progress : PMDocumentReadProgress?
+    if dictionaryArray.count > 10000 {
+      progress = PMDocumentReadProgress (title:lastComponentOfFileName.stringByDeletingPathExtension,
+                                         dataLength:dictionaryArray.count * 2,
+                                         semaphore:semaphore)
     }
-    if logReadFileDuration {
-      let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-      NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
+    let queue = dispatch_queue_create ("readObjectFromData", DISPATCH_QUEUE_CONCURRENT)
+    dispatch_after (DISPATCH_TIME_NOW, queue) {
+      var objectArray : Array<PMManagedObject> = Array  ()
+      var progressIdx = 0 ;
+      for d in dictionaryArray {
+        let className = d.objectForKey ("--entity") as! String
+        let object = self.mManagedObjectContext.newInstanceOfEntityNamed (className)
+        objectArray.append (object!)
+        progressIdx += 1
+        progress?.setProgress (progressIdx)
+      }
+      if self.logReadFileDuration {
+        let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+        NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
+      }
+      var idx = 0
+      for d in dictionaryArray {
+        let object : PMManagedObject = objectArray [idx]
+        object.setUpWithDictionary (d, managedObjectArray:objectArray)
+        idx += 1
+        progressIdx += 1
+        progress?.setProgress (progressIdx)
+      }
+      if self.logReadFileDuration {
+        let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+        NSLog ("Read: +%g s", timeTaken)
+      }
+    //--- Set root object
+      if let rootObject = self.mRootObject {
+        self.mManagedObjectContext.removeManagedObject (rootObject)
+      }
+      self.mRootObject = objectArray [0]
+      dispatch_semaphore_signal (semaphore)
     }
-    var idx = 0
-    for d in dictionaryArray {
-      var object : PMManagedObject = objectArray [idx]
-      object.setUpWithDictionary (d, managedObjectArray:objectArray)
-      idx += 1
+    var wait = true
+    while wait {
+      dispatch_semaphore_wait (semaphore, DISPATCH_TIME_FOREVER)
+      if let uwProgess = progress {
+        wait = uwProgess.displayAndTestWaiting ()
+      }else{
+        wait = false
+      }
     }
-    if logReadFileDuration {
-      let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-      NSLog ("Read: +%g s", timeTaken)
-    }
-  //--- Set root object
-    if let rootObject = mRootObject {
-      mManagedObjectContext.removeManagedObject (rootObject)
-    }
-    mRootObject = objectArray [0]
+    progress?.orderOut ()
   }
 
   //···················································································································*
@@ -421,8 +432,8 @@ class PMManagedDocument : NSDocument, PMUserClassName {
     super.showWindows ()
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
       if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
-        var windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
-        var windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
+        let windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowWidth") as? NSNumber
+        let windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("PMWindowHeight") as? NSNumber
         if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
           let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))
           var windowFrame : NSRect = unwrappedWindowForSheet.frame
@@ -515,7 +526,7 @@ extension NSMutableData {
     trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace += "U "
     var value = inValue
-    do{
+    repeat{
       var byte : UInt8 = UInt8 (value & 0x7F)
       value >>= 7
       if (value != 0) {
@@ -526,6 +537,125 @@ extension NSMutableData {
     }while value != 0
     trace += "\n"
   }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//     PMDocumentReadProgress                                                                                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMDocumentReadProgress {
+  private var mProgressWindow : NSWindow?
+  private var mProgressIndicator : NSProgressIndicator?
+  private var mTotal : Double
+  private var mCurrentProgress = 0.0
+  private var mSemaphore : dispatch_semaphore_t
+  private var mMutex : dispatch_semaphore_t
+  private var mDisplayCounter = 0
+  
+  //···················································································································*
+  //  init                                                                                                             *
+  //···················································································································*
+
+  init (title : String, dataLength : Int, semaphore : dispatch_semaphore_t) {
+    mMutex = dispatch_semaphore_create (1)
+    mTotal = Double (dataLength)
+    mSemaphore = semaphore
+    if let visibleFrame = NSScreen.mainScreen ()?.visibleFrame {
+      let windowWidth = 400.0
+      let windowHeight = 65.0
+      let windowRect = NSMakeRect (
+        NSMidX (visibleFrame) - CGFloat (windowWidth / 2.0),
+        NSMidY (visibleFrame) - CGFloat (windowHeight / 2.0),
+        CGFloat (windowWidth),
+        CGFloat (windowHeight)
+      )
+      let progressWindow = NSWindow (
+        contentRect:windowRect,
+        styleMask:NSTitledWindowMask,
+        backing:NSBackingStoreType.Buffered,
+        `defer`:false
+      )
+      mProgressWindow = progressWindow
+      progressWindow.excludedFromWindowsMenu = true
+      progressWindow.title = "Progress"
+      let contientViewRect : NSRect = progressWindow.contentView.frame
+    //--- Add comment text
+      let ts_r = NSRect (
+        x:25.0,
+        y:30.0,
+        width:NSMaxX (contientViewRect) - 40.0,
+        height:20.0
+      )
+      let ts = NSTextField (frame:ts_r)
+      ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
+      ts.stringValue = String (format:"Opening %@…", title)
+      ts.bezeled = false
+      ts.bordered = false
+      ts.editable = false
+      ts.drawsBackground = false
+      progressWindow.contentView.addSubview (ts)
+    //--- Add progress indicator
+      let ps_r = NSRect (
+        x:20.0,
+        y:10.0,
+        width:NSMaxX (contientViewRect) - 40.0,
+        height: 20.0
+      )
+      mProgressIndicator = NSProgressIndicator (frame:ps_r)
+      mProgressIndicator!.indeterminate = true
+      progressWindow.contentView.addSubview (mProgressIndicator!)
+    //---
+      mProgressIndicator!.minValue = 0.0
+      mProgressIndicator!.maxValue = 1.0
+      mProgressIndicator!.doubleValue = 0.0
+      mProgressIndicator!.indeterminate = false
+      mProgressIndicator!.display ()
+    //---
+      progressWindow.makeKeyAndOrderFront (nil)
+    }
+  }
+
+  //···················································································································*
+  //  displayAndTestWaiting                                                                                            *
+  //···················································································································*
+
+  func displayAndTestWaiting () -> Bool {
+    mProgressIndicator?.doubleValue = mCurrentProgress
+    mProgressIndicator?.display ()
+    dispatch_semaphore_wait (mMutex, DISPATCH_TIME_FOREVER)
+      mDisplayCounter -= 1
+      let stop = mDisplayCounter < 0
+    dispatch_semaphore_signal (mMutex)
+    return !stop
+  }
+
+  //···················································································································*
+  //  setProgress                                                                                                      *
+  //···················································································································*
+
+  func setProgress (inValue : Int) {
+    let currentProgress = Double (inValue) / mTotal
+    if (currentProgress - mCurrentProgress) > 0.02 {
+      dispatch_semaphore_wait (mMutex, DISPATCH_TIME_FOREVER)
+        mCurrentProgress = currentProgress
+        mDisplayCounter += 1
+      dispatch_semaphore_signal (mMutex)
+      dispatch_semaphore_signal (mSemaphore)
+    }
+  }
+  
+  //···················································································································*
+  //  orderOut                                                                                                         *
+  //···················································································································*
+
+  func orderOut () {
+    mProgressWindow?.orderOut (self)
+  }
+
+  //···················································································································*
 
 }
 

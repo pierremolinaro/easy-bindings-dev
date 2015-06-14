@@ -241,7 +241,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override init (managedObjectContext : PMManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
-    myStringMaj.computeFunction = {  [weak self] in
+    myStringMaj.computeFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myString.prop {
         case .noSelection :
@@ -255,7 +255,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         return .noSelection
       }
     }
-    myStringMin.computeFunction = {  [weak self] in
+    myStringMin.computeFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myString.prop {
         case .noSelection :
@@ -269,7 +269,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         return .noSelection
       }
     }
-    myStringConcat.computeFunction = {  [weak self] in
+    myStringConcat.computeFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myStringMaj.prop {
         case .noSelection :

@@ -11,104 +11,19 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 
-class PMDataScanner : PMObject, PMUserClassName {
+class PMDataScanner : PMObject {
   var mData : NSData
   var mReadIndex : Int = 0
   var mReadOk : Bool = true
   var mExpectedBytes : Array<UInt8> = []
-  var mProgressWindow : NSWindow? = nil
-  var mProgressIndicator : NSProgressIndicator? = nil
 
   //---------------------------------------------------------------------------*
   //  init                                                                     *
   //---------------------------------------------------------------------------*
 
-  init (data: NSData,
-        displayProgressWindowTitle: String?) {
+  init (data: NSData) {
     mData = data
     super.init ()
-    if (nil != displayProgressWindowTitle) {
-      openProgressWindowWithTitle (displayProgressWindowTitle!)
-    }
-  }
-
-  //---------------------------------------------------------------------------*
-  //  deinit                                                                   *
-  //---------------------------------------------------------------------------*
-
-  deinit {
-    mProgressWindow?.orderOut (self)
-  }
-
-  //---------------------------------------------------------------------------*
-  //  openProgressWindowWithTitle                                              *
-  //---------------------------------------------------------------------------*
-
-  func openProgressWindowWithTitle (inTitle : String) {
-    if let visibleFrame = NSScreen.mainScreen ()?.visibleFrame {
-      let windowWidth = 400.0
-      let windowHeight = 65.0
-      let windowRect = NSMakeRect (
-        NSMidX (visibleFrame) - CGFloat (windowWidth / 2.0),
-        NSMidY (visibleFrame) - CGFloat (windowHeight / 2.0),
-        CGFloat (windowWidth),
-        CGFloat (windowHeight)
-      )
-      let progressWindow = NSWindow (
-        contentRect:windowRect,
-        styleMask:NSTitledWindowMask,
-        backing:NSBackingStoreType.Buffered,
-        defer:false
-      )
-      mProgressWindow = progressWindow
-      progressWindow.excludedFromWindowsMenu = true
-      progressWindow.title = "Progress"
-      let contientViewRect : NSRect = progressWindow.contentView.frame
-    //--- Add comment text
-      let ts_r = NSRect (
-        x:25.0,
-        y:30.0,
-        width:NSMaxX (contientViewRect) - 40.0,
-        height:20.0
-      )
-      var ts = NSTextField (frame:ts_r)
-      ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
-      ts.stringValue = String (format:"Opening %@…", inTitle)
-      ts.bezeled = false
-      ts.bordered = false
-      ts.editable = false
-      ts.drawsBackground = false
-      progressWindow.contentView.addSubview (ts)
-    //--- Add progress indicator
-      let ps_r = NSRect (
-        x:20.0,
-        y:10.0,
-        width:NSMaxX (contientViewRect) - 40.0,
-        height: 20.0
-      )
-      mProgressIndicator = NSProgressIndicator (frame:ps_r)
-      mProgressIndicator!.indeterminate = true
-      progressWindow.contentView.addSubview (mProgressIndicator!)
-    //---
-      mProgressIndicator!.minValue = 0.0
-      mProgressIndicator!.maxValue = Double (mData.length)
-      mProgressIndicator!.doubleValue = Double (mReadIndex)
-      mProgressIndicator!.indeterminate = false
-      mProgressIndicator!.display ()
-    //---
-      progressWindow.makeKeyAndOrderFront (nil)
-    }
-  }
-
-  //---------------------------------------------------------------------------*
-  //  updateProgressIndicator                                                  *
-  //---------------------------------------------------------------------------*
-
-  func updateProgressIndicator () {
-    if let progressIndicator = mProgressIndicator {
-      progressIndicator.doubleValue = Double (mReadIndex)
-      progressIndicator.display ()
-    }
   }
 
   //---------------------------------------------------------------------------*
@@ -118,7 +33,6 @@ class PMDataScanner : PMObject, PMUserClassName {
   func ignoreBytes (inLengthToIgnore : Int) {
     if mReadOk {
       mReadIndex += inLengthToIgnore ;
-      updateProgressIndicator ()
     }
   }
 
@@ -135,7 +49,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
      //   let ptr = offsetPointer (mData.bytes, CInt(mReadIndex))
      //   var array : COpaquePointer = mData.bytes ()
      //   var byteArray : CConstPointer<UInt8> = CConstPointer<UInt8> (mData.bytes ())
@@ -148,7 +62,6 @@ class PMDataScanner : PMObject, PMUserClassName {
         }
       }
     }
-    updateProgressIndicator ()
     return result ;
   }
 
@@ -166,7 +79,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         result = (byte >= lowerBound) && (byte <= upperBound) ;
         if (result) {
           value = byte
@@ -179,7 +92,6 @@ class PMDataScanner : PMObject, PMUserClassName {
         }
       }
     }
-    updateProgressIndicator ()
     return result ;
   }
 
@@ -195,7 +107,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         if (byte == inByte) {
           mReadIndex += 1
           mExpectedBytes = []
@@ -209,7 +121,6 @@ class PMDataScanner : PMObject, PMUserClassName {
         }
       }
     }
-    updateProgressIndicator ()
   }
 
   //---------------------------------------------------------------------------*
@@ -228,7 +139,6 @@ class PMDataScanner : PMObject, PMUserClassName {
         mReadIndex += 1
       }
     }
-    updateProgressIndicator ()
     return result
   }
 
@@ -246,7 +156,7 @@ class PMDataScanner : PMObject, PMUserClassName {
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        var byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         let w : UInt = UInt (byte) & 0x7F
         result |= (w << shift)
         shift += 7
@@ -254,7 +164,6 @@ class PMDataScanner : PMObject, PMUserClassName {
         mReadIndex += 1
       }
     }
-    updateProgressIndicator ()
     return result ;
   }
 
@@ -274,7 +183,6 @@ class PMDataScanner : PMObject, PMUserClassName {
       mReadIndex += dataLength
     }
   }
-  updateProgressIndicator ()
   return result ;
 }
 

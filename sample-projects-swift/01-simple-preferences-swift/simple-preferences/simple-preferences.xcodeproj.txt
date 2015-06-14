@@ -364,6 +364,10 @@
   /*------------------------------------------------------------------ PBXProject */
   95D565EF66E7DFF9F98764DA /* Project object */ = {
    isa = PBXProject;
+   attributes = {
+     LastSwiftUpdateCheck = 0700;
+     LastUpgradeCheck = 0700;
+   };
    buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject */;
    compatibilityVersion = "Xcode 2.4";
    hasScannedForEncodings = 1;

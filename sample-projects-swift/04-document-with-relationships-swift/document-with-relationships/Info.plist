@@ -9,12 +9,12 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>observing-prefs-in-documents</string>
+				<string>document-with-relationships</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>document-with-relationships_icns</string>
 			<key>CFBundleTypeName</key>
-			<string>observing-prefs-in-documents</string>
+			<string>Document With Relationships</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>TEXT</string>
@@ -24,7 +24,7 @@
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>MyDocument</string>
+			<string>PMDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

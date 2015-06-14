@@ -55,7 +55,7 @@ var g_Preferences : Preferences? = nil
   override func awakeFromNib () {
   //--- Check prefBoolCheckBox' outlet not nil
     if nil == prefBoolCheckBox {
-      presentErrorWindow (__FILE__, __LINE__, "the 'prefBoolCheckBox' outlet is nil")
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'prefBoolCheckBox' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients
