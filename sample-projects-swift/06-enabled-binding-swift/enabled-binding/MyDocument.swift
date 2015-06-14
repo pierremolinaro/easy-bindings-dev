@@ -3,7 +3,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(MyDocument) class MyDocument : PMManagedDocument, PMUserClassName {
+@objc(MyDocument) class MyDocument : PMManagedDocument {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
@@ -61,14 +61,22 @@ import Cocoa
   override func windowControllerDidLoadNib (aController: NSWindowController) {
   //--------------------------- Outlet checking
     if nil == docBoolCheckBox {
-      presentErrorWindow (__FILE__, __LINE__, "the 'docBoolCheckBox' outlet is nil") ;
+      presentErrorWindow (__FILE__,
+                              line:__LINE__,
+                              errorMessage:"the 'docBoolCheckBox' outlet is nil") ;
     }else if !docBoolCheckBox!.isKindOfClass (PMSwitch) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'docBoolCheckBox' outlet is not an instance of 'PMSwitch'") ;
+      presentErrorWindow (__FILE__,
+                              line:__LINE__,
+                              errorMessage:"the 'docBoolCheckBox' outlet is not an instance of 'PMSwitch'") ;
     }
     if nil == myButton {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myButton' outlet is nil") ;
+      presentErrorWindow (__FILE__,
+                              line:__LINE__,
+                              errorMessage:"the 'myButton' outlet is nil") ;
     }else if !myButton!.isKindOfClass (PMButton) {
-      presentErrorWindow (__FILE__, __LINE__, "the 'myButton' outlet is not an instance of 'PMButton'") ;
+      presentErrorWindow (__FILE__,
+                              line:__LINE__,
+                              errorMessage:"the 'myButton' outlet is not an instance of 'PMButton'") ;
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller

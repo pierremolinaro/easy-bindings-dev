@@ -1,272 +1,504 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 42;
-	objects = {
+  archiveVersion = 1;
+  classes = {
+  };
+  objectVersion = 42;
+  objects = {
 
-/* Begin PBXBuildFile section */
-		02A44259755D38E6D163E820 /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2D7FBDEA1AFC51C7C6AD26 /* PMAllocationDebug.xib */; settings = {ATTRIBUTES = (); }; };
-		1EAE257E44AA9D5BADE97BAF /* PMDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062936A96D3C8BD1F8F2FF3 /* PMDatePicker.swift */; settings = {ATTRIBUTES = (); }; };
-		210194C475687BE6106A3B84 /* PMIntFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99908345F7439F8FFABDFFC4 /* PMIntFieldObserver.swift */; settings = {ATTRIBUTES = (); }; };
-		22BCC25A6F606EB525FFDC56 /* PMColorWellObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124A10E0DB5E4B97FC2AF39 /* PMColorWellObserver.swift */; settings = {ATTRIBUTES = (); }; };
-		3463D06DE0CA9A15B6153677 /* Preferences+validation+mIntegerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* Preferences+validation+mIntegerValue.swift */; settings = {ATTRIBUTES = (); }; };
-		4005F8DA13F42943881C655F /* PMTextFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748049E45D87B8C7D8B9AACD /* PMTextFieldObserver.swift */; settings = {ATTRIBUTES = (); }; };
-		5568161A8CDF4AD2299F6D23 /* PMIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B086079795C442636B55FB /* PMIntField.swift */; settings = {ATTRIBUTES = (); }; };
-		5A880FAF6FB5E6087EB1B2DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCE2345D7772B0674A318D5 /* MainMenu.xib */; settings = {ATTRIBUTES = (); }; };
-		6FE97759AA27A0C99BFF6710 /* PMColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAA6E02C990B0A82652DCA /* PMColorWell.swift */; settings = {ATTRIBUTES = (); }; };
-		8F07F89DDBEBC2AC9128303F /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EFB9E19094440C317E21B /* application.swift */; settings = {ATTRIBUTES = (); }; };
-		93E200C36F7CD9DFD0E5DEAA /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964F8DDDEB95FC584CD965D /* standard-properties.swift */; settings = {ATTRIBUTES = (); }; };
-		9DD601BBE69F351039152189 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* Preferences.swift */; settings = {ATTRIBUTES = (); }; };
-		EA6328A42E0EB13D585E4C22 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7C298AB50293ADFECB7B18 /* main.swift */; settings = {ATTRIBUTES = (); }; };
-		F495B6AB9DCF8D3B5C6E0B01 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */; settings = {ATTRIBUTES = (); }; };
-		F766FA44E1ED0FF613F563BD /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */; settings = {ATTRIBUTES = (); }; };
-		F8ED5D21A44B0E5886680CB9 /* PMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8850243BE8079A5C74D079 /* PMTextField.swift */; settings = {ATTRIBUTES = (); }; };
-		FB98AB9159F51FD0297E236D /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA167A5A36DEDD4BEA2543 /* PMAllocationDebug.swift */; settings = {ATTRIBUTES = (); }; };
-/* End PBXBuildFile section */
+  /*------------------------------------------------------------------ PBXBuildFile */
+  5A880FAF6FB5E6087EB1B2DC /* MainMenu.xib */ = {
+    isa = PBXBuildFile;
+    fileRef = BBCE2345D7772B0674A318D5 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXFileReference section */
-		0B7C298AB50293ADFECB7B18 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		2E2D7FBDEA1AFC51C7C6AD26 /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xib; path = PMAllocationDebug.xib; sourceTree = "<group>"; };
-		395FEDAD7BBBED0ECA3FE2E0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		748049E45D87B8C7D8B9AACD /* PMTextFieldObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextFieldObserver.swift; sourceTree = "<group>"; };
-		7964F8DDDEB95FC584CD965D /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
-		7A37563370DED05F5A3BF3EC /* Preferences+validation+mIntegerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+validation+mIntegerValue.swift"; sourceTree = "<group>"; };
-		8E8850243BE8079A5C74D079 /* PMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMTextField.swift; sourceTree = "<group>"; };
-		99908345F7439F8FFABDFFC4 /* PMIntFieldObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMIntFieldObserver.swift; sourceTree = "<group>"; };
-		AA0EFB9E19094440C317E21B /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
-		BBCE2345D7772B0674A318D5 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		C124A10E0DB5E4B97FC2AF39 /* PMColorWellObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWellObserver.swift; sourceTree = "<group>"; };
-		C9B086079795C442636B55FB /* PMIntField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMIntField.swift; sourceTree = "<group>"; };
-		CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
-		CEEA167A5A36DEDD4BEA2543 /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMAllocationDebug.swift; sourceTree = "<group>"; };
-		CFE4C8371B29C7D500373E87 /* simple-preferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-preferences.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9CAA6E02C990B0A82652DCA /* PMColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMColorWell.swift; sourceTree = "<group>"; };
-		E0327AD868D138F2B4FDD6F0 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		F062936A96D3C8BD1F8F2FF3 /* PMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDatePicker.swift; sourceTree = "<group>"; };
-		FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+  FB98AB9159F51FD0297E236D /* PMAllocationDebug.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = CEEA167A5A36DEDD4BEA2543 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXFrameworksBuildPhase section */
-		E875A2E075A1A4A6E1B9770F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
+  02A44259755D38E6D163E820 /* PMAllocationDebug.xib */ = {
+    isa = PBXBuildFile;
+    fileRef = 2E2D7FBDEA1AFC51C7C6AD26 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXGroup section */
-		4B5CE2FE28308FD9F2A7BAF3 = {
-			isa = PBXGroup;
-			children = (
-				A2F3E71D9181A67B7542122C /* Sources */,
-				F4C10BF22AA353E27879133C /* Resources */,
-				CFE4C8381B29C7D500373E87 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A2F3E71D9181A67B7542122C /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				BBCE2345D7772B0674A318D5 /* MainMenu.xib */,
-				CEEA167A5A36DEDD4BEA2543 /* PMAllocationDebug.swift */,
-				2E2D7FBDEA1AFC51C7C6AD26 /* PMAllocationDebug.xib */,
-				D9CAA6E02C990B0A82652DCA /* PMColorWell.swift */,
-				C124A10E0DB5E4B97FC2AF39 /* PMColorWellObserver.swift */,
-				F062936A96D3C8BD1F8F2FF3 /* PMDatePicker.swift */,
-				C9B086079795C442636B55FB /* PMIntField.swift */,
-				99908345F7439F8FFABDFFC4 /* PMIntFieldObserver.swift */,
-				8E8850243BE8079A5C74D079 /* PMTextField.swift */,
-				748049E45D87B8C7D8B9AACD /* PMTextFieldObserver.swift */,
-				7A37563370DED05F5A3BF3EC /* Preferences+validation+mIntegerValue.swift */,
-				E0327AD868D138F2B4FDD6F0 /* Preferences.swift */,
-				AA0EFB9E19094440C317E21B /* application.swift */,
-				FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */,
-				CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */,
-				0B7C298AB50293ADFECB7B18 /* main.swift */,
-				7964F8DDDEB95FC584CD965D /* standard-properties.swift */,
-			);
-			name = Sources;
-			path = "simple-preferences";
-			sourceTree = "<group>";
-		};
-		CFE4C8381B29C7D500373E87 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CFE4C8371B29C7D500373E87 /* simple-preferences.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F4C10BF22AA353E27879133C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				395FEDAD7BBBED0ECA3FE2E0 /* Info.plist */,
-			);
-			name = Resources;
-			path = "simple-preferences";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
+  6FE97759AA27A0C99BFF6710 /* PMColorWell.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = D9CAA6E02C990B0A82652DCA ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXNativeTarget section */
-		FC8586DFA4D1BC0E1742C08B /* simple-preferences */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C833DFF4B38FC8D2872F1EC6 /* Build configuration list for PBXNativeTarget "simple-preferences" */;
-			buildPhases = (
-				CE56D3D6FA748AB6D9AF3FD7 /* Resources */,
-				E875A2E075A1A4A6E1B9770F /* Frameworks */,
-				3F027327D8461063F4AC58A6 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "simple-preferences";
-			productInstallPath = "$(HOME)/bin";
-			productName = "simple-preferences";
-			productReference = CFE4C8371B29C7D500373E87 /* simple-preferences.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
+  22BCC25A6F606EB525FFDC56 /* PMColorWellObserver.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = C124A10E0DB5E4B97FC2AF39 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXProject section */
-		95D565EF66E7DFF9F98764DA /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0700;
-			};
-			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "simple-preferences" */;
-			compatibilityVersion = "Xcode 2.4";
-			developmentRegion = English;
-			hasScannedForEncodings = 1;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 4B5CE2FE28308FD9F2A7BAF3;
-			productRefGroup = CFE4C8381B29C7D500373E87 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				FC8586DFA4D1BC0E1742C08B /* simple-preferences */,
-			);
-		};
-/* End PBXProject section */
+  1EAE257E44AA9D5BADE97BAF /* PMDatePicker.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = F062936A96D3C8BD1F8F2FF3 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXResourcesBuildPhase section */
-		CE56D3D6FA748AB6D9AF3FD7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5A880FAF6FB5E6087EB1B2DC /* MainMenu.xib in Resources */,
-				02A44259755D38E6D163E820 /* PMAllocationDebug.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
+  5568161A8CDF4AD2299F6D23 /* PMIntField.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = C9B086079795C442636B55FB ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin PBXSourcesBuildPhase section */
-		3F027327D8461063F4AC58A6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB98AB9159F51FD0297E236D /* PMAllocationDebug.swift in Sources */,
-				6FE97759AA27A0C99BFF6710 /* PMColorWell.swift in Sources */,
-				22BCC25A6F606EB525FFDC56 /* PMColorWellObserver.swift in Sources */,
-				1EAE257E44AA9D5BADE97BAF /* PMDatePicker.swift in Sources */,
-				5568161A8CDF4AD2299F6D23 /* PMIntField.swift in Sources */,
-				210194C475687BE6106A3B84 /* PMIntFieldObserver.swift in Sources */,
-				F8ED5D21A44B0E5886680CB9 /* PMTextField.swift in Sources */,
-				4005F8DA13F42943881C655F /* PMTextFieldObserver.swift in Sources */,
-				3463D06DE0CA9A15B6153677 /* Preferences+validation+mIntegerValue.swift in Sources */,
-				9DD601BBE69F351039152189 /* Preferences.swift in Sources */,
-				8F07F89DDBEBC2AC9128303F /* application.swift in Sources */,
-				F495B6AB9DCF8D3B5C6E0B01 /* easy-bindings-utilities.swift in Sources */,
-				F766FA44E1ED0FF613F563BD /* generic-bindings.swift in Sources */,
-				EA6328A42E0EB13D585E4C22 /* main.swift in Sources */,
-				93E200C36F7CD9DFD0E5DEAA /* standard-properties.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
+  210194C475687BE6106A3B84 /* PMIntFieldObserver.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = 99908345F7439F8FFABDFFC4 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin XCBuildConfiguration section */
-		7260AE62E3B1396831A8398F /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				INFOPLIST_FILE = "simple-preferences/Info.plist";
-				PRODUCT_NAME = "simple-preferences";
-			};
-			name = Default;
-		};
-		A0B923820DCC509A6F75849B /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_THREADSAFE_STATICS = NO;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_PEDANTIC = NO;
-				GCC_WARN_SHADOW = NO;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				SDKROOT = macosx10.11;
-			};
-			name = Default;
-		};
-/* End XCBuildConfiguration section */
+  F8ED5D21A44B0E5886680CB9 /* PMTextField.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = 8E8850243BE8079A5C74D079 ;
+    settings = {ATTRIBUTES = (); };
+  };
 
-/* Begin XCConfigurationList section */
-		9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "simple-preferences" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A0B923820DCC509A6F75849B /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		C833DFF4B38FC8D2872F1EC6 /* Build configuration list for PBXNativeTarget "simple-preferences" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7260AE62E3B1396831A8398F /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 95D565EF66E7DFF9F98764DA /* Project object */;
+  4005F8DA13F42943881C655F /* PMTextFieldObserver.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = 748049E45D87B8C7D8B9AACD ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  3463D06DE0CA9A15B6153677 /* Preferences+validation+mIntegerValue.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = 7A37563370DED05F5A3BF3EC ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  9DD601BBE69F351039152189 /* Preferences.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = E0327AD868D138F2B4FDD6F0 ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  8F07F89DDBEBC2AC9128303F /* application.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = AA0EFB9E19094440C317E21B ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  F495B6AB9DCF8D3B5C6E0B01 /* easy-bindings-utilities.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = FA475530D9583C34FD356EF5 ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  F766FA44E1ED0FF613F563BD /* generic-bindings.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = CDCD5072BB1864CDEE4D3D6E ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  EA6328A42E0EB13D585E4C22 /* main.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = 0B7C298AB50293ADFECB7B18 ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  93E200C36F7CD9DFD0E5DEAA /* standard-properties.swift */ = {
+    isa = PBXBuildFile;
+    fileRef = 7964F8DDDEB95FC584CD965D ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  B79421734881B53E1E1B18B6 /* PMAllocationDebug.xib */ = {
+    isa = PBXBuildFile;
+    fileRef = MainMenu.xib ;
+    settings = {ATTRIBUTES = (); };
+  };
+
+  /*------------------------------------------------------------------ PBXFileReference */
+  CEEA167A5A36DEDD4BEA2543 /* PMAllocationDebug.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMAllocationDebug.swift";
+    path = "PMAllocationDebug.swift";
+    sourceTree = "<group>";
+  };
+
+  D9CAA6E02C990B0A82652DCA /* PMColorWell.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMColorWell.swift";
+    path = "PMColorWell.swift";
+    sourceTree = "<group>";
+  };
+
+  C124A10E0DB5E4B97FC2AF39 /* PMColorWellObserver.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMColorWellObserver.swift";
+    path = "PMColorWellObserver.swift";
+    sourceTree = "<group>";
+  };
+
+  F062936A96D3C8BD1F8F2FF3 /* PMDatePicker.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMDatePicker.swift";
+    path = "PMDatePicker.swift";
+    sourceTree = "<group>";
+  };
+
+  C9B086079795C442636B55FB /* PMIntField.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMIntField.swift";
+    path = "PMIntField.swift";
+    sourceTree = "<group>";
+  };
+
+  99908345F7439F8FFABDFFC4 /* PMIntFieldObserver.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMIntFieldObserver.swift";
+    path = "PMIntFieldObserver.swift";
+    sourceTree = "<group>";
+  };
+
+  8E8850243BE8079A5C74D079 /* PMTextField.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMTextField.swift";
+    path = "PMTextField.swift";
+    sourceTree = "<group>";
+  };
+
+  748049E45D87B8C7D8B9AACD /* PMTextFieldObserver.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "PMTextFieldObserver.swift";
+    path = "PMTextFieldObserver.swift";
+    sourceTree = "<group>";
+  };
+
+  7A37563370DED05F5A3BF3EC /* Preferences+validation+mIntegerValue.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "Preferences+validation+mIntegerValue.swift";
+    path = "Preferences+validation+mIntegerValue.swift";
+    sourceTree = "<group>";
+  };
+
+  E0327AD868D138F2B4FDD6F0 /* Preferences.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "Preferences.swift";
+    path = "Preferences.swift";
+    sourceTree = "<group>";
+  };
+
+  AA0EFB9E19094440C317E21B /* application.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "application.swift";
+    path = "application.swift";
+    sourceTree = "<group>";
+  };
+
+  FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "easy-bindings-utilities.swift";
+    path = "easy-bindings-utilities.swift";
+    sourceTree = "<group>";
+  };
+
+  CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "generic-bindings.swift";
+    path = "generic-bindings.swift";
+    sourceTree = "<group>";
+  };
+
+  0B7C298AB50293ADFECB7B18 /* main.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "main.swift";
+    path = "main.swift";
+    sourceTree = "<group>";
+  };
+
+  7964F8DDDEB95FC584CD965D /* standard-properties.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "standard-properties.swift";
+    path = "standard-properties.swift";
+    sourceTree = "<group>";
+  };
+
+  4CEA9109507CACD8E2F2AEFC = {
+    isa = PBXFileReference;
+    explicitFileType = "compiled.mach-o.executable";
+    includeInIndex = 0;
+    path = "simple-preferences";
+    sourceTree = BUILT_PRODUCTS_DIR;
+  };
+
+  395FEDAD7BBBED0ECA3FE2E0 = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = text.plist;
+    name = "Info.plist";
+    path = "Info.plist";
+    sourceTree = "<group>";
+  };
+
+  BBCE2345D7772B0674A318D5 = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = wrapper.xib;
+    name = "MainMenu.xib";
+    path = "MainMenu.xib";
+    sourceTree = "<group>";
+  };
+
+  2E2D7FBDEA1AFC51C7C6AD26 = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = wrapper.xib;
+    name = "PMAllocationDebug.xib";
+    path = "PMAllocationDebug.xib";
+    sourceTree = "<group>";
+  };
+
+  /*------------------------------------------------------------------ PBXFrameworksBuildPhase */
+
+  E875A2E075A1A4A6E1B9770F = {
+    isa = PBXFrameworksBuildPhase;
+    buildActionMask = 2147483647;
+    files = (
+    );
+    runOnlyForDeploymentPostprocessing = 0;
+  };
+
+  /*------------------------------------------------------------------ PBXGroup section */
+  A2F3E71D9181A67B7542122C /* Sources */ = {
+    isa = PBXGroup;
+    children = (
+      BBCE2345D7772B0674A318D5, 
+      CEEA167A5A36DEDD4BEA2543, 
+      2E2D7FBDEA1AFC51C7C6AD26, 
+      D9CAA6E02C990B0A82652DCA, 
+      C124A10E0DB5E4B97FC2AF39, 
+      F062936A96D3C8BD1F8F2FF3, 
+      C9B086079795C442636B55FB, 
+      99908345F7439F8FFABDFFC4, 
+      8E8850243BE8079A5C74D079, 
+      748049E45D87B8C7D8B9AACD, 
+      7A37563370DED05F5A3BF3EC, 
+      E0327AD868D138F2B4FDD6F0, 
+      AA0EFB9E19094440C317E21B, 
+      FA475530D9583C34FD356EF5, 
+      CDCD5072BB1864CDEE4D3D6E, 
+      0B7C298AB50293ADFECB7B18, 
+      7964F8DDDEB95FC584CD965D, 
+    );
+    name = "Sources";
+    path = "simple-preferences";
+    sourceTree = "<group>";
+  };
+  F4C10BF22AA353E27879133C /* Resources */ = {
+    isa = PBXGroup;
+    children = (
+      395FEDAD7BBBED0ECA3FE2E0, 
+    );
+    name = "Resources";
+    path = "simple-preferences";
+    sourceTree = "<group>";
+  };
+
+  4B5CE2FE28308FD9F2A7BAF3 /* Main Group */ = {
+    isa = PBXGroup;
+    children = (
+      A2F3E71D9181A67B7542122C,
+      F4C10BF22AA353E27879133C,
+    );
+    sourceTree = "<group>";
+  };
+
+  /*------------------------------------------------------------------ PBXNativeTarget */
+  FC8586DFA4D1BC0E1742C08B /* simple-preferences */ = {
+    isa = PBXNativeTarget;
+    buildConfigurationList = C833DFF4B38FC8D2872F1EC6 ;
+    buildPhases = (
+      CE56D3D6FA748AB6D9AF3FD7 , /* Resources */
+      E875A2E075A1A4A6E1B9770F , /* Frameworks */
+      3F027327D8461063F4AC58A6 , /* Sources */
+    );
+    buildRules = (
+    );
+    dependencies = (
+    );
+    name = "simple-preferences";
+    productInstallPath = "$(HOME)/bin";
+    productName = "simple-preferences";
+    productReference = 4CEA9109507CACD8E2F2AEFC ;
+    productType = "com.apple.product-type.application";
+  };
+
+  /*------------------------------------------------------------------ PBXProject */
+  95D565EF66E7DFF9F98764DA /* Project object */ = {
+   isa = PBXProject;
+   attributes = {
+     LastSwiftUpdateCheck = 0700;
+     LastUpgradeCheck = 0700;
+   };
+   buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject */;
+   compatibilityVersion = "Xcode 2.4";
+   hasScannedForEncodings = 1;
+   mainGroup = 4B5CE2FE28308FD9F2A7BAF3;
+   projectDirPath = "";
+   projectRoot = "";
+   targets = (
+    FC8586DFA4D1BC0E1742C08B, 
+   );
+  };
+
+  /*------------------------------------------------------------------ PBXResourcesBuildPhase */
+
+  CE56D3D6FA748AB6D9AF3FD7 /* Resources */ = {
+    isa = PBXResourcesBuildPhase;
+    buildActionMask = 2147483647;
+    files = (
+      5A880FAF6FB5E6087EB1B2DC,
+      02A44259755D38E6D163E820,
+      B79421734881B53E1E1B18B6,
+    );
+    runOnlyForDeploymentPostprocessing = 0;
+  };
+
+  /*------------------------------------------------------------------ PBXSourcesBuildPhase */
+    3F027327D8461063F4AC58A6 /* Sources */ = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        FB98AB9159F51FD0297E236D,
+        6FE97759AA27A0C99BFF6710,
+        22BCC25A6F606EB525FFDC56,
+        1EAE257E44AA9D5BADE97BAF,
+        5568161A8CDF4AD2299F6D23,
+        210194C475687BE6106A3B84,
+        F8ED5D21A44B0E5886680CB9,
+        4005F8DA13F42943881C655F,
+        3463D06DE0CA9A15B6153677,
+        9DD601BBE69F351039152189,
+        8F07F89DDBEBC2AC9128303F,
+        F495B6AB9DCF8D3B5C6E0B01,
+        F766FA44E1ED0FF613F563BD,
+        EA6328A42E0EB13D585E4C22,
+        93E200C36F7CD9DFD0E5DEAA,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+
+  /*------------------------------------------------------------------ PBXTargetDependency */
+ 
+  /*------------------------------------------------------------------ PBXVariantGroup */
+ 
+  /*------------------------------------------------------------------ XCBuildConfiguration */
+    A0B923820DCC509A6F75849B /* Default */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+      ALWAYS_SEARCH_USER_PATHS = NO ;
+      ARCHS = "$(ARCHS_STANDARD_64_BIT)" ;
+      CLANG_ENABLE_OBJC_ARC = YES ;
+      GCC_GENERATE_DEBUGGING_SYMBOLS = NO ;
+      GCC_PRECOMPILE_PREFIX_HEADER = YES ;
+      GCC_THREADSAFE_STATICS = NO ;
+      GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES ;
+      GCC_TREAT_WARNINGS_AS_ERRORS = YES ;
+      GCC_WARN_64_TO_32_BIT_CONVERSION = YES ;
+      GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO ;
+      GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES ;
+      CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES ;
+      GCC_WARN_ABOUT_MISSING_NEWLINE = YES ;
+      GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES ;
+      GCC_WARN_ABOUT_RETURN_TYPE = YES ;
+      GCC_WARN_CHECK_SWITCH_STATEMENTS = YES ;
+      GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES ;
+      GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES ;
+      GCC_WARN_INHIBIT_ALL_WARNINGS = NO ;
+      GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES ;
+      GCC_WARN_MISSING_PARENTHESES = YES ;
+      GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES ;
+      GCC_WARN_PEDANTIC = NO ;
+      GCC_WARN_SHADOW = NO ;
+      GCC_WARN_SIGN_COMPARE = YES ;
+      GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES ;
+      GCC_WARN_UNINITIALIZED_AUTOS = YES ;
+      GCC_WARN_UNKNOWN_PRAGMAS = YES ;
+      GCC_WARN_UNUSED_FUNCTION = YES ;
+      GCC_WARN_UNUSED_LABEL = YES ;
+      GCC_WARN_UNUSED_VALUE = YES ;
+      GCC_WARN_UNUSED_VARIABLE = YES ;
+      HEADER_SEARCH_PATHS = () ;
+      MACOSX_DEPLOYMENT_TARGET = 10.10 ;
+      SDKROOT = macosx10.11 ;
+      COPY_PHASE_STRIP = NO ;
+      LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks" ;
+    };
+    name = Default;
+  };
+
+    7260AE62E3B1396831A8398F /* Default */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+      GCC_OPTIMIZATION_LEVEL = 0 ;
+      GCC_PREPROCESSOR_DEFINITIONS = () ;
+      INFOPLIST_FILE = "simple-preferences/Info.plist";
+      PRODUCT_NAME = "simple-preferences" ;
+    };
+    name = Default;
+  };
+
+  /*------------------------------------------------------------------ XCConfigurationList section */
+
+    9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        A0B923820DCC509A6F75849B /* Default */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Default;
+    };
+
+    C833DFF4B38FC8D2872F1EC6 /* Default */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        7260AE62E3B1396831A8398F /* Default */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Default;
+    };
+
+/*------------------------------------------------------------------ End */
+  };
+
+  rootObject = 95D565EF66E7DFF9F98764DA /* Project object */;
 }
