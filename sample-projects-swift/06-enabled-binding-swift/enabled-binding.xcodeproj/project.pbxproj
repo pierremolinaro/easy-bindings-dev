@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CFA957481AC8678900CA6D6D /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957351AC8678900CA6D6D /* application.swift */; };
+		CFA957491AC8678900CA6D6D /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957361AC8678900CA6D6D /* easy-bindings-utilities.swift */; };
+		CFA9574A1AC8678900CA6D6D /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957371AC8678900CA6D6D /* generic-bindings.swift */; };
+		CFA9574B1AC8678900CA6D6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957381AC8678900CA6D6D /* main.swift */; };
+		CFA9574C1AC8678900CA6D6D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA957391AC8678900CA6D6D /* MainMenu.xib */; };
+		CFA9574D1AC8678900CA6D6D /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573A1AC8678900CA6D6D /* MyDocument.swift */; };
+		CFA9574E1AC8678900CA6D6D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA9573B1AC8678900CA6D6D /* MyDocument.xib */; };
+		CFA9574F1AC8678900CA6D6D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */; };
+		CFA957501AC8678900CA6D6D /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573D1AC8678900CA6D6D /* PMAllocationDebug.swift */; };
+		CFA957511AC8678900CA6D6D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA9573E1AC8678900CA6D6D /* PMAllocationDebug.xib */; };
+		CFA957521AC8678900CA6D6D /* PMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573F1AC8678900CA6D6D /* PMButton.swift */; };
+		CFA957531AC8678900CA6D6D /* PMDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957401AC8678900CA6D6D /* PMDataScanner.swift */; };
+		CFA957541AC8678900CA6D6D /* PMManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957411AC8678900CA6D6D /* PMManagedDocument.swift */; };
+		CFA957561AC8678900CA6D6D /* PMManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957431AC8678900CA6D6D /* PMManagedObject.swift */; };
+		CFA957571AC8678900CA6D6D /* PMSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957441AC8678900CA6D6D /* PMSwitch.swift */; };
+		CFA957581AC8678900CA6D6D /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957451AC8678900CA6D6D /* PMUndoManager.swift */; };
+		CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957461AC8678900CA6D6D /* Preferences.swift */; };
+		CFA9575A1AC8678900CA6D6D /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957471AC8678900CA6D6D /* standard-properties.swift */; };
+		CFAB3B4D1AD571FE001DB60C /* PMManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAB3B4C1AD571FE001DB60C /* PMManagedObjectContext.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "06-enabled-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFA957351AC8678900CA6D6D /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = application.swift; path = "enabled-binding/application.swift"; sourceTree = "<group>"; };
+		CFA957361AC8678900CA6D6D /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "easy-bindings-utilities.swift"; path = "enabled-binding/easy-bindings-utilities.swift"; sourceTree = "<group>"; };
+		CFA957371AC8678900CA6D6D /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "generic-bindings.swift"; path = "enabled-binding/generic-bindings.swift"; sourceTree = "<group>"; };
+		CFA957381AC8678900CA6D6D /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = "enabled-binding/main.swift"; sourceTree = "<group>"; };
+		CFA957391AC8678900CA6D6D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = "enabled-binding/MainMenu.xib"; sourceTree = "<group>"; };
+		CFA9573A1AC8678900CA6D6D /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyDocument.swift; path = "enabled-binding/MyDocument.swift"; sourceTree = "<group>"; };
+		CFA9573B1AC8678900CA6D6D /* MyDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyDocument.xib; path = "enabled-binding/MyDocument.xib"; sourceTree = "<group>"; };
+		CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRootEntity.swift; path = "enabled-binding/MyRootEntity.swift"; sourceTree = "<group>"; };
+		CFA9573D1AC8678900CA6D6D /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMAllocationDebug.swift; path = "enabled-binding/PMAllocationDebug.swift"; sourceTree = "<group>"; };
+		CFA9573E1AC8678900CA6D6D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PMAllocationDebug.xib; path = "enabled-binding/PMAllocationDebug.xib"; sourceTree = "<group>"; };
+		CFA9573F1AC8678900CA6D6D /* PMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMButton.swift; path = "enabled-binding/PMButton.swift"; sourceTree = "<group>"; };
+		CFA957401AC8678900CA6D6D /* PMDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMDataScanner.swift; path = "enabled-binding/PMDataScanner.swift"; sourceTree = "<group>"; };
+		CFA957411AC8678900CA6D6D /* PMManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMManagedDocument.swift; path = "enabled-binding/PMManagedDocument.swift"; sourceTree = "<group>"; };
+		CFA957431AC8678900CA6D6D /* PMManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMManagedObject.swift; path = "enabled-binding/PMManagedObject.swift"; sourceTree = "<group>"; };
+		CFA957441AC8678900CA6D6D /* PMSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMSwitch.swift; path = "enabled-binding/PMSwitch.swift"; sourceTree = "<group>"; };
+		CFA957451AC8678900CA6D6D /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMUndoManager.swift; path = "enabled-binding/PMUndoManager.swift"; sourceTree = "<group>"; };
+		CFA957461AC8678900CA6D6D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = "enabled-binding/Preferences.swift"; sourceTree = "<group>"; };
+		CFA957471AC8678900CA6D6D /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "standard-properties.swift"; path = "enabled-binding/standard-properties.swift"; sourceTree = "<group>"; };
+		CFAB3B4C1AD571FE001DB60C /* PMManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMManagedObjectContext.swift; path = "enabled-binding/PMManagedObjectContext.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF86CC9A159725BF00F6B52D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF86CC92159725BE00F6B52D = {
+			isa = PBXGroup;
+			children = (
+				CF86CC9E159725BF00F6B52D /* Products */,
+				CFA957341AC8676000CA6D6D /* Sources */,
+			);
+			sourceTree = "<group>";
+		};
+		CF86CC9E159725BF00F6B52D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFA957341AC8676000CA6D6D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CFA957351AC8678900CA6D6D /* application.swift */,
+				CFA957361AC8678900CA6D6D /* easy-bindings-utilities.swift */,
+				CFA957371AC8678900CA6D6D /* generic-bindings.swift */,
+				CFA957381AC8678900CA6D6D /* main.swift */,
+				CFA957391AC8678900CA6D6D /* MainMenu.xib */,
+				CFA9573A1AC8678900CA6D6D /* MyDocument.swift */,
+				CFA9573B1AC8678900CA6D6D /* MyDocument.xib */,
+				CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */,
+				CFA9573D1AC8678900CA6D6D /* PMAllocationDebug.swift */,
+				CFA9573E1AC8678900CA6D6D /* PMAllocationDebug.xib */,
+				CFA9573F1AC8678900CA6D6D /* PMButton.swift */,
+				CFA957401AC8678900CA6D6D /* PMDataScanner.swift */,
+				CFA957411AC8678900CA6D6D /* PMManagedDocument.swift */,
+				CFA957431AC8678900CA6D6D /* PMManagedObject.swift */,
+				CFAB3B4C1AD571FE001DB60C /* PMManagedObjectContext.swift */,
+				CFA957441AC8678900CA6D6D /* PMSwitch.swift */,
+				CFA957451AC8678900CA6D6D /* PMUndoManager.swift */,
+				CFA957461AC8678900CA6D6D /* Preferences.swift */,
+				CFA957471AC8678900CA6D6D /* standard-properties.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF86CC9C159725BF00F6B52D /* 06-enabled-binding */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF86CCC1159725BF00F6B52D /* Build configuration list for PBXNativeTarget "06-enabled-binding" */;
+			buildPhases = (
+				CF86CC99159725BF00F6B52D /* Sources */,
+				CF86CC9A159725BF00F6B52D /* Frameworks */,
+				CF86CC9B159725BF00F6B52D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "06-enabled-binding";
+			productName = "06-enabled-binding";
+			productReference = CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF86CC94159725BE00F6B52D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "enabled-binding" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF86CC92159725BE00F6B52D;
+			productRefGroup = CF86CC9E159725BF00F6B52D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF86CC9C159725BF00F6B52D /* 06-enabled-binding */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF86CC9B159725BF00F6B52D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFA9574E1AC8678900CA6D6D /* MyDocument.xib in Resources */,
+				CFA957511AC8678900CA6D6D /* PMAllocationDebug.xib in Resources */,
+				CFA9574C1AC8678900CA6D6D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF86CC99159725BF00F6B52D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFA9574F1AC8678900CA6D6D /* MyRootEntity.swift in Sources */,
+				CFA957561AC8678900CA6D6D /* PMManagedObject.swift in Sources */,
+				CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */,
+				CFA957491AC8678900CA6D6D /* easy-bindings-utilities.swift in Sources */,
+				CFA957521AC8678900CA6D6D /* PMButton.swift in Sources */,
+				CFA9574A1AC8678900CA6D6D /* generic-bindings.swift in Sources */,
+				CFA957531AC8678900CA6D6D /* PMDataScanner.swift in Sources */,
+				CFA9574B1AC8678900CA6D6D /* main.swift in Sources */,
+				CFA957481AC8678900CA6D6D /* application.swift in Sources */,
+				CFA957501AC8678900CA6D6D /* PMAllocationDebug.swift in Sources */,
+				CFA957571AC8678900CA6D6D /* PMSwitch.swift in Sources */,
+				CFA9574D1AC8678900CA6D6D /* MyDocument.swift in Sources */,
+				CFA957581AC8678900CA6D6D /* PMUndoManager.swift in Sources */,
+				CFAB3B4D1AD571FE001DB60C /* PMManagedObjectContext.swift in Sources */,
+				CFA957541AC8678900CA6D6D /* PMManagedDocument.swift in Sources */,
+				CFA9575A1AC8678900CA6D6D /* standard-properties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CF86CCBF159725BF00F6B52D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.11;
+			};
+			name = Debug;
+		};
+		CF86CCC0159725BF00F6B52D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx10.11;
+			};
+			name = Release;
+		};
+		CF86CCC2159725BF00F6B52D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/enabled-binding/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF86CCC3159725BF00F6B52D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/enabled-binding/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "enabled-binding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF86CCBF159725BF00F6B52D /* Debug */,
+				CF86CCC0159725BF00F6B52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF86CCC1159725BF00F6B52D /* Build configuration list for PBXNativeTarget "06-enabled-binding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF86CCC2159725BF00F6B52D /* Debug */,
+				CF86CCC3159725BF00F6B52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF86CC94159725BE00F6B52D /* Project object */;
+}
