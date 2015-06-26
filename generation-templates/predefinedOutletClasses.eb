@@ -23,6 +23,14 @@ outletClass PMIntField ;
 binding PMIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
+outletClass PMGroupButton $enabled ;
+binding PMGroupButton $selectedIndex : property Int ;
+
+
+outletClass PMSegmentedControl $enabled ;
+binding PMSegmentedControl $selectedIndex : property Int ;
+
+
 outletClass PMSwitch $enabled ;
 binding PMSwitch $value : property Bool ;
 

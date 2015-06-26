@@ -195,7 +195,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "document-with-relationships" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -278,6 +278,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "document-with-relationships/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.document-with-relationships";
 				PRODUCT_NAME = "document-with-relationships";
 			};
 			name = Default;
@@ -285,7 +286,6 @@
 		A0B923820DCC509A6F75849B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				COPY_PHASE_STRIP = NO;
@@ -317,10 +317,10 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx10.11;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 			};
 			name = Default;
 		};
