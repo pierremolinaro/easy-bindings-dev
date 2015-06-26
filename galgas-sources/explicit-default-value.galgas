@@ -116,7 +116,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, colorType, dateType, doubleType, stringType :
+    case integerType, colorType, dateType, doubleType, stringType, fontType :
     case entityType (*) :
     case enumType (* *) :
     end
@@ -139,6 +139,9 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     switch mType
     case integerType :
       outSwiftDefaultValueAsString = [mValue.uint string]
+      found = true
+    case fontType :
+      outSwiftDefaultValueAsString = "NSFont.systemFontOfSize (" + mValue.uint + ".0)"
       found = true
     case boolType, colorType, dateType, doubleType, stringType :
     case entityType (*) :
@@ -164,7 +167,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, colorType, dateType, integerType, stringType :
+    case boolType, colorType, dateType, integerType, stringType, fontType :
     case entityType (*) :
     case enumType (* *) :
     end
@@ -188,7 +191,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case stringType :
       outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
       found = true
-    case boolType, colorType, dateType, integerType, doubleType :
+    case boolType, colorType, dateType, integerType, doubleType, fontType :
     case entityType (*) :
     case enumType (* *) :
     end
@@ -298,6 +301,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid integer type"  
     case stringType :
       error mValue : "invalid string type"  
+    case fontType :
+      error mValue : "invalid font type"  
     end
   end
   if not found then
@@ -308,19 +313,19 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
 
 #......................................................................................................................*
 
-func %once predefinedFonts -> @stringset outResult {
-  outResult = @stringset. emptySet
-  outResult += !"boldSystemFontOfSize"
-  outResult += !"controlContentFontOfSize"
-  outResult += !"labelFontOfSize"
-  outResult += !"menuFontOfSize"
-  outResult += !"menuBarFontOfSize"
-  outResult += !"messageFontOfSize"
-  outResult += !"paletteFontOfSize"
-  outResult += !"systemFontOfSize"
-  outResult += !"titleBarFontOfSize"
-  outResult += !"toolTipsFontOfSize"
-}
+#func %once predefinedFonts -> @stringset outResult {
+#  outResult = @stringset. emptySet
+#  outResult += !"boldSystemFontOfSize"
+#  outResult += !"controlContentFontOfSize"
+#  outResult += !"labelFontOfSize"
+#  outResult += !"menuFontOfSize"
+#  outResult += !"menuBarFontOfSize"
+#  outResult += !"messageFontOfSize"
+#  outResult += !"paletteFontOfSize"
+#  outResult += !"systemFontOfSize"
+#  outResult += !"titleBarFontOfSize"
+#  outResult += !"toolTipsFontOfSize"
+#}
 
 #......................................................................................................................*
  

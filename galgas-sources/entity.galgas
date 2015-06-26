@@ -292,7 +292,7 @@ getter @typeKind transformForSavingInDictionary ?let @string inPropertyName -> @
   case integerType : outResult = "NSNumber (integer:" + inPropertyName + ".prop.0)"
   case doubleType : outResult = "NSNumber (double:" + inPropertyName + ".prop.0)"
   case stringType : outResult = inPropertyName + ".prop.0"
-  case colorType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop.0)"
+  case colorType, fontType : outResult = "NSArchiver.archivedDataWithRootObject (" + inPropertyName + ".prop.0)"
   case dateType : outResult = "NSDate"
   case enumType (* *) : outResult = "NSNumber (integer:" + inPropertyName + ".prop.rawValue)"
   case entityType (*) :

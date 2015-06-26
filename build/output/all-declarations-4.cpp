@@ -4565,6 +4565,7 @@ static void categoryMethod_transientAST_secondaryPropertySemanticAnalysis (const
   case GALGAS_typeKind::kEnum_colorType:
   case GALGAS_typeKind::kEnum_dateType:
   case GALGAS_typeKind::kEnum_doubleType:
+  case GALGAS_typeKind::kEnum_fontType:
     {
       GALGAS_typeKindList temp_0 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 110)) ;
       temp_0.addAssign_operation (var_type  COMMA_SOURCE_FILE ("transient-property.galgas", 110)) ;
@@ -4587,19 +4588,19 @@ static void categoryMethod_transientAST_secondaryPropertySemanticAnalysis (const
     break ;
   }
   GALGAS_transientDependencyListForGeneration var_dependencies = GALGAS_transientDependencyListForGeneration::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 117)) ;
-  cEnumerator_observablePropertyList enumerator_4592 (object->mAttribute_mDependencyList, kEnumeration_up) ;
-  while (enumerator_4592.hasCurrentObject ()) {
+  cEnumerator_observablePropertyList enumerator_4602 (object->mAttribute_mDependencyList, kEnumeration_up) ;
+  while (enumerator_4602.hasCurrentObject ()) {
     GALGAS_typeKind var_dependencyType ;
     GALGAS_propertyKind var_dependencyKind ;
     GALGAS_propertyMultiplicity var_outMultiplicity ;
     GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
-    categoryMethod_analyzeObservableProperty (enumerator_4592.current_mObservableProperty (HERE), constinArgument_inRootObservableProperties, constinArgument_inSemanticContext, constinArgument_inObservableProperties, var_dependencyType, var_dependencyKind, var_outMultiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 119)) ;
+    categoryMethod_analyzeObservableProperty (enumerator_4602.current_mObservableProperty (HERE), constinArgument_inRootObservableProperties, constinArgument_inSemanticContext, constinArgument_inObservableProperties, var_dependencyType, var_dependencyKind, var_outMultiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 119)) ;
     const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("transient-property.galgas", 128)))).boolEnum () ;
     if (kBoolTrue == test_3) {
-      inCompiler->emitSemanticError (categoryReader_location (enumerator_4592.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 129)), GALGAS_string ("a collection cannot be observed")  COMMA_SOURCE_FILE ("transient-property.galgas", 129)) ;
+      inCompiler->emitSemanticError (categoryReader_location (enumerator_4602.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 129)), GALGAS_string ("a collection cannot be observed")  COMMA_SOURCE_FILE ("transient-property.galgas", 129)) ;
     }
-    var_dependencies.addAssign_operation (enumerator_4592.current_mObservableProperty (HERE), categoryReader_modelString (enumerator_4592.current_mObservableProperty (HERE), GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 133)).reader_nameRepresentation (SOURCE_FILE ("transient-property.galgas", 133)), var_swiftTypeStringForTransientFunctionArgument  COMMA_SOURCE_FILE ("transient-property.galgas", 131)) ;
-    enumerator_4592.gotoNextObject () ;
+    var_dependencies.addAssign_operation (enumerator_4602.current_mObservableProperty (HERE), categoryReader_modelString (enumerator_4602.current_mObservableProperty (HERE), GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 133)).reader_nameRepresentation (SOURCE_FILE ("transient-property.galgas", 133)), var_swiftTypeStringForTransientFunctionArgument  COMMA_SOURCE_FILE ("transient-property.galgas", 131)) ;
+    enumerator_4602.gotoNextObject () ;
   }
   ioArgument_ioTransientDefinitionListForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mTransientName.mAttribute_string, var_type, var_dependencies  COMMA_SOURCE_FILE ("transient-property.galgas", 137)) ;
 }
@@ -4680,6 +4681,7 @@ static void categoryMethod_observablePropertyInMultipleBindingExpressionAST_anal
   case GALGAS_typeKind::kEnum_dateType:
   case GALGAS_typeKind::kEnum_doubleType:
   case GALGAS_typeKind::kEnum_integerType:
+  case GALGAS_typeKind::kEnum_fontType:
     {
     }
     break ;
@@ -5584,6 +5586,7 @@ static void categoryMethod_arrayControllerDeclaration_secondaryPropertySemanticA
   case GALGAS_typeKind::kEnum_doubleType:
   case GALGAS_typeKind::kEnum_integerType:
   case GALGAS_typeKind::kEnum_stringType:
+  case GALGAS_typeKind::kEnum_fontType:
     {
       inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("the model should be a tomany relationship")  COMMA_SOURCE_FILE ("array-controller.galgas", 223)) ;
       var_entityName.drop () ; // Release error dropped variable
@@ -5597,8 +5600,8 @@ static void categoryMethod_arrayControllerDeclaration_secondaryPropertySemanticA
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_8167 = (const cEnumAssociatedValues_typeKind_entityType *) (var_modelType.unsafePointer ()) ;
-      const GALGAS_string extractedValue_kEntityName = extractPtr_8167->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_8177 = (const cEnumAssociatedValues_typeKind_entityType *) (var_modelType.unsafePointer ()) ;
+      const GALGAS_string extractedValue_kEntityName = extractPtr_8177->mAssociatedValue0 ;
       var_entityName = extractedValue_kEntityName ;
     }
     break ;
@@ -5606,14 +5609,14 @@ static void categoryMethod_arrayControllerDeclaration_secondaryPropertySemanticA
   GALGAS_observablePropertyMap var_boundModelObservablePropertyMap ;
   constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (var_entityName.reader_nowhere (SOURCE_FILE ("array-controller.galgas", 231)), var_boundModelObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 230)) ;
   GALGAS_arrayControllerBoundColumnListForGeneration var_arrayControllerBoundColumnListForGeneration = GALGAS_arrayControllerBoundColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 234)) ;
-  cEnumerator_arrayControllerBoundColumnListAST enumerator_8551 (object->mAttribute_mArrayControllerBoundColumnListAST, kEnumeration_up) ;
-  while (enumerator_8551.hasCurrentObject ()) {
+  cEnumerator_arrayControllerBoundColumnListAST enumerator_8561 (object->mAttribute_mArrayControllerBoundColumnListAST, kEnumeration_up) ;
+  while (enumerator_8561.hasCurrentObject ()) {
     GALGAS_typeKind var_columnType ;
     GALGAS_propertyKind var_columnKind ;
     GALGAS_propertyMultiplicity var_columnMultiplicity ;
     GALGAS_string var_inverseRelationshipName ;
-    GALGAS_actionMap joker_8844 ; // Joker input parameter
-    var_boundModelObservablePropertyMap.method_searchKey (enumerator_8551.current_mObservablePropertyName (HERE), var_columnType, var_columnKind, var_columnMultiplicity, var_inverseRelationshipName, joker_8844, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 236)) ;
+    GALGAS_actionMap joker_8854 ; // Joker input parameter
+    var_boundModelObservablePropertyMap.method_searchKey (enumerator_8561.current_mObservablePropertyName (HERE), var_columnType, var_columnKind, var_columnMultiplicity, var_inverseRelationshipName, joker_8854, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 236)) ;
     switch (var_columnType.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
@@ -5623,6 +5626,7 @@ static void categoryMethod_arrayControllerDeclaration_secondaryPropertySemanticA
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_integerType:
     case GALGAS_typeKind::kEnum_stringType:
+    case GALGAS_typeKind::kEnum_fontType:
       {
       }
       break ;
@@ -5632,36 +5636,36 @@ static void categoryMethod_arrayControllerDeclaration_secondaryPropertySemanticA
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
-        const cEnumAssociatedValues_typeKind_entityType * extractPtr_9178 = (const cEnumAssociatedValues_typeKind_entityType *) (var_columnType.unsafePointer ()) ;
-        const GALGAS_string extractedValue_entityTypeName = extractPtr_9178->mAssociatedValue0 ;
-        inCompiler->emitSemanticError (enumerator_8551.current_mObservablePropertyName (HERE).reader_location (SOURCE_FILE ("array-controller.galgas", 249)), GALGAS_string ("the model should not be a relationship")  COMMA_SOURCE_FILE ("array-controller.galgas", 249)) ;
+        const cEnumAssociatedValues_typeKind_entityType * extractPtr_9198 = (const cEnumAssociatedValues_typeKind_entityType *) (var_columnType.unsafePointer ()) ;
+        const GALGAS_string extractedValue_entityTypeName = extractPtr_9198->mAssociatedValue0 ;
+        inCompiler->emitSemanticError (enumerator_8561.current_mObservablePropertyName (HERE).reader_location (SOURCE_FILE ("array-controller.galgas", 249)), GALGAS_string ("the model should not be a relationship")  COMMA_SOURCE_FILE ("array-controller.galgas", 249)) ;
       }
       break ;
     }
     const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, var_columnMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller.galgas", 251)))).boolEnum () ;
     if (kBoolTrue == test_3) {
-      GALGAS_location location_4 (enumerator_8551.current_mObservablePropertyName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_4 (enumerator_8561.current_mObservablePropertyName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
       inCompiler->emitSemanticError (location_4, GALGAS_string ("the bound column property should not be a collection")  COMMA_SOURCE_FILE ("array-controller.galgas", 252)) ;
     }
-    var_arrayControllerBoundColumnListForGeneration.addAssign_operation (enumerator_8551.current_mColumnName (HERE).mAttribute_string, enumerator_8551.current_mColumnOutletTypeName (HERE).mAttribute_string, enumerator_8551.current_mObservablePropertyName (HERE).mAttribute_string, var_columnType, enumerator_8551.current_mBindingOptionList (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 254)) ;
-    enumerator_8551.gotoNextObject () ;
+    var_arrayControllerBoundColumnListForGeneration.addAssign_operation (enumerator_8561.current_mColumnName (HERE).mAttribute_string, enumerator_8561.current_mColumnOutletTypeName (HERE).mAttribute_string, enumerator_8561.current_mObservablePropertyName (HERE).mAttribute_string, var_columnType, enumerator_8561.current_mBindingOptionList (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 254)) ;
+    enumerator_8561.gotoNextObject () ;
   }
   GALGAS_arrayControllerFilterListForGeneration var_arrayControllerFilterListForGeneration = GALGAS_arrayControllerFilterListForGeneration::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 262)) ;
-  cEnumerator_lstringlist enumerator_9697 (object->mAttribute_mFilterProperties, kEnumeration_up) ;
-  while (enumerator_9697.hasCurrentObject ()) {
+  cEnumerator_lstringlist enumerator_9717 (object->mAttribute_mFilterProperties, kEnumeration_up) ;
+  while (enumerator_9717.hasCurrentObject ()) {
     GALGAS_typeKind var_filterType ;
     GALGAS_propertyKind var_columnKind ;
     GALGAS_propertyMultiplicity var_filterMultiplicity ;
     GALGAS_string var_inverseRelationshipName ;
-    GALGAS_actionMap joker_9985 ; // Joker input parameter
-    var_boundModelObservablePropertyMap.method_searchKey (enumerator_9697.current_mValue (HERE), var_filterType, var_columnKind, var_filterMultiplicity, var_inverseRelationshipName, joker_9985, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 264)) ;
+    GALGAS_actionMap joker_10005 ; // Joker input parameter
+    var_boundModelObservablePropertyMap.method_searchKey (enumerator_9717.current_mValue (HERE), var_filterType, var_columnKind, var_filterMultiplicity, var_inverseRelationshipName, joker_10005, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 264)) ;
     const enumGalgasBool test_5 = GALGAS_bool (kIsEqual, var_filterMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("array-controller.galgas", 272)))).boolEnum () ;
     if (kBoolTrue == test_5) {
-      GALGAS_location location_6 (enumerator_9697.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      GALGAS_location location_6 (enumerator_9717.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
       inCompiler->emitSemanticError (location_6, GALGAS_string ("the filter property should not be a collection")  COMMA_SOURCE_FILE ("array-controller.galgas", 273)) ;
     }
-    var_arrayControllerFilterListForGeneration.addAssign_operation (enumerator_9697.current_mValue (HERE).mAttribute_string, var_filterType  COMMA_SOURCE_FILE ("array-controller.galgas", 275)) ;
-    enumerator_9697.gotoNextObject () ;
+    var_arrayControllerFilterListForGeneration.addAssign_operation (enumerator_9717.current_mValue (HERE).mAttribute_string, var_filterType  COMMA_SOURCE_FILE ("array-controller.galgas", 275)) ;
+    enumerator_9717.gotoNextObject () ;
   }
   ioArgument_ioArrayControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mControllerName.mAttribute_string, var_arrayControllerFilterListForGeneration, categoryReader_modelString (object->mAttribute_mArrayControllerModel, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 282)), var_arrayControllerBoundColumnListForGeneration, categoryReader_modelTypeName (object->mAttribute_mArrayControllerModel, constinArgument_inRootEntityName, constinArgument_inObservableProperties, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 284)), categoryReader_modelTypeName_32_ (object->mAttribute_mArrayControllerModel, constinArgument_inRootEntityName, constinArgument_inObservableProperties, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 285)), var_modelIsTransient, categoryReader_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 287))  COMMA_SOURCE_FILE ("array-controller.galgas", 278)) ;
 }
@@ -5741,6 +5745,7 @@ static void categoryMethod_selectionControllerDeclaration_tryToSolveSecondaryPro
     case GALGAS_typeKind::kEnum_dateType:
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_integerType:
+    case GALGAS_typeKind::kEnum_fontType:
       {
         GALGAS_location location_5 (object->mAttribute_mModelControllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
         inCompiler->emitSemanticError (location_5, GALGAS_string ("the array controller model should be an entity")  COMMA_SOURCE_FILE ("selection-controller.galgas", 78)) ;
@@ -5756,8 +5761,8 @@ static void categoryMethod_selectionControllerDeclaration_tryToSolveSecondaryPro
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
-        const cEnumAssociatedValues_typeKind_entityType * extractPtr_3482 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type.unsafePointer ()) ;
-        const GALGAS_string extractedValue_kEntityName = extractPtr_3482->mAssociatedValue0 ;
+        const cEnumAssociatedValues_typeKind_entityType * extractPtr_3492 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type.unsafePointer ()) ;
+        const GALGAS_string extractedValue_kEntityName = extractPtr_3492->mAssociatedValue0 ;
         var_entityName = extractedValue_kEntityName ;
       }
       break ;
@@ -5803,9 +5808,9 @@ static void categoryMethod_selectionControllerDeclaration_secondaryPropertySeman
   GALGAS_typeKind var_type ;
   GALGAS_propertyKind var_kind ;
   GALGAS_propertyMultiplicity var_multiplicity ;
-  GALGAS_string joker_4590_2 ; // Joker input parameter
-  GALGAS_actionMap joker_4590_1 ; // Joker input parameter
-  constinArgument_inObservableProperties.method_searchKey (object->mAttribute_mModelControllerName, var_type, var_kind, var_multiplicity, joker_4590_2, joker_4590_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 112)) ;
+  GALGAS_string joker_4600_2 ; // Joker input parameter
+  GALGAS_actionMap joker_4600_1 ; // Joker input parameter
+  constinArgument_inObservableProperties.method_searchKey (object->mAttribute_mModelControllerName, var_type, var_kind, var_multiplicity, joker_4600_2, joker_4600_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 112)) ;
   GALGAS_string var_selectionEntityName ;
   switch (var_type.enumValue ()) {
   case GALGAS_typeKind::kNotBuilt:
@@ -5816,6 +5821,7 @@ static void categoryMethod_selectionControllerDeclaration_secondaryPropertySeman
   case GALGAS_typeKind::kEnum_dateType:
   case GALGAS_typeKind::kEnum_doubleType:
   case GALGAS_typeKind::kEnum_integerType:
+  case GALGAS_typeKind::kEnum_fontType:
     {
       GALGAS_location location_0 (object->mAttribute_mModelControllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
       inCompiler->emitSemanticError (location_0, GALGAS_string ("the array controller model should be an entity")  COMMA_SOURCE_FILE ("selection-controller.galgas", 123)) ;
@@ -5831,8 +5837,8 @@ static void categoryMethod_selectionControllerDeclaration_secondaryPropertySeman
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_5036 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type.unsafePointer ()) ;
-      const GALGAS_string extractedValue_kEntityName = extractPtr_5036->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_5056 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type.unsafePointer ()) ;
+      const GALGAS_string extractedValue_kEntityName = extractPtr_5056->mAssociatedValue0 ;
       var_selectionEntityName = extractedValue_kEntityName ;
     }
     break ;
@@ -5892,6 +5898,7 @@ static void categoryMethod_boolAsDefaultValue_analyzeDefaultValueType (const cPt
       case GALGAS_typeKind::kEnum_dateType:
       case GALGAS_typeKind::kEnum_doubleType:
       case GALGAS_typeKind::kEnum_stringType:
+      case GALGAS_typeKind::kEnum_fontType:
         {
         }
         break ;
@@ -5942,16 +5949,22 @@ static void categoryMethod_integerAsDefaultValue_analyzeDefaultValueType (const 
   macroValidSharedObject (object, cPtr_integerAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_5313 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
+  cEnumerator_typeKindList enumerator_5323 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
   bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 138)).isValidAndTrue () ;
-  if (enumerator_5313.hasCurrentObject () && bool_0) {
-    while (enumerator_5313.hasCurrentObject () && bool_0) {
-      switch (enumerator_5313.current_mType (HERE).enumValue ()) {
+  if (enumerator_5323.hasCurrentObject () && bool_0) {
+    while (enumerator_5323.hasCurrentObject () && bool_0) {
+      switch (enumerator_5323.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_integerType:
         {
           outArgument_outSwiftDefaultValueAsString = object->mAttribute_mValue.mAttribute_uint.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 141)) ;
+          var_found = GALGAS_bool (true) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_fontType:
+        {
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSFont.systemFontOfSize (").add_operation (object->mAttribute_mValue.mAttribute_uint.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 144)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 144)).add_operation (GALGAS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 144)) ;
           var_found = GALGAS_bool (true) ;
         }
         break ;
@@ -5972,16 +5985,16 @@ static void categoryMethod_integerAsDefaultValue_analyzeDefaultValueType (const 
         }
         break ;
       }
-      enumerator_5313.gotoNextObject () ;
-      if (enumerator_5313.hasCurrentObject ()) {
+      enumerator_5323.gotoNextObject () ;
+      if (enumerator_5323.hasCurrentObject ()) {
         bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 138)).isValidAndTrue () ;
       }
     }
   }
-  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 148)).boolEnum () ;
+  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 151)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("only an integer attribute can be initialized by an integer constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 149)) ;
+    inCompiler->emitSemanticError (location_2, GALGAS_string ("only an integer attribute can be initialized by an integer constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 152)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6010,16 +6023,16 @@ static void categoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (const c
   macroValidSharedObject (object, cPtr_doubleAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_6077 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 162)).isValidAndTrue () ;
-  if (enumerator_6077.hasCurrentObject () && bool_0) {
-    while (enumerator_6077.hasCurrentObject () && bool_0) {
-      switch (enumerator_6077.current_mType (HERE).enumValue ()) {
+  cEnumerator_typeKindList enumerator_6213 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
+  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 165)).isValidAndTrue () ;
+  if (enumerator_6213.hasCurrentObject () && bool_0) {
+    while (enumerator_6213.hasCurrentObject () && bool_0) {
+      switch (enumerator_6213.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_doubleType:
         {
-          outArgument_outSwiftDefaultValueAsString = object->mAttribute_mValue.mAttribute_double.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 165)) ;
+          outArgument_outSwiftDefaultValueAsString = object->mAttribute_mValue.mAttribute_double.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 168)) ;
           var_found = GALGAS_bool (true) ;
         }
         break ;
@@ -6028,6 +6041,7 @@ static void categoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (const c
       case GALGAS_typeKind::kEnum_dateType:
       case GALGAS_typeKind::kEnum_integerType:
       case GALGAS_typeKind::kEnum_stringType:
+      case GALGAS_typeKind::kEnum_fontType:
         {
         }
         break ;
@@ -6040,16 +6054,16 @@ static void categoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (const c
         }
         break ;
       }
-      enumerator_6077.gotoNextObject () ;
-      if (enumerator_6077.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 162)).isValidAndTrue () ;
+      enumerator_6213.gotoNextObject () ;
+      if (enumerator_6213.hasCurrentObject ()) {
+        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 165)).isValidAndTrue () ;
       }
     }
   }
-  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 172)).boolEnum () ;
+  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 175)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("only a double attribute can be initialized by a floating point constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 173)) ;
+    inCompiler->emitSemanticError (location_2, GALGAS_string ("only a double attribute can be initialized by a floating point constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 176)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6078,16 +6092,16 @@ static void categoryMethod_stringAsDefaultValue_analyzeDefaultValueType (const c
   macroValidSharedObject (object, cPtr_stringAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_6847 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 186)).isValidAndTrue () ;
-  if (enumerator_6847.hasCurrentObject () && bool_0) {
-    while (enumerator_6847.hasCurrentObject () && bool_0) {
-      switch (enumerator_6847.current_mType (HERE).enumValue ()) {
+  cEnumerator_typeKindList enumerator_6993 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
+  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 189)).isValidAndTrue () ;
+  if (enumerator_6993.hasCurrentObject () && bool_0) {
+    while (enumerator_6993.hasCurrentObject () && bool_0) {
+      switch (enumerator_6993.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_stringType:
         {
-          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 189)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 189)) ;
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 192)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 192)) ;
           var_found = GALGAS_bool (true) ;
         }
         break ;
@@ -6096,6 +6110,7 @@ static void categoryMethod_stringAsDefaultValue_analyzeDefaultValueType (const c
       case GALGAS_typeKind::kEnum_dateType:
       case GALGAS_typeKind::kEnum_integerType:
       case GALGAS_typeKind::kEnum_doubleType:
+      case GALGAS_typeKind::kEnum_fontType:
         {
         }
         break ;
@@ -6108,16 +6123,16 @@ static void categoryMethod_stringAsDefaultValue_analyzeDefaultValueType (const c
         }
         break ;
       }
-      enumerator_6847.gotoNextObject () ;
-      if (enumerator_6847.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 186)).isValidAndTrue () ;
+      enumerator_6993.gotoNextObject () ;
+      if (enumerator_6993.hasCurrentObject ()) {
+        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 189)).isValidAndTrue () ;
       }
     }
   }
-  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 196)).boolEnum () ;
+  const enumGalgasBool test_1 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 199)).boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_2, GALGAS_string ("only a string attribute can be initialized by a string constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 197)) ;
+    inCompiler->emitSemanticError (location_2, GALGAS_string ("only a string attribute can be initialized by a string constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 200)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6146,49 +6161,49 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
   macroValidSharedObject (object, cPtr_identifierAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_9507 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
-  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 265)).isValidAndTrue () ;
-  if (enumerator_9507.hasCurrentObject () && bool_0) {
-    while (enumerator_9507.hasCurrentObject () && bool_0) {
-      switch (enumerator_9507.current_mType (HERE).enumValue ()) {
+  cEnumerator_typeKindList enumerator_9663 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
+  bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 268)).isValidAndTrue () ;
+  if (enumerator_9663.hasCurrentObject () && bool_0) {
+    while (enumerator_9663.hasCurrentObject () && bool_0) {
+      switch (enumerator_9663.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_colorType:
         {
           var_found = GALGAS_bool (true) ;
-          const enumGalgasBool test_1 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)).reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)).boolEnum () ;
+          const enumGalgasBool test_1 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 272)).reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 272)).boolEnum () ;
           if (kBoolTrue == test_1) {
-            outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)) ;
+            outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 273)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 273)) ;
           }else if (kBoolFalse == test_1) {
             GALGAS_location location_2 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_2, GALGAS_string ("unknown predefined color")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 272)) ;
+            inCompiler->emitSemanticError (location_2, GALGAS_string ("unknown predefined color")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 275)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_dateType:
         {
           var_found = GALGAS_bool (true) ;
-          const enumGalgasBool test_3 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)).reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)).boolEnum () ;
+          const enumGalgasBool test_3 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 280)).reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 280)).boolEnum () ;
           if (kBoolTrue == test_3) {
             outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSDate ()") ;
           }else if (kBoolFalse == test_3) {
             GALGAS_location location_4 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_4, GALGAS_string ("unknown predefined date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 280)) ;
+            inCompiler->emitSemanticError (location_4, GALGAS_string ("unknown predefined date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 283)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_enumType:
         {
-          const cEnumAssociatedValues_typeKind_enumType * extractPtr_10407 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9507.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_enumTypeName = extractPtr_10407->mAssociatedValue0 ;
-          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_10407->mAssociatedValue1 ;
+          const cEnumAssociatedValues_typeKind_enumType * extractPtr_10563 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9663.current_mType (HERE).unsafePointer ()) ;
+          const GALGAS_string extractedValue_enumTypeName = extractPtr_10563->mAssociatedValue0 ;
+          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_10563->mAssociatedValue1 ;
           var_found = GALGAS_bool (true) ;
-          const enumGalgasBool test_5 = extractedValue_constantMap.reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 284)).boolEnum () ;
+          const enumGalgasBool test_5 = extractedValue_constantMap.reader_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 287)).boolEnum () ;
           if (kBoolTrue == test_5) {
-            outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)).add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)) ;
+            outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (object->mAttribute_mValue.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)) ;
           }else if (kBoolFalse == test_5) {
             GALGAS_location location_6 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_6, GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (object->mAttribute_mValue.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 288)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 287)) ;
+            inCompiler->emitSemanticError (location_6, GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 291)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 291)).add_operation (object->mAttribute_mValue.reader_string (SOURCE_FILE ("explicit-default-value.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 291)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 291))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 290)) ;
             outArgument_outSwiftDefaultValueAsString.drop () ; // Release error dropped variable
           }
         }
@@ -6196,44 +6211,50 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
       case GALGAS_typeKind::kEnum_entityType:
         {
           GALGAS_location location_7 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_7, GALGAS_string ("invalid entity type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)) ;
+          inCompiler->emitSemanticError (location_7, GALGAS_string ("invalid entity type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 295)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
         {
           GALGAS_location location_8 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_8, GALGAS_string ("invalid bool type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 294)) ;
+          inCompiler->emitSemanticError (location_8, GALGAS_string ("invalid bool type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 297)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_doubleType:
         {
           GALGAS_location location_9 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_9, GALGAS_string ("invalid double type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 296)) ;
+          inCompiler->emitSemanticError (location_9, GALGAS_string ("invalid double type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 299)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_integerType:
         {
           GALGAS_location location_10 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_10, GALGAS_string ("invalid integer type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 298)) ;
+          inCompiler->emitSemanticError (location_10, GALGAS_string ("invalid integer type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 301)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_stringType:
         {
           GALGAS_location location_11 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_11, GALGAS_string ("invalid string type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 300)) ;
+          inCompiler->emitSemanticError (location_11, GALGAS_string ("invalid string type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 303)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_fontType:
+        {
+          GALGAS_location location_12 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
+          inCompiler->emitSemanticError (location_12, GALGAS_string ("invalid font type")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 305)) ;
         }
         break ;
       }
-      enumerator_9507.gotoNextObject () ;
-      if (enumerator_9507.hasCurrentObject ()) {
-        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 265)).isValidAndTrue () ;
+      enumerator_9663.gotoNextObject () ;
+      if (enumerator_9663.hasCurrentObject ()) {
+        bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 268)).isValidAndTrue () ;
       }
     }
   }
-  const enumGalgasBool test_12 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 303)).boolEnum () ;
-  if (kBoolTrue == test_12) {
-    GALGAS_location location_13 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_13, GALGAS_string ("unknow type for this identifier")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 304)) ;
+  const enumGalgasBool test_13 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 308)).boolEnum () ;
+  if (kBoolTrue == test_13) {
+    GALGAS_location location_14 (object->mAttribute_mValue.reader_location (HERE)) ; // Implicit use of 'location' reader
+    inCompiler->emitSemanticError (location_14, GALGAS_string ("unknow type for this identifier")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 309)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6262,9 +6283,9 @@ static void categoryMethod_listAsDefaultValue_analyzeDefaultValueType (const cPt
   macroValidSharedObject (object, cPtr_listAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  const enumGalgasBool test_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 392)).boolEnum () ;
+  const enumGalgasBool test_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 397)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (object->mAttribute_mStartLocation, GALGAS_string ("invalid initialization value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 393)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mStartLocation, GALGAS_string ("invalid initialization value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 398)) ;
   }
 }
 //---------------------------------------------------------------------------------------------------------------------*

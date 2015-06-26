@@ -245,7 +245,7 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'"
     end
     switch relationshipType
-    case stringType, boolType, colorType, dateType, doubleType, integerType :
+    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType :
       error relationshipName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
       error relationshipName : "a property cannot accept 'all'" : outType
@@ -316,7 +316,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch propertyKind
     case selectionController :
       switch type
-      case stringType, boolType, colorType, dateType, doubleType, integerType :
+      case stringType, boolType, colorType, dateType, doubleType, integerType, fontType :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case enumType (* *) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

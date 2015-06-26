@@ -2,22 +2,14 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMGroupButton) class PMGroupButton : NSButton, PMUserClassName {
-  @IBOutlet private var mMasterView : NSView?
-  @IBOutlet private var mView : NSView?
-
+@objc(PMFontButton) class PMFontButton : NSButton, PMUserClassName {
+  private var mFont : NSFont?
+  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  override func awakeFromNib () {
-  //--- Set button type
-    self.setButtonType (.OnOffButton)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -30,43 +22,37 @@ import Cocoa
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
-    selectViewFromSelectedSegmentIndex ()
-    mValueController?.updateModel (self)
+    showFontManager ()
     return super.sendAction (inAction, to:to)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func selectViewFromSelectedSegmentIndex () {
-    if let masterView = mMasterView {
-    //--- Remove any view from master view
-      let subviews : [NSView] = masterView.subviews
-      if subviews.count > 0 {
-        let viewToDetach = subviews [0]
-        viewToDetach.removeFromSuperview ()
-      }
-    //--- Set other other buttons of group to Off state
-      let views : [NSView] = masterView.superview!.subviews
-      for v in views {
-        if let button = v as? PMGroupButton where button.mMasterView == mMasterView {
-          button.state = NSOffState
-        }
-      }
-      self.state = NSOnState
-    //--- Attach view
-      if let unwViewToAttach = mView {
-        let attachedPageHeight = unwViewToAttach.frame.size.height
-        let currentHeight = masterView.frame.size.height
-        var r = masterView.window!.frame
-        r.size.height += attachedPageHeight - currentHeight ;
-        r.origin.y -= attachedPageHeight - currentHeight ;
-        masterView.addSubview (unwViewToAttach)
-        unwViewToAttach.frame = masterView.bounds
-        unwViewToAttach.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
-        masterView.window!.title = self.stringValue.stringByAppendingString (" Preferences")
-        masterView.window!.setFrame (r, display:true, animate:true)
-      }
+  func showFontManager () {
+    if let font = mFont {
+      self.window?.makeFirstResponder (self)
+      let fontManager = NSFontManager.sharedFontManager ()
+      fontManager.delegate = self
+      fontManager.setSelectedFont (font, isMultiple:false)
+      fontManager.orderFrontFontPanel (self)
     }
+  }
+
+//---------------------------------------------------------------------------*
+
+  override func changeFont (sender : AnyObject?) {
+    if let valueController = mValueController, fontManager = sender as! NSFontManager? {
+      let newFont = fontManager.convertFont (mFont!)
+      valueController.mObject.setProp (newFont)
+    }
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+  func mySetFont (font : NSFont) {
+    mFont = font
+    let newTitle = String (format:"%@ — %g pt.", font.displayName!, font.pointSize)
+    self.title = newTitle
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -79,36 +65,13 @@ import Cocoa
   //  color binding                                                                                                    *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private var mValueController : Controller_PMGroupButton_selectedIndex?
+  private var mValueController : Controller_PMFontButton_fontValue?
 
-  func bind_selectedIndex (object:PMReadWriteProperty_Int, file:String, line:Int) {
-  //--- Check tags
-    if let masterView = mMasterView {
-      var tagSet = Set<Int> ()
-      let views : [NSView] = masterView.superview!.subviews
-      for v in views {
-        if let button = v as? PMGroupButton where button.mMasterView == mMasterView {
-          let tag = button.tag
-          if tagSet.contains (tag) {
-            presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"duplicated tag: " + String (tag))
-          }else{
-            tagSet.insert (tag)
-          }
-        }
-      }
-      var idx = 0
-      for tag in tagSet.sort () {
-        if tag != idx {
-          presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"missing tag: " + String (tag))
-        }
-        idx += 1
-      }
-    }
-  //--- Bind
-    mValueController = Controller_PMGroupButton_selectedIndex (object:object, outlet:self, file:file, line:line)
+  func bind_fontValue (object:PMReadWriteProperty_NSFont, file:String, line:Int) {
+    mValueController = Controller_PMFontButton_fontValue (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_selectedIndex () {
+  func unbind_fontValue () {
     if let valueController = mValueController {
       valueController.unregister ()
     }
@@ -118,17 +81,17 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMGroupButton_selectedIndex                                                                       *
+//   Controller_PMFontButton_fontValue                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMGroupButton_selectedIndex : PMOutletEvent {
+class Controller_PMFontButton_fontValue : PMOutletEvent {
 
-  var mObject : PMReadWriteProperty_Int
-  var mOutlet : PMGroupButton
+  var mObject : PMReadWriteProperty_NSFont
+  var mOutlet : PMFontButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadWriteProperty_Int, outlet : PMGroupButton, file : String, line : Int) {
+  init (object : PMReadWriteProperty_NSFont, outlet : PMFontButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
@@ -138,6 +101,8 @@ class Controller_PMGroupButton_selectedIndex : PMOutletEvent {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
+    mOutlet.target = nil
+    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -148,21 +113,21 @@ class Controller_PMGroupButton_selectedIndex : PMOutletEvent {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
+      mOutlet.title = ""
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      if v == mOutlet.tag {
-        mOutlet.selectViewFromSelectedSegmentIndex ()
-      }
+      mOutlet.mySetFont (v)
     case .multipleSelection :
       mOutlet.enableFromValue (false)
+      mOutlet.title = ""
     }
     mOutlet.updateEnabledState ()
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func updateModel (sender : PMGroupButton) {
-    mObject.validateAndSetProp (mOutlet.tag, windowForSheet:sender.window)
+  func updateModel (sender : PMFontButton) {
+//    mObject.validateAndSetProp (mOutlet.tag, windowForSheet:sender.window)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

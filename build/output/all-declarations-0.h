@@ -7556,6 +7556,7 @@ class GALGAS_typeKind : public AC_GALGAS_root {
     kEnum_stringType,
     kEnum_colorType,
     kEnum_dateType,
+    kEnum_fontType,
     kEnum_enumType,
     kEnum_entityType
   } enumeration ;
@@ -7599,6 +7600,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
                                                         const class GALGAS_enumConstantMap & inOperand1
                                                         COMMA_LOCATION_ARGS) ;
 
+  public : static GALGAS_typeKind constructor_fontType (LOCATION_ARGS) ;
+
   public : static GALGAS_typeKind constructor_integerType (LOCATION_ARGS) ;
 
   public : static GALGAS_typeKind constructor_stringType (LOCATION_ARGS) ;
@@ -7635,6 +7638,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isEntityType (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isEnumType (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isFontType (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isIntegerType (LOCATION_ARGS) const ;
 

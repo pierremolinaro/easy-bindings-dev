@@ -74,7 +74,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   #--- Check type
     @string entityName
     switch type
-    case stringType, boolType, colorType, dateType, doubleType, integerType :
+    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case enumType (* *) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
@@ -119,7 +119,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
 #--- Check type
   @string selectionEntityName
   switch type
-  case stringType, boolType, colorType, dateType, doubleType, integerType :
+  case stringType, boolType, colorType, dateType, doubleType, integerType, fontType :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case enumType (* *) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
