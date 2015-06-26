@@ -1122,17 +1122,6 @@ void categoryMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category Getter '@typeKind transformForSavingInDictionary' (as function)                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_transformForSavingInDictionary (const class GALGAS_typeKind & inObject,
-                                                                   const class GALGAS_string & constinArgument0,
-                                                                   class C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                        Category Getter '@observablePropertyAST needs_unwSelf' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

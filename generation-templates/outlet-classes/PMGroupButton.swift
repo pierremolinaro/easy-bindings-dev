@@ -5,7 +5,8 @@ import Cocoa
 @objc(PMGroupButton) class PMGroupButton : NSButton, PMUserClassName {
   @IBOutlet private var mMasterView : NSView?
   @IBOutlet private var mView : NSView?
-
+  private var mWindowDefaultTitle : String = ""
+  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   required init? (coder: NSCoder) {
@@ -16,8 +17,10 @@ import Cocoa
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func awakeFromNib () {
-  //--- Set button type
     self.setButtonType (.OnOffButton)
+    if let uwWindow = self.window {
+      mWindowDefaultTitle = uwWindow.title
+    }
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -63,7 +66,7 @@ import Cocoa
         masterView.addSubview (unwViewToAttach)
         unwViewToAttach.frame = masterView.bounds
         unwViewToAttach.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
-        masterView.window!.title = self.stringValue.stringByAppendingString (" Preferences")
+        masterView.window!.title = self.title + " " + mWindowDefaultTitle
         masterView.window!.setFrame (r, display:true, animate:true)
       }
     }
