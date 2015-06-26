@@ -966,8 +966,6 @@ class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   PMReadOnlyProperty_NSFont                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1122,4 +1120,206 @@ class PMTransientProperty_NSFont : PMReadOnlyProperty_NSFont {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadOnlyProperty_Double                                                                                         *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+class PMReadOnlyProperty_Double : PMAbstractProperty {
+  var prop : PMProperty <Double> { get { return .noSelection } } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadWriteProperty_Double                                                                                        *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadWriteProperty_Double : PMReadOnlyProperty_Double {
+  func setProp (inValue : Double) { } // Abstract method
+  func validateAndSetProp (candidateValue : Double, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMPropertyProxy_Double                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMPropertyProxy_Double : PMReadWriteProperty_Double {
+  var readModelFunction : Optional < () -> PMProperty <Double> >
+  var writeModelFunction : Optional < (Double) -> Void >
+  var validateAndWriteModelFunction : Optional < (Double, NSWindow?) -> Bool >
+  
+  private var prop_cache : PMProperty <Double>?
+  
+  override init () {
+    super.init ()
+  }
+  
+  override func postEvent() {
+    if prop_cache != nil {
+      prop_cache = nil
+      super.postEvent()
+    }
+  }
+
+  override var prop : PMProperty <Double> {
+    get {
+      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+        prop_cache = unReadModelFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = .noSelection
+      }
+      return prop_cache!
+    }
+  }
+
+  
+  override func setProp (inValue : Double) {
+    if let unWriteModelFunction = writeModelFunction {
+      unWriteModelFunction (inValue)
+    }
+  }
+
+  override func validateAndSetProp (candidateValue : Double,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
+    var result = false
+    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
+      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
+    }
+    return result
+  }
+  
+  
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMStoredProperty_Double                                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMStoredProperty_Double : PMReadWriteProperty_Double {
+  weak var undoManager : NSUndoManager?
+
+  var explorer : NSTextField? {
+    didSet {
+      explorer?.stringValue = mValue.description
+    }
+  }
+
+  init (_ inValue : Double) {
+    mValue = inValue
+    super.init ()
+  }
+
+  private var mValue : Double {
+    didSet {
+      if mValue != oldValue {
+        explorer?.stringValue = mValue.description
+        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (double:oldValue))
+        postEvent ()
+      }
+    }
+  }
+
+  func performUndo (oldValue : NSNumber) {
+    mValue = oldValue.doubleValue
+  }
+
+  override var prop : PMProperty<Double> { get { return .singleSelection (mValue) } }
+
+  var propval : Double { get { return mValue } }
+
+  override func setProp (inValue : Double) { mValue = inValue }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+ 
+  var validationFunction : (Double) -> PMValidationResult = defaultValidationFunction
+  
+  override func validateAndSetProp (candidateValue : Double,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
+    var result = true
+    let validationResult = validationFunction (candidateValue)
+    switch validationResult {
+    case PMValidationResult.ok :
+      setProp (candidateValue)
+    case PMValidationResult.rejectWithBeep :
+      result = false
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      result = false
+      let alert = NSAlert ()
+      alert.messageText = String (format:"The value “%d” is invalid.", candidateValue)
+      alert.informativeText = informativeText
+      alert.addButtonWithTitle ("Ok")
+      alert.addButtonWithTitle ("Discard Change")
+      if let window = inWindow {
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            self.postEvent ()
+          }
+        })
+      }else{
+        alert.runModal ()
+      }
+    }
+    return result
+  }
+
+  func readInPreferencesWithKey (inKey : String) {
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSNumber {
+      setProp ((unwValue as! NSNumber).doubleValue)
+    }
+  }
+
+  func storeInPreferencesWithKey (inKey : String) {
+    let ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (NSNumber (double:mValue), forKey:inKey)
+  }
+
+  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
+    ioDictionary.setValue (NSNumber (double:mValue), forKey:inKey)
+  }
+
+  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSNumber {
+      setProp ((unwValue as! NSNumber).doubleValue)
+    }
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMTransientProperty_Double                                                                                        *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientProperty_Double : PMReadOnlyProperty_Double {
+  private var mValueCache : PMProperty <Double>? = nil
+  var computeFunction : Optional<() -> PMProperty <Double> >
+  
+  override init () {
+    super.init ()
+  }
+
+  override var prop : PMProperty <Double> {
+    get {
+      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+        mValueCache = unwrappedComputeFunction ()
+      }
+      if mValueCache == nil {
+        mValueCache = .noSelection
+      }
+      return mValueCache!
+    }
+  }
+
+  override func postEvent () {
+    if mValueCache != nil {
+      mValueCache = nil
+      super.postEvent ()
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

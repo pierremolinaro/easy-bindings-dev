@@ -19,6 +19,10 @@ outletClass PMIntFieldObserver ;
 binding PMIntFieldObserver $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
+outletClass PMDoubleField ;
+binding PMDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
+
+
 outletClass PMIntField ;
 binding PMIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 

@@ -91,6 +91,7 @@ proc typeInventory
 {
   outUnifiedTypeMap = .emptyMap
 #------------------------ Add predefined types
+  [!?outUnifiedTypeMap insertKey !["Double" nowhere] !.doubleType]
   [!?outUnifiedTypeMap insertKey !["Font" nowhere] !.fontType]
   [!?outUnifiedTypeMap insertKey !["String" nowhere] !.stringType]
   [!?outUnifiedTypeMap insertKey !["Color" nowhere] !.colorType]
