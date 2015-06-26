@@ -343,6 +343,7 @@ extern const char * gWrapperFileContent_12_outletClassGeneration ;
 extern const char * gWrapperFileContent_13_outletClassGeneration ;
 extern const char * gWrapperFileContent_14_outletClassGeneration ;
 extern const char * gWrapperFileContent_15_outletClassGeneration ;
+extern const char * gWrapperFileContent_16_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -365,6 +366,7 @@ extern const cRegularFileWrapper gWrapperFile_12_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_13_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_14_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_15_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_16_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1005,15 +1007,6 @@ class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             Function 'predefinedFonts'                                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringset function_predefinedFonts (class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*

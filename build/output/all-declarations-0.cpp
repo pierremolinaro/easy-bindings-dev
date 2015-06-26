@@ -8691,6 +8691,14 @@ GALGAS_typeKind GALGAS_typeKind::constructor_dateType (UNUSED_LOCATION_ARGS) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_typeKind GALGAS_typeKind::constructor_fontType (UNUSED_LOCATION_ARGS) {
+  GALGAS_typeKind result ;
+  result.mEnum = kEnum_fontType ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_typeKind GALGAS_typeKind::constructor_enumType (const GALGAS_string & inAssociatedValue0,
                                                        const GALGAS_enumConstantMap & inAssociatedValue1
                                                        COMMA_LOCATION_ARGS) {
@@ -8757,7 +8765,7 @@ void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const char * gEnumNameArrayFor_typeKind [9] = {
+static const char * gEnumNameArrayFor_typeKind [10] = {
   "(not built)",
   "boolType",
   "integerType",
@@ -8765,6 +8773,7 @@ static const char * gEnumNameArrayFor_typeKind [9] = {
   "stringType",
   "colorType",
   "dateType",
+  "fontType",
   "enumType",
   "entityType"
 } ;
@@ -8803,6 +8812,12 @@ GALGAS_bool GALGAS_typeKind::reader_isColorType (UNUSED_LOCATION_ARGS) const {
 
 GALGAS_bool GALGAS_typeKind::reader_isDateType (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_dateType == mEnum) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_typeKind::reader_isFontType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_fontType == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

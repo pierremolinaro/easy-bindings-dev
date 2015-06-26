@@ -23,6 +23,10 @@ outletClass PMIntField ;
 binding PMIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
+outletClass PMFontButton $enabled ;
+binding PMFontButton $fontValue : property Font ;
+
+
 outletClass PMPopUpButton $enabled ;
 binding PMPopUpButton $selectedTag : property Int ;
 

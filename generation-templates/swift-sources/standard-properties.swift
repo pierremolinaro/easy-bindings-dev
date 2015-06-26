@@ -966,3 +966,160 @@ class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadOnlyProperty_NSFont                                                                                         *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadOnlyProperty_NSFont : PMAbstractProperty {
+  var prop : PMProperty<NSFont> { get { return .noSelection } } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMReadWriteProperty_NSFont                                                                                        *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMReadWriteProperty_NSFont : PMReadOnlyProperty_NSFont {
+  func setProp (inValue : NSFont) { } // Abstract method
+  func validateAndSetProp (candidateValue : NSFont, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMStoredProperty_NSFont                                                                                           *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMStoredProperty_NSFont : PMReadWriteProperty_NSFont {
+  weak var undoManager : NSUndoManager?
+
+  var explorer : NSTextField? {
+    didSet {
+      explorer?.stringValue = mValue.description
+    }
+  }
+
+  init (_ inValue : NSFont) {
+    mValue = inValue
+    super.init ()
+  }
+
+  private var mValue : NSFont {
+    didSet {
+      if mValue != oldValue {
+        explorer?.stringValue = mValue.description
+        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        postEvent ()
+      }
+    }
+  }
+
+  func performUndo (oldValue : NSFont) {
+    mValue = oldValue
+  }
+
+  override var prop :  PMProperty <NSFont> { get { return .singleSelection (mValue) } }
+
+  var propval : NSFont { get { return mValue } }
+
+  override func setProp (inValue : NSFont) { mValue = inValue }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+ 
+  var validationFunction : (NSFont) -> PMValidationResult = defaultValidationFunction
+  
+  override func validateAndSetProp (candidateValue : NSFont,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
+    let validationResult = validationFunction (candidateValue)
+    var result = true
+    switch validationResult {
+    case PMValidationResult.ok :
+      setProp (candidateValue)
+    case PMValidationResult.rejectWithBeep :
+      NSBeep ()
+    case PMValidationResult.rejectWithAlert (let informativeText) :
+      result = false
+      let alert = NSAlert ()
+      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
+      alert.informativeText = informativeText
+      alert.addButtonWithTitle ("Ok")
+      alert.addButtonWithTitle ("Discard Change")
+      if let window = inWindow {
+        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+          if response == NSAlertSecondButtonReturn { // Discard Change
+            self.postEvent ()
+          }
+        })
+      }else{
+        alert.runModal ()
+      }
+    }
+    return result
+  }
+
+  func readInPreferencesWithKey (inKey : String) {
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSData {
+      let possibleFont : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
+      if let unwPossibleFont : AnyObject = possibleFont where unwPossibleFont is NSFont {
+        setProp (unwPossibleFont as! NSFont)
+      }
+    }
+  }
+
+  func storeInPreferencesWithKey (inKey : String) {
+    let ud = NSUserDefaults.standardUserDefaults ()
+    ud.setObject (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
+  }
+
+  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
+    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
+  }
+
+  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = inDictionary.objectForKey (inKey)
+    if let unwValue : AnyObject = value where unwValue is NSData {
+      let possibleFont : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
+      if let unwPossibleFont : AnyObject = possibleFont where unwPossibleFont is NSFont {
+        setProp (unwPossibleFont as! NSFont)
+      }
+    }
+  }
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   PMTransientProperty_NSFont                                                                                       *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class PMTransientProperty_NSFont : PMReadOnlyProperty_NSFont {
+  private var mValueCache : PMProperty <NSFont>? = nil
+  var computeFunction : Optional<() -> PMProperty <NSFont> >
+  
+  override init () {
+    super.init ()
+  }
+
+  override var prop : PMProperty <NSFont> {
+    get {
+      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+        mValueCache = unwrappedComputeFunction ()
+      }
+      if mValueCache == nil {
+        mValueCache = .noSelection
+      }
+      return mValueCache!
+    }
+  }
+
+  override func postEvent () {
+    if mValueCache != nil {
+      mValueCache = nil
+      super.postEvent ()
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
