@@ -5,7 +5,7 @@
 import atomac, sys, time, random, string
 import AppKit, os
 
-sourceFilePath = os.path.dirname(__file__) + '/z.observingPrefsInDocument-swift'
+sourceFilePath = os.path.dirname(__file__) + '/z.observingPrefsInDocument'
 ok = AppKit.NSWorkspace.sharedWorkspace().openFile_ (sourceFilePath) 
 if not ok:
     print '*** Erreur 0 ***'

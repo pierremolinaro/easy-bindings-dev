@@ -31,6 +31,8 @@ buildProcess.wait ()
 if buildProcess.returncode == 0 :
   buildProcess = subprocess.Popen (["/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild"])
   buildProcess.wait ()
-#-------------------
+#------------------- Result
+if buildProcess.returncode != 0 :
+  sys.exit (buildProcess.returncode)
 
 #------------------------------------------------------------------------------*

@@ -82,6 +82,10 @@ proc generateCode
     !inGeneration.mValidationStubRoutineListForGeneration
     !?generatedFileSet
   )
+  generateStandardProperties (
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
   generateXcodeProject (
     !outputDirectory
     !inXcodeProjectString
@@ -115,7 +119,6 @@ private proc generateSwiftApplicationFiles
     !"main",
     !"EBAllocationDebug",
     !"easy-bindings-utilities",
-    !"standard-properties",
     !"generic-bindings",
     !"application"
   }
@@ -146,6 +149,49 @@ private proc generateSwiftApplicationFiles
       !contents
     ]
   end
+}
+
+#......................................................................................................................*
+
+filewrapper standard_properties in "../generation-templates/standard-properties" {
+}{
+}{
+  template stub "standard-properties-stub.swift.galgasTemplate"
+
+  template scalarProperty "scalar-standard-property.swift.galgasTemplate"
+    ?@string TYPE
+    ?@string TO_NSNUMBER
+
+  template classProperty "class-standard-property.swift.galgasTemplate"
+    ?@string CLASS_NAME
+    ?@string EXPLORER_ACCESS
+    ?@bool USE_ARCHIVER
+}
+
+#......................................................................................................................*
+
+private proc generateStandardProperties
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  var contents = [filewrapper standard_properties.stub]
+#--- Add Int type
+  contents += [filewrapper standard_properties.scalarProperty !"Int" !"integer"]
+  contents += [filewrapper standard_properties.scalarProperty !"Bool" !"bool"]
+  contents += [filewrapper standard_properties.scalarProperty !"Double" !"double"]
+#--- Add Class type
+  contents += [filewrapper standard_properties.classProperty !"String" !"" !false]
+  contents += [filewrapper standard_properties.classProperty !"NSColor" !".description" !true]
+  contents += [filewrapper standard_properties.classProperty !"NSDate" !".description" !false]
+  contents += [filewrapper standard_properties.classProperty !"NSFont" !".description" !true]
+#--- Generate file
+  let fileName = "standard-properties.swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !contents
+  ]
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

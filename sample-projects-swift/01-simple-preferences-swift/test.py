@@ -123,7 +123,7 @@ checkTextFieldValue (myTextField, testValue, lineno ())
 checkTextFieldValue (myOtherTextField, testValue, lineno ())
 checkTextFieldValue (myObserverTextField, testValue, lineno ())
 
-#--- Check coloe wells
+#--- Check color wells
 mContinousColorWell.Press ()
 time.sleep(.5)
 colorPicker = application.windows ('Colors')[0]
