@@ -171,8 +171,11 @@ proc analyzeOutlets
       !outlet_mOutletTypeName
       ?let @bool handlesRunAction
       ?let @bool handlesTableViewBinding
+      ?let @bool outletClassIsUserDefined
     ]
-    ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
+    if not outletClassIsUserDefined then
+      ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
+    end
   #--- $tableView
     switch outlet_mTableValueBindingDescriptor
     case noTableValueBinding :

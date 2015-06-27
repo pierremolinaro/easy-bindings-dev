@@ -2807,7 +2807,8 @@ GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2
 GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (void) :
 mAttribute_lkey (),
 mAttribute_mHandlesRunAction (),
-mAttribute_mHandlesTableViewBinding () {
+mAttribute_mHandlesTableViewBinding (),
+mAttribute_mUserDefined () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2819,16 +2820,19 @@ GALGAS_outletClassMap_2D_element::~ GALGAS_outletClassMap_2D_element (void) {
 
 GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS_lstring & inOperand0,
                                                                     const GALGAS_bool & inOperand1,
-                                                                    const GALGAS_bool & inOperand2) :
+                                                                    const GALGAS_bool & inOperand2,
+                                                                    const GALGAS_bool & inOperand3) :
 mAttribute_lkey (inOperand0),
 mAttribute_mHandlesRunAction (inOperand1),
-mAttribute_mHandlesTableViewBinding (inOperand2) {
+mAttribute_mHandlesTableViewBinding (inOperand2),
+mAttribute_mUserDefined (inOperand3) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                           GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE)) ;
 }
@@ -2837,11 +2841,12 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_d
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
                                                                                     const GALGAS_bool & inOperand1,
-                                                                                    const GALGAS_bool & inOperand2 
+                                                                                    const GALGAS_bool & inOperand2,
+                                                                                    const GALGAS_bool & inOperand3 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
+    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
   }
   return result ;
 }
@@ -2859,13 +2864,16 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
   if (result == kOperandEqual) {
     result = mAttribute_mHandlesTableViewBinding.objectCompare (inOperand.mAttribute_mHandlesTableViewBinding) ;
   }
+  if (result == kOperandEqual) {
+    result = mAttribute_mUserDefined.objectCompare (inOperand.mAttribute_mUserDefined) ;
+  }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableViewBinding.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableViewBinding.isValid () && mAttribute_mUserDefined.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2874,6 +2882,7 @@ void GALGAS_outletClassMap_2D_element::drop (void) {
   mAttribute_lkey.drop () ;
   mAttribute_mHandlesRunAction.drop () ;
   mAttribute_mHandlesTableViewBinding.drop () ;
+  mAttribute_mUserDefined.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2889,6 +2898,8 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
     mAttribute_mHandlesRunAction.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mUserDefined.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -2909,6 +2920,12 @@ GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mHandlesRunAction (UNUSED_L
 
 GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mHandlesTableViewBinding (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mHandlesTableViewBinding ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mUserDefined (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mUserDefined ;
 }
 
 

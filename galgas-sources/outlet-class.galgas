@@ -58,6 +58,7 @@ syntax extension easyBindings_syntax {
 map @outletClassMap {
   @bool mHandlesRunAction
   @bool mHandlesTableViewBinding
+  @bool mUserDefined
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
 }
@@ -71,7 +72,7 @@ method @outletClassDeclarationList buildOutletClassMap
 {
   outOutletClassMap = {}
   for () in self do
-    [!?outOutletClassMap insertKey !mOutletClassName !mHasRunAction !mHandlesTableViewBinding]
+    [!?outOutletClassMap insertKey !mOutletClassName !mHasRunAction !mHandlesTableViewBinding !mUserDefined]
   end
 }
 
