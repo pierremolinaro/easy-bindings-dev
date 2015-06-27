@@ -70,7 +70,14 @@ end
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
-  }
+  //--- Extern functions
+%
+  for () in EXTERN_SWIFT_FUNCTION_LIST do
+    if mCallerName.string == "init" then
+      %    self.%!mExternSwiftFunctionName.string% ()\n%
+    end
+  end
+%  }
 
 %
 if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then
@@ -143,6 +150,13 @@ end
 %    %!mOutletName%?.target = %!mTargetName%\n%
 %    %!mOutletName%?.action = "%!mActionName%:"\n%
 end
+%  //--- Extern functions
+%
+  for () in EXTERN_SWIFT_FUNCTION_LIST do
+    if mCallerName.string == "awakeFromNib" then
+      %    self.%!mExternSwiftFunctionName.string% ()\n%
+    end
+  end
 %  }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

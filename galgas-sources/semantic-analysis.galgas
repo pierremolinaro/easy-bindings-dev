@@ -132,6 +132,7 @@ proc semanticAnalysis
     ]  
   end
   [inAstDeclarationStruct.mPreferences semanticAnalysis
+    !inAstDeclarationStruct.mPreferences.mExternSwiftFunctionList
     !semanticContext
     !?outGeneration
   ]
