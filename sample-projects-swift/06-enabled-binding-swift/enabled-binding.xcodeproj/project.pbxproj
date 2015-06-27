@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF71F9CB1B3EA72400FB5049 /* EBAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C41B3EA72400FB5049 /* EBAllocationDebug.swift */; };
+		CF71F9CC1B3EA72400FB5049 /* EBAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF71F9C51B3EA72400FB5049 /* EBAllocationDebug.xib */; };
+		CF71F9CD1B3EA72400FB5049 /* EBDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C61B3EA72400FB5049 /* EBDataScanner.swift */; };
+		CF71F9CE1B3EA72400FB5049 /* EBManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C71B3EA72400FB5049 /* EBManagedDocument.swift */; };
+		CF71F9CF1B3EA72400FB5049 /* EBManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C81B3EA72400FB5049 /* EBManagedObject.swift */; };
+		CF71F9D01B3EA72400FB5049 /* EBManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C91B3EA72400FB5049 /* EBManagedObjectContext.swift */; };
+		CF71F9D11B3EA72400FB5049 /* EBUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9CA1B3EA72400FB5049 /* EBUndoManager.swift */; };
 		CF8E79F41B3E9F2D000E28CC /* EBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79F21B3E9F2D000E28CC /* EBButton.swift */; };
 		CF8E79F51B3E9F2D000E28CC /* EBSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79F31B3E9F2D000E28CC /* EBSwitch.swift */; };
 		CFA957481AC8678900CA6D6D /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957351AC8678900CA6D6D /* application.swift */; };
@@ -17,18 +24,18 @@
 		CFA9574D1AC8678900CA6D6D /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573A1AC8678900CA6D6D /* MyDocument.swift */; };
 		CFA9574E1AC8678900CA6D6D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA9573B1AC8678900CA6D6D /* MyDocument.xib */; };
 		CFA9574F1AC8678900CA6D6D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */; };
-		CFA957501AC8678900CA6D6D /* PMAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573D1AC8678900CA6D6D /* PMAllocationDebug.swift */; };
-		CFA957511AC8678900CA6D6D /* PMAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA9573E1AC8678900CA6D6D /* PMAllocationDebug.xib */; };
-		CFA957531AC8678900CA6D6D /* PMDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957401AC8678900CA6D6D /* PMDataScanner.swift */; };
-		CFA957541AC8678900CA6D6D /* PMManagedDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957411AC8678900CA6D6D /* PMManagedDocument.swift */; };
-		CFA957561AC8678900CA6D6D /* PMManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957431AC8678900CA6D6D /* PMManagedObject.swift */; };
-		CFA957581AC8678900CA6D6D /* PMUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957451AC8678900CA6D6D /* PMUndoManager.swift */; };
 		CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957461AC8678900CA6D6D /* Preferences.swift */; };
 		CFA9575A1AC8678900CA6D6D /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957471AC8678900CA6D6D /* standard-properties.swift */; };
-		CFAB3B4D1AD571FE001DB60C /* PMManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAB3B4C1AD571FE001DB60C /* PMManagedObjectContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF71F9C41B3EA72400FB5049 /* EBAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBAllocationDebug.swift; path = "enabled-binding/EBAllocationDebug.swift"; sourceTree = "<group>"; };
+		CF71F9C51B3EA72400FB5049 /* EBAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EBAllocationDebug.xib; path = "enabled-binding/EBAllocationDebug.xib"; sourceTree = "<group>"; };
+		CF71F9C61B3EA72400FB5049 /* EBDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBDataScanner.swift; path = "enabled-binding/EBDataScanner.swift"; sourceTree = "<group>"; };
+		CF71F9C71B3EA72400FB5049 /* EBManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBManagedDocument.swift; path = "enabled-binding/EBManagedDocument.swift"; sourceTree = "<group>"; };
+		CF71F9C81B3EA72400FB5049 /* EBManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBManagedObject.swift; path = "enabled-binding/EBManagedObject.swift"; sourceTree = "<group>"; };
+		CF71F9C91B3EA72400FB5049 /* EBManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBManagedObjectContext.swift; path = "enabled-binding/EBManagedObjectContext.swift"; sourceTree = "<group>"; };
+		CF71F9CA1B3EA72400FB5049 /* EBUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBUndoManager.swift; path = "enabled-binding/EBUndoManager.swift"; sourceTree = "<group>"; };
 		CF86CC9D159725BF00F6B52D /* 06-enabled-binding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "06-enabled-binding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8E79F21B3E9F2D000E28CC /* EBButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBButton.swift; path = "enabled-binding/EBButton.swift"; sourceTree = "<group>"; };
 		CF8E79F31B3E9F2D000E28CC /* EBSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBSwitch.swift; path = "enabled-binding/EBSwitch.swift"; sourceTree = "<group>"; };
@@ -40,15 +47,8 @@
 		CFA9573A1AC8678900CA6D6D /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyDocument.swift; path = "enabled-binding/MyDocument.swift"; sourceTree = "<group>"; };
 		CFA9573B1AC8678900CA6D6D /* MyDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyDocument.xib; path = "enabled-binding/MyDocument.xib"; sourceTree = "<group>"; };
 		CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRootEntity.swift; path = "enabled-binding/MyRootEntity.swift"; sourceTree = "<group>"; };
-		CFA9573D1AC8678900CA6D6D /* PMAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMAllocationDebug.swift; path = "enabled-binding/PMAllocationDebug.swift"; sourceTree = "<group>"; };
-		CFA9573E1AC8678900CA6D6D /* PMAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PMAllocationDebug.xib; path = "enabled-binding/PMAllocationDebug.xib"; sourceTree = "<group>"; };
-		CFA957401AC8678900CA6D6D /* PMDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMDataScanner.swift; path = "enabled-binding/PMDataScanner.swift"; sourceTree = "<group>"; };
-		CFA957411AC8678900CA6D6D /* PMManagedDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMManagedDocument.swift; path = "enabled-binding/PMManagedDocument.swift"; sourceTree = "<group>"; };
-		CFA957431AC8678900CA6D6D /* PMManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMManagedObject.swift; path = "enabled-binding/PMManagedObject.swift"; sourceTree = "<group>"; };
-		CFA957451AC8678900CA6D6D /* PMUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMUndoManager.swift; path = "enabled-binding/PMUndoManager.swift"; sourceTree = "<group>"; };
 		CFA957461AC8678900CA6D6D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = "enabled-binding/Preferences.swift"; sourceTree = "<group>"; };
 		CFA957471AC8678900CA6D6D /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "standard-properties.swift"; path = "enabled-binding/standard-properties.swift"; sourceTree = "<group>"; };
-		CFAB3B4C1AD571FE001DB60C /* PMManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PMManagedObjectContext.swift; path = "enabled-binding/PMManagedObjectContext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,21 +83,21 @@
 			children = (
 				CFA957351AC8678900CA6D6D /* application.swift */,
 				CFA957361AC8678900CA6D6D /* easy-bindings-utilities.swift */,
+				CF71F9C41B3EA72400FB5049 /* EBAllocationDebug.swift */,
+				CF71F9C51B3EA72400FB5049 /* EBAllocationDebug.xib */,
 				CF8E79F21B3E9F2D000E28CC /* EBButton.swift */,
+				CF71F9C61B3EA72400FB5049 /* EBDataScanner.swift */,
+				CF71F9C71B3EA72400FB5049 /* EBManagedDocument.swift */,
+				CF71F9C81B3EA72400FB5049 /* EBManagedObject.swift */,
+				CF71F9C91B3EA72400FB5049 /* EBManagedObjectContext.swift */,
 				CF8E79F31B3E9F2D000E28CC /* EBSwitch.swift */,
+				CF71F9CA1B3EA72400FB5049 /* EBUndoManager.swift */,
 				CFA957371AC8678900CA6D6D /* generic-bindings.swift */,
 				CFA957381AC8678900CA6D6D /* main.swift */,
 				CFA957391AC8678900CA6D6D /* MainMenu.xib */,
 				CFA9573A1AC8678900CA6D6D /* MyDocument.swift */,
 				CFA9573B1AC8678900CA6D6D /* MyDocument.xib */,
 				CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */,
-				CFA9573D1AC8678900CA6D6D /* PMAllocationDebug.swift */,
-				CFA9573E1AC8678900CA6D6D /* PMAllocationDebug.xib */,
-				CFA957401AC8678900CA6D6D /* PMDataScanner.swift */,
-				CFA957411AC8678900CA6D6D /* PMManagedDocument.swift */,
-				CFA957431AC8678900CA6D6D /* PMManagedObject.swift */,
-				CFAB3B4C1AD571FE001DB60C /* PMManagedObjectContext.swift */,
-				CFA957451AC8678900CA6D6D /* PMUndoManager.swift */,
 				CFA957461AC8678900CA6D6D /* Preferences.swift */,
 				CFA957471AC8678900CA6D6D /* standard-properties.swift */,
 			);
@@ -157,8 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA9574E1AC8678900CA6D6D /* MyDocument.xib in Resources */,
-				CFA957511AC8678900CA6D6D /* PMAllocationDebug.xib in Resources */,
 				CFA9574C1AC8678900CA6D6D /* MainMenu.xib in Resources */,
+				CF71F9CC1B3EA72400FB5049 /* EBAllocationDebug.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,20 +170,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA9574F1AC8678900CA6D6D /* MyRootEntity.swift in Sources */,
-				CFA957561AC8678900CA6D6D /* PMManagedObject.swift in Sources */,
 				CF8E79F51B3E9F2D000E28CC /* EBSwitch.swift in Sources */,
 				CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */,
+				CF71F9D01B3EA72400FB5049 /* EBManagedObjectContext.swift in Sources */,
+				CF71F9CF1B3EA72400FB5049 /* EBManagedObject.swift in Sources */,
 				CF8E79F41B3E9F2D000E28CC /* EBButton.swift in Sources */,
+				CF71F9D11B3EA72400FB5049 /* EBUndoManager.swift in Sources */,
 				CFA957491AC8678900CA6D6D /* easy-bindings-utilities.swift in Sources */,
+				CF71F9CD1B3EA72400FB5049 /* EBDataScanner.swift in Sources */,
 				CFA9574A1AC8678900CA6D6D /* generic-bindings.swift in Sources */,
-				CFA957531AC8678900CA6D6D /* PMDataScanner.swift in Sources */,
 				CFA9574B1AC8678900CA6D6D /* main.swift in Sources */,
 				CFA957481AC8678900CA6D6D /* application.swift in Sources */,
-				CFA957501AC8678900CA6D6D /* PMAllocationDebug.swift in Sources */,
+				CF71F9CE1B3EA72400FB5049 /* EBManagedDocument.swift in Sources */,
+				CF71F9CB1B3EA72400FB5049 /* EBAllocationDebug.swift in Sources */,
 				CFA9574D1AC8678900CA6D6D /* MyDocument.swift in Sources */,
-				CFA957581AC8678900CA6D6D /* PMUndoManager.swift in Sources */,
-				CFAB3B4D1AD571FE001DB60C /* PMManagedObjectContext.swift in Sources */,
-				CFA957541AC8678900CA6D6D /* PMManagedDocument.swift in Sources */,
 				CFA9575A1AC8678900CA6D6D /* standard-properties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

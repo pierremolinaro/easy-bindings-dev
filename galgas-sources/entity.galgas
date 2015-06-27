@@ -240,7 +240,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
     ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
 
-  template managedObjectContext "PMManagedObjectContext.swift.galgasTemplate"
+  template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneration ENTITY_LIST
 }
 
@@ -271,7 +271,7 @@ proc generateEntities
   end
 #----- 
   if [inEntityListForGeneration length] > 0 then
-    let fileName = "PMManagedObjectContext.swift"
+    let fileName = "EBManagedObjectContext.swift"
     ioGeneratedFileSet += !fileName
     let s = [filewrapper entityGenerationTemplate.managedObjectContext
       !inEntityListForGeneration

@@ -113,18 +113,18 @@ private proc generateSwiftApplicationFiles
 {
   @stringlist swiftFiles = {
     !"main",
-    !"PMAllocationDebug",
+    !"EBAllocationDebug",
     !"easy-bindings-utilities",
     !"standard-properties",
     !"generic-bindings",
     !"application"
   }
   if inHasEntities then
-    swiftFiles += !"PMManagedObject"
-    swiftFiles += !"PMUndoManager"
-    swiftFiles += !"PMDataScanner"
+    swiftFiles += !"EBManagedObject"
+    swiftFiles += !"EBUndoManager"
+    swiftFiles += !"EBDataScanner"
   end
-  @stringlist xibFiles = {!"PMAllocationDebug"}
+  @stringlist xibFiles = {!"EBAllocationDebug"}
   var fw = [filewrapper swift_sources]
   for (@string s) in swiftFiles do
     let contents = [fw textFileContentsAtPath !s + ".swift"]

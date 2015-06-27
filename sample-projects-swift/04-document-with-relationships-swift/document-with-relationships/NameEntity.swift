@@ -209,7 +209,7 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 //    Entity: NameEntity                                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(NameEntity) class NameEntity : PMManagedObject, NameEntity_name, NameEntity_aValue {
+@objc(NameEntity) class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
 
   //···················································································································*
   //    Properties                                                                                                     *
@@ -254,7 +254,7 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //    init                                                                                                           *
   //···················································································································*
 
-  override init (managedObjectContext : PMManagedObjectContext) {
+  override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
   //--- Install property observers for transients
@@ -302,7 +302,7 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //···················································································································*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<PMManagedObject>) {
+                                     managedObjectArray : Array<EBManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     name.readFromDictionary (inDictionary, forKey:"name")
     aValue.readFromDictionary (inDictionary, forKey:"aValue")
@@ -321,7 +321,7 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
-  override func accessibleObjects (inout objects : Array<PMManagedObject>) {
+  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
     super.accessibleObjects (&objects)
     if let object = mRoot.propval {
       objects.append (object)

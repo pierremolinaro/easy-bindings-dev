@@ -330,7 +330,7 @@ end
 //    %!["Entity: " + ENTITY_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : PMManagedObject%
+@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : EBManagedObject%
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %, %!ENTITY_NAME%_%!mStoredPropertyName
 end
@@ -381,7 +381,7 @@ end
   //    init                                                                                                           *
   //···················································································································*
 
-  override init (managedObjectContext : PMManagedObjectContext) {
+  override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
@@ -485,7 +485,7 @@ end
   //···················································································································*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<PMManagedObject>) {
+                                     managedObjectArray : Array<EBManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
@@ -541,11 +541,11 @@ end
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
-  override func accessibleObjects (inout objects : Array<PMManagedObject>) {
+  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
     super.accessibleObjects (&objects)
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    for managedObject : PMManagedObject in %!mToManyRelationshipName%.propval {
+%    for managedObject : EBManagedObject in %!mToManyRelationshipName%.propval {
       objects.append (managedObject)
     }\n%
 end
