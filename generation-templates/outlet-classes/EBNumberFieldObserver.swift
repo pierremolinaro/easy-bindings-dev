@@ -45,9 +45,7 @@ import Cocoa
   }
 
   func unbind_valueObserver () {
-    if let valueController = mValueController {
-      valueController.unregister ()
-    }
+    mValueController?.unregister ()
     mValueController = nil
   }
 }

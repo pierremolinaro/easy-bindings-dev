@@ -42,9 +42,7 @@ import Cocoa
   }
 
   func unbind_selectedIndex () {
-    if let valueController = mValueController {
-      valueController.unregister ()
-    }
+    mValueController?.unregister ()
     mValueController = nil
   }
 

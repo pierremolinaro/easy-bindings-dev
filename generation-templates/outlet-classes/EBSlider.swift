@@ -1,10 +1,11 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBSlider                                                                                                          *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(EBFontButton) class EBFontButton : NSButton, EBUserClassName {
-  private var mFont : NSFont?
-  
+@objc(EBSlider) class EBSlider : NSSlider, EBUserClassName {
+
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   required init? (coder: NSCoder) {
@@ -21,86 +22,57 @@ import Cocoa
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
-    showFontManager ()
-    return super.sendAction (inAction, to:to)
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func showFontManager () {
-    if let font = mFont {
-      self.window?.makeFirstResponder (self)
-      let fontManager = NSFontManager.sharedFontManager ()
-      fontManager.delegate = self
-      fontManager.setSelectedFont (font, isMultiple:false)
-      fontManager.orderFrontFontPanel (self)
-    }
-  }
-
-//---------------------------------------------------------------------------*
-
-  override func changeFont (sender : AnyObject?) {
-    if let valueController = mValueController, fontManager = sender as! NSFontManager? {
-      let newFont = fontManager.convertFont (mFont!)
-      valueController.mObject.setProp (newFont)
-    }
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
-  func mySetFont (font : NSFont) {
-    mFont = font
-    let newTitle = String (format:"%@ — %g pt.", font.displayName!, font.pointSize)
-    self.title = newTitle
-  }
-
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-
   deinit {
     noteObjectDeallocation (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  color binding                                                                                                    *
+
+  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+    mDoubleValueController?.updateModel ()
+    return super.sendAction (inAction, to:to)
+  }
+
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //  doubleValue binding                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private var mValueController : Controller_EBFontButton_fontValue?
+  private var mDoubleValueController : Controller_EBSlider_doubleValue?
 
-  func bind_fontValue (object:EBReadWriteProperty_NSFont, file:String, line:Int) {
-    mValueController = Controller_EBFontButton_fontValue (object:object, outlet:self, file:file, line:line)
+  func bind_doubleValue(object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool) {
+    mDoubleValueController = Controller_EBSlider_doubleValue (object:object, outlet:self, file:file, line:line)
+    self.continuous = sendContinously
   }
 
-  func unbind_fontValue () {
-    mValueController?.unregister ()
-    mValueController = nil
+  func unbind_doubleValue () {
+    mDoubleValueController?.unregister ()
+    mDoubleValueController = nil
   }
 
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_EBFontButton_fontValue                                                                                 *
+//   Controller Controller_EBSlider_doubleValue                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBFontButton_fontValue : EBOutletEvent {
+@objc(Controller_EBSlider_doubleValue) class Controller_EBSlider_doubleValue : EBOutletEvent {
 
-  var mObject : EBReadWriteProperty_NSFont
-  var mOutlet : EBFontButton
+  private var mOutlet: EBSlider
+  private var mObject : EBReadWriteProperty_Double
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : EBReadWriteProperty_NSFont, outlet : EBFontButton, file : String, line : Int) {
+  init (object:EBReadWriteProperty_Double, outlet : EBSlider, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    mObject.addObserver (self, postEvent:true)
+    object.addObserver (self, postEvent:true)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -110,25 +82,26 @@ class Controller_EBFontButton_fontValue : EBOutletEvent {
   override func updateOutlet () {
     switch mObject.prop {
     case .noSelection :
+      mOutlet.stringValue = "No selection"
       mOutlet.enableFromValue (false)
-      mOutlet.title = ""
-    case .singleSelection (let v) :
-      mOutlet.enableFromValue (true)
-      mOutlet.mySetFont (v)
     case .multipleSelection :
+      mOutlet.stringValue = "Multiple selection"
       mOutlet.enableFromValue (false)
-      mOutlet.title = ""
+    case .singleSelection (let propertyValue) :
+      mOutlet.doubleValue = propertyValue
+      mOutlet.enableFromValue (true)
     }
     mOutlet.updateEnabledState ()
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func updateModel (sender : EBFontButton) {
-//    mObject.validateAndSetProp (mOutlet.tag, windowForSheet:sender.window)
+  func updateModel () {
+    mObject.validateAndSetProp (mOutlet.doubleValue, windowForSheet:mOutlet.window)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

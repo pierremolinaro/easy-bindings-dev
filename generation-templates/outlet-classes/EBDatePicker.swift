@@ -35,9 +35,7 @@ import Cocoa
   }
 
   func unbind_date () {
-    if let valueController = mValueController {
-      valueController.unregister ()
-    }
+    mValueController?.unregister ()
     mValueController = nil
   }
 }

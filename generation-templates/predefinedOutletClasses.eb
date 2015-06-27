@@ -42,6 +42,8 @@ binding EBGroupButton $selectedIndex : property Int ;
 outletClass EBSegmentedControl $enabled ;
 binding EBSegmentedControl $selectedIndex : property Int ;
 
+outletClass EBSlider $enabled ;
+binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;
 
 outletClass EBSwitch $enabled ;
 binding EBSwitch $value : property Bool ;
