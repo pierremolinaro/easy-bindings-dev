@@ -6,13 +6,13 @@ import Cocoa
 
 class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
-  var prop : PMProperty <Array<MyRootEntity> > { get { return .noSelection } }
+  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
   //···················································································································*
 
-  var mObserversOf_docBool = Set<PMEvent> ()
+  var mObserversOf_docBool = Set<EBEvent> ()
 
-  func addObserverOf_docBool (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_docBool (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -46,11 +46,11 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> PMProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
   
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
-  private var prop_cache : PMProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
 
   //···················································································································*
 
@@ -74,7 +74,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   //···················································································································*
 
-  override var prop : PMProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -103,7 +103,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity_docBool) protocol MyRootEntity_docBool {
-  var docBool : PMStoredProperty_Bool { get }
+  var docBool : EBStoredProperty_Bool { get }
 }
 
 
@@ -117,7 +117,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    Properties                                                                                                     *
   //···················································································································*
 
-  var docBool = PMStoredProperty_Bool (true)
+  var docBool = EBStoredProperty_Bool (true)
   var docBool_keyCodingValue : Bool {
     get {
       switch docBool.prop {

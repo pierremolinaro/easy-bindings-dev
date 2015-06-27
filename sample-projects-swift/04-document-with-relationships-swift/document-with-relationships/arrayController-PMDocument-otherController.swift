@@ -6,7 +6,7 @@ import Cocoa
 
 class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_NameEntity?
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
   //···················································································································*
 
@@ -40,7 +40,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 
   //···················································································································*
 
-  private func filterAndSort () -> PMProperty <Array<NameEntity> > {
+  private func filterAndSort () -> EBProperty <Array<NameEntity> > {
     if let model = mModel {
       switch model.prop {
       case .noSelection :
@@ -79,9 +79,9 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
   
   private var mSet = Set<NameEntity> ()
 
-  var prop_cache : Optional < PMProperty <Array<NameEntity> > >
+  var prop_cache : Optional < EBProperty <Array<NameEntity> > >
 
-  override var prop : PMProperty <Array<NameEntity> > {
+  override var prop : EBProperty <Array<NameEntity> > {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
@@ -180,7 +180,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_otherController
   private var mIgnoreTableViewSelectionDidChange = true
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
   //···················································································································*
 
@@ -215,7 +215,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 
   //···················································································································*
   
-  var prop : PMProperty <Set<NameEntity> > {
+  var prop : EBProperty <Set<NameEntity> > {
     get {
       if mSetShouldBeComputed {
         mSetShouldBeComputed = false
@@ -421,7 +421,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 //    ArrayController_PMDocument_otherController                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_PMDocument_otherController : PMObject {
+class ArrayController_PMDocument_otherController : EBObject {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 

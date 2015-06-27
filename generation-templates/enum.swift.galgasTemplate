@@ -29,12 +29,12 @@ end
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["PMReadOnlyProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//    %!["EBReadOnlyProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, PMReadOnlyEnumPropertyProtocol {
+class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, EBReadOnlyEnumPropertyProtocol {
 
-  var prop : PMProperty <%!ENUM_TYPE_NAME%> { get { return .noSelection } } // Abstract method
+  var prop : EBProperty <%!ENUM_TYPE_NAME%> { get { return .noSelection } } // Abstract method
 
   func rawValue () -> Int { return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%.rawValue }  // Abstract method
 
@@ -42,10 +42,10 @@ class PMReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, PMReadOnlyEnumP
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["PMStoredProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//    %!["EBStoredProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%, PMEnumPropertyProtocol {
+class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%, PMEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -75,7 +75,7 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
     }
   }
 
-  override var prop : PMProperty <%!ENUM_TYPE_NAME%> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty <%!ENUM_TYPE_NAME%> { get { return .singleSelection (mValue) } }
 
   func setProp (inValue : %!ENUM_TYPE_NAME%) { mValue = inValue }
 
@@ -115,28 +115,28 @@ class PMStoredProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  var validationFunction : (%!ENUM_TYPE_NAME%) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (%!ENUM_TYPE_NAME%) -> EBValidationResult = defaultValidationFunction
   
-  func validate (proposedValue : %!ENUM_TYPE_NAME%) -> PMValidationResult {
+  func validate (proposedValue : %!ENUM_TYPE_NAME%) -> EBValidationResult {
     return validationFunction (proposedValue)
   }
 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["PMTransientProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
+//    %!["EBTransientProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_%!ENUM_TYPE_NAME% : PMReadOnlyProperty_%!ENUM_TYPE_NAME% {
-  private var mValueCache : PMProperty <%!ENUM_TYPE_NAME%>?
+class EBTransientProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME% {
+  private var mValueCache : EBProperty <%!ENUM_TYPE_NAME%>?
 
-  var computeFunction : Optional<() -> PMProperty <%!ENUM_TYPE_NAME%> >
+  var computeFunction : Optional<() -> EBProperty <%!ENUM_TYPE_NAME%> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <%!ENUM_TYPE_NAME%> {
+  override var prop : EBProperty <%!ENUM_TYPE_NAME%> {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {

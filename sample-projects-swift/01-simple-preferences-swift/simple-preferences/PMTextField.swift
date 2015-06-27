@@ -4,7 +4,7 @@ import Cocoa
 //   CPMTextField                                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMTextField) class PMTextField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMTextField) class PMTextField : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -35,7 +35,7 @@ import Cocoa
   private var mValueController : Controller_PMTextField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:EBReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -63,14 +63,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMTextField_value)
-class Controller_PMTextField_value : PMOutletEvent {
+class Controller_PMTextField_value : EBOutletEvent {
 
   private var mOutlet: PMTextField
-  private var mObject : PMReadWriteProperty_String
+  private var mObject : EBReadWriteProperty_String
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object:PMReadWriteProperty_String, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
+  init (object:EBReadWriteProperty_String, outlet : PMTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()

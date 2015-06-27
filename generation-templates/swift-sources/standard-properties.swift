@@ -1,10 +1,10 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMProperty                                                                                                        *
+//   EBProperty                                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-enum PMProperty<T> {
+enum EBProperty<T> {
   case noSelection
   case singleSelection (T)
   case multipleSelection
@@ -12,9 +12,9 @@ enum PMProperty<T> {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-private func compareIntProperties (left:PMProperty<Int>,
-                                    right:PMProperty<Int>,
-                                    function : (Int, Int) -> Bool) -> PMProperty<Bool> {
+private func compareIntProperties (left:EBProperty<Int>,
+                                   right:EBProperty<Int>,
+                                   function : (Int, Int) -> Bool) -> EBProperty<Bool> {
   switch left {
   case .noSelection :
     return .noSelection
@@ -39,45 +39,45 @@ private func compareIntProperties (left:PMProperty<Int>,
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func > (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+func > (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
   return compareIntProperties (left, right: right, function: {$0 > $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func >= (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+func >= (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
   return compareIntProperties (left, right: right, function: {$0 >= $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func < (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+func < (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
   return compareIntProperties (left, right: right, function: {$0 < $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func <= (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+func <= (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
   return compareIntProperties (left, right: right, function: {$0 <= $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func == (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+func == (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
   return compareIntProperties (left, right: right, function: {$0 == $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func != (left:PMProperty<Int>, right:PMProperty<Int>) -> PMProperty<Bool> {
+func != (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
   return compareIntProperties (left, right: right, function: {$0 != $1})
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-private func combineBoolProperties (left:PMProperty<Bool>,
-                                     right:PMProperty<Bool>,
-                                     function : (Bool, Bool) -> Bool) -> PMProperty<Bool> {
+private func combineBoolProperties (left:EBProperty<Bool>,
+                                     right:EBProperty<Bool>,
+                                     function : (Bool, Bool) -> Bool) -> EBProperty<Bool> {
   switch left {
   case .noSelection :
     return .noSelection
@@ -102,25 +102,25 @@ private func combineBoolProperties (left:PMProperty<Bool>,
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func && (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
+func && (left:EBProperty<Bool>, right:EBProperty<Bool>) -> EBProperty<Bool> {
   return combineBoolProperties (left, right: right, function: {$0 && $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func || (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
+func || (left:EBProperty<Bool>, right:EBProperty<Bool>) -> EBProperty<Bool> {
   return combineBoolProperties (left, right: right, function: {$0 || $1})
 }
 
 //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-func ^ (left:PMProperty<Bool>, right:PMProperty<Bool>) -> PMProperty<Bool> {
+func ^ (left:EBProperty<Bool>, right:EBProperty<Bool>) -> EBProperty<Bool> {
   return combineBoolProperties (left, right: right, function: {$0 != $1})
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-prefix func ! (operand:PMProperty<Bool>) -> PMProperty<Bool> {
+prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
   switch operand {
   case .noSelection :
     return .noSelection
@@ -132,14 +132,14 @@ prefix func ! (operand:PMProperty<Bool>) -> PMProperty<Bool> {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyEnumPropertyProtocol                                                                                    *
+//   EBReadOnlyEnumPropertyProtocol                                                                                    *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMReadOnlyEnumPropertyProtocol) protocol PMReadOnlyEnumPropertyProtocol {
+@objc(EBReadOnlyEnumPropertyProtocol) protocol EBReadOnlyEnumPropertyProtocol {
 
-  func addObserver (inObserver : PMEvent, postEvent inTrigger:Bool)
+  func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
 
-  func removeObserver (inObserver : PMEvent, postEvent inTrigger:Bool)
+  func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
 
   func count () -> Int
 
@@ -150,7 +150,7 @@ prefix func ! (operand:PMProperty<Bool>) -> PMProperty<Bool> {
 //   PMEnumPropertyProtocol                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMEnumPropertyProtocol) protocol PMEnumPropertyProtocol : PMReadOnlyEnumPropertyProtocol {
+@objc(PMEnumPropertyProtocol) protocol PMEnumPropertyProtocol : EBReadOnlyEnumPropertyProtocol {
   func setFromRawValue (rawValue : Int)
 }
 
@@ -158,18 +158,18 @@ prefix func ! (operand:PMProperty<Bool>) -> PMProperty<Bool> {
 //   PMAbstractProperty                                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMAbstractProperty) class PMAbstractProperty : PMEvent {
+@objc(PMAbstractProperty) class PMAbstractProperty : EBEvent {
 
-  private var mObservers = Set <PMEvent> ()
+  private var mObservers = Set <EBEvent> ()
   
-  func addObserver (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObservers.insert (inObserver)
     if inTrigger {
       inObserver.postEvent ()
     }
   }
  
-  func removeObserver (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObservers.remove (inObserver)
     if inTrigger {
       inObserver.postEvent ()
@@ -184,18 +184,18 @@ prefix func ! (operand:PMProperty<Bool>) -> PMProperty<Bool> {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_String                                                                                         *
+//   EBReadOnlyProperty_String                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_String : PMAbstractProperty {
-  var prop : PMProperty <String> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_String : PMAbstractProperty {
+  var prop : EBProperty <String> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadWriteProperty_String                                                                                        *
+//   EBReadWriteProperty_String                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadWriteProperty_String : PMReadOnlyProperty_String {
+class EBReadWriteProperty_String : EBReadOnlyProperty_String {
   func setProp (inValue : String) { } // Abstract method
   func validateAndSetProp (candidateValue : String, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -203,15 +203,15 @@ class PMReadWriteProperty_String : PMReadOnlyProperty_String {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMPropertyProxy_String                                                                                            *
+//   EBPropertyProxy_String                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMPropertyProxy_String : PMReadWriteProperty_String {
-  var readModelFunction : Optional < () -> PMProperty <String> >
+class EBPropertyProxy_String : EBReadWriteProperty_String {
+  var readModelFunction : Optional < () -> EBProperty <String> >
   var writeModelFunction : Optional < (String) -> Void >
   var validateAndWriteModelFunction : Optional < (String, NSWindow?) -> Bool >
   
-  private var prop_cache : PMProperty <String>?
+  private var prop_cache : EBProperty <String>?
   
   override init () {
     super.init ()
@@ -224,7 +224,7 @@ class PMPropertyProxy_String : PMReadWriteProperty_String {
     }
   }
 
-  override var prop : PMProperty <String> {
+  override var prop : EBProperty <String> {
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
@@ -256,10 +256,10 @@ class PMPropertyProxy_String : PMReadWriteProperty_String {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_String                                                                                           *
+//   EBStoredProperty_String                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_String : PMReadWriteProperty_String {
+class EBStoredProperty_String : EBReadWriteProperty_String {
   weak var undoManager : NSUndoManager?
   
   var explorer : NSTextField? {
@@ -287,7 +287,7 @@ class PMStoredProperty_String : PMReadWriteProperty_String {
     mValue = oldValue
   }
   
-  override var prop : PMProperty <String> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty <String> { get { return .singleSelection (mValue) } }
 
   var propval : String { get { return mValue } }
 
@@ -295,18 +295,18 @@ class PMStoredProperty_String : PMReadWriteProperty_String {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (String) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (String) -> EBValidationResult = defaultValidationFunction
 
   override func validateAndSetProp (candidateValue : String,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     let validationResult = validationFunction (candidateValue)
     var result = true
     switch validationResult {
-    case PMValidationResult.ok :
+    case EBValidationResult.ok :
       setProp (candidateValue)
-    case PMValidationResult.rejectWithBeep :
+    case EBValidationResult.rejectWithBeep :
       NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
+    case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
@@ -353,18 +353,18 @@ class PMStoredProperty_String : PMReadWriteProperty_String {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_String                                                                                        *
+//   EBTransientProperty_String                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_String : PMReadOnlyProperty_String {
-  private var mValueCache : PMProperty <String>? = nil
-  var computeFunction : Optional<() -> PMProperty <String>>
+class EBTransientProperty_String : EBReadOnlyProperty_String {
+  private var mValueCache : EBProperty <String>? = nil
+  var computeFunction : Optional<() -> EBProperty <String>>
 
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <String> {
+  override var prop : EBProperty <String> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -385,18 +385,18 @@ class PMTransientProperty_String : PMReadOnlyProperty_String {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_NSColor                                                                                        *
+//   EBReadOnlyProperty_NSColor                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_NSColor : PMAbstractProperty {
-  var prop : PMProperty<NSColor> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_NSColor : PMAbstractProperty {
+  var prop : EBProperty<NSColor> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadWriteProperty_NSColor                                                                                       *
+//   EBReadWriteProperty_NSColor                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadWriteProperty_NSColor : PMReadOnlyProperty_NSColor {
+class EBReadWriteProperty_NSColor : EBReadOnlyProperty_NSColor {
   func setProp (inValue : NSColor) { } // Abstract method
   func validateAndSetProp (candidateValue : NSColor, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -404,10 +404,10 @@ class PMReadWriteProperty_NSColor : PMReadOnlyProperty_NSColor {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_NSColor                                                                                          *
+//   EBStoredProperty_NSColor                                                                                          *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
+class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -435,7 +435,7 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
     mValue = oldValue
   }
 
-  override var prop :  PMProperty <NSColor> { get { return .singleSelection (mValue) } }
+  override var prop :  EBProperty <NSColor> { get { return .singleSelection (mValue) } }
 
   var propval : NSColor { get { return mValue } }
 
@@ -443,18 +443,18 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (NSColor) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (NSColor) -> EBValidationResult = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : NSColor,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     let validationResult = validationFunction (candidateValue)
     var result = true
     switch validationResult {
-    case PMValidationResult.ok :
+    case EBValidationResult.ok :
       setProp (candidateValue)
-    case PMValidationResult.rejectWithBeep :
+    case EBValidationResult.rejectWithBeep :
       NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
+    case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
@@ -507,18 +507,18 @@ class PMStoredProperty_NSColor : PMReadWriteProperty_NSColor {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_NSColor                                                                                       *
+//   EBTransientProperty_NSColor                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
-  private var mValueCache : PMProperty <NSColor>? = nil
-  var computeFunction : Optional<() -> PMProperty <NSColor> >
+class EBTransientProperty_NSColor : EBReadOnlyProperty_NSColor {
+  private var mValueCache : EBProperty <NSColor>? = nil
+  var computeFunction : Optional<() -> EBProperty <NSColor> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <NSColor> {
+  override var prop : EBProperty <NSColor> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -539,18 +539,18 @@ class PMTransientProperty_NSColor : PMReadOnlyProperty_NSColor {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_NSDate                                                                                         *
+//   EBReadOnlyProperty_NSDate                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_NSDate : PMAbstractProperty {
-  var prop : PMProperty <NSDate> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_NSDate : PMAbstractProperty {
+  var prop : EBProperty <NSDate> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_NSDate                                                                                           *
+//   EBStoredProperty_NSDate                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
+class EBStoredProperty_NSDate : EBReadOnlyProperty_NSDate {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -578,7 +578,7 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
     mValue = oldValue
   }
 
-  override var prop : PMProperty <NSDate> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty <NSDate> { get { return .singleSelection (mValue) } }
 
   var propval : NSDate { get { return mValue } }
 
@@ -586,9 +586,9 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (NSDate) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (NSDate) -> EBValidationResult = defaultValidationFunction
   
-  func validate (proposedValue : NSDate) -> PMValidationResult {
+  func validate (proposedValue : NSDate) -> EBValidationResult {
     return validationFunction (proposedValue)
   }
 
@@ -619,18 +619,18 @@ class PMStoredProperty_NSDate : PMReadOnlyProperty_NSDate {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_NSDate                                                                                        *
+//   EBTransientProperty_NSDate                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
-  private var mValueCache : PMProperty <NSDate>? = nil
-  var computeFunction : Optional<() -> PMProperty <NSDate> >
+class EBTransientProperty_NSDate : EBReadOnlyProperty_NSDate {
+  private var mValueCache : EBProperty <NSDate>? = nil
+  var computeFunction : Optional<() -> EBProperty <NSDate> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <NSDate> {
+  override var prop : EBProperty <NSDate> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -651,18 +651,18 @@ class PMTransientProperty_NSDate : PMReadOnlyProperty_NSDate {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_Int                                                                                            *
+//   EBReadOnlyProperty_Int                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_Int : PMAbstractProperty {
-  var prop : PMProperty <Int> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_Int : PMAbstractProperty {
+  var prop : EBProperty <Int> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadWriteProperty_Int                                                                                           *
+//   EBReadWriteProperty_Int                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadWriteProperty_Int : PMReadOnlyProperty_Int {
+class EBReadWriteProperty_Int : EBReadOnlyProperty_Int {
   func setProp (inValue : Int) { } // Abstract method
   func validateAndSetProp (candidateValue : Int, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -670,15 +670,15 @@ class PMReadWriteProperty_Int : PMReadOnlyProperty_Int {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMPropertyProxy_Int                                                                                               *
+//   EBPropertyProxy_Int                                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMPropertyProxy_Int : PMReadWriteProperty_Int {
-  var readModelFunction : Optional < () -> PMProperty <Int> >
+class EBPropertyProxy_Int : EBReadWriteProperty_Int {
+  var readModelFunction : Optional < () -> EBProperty <Int> >
   var writeModelFunction : Optional < (Int) -> Void >
   var validateAndWriteModelFunction : Optional < (Int, NSWindow?) -> Bool >
   
-  private var prop_cache : PMProperty <Int>?
+  private var prop_cache : EBProperty <Int>?
   
   override init () {
     super.init ()
@@ -691,7 +691,7 @@ class PMPropertyProxy_Int : PMReadWriteProperty_Int {
     }
   }
 
-  override var prop : PMProperty <Int> {
+  override var prop : EBProperty <Int> {
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
@@ -723,10 +723,10 @@ class PMPropertyProxy_Int : PMReadWriteProperty_Int {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_Int                                                                                              *
+//   EBStoredProperty_Int                                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_Int : PMReadWriteProperty_Int {
+class EBStoredProperty_Int : EBReadWriteProperty_Int {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -754,7 +754,7 @@ class PMStoredProperty_Int : PMReadWriteProperty_Int {
     mValue = oldValue.integerValue
   }
 
-  override var prop : PMProperty<Int> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty<Int> { get { return .singleSelection (mValue) } }
 
   var propval : Int { get { return mValue } }
 
@@ -762,19 +762,19 @@ class PMStoredProperty_Int : PMReadWriteProperty_Int {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (Int) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (Int) -> EBValidationResult = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : Int,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
     let validationResult = validationFunction (candidateValue)
     switch validationResult {
-    case PMValidationResult.ok :
+    case EBValidationResult.ok :
       setProp (candidateValue)
-    case PMValidationResult.rejectWithBeep :
+    case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
+    case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%d” is invalid.", candidateValue)
@@ -821,18 +821,18 @@ class PMStoredProperty_Int : PMReadWriteProperty_Int {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_Int                                                                                           *
+//   EBTransientProperty_Int                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Int : PMReadOnlyProperty_Int {
-  private var mValueCache : PMProperty <Int>? = nil
-  var computeFunction : Optional<() -> PMProperty <Int> >
+class EBTransientProperty_Int : EBReadOnlyProperty_Int {
+  private var mValueCache : EBProperty <Int>? = nil
+  var computeFunction : Optional<() -> EBProperty <Int> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <Int> {
+  override var prop : EBProperty <Int> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -853,18 +853,18 @@ class PMTransientProperty_Int : PMReadOnlyProperty_Int {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_Bool                                                                                           *
+//   EBReadOnlyProperty_Bool                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_Bool : PMAbstractProperty {
-  var prop : PMProperty <Bool> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_Bool : PMAbstractProperty {
+  var prop : EBProperty <Bool> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_Bool                                                                                             *
+//   EBStoredProperty_Bool                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
+class EBStoredProperty_Bool : EBReadOnlyProperty_Bool {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -892,7 +892,7 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
     mValue = oldValue
   }
 
-  override var prop : PMProperty <Bool> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty <Bool> { get { return .singleSelection (mValue) } }
 
   var propval : Bool { get { return mValue } }
 
@@ -900,9 +900,9 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (Bool) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (Bool) -> EBValidationResult = defaultValidationFunction
   
-  func validate (proposedValue : Bool) -> PMValidationResult {
+  func validate (proposedValue : Bool) -> EBValidationResult {
     return validationFunction (proposedValue)
   }
 
@@ -934,18 +934,18 @@ class PMStoredProperty_Bool : PMReadOnlyProperty_Bool {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_Bool                                                                                          *
+//   EBTransientProperty_Bool                                                                                          *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
-  private var mValueCache : PMProperty <Bool>? = nil
-  var computeFunction : Optional<() -> PMProperty <Bool> >
+class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
+  private var mValueCache : EBProperty <Bool>? = nil
+  var computeFunction : Optional<() -> EBProperty <Bool> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <Bool> {
+  override var prop : EBProperty <Bool> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -966,18 +966,18 @@ class PMTransientProperty_Bool : PMReadOnlyProperty_Bool {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_NSFont                                                                                         *
+//   EBReadOnlyProperty_NSFont                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_NSFont : PMAbstractProperty {
-  var prop : PMProperty<NSFont> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_NSFont : PMAbstractProperty {
+  var prop : EBProperty<NSFont> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadWriteProperty_NSFont                                                                                        *
+//   EBReadWriteProperty_NSFont                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadWriteProperty_NSFont : PMReadOnlyProperty_NSFont {
+class EBReadWriteProperty_NSFont : EBReadOnlyProperty_NSFont {
   func setProp (inValue : NSFont) { } // Abstract method
   func validateAndSetProp (candidateValue : NSFont, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -985,10 +985,10 @@ class PMReadWriteProperty_NSFont : PMReadOnlyProperty_NSFont {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_NSFont                                                                                           *
+//   EBStoredProperty_NSFont                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_NSFont : PMReadWriteProperty_NSFont {
+class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -1016,7 +1016,7 @@ class PMStoredProperty_NSFont : PMReadWriteProperty_NSFont {
     mValue = oldValue
   }
 
-  override var prop :  PMProperty <NSFont> { get { return .singleSelection (mValue) } }
+  override var prop :  EBProperty <NSFont> { get { return .singleSelection (mValue) } }
 
   var propval : NSFont { get { return mValue } }
 
@@ -1024,18 +1024,18 @@ class PMStoredProperty_NSFont : PMReadWriteProperty_NSFont {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (NSFont) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (NSFont) -> EBValidationResult = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : NSFont,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     let validationResult = validationFunction (candidateValue)
     var result = true
     switch validationResult {
-    case PMValidationResult.ok :
+    case EBValidationResult.ok :
       setProp (candidateValue)
-    case PMValidationResult.rejectWithBeep :
+    case EBValidationResult.rejectWithBeep :
       NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
+    case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
@@ -1088,18 +1088,18 @@ class PMStoredProperty_NSFont : PMReadWriteProperty_NSFont {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_NSFont                                                                                       *
+//   EBTransientProperty_NSFont                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_NSFont : PMReadOnlyProperty_NSFont {
-  private var mValueCache : PMProperty <NSFont>? = nil
-  var computeFunction : Optional<() -> PMProperty <NSFont> >
+class EBTransientProperty_NSFont : EBReadOnlyProperty_NSFont {
+  private var mValueCache : EBProperty <NSFont>? = nil
+  var computeFunction : Optional<() -> EBProperty <NSFont> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <NSFont> {
+  override var prop : EBProperty <NSFont> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -1121,18 +1121,18 @@ class PMTransientProperty_NSFont : PMReadOnlyProperty_NSFont {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadOnlyProperty_Double                                                                                         *
+//   EBReadOnlyProperty_Double                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_Double : PMAbstractProperty {
-  var prop : PMProperty <Double> { get { return .noSelection } } // Abstract method
+class EBReadOnlyProperty_Double : PMAbstractProperty {
+  var prop : EBProperty <Double> { get { return .noSelection } } // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMReadWriteProperty_Double                                                                                        *
+//   EBReadWriteProperty_Double                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadWriteProperty_Double : PMReadOnlyProperty_Double {
+class EBReadWriteProperty_Double : EBReadOnlyProperty_Double {
   func setProp (inValue : Double) { } // Abstract method
   func validateAndSetProp (candidateValue : Double, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -1140,15 +1140,15 @@ class PMReadWriteProperty_Double : PMReadOnlyProperty_Double {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMPropertyProxy_Double                                                                                            *
+//   EBPropertyProxy_Double                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMPropertyProxy_Double : PMReadWriteProperty_Double {
-  var readModelFunction : Optional < () -> PMProperty <Double> >
+class EBPropertyProxy_Double : EBReadWriteProperty_Double {
+  var readModelFunction : Optional < () -> EBProperty <Double> >
   var writeModelFunction : Optional < (Double) -> Void >
   var validateAndWriteModelFunction : Optional < (Double, NSWindow?) -> Bool >
   
-  private var prop_cache : PMProperty <Double>?
+  private var prop_cache : EBProperty <Double>?
   
   override init () {
     super.init ()
@@ -1161,7 +1161,7 @@ class PMPropertyProxy_Double : PMReadWriteProperty_Double {
     }
   }
 
-  override var prop : PMProperty <Double> {
+  override var prop : EBProperty <Double> {
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
@@ -1193,10 +1193,10 @@ class PMPropertyProxy_Double : PMReadWriteProperty_Double {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMStoredProperty_Double                                                                                           *
+//   EBStoredProperty_Double                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_Double : PMReadWriteProperty_Double {
+class EBStoredProperty_Double : EBReadWriteProperty_Double {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -1224,7 +1224,7 @@ class PMStoredProperty_Double : PMReadWriteProperty_Double {
     mValue = oldValue.doubleValue
   }
 
-  override var prop : PMProperty<Double> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty<Double> { get { return .singleSelection (mValue) } }
 
   var propval : Double { get { return mValue } }
 
@@ -1232,19 +1232,19 @@ class PMStoredProperty_Double : PMReadWriteProperty_Double {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
  
-  var validationFunction : (Double) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (Double) -> EBValidationResult = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : Double,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
     let validationResult = validationFunction (candidateValue)
     switch validationResult {
-    case PMValidationResult.ok :
+    case EBValidationResult.ok :
       setProp (candidateValue)
-    case PMValidationResult.rejectWithBeep :
+    case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
-    case PMValidationResult.rejectWithAlert (let informativeText) :
+    case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
       alert.messageText = String (format:"The value “%d” is invalid.", candidateValue)
@@ -1291,18 +1291,18 @@ class PMStoredProperty_Double : PMReadWriteProperty_Double {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMTransientProperty_Double                                                                                        *
+//   EBTransientProperty_Double                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_Double : PMReadOnlyProperty_Double {
-  private var mValueCache : PMProperty <Double>? = nil
-  var computeFunction : Optional<() -> PMProperty <Double> >
+class EBTransientProperty_Double : EBReadOnlyProperty_Double {
+  private var mValueCache : EBProperty <Double>? = nil
+  var computeFunction : Optional<() -> EBProperty <Double> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <Double> {
+  override var prop : EBProperty <Double> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()

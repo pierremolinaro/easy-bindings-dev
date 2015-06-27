@@ -1,16 +1,28 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    ReadOnlyArrayOf_MyRootEntity                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
+
+  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
+
+  //···················································································································*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    TransientArrayOf_MyRootEntity                                                                                    *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> PMProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
   
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
-  private var prop_cache : PMProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
 
   //···················································································································*
 
@@ -34,7 +46,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   //···················································································································*
 
-  override var prop : PMProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -102,7 +114,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   //···················································································································*
 
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
   //···················································································································*
 
@@ -150,7 +162,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
     }
   }
 
-  override var prop : PMProperty <Array<NameEntity> > {
+  override var prop : EBProperty <Array<NameEntity> > {
     get {
       return .singleSelection (mValue ?? Array<NameEntity> ())
     }
@@ -285,18 +297,6 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
       objects.append (managedObject)
     }
   }
-
-  //···················································································································*
-
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    ReadOnlyArrayOf_MyRootEntity                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
-
-  var prop : PMProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
   //···················································································································*
 

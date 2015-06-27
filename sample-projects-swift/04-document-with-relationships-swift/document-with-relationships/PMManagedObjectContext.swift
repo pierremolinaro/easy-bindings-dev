@@ -6,7 +6,7 @@ import Cocoa
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMManagedObjectContext : PMObject {
+class PMManagedObjectContext : EBObject {
   private var mUndoManager : PMUndoManager?
   private var mManagedObjectSet = Set <PMManagedObject> ()
 

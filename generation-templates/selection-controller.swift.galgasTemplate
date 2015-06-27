@@ -4,7 +4,7 @@ import Cocoa
 //    %!["SelectionController_" + OWNER_NAME + "_" + SELECTION_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : PMObject {
+class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBObject {
   private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -13,7 +13,7 @@ class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : PMObject 
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
-%  var %!lkey.string% = PMPropertyProxy_%![mType swiftTypeName]% () \n%
+%  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
 end
 end%
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

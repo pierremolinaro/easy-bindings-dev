@@ -6,13 +6,13 @@ import Cocoa
 
 class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
-  var prop : PMProperty <Array<MyRootEntity> > { get { return .noSelection } }
+  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
   //···················································································································*
 
-  var mObserversOf_myString = Set<PMEvent> ()
+  var mObserversOf_myString = Set<EBEvent> ()
 
-  func addObserverOf_myString (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_myString (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -38,9 +38,9 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   //···················································································································*
 
-  var mObserversOf_myEnumeration = Set<PMEvent> ()
+  var mObserversOf_myEnumeration = Set<EBEvent> ()
 
-  func addObserverOf_myEnumeration (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myEnumeration.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -52,7 +52,7 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_myEnumeration (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myEnumeration.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -66,9 +66,9 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
   //···················································································································*
 
-  var mObserversOf_myColor = Set<PMEvent> ()
+  var mObserversOf_myColor = Set<EBEvent> ()
 
-  func addObserverOf_myColor (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -80,7 +80,7 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_myColor (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -102,11 +102,11 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> PMProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
   
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
-  private var prop_cache : PMProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
 
   //···················································································································*
 
@@ -130,7 +130,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   //···················································································································*
 
-  override var prop : PMProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -159,19 +159,19 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity_myString) protocol MyRootEntity_myString {
-  var myString : PMStoredProperty_String { get }
+  var myString : EBStoredProperty_String { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity_myEnumeration) protocol MyRootEntity_myEnumeration {
-  var myEnumeration : PMStoredProperty_MonEnumeration { get }
+  var myEnumeration : EBStoredProperty_MonEnumeration { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity_myColor) protocol MyRootEntity_myColor {
-  var myColor : PMStoredProperty_NSColor { get }
+  var myColor : EBStoredProperty_NSColor { get }
 }
 
 
@@ -185,7 +185,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    Properties                                                                                                     *
   //···················································································································*
 
-  var myString = PMStoredProperty_String ("Hello")
+  var myString = EBStoredProperty_String ("Hello")
   var myString_keyCodingValue : String {
     get {
       switch myString.prop {
@@ -197,7 +197,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     }
   }
 
-  var myEnumeration = PMStoredProperty_MonEnumeration (MonEnumeration.deuxieme)
+  var myEnumeration = EBStoredProperty_MonEnumeration (MonEnumeration.deuxieme)
   var myEnumeration_keyCodingValue : MonEnumeration {
     get {
       switch myEnumeration.prop {
@@ -209,7 +209,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     }
   }
 
-  var myColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
+  var myColor = EBStoredProperty_NSColor (NSColor.yellowColor ())
   var myColor_keyCodingValue : NSColor {
     get {
       switch myColor.prop {
@@ -225,9 +225,9 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    Transient properties                                                                                           *
   //···················································································································*
 
-  var myStringMaj = PMTransientProperty_String ()
-  var myStringMin = PMTransientProperty_String ()
-  var myStringConcat = PMTransientProperty_String ()
+  var myStringMaj = EBTransientProperty_String ()
+  var myStringMin = EBTransientProperty_String ()
+  var myStringConcat = EBTransientProperty_String ()
 
   //···················································································································*
   //    Relationships                                                                                                  *

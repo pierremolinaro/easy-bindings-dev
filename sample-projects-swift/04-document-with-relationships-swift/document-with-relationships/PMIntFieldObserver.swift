@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMIntFieldObserver) class PMIntFieldObserver : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMIntFieldObserver) class PMIntFieldObserver : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -38,10 +38,10 @@ import Cocoa
   //  valueObserver binding                                                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMReadOnlyIntField_readOnlyValue?
+  private var mValueController : Controller_EBReadOnlyIntField_readOnlyValue?
 
-  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
-    mValueController = Controller_PMReadOnlyIntField_readOnlyValue (
+  func bind_valueObserver (object:EBReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
+    mValueController = Controller_EBReadOnlyIntField_readOnlyValue (
       object:object,
       outlet:self,
       file:file,
@@ -59,17 +59,17 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_PMReadOnlyIntField_readOnlyValue                                                                       *
+//   Controller_EBReadOnlyIntField_readOnlyValue                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMReadOnlyIntField_readOnlyValue) class Controller_PMReadOnlyIntField_readOnlyValue : PMOutletEvent {
+@objc(Controller_EBReadOnlyIntField_readOnlyValue) class Controller_EBReadOnlyIntField_readOnlyValue : EBOutletEvent {
 
-  var mObject : PMReadOnlyProperty_Int
+  var mObject : EBReadOnlyProperty_Int
   var mOutlet : PMIntFieldObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {
+  init (object : EBReadOnlyProperty_Int, outlet : PMIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
     super.init ()

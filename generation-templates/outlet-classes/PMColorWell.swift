@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMColorWell) class PMColorWell : NSColorWell, PMUserClassName {
+@objc(PMColorWell) class PMColorWell : NSColorWell, EBUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -31,7 +31,7 @@ import Cocoa
   private var mValueController : Controller_PMColorWell_color?
   var mSendContinously = false
 
-  func bind_color (object:PMReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
+  func bind_color (object:EBReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -49,15 +49,15 @@ import Cocoa
 //   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMColorWell_color : PMOutletEvent {
+class Controller_PMColorWell_color : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_NSColor
+  var mObject : EBReadWriteProperty_NSColor
   var mOutlet: PMColorWell
   var mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
+  init (object : EBReadWriteProperty_NSColor, outlet : PMColorWell, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously

@@ -1,18 +1,18 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMEvent class                                                                                                    *
+//    EBEvent class                                                                                                    *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMEvent) class PMEvent : PMObject {
+@objc(EBEvent) class EBEvent : EBObject {
   func postEvent () {} // Abstract method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMOutletEvent class                                                                                              *
+//    EBOutletEvent class                                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMOutletEvent) class PMOutletEvent : PMEvent {
+@objc(EBOutletEvent) class EBOutletEvent : EBEvent {
   override func postEvent () {
     postOutletEvent (self)
   }
@@ -23,9 +23,9 @@ import Cocoa
 //    O U T L E T    E V E N T S                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-private var gPendingOutletEvents = Set <PMOutletEvent> ()
+private var gPendingOutletEvents = Set <EBOutletEvent> ()
 
-func postOutletEvent (event : PMOutletEvent) {
+func postOutletEvent (event : EBOutletEvent) {
   if gPendingOutletEvents.count == 0 {
     dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { flushOutletEvents () }
   }
@@ -68,28 +68,28 @@ func flushOutletEvents () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func logEvents () -> Bool {
-  let theApp = NSApp as! PMApplication
+  let theApp = NSApp as! EBApplication
   return theApp.logEvents ()
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendToTransientEventLog (message : String) {
-  let theApp = NSApp as! PMApplication
+  let theApp = NSApp as! EBApplication
   theApp.appendToTransientEventLog (message)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendMessageString (message : String) {
-  let theApp = NSApp as! PMApplication
+  let theApp = NSApp as! EBApplication
   theApp.mTransientEventExplorerTextView?.appendMessageString (message)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 func appendMessageString (message : String, color:NSColor) {
-  let theApp = NSApp as! PMApplication
+  let theApp = NSApp as! EBApplication
   theApp.mTransientEventExplorerTextView?.appendMessageString (message, color:color)
 }
 
@@ -99,9 +99,9 @@ func appendMessageString (message : String, color:NSColor) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMApplication) class PMApplication : NSApplication {
+@objc(EBApplication) class EBApplication : NSApplication {
   private var mLevel = 0
-  private var mTriggerOutletDisplaySet = Set <PMOutletEvent> ()
+  private var mTriggerOutletDisplaySet = Set <EBOutletEvent> ()
  
   //-------------------------------------------------------------------------------------------------------------------*
 

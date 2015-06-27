@@ -1,12 +1,3 @@
-//
-//  PMUndoManager.swift
-//  essai
-//
-//  Created by Pierre Molinaro on 30/06/14.
-//  Copyright (c) 2013 ECN / IRCCyN. All rights reserved.
-//
-//---------------------------------------------------------------------------*
-
 import Cocoa
 
 //---------------------------------------------------------------------------*
@@ -15,7 +6,7 @@ let traceUndoManager = false
 
 //---------------------------------------------------------------------------*
 
-@objc(PMUndoManager) class PMUndoManager : NSUndoManager, PMUserClassName {
+@objc(PMUndoManager) class PMUndoManager : NSUndoManager, EBUserClassName {
 
   //-----------------------------------------------------------------------------*
   //    init                                                                     *

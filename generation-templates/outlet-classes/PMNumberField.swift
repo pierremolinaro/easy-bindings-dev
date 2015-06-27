@@ -4,7 +4,7 @@ import Cocoa
 //   PMNumberField                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMNumberField) class PMNumberField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMNumberField) class PMNumberField : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 

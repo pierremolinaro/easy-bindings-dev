@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMPopUpButton) class PMPopUpButton : NSPopUpButton, PMUserClassName {
+@objc(PMPopUpButton) class PMPopUpButton : NSPopUpButton, EBUserClassName {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -37,7 +37,7 @@ import Cocoa
 
   private var mValueController : Controller_PMPopUpButton_selectedTag?
 
-  func bind_selectedTag (object:PMReadWriteProperty_Int, file:String, line:Int) {
+  func bind_selectedTag (object:EBReadWriteProperty_Int, file:String, line:Int) {
     mValueController = Controller_PMPopUpButton_selectedTag (object:object, outlet:self, file:file, line:line)
   }
 
@@ -54,14 +54,14 @@ import Cocoa
 //   Controller_PMPopUpButton_selectedTag                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMPopUpButton_selectedTag : PMOutletEvent {
+class Controller_PMPopUpButton_selectedTag : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_Int
+  var mObject : EBReadWriteProperty_Int
   var mOutlet : PMPopUpButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadWriteProperty_Int, outlet : PMPopUpButton, file : String, line : Int) {
+  init (object : EBReadWriteProperty_Int, outlet : PMPopUpButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

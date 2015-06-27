@@ -509,7 +509,7 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressio
 
 override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "PMProperty.singleSelection (" + [mValue string] + ")"
+  outExpressionString = "EBProperty.singleSelection (" + [mValue string] + ")"
 }
 
 #......................................................................................................................*

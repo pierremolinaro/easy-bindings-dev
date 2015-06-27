@@ -4,7 +4,7 @@ import Cocoa
 //   PMNumberFieldObserver                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMNumberFieldObserver) class PMNumberFieldObserver : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMNumberFieldObserver) class PMNumberFieldObserver : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
@@ -40,7 +40,7 @@ import Cocoa
 
   private var mValueController : Controller_PMNumberField_readOnlyValue?
 
-  func bind_valueObserver (object:PMReadOnlyProperty_Int, file:String, line:Int) {
+  func bind_valueObserver (object:EBReadOnlyProperty_Int, file:String, line:Int) {
     mValueController = Controller_PMNumberField_readOnlyValue (object:object, outlet:self, file:file, line:line)
   }
 
@@ -57,14 +57,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMNumberField_readOnlyValue)
-class Controller_PMNumberField_readOnlyValue : PMOutletEvent {
+class Controller_PMNumberField_readOnlyValue : EBOutletEvent {
 
-  var mObject : PMReadOnlyProperty_Int
+  var mObject : EBReadOnlyProperty_Int
   var mOutlet : PMNumberFieldObserver
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadOnlyProperty_Int, outlet : PMNumberFieldObserver, file : String, line : Int) {
+  init (object : EBReadOnlyProperty_Int, outlet : PMNumberFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

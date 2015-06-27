@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMIntField) class PMIntField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMIntField) class PMIntField : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -79,7 +79,7 @@ import Cocoa
   private var mValueController : Controller_PMIntField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
+  func bind_value (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMIntField_value (
       object:object,
@@ -106,14 +106,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMIntField_value)
-class Controller_PMIntField_value : PMOutletEvent {
+class Controller_PMIntField_value : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_Int
+  var mObject : EBReadWriteProperty_Int
   var mOutlet : PMIntField
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_Int,
+  init (object : EBReadWriteProperty_Int,
         outlet : PMIntField,
         file : String,
         line : Int,

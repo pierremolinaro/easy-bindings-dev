@@ -34,11 +34,11 @@ import Cocoa
   //    Transient properties                                                                                           *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private var selectionCountString = PMTransientProperty_String ()
-  private var evenValueString = PMTransientProperty_String ()
-  private var canRemoveString = PMTransientProperty_String ()
-  private var countItemMessage = PMTransientProperty_String ()
-  private var total = PMTransientProperty_Int ()
+  private var selectionCountString = EBTransientProperty_String ()
+  private var evenValueString = EBTransientProperty_String ()
+  private var canRemoveString = EBTransientProperty_String ()
+  private var countItemMessage = EBTransientProperty_String ()
+  private var total = EBTransientProperty_Int ()
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Array Controllers                                                                                              *
@@ -332,21 +332,21 @@ import Cocoa
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
       computeFunction:{
-        return (self.nameController.selectedArray.count.prop > PMProperty.singleSelection (0))
+        return (self.nameController.selectedArray.count.prop > EBProperty.singleSelection (0))
       },
       file:__FILE__, line:__LINE__
     )
     incrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
-        return (self.rootObject.mNames.count.prop > PMProperty.singleSelection (0))
+        return (self.rootObject.mNames.count.prop > EBProperty.singleSelection (0))
       },
       file:__FILE__, line:__LINE__
     )
     decrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
-        return (self.rootObject.mNames.count.prop > PMProperty.singleSelection (0))
+        return (self.rootObject.mNames.count.prop > EBProperty.singleSelection (0))
       },
       file:__FILE__, line:__LINE__
     )

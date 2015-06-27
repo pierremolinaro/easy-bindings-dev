@@ -27,12 +27,12 @@ enum MonEnumeration : Int {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMReadOnlyProperty_MonEnumeration                                                                                *
+//    EBReadOnlyProperty_MonEnumeration                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMReadOnlyProperty_MonEnumeration : PMAbstractProperty, PMReadOnlyEnumPropertyProtocol {
+class EBReadOnlyProperty_MonEnumeration : PMAbstractProperty, EBReadOnlyEnumPropertyProtocol {
 
-  var prop : PMProperty <MonEnumeration> { get { return .noSelection } } // Abstract method
+  var prop : EBProperty <MonEnumeration> { get { return .noSelection } } // Abstract method
 
   func rawValue () -> Int { return MonEnumeration.premier.rawValue }  // Abstract method
 
@@ -40,10 +40,10 @@ class PMReadOnlyProperty_MonEnumeration : PMAbstractProperty, PMReadOnlyEnumProp
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMStoredProperty_MonEnumeration                                                                                  *
+//    EBStoredProperty_MonEnumeration                                                                                  *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnumPropertyProtocol {
+class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, PMEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {
@@ -73,7 +73,7 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
     }
   }
 
-  override var prop : PMProperty <MonEnumeration> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty <MonEnumeration> { get { return .singleSelection (mValue) } }
 
   func setProp (inValue : MonEnumeration) { mValue = inValue }
 
@@ -113,28 +113,28 @@ class PMStoredProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration, PMEnu
 
   //-------------------------------------------------------------------------------------------------------------------*
  
-  var validationFunction : (MonEnumeration) -> PMValidationResult = defaultValidationFunction
+  var validationFunction : (MonEnumeration) -> EBValidationResult = defaultValidationFunction
   
-  func validate (proposedValue : MonEnumeration) -> PMValidationResult {
+  func validate (proposedValue : MonEnumeration) -> EBValidationResult {
     return validationFunction (proposedValue)
   }
 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMTransientProperty_MonEnumeration                                                                               *
+//    EBTransientProperty_MonEnumeration                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMTransientProperty_MonEnumeration : PMReadOnlyProperty_MonEnumeration {
-  private var mValueCache : PMProperty <MonEnumeration>?
+class EBTransientProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration {
+  private var mValueCache : EBProperty <MonEnumeration>?
 
-  var computeFunction : Optional<() -> PMProperty <MonEnumeration> >
+  var computeFunction : Optional<() -> EBProperty <MonEnumeration> >
   
   override init () {
     super.init ()
   }
 
-  override var prop : PMProperty <MonEnumeration> {
+  override var prop : EBProperty <MonEnumeration> {
     get {
       if mValueCache == nil {
         if let unwrappedComputeFunction = computeFunction {

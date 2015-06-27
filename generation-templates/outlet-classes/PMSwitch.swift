@@ -2,7 +2,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMSwitch) class PMSwitch : NSButton, PMUserClassName {
+@objc(PMSwitch) class PMSwitch : NSButton, EBUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -38,7 +38,7 @@ import Cocoa
 
   private var mValueController : Controller_PMSwitch_value?
 
-  func bind_value (object:PMStoredProperty_Bool, file:String, line:Int) {
+  func bind_value (object:EBStoredProperty_Bool, file:String, line:Int) {
     mValueController = Controller_PMSwitch_value (object:object, outlet:self, file:file, line:line)
   }
 
@@ -56,14 +56,14 @@ import Cocoa
 //   Controller Controller_PMSwitch_value                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMSwitch_value) class Controller_PMSwitch_value : PMOutletEvent {
+@objc(Controller_PMSwitch_value) class Controller_PMSwitch_value : EBOutletEvent {
 
   private var mOutlet : PMSwitch
-  private var mObject : PMStoredProperty_Bool
+  private var mObject : EBStoredProperty_Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object:PMStoredProperty_Bool, outlet : PMSwitch, file : String, line:Int) {
+  init (object:EBStoredProperty_Bool, outlet : PMSwitch, file : String, line:Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

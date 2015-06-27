@@ -4,7 +4,7 @@ import Cocoa
 //    PMTableView                                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMTableView) class PMTableView : NSTableView, PMUserClassName {
+@objc(PMTableView) class PMTableView : NSTableView, EBUserClassName {
 
   //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
@@ -48,7 +48,7 @@ import Cocoa
 //   Controller Controller_PMTableView_controller                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_PMTableView_controller) class Controller_PMTableView_controller : PMOutletEvent {
+@objc(Controller_PMTableView_controller) class Controller_PMTableView_controller : EBOutletEvent {
 
   private var mDelegate : PMTableViewDelegate
   private var mTableView : PMTableView

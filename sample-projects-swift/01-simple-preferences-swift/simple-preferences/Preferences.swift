@@ -6,7 +6,7 @@ var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Preferences) class Preferences : PMObject {
+@objc(Preferences) class Preferences : EBObject {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
@@ -26,10 +26,10 @@ var g_Preferences : Preferences? = nil
   //    Properties                                                                                                     *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  var myString = PMStoredProperty_String ("hello")
-  var mColor = PMStoredProperty_NSColor (NSColor.yellowColor ())
-  var mDate = PMStoredProperty_NSDate (NSDate ())
-  var mIntegerValue = PMStoredProperty_Int (12)
+  var myString = EBStoredProperty_String ("hello")
+  var mColor = EBStoredProperty_NSColor (NSColor.yellowColor ())
+  var mDate = EBStoredProperty_NSDate (NSDate ())
+  var mIntegerValue = EBStoredProperty_Int (12)
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *

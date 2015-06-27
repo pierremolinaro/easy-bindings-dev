@@ -127,27 +127,27 @@ extension Array {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMValidationResult                                                                                               *
+//    EBValidationResult                                                                                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-enum PMValidationResult {
+enum EBValidationResult {
   case ok
   case rejectWithBeep
   case rejectWithAlert (String /* informativeText */)
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMUserClassName protocol                                                                                         *
+//    EBUserClassName protocol                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMUserClassName) protocol PMUserClassName {
+@objc(EBUserClassName) protocol EBUserClassName {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    PMObject class                                                                                                   *
+//    EBObject class                                                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMObject) class PMObject : NSObject, PMUserClassName {
+@objc(EBObject) class EBObject : NSObject, EBUserClassName {
 
   override init () {
     super.init ()
@@ -252,8 +252,8 @@ extension NSTextView {
 //    defaultValidationFunction                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-func defaultValidationFunction<T> (proposedValue : T) -> PMValidationResult {
-  return PMValidationResult.ok
+func defaultValidationFunction<T> (proposedValue : T) -> EBValidationResult {
+  return EBValidationResult.ok
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

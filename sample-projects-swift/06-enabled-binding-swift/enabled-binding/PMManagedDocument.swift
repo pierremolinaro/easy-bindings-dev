@@ -22,7 +22,7 @@ enum PMDocumentCompressionEnum {
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class PMManagedDocument : NSDocument, PMUserClassName {
+class PMManagedDocument : NSDocument, EBUserClassName {
   var mRootObject : PMManagedObject?
   private var mReadMetadataStatus : UInt8 = 0
   private var mMetadataDictionary : NSMutableDictionary = [:]

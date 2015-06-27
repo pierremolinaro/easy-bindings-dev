@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMSegmentedControl) class PMSegmentedControl : NSSegmentedControl, PMUserClassName {
+@objc(PMSegmentedControl) class PMSegmentedControl : NSSegmentedControl, EBUserClassName {
   @IBOutlet private var mMasterView : NSView?
   @IBOutlet private var mView0 : NSView?
   @IBOutlet private var mView1 : NSView?
@@ -109,7 +109,7 @@ import Cocoa
 
   private var mValueController : Controller_PMSegmentedControl_selectedIndex?
 
-  func bind_selectedIndex (object:PMReadWriteProperty_Int, file:String, line:Int) {
+  func bind_selectedIndex (object:EBReadWriteProperty_Int, file:String, line:Int) {
     mValueController = Controller_PMSegmentedControl_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 
@@ -126,14 +126,14 @@ import Cocoa
 //   Controller_PMSegmentedControl_selectedIndex                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMSegmentedControl_selectedIndex : PMOutletEvent {
+class Controller_PMSegmentedControl_selectedIndex : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_Int
+  var mObject : EBReadWriteProperty_Int
   var mOutlet : PMSegmentedControl
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadWriteProperty_Int, outlet : PMSegmentedControl, file : String, line : Int) {
+  init (object : EBReadWriteProperty_Int, outlet : PMSegmentedControl, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

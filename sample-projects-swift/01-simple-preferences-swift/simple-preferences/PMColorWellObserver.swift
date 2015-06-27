@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMColorWellObserver) class PMColorWellObserver : NSColorWell, PMUserClassName {
+@objc(PMColorWellObserver) class PMColorWellObserver : NSColorWell, EBUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -30,10 +30,10 @@ import Cocoa
   //  color binding                                                                                                    *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  private var mValueController : Controller_PMReadOnlyColorWell_color?
+  private var mValueController : Controller_EBReadOnlyColorWell_color?
 
-  func bind_colorObserver (object:PMReadWriteProperty_NSColor, file:String, line:Int) {
-    mValueController = Controller_PMReadOnlyColorWell_color (object:object, outlet:self, file:file, line:line)
+  func bind_colorObserver (object:EBReadWriteProperty_NSColor, file:String, line:Int) {
+    mValueController = Controller_EBReadOnlyColorWell_color (object:object, outlet:self, file:file, line:line)
   }
 
   func unbind_colorObserver () {
@@ -49,14 +49,14 @@ import Cocoa
 //   Controller_PMColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMReadOnlyColorWell_color : PMOutletEvent {
+class Controller_EBReadOnlyColorWell_color : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_NSColor
+  var mObject : EBReadWriteProperty_NSColor
   var mOutlet: PMColorWellObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_NSColor, outlet : PMColorWellObserver, file : String, line : Int) {
+  init (object : EBReadWriteProperty_NSColor, outlet : PMColorWellObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
