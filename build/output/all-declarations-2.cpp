@@ -31,7 +31,7 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
   }
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.reader_length (SOURCE_FILE ("entity.galgas", 273)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_fileName = GALGAS_string ("PMManagedObjectContext.swift") ;
+    GALGAS_string var_fileName = GALGAS_string ("EBManagedObjectContext.swift") ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("entity.galgas", 275)) ;
     GALGAS_string var_s = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_managedObjectContext (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 276))) ;
     {
@@ -191,7 +191,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
   result << in_DOCUMENT_5F_NAME.stringValue () ;
   result << ") class " ;
   result << in_DOCUMENT_5F_NAME.stringValue () ;
-  result << " : PMManagedDocument {\n"
+  result << " : EBManagedDocument {\n"
     "\n"
     "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
     "  //    Outlets                                                                                                        *\n"
@@ -221,7 +221,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
     while (enumerator_1091.hasCurrentObject ()) {
       result << "  private var " ;
       result << enumerator_1091.current_mStoredPropertyName (HERE).stringValue () ;
-      result << " = PMEntityProperty <" ;
+      result << " = EBEntityProperty <" ;
       result << categoryReader_swiftTypeName (enumerator_1091.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 23)).stringValue () ;
       result << "> (" ;
       result << enumerator_1091.current_mDefaultValueInSwift (HERE).stringValue () ;
@@ -654,31 +654,31 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "\n"
-    "enum PMDocumentCompressionEnum {\n"
-    "  case PMDocumentNoCompression\n"
-    "  case PMDocumentBZ2Compression\n"
-    "  case PMDocumentZLIBCompression\n"
+    "enum EBDocumentCompressionEnum {\n"
+    "  case EBDocumentNoCompression\n"
+    "  case EBDocumentBZ2Compression\n"
+    "  case EBDocumentZLIBCompression\n"
     "}\n"
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "//                                                                                                                     *\n"
-    "//  PMManagedDocument                                                                                                  *\n"
+    "//  EBManagedDocument                                                                                                  *\n"
     "//                                                                                                                     *\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "\n"
-    "class PMManagedDocument : NSDocument, EBUserClassName {\n"
-    "  var mRootObject : PMManagedObject\?\n"
+    "class EBManagedDocument : NSDocument, EBUserClassName {\n"
+    "  var mRootObject : EBManagedObject\?\n"
     "  private var mReadMetadataStatus : UInt8 = 0\n"
     "  private var mMetadataDictionary : NSMutableDictionary = [:]\n"
-    "  private var mManagedObjectContext : PMManagedObjectContext\n"
+    "  private var mManagedObjectContext : EBManagedObjectContext\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
     "  //    init                                                                                                           *\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
     "\n"
     "  override init () {\n"
-    "    let theUndoManager = PMUndoManager ()\n"
-    "    mManagedObjectContext = PMManagedObjectContext (undoManager:theUndoManager)\n"
+    "    let theUndoManager = EBUndoManager ()\n"
+    "    mManagedObjectContext = EBManagedObjectContext (undoManager:theUndoManager)\n"
     "    super.init ()\n"
     "    noteObjectAllocation (self)\n"
     "    undoManager = theUndoManager\n"
@@ -766,8 +766,8 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
     "\n"
-    "  func compressDataOnSaving () -> PMDocumentCompressionEnum {\n"
-    "    return PMDocumentCompressionEnum.PMDocumentBZ2Compression ;\n"
+    "  func compressDataOnSaving () -> EBDocumentCompressionEnum {\n"
+    "    return EBDocumentCompressionEnum.EBDocumentBZ2Compression ;\n"
     "  }\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
@@ -786,18 +786,18 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface\n"
     "      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable\n"
     "        let windowSize = unwrappedWindowForSheet.frame.size ;\n"
-    "        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.width)), forKey:\"PMWindowWidth\")\n"
-    "        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.height)), forKey:\"PMWindowHeight\")\n"
+    "        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.width)), forKey:\"EBWindowWidth\")\n"
+    "        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.height)), forKey:\"EBWindowHeight\")\n"
     "      }\n"
     "    }else{ // Document has not been opened in the user interface, use values read from file, if they exist\n"
     "/*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;\n"
-    "      NSNumber * v = [metadataDictionaryReadFromFile objectForKey:@\"PMWindowWidth\"] ;\n"
+    "      NSNumber * v = [metadataDictionaryReadFromFile objectForKey:@\"EBWindowWidth\"] ;\n"
     "      if (nil != v) {\n"
-    "        [metadataDictionary setObject:v forKey:@\"PMWindowWidth\"] ;\n"
+    "        [metadataDictionary setObject:v forKey:@\"EBWindowWidth\"] ;\n"
     "      }\n"
-    "      v = [metadataDictionaryReadFromFile objectForKey:@\"PMWindowHeight\"] ;\n"
+    "      v = [metadataDictionaryReadFromFile objectForKey:@\"EBWindowHeight\"] ;\n"
     "      if (nil != v) {\n"
-    "        [metadataDictionary setObject:v forKey:@\"PMWindowHeight\"] ;\n"
+    "        [metadataDictionary setObject:v forKey:@\"EBWindowHeight\"] ;\n"
     "      }*/\n"
     "    }\n"
     "  //---\n"
@@ -819,12 +819,12 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "    fileData.writeByte (6, trace:&trace)\n"
     "    fileData.writeAutosizedData (documentData, trace:&trace)\n"
     "/*    switch ([self compressDataOnSaving]) {\n"
-    "    case PMDocumentBZ2Compression:\n"
+    "    case EBDocumentBZ2Compression:\n"
     "      data = [data bz2CompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;\n"
     "      [fileData writeByte:5 trace:nil] ;\n"
     "      [fileData writeAutosizedData:data trace:nil] ;\n"
     "      break ;\n"
-    "    case PMDocumentZLIBCompression:\n"
+    "    case EBDocumentZLIBCompression:\n"
     "      data = [data zlibCompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;\n"
     "      [fileData writeByte:7 trace:nil] ;\n"
     "      [fileData writeAutosizedData:data trace:nil] ;\n"
@@ -844,7 +844,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
     "\n"
     "  func dataForSavingFromRootObject () throws -> NSData {\n"
-    "    let objectsToSaveArray : Array<PMManagedObject> = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)\n"
+    "    let objectsToSaveArray : Array<EBManagedObject> = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)\n"
     "  //--- Set savingIndex for each object\n"
     "    var idx = 0 ;\n"
     "    for object in objectsToSaveArray {\n"
@@ -873,7 +873,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "  override func readFromData (data: NSData\?, ofType typeName: String\?) throws {\n"
     "    undoManager\?.disableUndoRegistration ()\n"
     "  //---- Define input data scanner\n"
-    "    let dataScanner = PMDataScanner (data:data!)\n"
+    "    let dataScanner = EBDataScanner (data:data!)\n"
     "  //--- Check Signature\n"
     "    for c in kFormatSignature.utf8 {\n"
     "      dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)\n"
@@ -1016,15 +1016,15 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "      NSLog (\"Dictionary array: +%g s\", timeTaken)\n"
     "    }\n"
     "    let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)\n"
-    "    var progress : PMDocumentReadProgress\?\n"
+    "    var progress : EBDocumentReadProgress\?\n"
     "    if dictionaryArray.count > 10000 {\n"
-    "      progress = PMDocumentReadProgress (title:lastComponentOfFileName.stringByDeletingPathExtension,\n"
+    "      progress = EBDocumentReadProgress (title:lastComponentOfFileName.stringByDeletingPathExtension,\n"
     "                                         dataLength:dictionaryArray.count * 2,\n"
     "                                         semaphore:semaphore)\n"
     "    }\n"
     "    let queue = dispatch_queue_create (\"readObjectFromData\", DISPATCH_QUEUE_CONCURRENT)\n"
     "    dispatch_after (DISPATCH_TIME_NOW, queue) {\n"
-    "      var objectArray : Array<PMManagedObject> = Array  ()\n"
+    "      var objectArray : Array<EBManagedObject> = Array  ()\n"
     "      var progressIdx = 0 ;\n"
     "      for d in dictionaryArray {\n"
     "        let className = d.objectForKey (\"--entity\") as! String\n"
@@ -1039,7 +1039,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "      }\n"
     "      var idx = 0\n"
     "      for d in dictionaryArray {\n"
-    "        let object : PMManagedObject = objectArray [idx]\n"
+    "        let object : EBManagedObject = objectArray [idx]\n"
     "        object.setUpWithDictionary (d, managedObjectArray:objectArray)\n"
     "        idx += 1\n"
     "        progressIdx += 1\n"
@@ -1076,8 +1076,8 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "    super.showWindows ()\n"
     "    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface\n"
     "      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable\n"
-    "        let windowWidthNumber : NSNumber\? = mMetadataDictionary.objectForKey (\"PMWindowWidth\") as\? NSNumber\n"
-    "        let windowHeightNumber : NSNumber\? = mMetadataDictionary.objectForKey (\"PMWindowHeight\") as\? NSNumber\n"
+    "        let windowWidthNumber : NSNumber\? = mMetadataDictionary.objectForKey (\"EBWindowWidth\") as\? NSNumber\n"
+    "        let windowHeightNumber : NSNumber\? = mMetadataDictionary.objectForKey (\"EBWindowHeight\") as\? NSNumber\n"
     "        if (nil != windowWidthNumber) && (nil != windowHeightNumber) {\n"
     "          let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))\n"
     "          var windowFrame : NSRect = unwrappedWindowForSheet.frame\n"
@@ -1186,11 +1186,11 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "//                                                                                                                     *\n"
-    "//     PMDocumentReadProgress                                                                                          *\n"
+    "//     EBDocumentReadProgress                                                                                          *\n"
     "//                                                                                                                     *\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""*\n"
     "\n"
-    "class PMDocumentReadProgress {\n"
+    "class EBDocumentReadProgress {\n"
     "  private var mProgressWindow : NSWindow\?\n"
     "  private var mProgressIndicator : NSProgressIndicator\?\n"
     "  private var mTotal : Double\n"
@@ -1320,7 +1320,7 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 COMMA_UNUSED_LOCATION_ARGS) {
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inDocumentListForGeneration.reader_length (SOURCE_FILE ("document.galgas", 279)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_fileName = GALGAS_string ("PMManagedDocument.swift") ;
+    GALGAS_string var_fileName = GALGAS_string ("EBManagedDocument.swift") ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("document.galgas", 281)) ;
     GALGAS_string var_s = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_managedDocument (inCompiler COMMA_SOURCE_FILE ("document.galgas", 282))) ;
     {
@@ -4883,7 +4883,7 @@ void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument
                                              GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                              C_Compiler * inCompiler
                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_defaultUserZone_32_ = GALGAS_string ("    var result = PMValidationResult.ok\n").add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 31)).add_operation (GALGAS_string ("    if !validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 32)).add_operation (GALGAS_string ("      result = PMValidationResult.rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 33)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 34)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 35)) ;
+  GALGAS_string var_defaultUserZone_32_ = GALGAS_string ("    var result = EBValidationResult.ok\n").add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 31)).add_operation (GALGAS_string ("    if !validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 32)).add_operation (GALGAS_string ("      result = EBValidationResult.rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 33)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 34)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 35)) ;
   cEnumerator_validationStubRoutineListForGeneration enumerator_1783 (constinArgument_inValidationStubRoutineListForGeneration, kEnumeration_up) ;
   while (enumerator_1783.hasCurrentObject ()) {
     GALGAS_string var_s = GALGAS_string (filewrapperTemplate_validationStubExtension_actionGeneration (inCompiler, enumerator_1783.current_mObjectTypeName (HERE), enumerator_1783.current_mModelName (HERE), enumerator_1783.current_mModelTypeName (HERE) COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 38))) ;
@@ -7005,7 +7005,7 @@ void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectStr
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- File '/PMAllocationDebug.swift'
+//--- File '/EBAllocationDebug.swift'
 
 const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
@@ -7039,21 +7039,21 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
   "private func installDebugMenu () {\n"
   "  if nil == gDebugObject {\n"
-  "    let debugObject = PMAllocationDebug ()\n"
+  "    let debugObject = EBAllocationDebug ()\n"
   "    gDebugObject = debugObject\n"
   "    let mainBundle = NSBundle.mainBundle ()\n"
-  "    let ok = mainBundle.loadNibNamed (\"PMAllocationDebug\", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)\n"
+  "    let ok = mainBundle.loadNibNamed (\"EBAllocationDebug\", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)\n"
   "    if !ok {\n"
-  "      presentErrorWindow (__FILE__, line: __LINE__, errorMessage: \"Cannot load 'PMAllocationDebug' nib file\") ;\n"
+  "      presentErrorWindow (__FILE__, line: __LINE__, errorMessage: \"Cannot load 'EBAllocationDebug' nib file\") ;\n"
   "    }\n"
   "  }\n"
   "}\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
-  "//   PMAllocationItemDisplay class                                                                                     *\n"
+  "//   EBAllocationItemDisplay class                                                                                     *\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "@objc(PMAllocationItemDisplay) class PMAllocationItemDisplay : NSObject {\n"
+  "@objc(EBAllocationItemDisplay) class EBAllocationItemDisplay : NSObject {\n"
   "  var mClassname : String\n"
   "  var mAllCount : Int\n"
   "  var mLive : Int\n"
@@ -7069,11 +7069,11 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "private var gDebugObject : PMAllocationDebug\? = nil\n"
+  "private var gDebugObject : EBAllocationDebug\? = nil\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "@objc(PMAllocationDebug) class PMAllocationDebug : NSObject, NSTableViewDataSource, NSWindowDelegate {\n"
+  "@objc(EBAllocationDebug) class EBAllocationDebug : NSObject, NSTableViewDataSource, NSWindowDelegate {\n"
   "  @IBOutlet var mPerformSnapShotButton  : NSButton\?\n"
   "  @IBOutlet var mAllocationStatsWindowVisibleAtLaunchCheckbox : NSButton\?\n"
   "  @IBOutlet var mDisplayFilterPopUpButton : NSPopUpButton\?\n"
@@ -7131,7 +7131,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "   override init () {\n"
   "      //  NSLog (@\"%s %p\", __PRETTY_FUNCTION__, self) ;\n"
   "    super.init ()\n"
-  "    assert (gDebugObject == nil, \"PMAllocationDebug already exists\", file:__FILE__, line:__LINE__)\n"
+  "    assert (gDebugObject == nil, \"EBAllocationDebug already exists\", file:__FILE__, line:__LINE__)\n"
   "    let df = NSNotificationCenter.defaultCenter ()\n"
   "    df.addObserver (self,\n"
   "      selector:\"applicationWillTerminateAction:\",\n"
@@ -7168,8 +7168,8 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "  // NSLog (@\"%s %p %p\", __PRETTY_FUNCTION__, self, mDebugMenu) ;\n"
   "  //--- Allocation Window visibility\n"
   "    let df = NSUserDefaults.standardUserDefaults ()\n"
-  "    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey (\"PMAllocationDebug:allocationStatsWindowVisible\")\n"
-  "    mDisplayFilter = df.integerForKey (\"PMAllocationDebug:allocationStatsDisplayFilter\")\n"
+  "    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey (\"EBAllocationDebug:allocationStatsWindowVisible\")\n"
+  "    mDisplayFilter = df.integerForKey (\"EBAllocationDebug:allocationStatsDisplayFilter\")\n"
   "  //--- will call windowDidBecomeKey: and windowWillClose:\n"
   "    mAllocationStatsWindow\?.delegate = self\n"
   "  //--- Allocation stats window visibility at Launch\n"
@@ -7263,10 +7263,10 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "  func applicationWillTerminateAction (NSNotification) {\n"
   "    let ud = NSUserDefaults.standardUserDefaults ()\n"
   "    ud.setBool (mAllocationStatsWindowVisibleAtLaunch,\n"
-  "      forKey:\"PMAllocationDebug:allocationStatsWindowVisible\"\n"
+  "      forKey:\"EBAllocationDebug:allocationStatsWindowVisible\"\n"
   "    )\n"
   "    ud.setInteger (mDisplayFilter,\n"
-  "      forKey:\"PMAllocationDebug:allocationStatsDisplayFilter\"\n"
+  "      forKey:\"EBAllocationDebug:allocationStatsDisplayFilter\"\n"
   "    )\n"
   "  }\n"
   "\n"
@@ -7332,7 +7332,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "          display = liveByClass != snapShotByClass ;\n"
   "        }\n"
   "        if display {\n"
-  "          mAllocationStatsDataSource.addObject (PMAllocationItemDisplay (\n"
+  "          mAllocationStatsDataSource.addObject (EBAllocationItemDisplay (\n"
   "            classname : object as! String,\n"
   "            allCount : totalByClass,\n"
   "            live : liveByClass,\n"
@@ -7358,7 +7358,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "  func tableView (aTableView : NSTableView,\n"
   "                  objectValueForTableColumn: NSTableColumn\?,\n"
   "                  row:Int) -> AnyObject\? {\n"
-  "    let theRecord : PMAllocationItemDisplay = mAllocationStatsDataSource [row] as! PMAllocationItemDisplay\n"
+  "    let theRecord : EBAllocationItemDisplay = mAllocationStatsDataSource [row] as! EBAllocationItemDisplay\n"
   "    return theRecord.valueForKey (objectValueForTableColumn!.identifier as String)\n"
   "  }\n"
   "  \n"
@@ -7386,14 +7386,14 @@ const char * gWrapperFileContent_0_swift_5F_sources = "import Cocoa\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n" ;
 
 const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
-  "PMAllocationDebug.swift",
+  "EBAllocationDebug.swift",
   "swift",
   true, // Text file
   17623, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
-//--- File '/PMAllocationDebug.xib'
+//--- File '/EBAllocationDebug.xib'
 
 const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"\?>\n"
   "<document type=\"com.apple.InterfaceBuilder3.Cocoa.XIB\" version=\"3.0\" toolsVersion=\"8121.17\" systemVersion=\"14D136\" targetRuntime=\"MacOSX.Cocoa\" proper"
@@ -7402,7 +7402,7 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "        <plugIn identifier=\"com.apple.InterfaceBuilder.CocoaPlugin\" version=\"8121.17\"/>\n"
   "    </dependencies>\n"
   "    <objects>\n"
-  "        <customObject id=\"-2\" userLabel=\"File's Owner\" customClass=\"PMAllocationDebug\">\n"
+  "        <customObject id=\"-2\" userLabel=\"File's Owner\" customClass=\"EBAllocationDebug\">\n"
   "            <connections>\n"
   "                <outlet property=\"mAllocationStatsWindow\" destination=\"13\" id=\"60\"/>\n"
   "                <outlet property=\"mAllocationStatsWindowVisibleAtLaunchCheckbox\" destination=\"138\" id=\"152\"/>\n"
@@ -7432,8 +7432,8 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "            </items>\n"
   "        </menu>\n"
   "        <window title=\"Allocation Stats\" allowsToolTipsWhenApplicationIsInactive=\"NO\" autorecalculatesKeyViewLoop=\"NO\" releasedWhenClosed=\"NO\" showsTo"
-  "olbarButton=\"NO\" visibleAtLaunch=\"NO\" frameAutosaveName=\"PMAllactionStatsWindowLocation\" animationBehavior=\"default\" id=\"13\" userLabel=\"AllocationStats"
-  " Window\">\n"
+  "olbarButton=\"NO\" visibleAtLaunch=\"NO\" frameAutosaveName=\"EBAllocationStatsWindowLocation\" animationBehavior=\"default\" id=\"13\" userLabel=\"AllocationStat"
+  "s Window\">\n"
   "            <windowStyleMask key=\"styleMask\" titled=\"YES\" closable=\"YES\" miniaturizable=\"YES\" resizable=\"YES\"/>\n"
   "            <windowPositionMask key=\"initialPositionMask\" leftStrut=\"YES\" rightStrut=\"YES\" topStrut=\"YES\" bottomStrut=\"YES\"/>\n"
   "            <rect key=\"contentRect\" x=\"18\" y=\"448\" width=\"532\" height=\"360\"/>\n"
@@ -7705,20 +7705,20 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "</document>\n" ;
 
 const cRegularFileWrapper gWrapperFile_1_swift_5F_sources (
-  "PMAllocationDebug.xib",
+  "EBAllocationDebug.xib",
   "xib",
   true, // Text file
-  24664, // Text length
+  24665, // Text length
   gWrapperFileContent_1_swift_5F_sources
 ) ;
 
-//--- File '/PMDataScanner.swift'
+//--- File '/EBDataScanner.swift'
 
 const char * gWrapperFileContent_2_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------*\n"
   "\n"
-  "class PMDataScanner : EBObject {\n"
+  "class EBDataScanner : EBObject {\n"
   "  var mData : NSData\n"
   "  var mReadIndex : Int = 0\n"
   "  var mReadOk : Bool = true\n"
@@ -7906,14 +7906,14 @@ const char * gWrapperFileContent_2_swift_5F_sources = "import Cocoa\n"
   "//---------------------------------------------------------------------------*\n" ;
 
 const cRegularFileWrapper gWrapperFile_2_swift_5F_sources (
-  "PMDataScanner.swift",
+  "EBDataScanner.swift",
   "swift",
   true, // Text file
   6641, // Text length
   gWrapperFileContent_2_swift_5F_sources
 ) ;
 
-//--- File '/PMManagedObject.swift'
+//--- File '/EBManagedObject.swift'
 
 const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "\n"
@@ -7923,11 +7923,11 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "var gAllocatedEntityCount = 0\n"
   "\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
-  "//  PMManagedObject                                                                                                    *\n"
+  "//  EBManagedObject                                                                                                    *\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "class PMManagedObject : EBObject {\n"
-  "  private weak var mManagedObjectContext : PMManagedObjectContext\?\n"
+  "class EBManagedObject : EBObject {\n"
+  "  private weak var mManagedObjectContext : EBManagedObjectContext\?\n"
   "  var savingIndex = 0\n"
   "\n"
   "  let mExplorerObjectIndex : Int\n"
@@ -7937,7 +7937,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //  init                                                                                                             *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  init (managedObjectContext : PMManagedObjectContext) {\n"
+  "  init (managedObjectContext : EBManagedObjectContext) {\n"
   "    mManagedObjectContext = managedObjectContext\n"
   "    gAllocatedEntityCount += 1\n"
   "    mExplorerObjectIndex = gExplorerObjectIndex\n"
@@ -7951,7 +7951,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func setUpWithDictionary (inDictionary : NSDictionary,\n"
-  "                            managedObjectArray : Array<PMManagedObject>) {\n"
+  "                            managedObjectArray : Array<EBManagedObject>) {\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -7963,11 +7963,11 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //  Getters                                                                                                          *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  func undoManager () -> PMUndoManager\? {\n"
+  "  func undoManager () -> EBUndoManager\? {\n"
   "    return mManagedObjectContext\?.undoManager ()\n"
   "  }\n"
   "\n"
-  "  func managedObjectContext () -> PMManagedObjectContext\? {\n"
+  "  func managedObjectContext () -> EBManagedObjectContext\? {\n"
   "    return mManagedObjectContext\n"
   "  }\n"
   "\n"
@@ -8004,7 +8004,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //   accessibleObjects                                                                                               *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  func accessibleObjects (inout objects : Array<PMManagedObject>) {\n"
+  "  func accessibleObjects (inout objects : Array<EBManagedObject>) {\n"
   "  }\n"
   "\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
@@ -8129,7 +8129,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //   updateManagedObjectToManyRelationshipDisplay                                                                    *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [PMManagedObject], popUpButton : NSPopUpButton\?) {\n"
+  "  func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [EBManagedObject], popUpButton : NSPopUpButton\?) {\n"
   "    var title = \"No Object\" ;\n"
   "    if inObjectArray.count == 1 {\n"
   "      title = \"1 Object\" ;\n"
@@ -8139,7 +8139,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "    popUpButton\?.removeAllItems ()\n"
   "    popUpButton\?.addItemWithTitle (title)\n"
   "    popUpButton\?.enabled = inObjectArray.count > 0\n"
-  "    for object : PMManagedObject in inObjectArray {\n"
+  "    for object : EBManagedObject in inObjectArray {\n"
   "      let objectIndex = object.explorerObjectIndex ()\n"
   "      let stringValue = String (format:\"#%d (%@) %p\", objectIndex, object.className, object)\n"
   "      popUpButton\?.addItemWithTitle (stringValue)\n"
@@ -8153,7 +8153,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //   updateManagedObjectToOneRelationshipDisplay                                                                     *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  func updateManagedObjectToOneRelationshipDisplay (inObject : PMManagedObject\?, button : NSButton\?) {\n"
+  "  func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject\?, button : NSButton\?) {\n"
   "    var stringValue = \"nil\"\n"
   "    if let unwrappedObject = inObject {\n"
   "      let objectIndex = unwrappedObject.explorerObjectIndex ()\n"
@@ -8204,7 +8204,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "    if inEntityArray.count > 0 {\n"
   "      let indexArray = NSMutableArray ()\n"
   "      for object : AnyObject in inEntityArray {\n"
-  "        let managedObject = object as! PMManagedObject\n"
+  "        let managedObject = object as! EBManagedObject\n"
   "        indexArray.addObject (NSNumber (unsignedInteger:managedObject.savingIndex))\n"
   "      }\n"
   "      ioDictionary.setObject (indexArray, forKey:inRelationshipName)\n"
@@ -8215,7 +8215,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //   storeEntityInDictionary                                                                                         *\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
-  "  func storeEntityInDictionary (inObject : PMManagedObject\?,\n"
+  "  func storeEntityInDictionary (inObject : EBManagedObject\?,\n"
   "                                inRelationshipName: String,\n"
   "                                ioDictionary : NSMutableDictionary) {\n"
   "    if nil != inObject {\n"
@@ -8229,9 +8229,9 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "\n"
   "  func readEntityFromDictionary (inRelationshipName: String,\n"
   "                                 inDictionary : NSDictionary,\n"
-  "                                 managedObjectArray : Array<PMManagedObject>) -> PMManagedObject\? {\n"
+  "                                 managedObjectArray : Array<EBManagedObject>) -> EBManagedObject\? {\n"
   "    let opValue : Int\? = inDictionary.valueForKey (inRelationshipName) as\? Int\n"
-  "    var result : PMManagedObject\? = nil\n"
+  "    var result : EBManagedObject\? = nil\n"
   "    if let value = opValue {\n"
   "      result = managedObjectArray [value]\n"
   "    }\n"
@@ -8244,9 +8244,9 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "\n"
   "  func readEntityArrayFromDictionary (inRelationshipName: String,\n"
   "                                     inDictionary : NSDictionary,\n"
-  "                                     managedObjectArray : Array<PMManagedObject>) -> Array<PMManagedObject> {\n"
+  "                                     managedObjectArray : Array<EBManagedObject>) -> Array<EBManagedObject> {\n"
   "    let opIndexArray : Array<Int>\? = inDictionary.valueForKey (inRelationshipName) as\? Array<Int>\n"
-  "    var result = Array<PMManagedObject> ()\n"
+  "    var result = Array<EBManagedObject> ()\n"
   "    if let indexArray = opIndexArray {\n"
   "      for number : Int in indexArray {\n"
   "        let managedObject = managedObjectArray [number]\n"
@@ -8263,14 +8263,14 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "//---------------------------------------------------------------------------------------------------------------------*\n" ;
 
 const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
-  "PMManagedObject.swift",
+  "EBManagedObject.swift",
   "swift",
   true, // Text file
   17651, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
-//--- File '/PMUndoManager.swift'
+//--- File '/EBUndoManager.swift'
 
 const char * gWrapperFileContent_4_swift_5F_sources = "import Cocoa\n"
   "\n"
@@ -8280,7 +8280,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "import Cocoa\n"
   "\n"
   "//---------------------------------------------------------------------------*\n"
   "\n"
-  "@objc(PMUndoManager) class PMUndoManager : NSUndoManager, EBUserClassName {\n"
+  "@objc(EBUndoManager) class EBUndoManager : NSUndoManager, EBUserClassName {\n"
   "\n"
   "  //-----------------------------------------------------------------------------*\n"
   "  //    init                                                                     *\n"
@@ -8354,7 +8354,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "import Cocoa\n"
   "//------------------------------------------------------------------------------*\n" ;
 
 const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
-  "PMUndoManager.swift",
+  "EBUndoManager.swift",
   "swift",
   true, // Text file
   3221, // Text length

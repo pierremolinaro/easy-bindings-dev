@@ -7,61 +7,61 @@
   objects = {
 
   /*------------------------------------------------------------------ PBXBuildFile */
-  5A880FAF6FB5E6087EB1B2DC /* EBColorWell.swift */ = {
+  5A880FAF6FB5E6087EB1B2DC /* EBAllocationDebug.swift */ = {
     isa = PBXBuildFile;
     fileRef = BBCE2345D7772B0674A318D5 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  FB98AB9159F51FD0297E236D /* EBColorWellObserver.swift */ = {
+  FB98AB9159F51FD0297E236D /* EBAllocationDebug.xib */ = {
     isa = PBXBuildFile;
     fileRef = CEEA167A5A36DEDD4BEA2543 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  02A44259755D38E6D163E820 /* EBDatePicker.swift */ = {
+  02A44259755D38E6D163E820 /* EBColorWell.swift */ = {
     isa = PBXBuildFile;
     fileRef = 2E2D7FBDEA1AFC51C7C6AD26 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  6FE97759AA27A0C99BFF6710 /* EBIntField.swift */ = {
+  6FE97759AA27A0C99BFF6710 /* EBColorWellObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = D9CAA6E02C990B0A82652DCA ;
     settings = {ATTRIBUTES = (); };
   };
 
-  22BCC25A6F606EB525FFDC56 /* EBIntFieldObserver.swift */ = {
+  22BCC25A6F606EB525FFDC56 /* EBDatePicker.swift */ = {
     isa = PBXBuildFile;
     fileRef = C124A10E0DB5E4B97FC2AF39 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  1EAE257E44AA9D5BADE97BAF /* EBTextField.swift */ = {
+  1EAE257E44AA9D5BADE97BAF /* EBIntField.swift */ = {
     isa = PBXBuildFile;
     fileRef = F062936A96D3C8BD1F8F2FF3 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  5568161A8CDF4AD2299F6D23 /* EBTextFieldObserver.swift */ = {
+  5568161A8CDF4AD2299F6D23 /* EBIntFieldObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = C9B086079795C442636B55FB ;
     settings = {ATTRIBUTES = (); };
   };
 
-  210194C475687BE6106A3B84 /* MainMenu.xib */ = {
+  210194C475687BE6106A3B84 /* EBTextField.swift */ = {
     isa = PBXBuildFile;
     fileRef = 99908345F7439F8FFABDFFC4 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F8ED5D21A44B0E5886680CB9 /* PMAllocationDebug.swift */ = {
+  F8ED5D21A44B0E5886680CB9 /* EBTextFieldObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = 8E8850243BE8079A5C74D079 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  4005F8DA13F42943881C655F /* PMAllocationDebug.xib */ = {
+  4005F8DA13F42943881C655F /* MainMenu.xib */ = {
     isa = PBXBuildFile;
     fileRef = 748049E45D87B8C7D8B9AACD ;
     settings = {ATTRIBUTES = (); };
@@ -109,14 +109,23 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  B79421734881B53E1E1B18B6 /* PMAllocationDebug.xib */ = {
+  B79421734881B53E1E1B18B6 /* EBAllocationDebug.xib */ = {
     isa = PBXBuildFile;
     fileRef = MainMenu.xib ;
     settings = {ATTRIBUTES = (); };
   };
 
   /*------------------------------------------------------------------ PBXFileReference */
-  BBCE2345D7772B0674A318D5 /* EBColorWell.swift */ = {
+  BBCE2345D7772B0674A318D5 /* EBAllocationDebug.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "EBAllocationDebug.swift";
+    path = "EBAllocationDebug.swift";
+    sourceTree = "<group>";
+  };
+
+  2E2D7FBDEA1AFC51C7C6AD26 /* EBColorWell.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -125,7 +134,7 @@
     sourceTree = "<group>";
   };
 
-  CEEA167A5A36DEDD4BEA2543 /* EBColorWellObserver.swift */ = {
+  D9CAA6E02C990B0A82652DCA /* EBColorWellObserver.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -134,7 +143,7 @@
     sourceTree = "<group>";
   };
 
-  2E2D7FBDEA1AFC51C7C6AD26 /* EBDatePicker.swift */ = {
+  C124A10E0DB5E4B97FC2AF39 /* EBDatePicker.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -143,7 +152,7 @@
     sourceTree = "<group>";
   };
 
-  D9CAA6E02C990B0A82652DCA /* EBIntField.swift */ = {
+  F062936A96D3C8BD1F8F2FF3 /* EBIntField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -152,7 +161,7 @@
     sourceTree = "<group>";
   };
 
-  C124A10E0DB5E4B97FC2AF39 /* EBIntFieldObserver.swift */ = {
+  C9B086079795C442636B55FB /* EBIntFieldObserver.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -161,7 +170,7 @@
     sourceTree = "<group>";
   };
 
-  F062936A96D3C8BD1F8F2FF3 /* EBTextField.swift */ = {
+  99908345F7439F8FFABDFFC4 /* EBTextField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -170,21 +179,12 @@
     sourceTree = "<group>";
   };
 
-  C9B086079795C442636B55FB /* EBTextFieldObserver.swift */ = {
+  8E8850243BE8079A5C74D079 /* EBTextFieldObserver.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "EBTextFieldObserver.swift";
     path = "EBTextFieldObserver.swift";
-    sourceTree = "<group>";
-  };
-
-  8E8850243BE8079A5C74D079 /* PMAllocationDebug.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "PMAllocationDebug.swift";
-    path = "PMAllocationDebug.swift";
     sourceTree = "<group>";
   };
 
@@ -268,12 +268,12 @@
     sourceTree = "<group>";
   };
 
-  99908345F7439F8FFABDFFC4 = {
+  CEEA167A5A36DEDD4BEA2543 = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = wrapper.xib;
-    name = "MainMenu.xib";
-    path = "MainMenu.xib";
+    name = "EBAllocationDebug.xib";
+    path = "EBAllocationDebug.xib";
     sourceTree = "<group>";
   };
 
@@ -281,8 +281,8 @@
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = wrapper.xib;
-    name = "PMAllocationDebug.xib";
-    path = "PMAllocationDebug.xib";
+    name = "MainMenu.xib";
+    path = "MainMenu.xib";
     sourceTree = "<group>";
   };
 
@@ -385,7 +385,7 @@
     isa = PBXResourcesBuildPhase;
     buildActionMask = 2147483647;
     files = (
-      210194C475687BE6106A3B84,
+      FB98AB9159F51FD0297E236D,
       4005F8DA13F42943881C655F,
       B79421734881B53E1E1B18B6,
     );
@@ -398,12 +398,12 @@
       buildActionMask = 2147483647;
       files = (
         5A880FAF6FB5E6087EB1B2DC,
-        FB98AB9159F51FD0297E236D,
         02A44259755D38E6D163E820,
         6FE97759AA27A0C99BFF6710,
         22BCC25A6F606EB525FFDC56,
         1EAE257E44AA9D5BADE97BAF,
         5568161A8CDF4AD2299F6D23,
+        210194C475687BE6106A3B84,
         F8ED5D21A44B0E5886680CB9,
         3463D06DE0CA9A15B6153677,
         9DD601BBE69F351039152189,

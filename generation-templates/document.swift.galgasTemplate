@@ -3,7 +3,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : PMManagedDocument {
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBManagedDocument {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
@@ -20,7 +20,7 @@ end
 
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  private var %!mStoredPropertyName% = PMEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+%  private var %!mStoredPropertyName% = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 
 

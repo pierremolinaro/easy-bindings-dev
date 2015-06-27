@@ -7,31 +7,31 @@
   objects = {
 
   /*------------------------------------------------------------------ PBXBuildFile */
-  5A880FAF6FB5E6087EB1B2DC /* EBButton.swift */ = {
+  5A880FAF6FB5E6087EB1B2DC /* EBAllocationDebug.swift */ = {
     isa = PBXBuildFile;
     fileRef = BBCE2345D7772B0674A318D5 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  FB98AB9159F51FD0297E236D /* EBSwitch.swift */ = {
+  FB98AB9159F51FD0297E236D /* EBAllocationDebug.xib */ = {
     isa = PBXBuildFile;
     fileRef = CEEA167A5A36DEDD4BEA2543 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  02A44259755D38E6D163E820 /* MainMenu.xib */ = {
+  02A44259755D38E6D163E820 /* EBButton.swift */ = {
     isa = PBXBuildFile;
     fileRef = 2E2D7FBDEA1AFC51C7C6AD26 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  6FE97759AA27A0C99BFF6710 /* PMAllocationDebug.swift */ = {
+  6FE97759AA27A0C99BFF6710 /* EBSwitch.swift */ = {
     isa = PBXBuildFile;
     fileRef = D9CAA6E02C990B0A82652DCA ;
     settings = {ATTRIBUTES = (); };
   };
 
-  22BCC25A6F606EB525FFDC56 /* PMAllocationDebug.xib */ = {
+  22BCC25A6F606EB525FFDC56 /* MainMenu.xib */ = {
     isa = PBXBuildFile;
     fileRef = C124A10E0DB5E4B97FC2AF39 ;
     settings = {ATTRIBUTES = (); };
@@ -73,14 +73,23 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  EA6328A42E0EB13D585E4C22 /* PMAllocationDebug.xib */ = {
+  EA6328A42E0EB13D585E4C22 /* EBAllocationDebug.xib */ = {
     isa = PBXBuildFile;
     fileRef = MainMenu.xib ;
     settings = {ATTRIBUTES = (); };
   };
 
   /*------------------------------------------------------------------ PBXFileReference */
-  BBCE2345D7772B0674A318D5 /* EBButton.swift */ = {
+  BBCE2345D7772B0674A318D5 /* EBAllocationDebug.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "EBAllocationDebug.swift";
+    path = "EBAllocationDebug.swift";
+    sourceTree = "<group>";
+  };
+
+  2E2D7FBDEA1AFC51C7C6AD26 /* EBButton.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -89,21 +98,12 @@
     sourceTree = "<group>";
   };
 
-  CEEA167A5A36DEDD4BEA2543 /* EBSwitch.swift */ = {
+  D9CAA6E02C990B0A82652DCA /* EBSwitch.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "EBSwitch.swift";
     path = "EBSwitch.swift";
-    sourceTree = "<group>";
-  };
-
-  D9CAA6E02C990B0A82652DCA /* PMAllocationDebug.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "PMAllocationDebug.swift";
-    path = "PMAllocationDebug.swift";
     sourceTree = "<group>";
   };
 
@@ -178,12 +178,12 @@
     sourceTree = "<group>";
   };
 
-  2E2D7FBDEA1AFC51C7C6AD26 = {
+  CEEA167A5A36DEDD4BEA2543 = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = wrapper.xib;
-    name = "MainMenu.xib";
-    path = "MainMenu.xib";
+    name = "EBAllocationDebug.xib";
+    path = "EBAllocationDebug.xib";
     sourceTree = "<group>";
   };
 
@@ -191,8 +191,8 @@
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = wrapper.xib;
-    name = "PMAllocationDebug.xib";
-    path = "PMAllocationDebug.xib";
+    name = "MainMenu.xib";
+    path = "MainMenu.xib";
     sourceTree = "<group>";
   };
 
@@ -289,7 +289,7 @@
     isa = PBXResourcesBuildPhase;
     buildActionMask = 2147483647;
     files = (
-      02A44259755D38E6D163E820,
+      FB98AB9159F51FD0297E236D,
       22BCC25A6F606EB525FFDC56,
       EA6328A42E0EB13D585E4C22,
     );
@@ -302,7 +302,7 @@
       buildActionMask = 2147483647;
       files = (
         5A880FAF6FB5E6087EB1B2DC,
-        FB98AB9159F51FD0297E236D,
+        02A44259755D38E6D163E820,
         6FE97759AA27A0C99BFF6710,
         1EAE257E44AA9D5BADE97BAF,
         5568161A8CDF4AD2299F6D23,

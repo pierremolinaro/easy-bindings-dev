@@ -179,7 +179,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    Entity: MyRootEntity                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(MyRootEntity) class MyRootEntity : PMManagedObject, MyRootEntity_myString, MyRootEntity_myEnumeration, MyRootEntity_myColor {
+@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myEnumeration, MyRootEntity_myColor {
 
   //···················································································································*
   //    Properties                                                                                                     *
@@ -238,7 +238,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    init                                                                                                           *
   //···················································································································*
 
-  override init (managedObjectContext : PMManagedObjectContext) {
+  override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
     myStringMaj.computeFunction = { [weak self] in
@@ -345,7 +345,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //···················································································································*
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<PMManagedObject>) {
+                                     managedObjectArray : Array<EBManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     myString.readFromDictionary (inDictionary, forKey:"myString")
     myEnumeration.readFromDictionary (inDictionary, forKey:"myEnumeration")
@@ -356,7 +356,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //   accessibleObjects                                                                                               *
   //···················································································································*
 
-  override func accessibleObjects (inout objects : Array<PMManagedObject>) {
+  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
     super.accessibleObjects (&objects)
   }
 

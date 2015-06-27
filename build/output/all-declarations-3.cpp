@@ -21,7 +21,7 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 120)) ;
   temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("code-generation.galgas", 115)) ;
-  temp_0.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 116)) ;
+  temp_0.addAssign_operation (GALGAS_string ("EBAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 116)) ;
   temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("code-generation.galgas", 117)) ;
   temp_0.addAssign_operation (GALGAS_string ("standard-properties")  COMMA_SOURCE_FILE ("code-generation.galgas", 118)) ;
   temp_0.addAssign_operation (GALGAS_string ("generic-bindings")  COMMA_SOURCE_FILE ("code-generation.galgas", 119)) ;
@@ -29,12 +29,12 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
   GALGAS_stringlist var_swiftFiles = temp_0 ;
   const enumGalgasBool test_1 = constinArgument_inHasEntities.boolEnum () ;
   if (kBoolTrue == test_1) {
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 123)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 124)) ;
-    var_swiftFiles.addAssign_operation (GALGAS_string ("PMDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("EBManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 123)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("EBUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 124)) ;
+    var_swiftFiles.addAssign_operation (GALGAS_string ("EBDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
   }
   GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 127)) ;
-  temp_2.addAssign_operation (GALGAS_string ("PMAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 127)) ;
+  temp_2.addAssign_operation (GALGAS_string ("EBAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 127)) ;
   GALGAS_stringlist var_xibFiles = temp_2 ;
   GALGAS_filewrapper var_fw = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
   cEnumerator_stringlist enumerator_4170 (var_swiftFiles, kEnumeration_up) ;
@@ -169,7 +169,7 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   temp_2.addAssign_operation (GALGAS_string ("GCC_OPTIMIZATION_LEVEL = 0")  COMMA_SOURCE_FILE ("xcode-project.galgas", 133)) ;
   temp_2.addAssign_operation (GALGAS_string ("GCC_PREPROCESSOR_DEFINITIONS = ()")  COMMA_SOURCE_FILE ("xcode-project.galgas", 134)) ;
   GALGAS__32_stringlist temp_3 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 137)) ;
-  temp_3.addAssign_operation (GALGAS_string ("MainMenu.xib"), GALGAS_string ("PMAllocationDebug.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 137)) ;
+  temp_3.addAssign_operation (GALGAS_string ("MainMenu.xib"), GALGAS_string ("EBAllocationDebug.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 137)) ;
   GALGAS_string joker_5327 ; // Joker input parameter
   categoryModifier_addAppTarget (var_xcodeProject, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 130)), var_resourceFileRefList, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 136)), temp_3, constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 138)), joker_5327, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 126)) ;
   }

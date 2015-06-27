@@ -7,37 +7,37 @@
   objects = {
 
   /*------------------------------------------------------------------ PBXBuildFile */
-  5A880FAF6FB5E6087EB1B2DC /* EBButton.swift */ = {
+  5A880FAF6FB5E6087EB1B2DC /* EBAllocationDebug.swift */ = {
     isa = PBXBuildFile;
     fileRef = BBCE2345D7772B0674A318D5 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  FB98AB9159F51FD0297E236D /* EBTextField.swift */ = {
+  FB98AB9159F51FD0297E236D /* EBAllocationDebug.xib */ = {
     isa = PBXBuildFile;
     fileRef = CEEA167A5A36DEDD4BEA2543 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  02A44259755D38E6D163E820 /* EBTextFieldObserver.swift */ = {
+  02A44259755D38E6D163E820 /* EBButton.swift */ = {
     isa = PBXBuildFile;
     fileRef = 2E2D7FBDEA1AFC51C7C6AD26 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  6FE97759AA27A0C99BFF6710 /* MainMenu.xib */ = {
+  6FE97759AA27A0C99BFF6710 /* EBTextField.swift */ = {
     isa = PBXBuildFile;
     fileRef = D9CAA6E02C990B0A82652DCA ;
     settings = {ATTRIBUTES = (); };
   };
 
-  22BCC25A6F606EB525FFDC56 /* PMAllocationDebug.swift */ = {
+  22BCC25A6F606EB525FFDC56 /* EBTextFieldObserver.swift */ = {
     isa = PBXBuildFile;
     fileRef = C124A10E0DB5E4B97FC2AF39 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  1EAE257E44AA9D5BADE97BAF /* PMAllocationDebug.xib */ = {
+  1EAE257E44AA9D5BADE97BAF /* MainMenu.xib */ = {
     isa = PBXBuildFile;
     fileRef = F062936A96D3C8BD1F8F2FF3 ;
     settings = {ATTRIBUTES = (); };
@@ -97,14 +97,23 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  C833DFF4B38FC8D2872F1EC6 /* PMAllocationDebug.xib */ = {
+  C833DFF4B38FC8D2872F1EC6 /* EBAllocationDebug.xib */ = {
     isa = PBXBuildFile;
     fileRef = MainMenu.xib ;
     settings = {ATTRIBUTES = (); };
   };
 
   /*------------------------------------------------------------------ PBXFileReference */
-  BBCE2345D7772B0674A318D5 /* EBButton.swift */ = {
+  BBCE2345D7772B0674A318D5 /* EBAllocationDebug.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "EBAllocationDebug.swift";
+    path = "EBAllocationDebug.swift";
+    sourceTree = "<group>";
+  };
+
+  2E2D7FBDEA1AFC51C7C6AD26 /* EBButton.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -113,7 +122,7 @@
     sourceTree = "<group>";
   };
 
-  CEEA167A5A36DEDD4BEA2543 /* EBTextField.swift */ = {
+  D9CAA6E02C990B0A82652DCA /* EBTextField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -122,21 +131,12 @@
     sourceTree = "<group>";
   };
 
-  2E2D7FBDEA1AFC51C7C6AD26 /* EBTextFieldObserver.swift */ = {
+  C124A10E0DB5E4B97FC2AF39 /* EBTextFieldObserver.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "EBTextFieldObserver.swift";
     path = "EBTextFieldObserver.swift";
-    sourceTree = "<group>";
-  };
-
-  C124A10E0DB5E4B97FC2AF39 /* PMAllocationDebug.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "PMAllocationDebug.swift";
-    path = "PMAllocationDebug.swift";
     sourceTree = "<group>";
   };
 
@@ -238,12 +238,12 @@
     sourceTree = "<group>";
   };
 
-  D9CAA6E02C990B0A82652DCA = {
+  CEEA167A5A36DEDD4BEA2543 = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = wrapper.xib;
-    name = "MainMenu.xib";
-    path = "MainMenu.xib";
+    name = "EBAllocationDebug.xib";
+    path = "EBAllocationDebug.xib";
     sourceTree = "<group>";
   };
 
@@ -251,8 +251,8 @@
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = wrapper.xib;
-    name = "PMAllocationDebug.xib";
-    path = "PMAllocationDebug.xib";
+    name = "MainMenu.xib";
+    path = "MainMenu.xib";
     sourceTree = "<group>";
   };
 
@@ -353,7 +353,7 @@
     isa = PBXResourcesBuildPhase;
     buildActionMask = 2147483647;
     files = (
-      6FE97759AA27A0C99BFF6710,
+      FB98AB9159F51FD0297E236D,
       1EAE257E44AA9D5BADE97BAF,
       C833DFF4B38FC8D2872F1EC6,
     );
@@ -366,8 +366,8 @@
       buildActionMask = 2147483647;
       files = (
         5A880FAF6FB5E6087EB1B2DC,
-        FB98AB9159F51FD0297E236D,
         02A44259755D38E6D163E820,
+        6FE97759AA27A0C99BFF6710,
         22BCC25A6F606EB525FFDC56,
         5568161A8CDF4AD2299F6D23,
         210194C475687BE6106A3B84,
