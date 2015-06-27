@@ -9213,14 +9213,14 @@ void categoryMethod_buildOutletClassMap (const GALGAS_outletClassDeclarationList
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outOutletClassMap.drop () ; // Release 'out' argument
-  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 72)) ;
+  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 73)) ;
   const GALGAS_outletClassDeclarationList temp_0 = inObject ;
-  cEnumerator_outletClassDeclarationList enumerator_2919 (temp_0, kEnumeration_up) ;
-  while (enumerator_2919.hasCurrentObject ()) {
+  cEnumerator_outletClassDeclarationList enumerator_2940 (temp_0, kEnumeration_up) ;
+  while (enumerator_2940.hasCurrentObject ()) {
     {
-    outArgument_outOutletClassMap.modifier_insertKey (enumerator_2919.current_mOutletClassName (HERE), enumerator_2919.current_mHasRunAction (HERE), enumerator_2919.current_mHandlesTableViewBinding (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 74)) ;
+    outArgument_outOutletClassMap.modifier_insertKey (enumerator_2940.current_mOutletClassName (HERE), enumerator_2940.current_mHasRunAction (HERE), enumerator_2940.current_mHandlesTableViewBinding (HERE), enumerator_2940.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 75)) ;
     }
-    enumerator_2919.gotoNextObject () ;
+    enumerator_2940.gotoNextObject () ;
   }
 }
 
