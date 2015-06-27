@@ -10,6 +10,9 @@ project (0:0:1) -> "eb" {
   "galgas-sources/easyBindings-cocoa.galgas"
   "galgas-sources/program.galgas"
 
+#--- Extern Swift functions
+  "galgas-sources/extern-swift-func.galgas"
+
 #--- Components  
   "galgas-sources/enumeration.galgas"
   "galgas-sources/relationships.galgas"

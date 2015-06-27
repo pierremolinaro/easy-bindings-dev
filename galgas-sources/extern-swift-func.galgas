@@ -1,0 +1,92 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @externSwiftFunctionList {
+  @lstring mExternSwiftFunctionName
+  @lstring mCallerName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <extern_swift_func>
+    ?!@externSwiftFunctionList ioExternSwiftFunctionList
+  {
+    $externFunc$
+    $identifier$ ?let @lstring externFunctionName
+    $calledBy$
+    $identifier$ ?let @lstring callerName
+    $;$
+    ioExternSwiftFunctionList +=
+      !externFunctionName
+      !callerName
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SEMANTIC TYPE                                                                                                       *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @externFunctionMap {
+  insert insertKey error message "the '%K' extern function is already declared in %L"
+}
+
+
+
+#map @outletClassMap {
+#  @bool mHandlesRunAction
+#  @bool mHandlesTableViewBinding
+#  @bool mUserDefined
+#  insert insertKey error message "the '%K' outlet class is already declared in %L"
+#  search searchKey error message "there is no '%K' outlet class"
+#}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  SEMANTICS                                                                                                           *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+#method @outletClassDeclarationList buildOutletClassMap
+#  !@outletClassMap outOutletClassMap
+#{
+#  outOutletClassMap = {}
+#  for () in self do
+#    [!?outOutletClassMap insertKey !mOutletClassName !mHasRunAction !mHandlesTableViewBinding !mUserDefined]
+#  end
+#}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#  CODE GENERATION                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+#filewrapper outletClassGeneration in "../generation-templates/outlet-classes" {
+#  "swift"
+#}{
+#}{
+#}
+
+#----------------------------------------------------------------------------------------------------------------------*
+
+#proc generateOutletClasses
+#  ?let @stringset inNeededOutletClasses
+#  ?let @string inOutputDirectory
+#  ?!@stringset ioGeneratedFileSet
+#{
+#  let @filewrapper w = [filewrapper outletClassGeneration]
+#  for key in inNeededOutletClasses do
+#    let s = [w textFileContentsAtPath !"/" + key + ".swift"]
+#    let fileName = key + ".swift"
+#    ioGeneratedFileSet += !fileName
+#    [@string generateFile !inOutputDirectory !fileName !s]
+#  end
+#}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

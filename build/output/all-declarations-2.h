@@ -182,7 +182,8 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
                                                                        const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
                                                                        const class GALGAS_mainXibDescriptorList & in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST,
                                                                        const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
-                                                                       const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST
+                                                                       const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                       const class GALGAS_externSwiftFunctionList & in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST
                                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -242,6 +243,7 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
   public : GALGAS_actionBindingListForGeneration mAttribute_mActionBindingListForGeneration ;
   public : GALGAS_decoratedOutletMap mAttribute_mOutletMap ;
   public : GALGAS_mainXibDescriptorList mAttribute_mMainXibDescriptorList ;
+  public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
 
 
 //--------------------------------- Accessors
@@ -264,7 +266,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                             const GALGAS_multipleBindingGenerationList & in_mMultipleBindingGenerationList,
                                             const GALGAS_actionBindingListForGeneration & in_mActionBindingListForGeneration,
                                             const GALGAS_decoratedOutletMap & in_mOutletMap,
-                                            const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList) ;
+                                            const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                            const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList) ;
 
 //-- Start of generic part --*
 
@@ -283,7 +286,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                    const class GALGAS_multipleBindingGenerationList & inOperand3,
                                                                    const class GALGAS_actionBindingListForGeneration & inOperand4,
                                                                    const class GALGAS_decoratedOutletMap & inOperand5,
-                                                                   const class GALGAS_mainXibDescriptorList & inOperand6
+                                                                   const class GALGAS_mainXibDescriptorList & inOperand6,
+                                                                   const class GALGAS_externSwiftFunctionList & inOperand7
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -299,6 +303,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration reader_mActionBindingListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList reader_mExternSwiftFunctionList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_mainXibDescriptorList reader_mMainXibDescriptorList (LOCATION_ARGS) const ;
 
@@ -1201,6 +1207,7 @@ void categoryMethod_buildObservablePropertyMapsFromStoredProperties (const class
 //---------------------------------------------------------------------------------------------------------------------*
 
 void categoryMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObject,
+                                      const class GALGAS_externSwiftFunctionList constin_inExternSwiftFunctionList,
                                       const class GALGAS_semanticContext constin_inSemanticContext,
                                       class GALGAS_structForGeneration & io_ioGeneration,
                                       class C_Compiler * inCompiler
