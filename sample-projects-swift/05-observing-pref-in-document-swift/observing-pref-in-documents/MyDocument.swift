@@ -9,10 +9,10 @@ import Cocoa
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  @IBOutlet var docStringTextField : PMTextField?
-  @IBOutlet var prefStringTextField : PMTextFieldObserver?
-  @IBOutlet var prefTransientStringTextField : PMTextFieldObserver?
-  @IBOutlet var transientConcatStringTextField : PMTextFieldObserver?
+  @IBOutlet var docStringTextField : EBTextField?
+  @IBOutlet var prefStringTextField : EBTextFieldObserver?
+  @IBOutlet var prefTransientStringTextField : EBTextFieldObserver?
+  @IBOutlet var transientConcatStringTextField : EBTextFieldObserver?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -66,37 +66,37 @@ import Cocoa
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'docStringTextField' outlet is nil") ;
-    }else if !docStringTextField!.isKindOfClass (PMTextField) {
+    }else if !docStringTextField!.isKindOfClass (EBTextField) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'docStringTextField' outlet is not an instance of 'PMTextField'") ;
+                              errorMessage:"the 'docStringTextField' outlet is not an instance of 'EBTextField'") ;
     }
     if nil == prefStringTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'prefStringTextField' outlet is nil") ;
-    }else if !prefStringTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !prefStringTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'prefStringTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'prefStringTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == prefTransientStringTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'prefTransientStringTextField' outlet is nil") ;
-    }else if !prefTransientStringTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !prefTransientStringTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'prefTransientStringTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'prefTransientStringTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == transientConcatStringTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'transientConcatStringTextField' outlet is nil") ;
-    }else if !transientConcatStringTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !transientConcatStringTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'transientConcatStringTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'transientConcatStringTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller

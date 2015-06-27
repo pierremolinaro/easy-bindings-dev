@@ -1,11 +1,11 @@
 xcodeproject "fr.irccyn.molinaro" ;
 
 mainxib {
-  {"First Name:", PMTextField mFirstNameTextField},
-  {"Name: ", PMTextField mLastNameTextField},
-  {"Full Name:", PMTextFieldObserver mFullNameTextField},
-  {"Uppercase full Name:", PMTextFieldObserver mUpperCaseFullNameTextField},
-  PMButton myButton
+  {"First Name:", EBTextField mFirstNameTextField},
+  {"Name: ", EBTextField mLastNameTextField},
+  {"Full Name:", EBTextFieldObserver mFullNameTextField},
+  {"Uppercase full Name:", EBTextFieldObserver mUpperCaseFullNameTextField},
+  EBButton myButton
 }
 
 prefs {
@@ -13,12 +13,12 @@ prefs {
   property String mLastName default "Schmurtz" ;
   transient String mFullName dependsFrom self.mFirstName, self.mLastName ;
   transient String mUpperCaseFullName dependsFrom self.mFullName ;
-  outlet PMTextField mLastNameTextField $value self.mLastName {sendContinously:yes} ;
-  outlet PMTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
-  outlet PMTextFieldObserver mFullNameTextField $valueObserver self.mFullName ;
-  outlet PMTextFieldObserver mUpperCaseFullNameTextField $valueObserver self.mUpperCaseFullName ;
+  outlet EBTextField mLastNameTextField $value self.mLastName {sendContinously:yes} ;
+  outlet EBTextField mFirstNameTextField $value self.mFirstName {sendContinously:no} ;
+  outlet EBTextFieldObserver mFullNameTextField $valueObserver self.mFullName ;
+  outlet EBTextFieldObserver mUpperCaseFullNameTextField $valueObserver self.mUpperCaseFullName ;
   
   action monAction ;
-  outlet PMButton myButton $run self.monAction ;
+  outlet EBButton myButton $run self.monAction ;
 }
 

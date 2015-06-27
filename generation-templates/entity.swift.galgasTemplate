@@ -4,7 +4,7 @@ import Cocoa
 //    %!["ReadOnlyArrayOf_" + ENTITY_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ReadOnlyArrayOf_%!ENTITY_NAME% : PMAbstractProperty {
+class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 
   var prop : EBProperty <Array<%!ENTITY_NAME%> > { get { return .noSelection } }
 
@@ -256,7 +256,7 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 //    %!["To one relationship: " + mToOneRelationshipName stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractProperty {
+class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstractProperty {
   var explorer : NSButton?
   weak var owner : %!ENTITY_NAME%? {
     didSet {

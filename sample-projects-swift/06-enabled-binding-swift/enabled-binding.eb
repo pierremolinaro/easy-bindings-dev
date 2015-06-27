@@ -6,14 +6,14 @@ entity MyRootEntity {
 
 prefs {
   property Bool prefBoolean default yes ;
-  outlet PMSwitch prefBoolCheckBox $value self.prefBoolean ;
+  outlet EBSwitch prefBoolCheckBox $value self.prefBoolean ;
 }
 
 #--------------------------------------------------------------*
 
 document MyDocument root MyRootEntity {
-  outlet PMSwitch docBoolCheckBox $value root.docBool ;
-  outlet PMButton myButton $enabled ! root.docBool & prefs.prefBoolean ;
+  outlet EBSwitch docBoolCheckBox $value root.docBool ;
+  outlet EBButton myButton $enabled ! root.docBool & prefs.prefBoolean ;
 }
 
 #--------------------------------------------------------------*

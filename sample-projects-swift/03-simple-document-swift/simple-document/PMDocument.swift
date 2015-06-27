@@ -9,12 +9,12 @@ import Cocoa
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  @IBOutlet var myColorWell : PMColorWell?
-  @IBOutlet var myMatrix : PMMatrix?
-  @IBOutlet var myTextConcatField : PMTextFieldObserver?
-  @IBOutlet var myTextField : PMTextField?
-  @IBOutlet var myTextMajField : PMTextFieldObserver?
-  @IBOutlet var myTextMinField : PMTextFieldObserver?
+  @IBOutlet var myColorWell : EBColorWell?
+  @IBOutlet var myMatrix : EBMatrix?
+  @IBOutlet var myTextConcatField : EBTextFieldObserver?
+  @IBOutlet var myTextField : EBTextField?
+  @IBOutlet var myTextMajField : EBTextFieldObserver?
+  @IBOutlet var myTextMinField : EBTextFieldObserver?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -68,55 +68,55 @@ import Cocoa
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myColorWell' outlet is nil") ;
-    }else if !myColorWell!.isKindOfClass (PMColorWell) {
+    }else if !myColorWell!.isKindOfClass (EBColorWell) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myColorWell' outlet is not an instance of 'PMColorWell'") ;
+                              errorMessage:"the 'myColorWell' outlet is not an instance of 'EBColorWell'") ;
     }
     if nil == myMatrix {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myMatrix' outlet is nil") ;
-    }else if !myMatrix!.isKindOfClass (PMMatrix) {
+    }else if !myMatrix!.isKindOfClass (EBMatrix) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myMatrix' outlet is not an instance of 'PMMatrix'") ;
+                              errorMessage:"the 'myMatrix' outlet is not an instance of 'EBMatrix'") ;
     }
     if nil == myTextConcatField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myTextConcatField' outlet is nil") ;
-    }else if !myTextConcatField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !myTextConcatField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myTextConcatField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'myTextConcatField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == myTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myTextField' outlet is nil") ;
-    }else if !myTextField!.isKindOfClass (PMTextField) {
+    }else if !myTextField!.isKindOfClass (EBTextField) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myTextField' outlet is not an instance of 'PMTextField'") ;
+                              errorMessage:"the 'myTextField' outlet is not an instance of 'EBTextField'") ;
     }
     if nil == myTextMajField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myTextMajField' outlet is nil") ;
-    }else if !myTextMajField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !myTextMajField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myTextMajField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'myTextMajField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == myTextMinField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myTextMinField' outlet is nil") ;
-    }else if !myTextMinField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !myTextMinField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myTextMinField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'myTextMinField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller

@@ -4,7 +4,7 @@ import Cocoa
 //    ReadOnlyArrayOf_NameEntity                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
+class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   var prop : EBProperty <Array<NameEntity> > { get { return .noSelection } }
 
@@ -144,7 +144,7 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 //    To one relationship: mRoot                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
+class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   var explorer : NSButton?
   weak var owner : NameEntity? {
     didSet {

@@ -1,57 +1,57 @@
-outletClass PMButton $run $enabled ;
+outletClass EBButton $run $enabled ;
 
-outletClass PMColorWellObserver $enabled ;
-binding PMColorWellObserver $colorObserver : property Color ;
+outletClass EBColorWellObserver $enabled ;
+binding EBColorWellObserver $colorObserver : property Color ;
 
-outletClass PMColorWell $enabled ;
-binding PMColorWell $color : property Color {sendContinously : Bool} ;
-
-
-outletClass PMDatePicker $enabled ;
-binding PMDatePicker $date : property Date ;
+outletClass EBColorWell $enabled ;
+binding EBColorWell $color : property Color {sendContinously : Bool} ;
 
 
-outletClass PMMatrix $enabled ;
-binding PMMatrix $selectedIndex : property enum ;
+outletClass EBDatePicker $enabled ;
+binding EBDatePicker $date : property Date ;
 
 
-outletClass PMIntFieldObserver ;
-binding PMIntFieldObserver $valueObserver : transient Int {autoFormatter:Bool} ;
+outletClass EBMatrix $enabled ;
+binding EBMatrix $selectedIndex : property enum ;
 
 
-outletClass PMDoubleField ;
-binding PMDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
+outletClass EBIntFieldObserver ;
+binding EBIntFieldObserver $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
-outletClass PMIntField ;
-binding PMIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
+outletClass EBDoubleField ;
+binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-outletClass PMFontButton $enabled ;
-binding PMFontButton $fontValue : property Font ;
+outletClass EBIntField ;
+binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-outletClass PMPopUpButton $enabled ;
-binding PMPopUpButton $selectedTag : property Int ;
+outletClass EBFontButton $enabled ;
+binding EBFontButton $fontValue : property Font ;
 
 
-outletClass PMGroupButton $enabled ;
-binding PMGroupButton $selectedIndex : property Int ;
+outletClass EBPopUpButton $enabled ;
+binding EBPopUpButton $selectedTag : property Int ;
 
 
-outletClass PMSegmentedControl $enabled ;
-binding PMSegmentedControl $selectedIndex : property Int ;
+outletClass EBGroupButton $enabled ;
+binding EBGroupButton $selectedIndex : property Int ;
 
 
-outletClass PMSwitch $enabled ;
-binding PMSwitch $value : property Bool ;
+outletClass EBSegmentedControl $enabled ;
+binding EBSegmentedControl $selectedIndex : property Int ;
 
 
-outletClass PMTableView $enabled $tableValue ;
+outletClass EBSwitch $enabled ;
+binding EBSwitch $value : property Bool ;
 
 
-outletClass PMTextField $enabled ;
-binding PMTextField $value : property String {sendContinously : Bool} ;
+outletClass EBTableView $enabled $tableValue ;
 
-outletClass PMTextFieldObserver ;
-binding PMTextFieldObserver $valueObserver : transient String ;
+
+outletClass EBTextField $enabled ;
+binding EBTextField $value : property String {sendContinously : Bool} ;
+
+outletClass EBTextFieldObserver ;
+binding EBTextFieldObserver $valueObserver : transient String ;

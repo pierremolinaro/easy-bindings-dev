@@ -4,7 +4,7 @@ import Cocoa
 //    DataSource_PMDocument_otherController                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTableViewDataSource {
+class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_NameEntity?
   var count = EBTransientProperty_Int ()
 
@@ -175,7 +175,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 //    Delegate_PMDocument_otherController                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Delegate_PMDocument_otherController) class Delegate_PMDocument_otherController : PMAbstractProperty, PMTableViewDelegate {
+@objc(Delegate_PMDocument_otherController) class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableViewDelegate {
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_otherController
@@ -302,7 +302,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let v) :
-        let tableView = notication.object as! PMTableView
+        let tableView = notication.object as! EBTableView
         var newSelectedObjectSet = Set <NameEntity> ()
         for index in tableView.selectedRowIndexes {
           newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
@@ -329,8 +329,8 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
       result.textField?.tag = inRowIndex
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
-      //--- From cell-String-PMTextField.txt file
-        let tf : PMTextField = result.textField as! PMTextField
+      //--- From cell-String-EBTextField.txt file
+        let tf : EBTextField = result.textField as! EBTextField
         switch object.name.prop {
         case .noSelection :
           tf.stringValue = "No Selection"
@@ -350,8 +350,8 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
         }
       //--- End
       }else if columnIdentifier == "int" {
-      //--- From cell-Int-PMIntField.txt file
-        let tf : PMIntField = result.textField as! PMIntField
+      //--- From cell-Int-EBIntField.txt file
+        let tf : EBIntField = result.textField as! EBIntField
         switch object.aValue.prop {
         case .noSelection :
           tf.stringValue = "No Selection"
@@ -389,7 +389,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 
   //···················································································································*
 
-  func set_name_Action (sender : PMTextField) {
+  func set_name_Action (sender : EBTextField) {
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       break
@@ -402,7 +402,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, PMTabl
 
   //···················································································································*
 
-  func set_aValue_Action (sender : PMIntField) {
+  func set_aValue_Action (sender : EBIntField) {
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       break
@@ -431,7 +431,7 @@ class ArrayController_PMDocument_otherController : EBObject {
 
   private var mSelectedSet : Delegate_PMDocument_otherController?
 
-  private var mTableViewControllerArray = [Controller_PMTableView_controller] ()
+  private var mTableViewControllerArray = [Controller_EBTableView_controller] ()
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames?
  
@@ -474,13 +474,13 @@ class ArrayController_PMDocument_otherController : EBObject {
   //    bind_modelAndView                                                                                              *
   //···················································································································*
 
-  func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[PMTableView], file:String, line:Int) {
+  func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[EBTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
     let selectedSet = Delegate_PMDocument_otherController (model:sortedArray)
     mSelectedSet = selectedSet
     for tableView in tableViewArray {
-      let tableViewController = Controller_PMTableView_controller (
+      let tableViewController = Controller_EBTableView_controller (
         delegate:selectedSet,
         tableView:tableView,
         file:file,
@@ -492,10 +492,10 @@ class ArrayController_PMDocument_otherController : EBObject {
     //--- Check 'name' column
       if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("name", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is PMTextField) {
+          if !(unwrappedTableCellView.textField is EBTextField) {
             presentErrorWindow (file,
                                 line: line,
-                                errorMessage:"\"name\" column view is not an instance of PMTextField")
+                                errorMessage:"\"name\" column view is not an instance of EBTextField")
           }
         }else{
           presentErrorWindow (file,
@@ -513,10 +513,10 @@ class ArrayController_PMDocument_otherController : EBObject {
     //--- Check 'int' column
       if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("int", owner:self) {
         if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is PMIntField) {
+          if !(unwrappedTableCellView.textField is EBIntField) {
             presentErrorWindow (file,
                                 line: line,
-                                errorMessage:"\"int\" column view is not an instance of PMIntField")
+                                errorMessage:"\"int\" column view is not an instance of EBIntField")
           }
         }else{
           presentErrorWindow (file,

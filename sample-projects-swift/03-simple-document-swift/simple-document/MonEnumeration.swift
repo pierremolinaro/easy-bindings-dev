@@ -30,7 +30,7 @@ enum MonEnumeration : Int {
 //    EBReadOnlyProperty_MonEnumeration                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_MonEnumeration : PMAbstractProperty, EBReadOnlyEnumPropertyProtocol {
+class EBReadOnlyProperty_MonEnumeration : EBAbstractProperty, EBReadOnlyEnumPropertyProtocol {
 
   var prop : EBProperty <MonEnumeration> { get { return .noSelection } } // Abstract method
 
@@ -43,7 +43,7 @@ class EBReadOnlyProperty_MonEnumeration : PMAbstractProperty, EBReadOnlyEnumProp
 //    EBStoredProperty_MonEnumeration                                                                                  *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, PMEnumPropertyProtocol {
+class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {

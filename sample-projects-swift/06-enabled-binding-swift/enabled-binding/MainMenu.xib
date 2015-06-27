@@ -3270,7 +3270,7 @@
 					<reference ref="955723621"/>
 				</array>
 				<string key="538.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="540.CustomClassName">PMSwitch</string>
+				<string key="540.CustomClassName">EBSwitch</string>
 				<boolean value="NO" key="540.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="540.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="541.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3322,13 +3322,13 @@
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">prefBoolCheckBox</string>
-						<string key="NS.object.0">PMSwitch</string>
+						<string key="NS.object.0">EBSwitch</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<string key="NS.key.0">prefBoolCheckBox</string>
 						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">prefBoolCheckBox</string>
-							<string key="candidateClassName">PMSwitch</string>
+							<string key="candidateClassName">EBSwitch</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -3337,11 +3337,11 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PMSwitch</string>
+					<string key="className">EBSwitch</string>
 					<string key="superclassName">NSButton</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../06-enabled-binding/PMSwitch.swift</string>
+						<string key="minorKey">../06-enabled-binding/EBSwitch.swift</string>
 					</object>
 				</object>
 			</array>

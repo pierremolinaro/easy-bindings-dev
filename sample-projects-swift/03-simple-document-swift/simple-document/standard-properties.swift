@@ -147,18 +147,18 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMEnumPropertyProtocol                                                                                            *
+//   EBEnumPropertyProtocol                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMEnumPropertyProtocol) protocol PMEnumPropertyProtocol : EBReadOnlyEnumPropertyProtocol {
+@objc(EBEnumPropertyProtocol) protocol EBEnumPropertyProtocol : EBReadOnlyEnumPropertyProtocol {
   func setFromRawValue (rawValue : Int)
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   PMAbstractProperty                                                                                                *
+//   EBAbstractProperty                                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMAbstractProperty) class PMAbstractProperty : EBEvent {
+@objc(EBAbstractProperty) class EBAbstractProperty : EBEvent {
 
   private var mObservers = Set <EBEvent> ()
   
@@ -187,7 +187,7 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 //   EBReadOnlyProperty_String                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_String : PMAbstractProperty {
+class EBReadOnlyProperty_String : EBAbstractProperty {
   var prop : EBProperty <String> { get { return .noSelection } } // Abstract method
 }
 
@@ -388,7 +388,7 @@ class EBTransientProperty_String : EBReadOnlyProperty_String {
 //   EBReadOnlyProperty_NSColor                                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_NSColor : PMAbstractProperty {
+class EBReadOnlyProperty_NSColor : EBAbstractProperty {
   var prop : EBProperty<NSColor> { get { return .noSelection } } // Abstract method
 }
 
@@ -542,7 +542,7 @@ class EBTransientProperty_NSColor : EBReadOnlyProperty_NSColor {
 //   EBReadOnlyProperty_NSDate                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_NSDate : PMAbstractProperty {
+class EBReadOnlyProperty_NSDate : EBAbstractProperty {
   var prop : EBProperty <NSDate> { get { return .noSelection } } // Abstract method
 }
 
@@ -654,7 +654,7 @@ class EBTransientProperty_NSDate : EBReadOnlyProperty_NSDate {
 //   EBReadOnlyProperty_Int                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_Int : PMAbstractProperty {
+class EBReadOnlyProperty_Int : EBAbstractProperty {
   var prop : EBProperty <Int> { get { return .noSelection } } // Abstract method
 }
 
@@ -856,7 +856,7 @@ class EBTransientProperty_Int : EBReadOnlyProperty_Int {
 //   EBReadOnlyProperty_Bool                                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_Bool : PMAbstractProperty {
+class EBReadOnlyProperty_Bool : EBAbstractProperty {
   var prop : EBProperty <Bool> { get { return .noSelection } } // Abstract method
 }
 
@@ -969,7 +969,7 @@ class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
 //   EBReadOnlyProperty_NSFont                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_NSFont : PMAbstractProperty {
+class EBReadOnlyProperty_NSFont : EBAbstractProperty {
   var prop : EBProperty<NSFont> { get { return .noSelection } } // Abstract method
 }
 
@@ -1120,11 +1120,10 @@ class EBTransientProperty_NSFont : EBReadOnlyProperty_NSFont {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   EBReadOnlyProperty_Double                                                                                         *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_Double : PMAbstractProperty {
+class EBReadOnlyProperty_Double : EBAbstractProperty {
   var prop : EBProperty <Double> { get { return .noSelection } } // Abstract method
 }
 

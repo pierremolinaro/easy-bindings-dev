@@ -9,8 +9,8 @@ import Cocoa
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  @IBOutlet var docBoolCheckBox : PMSwitch?
-  @IBOutlet var myButton : PMButton?
+  @IBOutlet var docBoolCheckBox : EBSwitch?
+  @IBOutlet var myButton : EBButton?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -64,19 +64,19 @@ import Cocoa
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'docBoolCheckBox' outlet is nil") ;
-    }else if !docBoolCheckBox!.isKindOfClass (PMSwitch) {
+    }else if !docBoolCheckBox!.isKindOfClass (EBSwitch) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'docBoolCheckBox' outlet is not an instance of 'PMSwitch'") ;
+                              errorMessage:"the 'docBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
     }
     if nil == myButton {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'myButton' outlet is nil") ;
-    }else if !myButton!.isKindOfClass (PMButton) {
+    }else if !myButton!.isKindOfClass (EBButton) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'myButton' outlet is not an instance of 'PMButton'") ;
+                              errorMessage:"the 'myButton' outlet is not an instance of 'EBButton'") ;
     }
   //--------------------------- Array controller
   //--------------------------- Selection controller

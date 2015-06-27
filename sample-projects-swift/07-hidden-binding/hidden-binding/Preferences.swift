@@ -12,9 +12,9 @@ var g_Preferences : Preferences? = nil
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  @IBOutlet var mButton : PMButton? = nil
-  @IBOutlet var myHidden1Switch : PMSwitch? = nil
-  @IBOutlet var myHidden2Switch : PMSwitch? = nil
+  @IBOutlet var mButton : EBButton? = nil
+  @IBOutlet var myHidden1Switch : EBSwitch? = nil
+  @IBOutlet var myHidden2Switch : EBSwitch? = nil
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -75,7 +75,7 @@ var g_Preferences : Preferences? = nil
     tf1.bordered = false
     view.addSubview (tf1)
   //--- Outlet myHidden1Switch
-    myHidden1Switch = PMSwitch(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    myHidden1Switch = EBSwitch(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     myHidden1Switch?.setAccessibilityIdentifier ("myHidden1Switch")
     view.addSubview (myHidden1Switch!)
     y -= OUTLET_HEIGHT / 2.0
@@ -89,7 +89,7 @@ var g_Preferences : Preferences? = nil
     tf2.bordered = false
     view.addSubview (tf2)
   //--- Outlet myHidden2Switch
-    myHidden2Switch = PMSwitch(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    myHidden2Switch = EBSwitch(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     myHidden2Switch?.setAccessibilityIdentifier ("myHidden2Switch")
     view.addSubview (myHidden2Switch!)
     y -= OUTLET_HEIGHT / 2.0
@@ -103,7 +103,7 @@ var g_Preferences : Preferences? = nil
     tf3.bordered = false
     view.addSubview (tf3)
   //--- Outlet mButton
-    mButton = PMButton(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mButton = EBButton(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mButton?.setAccessibilityIdentifier ("mButton")
     view.addSubview (mButton!)
     y -= OUTLET_HEIGHT / 2.0
