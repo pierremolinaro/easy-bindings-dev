@@ -4535,6 +4535,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_predefinedOutletClasses ;
 extern const cDirectoryWrapper gWrapperDirectory_2_predefinedOutletClasses ;
 extern const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses ;
 extern const cDirectoryWrapper gWrapperDirectory_4_predefinedOutletClasses ;
+extern const cDirectoryWrapper gWrapperDirectory_5_predefinedOutletClasses ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4565,6 +4566,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_enumGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_enumGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4609,6 +4611,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_entityGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_entityGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

@@ -41,6 +41,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_documentGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_documentGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_documentGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_documentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_documentGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -166,6 +167,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -737,6 +739,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -771,6 +774,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -839,6 +843,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -967,6 +972,7 @@ extern const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGeneration
 extern const cDirectoryWrapper gWrapperDirectory_2_selectionControllerGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_selectionControllerGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_selectionControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1226,6 +1232,17 @@ void routine_generateCode (const class GALGAS_string constinArgument0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                        Routine 'generateStandardProperties'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
+                                         class GALGAS_stringset & ioArgument1,
+                                         class C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                       Routine 'generateSwiftApplicationFiles'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1277,7 +1294,6 @@ extern const char * gWrapperFileContent_5_swift_5F_sources ;
 extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
-extern const char * gWrapperFileContent_9_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1293,7 +1309,6 @@ extern const cRegularFileWrapper gWrapperFile_5_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
-extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
