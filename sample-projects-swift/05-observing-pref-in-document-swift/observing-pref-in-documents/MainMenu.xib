@@ -3269,7 +3269,7 @@
 				<boolean value="NO" key="535.NSWindowTemplate.visibleAtLaunch"/>
 				<reference key="536.IBNSViewMetadataConstraints" ref="0"/>
 				<string key="536.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="537.CustomClassName">PMTextField</string>
+				<string key="537.CustomClassName">EBTextField</string>
 				<object class="NSMutableDictionary" key="537.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">AccessibilityDescription</string>
 					<object class="IBAccessibilityAttribute" key="NS.object.0">
@@ -3325,7 +3325,7 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PMObject</string>
+					<string key="className">EBObject</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -3333,25 +3333,25 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PMTextField</string>
+					<string key="className">EBTextField</string>
 					<string key="superclassName">NSTextField</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../05-observing-pref-in-document/PMTextField.swift</string>
+						<string key="minorKey">../05-observing-pref-in-document/EBTextField.swift</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">Preferences</string>
-					<string key="superclassName">PMObject</string>
+					<string key="superclassName">EBObject</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">myPrefStringTextField</string>
-						<string key="NS.object.0">PMTextField</string>
+						<string key="NS.object.0">EBTextField</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<string key="NS.key.0">myPrefStringTextField</string>
 						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">myPrefStringTextField</string>
-							<string key="candidateClassName">PMTextField</string>
+							<string key="candidateClassName">EBTextField</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

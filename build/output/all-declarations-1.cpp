@@ -16203,63 +16203,63 @@ const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses (
 GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "outletClass PMButton $run $enabled ;\n"
+  result << "outletClass EBButton $run $enabled ;\n"
     "\n"
-    "outletClass PMColorWellObserver $enabled ;\n"
-    "binding PMColorWellObserver $colorObserver : property Color ;\n"
+    "outletClass EBColorWellObserver $enabled ;\n"
+    "binding EBColorWellObserver $colorObserver : property Color ;\n"
     "\n"
-    "outletClass PMColorWell $enabled ;\n"
-    "binding PMColorWell $color : property Color {sendContinously : Bool} ;\n"
-    "\n"
-    "\n"
-    "outletClass PMDatePicker $enabled ;\n"
-    "binding PMDatePicker $date : property Date ;\n"
+    "outletClass EBColorWell $enabled ;\n"
+    "binding EBColorWell $color : property Color {sendContinously : Bool} ;\n"
     "\n"
     "\n"
-    "outletClass PMMatrix $enabled ;\n"
-    "binding PMMatrix $selectedIndex : property enum ;\n"
+    "outletClass EBDatePicker $enabled ;\n"
+    "binding EBDatePicker $date : property Date ;\n"
     "\n"
     "\n"
-    "outletClass PMIntFieldObserver ;\n"
-    "binding PMIntFieldObserver $valueObserver : transient Int {autoFormatter:Bool} ;\n"
+    "outletClass EBMatrix $enabled ;\n"
+    "binding EBMatrix $selectedIndex : property enum ;\n"
     "\n"
     "\n"
-    "outletClass PMDoubleField ;\n"
-    "binding PMDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;\n"
+    "outletClass EBIntFieldObserver ;\n"
+    "binding EBIntFieldObserver $valueObserver : transient Int {autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "outletClass PMIntField ;\n"
-    "binding PMIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;\n"
+    "outletClass EBDoubleField ;\n"
+    "binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "outletClass PMFontButton $enabled ;\n"
-    "binding PMFontButton $fontValue : property Font ;\n"
+    "outletClass EBIntField ;\n"
+    "binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "outletClass PMPopUpButton $enabled ;\n"
-    "binding PMPopUpButton $selectedTag : property Int ;\n"
+    "outletClass EBFontButton $enabled ;\n"
+    "binding EBFontButton $fontValue : property Font ;\n"
     "\n"
     "\n"
-    "outletClass PMGroupButton $enabled ;\n"
-    "binding PMGroupButton $selectedIndex : property Int ;\n"
+    "outletClass EBPopUpButton $enabled ;\n"
+    "binding EBPopUpButton $selectedTag : property Int ;\n"
     "\n"
     "\n"
-    "outletClass PMSegmentedControl $enabled ;\n"
-    "binding PMSegmentedControl $selectedIndex : property Int ;\n"
+    "outletClass EBGroupButton $enabled ;\n"
+    "binding EBGroupButton $selectedIndex : property Int ;\n"
     "\n"
     "\n"
-    "outletClass PMSwitch $enabled ;\n"
-    "binding PMSwitch $value : property Bool ;\n"
+    "outletClass EBSegmentedControl $enabled ;\n"
+    "binding EBSegmentedControl $selectedIndex : property Int ;\n"
     "\n"
     "\n"
-    "outletClass PMTableView $enabled $tableValue ;\n"
+    "outletClass EBSwitch $enabled ;\n"
+    "binding EBSwitch $value : property Bool ;\n"
     "\n"
     "\n"
-    "outletClass PMTextField $enabled ;\n"
-    "binding PMTextField $value : property String {sendContinously : Bool} ;\n"
+    "outletClass EBTableView $enabled $tableValue ;\n"
     "\n"
-    "outletClass PMTextFieldObserver ;\n"
-    "binding PMTextFieldObserver $valueObserver : transient String ;\n" ;
+    "\n"
+    "outletClass EBTextField $enabled ;\n"
+    "binding EBTextField $value : property String {sendContinously : Bool} ;\n"
+    "\n"
+    "outletClass EBTextFieldObserver ;\n"
+    "binding EBTextFieldObserver $valueObserver : transient String ;\n" ;
   return GALGAS_string (result) ;
 }
 
@@ -16461,7 +16461,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "\n"
     "class EBReadOnlyProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " : PMAbstractProperty, EBReadOnlyEnumPropertyProtocol {\n"
+  result << " : EBAbstractProperty, EBReadOnlyEnumPropertyProtocol {\n"
     "\n"
     "  var prop : EBProperty <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
@@ -16488,7 +16488,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << " : EBReadOnlyProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << ", PMEnumPropertyProtocol {\n"
+  result << ", EBEnumPropertyProtocol {\n"
     "  weak var undoManager : NSUndoManager\?\n"
     "\n"
     "  var explorer : NSTextField\? {\n"
@@ -16804,7 +16804,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "class ReadOnlyArrayOf_" ;
   result << in_ENTITY_5F_NAME.stringValue () ;
-  result << " : PMAbstractProperty {\n"
+  result << " : EBAbstractProperty {\n"
     "\n"
     "  var prop : EBProperty <Array<" ;
   result << in_ENTITY_5F_NAME.stringValue () ;
@@ -17182,7 +17182,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       result << in_ENTITY_5F_NAME.stringValue () ;
       result << "_" ;
       result << enumerator_9137.current_mToOneRelationshipName (HERE).stringValue () ;
-      result << " : PMAbstractProperty {\n"
+      result << " : EBAbstractProperty {\n"
         "  var explorer : NSButton\?\n"
         "  weak var owner : " ;
       result << in_ENTITY_5F_NAME.stringValue () ;

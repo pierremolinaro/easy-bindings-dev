@@ -4,7 +4,7 @@ import Cocoa
 //    %!["DataSource_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, PMTableViewDataSource {
+class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, EBTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   var count = EBTransientProperty_Int ()
 
@@ -166,7 +166,7 @@ else
 //    %!["Delegate_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%) class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMAbstractProperty, PMTableViewDelegate {
+@objc(Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%) class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty, EBTableViewDelegate {
   private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
@@ -293,7 +293,7 @@ else
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let v) :
-        let tableView = notication.object as! PMTableView
+        let tableView = notication.object as! EBTableView
         var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
         for index in tableView.selectedRowIndexes {
           newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
@@ -380,7 +380,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
 
   private var mSelectedSet : Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%?
 
-  private var mTableViewControllerArray = [Controller_PMTableView_controller] ()
+  private var mTableViewControllerArray = [Controller_EBTableView_controller] ()
 
   private var mModel : %!MODEL_TYPE_NAME_2%?
  
@@ -423,13 +423,13 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   //    bind_modelAndView                                                                                              *
   //···················································································································*
 
-  func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%, tableViewArray:[PMTableView], file:String, line:Int) {
+  func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%, tableViewArray:[EBTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
     let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray)
     mSelectedSet = selectedSet
     for tableView in tableViewArray {
-      let tableViewController = Controller_PMTableView_controller (
+      let tableViewController = Controller_EBTableView_controller (
         delegate:selectedSet,
         tableView:tableView,
         file:file,

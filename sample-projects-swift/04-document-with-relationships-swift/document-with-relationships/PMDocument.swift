@@ -9,21 +9,21 @@ import Cocoa
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  @IBOutlet var addPathButton : PMButton?
-  @IBOutlet var canRemoveTextField : PMTextFieldObserver?
-  @IBOutlet var countItemMessageTextField : PMTextFieldObserver?
-  @IBOutlet var countItemTextField : PMIntFieldObserver?
-  @IBOutlet var decrementButton : PMButton?
-  @IBOutlet var evenValueTextField : PMTextFieldObserver?
-  @IBOutlet var incrementButton : PMButton?
-  @IBOutlet var mNamesTableView : PMTableView?
-  @IBOutlet var mOtherTableView : PMTableView?
-  @IBOutlet var mSelectionCountTextField : PMTextFieldObserver?
-  @IBOutlet var mSelectionTableView : PMTableView?
-  @IBOutlet var nameDetailTextField : PMTextField?
-  @IBOutlet var removePathButton : PMButton?
-  @IBOutlet var totalTextField : PMIntFieldObserver?
-  @IBOutlet var valueDetailTextField : PMIntField?
+  @IBOutlet var addPathButton : EBButton?
+  @IBOutlet var canRemoveTextField : EBTextFieldObserver?
+  @IBOutlet var countItemMessageTextField : EBTextFieldObserver?
+  @IBOutlet var countItemTextField : EBIntFieldObserver?
+  @IBOutlet var decrementButton : EBButton?
+  @IBOutlet var evenValueTextField : EBTextFieldObserver?
+  @IBOutlet var incrementButton : EBButton?
+  @IBOutlet var mNamesTableView : EBTableView?
+  @IBOutlet var mOtherTableView : EBTableView?
+  @IBOutlet var mSelectionCountTextField : EBTextFieldObserver?
+  @IBOutlet var mSelectionTableView : EBTableView?
+  @IBOutlet var nameDetailTextField : EBTextField?
+  @IBOutlet var removePathButton : EBButton?
+  @IBOutlet var totalTextField : EBIntFieldObserver?
+  @IBOutlet var valueDetailTextField : EBIntField?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *
@@ -86,136 +86,136 @@ import Cocoa
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'addPathButton' outlet is nil") ;
-    }else if !addPathButton!.isKindOfClass (PMButton) {
+    }else if !addPathButton!.isKindOfClass (EBButton) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'addPathButton' outlet is not an instance of 'PMButton'") ;
+                              errorMessage:"the 'addPathButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == canRemoveTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'canRemoveTextField' outlet is nil") ;
-    }else if !canRemoveTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !canRemoveTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'canRemoveTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'canRemoveTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == countItemMessageTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'countItemMessageTextField' outlet is nil") ;
-    }else if !countItemMessageTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !countItemMessageTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'countItemMessageTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'countItemMessageTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == countItemTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'countItemTextField' outlet is nil") ;
-    }else if !countItemTextField!.isKindOfClass (PMIntFieldObserver) {
+    }else if !countItemTextField!.isKindOfClass (EBIntFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'countItemTextField' outlet is not an instance of 'PMIntFieldObserver'") ;
+                              errorMessage:"the 'countItemTextField' outlet is not an instance of 'EBIntFieldObserver'") ;
     }
     if nil == decrementButton {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'decrementButton' outlet is nil") ;
-    }else if !decrementButton!.isKindOfClass (PMButton) {
+    }else if !decrementButton!.isKindOfClass (EBButton) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'decrementButton' outlet is not an instance of 'PMButton'") ;
+                              errorMessage:"the 'decrementButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == evenValueTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'evenValueTextField' outlet is nil") ;
-    }else if !evenValueTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !evenValueTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'evenValueTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'evenValueTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == incrementButton {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'incrementButton' outlet is nil") ;
-    }else if !incrementButton!.isKindOfClass (PMButton) {
+    }else if !incrementButton!.isKindOfClass (EBButton) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'incrementButton' outlet is not an instance of 'PMButton'") ;
+                              errorMessage:"the 'incrementButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == mNamesTableView {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'mNamesTableView' outlet is nil") ;
-    }else if !mNamesTableView!.isKindOfClass (PMTableView) {
+    }else if !mNamesTableView!.isKindOfClass (EBTableView) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'mNamesTableView' outlet is not an instance of 'PMTableView'") ;
+                              errorMessage:"the 'mNamesTableView' outlet is not an instance of 'EBTableView'") ;
     }
     if nil == mOtherTableView {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'mOtherTableView' outlet is nil") ;
-    }else if !mOtherTableView!.isKindOfClass (PMTableView) {
+    }else if !mOtherTableView!.isKindOfClass (EBTableView) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'mOtherTableView' outlet is not an instance of 'PMTableView'") ;
+                              errorMessage:"the 'mOtherTableView' outlet is not an instance of 'EBTableView'") ;
     }
     if nil == mSelectionCountTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'mSelectionCountTextField' outlet is nil") ;
-    }else if !mSelectionCountTextField!.isKindOfClass (PMTextFieldObserver) {
+    }else if !mSelectionCountTextField!.isKindOfClass (EBTextFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'mSelectionCountTextField' outlet is not an instance of 'PMTextFieldObserver'") ;
+                              errorMessage:"the 'mSelectionCountTextField' outlet is not an instance of 'EBTextFieldObserver'") ;
     }
     if nil == mSelectionTableView {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'mSelectionTableView' outlet is nil") ;
-    }else if !mSelectionTableView!.isKindOfClass (PMTableView) {
+    }else if !mSelectionTableView!.isKindOfClass (EBTableView) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'mSelectionTableView' outlet is not an instance of 'PMTableView'") ;
+                              errorMessage:"the 'mSelectionTableView' outlet is not an instance of 'EBTableView'") ;
     }
     if nil == nameDetailTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'nameDetailTextField' outlet is nil") ;
-    }else if !nameDetailTextField!.isKindOfClass (PMTextField) {
+    }else if !nameDetailTextField!.isKindOfClass (EBTextField) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'nameDetailTextField' outlet is not an instance of 'PMTextField'") ;
+                              errorMessage:"the 'nameDetailTextField' outlet is not an instance of 'EBTextField'") ;
     }
     if nil == removePathButton {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'removePathButton' outlet is nil") ;
-    }else if !removePathButton!.isKindOfClass (PMButton) {
+    }else if !removePathButton!.isKindOfClass (EBButton) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'removePathButton' outlet is not an instance of 'PMButton'") ;
+                              errorMessage:"the 'removePathButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == totalTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'totalTextField' outlet is nil") ;
-    }else if !totalTextField!.isKindOfClass (PMIntFieldObserver) {
+    }else if !totalTextField!.isKindOfClass (EBIntFieldObserver) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'totalTextField' outlet is not an instance of 'PMIntFieldObserver'") ;
+                              errorMessage:"the 'totalTextField' outlet is not an instance of 'EBIntFieldObserver'") ;
     }
     if nil == valueDetailTextField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
                               errorMessage:"the 'valueDetailTextField' outlet is nil") ;
-    }else if !valueDetailTextField!.isKindOfClass (PMIntField) {
+    }else if !valueDetailTextField!.isKindOfClass (EBIntField) {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
-                              errorMessage:"the 'valueDetailTextField' outlet is not an instance of 'PMIntField'") ;
+                              errorMessage:"the 'valueDetailTextField' outlet is not an instance of 'EBIntField'") ;
     }
   //--------------------------- Array controller
     nameController.bind_modelAndView (

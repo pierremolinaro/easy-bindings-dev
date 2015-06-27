@@ -10,19 +10,19 @@ prefs {
   property String myPrefString default "pref string" ;
   transient String prefTransientString dependsFrom self.myPrefString ;
 
-  outlet PMTextField myPrefStringTextField $value self.myPrefString {sendContinously : no} ;
+  outlet EBTextField myPrefStringTextField $value self.myPrefString {sendContinously : no} ;
 }
 
 #--------------------------------------------------------------*
 
 document MyDocument root MyRootEntity {
-  outlet PMTextField docStringTextField $value root.docString {sendContinously : yes} ;
+  outlet EBTextField docStringTextField $value root.docString {sendContinously : yes} ;
 
-  outlet PMTextFieldObserver prefStringTextField $valueObserver prefs.myPrefString ;
+  outlet EBTextFieldObserver prefStringTextField $valueObserver prefs.myPrefString ;
 
-  outlet PMTextFieldObserver prefTransientStringTextField $valueObserver prefs.prefTransientString ;
+  outlet EBTextFieldObserver prefTransientStringTextField $valueObserver prefs.prefTransientString ;
 
-  outlet PMTextFieldObserver transientConcatStringTextField $valueObserver root.transientConcatString ;
+  outlet EBTextFieldObserver transientConcatStringTextField $valueObserver root.transientConcatString ;
 }
 
 #--------------------------------------------------------------*

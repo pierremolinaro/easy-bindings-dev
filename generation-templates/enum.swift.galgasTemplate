@@ -32,7 +32,7 @@ end
 //    %!["EBReadOnlyProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, EBReadOnlyEnumPropertyProtocol {
+class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : EBAbstractProperty, EBReadOnlyEnumPropertyProtocol {
 
   var prop : EBProperty <%!ENUM_TYPE_NAME%> { get { return .noSelection } } // Abstract method
 
@@ -45,7 +45,7 @@ class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : PMAbstractProperty, EBReadOnlyEnumP
 //    %!["EBStoredProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%, PMEnumPropertyProtocol {
+class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%, EBEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
 
   var explorer : NSTextField? {

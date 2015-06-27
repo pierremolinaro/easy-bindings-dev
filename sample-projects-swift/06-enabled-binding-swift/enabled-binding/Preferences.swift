@@ -12,7 +12,7 @@ var g_Preferences : Preferences? = nil
   //    Outlets                                                                                                        *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  @IBOutlet var prefBoolCheckBox : PMSwitch? = nil
+  @IBOutlet var prefBoolCheckBox : EBSwitch? = nil
  
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Properties                                                                                                     *

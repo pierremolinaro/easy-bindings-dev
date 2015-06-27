@@ -1,20 +1,20 @@
 xcodeproject "fr.irccyn.molinaro" ;
 
 mainxib {
-  {"Hidden1:", PMSwitch myHidden1Switch},
-  {"Hidden2:", PMSwitch myHidden2Switch},
-  {"Hidden1 | Hidden2 ", PMButton mButton}
+  {"Hidden1:", EBSwitch myHidden1Switch},
+  {"Hidden2:", EBSwitch myHidden2Switch},
+  {"Hidden1 | Hidden2 ", EBButton mButton}
 }
 
 
 prefs {
 #--- Switches
   property Bool myHidden1 default no ;
-  outlet PMSwitch myHidden1Switch $value self.myHidden1 ;
+  outlet EBSwitch myHidden1Switch $value self.myHidden1 ;
   property Bool myHidden2 default no ;
-  outlet PMSwitch myHidden2Switch $value self.myHidden2 ;
+  outlet EBSwitch myHidden2Switch $value self.myHidden2 ;
 #--- Hidden button
-  outlet PMButton mButton $hidden self.myHidden1 | self.myHidden2 ;
+  outlet EBButton mButton $hidden self.myHidden1 | self.myHidden2 ;
 }
 
 #--------------------------------------------------------------*

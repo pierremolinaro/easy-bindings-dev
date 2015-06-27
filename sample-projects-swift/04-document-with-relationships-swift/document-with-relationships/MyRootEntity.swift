@@ -4,7 +4,7 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
+class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
 

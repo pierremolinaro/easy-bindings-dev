@@ -14,55 +14,55 @@ entity NameEntity {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-  outlet PMTableView mNamesTableView $tableValue nameController ;
+  outlet EBTableView mNamesTableView $tableValue nameController ;
   arrayController nameController : root.mNames
-     column "name" PMTextField name { sendContinously : no}
-     column "int"  PMIntField aValue { sendContinously : no}
+     column "name" EBTextField name { sendContinously : no}
+     column "int"  EBIntField aValue { sendContinously : no}
   ;
 
-  outlet PMTableView mOtherTableView $tableValue otherController ;
+  outlet EBTableView mOtherTableView $tableValue otherController ;
   arrayController otherController : root.mNames filter aValue
-     column "name" PMTextField name { sendContinously : no}
-     column "int"  PMIntField aValue { sendContinously : no}
+     column "name" EBTextField name { sendContinously : no}
+     column "int"  EBIntField aValue { sendContinously : no}
   ;
 
-  outlet PMTableView mSelectionTableView $tableValue selController ;
+  outlet EBTableView mSelectionTableView $tableValue selController ;
   arrayController selController : nameController.selectedArray
-     column "name" PMTextField name { sendContinously : no}
-     column "int"  PMIntField aValue { sendContinously : no}
+     column "name" EBTextField name { sendContinously : no}
+     column "int"  EBIntField aValue { sendContinously : no}
   ;
 
   transient String selectionCountString dependsFrom selController.sortedArray.count ;
-  outlet PMTextFieldObserver mSelectionCountTextField $valueObserver self.selectionCountString ;
+  outlet EBTextFieldObserver mSelectionCountTextField $valueObserver self.selectionCountString ;
 
   transient String evenValueString dependsFrom otherController.sortedArray.count ;
-  outlet PMTextFieldObserver evenValueTextField $valueObserver self.evenValueString ;
+  outlet EBTextFieldObserver evenValueTextField $valueObserver self.evenValueString ;
 
   transient String canRemoveString dependsFrom nameController.selectedArray.count ;
-  outlet PMTextFieldObserver canRemoveTextField $valueObserver self.canRemoveString ;
+  outlet EBTextFieldObserver canRemoveTextField $valueObserver self.canRemoveString ;
 
-  outlet PMButton addPathButton $run nameController.add ;
+  outlet EBButton addPathButton $run nameController.add ;
 
-  outlet PMButton removePathButton $run nameController.remove $enabled nameController.selectedArray.count > 0 ;
+  outlet EBButton removePathButton $run nameController.remove $enabled nameController.selectedArray.count > 0 ;
 
-  outlet PMIntFieldObserver countItemTextField $valueObserver root.mNames.count {autoFormatter:no} ;
+  outlet EBIntFieldObserver countItemTextField $valueObserver root.mNames.count {autoFormatter:no} ;
 
   transient String countItemMessage dependsFrom root.mNames.count ;
 
-  outlet PMTextFieldObserver countItemMessageTextField $valueObserver self.countItemMessage  ;
+  outlet EBTextFieldObserver countItemMessageTextField $valueObserver self.countItemMessage  ;
 
   transient Int total dependsFrom root.mNames.all.aValue ;
-  outlet PMIntFieldObserver totalTextField $valueObserver self.total {autoFormatter:no} ;
+  outlet EBIntFieldObserver totalTextField $valueObserver self.total {autoFormatter:no} ;
   
   action increment ;
-  outlet PMButton incrementButton $run self.increment $enabled root.mNames.count > 0 ;
+  outlet EBButton incrementButton $run self.increment $enabled root.mNames.count > 0 ;
   
   action decrement ;
-  outlet PMButton decrementButton $run self.decrement $enabled root.mNames.count > 0 ;
+  outlet EBButton decrementButton $run self.decrement $enabled root.mNames.count > 0 ;
   
   selectionController detailController : nameController.selectedArray ;
-  outlet PMTextField nameDetailTextField $value detailController.name { sendContinously : yes} ;
-  outlet PMIntField valueDetailTextField $value detailController.aValue { sendContinously : yes, autoFormatter:no} ;
+  outlet EBTextField nameDetailTextField $value detailController.name { sendContinously : yes} ;
+  outlet EBIntField valueDetailTextField $value detailController.aValue { sendContinously : yes, autoFormatter:no} ;
 }
 
 #--------------------------------------------------------------*

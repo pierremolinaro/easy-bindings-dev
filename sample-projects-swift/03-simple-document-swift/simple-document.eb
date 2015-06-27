@@ -16,17 +16,17 @@ entity MyRootEntity {
 #--------------------------------------------------------------*
 
 document PMDocument root MyRootEntity {
-  outlet PMTextField myTextField $value root.myString {sendContinously : yes} ;
+  outlet EBTextField myTextField $value root.myString {sendContinously : yes} ;
 
-  outlet PMTextFieldObserver myTextMajField $valueObserver root.myStringMaj ;
+  outlet EBTextFieldObserver myTextMajField $valueObserver root.myStringMaj ;
 
-  outlet PMTextFieldObserver myTextMinField $valueObserver root.myStringMin ;
+  outlet EBTextFieldObserver myTextMinField $valueObserver root.myStringMin ;
 
-  outlet PMTextFieldObserver myTextConcatField $valueObserver root.myStringConcat ;
+  outlet EBTextFieldObserver myTextConcatField $valueObserver root.myStringConcat ;
 
-  outlet PMMatrix myMatrix $selectedIndex root.myEnumeration  ;
+  outlet EBMatrix myMatrix $selectedIndex root.myEnumeration  ;
 
-  outlet PMColorWell myColorWell $color root.myColor {sendContinously : no} ;
+  outlet EBColorWell myColorWell $color root.myColor {sendContinously : no} ;
   
   action monAction ;
   action autreAction ;

@@ -4,15 +4,15 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
+class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
-  var prop : PMProperty <Array<MyRootEntity> > { get { return .noSelection } }
+  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
   //···················································································································*
 
-  var mObserversOf_docString = Set<PMEvent> ()
+  var mObserversOf_docString = Set<EBEvent> ()
 
-  func addObserverOf_docString (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_docString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_docString (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_docString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -46,11 +46,11 @@ class ReadOnlyArrayOf_MyRootEntity : PMAbstractProperty {
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> PMProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
   
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
-  private var prop_cache : PMProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
 
   //···················································································································*
 
@@ -74,7 +74,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   //···················································································································*
 
-  override var prop : PMProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -103,7 +103,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(MyRootEntity_docString) protocol MyRootEntity_docString {
-  var docString : PMStoredProperty_String { get }
+  var docString : EBStoredProperty_String { get }
 }
 
 
@@ -117,7 +117,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    Properties                                                                                                     *
   //···················································································································*
 
-  var docString = PMStoredProperty_String ("doc string")
+  var docString = EBStoredProperty_String ("doc string")
   var docString_keyCodingValue : String {
     get {
       switch docString.prop {
@@ -133,8 +133,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    Transient properties                                                                                           *
   //···················································································································*
 
-  var transientConcatString = PMTransientProperty_String ()
-  var otherTransientConcatString = PMTransientProperty_String ()
+  var transientConcatString = EBTransientProperty_String ()
+  var otherTransientConcatString = EBTransientProperty_String ()
 
   //···················································································································*
   //    Relationships                                                                                                  *

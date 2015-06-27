@@ -43,7 +43,7 @@
                             <rect key="frame" x="1" y="0.0" width="465" height="507"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="100030" viewBased="YES" id="100028" customClass="PMTableView">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="100030" viewBased="YES" id="100028" customClass="EBTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="465" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -68,7 +68,7 @@
                                                     <rect key="frame" x="1" y="1" width="223" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="100123" customClass="PMIntField">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="100123" customClass="EBIntField">
                                                             <rect key="frame" x="0.0" y="0.0" width="223" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="100124">
@@ -102,7 +102,7 @@
                                                     <rect key="frame" x="227" y="1" width="236" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="100127" customClass="PMTextField">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="100127" customClass="EBTextField">
                                                             <rect key="frame" x="0.0" y="0.0" width="236" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="100128">
@@ -136,7 +136,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" id="100046" customClass="PMButton">
+                    <button verticalHuggingPriority="750" id="100046" customClass="EBButton">
                         <rect key="frame" x="19" y="13" width="51" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="100047">
@@ -145,7 +145,7 @@
                         </buttonCell>
                         <accessibility description="addEntry"/>
                     </button>
-                    <button verticalHuggingPriority="750" id="100050" customClass="PMButton">
+                    <button verticalHuggingPriority="750" id="100050" customClass="EBButton">
                         <rect key="frame" x="57" y="13" width="48" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="100051">
@@ -154,17 +154,7 @@
                         </buttonCell>
                         <accessibility description="removeEntry"/>
                     </button>
-                    <textField verticalHuggingPriority="750" id="100056" customClass="PMTextFieldObserver">
-                        <rect key="frame" x="352" y="21" width="137" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="*** can remove ***" id="100057">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <accessibility description="canRemoveEntry"/>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="100074" customClass="PMTextField">
+                    <textField verticalHuggingPriority="750" id="100074" customClass="EBTextField">
                         <rect key="frame" x="107" y="21" width="56" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count:" id="100075">
@@ -173,7 +163,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="100085" customClass="PMIntFieldObserver">
+                    <textField verticalHuggingPriority="750" id="100085" customClass="EBIntFieldObserver">
                         <rect key="frame" x="165" y="21" width="73" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="nnn" id="100086">
@@ -184,7 +174,7 @@
                         </textFieldCell>
                         <accessibility description="entryCount"/>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="100099" customClass="PMTextFieldObserver">
+                    <textField verticalHuggingPriority="750" id="100099" customClass="EBTextFieldObserver">
                         <rect key="frame" x="247" y="21" width="103" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="nnn Items" id="100100">
@@ -194,7 +184,7 @@
                         </textFieldCell>
                         <accessibility description="entryCountString"/>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="100117" customClass="PMIntFieldObserver">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="100117" customClass="EBIntFieldObserver">
                         <rect key="frame" x="23" y="49" width="215" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="…TOTAL…" id="100118">
@@ -204,7 +194,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" id="Sya-gS-Pq4" customClass="PMButton">
+                    <button verticalHuggingPriority="750" id="Sya-gS-Pq4" customClass="EBButton">
                         <rect key="frame" x="256" y="40" width="56" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="+1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pRg-Z5-pOy">
@@ -212,7 +202,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button verticalHuggingPriority="750" id="gyl-DQ-bh2" customClass="PMButton">
+                    <button verticalHuggingPriority="750" id="gyl-DQ-bh2" customClass="EBButton">
                         <rect key="frame" x="325" y="40" width="54" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="-1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9x9-8e-hOm">
@@ -234,7 +224,7 @@
                                         <rect key="frame" x="1" y="0.0" width="422" height="188"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="ja2-OZ-8PF" viewBased="YES" id="IKK-va-ISf" customClass="PMTableView">
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="ja2-OZ-8PF" viewBased="YES" id="IKK-va-ISf" customClass="EBTableView">
                                                 <rect key="frame" x="0.0" y="0.0" width="422" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -259,7 +249,7 @@
                                                                 <rect key="frame" x="1" y="1" width="223" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="3JH-Og-fGy" customClass="PMIntField">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="3JH-Og-fGy" customClass="EBIntField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="223" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="fac-NB-f8R">
@@ -293,7 +283,7 @@
                                                                 <rect key="frame" x="227.5" y="1" width="192.5" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="9fF-wI-RJi" customClass="PMTextField">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="9fF-wI-RJi" customClass="EBTextField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="192.5" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="SlW-54-Q5S">
@@ -327,7 +317,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableHeaderView>
                                 </scrollView>
-                                <textField verticalHuggingPriority="750" id="NiN-AW-qvE" customClass="PMTextFieldObserver">
+                                <textField verticalHuggingPriority="750" id="NiN-AW-qvE" customClass="EBTextFieldObserver">
                                     <rect key="frame" x="16" y="211" width="428" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="--- even value count ---" id="AkT-yA-auF">
@@ -355,7 +345,7 @@
                                         <rect key="frame" x="1" y="0.0" width="447" height="207"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="TKg-Ku-hTq" viewBased="YES" id="Nf1-sv-9lj" customClass="PMTableView">
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" autosaveName="PMTableViewAutosaveName" rowSizeStyle="automatic" headerView="TKg-Ku-hTq" viewBased="YES" id="Nf1-sv-9lj" customClass="EBTableView">
                                                 <rect key="frame" x="0.0" y="0.0" width="447" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -380,7 +370,7 @@
                                                                 <rect key="frame" x="1" y="1" width="223" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jXN-d4-R9x" customClass="PMIntField">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jXN-d4-R9x" customClass="EBIntField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="223" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="qab-YT-2gn">
@@ -414,7 +404,7 @@
                                                                 <rect key="frame" x="227.5" y="1" width="217.5" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="EKc-2q-csP" customClass="PMTextField">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="EKc-2q-csP" customClass="EBTextField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="217.5" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="0hc-oc-eNL">
@@ -448,7 +438,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableHeaderView>
                                 </scrollView>
-                                <textField verticalHuggingPriority="750" id="WNh-TU-o5d" customClass="PMTextFieldObserver">
+                                <textField verticalHuggingPriority="750" id="WNh-TU-o5d" customClass="EBTextFieldObserver">
                                     <rect key="frame" x="16" y="263" width="453" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="--- selection count ---" id="wkG-Yp-SO8">
@@ -457,7 +447,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" id="Nn8-uu-fSk" customClass="PMTextField">
+                                <textField verticalHuggingPriority="750" id="Nn8-uu-fSk" customClass="EBTextField">
                                     <rect key="frame" x="293" y="14" width="174" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3Oa-dw-PQG">
@@ -484,7 +474,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" id="wRN-bd-1bT" customClass="PMIntField">
+                                <textField verticalHuggingPriority="750" id="wRN-bd-1bT" customClass="EBIntField">
                                     <rect key="frame" x="62" y="14" width="116" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="UCw-yV-Wzf">
@@ -499,6 +489,16 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <textField verticalHuggingPriority="750" id="100056" customClass="EBTextFieldObserver">
+                        <rect key="frame" x="352" y="21" width="137" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="*** can remove ***" id="100057">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <accessibility description="canRemoveEntry"/>
+                    </textField>
                 </subviews>
             </view>
             <connections>

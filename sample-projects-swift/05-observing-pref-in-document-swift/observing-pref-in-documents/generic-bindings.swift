@@ -10,7 +10,7 @@ private var gHiddenBindingControllerDictionary = [NSView : Controller_NSView_hid
 
 extension NSView {
 
-  func bind_hidden (object:[PMAbstractProperty], computeFunction: () -> PMProperty <Bool>, file:String, line:Int) {
+  func bind_hidden (object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSView_hidden (
       objectArray:object,
       outlet:self,
@@ -35,17 +35,17 @@ extension NSView {
 //   Controller_NSView_hidden                                                                                          *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_NSView_hidden) class Controller_NSView_hidden : PMOutletEvent {
+@objc(Controller_NSView_hidden) class Controller_NSView_hidden : EBOutletEvent {
 
-  var mObjectArray : [PMAbstractProperty]
+  var mObjectArray : [EBAbstractProperty]
   var mOutlet : NSView
-  var mComputeFunction : Optional <() -> PMProperty <Bool> >
+  var mComputeFunction : Optional <() -> EBProperty <Bool> >
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (objectArray : [PMAbstractProperty],
+  init (objectArray : [EBAbstractProperty],
         outlet : NSView,
-        computeFunction: () -> PMProperty <Bool>,
+        computeFunction: () -> EBProperty <Bool>,
         file : String,
         line : Int) {
     mObjectArray = objectArray
@@ -69,7 +69,7 @@ extension NSView {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    let result : PMProperty <Bool>
+    let result : EBProperty <Bool>
     if let computeFunction = mComputeFunction {
       result = computeFunction ()
     }else{
@@ -97,7 +97,7 @@ private var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
 extension NSControl {
 
-  func bind_enabled (object:[PMAbstractProperty], computeFunction: () -> PMProperty <Bool>, file:String, line:Int) {
+  func bind_enabled (object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSControl_enabled (
       objectArray:object,
       outlet:self,
@@ -155,15 +155,15 @@ extension NSControl {
 //   Controller_NSControl_enabled                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_NSControl_enabled) class Controller_NSControl_enabled : PMOutletEvent {
+@objc(Controller_NSControl_enabled) class Controller_NSControl_enabled : EBOutletEvent {
 
-  var mObjectArray : [PMAbstractProperty]
+  var mObjectArray : [EBAbstractProperty]
   var mOutlet : NSControl
-  var mComputeFunction : Optional <() -> PMProperty <Bool> >
+  var mComputeFunction : Optional <() -> EBProperty <Bool> >
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (objectArray : [PMAbstractProperty], outlet : NSControl, computeFunction: () -> PMProperty <Bool>, file : String, line : Int) {
+  init (objectArray : [EBAbstractProperty], outlet : NSControl, computeFunction: () -> EBProperty <Bool>, file : String, line : Int) {
     mObjectArray = objectArray
     mOutlet = outlet
     mComputeFunction = computeFunction
@@ -185,7 +185,7 @@ extension NSControl {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func updateOutlet () {
-    let result : PMProperty <Bool>
+    let result : EBProperty <Bool>
     if let computeFunction = mComputeFunction {
       result = computeFunction ()
     }else{
