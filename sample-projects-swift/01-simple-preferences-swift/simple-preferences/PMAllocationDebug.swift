@@ -4,7 +4,7 @@ import Cocoa
 //    Public routines                                                                                                  *
 //---------------------------------------------------------------------------------------------------------------------*
 
-func noteObjectAllocation (inObject : PMUserClassName) {
+func noteObjectAllocation (inObject : EBUserClassName) {
   installDebugMenu ()
   let className = _stdlib_getDemangledTypeName (inObject).pathExtension
   gDebugObject?.pmNoteObjectAllocation (className)
@@ -12,7 +12,7 @@ func noteObjectAllocation (inObject : PMUserClassName) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-func noteObjectDeallocation (inObject : PMUserClassName) {
+func noteObjectDeallocation (inObject : EBUserClassName) {
   let className = _stdlib_getDemangledTypeName (inObject).pathExtension
   gDebugObject?.pmNoteObjectDeallocation (className)
 }

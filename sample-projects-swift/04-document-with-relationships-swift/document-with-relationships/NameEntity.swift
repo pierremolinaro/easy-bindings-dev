@@ -6,13 +6,13 @@ import Cocoa
 
 class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
-  var prop : PMProperty <Array<NameEntity> > { get { return .noSelection } }
+  var prop : EBProperty <Array<NameEntity> > { get { return .noSelection } }
 
   //···················································································································*
 
-  var mObserversOf_name = Set<PMEvent> ()
+  var mObserversOf_name = Set<EBEvent> ()
 
-  func addObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_name (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -38,9 +38,9 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
   //···················································································································*
 
-  var mObserversOf_aValue = Set<PMEvent> ()
+  var mObserversOf_aValue = Set<EBEvent> ()
 
-  func addObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -52,7 +52,7 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
     }
   }
 
-  func removeObserverOf_aValue (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -74,11 +74,11 @@ class ReadOnlyArrayOf_NameEntity : PMAbstractProperty {
 
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
-  var computeFunction : Optional<() -> PMProperty <Array<NameEntity> > >
+  var computeFunction : Optional<() -> EBProperty <Array<NameEntity> > >
   
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
-  private var prop_cache : PMProperty <Array<NameEntity> >? 
+  private var prop_cache : EBProperty <Array<NameEntity> >? 
 
   //···················································································································*
 
@@ -102,7 +102,7 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   //···················································································································*
 
-  override var prop : PMProperty <Array<NameEntity> > {
+  override var prop : EBProperty <Array<NameEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -131,13 +131,13 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(NameEntity_name) protocol NameEntity_name {
-  var name : PMStoredProperty_String { get }
+  var name : EBStoredProperty_String { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(NameEntity_aValue) protocol NameEntity_aValue {
-  var aValue : PMStoredProperty_Int { get }
+  var aValue : EBStoredProperty_Int { get }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -179,7 +179,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
 
   var propval : MyRootEntity? { get { return mValue } }
 
-  var prop : PMProperty <MyRootEntity?> { get { return .singleSelection (mValue) } }
+  var prop : EBProperty <MyRootEntity?> { get { return .singleSelection (mValue) } }
 
   func setProp (value : MyRootEntity?) { mValue = value }
 
@@ -215,7 +215,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
   //    Properties                                                                                                     *
   //···················································································································*
 
-  var name = PMStoredProperty_String ("Name")
+  var name = EBStoredProperty_String ("Name")
   var name_keyCodingValue : String {
     get {
       switch name.prop {
@@ -227,7 +227,7 @@ class ToOneRelationship_NameEntity_mRoot : PMAbstractProperty {
     }
   }
 
-  var aValue = PMStoredProperty_Int (100)
+  var aValue = EBStoredProperty_Int (100)
   var aValue_keyCodingValue : Int {
     get {
       switch aValue.prop {

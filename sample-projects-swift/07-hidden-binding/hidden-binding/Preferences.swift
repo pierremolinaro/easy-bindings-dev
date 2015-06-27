@@ -6,7 +6,7 @@ var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Preferences) class Preferences : PMObject {
+@objc(Preferences) class Preferences : EBObject {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
@@ -20,8 +20,8 @@ var g_Preferences : Preferences? = nil
   //    Properties                                                                                                     *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  var myHidden1 = PMStoredProperty_Bool (false)
-  var myHidden2 = PMStoredProperty_Bool (false)
+  var myHidden1 = EBStoredProperty_Bool (false)
+  var myHidden2 = EBStoredProperty_Bool (false)
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Transient properties                                                                                           *

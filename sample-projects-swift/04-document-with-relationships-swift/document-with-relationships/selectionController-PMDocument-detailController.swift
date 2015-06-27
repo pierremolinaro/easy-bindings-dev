@@ -4,15 +4,15 @@ import Cocoa
 //    SelectionController_PMDocument_detailController                                                                  *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class SelectionController_PMDocument_detailController : PMObject {
+class SelectionController_PMDocument_detailController : EBObject {
   private var mModel : ReadOnlyArrayOf_NameEntity?
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //   SELECTION OBSERVABLE PROPERTIES                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  var aValue = PMPropertyProxy_Int () 
-  var name = PMPropertyProxy_String () 
+  var aValue = EBPropertyProxy_Int () 
+  var name = EBPropertyProxy_String () 
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //   BIND SELECTION                                                                                                  *

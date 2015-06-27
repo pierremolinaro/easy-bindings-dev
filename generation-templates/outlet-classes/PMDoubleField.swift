@@ -4,7 +4,7 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-@objc(PMDoubleField) class PMDoubleField : NSTextField, PMUserClassName, NSTextFieldDelegate {
+@objc(PMDoubleField) class PMDoubleField : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -79,7 +79,7 @@ import Cocoa
   private var mValueController : Controller_PMDoubleField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:PMReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
+  func bind_value (object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_PMDoubleField_value (
       object:object,
@@ -106,14 +106,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDoubleField_value)
-class Controller_PMDoubleField_value : PMOutletEvent {
+class Controller_PMDoubleField_value : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_Double
+  var mObject : EBReadWriteProperty_Double
   var mOutlet : PMDoubleField
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMReadWriteProperty_Double,
+  init (object : EBReadWriteProperty_Double,
         outlet : PMDoubleField,
         file : String,
         line : Int,

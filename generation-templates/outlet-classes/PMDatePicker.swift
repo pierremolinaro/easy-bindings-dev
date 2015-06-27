@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMDatePicker) class PMDatePicker : NSDatePicker, PMUserClassName {
+@objc(PMDatePicker) class PMDatePicker : NSDatePicker, EBUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -30,7 +30,7 @@ import Cocoa
 
   private var mValueController : Controller_PMDatePicker_date?
 
-  func bind_date (object:PMStoredProperty_NSDate, file:String, line:Int) {
+  func bind_date (object:EBStoredProperty_NSDate, file:String, line:Int) {
     mValueController = Controller_PMDatePicker_date (object:object, outlet:self, file:file, line:line)
   }
 
@@ -47,14 +47,14 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMDatePicker_date)
-class Controller_PMDatePicker_date : PMOutletEvent {
+class Controller_PMDatePicker_date : EBOutletEvent {
 
-  var mObject : PMStoredProperty_NSDate
+  var mObject : EBStoredProperty_NSDate
   var mOutlet: PMDatePicker
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : PMStoredProperty_NSDate, outlet : PMDatePicker, file : String, line : Int) {
+  init (object : EBStoredProperty_NSDate, outlet : PMDatePicker, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

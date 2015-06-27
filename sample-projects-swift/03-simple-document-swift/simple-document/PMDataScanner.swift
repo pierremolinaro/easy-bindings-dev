@@ -1,17 +1,8 @@
-//
-//  PMDataScanner.m
-//  canari
-//
-//  Created by Pierre Molinaro on 09/11/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
-//
-//---------------------------------------------------------------------------*
-
 import Cocoa
 
 //---------------------------------------------------------------------------*
 
-class PMDataScanner : PMObject {
+class PMDataScanner : EBObject {
   var mData : NSData
   var mReadIndex : Int = 0
   var mReadOk : Bool = true

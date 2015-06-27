@@ -9,7 +9,7 @@ var gAllocatedEntityCount = 0
 //  PMManagedObject                                                                                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class PMManagedObject : PMObject {
+class PMManagedObject : EBObject {
   private weak var mManagedObjectContext : PMManagedObjectContext?
   var savingIndex = 0
 

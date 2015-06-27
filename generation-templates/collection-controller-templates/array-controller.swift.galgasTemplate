@@ -6,7 +6,7 @@ import Cocoa
 
 class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, PMTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
   //···················································································································*
 
@@ -40,7 +40,7 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEM
 
   //···················································································································*
 
-  private func filterAndSort () -> PMProperty <Array<%!ELEMENT_TYPE_NAME%> > {
+  private func filterAndSort () -> EBProperty <Array<%!ELEMENT_TYPE_NAME%> > {
     if let model = mModel {
       switch model.prop {
       case .noSelection :
@@ -78,9 +78,9 @@ else
   
   private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
 
-  var prop_cache : Optional < PMProperty <Array<%!ELEMENT_TYPE_NAME%> > >
+  var prop_cache : Optional < EBProperty <Array<%!ELEMENT_TYPE_NAME%> > >
 
-  override var prop : PMProperty <Array<%!ELEMENT_TYPE_NAME%> > {
+  override var prop : EBProperty <Array<%!ELEMENT_TYPE_NAME%> > {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
@@ -171,7 +171,7 @@ else
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
   private var mIgnoreTableViewSelectionDidChange = true
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
   //···················································································································*
 
@@ -206,7 +206,7 @@ else
 
   //···················································································································*
   
-  var prop : PMProperty <Set<%!ELEMENT_TYPE_NAME%> > {
+  var prop : EBProperty <Set<%!ELEMENT_TYPE_NAME%> > {
     get {
       if mSetShouldBeComputed {
         mSetShouldBeComputed = false
@@ -370,7 +370,7 @@ end
 //    %!["ArrayController_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : PMObject {
+class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 

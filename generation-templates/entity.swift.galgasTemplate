@@ -6,15 +6,15 @@ import Cocoa
 
 class ReadOnlyArrayOf_%!ENTITY_NAME% : PMAbstractProperty {
 
-  var prop : PMProperty <Array<%!ENTITY_NAME%> > { get { return .noSelection } }
+  var prop : EBProperty <Array<%!ENTITY_NAME%> > { get { return .noSelection } }
 
   //···················································································································*
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%  var mObserversOf_%!mStoredPropertyName% = Set<PMEvent> ()
+%  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
-  func addObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func addObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -26,7 +26,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  func removeObserverOf_%!mStoredPropertyName% (inObserver : PMEvent, postEvent inTrigger:Bool) {
+  func removeObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -50,11 +50,11 @@ end
 
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
-  var computeFunction : Optional<() -> PMProperty <Array<%!ENTITY_NAME%> > >
+  var computeFunction : Optional<() -> EBProperty <Array<%!ENTITY_NAME%> > >
   
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
-  private var prop_cache : PMProperty <Array<%!ENTITY_NAME%> >? 
+  private var prop_cache : EBProperty <Array<%!ENTITY_NAME%> >? 
 
   //···················································································································*
 
@@ -78,7 +78,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //···················································································································*
 
-  override var prop : PMProperty <Array<%!ENTITY_NAME%> > {
+  override var prop : EBProperty <Array<%!ENTITY_NAME%> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -109,7 +109,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(%!ENTITY_NAME%_%!mStoredPropertyName%) protocol %!ENTITY_NAME%_%!mStoredPropertyName% {
-  var %!mStoredPropertyName% : PMStoredProperty_%![mType swiftTypeName]% { get }
+  var %!mStoredPropertyName% : EBStoredProperty_%![mType swiftTypeName]% { get }
 }
 
 %
@@ -158,7 +158,7 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
 
   //···················································································································*
 
-  var count = PMTransientProperty_Int ()
+  var count = EBTransientProperty_Int ()
 
   //···················································································································*
 
@@ -208,7 +208,7 @@ end
     }
   }
 
-  override var prop : PMProperty <Array<%![mRelationshipType swiftTypeName]%> > {
+  override var prop : EBProperty <Array<%![mRelationshipType swiftTypeName]%> > {
     get {
       return .singleSelection (mValue ?? Array<%![mRelationshipType swiftTypeName]%> ())
     }
@@ -298,7 +298,7 @@ class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : PMAbstractPro
 
   var propval : %![mRelationshipType swiftTypeName]%? { get { return mValue } }
 
-  var prop : PMProperty <%![mRelationshipType swiftTypeName]%?> { get { return .singleSelection (mValue) } }
+  var prop : EBProperty <%![mRelationshipType swiftTypeName]%?> { get { return .singleSelection (mValue) } }
 
   func setProp (value : %![mRelationshipType swiftTypeName]%?) { mValue = value }
 
@@ -342,7 +342,7 @@ end
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+  %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
   %  var %!mStoredPropertyName%_keyCodingValue : %![mType swiftTypeName]% {\n%
   %    get {\n%
   %      switch %!mStoredPropertyName%.prop {\n%
@@ -361,7 +361,7 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+%  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
 %

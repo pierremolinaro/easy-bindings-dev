@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMGroupButton) class PMGroupButton : NSButton, PMUserClassName {
+@objc(PMGroupButton) class PMGroupButton : NSButton, EBUserClassName {
   @IBOutlet private var mMasterView : NSView?
   @IBOutlet private var mView : NSView?
   private var mWindowDefaultTitle : String = ""
@@ -84,7 +84,7 @@ import Cocoa
 
   private var mValueController : Controller_PMGroupButton_selectedIndex?
 
-  func bind_selectedIndex (object:PMReadWriteProperty_Int, file:String, line:Int) {
+  func bind_selectedIndex (object:EBReadWriteProperty_Int, file:String, line:Int) {
   //--- Check tags
     if let masterView = mMasterView {
       var tagSet = Set<Int> ()
@@ -124,14 +124,14 @@ import Cocoa
 //   Controller_PMGroupButton_selectedIndex                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMGroupButton_selectedIndex : PMOutletEvent {
+class Controller_PMGroupButton_selectedIndex : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_Int
+  var mObject : EBReadWriteProperty_Int
   var mOutlet : PMGroupButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadWriteProperty_Int, outlet : PMGroupButton, file : String, line : Int) {
+  init (object : EBReadWriteProperty_Int, outlet : PMGroupButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

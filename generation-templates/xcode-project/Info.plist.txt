@@ -25,7 +25,7 @@
  <key>NSMainNibFile</key>
  <string>MainMenu</string>
  <key>NSPrincipalClass</key>
- <string>PMApplication</string>
+ <string>EBApplication</string>
  <key>CFBundleDocumentTypes</key>
  <array>
 %for () in HANDLED_EXTENSION_SET do

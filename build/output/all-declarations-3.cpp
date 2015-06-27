@@ -957,7 +957,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (C_Compiler
     " <key>NSMainNibFile</key>\n"
     " <string>MainMenu</string>\n"
     " <key>NSPrincipalClass</key>\n"
-    " <string>PMApplication</string>\n"
+    " <string>EBApplication</string>\n"
     " <key>CFBundleDocumentTypes</key>\n"
     " <array>\n" ;
   GALGAS_uint index_1014_ (0) ;

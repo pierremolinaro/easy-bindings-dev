@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMMatrix) class PMMatrix : NSMatrix, PMUserClassName {
+@objc(PMMatrix) class PMMatrix : NSMatrix, EBUserClassName {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -39,7 +39,7 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_PMMatrix_selectedIndex)
-class Controller_PMMatrix_selectedIndex : PMOutletEvent {
+class Controller_PMMatrix_selectedIndex : EBOutletEvent {
 
   var mObject : PMEnumPropertyProtocol
   var mOutlet: PMMatrix

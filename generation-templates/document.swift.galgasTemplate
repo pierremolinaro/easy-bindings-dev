@@ -32,7 +32,7 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %  private var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+  %  private var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
 %

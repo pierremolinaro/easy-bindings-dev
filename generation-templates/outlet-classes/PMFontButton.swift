@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(PMFontButton) class PMFontButton : NSButton, PMUserClassName {
+@objc(PMFontButton) class PMFontButton : NSButton, EBUserClassName {
   private var mFont : NSFont?
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -67,7 +67,7 @@ import Cocoa
 
   private var mValueController : Controller_PMFontButton_fontValue?
 
-  func bind_fontValue (object:PMReadWriteProperty_NSFont, file:String, line:Int) {
+  func bind_fontValue (object:EBReadWriteProperty_NSFont, file:String, line:Int) {
     mValueController = Controller_PMFontButton_fontValue (object:object, outlet:self, file:file, line:line)
   }
 
@@ -84,14 +84,14 @@ import Cocoa
 //   Controller_PMFontButton_fontValue                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_PMFontButton_fontValue : PMOutletEvent {
+class Controller_PMFontButton_fontValue : EBOutletEvent {
 
-  var mObject : PMReadWriteProperty_NSFont
+  var mObject : EBReadWriteProperty_NSFont
   var mOutlet : PMFontButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  init (object : PMReadWriteProperty_NSFont, outlet : PMFontButton, file : String, line : Int) {
+  init (object : EBReadWriteProperty_NSFont, outlet : PMFontButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init ()

@@ -6,7 +6,7 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(%!preferencesName ()%) class %!preferencesName ()% : PMObject {
+@objc(%!preferencesName ()%) class %!preferencesName ()% : EBObject {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   //    Outlets                                                                                                        *
@@ -23,7 +23,7 @@ end
 
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  var %!mStoredPropertyName% = PMStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+%  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
 end
 %
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -33,7 +33,7 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = PMTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+%  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
 %
