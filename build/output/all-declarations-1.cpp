@@ -16685,6 +16685,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "outletClass EBSegmentedControl $enabled ;\n"
     "binding EBSegmentedControl $selectedIndex : property Int ;\n"
     "\n"
+    "outletClass EBSlider $enabled ;\n"
+    "binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;\n"
     "\n"
     "outletClass EBSwitch $enabled ;\n"
     "binding EBSwitch $value : property Bool ;\n"

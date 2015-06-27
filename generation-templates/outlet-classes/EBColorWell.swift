@@ -37,9 +37,7 @@ import Cocoa
   }
 
   func unbind_color () {
-    if let valueController = mValueController {
-      valueController.unregister ()
-    }
+    mValueController?.unregister ()
     mValueController = nil
   }
 

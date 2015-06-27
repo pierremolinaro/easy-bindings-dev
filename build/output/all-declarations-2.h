@@ -347,6 +347,7 @@ extern const char * gWrapperFileContent_14_outletClassGeneration ;
 extern const char * gWrapperFileContent_15_outletClassGeneration ;
 extern const char * gWrapperFileContent_16_outletClassGeneration ;
 extern const char * gWrapperFileContent_17_outletClassGeneration ;
+extern const char * gWrapperFileContent_18_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -371,6 +372,7 @@ extern const cRegularFileWrapper gWrapperFile_14_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_15_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_16_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_17_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_18_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
