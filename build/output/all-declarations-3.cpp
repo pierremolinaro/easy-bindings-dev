@@ -651,10 +651,10 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (C_C
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- File '/cell-Int-EBIntField.txt'
+//--- File '/cell-Bool-EBSwitch.txt'
 
-const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "      //--- From cell-Int-EBIntField.txt file\n"
-  "        let tf : EBIntField = result.textField as! EBIntField\n"
+const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "      //--- From cell-Bool-EBSwitch.txt file\n"
+  "        let tf : EBSwitch = result.textField as! EBSwitch\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
   "          tf.stringValue = \"No Selection\"\n"
@@ -675,17 +675,17 @@ const char * gWrapperFileContent_0_collectionControllerGenerationTemplate = "   
   "      //--- end\n" ;
 
 const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate (
-  "cell-Int-EBIntField.txt",
+  "cell-Bool-EBSwitch.txt",
   "txt",
   true, // Text file
-  653, // Text length
+  648, // Text length
   gWrapperFileContent_0_collectionControllerGenerationTemplate
 ) ;
 
-//--- File '/cell-Int-EBNumberField.txt'
+//--- File '/cell-Int-EBIntField.txt'
 
-const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "      //--- From cell-Int-EBNumberField.txt file\n"
-  "        let tf : EBNumberField = result.textField as! EBNumberField\n"
+const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "      //--- From cell-Int-EBIntField.txt file\n"
+  "        let tf : EBIntField = result.textField as! EBIntField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
   "          tf.stringValue = \"No Selection\"\n"
@@ -706,16 +706,47 @@ const char * gWrapperFileContent_1_collectionControllerGenerationTemplate = "   
   "      //--- end\n" ;
 
 const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate (
+  "cell-Int-EBIntField.txt",
+  "txt",
+  true, // Text file
+  653, // Text length
+  gWrapperFileContent_1_collectionControllerGenerationTemplate
+) ;
+
+//--- File '/cell-Int-EBNumberField.txt'
+
+const char * gWrapperFileContent_2_collectionControllerGenerationTemplate = "      //--- From cell-Int-EBNumberField.txt file\n"
+  "        let tf : EBNumberField = result.textField as! EBNumberField\n"
+  "        switch object.$MODEL$.prop {\n"
+  "        case .noSelection :\n"
+  "          tf.stringValue = \"No Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        case .singleSelection (let v) :\n"
+  "          tf.integerValue = v\n"
+  "          tf.enabled = true\n"
+  "          tf.target = self\n"
+  "          tf.action = \"set_$MODEL$_Action:\"\n"
+  "         case .multipleSelection :\n"
+  "          tf.stringValue = \"Multiple Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        }\n"
+  "      //--- end\n" ;
+
+const cRegularFileWrapper gWrapperFile_2_collectionControllerGenerationTemplate (
   "cell-Int-EBNumberField.txt",
   "txt",
   true, // Text file
   662, // Text length
-  gWrapperFileContent_1_collectionControllerGenerationTemplate
+  gWrapperFileContent_2_collectionControllerGenerationTemplate
 ) ;
 
 //--- File '/cell-String-EBTextField.txt'
 
-const char * gWrapperFileContent_2_collectionControllerGenerationTemplate = "      //--- From cell-String-EBTextField.txt file\n"
+const char * gWrapperFileContent_3_collectionControllerGenerationTemplate = "      //--- From cell-String-EBTextField.txt file\n"
   "        let tf : EBTextField = result.textField as! EBTextField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
@@ -736,20 +767,21 @@ const char * gWrapperFileContent_2_collectionControllerGenerationTemplate = "   
   "        }\n"
   "      //--- End\n" ;
 
-const cRegularFileWrapper gWrapperFile_2_collectionControllerGenerationTemplate (
+const cRegularFileWrapper gWrapperFile_3_collectionControllerGenerationTemplate (
   "cell-String-EBTextField.txt",
   "txt",
   true, // Text file
   658, // Text length
-  gWrapperFileContent_2_collectionControllerGenerationTemplate
+  gWrapperFileContent_3_collectionControllerGenerationTemplate
 ) ;
 
 //--- All files of '' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_collectionControllerGenerationTemplate_0 [4] = {
+static const cRegularFileWrapper * gWrapperAllFiles_collectionControllerGenerationTemplate_0 [5] = {
   & gWrapperFile_0_collectionControllerGenerationTemplate,
   & gWrapperFile_1_collectionControllerGenerationTemplate,
   & gWrapperFile_2_collectionControllerGenerationTemplate,
+  & gWrapperFile_3_collectionControllerGenerationTemplate,
   NULL
 } ;
 
@@ -763,7 +795,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_collectionControllerGene
 
 const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate (
   "",
-  3,
+  4,
   gWrapperAllFiles_collectionControllerGenerationTemplate_0,
   0,
   gWrapperAllDirectories_collectionControllerGenerationTemplate_0
@@ -1820,10 +1852,10 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- File 'collection-controller-templates/cell-Int-EBIntField.txt'
+//--- File 'collection-controller-templates/cell-Bool-EBSwitch.txt'
 
-const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "      //--- From cell-Int-EBIntField.txt file\n"
-  "        let tf : EBIntField = result.textField as! EBIntField\n"
+const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "      //--- From cell-Bool-EBSwitch.txt file\n"
+  "        let tf : EBSwitch = result.textField as! EBSwitch\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
   "          tf.stringValue = \"No Selection\"\n"
@@ -1844,17 +1876,17 @@ const char * gWrapperFileContent_0_selectionControllerGenerationTemplate = "    
   "      //--- end\n" ;
 
 const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTemplate (
-  "cell-Int-EBIntField.txt",
+  "cell-Bool-EBSwitch.txt",
   "txt",
   true, // Text file
-  653, // Text length
+  648, // Text length
   gWrapperFileContent_0_selectionControllerGenerationTemplate
 ) ;
 
-//--- File 'collection-controller-templates/cell-Int-EBNumberField.txt'
+//--- File 'collection-controller-templates/cell-Int-EBIntField.txt'
 
-const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "      //--- From cell-Int-EBNumberField.txt file\n"
-  "        let tf : EBNumberField = result.textField as! EBNumberField\n"
+const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "      //--- From cell-Int-EBIntField.txt file\n"
+  "        let tf : EBIntField = result.textField as! EBIntField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
   "          tf.stringValue = \"No Selection\"\n"
@@ -1875,16 +1907,47 @@ const char * gWrapperFileContent_1_selectionControllerGenerationTemplate = "    
   "      //--- end\n" ;
 
 const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate (
+  "cell-Int-EBIntField.txt",
+  "txt",
+  true, // Text file
+  653, // Text length
+  gWrapperFileContent_1_selectionControllerGenerationTemplate
+) ;
+
+//--- File 'collection-controller-templates/cell-Int-EBNumberField.txt'
+
+const char * gWrapperFileContent_2_selectionControllerGenerationTemplate = "      //--- From cell-Int-EBNumberField.txt file\n"
+  "        let tf : EBNumberField = result.textField as! EBNumberField\n"
+  "        switch object.$MODEL$.prop {\n"
+  "        case .noSelection :\n"
+  "          tf.stringValue = \"No Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        case .singleSelection (let v) :\n"
+  "          tf.integerValue = v\n"
+  "          tf.enabled = true\n"
+  "          tf.target = self\n"
+  "          tf.action = \"set_$MODEL$_Action:\"\n"
+  "         case .multipleSelection :\n"
+  "          tf.stringValue = \"Multiple Selection\"\n"
+  "          tf.enabled = false\n"
+  "          tf.target = nil\n"
+  "          tf.action = \"\"\n"
+  "        }\n"
+  "      //--- end\n" ;
+
+const cRegularFileWrapper gWrapperFile_2_selectionControllerGenerationTemplate (
   "cell-Int-EBNumberField.txt",
   "txt",
   true, // Text file
   662, // Text length
-  gWrapperFileContent_1_selectionControllerGenerationTemplate
+  gWrapperFileContent_2_selectionControllerGenerationTemplate
 ) ;
 
 //--- File 'collection-controller-templates/cell-String-EBTextField.txt'
 
-const char * gWrapperFileContent_2_selectionControllerGenerationTemplate = "      //--- From cell-String-EBTextField.txt file\n"
+const char * gWrapperFileContent_3_selectionControllerGenerationTemplate = "      //--- From cell-String-EBTextField.txt file\n"
   "        let tf : EBTextField = result.textField as! EBTextField\n"
   "        switch object.$MODEL$.prop {\n"
   "        case .noSelection :\n"
@@ -1905,20 +1968,21 @@ const char * gWrapperFileContent_2_selectionControllerGenerationTemplate = "    
   "        }\n"
   "      //--- End\n" ;
 
-const cRegularFileWrapper gWrapperFile_2_selectionControllerGenerationTemplate (
+const cRegularFileWrapper gWrapperFile_3_selectionControllerGenerationTemplate (
   "cell-String-EBTextField.txt",
   "txt",
   true, // Text file
   658, // Text length
-  gWrapperFileContent_2_selectionControllerGenerationTemplate
+  gWrapperFileContent_3_selectionControllerGenerationTemplate
 ) ;
 
 //--- All files of 'collection-controller-templates' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_1 [4] = {
+static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_1 [5] = {
   & gWrapperFile_0_selectionControllerGenerationTemplate,
   & gWrapperFile_1_selectionControllerGenerationTemplate,
   & gWrapperFile_2_selectionControllerGenerationTemplate,
+  & gWrapperFile_3_selectionControllerGenerationTemplate,
   NULL
 } ;
 
@@ -1932,7 +1996,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGener
 
 const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGenerationTemplate (
   "collection-controller-templates",
-  3,
+  4,
   gWrapperAllFiles_selectionControllerGenerationTemplate_1,
   0,
   gWrapperAllDirectories_selectionControllerGenerationTemplate_1
@@ -2006,7 +2070,7 @@ const cDirectoryWrapper gWrapperDirectory_4_selectionControllerGenerationTemplat
 
 //--- File 'xcode-project/Info.plist.txt'
 
-const char * gWrapperFileContent_3_selectionControllerGenerationTemplate = "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
+const char * gWrapperFileContent_4_selectionControllerGenerationTemplate = "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
   "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n"
   "<plist version=\"1.0\">\n"
   "<dict>\n"
@@ -2062,18 +2126,18 @@ const char * gWrapperFileContent_3_selectionControllerGenerationTemplate = "<\?x
   "</dict>\n"
   "</plist>\n" ;
 
-const cRegularFileWrapper gWrapperFile_3_selectionControllerGenerationTemplate (
+const cRegularFileWrapper gWrapperFile_4_selectionControllerGenerationTemplate (
   "Info.plist.txt",
   "txt",
   true, // Text file
   1547, // Text length
-  gWrapperFileContent_3_selectionControllerGenerationTemplate
+  gWrapperFileContent_4_selectionControllerGenerationTemplate
 ) ;
 
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_5 [2] = {
-  & gWrapperFile_3_selectionControllerGenerationTemplate,
+  & gWrapperFile_4_selectionControllerGenerationTemplate,
   NULL
 } ;
 
