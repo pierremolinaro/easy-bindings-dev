@@ -826,6 +826,17 @@ void categoryMethod_storedArrayPropertySemanticAnalysis (const class GALGAS_stor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                       Category Getter '@typeKind transformerForTableViewAction' (as function)                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string categoryReader_transformerForTableViewAction (const class GALGAS_typeKind & inObject,
+                                                                  const class GALGAS_string & constinArgument0,
+                                                                  class C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                     Category Getter '@typeKind formatterStringForFormatPrinting' (as function)                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
