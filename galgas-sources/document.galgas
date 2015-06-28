@@ -8,7 +8,6 @@ class @documentDeclaration : @astDeclaration {
   @outletDeclarationList mOutletDeclarationList
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
-  @arrayControllerDeclarationListAST mArrayControllerDeclarationList
   @secondaryPropertyList mSecondaryPropertyList
 }
 
@@ -34,7 +33,6 @@ syntax extension easyBindings_syntax {
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
     @simpleStoredPropertyList simpleStoredPropertyList = {}
-    @arrayControllerDeclarationListAST arrayControllerDeclarationListAST = {}
     repeat
     while
       <simple_stored_declaration> !?simpleStoredPropertyList
@@ -55,7 +53,6 @@ syntax extension easyBindings_syntax {
       !outletDeclarationList
       !simpleStoredPropertyList
       !actionDeclarationList
-      !arrayControllerDeclarationListAST
       !secondaryPropertyList
     }
   }

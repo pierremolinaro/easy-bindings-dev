@@ -120,12 +120,11 @@ end
 //    %!["Array of class: " + CLASS_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-struct EBClassArray_%!CLASS_NAME% {
-  var mValue : [%!CLASS_NAME%] = [%!CLASS_NAME%] ()
+class EBClassArray_%!CLASS_NAME% : TransientArrayOf_%!CLASS_NAME% {
 
   //···················································································································*
 
-  mutating func readInPreferencesWithKey (inKey : String) {
+  func readInPreferencesWithKey (inKey : String) {
     let ud = NSUserDefaults.standardUserDefaults ()
     let value : AnyObject? = ud.objectForKey (inKey)
     if let unwValue : AnyObject = value {
@@ -151,6 +150,67 @@ struct EBClassArray_%!CLASS_NAME% {
     }
     ud.setObject (array, forKey:inKey)
   }
+
+  //···················································································································*
+
+  private var mSet = Set<%!CLASS_NAME%> ()
+  private var mValue = Array<%!CLASS_NAME%> () {
+    didSet {
+      if oldValue != mValue {
+        mSet = Set (mValue)
+      //--- Update explorer
+       // if explorer != nil {
+       //   owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
+       // }
+      //--- Removed object set
+        var removedObjectSet : Set<%!CLASS_NAME%> = Set (oldValue)
+        removedObjectSet.subtractInPlace (mValue)
+        for managedObject : %!CLASS_NAME% in removedObjectSet {
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %          for observer in mObserversOf_%!mStoredPropertyName% {\n%
+  %            managedObject.%!mStoredPropertyName%.removeObserver (observer, postEvent:true)\n%
+  %          }\n%
+end
+%        }
+      //--- Added object set
+        var addedObjectSet : Set<%!CLASS_NAME%> = Set (mValue)
+        addedObjectSet.subtractInPlace (oldValue)
+        for managedObject : %!CLASS_NAME% in addedObjectSet {
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %          for observer in mObserversOf_%!mStoredPropertyName% {\n%
+  %            managedObject.%!mStoredPropertyName%.addObserver (observer, postEvent:true)\n%
+  %          }\n%
+end
+%        }
+      //--- Notify observers object count did change
+        postEvent ()
+        if oldValue.count != mValue.count {
+          count.postEvent ()
+        }
+      }
+    }
+  }
+
+  //···················································································································*
+
+  override var prop : EBProperty <Array<%!CLASS_NAME%> > {
+    get {
+      return .singleSelection (mValue ?? Array<%!CLASS_NAME%> ())
+    }
+  }
+
+  //···················································································································*
+
+  func setProp (inValue :  Array<%!CLASS_NAME%>) { mValue = inValue }
+
+  //···················································································································*
+
+  var propval : Array<%!CLASS_NAME%> { get { return mValue ?? Array<%!CLASS_NAME%> () } }
+
+  //···················································································································*
+
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
