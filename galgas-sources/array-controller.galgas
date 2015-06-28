@@ -115,7 +115,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
   @bool solved
   switch mArrayControllerModel
   case selfCollection (@lstring storedPropertyName) :
-    solved = [inRootObservableProperties hasKey !storedPropertyName.string]
+    solved = [ioObservableProperties hasKey !storedPropertyName.string]
     if solved then
       [ioObservableProperties searchKey
         !storedPropertyName
