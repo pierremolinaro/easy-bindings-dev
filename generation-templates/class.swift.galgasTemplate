@@ -128,11 +128,13 @@ struct EBClassArray_%!CLASS_NAME% {
   mutating func readInPreferencesWithKey (inKey : String) {
     let ud = NSUserDefaults.standardUserDefaults ()
     let value : AnyObject? = ud.objectForKey (inKey)
-    if let array : [NSDictionary] = (value as! [NSDictionary]) {
-      for dict in array {
-        let object = %!CLASS_NAME% ()
-        object.setUpWithDictionary (dict)
-        mValue.append (object)
+    if let unwValue : AnyObject = value {
+      if let array : [NSDictionary] = unwValue as? [NSDictionary] {
+        for dict in array {
+          let object = %!CLASS_NAME% ()
+          object.setUpWithDictionary (dict)
+          mValue.append (object)
+        }
       }
     }
   }

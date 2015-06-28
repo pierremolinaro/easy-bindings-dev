@@ -1,0 +1,121 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @storedArrayPropertyList {
+  @lstring mElementClassName
+  @lstring mStoredArrayPropertyName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <stored_array_declaration>
+    ?!@storedArrayPropertyList ioStoredArrayList
+  {
+    $array$
+    $Identifier$ ?var @lstring elementClassName
+    $identifier$ ?var @lstring storedArrayPropertyName
+    $;$
+    ioStoredArrayList += !elementClassName !storedArrayPropertyName
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @storedArrayPropertyList typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+{
+  for () in self do
+    [@unifiedTypeMap-proxy makeProxy
+      !?ioUnifiedTypeMap
+      !mElementClassName
+      ?*
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+method @storedArrayPropertyList buildObservablePropertyMap
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@observablePropertyMap ioObservableProperties
+{
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mElementClassName ?let type]
+  #--- Check type
+    @typeKindList typeList
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType :
+      error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
+    case enumType (* *) :
+      error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
+    case entityType (*) :
+      error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
+    case classType (*) :
+      typeList = {!type}
+    end
+  #--- Enter in property map
+    [!?ioObservableProperties insertKey
+      !mStoredArrayPropertyName
+      !type
+      !.stored
+      !.collection
+      !""
+      !{} # No action
+    ]
+  end
+}
+
+#......................................................................................................................*
+
+method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  !@storedArrayPropertyListForGeneration outSimpleStoredPropertyListForGeneration
+{
+  outSimpleStoredPropertyListForGeneration = {}
+  for () in self do
+  #--- Property type
+    [inUnifiedTypeMap searchKey !mElementClassName ?let type]
+  #--- Check type
+    @typeKindList typeList
+    switch type
+    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType :
+      error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
+    case enumType (* *) :
+      error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
+    case entityType (*) :
+      error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
+    case classType (*) :
+      typeList = {!type}
+    end
+  #--- Code Generation
+    outSimpleStoredPropertyListForGeneration +=
+      !mElementClassName.string
+      !mStoredArrayPropertyName.string
+ end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   CODE GENERATION                                                                                                    *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @storedArrayPropertyListForGeneration {
+  @string mElementClassName
+  @string mStoredPropertyName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

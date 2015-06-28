@@ -18,12 +18,21 @@ for () in OUTLET_MAP do
 end
 % 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //    Properties                                                                                                     *
+  //    Simple Stored Properties                                                                                       *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
 %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+end
+%
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //    Stored Array Properties                                                                                        *
+  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+%
+for () in STORED_ARRAY_LIST do
+%  var %!mStoredPropertyName% = EBClassArray_%!mElementClassName% ()\n%
 end
 %
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -55,6 +64,9 @@ end
   //--- Read from preferences
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+  %    %!mStoredPropertyName%.readInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
+end
+for () in STORED_ARRAY_LIST do
   %    %!mStoredPropertyName%.readInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
 end
 %  //--- Property validation function
@@ -166,6 +178,9 @@ end
   func applicationWillTerminateAction (NSNotification) {
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+  %    %!mStoredPropertyName%.storeInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
+end
+for () in STORED_ARRAY_LIST do
   %    %!mStoredPropertyName%.storeInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
 end
 %  }
