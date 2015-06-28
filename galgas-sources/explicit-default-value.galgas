@@ -118,6 +118,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
       found = true
     case integerType, colorType, dateType, doubleType, stringType, fontType :
     case entityType (*) :
+    case classType (*) :
     case enumType (* *) :
     end
   end
@@ -146,6 +147,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case boolType, colorType, dateType, doubleType, stringType :
     case entityType (*) :
     case enumType (* *) :
+    case classType (*) :
     end
   end
   if not found then
@@ -170,6 +172,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case boolType, colorType, dateType, integerType, stringType, fontType :
     case entityType (*) :
     case enumType (* *) :
+    case classType (*) :
     end
   end
   if not found then
@@ -194,6 +197,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case boolType, colorType, dateType, integerType, doubleType, fontType :
     case entityType (*) :
     case enumType (* *) :
+    case classType (*) :
     end
   end
   if not found then
@@ -293,6 +297,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       end
     case entityType (*) :
       error mValue : "invalid entity type"  
+    case classType (*) :
+      error mValue : "invalid class type"  
     case boolType :
       error mValue : "invalid bool type"  
     case doubleType :

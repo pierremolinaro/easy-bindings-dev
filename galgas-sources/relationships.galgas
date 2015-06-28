@@ -118,6 +118,8 @@ method @toOneRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "a simple type cannot be used as entitytype"
     case enumType (* *) :
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
+    case classType (*) :
+      error mDestinationEntityName: "a class type cannot be used as entitytype"
     case entityType (*) : # Ok
     end
   #--- Enter in property map
@@ -147,6 +149,8 @@ method @toManyRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "a simple type cannot be used as entitytype"
     case enumType (* *) :
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
+    case classType (*) :
+      error mDestinationEntityName: "a class type cannot be used as entitytype"
     case entityType (*) : # Ok
     end
   #--- Enter in property map
@@ -197,6 +201,8 @@ method @toOneRelationshipList semanticAnalysis
        error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
      case enumType (* *) :
        error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
+    case classType (*) :
+       error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
      case entityType (*) : # Ok
      end
      if oppositeKind == .transient then
@@ -243,6 +249,8 @@ method @toManyRelationshipList semanticAnalysis
      case boolType, integerType, stringType, colorType, dateType, doubleType, fontType :
        error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
      case enumType (* *) :
+       error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
+     case classType (*) :
        error mInverseRelationshipName: "the opposite type cannot be used as entitytype"
      case entityType (*) : # Ok
      end

@@ -43,6 +43,7 @@ var g_Preferences : Preferences? = nil
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
+  //--- Extern functions
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -55,6 +56,7 @@ var g_Preferences : Preferences? = nil
   //--- Install bindings
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
+  //--- Extern functions
   }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

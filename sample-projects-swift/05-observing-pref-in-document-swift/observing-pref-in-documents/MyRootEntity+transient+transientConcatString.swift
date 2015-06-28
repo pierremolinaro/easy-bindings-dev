@@ -3,7 +3,6 @@
 import Cocoa
 
 //--- END OF USER ZONE 1
-
 import Cocoa
 
 //----------------------------------------------------------------------------*
@@ -19,7 +18,6 @@ func compute_MyRootEntity_transientConcatString (self_2E_docString : String,
     g_Preferences_21__2E_prefTransientString
   )
 //--- END OF USER ZONE 2
-
 }
 
 //----------------------------------------------------------------------------*

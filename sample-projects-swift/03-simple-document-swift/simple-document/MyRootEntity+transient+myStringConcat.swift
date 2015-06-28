@@ -2,7 +2,6 @@
 
 
 //--- END OF USER ZONE 1
-
 import Cocoa
 
 //----------------------------------------------------------------------------*
@@ -15,7 +14,6 @@ func compute_MyRootEntity_myStringConcat (self_2E_myStringMaj : String,
   return self_2E_myStringMaj + " " + self_2E_myStringMin
 
 //--- END OF USER ZONE 2
-
 }
 
 //----------------------------------------------------------------------------*

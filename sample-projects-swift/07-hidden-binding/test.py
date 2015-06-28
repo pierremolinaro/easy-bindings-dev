@@ -6,7 +6,6 @@
 
 #--- START OF USER ZONE 1
 #--- END OF USER ZONE 1
-
 #------------------------------------------------------------------------------*
 
 import random, string
@@ -84,7 +83,6 @@ setUpPreferencesWindow (application)
 #--- START OF USER ZONE 2
 #    ENTER USER CODE HERE
 #--- END OF USER ZONE 2
-
 
 quitApplication ()
 

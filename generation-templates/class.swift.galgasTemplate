@@ -1,0 +1,280 @@
+import Cocoa
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["ReadOnlyArrayOf_" + CLASS_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class ReadOnlyArrayOf_%!CLASS_NAME% : EBAbstractProperty {
+
+  var prop : EBProperty <Array<%!CLASS_NAME%> > { get { return .noSelection } }
+
+  //···················································································································*
+
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+
+  func addObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+    mObserversOf_%!mStoredPropertyName%.insert (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
+      }
+    }
+  }
+
+  func removeObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+    mObserversOf_%!mStoredPropertyName%.remove (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
+      }
+    }
+  }
+
+  //···················································································································*
+
+%
+end
+%}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["TransientArrayOf_" + CLASS_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
+
+  var computeFunction : Optional<() -> EBProperty <Array<%!CLASS_NAME%> > >
+  
+  var count = EBTransientProperty_Int ()
+
+  private var prop_cache : EBProperty <Array<%!CLASS_NAME%> >? 
+
+  //···················································································································*
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //···················································································································*
+
+  override var prop : EBProperty <Array<%!CLASS_NAME%> > {
+    get {
+      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+        prop_cache = unwrappedComputeFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = .noSelection
+      }
+      return prop_cache!
+    }
+  }
+
+  //···················································································································*
+
+  override func postEvent () {
+    if prop_cache != nil {
+      prop_cache = nil
+      count.postEvent ()
+      super.postEvent ()
+    }
+  }
+
+  //···················································································································*
+
+}
+
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(%!CLASS_NAME%_%!mStoredPropertyName%) protocol %!CLASS_NAME%_%!mStoredPropertyName% {
+  var %!mStoredPropertyName% : EBStoredProperty_%![mType swiftTypeName]% { get }
+}
+
+%
+end
+
+%
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["Array of class: " + CLASS_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+struct EBClassArray_%!CLASS_NAME% {
+  var mValue : [%!CLASS_NAME%] = [%!CLASS_NAME%] ()
+
+  //···················································································································*
+
+  mutating func readInPreferencesWithKey (inKey : String) {
+    let ud = NSUserDefaults.standardUserDefaults ()
+    let value : AnyObject? = ud.objectForKey (inKey)
+    if let array : [NSDictionary] = (value as! [NSDictionary]) {
+      for dict in array {
+        let object = %!CLASS_NAME% ()
+        object.setUpWithDictionary (dict)
+        mValue.append (object)
+      }
+    }
+  }
+
+  //···················································································································*
+
+  func storeInPreferencesWithKey (inKey : String) {
+    let ud = NSUserDefaults.standardUserDefaults ()
+    var array = [NSDictionary] ()
+    for object in mValue {
+      let dict = NSMutableDictionary ()
+      object.saveIntoDictionary (dict)
+      array.append (dict)
+    }
+    ud.setObject (array, forKey:inKey)
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    %!["Class: " + CLASS_NAME stringByRightPadding !113 !' ']%*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(%!CLASS_NAME%) class %!CLASS_NAME% : EBSimpleClass%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %, %!CLASS_NAME%_%!mStoredPropertyName
+end
+% {
+
+  //···················································································································*
+  //    Properties                                                                                                     *
+  //···················································································································*
+
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+  %  var %!mStoredPropertyName%_keyCodingValue : %![mType swiftTypeName]% {\n%
+  %    get {\n%
+  %      switch %!mStoredPropertyName%.prop {\n%
+  %      case .noSelection, .multipleSelection :\n%
+  %        return %![mType defaultSwiftTypeValueAsString]%\n%
+  %      case .singleSelection (let v) :\n%
+  %        return v\n%
+  %      }\n%
+  %    }\n%
+  %  }\n\n%
+end
+%  //···················································································································*
+  //    Transient properties                                                                                           *
+  //···················································································································*
+
+%
+
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+end
+
+%
+  //···················································································································*
+  //    init                                                                                                           *
+  //···················································································································*
+
+  override init () {
+    super.init ()
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  if mNeedsValidation then
+%    %!mStoredPropertyName%.setValidationFunction (self.validate_%!mStoredPropertyName%)\n%
+  end
+end
+%  //--- Install compute functions for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  if [mDependencyList needs_unwSelf] then
+    %    %!mTransientName%.computeFunction = { [weak self] in\n%
+    %      if let unwSelf = self {\n%
+    ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName]
+    %      }else{\n%
+    %        return .noSelection\n%
+    %      }\n%
+    %    }\n%
+  else
+    %    %!mTransientName%.computeFunction = {\n%
+    ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName]
+    %    }\n%
+  end
+end
+%  //--- Install property observers for transients
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  for () in mDependencyList do
+    %    %![mDependency generateAddObserverCall]% (%!mTransientName%, postEvent:true)\n%
+  end
+end
+%  }
+
+  //···················································································································*
+  //    populateExplorerWindowWithRect                                                                                 *
+  //···················································································································*
+
+  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+    super.populateExplorerWindowWithRect (&ioRect, view:view)
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %    %!mStoredPropertyName%.explorer = createEntryForAttributeNamed ("%!mStoredPropertyName%", ioRect:&ioRect, view:view)\n%
+end
+%  }
+
+  //···················································································································*
+  //    clearObjectExplorer                                                                                            *
+  //···················································································································*
+
+  override func clearObjectExplorer () {
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%    %!mStoredPropertyName%.explorer = nil\n%
+end
+%    super.clearObjectExplorer ()
+  }
+
+  //···················································································································*
+  //    saveIntoDictionary                                                                                             *
+  //···················································································································*
+
+  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%    %!mStoredPropertyName%.storeInDictionary (ioDictionary, forKey: "%!mStoredPropertyName%")\n%
+end
+%  }
+
+  //···················································································································*
+  //    setUpWithDictionary                                                                                            *
+  //···················································································································*
+
+  override func setUpWithDictionary (inDictionary : NSDictionary) {
+    super.setUpWithDictionary (inDictionary)
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
+end
+%  }
+
+  //···················································································································*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+

@@ -47,6 +47,7 @@ var g_Preferences : Preferences? = nil
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
+  //--- Extern functions
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -79,6 +80,7 @@ var g_Preferences : Preferences? = nil
     myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
+  //--- Extern functions
   }
   
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

@@ -91,41 +91,10 @@ class EBManagedObject : EBObject {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //   secondColumn                                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func secondColumn (inRect : NSRect) -> NSRect {
-    var r = inRect
-    r.origin.x += inRect.size.width + 2.0 ;
-    return r
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //    populateExplorerWindow                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
   func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    createEntryForAttributeNamed                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func createEntryForAttributeNamed (attributeName : String,
-                                     inout ioRect : NSRect,
-                                     view : NSView) -> NSTextField {
-    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    let tf = NSTextField (frame:ioRect)
-    tf.enabled = false
-    tf.stringValue = attributeName
-    tf.font = font
-    view.addSubview (tf)
-    let tff = NSTextField (frame:secondColumn (ioRect))
-    tff.enabled = false
-    tff.font = font
-    view.addSubview (tff)
-    ioRect.origin.y += ioRect.size.height
-    return tff
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

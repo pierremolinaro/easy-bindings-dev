@@ -76,6 +76,8 @@ syntax easyBindings_syntax (easyBindings_lexique) {
     while
       <entity_declaration>  !inIsUserDefined  !?ioDeclarationAST
     while
+      <class_declaration>  !inIsUserDefined  !?ioDeclarationAST
+    while
       <preferences_declaration> !inIsUserDefined !?ioDeclarationAST
     while
       <document_declaration> !inIsUserDefined !?ioDeclarationAST
