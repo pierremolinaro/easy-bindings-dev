@@ -326,50 +326,16 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
     case .singleSelection (let v) :
       let columnIdentifier = inTableColumn!.identifier
       let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
-      result.textField?.tag = inRowIndex
+      // result.textField?.tag = inRowIndex
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
-      //--- From cell-String-EBTextField.txt file
-        let tf : EBTextField = result.textField as! EBTextField
-        switch object.name.prop {
-        case .noSelection :
-          tf.stringValue = "No Selection"
-          tf.enabled = false
-          tf.target = nil
-          tf.action = ""
-        case .singleSelection (let v) :
-          tf.stringValue = v
-          tf.enabled = true
-          tf.target = self
-          tf.action = "set_name_Action:"
-         case .multipleSelection :
-          tf.stringValue = "Multiple Selection"
-          tf.enabled = false
-          tf.target = nil
-          tf.action = ""
-        }
-      //--- End
+      if let cell : EBTextField_Cell = result as? EBTextField_Cell {
+        cell.configureWithProperty (object.name)
+      }
       }else if columnIdentifier == "int" {
-      //--- From cell-Int-EBIntField.txt file
-        let tf : EBIntField = result.textField as! EBIntField
-        switch object.aValue.prop {
-        case .noSelection :
-          tf.stringValue = "No Selection"
-          tf.enabled = false
-          tf.target = nil
-          tf.action = ""
-        case .singleSelection (let v) :
-          tf.integerValue = v
-          tf.enabled = true
-          tf.target = self
-          tf.action = "set_aValue_Action:"
-         case .multipleSelection :
-          tf.stringValue = "Multiple Selection"
-          tf.enabled = false
-          tf.target = nil
-          tf.action = ""
-        }
-      //--- end
+      if let cell : EBIntField_Cell = result as? EBIntField_Cell {
+        cell.configureWithProperty (object.aValue)
+      }
       }
      return result
     }
@@ -389,7 +355,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
 
   //···················································································································*
 
-  func set_name_Action (sender : EBTextField) {
+/*  func set_name_Action (sender : EBTextField) {
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       break
@@ -398,11 +364,11 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
       let object = v.objectAtIndex (row, file:__FILE__, line:__LINE__)
       object.name.validateAndSetProp (sender.stringValue, windowForSheet:sender.window)
     }
-  }
+  } */
 
   //···················································································································*
 
-  func set_aValue_Action (sender : EBIntField) {
+/*  func set_aValue_Action (sender : EBIntField) {
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       break
@@ -411,7 +377,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
       let object = v.objectAtIndex (row, file:__FILE__, line:__LINE__)
       object.aValue.validateAndSetProp (sender.integerValue, windowForSheet:sender.window)
     }
-  }
+  } */
 
   //···················································································································*
 
@@ -490,43 +456,49 @@ class ArrayController_PMDocument_otherController : EBObject {
       tableView.allowsEmptySelection = mAllowsEmptySelection
       tableView.allowsMultipleSelection = mAllowsMultipleSelection
     //--- Check 'name' column
-      if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("name", owner:self) {
-        if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is EBTextField) {
+      if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
+        if let unwrappedTableCellView = anyObject as? EBTextField_Cell {
+          if !unwrappedTableCellView.outletIsDefined () {
             presentErrorWindow (file,
-                                line: line,
-                                errorMessage:"\"name\" column view is not an instance of EBTextField")
+              line: line,
+              errorMessage:"\"name\" column view is not an instance of EBTextField"
+            )
           }
         }else{
           presentErrorWindow (file,
-                              line: line,
-                              errorMessage:"\"name\" column cell view is not an instance of NSTableCellView")
+            line: line,
+            errorMessage:"\"name\" column cell view is not an instance of EBTextField_Cell"
+          )
         }
       }else{
         presentErrorWindow (file,
-                            line: line,
-                            errorMessage:"\"name\" column view unknown")
+          line: line,
+          errorMessage:"\"name\" column view unknown, or table view is NSCell-based"
+        )
       }
       if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
         columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
       }
     //--- Check 'int' column
-      if let anyObject: AnyObject = tableView.makeViewWithIdentifier ("int", owner:self) {
-        if let unwrappedTableCellView = anyObject as? NSTableCellView {
-          if !(unwrappedTableCellView.textField is EBIntField) {
+      if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
+        if let unwrappedTableCellView = anyObject as? EBIntField_Cell {
+          if !unwrappedTableCellView.outletIsDefined () {
             presentErrorWindow (file,
-                                line: line,
-                                errorMessage:"\"int\" column view is not an instance of EBIntField")
+              line: line,
+              errorMessage:"\"int\" column view is not an instance of EBIntField"
+            )
           }
         }else{
           presentErrorWindow (file,
-                              line: line,
-                              errorMessage:"\"int\" column cell view is not an instance of NSTableCellView")
+            line: line,
+            errorMessage:"\"int\" column cell view is not an instance of EBIntField_Cell"
+          )
         }
       }else{
         presentErrorWindow (file,
-                            line: line,
-                            errorMessage:"\"int\" column view unknown")
+          line: line,
+          errorMessage:"\"int\" column view unknown, or table view is NSCell-based"
+        )
       }
       if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
         columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)

@@ -64,7 +64,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="100122">
+                                                <tableCellView id="100122" customClass="EBIntField_Cell">
                                                     <rect key="frame" x="1" y="1" width="223" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -80,7 +80,7 @@
                                                         </textField>
                                                     </subviews>
                                                     <connections>
-                                                        <outlet property="textField" destination="100123" id="100125"/>
+                                                        <outlet property="cellOutlet" destination="100123" id="HRH-xt-89c"/>
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
@@ -98,7 +98,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="100126">
+                                                <tableCellView id="100126" customClass="EBTextField_Cell">
                                                     <rect key="frame" x="227" y="1" width="236" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -113,7 +113,7 @@
                                                         </textField>
                                                     </subviews>
                                                     <connections>
-                                                        <outlet property="textField" destination="100127" id="100129"/>
+                                                        <outlet property="cellOutlet" destination="100127" id="czC-Qx-nT0"/>
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
@@ -245,7 +245,7 @@
                                                         </textFieldCell>
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
-                                                            <tableCellView id="XU8-Z6-AHn">
+                                                            <tableCellView id="XU8-Z6-AHn" customClass="EBIntField_Cell">
                                                                 <rect key="frame" x="1" y="1" width="223" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
@@ -261,7 +261,7 @@
                                                                     </textField>
                                                                 </subviews>
                                                                 <connections>
-                                                                    <outlet property="textField" destination="3JH-Og-fGy" id="fQs-F7-swo"/>
+                                                                    <outlet property="cellOutlet" destination="3JH-Og-fGy" id="xKb-6L-7WI"/>
                                                                 </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>
@@ -279,7 +279,7 @@
                                                         </textFieldCell>
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
-                                                            <tableCellView id="BH2-51-Zsk">
+                                                            <tableCellView id="BH2-51-Zsk" customClass="EBTextField_Cell">
                                                                 <rect key="frame" x="227.5" y="1" width="192.5" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
@@ -294,7 +294,7 @@
                                                                     </textField>
                                                                 </subviews>
                                                                 <connections>
-                                                                    <outlet property="textField" destination="9fF-wI-RJi" id="Ont-Y1-CVG"/>
+                                                                    <outlet property="cellOutlet" destination="9fF-wI-RJi" id="WVV-Mv-p8N"/>
                                                                 </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>
@@ -366,7 +366,7 @@
                                                         </textFieldCell>
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
-                                                            <tableCellView id="W7S-fR-IUu">
+                                                            <tableCellView id="W7S-fR-IUu" customClass="EBIntField_Cell">
                                                                 <rect key="frame" x="1" y="1" width="223" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
@@ -382,7 +382,7 @@
                                                                     </textField>
                                                                 </subviews>
                                                                 <connections>
-                                                                    <outlet property="textField" destination="jXN-d4-R9x" id="f8R-Dp-Oq3"/>
+                                                                    <outlet property="cellOutlet" destination="jXN-d4-R9x" id="1AW-E2-njv"/>
                                                                 </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>
@@ -400,7 +400,7 @@
                                                         </textFieldCell>
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
-                                                            <tableCellView id="Jn2-k8-Qb2">
+                                                            <tableCellView id="Jn2-k8-Qb2" customClass="EBTextField_Cell">
                                                                 <rect key="frame" x="227.5" y="1" width="217.5" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
@@ -415,7 +415,7 @@
                                                                     </textField>
                                                                 </subviews>
                                                                 <connections>
-                                                                    <outlet property="textField" destination="EKc-2q-csP" id="Yl8-Y1-ts3"/>
+                                                                    <outlet property="cellOutlet" destination="EKc-2q-csP" id="6jT-no-ZvC"/>
                                                                 </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>
@@ -504,7 +504,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
-            <point key="canvasLocation" x="254" y="208"/>
+            <point key="canvasLocation" x="650" y="205"/>
         </window>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>

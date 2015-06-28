@@ -526,7 +526,6 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
 #......................................................................................................................*
 
 private filewrapper collectionControllerGenerationTemplate in "../generation-templates/collection-controller-templates" {
-  "txt"
 }{
 }{
   template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
@@ -539,7 +538,6 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string MODEL_TYPE_NAME_2
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
-    ?@filewrapper FILE_WRAPPER 
 
   template filterFunction "array-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
@@ -567,7 +565,6 @@ proc generateArrayControllers
       !mModelTypeName2
       !mArrayControllerBoundColumnListForGeneration
       !mElementTypeName
-      ![filewrapper collectionControllerGenerationTemplate]
     ]
     [@string generateFile
       !inOutputDirectory
