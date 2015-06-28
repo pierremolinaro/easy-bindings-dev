@@ -13,8 +13,8 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
   override init () {
     super.init ()
     count.computeFunction = { [weak self] in
-      if let unwrappedSelf = self, model = unwrappedSelf.mModel {
-        switch model.prop {
+      if let unwSelf = self {
+        switch unwSelf.prop {
         case .noSelection :
           return .noSelection
         case .multipleSelection :
@@ -31,7 +31,7 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
   //···················································································································*
 
   override func postEvent () {
-    if (prop_cache != nil) {
+    if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
       super.postEvent ()
@@ -109,12 +109,12 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
         //--- Added object set
           var addedObjectSet = newObjectSet
           addedObjectSet.subtractInPlace (mSet)
-         for managedObject : NameEntity in addedObjectSet {
+          for managedObject : NameEntity in addedObjectSet {
             for observer in mObserversOf_name {
               managedObject.name.addObserver (observer, postEvent:true)
             }
           }
-          for managedObject : NameEntity in addedObjectSet {
+           for managedObject : NameEntity in addedObjectSet {
             for observer in mObserversOf_aValue {
               managedObject.aValue.addObserver (observer, postEvent:true)
             }
@@ -326,7 +326,6 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
     case .singleSelection (let v) :
       let columnIdentifier = inTableColumn!.identifier
       let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
-      // result.textField?.tag = inRowIndex
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
       if let cell : EBTextField_Cell = result as? EBTextField_Cell {
@@ -352,32 +351,6 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
   func didReload () {
     mIgnoreTableViewSelectionDidChange = false
   }
-
-  //···················································································································*
-
-/*  func set_name_Action (sender : EBTextField) {
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      let row = sender.tag
-      let object = v.objectAtIndex (row, file:__FILE__, line:__LINE__)
-      object.name.validateAndSetProp (sender.stringValue, windowForSheet:sender.window)
-    }
-  } */
-
-  //···················································································································*
-
-/*  func set_aValue_Action (sender : EBIntField) {
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      let row = sender.tag
-      let object = v.objectAtIndex (row, file:__FILE__, line:__LINE__)
-      object.aValue.validateAndSetProp (sender.integerValue, windowForSheet:sender.window)
-    }
-  } */
 
   //···················································································································*
 

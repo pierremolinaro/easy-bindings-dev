@@ -554,17 +554,6 @@ class GALGAS_string categoryReader_filterCode (const class GALGAS_arrayControlle
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Category Getter '@typeKind transformerForTableViewAction' (as function)                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_transformerForTableViewAction (const class GALGAS_typeKind & inObject,
-                                                                  const class GALGAS_string & constinArgument0,
-                                                                  class C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                         Routine 'generateArrayControllers'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
