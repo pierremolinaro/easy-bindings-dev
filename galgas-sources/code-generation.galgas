@@ -7,6 +7,7 @@ struct @structForGeneration {
   @preferencesForGeneration mPreferencesForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
+  @classListForGeneration mClassListForGeneration
   @enumListForGeneration mEnumListForGeneration
   @stringset mNeededOutletClasses
   @arrayControllerForGeneration mAllArrayControllerForGeneration
@@ -44,6 +45,11 @@ proc generateCode
   )
   generateOutletClasses (
     !inGeneration.mNeededOutletClasses
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+  generateClasses (
+    !inGeneration.mClassListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )

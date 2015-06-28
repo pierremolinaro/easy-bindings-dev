@@ -6,7 +6,6 @@
 
 #--- START OF USER ZONE 1
 #--- END OF USER ZONE 1
-
 #------------------------------------------------------------------------------*
 
 import random, string
@@ -138,7 +137,6 @@ if not colorRows [selectedRowIndex].AXSelected:
     sys.exit (1)
 
 #--- END OF USER ZONE 2
-
 
 quitApplication ()
 

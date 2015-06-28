@@ -3,7 +3,6 @@
 
 //--- END OF USER ZONE 1
 
-
 #import "lexique-easyBindings_lexique-cocoa.h"
 #import "PMDebug.h"
 
@@ -541,6 +540,5 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 
 
 //--- END OF USER ZONE 2
-
 
 

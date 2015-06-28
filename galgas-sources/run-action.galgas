@@ -83,7 +83,7 @@ proc generateActions
       !defaultUserZone1:"\n\n" # Defaut user zone1
       !generatedZone2:s
       !defaultUserZone2:"    ENTER USER CODE HERE\n" # Defaut user zone2
-      !generatedZone3:"  }\n}\n\n//----------------------------------------------------------------------------*\n"
+      !generatedZone3:"  }\n}\n\n//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n"
       !makeExecutable:false
     ]
   end

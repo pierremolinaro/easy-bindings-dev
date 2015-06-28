@@ -12,6 +12,7 @@ enum @typeKind {
   case fontType
   case enumType (@string enumTypeName @enumConstantMap constantMap)
   case entityType (@string entityName)
+  case classType (@string className)
 }
 
 #......................................................................................................................*
@@ -29,6 +30,8 @@ getter @typeKind defaultSwiftTypeValueAsString -> @string outResult {
     outResult = enumTypeName + "." + [[constantMap keyList] mValueAtIndex !0]
   case entityType (*) :
     outResult = "<<invalid defaultSwiftTypeValueAsString for entity>>"
+  case classType (*) :
+    outResult = "<<invalid defaultSwiftTypeValueAsString for class>>"
   end
 }
 
@@ -125,6 +128,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case fontType : outResult = "NSFont"
   case entityType (@string entityName) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
+  case classType (@string classTypeName) : outResult = classTypeName
   case integerType : outResult = "Int"
   end
 }

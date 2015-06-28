@@ -1695,11 +1695,11 @@ void GALGAS_string::method_makeSymbolicLinkWithPath (GALGAS_string inPath,
   void GALGAS_string::method_popen (GALGAS_string & outOutputString,
                                     GALGAS_sint & outReturnCode,
                                     C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) const {
+                                    COMMA_LOCATION_ARGS) const {
     outOutputString.drop () ;
     outReturnCode.drop () ;
     if (isValid ()) {
-    // Create a pipe for the child process's STDIN. 
+    // Create a pipe for the child process's STDIN.
       HANDLE g_hChildStd_OUT_Wr = NULL ;
       HANDLE g_hChildStd_OUT_Rd = NULL ;
       HANDLE g_hChildStd_IN_Wr = NULL ;

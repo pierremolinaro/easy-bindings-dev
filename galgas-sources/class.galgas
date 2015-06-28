@@ -1,0 +1,271 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @classDeclaration : @astDeclaration {
+  @lstring mClassName
+#  @lstring mSuperClassName
+  @simpleStoredPropertyList mSimpleStoredAttributeList
+#  @toOneRelationshipList mToOneRelationshipList
+#  @toManyRelationshipList mToManyRelationshipList
+  @secondaryPropertyList mSecondaryPropertyList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #....................................................................................................................*
+  
+  rule <class_declaration>
+    ?let @bool inIsUserDefined
+    ?!@astDeclarationStruct ioDeclarationAST
+  {
+    $class$
+    $Identifier$ ?let @lstring entityName
+#    @lstring superClassName
+#    select
+#      superClassName = ["" nowhere]
+#    or
+#      $:$
+#      $Identifier$ ? superClassName
+#    end
+    ${$
+    @secondaryPropertyList secondaryPropertyList = {}
+    @simpleStoredPropertyList simpleStoredAttributeList = {}
+    @toOneRelationshipList toOneRelationshipList = {}
+    @toManyRelationshipList toManyRelationshipList = {}
+    repeat
+    while
+      <simple_stored_declaration> !?simpleStoredAttributeList
+    while
+      <transient_declaration> !?secondaryPropertyList
+#    while
+#      <toMany_relationship> !?toManyRelationshipList
+#    while
+#      <toOne_relationship> !?toOneRelationshipList
+    end
+    $}$
+    ioDeclarationAST.mDeclarationList += !@classDeclaration.new {
+      !inIsUserDefined
+      !entityName
+#      !superClassName
+      !simpleStoredAttributeList
+#      !toOneRelationshipList
+#      !toManyRelationshipList
+      !secondaryPropertyList
+    }
+  }
+
+  #....................................................................................................................*
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   TYPE INVENTORY                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @classDeclaration typeInventory
+  ?!@unifiedTypeMap ioUnifiedTypeMap
+{
+  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
+  for (item) in mSecondaryPropertyList do
+    [item typeInventory
+      !?ioUnifiedTypeMap
+    ]
+  end
+#  [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
+#  [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
+  [!?ioUnifiedTypeMap insertKey !mClassName !.classType {!className:mClassName.string}]
+#  if mSuperClassName.string != "" then
+#    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperClassName ?*]
+#  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC TYPES                                                                                                     *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+map @classObservablePropertyMap {
+  @observablePropertyMap mObservablePropertyMap
+  insert insertKey error message "the '%K' document is already declared in %L"
+  search searchKey error message "there is no '%K' document"
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+# Only get current entity observable properties, do not collect in super entities
+override method @classDeclaration buildObservablePropertyMapsFromStoredProperties
+  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?!@semanticContext ioSemanticContext
+{
+  @observablePropertyMap observablePropertyMap = {}
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?observablePropertyMap
+  ]
+#--- Analyze relationships
+#  [mToOneRelationshipList buildObservablePropertyMap
+#    !inUnifiedTypeMap
+#    !?observablePropertyMap
+#  ]
+#  [mToManyRelationshipList buildObservablePropertyMap
+#    !inUnifiedTypeMap
+#    !?observablePropertyMap
+#  ]
+#--- Enter in semantics context  
+  [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
+    !mClassName
+    !observablePropertyMap
+  ]
+}
+
+#......................................................................................................................*
+
+override method @classDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
+  ?!@uint ioSecondaryDeclarationCount
+{
+  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
+  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
+}
+
+#......................................................................................................................*
+
+override method @classDeclaration solveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
+  ?let @secondaryPropertyList inPropertiesToSolve
+  !@secondaryPropertyList outUnsolvedProperties
+{
+  outUnsolvedProperties = {}
+  [ioSemanticContext.mEntityObservablePropertyMap searchKey
+    !mClassName
+    ?@observablePropertyMap observablePropertyMap
+  ]
+  for (property) in inPropertiesToSolve do
+    [property tryToSolveSecondaryProperty
+      !?ioSemanticContext
+      !{} # No root entity
+      !?observablePropertyMap
+      !?outUnsolvedProperties
+    ]
+  end
+  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
+    !observablePropertyMap
+    !mClassName.string
+  ]
+}
+
+#......................................................................................................................*
+
+override method @classDeclaration semanticAnalysis
+  ?let @semanticContext inSemanticContext
+  ?!@structForGeneration ioGeneration
+{
+  [inSemanticContext.mEntityObservablePropertyMap searchKey
+    !mClassName
+    ?let @observablePropertyMap observablePropertyMap
+  ]
+#--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
+#--- Analyze simple stored properties
+  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
+    !mClassName.string
+    !inSemanticContext.mUnifiedTypeMap
+    !?ioGeneration.mValidationStubRoutineListForGeneration
+    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+  ]
+#--- Analyze transients
+  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  for (item) in mSecondaryPropertyList do
+    [item secondaryPropertySemanticAnalysis
+      !mClassName.string
+      !"" # No root entity name
+      !{} # No root entity
+      !inSemanticContext
+      !observablePropertyMap
+      !?transientDefinitionListForGeneration
+      !?* # no array controller
+      !?* # No selection controller
+    ]
+  end
+  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+#--- Analyze toOne relationships
+#  [mToOneRelationshipList semanticAnalysis
+#    !inSemanticContext
+#    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
+#  ]
+##--- Analyze toMany relationships
+#  [mToManyRelationshipList semanticAnalysis
+#    !inSemanticContext
+#    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
+#  ]
+#--- Generation
+  ioGeneration.mClassListForGeneration +=
+    !mClassName.string
+#    !mSuperClassName.string
+    !simpleStoredPropertyListForGeneration
+    !transientDefinitionListForGeneration
+#    !toOneEntityRelationshipListForGeneration
+#    !toManyEntityRelationshipListForGeneration
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @classListForGeneration {
+  @string mClassName
+#  @string mSuperClassName
+  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @transientDefinitionListForGeneration mTransientListForGeneration
+#  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
+#  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
+}
+
+#......................................................................................................................*
+
+private filewrapper classGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template entityImplementationInSwift "class.swift.galgasTemplate"
+    ?@string CLASS_NAME
+    ?@simpleStoredPropertyListForGeneration SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
+    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+#    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
+#    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateClasses
+  ?let @classListForGeneration inClassListForGeneration
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  for () in inClassListForGeneration do
+    let s = [filewrapper classGenerationTemplate.entityImplementationInSwift
+      !mClassName
+      !mSimpleStoredPropertyListForGeneration
+      !mTransientListForGeneration
+#      !mToOneEntityRelationshipList
+#      !mToManyEntityRelationshipList
+    ]
+    let fileName = mClassName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFile
+      !inOutputDirectory
+      !fileName
+      !s
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -223,6 +223,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     error errorLocation : "the model should be a tomany relationship" : entityName
   case enumType (* *) :
     error errorLocation : "the model should be a tomany relationship" : entityName
+  case classType (*) :
+    error errorLocation : "the model should be a tomany relationship" : entityName
   case entityType (@string kEntityName) :
     entityName = kEntityName
   end
@@ -245,6 +247,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     switch columnType
     case boolType, colorType, dateType, doubleType, integerType, stringType, fontType : # Ok
     case enumType (* *) : # Ok
+    case classType (*) :
+      error [mObservablePropertyName location] : "the model should not be a relationship"
     case entityType (@string unused entityTypeName) :
       error [mObservablePropertyName location] : "the model should not be a relationship"
     end
@@ -384,6 +388,8 @@ getter @typeKind transformerForTableViewAction ?let @string inSenderOutletName -
   case dateType : outResult = "NSDate"
   case enumType (* *) :
     outResult = "<unhandled enum for transformerForTableViewAction>"
+  case classType (*) :
+    outResult = "<unhandled class for transformerForTableViewAction>"
   case entityType (*) :
     outResult = "<unhandled entity for transformerForTableViewAction>"
   end
@@ -401,6 +407,8 @@ getter @typeKind formatterStringForFormatPrinting -> @string outResult {
   case dateType, fontType : outResult = "%@"
   case enumType (* *) :
     outResult = "<internal error enum, formatterStringForFormatPrinting' >"
+  case classType (*) :
+    outResult = "<internal error 'class', formatterStringForFormatPrinting' >"
   case entityType (*) :
     outResult = "<internal error entity, formatterStringForFormatPrinting' >"
   end

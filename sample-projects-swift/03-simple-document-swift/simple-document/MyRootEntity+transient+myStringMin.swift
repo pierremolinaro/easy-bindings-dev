@@ -2,7 +2,6 @@
 
 
 //--- END OF USER ZONE 1
-
 import Cocoa
 
 //----------------------------------------------------------------------------*
@@ -14,7 +13,6 @@ func compute_MyRootEntity_myStringMin (self_2E_myString : String) -> String {
   return self_2E_myString.lowercaseString
 
 //--- END OF USER ZONE 2
-
 }
 
 //----------------------------------------------------------------------------*
