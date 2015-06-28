@@ -1,0 +1,20 @@
+      //--- From cell-Bool-EBSwitch.txt file
+        let tf : EBSwitch = result.textField as! EBSwitch
+        switch object.$MODEL$.prop {
+        case .noSelection :
+          tf.stringValue = "No Selection"
+          tf.enabled = false
+          tf.target = nil
+          tf.action = ""
+        case .singleSelection (let v) :
+          tf.integerValue = v
+          tf.enabled = true
+          tf.target = self
+          tf.action = "set_$MODEL$_Action:"
+         case .multipleSelection :
+          tf.stringValue = "Multiple Selection"
+          tf.enabled = false
+          tf.target = nil
+          tf.action = ""
+        }
+      //--- end

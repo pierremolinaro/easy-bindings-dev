@@ -167,6 +167,7 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
 extern const char * gWrapperFileContent_0_collectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_1_collectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_2_collectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_3_collectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -176,6 +177,7 @@ extern const char * gWrapperFileContent_2_collectionControllerGenerationTemplate
 extern const cRegularFileWrapper gWrapperFile_0_collectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_1_collectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_2_collectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_3_collectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -256,6 +258,7 @@ extern const char * gWrapperFileContent_0_selectionControllerGenerationTemplate 
 extern const char * gWrapperFileContent_1_selectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_2_selectionControllerGenerationTemplate ;
 extern const char * gWrapperFileContent_3_selectionControllerGenerationTemplate ;
+extern const char * gWrapperFileContent_4_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -266,6 +269,7 @@ extern const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTem
 extern const cRegularFileWrapper gWrapperFile_1_selectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_2_selectionControllerGenerationTemplate ;
 extern const cRegularFileWrapper gWrapperFile_3_selectionControllerGenerationTemplate ;
+extern const cRegularFileWrapper gWrapperFile_4_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
