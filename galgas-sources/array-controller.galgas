@@ -13,17 +13,8 @@ list @arrayControllerBoundColumnListAST {
 
 enum @arrayControllerModel {
   case rootToManyRelationship (@lstring rootRelationshipName)
+  case selfCollection (@lstring collectionPropertyName)
   case controllerArray (@lstring controllerName @lstring propertyName)
-}
-
-#......................................................................................................................*
-
-list @arrayControllerDeclarationListAST {
-  @lstring mControllerName
-  @arrayControllerModel mArrayControllerModel
-  @lstringlist mTableViewOutletNameList
-  @lstringlist mFilterProperties
-  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
 }
 
 #......................................................................................................................*
@@ -55,6 +46,11 @@ syntax extension easyBindings_syntax {
       $.$
       $identifier$ ?let @lstring relationshipName
       arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
+    or
+      $self$
+      $.$
+      $identifier$ ?let @lstring storedPropertyName
+      arrayControllerModel = .selfCollection {!collectionPropertyName:storedPropertyName}
     or
       $identifier$ ?let @lstring controllerName
       $.$
@@ -118,6 +114,30 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 {
   @bool solved
   switch mArrayControllerModel
+  case selfCollection (@lstring storedPropertyName) :
+    solved = [inRootObservableProperties hasKey !storedPropertyName.string]
+    if solved then
+      [ioObservableProperties searchKey
+        !storedPropertyName
+        ?let type
+        ?let kind
+        ?let multiplicity
+        ?2*
+      ]
+      @actionMap controllerActions = {}
+      if kind == .stored then
+        [!?controllerActions insertKey !["add" nowhere]]
+        [!?controllerActions insertKey !["remove" nowhere]]
+      end
+      [!?ioObservableProperties insertKey
+        !mControllerName
+        !type
+        !.arrayController
+        !multiplicity
+        !""
+        !controllerActions
+      ]
+    end
   case rootToManyRelationship (@lstring relationshipName) :
     solved = [inRootObservableProperties hasKey !relationshipName.string]
     if solved then
@@ -187,11 +207,37 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @typeKind modelType
   @propertyKind kind
   @location errorLocation
-  @bool modelIsTransient
+  @arrayControllerModelKind modelKind
+  @string entityName
   switch mArrayControllerModel
+  case selfCollection (@lstring storedPropertyName) :
+    errorLocation = storedPropertyName.location
+    modelKind = .storedArrayModel
+    [inObservableProperties searchKey
+      !storedPropertyName
+      ?modelType
+      ?kind
+      ?let @propertyMultiplicity multiplicity
+      ?2*
+    ]
+  #--- Check bound model is a collection
+    if multiplicity != .collection then
+      error errorLocation : "the bound property should be a collection"
+    end
+  #--- Check bound model type is an entity
+    switch modelType
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case enumType (* *) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case classType (@string kClassTypeName) :
+      entityName = kClassTypeName
+     case entityType (*) :
+      error errorLocation : "the model should be a stored class array" : entityName
+    end
   case rootToManyRelationship (@lstring relationshipName) :
     errorLocation = relationshipName.location
-    modelIsTransient = false
+    modelKind = .relationshipModel
     [inRootObservableProperties searchKey
       !relationshipName
       ?modelType
@@ -203,9 +249,20 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     if multiplicity != .collection then
       error errorLocation : "the bound property should be a collection"
     end
+  #--- Check bound model type is an entity
+    switch modelType
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case enumType (* *) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case classType (*) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+     case entityType (@string kEntityName) :
+      entityName = kEntityName
+    end
   case controllerArray (@lstring controllerName @lstring propertyName) :
     errorLocation = propertyName.location
-    modelIsTransient = true
+    modelKind = .transientModel
     [inObservableProperties searchKey
       !controllerName
       ?modelType
@@ -215,18 +272,17 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
       error errorLocation : "'sortedArray' or 'selectedArray' are required here"
     end
-  end
-#--- Check bound model type is an entity
-  @string entityName
-  switch modelType
-  case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
-    error errorLocation : "the model should be a tomany relationship" : entityName
-  case enumType (* *) :
-    error errorLocation : "the model should be a tomany relationship" : entityName
-  case classType (*) :
-    error errorLocation : "the model should be a tomany relationship" : entityName
-  case entityType (@string kEntityName) :
-    entityName = kEntityName
+  #--- Check bound model type is an entity
+    switch modelType
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case enumType (* *) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case classType (*) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+     case entityType (@string kEntityName) :
+      entityName = kEntityName
+    end
   end
 #--- Check colum bound models (TODO : get also super entity observable property)
   [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -287,12 +343,20 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     !arrayControllerBoundColumnListForGeneration
     ![mArrayControllerModel modelTypeName !inRootEntityName !inObservableProperties]
     ![mArrayControllerModel modelTypeName2 !inRootEntityName !inObservableProperties]
-    !modelIsTransient
+    !modelKind
     ![modelType swiftTypeName]
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum @arrayControllerModelKind {
+  case relationshipModel
+  case storedArrayModel
+  case transientModel
+}
+
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 list @arrayControllerForGeneration {
@@ -303,7 +367,7 @@ list @arrayControllerForGeneration {
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
   @string mModelTypeName
   @string mModelTypeName2
-  @bool mModelIsTransient
+  @arrayControllerModelKind mModelKind
   @string mElementTypeName
 }
 
@@ -311,6 +375,8 @@ list @arrayControllerForGeneration {
 
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
+  case selfCollection (@lstring storedPropertyName) :
+    outResult = "self." + storedPropertyName
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "rootObject." + rootRelationshipName
   case controllerArray (@lstring controllerName @lstring propertyName) :
@@ -326,6 +392,8 @@ getter @arrayControllerModel modelTypeName
    -> @string outResult
 {
   switch self
+  case selfCollection (@lstring storedPropertyName) :
+    outResult = "Ligne328_" + inRootEntityName + "_" + storedPropertyName
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
@@ -346,6 +414,13 @@ getter @arrayControllerModel modelTypeName2
    -> @string outResult
 {
   switch self
+  case selfCollection (@lstring storedProprtyName) :
+    [inObservablePropertyMap searchKey
+      !storedProprtyName
+      ?let modelType
+      ?4*
+    ]
+    outResult = "EBClassArray_" + [modelType swiftTypeName]
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
@@ -459,12 +534,12 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string ARRAY_CONTROLLER_NAME
     ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
     ?@string MODEL_STRING
-    ?@bool MODEL_IS_TRANSIENT
+    ?@arrayControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
     ?@string MODEL_TYPE_NAME_2
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
-    ?@filewrapper FILE_WRAPPER
+    ?@filewrapper FILE_WRAPPER 
 
   template filterFunction "array-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
@@ -487,7 +562,7 @@ proc generateArrayControllers
       !mControllerName
       !mArrayControllerFilterListForGeneration
       !mModelString
-      !mModelIsTransient
+      !mModelKind
       !mModelTypeName
       !mModelTypeName2
       !mArrayControllerBoundColumnListForGeneration

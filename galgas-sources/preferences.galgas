@@ -10,6 +10,7 @@ struct @prefDeclaration {
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyList mStoredArrayList
+  @arrayControllerForGeneration mArrayControllerForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -39,6 +40,8 @@ syntax extension easyBindings_syntax {
       <extern_swift_func> !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList
     while
       <stored_array_declaration>  !?ioDeclarationAST.mPreferences.mStoredArrayList
+    while
+      <array_controller_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
     end
     $}$
   }
@@ -147,6 +150,7 @@ method @prefDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  @arrayControllerForGeneration arrayControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !preferencesName ()
@@ -155,11 +159,12 @@ method @prefDeclaration semanticAnalysis
       !inSemanticContext
       !inSemanticContext.mPreferencesObservablePropertyMap
       !?transientDefinitionListForGeneration
-      !?* # No Array controller
+      !?arrayControllerListForGeneration
       !?* # No selection controller
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+  ioGeneration.mAllArrayControllerForGeneration += arrayControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do
@@ -179,7 +184,7 @@ method @prefDeclaration semanticAnalysis
     ?let @multipleBindingGenerationList multipleBindingGenerationList
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
-    ?let @tableViewBindingGenerationList unused tableViewBindingGenerationList
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
   )
 #--- Code generation
   ioGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
@@ -191,6 +196,8 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mMainXibDescriptorList = mMainXibDescriptorList
   ioGeneration.mPreferencesForGeneration.mExternSwiftFunctionList = inExternSwiftFunctionList
   ioGeneration.mPreferencesForGeneration.mStoredArrayPropertyListForGeneration = storedArrayPropertyListForGeneration
+  ioGeneration.mPreferencesForGeneration.mArrayControllerForGeneration = arrayControllerListForGeneration
+  ioGeneration.mPreferencesForGeneration.mTableViewBindingGenerationList = tableViewBindingGenerationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -207,6 +214,8 @@ struct @preferencesForGeneration {
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyListForGeneration mStoredArrayPropertyListForGeneration
+  @arrayControllerForGeneration mArrayControllerForGeneration
+  @tableViewBindingGenerationList mTableViewBindingGenerationList
 }
 
 #......................................................................................................................*
@@ -224,6 +233,8 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
     ?@storedArrayPropertyListForGeneration STORED_ARRAY_LIST
+    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
+    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -245,6 +256,8 @@ proc generatePreferences
     !inPreferenceListForGeneration.mMultipleBindingGenerationList
     !inPreferenceListForGeneration.mExternSwiftFunctionList
     !inPreferenceListForGeneration.mStoredArrayPropertyListForGeneration
+    !inPreferenceListForGeneration.mArrayControllerForGeneration
+    !inPreferenceListForGeneration.mTableViewBindingGenerationList
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName

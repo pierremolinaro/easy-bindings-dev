@@ -974,6 +974,7 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
   public : typedef enum {
     kNotBuilt,
     kEnum_rootToManyRelationship,
+    kEnum_selfCollection,
     kEnum_controllerArray
   } enumeration ;
   
@@ -1008,6 +1009,9 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
   public : static GALGAS_arrayControllerModel constructor_rootToManyRelationship (const class GALGAS_lstring & inOperand0
                                                                                   COMMA_LOCATION_ARGS) ;
 
+  public : static GALGAS_arrayControllerModel constructor_selfCollection (const class GALGAS_lstring & inOperand0
+                                                                          COMMA_LOCATION_ARGS) ;
+
 //--------------------------------- Implementation of reader 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
@@ -1026,12 +1030,18 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_selfCollection (class GALGAS_lstring & outArgument0,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isControllerArray (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isRootToManyRelationship (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isSelfCollection (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -1062,6 +1072,22 @@ class cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship : public
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (void) {}
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumAssociatedValues_arrayControllerModel_selfCollection : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_arrayControllerModel_selfCollection (const GALGAS_lstring & inAssociatedValue0
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_selfCollection (void) {}
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2042,8 +2068,7 @@ class GALGAS_documentDeclaration : public GALGAS_astDeclaration {
                                                               const class GALGAS_outletDeclarationList & inOperand3,
                                                               const class GALGAS_simpleStoredPropertyList & inOperand4,
                                                               const class GALGAS_lstringlist & inOperand5,
-                                                              const class GALGAS_arrayControllerDeclarationListAST & inOperand6,
-                                                              const class GALGAS_secondaryPropertyList & inOperand7
+                                                              const class GALGAS_secondaryPropertyList & inOperand6
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2056,8 +2081,6 @@ class GALGAS_documentDeclaration : public GALGAS_astDeclaration {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mActionDeclarationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerDeclarationListAST reader_mArrayControllerDeclarationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mDocumentName (LOCATION_ARGS) const ;
 
@@ -2079,184 +2102,6 @@ class GALGAS_documentDeclaration : public GALGAS_astDeclaration {
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_documentDeclaration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       @arrayControllerDeclarationListAST list                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_arrayControllerDeclarationListAST : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_arrayControllerDeclarationListAST (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_arrayControllerDeclarationListAST (cSharedList * inSharedListPtr) ;
-
-//--------------------------------- Element constructor used by listmap
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_lstring & in_mControllerName,
-                                                  const class GALGAS_arrayControllerModel & in_mArrayControllerModel,
-                                                  const class GALGAS_lstringlist & in_mTableViewOutletNameList,
-                                                  const class GALGAS_lstringlist & in_mFilterProperties,
-                                                  const class GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_arrayControllerDeclarationListAST extractObject (const GALGAS_object & inObject,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static GALGAS_arrayControllerDeclarationListAST constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static GALGAS_arrayControllerDeclarationListAST constructor_listWithValue (const class GALGAS_lstring & inOperand0,
-                                                                                      const class GALGAS_arrayControllerModel & inOperand1,
-                                                                                      const class GALGAS_lstringlist & inOperand2,
-                                                                                      const class GALGAS_lstringlist & inOperand3,
-                                                                                      const class GALGAS_arrayControllerBoundColumnListAST & inOperand4
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void dotAssign_operation (const GALGAS_arrayControllerDeclarationListAST inOperand
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                      const class GALGAS_arrayControllerModel & inOperand1,
-                                                      const class GALGAS_lstringlist & inOperand2,
-                                                      const class GALGAS_lstringlist & inOperand3,
-                                                      const class GALGAS_arrayControllerBoundColumnListAST & inOperand4
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- . (concat) operator
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerDeclarationListAST operator_concat (const GALGAS_arrayControllerDeclarationListAST & inOperand
-                                                                                      COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerDeclarationListAST add_operation (const GALGAS_arrayControllerDeclarationListAST & inOperand,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_lstring constinArgument0,
-                                                         class GALGAS_arrayControllerModel constinArgument1,
-                                                         class GALGAS_lstringlist constinArgument2,
-                                                         class GALGAS_lstringlist constinArgument3,
-                                                         class GALGAS_arrayControllerBoundColumnListAST constinArgument4,
-                                                         class GALGAS_uint constinArgument5,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_lstring & outArgument0,
-                                                    class GALGAS_arrayControllerModel & outArgument1,
-                                                    class GALGAS_lstringlist & outArgument2,
-                                                    class GALGAS_lstringlist & outArgument3,
-                                                    class GALGAS_arrayControllerBoundColumnListAST & outArgument4,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_lstring & outArgument0,
-                                                   class GALGAS_arrayControllerModel & outArgument1,
-                                                   class GALGAS_lstringlist & outArgument2,
-                                                   class GALGAS_lstringlist & outArgument3,
-                                                   class GALGAS_arrayControllerBoundColumnListAST & outArgument4,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_lstring & outArgument0,
-                                                         class GALGAS_arrayControllerModel & outArgument1,
-                                                         class GALGAS_lstringlist & outArgument2,
-                                                         class GALGAS_lstringlist & outArgument3,
-                                                         class GALGAS_arrayControllerBoundColumnListAST & outArgument4,
-                                                         class GALGAS_uint constinArgument5,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
-                                               class GALGAS_arrayControllerModel & outArgument1,
-                                               class GALGAS_lstringlist & outArgument2,
-                                               class GALGAS_lstringlist & outArgument3,
-                                               class GALGAS_arrayControllerBoundColumnListAST & outArgument4,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
-                                              class GALGAS_arrayControllerModel & outArgument1,
-                                              class GALGAS_lstringlist & outArgument2,
-                                              class GALGAS_lstringlist & outArgument3,
-                                              class GALGAS_arrayControllerBoundColumnListAST & outArgument4,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListAST reader_mArrayControllerBoundColumnListASTAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                                             C_Compiler * inCompiler
-                                                                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModel reader_mArrayControllerModelAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mControllerNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mFilterPropertiesAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mTableViewOutletNameListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                             C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerDeclarationListAST reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerDeclarationListAST reader_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_arrayControllerDeclarationListAST ;
- 
-} ; // End of GALGAS_arrayControllerDeclarationListAST class
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                    *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cEnumerator_arrayControllerDeclarationListAST : public cGenericAbstractEnumerator {
-  public : cEnumerator_arrayControllerDeclarationListAST (const GALGAS_arrayControllerDeclarationListAST & inEnumeratedObject,
-                                                          const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_lstring current_mControllerName (LOCATION_ARGS) const ;
-  public : class GALGAS_arrayControllerModel current_mArrayControllerModel (LOCATION_ARGS) const ;
-  public : class GALGAS_lstringlist current_mTableViewOutletNameList (LOCATION_ARGS) const ;
-  public : class GALGAS_lstringlist current_mFilterProperties (LOCATION_ARGS) const ;
-  public : class GALGAS_arrayControllerBoundColumnListAST current_mArrayControllerBoundColumnListAST (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_arrayControllerDeclarationListAST_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDeclarationListAST ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -2477,7 +2322,6 @@ class cPtr_documentDeclaration : public cPtr_astDeclaration {
   public : GALGAS_outletDeclarationList mAttribute_mOutletDeclarationList ;
   public : GALGAS_simpleStoredPropertyList mAttribute_mSimpleStoredAttributeList ;
   public : GALGAS_lstringlist mAttribute_mActionDeclarationList ;
-  public : GALGAS_arrayControllerDeclarationListAST mAttribute_mArrayControllerDeclarationList ;
   public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
 
 //--- Constructor
@@ -2487,7 +2331,6 @@ class cPtr_documentDeclaration : public cPtr_astDeclaration {
                                      const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
                                      const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
                                      const GALGAS_lstringlist & in_mActionDeclarationList,
-                                     const GALGAS_arrayControllerDeclarationListAST & in_mArrayControllerDeclarationList,
                                      const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList
                                      COMMA_LOCATION_ARGS) ;
 
@@ -2500,7 +2343,6 @@ class cPtr_documentDeclaration : public cPtr_astDeclaration {
   public : VIRTUAL_IN_DEBUG GALGAS_outletDeclarationList reader_mOutletDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyList reader_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist reader_mActionDeclarationList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerDeclarationListAST reader_mArrayControllerDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_secondaryPropertyList reader_mSecondaryPropertyList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
@@ -6866,6 +6708,240 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificatio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                         @arrayControllerForGeneration list                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerForGeneration (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_arrayControllerForGeneration (cSharedList * inSharedListPtr) ;
+
+//--------------------------------- Element constructor used by listmap
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_string & in_mOwnerName,
+                                                  const class GALGAS_string & in_mControllerName,
+                                                  const class GALGAS_arrayControllerFilterListForGeneration & in_mArrayControllerFilterListForGeneration,
+                                                  const class GALGAS_string & in_mModelString,
+                                                  const class GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
+                                                  const class GALGAS_string & in_mModelTypeName,
+                                                  const class GALGAS_string & in_mModelTypeName_32_,
+                                                  const class GALGAS_arrayControllerModelKind & in_mModelKind,
+                                                  const class GALGAS_string & in_mElementTypeName
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerForGeneration extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerForGeneration constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static GALGAS_arrayControllerForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
+                                                                                 const class GALGAS_string & inOperand1,
+                                                                                 const class GALGAS_arrayControllerFilterListForGeneration & inOperand2,
+                                                                                 const class GALGAS_string & inOperand3,
+                                                                                 const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
+                                                                                 const class GALGAS_string & inOperand5,
+                                                                                 const class GALGAS_string & inOperand6,
+                                                                                 const class GALGAS_arrayControllerModelKind & inOperand7,
+                                                                                 const class GALGAS_string & inOperand8
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void dotAssign_operation (const GALGAS_arrayControllerForGeneration inOperand
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
+                                                      const class GALGAS_string & inOperand1,
+                                                      const class GALGAS_arrayControllerFilterListForGeneration & inOperand2,
+                                                      const class GALGAS_string & inOperand3,
+                                                      const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
+                                                      const class GALGAS_string & inOperand5,
+                                                      const class GALGAS_string & inOperand6,
+                                                      const class GALGAS_arrayControllerModelKind & inOperand7,
+                                                      const class GALGAS_string & inOperand8
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- . (concat) operator
+  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGeneration operator_concat (const GALGAS_arrayControllerForGeneration & inOperand
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGeneration add_operation (const GALGAS_arrayControllerForGeneration & inOperand,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_string constinArgument0,
+                                                         class GALGAS_string constinArgument1,
+                                                         class GALGAS_arrayControllerFilterListForGeneration constinArgument2,
+                                                         class GALGAS_string constinArgument3,
+                                                         class GALGAS_arrayControllerBoundColumnListForGeneration constinArgument4,
+                                                         class GALGAS_string constinArgument5,
+                                                         class GALGAS_string constinArgument6,
+                                                         class GALGAS_arrayControllerModelKind constinArgument7,
+                                                         class GALGAS_string constinArgument8,
+                                                         class GALGAS_uint constinArgument9,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_string & outArgument0,
+                                                    class GALGAS_string & outArgument1,
+                                                    class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
+                                                    class GALGAS_string & outArgument3,
+                                                    class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
+                                                    class GALGAS_string & outArgument5,
+                                                    class GALGAS_string & outArgument6,
+                                                    class GALGAS_arrayControllerModelKind & outArgument7,
+                                                    class GALGAS_string & outArgument8,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_string & outArgument0,
+                                                   class GALGAS_string & outArgument1,
+                                                   class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
+                                                   class GALGAS_string & outArgument3,
+                                                   class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
+                                                   class GALGAS_string & outArgument5,
+                                                   class GALGAS_string & outArgument6,
+                                                   class GALGAS_arrayControllerModelKind & outArgument7,
+                                                   class GALGAS_string & outArgument8,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_string & outArgument0,
+                                                         class GALGAS_string & outArgument1,
+                                                         class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
+                                                         class GALGAS_string & outArgument3,
+                                                         class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
+                                                         class GALGAS_string & outArgument5,
+                                                         class GALGAS_string & outArgument6,
+                                                         class GALGAS_arrayControllerModelKind & outArgument7,
+                                                         class GALGAS_string & outArgument8,
+                                                         class GALGAS_uint constinArgument9,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
+                                               class GALGAS_string & outArgument1,
+                                               class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
+                                               class GALGAS_string & outArgument3,
+                                               class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
+                                               class GALGAS_string & outArgument5,
+                                               class GALGAS_string & outArgument6,
+                                               class GALGAS_arrayControllerModelKind & outArgument7,
+                                               class GALGAS_string & outArgument8,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
+                                              class GALGAS_string & outArgument1,
+                                              class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
+                                              class GALGAS_string & outArgument3,
+                                              class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
+                                              class GALGAS_string & outArgument5,
+                                              class GALGAS_string & outArgument6,
+                                              class GALGAS_arrayControllerModelKind & outArgument7,
+                                              class GALGAS_string & outArgument8,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListForGeneration reader_mArrayControllerBoundColumnListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                                 C_Compiler * inCompiler
+                                                                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerFilterListForGeneration reader_mArrayControllerFilterListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                       C_Compiler * inCompiler
+                                                                                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mControllerNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mElementTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModelKind reader_mModelKindAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelStringAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeName_32_AtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mOwnerNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_arrayControllerForGeneration ;
+ 
+} ; // End of GALGAS_arrayControllerForGeneration class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_arrayControllerForGeneration : public cGenericAbstractEnumerator {
+  public : cEnumerator_arrayControllerForGeneration (const GALGAS_arrayControllerForGeneration & inEnumeratedObject,
+                                                     const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_string current_mOwnerName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mControllerName (LOCATION_ARGS) const ;
+  public : class GALGAS_arrayControllerFilterListForGeneration current_mArrayControllerFilterListForGeneration (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mModelString (LOCATION_ARGS) const ;
+  public : class GALGAS_arrayControllerBoundColumnListForGeneration current_mArrayControllerBoundColumnListForGeneration (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mModelTypeName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mModelTypeName_32_ (LOCATION_ARGS) const ;
+  public : class GALGAS_arrayControllerModelKind current_mModelKind (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mElementTypeName (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_arrayControllerForGeneration_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerForGeneration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                               @prefDeclaration struct                                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6879,6 +6955,7 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
   public : GALGAS_mainXibDescriptorList mAttribute_mMainXibDescriptorList ;
   public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
   public : GALGAS_storedArrayPropertyList mAttribute_mStoredArrayList ;
+  public : GALGAS_arrayControllerForGeneration mAttribute_mArrayControllerForGeneration ;
 
 
 //--------------------------------- Accessors
@@ -6901,7 +6978,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
                                    const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                    const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
                                    const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                   const GALGAS_storedArrayPropertyList & in_mStoredArrayList) ;
+                                   const GALGAS_storedArrayPropertyList & in_mStoredArrayList,
+                                   const GALGAS_arrayControllerForGeneration & in_mArrayControllerForGeneration) ;
 
 //-- Start of generic part --*
 
@@ -6920,7 +6998,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
                                                           const class GALGAS_secondaryPropertyList & inOperand3,
                                                           const class GALGAS_mainXibDescriptorList & inOperand4,
                                                           const class GALGAS_externSwiftFunctionList & inOperand5,
-                                                          const class GALGAS_storedArrayPropertyList & inOperand6
+                                                          const class GALGAS_storedArrayPropertyList & inOperand6,
+                                                          const class GALGAS_arrayControllerForGeneration & inOperand7
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -6936,6 +7015,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mActionDeclarationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_mArrayControllerForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList reader_mExternSwiftFunctionList (LOCATION_ARGS) const ;
 
@@ -10917,89 +10998,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationLi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                @arrayControllerDeclarationListAST_2D_element struct                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_arrayControllerDeclarationListAST_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mControllerName ;
-  public : GALGAS_arrayControllerModel mAttribute_mArrayControllerModel ;
-  public : GALGAS_lstringlist mAttribute_mTableViewOutletNameList ;
-  public : GALGAS_lstringlist mAttribute_mFilterProperties ;
-  public : GALGAS_arrayControllerBoundColumnListAST mAttribute_mArrayControllerBoundColumnListAST ;
-
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_arrayControllerDeclarationListAST_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerDeclarationListAST_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_arrayControllerDeclarationListAST_2D_element (const GALGAS_lstring & in_mControllerName,
-                                                                const GALGAS_arrayControllerModel & in_mArrayControllerModel,
-                                                                const GALGAS_lstringlist & in_mTableViewOutletNameList,
-                                                                const GALGAS_lstringlist & in_mFilterProperties,
-                                                                const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_arrayControllerDeclarationListAST_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static GALGAS_arrayControllerDeclarationListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                       const class GALGAS_arrayControllerModel & inOperand1,
-                                                                                       const class GALGAS_lstringlist & inOperand2,
-                                                                                       const class GALGAS_lstringlist & inOperand3,
-                                                                                       const class GALGAS_arrayControllerBoundColumnListAST & inOperand4
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of reader 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerDeclarationListAST_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListAST reader_mArrayControllerBoundColumnListAST (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModel reader_mArrayControllerModel (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mControllerName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mFilterProperties (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist reader_mTableViewOutletNameList (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_arrayControllerDeclarationListAST_2D_element class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDeclarationListAST_2D_element ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                         @documentObservablePropertyMap map                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11612,240 +11610,6 @@ class cEnumerator_actionBindingListForGeneration : public cGenericAbstractEnumer
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListForGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         @arrayControllerForGeneration list                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_arrayControllerForGeneration (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_arrayControllerForGeneration (cSharedList * inSharedListPtr) ;
-
-//--------------------------------- Element constructor used by listmap
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_string & in_mOwnerName,
-                                                  const class GALGAS_string & in_mControllerName,
-                                                  const class GALGAS_arrayControllerFilterListForGeneration & in_mArrayControllerFilterListForGeneration,
-                                                  const class GALGAS_string & in_mModelString,
-                                                  const class GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
-                                                  const class GALGAS_string & in_mModelTypeName,
-                                                  const class GALGAS_string & in_mModelTypeName_32_,
-                                                  const class GALGAS_bool & in_mModelIsTransient,
-                                                  const class GALGAS_string & in_mElementTypeName
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_arrayControllerForGeneration extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static GALGAS_arrayControllerForGeneration constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static GALGAS_arrayControllerForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
-                                                                                 const class GALGAS_string & inOperand1,
-                                                                                 const class GALGAS_arrayControllerFilterListForGeneration & inOperand2,
-                                                                                 const class GALGAS_string & inOperand3,
-                                                                                 const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
-                                                                                 const class GALGAS_string & inOperand5,
-                                                                                 const class GALGAS_string & inOperand6,
-                                                                                 const class GALGAS_bool & inOperand7,
-                                                                                 const class GALGAS_string & inOperand8
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void dotAssign_operation (const GALGAS_arrayControllerForGeneration inOperand
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
-                                                      const class GALGAS_string & inOperand1,
-                                                      const class GALGAS_arrayControllerFilterListForGeneration & inOperand2,
-                                                      const class GALGAS_string & inOperand3,
-                                                      const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
-                                                      const class GALGAS_string & inOperand5,
-                                                      const class GALGAS_string & inOperand6,
-                                                      const class GALGAS_bool & inOperand7,
-                                                      const class GALGAS_string & inOperand8
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- . (concat) operator
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGeneration operator_concat (const GALGAS_arrayControllerForGeneration & inOperand
-                                                                                 COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGeneration add_operation (const GALGAS_arrayControllerForGeneration & inOperand,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_string constinArgument0,
-                                                         class GALGAS_string constinArgument1,
-                                                         class GALGAS_arrayControllerFilterListForGeneration constinArgument2,
-                                                         class GALGAS_string constinArgument3,
-                                                         class GALGAS_arrayControllerBoundColumnListForGeneration constinArgument4,
-                                                         class GALGAS_string constinArgument5,
-                                                         class GALGAS_string constinArgument6,
-                                                         class GALGAS_bool constinArgument7,
-                                                         class GALGAS_string constinArgument8,
-                                                         class GALGAS_uint constinArgument9,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_string & outArgument0,
-                                                    class GALGAS_string & outArgument1,
-                                                    class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
-                                                    class GALGAS_string & outArgument3,
-                                                    class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                                    class GALGAS_string & outArgument5,
-                                                    class GALGAS_string & outArgument6,
-                                                    class GALGAS_bool & outArgument7,
-                                                    class GALGAS_string & outArgument8,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_string & outArgument0,
-                                                   class GALGAS_string & outArgument1,
-                                                   class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
-                                                   class GALGAS_string & outArgument3,
-                                                   class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                                   class GALGAS_string & outArgument5,
-                                                   class GALGAS_string & outArgument6,
-                                                   class GALGAS_bool & outArgument7,
-                                                   class GALGAS_string & outArgument8,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_string & outArgument0,
-                                                         class GALGAS_string & outArgument1,
-                                                         class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
-                                                         class GALGAS_string & outArgument3,
-                                                         class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                                         class GALGAS_string & outArgument5,
-                                                         class GALGAS_string & outArgument6,
-                                                         class GALGAS_bool & outArgument7,
-                                                         class GALGAS_string & outArgument8,
-                                                         class GALGAS_uint constinArgument9,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
-                                               class GALGAS_string & outArgument1,
-                                               class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
-                                               class GALGAS_string & outArgument3,
-                                               class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                               class GALGAS_string & outArgument5,
-                                               class GALGAS_string & outArgument6,
-                                               class GALGAS_bool & outArgument7,
-                                               class GALGAS_string & outArgument8,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
-                                              class GALGAS_string & outArgument1,
-                                              class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
-                                              class GALGAS_string & outArgument3,
-                                              class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                              class GALGAS_string & outArgument5,
-                                              class GALGAS_string & outArgument6,
-                                              class GALGAS_bool & outArgument7,
-                                              class GALGAS_string & outArgument8,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListForGeneration reader_mArrayControllerBoundColumnListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                                                                 C_Compiler * inCompiler
-                                                                                                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerFilterListForGeneration reader_mArrayControllerFilterListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                                                       C_Compiler * inCompiler
-                                                                                                                                       COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mControllerNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mElementTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelIsTransientAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelStringAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeName_32_AtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mOwnerNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                               C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                               C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_arrayControllerForGeneration ;
- 
-} ; // End of GALGAS_arrayControllerForGeneration class
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                    *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cEnumerator_arrayControllerForGeneration : public cGenericAbstractEnumerator {
-  public : cEnumerator_arrayControllerForGeneration (const GALGAS_arrayControllerForGeneration & inEnumeratedObject,
-                                                     const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_string current_mOwnerName (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mControllerName (LOCATION_ARGS) const ;
-  public : class GALGAS_arrayControllerFilterListForGeneration current_mArrayControllerFilterListForGeneration (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mModelString (LOCATION_ARGS) const ;
-  public : class GALGAS_arrayControllerBoundColumnListForGeneration current_mArrayControllerBoundColumnListForGeneration (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mModelTypeName (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mModelTypeName_32_ (LOCATION_ARGS) const ;
-  public : class GALGAS_bool current_mModelIsTransient (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mElementTypeName (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_arrayControllerForGeneration_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerForGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -13109,6 +12873,78 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingGene
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                           @arrayControllerModelKind enum                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerModelKind (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_relationshipModel,
+    kEnum_storedArrayModel,
+    kEnum_transientModel
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerModelKind extractObject (const GALGAS_object & inObject,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerModelKind constructor_relationshipModel (LOCATION_ARGS) ;
+
+  public : static GALGAS_arrayControllerModelKind constructor_storedArrayModel (LOCATION_ARGS) ;
+
+  public : static GALGAS_arrayControllerModelKind constructor_transientModel (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of reader 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerModelKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isRelationshipModel (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isStoredArrayModel (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isTransientModel (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerModelKind class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerModelKind ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                  @arrayControllerBoundColumnListForGeneration list                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13436,16 +13272,13 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_arrayControllerBoundColumnListForGeneration mAttribute_mArrayControllerBoundColumnListForGeneration ;
   public : GALGAS_string mAttribute_mModelTypeName ;
   public : GALGAS_string mAttribute_mModelTypeName_32_ ;
-  public : GALGAS_bool mAttribute_mModelIsTransient ;
+  public : GALGAS_arrayControllerModelKind mAttribute_mModelKind ;
   public : GALGAS_string mAttribute_mElementTypeName ;
 
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_arrayControllerForGeneration_2D_element constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Default constructor
   public : GALGAS_arrayControllerForGeneration_2D_element (void) ;
@@ -13461,7 +13294,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                            const GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
                                                            const GALGAS_string & in_mModelTypeName,
                                                            const GALGAS_string & in_mModelTypeName_32_,
-                                                           const GALGAS_bool & in_mModelIsTransient,
+                                                           const GALGAS_arrayControllerModelKind & in_mModelKind,
                                                            const GALGAS_string & in_mElementTypeName) ;
 
 //-- Start of generic part --*
@@ -13482,7 +13315,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                                                   const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
                                                                                   const class GALGAS_string & inOperand5,
                                                                                   const class GALGAS_string & inOperand6,
-                                                                                  const class GALGAS_bool & inOperand7,
+                                                                                  const class GALGAS_arrayControllerModelKind & inOperand7,
                                                                                   const class GALGAS_string & inOperand8
                                                                                   COMMA_LOCATION_ARGS) ;
 
@@ -13506,7 +13339,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mElementTypeName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_mModelIsTransient (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModelKind reader_mModelKind (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mModelString (LOCATION_ARGS) const ;
 

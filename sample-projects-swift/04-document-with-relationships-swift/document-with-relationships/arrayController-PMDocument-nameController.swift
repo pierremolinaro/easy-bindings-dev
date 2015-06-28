@@ -594,7 +594,7 @@ class ArrayController_PMDocument_nameController : EBObject {
     if let model = mModel,
            owner = model.owner,
            managedObjectContext = owner.managedObjectContext (),
-          selectedSet = mSelectedSet {
+           selectedSet = mSelectedSet {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break

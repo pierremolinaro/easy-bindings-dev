@@ -478,9 +478,11 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
       tableView.setDelegate (selectedSet)
    }
   //--- Add observers
-    model.addObserverOf_name (sortedArray, postEvent:true)
-    model.addObserverOf_aValue (sortedArray, postEvent:true)
-    model.addObserver (sortedArray, postEvent:true)
+%
+for () in BOUND_COLUMNS do
+  %    model.addObserverOf_%!mObservablePropertyName% (sortedArray, postEvent:true)\n%
+end
+%    model.addObserver (sortedArray, postEvent:true)
     sortedArray.addObserver (selectedSet, postEvent:true)
     selectedSet.addObserver (selectedArray, postEvent:true)
   }
@@ -490,9 +492,11 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   //···················································································································*
 
   func unbind_modelAndView () {
-    mModel?.removeObserverOf_name (sortedArray, postEvent:false)
-    mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
-    mModel?.removeObserver (sortedArray, postEvent:false)
+%
+for () in BOUND_COLUMNS do
+  %    mModel?.removeObserverOf_%!mObservablePropertyName% (sortedArray, postEvent:false)\n%
+end
+%    mModel?.removeObserver (sortedArray, postEvent:false)
     if let selectedSet = mSelectedSet {
       sortedArray.removeObserver (selectedSet, postEvent:false)
     }
@@ -507,7 +511,115 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     mModel = nil
  }
  
-%if not MODEL_IS_TRANSIENT then% 
+%switch MODEL_KIND
+case transientModel :
+case storedArrayModel :
+% 
+  //···················································································································*
+  //    add                                                                                                            *
+  //···················································································································*
+
+   func add (inSender : NSButton?) {
+    if let model = mModel, selectedSet = mSelectedSet {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        break
+      case .singleSelection (let v) :
+        let newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% ()
+        var array = v
+        array.append (newObject)
+      //--- New object is the selection
+        var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
+        newSelectedObjectSet.insert (newObject)
+        selectedSet.setProp (newSelectedObjectSet)
+        model.setProp (array)
+      }
+    }
+  }
+
+  //···················································································································*
+  //    remove                                                                                                         *
+  //···················································································································*
+
+  func remove (inSender : NSButton?) {
+    if let model = mModel, selectedSet = mSelectedSet {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        break
+      case .singleSelection (let model_prop) :
+        switch selectedSet.prop {
+        case .noSelection, .multipleSelection :
+          break
+        case .singleSelection (let selectedSet_prop) :
+          switch sortedArray.prop {
+          case .noSelection, .multipleSelection :
+            break
+          case .singleSelection (let sortedArray_prop) :
+          //------------- Find the object to be selected after selected object removing
+          //--- Dictionary of object sorted indexes
+            var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+            for (index, object) in sortedArray_prop.enumerate () {
+              sortedObjectDictionary [object] = index
+            }
+            var indexArrayOfSelectedObjects = [Int] ()
+            for object in selectedSet_prop {
+              let index = sortedObjectDictionary [object]
+              if let idx = index {
+                indexArrayOfSelectedObjects.append (idx)
+              }
+            }
+          //--- Sort
+            indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
+          //--- Find the first index of a non selected object
+            var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
+            for index in indexArrayOfSelectedObjects {
+              if newSelectionIndex < index {
+                break
+              }else{
+                newSelectionIndex = index + 1
+              }
+            }
+            var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
+            if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {
+              newSelectedObject = sortedArray_prop [newSelectionIndex]
+            }
+          //----------------------------------------- Remove selected object
+          //--- Dictionary of object absolute indexes
+            var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+            for (index, object) in model_prop.enumerate () {
+              objectDictionary [object] = index
+            }
+          //--- Build selected objects index array
+            var selectedObjectIndexArray = [Int] ()
+            for object in selectedSet_prop {
+              let index = objectDictionary [object]
+              if let idx = index {
+                selectedObjectIndexArray.append (idx)
+              }
+            }
+          //--- Sort in reverse order
+            selectedObjectIndexArray.sortInPlace { $1 < $0 }
+          //--- Remove objects, in reverse of order of their index
+            var newObjectArray = model_prop
+            for index in selectedObjectIndexArray {
+              newObjectArray.removeAtIndex (index)
+            }
+          //----------------------------------------- Set new selection
+            var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
+            if let object = newSelectedObject {
+              newSelectionSet.insert (object)
+            }
+            mSelectedSet?.setProp (newSelectionSet)
+          //----------------------------------------- Set new object array
+            model.setProp (newObjectArray)
+          }
+        }
+      }
+    }
+  }
+%
+case relationshipModel :
+% 
   //···················································································································*
   //    add                                                                                                            *
   //···················································································································*
@@ -541,7 +653,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     if let model = mModel,
            owner = model.owner,
            managedObjectContext = owner.managedObjectContext (),
-          selectedSet = mSelectedSet {
+           selectedSet = mSelectedSet {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
