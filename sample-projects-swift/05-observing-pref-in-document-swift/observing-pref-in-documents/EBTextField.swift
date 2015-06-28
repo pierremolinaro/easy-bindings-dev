@@ -106,11 +106,57 @@ class Controller_EBTextField_value : EBOutletEvent {
     mOutlet.updateEnabledState ()
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································*
 
   func action (sender : EBTextField) {
     mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
   }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBTextField_TableViewCell                                                                                         *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(EBTextField_Cell) class EBTextField_Cell : NSTableCellView {
+  @IBOutlet private var cellOutlet : EBTextField?
+  private weak var mProperty : EBReadWriteProperty_String?
+
+  //···················································································································*
+
+  func outletIsDefined () -> Bool {
+    return cellOutlet != nil
+  }
+
+  //···················································································································*
+
+  func configureWithProperty (inProperty : EBReadWriteProperty_String) {
+    mProperty = inProperty
+    switch inProperty.prop {
+    case .noSelection :
+      cellOutlet?.stringValue = "No Selection"
+      cellOutlet?.enabled = false
+      cellOutlet?.target = nil
+      cellOutlet?.action = ""
+    case .singleSelection (let v) :
+      cellOutlet?.stringValue = v
+      cellOutlet?.enabled = true
+      cellOutlet?.target = self
+      cellOutlet?.action = "myAction:"
+     case .multipleSelection :
+      cellOutlet?.stringValue = "Multiple Selection"
+      cellOutlet?.enabled = false
+      cellOutlet?.target = nil
+      cellOutlet?.action = ""
+    }
+  }
+
+  //···················································································································*
+  
+  func myAction (sender : EBTextField) {
+    mProperty?.validateAndSetProp (sender.stringValue, windowForSheet:sender.window)
+  }
+
+  //···················································································································* 
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
