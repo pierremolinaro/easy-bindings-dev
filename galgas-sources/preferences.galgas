@@ -9,6 +9,7 @@ struct @prefDeclaration {
   @secondaryPropertyList mSecondaryPropertyList
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
+  @storedArrayPropertyList mStoredArrayList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -36,6 +37,8 @@ syntax extension easyBindings_syntax {
       <transient_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
     while
       <extern_swift_func> !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList
+    while
+      <stored_array_declaration>  !?ioDeclarationAST.mPreferences.mStoredArrayList
     end
     $}$
   }
@@ -103,6 +106,11 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
     !inUnifiedTypeMap
     !?ioSemanticContext.mPreferencesObservablePropertyMap
   ]
+#--- Analyze stored array properties
+  [mStoredArrayList buildObservablePropertyMap
+    !inUnifiedTypeMap
+    !?ioSemanticContext.mPreferencesObservablePropertyMap
+  ]
 }
 
 #......................................................................................................................*
@@ -131,6 +139,11 @@ method @prefDeclaration semanticAnalysis
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration
     ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+  ]
+#--- Analyze stored array properties
+  [mStoredArrayList storedArrayPropertySemanticAnalysis
+    !inSemanticContext.mUnifiedTypeMap
+    ?let @storedArrayPropertyListForGeneration storedArrayPropertyListForGeneration
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
@@ -177,6 +190,7 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mOutletMap = outletMap
   ioGeneration.mPreferencesForGeneration.mMainXibDescriptorList = mMainXibDescriptorList
   ioGeneration.mPreferencesForGeneration.mExternSwiftFunctionList = inExternSwiftFunctionList
+  ioGeneration.mPreferencesForGeneration.mStoredArrayPropertyListForGeneration = storedArrayPropertyListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -192,6 +206,7 @@ struct @preferencesForGeneration {
   @decoratedOutletMap mOutletMap
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
+  @storedArrayPropertyListForGeneration mStoredArrayPropertyListForGeneration
 }
 
 #......................................................................................................................*
@@ -208,6 +223,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
+    ?@storedArrayPropertyListForGeneration STORED_ARRAY_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -228,6 +244,7 @@ proc generatePreferences
     !inPreferenceListForGeneration.mActionBindingListForGeneration
     !inPreferenceListForGeneration.mMultipleBindingGenerationList
     !inPreferenceListForGeneration.mExternSwiftFunctionList
+    !inPreferenceListForGeneration.mStoredArrayPropertyListForGeneration
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName

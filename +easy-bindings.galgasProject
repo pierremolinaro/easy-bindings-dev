@@ -30,6 +30,7 @@ project (0:0:1) -> "eb" {
   "galgas-sources/observable-property.galgas"
   "galgas-sources/transient-property.galgas"
   "galgas-sources/simple-stored-property.galgas"
+  "galgas-sources/stored-array-property.galgas"
   "galgas-sources/property-validation-stub-routine.galgas"
   "galgas-sources/run-action.galgas"
 
