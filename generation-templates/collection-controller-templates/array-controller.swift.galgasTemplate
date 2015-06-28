@@ -455,7 +455,7 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
       }else{
         presentErrorWindow (file,
                             line: line,
-                            errorMessage:"\"%!mColumnName%\" column view unknown")
+                            errorMessage:"\"%!mColumnName%\" column view unknown, or table view is NSCell-based")
       }
       if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
         columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true)
