@@ -229,7 +229,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   override func readFromData (data: NSData?, ofType typeName: String?) throws {
     undoManager?.disableUndoRegistration ()
   //---- Define input data scanner
-    let dataScanner = EBDataScanner (data:data!)
+    var dataScanner = EBDataScanner (data:data!)
   //--- Check Signature
     for c in kFormatSignature.utf8 {
       dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)

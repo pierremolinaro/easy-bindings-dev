@@ -3691,7 +3691,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_managedDocument (C_
     "  override func readFromData (data: NSData\?, ofType typeName: String\?) throws {\n"
     "    undoManager\?.disableUndoRegistration ()\n"
     "  //---- Define input data scanner\n"
-    "    let dataScanner = EBDataScanner (data:data!)\n"
+    "    var dataScanner = EBDataScanner (data:data!)\n"
     "  //--- Check Signature\n"
     "    for c in kFormatSignature.utf8 {\n"
     "      dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)\n"
