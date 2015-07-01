@@ -275,11 +275,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "document-with-relationships/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.document-with-relationships";
 				PRODUCT_NAME = "document-with-relationships";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Default;
 		};

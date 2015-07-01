@@ -282,17 +282,19 @@ extension NSTextView {
   //-------------------------------------------------------------------------------------------------------------------*
 
   func appendErrorString (inString : String) {
-    let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
-      NSForegroundColorAttributeName : NSColor.redColor()
-    ]
-    let str = NSAttributedString (string:inString, attributes:attributes)
-    if let unwrappedLayoutManager = layoutManager {
-      if let ts = unwrappedLayoutManager.textStorage {
-        ts.appendAttributedString (str)
-        displayAndScrollToEndOfText ()
-      }
-    }
+    appendMessageString (inString, color:NSColor.redColor ())
+  }
+  
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func appendWarningString (inString : String) {
+    appendMessageString (inString, color:NSColor.orangeColor ())
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func appendSuccessString (inString : String) {
+    appendMessageString (inString, color:NSColor.blueColor ())
   }
 }
 

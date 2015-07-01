@@ -2,11 +2,11 @@ import Cocoa
 
 //---------------------------------------------------------------------------*
 
-class EBDataScanner : EBObject {
-  var mData : NSData
-  var mReadIndex : Int = 0
-  var mReadOk : Bool = true
-  var mExpectedBytes : Array<UInt8> = []
+struct EBDataScanner {
+  private var mData : NSData
+  private var mReadIndex : Int = 0
+  private var mReadOk : Bool = true
+  private var mExpectedBytes : Array<UInt8> = []
 
   //---------------------------------------------------------------------------*
   //  init                                                                     *
@@ -14,14 +14,13 @@ class EBDataScanner : EBObject {
 
   init (data: NSData) {
     mData = data
-    super.init ()
   }
 
   //---------------------------------------------------------------------------*
   //  ignoreBytes                                                              *
   //---------------------------------------------------------------------------*
 
-  func ignoreBytes (inLengthToIgnore : Int) {
+  mutating func ignoreBytes (inLengthToIgnore : Int) {
     if mReadOk {
       mReadIndex += inLengthToIgnore ;
     }
@@ -32,7 +31,7 @@ class EBDataScanner : EBObject {
   //---------------------------------------------------------------------------*
   // http://stackoverflow.com/questions/24067085/pointers-pointer-arithmetic-and-raw-data-in-swift
 
-  func testAcceptByte (inByte : UInt8) -> Bool {
+  mutating func testAcceptByte (inByte : UInt8) -> Bool {
     var result = mReadOk
     if result {
       if mReadIndex >= mData.length {
@@ -60,9 +59,9 @@ class EBDataScanner : EBObject {
   //  testAcceptFromByte                                                       *
   //---------------------------------------------------------------------------*
 
-  func testAcceptFromByte (lowerBound: UInt8,
-                           upperBound: UInt8,
-                           inout value:UInt8) -> Bool {
+  mutating func testAcceptFromByte (lowerBound: UInt8,
+                                    upperBound: UInt8,
+                                    inout value:UInt8) -> Bool {
     var result = mReadOk
     if result {
       if mReadIndex >= mData.length {
@@ -90,8 +89,8 @@ class EBDataScanner : EBObject {
   //  acceptRequiredByte                                                       *
   //---------------------------------------------------------------------------*
 
-  func acceptRequiredByte (inByte : UInt8,
-                           sourceFile: String) {
+  mutating func acceptRequiredByte (inByte : UInt8,
+                                    sourceFile: String) {
     if mReadOk {
       if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
@@ -118,7 +117,7 @@ class EBDataScanner : EBObject {
   //  parseByte                                                                *
   //---------------------------------------------------------------------------*
 
-  func parseByte () -> UInt8 {
+  mutating func parseByte () -> UInt8 {
     var result : UInt8 = 0
     if mReadOk {
       if mReadIndex >= mData.length {
@@ -137,7 +136,7 @@ class EBDataScanner : EBObject {
   //  parseAutosizedUnsignedInteger                                            *
   //---------------------------------------------------------------------------*
 
-  func parseAutosizedUnsignedInteger () -> UInt {
+  mutating func parseAutosizedUnsignedInteger () -> UInt {
     var result : UInt = 0
     var shift : UInt = 0
     var loop = true
@@ -162,7 +161,7 @@ class EBDataScanner : EBObject {
   //  parseAutosizedData                                                       *
   //---------------------------------------------------------------------------*
 
-  func parseAutosizedData () -> NSData {
+  mutating func parseAutosizedData () -> NSData {
   var result = NSData ()
   if mReadOk {
     let dataLength : Int = Int (parseAutosizedUnsignedInteger ())
