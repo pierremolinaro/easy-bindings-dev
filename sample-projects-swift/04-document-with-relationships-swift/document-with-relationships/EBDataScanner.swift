@@ -97,7 +97,7 @@ struct EBDataScanner {
          mReadOk = false
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        let byte : UInt8 = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = UnsafePointer<UInt8> (byteAsData).memory
         if (byte == inByte) {
           mReadIndex += 1
           mExpectedBytes = []

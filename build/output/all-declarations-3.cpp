@@ -4612,17 +4612,19 @@ const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
   "  //-------------------------------------------------------------------------------------------------------------------*\n"
   "\n"
   "  func appendErrorString (inString : String) {\n"
-  "    let attributes : [String : NSObject] = [\n"
-  "      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),\n"
-  "      NSForegroundColorAttributeName : NSColor.redColor()\n"
-  "    ]\n"
-  "    let str = NSAttributedString (string:inString, attributes:attributes)\n"
-  "    if let unwrappedLayoutManager = layoutManager {\n"
-  "      if let ts = unwrappedLayoutManager.textStorage {\n"
-  "        ts.appendAttributedString (str)\n"
-  "        displayAndScrollToEndOfText ()\n"
-  "      }\n"
-  "    }\n"
+  "    appendMessageString (inString, color:NSColor.redColor ())\n"
+  "  }\n"
+  "  \n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func appendWarningString (inString : String) {\n"
+  "    appendMessageString (inString, color:NSColor.orangeColor ())\n"
+  "  }\n"
+  "\n"
+  "  //-------------------------------------------------------------------------------------------------------------------*\n"
+  "\n"
+  "  func appendSuccessString (inString : String) {\n"
+  "    appendMessageString (inString, color:NSColor.blueColor ())\n"
   "  }\n"
   "}\n"
   "\n"
@@ -4640,7 +4642,7 @@ const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  12248, // Text length
+  12320, // Text length
   gWrapperFileContent_6_swift_5F_sources
 ) ;
 
