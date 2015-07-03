@@ -7,23 +7,26 @@ import Cocoa
 class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBObject {
   private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
   //   SELECTION OBSERVABLE PROPERTIES                                                                                 *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
 %  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
 end
 end%
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
   //   BIND SELECTION                                                                                                  *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
   func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
     mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
+%  //--- %!lkey.string%\n%
+%    model.addObserverOf_%!lkey.string% (%!lkey.string%, postEvent:true)\n%
+%    model.addObserver (%!lkey.string%, postEvent:true)\n%
 %    %!lkey.string%.readModelFunction = {\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
@@ -88,26 +91,27 @@ if not [mType isEntityType] then
 %        return false\n%
 %      }\n%
 %    }\n%
-%    model.addObserver (%!lkey.string%, postEvent:true)\n%
 end
 end%  }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
   //   UNBIND SELECTION                                                                                                *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
   func unbind_selection () {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
+%  //--- %!lkey.string%\n%
 %    %!lkey.string%.readModelFunction = nil \n%
 %    %!lkey.string%.writeModelFunction = nil \n%
 %    %!lkey.string%.validateAndWriteModelFunction = nil \n%
+%    mModel?.removeObserverOf_%!lkey.string% (%!lkey.string%, postEvent:false)\n%
 %    mModel?.removeObserver (%!lkey.string%, postEvent:false)\n%
 end
 end%    mModel = nil    
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
 }
 

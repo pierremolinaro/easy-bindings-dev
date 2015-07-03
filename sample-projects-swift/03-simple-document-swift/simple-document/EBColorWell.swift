@@ -47,7 +47,7 @@ import Cocoa
 //   Controller_EBColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBColorWell_color : EBOutletEvent {
+final class Controller_EBColorWell_color : EBOutletEvent {
 
   var mObject : EBReadWriteProperty_NSColor
   var mOutlet: EBColorWell

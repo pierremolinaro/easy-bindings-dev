@@ -28,8 +28,9 @@ import Cocoa
   
   //···················································································································* 
 
-  func setEnableFromBinding (flag : Bool) {
-    self.enabled = flag
+  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+    mValueController?.updateModel ()
+    return super.sendAction (inAction, to:to)
   }
 
   //···················································································································* 
@@ -38,7 +39,7 @@ import Cocoa
 
   private var mValueController : Controller_EBSwitch_value?
 
-  func bind_value (object:EBStoredProperty_Bool, file:String, line:Int) {
+  func bind_value (object:EBReadWriteProperty_Bool, file:String, line:Int) {
     mValueController = Controller_EBSwitch_value (object:object, outlet:self, file:file, line:line)
   }
 
@@ -54,27 +55,23 @@ import Cocoa
 //   Controller Controller_EBSwitch_value                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBSwitch_value) class Controller_EBSwitch_value : EBOutletEvent {
+@objc(Controller_EBSwitch_value) final class Controller_EBSwitch_value : EBOutletEvent {
 
   private var mOutlet : EBSwitch
-  private var mObject : EBStoredProperty_Bool
+  private var mObject : EBReadWriteProperty_Bool
 
   //···················································································································* 
 
-  init (object:EBStoredProperty_Bool, outlet : EBSwitch, file : String, line:Int) {
+  init (object:EBReadWriteProperty_Bool, outlet : EBSwitch, file : String, line:Int) {
     mObject = object
     mOutlet = outlet
     super.init ()
-    mOutlet.target = self
-    mOutlet.action = "action:"
     object.addObserver (self, postEvent:true)
   }
 
   //···················································································································* 
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -85,20 +82,20 @@ import Cocoa
     switch mObject.prop {
     case .noSelection :
       mOutlet.state = NSOffState
-      mOutlet.enabled = false
+      mOutlet.enableFromValue (false)
     case .multipleSelection :
       mOutlet.state = NSMixedState
-      mOutlet.enabled = false
+      mOutlet.enableFromValue (false)
     case .singleSelection (let v) :
       mOutlet.state = v ? NSOnState : NSOffState
-      mOutlet.enabled = true
+      mOutlet.enableFromValue (true)
     }
     mOutlet.updateEnabledState ()
   }
 
   //···················································································································* 
 
-  func action (sender : EBSwitch) {
+  func updateModel () {
     mObject.setProp (mOutlet.state == NSOnState)
   }
 }
