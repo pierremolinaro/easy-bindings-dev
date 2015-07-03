@@ -21,7 +21,7 @@ import Cocoa
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
-    mValueController?.updateModel (self)
+    mSelectedTagController?.updateModel (self)
     return super.sendAction (inAction, to:to)
   }
 
@@ -32,18 +32,18 @@ import Cocoa
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
-  //  color binding                                                                                                    *
+  //  selectedTag binding                                                                                              *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  private var mValueController : Controller_EBPopUpButton_selectedTag?
+  private var mSelectedTagController : Controller_EBPopUpButton_selectedTag?
 
   func bind_selectedTag (object:EBReadWriteProperty_Int, file:String, line:Int) {
-    mValueController = Controller_EBPopUpButton_selectedTag (object:object, outlet:self, file:file, line:line)
+    mSelectedTagController = Controller_EBPopUpButton_selectedTag (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_selectedIndex () {
-    mValueController?.unregister ()
-    mValueController = nil
+  func unbind_selectedTag () {
+    mSelectedTagController?.unregister ()
+    mSelectedTagController = nil
   }
 
 }
