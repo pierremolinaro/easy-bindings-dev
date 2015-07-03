@@ -7,19 +7,22 @@ import Cocoa
 class SelectionController_PMDocument_detailController : EBObject {
   private var mModel : ReadOnlyArrayOf_NameEntity?
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
   //   SELECTION OBSERVABLE PROPERTIES                                                                                 *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
   var aValue = EBPropertyProxy_Int () 
   var name = EBPropertyProxy_String () 
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
   //   BIND SELECTION                                                                                                  *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
   func bind_selection (model : ReadOnlyArrayOf_NameEntity, file:String, line:Int) {
     mModel = model
+  //--- aValue
+    model.addObserverOf_aValue (aValue, postEvent:true)
+    model.addObserver (aValue, postEvent:true)
     aValue.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -84,7 +87,9 @@ class SelectionController_PMDocument_detailController : EBObject {
         return false
       }
     }
-    model.addObserver (aValue, postEvent:true)
+  //--- name
+    model.addObserverOf_name (name, postEvent:true)
+    model.addObserver (name, postEvent:true)
     name.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -149,26 +154,29 @@ class SelectionController_PMDocument_detailController : EBObject {
         return false
       }
     }
-    model.addObserver (name, postEvent:true)
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
   //   UNBIND SELECTION                                                                                                *
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
   func unbind_selection () {
+  //--- aValue
     aValue.readModelFunction = nil 
     aValue.writeModelFunction = nil 
     aValue.validateAndWriteModelFunction = nil 
+    mModel?.removeObserverOf_aValue (aValue, postEvent:false)
     mModel?.removeObserver (aValue, postEvent:false)
+  //--- name
     name.readModelFunction = nil 
     name.writeModelFunction = nil 
     name.validateAndWriteModelFunction = nil 
+    mModel?.removeObserverOf_name (name, postEvent:false)
     mModel?.removeObserver (name, postEvent:false)
     mModel = nil    
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //···················································································································* 
 
 }
 
