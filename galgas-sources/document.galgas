@@ -260,8 +260,6 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
-
-  template managedDocument "EBManagedDocument.swift.galgasTemplate"
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -275,13 +273,22 @@ proc generateDocuments
 {
   if [inDocumentListForGeneration length] > 0 then
     let fileName = "EBManagedDocument.swift"
+    var fw = [filewrapper swift_sources]
+    let contents = [fw textFileContentsAtPath !fileName]
     ioGeneratedFileSet += !fileName
-    let s = [filewrapper documentGenerationTemplate.managedDocument]
     [@string generateFile
       !inOutputDirectory
       !fileName
-      !s
+      !contents
     ]
+
+#    ioGeneratedFileSet += !fileName
+#    let s = [filewrapper documentGenerationTemplate.managedDocument]
+#    [@string generateFile
+#      !inOutputDirectory
+#      !fileName
+#      !s
+#    ]
   end
   for () in inDocumentListForGeneration do
     let s = [filewrapper documentGenerationTemplate.documentImplementation

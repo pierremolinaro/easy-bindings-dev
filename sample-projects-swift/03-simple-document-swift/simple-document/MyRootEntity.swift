@@ -38,34 +38,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //···················································································································*
 
-  var mObserversOf_myEnumeration = Set<EBEvent> ()
-
-  final func addObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
-    mObserversOf_myEnumeration.insert (inObserver)
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myEnumeration.addObserver (inObserver, postEvent:inTrigger)
-      }
-    }
-  }
-
-  final func removeObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
-    mObserversOf_myEnumeration.remove (inObserver)
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myEnumeration.removeObserver (inObserver, postEvent:inTrigger)
-      }
-    }
-  }
-
-  //···················································································································*
-
   var mObserversOf_myColor = Set<EBEvent> ()
 
   final func addObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
@@ -164,12 +136,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(MyRootEntity_myEnumeration) protocol MyRootEntity_myEnumeration {
-  var myEnumeration : EBStoredProperty_MonEnumeration { get }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 @objc(MyRootEntity_myColor) protocol MyRootEntity_myColor {
   var myColor : EBStoredProperty_NSColor { get }
 }
@@ -179,7 +145,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    Entity: MyRootEntity                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myEnumeration, MyRootEntity_myColor {
+@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor {
 
   //···················································································································*
   //    Properties                                                                                                     *
@@ -191,18 +157,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
       switch myString.prop {
       case .noSelection, .multipleSelection :
         return ""
-      case .singleSelection (let v) :
-        return v
-      }
-    }
-  }
-
-  var myEnumeration = EBStoredProperty_MonEnumeration (MonEnumeration.deuxieme)
-  var myEnumeration_keyCodingValue : MonEnumeration {
-    get {
-      switch myEnumeration.prop {
-      case .noSelection, .multipleSelection :
-        return MonEnumeration.deuxieme
       case .singleSelection (let v) :
         return v
       }
@@ -302,7 +256,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     myStringMin.addObserver (myStringConcat, postEvent:true)
   //--- Install undoers for properties
     myString.undoManager = undoManager ()
-    myEnumeration.undoManager = undoManager ()
     myColor.undoManager = undoManager ()
   //--- Install owner for relationships
   }
@@ -319,15 +272,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
       y:&y,
       view:view,
       observerExplorer:&myString.mObserverExplorer,
-      valueExplorer:&myString.explorer
-    )
-    createEntryForPropertyNamed (
-      "myEnumeration",
-      idx:myEnumeration.mExplorerObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&myEnumeration.mObserverExplorer,
-      valueExplorer:&myEnumeration.explorer
+      valueExplorer:&myString.mValueExplorer
     )
     createEntryForPropertyNamed (
       "myColor",
@@ -335,7 +280,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
       y:&y,
       view:view,
       observerExplorer:&myColor.mObserverExplorer,
-      valueExplorer:&myColor.explorer
+      valueExplorer:&myColor.mValueExplorer
     )
   }
 
@@ -344,9 +289,10 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //···················································································································*
 
   override func clearObjectExplorer () {
-    myString.explorer = nil
-    myEnumeration.explorer = nil
-    myColor.explorer = nil
+    myString.mObserverExplorer = nil
+    myString.mValueExplorer = nil
+    myColor.mObserverExplorer = nil
+    myColor.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -357,7 +303,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
     myString.storeInDictionary (ioDictionary, forKey: "myString")
-    myEnumeration.storeInDictionary (ioDictionary, forKey: "myEnumeration")
     myColor.storeInDictionary (ioDictionary, forKey: "myColor")
   }
 
@@ -369,7 +314,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
                                      managedObjectArray : Array<EBManagedObject>) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
     myString.readFromDictionary (inDictionary, forKey:"myString")
-    myEnumeration.readFromDictionary (inDictionary, forKey:"myEnumeration")
     myColor.readFromDictionary (inDictionary, forKey:"myColor")
   }
 

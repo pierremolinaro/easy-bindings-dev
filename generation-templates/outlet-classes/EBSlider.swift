@@ -56,17 +56,18 @@ import Cocoa
 //   Controller Controller_EBSlider_doubleValue                                                                        *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBSlider_doubleValue) class Controller_EBSlider_doubleValue : EBOutletEvent {
+@objc(Controller_EBSlider_doubleValue)
+final class Controller_EBSlider_doubleValue : EBSimpleController {
 
-  private var mOutlet: EBSlider
-  private var mObject : EBReadWriteProperty_Double
+  private let mOutlet: EBSlider
+  private let mObject : EBReadWriteProperty_Double
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object:EBReadWriteProperty_Double, outlet : EBSlider, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     object.addObserver (self, postEvent:true)
   }
 

@@ -102,10 +102,10 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_EBIntField_value)
-class Controller_EBIntField_value : EBOutletEvent {
+final class Controller_EBIntField_value : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_Int
-  var mOutlet : EBIntField
+  private let mObject : EBReadWriteProperty_Int
+  private let mOutlet : EBIntField
 
   //···················································································································*
 
@@ -118,7 +118,7 @@ class Controller_EBIntField_value : EBOutletEvent {
   {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
     if autoFormatter {

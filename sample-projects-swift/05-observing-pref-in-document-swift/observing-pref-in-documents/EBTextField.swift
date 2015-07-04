@@ -60,18 +60,17 @@ import Cocoa
 //   Controller Controller_EBTextField_value                                                                           *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBTextField_value)
-class Controller_EBTextField_value : EBOutletEvent {
+@objc(Controller_EBTextField_value) final class Controller_EBTextField_value : EBSimpleController {
 
-  private var mOutlet: EBTextField
-  private var mObject : EBReadWriteProperty_String
+  private let mOutlet: EBTextField
+  private let mObject : EBReadWriteProperty_String
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object:EBReadWriteProperty_String, outlet : EBTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
     if mOutlet.formatter != nil {

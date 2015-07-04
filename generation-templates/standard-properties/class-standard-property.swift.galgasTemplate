@@ -77,9 +77,9 @@ class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
   weak var undoManager : NSUndoManager?
   
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue%!EXPLORER_ACCESS%
+      mValueExplorer?.stringValue = mValue%!EXPLORER_ACCESS%
     }
   }
 
@@ -91,7 +91,7 @@ class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
   private var mValue : %!CLASS_NAME% {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue%!EXPLORER_ACCESS%
+        mValueExplorer?.stringValue = mValue%!EXPLORER_ACCESS%
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
       }

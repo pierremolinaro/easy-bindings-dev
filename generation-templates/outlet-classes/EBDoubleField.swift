@@ -103,11 +103,10 @@ import Cocoa
 //   Controller_EBDoubleField_value                                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBDoubleField_value)
-class Controller_EBDoubleField_value : EBOutletEvent {
+@objc(Controller_EBDoubleField_value) final class Controller_EBDoubleField_value : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_Double
-  var mOutlet : EBDoubleField
+  private let mObject : EBReadWriteProperty_Double
+  private let mOutlet : EBDoubleField
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -116,11 +115,10 @@ class Controller_EBDoubleField_value : EBOutletEvent {
         file : String,
         line : Int,
         sendContinously : Bool,
-        autoFormatter : Bool)
-  {
+        autoFormatter : Bool) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
     if autoFormatter {

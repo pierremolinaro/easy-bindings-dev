@@ -124,17 +124,18 @@ import Cocoa
 //   Controller_EBSegmentedControl_selectedIndex                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBSegmentedControl_selectedIndex : EBOutletEvent {
+@objc(Controller_EBSegmentedControl_selectedIndex)
+final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_Int
-  var mOutlet : EBSegmentedControl
+  private let mObject : EBReadWriteProperty_Int
+  private let mOutlet : EBSegmentedControl
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object : EBReadWriteProperty_Int, outlet : EBSegmentedControl, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mObject.addObserver (self, postEvent:true)
   }
 

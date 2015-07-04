@@ -55,17 +55,17 @@ import Cocoa
 //   Controller Controller_EBSwitch_value                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBSwitch_value) final class Controller_EBSwitch_value : EBOutletEvent {
+@objc(Controller_EBSwitch_value) final class Controller_EBSwitch_value : EBSimpleController {
 
-  private var mOutlet : EBSwitch
-  private var mObject : EBReadWriteProperty_Bool
+  private let mOutlet : EBSwitch
+  private let mObject : EBReadWriteProperty_Bool
 
   //···················································································································* 
 
   init (object:EBReadWriteProperty_Bool, outlet : EBSwitch, file : String, line:Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     object.addObserver (self, postEvent:true)
   }
 

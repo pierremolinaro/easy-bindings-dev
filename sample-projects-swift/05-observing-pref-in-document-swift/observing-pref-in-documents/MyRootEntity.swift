@@ -218,7 +218,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
       y:&y,
       view:view,
       observerExplorer:&docString.mObserverExplorer,
-      valueExplorer:&docString.explorer
+      valueExplorer:&docString.mValueExplorer
     )
   }
 
@@ -227,7 +227,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //···················································································································*
 
   override func clearObjectExplorer () {
-    docString.explorer = nil
+    docString.mObserverExplorer = nil
+    docString.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 

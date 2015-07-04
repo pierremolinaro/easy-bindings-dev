@@ -119,20 +119,21 @@ import Cocoa
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_EBGroupButton_selectedIndex                                                                       *
+//   Controller_EBGroupButton_selectedIndex
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBGroupButton_selectedIndex : EBOutletEvent {
+@objc(Controller_EBGroupButton_selectedIndex)
+final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_Int
-  var mOutlet : EBGroupButton
+  private let mObject : EBReadWriteProperty_Int
+  private let mOutlet : EBGroupButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object : EBReadWriteProperty_Int, outlet : EBGroupButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mObject.addObserver (self, postEvent:true)
   }
 

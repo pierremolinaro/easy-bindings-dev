@@ -55,17 +55,17 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_EBNumberField_readOnlyValue)
-class Controller_EBNumberField_readOnlyValue : EBOutletEvent {
+final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
 
-  var mObject : EBReadOnlyProperty_Int
-  var mOutlet : EBNumberFieldObserver
+  private let mObject : EBReadOnlyProperty_Int
+  private let mOutlet : EBNumberFieldObserver
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object : EBReadOnlyProperty_Int, outlet : EBNumberFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     if mOutlet.formatter == nil {
       presentErrorWindow (file, line, "the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {

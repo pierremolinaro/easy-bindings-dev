@@ -47,17 +47,18 @@ import Cocoa
 //   Controller_EBColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBReadOnlyColorWell_color : EBOutletEvent {
+@objc(Controller_EBReadOnlyColorWell_color)
+final class Controller_EBReadOnlyColorWell_color : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_NSColor
-  var mOutlet : EBColorWellObserver
+  private let mObject : EBReadWriteProperty_NSColor
+  private let mOutlet : EBColorWellObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   init (object : EBReadWriteProperty_NSColor, outlet : EBColorWellObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mObject.addObserver (self, postEvent:true)
   }
 
