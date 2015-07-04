@@ -484,7 +484,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //-------------------------------------------------- Adding properties
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
-    populateExplorerWindowWithRect (&y, view:view)
+    populateExplorerWindow (&y, view:view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
     let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
@@ -518,7 +518,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   }
 
-  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+  func populateExplorerWindow (inout y : CGFloat, view : NSView) {
     if let rootObject = mRootObject {
       createEntryForToOneRelationshipNamed (
         "Root",

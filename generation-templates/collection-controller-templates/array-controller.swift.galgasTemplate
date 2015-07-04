@@ -4,17 +4,17 @@ import Cocoa
 //    %!["DataSource_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, EBTableViewDataSource {
+class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   var count = EBTransientProperty_Int ()
 
-  //···················································································································*
+  //····················································································································
 
   override init () {
     super.init ()
     count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
+      if let unwSelf = self, model = unwSelf.mModel {
+        switch model.prop {
         case .noSelection :
           return .noSelection
         case .multipleSelection :
@@ -28,17 +28,7 @@ class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEM
     }
   }
 
-  //···················································································································*
-
-  override func postEvent () {
-    if prop_cache != nil {
-      prop_cache = nil
-      count.postEvent ()
-      super.postEvent ()
-    }
-  }
-
-  //···················································································································*
+   //····················································································································
 
   private func filterAndSort () -> EBProperty <Array<%!ELEMENT_TYPE_NAME%> > {
     if let model = mModel {
@@ -74,65 +64,25 @@ else
     }
   }
 
-  //···················································································································*
-  
-  private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
-
-  var prop_cache : Optional < EBProperty <Array<%!ELEMENT_TYPE_NAME%> > >
-
-  override var prop : EBProperty <Array<%!ELEMENT_TYPE_NAME%> > {
-    get {
-      if prop_cache == nil {
-        prop_cache = filterAndSort ()
-        let newObjectSet : Set<%!ELEMENT_TYPE_NAME%>
-        switch prop_cache! {
-        case .noSelection, .multipleSelection :
-          newObjectSet = Set<%!ELEMENT_TYPE_NAME%> ()
-        case .singleSelection (let v) :
-          newObjectSet = Set<%!ELEMENT_TYPE_NAME%> (v)
-        }
-        if mSet != newObjectSet {
-        //--- Removed object set
-%for () in BOUND_COLUMNS do
-%          for managedObject : %!ELEMENT_TYPE_NAME% in mSet.subtract (newObjectSet) {
-            for observer in mObserversOf_%!mObservablePropertyName% {
-              managedObject.%!mObservablePropertyName%.removeObserver (observer, postEvent:true)
-            }
-          }
-%end%        //--- Added object set
-%for () in BOUND_COLUMNS do
-%          for managedObject : %!ELEMENT_TYPE_NAME% in newObjectSet.subtract (mSet) {
-            for observer in mObserversOf_%!mObservablePropertyName% {
-              managedObject.%!mObservablePropertyName%.addObserver (observer, postEvent:true)
-            }
-          }
- %end%       //--- Update object set
-          mSet = newObjectSet
-        }
-      }
-      return prop_cache!
-    }
-  }
-
-  //···················································································································*
-  //    Sort descriptors                                                                                               *
-  //···················································································································*
+  //····················································································································
+  //    Sort descriptors
+  //····················································································································
   
   private var mSortDescriptors : [NSSortDescriptor] = [NSSortDescriptor] () {
     didSet {
-      postEvent () // Force sorting
+      mModel?.postEvent () // Force sorting
     }
   }
 
-  //···················································································································*
+  //····················································································································
   
   func setSortDescriptors (sortDescriptors : [NSSortDescriptor]) {
     mSortDescriptors = sortDescriptors
   }
   
-  //···················································································································*
-  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:                                 *
-  //···················································································································*
+  //····················································································································
+  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:
+  //····················································································································
 
   func tableView (aTableView: NSTableView,
                   sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
@@ -140,21 +90,24 @@ else
     mSortDescriptors = aTableView.sortDescriptors
   }
 
-  //···················································································································*
-  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView                                             *
-  //···················································································································*
+  //····················································································································
+  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView 
+  //····················································································································
 
   func numberOfRowsInTableView (NSTableView) -> Int {
-    // NSLog ("\%@ (\%ld objects)", __FUNCTION__, prop.count)
-    switch prop {
-    case .noSelection, .multipleSelection :
+    if let model = mModel {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        return 0
+      case .singleSelection (let v) :
+        return v.count
+      }
+    }else{
       return 0
-    case .singleSelection (let v) :
-      return v.count
     }
   }
 
-  //···················································································································*
+  //····················································································································
 
 }
 
@@ -169,7 +122,7 @@ else
   private var mIgnoreTableViewSelectionDidChange = true
   var count = EBTransientProperty_Int ()
 
-  //···················································································································*
+  //····················································································································
 
   init (model:DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%) {
     mSortedArray = model
@@ -190,7 +143,7 @@ else
     }
   }
 
-  //···················································································································*
+  //····················································································································
   
   override func postEvent () {
     if !mSetShouldBeComputed {
@@ -200,92 +153,100 @@ else
     }
   }
 
-  //···················································································································*
+  //····················································································································
   
   var prop : EBProperty <Set<%!ELEMENT_TYPE_NAME%> > {
     get {
-      if mSetShouldBeComputed {
-        mSetShouldBeComputed = false
+      if let model = mSortedArray.mModel {
+        if mSetShouldBeComputed {
+          mSetShouldBeComputed = false
         // NSLog ("mSet \%d", mSet.count)
-        switch mSortedArray.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          mSet.intersectInPlace (v)
-          // NSLog ("mSet \%d", mSet.count)
-          if (mSet.count == 0) && (v.count > 0) {
-            mSet.insert (v [0])
-          }
-        //--- DEBUG :Dictionary of object indexes
-          /* var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-          for (index, object) in enumerate (v) {
-            objectDictionary [object] = index
-          }
-          for object in mSet {
-            if let index = objectDictionary [object] {
-              NSLog ("SELECTED : \%d, \%@", index, object)
+          switch model.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection :
+            return .multipleSelection
+          case .singleSelection (let v) :
+            mSet.intersectInPlace (v)
+            // NSLog ("mSet \%d", mSet.count)
+            if (mSet.count == 0) && (v.count > 0) {
+              mSet.insert (v [0])
             }
-          } */
-        //--- DEBUG end
-          return .singleSelection (mSet)
+          //--- DEBUG :Dictionary of object indexes
+            /* var objectDictionary = [ArtworkFileGenerationParameters : Int] ()
+            for (index, object) in enumerate (v) {
+              objectDictionary [object] = index
+            }
+            for object in mSet {
+              if let index = objectDictionary [object] {
+                NSLog ("SELECTED : \%d, \%@", index, object)
+              }
+            } */
+          //--- DEBUG end
+            return .singleSelection (mSet)
+          }
+        }else{
+          switch model.prop {
+          case .noSelection :
+            return .noSelection
+          case .multipleSelection :
+            return .multipleSelection
+          case .singleSelection :
+            return .singleSelection (mSet)
+          }
         }
       }else{
-        switch mSortedArray.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection :
-          return .singleSelection (mSet)
-        }
+        return .noSelection
       }
     }
   }
 
-  //···················································································································*
+  //····················································································································
 
   func setProp (value : Set<%!ELEMENT_TYPE_NAME%>) {
     mSet = value
     postEvent ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-       return NSIndexSet ()
-    case .singleSelection (let v) :
-      switch prop {
+    if let model = mSortedArray.mModel {
+      switch model.prop {
       case .noSelection, .multipleSelection :
-        return NSIndexSet ()
-      case .singleSelection (let vv) :
-      //--- Dictionary of object indexes
-        var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-        for (index, object) in v.enumerate () {
-          objectDictionary [object] = index
-        }
-        let indexSet = NSMutableIndexSet ()
-        for object in vv {
-          if let index = objectDictionary [object] {
-            indexSet.addIndex (index)
+         return NSIndexSet ()
+      case .singleSelection (let v) :
+        switch prop {
+        case .noSelection, .multipleSelection :
+          return NSIndexSet ()
+        case .singleSelection (let vv) :
+        //--- Dictionary of object indexes
+          var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+          for (index, object) in v.enumerate () {
+            objectDictionary [object] = index
           }
+          let indexSet = NSMutableIndexSet ()
+          for object in vv {
+            if let index = objectDictionary [object] {
+              indexSet.addIndex (index)
+            }
+          }
+          return indexSet
         }
-        return indexSet
       }
+    }else{
+      return NSIndexSet ()
     }
   }
 
-  //···················································································································*
-  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:                                            *
-  //···················································································································*
+  //····················································································································
+  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
+  //····················································································································
 
   func tableViewSelectionDidChange (notication : NSNotification) {
     // NSLog ("\%@ \%d", __FUNCTION__, mIgnoreTableViewSelectionDidChange)
-    if !mIgnoreTableViewSelectionDidChange {
-      switch mSortedArray.prop {
+    if let model = mSortedArray.mModel where !mIgnoreTableViewSelectionDidChange {
+      switch model.prop {
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let v) :
@@ -299,49 +260,53 @@ else
     }
   }
 
-  //···················································································································*
-  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:                                       *
-  //···················································································································*
+  //····················································································································
+  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
+  //····················································································································
 
   func tableView (tableView : NSTableView,
                   viewForTableColumn inTableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
  //   NSLog ("\%@, row \%d, column \%@", __FUNCTION__, inRowIndex, inTableColumn!.identifier)
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-      return nil
-    case .singleSelection (let v) :
-      let columnIdentifier = inTableColumn!.identifier
-      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
-      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
-      %
+    if let model = mSortedArray.mModel {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        return nil
+      case .singleSelection (let v) :
+        let columnIdentifier = inTableColumn!.identifier
+        let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+        let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
+        %
 for () in BOUND_COLUMNS
   do
     %if columnIdentifier == "%!mColumnName%" {\n%
-    %      if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
-    %        cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
-    %      }\n%
-    %      %
+    %          if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
+    %            cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
+    %          }\n%
+    %       %
   between %}else %
   after %}\n%
 end
-%     return result
+%       return result
+      }
+    }else{
+      return nil
     }
   }
 
-  //···················································································································*
+  //····················································································································
 
   func willReload () {
     mIgnoreTableViewSelectionDidChange = true
   }
 
-  //···················································································································*
+  //····················································································································
   
   func didReload () {
     mIgnoreTableViewSelectionDidChange = false
   }
 
-  //···················································································································*
+  //····················································································································
 
 }
 
@@ -363,9 +328,9 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
 
   private var mModel : %!MODEL_TYPE_NAME_2%?
  
-  //···················································································································*
-  //    init                                                                                                           *
-  //···················································································································*
+  //····················································································································
+  //    init    
+  //····················································································································
 
   override init () {
     super.init ()
@@ -377,32 +342,47 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
         case .multipleSelection :
           return .multipleSelection
         case .singleSelection (let selSet) :
-          switch self.sortedArray.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            return .multipleSelection
-          case .singleSelection (let v) :
-            var result = Array<%!ELEMENT_TYPE_NAME%> ()
-            for object in v {
-              if selSet.contains (object) {
-                result.append (object)
+         if let model = self.sortedArray.mModel {
+           switch model.prop {
+            case .noSelection :
+              return .noSelection
+            case .multipleSelection :
+              return .multipleSelection
+            case .singleSelection (let v) :
+              var result = Array<%!ELEMENT_TYPE_NAME%> ()
+              for object in v {
+                if selSet.contains (object) {
+                  result.append (object)
+                }
               }
+              return .singleSelection (result)
             }
-            return .singleSelection (result)
+           }else{
+            return .noSelection
           }
-        }
+       }
       }else{
         return .noSelection
       }
     }
   }
 
-  //···················································································································*
-  //    bind_modelAndView                                                                                              *
-  //···················································································································*
+  //····················································································································
+  //    Explorer
+  //····················································································································
 
-  func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%, tableViewArray:[EBTableView], file:String, line:Int) {
+  final func addExplorer (name : String,
+                          inout y : CGFloat,
+                          view : NSView) {
+  }
+  
+  //····················································································································
+  //    bind_modelAndView
+  //····················································································································
+
+  func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%,
+                          tableViewArray:[EBTableView],
+                          file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
     let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray)
@@ -453,38 +433,42 @@ class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
           sortedArray.setSortDescriptors (sortDescriptorArray)
         }
       }
-      sortedArray.addObserver (tableViewController, postEvent:true)
+      sortedArray.mModel?.addObserver (tableViewController, postEvent:true)
       selectedSet.addObserver (tableViewController, postEvent:true)
    //--- Set table view delegate and data source
       tableView.setDataSource (sortedArray)
       tableView.setDelegate (selectedSet)
-   }
+    }
   //--- Add observers
+    if let model = sortedArray.mModel {
 %
 for () in BOUND_COLUMNS do
-  %    model.addObserverOf_%!mObservablePropertyName% (sortedArray, postEvent:true)\n%
+  %      model.addObserverOf_%!mObservablePropertyName% (model, postEvent:true)\n%
 end
-%    model.addObserver (sortedArray, postEvent:true)
-    sortedArray.addObserver (selectedSet, postEvent:true)
+%    //model.addObserver (sortedArray, postEvent:true)
+      model.addObserver (selectedSet, postEvent:true)
+    }
     selectedSet.addObserver (selectedArray, postEvent:true)
   }
 
-  //···················································································································*
-  //    unbind_modelAndView                                                                                            *
-  //···················································································································*
+  //····················································································································
+  //    unbind_modelAndView
+  //····················································································································
 
   func unbind_modelAndView () {
+    if let sortedArrayModel = sortedArray.mModel {
 %
 for () in BOUND_COLUMNS do
-  %    mModel?.removeObserverOf_%!mObservablePropertyName% (sortedArray, postEvent:false)\n%
+  %      mModel?.removeObserverOf_%!mObservablePropertyName% (sortedArrayModel, postEvent:false)\n%
 end
-%    mModel?.removeObserver (sortedArray, postEvent:false)
+%    }
+//    mModel?.removeObserver (sortedArray, postEvent:false)
     if let selectedSet = mSelectedSet {
-      sortedArray.removeObserver (selectedSet, postEvent:false)
+      sortedArray.mModel?.removeObserver (selectedSet, postEvent:false)
     }
     mSelectedSet?.removeObserver (selectedArray, postEvent:false)
      for tableViewController in mTableViewControllerArray {
-      sortedArray.removeObserver (tableViewController, postEvent:false)
+      sortedArray.mModel?.removeObserver (tableViewController, postEvent:false)
       mSelectedSet?.removeObserver (tableViewController, postEvent:false)
     }
     mTableViewControllerArray = []
@@ -497,9 +481,9 @@ end
 case transientModel :
 case storedArrayModel :
 % 
-  //···················································································································*
-  //    add                                                                                                            *
-  //···················································································································*
+  //····················································································································
+  //    add
+  //····················································································································
 
    func add (inSender : NSButton?) {
     if let model = mModel, selectedSet = mSelectedSet {
@@ -519,12 +503,14 @@ case storedArrayModel :
     }
   }
 
-  //···················································································································*
-  //    remove                                                                                                         *
-  //···················································································································*
+  //····················································································································
+  //    remove
+  //····················································································································
 
   func remove (inSender : NSButton?) {
-    if let model = mModel, selectedSet = mSelectedSet {
+    if let model = mModel,
+           selectedSet = mSelectedSet,
+           sortedArrayModel = sortedArray.mModel {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
@@ -533,7 +519,7 @@ case storedArrayModel :
         case .noSelection, .multipleSelection :
           break
         case .singleSelection (let selectedSet_prop) :
-          switch sortedArray.prop {
+          switch sortedArrayModel.prop {
           case .noSelection, .multipleSelection :
             break
           case .singleSelection (let sortedArray_prop) :
@@ -602,9 +588,9 @@ case storedArrayModel :
 %
 case relationshipModel :
 % 
-  //···················································································································*
-  //    add                                                                                                            *
-  //···················································································································*
+  //····················································································································
+  //    add
+  //····················································································································
 
    func add (inSender : NSButton?) {
     if let model = mModel,
@@ -627,13 +613,14 @@ case relationshipModel :
     }
   }
 
-  //···················································································································*
-  //    remove                                                                                                         *
-  //···················································································································*
+  //····················································································································
+  //    remove
+  //····················································································································
 
   func remove (inSender : NSButton?) {
     if let model = mModel,
            owner = model.owner,
+           sortedArrayModel = sortedArray.mModel,
            managedObjectContext = owner.managedObjectContext (),
            selectedSet = mSelectedSet {
       switch model.prop {
@@ -644,7 +631,7 @@ case relationshipModel :
         case .noSelection, .multipleSelection :
           break
         case .singleSelection (let selectedSet_prop) :
-          switch sortedArray.prop {
+          switch sortedArrayModel.prop {
           case .noSelection, .multipleSelection :
             break
           case .singleSelection (let sortedArray_prop) :
@@ -712,7 +699,7 @@ case relationshipModel :
     }
   }
 %end%
-  //···················································································································*
+  //····················································································································
 
 }
 

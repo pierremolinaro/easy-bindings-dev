@@ -86,7 +86,7 @@ class EBManagedObject : EBObject {
   //    populateExplorerWindow                                                                                         *
   //···················································································································*
 
-  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+  func populateExplorerWindow (inout y : CGFloat, view : NSView) {
   }
 
   //···················································································································*
@@ -108,7 +108,7 @@ class EBManagedObject : EBObject {
  //   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
-    populateExplorerWindowWithRect (&y, view:view)
+    populateExplorerWindow (&y, view:view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
    // let rr = secondColumn (nameRect)

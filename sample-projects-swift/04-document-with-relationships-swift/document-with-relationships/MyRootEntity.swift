@@ -235,11 +235,11 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   }
 
   //···················································································································*
-  //    populateExplorerWindowWithRect                                                                                 *
+  //    populateExplorerWindow
   //···················································································································*
 
-  override func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
-    super.populateExplorerWindowWithRect (&y, view:view)
+  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+    super.populateExplorerWindow (&y, view:view)
     createEntryForToManyRelationshipNamed (
       "mNames",
       idx:mNames.mExplorerObjectIndex,
