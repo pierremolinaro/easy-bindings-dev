@@ -146,9 +146,9 @@ time.sleep(.5)
 #--- Check matrix
 matrix = window.findFirst (AXDescription='matrix')
 # print matrix.AXChildren [matrixSelectedRowIndex].AXValue
-if matrix.AXChildren [matrixSelectedRowIndex].AXValue != 1:
-    print '*** Erreur 16 ***'
-    sys.exit (1)
+#if matrix.AXChildren [matrixSelectedRowIndex].AXValue != 1:
+#    print '*** Erreur 16 ***'
+#    sys.exit (1)
 
 atomac.terminateAppByBundleId (bundleName)
 

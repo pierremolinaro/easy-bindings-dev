@@ -102,7 +102,7 @@ var gExplorerObjectIndex = 0
 
 @objc(EBSimpleClass) class EBSimpleClass : EBObject {
 
-  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+  func populateExplorerWindow (inout y : CGFloat, view : NSView) {
   }
 
   func clearObjectExplorer () {
