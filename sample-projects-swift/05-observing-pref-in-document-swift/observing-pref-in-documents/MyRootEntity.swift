@@ -74,10 +74,32 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   //···················································································································*
 
+  private var mSet = Set <MyRootEntity> ()
+
   override var prop : EBProperty <Array<MyRootEntity> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
+        let newSet : Set <MyRootEntity>
+        switch prop_cache! {
+        case .multipleSelection, .noSelection :
+          newSet = Set <MyRootEntity> ()
+        case .singleSelection (let array) :
+          newSet = Set (array)
+        }
+     //--- Removed object set
+        for managedObject : MyRootEntity in newSet.subtract (mSet) {
+          for observer in mObserversOf_docString {
+            managedObject.docString.removeObserver (observer, postEvent:true)
+          }
+        }
+      //--- Added object set
+        for managedObject : MyRootEntity in newSet.subtract (mSet) {
+          for observer in mObserversOf_docString {
+            managedObject.docString.addObserver (observer, postEvent:true)
+          }
+        }
+        mSet = newSet
       }
       if prop_cache == nil {
         prop_cache = .noSelection
