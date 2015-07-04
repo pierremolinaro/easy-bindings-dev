@@ -311,11 +311,32 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    populateExplorerWindowWithRect                                                                                 *
   //···················································································································*
 
-  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
-    super.populateExplorerWindowWithRect (&ioRect, view:view)
-    myString.explorer = createEntryForAttributeNamed ("myString", idx:myString.mExplorerObjectIndex, ioRect:&ioRect, view:view)
-    myEnumeration.explorer = createEntryForAttributeNamed ("myEnumeration", idx:myEnumeration.mExplorerObjectIndex, ioRect:&ioRect, view:view)
-    myColor.explorer = createEntryForAttributeNamed ("myColor", idx:myColor.mExplorerObjectIndex, ioRect:&ioRect, view:view)
+  override func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+    super.populateExplorerWindowWithRect (&y, view:view)
+    createEntryForPropertyNamed (
+      "myString",
+      idx:myString.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&myString.mObserverExplorer,
+      valueExplorer:&myString.explorer
+    )
+    createEntryForPropertyNamed (
+      "myEnumeration",
+      idx:myEnumeration.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&myEnumeration.mObserverExplorer,
+      valueExplorer:&myEnumeration.explorer
+    )
+    createEntryForPropertyNamed (
+      "myColor",
+      idx:myColor.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&myColor.mObserverExplorer,
+      valueExplorer:&myColor.explorer
+    )
   }
 
   //···················································································································*

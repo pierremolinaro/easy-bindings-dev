@@ -294,10 +294,17 @@ end
   //    populateExplorerWindowWithRect                                                                                 *
   //···················································································································*
 
-  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
-    super.populateExplorerWindowWithRect (&ioRect, view:view)
+  override func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+    super.populateExplorerWindowWithRect (&y, view:view)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.explorer = createEntryForAttributeNamed ("%!mStoredPropertyName%", idx:%!mStoredPropertyName%.mExplorerObjectIndex, ioRect:&ioRect, view:view)\n%
+  %    createEntryForPropertyNamed (\n%
+  %      "%!mStoredPropertyName%",\n%
+  %      idx:%!mStoredPropertyName%.mExplorerObjectIndex,\n%
+  %      y:&y,\n%
+  %      view:view,\n%
+  %      observerExplorer:&%!mStoredPropertyName%.mObserverExplorer,\n%
+  %      valueExplorer:&%!mStoredPropertyName%.explorer\n%
+  %    )\n%
 end
 %  }
 

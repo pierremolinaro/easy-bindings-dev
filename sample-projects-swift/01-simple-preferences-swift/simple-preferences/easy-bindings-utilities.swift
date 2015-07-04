@@ -42,76 +42,6 @@ func presentErrorWindow (file : String!,
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   NSDictionary extension                                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-/*extension NSDictionary {
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func readString (inKey : String) -> String {
-    var result = ""
-    let object : AnyObject? = valueForKey (inKey)
-    if let s = object as? String {
-      result = s
-    }
-    return result
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func readNSColor (inKey : String) -> NSColor {
-    var result = NSColor.blackColor ()
-    let object : AnyObject? = valueForKey (inKey)
-    if let d = object as? NSData {
-      let c : AnyObject? = NSUnarchiver.unarchiveObjectWithData (d)
-      if let color = c as? NSColor {
-        result = color
-      }
-    }
-    return result
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func readInt (inKey : String) -> Int {
-    var result : Int = 0
-    let object : AnyObject? = valueForKey (inKey)
-    if let d = object as? NSNumber {
-      result = d.integerValue
-    }
-    return result
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func readBool (inKey : String) -> Bool {
-    var result : Bool = false
-    let object : AnyObject? = valueForKey (inKey)
-    if let d = object as? NSNumber {
-      result = d.boolValue 
-    }
-    return result
-  }
-
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   NSArray extension                                                                                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extension NSArray {
-  func objectAtIndex (index:Int, file:String, line:Int) -> AnyObject! {
-    if index < 0 {
-      NSLog ("Negative index %d in '%@' line %d", index, file, line)
-    }else if index >= count {
-      NSLog ("index %d >= count %d in '%@' line %d", index, count, file, line)
-    }
-    return objectAtIndex (index)
-  }
-}
-*/
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Array<T> extension                                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -172,7 +102,7 @@ var gExplorerObjectIndex = 0
 
 @objc(EBSimpleClass) class EBSimpleClass : EBObject {
 
-  func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
   }
 
   func clearObjectExplorer () {
@@ -189,13 +119,30 @@ var gExplorerObjectIndex = 0
 //    createEntryForAttributeNamed                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-func secondColumn (inRect : NSRect) -> NSRect {
-  var r = inRect
-  r.origin.x += inRect.size.width + 2.0 ;
-  return r
+private let EXPLORER_ROW_HEIGHT : CGFloat = 20.0
+private let FIRST_COLUMN_WIDTH : CGFloat = 40.0
+private let SECOND_COLUMN_WIDTH : CGFloat = 220.0
+private let THIRD_COLUMN_WIDTH : CGFloat = 220.0
+
+let EXPLORER_ROW_WIDTH : CGFloat = FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH + THIRD_COLUMN_WIDTH
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func firstColumn (y : CGFloat) -> NSRect {
+  return NSRect (x:0.0, y:y, width:FIRST_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func secondColumn (y : CGFloat) -> NSRect {
+  return NSRect (x:FIRST_COLUMN_WIDTH, y:y, width:SECOND_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func thirdColumn (y : CGFloat) -> NSRect {
+  return NSRect (x:FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH, y:y, width:SECOND_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)
+}
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -221,22 +168,30 @@ func explorerIndexString (idx : Int) -> String {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-func createEntryForAttributeNamed (attributeName : String,
-                                   idx : Int,
-                                   inout ioRect : NSRect,
-                                   view : NSView) -> NSTextField {
+func createEntryForPropertyNamed (attributeName : String,
+                                  idx : Int,
+                                  inout y : CGFloat,
+                                  view : NSView,
+                                  inout observerExplorer : NSPopUpButton?,
+                                  inout valueExplorer : NSTextField?) {
   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-  let tf = NSTextField (frame:ioRect)
+//--- Explorer popup button
+  observerExplorer = NSPopUpButton (frame:firstColumn (y), pullsDown:true)
+  observerExplorer?.font = font
+  view.addSubview (observerExplorer!)
+//--- Property textfield
+  let tf = NSTextField (frame:secondColumn (y))
   tf.enabled = false
   tf.stringValue = explorerIndexString (idx) + attributeName
   tf.font = font
   view.addSubview (tf)
-  let tff = NSTextField (frame:secondColumn (ioRect))
-  tff.enabled = false
-  tff.font = font
-  view.addSubview (tff)
-  ioRect.origin.y += ioRect.size.height
-  return tff
+//--- Value textfield
+  valueExplorer = NSTextField (frame:thirdColumn (y))
+  valueExplorer?.enabled = false
+  valueExplorer?.font = font
+  view.addSubview (valueExplorer!)
+//--- Update rect origin
+  y += EXPLORER_ROW_HEIGHT
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -245,18 +200,18 @@ func createEntryForAttributeNamed (attributeName : String,
 
 func createEntryForToOneRelationshipNamed (relationshipName : String,
                                            idx : Int,
-                                           inout ioRect : NSRect,
+                                           inout y : CGFloat,
                                            view : NSView) -> NSButton {
   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-  let tf = NSTextField (frame:ioRect)
+  let tf = NSTextField (frame:secondColumn (y))
   tf.enabled = false
   tf.stringValue = explorerIndexString (idx) + relationshipName
   tf.font = font
   view.addSubview (tf)
-  let bt = NSButton (frame:secondColumn (ioRect))
+  let bt = NSButton (frame:thirdColumn (y))
   bt.font = font
   view.addSubview (bt)
-  ioRect.origin.y += ioRect.size.height
+  y += EXPLORER_ROW_HEIGHT
   return bt
 }
 
@@ -266,18 +221,18 @@ func createEntryForToOneRelationshipNamed (relationshipName : String,
 
 func createEntryForToManyRelationshipNamed (relationshipName : String,
                                             idx : Int,
-                                            inout ioRect : NSRect,
+                                            inout y : CGFloat,
                                             view : NSView) -> NSPopUpButton {
   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-  let tf = NSTextField (frame:ioRect)
+  let tf = NSTextField (frame:secondColumn (y))
   tf.enabled = false
   tf.stringValue = explorerIndexString (idx) + relationshipName
   tf.font = font
   view.addSubview (tf)
-  let bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
+  let bt = NSPopUpButton (frame:thirdColumn (y), pullsDown:true)
   bt.font = font
   view.addSubview (bt)
-  ioRect.origin.y += ioRect.size.height ;
+  y += EXPLORER_ROW_HEIGHT
   return bt
 }
 
@@ -378,6 +333,212 @@ extension NSTextView {
 
 func defaultValidationFunction<T> (proposedValue : T) -> EBValidationResult {
   return EBValidationResult.ok
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBProperty                                                                                                        *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+enum EBProperty<T> {
+  case noSelection
+  case singleSelection (T)
+  case multipleSelection
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+private func compareIntProperties (left:EBProperty<Int>,
+                                   right:EBProperty<Int>,
+                                   function : (Int, Int) -> Bool) -> EBProperty<Bool> {
+  switch left {
+  case .noSelection :
+    return .noSelection
+  case .multipleSelection :
+    switch right {
+    case .noSelection :
+      return .noSelection
+    case .multipleSelection, .singleSelection :
+      return .multipleSelection
+    }
+  case .singleSelection (let vg) :
+    switch right {
+    case .noSelection :
+      return .noSelection
+    case .multipleSelection :
+      return .multipleSelection
+    case .singleSelection (let vd) :
+      return .singleSelection (function (vg, vd))
+    }
+  }
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func > (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
+  return compareIntProperties (left, right: right, function: {$0 > $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func >= (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
+  return compareIntProperties (left, right: right, function: {$0 >= $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func < (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
+  return compareIntProperties (left, right: right, function: {$0 < $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func <= (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
+  return compareIntProperties (left, right: right, function: {$0 <= $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func == (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
+  return compareIntProperties (left, right: right, function: {$0 == $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func != (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
+  return compareIntProperties (left, right: right, function: {$0 != $1})
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+private func combineBoolProperties (left:EBProperty<Bool>,
+                                     right:EBProperty<Bool>,
+                                     function : (Bool, Bool) -> Bool) -> EBProperty<Bool> {
+  switch left {
+  case .noSelection :
+    return .noSelection
+  case .multipleSelection :
+    switch right {
+    case .noSelection :
+      return .noSelection
+    case .multipleSelection, .singleSelection :
+      return .multipleSelection
+    }
+  case .singleSelection (let vg) :
+    switch right {
+    case .noSelection :
+      return .noSelection
+    case .multipleSelection :
+      return .multipleSelection
+    case .singleSelection (let vd) :
+      return .singleSelection (function (vg, vd))
+    }
+  }
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func && (left:EBProperty<Bool>, right:EBProperty<Bool>) -> EBProperty<Bool> {
+  return combineBoolProperties (left, right: right, function: {$0 && $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func || (left:EBProperty<Bool>, right:EBProperty<Bool>) -> EBProperty<Bool> {
+  return combineBoolProperties (left, right: right, function: {$0 || $1})
+}
+
+//•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+
+func ^ (left:EBProperty<Bool>, right:EBProperty<Bool>) -> EBProperty<Bool> {
+  return combineBoolProperties (left, right: right, function: {$0 != $1})
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
+  switch operand {
+  case .noSelection :
+    return .noSelection
+  case .multipleSelection :
+    return .multipleSelection
+  case .singleSelection (let v) :
+    return .singleSelection (!v)
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBReadOnlyEnumPropertyProtocol                                                                                    *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(EBReadOnlyEnumPropertyProtocol) protocol EBReadOnlyEnumPropertyProtocol {
+
+  func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+
+  func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+
+  func count () -> Int
+
+  func rawValue () -> Int
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBEnumPropertyProtocol                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(EBEnumPropertyProtocol) protocol EBEnumPropertyProtocol : EBReadOnlyEnumPropertyProtocol {
+  func setFromRawValue (rawValue : Int)
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBAbstractProperty                                                                                                *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(EBAbstractProperty) class EBAbstractProperty : EBEvent {
+
+  private final var mObservers = Set <EBEvent> ()
+  
+  final func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+    mObservers.insert (inObserver)
+    upDateObserverExplorer ()
+    if inTrigger {
+      inObserver.postEvent ()
+    }
+  }
+ 
+  final func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+    mObservers.remove (inObserver)
+    upDateObserverExplorer ()
+    if inTrigger {
+      inObserver.postEvent ()
+    }
+  }
+
+  override func postEvent () {
+    for object in mObservers {
+      object.postEvent ()
+    }
+  }
+  
+  final var mObserverExplorer : NSPopUpButton? {
+    didSet {
+      upDateObserverExplorer ()
+    }
+  }
+  
+  final func upDateObserverExplorer () {
+    if let observerExplorer = mObserverExplorer {
+      observerExplorer.removeAllItems ()
+      observerExplorer.addItemWithTitle (String (mObservers.count))
+      observerExplorer.enabled = mObservers.count > 0
+      for object : EBEvent in mObservers {
+        let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
+        observerExplorer.addItemWithTitle (stringValue)
+/*        let item = observerExplorer.lastItem
+        item?.target = object
+        item?.action = "showObjectWindowFromExplorerButton:" */
+      }
+    }
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
