@@ -66,7 +66,7 @@ class Controller_EBMatrix_selectedIndex : EBOutletEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     if mOutlet.selectedRow != mObject.rawValue () {
       mOutlet.selectCellAtRow (mObject.rawValue (), column:0)
     }

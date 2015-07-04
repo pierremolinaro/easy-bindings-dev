@@ -77,7 +77,7 @@ final class Controller_EBColorWell_color : EBOutletEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)

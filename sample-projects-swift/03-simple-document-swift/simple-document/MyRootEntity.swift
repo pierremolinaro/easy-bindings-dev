@@ -12,7 +12,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var mObserversOf_myString = Set<EBEvent> ()
 
-  func addObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  func removeObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -40,7 +40,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var mObserversOf_myEnumeration = Set<EBEvent> ()
 
-  func addObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myEnumeration.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -52,7 +52,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  func removeObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_myEnumeration (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myEnumeration.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -68,7 +68,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var mObserversOf_myColor = Set<EBEvent> ()
 
-  func addObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -80,7 +80,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  func removeObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -313,9 +313,9 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    myString.explorer = createEntryForAttributeNamed ("myString", ioRect:&ioRect, view:view)
-    myEnumeration.explorer = createEntryForAttributeNamed ("myEnumeration", ioRect:&ioRect, view:view)
-    myColor.explorer = createEntryForAttributeNamed ("myColor", ioRect:&ioRect, view:view)
+    myString.explorer = createEntryForAttributeNamed ("myString", idx:myString.mExplorerObjectIndex, ioRect:&ioRect, view:view)
+    myEnumeration.explorer = createEntryForAttributeNamed ("myEnumeration", idx:myEnumeration.mExplorerObjectIndex, ioRect:&ioRect, view:view)
+    myColor.explorer = createEntryForAttributeNamed ("myColor", idx:myColor.mExplorerObjectIndex, ioRect:&ioRect, view:view)
   }
 
   //···················································································································*

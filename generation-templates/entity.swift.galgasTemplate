@@ -14,7 +14,7 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
-  func addObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -26,7 +26,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  func removeObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -167,6 +167,7 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
     didSet {
       if oldValue != mValue {
         mSet = Set (mValue)
+        let oldSet = Set (oldValue)
       //--- Register old value in undo manager
         owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
@@ -174,9 +175,7 @@ class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArr
           owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
         }
       //--- Removed object set
-        var removedObjectSet : Set<%![mRelationshipType swiftTypeName]%> = Set (oldValue)
-        removedObjectSet.subtractInPlace (mValue)
-        for managedObject : %![mRelationshipType swiftTypeName]% in removedObjectSet {
+        for managedObject : %![mRelationshipType swiftTypeName]% in oldSet.subtract (mSet) {
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
@@ -187,9 +186,7 @@ end
 %          managedObject.%!mOppositeRelationshipName%.owner = nil ;
         }
       //--- Added object set
-        var addedObjectSet : Set<%![mRelationshipType swiftTypeName]%> = Set (mValue)
-        addedObjectSet.subtractInPlace (oldValue)
-        for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
+        for managedObject : %![mRelationshipType swiftTypeName]% in mSet.subtract (oldSet) {
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
@@ -257,7 +254,19 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstractProperty {
-  var explorer : NSButton?
+  var explorer : NSButton? {
+    didSet {
+      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+        switch prop {
+        case .noSelection, .multipleSelection :
+          break ;
+        case .singleSelection (let v) :
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (v, button:unwrappedExplorer)
+        }
+      }
+    }
+  }
+
   weak var owner : %!ENTITY_NAME%? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
@@ -435,13 +444,13 @@ end
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.explorer = createEntryForAttributeNamed ("%!mStoredPropertyName%", ioRect:&ioRect, view:view)\n%
+  %    %!mStoredPropertyName%.explorer = createEntryForAttributeNamed ("%!mStoredPropertyName%", idx:%!mStoredPropertyName%.mExplorerObjectIndex, ioRect:&ioRect, view:view)\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    %!mToManyRelationshipName%.explorer = createEntryForToManyRelationshipNamed ("%!mToManyRelationshipName%", ioRect: &ioRect, view: view)\n%
+%    %!mToManyRelationshipName%.explorer = createEntryForToManyRelationshipNamed ("%!mToManyRelationshipName%", idx:%!mToManyRelationshipName%.mExplorerObjectIndex, ioRect: &ioRect, view: view)\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-%    %!mToOneRelationshipName%.explorer = createEntryForToOneRelationshipNamed ("%!mToOneRelationshipName%", ioRect: &ioRect, view: view)\n%
+%    %!mToOneRelationshipName%.explorer = createEntryForToOneRelationshipNamed ("%!mToOneRelationshipName%", idx:%!mToOneRelationshipName%.mExplorerObjectIndex, ioRect: &ioRect, view: view)\n%
 end%  }
 
   //···················································································································*

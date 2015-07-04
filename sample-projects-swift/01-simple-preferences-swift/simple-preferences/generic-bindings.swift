@@ -68,7 +68,7 @@ extension NSView {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     let result : EBProperty <Bool>
     if let computeFunction = mComputeFunction {
       result = computeFunction ()
@@ -184,7 +184,7 @@ extension NSControl {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     let result : EBProperty <Bool>
     if let computeFunction = mComputeFunction {
       result = computeFunction ()

@@ -24,7 +24,14 @@ end%
     mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
-%  //--- %!lkey.string%\n%
+%    bind_property_%!lkey.string% (model)\n%
+end
+end%  }
+
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+if not [mType isEntityType] then
+%  //···················································································································*\n\n% 
+%  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
 %    model.addObserverOf_%!lkey.string% (%!lkey.string%, postEvent:true)\n%
 %    model.addObserver (%!lkey.string%, postEvent:true)\n%
 %    %!lkey.string%.readModelFunction = {\n%
@@ -91,8 +98,9 @@ if not [mType isEntityType] then
 %        return false\n%
 %      }\n%
 %    }\n%
+%  }\n\n%
 end
-end%  }
+end%
 
   //···················································································································* 
   //   UNBIND SELECTION                                                                                                *

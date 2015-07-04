@@ -12,7 +12,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var mObserversOf_docBool = Set<EBEvent> ()
 
-  func addObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  func removeObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -158,7 +158,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    docBool.explorer = createEntryForAttributeNamed ("docBool", ioRect:&ioRect, view:view)
+    docBool.explorer = createEntryForAttributeNamed ("docBool", idx:docBool.mExplorerObjectIndex, ioRect:&ioRect, view:view)
   }
 
   //···················································································································*
