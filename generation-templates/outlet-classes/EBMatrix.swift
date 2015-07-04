@@ -39,17 +39,17 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_EBMatrix_selectedIndex)
-class Controller_EBMatrix_selectedIndex : EBOutletEvent {
+final class Controller_EBMatrix_selectedIndex : EBSimpleController {
 
-  var mObject : EBEnumPropertyProtocol
-  var mOutlet: EBMatrix
+  private let mObject : EBEnumPropertyProtocol
+  private let mOutlet: EBMatrix
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   init (object : EBEnumPropertyProtocol, outlet : EBMatrix, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
     mOutlet.continuous = true

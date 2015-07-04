@@ -24,6 +24,7 @@ enum EBDocumentCompressionEnum {
 
 class EBManagedDocument : NSDocument, EBUserClassName {
   var mRootObject : EBManagedObject?
+
   private var mReadMetadataStatus : UInt8 = 0
   private var mMetadataDictionary : NSMutableDictionary = [:]
   private var mManagedObjectContext : EBManagedObjectContext
@@ -245,7 +246,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       format:nil
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
-     //  NSLog (@"mReadMetadataDictionary \%@", mReadMetadataDictionary) ;
+     //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
   //--- Read data dictionary
     let dataFormat = dataScanner.parseByte ()
     switch dataFormat {
@@ -253,7 +254,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       let data = dataScanner.parseAutosizedData ()
       try readManagedObjectsFromData (data)
     default:
-      NSLog ("unknowm data format: \%u", dataFormat)
+      NSLog ("unknowm data format: %u", dataFormat)
     }
 /*    BOOL legacyDataWithoutConverterError = NO ;
     if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed
@@ -369,7 +370,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
     if logReadFileDuration {
       let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-      NSLog ("Dictionary array: +\%g s", timeTaken)
+      NSLog ("Dictionary array: +%g s", timeTaken)
     }
     let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)
     var progress : EBDocumentReadProgress?
@@ -391,7 +392,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       }
       if self.logReadFileDuration {
         let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-        NSLog ("Creation of \%d objects: +\%g s", objectArray.count, timeTaken)
+        NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
       }
       var idx = 0
       for d in dictionaryArray {
@@ -403,7 +404,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       }
       if self.logReadFileDuration {
         let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-        NSLog ("Read: +\%g s", timeTaken)
+        NSLog ("Read: +%g s", timeTaken)
       }
     //--- Set root object
       if let rootObject = self.mRootObject {
@@ -459,9 +460,76 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //···················································································································*
 
   @IBAction func showObjectExplorerWindow (AnyObject!) {
-    mRootObject?.showExplorerWindow ()
+    if mExplorerWindow == nil {
+      createAndPopulateObjectExplorerWindow ()
+    }
+    mExplorerWindow?.makeKeyAndOrderFront (nil)
+//    mRootObject?.showExplorerWindow ()
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //   createAndPopulateObjectExplorerWindow                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func createAndPopulateObjectExplorerWindow () {
+  //-------------------------------------------------- Create Window
+    let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
+    mExplorerWindow = NSWindow (
+      contentRect:r,
+      styleMask:NSTitledWindowMask | NSClosableWindowMask,
+      backing:NSBackingStoreType.Buffered,
+      `defer`:true,
+      screen:nil
+    )
+  //-------------------------------------------------- Adding properties
+    let view = NSView (frame:r)
+    var y : CGFloat = 0.0
+    populateExplorerWindowWithRect (&y, view:view)
+  //-------------------------------------------------- Finish Window construction
+  //--- Resize View
+    let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    view.frame = viewFrame
+  //--- Set content size
+    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
+  //--- Set close button as 'remove window' button
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = self
+    closeButton!.action = "deleteWindowAction:"
+  //--- Set window title
+    mExplorerWindow!.title = "Document " + className
+  //--- Add Scroll view
+    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    let sw = NSScrollView (frame:frame)
+    sw.hasVerticalScroller = true
+    sw.documentView = view
+    mExplorerWindow!.contentView = sw
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    populateExplorerWindow                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mExplorerWindow : NSWindow?
+  var mValueExplorer : NSButton? {
+    didSet {
+      if let unwrappedExplorer = mValueExplorer {
+        updateManagedObjectToOneRelationshipDisplay (mRootObject, button:unwrappedExplorer)
+      }
+    }
+  }
+
+  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+    if let rootObject = mRootObject {
+      createEntryForToOneRelationshipNamed (
+        "Root",
+        idx:rootObject.mExplorerObjectIndex,
+        y: &y,
+        view: view,
+        valueExplorer:&mValueExplorer
+      )
+    }
+  }
+  
   //···················································································································*
   //   removeWindowController                                                                                          *
   //···················································································································*
@@ -489,13 +557,13 @@ class EBManagedDocument : NSDocument, EBUserClassName {
 
 extension NSMutableData {
   func writeSignature (inout trace: String) {
-    trace += String (format:"\%03lu \%03lu ", length / 1000, length \% 1000)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
       var byte : UInt8 = UInt8 (c)
       appendBytes (&byte, length:1)
-      trace += String (format:"\%02hhX ", byte)
+      trace += String (format:"%02hhX ", byte)
     }
-    trace += "\\n"
+    trace += "\n"
   }
 
   //···················································································································*
@@ -503,27 +571,27 @@ extension NSMutableData {
   func writeAutosizedData (inData: NSData,
                            inout trace: String) {
     writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
-    trace += String (format:"\%03lu \%03lu ", length / 1000, length \% 1000)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     appendData (inData)
-    trace += "(data, length \(inData.length))\\n"
+    trace += "(data, length \(inData.length))\n"
   }
 
   //···················································································································*
 
   func writeByte (inByte: UInt8,
                   inout trace: String) {
-    trace += String (format:"\%03lu \%03lu ", length / 1000, length \% 1000)
-    trace += String (format:"\%02hhX ", inByte)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace += String (format:"%02hhX ", inByte)
     var byte = inByte
     appendBytes (&byte, length:1)
-    trace += "\\n"
+    trace += "\n"
   }
 
   //···················································································································*
 
   func writeAutosizedUnsigned (inValue: UInt64,
                                inout trace: String) {
-    trace += String (format:"\%03lu \%03lu ", length / 1000, length \% 1000)
+    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace += "U "
     var value = inValue
     repeat{
@@ -532,10 +600,10 @@ extension NSMutableData {
       if (value != 0) {
         byte |= 0x80
       }
-      trace += String (format:"\%02hhX ", byte)
+      trace += String (format:"%02hhX ", byte)
       appendBytes (&byte, length:1)
     }while value != 0
-    trace += "\\n"
+    trace += "\n"
   }
 
 }
@@ -591,7 +659,7 @@ class EBDocumentReadProgress {
       )
       let ts = NSTextField (frame:ts_r)
       ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
-      ts.stringValue = String (format:"Opening \%@…", title)
+      ts.stringValue = String (format:"Opening %@…", title)
       ts.bezeled = false
       ts.bordered = false
       ts.editable = false

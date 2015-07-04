@@ -70,7 +70,8 @@ import Cocoa
 //   Controller Controller_EBReadOnlyTextField_value                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBReadOnlyTextField_value) class Controller_EBReadOnlyTextField_value : EBOutletEvent {
+@objc(Controller_EBReadOnlyTextField_value)
+final class Controller_EBReadOnlyTextField_value : EBSimpleController {
 
   private var mOutlet : EBTextFieldObserver
   private var mObject : EBReadOnlyProperty_String
@@ -80,7 +81,7 @@ import Cocoa
   init (object:EBReadOnlyProperty_String, outlet : EBTextFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line:line, errorMessage:"the EBTextFieldObserver outlet has a formatter")
     }

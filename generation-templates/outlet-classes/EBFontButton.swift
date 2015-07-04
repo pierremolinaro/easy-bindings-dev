@@ -82,17 +82,17 @@ import Cocoa
 //   Controller_EBFontButton_fontValue                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBFontButton_fontValue : EBOutletEvent {
+@objc(Controller_EBFontButton_fontValue) class Controller_EBFontButton_fontValue : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_NSFont
-  var mOutlet : EBFontButton
+  private let mObject : EBReadWriteProperty_NSFont
+  private let mOutlet : EBFontButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object : EBReadWriteProperty_NSFont, outlet : EBFontButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mObject.addObserver (self, postEvent:true)
   }
 

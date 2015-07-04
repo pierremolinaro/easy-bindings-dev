@@ -48,10 +48,10 @@ import Cocoa
 //   Controller Controller_EBTableView_controller                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBTableView_controller) class Controller_EBTableView_controller : EBOutletEvent {
+@objc(Controller_EBTableView_controller) final class Controller_EBTableView_controller : EBOutletEvent {
 
-  private var mDelegate : EBTableViewDelegate
-  private var mTableView : EBTableView
+  private let mDelegate : EBTableViewDelegate
+  private let mTableView : EBTableView
 
   //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 

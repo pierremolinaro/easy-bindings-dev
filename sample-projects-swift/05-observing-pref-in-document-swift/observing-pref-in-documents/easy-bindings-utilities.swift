@@ -116,6 +116,106 @@ var gExplorerObjectIndex = 0
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBSimpleController
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class EBSimpleController : EBOutletEvent {
+  private let mPrivateObjects : [EBAbstractProperty]
+  private let mPrivateOutlet : NSView
+  private var mExplorerWindow : NSWindow?
+  
+  //····················································································································
+
+  init (objects : [EBAbstractProperty], outlet : NSView) {
+    mPrivateObjects = objects
+    mPrivateOutlet = outlet
+  }
+  
+  //····················································································································
+
+  func showExplorerWindowAction (inSender : AnyObject) {
+    if mExplorerWindow == nil {
+      createAndPopulateObjectExplorerWindow ()
+    }
+    mExplorerWindow?.makeKeyAndOrderFront (inSender)
+  }
+
+  //···················································································································*
+  //   createAndPopulateObjectExplorerWindow                                                                           *
+  //···················································································································*
+
+  func createAndPopulateObjectExplorerWindow () {
+  //-------------------------------------------------- Create Window
+    let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
+    mExplorerWindow = NSWindow (
+      contentRect:r,
+      styleMask:NSTitledWindowMask | NSClosableWindowMask,
+      backing:NSBackingStoreType.Buffered,
+      `defer`:true,
+      screen:nil
+    )
+  //-------------------------------------------------- Adding properties
+    let view = NSView (frame:r)
+    var y : CGFloat = 0.0
+    for object in mPrivateObjects {
+      createEntryForObjectNamed (
+        "object",
+        object:object,
+        y:&y,
+        view:view
+      )
+    }
+    createEntryForOutletNamed (
+     "Outlet",
+      outlet:mPrivateOutlet,
+      y:&y,
+      view:view
+    )
+  //-------------------------------------------------- Finish Window construction
+  //--- Resize View
+    let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    view.frame = viewFrame
+  //--- Set content size
+    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
+  //--- Set close button as 'remove window' button
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = self
+    closeButton!.action = "deleteWindowAction:"
+  //--- Set window title
+    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
+    mExplorerWindow!.title = windowTitle
+  //--- Add Scroll view
+    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    let sw = NSScrollView (frame:frame)
+    sw.hasVerticalScroller = true
+    sw.documentView = view
+    mExplorerWindow!.contentView = sw
+  }
+
+  //···················································································································*
+  //   deleteWindowAction                                                                                              *
+  //···················································································································*
+
+  final func deleteWindowAction (AnyObject) {
+    clearObjectExplorer ()
+  }
+
+  //···················································································································*
+  //   clearObjectExplorer                                                                                             *
+  //···················································································································*
+
+  final func clearObjectExplorer () {
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = nil
+    mExplorerWindow?.orderOut (nil)
+    mExplorerWindow = nil
+  }
+
+  //···················································································································*
+
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    createEntryForAttributeNamed                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -181,15 +281,71 @@ func createEntryForPropertyNamed (attributeName : String,
   view.addSubview (observerExplorer!)
 //--- Property textfield
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = false
+  tf.enabled = true
+  tf.editable = false
   tf.stringValue = explorerIndexString (idx) + attributeName
   tf.font = font
   view.addSubview (tf)
 //--- Value textfield
   valueExplorer = NSTextField (frame:thirdColumn (y))
-  valueExplorer?.enabled = false
+  valueExplorer?.enabled = true
+  valueExplorer?.editable = false
   valueExplorer?.font = font
   view.addSubview (valueExplorer!)
+//--- Update rect origin
+  y += EXPLORER_ROW_HEIGHT
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    createEntryForOutletNamed
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func createEntryForOutletNamed (name : String,
+                                outlet : NSView,
+                                inout y : CGFloat,
+                                view : NSView) {
+  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+//--- Property textfield
+  let tf = NSTextField (frame:secondColumn (y))
+  tf.enabled = true
+  tf.editable = false
+  tf.stringValue = name
+  tf.font = font
+  view.addSubview (tf)
+//--- Value textfield
+  let vtf = NSTextField (frame:thirdColumn (y))
+  vtf.enabled = true
+  vtf.editable = false
+  vtf.stringValue = outlet.className
+  vtf.font = font
+  view.addSubview (vtf)
+//--- Update rect origin
+  y += EXPLORER_ROW_HEIGHT
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    createEntryForObjectNamed
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func createEntryForObjectNamed (name : String,
+                                object : EBObject,
+                                inout y : CGFloat,
+                                view : NSView) {
+  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+//--- Property textfield
+  let tf = NSTextField (frame:secondColumn (y))
+  tf.enabled = true
+  tf.editable = false
+  tf.stringValue = name
+  tf.font = font
+  view.addSubview (tf)
+//--- Value textfield
+  let vtf = NSTextField (frame:thirdColumn (y))
+  vtf.enabled = true
+  vtf.editable = false
+  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + _stdlib_getDemangledTypeName (object)
+  vtf.font = font
+  view.addSubview (vtf)
 //--- Update rect origin
   y += EXPLORER_ROW_HEIGHT
 }
@@ -201,18 +357,19 @@ func createEntryForPropertyNamed (attributeName : String,
 func createEntryForToOneRelationshipNamed (relationshipName : String,
                                            idx : Int,
                                            inout y : CGFloat,
-                                           view : NSView) -> NSButton {
+                                           view : NSView,
+                                           inout valueExplorer : NSButton?) {
   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = false
+  tf.enabled = true
+  tf.editable = false
   tf.stringValue = explorerIndexString (idx) + relationshipName
   tf.font = font
   view.addSubview (tf)
-  let bt = NSButton (frame:thirdColumn (y))
-  bt.font = font
-  view.addSubview (bt)
+  valueExplorer = NSButton (frame:thirdColumn (y))
+  valueExplorer?.font = font
+  view.addSubview (valueExplorer!)
   y += EXPLORER_ROW_HEIGHT
-  return bt
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -222,18 +379,19 @@ func createEntryForToOneRelationshipNamed (relationshipName : String,
 func createEntryForToManyRelationshipNamed (relationshipName : String,
                                             idx : Int,
                                             inout y : CGFloat,
-                                            view : NSView) -> NSPopUpButton {
+                                            view : NSView,
+                                            inout valueExplorer : NSPopUpButton?) {
   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = false
+  tf.enabled = true
+  tf.editable = false
   tf.stringValue = explorerIndexString (idx) + relationshipName
   tf.font = font
   view.addSubview (tf)
-  let bt = NSPopUpButton (frame:thirdColumn (y), pullsDown:true)
-  bt.font = font
-  view.addSubview (bt)
+  valueExplorer = NSPopUpButton (frame:thirdColumn (y), pullsDown:true)
+  valueExplorer?.font = font
+  view.addSubview (valueExplorer!)
   y += EXPLORER_ROW_HEIGHT
-  return bt
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -499,7 +657,7 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
   
   final func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObservers.insert (inObserver)
-    upDateObserverExplorer ()
+    updateObserverExplorer ()
     if inTrigger {
       inObserver.postEvent ()
     }
@@ -507,7 +665,7 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
  
   final func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObservers.remove (inObserver)
-    upDateObserverExplorer ()
+    updateObserverExplorer ()
     if inTrigger {
       inObserver.postEvent ()
     }
@@ -521,11 +679,11 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
   
   final var mObserverExplorer : NSPopUpButton? {
     didSet {
-      upDateObserverExplorer ()
+      updateObserverExplorer ()
     }
   }
   
-  final func upDateObserverExplorer () {
+  final func updateObserverExplorer () {
     if let observerExplorer = mObserverExplorer {
       observerExplorer.removeAllItems ()
       observerExplorer.addItemWithTitle (String (mObservers.count))
@@ -533,9 +691,9 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
       for object : EBEvent in mObservers {
         let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
         observerExplorer.addItemWithTitle (stringValue)
-/*        let item = observerExplorer.lastItem
+        let item = observerExplorer.lastItem
         item?.target = object
-        item?.action = "showObjectWindowFromExplorerButton:" */
+        item?.action = "showExplorerWindowAction:"
       }
     }
   }

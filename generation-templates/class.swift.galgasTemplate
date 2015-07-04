@@ -303,7 +303,7 @@ end
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&%!mStoredPropertyName%.mObserverExplorer,\n%
-  %      valueExplorer:&%!mStoredPropertyName%.explorer\n%
+  %      valueExplorer:&%!mStoredPropertyName%.mValueExplorer\n%
   %    )\n%
 end
 %  }
@@ -314,7 +314,8 @@ end
 
   override func clearObjectExplorer () {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.explorer = nil\n%
+%    %!mStoredPropertyName%.mObserverExplorer = nil\n%
+%    %!mStoredPropertyName%.mValueExplorer = nil\n%
 end
 %    super.clearObjectExplorer ()
   }

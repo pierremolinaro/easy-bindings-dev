@@ -5,7 +5,7 @@ enum MonEnumeration {premier, deuxieme, troisieme}
 
 entity MyRootEntity {
   property String myString default "Hello" ;
-  property MonEnumeration myEnumeration default deuxieme ;
+#  property MonEnumeration myEnumeration default deuxieme ;
   property Color myColor default yellowColor ;
   
   transient String myStringMaj dependsFrom self.myString ;
@@ -24,7 +24,7 @@ document PMDocument root MyRootEntity {
 
   outlet EBTextFieldObserver myTextConcatField $valueObserver root.myStringConcat ;
 
-  outlet EBMatrix myMatrix $selectedIndex root.myEnumeration  ;
+#  outlet EBMatrix myMatrix $selectedIndex root.myEnumeration  ;
 
   outlet EBColorWell myColorWell $color root.myColor {sendContinously : no} ;
   

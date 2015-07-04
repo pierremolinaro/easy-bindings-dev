@@ -46,9 +46,9 @@ class EBReadOnlyProperty_MonEnumeration : EBAbstractProperty, EBReadOnlyEnumProp
 class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
 
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.descriptionForExplorer ()
+      mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
     }
   }
 
@@ -60,7 +60,7 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
   private var mValue : MonEnumeration {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.descriptionForExplorer ()
+        mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
         postEvent ()
       }

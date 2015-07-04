@@ -60,17 +60,18 @@ import Cocoa
 //   Controller_EBReadOnlyIntField_readOnlyValue                                                                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBReadOnlyIntField_readOnlyValue) class Controller_EBReadOnlyIntField_readOnlyValue : EBOutletEvent {
+@objc(Controller_EBReadOnlyIntField_readOnlyValue)
+final class Controller_EBReadOnlyIntField_readOnlyValue : EBSimpleController {
 
-  var mObject : EBReadOnlyProperty_Int
-  var mOutlet : EBIntFieldObserver
+  private let mObject : EBReadOnlyProperty_Int
+  private let mOutlet : EBIntFieldObserver
 
   //-------------------------------------------------------------------------------------------------------------------*
 
   init (object : EBReadOnlyProperty_Int, outlet : EBIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     if autoFormatter {
       let formatter = NSNumberFormatter ()
       mOutlet.formatter = formatter

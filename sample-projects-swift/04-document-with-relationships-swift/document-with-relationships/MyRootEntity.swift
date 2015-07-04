@@ -79,14 +79,14 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   weak var owner : MyRootEntity?
 
-  var explorer : NSPopUpButton? {
+  var mValueExplorer : NSPopUpButton? {
     didSet {
-      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+      if let unwrappedExplorer = mValueExplorer {
         switch prop {
         case .noSelection, .multipleSelection :
           break ;
         case .singleSelection (let v) :
-          unwrappedOwner.updateManagedObjectToManyRelationshipDisplay (v, popUpButton:unwrappedExplorer)
+          updateManagedObjectToManyRelationshipDisplay (v, popUpButton:unwrappedExplorer)
         }
       }
     }
@@ -127,8 +127,8 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
       //--- Register old value in undo manager
         owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
-        if explorer != nil {
-          owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
+        if let valueExplorer = mValueExplorer {
+          updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
         }
       //--- Removed object set
         for managedObject : NameEntity in oldSet.subtract (mSet) {
@@ -240,7 +240,13 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   override func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
     super.populateExplorerWindowWithRect (&y, view:view)
-    mNames.explorer = createEntryForToManyRelationshipNamed ("mNames", idx:mNames.mExplorerObjectIndex, y: &y, view: view)
+    createEntryForToManyRelationshipNamed (
+      "mNames",
+      idx:mNames.mExplorerObjectIndex,
+      y: &y,
+      view: view,
+      valueExplorer:&mNames.mValueExplorer
+    )
   }
 
   //···················································································································*
@@ -248,7 +254,8 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   //···················································································································*
 
   override func clearObjectExplorer () {
-    mNames.explorer = nil
+    mNames.mObserverExplorer = nil
+    mNames.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 

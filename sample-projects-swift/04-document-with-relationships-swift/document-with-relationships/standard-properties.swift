@@ -79,9 +79,9 @@ class EBPropertyProxy_Int : EBReadWriteProperty_Int {
 class EBStoredProperty_Int : EBReadWriteProperty_Int {
   weak var undoManager : NSUndoManager?
 
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = mValue.description
     }
   }
 
@@ -93,7 +93,7 @@ class EBStoredProperty_Int : EBReadWriteProperty_Int {
   private var mValue : Int {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.description
+        mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue))
         postEvent ()
       }
@@ -281,9 +281,9 @@ class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
 class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
   weak var undoManager : NSUndoManager?
 
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = mValue.description
     }
   }
 
@@ -295,7 +295,7 @@ class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
   private var mValue : Bool {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.description
+        mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (bool:oldValue))
         postEvent ()
       }
@@ -483,9 +483,9 @@ class EBPropertyProxy_Double : EBReadWriteProperty_Double {
 class EBStoredProperty_Double : EBReadWriteProperty_Double {
   weak var undoManager : NSUndoManager?
 
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = mValue.description
     }
   }
 
@@ -497,7 +497,7 @@ class EBStoredProperty_Double : EBReadWriteProperty_Double {
   private var mValue : Double {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.description
+        mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (double:oldValue))
         postEvent ()
       }
@@ -685,9 +685,9 @@ class EBPropertyProxy_String : EBReadWriteProperty_String {
 class EBStoredProperty_String : EBReadWriteProperty_String {
   weak var undoManager : NSUndoManager?
   
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue
+      mValueExplorer?.stringValue = mValue
     }
   }
 
@@ -699,7 +699,7 @@ class EBStoredProperty_String : EBReadWriteProperty_String {
   private var mValue : String {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue
+        mValueExplorer?.stringValue = mValue
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
       }
@@ -888,9 +888,9 @@ class EBPropertyProxy_NSColor : EBReadWriteProperty_NSColor {
 class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
   weak var undoManager : NSUndoManager?
   
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = mValue.description
     }
   }
 
@@ -902,7 +902,7 @@ class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
   private var mValue : NSColor {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.description
+        mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
       }
@@ -1097,9 +1097,9 @@ class EBPropertyProxy_NSDate : EBReadWriteProperty_NSDate {
 class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
   weak var undoManager : NSUndoManager?
   
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = mValue.description
     }
   }
 
@@ -1111,7 +1111,7 @@ class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
   private var mValue : NSDate {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.description
+        mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
       }
@@ -1300,9 +1300,9 @@ class EBPropertyProxy_NSFont : EBReadWriteProperty_NSFont {
 class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
   weak var undoManager : NSUndoManager?
   
-  var explorer : NSTextField? {
+  var mValueExplorer : NSTextField? {
     didSet {
-      explorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = mValue.description
     }
   }
 
@@ -1314,7 +1314,7 @@ class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
   private var mValue : NSFont {
     didSet {
       if mValue != oldValue {
-        explorer?.stringValue = mValue.description
+        mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
       }

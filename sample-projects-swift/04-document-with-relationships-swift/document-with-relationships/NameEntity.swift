@@ -145,14 +145,14 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
-  var explorer : NSButton? {
+  var mValueExplorer : NSButton? {
     didSet {
-      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+      if let unwrappedExplorer = mValueExplorer {
         switch prop {
         case .noSelection, .multipleSelection :
           break ;
         case .singleSelection (let v) :
-          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (v, button:unwrappedExplorer)
+          updateManagedObjectToOneRelationshipDisplay (v, button:unwrappedExplorer)
         }
       }
     }
@@ -160,8 +160,8 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 
   weak var owner : NameEntity? {
     didSet {
-      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
-        unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (propval, button : unwrappedExplorer)
+      if let unwrappedExplorer = mValueExplorer {
+        updateManagedObjectToOneRelationshipDisplay (propval, button:unwrappedExplorer)
       }
     }
   }
@@ -172,8 +172,8 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
       //--- Register old value in undo manager
         unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
-        if let unwrappedExplorer = explorer {
-          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (mValue, button : unwrappedExplorer)
+        if let unwrappedExplorer = mValueExplorer {
+          updateManagedObjectToOneRelationshipDisplay (mValue, button:unwrappedExplorer)
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
@@ -289,7 +289,7 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
       y:&y,
       view:view,
       observerExplorer:&name.mObserverExplorer,
-      valueExplorer:&name.explorer
+      valueExplorer:&name.mValueExplorer
     )
     createEntryForPropertyNamed (
       "aValue",
@@ -297,9 +297,15 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
       y:&y,
       view:view,
       observerExplorer:&aValue.mObserverExplorer,
-      valueExplorer:&aValue.explorer
+      valueExplorer:&aValue.mValueExplorer
     )
-    mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", idx:mRoot.mExplorerObjectIndex, y: &y, view: view)
+    createEntryForToOneRelationshipNamed (
+      "mRoot",
+      idx:mRoot.mExplorerObjectIndex,
+      y: &y,
+      view: view,
+      valueExplorer:&mRoot.mValueExplorer
+    )
   }
 
   //···················································································································*
@@ -307,9 +313,12 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //···················································································································*
 
   override func clearObjectExplorer () {
-    name.explorer = nil
-    aValue.explorer = nil
-    mRoot.explorer = nil
+    name.mObserverExplorer = nil
+    name.mValueExplorer = nil
+    aValue.mObserverExplorer = nil
+    aValue.mValueExplorer = nil
+    mRoot.mObserverExplorer = nil
+    mRoot.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 

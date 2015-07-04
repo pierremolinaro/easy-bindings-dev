@@ -1,12 +1,12 @@
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 var gAllocatedEntityCount = 0
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //  EBManagedObject                                                                                                    *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class EBManagedObject : EBObject {
   private weak var mManagedObjectContext : EBManagedObjectContext?
@@ -14,9 +14,9 @@ class EBManagedObject : EBObject {
 
   var mExplorerWindow : NSWindow?
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //  init                                                                                                             *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   init (managedObjectContext : EBManagedObjectContext) {
     mManagedObjectContext = managedObjectContext
@@ -25,9 +25,9 @@ class EBManagedObject : EBObject {
     mManagedObjectContext?.insertManagedObject (self)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //  setup and save                                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func setUpWithDictionary (inDictionary : NSDictionary,
                             managedObjectArray : Array<EBManagedObject>) {
@@ -38,9 +38,9 @@ class EBManagedObject : EBObject {
   func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //  Getters                                                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   final func undoManager () -> EBUndoManager? {
     return mManagedObjectContext?.undoManager ()
@@ -50,9 +50,9 @@ class EBManagedObject : EBObject {
     return mManagedObjectContext
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   showExplorerWindow                                                                                              *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   final func showExplorerWindow () {
     if mExplorerWindow == nil {
@@ -61,37 +61,37 @@ class EBManagedObject : EBObject {
     mExplorerWindow?.makeKeyAndOrderFront (nil)
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   resetToManyRelationships                                                                                        *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func resetToManyRelationships () {
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   resetToOneRelationships                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func resetToOneRelationships () {
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   accessibleObjects                                                                                               *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func accessibleObjects (inout objects : Array<EBManagedObject>) {
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //    populateExplorerWindow                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   createAndPopulateObjectExplorerWindow                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func createAndPopulateObjectExplorerWindow () {
   //-------------------------------------------------- Create Window
@@ -116,7 +116,7 @@ class EBManagedObject : EBObject {
     view.frame = viewFrame
    // NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr))
   //--- Set content size
-    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 4.0 + 16.0, height:fmin (600.0, y)))
+    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
@@ -125,71 +125,32 @@ class EBManagedObject : EBObject {
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
-    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH + 4.0, height:y)
+    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
     let sw = NSScrollView (frame:frame)
     sw.hasVerticalScroller = true
     sw.documentView = view
     mExplorerWindow!.contentView = sw
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //   updateManagedObjectToManyRelationshipDisplay                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [EBManagedObject], popUpButton : NSPopUpButton?) {
-    var title = "No Object" ;
-    if inObjectArray.count == 1 {
-      title = "1 Object" ;
-    }else if inObjectArray.count > 1 {
-      title = String (format:"%lu objects", inObjectArray.count)
-    }
-    popUpButton?.removeAllItems ()
-    popUpButton?.addItemWithTitle (title)
-    popUpButton?.enabled = inObjectArray.count > 0
-    for object : EBManagedObject in inObjectArray {
-      let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
-      popUpButton?.addItemWithTitle (stringValue)
-      let item = popUpButton?.lastItem
-      item?.target = object
-      item?.action = "showObjectWindowFromExplorerButton:"
-    }
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //   updateManagedObjectToOneRelationshipDisplay                                                                     *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, button : NSButton?) {
-    var stringValue = "nil"
-    if let unwrappedObject = inObject {
-      stringValue = explorerIndexString (unwrappedObject.mExplorerObjectIndex) + unwrappedObject.className
-    }
-    button?.enabled = inObject != nil
-    button?.title = stringValue
-    button?.toolTip = stringValue
-    button?.target = inObject
-    button?.action = "showObjectWindowFromExplorerButton:"
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   showObjectWindowFromExplorerButton                                                                              *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func showObjectWindowFromExplorerButton (AnyObject) {
     showExplorerWindow ()
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   deleteWindowAction                                                                                              *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func deleteWindowAction (AnyObject) {
     clearObjectExplorer ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   clearObjectExplorer                                                                                             *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func clearObjectExplorer () {
     let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
@@ -198,9 +159,9 @@ class EBManagedObject : EBObject {
     mExplorerWindow = nil
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   storeEntityArrayInDictionary                                                                                    *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func storeEntityArrayInDictionary (inEntityArray : NSArray,
                                      inRelationshipName: String,
@@ -216,9 +177,9 @@ class EBManagedObject : EBObject {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   storeEntityInDictionary                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func storeEntityInDictionary (inObject : EBManagedObject?,
                                 inRelationshipName: String,
@@ -228,9 +189,9 @@ class EBManagedObject : EBObject {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   readEntityFromDictionary                                                                                        *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func readEntityFromDictionary (inRelationshipName: String,
                                  inDictionary : NSDictionary,
@@ -243,9 +204,9 @@ class EBManagedObject : EBObject {
     return result
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
   //   readEntityArrayFromDictionary                                                                                   *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
   func readEntityArrayFromDictionary (inRelationshipName: String,
                                      inDictionary : NSDictionary,
@@ -261,8 +222,47 @@ class EBManagedObject : EBObject {
     return result
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //···················································································································*
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   updateManagedObjectToOneRelationshipDisplay
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, button : NSButton?) {
+  var stringValue = "nil"
+  if let unwrappedObject = inObject {
+    stringValue = explorerIndexString (unwrappedObject.mExplorerObjectIndex) + unwrappedObject.className
+  }
+  button?.enabled = inObject != nil
+  button?.title = stringValue
+  button?.toolTip = stringValue
+  button?.target = inObject
+  button?.action = "showObjectWindowFromExplorerButton:"
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   updateManagedObjectToManyRelationshipDisplay
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [EBManagedObject], popUpButton : NSPopUpButton?) {
+  var title = "No Object" ;
+  if inObjectArray.count == 1 {
+    title = "1 Object" ;
+  }else if inObjectArray.count > 1 {
+    title = String (format:"%lu objects", inObjectArray.count)
+  }
+  popUpButton?.removeAllItems ()
+  popUpButton?.addItemWithTitle (title)
+  popUpButton?.enabled = inObjectArray.count > 0
+  for object : EBManagedObject in inObjectArray {
+    let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
+    popUpButton?.addItemWithTitle (stringValue)
+    let item = popUpButton?.lastItem
+    item?.target = object
+    item?.action = "showObjectWindowFromExplorerButton:"
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

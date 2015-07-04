@@ -10,7 +10,6 @@ import Cocoa
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   @IBOutlet var myColorWell : EBColorWell?
-  @IBOutlet var myMatrix : EBMatrix?
   @IBOutlet var myTextConcatField : EBTextFieldObserver?
   @IBOutlet var myTextField : EBTextField?
   @IBOutlet var myTextMajField : EBTextFieldObserver?
@@ -73,15 +72,6 @@ import Cocoa
                               line:__LINE__,
                               errorMessage:"the 'myColorWell' outlet is not an instance of 'EBColorWell'") ;
     }
-    if nil == myMatrix {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
-                              errorMessage:"the 'myMatrix' outlet is nil") ;
-    }else if !myMatrix!.isKindOfClass (EBMatrix) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
-                              errorMessage:"the 'myMatrix' outlet is not an instance of 'EBMatrix'") ;
-    }
     if nil == myTextConcatField {
       presentErrorWindow (__FILE__,
                               line:__LINE__,
@@ -127,7 +117,6 @@ import Cocoa
     myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj, file:__FILE__, line:__LINE__)
     myTextMinField?.bind_valueObserver (self.rootObject.myStringMin, file:__FILE__, line:__LINE__)
     myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat, file:__FILE__, line:__LINE__)
-    myMatrix?.bind_selectedIndex (self.rootObject.myEnumeration, file:__FILE__, line:__LINE__)
     myColorWell?.bind_color (self.rootObject.myColor, file:__FILE__, line:__LINE__, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
@@ -146,7 +135,6 @@ import Cocoa
     myTextMajField?.unbind_valueObserver ()
     myTextMinField?.unbind_valueObserver ()
     myTextConcatField?.unbind_valueObserver ()
-    myMatrix?.unbind_selectedIndex ()
     myColorWell?.unbind_color ()
   //--- Unbind multiple bindings
   //--- Uninstall compute functions for transients

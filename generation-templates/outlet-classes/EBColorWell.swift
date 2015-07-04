@@ -47,11 +47,11 @@ import Cocoa
 //   Controller_EBColorWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-final class Controller_EBColorWell_color : EBOutletEvent {
+@objc(Controller_EBColorWell_color) final class Controller_EBColorWell_color : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_NSColor
-  var mOutlet: EBColorWell
-  var mSendContinously : Bool
+  private let mObject : EBReadWriteProperty_NSColor
+  private let mOutlet : EBColorWell
+  private let mSendContinously : Bool
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -59,7 +59,7 @@ final class Controller_EBColorWell_color : EBOutletEvent {
     mObject = object
     mOutlet = outlet
     mSendContinously = sendContinously
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
     mOutlet.continuous = true

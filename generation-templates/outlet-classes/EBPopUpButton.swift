@@ -52,17 +52,18 @@ import Cocoa
 //   Controller_EBPopUpButton_selectedTag                                                                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class Controller_EBPopUpButton_selectedTag : EBOutletEvent {
+@objc (Controller_EBPopUpButton_selectedTag)
+final class Controller_EBPopUpButton_selectedTag : EBSimpleController {
 
-  var mObject : EBReadWriteProperty_Int
-  var mOutlet : EBPopUpButton
+  private let mObject : EBReadWriteProperty_Int
+  private let mOutlet : EBPopUpButton
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
   init (object : EBReadWriteProperty_Int, outlet : EBPopUpButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mObject.addObserver (self, postEvent:true)
   }
 

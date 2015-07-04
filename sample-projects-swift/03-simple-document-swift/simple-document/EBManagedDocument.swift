@@ -24,6 +24,7 @@ enum EBDocumentCompressionEnum {
 
 class EBManagedDocument : NSDocument, EBUserClassName {
   var mRootObject : EBManagedObject?
+
   private var mReadMetadataStatus : UInt8 = 0
   private var mMetadataDictionary : NSMutableDictionary = [:]
   private var mManagedObjectContext : EBManagedObjectContext
@@ -459,9 +460,76 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //···················································································································*
 
   @IBAction func showObjectExplorerWindow (AnyObject!) {
-    mRootObject?.showExplorerWindow ()
+    if mExplorerWindow == nil {
+      createAndPopulateObjectExplorerWindow ()
+    }
+    mExplorerWindow?.makeKeyAndOrderFront (nil)
+//    mRootObject?.showExplorerWindow ()
   }
 
+  //-------------------------------------------------------------------------------------------------------------------*
+  //   createAndPopulateObjectExplorerWindow                                                                           *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  func createAndPopulateObjectExplorerWindow () {
+  //-------------------------------------------------- Create Window
+    let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
+    mExplorerWindow = NSWindow (
+      contentRect:r,
+      styleMask:NSTitledWindowMask | NSClosableWindowMask,
+      backing:NSBackingStoreType.Buffered,
+      `defer`:true,
+      screen:nil
+    )
+  //-------------------------------------------------- Adding properties
+    let view = NSView (frame:r)
+    var y : CGFloat = 0.0
+    populateExplorerWindowWithRect (&y, view:view)
+  //-------------------------------------------------- Finish Window construction
+  //--- Resize View
+    let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    view.frame = viewFrame
+  //--- Set content size
+    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
+  //--- Set close button as 'remove window' button
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = self
+    closeButton!.action = "deleteWindowAction:"
+  //--- Set window title
+    mExplorerWindow!.title = "Document " + className
+  //--- Add Scroll view
+    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    let sw = NSScrollView (frame:frame)
+    sw.hasVerticalScroller = true
+    sw.documentView = view
+    mExplorerWindow!.contentView = sw
+  }
+
+  //-------------------------------------------------------------------------------------------------------------------*
+  //    populateExplorerWindow                                                                                         *
+  //-------------------------------------------------------------------------------------------------------------------*
+
+  var mExplorerWindow : NSWindow?
+  var mValueExplorer : NSButton? {
+    didSet {
+      if let unwrappedExplorer = mValueExplorer {
+        updateManagedObjectToOneRelationshipDisplay (mRootObject, button:unwrappedExplorer)
+      }
+    }
+  }
+
+  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+    if let rootObject = mRootObject {
+      createEntryForToOneRelationshipNamed (
+        "Root",
+        idx:rootObject.mExplorerObjectIndex,
+        y: &y,
+        view: view,
+        valueExplorer:&mValueExplorer
+      )
+    }
+  }
+  
   //···················································································································*
   //   removeWindowController                                                                                          *
   //···················································································································*

@@ -30,7 +30,7 @@ import Cocoa
 
   private var mValueController : Controller_EBDatePicker_date?
 
-  func bind_date (object:EBStoredProperty_NSDate, file:String, line:Int) {
+  func bind_date (object:EBReadWriteProperty_NSDate, file:String, line:Int) {
     mValueController = Controller_EBDatePicker_date (object:object, outlet:self, file:file, line:line)
   }
 
@@ -45,17 +45,17 @@ import Cocoa
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 @objc(Controller_EBDatePicker_date)
-class Controller_EBDatePicker_date : EBOutletEvent {
+final class Controller_EBDatePicker_date : EBSimpleController {
 
-  var mObject : EBStoredProperty_NSDate
-  var mOutlet: EBDatePicker
+  private let mObject : EBReadWriteProperty_NSDate
+  private let mOutlet: EBDatePicker
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  init (object : EBStoredProperty_NSDate, outlet : EBDatePicker, file : String, line : Int) {
+  init (object : EBReadWriteProperty_NSDate, outlet : EBDatePicker, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init ()
+    super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
     mObject.addObserver (self, postEvent:true)
