@@ -358,7 +358,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
         result << " (" ;
         result << enumerator_2103.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:true)\n"
-          "//    model.addObserver (" ;
+          "    model.addObserver (" ;
         result << enumerator_2103.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:true)\n"
           "    " ;
@@ -458,36 +458,36 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""* \n"
     "\n"
     "  func unbind_selection () {\n" ;
-  GALGAS_uint index_5233_ (0) ;
+  GALGAS_uint index_5231_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_5233 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_5233.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = enumerator_5233.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_5231 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_5231.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = enumerator_5231.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "  //--- " ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\n"
           "    " ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = nil \n"
           "    " ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".writeModelFunction = nil \n"
           "    " ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".validateAndWriteModelFunction = nil \n"
           "    mModel\?.removeObserverOf_" ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (" ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n"
-          "//    mModel\?.removeObserver (" ;
-        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
+          "    mModel\?.removeObserver (" ;
+        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n" ;
       }else if (kBoolFalse == test_3) {
       }
-      index_5233_.increment () ;
-      enumerator_5233.gotoNextObject () ;
+      index_5231_.increment () ;
+      enumerator_5231.gotoNextObject () ;
     }
   }
   result << "    mModel = nil    \n"
@@ -3304,7 +3304,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "\n"
   "private let EXPLORER_ROW_HEIGHT : CGFloat = 20.0\n"
   "private let FIRST_COLUMN_WIDTH : CGFloat = 40.0\n"
-  "private let SECOND_COLUMN_WIDTH : CGFloat = 220.0\n"
+  "private let SECOND_COLUMN_WIDTH : CGFloat = 300.0\n"
   "private let THIRD_COLUMN_WIDTH : CGFloat = 220.0\n"
   "\n"
   "let EXPLORER_ROW_WIDTH : CGFloat = FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH + THIRD_COLUMN_WIDTH\n"

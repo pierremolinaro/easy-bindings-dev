@@ -221,7 +221,7 @@ class EBSimpleController : EBOutletEvent {
 
 private let EXPLORER_ROW_HEIGHT : CGFloat = 20.0
 private let FIRST_COLUMN_WIDTH : CGFloat = 40.0
-private let SECOND_COLUMN_WIDTH : CGFloat = 220.0
+private let SECOND_COLUMN_WIDTH : CGFloat = 300.0
 private let THIRD_COLUMN_WIDTH : CGFloat = 220.0
 
 let EXPLORER_ROW_WIDTH : CGFloat = FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH + THIRD_COLUMN_WIDTH

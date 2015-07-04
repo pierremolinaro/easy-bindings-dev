@@ -78,10 +78,36 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //···················································································································*
 
+  private var mSet = Set <%!ENTITY_NAME%> ()
+
   override var prop : EBProperty <Array<%!ENTITY_NAME%> > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
+        let newSet : Set <%!ENTITY_NAME%>
+        switch prop_cache! {
+        case .multipleSelection, .noSelection :
+          newSet = Set <%!ENTITY_NAME%> ()
+        case .singleSelection (let array) :
+          newSet = Set (array)
+        }
+     //--- Removed object set
+        for managedObject : %!ENTITY_NAME% in newSet.subtract (mSet) {
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%          for observer in mObserversOf_%!mStoredPropertyName% {
+            managedObject.%!mStoredPropertyName%.removeObserver (observer, postEvent:true)
+          }
+%end
+%        }
+      //--- Added object set
+        for managedObject : %!ENTITY_NAME% in newSet.subtract (mSet) {
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%          for observer in mObserversOf_%!mStoredPropertyName% {
+            managedObject.%!mStoredPropertyName%.addObserver (observer, postEvent:true)
+          }
+%end
+%        }
+        mSet = newSet
       }
       if prop_cache == nil {
         prop_cache = .noSelection
