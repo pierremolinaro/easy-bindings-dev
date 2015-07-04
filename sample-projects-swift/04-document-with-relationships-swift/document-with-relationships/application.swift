@@ -16,7 +16,7 @@ import Cocoa
   override func postEvent () {
     postOutletEvent (self)
   }
-  func updateOutlet () {} // Abstract Method
+  func sendUpdateEvent () {} // Abstract Method
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -52,7 +52,7 @@ func flushOutletEvents () {
       if logEvents () {
         appendMessageString (String (format:"  - %@\n", _stdlib_getDemangledTypeName (object)))
       }
-      object.updateOutlet ()
+      object.sendUpdateEvent ()
     }
     gPendingOutletEvents = Set ()
     if logEvents () {

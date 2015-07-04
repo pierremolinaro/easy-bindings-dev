@@ -143,7 +143,7 @@ class Controller_EBIntField_value : EBOutletEvent {
 
   //···················································································································*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)

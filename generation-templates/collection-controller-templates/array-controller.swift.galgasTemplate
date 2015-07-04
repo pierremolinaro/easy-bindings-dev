@@ -93,19 +93,15 @@ else
         }
         if mSet != newObjectSet {
         //--- Removed object set
-          var removedObjectSet = mSet
-          removedObjectSet.subtractInPlace (newObjectSet)
 %for () in BOUND_COLUMNS do
-%          for managedObject : %!ELEMENT_TYPE_NAME% in removedObjectSet {
+%          for managedObject : %!ELEMENT_TYPE_NAME% in mSet.subtract (newObjectSet) {
             for observer in mObserversOf_%!mObservablePropertyName% {
               managedObject.%!mObservablePropertyName%.removeObserver (observer, postEvent:true)
             }
           }
 %end%        //--- Added object set
-          var addedObjectSet = newObjectSet
-          addedObjectSet.subtractInPlace (mSet)
 %for () in BOUND_COLUMNS do
-%          for managedObject : %!ELEMENT_TYPE_NAME% in addedObjectSet {
+%          for managedObject : %!ELEMENT_TYPE_NAME% in newObjectSet.subtract (mSet) {
             for observer in mObserversOf_%!mObservablePropertyName% {
               managedObject.%!mObservablePropertyName%.addObserver (observer, postEvent:true)
             }

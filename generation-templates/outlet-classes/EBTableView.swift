@@ -63,7 +63,7 @@ import Cocoa
 
   //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
   
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
   //---------------- So tableViewSelectionDidChange is not called
     mDelegate.willReload ()
   //---------------- Reload data

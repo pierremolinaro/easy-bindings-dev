@@ -149,7 +149,7 @@ class Controller_EBSegmentedControl_selectedIndex : EBOutletEvent {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)

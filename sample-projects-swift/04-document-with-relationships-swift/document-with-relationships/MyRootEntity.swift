@@ -123,6 +123,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
     didSet {
       if oldValue != mValue {
         mSet = Set (mValue)
+        let oldSet = Set (oldValue)
       //--- Register old value in undo manager
         owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
@@ -130,9 +131,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
           owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
         }
       //--- Removed object set
-        var removedObjectSet : Set<NameEntity> = Set (oldValue)
-        removedObjectSet.subtractInPlace (mValue)
-        for managedObject : NameEntity in removedObjectSet {
+        for managedObject : NameEntity in oldSet.subtract (mSet) {
           for observer in mObserversOf_aValue {
             managedObject.aValue.removeObserver (observer, postEvent:true)
           }
@@ -142,9 +141,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
           managedObject.mRoot.owner = nil ;
         }
       //--- Added object set
-        var addedObjectSet : Set<NameEntity> = Set (mValue)
-        addedObjectSet.subtractInPlace (oldValue)
-        for managedObject : NameEntity in addedObjectSet {
+        for managedObject : NameEntity in mSet.subtract (oldSet) {
           for observer in mObserversOf_aValue {
             managedObject.aValue.addObserver (observer, postEvent:true)
           }
@@ -243,7 +240,7 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    mNames.explorer = createEntryForToManyRelationshipNamed ("mNames", ioRect: &ioRect, view: view)
+    mNames.explorer = createEntryForToManyRelationshipNamed ("mNames", idx:mNames.mExplorerObjectIndex, ioRect: &ioRect, view: view)
   }
 
   //···················································································································*

@@ -2,7 +2,6 @@ import Cocoa
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-var gExplorerObjectIndex = 0
 var gAllocatedEntityCount = 0
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13,7 +12,6 @@ class EBManagedObject : EBObject {
   private weak var mManagedObjectContext : EBManagedObjectContext?
   var savingIndex = 0
 
-  let mExplorerObjectIndex : Int
   var mExplorerWindow : NSWindow?
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -23,8 +21,6 @@ class EBManagedObject : EBObject {
   init (managedObjectContext : EBManagedObjectContext) {
     mManagedObjectContext = managedObjectContext
     gAllocatedEntityCount += 1
-    mExplorerObjectIndex = gExplorerObjectIndex
-    gExplorerObjectIndex += 1
     super.init ()
     mManagedObjectContext?.insertManagedObject (self)
   }
@@ -46,23 +42,19 @@ class EBManagedObject : EBObject {
   //  Getters                                                                                                          *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func undoManager () -> EBUndoManager? {
+  final func undoManager () -> EBUndoManager? {
     return mManagedObjectContext?.undoManager ()
   }
 
-  func managedObjectContext () -> EBManagedObjectContext? {
+  final func managedObjectContext () -> EBManagedObjectContext? {
     return mManagedObjectContext
-  }
-
-  func explorerObjectIndex () -> Int {
-    return mExplorerObjectIndex
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   //   showExplorerWindow                                                                                              *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func showExplorerWindow () {
+  final func showExplorerWindow () {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
@@ -98,46 +90,6 @@ class EBManagedObject : EBObject {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
-  //    createEntryForToOneRelationshipNamed                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func createEntryForToOneRelationshipNamed (relationshipName : String,
-                                             inout ioRect : NSRect,
-                                             view : NSView) -> NSButton {
-    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    let tf = NSTextField (frame:ioRect)
-    tf.enabled = false
-    tf.stringValue = relationshipName
-    tf.font = font
-    view.addSubview (tf)
-    let bt = NSButton (frame:secondColumn (ioRect))
-    bt.font = font
-    view.addSubview (bt)
-    ioRect.origin.y += ioRect.size.height
-    return bt
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    createEntryForToManyRelationshipNamed                                                                          *
-  //-------------------------------------------------------------------------------------------------------------------*
-
-  func createEntryForToManyRelationshipNamed (relationshipName : String,
-                                              inout ioRect : NSRect,
-                                              view : NSView) -> NSPopUpButton {
-    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    let tf = NSTextField (frame:ioRect)
-    tf.enabled = false
-    tf.stringValue = relationshipName
-    tf.font = font
-    view.addSubview (tf)
-    let bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
-    bt.font = font
-    view.addSubview (bt)
-    ioRect.origin.y += ioRect.size.height ;
-    return bt
-  }
-
-  //-------------------------------------------------------------------------------------------------------------------*
   //   createAndPopulateObjectExplorerWindow                                                                           *
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -167,7 +119,7 @@ class EBManagedObject : EBObject {
     closeButton!.target = self
     closeButton!.action = "deleteWindowAction:"
   //--- Set window title
-    let windowTitle = String (format:"#%ld (%@) at %p", mExplorerObjectIndex, className, self)
+    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
@@ -192,8 +144,7 @@ class EBManagedObject : EBObject {
     popUpButton?.addItemWithTitle (title)
     popUpButton?.enabled = inObjectArray.count > 0
     for object : EBManagedObject in inObjectArray {
-      let objectIndex = object.explorerObjectIndex ()
-      let stringValue = String (format:"#%d (%@) %p", objectIndex, object.className, object)
+      let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
       popUpButton?.addItemWithTitle (stringValue)
       let item = popUpButton?.lastItem
       item?.target = object
@@ -208,8 +159,7 @@ class EBManagedObject : EBObject {
   func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, button : NSButton?) {
     var stringValue = "nil"
     if let unwrappedObject = inObject {
-      let objectIndex = unwrappedObject.explorerObjectIndex ()
-      stringValue = String (format:"#%d (%@) %p", objectIndex, unwrappedObject.className, unwrappedObject)
+      stringValue = explorerIndexString (unwrappedObject.mExplorerObjectIndex) + unwrappedObject.className
     }
     button?.enabled = inObject != nil
     button?.title = stringValue

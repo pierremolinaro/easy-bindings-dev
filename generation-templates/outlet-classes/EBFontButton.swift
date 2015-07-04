@@ -107,7 +107,7 @@ class Controller_EBFontButton_fontValue : EBOutletEvent {
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)

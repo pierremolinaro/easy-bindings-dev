@@ -45,7 +45,7 @@ func presentErrorWindow (file : String!,
 //   NSDictionary extension                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extension NSDictionary {
+/*extension NSDictionary {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
@@ -110,7 +110,7 @@ extension NSArray {
     return objectAtIndex (index)
   }
 }
-
+*/
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Array<T> extension                                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -147,9 +147,16 @@ enum EBValidationResult {
 //    EBObject class                                                                                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+var gExplorerObjectIndex = 0
+
+//······················································································································
+
 @objc(EBObject) class EBObject : NSObject, EBUserClassName {
+  let mExplorerObjectIndex : Int
 
   override init () {
+    mExplorerObjectIndex = gExplorerObjectIndex
+    gExplorerObjectIndex += 1
     super.init ()
     noteObjectAllocation (self)
   }
@@ -190,13 +197,38 @@ func secondColumn (inRect : NSRect) -> NSRect {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+private let explorerLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L",
+                               "M", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+func explorerIndexString (idx : Int) -> String {
+  var result = String (idx % 10)
+  var n = idx / 10
+  result += String (n % 10)
+  n /= 10
+  result += explorerLetters [n % explorerLetters.count]
+  n /= explorerLetters.count
+  result += explorerLetters [n % explorerLetters.count]
+  n /= explorerLetters.count
+  result += explorerLetters [n % explorerLetters.count]
+  n /= explorerLetters.count
+  if n > 0 {
+    result += String (n)
+  }
+  return result + " — "
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 func createEntryForAttributeNamed (attributeName : String,
+                                   idx : Int,
                                    inout ioRect : NSRect,
                                    view : NSView) -> NSTextField {
   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
   let tf = NSTextField (frame:ioRect)
   tf.enabled = false
-  tf.stringValue = attributeName
+  tf.stringValue = explorerIndexString (idx) + attributeName
   tf.font = font
   view.addSubview (tf)
   let tff = NSTextField (frame:secondColumn (ioRect))
@@ -208,12 +240,54 @@ func createEntryForAttributeNamed (attributeName : String,
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    createEntryForToOneRelationshipNamed
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func createEntryForToOneRelationshipNamed (relationshipName : String,
+                                           idx : Int,
+                                           inout ioRect : NSRect,
+                                           view : NSView) -> NSButton {
+  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+  let tf = NSTextField (frame:ioRect)
+  tf.enabled = false
+  tf.stringValue = explorerIndexString (idx) + relationshipName
+  tf.font = font
+  view.addSubview (tf)
+  let bt = NSButton (frame:secondColumn (ioRect))
+  bt.font = font
+  view.addSubview (bt)
+  ioRect.origin.y += ioRect.size.height
+  return bt
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//    createEntryForToManyRelationshipNamed
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+func createEntryForToManyRelationshipNamed (relationshipName : String,
+                                            idx : Int,
+                                            inout ioRect : NSRect,
+                                            view : NSView) -> NSPopUpButton {
+  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+  let tf = NSTextField (frame:ioRect)
+  tf.enabled = false
+  tf.stringValue = explorerIndexString (idx) + relationshipName
+  tf.font = font
+  view.addSubview (tf)
+  let bt = NSPopUpButton (frame:secondColumn (ioRect), pullsDown:true)
+  bt.font = font
+  view.addSubview (bt)
+  ioRect.origin.y += ioRect.size.height ;
+  return bt
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //    NSTExtView extension                                                                                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extension NSTextView {
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func displayAndScrollToEndOfText () {
     if let unwrappedLayoutManager = layoutManager {
@@ -225,7 +299,7 @@ extension NSTextView {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func clear () {
     let str = NSAttributedString (string:"", attributes:nil)
@@ -236,7 +310,7 @@ extension NSTextView {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func appendAttributedString (inAttributedString : NSAttributedString) {
     if let unwrappedLayoutManager = layoutManager {
@@ -247,7 +321,7 @@ extension NSTextView {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func appendMessageString (inString : String) {
     let attributes : [String : NSObject] = [
@@ -263,7 +337,7 @@ extension NSTextView {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func appendMessageString (inString : String, color:NSColor) {
     let attributes : [String : NSObject] = [
@@ -279,19 +353,19 @@ extension NSTextView {
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func appendErrorString (inString : String) {
     appendMessageString (inString, color:NSColor.redColor ())
   }
   
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func appendWarningString (inString : String) {
     appendMessageString (inString, color:NSColor.orangeColor ())
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
 
   func appendSuccessString (inString : String) {
     appendMessageString (inString, color:NSColor.blueColor ())

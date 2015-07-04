@@ -20,7 +20,13 @@ class SelectionController_PMDocument_detailController : EBObject {
 
   func bind_selection (model : ReadOnlyArrayOf_NameEntity, file:String, line:Int) {
     mModel = model
-  //--- aValue
+    bind_property_aValue (model)
+    bind_property_name (model)
+  }
+
+  //···················································································································*
+
+  private final func bind_property_aValue (model : ReadOnlyArrayOf_NameEntity) {
     model.addObserverOf_aValue (aValue, postEvent:true)
     model.addObserver (aValue, postEvent:true)
     aValue.readModelFunction = {
@@ -87,7 +93,11 @@ class SelectionController_PMDocument_detailController : EBObject {
         return false
       }
     }
-  //--- name
+  }
+
+  //···················································································································*
+
+  private final func bind_property_name (model : ReadOnlyArrayOf_NameEntity) {
     model.addObserverOf_name (name, postEvent:true)
     model.addObserver (name, postEvent:true)
     name.readModelFunction = {
@@ -155,6 +165,8 @@ class SelectionController_PMDocument_detailController : EBObject {
       }
     }
   }
+
+
 
   //···················································································································* 
   //   UNBIND SELECTION                                                                                                *

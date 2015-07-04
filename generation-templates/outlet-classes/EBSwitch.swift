@@ -78,7 +78,7 @@ import Cocoa
 
   //···················································································································* 
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
       mOutlet.state = NSOffState

@@ -69,7 +69,7 @@ class Controller_EBReadOnlyColorWell_color : EBOutletEvent {
 
   //-------------------------------------------------------------------------------------------------------------------*
 
-  override func updateOutlet () {
+  override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection, .multipleSelection :
       mOutlet.color = NSColor.whiteColor ()

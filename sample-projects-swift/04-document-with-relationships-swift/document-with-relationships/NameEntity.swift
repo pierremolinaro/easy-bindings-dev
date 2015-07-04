@@ -12,7 +12,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   var mObserversOf_name = Set<EBEvent> ()
 
-  func addObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -24,7 +24,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
-  func removeObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -40,7 +40,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   var mObserversOf_aValue = Set<EBEvent> ()
 
-  func addObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -52,7 +52,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
-  func removeObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -145,7 +145,19 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
-  var explorer : NSButton?
+  var explorer : NSButton? {
+    didSet {
+      if let unwrappedExplorer = explorer, unwrappedOwner = owner {
+        switch prop {
+        case .noSelection, .multipleSelection :
+          break ;
+        case .singleSelection (let v) :
+          unwrappedOwner.updateManagedObjectToOneRelationshipDisplay (v, button:unwrappedExplorer)
+        }
+      }
+    }
+  }
+
   weak var owner : NameEntity? {
     didSet {
       if let unwrappedExplorer = explorer, unwrappedOwner = owner {
@@ -271,9 +283,9 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 
   override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
     super.populateExplorerWindowWithRect (&ioRect, view:view)
-    name.explorer = createEntryForAttributeNamed ("name", ioRect:&ioRect, view:view)
-    aValue.explorer = createEntryForAttributeNamed ("aValue", ioRect:&ioRect, view:view)
-    mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", ioRect: &ioRect, view: view)
+    name.explorer = createEntryForAttributeNamed ("name", idx:name.mExplorerObjectIndex, ioRect:&ioRect, view:view)
+    aValue.explorer = createEntryForAttributeNamed ("aValue", idx:aValue.mExplorerObjectIndex, ioRect:&ioRect, view:view)
+    mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", idx:mRoot.mExplorerObjectIndex, ioRect: &ioRect, view: view)
   }
 
   //···················································································································*

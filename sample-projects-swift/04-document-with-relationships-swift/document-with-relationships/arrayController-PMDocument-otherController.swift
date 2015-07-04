@@ -94,27 +94,23 @@ class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTabl
         }
         if mSet != newObjectSet {
         //--- Removed object set
-          var removedObjectSet = mSet
-          removedObjectSet.subtractInPlace (newObjectSet)
-          for managedObject : NameEntity in removedObjectSet {
+          for managedObject : NameEntity in mSet.subtract (newObjectSet) {
             for observer in mObserversOf_name {
               managedObject.name.removeObserver (observer, postEvent:true)
             }
           }
-          for managedObject : NameEntity in removedObjectSet {
+          for managedObject : NameEntity in mSet.subtract (newObjectSet) {
             for observer in mObserversOf_aValue {
               managedObject.aValue.removeObserver (observer, postEvent:true)
             }
           }
         //--- Added object set
-          var addedObjectSet = newObjectSet
-          addedObjectSet.subtractInPlace (mSet)
-          for managedObject : NameEntity in addedObjectSet {
+          for managedObject : NameEntity in newObjectSet.subtract (mSet) {
             for observer in mObserversOf_name {
               managedObject.name.addObserver (observer, postEvent:true)
             }
           }
-           for managedObject : NameEntity in addedObjectSet {
+           for managedObject : NameEntity in newObjectSet.subtract (mSet) {
             for observer in mObserversOf_aValue {
               managedObject.aValue.addObserver (observer, postEvent:true)
             }
