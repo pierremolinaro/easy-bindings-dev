@@ -281,11 +281,25 @@ class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //    populateExplorerWindowWithRect                                                                                 *
   //···················································································································*
 
-  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
-    super.populateExplorerWindowWithRect (&ioRect, view:view)
-    name.explorer = createEntryForAttributeNamed ("name", idx:name.mExplorerObjectIndex, ioRect:&ioRect, view:view)
-    aValue.explorer = createEntryForAttributeNamed ("aValue", idx:aValue.mExplorerObjectIndex, ioRect:&ioRect, view:view)
-    mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", idx:mRoot.mExplorerObjectIndex, ioRect: &ioRect, view: view)
+  override func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+    super.populateExplorerWindowWithRect (&y, view:view)
+    createEntryForPropertyNamed (
+      "name",
+      idx:name.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&name.mObserverExplorer,
+      valueExplorer:&name.explorer
+    )
+    createEntryForPropertyNamed (
+      "aValue",
+      idx:aValue.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&aValue.mObserverExplorer,
+      valueExplorer:&aValue.explorer
+    )
+    mRoot.explorer = createEntryForToOneRelationshipNamed ("mRoot", idx:mRoot.mExplorerObjectIndex, y: &y, view: view)
   }
 
   //···················································································································*

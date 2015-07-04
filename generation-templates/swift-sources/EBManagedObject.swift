@@ -86,7 +86,7 @@ class EBManagedObject : EBObject {
   //    populateExplorerWindow                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
+  func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -104,16 +104,19 @@ class EBManagedObject : EBObject {
       screen:nil
     )
   //-------------------------------------------------- Adding properties
-    var nameRect = NSRect (x:0.0, y:0.0, width:300.0, height:22.0)
+  //  var nameRect = NSRect (x:0.0, y:0.0, width:300.0, height:22.0)
  //   let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
-    let view = NSView (frame:nameRect)
-    populateExplorerWindowWithRect (&nameRect, view:view)
+    let view = NSView (frame:r)
+    var y : CGFloat = 0.0
+    populateExplorerWindowWithRect (&y, view:view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
-    let rr = secondColumn (nameRect)
-    view.frame = NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr))
+   // let rr = secondColumn (nameRect)
+    let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    view.frame = viewFrame
+   // NSRect (x:0.0, y:0.0, width:NSMaxX (rr), height:NSMaxY (rr))
   //--- Set content size
-    mExplorerWindow?.setContentSize (NSSize (width:NSMaxX (nameRect) * 2.0 + 4.0 + 16.0, height:fmin (600.0, NSMaxY (nameRect))))
+    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 4.0 + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
@@ -122,7 +125,7 @@ class EBManagedObject : EBObject {
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
-    let frame = NSRect (x:0.0, y:0.0, width:NSMaxX (nameRect) * 2.0 + 4.0, height:NSMaxY (nameRect))
+    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH + 4.0, height:y)
     let sw = NSScrollView (frame:frame)
     sw.hasVerticalScroller = true
     sw.documentView = view

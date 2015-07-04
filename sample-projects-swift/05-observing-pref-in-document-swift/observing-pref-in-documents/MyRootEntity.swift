@@ -210,9 +210,16 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //    populateExplorerWindowWithRect                                                                                 *
   //···················································································································*
 
-  override func populateExplorerWindowWithRect (inout ioRect : NSRect, view : NSView) {
-    super.populateExplorerWindowWithRect (&ioRect, view:view)
-    docString.explorer = createEntryForAttributeNamed ("docString", idx:docString.mExplorerObjectIndex, ioRect:&ioRect, view:view)
+  override func populateExplorerWindowWithRect (inout y : CGFloat, view : NSView) {
+    super.populateExplorerWindowWithRect (&y, view:view)
+    createEntryForPropertyNamed (
+      "docString",
+      idx:docString.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&docString.mObserverExplorer,
+      valueExplorer:&docString.explorer
+    )
   }
 
   //···················································································································*
