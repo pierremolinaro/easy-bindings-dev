@@ -19,7 +19,15 @@ syntax extension easyBindings_syntax {
   
   rule <simple_stored_declaration>
     ?!@simpleStoredPropertyList ioAttributeList
+    ?!@stringset ioSignatureList
   {
+    @bool usedForSignature
+    select
+      usedForSignature = false
+    or
+      $signature$
+      usedForSignature = true
+    end
     $property$
     @bool needsValidation
     select
@@ -30,6 +38,9 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ ?var @lstring attributeTypeName
     $identifier$ ?var @lstring attributeName
+    if usedForSignature then
+      ioSignatureList += !attributeName.string
+    end
     $default$
     <explicit_value> ?var @abstractDefaultValue defaultValue
     $;$

@@ -109,6 +109,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_root,
    kToken_selectionController,
    kToken_self,
+   kToken_signature,
    kToken_struct,
    kToken_to,
    kToken_toMany,
@@ -172,7 +173,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 61 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 62 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -313,6 +314,7 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual void nt_preferences_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_simple_5F_stored_5F_declaration_ (class GALGAS_simpleStoredPropertyList & ioArgument0,
+                                                                class GALGAS_stringset & ioArgument1,
                                                                 class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_simple_5F_stored_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -437,6 +439,7 @@ class cParser_easyBindings_5F_syntax {
   protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i14_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i15_ (GALGAS_simpleStoredPropertyList & ioArgument0,
+                                                                                     GALGAS_stringset & ioArgument1,
                                                                                      C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i15_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -601,6 +604,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_37 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_38 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_39 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -2474,7 +2479,8 @@ class GALGAS_entityDeclaration : public GALGAS_astDeclaration {
                                                             const class GALGAS_simpleStoredPropertyList & inOperand3,
                                                             const class GALGAS_toOneRelationshipList & inOperand4,
                                                             const class GALGAS_toManyRelationshipList & inOperand5,
-                                                            const class GALGAS_secondaryPropertyList & inOperand6
+                                                            const class GALGAS_secondaryPropertyList & inOperand6,
+                                                            const class GALGAS_stringset & inOperand7
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2489,6 +2495,8 @@ class GALGAS_entityDeclaration : public GALGAS_astDeclaration {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring reader_mEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_secondaryPropertyList reader_mSecondaryPropertyList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mSignatureList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyList reader_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
 
@@ -2837,6 +2845,7 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
   public : GALGAS_toOneRelationshipList mAttribute_mToOneRelationshipList ;
   public : GALGAS_toManyRelationshipList mAttribute_mToManyRelationshipList ;
   public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
+  public : GALGAS_stringset mAttribute_mSignatureList ;
 
 //--- Constructor
   public : cPtr_entityDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -2845,7 +2854,8 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
                                    const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
                                    const GALGAS_toOneRelationshipList & in_mToOneRelationshipList,
                                    const GALGAS_toManyRelationshipList & in_mToManyRelationshipList,
-                                   const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList
+                                   const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
+                                   const GALGAS_stringset & in_mSignatureList
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2858,6 +2868,7 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
   public : VIRTUAL_IN_DEBUG GALGAS_toOneRelationshipList reader_mToOneRelationshipList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipList reader_mToManyRelationshipList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_secondaryPropertyList reader_mSecondaryPropertyList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset reader_mSignatureList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -5105,6 +5116,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //----------- '' label
   public : virtual void nt_simple_5F_stored_5F_declaration_ (GALGAS_simpleStoredPropertyList & ioArgument0,
+                                                             GALGAS_stringset & ioArgument1,
                                                              C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'start_symbol' non terminal
@@ -5261,6 +5273,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_37 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_38 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_39 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6956,6 +6970,7 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
   public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
   public : GALGAS_storedArrayPropertyList mAttribute_mStoredArrayList ;
   public : GALGAS_arrayControllerForGeneration mAttribute_mArrayControllerForGeneration ;
+  public : GALGAS_stringset mAttribute_mSignatureList ;
 
 
 //--------------------------------- Accessors
@@ -6979,7 +6994,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
                                    const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
                                    const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                    const GALGAS_storedArrayPropertyList & in_mStoredArrayList,
-                                   const GALGAS_arrayControllerForGeneration & in_mArrayControllerForGeneration) ;
+                                   const GALGAS_arrayControllerForGeneration & in_mArrayControllerForGeneration,
+                                   const GALGAS_stringset & in_mSignatureList) ;
 
 //-- Start of generic part --*
 
@@ -6999,7 +7015,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
                                                           const class GALGAS_mainXibDescriptorList & inOperand4,
                                                           const class GALGAS_externSwiftFunctionList & inOperand5,
                                                           const class GALGAS_storedArrayPropertyList & inOperand6,
-                                                          const class GALGAS_arrayControllerForGeneration & inOperand7
+                                                          const class GALGAS_arrayControllerForGeneration & inOperand7,
+                                                          const class GALGAS_stringset & inOperand8
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -7025,6 +7042,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_outletDeclarationList reader_mOutletDeclarationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_secondaryPropertyList reader_mSecondaryPropertyList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mSignatureList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyList reader_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
 
@@ -10640,7 +10659,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                   const class GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
-                                                  const class GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList
+                                                  const class GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
+                                                  const class GALGAS_stringset & in_mSignatureSet
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -10661,7 +10681,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                                             const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
                                                                             const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                             const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                            const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5
+                                                                            const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
+                                                                            const class GALGAS_stringset & inOperand6
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -10674,7 +10695,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
                                                       const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                       const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                      const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5
+                                                      const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
+                                                      const class GALGAS_stringset & inOperand6
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_entityListForGeneration operator_concat (const GALGAS_entityListForGeneration & inOperand
@@ -10693,7 +10715,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_transientDefinitionListForGeneration constinArgument3,
                                                          class GALGAS_toOneEntityRelationshipListForGeneration constinArgument4,
                                                          class GALGAS_toManyEntityRelationshipListForGeneration constinArgument5,
-                                                         class GALGAS_uint constinArgument6,
+                                                         class GALGAS_stringset constinArgument6,
+                                                         class GALGAS_uint constinArgument7,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -10703,6 +10726,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                     class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                     class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                     class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                                    class GALGAS_stringset & outArgument6,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -10712,6 +10736,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                    class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                    class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                    class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                                   class GALGAS_stringset & outArgument6,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -10721,7 +10746,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                          class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                          class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
-                                                         class GALGAS_uint constinArgument6,
+                                                         class GALGAS_stringset & outArgument6,
+                                                         class GALGAS_uint constinArgument7,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -10733,6 +10759,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                                class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                               class GALGAS_stringset & outArgument6,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -10742,6 +10769,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                               class GALGAS_transientDefinitionListForGeneration & outArgument3,
                                               class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                               class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                              class GALGAS_stringset & outArgument6,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -10755,6 +10783,10 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mEntityNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mSignatureSetAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGeneration reader_mSimpleStoredPropertyListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                                                      C_Compiler * inCompiler
@@ -10804,6 +10836,7 @@ class cEnumerator_entityListForGeneration : public cGenericAbstractEnumerator {
   public : class GALGAS_transientDefinitionListForGeneration current_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_toOneEntityRelationshipListForGeneration current_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
   public : class GALGAS_toManyEntityRelationshipListForGeneration current_mToManyEntityRelationshipList (LOCATION_ARGS) const ;
+  public : class GALGAS_stringset current_mSignatureSet (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_entityListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -10826,6 +10859,7 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_transientDefinitionListForGeneration mAttribute_mDecoratedTransientListForGeneration ;
   public : GALGAS_toOneEntityRelationshipListForGeneration mAttribute_mToOneEntityRelationshipList ;
   public : GALGAS_toManyEntityRelationshipListForGeneration mAttribute_mToManyEntityRelationshipList ;
+  public : GALGAS_stringset mAttribute_mSignatureSet ;
 
 
 //--------------------------------- Accessors
@@ -10847,7 +10881,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
                                                       const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                       const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                       const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
-                                                      const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList) ;
+                                                      const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
+                                                      const GALGAS_stringset & in_mSignatureSet) ;
 
 //-- Start of generic part --*
 
@@ -10865,7 +10900,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
                                                                              const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
                                                                              const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                              const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                             const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5
+                                                                             const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
+                                                                             const class GALGAS_stringset & inOperand6
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of reader 'description'
@@ -10883,6 +10919,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string reader_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mSignatureSet (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGeneration reader_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
 
