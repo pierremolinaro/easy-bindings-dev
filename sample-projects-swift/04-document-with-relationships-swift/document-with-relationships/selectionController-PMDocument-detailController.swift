@@ -1,22 +1,23 @@
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    SelectionController_PMDocument_detailController                                                                  *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class SelectionController_PMDocument_detailController : EBObject {
+@objc(SelectionController_PMDocument_detailController)
+final class SelectionController_PMDocument_detailController : EBObject {
   private var mModel : ReadOnlyArrayOf_NameEntity?
 
-  //···················································································································* 
-  //   SELECTION OBSERVABLE PROPERTIES                                                                                 *
-  //···················································································································* 
+  //····················································································································
+  //   SELECTION OBSERVABLE PROPERTIES
+  //····················································································································
 
   var aValue = EBPropertyProxy_Int () 
   var name = EBPropertyProxy_String () 
 
-  //···················································································································* 
-  //   BIND SELECTION                                                                                                  *
-  //···················································································································* 
+  //····················································································································
+  //   BIND SELECTION
+  //····················································································································
 
   func bind_selection (model : ReadOnlyArrayOf_NameEntity, file:String, line:Int) {
     mModel = model
@@ -24,15 +25,116 @@ class SelectionController_PMDocument_detailController : EBObject {
     bind_property_name (model)
   }
 
-  //···················································································································*
+  //····················································································································
   //    Explorer
-  //···················································································································*
+  //····················································································································
+
+  private var mValueExplorer : NSButton?
+  private var mExplorerWindow : NSWindow?
+
+  //····················································································································
 
   final func addExplorer (name : String,
                           inout y : CGFloat,
                           view : NSView) {
+    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+    let tf = NSTextField (frame:secondColumn (y))
+    tf.enabled = true
+    tf.editable = false
+    tf.stringValue = name
+    tf.font = font
+    view.addSubview (tf)
+    let valueExplorer = NSButton (frame:thirdColumn (y))
+    valueExplorer.font = font
+    valueExplorer.title = explorerIndexString (mExplorerObjectIndex) + className
+    valueExplorer.target = self
+    valueExplorer.action = "showObjectWindowFromExplorerButton:"
+    view.addSubview (valueExplorer)
+    mValueExplorer = valueExplorer
+    y += EXPLORER_ROW_HEIGHT
   }
   
+  //····················································································································
+
+  func buildExplorerWindow () {
+  //-------------------------------------------------- Create Window
+    let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
+    mExplorerWindow = NSWindow (
+      contentRect:r,
+      styleMask:NSTitledWindowMask | NSClosableWindowMask,
+      backing:NSBackingStoreType.Buffered,
+      `defer`:true,
+      screen:nil
+    )
+  //-------------------------------------------------- Adding properties
+    let view = NSView (frame:r)
+    var y : CGFloat = 0.0
+    createEntryForPropertyNamed (
+      "aValue",
+      idx:aValue.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&aValue.mObserverExplorer,
+      valueExplorer:&aValue.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "name",
+      idx:name.mExplorerObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&name.mObserverExplorer,
+      valueExplorer:&name.mValueExplorer
+    )
+  //-------------------------------------------------- Finish Window construction
+  //--- Resize View
+    let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    view.frame = viewFrame
+  //--- Set content size
+    mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
+  //--- Set close button as 'remove window' button
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = self
+    closeButton!.action = "deleteWindowAction:"
+  //--- Set window title
+    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
+    mExplorerWindow!.title = windowTitle
+  //--- Add Scroll view
+    let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
+    let sw = NSScrollView (frame:frame)
+    sw.hasVerticalScroller = true
+    sw.documentView = view
+    mExplorerWindow!.contentView = sw
+  }
+
+  //····················································································································
+  //   showObjectWindowFromExplorerButton
+  //····················································································································
+
+  func showObjectWindowFromExplorerButton (AnyObject?) {
+    if mExplorerWindow == nil {
+      buildExplorerWindow ()
+    }
+    mExplorerWindow?.makeKeyAndOrderFront(nil)
+  }
+  
+  //····················································································································
+  //   deleteWindowAction
+  //····················································································································
+
+  func deleteWindowAction (AnyObject) {
+    clearObjectExplorer ()
+  }
+
+  //····················································································································
+  //   clearObjectExplorer
+  //····················································································································
+
+  func clearObjectExplorer () {
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = nil
+    mExplorerWindow?.orderOut (nil)
+    mExplorerWindow = nil
+  }
 
   //···················································································································*
 
@@ -178,9 +280,9 @@ class SelectionController_PMDocument_detailController : EBObject {
 
 
 
-  //···················································································································* 
-  //   UNBIND SELECTION                                                                                                *
-  //···················································································································* 
+  //····················································································································
+  //   UNBIND SELECTION
+  //····················································································································
 
   func unbind_selection () {
   //--- aValue
@@ -198,9 +300,9 @@ class SelectionController_PMDocument_detailController : EBObject {
     mModel = nil    
   }
 
-  //···················································································································* 
+  //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
