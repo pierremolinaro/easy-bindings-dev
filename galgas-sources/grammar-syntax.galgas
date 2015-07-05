@@ -2,7 +2,7 @@
 #   GRAMMAR                                                                                                            *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-grammar easyBindings_grammar "LL1" {
+grammar easyBindings_grammar "SLR" {
   syntax easyBindings_syntax
   <start_symbol>
     ?userDefined:let @bool inIsUserDefined

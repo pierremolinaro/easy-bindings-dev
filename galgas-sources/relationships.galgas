@@ -27,10 +27,21 @@ syntax extension easyBindings_syntax {
   
   rule <toMany_relationship>
     ?!@toManyRelationshipList ioToManyRelationshipList
+    ?!@stringset ioSignatureList
   {
+    @bool usedForSignature
+    select
+      usedForSignature = false
+    or
+      $signature$
+      usedForSignature = true
+    end
     $toMany$
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
+    if usedForSignature then
+      ioSignatureList += !relationshipName.string
+    end
     $inverse$
     $toOne$
     $identifier$ ?let @lstring inserseRelationshipName

@@ -157,7 +157,8 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 //    %!"To many relationship: " + mToManyRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
+@objc(ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName%)
+final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
   weak var owner : %!ENTITY_NAME%?
 
   var mValueExplorer : NSPopUpButton? {
@@ -279,6 +280,16 @@ end
     }
   }
   
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    var crc : UInt32 = 0
+    for object in mValue {
+      crc.accumulateUInt32 (object.signature ())
+    }
+    return crc
+  }
+
   //····················································································································
  
 }
@@ -625,22 +636,20 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 end
 %  }
 
-%
-if [SIGNATURE_SET count] > 0 then
-%  //····················································································································
-  //   accumulateSignature
+  //····················································································································
+  //   signature
   //····················································································································
 
-  func accumulateSignature (inout crc : UInt32) {
+  override func signature () -> UInt32 {
+    var crc = super.signature ()
 %
 for () in SIGNATURE_SET do
   %    crc.accumulateUInt32 (%!key%.signature ())\n%
 end
-%  }
+%    return crc
+  }
 
-%
-end
-%  //····················································································································
+  //····················································································································
 
 }
 

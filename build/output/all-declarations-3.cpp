@@ -10,6 +10,294 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                              Routine 'analyzeOutlets'                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
+                             const GALGAS_semanticContext constinArgument_inSemanticContext,
+                             const GALGAS_outletDeclarationList constinArgument_inOutletDeclarationList,
+                             const GALGAS_observablePropertyMap constinArgument_inObservablePropertyMap,
+                             const GALGAS_actionMap constinArgument_inActionMap,
+                             GALGAS_structForGeneration & ioArgument_ioGeneration,
+                             GALGAS_regularBindingsGenerationList & outArgument_outRegularBindingsGenerationList,
+                             GALGAS_multipleBindingGenerationList & outArgument_outMultipleBindingGenerationList,
+                             GALGAS_actionBindingListForGeneration & outArgument_outTargetActionList,
+                             GALGAS_decoratedOutletMap & outArgument_outletMap,
+                             GALGAS_tableViewBindingGenerationList & outArgument_outTableViewBindingGenerationList,
+                             C_Compiler * inCompiler
+                             COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outRegularBindingsGenerationList.drop () ; // Release 'out' argument
+  outArgument_outMultipleBindingGenerationList.drop () ; // Release 'out' argument
+  outArgument_outTargetActionList.drop () ; // Release 'out' argument
+  outArgument_outletMap.drop () ; // Release 'out' argument
+  outArgument_outTableViewBindingGenerationList.drop () ; // Release 'out' argument
+  outArgument_outRegularBindingsGenerationList = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 163)) ;
+  outArgument_outTargetActionList = GALGAS_actionBindingListForGeneration::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 164)) ;
+  outArgument_outMultipleBindingGenerationList = GALGAS_multipleBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 165)) ;
+  outArgument_outletMap = GALGAS_decoratedOutletMap::constructor_emptyMap (SOURCE_FILE ("outlet-declaration.galgas", 166)) ;
+  outArgument_outTableViewBindingGenerationList = GALGAS_tableViewBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 167)) ;
+  cEnumerator_outletDeclarationList enumerator_6252 (constinArgument_inOutletDeclarationList, kEnumeration_up) ;
+  while (enumerator_6252.hasCurrentObject ()) {
+    {
+    outArgument_outletMap.modifier_insertKey (enumerator_6252.current_mOutletName (HERE), enumerator_6252.current_mOutletTypeName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 169)) ;
+    }
+    GALGAS_bool var_handlesRunAction ;
+    GALGAS_bool var_handlesTableViewBinding ;
+    GALGAS_bool var_outletClassIsUserDefined ;
+    constinArgument_inSemanticContext.mAttribute_mOutletClassMap.method_searchKey (enumerator_6252.current_mOutletTypeName (HERE), var_handlesRunAction, var_handlesTableViewBinding, var_outletClassIsUserDefined, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 170)) ;
+    const enumGalgasBool test_0 = var_outletClassIsUserDefined.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 176)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      ioArgument_ioGeneration.mAttribute_mNeededOutletClasses.addAssign_operation (enumerator_6252.current_mOutletTypeName (HERE).mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 177)) ;
+    }
+    switch (enumerator_6252.current_mTableValueBindingDescriptor (HERE).enumValue ()) {
+    case GALGAS_tableValueBinding::kNotBuilt:
+      break ;
+    case GALGAS_tableValueBinding::kEnum_noTableValueBinding:
+      {
+      }
+      break ;
+    case GALGAS_tableValueBinding::kEnum_tableValueBinding:
+      {
+        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_7541 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_6252.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_controllerName = extractPtr_7541->mAssociatedValue0 ;
+        const enumGalgasBool test_1 = var_handlesTableViewBinding.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 183)).boolEnum () ;
+        if (kBoolTrue == test_1) {
+          GALGAS_location location_2 (enumerator_6252.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+          inCompiler->emitSemanticError (location_2, GALGAS_string ("the '").add_operation (enumerator_6252.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 184)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 184)).add_operation (GALGAS_string ("' type does not handle the $tableView binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 184))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 184)) ;
+        }else if (kBoolFalse == test_1) {
+          GALGAS_typeKind var_type ;
+          GALGAS_propertyKind var_kind ;
+          GALGAS_propertyMultiplicity var_multiplicity ;
+          GALGAS_string joker_7155_2 ; // Joker input parameter
+          GALGAS_actionMap joker_7155_1 ; // Joker input parameter
+          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_type, var_kind, var_multiplicity, joker_7155_2, joker_7155_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 186)) ;
+          const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_kind.objectCompare (GALGAS_propertyKind::constructor_arrayController (SOURCE_FILE ("outlet-declaration.galgas", 193)))).boolEnum () ;
+          if (kBoolTrue == test_3) {
+            GALGAS_location location_4 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_4, GALGAS_string ("the bound model should be an array controller")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 194)) ;
+          }
+          const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("outlet-declaration.galgas", 196)))).boolEnum () ;
+          if (kBoolTrue == test_5) {
+            GALGAS_location location_6 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_6, GALGAS_string ("the controller is not bound to a collection")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 197)) ;
+          }
+          outArgument_outTableViewBindingGenerationList.addAssign_operation (enumerator_6252.current_mOutletName (HERE).mAttribute_string, extractedValue_controllerName.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 199)) ;
+        }
+      }
+      break ;
+    }
+    switch (enumerator_6252.current_mRunDescriptor (HERE).enumValue ()) {
+    case GALGAS_runActionDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_runActionDescriptor::kEnum_noAction:
+      {
+      }
+      break ;
+    case GALGAS_runActionDescriptor::kEnum_action:
+      {
+        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_8273 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_6252.current_mRunDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_target = extractPtr_8273->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_action = extractPtr_8273->mAssociatedValue1 ;
+        const enumGalgasBool test_7 = var_handlesRunAction.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 206)).boolEnum () ;
+        if (kBoolTrue == test_7) {
+          GALGAS_location location_8 (enumerator_6252.current_mOutletTypeName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+          inCompiler->emitSemanticError (location_8, GALGAS_string ("the '").add_operation (enumerator_6252.current_mOutletTypeName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 207)).add_operation (GALGAS_string ("' type does not handle run action"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 207))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 207)) ;
+        }else if (kBoolFalse == test_7) {
+          const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, extractedValue_target.mAttribute_string.objectCompare (GALGAS_string ("self"))).boolEnum () ;
+          if (kBoolTrue == test_9) {
+            constinArgument_inActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 209)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_6252.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("self"), extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 210)) ;
+          }else if (kBoolFalse == test_9) {
+            GALGAS_actionMap var_controllerActionMap ;
+            GALGAS_typeKind joker_8088_4 ; // Joker input parameter
+            GALGAS_propertyKind joker_8088_3 ; // Joker input parameter
+            GALGAS_propertyMultiplicity joker_8088_2 ; // Joker input parameter
+            GALGAS_string joker_8088_1 ; // Joker input parameter
+            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_8088_4, joker_8088_3, joker_8088_2, joker_8088_1, var_controllerActionMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 215)) ;
+            var_controllerActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 216)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_6252.current_mOutletName (HERE).mAttribute_string, extractedValue_target.mAttribute_string, extractedValue_action.mAttribute_string  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 217)) ;
+          }
+        }
+      }
+      break ;
+    }
+    switch (enumerator_6252.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
+    case GALGAS_multipleBindingDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_multipleBindingDescriptor::kEnum_noBinding:
+      {
+      }
+      break ;
+    case GALGAS_multipleBindingDescriptor::kEnum_binding:
+      {
+        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_8973 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_6252.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_8973->mAssociatedValue0 ;
+        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression ;
+        GALGAS_typeKind var_type ;
+        GALGAS_location var_errorLocation ;
+        callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression, var_type, var_errorLocation, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 224)) ;
+        const enumGalgasBool test_10 = var_type.reader_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 232)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 232)).boolEnum () ;
+        if (kBoolTrue == test_10) {
+          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("expression is not boolean")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 233)) ;
+        }
+        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_6252.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("enabled"), var_enableExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 235)) ;
+      }
+      break ;
+    }
+    switch (enumerator_6252.current_mHiddenBindingDescriptor (HERE).enumValue ()) {
+    case GALGAS_multipleBindingDescriptor::kNotBuilt:
+      break ;
+    case GALGAS_multipleBindingDescriptor::kEnum_noBinding:
+      {
+      }
+      break ;
+    case GALGAS_multipleBindingDescriptor::kEnum_binding:
+      {
+        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_9670 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_6252.current_mHiddenBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_9670->mAssociatedValue0 ;
+        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_hiddenExpression ;
+        GALGAS_typeKind var_type ;
+        GALGAS_location var_errorLocation ;
+        callCategoryMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_hiddenExpression, var_type, var_errorLocation, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 244)) ;
+        const enumGalgasBool test_11 = var_type.reader_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 252)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 252)).boolEnum () ;
+        if (kBoolTrue == test_11) {
+          inCompiler->emitSemanticError (var_errorLocation, GALGAS_string ("expression is not boolean")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 253)) ;
+        }
+        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_6252.current_mOutletName (HERE).mAttribute_string, GALGAS_string ("hidden"), var_hiddenExpression  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 255)) ;
+      }
+      break ;
+    }
+    cEnumerator_regularBindingList enumerator_9743 (enumerator_6252.current_mRegularBindingList (HERE), kEnumeration_up) ;
+    while (enumerator_9743.hasCurrentObject ()) {
+      GALGAS_outletBindingModelList var_boundModelTypeList = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 263)) ;
+      GALGAS_stringlist var_boundModelStringListForGeneration = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
+      cEnumerator_observablePropertyList enumerator_9928 (enumerator_9743.current_mObservablePropertyList (HERE), kEnumeration_up) ;
+      while (enumerator_9928.hasCurrentObject ()) {
+        var_boundModelStringListForGeneration.addAssign_operation (categoryReader_modelString (enumerator_9928.current_mObservableProperty (HERE), GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)) ;
+        GALGAS_typeKind var_type ;
+        GALGAS_propertyKind var_kind ;
+        GALGAS_propertyMultiplicity var_multiplicity ;
+        GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
+        categoryMethod_analyzeObservableProperty (enumerator_9928.current_mObservableProperty (HERE), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_type, var_kind, var_multiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 267)) ;
+        const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_multiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("outlet-declaration.galgas", 276)))).boolEnum () ;
+        if (kBoolTrue == test_12) {
+          inCompiler->emitSemanticError (categoryReader_location (enumerator_9928.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 277)), GALGAS_string ("a collection cannot be bound")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 277)) ;
+        }
+        var_boundModelTypeList.addAssign_operation (var_type, var_kind, categoryReader_location (enumerator_9928.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)) ;
+        enumerator_9928.gotoNextObject () ;
+      }
+      GALGAS_outletBindingSpecificationMap var_bindingMap ;
+      constinArgument_inSemanticContext.mAttribute_mBindingSpecificationMap.method_searchKey (enumerator_6252.current_mOutletTypeName (HERE), var_bindingMap, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 282)) ;
+      GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList ;
+      GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList ;
+      var_bindingMap.method_searchKey (enumerator_9743.current_mBindingName (HERE), var_outletBindingSpecificationModelList, var_controllerBindingOptionDecoratedList, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 286)) ;
+      const enumGalgasBool test_13 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 291)).objectCompare (var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 291)))).boolEnum () ;
+      if (kBoolTrue == test_13) {
+        GALGAS_location location_14 (enumerator_9743.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_14, var_outletBindingSpecificationModelList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 292)).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 292)).add_operation (GALGAS_string (" model(s) required for this binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 292)) ;
+      }else if (kBoolFalse == test_13) {
+        cEnumerator_outletBindingSpecificationModelList enumerator_11284 (var_outletBindingSpecificationModelList, kEnumeration_up) ;
+        cEnumerator_outletBindingModelList enumerator_11317 (var_boundModelTypeList, kEnumeration_up) ;
+        while (enumerator_11284.hasCurrentObject () && enumerator_11317.hasCurrentObject ()) {
+          GALGAS_bool test_15 = enumerator_11284.current_mModelShouldBeWritableProperty (HERE) ;
+          if (kBoolTrue == test_15.boolEnum ()) {
+            test_15 = GALGAS_bool (kIsEqual, enumerator_11317.current_mKind (HERE).objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("outlet-declaration.galgas", 295)))) ;
+          }
+          const enumGalgasBool test_16 = test_15.boolEnum () ;
+          if (kBoolTrue == test_16) {
+            inCompiler->emitSemanticError (enumerator_11317.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 296)) ;
+          }
+          GALGAS_bool test_17 = enumerator_11284.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 298)) ;
+          if (kBoolTrue == test_17.boolEnum ()) {
+            test_17 = enumerator_11317.current_mModelType (HERE).reader_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 298)) ;
+          }
+          const enumGalgasBool test_18 = test_17.boolEnum () ;
+          if (kBoolTrue == test_18) {
+          }else if (kBoolFalse == test_18) {
+            const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, categoryReader_swiftTypeName (enumerator_11284.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 299)).objectCompare (categoryReader_swiftTypeName (enumerator_11317.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 299)))).boolEnum () ;
+            if (kBoolTrue == test_19) {
+              inCompiler->emitSemanticError (enumerator_11317.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (categoryReader_swiftTypeName (enumerator_11284.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 300)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 300))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 300)) ;
+            }
+          }
+          enumerator_11284.gotoNextObject () ;
+          enumerator_11317.gotoNextObject () ;
+        }
+      }
+      GALGAS_string var_bindingOptionString = GALGAS_string::makeEmptyString () ;
+      const enumGalgasBool test_20 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 306)).objectCompare (enumerator_9743.current_mBindingOptionList (HERE).reader_length (SOURCE_FILE ("outlet-declaration.galgas", 306)))).boolEnum () ;
+      if (kBoolTrue == test_20) {
+        GALGAS_string var_s ;
+        const enumGalgasBool test_21 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList.reader_length (SOURCE_FILE ("outlet-declaration.galgas", 308)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        if (kBoolTrue == test_21) {
+          var_s = GALGAS_string ("this binding has no option") ;
+        }else if (kBoolFalse == test_21) {
+          var_s = GALGAS_string ("this binding requires the following options:") ;
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_12266 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+          while (enumerator_12266.hasCurrentObject ()) {
+            var_s.dotAssign_operation (GALGAS_string ("\n"
+              "  - ").add_operation (enumerator_12266.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 313)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)).add_operation (categoryReader_swiftTypeName (enumerator_12266.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)) ;
+            enumerator_12266.gotoNextObject () ;
+          }
+        }
+        GALGAS_location location_22 (enumerator_9743.current_mBindingName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_22, var_s  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 316)) ;
+      }else if (kBoolFalse == test_20) {
+        cEnumerator_controllerBindingOptionDecoratedList enumerator_12482 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
+        cEnumerator_bindingOptionList enumerator_12517 (enumerator_9743.current_mBindingOptionList (HERE), kEnumeration_up) ;
+        while (enumerator_12482.hasCurrentObject () && enumerator_12517.hasCurrentObject ()) {
+          const enumGalgasBool test_23 = GALGAS_bool (kIsNotEqual, enumerator_12482.current_mOptionName (HERE).mAttribute_string.objectCompare (enumerator_12517.current_mOptionName (HERE).mAttribute_string)).boolEnum () ;
+          if (kBoolTrue == test_23) {
+            GALGAS_location location_24 (enumerator_12517.current_mOptionName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+            inCompiler->emitSemanticError (location_24, GALGAS_string ("the option name should be '").add_operation (enumerator_12482.current_mOptionName (HERE).reader_string (SOURCE_FILE ("outlet-declaration.galgas", 320)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 320)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 320))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 320)) ;
+          }
+          GALGAS_string var_optionValueAsString ;
+          GALGAS_typeKindList temp_25 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 323)) ;
+          temp_25.addAssign_operation (enumerator_12482.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 323)) ;
+          callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_12517.current_mOptionValue (HERE).ptr (), temp_25, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 322)) ;
+          var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_12482.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 326)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 326)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 326))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 326)) ;
+          enumerator_12482.gotoNextObject () ;
+          enumerator_12517.gotoNextObject () ;
+        }
+      }
+      outArgument_outRegularBindingsGenerationList.addAssign_operation (enumerator_6252.current_mOutletName (HERE).mAttribute_string, enumerator_9743.current_mBindingName (HERE).mAttribute_string, var_boundModelStringListForGeneration, var_bindingOptionString  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 330)) ;
+      enumerator_9743.gotoNextObject () ;
+    }
+    enumerator_6252.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                            Routine 'generateTransients'                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateTransients (const GALGAS_string constinArgument_inOutputDirectory,
+                                 const GALGAS_transientDefinitionListForGeneration constinArgument_inTransientListForGeneration,
+                                 GALGAS_stringset & ioArgument_ioGeneratedFileSet,
+                                 C_Compiler * inCompiler
+                                 COMMA_UNUSED_LOCATION_ARGS) {
+  cEnumerator_transientDefinitionListForGeneration enumerator_11928 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
+  while (enumerator_11928.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_11928.current_mOwnerName (HERE), enumerator_11928.current_mTransientName (HERE), enumerator_11928.current_mDependencyList (HERE), enumerator_11928.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 277))) ;
+    GALGAS_string var_fileName = enumerator_11928.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 283)).add_operation (enumerator_11928.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 283)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 283)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 284)) ;
+    {
+    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
+      "\n"), var_s, GALGAS_string ("\n"
+      "\n"), GALGAS_string ("}\n"
+      "\n"
+      "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 285)) ;
+    }
+    enumerator_11928.gotoNextObject () ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                           Filewrapper 'transientManager'                                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4693,6 +4981,14 @@ const char * gWrapperFileContent_4_swift_5F_sources = "import Cocoa\n"
   "    return result\n"
   "  }\n"
   "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "  //   signature\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  func signature () -> UInt32 {\n"
+  "    return 0\n"
+  "  }\n"
+  "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
   "\n"
   "}\n"
@@ -4742,7 +5038,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBManagedObject.swift",
   "swift",
   true, // Text file
-  13758, // Text length
+  14068, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
@@ -8095,914 +8391,6 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
     "  sys.exit (buildProcess.returncode)\n"
     "\n"
     "#------------------------------------------------------------------------------*\n" ;
-  return GALGAS_string (result) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                   Filewrapper 'xcodeProjectGenerationFilewrapper'                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-//--- All files of '' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of '' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0 [1] = {
-  NULL
-} ;
-
-//--- Directory ''
-
-const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewrapper (
-  "",
-  0,
-  gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0,
-  0,
-  gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0
-) ;
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Filewrapper template 'xcodeProjectGenerationFilewrapper xcodeproj'                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C_Compiler * /* inCompiler */,
-                                                                               const GALGAS_string & in_PROJECT_5F_REF,
-                                                                               const GALGAS_string & in_MAIN_5F_GROUP_5F_REF,
-                                                                               const GALGAS_XCodeGroupList & in_GROUPS,
-                                                                               const GALGAS_stringlist & in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS,
-                                                                               const GALGAS_XCodeToolTargetList & in_TOOL_5F_TARGET_5F_LIST,
-                                                                               const GALGAS_XCodeAppTargetList & in_APP_5F_TARGET_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_CPP_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_M_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_MM_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_SWIFT_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_FRAMEWORK_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_HEADER_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_PLIST_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_TIFF_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_ICNS_5F_FILE_5F_LIST,
-                                                                               const GALGAS__32_stringlist & in_XIB_5F_FILE_5F_LIST,
-                                                                               const GALGAS_BuildFileList & in_BUILD_5F_FILE_5F_LIST,
-                                                                               const GALGAS_string & in_DEFAULT_5F_CONFIGURATION_5F_REF,
-                                                                               const GALGAS_stringlist & in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST,
-                                                                               const GALGAS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  C_String result ;
-  result << "// !$*UTF8*$!\n"
-    "{\n"
-    "  archiveVersion = 1;\n"
-    "  classes = {\n"
-    "  };\n"
-    "  objectVersion = 42;\n"
-    "  objects = {\n"
-    "\n"
-    "  /*------------------------------------------------------------------ PBXBuildFile */\n" ;
-  GALGAS_uint index_210_ (0) ;
-  if (in_BUILD_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator_BuildFileList enumerator_210 (in_BUILD_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_210.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_210.current_mBuildReference (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_210.current_mFileName (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXBuildFile;\n"
-        "    fileRef = " ;
-      result << enumerator_210.current_mFileReference (HERE).stringValue () ;
-      result << " ;\n"
-        "    settings = {ATTRIBUTES = (); };\n"
-        "  };\n"
-        "\n" ;
-      index_210_.increment () ;
-      enumerator_210.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ PBXFileReference */\n" ;
-  GALGAS_uint index_500_ (0) ;
-  if (in_CPP_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_500 (in_CPP_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_500.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_500.current_mValue_30_ (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_500.current_mValue_31_ (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = sourcecode.cpp.cpp;\n"
-        "    name = " ;
-      result << enumerator_500.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_500.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 26)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_500_.increment () ;
-      enumerator_500.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_832_ (0) ;
-  if (in_M_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_832 (in_M_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_832.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_832.current_mValue_30_ (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_832.current_mValue_31_ (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = sourcecode.c.obj;\n"
-        "    name = " ;
-      result << enumerator_832.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_832.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 36)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_832_.increment () ;
-      enumerator_832.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_1163_ (0) ;
-  if (in_MM_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_1163 (in_MM_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_1163.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_1163.current_mValue_30_ (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_1163.current_mValue_31_ (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = sourcecode.cpp.objcpp;\n"
-        "    name = " ;
-      result << enumerator_1163.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_1163.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 46)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_1163_.increment () ;
-      enumerator_1163.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_1502_ (0) ;
-  if (in_SWIFT_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_1502 (in_SWIFT_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_1502.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_1502.current_mValue_30_ (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_1502.current_mValue_31_ (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = sourcecode.swift;\n"
-        "    name = " ;
-      result << enumerator_1502.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_1502.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 56)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_1502_.increment () ;
-      enumerator_1502.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_1837_ (0) ;
-  if (in_HEADER_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_1837 (in_HEADER_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_1837.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_1837.current_mValue_30_ (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_1837.current_mValue_31_ (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = sourcecode.c.h;\n"
-        "    name = " ;
-      result << enumerator_1837.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_1837.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 66)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_1837_.increment () ;
-      enumerator_1837.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_2173_ (0) ;
-  if (in_FRAMEWORK_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_2173 (in_FRAMEWORK_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_2173.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_2173.current_mValue_30_ (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_2173.current_mValue_31_ (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXFileReference;\n"
-        "    lastKnownFileType = wrapper.framework;\n"
-        "    name = " ;
-      result << enumerator_2173.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_2173.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 75)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_2173_.increment () ;
-      enumerator_2173.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_2483_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_2483 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_2483.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_2483.current_mProductFileReference (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFileReference;\n"
-        "    explicitFileType = \"compiled.mach-o.executable\";\n"
-        "    includeInIndex = 0;\n"
-        "    path = " ;
-      result << enumerator_2483.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 84)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = BUILT_PRODUCTS_DIR;\n"
-        "  };\n"
-        "\n" ;
-      index_2483_.increment () ;
-      enumerator_2483.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_2777_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_2777 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_2777.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_2777.current_mProductFileReference (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFileReference;\n"
-        "    explicitFileType = \"compiled.mach-o.executable\";\n"
-        "    includeInIndex = 0;\n"
-        "    path = " ;
-      result << enumerator_2777.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 93)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = BUILT_PRODUCTS_DIR;\n"
-        "  };\n"
-        "\n" ;
-      index_2777_.increment () ;
-      enumerator_2777.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_3071_ (0) ;
-  if (in_PLIST_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3071 (in_PLIST_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_3071.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_3071.current_mValue_30_ (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = text.plist;\n"
-        "    name = " ;
-      result << enumerator_3071.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_3071.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 103)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_3071_.increment () ;
-      enumerator_3071.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_3380_ (0) ;
-  if (in_XIB_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3380 (in_XIB_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_3380.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_3380.current_mValue_30_ (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFileReference;\n"
-        "    fileEncoding = 4;\n"
-        "    lastKnownFileType = wrapper.xib;\n"
-        "    name = " ;
-      result << enumerator_3380.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_3380.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 113)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_3380_.increment () ;
-      enumerator_3380.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_3691_ (0) ;
-  if (in_TIFF_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3691 (in_TIFF_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_3691.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_3691.current_mValue_30_ (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFileReference;\n"
-        "    lastKnownFileType = image.tiff;\n"
-        "    name = " ;
-      result << enumerator_3691.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_3691.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 122)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_3691_.increment () ;
-      enumerator_3691.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_3975_ (0) ;
-  if (in_ICNS_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3975 (in_ICNS_5F_FILE_5F_LIST, kEnumeration_up) ;
-    while (enumerator_3975.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_3975.current_mValue_30_ (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFileReference;\n"
-        "    lastKnownFileType = image.icns;\n"
-        "    name = " ;
-      result << enumerator_3975.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_3975.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 131)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n"
-        "\n" ;
-      index_3975_.increment () ;
-      enumerator_3975.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ PBXFrameworksBuildPhase */\n"
-    "\n" ;
-  GALGAS_uint index_4363_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_4363 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_4363.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_4363.current_mFrameworksFileRefList (HERE).reader_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        result << "  " ;
-        result << enumerator_4363.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
-        result << " = {\n"
-          "    isa = PBXFrameworksBuildPhase;\n"
-          "    buildActionMask = 2147483647;\n"
-          "    files = (\n" ;
-        GALGAS_uint index_4597_ (0) ;
-        if (enumerator_4363.current_mFrameworksFileRefList (HERE).isValid ()) {
-          cEnumerator_stringlist enumerator_4597 (enumerator_4363.current_mFrameworksFileRefList (HERE), kEnumeration_up) ;
-          while (enumerator_4597.hasCurrentObject ()) {
-            result << "      " ;
-            result << enumerator_4597.current_mValue (HERE).stringValue () ;
-            result << ",\n" ;
-            index_4597_.increment () ;
-            enumerator_4597.gotoNextObject () ;
-          }
-        }
-        result << "    );\n"
-          "    runOnlyForDeploymentPostprocessing = 0;\n"
-          "  };\n"
-          "\n" ;
-      }else if (kBoolFalse == test_0) {
-      }
-      index_4363_.increment () ;
-      enumerator_4363.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_4753_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_4753 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_4753.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_4753.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
-      result << " = {\n"
-        "    isa = PBXFrameworksBuildPhase;\n"
-        "    buildActionMask = 2147483647;\n"
-        "    files = (\n" ;
-      GALGAS_uint index_4931_ (0) ;
-      if (enumerator_4753.current_mFrameworksFileRefList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_4931 (enumerator_4753.current_mFrameworksFileRefList (HERE), kEnumeration_up) ;
-        while (enumerator_4931.hasCurrentObject ()) {
-          result << "      " ;
-          result << enumerator_4931.current_mValue (HERE).stringValue () ;
-          result << ",\n" ;
-          index_4931_.increment () ;
-          enumerator_4931.gotoNextObject () ;
-        }
-      }
-      result << "    );\n"
-        "    runOnlyForDeploymentPostprocessing = 0;\n"
-        "  };\n"
-        "\n" ;
-      index_4753_.increment () ;
-      enumerator_4753.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ PBXGroup section */\n" ;
-  GALGAS_uint index_5156_ (0) ;
-  if (in_GROUPS.isValid ()) {
-    cEnumerator_XCodeGroupList enumerator_5156 (in_GROUPS, kEnumeration_up) ;
-    while (enumerator_5156.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_5156.current_mGroupReference (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_5156.current_mGroupName (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXGroup;\n"
-        "    children = (\n" ;
-      GALGAS_uint index_5277_ (0) ;
-      if (enumerator_5156.current_mChildrenRefs (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_5277 (enumerator_5156.current_mChildrenRefs (HERE), kEnumeration_up) ;
-        while (enumerator_5277.hasCurrentObject ()) {
-          result << "      " ;
-          result << enumerator_5277.current_mValue (HERE).stringValue () ;
-          result << ", \n" ;
-          index_5277_.increment () ;
-          enumerator_5277.gotoNextObject () ;
-        }
-      }
-      result << "    );\n"
-        "    name = " ;
-      result << enumerator_5156.current_mGroupName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 174)).stringValue () ;
-      result << ";\n"
-        "    path = " ;
-      result << enumerator_5156.current_mGroupPath (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 175)).stringValue () ;
-      result << ";\n"
-        "    sourceTree = \"<group>\";\n"
-        "  };\n" ;
-      index_5156_.increment () ;
-      enumerator_5156.gotoNextObject () ;
-    }
-  }
-  result << "\n"
-    "  " ;
-  result << in_MAIN_5F_GROUP_5F_REF.stringValue () ;
-  result << " /* Main Group */ = {\n"
-    "    isa = PBXGroup;\n"
-    "    children = (\n" ;
-  GALGAS_uint index_5583_ (0) ;
-  if (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS.isValid ()) {
-    cEnumerator_stringlist enumerator_5583 (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS, kEnumeration_up) ;
-    while (enumerator_5583.hasCurrentObject ()) {
-      result << "      " ;
-      result << enumerator_5583.current_mValue (HERE).stringValue () ;
-      result << ",\n" ;
-      index_5583_.increment () ;
-      enumerator_5583.gotoNextObject () ;
-    }
-  }
-  result << "    );\n"
-    "    sourceTree = \"<group>\";\n"
-    "  };\n"
-    "\n"
-    "  /*------------------------------------------------------------------ PBXNativeTarget */\n" ;
-  GALGAS_uint index_5774_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_5774 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_5774.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_5774.current_mTargetRef (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_5774.current_mTargetName (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXNativeTarget;\n"
-        "    buildConfigurationList = " ;
-      result << enumerator_5774.current_mBuildConfigurationListRef (HERE).stringValue () ;
-      result << " ;\n"
-        "    buildPhases = (\n"
-        "      " ;
-      result << enumerator_5774.current_mBuildPhaseRef (HERE).stringValue () ;
-      result << " ,\n" ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_5774.current_mFrameworksFileRefList (HERE).reader_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-      if (kBoolTrue == test_1) {
-        result << "      " ;
-        result << enumerator_5774.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
-        result << " , /* Frameworks */\n" ;
-      }else if (kBoolFalse == test_1) {
-      }
-      result << "    );\n"
-        "    buildRules = (\n"
-        "    );\n"
-        "    dependencies = (\n"
-        "    );\n"
-        "    name = " ;
-      result << enumerator_5774.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 208)).stringValue () ;
-      result << ";\n"
-        "    productInstallPath = \"$(HOME)/bin\";\n"
-        "    productName = " ;
-      result << enumerator_5774.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 210)).stringValue () ;
-      result << ";\n"
-        "    productReference = " ;
-      result << enumerator_5774.current_mProductFileReference (HERE).stringValue () ;
-      result << " ;\n"
-        "    productType = \"com.apple.product-type.tool\";\n"
-        "  };\n"
-        " \n" ;
-      index_5774_.increment () ;
-      enumerator_5774.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_6410_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_6410 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_6410.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_6410.current_mTargetRef (HERE).stringValue () ;
-      result << " /* " ;
-      result << enumerator_6410.current_mTargetName (HERE).stringValue () ;
-      result << " */ = {\n"
-        "    isa = PBXNativeTarget;\n"
-        "    buildConfigurationList = " ;
-      result << enumerator_6410.current_mBuildConfigurationListRef (HERE).stringValue () ;
-      result << " ;\n"
-        "    buildPhases = (\n"
-        "      " ;
-      result << enumerator_6410.current_mResourceBuildRef (HERE).stringValue () ;
-      result << " , /* Resources */\n"
-        "      " ;
-      result << enumerator_6410.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
-      result << " , /* Frameworks */\n"
-        "      " ;
-      result << enumerator_6410.current_mBuildPhaseRef (HERE).stringValue () ;
-      result << " , /* Sources */\n"
-        "    );\n"
-        "    buildRules = (\n"
-        "    );\n"
-        "    dependencies = (\n" ;
-      GALGAS_uint index_6784_ (0) ;
-      if (enumerator_6410.current_mDependentTargets (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_6784 (enumerator_6410.current_mDependentTargets (HERE), kEnumeration_up) ;
-        while (enumerator_6784.hasCurrentObject ()) {
-          result << "      " ;
-          result << enumerator_6784.current_mValue_30_ (HERE).stringValue () ;
-          result << " ,\n" ;
-          index_6784_.increment () ;
-          enumerator_6784.gotoNextObject () ;
-        }
-      }
-      result << "    );\n"
-        "    name = " ;
-      result << enumerator_6410.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 234)).stringValue () ;
-      result << ";\n"
-        "    productInstallPath = \"$(HOME)/bin\";\n"
-        "    productName = " ;
-      result << enumerator_6410.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 236)).stringValue () ;
-      result << ";\n"
-        "    productReference = " ;
-      result << enumerator_6410.current_mProductFileReference (HERE).stringValue () ;
-      result << " ;\n"
-        "    productType = \"com.apple.product-type.application\";\n"
-        "  };\n"
-        "\n" ;
-      index_6410_.increment () ;
-      enumerator_6410.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ PBXProject */\n"
-    "  " ;
-  result << in_PROJECT_5F_REF.stringValue () ;
-  result << " /* Project object */ = {\n"
-    "   isa = PBXProject;\n"
-    "   attributes = {\n"
-    "     LastSwiftUpdateCheck = 0700;\n"
-    "     LastUpgradeCheck = 0700;\n"
-    "   };\n"
-    "   buildConfigurationList = " ;
-  result << in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
-  result << " /* Build configuration list for PBXProject */;\n"
-    "   compatibilityVersion = \"Xcode 2.4\";\n"
-    "   hasScannedForEncodings = 1;\n"
-    "   mainGroup = " ;
-  result << in_MAIN_5F_GROUP_5F_REF.stringValue () ;
-  result << ";\n"
-    "   projectDirPath = \"\";\n"
-    "   projectRoot = \"\";\n"
-    "   targets = (\n" ;
-  GALGAS_uint index_7633_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_7633 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_7633.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_7633.current_mTargetRef (HERE).stringValue () ;
-      result << ", \n" ;
-      index_7633_.increment () ;
-      enumerator_7633.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_7690_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_7690 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_7690.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_7690.current_mTargetRef (HERE).stringValue () ;
-      result << ", \n" ;
-      index_7690_.increment () ;
-      enumerator_7690.gotoNextObject () ;
-    }
-  }
-  result << "   );\n"
-    "  };\n"
-    "\n"
-    "  /*------------------------------------------------------------------ PBXResourcesBuildPhase */\n"
-    "\n" ;
-  GALGAS_uint index_7860_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_7860 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_7860.hasCurrentObject ()) {
-      result << "  " ;
-      result << enumerator_7860.current_mResourceBuildRef (HERE).stringValue () ;
-      result << " /* Resources */ = {\n"
-        "    isa = PBXResourcesBuildPhase;\n"
-        "    buildActionMask = 2147483647;\n"
-        "    files = (\n" ;
-      GALGAS_uint index_8037_ (0) ;
-      if (enumerator_7860.current_mResourceFileBuildRefs (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_8037 (enumerator_7860.current_mResourceFileBuildRefs (HERE), kEnumeration_up) ;
-        while (enumerator_8037.hasCurrentObject ()) {
-          result << "      " ;
-          result << enumerator_8037.current_mValue (HERE).stringValue () ;
-          result << ",\n" ;
-          index_8037_.increment () ;
-          enumerator_8037.gotoNextObject () ;
-        }
-      }
-      result << "    );\n"
-        "    runOnlyForDeploymentPostprocessing = 0;\n"
-        "  };\n"
-        "\n" ;
-      index_7860_.increment () ;
-      enumerator_7860.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ PBXSourcesBuildPhase */\n" ;
-  GALGAS_uint index_8264_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_8264 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_8264.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_8264.current_mBuildPhaseRef (HERE).stringValue () ;
-      result << " /* Sources */ = {\n"
-        "      isa = PBXSourcesBuildPhase;\n"
-        "      buildActionMask = 2147483647;\n"
-        "      files = (\n" ;
-      GALGAS_uint index_8425_ (0) ;
-      if (enumerator_8264.current_mBuildPhaseRefList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_8425 (enumerator_8264.current_mBuildPhaseRefList (HERE), kEnumeration_up) ;
-        while (enumerator_8425.hasCurrentObject ()) {
-          result << "        " ;
-          result << enumerator_8425.current_mValue (HERE).stringValue () ;
-          result << ",\n" ;
-          index_8425_.increment () ;
-          enumerator_8425.gotoNextObject () ;
-        }
-      }
-      result << "      );\n"
-        "      runOnlyForDeploymentPostprocessing = 0;\n"
-        "    };\n" ;
-      index_8264_.increment () ;
-      enumerator_8264.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_8549_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_8549 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_8549.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_8549.current_mBuildPhaseRef (HERE).stringValue () ;
-      result << " /* Sources */ = {\n"
-        "      isa = PBXSourcesBuildPhase;\n"
-        "      buildActionMask = 2147483647;\n"
-        "      files = (\n" ;
-      GALGAS_uint index_8710_ (0) ;
-      if (enumerator_8549.current_mBuildPhaseRefList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_8710 (enumerator_8549.current_mBuildPhaseRefList (HERE), kEnumeration_up) ;
-        while (enumerator_8710.hasCurrentObject ()) {
-          result << "        " ;
-          result << enumerator_8710.current_mValue (HERE).stringValue () ;
-          result << ",\n" ;
-          index_8710_.increment () ;
-          enumerator_8710.gotoNextObject () ;
-        }
-      }
-      result << "      );\n"
-        "      runOnlyForDeploymentPostprocessing = 0;\n"
-        "    };\n" ;
-      index_8549_.increment () ;
-      enumerator_8549.gotoNextObject () ;
-    }
-  }
-  result << "\n"
-    "\n"
-    "  /*------------------------------------------------------------------ PBXTargetDependency */\n"
-    " \n" ;
-  GALGAS_uint index_8935_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_8935 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_8935.hasCurrentObject ()) {
-      GALGAS_uint index_8968_ (0) ;
-      if (enumerator_8935.current_mDependentTargets (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_8968 (enumerator_8935.current_mDependentTargets (HERE), kEnumeration_up) ;
-        while (enumerator_8968.hasCurrentObject ()) {
-          result << "  " ;
-          result << enumerator_8968.current_mValue_30_ (HERE).stringValue () ;
-          result << " = {\n"
-            "    isa = PBXTargetDependency;\n"
-            "    target = " ;
-          result << enumerator_8968.current_mValue_31_ (HERE).stringValue () ;
-          result << ";\n"
-            "  };\n"
-            "\n" ;
-          index_8968_.increment () ;
-          enumerator_8968.gotoNextObject () ;
-        }
-      }
-      index_8935_.increment () ;
-      enumerator_8935.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ PBXVariantGroup */\n"
-    " \n"
-    "  /*------------------------------------------------------------------ XCBuildConfiguration */\n"
-    "    " ;
-  result << in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
-  result << " /* Default */ = {\n"
-    "      isa = XCBuildConfiguration;\n"
-    "      buildSettings = {\n" ;
-  GALGAS_uint index_9439_ (0) ;
-  if (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST.isValid ()) {
-    cEnumerator_stringlist enumerator_9439 (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST, kEnumeration_up) ;
-    while (enumerator_9439.hasCurrentObject ()) {
-      result << "      " ;
-      result << enumerator_9439.current_mValue (HERE).stringValue () ;
-      result << " ;\n" ;
-      index_9439_.increment () ;
-      enumerator_9439.gotoNextObject () ;
-    }
-  }
-  result << "    };\n"
-    "    name = Default;\n"
-    "  };\n"
-    "\n" ;
-  GALGAS_uint index_9531_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_9531 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_9531.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_9531.current_mBuildConfigurationRef (HERE).stringValue () ;
-      result << " /* Default */ = {\n"
-        "      isa = XCBuildConfiguration;\n"
-        "      buildSettings = {\n" ;
-      GALGAS_uint index_9693_ (0) ;
-      if (enumerator_9531.current_mBuildConfigurationSettingList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_9693 (enumerator_9531.current_mBuildConfigurationSettingList (HERE), kEnumeration_up) ;
-        while (enumerator_9693.hasCurrentObject ()) {
-          result << "      " ;
-          result << enumerator_9693.current_mValue (HERE).stringValue () ;
-          result << " ;\n" ;
-          index_9693_.increment () ;
-          enumerator_9693.gotoNextObject () ;
-        }
-      }
-      result << "      PRODUCT_NAME = " ;
-      result << enumerator_9531.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 347)).stringValue () ;
-      result << " ;\n"
-        "    };\n"
-        "    name = Default;\n"
-        "  };\n"
-        "\n" ;
-      index_9531_.increment () ;
-      enumerator_9531.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_9866_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_9866 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_9866.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_9866.current_mBuildConfigurationRef (HERE).stringValue () ;
-      result << " /* Default */ = {\n"
-        "      isa = XCBuildConfiguration;\n"
-        "      buildSettings = {\n" ;
-      GALGAS_uint index_10028_ (0) ;
-      if (enumerator_9866.current_mBuildConfigurationSettingList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_10028 (enumerator_9866.current_mBuildConfigurationSettingList (HERE), kEnumeration_up) ;
-        while (enumerator_10028.hasCurrentObject ()) {
-          result << "      " ;
-          result << enumerator_10028.current_mValue (HERE).stringValue () ;
-          result << " ;\n" ;
-          index_10028_.increment () ;
-          enumerator_10028.gotoNextObject () ;
-        }
-      }
-      result << "      INFOPLIST_FILE = " ;
-      result << enumerator_9866.current_mInfoPListFile (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 359)).stringValue () ;
-      result << ";\n"
-        "      PRODUCT_NAME = " ;
-      result << enumerator_9866.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 360)).stringValue () ;
-      result << " ;\n"
-        "    };\n"
-        "    name = Default;\n"
-        "  };\n"
-        "\n" ;
-      index_9866_.increment () ;
-      enumerator_9866.gotoNextObject () ;
-    }
-  }
-  result << "  /*------------------------------------------------------------------ XCConfigurationList section */\n"
-    "\n"
-    "    " ;
-  result << in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
-  result << " /* Build configuration list for PBXProject */ = {\n"
-    "      isa = XCConfigurationList;\n"
-    "      buildConfigurations = (\n"
-    "        " ;
-  result << in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
-  result << " /* Default */,\n"
-    "      );\n"
-    "      defaultConfigurationIsVisible = 0;\n"
-    "      defaultConfigurationName = Default;\n"
-    "    };\n"
-    "\n" ;
-  GALGAS_uint index_10687_ (0) ;
-  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_10687 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_10687.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_10687.current_mBuildConfigurationListRef (HERE).stringValue () ;
-      result << " /* Default */ = {\n"
-        "      isa = XCConfigurationList;\n"
-        "      buildConfigurations = (\n"
-        "        " ;
-      result << enumerator_10687.current_mBuildConfigurationRef (HERE).stringValue () ;
-      result << " /* Default */,\n"
-        "      );\n"
-        "      defaultConfigurationIsVisible = 0;\n"
-        "      defaultConfigurationName = Default;\n"
-        "    };\n"
-        "\n" ;
-      index_10687_.increment () ;
-      enumerator_10687.gotoNextObject () ;
-    }
-  }
-  GALGAS_uint index_10987_ (0) ;
-  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_10987 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
-    while (enumerator_10987.hasCurrentObject ()) {
-      result << "    " ;
-      result << enumerator_10987.current_mBuildConfigurationListRef (HERE).stringValue () ;
-      result << " /* Default */ = {\n"
-        "      isa = XCConfigurationList;\n"
-        "      buildConfigurations = (\n"
-        "        " ;
-      result << enumerator_10987.current_mBuildConfigurationRef (HERE).stringValue () ;
-      result << " /* Default */,\n"
-        "      );\n"
-        "      defaultConfigurationIsVisible = 0;\n"
-        "      defaultConfigurationName = Default;\n"
-        "    };\n"
-        "\n" ;
-      index_10987_.increment () ;
-      enumerator_10987.gotoNextObject () ;
-    }
-  }
-  result << "/*------------------------------------------------------------------ End */\n"
-    "  };\n"
-    "\n"
-    "  rootObject = " ;
-  result << in_PROJECT_5F_REF.stringValue () ;
-  result << " /* Project object */;\n"
-    "}\n" ;
   return GALGAS_string (result) ;
 }
 
