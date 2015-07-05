@@ -38,7 +38,7 @@ class SelectionController_PMDocument_detailController : EBObject {
 
   private final func bind_property_aValue (model : ReadOnlyArrayOf_NameEntity) {
     model.addObserverOf_aValue (aValue, postEvent:true)
-    model.addObserver (aValue, postEvent:true)
+//    model.addObserver (aValue, postEvent:true)
     aValue.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -109,7 +109,7 @@ class SelectionController_PMDocument_detailController : EBObject {
 
   private final func bind_property_name (model : ReadOnlyArrayOf_NameEntity) {
     model.addObserverOf_name (name, postEvent:true)
-    model.addObserver (name, postEvent:true)
+//    model.addObserver (name, postEvent:true)
     name.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -188,13 +188,13 @@ class SelectionController_PMDocument_detailController : EBObject {
     aValue.writeModelFunction = nil 
     aValue.validateAndWriteModelFunction = nil 
     mModel?.removeObserverOf_aValue (aValue, postEvent:false)
-    mModel?.removeObserver (aValue, postEvent:false)
+//    mModel?.removeObserver (aValue, postEvent:false)
   //--- name
     name.readModelFunction = nil 
     name.writeModelFunction = nil 
     name.validateAndWriteModelFunction = nil 
     mModel?.removeObserverOf_name (name, postEvent:false)
-    mModel?.removeObserver (name, postEvent:false)
+//    mModel?.removeObserver (name, postEvent:false)
     mModel = nil    
   }
 

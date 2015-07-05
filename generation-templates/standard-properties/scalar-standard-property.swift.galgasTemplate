@@ -32,10 +32,10 @@ class EBPropertyProxy_%!TYPE% : EBReadWriteProperty_%!TYPE% {
     super.init ()
   }
   
-  override func postEvent() {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      super.postEvent()
+      super.postEvent ()
     }
   }
 

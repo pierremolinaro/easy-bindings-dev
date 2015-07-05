@@ -358,7 +358,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
         result << " (" ;
         result << enumerator_2103.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:true)\n"
-          "    model.addObserver (" ;
+          "//    model.addObserver (" ;
         result << enumerator_2103.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:true)\n"
           "    " ;
@@ -458,36 +458,36 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""* \n"
     "\n"
     "  func unbind_selection () {\n" ;
-  GALGAS_uint index_5231_ (0) ;
+  GALGAS_uint index_5233_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_5231 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_5231.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = enumerator_5231.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_5233 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_5233.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = enumerator_5233.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 121)).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "  //--- " ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\n"
           "    " ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = nil \n"
           "    " ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".writeModelFunction = nil \n"
           "    " ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".validateAndWriteModelFunction = nil \n"
           "    mModel\?.removeObserverOf_" ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (" ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n"
-          "    mModel\?.removeObserver (" ;
-        result << enumerator_5231.current_lkey (HERE).mAttribute_string.stringValue () ;
+          "//    mModel\?.removeObserver (" ;
+        result << enumerator_5233.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n" ;
       }else if (kBoolFalse == test_3) {
       }
-      index_5231_.increment () ;
-      enumerator_5231.gotoNextObject () ;
+      index_5233_.increment () ;
+      enumerator_5233.gotoNextObject () ;
     }
   }
   result << "    mModel = nil    \n"
@@ -2947,10 +2947,13 @@ const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
   "func postOutletEvent (event : EBOutletEvent) {\n"
   "  if gPendingOutletEvents.count == 0 {\n"
   "    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { flushOutletEvents () }\n"
+  "    if logEvents () {\n"
+  "      appendMessageString (\"Post events\\n\")\n"
+  "    }\n"
   "  }\n"
   "  \n"
   "  if logEvents () {\n"
-  "    let str = String (format:\"Post outlet event #%@\\n\", _stdlib_getDemangledTypeName (event))\n"
+  "    let str = \"  \" +  explorerIndexString (event.mExplorerObjectIndex) + event.className + \"\\n\"\n"
   "    if !gPendingOutletEvents.contains (event) {\n"
   "      appendMessageString (str)\n"
   "    }else{ // Event already posted\n"
@@ -2965,17 +2968,25 @@ const char * gWrapperFileContent_6_swift_5F_sources = "import Cocoa\n"
   "func flushOutletEvents () {\n"
   "  if gPendingOutletEvents.count > 0 {\n"
   "    if logEvents () {\n"
-  "      appendMessageString (\"-Flush level 0: display outlets\\n\")\n"
+  "      appendMessageString (\"Flush outlet events\\n\", color: NSColor.blueColor ())\n"
   "    }\n"
-  "    for object in gPendingOutletEvents {\n"
-  "      if logEvents () {\n"
-  "        appendMessageString (String (format:\"  - %@\\n\", _stdlib_getDemangledTypeName (object)))\n"
+  "    while gPendingOutletEvents.count > 0 {\n"
+  "      let pendingOutletEvents = gPendingOutletEvents\n"
+  "      gPendingOutletEvents.removeAll ()\n"
+  "      for event in pendingOutletEvents {\n"
+  "        if logEvents () {\n"
+  "          let message = \"  \" +  explorerIndexString (event.mExplorerObjectIndex) + event.className + \"\\n\"\n"
+  "          appendMessageString (message, color: NSColor.blueColor ())\n"
+  "        }\n"
+  "        event.sendUpdateEvent ()\n"
   "      }\n"
-  "      object.sendUpdateEvent ()\n"
+  "      if gPendingOutletEvents.count > 0 && logEvents () {\n"
+  "        let message = String (gPendingOutletEvents.count) +  \" event(s) posted during flush\\n\"\n"
+  "        appendMessageString (message, color: NSColor.redColor ())\n"
+  "      }\n"
   "    }\n"
-  "    gPendingOutletEvents = Set ()\n"
   "    if logEvents () {\n"
-  "      appendMessageString (\"\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\\n\")\n"
+  "      appendMessageString (\"\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\\n\", color: NSColor.blueColor ())\n"
   "    }\n"
   "  }\n"
   "}\n"
@@ -3075,7 +3086,7 @@ const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
   "application.swift",
   "swift",
   true, // Text file
-  6875, // Text length
+  7402, // Text length
   gWrapperFileContent_6_swift_5F_sources
 ) ;
 
@@ -4231,10 +4242,10 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     "    super.init ()\n"
     "  }\n"
     "  \n"
-    "  override func postEvent() {\n"
+    "  override func postEvent () {\n"
     "    if prop_cache != nil {\n"
     "      prop_cache = nil\n"
-    "      super.postEvent()\n"
+    "      super.postEvent ()\n"
     "    }\n"
     "  }\n"
     "\n"
@@ -4523,11 +4534,11 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     "  private var prop_cache : EBProperty <" ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << ">\?\n"
-    "  \n"
+    "\n"
     "  override init () {\n"
     "    super.init ()\n"
     "  }\n"
-    "  \n"
+    "\n"
     "  override func postEvent() {\n"
     "    if prop_cache != nil {\n"
     "      prop_cache = nil\n"

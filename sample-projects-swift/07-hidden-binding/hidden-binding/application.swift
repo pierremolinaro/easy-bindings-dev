@@ -28,10 +28,13 @@ private var gPendingOutletEvents = Set <EBOutletEvent> ()
 func postOutletEvent (event : EBOutletEvent) {
   if gPendingOutletEvents.count == 0 {
     dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { flushOutletEvents () }
+    if logEvents () {
+      appendMessageString ("Post events\n")
+    }
   }
   
   if logEvents () {
-    let str = String (format:"Post outlet event #%@\n", _stdlib_getDemangledTypeName (event))
+    let str = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
     if !gPendingOutletEvents.contains (event) {
       appendMessageString (str)
     }else{ // Event already posted
@@ -46,17 +49,25 @@ func postOutletEvent (event : EBOutletEvent) {
 func flushOutletEvents () {
   if gPendingOutletEvents.count > 0 {
     if logEvents () {
-      appendMessageString ("-Flush level 0: display outlets\n")
+      appendMessageString ("Flush outlet events\n", color: NSColor.blueColor ())
     }
-    for object in gPendingOutletEvents {
-      if logEvents () {
-        appendMessageString (String (format:"  - %@\n", _stdlib_getDemangledTypeName (object)))
+    while gPendingOutletEvents.count > 0 {
+      let pendingOutletEvents = gPendingOutletEvents
+      gPendingOutletEvents.removeAll ()
+      for event in pendingOutletEvents {
+        if logEvents () {
+          let message = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
+          appendMessageString (message, color: NSColor.blueColor ())
+        }
+        event.sendUpdateEvent ()
       }
-      object.sendUpdateEvent ()
+      if gPendingOutletEvents.count > 0 && logEvents () {
+        let message = String (gPendingOutletEvents.count) +  " event(s) posted during flush\n"
+        appendMessageString (message, color: NSColor.redColor ())
+      }
     }
-    gPendingOutletEvents = Set ()
     if logEvents () {
-      appendMessageString ("————————————————————————————————————————————————————\n")
+      appendMessageString ("——————————————————————————————————————\n", color: NSColor.blueColor ())
     }
   }
 }
