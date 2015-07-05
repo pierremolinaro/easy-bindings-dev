@@ -34,10 +34,10 @@ class EBPropertyProxy_Int : EBReadWriteProperty_Int {
     super.init ()
   }
   
-  override func postEvent() {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      super.postEvent()
+      super.postEvent ()
     }
   }
 
@@ -236,10 +236,10 @@ class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
     super.init ()
   }
   
-  override func postEvent() {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      super.postEvent()
+      super.postEvent ()
     }
   }
 
@@ -438,10 +438,10 @@ class EBPropertyProxy_Double : EBReadWriteProperty_Double {
     super.init ()
   }
   
-  override func postEvent() {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      super.postEvent()
+      super.postEvent ()
     }
   }
 
@@ -635,11 +635,11 @@ class EBPropertyProxy_String : EBReadWriteProperty_String {
   var validateAndWriteModelFunction : Optional < (String, NSWindow?) -> Bool >
   
   private var prop_cache : EBProperty <String>?
-  
+
   override init () {
     super.init ()
   }
-  
+
   override func postEvent() {
     if prop_cache != nil {
       prop_cache = nil
@@ -838,11 +838,11 @@ class EBPropertyProxy_NSColor : EBReadWriteProperty_NSColor {
   var validateAndWriteModelFunction : Optional < (NSColor, NSWindow?) -> Bool >
   
   private var prop_cache : EBProperty <NSColor>?
-  
+
   override init () {
     super.init ()
   }
-  
+
   override func postEvent() {
     if prop_cache != nil {
       prop_cache = nil
@@ -1047,11 +1047,11 @@ class EBPropertyProxy_NSDate : EBReadWriteProperty_NSDate {
   var validateAndWriteModelFunction : Optional < (NSDate, NSWindow?) -> Bool >
   
   private var prop_cache : EBProperty <NSDate>?
-  
+
   override init () {
     super.init ()
   }
-  
+
   override func postEvent() {
     if prop_cache != nil {
       prop_cache = nil
@@ -1250,11 +1250,11 @@ class EBPropertyProxy_NSFont : EBReadWriteProperty_NSFont {
   var validateAndWriteModelFunction : Optional < (NSFont, NSWindow?) -> Bool >
   
   private var prop_cache : EBProperty <NSFont>?
-  
+
   override init () {
     super.init ()
   }
-  
+
   override func postEvent() {
     if prop_cache != nil {
       prop_cache = nil

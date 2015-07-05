@@ -27,11 +27,11 @@ class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
   var validateAndWriteModelFunction : Optional < (%!CLASS_NAME%, NSWindow?) -> Bool >
   
   private var prop_cache : EBProperty <%!CLASS_NAME%>?
-  
+
   override init () {
     super.init ()
   }
-  
+
   override func postEvent() {
     if prop_cache != nil {
       prop_cache = nil

@@ -1,10 +1,55 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    DataSource_PMDocument_nameController                                                                             *
+//    DataSourceDidChangeEvent_PMDocument_nameController
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, EBTableViewDataSource {
+@objc(DataSourceDidChangeEvent_PMDocument_nameController)
+final class DataSourceDidChangeEvent_PMDocument_nameController : EBOutletEvent {
+
+  private let mModel  : ReadOnlyArrayOf_NameEntity
+  private let mController : ArrayController_PMDocument_nameController
+
+  //····················································································································
+
+  init (controller: ArrayController_PMDocument_nameController,
+        model : ReadOnlyArrayOf_NameEntity,
+        file : String, line : Int) {
+    mController = controller
+    mModel = model
+    super.init ()
+  //--- Column properties
+    model.addObserverOf_name (self, postEvent:true)
+    model.addObserverOf_aValue (self, postEvent:true)
+  //--- Filter properties
+  }
+
+  //····················································································································
+  
+  func removeDataSourceObservers () {
+  //--- Column properties
+    mModel.removeObserverOf_name (self, postEvent:true)
+    mModel.removeObserverOf_aValue (self, postEvent:true)
+  //--- Filter properties
+  }
+
+  //····················································································································
+
+  override func postEvent() {
+    mController.postEventDataSourceDidChange ()
+    super.postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    DataSource_PMDocument_nameController
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(DataSource_PMDocument_nameController)
+final class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, EBTableViewDataSource {
   private weak var mModel : ReadOnlyArrayOf_NameEntity?
   var count = EBTransientProperty_Int ()
 
@@ -30,11 +75,11 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, EBTable
 
   //····················································································································
 
-  override func postEvent () {
+  func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
-      super.postEvent ()
+ //     super.postEvent ()
     }
   }
 
@@ -150,11 +195,12 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, EBTable
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    Delegate_PMDocument_nameController                                                                               *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    Delegate_PMDocument_nameController
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Delegate_PMDocument_nameController) class Delegate_PMDocument_nameController : EBAbstractProperty, EBTableViewDelegate {
+@objc(Delegate_PMDocument_nameController)
+final class Delegate_PMDocument_nameController : EBObject, EBTableViewDelegate {
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_nameController
@@ -184,11 +230,11 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, EBTable
 
   //····················································································································
   
-  override func postEvent () {
+  func postEvent () {
     if !mSetShouldBeComputed {
       mSetShouldBeComputed = true
       count.postEvent ()
-      super.postEvent ()
+  //    super.postEvent ()
     }
   }
 
@@ -335,11 +381,12 @@ class DataSource_PMDocument_nameController : ReadOnlyArrayOf_NameEntity, EBTable
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    ArrayController_PMDocument_nameController                                                                        *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    ArrayController_PMDocument_nameController
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ArrayController_PMDocument_nameController : EBObject {
+@objc(ArrayController_PMDocument_nameController)
+final class ArrayController_PMDocument_nameController : EBObject {
   private let mAllowsEmptySelection = false
   private let mAllowsMultipleSelection = true
 
@@ -353,6 +400,8 @@ class ArrayController_PMDocument_nameController : EBObject {
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames?
  
+  private var mDataSourceController : DataSourceDidChangeEvent_PMDocument_nameController?
+
   //····················································································································
   //    init
   //····················································································································
@@ -406,6 +455,12 @@ class ArrayController_PMDocument_nameController : EBObject {
     sortedArray.mModel = model
     let selectedSet = Delegate_PMDocument_nameController (model:sortedArray)
     mSelectedSet = selectedSet
+    mDataSourceController = DataSourceDidChangeEvent_PMDocument_nameController (
+      controller: self,
+      model: model,
+      file: file,
+      line: line
+    )
     for tableView in tableViewArray {
       let tableViewController = Controller_EBTableView_controller (
         delegate:selectedSet,
@@ -474,18 +529,18 @@ class ArrayController_PMDocument_nameController : EBObject {
           sortedArray.setSortDescriptors (sortDescriptorArray)
         }
       }
-      sortedArray.addObserver (tableViewController, postEvent:true)
-      selectedSet.addObserver (tableViewController, postEvent:true)
+ //     sortedArray.addObserver (tableViewController, postEvent:true)
+ //     selectedSet.addObserver (tableViewController, postEvent:true)
    //--- Set table view delegate and data source
       tableView.setDataSource (sortedArray)
       tableView.setDelegate (selectedSet)
    }
   //--- Add observers
-    model.addObserverOf_name (sortedArray, postEvent:true)
-    model.addObserverOf_aValue (sortedArray, postEvent:true)
-    model.addObserver (sortedArray, postEvent:true)
-    sortedArray.addObserver (selectedSet, postEvent:true)
-    selectedSet.addObserver (selectedArray, postEvent:true)
+ //   model.addObserverOf_name (sortedArray, postEvent:true)
+ //   model.addObserverOf_aValue (sortedArray, postEvent:true)
+//    model.addObserver (sortedArray, postEvent:true)
+//    sortedArray.addObserver (selectedSet, postEvent:true)
+//    selectedSet.addObserver (selectedArray, postEvent:true)
   }
 
   //····················································································································
@@ -493,24 +548,38 @@ class ArrayController_PMDocument_nameController : EBObject {
   //····················································································································
 
   func unbind_modelAndView () {
-    mModel?.removeObserverOf_name (sortedArray, postEvent:false)
-    mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
-    mModel?.removeObserver (sortedArray, postEvent:false)
-    if let selectedSet = mSelectedSet {
-      sortedArray.removeObserver (selectedSet, postEvent:false)
-    }
-    mSelectedSet?.removeObserver (selectedArray, postEvent:false)
-     for tableViewController in mTableViewControllerArray {
-      sortedArray.removeObserver (tableViewController, postEvent:false)
-      mSelectedSet?.removeObserver (tableViewController, postEvent:false)
-    }
+ //   mModel?.removeObserverOf_name (sortedArray, postEvent:false)
+ //   mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
+//    mModel?.removeObserver (sortedArray, postEvent:false)
+//    if let selectedSet = mSelectedSet {
+//      sortedArray.removeObserver (selectedSet, postEvent:false)
+//    }
+//    mSelectedSet?.removeObserver (selectedArray, postEvent:false)
+//     for tableViewController in mTableViewControllerArray {
+ //     sortedArray.removeObserver (tableViewController, postEvent:false)
+//      mSelectedSet?.removeObserver (tableViewController, postEvent:false)
+//    }
     mTableViewControllerArray = []
     selectedArray.computeFunction = nil
     mSelectedSet = nil
     mModel = nil
+    mDataSourceController?.removeDataSourceObservers ()
+    mDataSourceController = nil
  }
  
- 
+  //····················································································································
+  //    postEventDataSourceDidChange
+  //····················································································································
+
+  func postEventDataSourceDidChange () {
+    sortedArray.postEvent ()
+    selectedArray.postEvent ()
+    mSelectedSet?.postEvent ()
+    for tableViewController in mTableViewControllerArray {
+      tableViewController.postEvent ()
+    }
+  }
+  
   //····················································································································
   //    add
   //····················································································································
@@ -625,5 +694,5 @@ class ArrayController_PMDocument_nameController : EBObject {
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
