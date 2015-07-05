@@ -53,7 +53,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
 rule 'a'->'z' {
   repeat
     enterCharacterIntoString ( !?tokenString !* )
-  while 'a'->'z' | 'A'->'Z' | '0'->'9' :
+  while 'a'->'z' | 'A'->'Z' | '0'->'9' | '_' :
   end
   send search tokenString in lowerCaseKeyWordList default $identifier$
 }
