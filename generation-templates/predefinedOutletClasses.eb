@@ -57,3 +57,7 @@ binding EBTextField $value : property String {sendContinously : Bool} ;
 
 outletClass EBTextFieldObserver ;
 binding EBTextFieldObserver $valueObserver : transient String ;
+
+
+outletClass EBTextView ;
+binding EBTextView $value : property String ;
