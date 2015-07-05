@@ -124,38 +124,19 @@ end
 
   //····················································································································
 
-%
-if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
-%  func postEvent () {
-    if let unwPropCache = prop_cache {
-      prop_cache = nil
-      switch unwPropCache {
-      case .noSelection, .multipleSelection :
-        break
-      case .singleSelection (let array) :
-        for managedObject : %!ENTITY_NAME% in array {
-%
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %          managedObject.%!mStoredPropertyName%.postEvent ()\n%
-end
-%        }
-      }
-      count.postEvent ()
-//      super.postEvent ()
-    }
-  }
-%
-else
-%  func postEvent () {
+  func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      count.postEvent ()
-//      super.postEvent ()
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %      for observer in mObserversOf_%!mStoredPropertyName% {\n%
+  %        observer.postEvent ()\n%
+  %      }\n%
+end
+%      count.postEvent ()
     }
   }
-%
-end
-%
+
   //····················································································································
 
 }

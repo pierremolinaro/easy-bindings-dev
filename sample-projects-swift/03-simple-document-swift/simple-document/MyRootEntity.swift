@@ -147,19 +147,15 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   func postEvent () {
-    if let unwPropCache = prop_cache {
+    if prop_cache != nil {
       prop_cache = nil
-      switch unwPropCache {
-      case .noSelection, .multipleSelection :
-        break
-      case .singleSelection (let array) :
-        for managedObject : MyRootEntity in array {
-          managedObject.myString.postEvent ()
-          managedObject.myColor.postEvent ()
-        }
+      for observer in mObserversOf_myString {
+        observer.postEvent ()
+      }
+      for observer in mObserversOf_myColor {
+        observer.postEvent ()
       }
       count.postEvent ()
-//      super.postEvent ()
     }
   }
 

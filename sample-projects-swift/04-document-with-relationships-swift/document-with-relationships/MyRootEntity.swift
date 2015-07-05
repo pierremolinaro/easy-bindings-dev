@@ -76,7 +76,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
-//      super.postEvent ()
     }
   }
 
