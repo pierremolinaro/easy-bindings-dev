@@ -545,7 +545,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_stub (class C_Compiler 
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class C_Compiler * inCompiler,
                                                                          const class GALGAS_string & in_TYPE,
-                                                                         const class GALGAS_string & in_TO_5F_NSNUMBER
+                                                                         const class GALGAS_string & in_TO_5F_NSNUMBER,
+                                                                         const class GALGAS_string & in_SIGNATURE
                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -908,34 +909,5 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (c
                                                                                const class GALGAS_stringlist & in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST,
                                                                                const class GALGAS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
                                                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                               Filewrapper 'testFiles'                                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_testFiles ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      Filewrapper template 'testFiles test_py'                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_testFiles_test_5F_py (class C_Compiler * inCompiler,
-                                                        const class GALGAS_string & in_BUNDLE_5F_IDENTIFIER,
-                                                        const class GALGAS_string & in_PROJECT_5F_NAME,
-                                                        const class GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
-                                                        COMMA_LOCATION_ARGS) ;
 
 #endif
