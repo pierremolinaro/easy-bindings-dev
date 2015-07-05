@@ -7,8 +7,8 @@ import Cocoa
 @objc(DataSourceDidChangeEvent_PMDocument_otherController)
 final class DataSourceDidChangeEvent_PMDocument_otherController : EBOutletEvent {
 
-  private let mModel  : ReadOnlyArrayOf_NameEntity
-  private let mController : ArrayController_PMDocument_otherController
+  private var mModel      : ReadOnlyArrayOf_NameEntity?
+  private var mController : ArrayController_PMDocument_otherController?
 
   //····················································································································
 
@@ -29,16 +29,18 @@ final class DataSourceDidChangeEvent_PMDocument_otherController : EBOutletEvent 
   
   func removeDataSourceObservers () {
   //--- Column properties
-    mModel.removeObserverOf_name (self, postEvent:true)
-    mModel.removeObserverOf_aValue (self, postEvent:true)
+    mModel?.removeObserverOf_name (self, postEvent:true)
+    mModel?.removeObserverOf_aValue (self, postEvent:true)
   //--- Filter properties
-    mModel.removeObserverOf_aValue (self, postEvent:true)
+    mModel?.removeObserverOf_aValue (self, postEvent:true)
+    mModel = nil
+    mController = nil
   }
 
   //····················································································································
 
   override func postEvent() {
-    mController.postEventDataSourceDidChange ()
+    mController?.postEventDataSourceDidChange ()
     super.postEvent ()
   }
 
@@ -223,13 +225,16 @@ final class Delegate_PMDocument_otherController : EBObject, EBTableViewDelegate 
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_otherController
+  private var mSelectedArray : TransientArrayOf_NameEntity
   private var mIgnoreTableViewSelectionDidChange = true
   var count = EBTransientProperty_Int ()
 
   //····················································································································
 
-  init (model:DataSource_PMDocument_otherController) {
+  init (model:DataSource_PMDocument_otherController,
+        selectedArray:TransientArrayOf_NameEntity) {
     mSortedArray = model
+    mSelectedArray = selectedArray
     super.init ()
     count.computeFunction = { [weak self] in
      if let unwSelf = self {
@@ -244,16 +249,6 @@ final class Delegate_PMDocument_otherController : EBObject, EBTableViewDelegate 
       }else{
         return .noSelection
       }
-    }
-  }
-
-  //····················································································································
-  
-  func postEvent () {
-    if !mSetShouldBeComputed {
-      mSetShouldBeComputed = true
-      count.postEvent ()
-  //    super.postEvent ()
     }
   }
 
@@ -303,9 +298,19 @@ final class Delegate_PMDocument_otherController : EBObject, EBTableViewDelegate 
 
   //····················································································································
 
-  func setProp (value : Set<NameEntity>) {
+  private func setProp (value : Set<NameEntity>) {
     mSet = value
     postEvent ()
+  }
+
+  //····················································································································
+
+  private func postEvent () {
+    if !mSetShouldBeComputed {
+      mSetShouldBeComputed = true
+      count.postEvent ()
+      mSelectedArray.postEvent ()
+    }
   }
 
   //····················································································································
@@ -472,7 +477,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
   func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[EBTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
-    let selectedSet = Delegate_PMDocument_otherController (model:sortedArray)
+    let selectedSet = Delegate_PMDocument_otherController (model:sortedArray, selectedArray:selectedArray)
     mSelectedSet = selectedSet
     mDataSourceController = DataSourceDidChangeEvent_PMDocument_otherController (
       controller: self,
