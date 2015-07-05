@@ -7,8 +7,8 @@ import Cocoa
 @objc(DataSourceDidChangeEvent_PMDocument_nameController)
 final class DataSourceDidChangeEvent_PMDocument_nameController : EBOutletEvent {
 
-  private let mModel  : ReadOnlyArrayOf_NameEntity
-  private let mController : ArrayController_PMDocument_nameController
+  private var mModel      : ReadOnlyArrayOf_NameEntity?
+  private var mController : ArrayController_PMDocument_nameController?
 
   //····················································································································
 
@@ -28,15 +28,17 @@ final class DataSourceDidChangeEvent_PMDocument_nameController : EBOutletEvent {
   
   func removeDataSourceObservers () {
   //--- Column properties
-    mModel.removeObserverOf_name (self, postEvent:true)
-    mModel.removeObserverOf_aValue (self, postEvent:true)
+    mModel?.removeObserverOf_name (self, postEvent:true)
+    mModel?.removeObserverOf_aValue (self, postEvent:true)
   //--- Filter properties
+    mModel = nil
+    mController = nil
   }
 
   //····················································································································
 
   override func postEvent() {
-    mController.postEventDataSourceDidChange ()
+    mController?.postEventDataSourceDidChange ()
     super.postEvent ()
   }
 
@@ -204,13 +206,16 @@ final class Delegate_PMDocument_nameController : EBObject, EBTableViewDelegate {
   private var mSet = Set<NameEntity> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_PMDocument_nameController
+  private var mSelectedArray : TransientArrayOf_NameEntity
   private var mIgnoreTableViewSelectionDidChange = true
   var count = EBTransientProperty_Int ()
 
   //····················································································································
 
-  init (model:DataSource_PMDocument_nameController) {
+  init (model:DataSource_PMDocument_nameController,
+        selectedArray:TransientArrayOf_NameEntity) {
     mSortedArray = model
+    mSelectedArray = selectedArray
     super.init ()
     count.computeFunction = { [weak self] in
      if let unwSelf = self {
@@ -225,16 +230,6 @@ final class Delegate_PMDocument_nameController : EBObject, EBTableViewDelegate {
       }else{
         return .noSelection
       }
-    }
-  }
-
-  //····················································································································
-  
-  func postEvent () {
-    if !mSetShouldBeComputed {
-      mSetShouldBeComputed = true
-      count.postEvent ()
-  //    super.postEvent ()
     }
   }
 
@@ -284,9 +279,19 @@ final class Delegate_PMDocument_nameController : EBObject, EBTableViewDelegate {
 
   //····················································································································
 
-  func setProp (value : Set<NameEntity>) {
+  private func setProp (value : Set<NameEntity>) {
     mSet = value
     postEvent ()
+  }
+
+  //····················································································································
+
+  private func postEvent () {
+    if !mSetShouldBeComputed {
+      mSetShouldBeComputed = true
+      count.postEvent ()
+      mSelectedArray.postEvent ()
+    }
   }
 
   //····················································································································
@@ -453,7 +458,7 @@ final class ArrayController_PMDocument_nameController : EBObject {
   func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[EBTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
-    let selectedSet = Delegate_PMDocument_nameController (model:sortedArray)
+    let selectedSet = Delegate_PMDocument_nameController (model:sortedArray, selectedArray:selectedArray)
     mSelectedSet = selectedSet
     mDataSourceController = DataSourceDidChangeEvent_PMDocument_nameController (
       controller: self,

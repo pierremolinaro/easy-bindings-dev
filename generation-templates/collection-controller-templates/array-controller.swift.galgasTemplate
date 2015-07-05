@@ -7,8 +7,8 @@ import Cocoa
 @objc(DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
 final class DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBOutletEvent {
 
-  private let mModel  : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%
-  private let mController : ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
+  private var mModel      : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
+  private var mController : ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%?
 
   //····················································································································
 
@@ -36,19 +36,21 @@ end
   //--- Column properties
 %
 for () in BOUND_COLUMNS do
-  %    mModel.removeObserverOf_%!mObservablePropertyName% (self, postEvent:true)\n%
+  %    mModel?.removeObserverOf_%!mObservablePropertyName% (self, postEvent:true)\n%
 end
 %  //--- Filter properties
 %
 for () in FILTER_PROPERTIES do
-  %    mModel.removeObserverOf_%!mFilterPropertyName% (self, postEvent:true)\n%
+  %    mModel?.removeObserverOf_%!mFilterPropertyName% (self, postEvent:true)\n%
 end
-%  }
+%    mModel = nil
+    mController = nil
+  }
 
   //····················································································································
 
   override func postEvent() {
-    mController.postEventDataSourceDidChange ()
+    mController?.postEventDataSourceDidChange ()
     super.postEvent ()
   }
 
@@ -224,13 +226,16 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableV
   private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
+  private var mSelectedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%
   private var mIgnoreTableViewSelectionDidChange = true
   var count = EBTransientProperty_Int ()
 
   //····················································································································
 
-  init (model:DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%) {
+  init (model:DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%,
+        selectedArray:TransientArrayOf_%!ELEMENT_TYPE_NAME%) {
     mSortedArray = model
+    mSelectedArray = selectedArray
     super.init ()
     count.computeFunction = { [weak self] in
      if let unwSelf = self {
@@ -245,16 +250,6 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableV
       }else{
         return .noSelection
       }
-    }
-  }
-
-  //····················································································································
-  
-  func postEvent () {
-    if !mSetShouldBeComputed {
-      mSetShouldBeComputed = true
-      count.postEvent ()
-  //    super.postEvent ()
     }
   }
 
@@ -304,9 +299,19 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableV
 
   //····················································································································
 
-  func setProp (value : Set<%!ELEMENT_TYPE_NAME%>) {
+  private func setProp (value : Set<%!ELEMENT_TYPE_NAME%>) {
     mSet = value
     postEvent ()
+  }
+
+  //····················································································································
+
+  private func postEvent () {
+    if !mSetShouldBeComputed {
+      mSetShouldBeComputed = true
+      count.postEvent ()
+      mSelectedArray.postEvent ()
+    }
   }
 
   //····················································································································
@@ -475,7 +480,7 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%, tableViewArray:[EBTableView], file:String, line:Int) {
     mModel = model
     sortedArray.mModel = model
-    let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray)
+    let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray, selectedArray:selectedArray)
     mSelectedSet = selectedSet
     mDataSourceController = DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
       controller: self,
