@@ -10,6 +10,914 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                   Filewrapper 'xcodeProjectGenerationFilewrapper'                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewrapper (
+  "",
+  0,
+  gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0,
+  0,
+  gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Filewrapper template 'xcodeProjectGenerationFilewrapper xcodeproj'                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C_Compiler * /* inCompiler */,
+                                                                               const GALGAS_string & in_PROJECT_5F_REF,
+                                                                               const GALGAS_string & in_MAIN_5F_GROUP_5F_REF,
+                                                                               const GALGAS_XCodeGroupList & in_GROUPS,
+                                                                               const GALGAS_stringlist & in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS,
+                                                                               const GALGAS_XCodeToolTargetList & in_TOOL_5F_TARGET_5F_LIST,
+                                                                               const GALGAS_XCodeAppTargetList & in_APP_5F_TARGET_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_CPP_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_M_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_MM_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_SWIFT_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_FRAMEWORK_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_HEADER_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_PLIST_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_TIFF_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_ICNS_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_XIB_5F_FILE_5F_LIST,
+                                                                               const GALGAS_BuildFileList & in_BUILD_5F_FILE_5F_LIST,
+                                                                               const GALGAS_string & in_DEFAULT_5F_CONFIGURATION_5F_REF,
+                                                                               const GALGAS_stringlist & in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST,
+                                                                               const GALGAS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "// !$*UTF8*$!\n"
+    "{\n"
+    "  archiveVersion = 1;\n"
+    "  classes = {\n"
+    "  };\n"
+    "  objectVersion = 42;\n"
+    "  objects = {\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXBuildFile */\n" ;
+  GALGAS_uint index_210_ (0) ;
+  if (in_BUILD_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator_BuildFileList enumerator_210 (in_BUILD_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_210.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_210.current_mBuildReference (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_210.current_mFileName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXBuildFile;\n"
+        "    fileRef = " ;
+      result << enumerator_210.current_mFileReference (HERE).stringValue () ;
+      result << " ;\n"
+        "    settings = {ATTRIBUTES = (); };\n"
+        "  };\n"
+        "\n" ;
+      index_210_.increment () ;
+      enumerator_210.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXFileReference */\n" ;
+  GALGAS_uint index_500_ (0) ;
+  if (in_CPP_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_500 (in_CPP_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_500.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_500.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_500.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.cpp.cpp;\n"
+        "    name = " ;
+      result << enumerator_500.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_500.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 26)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_500_.increment () ;
+      enumerator_500.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_832_ (0) ;
+  if (in_M_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_832 (in_M_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_832.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_832.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_832.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.c.obj;\n"
+        "    name = " ;
+      result << enumerator_832.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_832.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 36)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_832_.increment () ;
+      enumerator_832.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_1163_ (0) ;
+  if (in_MM_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1163 (in_MM_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_1163.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_1163.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_1163.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.cpp.objcpp;\n"
+        "    name = " ;
+      result << enumerator_1163.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_1163.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 46)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_1163_.increment () ;
+      enumerator_1163.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_1502_ (0) ;
+  if (in_SWIFT_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1502 (in_SWIFT_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_1502.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_1502.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_1502.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.swift;\n"
+        "    name = " ;
+      result << enumerator_1502.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_1502.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 56)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_1502_.increment () ;
+      enumerator_1502.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_1837_ (0) ;
+  if (in_HEADER_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1837 (in_HEADER_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_1837.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_1837.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_1837.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.c.h;\n"
+        "    name = " ;
+      result << enumerator_1837.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_1837.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 66)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_1837_.increment () ;
+      enumerator_1837.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_2173_ (0) ;
+  if (in_FRAMEWORK_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_2173 (in_FRAMEWORK_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_2173.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_2173.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_2173.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    lastKnownFileType = wrapper.framework;\n"
+        "    name = " ;
+      result << enumerator_2173.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_2173.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 75)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_2173_.increment () ;
+      enumerator_2173.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_2483_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_2483 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_2483.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_2483.current_mProductFileReference (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    explicitFileType = \"compiled.mach-o.executable\";\n"
+        "    includeInIndex = 0;\n"
+        "    path = " ;
+      result << enumerator_2483.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 84)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = BUILT_PRODUCTS_DIR;\n"
+        "  };\n"
+        "\n" ;
+      index_2483_.increment () ;
+      enumerator_2483.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_2777_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_2777 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_2777.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_2777.current_mProductFileReference (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    explicitFileType = \"compiled.mach-o.executable\";\n"
+        "    includeInIndex = 0;\n"
+        "    path = " ;
+      result << enumerator_2777.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 93)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = BUILT_PRODUCTS_DIR;\n"
+        "  };\n"
+        "\n" ;
+      index_2777_.increment () ;
+      enumerator_2777.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_3071_ (0) ;
+  if (in_PLIST_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_3071 (in_PLIST_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_3071.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_3071.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = text.plist;\n"
+        "    name = " ;
+      result << enumerator_3071.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_3071.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 103)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_3071_.increment () ;
+      enumerator_3071.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_3380_ (0) ;
+  if (in_XIB_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_3380 (in_XIB_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_3380.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_3380.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = wrapper.xib;\n"
+        "    name = " ;
+      result << enumerator_3380.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_3380.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 113)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_3380_.increment () ;
+      enumerator_3380.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_3691_ (0) ;
+  if (in_TIFF_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_3691 (in_TIFF_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_3691.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_3691.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    lastKnownFileType = image.tiff;\n"
+        "    name = " ;
+      result << enumerator_3691.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_3691.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 122)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_3691_.increment () ;
+      enumerator_3691.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_3975_ (0) ;
+  if (in_ICNS_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_3975 (in_ICNS_5F_FILE_5F_LIST, kEnumeration_up) ;
+    while (enumerator_3975.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_3975.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    lastKnownFileType = image.icns;\n"
+        "    name = " ;
+      result << enumerator_3975.current_mValue_31_ (HERE).reader_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_3975.current_mValue_31_ (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 131)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_3975_.increment () ;
+      enumerator_3975.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXFrameworksBuildPhase */\n"
+    "\n" ;
+  GALGAS_uint index_4363_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_4363 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_4363.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_4363.current_mFrameworksFileRefList (HERE).reader_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      if (kBoolTrue == test_0) {
+        result << "  " ;
+        result << enumerator_4363.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+        result << " = {\n"
+          "    isa = PBXFrameworksBuildPhase;\n"
+          "    buildActionMask = 2147483647;\n"
+          "    files = (\n" ;
+        GALGAS_uint index_4597_ (0) ;
+        if (enumerator_4363.current_mFrameworksFileRefList (HERE).isValid ()) {
+          cEnumerator_stringlist enumerator_4597 (enumerator_4363.current_mFrameworksFileRefList (HERE), kEnumeration_up) ;
+          while (enumerator_4597.hasCurrentObject ()) {
+            result << "      " ;
+            result << enumerator_4597.current_mValue (HERE).stringValue () ;
+            result << ",\n" ;
+            index_4597_.increment () ;
+            enumerator_4597.gotoNextObject () ;
+          }
+        }
+        result << "    );\n"
+          "    runOnlyForDeploymentPostprocessing = 0;\n"
+          "  };\n"
+          "\n" ;
+      }else if (kBoolFalse == test_0) {
+      }
+      index_4363_.increment () ;
+      enumerator_4363.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_4753_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_4753 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_4753.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_4753.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFrameworksBuildPhase;\n"
+        "    buildActionMask = 2147483647;\n"
+        "    files = (\n" ;
+      GALGAS_uint index_4931_ (0) ;
+      if (enumerator_4753.current_mFrameworksFileRefList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_4931 (enumerator_4753.current_mFrameworksFileRefList (HERE), kEnumeration_up) ;
+        while (enumerator_4931.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_4931.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_4931_.increment () ;
+          enumerator_4931.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    runOnlyForDeploymentPostprocessing = 0;\n"
+        "  };\n"
+        "\n" ;
+      index_4753_.increment () ;
+      enumerator_4753.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXGroup section */\n" ;
+  GALGAS_uint index_5156_ (0) ;
+  if (in_GROUPS.isValid ()) {
+    cEnumerator_XCodeGroupList enumerator_5156 (in_GROUPS, kEnumeration_up) ;
+    while (enumerator_5156.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_5156.current_mGroupReference (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_5156.current_mGroupName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXGroup;\n"
+        "    children = (\n" ;
+      GALGAS_uint index_5277_ (0) ;
+      if (enumerator_5156.current_mChildrenRefs (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_5277 (enumerator_5156.current_mChildrenRefs (HERE), kEnumeration_up) ;
+        while (enumerator_5277.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_5277.current_mValue (HERE).stringValue () ;
+          result << ", \n" ;
+          index_5277_.increment () ;
+          enumerator_5277.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    name = " ;
+      result << enumerator_5156.current_mGroupName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 174)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_5156.current_mGroupPath (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 175)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n" ;
+      index_5156_.increment () ;
+      enumerator_5156.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "  " ;
+  result << in_MAIN_5F_GROUP_5F_REF.stringValue () ;
+  result << " /* Main Group */ = {\n"
+    "    isa = PBXGroup;\n"
+    "    children = (\n" ;
+  GALGAS_uint index_5583_ (0) ;
+  if (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS.isValid ()) {
+    cEnumerator_stringlist enumerator_5583 (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS, kEnumeration_up) ;
+    while (enumerator_5583.hasCurrentObject ()) {
+      result << "      " ;
+      result << enumerator_5583.current_mValue (HERE).stringValue () ;
+      result << ",\n" ;
+      index_5583_.increment () ;
+      enumerator_5583.gotoNextObject () ;
+    }
+  }
+  result << "    );\n"
+    "    sourceTree = \"<group>\";\n"
+    "  };\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXNativeTarget */\n" ;
+  GALGAS_uint index_5774_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_5774 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_5774.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_5774.current_mTargetRef (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_5774.current_mTargetName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXNativeTarget;\n"
+        "    buildConfigurationList = " ;
+      result << enumerator_5774.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " ;\n"
+        "    buildPhases = (\n"
+        "      " ;
+      result << enumerator_5774.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " ,\n" ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_5774.current_mFrameworksFileRefList (HERE).reader_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        result << "      " ;
+        result << enumerator_5774.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+        result << " , /* Frameworks */\n" ;
+      }else if (kBoolFalse == test_1) {
+      }
+      result << "    );\n"
+        "    buildRules = (\n"
+        "    );\n"
+        "    dependencies = (\n"
+        "    );\n"
+        "    name = " ;
+      result << enumerator_5774.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 208)).stringValue () ;
+      result << ";\n"
+        "    productInstallPath = \"$(HOME)/bin\";\n"
+        "    productName = " ;
+      result << enumerator_5774.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 210)).stringValue () ;
+      result << ";\n"
+        "    productReference = " ;
+      result << enumerator_5774.current_mProductFileReference (HERE).stringValue () ;
+      result << " ;\n"
+        "    productType = \"com.apple.product-type.tool\";\n"
+        "  };\n"
+        " \n" ;
+      index_5774_.increment () ;
+      enumerator_5774.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_6410_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_6410 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_6410.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_6410.current_mTargetRef (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_6410.current_mTargetName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXNativeTarget;\n"
+        "    buildConfigurationList = " ;
+      result << enumerator_6410.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " ;\n"
+        "    buildPhases = (\n"
+        "      " ;
+      result << enumerator_6410.current_mResourceBuildRef (HERE).stringValue () ;
+      result << " , /* Resources */\n"
+        "      " ;
+      result << enumerator_6410.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+      result << " , /* Frameworks */\n"
+        "      " ;
+      result << enumerator_6410.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " , /* Sources */\n"
+        "    );\n"
+        "    buildRules = (\n"
+        "    );\n"
+        "    dependencies = (\n" ;
+      GALGAS_uint index_6784_ (0) ;
+      if (enumerator_6410.current_mDependentTargets (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_6784 (enumerator_6410.current_mDependentTargets (HERE), kEnumeration_up) ;
+        while (enumerator_6784.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_6784.current_mValue_30_ (HERE).stringValue () ;
+          result << " ,\n" ;
+          index_6784_.increment () ;
+          enumerator_6784.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    name = " ;
+      result << enumerator_6410.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 234)).stringValue () ;
+      result << ";\n"
+        "    productInstallPath = \"$(HOME)/bin\";\n"
+        "    productName = " ;
+      result << enumerator_6410.current_mTargetName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 236)).stringValue () ;
+      result << ";\n"
+        "    productReference = " ;
+      result << enumerator_6410.current_mProductFileReference (HERE).stringValue () ;
+      result << " ;\n"
+        "    productType = \"com.apple.product-type.application\";\n"
+        "  };\n"
+        "\n" ;
+      index_6410_.increment () ;
+      enumerator_6410.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXProject */\n"
+    "  " ;
+  result << in_PROJECT_5F_REF.stringValue () ;
+  result << " /* Project object */ = {\n"
+    "   isa = PBXProject;\n"
+    "   attributes = {\n"
+    "     LastSwiftUpdateCheck = 0700;\n"
+    "     LastUpgradeCheck = 0700;\n"
+    "   };\n"
+    "   buildConfigurationList = " ;
+  result << in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Build configuration list for PBXProject */;\n"
+    "   compatibilityVersion = \"Xcode 2.4\";\n"
+    "   hasScannedForEncodings = 1;\n"
+    "   mainGroup = " ;
+  result << in_MAIN_5F_GROUP_5F_REF.stringValue () ;
+  result << ";\n"
+    "   projectDirPath = \"\";\n"
+    "   projectRoot = \"\";\n"
+    "   targets = (\n" ;
+  GALGAS_uint index_7633_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_7633 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_7633.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_7633.current_mTargetRef (HERE).stringValue () ;
+      result << ", \n" ;
+      index_7633_.increment () ;
+      enumerator_7633.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_7690_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_7690 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_7690.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_7690.current_mTargetRef (HERE).stringValue () ;
+      result << ", \n" ;
+      index_7690_.increment () ;
+      enumerator_7690.gotoNextObject () ;
+    }
+  }
+  result << "   );\n"
+    "  };\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXResourcesBuildPhase */\n"
+    "\n" ;
+  GALGAS_uint index_7860_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_7860 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_7860.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_7860.current_mResourceBuildRef (HERE).stringValue () ;
+      result << " /* Resources */ = {\n"
+        "    isa = PBXResourcesBuildPhase;\n"
+        "    buildActionMask = 2147483647;\n"
+        "    files = (\n" ;
+      GALGAS_uint index_8037_ (0) ;
+      if (enumerator_7860.current_mResourceFileBuildRefs (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_8037 (enumerator_7860.current_mResourceFileBuildRefs (HERE), kEnumeration_up) ;
+        while (enumerator_8037.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_8037.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_8037_.increment () ;
+          enumerator_8037.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    runOnlyForDeploymentPostprocessing = 0;\n"
+        "  };\n"
+        "\n" ;
+      index_7860_.increment () ;
+      enumerator_7860.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXSourcesBuildPhase */\n" ;
+  GALGAS_uint index_8264_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_8264 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_8264.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_8264.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " /* Sources */ = {\n"
+        "      isa = PBXSourcesBuildPhase;\n"
+        "      buildActionMask = 2147483647;\n"
+        "      files = (\n" ;
+      GALGAS_uint index_8425_ (0) ;
+      if (enumerator_8264.current_mBuildPhaseRefList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_8425 (enumerator_8264.current_mBuildPhaseRefList (HERE), kEnumeration_up) ;
+        while (enumerator_8425.hasCurrentObject ()) {
+          result << "        " ;
+          result << enumerator_8425.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_8425_.increment () ;
+          enumerator_8425.gotoNextObject () ;
+        }
+      }
+      result << "      );\n"
+        "      runOnlyForDeploymentPostprocessing = 0;\n"
+        "    };\n" ;
+      index_8264_.increment () ;
+      enumerator_8264.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_8549_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_8549 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_8549.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_8549.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " /* Sources */ = {\n"
+        "      isa = PBXSourcesBuildPhase;\n"
+        "      buildActionMask = 2147483647;\n"
+        "      files = (\n" ;
+      GALGAS_uint index_8710_ (0) ;
+      if (enumerator_8549.current_mBuildPhaseRefList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_8710 (enumerator_8549.current_mBuildPhaseRefList (HERE), kEnumeration_up) ;
+        while (enumerator_8710.hasCurrentObject ()) {
+          result << "        " ;
+          result << enumerator_8710.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_8710_.increment () ;
+          enumerator_8710.gotoNextObject () ;
+        }
+      }
+      result << "      );\n"
+        "      runOnlyForDeploymentPostprocessing = 0;\n"
+        "    };\n" ;
+      index_8549_.increment () ;
+      enumerator_8549.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXTargetDependency */\n"
+    " \n" ;
+  GALGAS_uint index_8935_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_8935 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_8935.hasCurrentObject ()) {
+      GALGAS_uint index_8968_ (0) ;
+      if (enumerator_8935.current_mDependentTargets (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_8968 (enumerator_8935.current_mDependentTargets (HERE), kEnumeration_up) ;
+        while (enumerator_8968.hasCurrentObject ()) {
+          result << "  " ;
+          result << enumerator_8968.current_mValue_30_ (HERE).stringValue () ;
+          result << " = {\n"
+            "    isa = PBXTargetDependency;\n"
+            "    target = " ;
+          result << enumerator_8968.current_mValue_31_ (HERE).stringValue () ;
+          result << ";\n"
+            "  };\n"
+            "\n" ;
+          index_8968_.increment () ;
+          enumerator_8968.gotoNextObject () ;
+        }
+      }
+      index_8935_.increment () ;
+      enumerator_8935.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXVariantGroup */\n"
+    " \n"
+    "  /*------------------------------------------------------------------ XCBuildConfiguration */\n"
+    "    " ;
+  result << in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Default */ = {\n"
+    "      isa = XCBuildConfiguration;\n"
+    "      buildSettings = {\n" ;
+  GALGAS_uint index_9439_ (0) ;
+  if (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST.isValid ()) {
+    cEnumerator_stringlist enumerator_9439 (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST, kEnumeration_up) ;
+    while (enumerator_9439.hasCurrentObject ()) {
+      result << "      " ;
+      result << enumerator_9439.current_mValue (HERE).stringValue () ;
+      result << " ;\n" ;
+      index_9439_.increment () ;
+      enumerator_9439.gotoNextObject () ;
+    }
+  }
+  result << "    };\n"
+    "    name = Default;\n"
+    "  };\n"
+    "\n" ;
+  GALGAS_uint index_9531_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_9531 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_9531.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_9531.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCBuildConfiguration;\n"
+        "      buildSettings = {\n" ;
+      GALGAS_uint index_9693_ (0) ;
+      if (enumerator_9531.current_mBuildConfigurationSettingList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_9693 (enumerator_9531.current_mBuildConfigurationSettingList (HERE), kEnumeration_up) ;
+        while (enumerator_9693.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_9693.current_mValue (HERE).stringValue () ;
+          result << " ;\n" ;
+          index_9693_.increment () ;
+          enumerator_9693.gotoNextObject () ;
+        }
+      }
+      result << "      PRODUCT_NAME = " ;
+      result << enumerator_9531.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 347)).stringValue () ;
+      result << " ;\n"
+        "    };\n"
+        "    name = Default;\n"
+        "  };\n"
+        "\n" ;
+      index_9531_.increment () ;
+      enumerator_9531.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_9866_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_9866 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_9866.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_9866.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCBuildConfiguration;\n"
+        "      buildSettings = {\n" ;
+      GALGAS_uint index_10028_ (0) ;
+      if (enumerator_9866.current_mBuildConfigurationSettingList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_10028 (enumerator_9866.current_mBuildConfigurationSettingList (HERE), kEnumeration_up) ;
+        while (enumerator_10028.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_10028.current_mValue (HERE).stringValue () ;
+          result << " ;\n" ;
+          index_10028_.increment () ;
+          enumerator_10028.gotoNextObject () ;
+        }
+      }
+      result << "      INFOPLIST_FILE = " ;
+      result << enumerator_9866.current_mInfoPListFile (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 359)).stringValue () ;
+      result << ";\n"
+        "      PRODUCT_NAME = " ;
+      result << enumerator_9866.current_mProductFileName (HERE).reader_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 360)).stringValue () ;
+      result << " ;\n"
+        "    };\n"
+        "    name = Default;\n"
+        "  };\n"
+        "\n" ;
+      index_9866_.increment () ;
+      enumerator_9866.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ XCConfigurationList section */\n"
+    "\n"
+    "    " ;
+  result << in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Build configuration list for PBXProject */ = {\n"
+    "      isa = XCConfigurationList;\n"
+    "      buildConfigurations = (\n"
+    "        " ;
+  result << in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Default */,\n"
+    "      );\n"
+    "      defaultConfigurationIsVisible = 0;\n"
+    "      defaultConfigurationName = Default;\n"
+    "    };\n"
+    "\n" ;
+  GALGAS_uint index_10687_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_10687 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_10687.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_10687.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCConfigurationList;\n"
+        "      buildConfigurations = (\n"
+        "        " ;
+      result << enumerator_10687.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */,\n"
+        "      );\n"
+        "      defaultConfigurationIsVisible = 0;\n"
+        "      defaultConfigurationName = Default;\n"
+        "    };\n"
+        "\n" ;
+      index_10687_.increment () ;
+      enumerator_10687.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_10987_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_10987 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    while (enumerator_10987.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_10987.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCConfigurationList;\n"
+        "      buildConfigurations = (\n"
+        "        " ;
+      result << enumerator_10987.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */,\n"
+        "      );\n"
+        "      defaultConfigurationIsVisible = 0;\n"
+        "      defaultConfigurationName = Default;\n"
+        "    };\n"
+        "\n" ;
+      index_10987_.increment () ;
+      enumerator_10987.gotoNextObject () ;
+    }
+  }
+  result << "/*------------------------------------------------------------------ End */\n"
+    "  };\n"
+    "\n"
+    "  rootObject = " ;
+  result << in_PROJECT_5F_REF.stringValue () ;
+  result << " /* Project object */;\n"
+    "}\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                             Routine 'generateTestFile'                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6068,13 +6976,13 @@ void categoryMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
                                    C_Compiler * /* inCompiler */
                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_3100 (temp_0, kEnumeration_up) ;
-  while (enumerator_3100.hasCurrentObject ()) {
+  cEnumerator_toOneRelationshipList enumerator_3352 (temp_0, kEnumeration_up) ;
+  while (enumerator_3352.hasCurrentObject ()) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3203 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3100.current_mDestinationEntityName (HERE), joker_3203 COMMA_SOURCE_FILE ("relationships.galgas", 82)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_3455 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3352.current_mDestinationEntityName (HERE), joker_3455 COMMA_SOURCE_FILE ("relationships.galgas", 93)) ;
     }
-    enumerator_3100.gotoNextObject () ;
+    enumerator_3352.gotoNextObject () ;
   }
 }
 
@@ -6090,13 +6998,13 @@ void categoryMethod_typeInventory (const GALGAS_toManyRelationshipList inObject,
                                    C_Compiler * /* inCompiler */
                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_3442 (temp_0, kEnumeration_up) ;
-  while (enumerator_3442.hasCurrentObject ()) {
+  cEnumerator_toManyRelationshipList enumerator_3694 (temp_0, kEnumeration_up) ;
+  while (enumerator_3694.hasCurrentObject ()) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3545 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3442.current_mDestinationEntityName (HERE), joker_3545 COMMA_SOURCE_FILE ("relationships.galgas", 96)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_3797 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3694.current_mDestinationEntityName (HERE), joker_3797 COMMA_SOURCE_FILE ("relationships.galgas", 107)) ;
     }
-    enumerator_3442.gotoNextObject () ;
+    enumerator_3694.gotoNextObject () ;
   }
 }
 
@@ -6113,10 +7021,10 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
                                                 C_Compiler * inCompiler
                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_4091 (temp_0, kEnumeration_up) ;
-  while (enumerator_4091.hasCurrentObject ()) {
+  cEnumerator_toOneRelationshipList enumerator_4343 (temp_0, kEnumeration_up) ;
+  while (enumerator_4343.hasCurrentObject ()) {
     GALGAS_typeKind var_type ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4091.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 114)) ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4343.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 125)) ;
     switch (var_type.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
@@ -6128,20 +7036,20 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
       {
-        GALGAS_location location_1 (enumerator_4091.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 118)) ;
+        GALGAS_location location_1 (enumerator_4343.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 129)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_location location_2 (enumerator_4091.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 120)) ;
+        GALGAS_location location_2 (enumerator_4343.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 131)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_location location_3 (enumerator_4091.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("a class type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 122)) ;
+        GALGAS_location location_3 (enumerator_4343.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_3, GALGAS_string ("a class type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 133)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -6150,9 +7058,9 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
       break ;
     }
     {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_4091.current_mToOneRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 129)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 130)), enumerator_4091.current_mInverseRelationshipName (HERE).mAttribute_string, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("relationships.galgas", 132)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 126)) ;
+    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_4343.current_mToOneRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 140)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 141)), enumerator_4343.current_mInverseRelationshipName (HERE).mAttribute_string, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("relationships.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 137)) ;
     }
-    enumerator_4091.gotoNextObject () ;
+    enumerator_4343.gotoNextObject () ;
   }
 }
 
@@ -6169,10 +7077,10 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
                                                 C_Compiler * inCompiler
                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_5152 (temp_0, kEnumeration_up) ;
-  while (enumerator_5152.hasCurrentObject ()) {
+  cEnumerator_toManyRelationshipList enumerator_5404 (temp_0, kEnumeration_up) ;
+  while (enumerator_5404.hasCurrentObject ()) {
     GALGAS_typeKind var_type ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5152.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 145)) ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5404.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 156)) ;
     switch (var_type.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
@@ -6184,20 +7092,20 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
       {
-        GALGAS_location location_1 (enumerator_5152.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 149)) ;
+        GALGAS_location location_1 (enumerator_5404.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 160)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_location location_2 (enumerator_5152.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 151)) ;
+        GALGAS_location location_2 (enumerator_5404.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 162)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_location location_3 (enumerator_5152.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("a class type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 153)) ;
+        GALGAS_location location_3 (enumerator_5404.current_mDestinationEntityName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_3, GALGAS_string ("a class type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 164)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -6206,9 +7114,9 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
       break ;
     }
     {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_5152.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 160)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 161)), enumerator_5152.current_mInverseRelationshipName (HERE).mAttribute_string, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("relationships.galgas", 163)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 157)) ;
+    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_5404.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 171)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 172)), enumerator_5404.current_mInverseRelationshipName (HERE).mAttribute_string, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("relationships.galgas", 174)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 168)) ;
     }
-    enumerator_5152.gotoNextObject () ;
+    enumerator_5404.gotoNextObject () ;
   }
 }
 
@@ -6225,21 +7133,21 @@ void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObjec
                                       C_Compiler * inCompiler
                                       COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outToOneEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 176)) ;
+  outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 187)) ;
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_6541 (temp_0, kEnumeration_up) ;
-  while (enumerator_6541.hasCurrentObject ()) {
+  cEnumerator_toOneRelationshipList enumerator_6793 (temp_0, kEnumeration_up) ;
+  while (enumerator_6793.hasCurrentObject ()) {
     GALGAS_typeKind var_type ;
-    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_6541.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 178)) ;
+    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_6793.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 189)) ;
     GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_6541.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 179)) ;
-    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_6541.current_mToOneRelationshipName (HERE).mAttribute_string, var_type, enumerator_6541.current_mInverseRelationshipName (HERE).mAttribute_string, enumerator_6541.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 183)) ;
+    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_6793.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 190)) ;
+    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_6793.current_mToOneRelationshipName (HERE).mAttribute_string, var_type, enumerator_6793.current_mInverseRelationshipName (HERE).mAttribute_string, enumerator_6793.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 194)) ;
     GALGAS_typeKind var_oppositeType ;
     GALGAS_propertyKind var_oppositeKind ;
     GALGAS_propertyMultiplicity var_oppositeMultiplicity ;
     GALGAS_string var_oppositeOfOpposite ;
-    GALGAS_actionMap joker_7333 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_6541.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_7333, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 190)) ;
+    GALGAS_actionMap joker_7585 ; // Joker input parameter
+    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_6793.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_7585, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 201)) ;
     switch (var_oppositeType.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
@@ -6251,20 +7159,20 @@ void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObjec
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
       {
-        GALGAS_location location_1 (enumerator_6541.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 201)) ;
+        GALGAS_location location_1 (enumerator_6793.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 212)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_location location_2 (enumerator_6541.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 203)) ;
+        GALGAS_location location_2 (enumerator_6793.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 214)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_location location_3 (enumerator_6541.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 205)) ;
+        GALGAS_location location_3 (enumerator_6793.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_3, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 216)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -6272,22 +7180,22 @@ void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObjec
       }
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 208)))).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 219)))).boolEnum () ;
     if (kBoolTrue == test_4) {
-      GALGAS_location location_5 (enumerator_6541.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_5, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 209)) ;
+      GALGAS_location location_5 (enumerator_6793.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      inCompiler->emitSemanticError (location_5, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 220)) ;
     }
-    const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, enumerator_6541.current_mInverseRelationMultiplicity (HERE).objectCompare (var_oppositeMultiplicity)).boolEnum () ;
+    const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, enumerator_6793.current_mInverseRelationMultiplicity (HERE).objectCompare (var_oppositeMultiplicity)).boolEnum () ;
     if (kBoolTrue == test_6) {
-      GALGAS_location location_7 (enumerator_6541.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)")  COMMA_SOURCE_FILE ("relationships.galgas", 212)) ;
+      GALGAS_location location_7 (enumerator_6793.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)")  COMMA_SOURCE_FILE ("relationships.galgas", 223)) ;
     }
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_6541.current_mToOneRelationshipName (HERE).mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_6793.current_mToOneRelationshipName (HERE).mAttribute_string)).boolEnum () ;
     if (kBoolTrue == test_8) {
-      GALGAS_location location_9 (enumerator_6541.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_9, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_6541.current_mToOneRelationshipName (HERE).reader_string (SOURCE_FILE ("relationships.galgas", 215)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 215)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 216))  COMMA_SOURCE_FILE ("relationships.galgas", 215)) ;
+      GALGAS_location location_9 (enumerator_6793.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      inCompiler->emitSemanticError (location_9, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_6793.current_mToOneRelationshipName (HERE).reader_string (SOURCE_FILE ("relationships.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 226)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 227))  COMMA_SOURCE_FILE ("relationships.galgas", 226)) ;
     }
-    enumerator_6541.gotoNextObject () ;
+    enumerator_6793.gotoNextObject () ;
   }
 }
 
@@ -6304,21 +7212,21 @@ void categoryMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObje
                                       C_Compiler * inCompiler
                                       COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outToManyEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 227)) ;
+  outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 238)) ;
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_8744 (temp_0, kEnumeration_up) ;
-  while (enumerator_8744.hasCurrentObject ()) {
+  cEnumerator_toManyRelationshipList enumerator_8996 (temp_0, kEnumeration_up) ;
+  while (enumerator_8996.hasCurrentObject ()) {
     GALGAS_typeKind var_type ;
-    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_8744.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 229)) ;
+    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_8996.current_mDestinationEntityName (HERE), var_type, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 240)) ;
     GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_8744.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 230)) ;
-    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_8744.current_mToManyRelationshipName (HERE).mAttribute_string, var_type, enumerator_8744.current_mInverseRelationshipName (HERE).mAttribute_string, var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 234)) ;
+    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_8996.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 241)) ;
+    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_8996.current_mToManyRelationshipName (HERE).mAttribute_string, var_type, enumerator_8996.current_mInverseRelationshipName (HERE).mAttribute_string, var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 245)) ;
     GALGAS_typeKind var_oppositeType ;
     GALGAS_propertyKind var_oppositeKind ;
     GALGAS_propertyMultiplicity var_oppositeMultiplicity ;
     GALGAS_string var_oppositeOfOpposite ;
-    GALGAS_actionMap joker_9502 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_8744.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_9502, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 240)) ;
+    GALGAS_actionMap joker_9754 ; // Joker input parameter
+    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_8996.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_9754, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 251)) ;
     switch (var_oppositeType.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
@@ -6330,20 +7238,20 @@ void categoryMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObje
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
       {
-        GALGAS_location location_1 (enumerator_8744.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 250)) ;
+        GALGAS_location location_1 (enumerator_8996.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 261)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_location location_2 (enumerator_8744.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 252)) ;
+        GALGAS_location location_2 (enumerator_8996.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 263)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_location location_3 (enumerator_8744.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 254)) ;
+        GALGAS_location location_3 (enumerator_8996.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+        inCompiler->emitSemanticError (location_3, GALGAS_string ("the opposite type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 265)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -6351,22 +7259,22 @@ void categoryMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObje
       }
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 257)))).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 268)))).boolEnum () ;
     if (kBoolTrue == test_4) {
-      GALGAS_location location_5 (enumerator_8744.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_5, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 258)) ;
+      GALGAS_location location_5 (enumerator_8996.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      inCompiler->emitSemanticError (location_5, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 269)) ;
     }
-    const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_oppositeMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 260)))).boolEnum () ;
+    const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_oppositeMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 271)))).boolEnum () ;
     if (kBoolTrue == test_6) {
-      GALGAS_location location_7 (enumerator_8744.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("the inverse relationship should be toOne")  COMMA_SOURCE_FILE ("relationships.galgas", 261)) ;
+      GALGAS_location location_7 (enumerator_8996.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      inCompiler->emitSemanticError (location_7, GALGAS_string ("the inverse relationship should be toOne")  COMMA_SOURCE_FILE ("relationships.galgas", 272)) ;
     }
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_8744.current_mToManyRelationshipName (HERE).mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_8996.current_mToManyRelationshipName (HERE).mAttribute_string)).boolEnum () ;
     if (kBoolTrue == test_8) {
-      GALGAS_location location_9 (enumerator_8744.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-      inCompiler->emitSemanticError (location_9, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8744.current_mToManyRelationshipName (HERE).reader_string (SOURCE_FILE ("relationships.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 264)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 265))  COMMA_SOURCE_FILE ("relationships.galgas", 264)) ;
+      GALGAS_location location_9 (enumerator_8996.current_mInverseRelationshipName (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+      inCompiler->emitSemanticError (location_9, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8996.current_mToManyRelationshipName (HERE).reader_string (SOURCE_FILE ("relationships.galgas", 275)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 275)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 276))  COMMA_SOURCE_FILE ("relationships.galgas", 275)) ;
     }
-    enumerator_8744.gotoNextObject () ;
+    enumerator_8996.gotoNextObject () ;
   }
 }
 
@@ -17110,776 +18018,6 @@ GALGAS_classObservablePropertyMap_2D_element GALGAS_classObservablePropertyMap_2
       result = *p ;
     }else{
       inCompiler->castError ("classObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element::GALGAS_entityObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element::~ GALGAS_entityObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element::GALGAS_entityObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                              const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_entityObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                        GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                              const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_entityObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_entityObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_entityObservablePropertyMap_2D_element::objectCompare (const GALGAS_entityObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_entityObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_entityObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_entityObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                 const int32_t inIndentation) const {
-  ioString << "<struct @entityObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_entityObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_entityObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @entityObservablePropertyMap-element type                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ("entityObservablePropertyMap-element",
-                                                               NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_entityObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_entityObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_entityObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityObservablePropertyMap_2D_element GALGAS_entityObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_entityObservablePropertyMap_2D_element result ;
-  const GALGAS_entityObservablePropertyMap_2D_element * p = (const GALGAS_entityObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_entityObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("entityObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element::GALGAS_documentObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element::~ GALGAS_documentObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element::GALGAS_documentObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_documentObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                  const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_documentObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_documentObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_documentObservablePropertyMap_2D_element::objectCompare (const GALGAS_documentObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_documentObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_documentObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_documentObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString << "<struct @documentObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_documentObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_documentObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     @documentObservablePropertyMap-element type                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_documentObservablePropertyMap_2D_element ("documentObservablePropertyMap-element",
-                                                                 NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_documentObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_documentObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_documentObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_documentObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_documentObservablePropertyMap_2D_element result ;
-  const GALGAS_documentObservablePropertyMap_2D_element * p = (const GALGAS_documentObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_documentObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("documentObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mObservablePropertyMap () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::~ GALGAS_prefsObservablePropertyMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element::GALGAS_prefsObservablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_observablePropertyMap & inOperand1) :
-mAttribute_lkey (inOperand0),
-mAttribute_mObservablePropertyMap (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_prefsObservablePropertyMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                            const GALGAS_observablePropertyMap & inOperand1 
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_prefsObservablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_prefsObservablePropertyMap_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_prefsObservablePropertyMap_2D_element::objectCompare (const GALGAS_prefsObservablePropertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (inOperand.mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_prefsObservablePropertyMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_prefsObservablePropertyMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mObservablePropertyMap.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_prefsObservablePropertyMap_2D_element::description (C_String & ioString,
-                                                                const int32_t inIndentation) const {
-  ioString << "<struct @prefsObservablePropertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mObservablePropertyMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_prefsObservablePropertyMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_prefsObservablePropertyMap_2D_element::reader_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @prefsObservablePropertyMap-element type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_prefsObservablePropertyMap_2D_element ("prefsObservablePropertyMap-element",
-                                                              NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_prefsObservablePropertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsObservablePropertyMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_prefsObservablePropertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_prefsObservablePropertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_prefsObservablePropertyMap_2D_element GALGAS_prefsObservablePropertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_prefsObservablePropertyMap_2D_element result ;
-  const GALGAS_prefsObservablePropertyMap_2D_element * p = (const GALGAS_prefsObservablePropertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_prefsObservablePropertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("prefsObservablePropertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (void) :
-mAttribute_mUserDefined (),
-mAttribute_mOutletClassName (),
-mAttribute_mHasRunAction (),
-mAttribute_mHasEnabled (),
-mAttribute_mHandlesTableViewBinding () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::~ GALGAS_outletClassDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (const GALGAS_bool & inOperand0,
-                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                            const GALGAS_bool & inOperand2,
-                                                                                            const GALGAS_bool & inOperand3,
-                                                                                            const GALGAS_bool & inOperand4) :
-mAttribute_mUserDefined (inOperand0),
-mAttribute_mOutletClassName (inOperand1),
-mAttribute_mHasRunAction (inOperand2),
-mAttribute_mHasEnabled (inOperand3),
-mAttribute_mHandlesTableViewBinding (inOperand4) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassDeclarationList_2D_element (GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE),
-                                                       GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_new (const GALGAS_bool & inOperand0,
-                                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                                            const GALGAS_bool & inOperand2,
-                                                                                                            const GALGAS_bool & inOperand3,
-                                                                                                            const GALGAS_bool & inOperand4 
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare (const GALGAS_outletClassDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mUserDefined.objectCompare (inOperand.mAttribute_mUserDefined) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mOutletClassName.objectCompare (inOperand.mAttribute_mOutletClassName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHasRunAction.objectCompare (inOperand.mAttribute_mHasRunAction) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHasEnabled.objectCompare (inOperand.mAttribute_mHasEnabled) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHandlesTableViewBinding.objectCompare (inOperand.mAttribute_mHandlesTableViewBinding) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mUserDefined.isValid () && mAttribute_mOutletClassName.isValid () && mAttribute_mHasRunAction.isValid () && mAttribute_mHasEnabled.isValid () && mAttribute_mHandlesTableViewBinding.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
-  mAttribute_mUserDefined.drop () ;
-  mAttribute_mOutletClassName.drop () ;
-  mAttribute_mHasRunAction.drop () ;
-  mAttribute_mHasEnabled.drop () ;
-  mAttribute_mHandlesTableViewBinding.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioString,
-                                                                const int32_t inIndentation) const {
-  ioString << "<struct @outletClassDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mUserDefined.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mOutletClassName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHasRunAction.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHasEnabled.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mUserDefined (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mUserDefined ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassDeclarationList_2D_element::reader_mOutletClassName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mOutletClassName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHasRunAction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHasRunAction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHasEnabled (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHasEnabled ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::reader_mHandlesTableViewBinding (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesTableViewBinding ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @outletClassDeclarationList-element type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassDeclarationList_2D_element ("outletClassDeclarationList-element",
-                                                              NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassDeclarationList_2D_element result ;
-  const GALGAS_outletClassDeclarationList_2D_element * p = (const GALGAS_outletClassDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (void) :
-mAttribute_lkey (),
-mAttribute_mHandlesRunAction (),
-mAttribute_mHandlesTableViewBinding (),
-mAttribute_mUserDefined () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element::~ GALGAS_outletClassMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                    const GALGAS_bool & inOperand1,
-                                                                    const GALGAS_bool & inOperand2,
-                                                                    const GALGAS_bool & inOperand3) :
-mAttribute_lkey (inOperand0),
-mAttribute_mHandlesRunAction (inOperand1),
-mAttribute_mHandlesTableViewBinding (inOperand2),
-mAttribute_mUserDefined (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                           GALGAS_bool::constructor_default (HERE),
-                                           GALGAS_bool::constructor_default (HERE),
-                                           GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_bool & inOperand1,
-                                                                                    const GALGAS_bool & inOperand2,
-                                                                                    const GALGAS_bool & inOperand3 
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALGAS_outletClassMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHandlesRunAction.objectCompare (inOperand.mAttribute_mHandlesRunAction) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mHandlesTableViewBinding.objectCompare (inOperand.mAttribute_mHandlesTableViewBinding) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mUserDefined.objectCompare (inOperand.mAttribute_mUserDefined) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableViewBinding.isValid () && mAttribute_mUserDefined.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-  mAttribute_mHandlesRunAction.drop () ;
-  mAttribute_mHandlesTableViewBinding.drop () ;
-  mAttribute_mUserDefined.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
-                                                    const int32_t inIndentation) const {
-  ioString << "<struct @outletClassMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHandlesRunAction.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mUserDefined.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_outletClassMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mHandlesRunAction (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesRunAction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mHandlesTableViewBinding (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesTableViewBinding ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_bool GALGAS_outletClassMap_2D_element::reader_mUserDefined (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mUserDefined ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                            @outletClassMap-element type                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletClassMap_2D_element ("outletClassMap-element",
-                                                  NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletClassMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletClassMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletClassMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_outletClassMap_2D_element result ;
-  const GALGAS_outletClassMap_2D_element * p = (const GALGAS_outletClassMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

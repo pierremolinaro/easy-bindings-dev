@@ -87,7 +87,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    To many relationship: mNames
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
+@objc(ToManyRelationship_MyRootEntity_mNames)
+final class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   weak var owner : MyRootEntity?
 
   var mValueExplorer : NSPopUpButton? {
@@ -208,6 +209,16 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
   }
   
   //····················································································································
+
+  final func signature () -> UInt32 {
+    var crc : UInt32 = 0
+    for object in mValue {
+      crc.accumulateUInt32 (object.signature ())
+    }
+    return crc
+  }
+
+  //····················································································································
  
 }
 
@@ -311,6 +322,15 @@ class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
     for managedObject : EBManagedObject in mNames.propval {
       objects.append (managedObject)
     }
+  }
+
+  //····················································································································
+  //   signature
+  //····················································································································
+
+  override func signature () -> UInt32 {
+    var crc = super.signature ()
+    return crc
   }
 
   //····················································································································

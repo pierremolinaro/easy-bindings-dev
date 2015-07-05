@@ -45,7 +45,7 @@ syntax extension easyBindings_syntax {
     while
       <transient_declaration> !?secondaryPropertyList
     while
-      <toMany_relationship> !?toManyRelationshipList
+      <toMany_relationship> !?toManyRelationshipList !?signatureList
     while
       <toOne_relationship> !?toOneRelationshipList
     end

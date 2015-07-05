@@ -332,6 +332,7 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual void nt_stored_5F_array_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_toMany_5F_relationship_ (class GALGAS_toManyRelationshipList & ioArgument0,
+                                                       class GALGAS_stringset & ioArgument1,
                                                        class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_toMany_5F_relationship_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -372,6 +373,7 @@ class cParser_easyBindings_5F_syntax {
   protected : void rule_easyBindings_5F_syntax_enum_5F_declaration_i2_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i3_ (GALGAS_toManyRelationshipList & ioArgument0,
+                                                                           GALGAS_stringset & ioArgument1,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i3_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -606,6 +608,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_38 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_39 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_40 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -5170,6 +5174,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //----------- '' label
   public : virtual void nt_toMany_5F_relationship_ (GALGAS_toManyRelationshipList & ioArgument0,
+                                                    GALGAS_stringset & ioArgument1,
                                                     C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'toOne_relationship' non terminal
@@ -5275,6 +5280,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_38 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_39 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_40 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
