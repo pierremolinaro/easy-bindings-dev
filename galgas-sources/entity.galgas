@@ -9,6 +9,7 @@ class @entityDeclaration : @astDeclaration {
   @toOneRelationshipList mToOneRelationshipList
   @toManyRelationshipList mToManyRelationshipList
   @secondaryPropertyList mSecondaryPropertyList
+  @stringset mSignatureList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -37,9 +38,10 @@ syntax extension easyBindings_syntax {
     @simpleStoredPropertyList simpleStoredAttributeList = {}
     @toOneRelationshipList toOneRelationshipList = {}
     @toManyRelationshipList toManyRelationshipList = {}
+    @stringset signatureList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredAttributeList
+      <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
     while
       <transient_declaration> !?secondaryPropertyList
     while
@@ -56,6 +58,7 @@ syntax extension easyBindings_syntax {
       !toOneRelationshipList
       !toManyRelationshipList
       !secondaryPropertyList
+      !signatureList
     }
   }
 
@@ -213,6 +216,7 @@ override method @entityDeclaration semanticAnalysis
     !transientDefinitionListForGeneration
     !toOneEntityRelationshipListForGeneration
     !toManyEntityRelationshipListForGeneration
+    !mSignatureList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -226,6 +230,7 @@ list @entityListForGeneration {
   @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
   @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
   @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
+  @stringset mSignatureSet
 }
 
 #......................................................................................................................*
@@ -239,6 +244,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
     ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
+    ?@stringset SIGNATURE_SET
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneration ENTITY_LIST
@@ -260,6 +266,7 @@ proc generateEntities
       !mDecoratedTransientListForGeneration
       !mToOneEntityRelationshipList
       !mToManyEntityRelationshipList
+      !mSignatureSet
     ]
     let fileName = mEntityName + ".swift"
     ioGeneratedFileSet += !fileName

@@ -11,6 +11,7 @@ struct @prefDeclaration {
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyList mStoredArrayList
   @arrayControllerForGeneration mArrayControllerForGeneration
+  @stringset mSignatureList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -27,11 +28,14 @@ syntax extension easyBindings_syntax {
   {
     $prefs$
     ${$
+    @stringset signatureList = {}
     repeat
     while
       <action_declaration> !?ioDeclarationAST.mPreferences.mActionDeclarationList
     while
-      <simple_stored_declaration> !?ioDeclarationAST.mPreferences.mSimpleStoredAttributeList
+      <simple_stored_declaration>
+        !?ioDeclarationAST.mPreferences.mSimpleStoredAttributeList
+        !?signatureList
     while
       <outlet_declaration> !?ioDeclarationAST.mPreferences.mOutletDeclarationList
     while
@@ -43,6 +47,7 @@ syntax extension easyBindings_syntax {
     while
       <array_controller_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
     end
+    ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
   }
 

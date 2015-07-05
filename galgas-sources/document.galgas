@@ -33,9 +33,10 @@ syntax extension easyBindings_syntax {
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
     @simpleStoredPropertyList simpleStoredPropertyList = {}
+    @stringset signatureList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredPropertyList
+      <simple_stored_declaration> !?simpleStoredPropertyList !?signatureList
     while
       <action_declaration> !?actionDeclarationList
     while

@@ -37,9 +37,10 @@ syntax extension easyBindings_syntax {
     @simpleStoredPropertyList simpleStoredAttributeList = {}
     @toOneRelationshipList toOneRelationshipList = {}
     @toManyRelationshipList toManyRelationshipList = {}
+    @stringset signatureList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredAttributeList
+      <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
     while
       <transient_declaration> !?secondaryPropertyList
 #    while
