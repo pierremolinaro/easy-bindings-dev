@@ -5,17 +5,54 @@ import Cocoa
 var gAllocatedEntityCount = 0
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//  EBManagedObject                                                                                                    *
+//  EBSignatureObserver
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class EBManagedObject : EBObject {
+/*@objc(EBSignatureObserver) class EBSignatureObserver : EBEvent {
+
+  private final var mObservers = Set <EBEvent> ()
+  
+  //····················································································································
+
+  final func addSignatureObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+    mObservers.insert (inObserver)
+    if inTrigger {
+      inObserver.postEvent ()
+    }
+  }
+ 
+  //····················································································································
+
+  final func removeSignatureObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+    mObservers.remove (inObserver)
+    if inTrigger {
+      inObserver.postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    for object in mObservers {
+      object.postEvent ()
+    }
+  }
+
+  //····················································································································  
+}
+*/
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//  EBManagedObject
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(EBManagedObject) class EBManagedObject : EBObject, EBSignatureObserverProtocol {
   private weak var mManagedObjectContext : EBManagedObjectContext?
   var savingIndex = 0
 
   var mExplorerWindow : NSWindow?
 
   //···················································································································*
-  //  init                                                                                                             *
+  //  init
   //···················································································································*
 
   init (managedObjectContext : EBManagedObjectContext) {
@@ -26,7 +63,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //  setup and save                                                                                                   *
+  //  setup and save
   //···················································································································*
 
   func setUpWithDictionary (inDictionary : NSDictionary,
@@ -39,7 +76,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //  Getters                                                                                                          *
+  //  Getters
   //···················································································································*
 
   final func undoManager () -> EBUndoManager? {
@@ -51,7 +88,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   showExplorerWindow                                                                                              *
+  //   showExplorerWindow
   //···················································································································*
 
   final func showExplorerWindow () {
@@ -62,35 +99,35 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   resetToManyRelationships                                                                                        *
+  //   resetToManyRelationships
   //···················································································································*
 
   func resetToManyRelationships () {
   }
 
   //···················································································································*
-  //   resetToOneRelationships                                                                                         *
+  //   resetToOneRelationships
   //···················································································································*
 
   func resetToOneRelationships () {
   }
 
   //···················································································································*
-  //   accessibleObjects                                                                                               *
+  //   accessibleObjects
   //···················································································································*
 
   func accessibleObjects (inout objects : Array<EBManagedObject>) {
   }
 
   //···················································································································*
-  //    populateExplorerWindow                                                                                         *
+  //    populateExplorerWindow
   //···················································································································*
 
   func populateExplorerWindow (inout y : CGFloat, view : NSView) {
   }
 
   //···················································································································*
-  //   createAndPopulateObjectExplorerWindow                                                                           *
+  //   createAndPopulateObjectExplorerWindow
   //···················································································································*
 
   func createAndPopulateObjectExplorerWindow () {
@@ -133,7 +170,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   showObjectWindowFromExplorerButton                                                                              *
+  //   showObjectWindowFromExplorerButton
   //···················································································································*
 
   func showObjectWindowFromExplorerButton (AnyObject) {
@@ -141,7 +178,7 @@ class EBManagedObject : EBObject {
   }
   
   //···················································································································*
-  //   deleteWindowAction                                                                                              *
+  //   deleteWindowAction
   //···················································································································*
 
   func deleteWindowAction (AnyObject) {
@@ -149,7 +186,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   clearObjectExplorer                                                                                             *
+  //   clearObjectExplorer
   //···················································································································*
 
   func clearObjectExplorer () {
@@ -160,7 +197,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   storeEntityArrayInDictionary                                                                                    *
+  //   storeEntityArrayInDictionary
   //···················································································································*
 
   func storeEntityArrayInDictionary (inEntityArray : NSArray,
@@ -178,7 +215,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   storeEntityInDictionary                                                                                         *
+  //   storeEntityInDictionary
   //···················································································································*
 
   func storeEntityInDictionary (inObject : EBManagedObject?,
@@ -190,7 +227,7 @@ class EBManagedObject : EBObject {
   }
 
   //···················································································································*
-  //   readEntityFromDictionary                                                                                        *
+  //   readEntityFromDictionary
   //···················································································································*
 
   func readEntityFromDictionary (inRelationshipName: String,
@@ -223,10 +260,46 @@ class EBManagedObject : EBObject {
   }
 
   //····················································································································
+  //   setSignatureObserver
+  //····················································································································
+
+  private weak var mSignatureObserver : EBSignatureObserverProtocol?
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+  //   clearSignatureCache
+  //····················································································································
+
+  final func clearSignatureCache () {
+    if mSignature != nil {
+      mSignature = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
   //   signature
   //····················································································································
 
-  func signature () -> UInt32 {
+  private final var mSignature : UInt32?
+  
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    if mSignature == nil {
+      mSignature = computeSignature ()
+    }
+    return mSignature!
+  }
+
+  //····················································································································
+
+  func computeSignature () -> UInt32 {
     return 0
   }
 

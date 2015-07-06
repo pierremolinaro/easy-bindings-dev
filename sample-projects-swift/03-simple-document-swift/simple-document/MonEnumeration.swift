@@ -1,6 +1,6 @@
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 enum MonEnumeration : Int {
   case premier = 0
@@ -26,9 +26,9 @@ enum MonEnumeration : Int {
   }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    EBReadOnlyProperty_MonEnumeration                                                                                *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBReadOnlyProperty_MonEnumeration
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBReadOnlyProperty_MonEnumeration : EBAbstractProperty, EBReadOnlyEnumPropertyProtocol {
 
@@ -39,9 +39,9 @@ class EBReadOnlyProperty_MonEnumeration : EBAbstractProperty, EBReadOnlyEnumProp
   func count () -> Int { return 3 }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    EBStoredProperty_MonEnumeration                                                                                  *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBStoredProperty_MonEnumeration
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
@@ -63,6 +63,7 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
         mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -111,7 +112,7 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
  
   var validationFunction : (MonEnumeration) -> EBValidationResult = defaultValidationFunction
   
@@ -119,11 +120,48 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
     return validationFunction (proposedValue)
   }
 
+  //····················································································································
+  //    SIGNATURE
+  //····················································································································
+
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = mValue.rawValue.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
+  //····················································································································
+
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    EBTransientProperty_MonEnumeration                                                                               *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBTransientProperty_MonEnumeration
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBTransientProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration {
   private var mValueCache : EBProperty <MonEnumeration>?
@@ -155,4 +193,4 @@ class EBTransientProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration {
   }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

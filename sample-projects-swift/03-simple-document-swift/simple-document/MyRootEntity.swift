@@ -293,6 +293,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
     myString.undoManager = undoManager ()
     myColor.undoManager = undoManager ()
   //--- Install owner for relationships
+  //--- register properties for handling signature
   }
 
   //····················································································································
@@ -361,11 +362,11 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   }
 
   //····················································································································
-  //   signature
+  //   computeSignature
   //····················································································································
 
-  override func signature () -> UInt32 {
-    var crc = super.signature ()
+  override func computeSignature () -> UInt32 {
+    var crc = super.computeSignature ()
     return crc
   }
 

@@ -404,6 +404,7 @@ extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
+extern const char * gWrapperFileContent_10_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -420,6 +421,7 @@ extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_10_swift_5F_sources ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -681,29 +683,5 @@ extern const cRegularFileWrapper gWrapperFile_19_outletClassGeneration ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_outletClassGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           Routine 'generateOutletClasses'                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_generateOutletClasses (const class GALGAS_stringset constinArgument0,
-                                    const class GALGAS_string constinArgument1,
-                                    class GALGAS_stringset & ioArgument2,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       Routine 'buildBindingSpecificationMap'                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_buildBindingSpecificationMap (const class GALGAS_unifiedTypeMap constinArgument0,
-                                           const class GALGAS_bindingSpecificationListMap constinArgument1,
-                                           class GALGAS_bindingSpecificationMap & outArgument2,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
 
 #endif

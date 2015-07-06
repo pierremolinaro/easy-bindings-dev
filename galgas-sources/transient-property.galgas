@@ -239,6 +239,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = "rootObject." + masterName + "." + optionName + ".addObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
     outResult = "self.rootObject." + relationshipName + ".addObserverOf_" + propertyName
+  case signatureProperty (*) :
+    outResult = "<< ligne 243 >>"
   end
 }
 
@@ -260,6 +262,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = "rootObject." + masterName + "." + optionName + ".removeObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
     outResult = "self.rootObject." + relationshipName + ".removeObserverOf_" + propertyName
+  case signatureProperty (*) :
+    outResult = "<< ligne 266 >>"
   end
 }
 

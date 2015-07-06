@@ -204,6 +204,7 @@ final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadO
   private var mValue = Array<%![mRelationshipType swiftTypeName]%> () {
     didSet {
       if oldValue != mValue {
+        clearSignatureCache ()
         mSet = Set (mValue)
         let oldSet = Set (oldValue)
       //--- Register old value in undo manager
@@ -214,6 +215,7 @@ final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadO
         }
       //--- Removed object set
         for managedObject : %![mRelationshipType swiftTypeName]% in oldSet.subtract (mSet) {
+          managedObject.setSignatureObserver (nil)
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
@@ -225,6 +227,7 @@ end
         }
       //--- Added object set
         for managedObject : %![mRelationshipType swiftTypeName]% in mSet.subtract (oldSet) {
+           managedObject.setSignatureObserver (mSignatureObserver)
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
@@ -281,13 +284,58 @@ end
   }
   
   //····················································································································
+  //   setSignatureObserver
+  //····················································································································
+
+  private weak var mSignatureObserver : EBSignatureObserverProtocol?
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
+    mSignatureObserver = observer
+    for object in mValue {
+      object.setSignatureObserver (observer)
+    }
+  }
+
+  //····················································································································
+  //   signature
+  //····················································································································
+
+  private var mSignatureCache : UInt32?
+ 
+  //····················································································································
 
   final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = computeSignature ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
+  //····················································································································
+  //   computeSignature
+  //····················································································································
+
+  final func computeSignature () -> UInt32 {
     var crc : UInt32 = 0
     for object in mValue {
       crc.accumulateUInt32 (object.signature ())
     }
     return crc
+  }
+
+  //····················································································································
+
+  final func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
   }
 
   //····················································································································
@@ -484,6 +532,11 @@ end
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    %!mToManyRelationshipName%.owner = self\n%
 end
+%  //--- register properties for handling signature
+%
+for () in SIGNATURE_SET do
+  %    %!key%.setSignatureObserver (self)\n%
+end
 %  }
 
   //····················································································································
@@ -637,11 +690,11 @@ end
 %  }
 
   //····················································································································
-  //   signature
+  //   computeSignature
   //····················································································································
 
-  override func signature () -> UInt32 {
-    var crc = super.signature ()
+  override func computeSignature () -> UInt32 {
+    var crc = super.computeSignature ()
 %
 for () in SIGNATURE_SET do
   %    crc.accumulateUInt32 (%!key%.signature ())\n%

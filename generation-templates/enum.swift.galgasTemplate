@@ -1,6 +1,6 @@
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 enum %!ENUM_TYPE_NAME% : Int {
 %
@@ -28,9 +28,9 @@ end
   }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["EBReadOnlyProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"EBReadOnlyProperty_" + ENUM_TYPE_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : EBAbstractProperty, EBReadOnlyEnumPropertyProtocol {
 
@@ -41,9 +41,9 @@ class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : EBAbstractProperty, EBReadOnlyEnumP
   func count () -> Int { return %![[CONSTANT_ORDERED_LIST length] string]% }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["EBStoredProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"EBStoredProperty_" + ENUM_TYPE_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%, EBEnumPropertyProtocol {
   weak var undoManager : NSUndoManager?
@@ -65,6 +65,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
         mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -113,7 +114,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     }
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
  
   var validationFunction : (%!ENUM_TYPE_NAME%) -> EBValidationResult = defaultValidationFunction
   
@@ -121,11 +122,48 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     return validationFunction (proposedValue)
   }
 
+  //····················································································································
+  //    SIGNATURE
+  //····················································································································
+
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = mValue.rawValue.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
+  //····················································································································
+
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!["EBTransientProperty_" + ENUM_TYPE_NAME stringByRightPadding !113 !' ']%*
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"EBTransientProperty_" + ENUM_TYPE_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBTransientProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME% {
   private var mValueCache : EBProperty <%!ENUM_TYPE_NAME%>?
@@ -157,4 +195,4 @@ class EBTransientProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAM
   }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

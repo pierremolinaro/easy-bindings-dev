@@ -3591,7 +3591,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_selfProperty,
     kEnum_prefsProperty,
     kEnum_controllerProperty,
-    kEnum_controllerSecondaryProperty
+    kEnum_controllerSecondaryProperty,
+    kEnum_signatureProperty
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -3646,6 +3647,9 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                                          const class GALGAS_lstring & inOperand1
                                                                          COMMA_LOCATION_ARGS) ;
 
+  public : static GALGAS_observablePropertyAST constructor_signatureProperty (const class GALGAS_location & inOperand0
+                                                                              COMMA_LOCATION_ARGS) ;
+
 //--------------------------------- Implementation of reader 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
@@ -3690,6 +3694,10 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_signatureProperty (class GALGAS_location & outArgument0,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
@@ -3706,6 +3714,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isRootPropertyWithOption (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isSelfProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isSignatureProperty (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -3846,6 +3856,22 @@ class cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty : 
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty (void) {}
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumAssociatedValues_observablePropertyAST_signatureProperty : public cEnumAssociatedValues {
+  public : const GALGAS_location mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_observablePropertyAST_signatureProperty (const GALGAS_location & inAssociatedValue0
+                                                                          COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_signatureProperty (void) {}
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
