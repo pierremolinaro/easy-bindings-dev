@@ -19,7 +19,7 @@ import Cocoa
 
   override init () {
     super.init ()
-    self.computeFunction = { [weak self] in // Optional<() -> EBProperty <Int> >
+    self.computeFunction = { [weak self] in
       if let unwSelf = self {
         return .singleSelection (Int (unwSelf.signature ()))
       }else{
@@ -88,7 +88,6 @@ import Cocoa
     for object in mObservers {
       object.postEvent ()
     }
-//    clearSignatureCache ()
   }
   
   //····················································································································
@@ -116,50 +115,8 @@ import Cocoa
     }
   }
 
-/*
-  //····················································································································
-  //    SIGNATURE
   //····················································································································
 
-  final private weak var mSignatureObserver : EBSignatureObserver? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-  //   setSignatureObserver
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserver?) {
-    mSignatureObserver = observer
-  }
-  
-  //····················································································································
-
-  func computeSignature () -> UInt32 { return 0 } // Abstract method
-
-  //····················································································································
-
-  final func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = computeSignature ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
-*/
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -222,15 +179,14 @@ extension NSData {
 
 extension Int {
   func ebHashValue () -> UInt32 {
-/*    var crc : UInt32 = 0
-    var ptr = UnsafePointer <UInt8> (bitPattern:self)
+    var crc : UInt32 = 0
+    var ptr = UnsafePointer <UInt8> ([self])
     for _ in 0 ..< sizeof (Int) {
-      print ("\(ptr)")
+      // print ("\(ptr)")
       crc.accumulateByte (ptr.memory)
       ptr += 1
     }
-    return crc */
-    return 0
+    return crc
   }
 }
 
