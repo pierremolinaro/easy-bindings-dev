@@ -311,6 +311,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
     aValue.undoManager = undoManager ()
   //--- Install owner for relationships
     mRoot.owner = self
+  //--- register properties for handling signature
   }
 
   //····················································································································
@@ -400,11 +401,11 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   }
 
   //····················································································································
-  //   signature
+  //   computeSignature
   //····················································································································
 
-  override func signature () -> UInt32 {
-    var crc = super.signature ()
+  override func computeSignature () -> UInt32 {
+    var crc = super.computeSignature ()
     return crc
   }
 

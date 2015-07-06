@@ -142,6 +142,7 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue))
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -230,8 +231,37 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 }
 
@@ -240,7 +270,7 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTransientProperty_Int)
-final class EBTransientProperty_Int : EBReadOnlyProperty_Int {
+class EBTransientProperty_Int : EBReadOnlyProperty_Int {
   private var mValueCache : EBProperty <Int>? = nil
   var computeFunction : Optional<() -> EBProperty <Int> >
   
@@ -419,6 +449,7 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (bool:oldValue))
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -507,8 +538,37 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 }
 
@@ -517,7 +577,7 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTransientProperty_Bool)
-final class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
+class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
   private var mValueCache : EBProperty <Bool>? = nil
   var computeFunction : Optional<() -> EBProperty <Bool> >
   
@@ -696,6 +756,7 @@ final class EBStoredProperty_Double : EBReadWriteProperty_Double {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (double:oldValue))
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -784,8 +845,37 @@ final class EBStoredProperty_Double : EBReadWriteProperty_Double {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 }
 
@@ -794,7 +884,7 @@ final class EBStoredProperty_Double : EBReadWriteProperty_Double {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTransientProperty_Double)
-final class EBTransientProperty_Double : EBReadOnlyProperty_Double {
+class EBTransientProperty_Double : EBReadOnlyProperty_Double {
   private var mValueCache : EBProperty <Double>? = nil
   var computeFunction : Optional<() -> EBProperty <Double> >
   
@@ -835,6 +925,7 @@ final class EBTransientProperty_Double : EBReadOnlyProperty_Double {
 //   EBReadOnlyProperty_String (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBReadOnlyProperty_String)
 class EBReadOnlyProperty_String : EBAbstractProperty {
   var prop : EBProperty <String> { get { return .noSelection } } // Abstract method
 }
@@ -854,6 +945,7 @@ class EBReadWriteProperty_String : EBReadOnlyProperty_String {
 //   EBPropertyProxy_String
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBPropertyProxy_String)
 class EBPropertyProxy_String : EBReadWriteProperty_String {
   var readModelFunction : Optional < () -> EBProperty <String> >
   var writeModelFunction : Optional < (String) -> Void >
@@ -943,7 +1035,8 @@ class EBPropertyProxy_String : EBReadWriteProperty_String {
 //   EBStoredProperty_String
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBStoredProperty_String : EBReadWriteProperty_String {
+@objc(EBStoredProperty_String)
+final class EBStoredProperty_String : EBReadWriteProperty_String {
   weak var undoManager : NSUndoManager?
   
   //····················································································································
@@ -969,6 +1062,7 @@ class EBStoredProperty_String : EBReadWriteProperty_String {
         mValueExplorer?.stringValue = mValue
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -1052,8 +1146,37 @@ class EBStoredProperty_String : EBReadWriteProperty_String {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 
 }
@@ -1062,6 +1185,7 @@ class EBStoredProperty_String : EBReadWriteProperty_String {
 //   EBTransientProperty_String
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBTransientProperty_String)
 class EBTransientProperty_String : EBReadOnlyProperty_String {
   private var mValueCache : EBProperty <String>? = nil
   var computeFunction : Optional<() -> EBProperty <String>>
@@ -1103,6 +1227,7 @@ class EBTransientProperty_String : EBReadOnlyProperty_String {
 //   EBReadOnlyProperty_NSColor (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBReadOnlyProperty_NSColor)
 class EBReadOnlyProperty_NSColor : EBAbstractProperty {
   var prop : EBProperty <NSColor> { get { return .noSelection } } // Abstract method
 }
@@ -1122,6 +1247,7 @@ class EBReadWriteProperty_NSColor : EBReadOnlyProperty_NSColor {
 //   EBPropertyProxy_NSColor
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBPropertyProxy_NSColor)
 class EBPropertyProxy_NSColor : EBReadWriteProperty_NSColor {
   var readModelFunction : Optional < () -> EBProperty <NSColor> >
   var writeModelFunction : Optional < (NSColor) -> Void >
@@ -1211,7 +1337,8 @@ class EBPropertyProxy_NSColor : EBReadWriteProperty_NSColor {
 //   EBStoredProperty_NSColor
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
+@objc(EBStoredProperty_NSColor)
+final class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
   weak var undoManager : NSUndoManager?
   
   //····················································································································
@@ -1237,6 +1364,7 @@ class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -1326,8 +1454,37 @@ class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 
 }
@@ -1336,6 +1493,7 @@ class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
 //   EBTransientProperty_NSColor
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBTransientProperty_NSColor)
 class EBTransientProperty_NSColor : EBReadOnlyProperty_NSColor {
   private var mValueCache : EBProperty <NSColor>? = nil
   var computeFunction : Optional<() -> EBProperty <NSColor>>
@@ -1377,6 +1535,7 @@ class EBTransientProperty_NSColor : EBReadOnlyProperty_NSColor {
 //   EBReadOnlyProperty_NSDate (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBReadOnlyProperty_NSDate)
 class EBReadOnlyProperty_NSDate : EBAbstractProperty {
   var prop : EBProperty <NSDate> { get { return .noSelection } } // Abstract method
 }
@@ -1396,6 +1555,7 @@ class EBReadWriteProperty_NSDate : EBReadOnlyProperty_NSDate {
 //   EBPropertyProxy_NSDate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBPropertyProxy_NSDate)
 class EBPropertyProxy_NSDate : EBReadWriteProperty_NSDate {
   var readModelFunction : Optional < () -> EBProperty <NSDate> >
   var writeModelFunction : Optional < (NSDate) -> Void >
@@ -1485,7 +1645,8 @@ class EBPropertyProxy_NSDate : EBReadWriteProperty_NSDate {
 //   EBStoredProperty_NSDate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
+@objc(EBStoredProperty_NSDate)
+final class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
   weak var undoManager : NSUndoManager?
   
   //····················································································································
@@ -1511,6 +1672,7 @@ class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -1594,8 +1756,37 @@ class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 
 }
@@ -1604,6 +1795,7 @@ class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
 //   EBTransientProperty_NSDate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBTransientProperty_NSDate)
 class EBTransientProperty_NSDate : EBReadOnlyProperty_NSDate {
   private var mValueCache : EBProperty <NSDate>? = nil
   var computeFunction : Optional<() -> EBProperty <NSDate>>
@@ -1645,6 +1837,7 @@ class EBTransientProperty_NSDate : EBReadOnlyProperty_NSDate {
 //   EBReadOnlyProperty_NSFont (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBReadOnlyProperty_NSFont)
 class EBReadOnlyProperty_NSFont : EBAbstractProperty {
   var prop : EBProperty <NSFont> { get { return .noSelection } } // Abstract method
 }
@@ -1664,6 +1857,7 @@ class EBReadWriteProperty_NSFont : EBReadOnlyProperty_NSFont {
 //   EBPropertyProxy_NSFont
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBPropertyProxy_NSFont)
 class EBPropertyProxy_NSFont : EBReadWriteProperty_NSFont {
   var readModelFunction : Optional < () -> EBProperty <NSFont> >
   var writeModelFunction : Optional < (NSFont) -> Void >
@@ -1753,7 +1947,8 @@ class EBPropertyProxy_NSFont : EBReadWriteProperty_NSFont {
 //   EBStoredProperty_NSFont
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
+@objc(EBStoredProperty_NSFont)
+final class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
   weak var undoManager : NSUndoManager?
   
   //····················································································································
@@ -1779,6 +1974,7 @@ class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -1868,8 +2064,37 @@ class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 
 }
@@ -1878,6 +2103,7 @@ class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
 //   EBTransientProperty_NSFont
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+@objc(EBTransientProperty_NSFont)
 class EBTransientProperty_NSFont : EBReadOnlyProperty_NSFont {
   private var mValueCache : EBProperty <NSFont>? = nil
   var computeFunction : Optional<() -> EBProperty <NSFont>>

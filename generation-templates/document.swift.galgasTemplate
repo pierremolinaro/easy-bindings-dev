@@ -54,6 +54,13 @@ for () in SELECTION_CONTROLLER_LIST do
 %  private var %!mSelectionControllerName% = SelectionController_%!mOwnerName%_%!mSelectionControllerName% ()\n%
 end
 %
+
+  //····················································································································
+  //    Selection Controllers
+  //····················································································································
+
+  private var mSignatureController = EBSignatureObserverEvent ()
+
   //····················································································································
   //    populateExplorerWindow
   //····················································································································
@@ -96,6 +103,8 @@ end
   //····················································································································
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
+    rootObject.setSignatureObserver (mSignatureController)
+    mSignatureController.setRootObject (rootObject)
   //--------------------------- Outlet checking
 %
 

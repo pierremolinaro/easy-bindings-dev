@@ -1,6 +1,60 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBSignatureObserverProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBSignatureObserverProtocol) protocol EBSignatureObserverProtocol {
+  func clearSignatureCache ()
+  func signature () -> UInt32
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBSignatureObserverEvent
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBSignatureObserverEvent) class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverProtocol {
+
+  private weak var mRootObject : EBSignatureObserverProtocol?
+
+  override init () {
+    super.init ()
+    self.computeFunction = { [weak self] in // Optional<() -> EBProperty <Int> >
+      if let unwSelf = self {
+        return .singleSelection (Int (unwSelf.signature ()))
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func setRootObject (rootObject : EBSignatureObserverProtocol) {
+    mRootObject = rootObject
+  }
+
+  //····················································································································
+
+  func signature () -> UInt32 {
+    if let rootObject = mRootObject {
+      return rootObject.signature ()
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+
+  func clearSignatureCache () {
+    postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBAbstractProperty (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -34,7 +88,7 @@ import Cocoa
     for object in mObservers {
       object.postEvent ()
     }
-    clearSignatureCache ()
+//    clearSignatureCache ()
   }
   
   //····················································································································
@@ -62,19 +116,22 @@ import Cocoa
     }
   }
 
+/*
   //····················································································································
   //    SIGNATURE
   //····················································································································
 
-  final private weak var mSignatureObserver : EBOutletEvent? = nil
+  final private weak var mSignatureObserver : EBSignatureObserver? = nil
   final private var mSignatureCache : UInt32? = nil
 
   //····················································································································
+  //   setSignatureObserver
+  //····················································································································
 
-  final func setSignatureObserver (observer : EBOutletEvent) {
+  final func setSignatureObserver (observer : EBSignatureObserver?) {
     mSignatureObserver = observer
   }
-
+  
   //····················································································································
 
   func computeSignature () -> UInt32 { return 0 } // Abstract method
@@ -102,7 +159,7 @@ import Cocoa
   }
   
   //····················································································································
-
+*/
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -165,13 +222,15 @@ extension NSData {
 
 extension Int {
   func ebHashValue () -> UInt32 {
-    var crc : UInt32 = 0
+/*    var crc : UInt32 = 0
     var ptr = UnsafePointer <UInt8> (bitPattern:self)
-    for _ in 0 ..< sizeof (UInt32) {
+    for _ in 0 ..< sizeof (Int) {
+      print ("\(ptr)")
       crc.accumulateByte (ptr.memory)
       ptr += 1
     }
-    return crc
+    return crc */
+    return 0
   }
 }
 

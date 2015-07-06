@@ -140,6 +140,7 @@ final class EBStoredProperty_%!TYPE% : EBReadWriteProperty_%!TYPE% {
         mValueExplorer?.stringValue = mValue.description
         undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (%!TO_NSNUMBER%:oldValue))
         postEvent ()
+        clearSignatureCache ()
       }
     }
   }
@@ -228,8 +229,37 @@ final class EBStoredProperty_%!TYPE% : EBReadWriteProperty_%!TYPE% {
   //    SIGNATURE
   //····················································································································
 
-  override func computeSignature () -> UInt32 { return propval.ebHashValue () }
+  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
+  final private var mSignatureCache : UInt32? = nil
 
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
+    mSignatureObserver = observer
+  }
+
+  //····················································································································
+
+  final private func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = propval.ebHashValue ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
   //····················································································································
 }
 
@@ -238,7 +268,7 @@ final class EBStoredProperty_%!TYPE% : EBReadWriteProperty_%!TYPE% {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTransientProperty_%!TYPE%)
-final class EBTransientProperty_%!TYPE% : EBReadOnlyProperty_%!TYPE% {
+class EBTransientProperty_%!TYPE% : EBReadOnlyProperty_%!TYPE% {
   private var mValueCache : EBProperty <%!TYPE%>? = nil
   var computeFunction : Optional<() -> EBProperty <%!TYPE%> >
   

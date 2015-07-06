@@ -10,6 +10,7 @@ enum @observablePropertyAST {
   case prefsProperty (@lstring propertyName @lstring optionName)
   case controllerProperty (@lstring controllerName @lstring propertyName)
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
+  case signatureProperty (@location location)
 }
 
 #......................................................................................................................*
@@ -70,6 +71,9 @@ syntax extension easyBindings_syntax {
           !secondaryPropertyName:secondaryPropertyName
         }
       end
+    or
+      $signature$
+      outObservablePropertyAST = .signatureProperty {!location:.here}
     end
   }
 
@@ -117,6 +121,8 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
     outResult = inSelf + "." + controllerName + "." + propertyName
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     outResult = inSelf + "." + controllerName + "." + propertyName + "." + secondaryPropertyName
+  case signatureProperty (*) :
+    outResult = "mSignatureController"
   end  
 }
 
@@ -137,6 +143,8 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   case controllerProperty (* *) :
     outResult = true
   case controllerSecondaryProperty (* * *) :
+    outResult = true
+  case signatureProperty (*) :
     outResult = true
   end  
 }
@@ -164,6 +172,8 @@ getter @observablePropertyAST isPropertyDefined
     outResult = [inObservableProperties hasKey !controllerName.string]
   case controllerSecondaryProperty (@lstring controllerName @lstring unused propertyName @lstring unused secondaryPropertyName) :
     outResult = [inObservableProperties hasKey !controllerName.string]
+  case signatureProperty (*) :
+    outResult = true
   end  
 }
 
@@ -185,6 +195,8 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = propertyName.location
   case controllerSecondaryProperty (* * @lstring secondaryPropertyName) :
     outResult = secondaryPropertyName.location
+  case signatureProperty (@location location) :
+    outResult = location
   end  
 }
 
@@ -202,6 +214,11 @@ method @observablePropertyAST analyzeObservableProperty
   !@string outSwiftTypeStringForTransientFunctionArgument
 {
   switch self
+  case signatureProperty (*) :
+    outKind = .transient
+    outMultiplicity = .single
+    outType = .integerType
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case rootProperty (@lstring propertyName) :
     [inRootObservablePropertyMap searchKey
       !propertyName
