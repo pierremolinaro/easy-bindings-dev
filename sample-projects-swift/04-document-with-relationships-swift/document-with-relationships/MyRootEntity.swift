@@ -88,7 +88,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(ToManyRelationship_MyRootEntity_mNames)
-final class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
+final class ToManyRelationship_MyRootEntity_mNames :
+ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   weak var owner : MyRootEntity?
 
   var mValueExplorer : NSPopUpButton? {
@@ -156,7 +157,7 @@ final class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity 
         }
       //--- Added object set
         for managedObject : NameEntity in mSet.subtract (oldSet) {
-           managedObject.setSignatureObserver (mSignatureObserver)
+          managedObject.setSignatureObserver (self)
           for observer in mObserversOf_aValue {
             managedObject.aValue.addObserver (observer, postEvent:true)
           }
@@ -222,7 +223,7 @@ final class ToManyRelationship_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity 
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
     mSignatureObserver = observer
     for object in mValue {
-      object.setSignatureObserver (observer)
+      object.setSignatureObserver (self)
     }
   }
 

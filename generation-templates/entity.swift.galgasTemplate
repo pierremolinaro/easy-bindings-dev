@@ -158,7 +158,8 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName%)
-final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
+final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
+ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtocol {
   weak var owner : %!ENTITY_NAME%?
 
   var mValueExplorer : NSPopUpButton? {
@@ -227,7 +228,7 @@ end
         }
       //--- Added object set
         for managedObject : %![mRelationshipType swiftTypeName]% in mSet.subtract (oldSet) {
-           managedObject.setSignatureObserver (mSignatureObserver)
+          managedObject.setSignatureObserver (self)
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
@@ -294,7 +295,7 @@ end
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
     mSignatureObserver = observer
     for object in mValue {
-      object.setSignatureObserver (observer)
+      object.setSignatureObserver (self)
     }
   }
 
