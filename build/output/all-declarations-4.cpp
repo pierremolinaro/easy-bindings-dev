@@ -10,6 +10,1028 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                        Routine 'generateStandardProperties'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateStandardProperties (const GALGAS_string constinArgument_inOutputDirectory,
+                                         GALGAS_stringset & ioArgument_ioGeneratedFileSet,
+                                         C_Compiler * inCompiler
+                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string var_contents = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 184))) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int"), GALGAS_string ("integer"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 186)))  COMMA_SOURCE_FILE ("code-generation.galgas", 186)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool"), GALGAS_string ("bool"), GALGAS_string ("propval \? 1 : 0") COMMA_SOURCE_FILE ("code-generation.galgas", 187)))  COMMA_SOURCE_FILE ("code-generation.galgas", 187)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double"), GALGAS_string ("double"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 188)))  COMMA_SOURCE_FILE ("code-generation.galgas", 188)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("String"), GALGAS_string::makeEmptyString (), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 190)))  COMMA_SOURCE_FILE ("code-generation.galgas", 190)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 191)))  COMMA_SOURCE_FILE ("code-generation.galgas", 191)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_string (".description"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 192)))  COMMA_SOURCE_FILE ("code-generation.galgas", 192)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 193)))  COMMA_SOURCE_FILE ("code-generation.galgas", 193)) ;
+  GALGAS_string var_fileName = GALGAS_string ("standard-properties.swift") ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 196)) ;
+  {
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 197)) ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Routine 'generateXcodeProject'                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateXcodeProject (const GALGAS_string constinArgument_inOutputDirectory,
+                                   const GALGAS_string constinArgument_inXcodeProjectString,
+                                   const GALGAS_stringset constinArgument_inGeneratedFileSet,
+                                   const GALGAS_string constinArgument_projectName,
+                                   C_Compiler * inCompiler
+                                   COMMA_UNUSED_LOCATION_ARGS) {
+  const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_inXcodeProjectString.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    {
+    routine_generateXcodeProjectInternal (constinArgument_inOutputDirectory, constinArgument_inXcodeProjectString, constinArgument_inGeneratedFileSet, constinArgument_projectName, inCompiler  COMMA_SOURCE_FILE ("xcode-project.galgas", 39)) ;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'generateXcodeProjectInternal'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_inOutputDirectory,
+                                           const GALGAS_string constinArgument_inXcodeProjectString,
+                                           const GALGAS_stringset constinArgument_inGeneratedFileSet,
+                                           const GALGAS_string constinArgument_projectName,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_XcodeProjectDescriptor var_xcodeProject = GALGAS_XcodeProjectDescriptor::constructor_default (SOURCE_FILE ("xcode-project.galgas", 51)) ;
+  GALGAS_string var_SDK = GALGAS_string ("macosx10.11") ;
+  GALGAS_string var_DEPLOYMENT = GALGAS_string ("10.10") ;
+  {
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 92)) ;
+  temp_0.addAssign_operation (GALGAS_string ("ALWAYS_SEARCH_USER_PATHS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 56)) ;
+  temp_0.addAssign_operation (GALGAS_string ("ARCHS = \"$(ARCHS_STANDARD_64_BIT)\"")  COMMA_SOURCE_FILE ("xcode-project.galgas", 57)) ;
+  temp_0.addAssign_operation (GALGAS_string ("CLANG_ENABLE_OBJC_ARC = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 58)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_GENERATE_DEBUGGING_SYMBOLS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 59)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_PRECOMPILE_PREFIX_HEADER = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 60)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_THREADSAFE_STATICS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 61)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 62)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_TREAT_WARNINGS_AS_ERRORS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 63)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_64_TO_32_BIT_CONVERSION = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 64)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 65)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 66)) ;
+  temp_0.addAssign_operation (GALGAS_string ("CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 67)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_MISSING_NEWLINE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 68)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 69)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_RETURN_TYPE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 70)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_CHECK_SWITCH_STATEMENTS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 71)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 72)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 73)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_INHIBIT_ALL_WARNINGS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 74)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 75)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_MISSING_PARENTHESES = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 76)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 77)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_PEDANTIC = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 78)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_SHADOW = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 79)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_SIGN_COMPARE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 80)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 81)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNINITIALIZED_AUTOS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 82)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNKNOWN_PRAGMAS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 83)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_FUNCTION = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 84)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_LABEL = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 85)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_VALUE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 86)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_VARIABLE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 87)) ;
+  temp_0.addAssign_operation (GALGAS_string ("HEADER_SEARCH_PATHS = ()")  COMMA_SOURCE_FILE ("xcode-project.galgas", 88)) ;
+  temp_0.addAssign_operation (GALGAS_string ("MACOSX_DEPLOYMENT_TARGET = ").add_operation (var_DEPLOYMENT, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 89))  COMMA_SOURCE_FILE ("xcode-project.galgas", 89)) ;
+  temp_0.addAssign_operation (GALGAS_string ("SDKROOT = ").add_operation (var_SDK, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 90))  COMMA_SOURCE_FILE ("xcode-project.galgas", 90)) ;
+  temp_0.addAssign_operation (GALGAS_string ("COPY_PHASE_STRIP = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 91)) ;
+  temp_0.addAssign_operation (GALGAS_string ("LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\"")  COMMA_SOURCE_FILE ("xcode-project.galgas", 92)) ;
+  categoryModifier_addSettingsToDefaultConfiguration (var_xcodeProject, temp_0, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 55)) ;
+  }
+  GALGAS_stringlist var_swiftFileRefList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 95)) ;
+  GALGAS_stringlist var_resourceFileRefList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 96)) ;
+  GALGAS_stringset var_generatedFileSet = constinArgument_inGeneratedFileSet ;
+  var_generatedFileSet.addAssign_operation (GALGAS_string ("MainMenu.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 98)) ;
+  GALGAS_stringlist joker_4226 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 103)) ;
+  GALGAS_stringlist joker_4244 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 104)) ;
+  GALGAS_stringlist joker_4263 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 105)) ;
+  GALGAS_stringlist joker_4326 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 107)) ;
+  GALGAS_string var_groupRef ;
+  {
+  categoryModifier_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Sources"), constinArgument_projectName, var_generatedFileSet, joker_4226, joker_4244, joker_4263, var_swiftFileRefList, joker_4326, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 99)) ;
+  }
+  {
+  categoryModifier_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 111)) ;
+  }
+  GALGAS_stringlist joker_4605 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 116)) ;
+  GALGAS_stringlist joker_4623 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 117)) ;
+  GALGAS_stringlist joker_4642 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 118)) ;
+  GALGAS_stringlist joker_4705 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 120)) ;
+  {
+  GALGAS_stringset temp_1 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.galgas", 115)) ;
+  temp_1.addAssign_operation (GALGAS_string ("Info.plist")  COMMA_SOURCE_FILE ("xcode-project.galgas", 115)) ;
+  categoryModifier_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Resources"), constinArgument_projectName, temp_1, joker_4605, joker_4623, joker_4642, var_swiftFileRefList, joker_4705, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 112)) ;
+  }
+  {
+  categoryModifier_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 124)) ;
+  }
+  {
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 134)) ;
+  temp_2.addAssign_operation (GALGAS_string ("GCC_OPTIMIZATION_LEVEL = 0")  COMMA_SOURCE_FILE ("xcode-project.galgas", 133)) ;
+  temp_2.addAssign_operation (GALGAS_string ("GCC_PREPROCESSOR_DEFINITIONS = ()")  COMMA_SOURCE_FILE ("xcode-project.galgas", 134)) ;
+  GALGAS__32_stringlist temp_3 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 137)) ;
+  temp_3.addAssign_operation (GALGAS_string ("MainMenu.xib"), GALGAS_string ("EBAllocationDebug.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 137)) ;
+  GALGAS_string joker_5327 ; // Joker input parameter
+  categoryModifier_addAppTarget (var_xcodeProject, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 130)), var_resourceFileRefList, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 136)), temp_3, constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 138)), joker_5327, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 126)) ;
+  }
+  GALGAS_string var_sourceDir = constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)).add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)) ;
+  categoryMethod_generateAtPath (var_xcodeProject, constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (GALGAS_string (".xcodeproj"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)), var_sourceDir.add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)).add_operation (GALGAS_string (".xcodeproj.txt"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 143)) ;
+  GALGAS_stringset temp_4 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.galgas", 152)) ;
+  temp_4.addAssign_operation (constinArgument_projectName  COMMA_SOURCE_FILE ("xcode-project.galgas", 152)) ;
+  GALGAS_string var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_info_5F_plist (inCompiler, constinArgument_projectName, constinArgument_inXcodeProjectString, GALGAS_string ("1.0.0"), temp_4 COMMA_SOURCE_FILE ("xcode-project.galgas", 148))) ;
+  {
+  GALGAS_string::class_method_generateFile (var_sourceDir, GALGAS_string ("Info.plist"), var_s, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 154)) ;
+  }
+  var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_main_5F_xib (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.galgas", 159))) ;
+  {
+  GALGAS_string::class_method_generateFile (var_sourceDir, GALGAS_string ("MainMenu.xib"), var_s, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 162)) ;
+  }
+  var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_build_5F_command (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.galgas", 167))) ;
+  GALGAS_bool joker_6125 ; // Joker input parameter
+  var_s.method_writeToExecutableFileWhenDifferentContents (constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/build.py"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 171)), joker_6125, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 170)) ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         Filewrapper 'additionalXcodeFiles'                                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_additionalXcodeFiles_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_additionalXcodeFiles_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_additionalXcodeFiles (
+  "",
+  0,
+  gWrapperAllFiles_additionalXcodeFiles_0,
+  0,
+  gWrapperAllDirectories_additionalXcodeFiles_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Filewrapper template 'additionalXcodeFiles main_xib'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (C_Compiler * /* inCompiler */,
+                                                                    const GALGAS_string & in_PROJECT_5F_NAME
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "<\?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"\?>\n"
+    "<document type=\"com.apple.InterfaceBuilder3.Cocoa.XIB\" version=\"3.0\" toolsVersion=\"7528.3\" systemVersion=\"14C1514\" targetRuntime=\"MacOSX.Cocoa\" proper"
+    "tyAccessControl=\"none\">\n"
+    "    <dependencies>\n"
+    "        <deployment version=\"1090\" identifier=\"macosx\"/>\n"
+    "        <plugIn identifier=\"com.apple.InterfaceBuilder.CocoaPlugin\" version=\"7528.3\"/>\n"
+    "    </dependencies>\n"
+    "    <objects>\n"
+    "        <customObject id=\"-2\" userLabel=\"File's Owner\" customClass=\"NSApplication\"/>\n"
+    "        <customObject id=\"-1\" userLabel=\"First Responder\" customClass=\"FirstResponder\"/>\n"
+    "        <customObject id=\"-3\" userLabel=\"Application\" customClass=\"NSObject\"/>\n"
+    "        <menu title=\"AMainMenu\" systemMenu=\"main\" id=\"29\">\n"
+    "            <items>\n"
+    "                <menuItem title=\"" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "\" id=\"56\">\n"
+    "                    <menu key=\"submenu\" title=\"" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "\" systemMenu=\"apple\" id=\"57\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"About " ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "\" id=\"58\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"orderFrontStandardAboutPanel:\" target=\"-2\" id=\"142\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"236\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Preferences\xE2""\x80""\xA6""\" keyEquivalent=\",\" id=\"129\"/>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"143\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Services\" id=\"131\">\n"
+    "                                <menu key=\"submenu\" title=\"Services\" systemMenu=\"services\" id=\"130\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"144\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Hide " ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "\" keyEquivalent=\"h\" id=\"134\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"hide:\" target=\"-1\" id=\"367\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Hide Others\" keyEquivalent=\"h\" id=\"145\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"hideOtherApplications:\" target=\"-1\" id=\"368\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Show All\" id=\"150\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"unhideAllApplications:\" target=\"-1\" id=\"370\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"149\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Quit " ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "\" keyEquivalent=\"q\" id=\"136\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"terminate:\" target=\"-3\" id=\"449\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "                <menuItem title=\"File\" id=\"83\">\n"
+    "                    <menu key=\"submenu\" title=\"File\" id=\"81\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"New\" keyEquivalent=\"n\" id=\"82\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"newDocument:\" target=\"-1\" id=\"373\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Open\xE2""\x80""\xA6""\" keyEquivalent=\"o\" id=\"72\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"openDocument:\" target=\"-1\" id=\"374\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Open Recent\" id=\"124\">\n"
+    "                                <menu key=\"submenu\" title=\"Open Recent\" systemMenu=\"recentDocuments\" id=\"125\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Clear Menu\" id=\"126\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"clearRecentDocuments:\" target=\"-1\" id=\"127\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"79\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Close\" keyEquivalent=\"w\" id=\"73\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"performClose:\" target=\"-1\" id=\"193\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Save\xE2""\x80""\xA6""\" keyEquivalent=\"s\" id=\"75\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"saveDocument:\" target=\"-1\" id=\"362\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Revert to Saved\" id=\"112\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"revertDocumentToSaved:\" target=\"-1\" id=\"364\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"74\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Page Setup...\" keyEquivalent=\"P\" id=\"77\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"runPageLayout:\" target=\"-1\" id=\"87\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Print\xE2""\x80""\xA6""\" keyEquivalent=\"p\" id=\"78\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"print:\" target=\"-1\" id=\"86\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "                <menuItem title=\"Edit\" id=\"217\">\n"
+    "                    <menu key=\"submenu\" title=\"Edit\" id=\"205\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"Undo\" keyEquivalent=\"z\" id=\"207\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"undo:\" target=\"-1\" id=\"223\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Redo\" keyEquivalent=\"Z\" id=\"215\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"redo:\" target=\"-1\" id=\"231\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"206\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Cut\" keyEquivalent=\"x\" id=\"199\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"cut:\" target=\"-1\" id=\"228\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Copy\" keyEquivalent=\"c\" id=\"197\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"copy:\" target=\"-1\" id=\"224\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Paste\" keyEquivalent=\"v\" id=\"203\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"paste:\" target=\"-1\" id=\"226\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Paste and Match Style\" keyEquivalent=\"V\" id=\"485\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"pasteAsPlainText:\" target=\"-1\" id=\"486\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Delete\" id=\"202\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"delete:\" target=\"-1\" id=\"235\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Select All\" keyEquivalent=\"a\" id=\"198\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"selectAll:\" target=\"-1\" id=\"232\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"214\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Find\" id=\"218\">\n"
+    "                                <menu key=\"submenu\" title=\"Find\" id=\"220\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Find\xE2""\x80""\xA6""\" tag=\"1\" keyEquivalent=\"f\" id=\"209\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"241\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Find and Replace\xE2""\x80""\xA6""\" tag=\"12\" keyEquivalent=\"f\" id=\"534\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"535\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Find Next\" tag=\"2\" keyEquivalent=\"g\" id=\"208\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"487\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Find Previous\" tag=\"3\" keyEquivalent=\"G\" id=\"213\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"488\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Use Selection for Find\" tag=\"7\" keyEquivalent=\"e\" id=\"221\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"489\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Jump to Selection\" keyEquivalent=\"j\" id=\"210\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"centerSelectionInVisibleArea:\" target=\"-1\" id=\"245\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Spelling and Grammar\" id=\"216\">\n"
+    "                                <menu key=\"submenu\" title=\"Spelling and Grammar\" id=\"200\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Show Spelling and Grammar\" keyEquivalent=\":\" id=\"204\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"showGuessPanel:\" target=\"-1\" id=\"230\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Check Document Now\" keyEquivalent=\";\" id=\"201\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"checkSpelling:\" target=\"-1\" id=\"225\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"453\"/>\n"
+    "                                        <menuItem title=\"Check Spelling While Typing\" id=\"219\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleContinuousSpellChecking:\" target=\"-1\" id=\"222\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Check Grammar With Spelling\" id=\"346\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleGrammarChecking:\" target=\"-1\" id=\"347\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Correct Spelling Automatically\" id=\"454\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleAutomaticSpellingCorrection:\" target=\"-1\" id=\"456\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Substitutions\" id=\"348\">\n"
+    "                                <menu key=\"submenu\" title=\"Substitutions\" id=\"349\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Show Substitutions\" id=\"457\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"orderFrontSubstitutionsPanel:\" target=\"-1\" id=\"458\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"459\"/>\n"
+    "                                        <menuItem title=\"Smart Copy/Paste\" tag=\"1\" keyEquivalent=\"f\" id=\"350\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleSmartInsertDelete:\" target=\"-1\" id=\"355\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Smart Quotes\" tag=\"2\" keyEquivalent=\"g\" id=\"351\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleAutomaticQuoteSubstitution:\" target=\"-1\" id=\"356\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Smart Dashes\" id=\"460\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleAutomaticDashSubstitution:\" target=\"-1\" id=\"461\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Smart Links\" tag=\"3\" keyEquivalent=\"G\" id=\"354\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleAutomaticLinkDetection:\" target=\"-1\" id=\"357\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Text Replacement\" id=\"462\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleAutomaticTextReplacement:\" target=\"-1\" id=\"463\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Transformations\" id=\"450\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                <menu key=\"submenu\" title=\"Transformations\" id=\"451\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Make Upper Case\" id=\"452\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"uppercaseWord:\" target=\"-1\" id=\"464\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Make Lower Case\" id=\"465\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"lowercaseWord:\" target=\"-1\" id=\"468\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Capitalize\" id=\"466\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"capitalizeWord:\" target=\"-1\" id=\"467\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Speech\" id=\"211\">\n"
+    "                                <menu key=\"submenu\" title=\"Speech\" id=\"212\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Start Speaking\" id=\"196\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"startSpeaking:\" target=\"-1\" id=\"233\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Stop Speaking\" id=\"195\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"stopSpeaking:\" target=\"-1\" id=\"227\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "                <menuItem title=\"Format\" id=\"375\">\n"
+    "                    <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                    <menu key=\"submenu\" title=\"Format\" id=\"376\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"Font\" id=\"377\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                <menu key=\"submenu\" title=\"Font\" systemMenu=\"font\" id=\"388\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Show Fonts\" keyEquivalent=\"t\" id=\"389\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"orderFrontFontPanel:\" target=\"420\" id=\"424\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Bold\" tag=\"2\" keyEquivalent=\"b\" id=\"390\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"addFontTrait:\" target=\"420\" id=\"421\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Italic\" tag=\"1\" keyEquivalent=\"i\" id=\"391\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"addFontTrait:\" target=\"420\" id=\"422\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Underline\" keyEquivalent=\"u\" id=\"392\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"underline:\" target=\"-1\" id=\"432\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"393\"/>\n"
+    "                                        <menuItem title=\"Bigger\" tag=\"3\" keyEquivalent=\"+\" id=\"394\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"modifyFont:\" target=\"420\" id=\"425\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Smaller\" tag=\"4\" keyEquivalent=\"-\" id=\"395\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"modifyFont:\" target=\"420\" id=\"423\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"396\"/>\n"
+    "                                        <menuItem title=\"Kern\" id=\"397\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <menu key=\"submenu\" title=\"Kern\" id=\"415\">\n"
+    "                                                <items>\n"
+    "                                                    <menuItem title=\"Use Default\" id=\"416\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"useStandardKerning:\" target=\"-1\" id=\"438\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Use None\" id=\"417\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"turnOffKerning:\" target=\"-1\" id=\"441\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Tighten\" id=\"418\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"tightenKerning:\" target=\"-1\" id=\"431\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Loosen\" id=\"419\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"loosenKerning:\" target=\"-1\" id=\"435\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                </items>\n"
+    "                                            </menu>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Ligature\" id=\"398\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <menu key=\"submenu\" title=\"Ligature\" id=\"411\">\n"
+    "                                                <items>\n"
+    "                                                    <menuItem title=\"Use Default\" id=\"412\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"useStandardLigatures:\" target=\"-1\" id=\"439\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Use None\" id=\"413\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"turnOffLigatures:\" target=\"-1\" id=\"440\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Use All\" id=\"414\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"useAllLigatures:\" target=\"-1\" id=\"434\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                </items>\n"
+    "                                            </menu>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Baseline\" id=\"399\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <menu key=\"submenu\" title=\"Baseline\" id=\"405\">\n"
+    "                                                <items>\n"
+    "                                                    <menuItem title=\"Use Default\" id=\"406\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"unscript:\" target=\"-1\" id=\"437\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Superscript\" id=\"407\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"superscript:\" target=\"-1\" id=\"430\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Subscript\" id=\"408\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"subscript:\" target=\"-1\" id=\"429\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Raise\" id=\"409\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"raiseBaseline:\" target=\"-1\" id=\"426\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem title=\"Lower\" id=\"410\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"lowerBaseline:\" target=\"-1\" id=\"427\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                </items>\n"
+    "                                            </menu>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"400\"/>\n"
+    "                                        <menuItem title=\"Show Colors\" keyEquivalent=\"C\" id=\"401\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"orderFrontColorPanel:\" target=\"-1\" id=\"433\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"402\"/>\n"
+    "                                        <menuItem title=\"Copy Style\" keyEquivalent=\"c\" id=\"403\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"copyFont:\" target=\"-1\" id=\"428\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Paste Style\" keyEquivalent=\"v\" id=\"404\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"pasteFont:\" target=\"-1\" id=\"436\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Text\" id=\"496\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                <menu key=\"submenu\" title=\"Text\" id=\"497\">\n"
+    "                                    <items>\n"
+    "                                        <menuItem title=\"Align Left\" keyEquivalent=\"{\" id=\"498\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"alignLeft:\" target=\"-1\" id=\"524\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Center\" keyEquivalent=\"|\" id=\"499\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"alignCenter:\" target=\"-1\" id=\"518\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Justify\" id=\"500\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"alignJustified:\" target=\"-1\" id=\"523\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Align Right\" keyEquivalent=\"}\" id=\"501\">\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"alignRight:\" target=\"-1\" id=\"521\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"502\"/>\n"
+    "                                        <menuItem title=\"Writing Direction\" id=\"503\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <menu key=\"submenu\" title=\"Writing Direction\" id=\"508\">\n"
+    "                                                <items>\n"
+    "                                                    <menuItem title=\"Paragraph\" enabled=\"NO\" id=\"509\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem id=\"510\">\n"
+    "                                                        <string key=\"title\"> Default</string>\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"makeBaseWritingDirectionNatural:\" target=\"-1\" id=\"525\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem id=\"511\">\n"
+    "                                                        <string key=\"title\"> Left to Right</string>\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"makeBaseWritingDirectionLeftToRight:\" target=\"-1\" id=\"526\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem id=\"512\">\n"
+    "                                                        <string key=\"title\"> Right to Left</string>\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"makeBaseWritingDirectionRightToLeft:\" target=\"-1\" id=\"527\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem isSeparatorItem=\"YES\" id=\"513\"/>\n"
+    "                                                    <menuItem title=\"Selection\" enabled=\"NO\" id=\"514\">\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem id=\"515\">\n"
+    "                                                        <string key=\"title\"> Default</string>\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"makeTextWritingDirectionNatural:\" target=\"-1\" id=\"528\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem id=\"516\">\n"
+    "                                                        <string key=\"title\"> Left to Right</string>\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"makeTextWritingDirectionLeftToRight:\" target=\"-1\" id=\"529\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                    <menuItem id=\"517\">\n"
+    "                                                        <string key=\"title\"> Right to Left</string>\n"
+    "                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                                        <connections>\n"
+    "                                                            <action selector=\"makeTextWritingDirectionRightToLeft:\" target=\"-1\" id=\"530\"/>\n"
+    "                                                        </connections>\n"
+    "                                                    </menuItem>\n"
+    "                                                </items>\n"
+    "                                            </menu>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem isSeparatorItem=\"YES\" id=\"504\"/>\n"
+    "                                        <menuItem title=\"Show Ruler\" id=\"505\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"toggleRuler:\" target=\"-1\" id=\"520\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Copy Ruler\" keyEquivalent=\"c\" id=\"506\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" control=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"copyRuler:\" target=\"-1\" id=\"522\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                        <menuItem title=\"Paste Ruler\" keyEquivalent=\"v\" id=\"507\">\n"
+    "                                            <modifierMask key=\"keyEquivalentModifierMask\" control=\"YES\" command=\"YES\"/>\n"
+    "                                            <connections>\n"
+    "                                                <action selector=\"pasteRuler:\" target=\"-1\" id=\"519\"/>\n"
+    "                                            </connections>\n"
+    "                                        </menuItem>\n"
+    "                                    </items>\n"
+    "                                </menu>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "                <menuItem title=\"View\" id=\"295\">\n"
+    "                    <menu key=\"submenu\" title=\"View\" id=\"296\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"Show Toolbar\" keyEquivalent=\"t\" id=\"297\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"toggleToolbarShown:\" target=\"-1\" id=\"366\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Customize Toolbar\xE2""\x80""\xA6""\" id=\"298\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"runToolbarCustomizationPalette:\" target=\"-1\" id=\"365\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "                <menuItem title=\"Window\" id=\"19\">\n"
+    "                    <menu key=\"submenu\" title=\"Window\" systemMenu=\"window\" id=\"24\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"Minimize\" keyEquivalent=\"m\" id=\"23\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"performMiniaturize:\" target=\"-1\" id=\"37\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Zoom\" id=\"239\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"performZoom:\" target=\"-1\" id=\"240\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem isSeparatorItem=\"YES\" id=\"92\">\n"
+    "                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n"
+    "                            </menuItem>\n"
+    "                            <menuItem title=\"Bring All to Front\" id=\"5\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"arrangeInFront:\" target=\"-1\" id=\"39\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "                <menuItem title=\"Help\" id=\"490\">\n"
+    "                    <modifierMask key=\"keyEquivalentModifierMask\"/>\n"
+    "                    <menu key=\"submenu\" title=\"Help\" systemMenu=\"help\" id=\"491\">\n"
+    "                        <items>\n"
+    "                            <menuItem title=\"" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << " Help\" keyEquivalent=\"\?\" id=\"492\">\n"
+    "                                <connections>\n"
+    "                                    <action selector=\"showHelp:\" target=\"-1\" id=\"493\"/>\n"
+    "                                </connections>\n"
+    "                            </menuItem>\n"
+    "                        </items>\n"
+    "                    </menu>\n"
+    "                </menuItem>\n"
+    "            </items>\n"
+    "        </menu>\n"
+    "        <window title=\"" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "\" allowsToolTipsWhenApplicationIsInactive=\"NO\" autorecalculatesKeyViewLoop=\"NO\" releasedWhenClosed=\"NO\" animationBehavior=\"default\" id=\"371\">\n"
+    "            <windowStyleMask key=\"styleMask\" titled=\"YES\"/>\n"
+    "            <windowPositionMask key=\"initialPositionMask\" leftStrut=\"YES\" rightStrut=\"YES\" topStrut=\"YES\" bottomStrut=\"YES\"/>\n"
+    "            <rect key=\"contentRect\" x=\"335\" y=\"390\" width=\"615\" height=\"409\"/>\n"
+    "            <rect key=\"screenRect\" x=\"0.0\" y=\"0.0\" width=\"2560\" height=\"1418\"/>\n"
+    "            <view key=\"contentView\" id=\"372\">\n"
+    "                <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"615\" height=\"409\"/>\n"
+    "                <autoresizingMask key=\"autoresizingMask\"/>\n"
+    "            </view>\n"
+    "        </window>\n"
+    "        <customObject id=\"536\" userLabel=\"Prefs\" customClass=\"Preferences\">\n"
+    "            <connections>\n"
+    "                <outlet property=\"window\" destination=\"371\" id=\"MyW-LM-hi6\"/>\n"
+    "            </connections>\n"
+    "        </customObject>\n"
+    "        <customObject id=\"420\" customClass=\"NSFontManager\"/>\n"
+    "    </objects>\n"
+    "</document>\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Filewrapper template 'additionalXcodeFiles info_plist'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (C_Compiler * /* inCompiler */,
+                                                                      const GALGAS_string & in_PROJECT_5F_NAME,
+                                                                      const GALGAS_string & in_APPLICATION_5F_BUNDLE_5F_BASE,
+                                                                      const GALGAS_string & in_VERSION_5F_STRING,
+                                                                      const GALGAS_stringset & in_HANDLED_5F_EXTENSION_5F_SET
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
+    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n"
+    "<plist version=\"1.0\">\n"
+    "<dict>\n"
+    " <key>CFBundleDevelopmentRegion</key>\n"
+    " <string>English</string>\n"
+    " <key>CFBundleExecutable</key>\n"
+    " <string>${EXECUTABLE_NAME}</string>\n"
+    " <key>CFBundleIconFile</key>\n"
+    " <string>application_icns</string>\n"
+    " <key>CFBundleIdentifier</key>\n"
+    " <string>" ;
+  result << in_APPLICATION_5F_BUNDLE_5F_BASE.stringValue () ;
+  result << "." ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "</string>\n"
+    " <key>CFBundleInfoDictionaryVersion</key>\n"
+    " <string>6.0</string>\n"
+    " <key>CFBundleName</key>\n"
+    " <string>${PRODUCT_NAME}</string>\n"
+    " <key>CFBundlePackageType</key>\n"
+    " <string>APPL</string>\n"
+    " <key>CFBundleSignature</key>\n"
+    " <string>\?\?\?\?</string>\n"
+    " <key>LSMinimumSystemVersion</key>\n"
+    " <string>10.9</string>\n"
+    " <key>CFBundleShortVersionString</key>\n"
+    " <string>" ;
+  result << in_VERSION_5F_STRING.stringValue () ;
+  result << "</string>\n"
+    " <key>NSMainNibFile</key>\n"
+    " <string>MainMenu</string>\n"
+    " <key>NSPrincipalClass</key>\n"
+    " <string>EBApplication</string>\n"
+    " <key>CFBundleDocumentTypes</key>\n"
+    " <array>\n" ;
+  GALGAS_uint index_1014_ (0) ;
+  if (in_HANDLED_5F_EXTENSION_5F_SET.isValid ()) {
+    cEnumerator_stringset enumerator_1014 (in_HANDLED_5F_EXTENSION_5F_SET, kEnumeration_up) ;
+    while (enumerator_1014.hasCurrentObject ()) {
+      result << "  <dict>\n"
+        "   <key>CFBundleTypeIconFile</key>\n"
+        "   <string>" ;
+      result << enumerator_1014.current_key (HERE).stringValue () ;
+      result << "_icns</string>\n"
+        "   <key>CFBundleTypeExtensions</key>\n"
+        "   <array>\n"
+        "    <string>" ;
+      result << enumerator_1014.current_key (HERE).stringValue () ;
+      result << "</string>\n"
+        "   </array>\n"
+        "   <key>CFBundleTypeName</key>\n"
+        "   <string>" ;
+      result << in_PROJECT_5F_NAME.stringValue () ;
+      result << " Source</string>\n"
+        "   <key>CFBundleTypeOSTypes</key>\n"
+        "   <array>\n"
+        "    <string>TEXT</string>\n"
+        "   </array>\n"
+        "   <key>CFBundleTypeRole</key>\n"
+        "   <string>Editor</string>\n"
+        "   <key>LSTypeIsPackage</key>\n"
+        "   <false/>\n"
+        "   <key>NSDocumentClass</key>\n"
+        "   <string>OC_GGS_Document</string>\n"
+        "  </dict>\n" ;
+      index_1014_.increment () ;
+      enumerator_1014.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    " </array>\n"
+    "</dict>\n"
+    "</plist>\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Filewrapper template 'additionalXcodeFiles build_command'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compiler * /* inCompiler */,
+                                                                         const GALGAS_string & in_PROJECT_5F_NAME
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "#! /usr/bin/env python\n"
+    "# -*- coding: UTF-8 -*-\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "import subprocess, os, sys, atexit\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def cleanup () :\n"
+    "  if buildProcess.poll () == None :\n"
+    "    buildProcess.kill ()\n"
+    "    print 'Build process killed'\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "#------------------- Register a function for killing build subprocess\n"
+    "atexit.register (cleanup)\n"
+    "#------------------- Get compiler as first argument\n"
+    "compiler = \"eb\" # Default compiler\n"
+    "if len (sys.argv) > 1 :\n"
+    "  compiler = sys.argv [1]\n"
+    "#------------------- Get script absolute path\n"
+    "scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
+    "os.chdir (scriptDir)\n"
+    "#------------------- Build\n"
+    "print \"+ \" + compiler + \" -v " ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << ".eb\"\n"
+    "buildProcess = subprocess.Popen ([compiler, \"-v\", \"" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << ".eb\"])\n"
+    "buildProcess.wait ()\n"
+    "#------------------- Xcode build\n"
+    "if buildProcess.returncode == 0 :\n"
+    "  buildProcess = subprocess.Popen ([\"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"])\n"
+    "  buildProcess.wait ()\n"
+    "#------------------- Result\n"
+    "if buildProcess.returncode != 0 :\n"
+    "  sys.exit (buildProcess.returncode)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                   Filewrapper 'xcodeProjectGenerationFilewrapper'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -14487,70 +15509,80 @@ GALGAS_string categoryReader_modelString (const GALGAS_observablePropertyAST & i
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_4220 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_4220->mAssociatedValue0 ;
-      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string (".rootObject."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 105)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 105)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_4526 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_4526->mAssociatedValue0 ;
+      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string (".rootObject."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 113)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 113)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 113)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyWithOption:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_4370 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_4370->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_4370->mAssociatedValue1 ;
-      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string (".rootObject."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 107)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 107)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 107)).add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("observable-property.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 107)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_4676 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_4676->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_4676->mAssociatedValue1 ;
+      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string (".rootObject."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 115)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 115)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 115)).add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("observable-property.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 115)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyRelationship:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_4493 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_relationshipName = extractPtr_4493->mAssociatedValue0 ;
-      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string (".rootObject."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 109)).add_operation (extractedValue_relationshipName.reader_string (SOURCE_FILE ("observable-property.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 109)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_4799 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_relationshipName = extractPtr_4799->mAssociatedValue0 ;
+      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string (".rootObject."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 117)).add_operation (extractedValue_relationshipName.reader_string (SOURCE_FILE ("observable-property.galgas", 117)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 117)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_4683 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_4683->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_4683->mAssociatedValue1 ;
-      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 111)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 111)) ;
+      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_4989 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_4989->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_4989->mAssociatedValue1 ;
+      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 119)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 119)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 119)) ;
       const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_1) {
-        result_outResult.dotAssign_operation (GALGAS_string (".").add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("observable-property.galgas", 113)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 113))  COMMA_SOURCE_FILE ("observable-property.galgas", 113)) ;
+        result_outResult.dotAssign_operation (GALGAS_string (".").add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("observable-property.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 121))  COMMA_SOURCE_FILE ("observable-property.galgas", 121)) ;
       }
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_prefsProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_4894 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_4894->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_4894->mAssociatedValue1 ;
-      result_outResult = GALGAS_string ("g_").add_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 116)).add_operation (GALGAS_string ("!."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 116)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 116)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 116)) ;
+      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_5200 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_5200->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_5200->mAssociatedValue1 ;
+      result_outResult = GALGAS_string ("g_").add_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 124)).add_operation (GALGAS_string ("!."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 124)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 124)) ;
       const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
-        result_outResult.dotAssign_operation (GALGAS_string (".").add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("observable-property.galgas", 118)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 118))  COMMA_SOURCE_FILE ("observable-property.galgas", 118)) ;
+        result_outResult.dotAssign_operation (GALGAS_string (".").add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("observable-property.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 126))  COMMA_SOURCE_FILE ("observable-property.galgas", 126)) ;
       }
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_5037 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_5037->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_5037->mAssociatedValue1 ;
-      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 121)).add_operation (extractedValue_controllerName.reader_string (SOURCE_FILE ("observable-property.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 121)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 121)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 121)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_5343 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_5343->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_5343->mAssociatedValue1 ;
+      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 129)).add_operation (extractedValue_controllerName.reader_string (SOURCE_FILE ("observable-property.galgas", 129)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 129)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 129)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 129)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 129)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerSecondaryProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_5250 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_5250->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_5250->mAssociatedValue1 ;
-      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_5250->mAssociatedValue2 ;
-      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 123)).add_operation (extractedValue_controllerName.reader_string (SOURCE_FILE ("observable-property.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 123)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 123)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 123)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 123)).add_operation (extractedValue_secondaryPropertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 123)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_5556 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_5556->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_5556->mAssociatedValue1 ;
+      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_5556->mAssociatedValue2 ;
+      result_outResult = constinArgument_inSelf.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 131)).add_operation (extractedValue_controllerName.reader_string (SOURCE_FILE ("observable-property.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 131)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 131)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 131)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 131)).add_operation (extractedValue_secondaryPropertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 131)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_signatureProperty:
     {
-      result_outResult = GALGAS_string ("mSignatureController") ;
+      result_outResult = GALGAS_string ("self.signatureObserver ()") ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      result_outResult = GALGAS_string ("self.versionObserver ()") ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
+    {
+      result_outResult = GALGAS_string ("self.versionShouldChangeObserver ()") ;
     }
     break ;
   }
@@ -14615,6 +15647,16 @@ GALGAS_bool categoryReader_needs_5F_unwSelf (const GALGAS_observablePropertyAST 
       result_outResult = GALGAS_bool (true) ;
     }
     break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      result_outResult = GALGAS_bool (true) ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
+    {
+      result_outResult = GALGAS_bool (true) ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -14642,60 +15684,70 @@ GALGAS_bool categoryReader_isPropertyDefined (const GALGAS_observablePropertyAST
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_6461 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_6461->mAssociatedValue0 ;
-      result_outResult = constinArgument_inRootObservableProperties.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 162)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_7050 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_7050->mAssociatedValue0 ;
+      result_outResult = constinArgument_inRootObservableProperties.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 178)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyWithOption:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_6617 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_6617->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_6617->mAssociatedValue1 ;
-      result_outResult = constinArgument_inRootObservableProperties.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 164)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_7206 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_7206->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_7206->mAssociatedValue1 ;
+      result_outResult = constinArgument_inRootObservableProperties.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 180)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyRelationship:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_6758 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_relationshipName = extractPtr_6758->mAssociatedValue0 ;
-      result_outResult = constinArgument_inRootObservableProperties.reader_hasKey (extractedValue_relationshipName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 166)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_7347 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_relationshipName = extractPtr_7347->mAssociatedValue0 ;
+      result_outResult = constinArgument_inRootObservableProperties.reader_hasKey (extractedValue_relationshipName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 182)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_6900 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_6900->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_6900->mAssociatedValue1 ;
-      result_outResult = constinArgument_inObservableProperties.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 168)) ;
+      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_7489 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_7489->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_7489->mAssociatedValue1 ;
+      result_outResult = constinArgument_inObservableProperties.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 184)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_prefsProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_7072 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_7072->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_7072->mAssociatedValue1 ;
-      result_outResult = constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 170)) ;
+      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_7661 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_7661->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_7661->mAssociatedValue1 ;
+      result_outResult = constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap.reader_hasKey (extractedValue_propertyName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 186)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_7226 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_7226->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_7226->mAssociatedValue1 ;
-      result_outResult = constinArgument_inObservableProperties.reader_hasKey (extractedValue_controllerName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 172)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_7815 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_7815->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_7815->mAssociatedValue1 ;
+      result_outResult = constinArgument_inObservableProperties.reader_hasKey (extractedValue_controllerName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 188)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerSecondaryProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_7427 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_7427->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_7427->mAssociatedValue1 ;
-      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_7427->mAssociatedValue2 ;
-      result_outResult = constinArgument_inObservableProperties.reader_hasKey (extractedValue_controllerName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 174)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_8016 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_8016->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_8016->mAssociatedValue1 ;
+      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_8016->mAssociatedValue2 ;
+      result_outResult = constinArgument_inObservableProperties.reader_hasKey (extractedValue_controllerName.mAttribute_string COMMA_SOURCE_FILE ("observable-property.galgas", 190)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_signatureProperty:
+    {
+      result_outResult = GALGAS_bool (true) ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      result_outResult = GALGAS_bool (true) ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
     {
       result_outResult = GALGAS_bool (true) ;
     }
@@ -14724,57 +15776,71 @@ GALGAS_location categoryReader_location (const GALGAS_observablePropertyAST & in
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_7774 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_7774->mAssociatedValue0 ;
+      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_8475 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_8475->mAssociatedValue0 ;
       result_outResult = extractedValue_propertyName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyWithOption:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_7866 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_7866->mAssociatedValue1 ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_8567 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_8567->mAssociatedValue1 ;
       result_outResult = extractedValue_optionName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyRelationship:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_7964 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_7964->mAssociatedValue1 ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_8665 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_8665->mAssociatedValue1 ;
       result_outResult = extractedValue_propertyName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_8050 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_8050->mAssociatedValue0 ;
+      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_8751 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_8751->mAssociatedValue0 ;
       result_outResult = extractedValue_propertyName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_prefsProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_8137 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_8137->mAssociatedValue0 ;
+      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_8838 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_8838->mAssociatedValue0 ;
       result_outResult = extractedValue_propertyName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_8229 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_8229->mAssociatedValue1 ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_8930 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_8930->mAssociatedValue1 ;
       result_outResult = extractedValue_propertyName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerSecondaryProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_8350 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_8350->mAssociatedValue2 ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_9051 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_9051->mAssociatedValue2 ;
       result_outResult = extractedValue_secondaryPropertyName.mAttribute_location ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_signatureProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_signatureProperty * extractPtr_8423 = (const cEnumAssociatedValues_observablePropertyAST_signatureProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_location extractedValue_location = extractPtr_8423->mAssociatedValue0 ;
+      const cEnumAssociatedValues_observablePropertyAST_signatureProperty * extractPtr_9124 = (const cEnumAssociatedValues_observablePropertyAST_signatureProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_location extractedValue_location = extractPtr_9124->mAssociatedValue0 ;
+      result_outResult = extractedValue_location ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      const cEnumAssociatedValues_observablePropertyAST_versionProperty * extractPtr_9195 = (const cEnumAssociatedValues_observablePropertyAST_versionProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_location extractedValue_location = extractPtr_9195->mAssociatedValue0 ;
+      result_outResult = extractedValue_location ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
+    {
+      const cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty * extractPtr_9278 = (const cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_location extractedValue_location = extractPtr_9278->mAssociatedValue0 ;
       result_outResult = extractedValue_location ;
     }
     break ;
@@ -14810,68 +15876,84 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
   switch (temp_0.enumValue ()) {
   case GALGAS_observablePropertyAST::kNotBuilt:
     break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
+    {
+      outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 242)) ;
+      outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 243)) ;
+      outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("observable-property.galgas", 244)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 245)) ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 247)) ;
+      outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 248)) ;
+      outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 249)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 250)) ;
+    }
+    break ;
   case GALGAS_observablePropertyAST::kEnum_signatureProperty:
     {
-      outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 218)) ;
-      outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 219)) ;
-      outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 220)) ;
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 221)) ;
+      outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 252)) ;
+      outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 253)) ;
+      outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 254)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 255)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_9614 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_9614->mAssociatedValue0 ;
-      GALGAS_string joker_9529_2 ; // Joker input parameter
-      GALGAS_actionMap joker_9529_1 ; // Joker input parameter
-      constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_9529_2, joker_9529_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 223)) ;
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 230)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_10854 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_10854->mAssociatedValue0 ;
+      GALGAS_string joker_10769_2 ; // Joker input parameter
+      GALGAS_actionMap joker_10769_1 ; // Joker input parameter
+      constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_10769_2, joker_10769_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 257)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 264)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyWithOption:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_10319 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_10319->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_10319->mAssociatedValue1 ;
-      GALGAS_string joker_9814_2 ; // Joker input parameter
-      GALGAS_actionMap joker_9814_1 ; // Joker input parameter
-      constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_9814_2, joker_9814_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 232)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 239)))).boolEnum () ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_11559 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_11559->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_11559->mAssociatedValue1 ;
+      GALGAS_string joker_11054_2 ; // Joker input parameter
+      GALGAS_actionMap joker_11054_1 ; // Joker input parameter
+      constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_11054_2, joker_11054_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 266)) ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 273)))).boolEnum () ;
       if (kBoolTrue == test_1) {
         GALGAS_location location_2 (extractedValue_optionName.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("a property cannot accept any option")  COMMA_SOURCE_FILE ("observable-property.galgas", 240)) ;
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("a property cannot accept any option")  COMMA_SOURCE_FILE ("observable-property.galgas", 274)) ;
       }else if (kBoolFalse == test_1) {
-        outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 242)) ;
-        outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 243)) ;
+        outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 276)) ;
+        outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 277)) ;
         const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string ("count"))).boolEnum () ;
         if (kBoolTrue == test_3) {
-          outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 245)) ;
+          outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 279)) ;
         }else if (kBoolFalse == test_3) {
           const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string ("empty"))).boolEnum () ;
           if (kBoolTrue == test_4) {
-            outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("observable-property.galgas", 247)) ;
+            outArgument_outType = GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("observable-property.galgas", 281)) ;
           }else if (kBoolFalse == test_4) {
             GALGAS_location location_5 (extractedValue_optionName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_5, GALGAS_string ("uknown option (accepted : 'count', 'empty')")  COMMA_SOURCE_FILE ("observable-property.galgas", 249)) ;
+            inCompiler->emitSemanticError (location_5, GALGAS_string ("uknown option (accepted : 'count', 'empty')")  COMMA_SOURCE_FILE ("observable-property.galgas", 283)) ;
           }
         }
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 252)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 286)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyRelationship:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_11679 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_relationshipName = extractPtr_11679->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_11679->mAssociatedValue1 ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_12919 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_relationshipName = extractPtr_12919->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_12919->mAssociatedValue1 ;
       GALGAS_typeKind var_relationshipType ;
-      GALGAS_string joker_10558_2 ; // Joker input parameter
-      GALGAS_actionMap joker_10558_1 ; // Joker input parameter
-      constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_relationshipName, var_relationshipType, outArgument_outKind, outArgument_outMultiplicity, joker_10558_2, joker_10558_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 254)) ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 261)))).boolEnum () ;
+      GALGAS_string joker_11798_2 ; // Joker input parameter
+      GALGAS_actionMap joker_11798_1 ; // Joker input parameter
+      constinArgument_inRootObservablePropertyMap.method_searchKey (extractedValue_relationshipName, var_relationshipType, outArgument_outKind, outArgument_outMultiplicity, joker_11798_2, joker_11798_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 288)) ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 295)))).boolEnum () ;
       if (kBoolTrue == test_6) {
         GALGAS_location location_7 (extractedValue_relationshipName.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_7, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 262)) ;
+        inCompiler->emitSemanticError (location_7, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 296)) ;
       }
       switch (var_relationshipType.enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
@@ -14885,129 +15967,129 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
       case GALGAS_typeKind::kEnum_fontType:
         {
           GALGAS_location location_8 (extractedValue_relationshipName.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_8, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 266)) ;
+          inCompiler->emitSemanticError (location_8, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 300)) ;
           outArgument_outType.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_typeKind::kEnum_enumType:
         {
           GALGAS_location location_9 (extractedValue_relationshipName.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_9, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 268)) ;
+          inCompiler->emitSemanticError (location_9, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 302)) ;
           outArgument_outType.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_typeKind::kEnum_classType:
         {
           GALGAS_location location_10 (extractedValue_relationshipName.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_10, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 270)) ;
+          inCompiler->emitSemanticError (location_10, GALGAS_string ("a property cannot accept 'all'")  COMMA_SOURCE_FILE ("observable-property.galgas", 304)) ;
           outArgument_outType.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_typeKind::kEnum_entityType:
         {
-          const cEnumAssociatedValues_typeKind_entityType * extractPtr_11552 = (const cEnumAssociatedValues_typeKind_entityType *) (var_relationshipType.unsafePointer ()) ;
-          const GALGAS_string extractedValue_entityName = extractPtr_11552->mAssociatedValue0 ;
+          const cEnumAssociatedValues_typeKind_entityType * extractPtr_12792 = (const cEnumAssociatedValues_typeKind_entityType *) (var_relationshipType.unsafePointer ()) ;
+          const GALGAS_string extractedValue_entityName = extractPtr_12792->mAssociatedValue0 ;
           GALGAS_observablePropertyMap var_entityObservablePropertyMap ;
-          constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (extractedValue_entityName.reader_nowhere (SOURCE_FILE ("observable-property.galgas", 273)), var_entityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 272)) ;
-          GALGAS_string joker_11411_2 ; // Joker input parameter
-          GALGAS_actionMap joker_11411_1 ; // Joker input parameter
-          var_entityObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_11411_2, joker_11411_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 276)) ;
-          const enumGalgasBool test_11 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 283)))).boolEnum () ;
+          constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (extractedValue_entityName.reader_nowhere (SOURCE_FILE ("observable-property.galgas", 307)), var_entityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 306)) ;
+          GALGAS_string joker_12651_2 ; // Joker input parameter
+          GALGAS_actionMap joker_12651_1 ; // Joker input parameter
+          var_entityObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_12651_2, joker_12651_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 310)) ;
+          const enumGalgasBool test_11 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 317)))).boolEnum () ;
           if (kBoolTrue == test_11) {
             GALGAS_location location_12 (extractedValue_propertyName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_12, GALGAS_string ("the observed property cannot be a collection")  COMMA_SOURCE_FILE ("observable-property.galgas", 284)) ;
+            inCompiler->emitSemanticError (location_12, GALGAS_string ("the observed property cannot be a collection")  COMMA_SOURCE_FILE ("observable-property.galgas", 318)) ;
           }
         }
         break ;
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("[").add_operation (categoryReader_swiftTypeName (var_relationshipType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 287)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 287)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 287)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 287)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 287)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 287)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("[").add_operation (categoryReader_swiftTypeName (var_relationshipType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 321)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 321)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 321)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("observable-property.galgas", 321)), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 321)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 321)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_12395 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_12395->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_12395->mAssociatedValue1 ;
-      GALGAS_string joker_11865_2 ; // Joker input parameter
-      GALGAS_actionMap joker_11865_1 ; // Joker input parameter
-      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_11865_2, joker_11865_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 289)) ;
+      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_13635 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_13635->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_13635->mAssociatedValue1 ;
+      GALGAS_string joker_13105_2 ; // Joker input parameter
+      GALGAS_actionMap joker_13105_1 ; // Joker input parameter
+      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_13105_2, joker_13105_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 323)) ;
       GALGAS_bool test_13 = GALGAS_bool (kIsNotEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())) ;
       if (kBoolTrue == test_13.boolEnum ()) {
-        test_13 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 296)))) ;
+        test_13 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 330)))) ;
       }
       const enumGalgasBool test_14 = test_13.boolEnum () ;
       if (kBoolTrue == test_14) {
         GALGAS_location location_15 (extractedValue_optionName.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_15, GALGAS_string ("a property cannot accept any option")  COMMA_SOURCE_FILE ("observable-property.galgas", 297)) ;
+        inCompiler->emitSemanticError (location_15, GALGAS_string ("a property cannot accept any option")  COMMA_SOURCE_FILE ("observable-property.galgas", 331)) ;
       }else if (kBoolFalse == test_14) {
-        GALGAS_bool test_16 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 298)))) ;
+        GALGAS_bool test_16 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 332)))) ;
         if (kBoolTrue == test_16.boolEnum ()) {
           test_16 = GALGAS_bool (kIsNotEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())) ;
         }
         const enumGalgasBool test_17 = test_16.boolEnum () ;
         if (kBoolTrue == test_17) {
-          outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 299)) ;
-          outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 300)) ;
+          outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 333)) ;
+          outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 334)) ;
           const enumGalgasBool test_18 = GALGAS_bool (kIsEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string ("count"))).boolEnum () ;
           if (kBoolTrue == test_18) {
-            outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 302)) ;
+            outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 336)) ;
           }else if (kBoolFalse == test_18) {
             GALGAS_location location_19 (extractedValue_optionName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_19, GALGAS_string ("uknown option (accepted : 'count', 'empty')")  COMMA_SOURCE_FILE ("observable-property.galgas", 304)) ;
+            inCompiler->emitSemanticError (location_19, GALGAS_string ("uknown option (accepted : 'count', 'empty')")  COMMA_SOURCE_FILE ("observable-property.galgas", 338)) ;
           }
         }
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 307)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 341)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_prefsProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_13147 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_13147->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_13147->mAssociatedValue1 ;
-      GALGAS_string joker_12610_2 ; // Joker input parameter
-      GALGAS_actionMap joker_12610_1 ; // Joker input parameter
-      constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_12610_2, joker_12610_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 309)) ;
+      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_14387 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_14387->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_14387->mAssociatedValue1 ;
+      GALGAS_string joker_13850_2 ; // Joker input parameter
+      GALGAS_actionMap joker_13850_1 ; // Joker input parameter
+      constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_13850_2, joker_13850_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 343)) ;
       GALGAS_bool test_20 = GALGAS_bool (kIsNotEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())) ;
       if (kBoolTrue == test_20.boolEnum ()) {
-        test_20 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 316)))) ;
+        test_20 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 350)))) ;
       }
       const enumGalgasBool test_21 = test_20.boolEnum () ;
       if (kBoolTrue == test_21) {
         GALGAS_location location_22 (extractedValue_optionName.reader_location (HERE)) ; // Implicit use of 'location' reader
-        inCompiler->emitSemanticError (location_22, GALGAS_string ("a single property cannot accept any option")  COMMA_SOURCE_FILE ("observable-property.galgas", 317)) ;
+        inCompiler->emitSemanticError (location_22, GALGAS_string ("a single property cannot accept any option")  COMMA_SOURCE_FILE ("observable-property.galgas", 351)) ;
       }else if (kBoolFalse == test_21) {
-        GALGAS_bool test_23 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 318)))) ;
+        GALGAS_bool test_23 = GALGAS_bool (kIsEqual, outArgument_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 352)))) ;
         if (kBoolTrue == test_23.boolEnum ()) {
           test_23 = GALGAS_bool (kIsNotEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())) ;
         }
         const enumGalgasBool test_24 = test_23.boolEnum () ;
         if (kBoolTrue == test_24) {
-          outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 319)) ;
-          outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 320)) ;
+          outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 353)) ;
+          outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 354)) ;
           const enumGalgasBool test_25 = GALGAS_bool (kIsEqual, extractedValue_optionName.mAttribute_string.objectCompare (GALGAS_string ("count"))).boolEnum () ;
           if (kBoolTrue == test_25) {
-            outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 322)) ;
+            outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 356)) ;
           }else if (kBoolFalse == test_25) {
             GALGAS_location location_26 (extractedValue_optionName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_26, GALGAS_string ("uknown option (accepted : 'count', 'empty')")  COMMA_SOURCE_FILE ("observable-property.galgas", 324)) ;
+            inCompiler->emitSemanticError (location_26, GALGAS_string ("uknown option (accepted : 'count', 'empty')")  COMMA_SOURCE_FILE ("observable-property.galgas", 358)) ;
           }
         }
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 327)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 361)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_14889 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_14889->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_14889->mAssociatedValue1 ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_16129 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_16129->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_16129->mAssociatedValue1 ;
       GALGAS_typeKind var_type ;
       GALGAS_propertyKind var_propertyKind ;
-      GALGAS_propertyMultiplicity joker_13356_3 ; // Joker input parameter
-      GALGAS_string joker_13356_2 ; // Joker input parameter
-      GALGAS_actionMap joker_13356_1 ; // Joker input parameter
-      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_type, var_propertyKind, joker_13356_3, joker_13356_2, joker_13356_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 329)) ;
+      GALGAS_propertyMultiplicity joker_14596_3 ; // Joker input parameter
+      GALGAS_string joker_14596_2 ; // Joker input parameter
+      GALGAS_actionMap joker_14596_1 ; // Joker input parameter
+      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_type, var_propertyKind, joker_14596_3, joker_14596_2, joker_14596_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 363)) ;
       switch (var_propertyKind.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
@@ -15025,7 +16107,7 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
           case GALGAS_typeKind::kEnum_fontType:
             {
               GALGAS_location location_27 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-              inCompiler->emitSemanticError (location_27, GALGAS_string ("the bound model should be an entity")  COMMA_SOURCE_FILE ("observable-property.galgas", 339)) ;
+              inCompiler->emitSemanticError (location_27, GALGAS_string ("the bound model should be an entity")  COMMA_SOURCE_FILE ("observable-property.galgas", 373)) ;
               outArgument_outMultiplicity.drop () ; // Release error dropped variable
               outArgument_outKind.drop () ; // Release error dropped variable
               outArgument_outType.drop () ; // Release error dropped variable
@@ -15034,7 +16116,7 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
           case GALGAS_typeKind::kEnum_classType:
             {
               GALGAS_location location_28 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-              inCompiler->emitSemanticError (location_28, GALGAS_string ("the bound model should be an entity")  COMMA_SOURCE_FILE ("observable-property.galgas", 341)) ;
+              inCompiler->emitSemanticError (location_28, GALGAS_string ("the bound model should be an entity")  COMMA_SOURCE_FILE ("observable-property.galgas", 375)) ;
               outArgument_outMultiplicity.drop () ; // Release error dropped variable
               outArgument_outKind.drop () ; // Release error dropped variable
               outArgument_outType.drop () ; // Release error dropped variable
@@ -15043,7 +16125,7 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
           case GALGAS_typeKind::kEnum_enumType:
             {
               GALGAS_location location_29 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-              inCompiler->emitSemanticError (location_29, GALGAS_string ("the bound model should be an entity")  COMMA_SOURCE_FILE ("observable-property.galgas", 343)) ;
+              inCompiler->emitSemanticError (location_29, GALGAS_string ("the bound model should be an entity")  COMMA_SOURCE_FILE ("observable-property.galgas", 377)) ;
               outArgument_outMultiplicity.drop () ; // Release error dropped variable
               outArgument_outKind.drop () ; // Release error dropped variable
               outArgument_outType.drop () ; // Release error dropped variable
@@ -15051,13 +16133,13 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
             break ;
           case GALGAS_typeKind::kEnum_entityType:
             {
-              const cEnumAssociatedValues_typeKind_entityType * extractPtr_14279 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type.unsafePointer ()) ;
-              const GALGAS_string extractedValue_entityName = extractPtr_14279->mAssociatedValue0 ;
+              const cEnumAssociatedValues_typeKind_entityType * extractPtr_15519 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type.unsafePointer ()) ;
+              const GALGAS_string extractedValue_entityName = extractPtr_15519->mAssociatedValue0 ;
               GALGAS_observablePropertyMap var_observablePropertyMap ;
-              constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (GALGAS_lstring::constructor_new (extractedValue_entityName, extractedValue_controllerName.mAttribute_location  COMMA_SOURCE_FILE ("observable-property.galgas", 346)), var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 345)) ;
-              GALGAS_string joker_14267_2 ; // Joker input parameter
-              GALGAS_actionMap joker_14267_1 ; // Joker input parameter
-              var_observablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_14267_2, joker_14267_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 349)) ;
+              constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (GALGAS_lstring::constructor_new (extractedValue_entityName, extractedValue_controllerName.mAttribute_location  COMMA_SOURCE_FILE ("observable-property.galgas", 380)), var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 379)) ;
+              GALGAS_string joker_15507_2 ; // Joker input parameter
+              GALGAS_actionMap joker_15507_1 ; // Joker input parameter
+              var_observablePropertyMap.method_searchKey (extractedValue_propertyName, outArgument_outType, outArgument_outKind, outArgument_outMultiplicity, joker_15507_2, joker_15507_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 383)) ;
             }
             break ;
           }
@@ -15071,12 +16153,12 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
           }
           const enumGalgasBool test_31 = test_30.boolEnum () ;
           if (kBoolTrue == test_31) {
-            outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 359)) ;
-            outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 360)) ;
+            outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("observable-property.galgas", 393)) ;
+            outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 394)) ;
             outArgument_outType = var_type ;
           }else if (kBoolFalse == test_31) {
             GALGAS_location location_32 (extractedValue_propertyName.reader_location (HERE)) ; // Implicit use of 'location' reader
-            inCompiler->emitSemanticError (location_32, GALGAS_string ("uknown option (accepted : 'sortedArray' or 'selectedArray')")  COMMA_SOURCE_FILE ("observable-property.galgas", 363)) ;
+            inCompiler->emitSemanticError (location_32, GALGAS_string ("uknown option (accepted : 'sortedArray' or 'selectedArray')")  COMMA_SOURCE_FILE ("observable-property.galgas", 397)) ;
             outArgument_outMultiplicity.drop () ; // Release error dropped variable
             outArgument_outKind.drop () ; // Release error dropped variable
             outArgument_outType.drop () ; // Release error dropped variable
@@ -15087,37 +16169,37 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
       case GALGAS_propertyKind::kEnum_transient:
         {
           GALGAS_location location_33 (extractedValue_controllerName.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_33, GALGAS_string ("this property should be a controller")  COMMA_SOURCE_FILE ("observable-property.galgas", 368)) ;
+          inCompiler->emitSemanticError (location_33, GALGAS_string ("this property should be a controller")  COMMA_SOURCE_FILE ("observable-property.galgas", 402)) ;
           outArgument_outMultiplicity.drop () ; // Release error dropped variable
           outArgument_outKind.drop () ; // Release error dropped variable
           outArgument_outType.drop () ; // Release error dropped variable
         }
         break ;
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 370)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 404)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerSecondaryProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_15644 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_15644->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_15644->mAssociatedValue1 ;
-      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_15644->mAssociatedValue2 ;
-      GALGAS_typeKind joker_15074_5 ; // Joker input parameter
-      GALGAS_propertyKind joker_15074_4 ; // Joker input parameter
-      GALGAS_propertyMultiplicity joker_15074_3 ; // Joker input parameter
-      GALGAS_string joker_15074_2 ; // Joker input parameter
-      GALGAS_actionMap joker_15074_1 ; // Joker input parameter
-      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, joker_15074_5, joker_15074_4, joker_15074_3, joker_15074_2, joker_15074_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 372)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_16884 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_16884->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_16884->mAssociatedValue1 ;
+      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_16884->mAssociatedValue2 ;
+      GALGAS_typeKind joker_16314_5 ; // Joker input parameter
+      GALGAS_propertyKind joker_16314_4 ; // Joker input parameter
+      GALGAS_propertyMultiplicity joker_16314_3 ; // Joker input parameter
+      GALGAS_string joker_16314_2 ; // Joker input parameter
+      GALGAS_actionMap joker_16314_1 ; // Joker input parameter
+      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, joker_16314_5, joker_16314_4, joker_16314_3, joker_16314_2, joker_16314_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 406)) ;
       GALGAS_bool test_34 = GALGAS_bool (kIsEqual, extractedValue_propertyName.mAttribute_string.objectCompare (GALGAS_string ("sortedArray"))) ;
       if (kBoolTrue == test_34.boolEnum ()) {
         test_34 = GALGAS_bool (kIsEqual, extractedValue_secondaryPropertyName.mAttribute_string.objectCompare (GALGAS_string ("count"))) ;
       }
       const enumGalgasBool test_35 = test_34.boolEnum () ;
       if (kBoolTrue == test_35) {
-        outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 377)) ;
-        outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 378)) ;
-        outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 379)) ;
+        outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 411)) ;
+        outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 412)) ;
+        outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 413)) ;
       }else if (kBoolFalse == test_35) {
         GALGAS_bool test_36 = GALGAS_bool (kIsEqual, extractedValue_propertyName.mAttribute_string.objectCompare (GALGAS_string ("selectedArray"))) ;
         if (kBoolTrue == test_36.boolEnum ()) {
@@ -15125,18 +16207,18 @@ void categoryMethod_analyzeObservableProperty (const GALGAS_observablePropertyAS
         }
         const enumGalgasBool test_37 = test_36.boolEnum () ;
         if (kBoolTrue == test_37) {
-          outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 381)) ;
-          outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 382)) ;
-          outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 383)) ;
+          outArgument_outMultiplicity = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("observable-property.galgas", 415)) ;
+          outArgument_outKind = GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("observable-property.galgas", 416)) ;
+          outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("observable-property.galgas", 417)) ;
         }else if (kBoolFalse == test_37) {
           GALGAS_location location_38 (extractedValue_propertyName.reader_location (HERE)) ; // Implicit use of 'location' reader
-          inCompiler->emitSemanticError (location_38, GALGAS_string ("uknown option")  COMMA_SOURCE_FILE ("observable-property.galgas", 385)) ;
+          inCompiler->emitSemanticError (location_38, GALGAS_string ("uknown option")  COMMA_SOURCE_FILE ("observable-property.galgas", 419)) ;
           outArgument_outMultiplicity.drop () ; // Release error dropped variable
           outArgument_outKind.drop () ; // Release error dropped variable
           outArgument_outType.drop () ; // Release error dropped variable
         }
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 389)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = categoryReader_swiftTypeName (outArgument_outType, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 423)) ;
     }
     break ;
   }
@@ -15216,6 +16298,16 @@ GALGAS_string categoryReader_generateAddObserverCall (const GALGAS_observablePro
       result_outResult = GALGAS_string ("<< ligne 243 >>") ;
     }
     break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      result_outResult = GALGAS_string ("<< ligne 245 >>") ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
+    {
+      result_outResult = GALGAS_string ("<< ligne 247 >>") ;
+    }
+    break ;
   }
 //---
   return result_outResult ;
@@ -15240,61 +16332,71 @@ GALGAS_string categoryReader_generateRemoveObserverCall (const GALGAS_observable
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_10456 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_10456->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_10456->mAssociatedValue1 ;
-      result_outResult = extractedValue_controllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 252)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 252)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 252)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 252)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerProperty * extractPtr_10594 = (const cEnumAssociatedValues_observablePropertyAST_controllerProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_10594->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_10594->mAssociatedValue1 ;
+      result_outResult = extractedValue_controllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 256)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 256)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 256)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 256)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_controllerSecondaryProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_10682 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_10682->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_10682->mAssociatedValue1 ;
-      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_10682->mAssociatedValue2 ;
-      result_outResult = extractedValue_controllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 254)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 254)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 254)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 254)).add_operation (extractedValue_secondaryPropertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 254)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 254)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 254)) ;
+      const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty * extractPtr_10820 = (const cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_10820->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_10820->mAssociatedValue1 ;
+      const GALGAS_lstring extractedValue_secondaryPropertyName = extractPtr_10820->mAssociatedValue2 ;
+      result_outResult = extractedValue_controllerName.mAttribute_string.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 258)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (extractedValue_secondaryPropertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 258)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_10782 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_masterName = extractPtr_10782->mAssociatedValue0 ;
-      result_outResult = extractedValue_masterName.mAttribute_string.add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 256)) ;
+      const cEnumAssociatedValues_observablePropertyAST_selfProperty * extractPtr_10920 = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_masterName = extractPtr_10920->mAssociatedValue0 ;
+      result_outResult = extractedValue_masterName.mAttribute_string.add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 260)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_prefsProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_10916 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_10916->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("g_").add_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 258)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 258)) ;
+      const cEnumAssociatedValues_observablePropertyAST_prefsProperty * extractPtr_11054 = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_11054->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("g_").add_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 262)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootProperty:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_11023 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_masterName = extractPtr_11023->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("rootObject.").add_operation (extractedValue_masterName.reader_string (SOURCE_FILE ("transient-property.galgas", 260)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 260)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 260)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootProperty * extractPtr_11161 = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_masterName = extractPtr_11161->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("rootObject.").add_operation (extractedValue_masterName.reader_string (SOURCE_FILE ("transient-property.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 264)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 264)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyWithOption:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_11179 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_masterName = extractPtr_11179->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_optionName = extractPtr_11179->mAssociatedValue1 ;
-      result_outResult = GALGAS_string ("rootObject.").add_operation (extractedValue_masterName.reader_string (SOURCE_FILE ("transient-property.galgas", 262)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)).add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("transient-property.galgas", 262)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 262)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * extractPtr_11317 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_masterName = extractPtr_11317->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_optionName = extractPtr_11317->mAssociatedValue1 ;
+      result_outResult = GALGAS_string ("rootObject.").add_operation (extractedValue_masterName.reader_string (SOURCE_FILE ("transient-property.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 266)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 266)).add_operation (extractedValue_optionName.reader_string (SOURCE_FILE ("transient-property.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 266)).add_operation (GALGAS_string (".removeObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 266)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_rootPropertyRelationship:
     {
-      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_11355 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_relationshipName = extractPtr_11355->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_11355->mAssociatedValue1 ;
-      result_outResult = GALGAS_string ("self.rootObject.").add_operation (extractedValue_relationshipName.reader_string (SOURCE_FILE ("transient-property.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 264)).add_operation (GALGAS_string (".removeObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 264)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 264)) ;
+      const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * extractPtr_11493 = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_relationshipName = extractPtr_11493->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_11493->mAssociatedValue1 ;
+      result_outResult = GALGAS_string ("self.rootObject.").add_operation (extractedValue_relationshipName.reader_string (SOURCE_FILE ("transient-property.galgas", 268)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 268)).add_operation (GALGAS_string (".removeObserverOf_"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 268)).add_operation (extractedValue_propertyName.reader_string (SOURCE_FILE ("transient-property.galgas", 268)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 268)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_signatureProperty:
     {
-      result_outResult = GALGAS_string ("<< ligne 266 >>") ;
+      result_outResult = GALGAS_string ("<< ligne 270 >>") ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionProperty:
+    {
+      result_outResult = GALGAS_string ("<< ligne 272 >>") ;
+    }
+    break ;
+  case GALGAS_observablePropertyAST::kEnum_versionShouldChangeProperty:
+    {
+      result_outResult = GALGAS_string ("<< ligne 274 >>") ;
     }
     break ;
   }
@@ -16532,1397 +17634,4 @@ void categoryModifier_addTIFF_5F_file (GALGAS_XcodeProjectDescriptor & ioObject,
   ioObject.mAttribute_mTIFF_5F_fileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 23)) ;
 }
 
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@XcodeProjectDescriptor addInfoPlistFile'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addInfoPlistFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const GALGAS_string constinArgument_inFileName,
-                                        GALGAS_string & outArgument_outFileRef,
-                                        C_Compiler * inCompiler
-                                        COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 31)) ;
-  }
-  ioObject.mAttribute_mInfoPlistFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 32)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category method '@XcodeProjectDescriptor addXIBFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addXIBFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                  const GALGAS_string constinArgument_inFileName,
-                                  GALGAS_string & outArgument_outFileRef,
-                                  C_Compiler * inCompiler
-                                  COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 40)) ;
-  }
-  ioObject.mAttribute_mXIB_5F_fileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 41)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@XcodeProjectDescriptor addFrameworkFile'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addFrameworkFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const GALGAS_string constinArgument_inFileName,
-                                        GALGAS_string & outArgument_outFileRef,
-                                        C_Compiler * inCompiler
-                                        COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 49)) ;
-  }
-  ioObject.mAttribute_mFrameworkFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 50)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category method '@XcodeProjectDescriptor addMFile'                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addMFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                const GALGAS_string constinArgument_inFileName,
-                                GALGAS_string & outArgument_outFileRef,
-                                C_Compiler * inCompiler
-                                COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 58)) ;
-  }
-  ioObject.mAttribute_m_5F_M_5F_FileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 59)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addSwiftFile'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addSwiftFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const GALGAS_string constinArgument_inFileName,
-                                    GALGAS_string & outArgument_outFileRef,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 67)) ;
-  }
-  ioObject.mAttribute_m_5F_SwiftFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 68)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category method '@XcodeProjectDescriptor addMMFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addMMFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                 const GALGAS_string constinArgument_inFileName,
-                                 GALGAS_string & outArgument_outFileRef,
-                                 C_Compiler * inCompiler
-                                 COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 76)) ;
-  }
-  ioObject.mAttribute_m_5F_MM_5F_FileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 77)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category method '@XcodeProjectDescriptor addCppFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addCppFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                  const GALGAS_string constinArgument_inFileName,
-                                  GALGAS_string & outArgument_outFileRef,
-                                  C_Compiler * inCompiler
-                                  COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 85)) ;
-  }
-  ioObject.mAttribute_mCppFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 86)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addHeaderFile'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addHeaderFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                     const GALGAS_string constinArgument_inFileName,
-                                     GALGAS_string & outArgument_outFileRef,
-                                     C_Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 94)) ;
-  }
-  ioObject.mAttribute_mHeaderFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 95)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addBuildFile'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addBuildFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const GALGAS_string constinArgument_inFileReference,
-                                    const GALGAS_string constinArgument_inFileName,
-                                    GALGAS_string & outArgument_outBuildRef,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outBuildRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 104)) ;
-  }
-  ioObject.mAttribute_mBuildFileList.addAssign_operation (constinArgument_inFileReference, constinArgument_inFileName, outArgument_outBuildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 105)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addToolTarget'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addToolTarget (GALGAS_XcodeProjectDescriptor & ioObject,
-                                     const GALGAS_string constinArgument_inTargetName,
-                                     const GALGAS_string constinArgument_inProductFileName,
-                                     const GALGAS_stringlist constinArgument_inSourceList,
-                                     const GALGAS_stringlist constinArgument_inToolFrameworksFileRefList,
-                                     const GALGAS_stringlist constinArgument_inBuildConfigurationSettingList,
-                                     GALGAS_string & outArgument_outTargetRef,
-                                     GALGAS_string & outArgument_outProductFileRef,
-                                     C_Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outTargetRef.drop () ; // Release 'out' argument
-  outArgument_outProductFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outProductFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 118)) ;
-  }
-  GALGAS_string var_buildPhaseRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildPhaseRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 119)) ;
-  }
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outTargetRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 120)) ;
-  }
-  GALGAS_string var_buildConfigurationListRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationListRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 121)) ;
-  }
-  GALGAS_string var_buildConfigurationRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 122)) ;
-  }
-  GALGAS_string var_frameworkBuildRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_frameworkBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 123)) ;
-  }
-  ioObject.mAttribute_mToolTargetList.addAssign_operation (outArgument_outTargetRef, constinArgument_inTargetName, outArgument_outProductFileRef, constinArgument_inProductFileName, constinArgument_inSourceList, var_buildPhaseRef, var_buildConfigurationListRef, constinArgument_inBuildConfigurationSettingList, var_buildConfigurationRef, constinArgument_inToolFrameworksFileRefList, var_frameworkBuildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 124)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addAppTarget'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addAppTarget (GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const GALGAS_string constinArgument_inTargetName,
-                                    const GALGAS_string constinArgument_inProductFileName,
-                                    const GALGAS_stringlist constinArgument_inSourceList,
-                                    const GALGAS_stringlist constinArgument_inFrameworksFileRefList,
-                                    const GALGAS_stringlist constinArgument_inResourceFileBuildRefs,
-                                    const GALGAS_stringlist constinArgument_inBuildConfigurationSettingList,
-                                    const GALGAS_stringlist constinArgument_inDependentTargetRefList,
-                                    const GALGAS__32_stringlist constinArgument_inProductCopyList,
-                                    const GALGAS_string constinArgument_inInfoPList,
-                                    GALGAS_string & outArgument_outProductFileRef,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outProductFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outProductFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 152)) ;
-  }
-  GALGAS_string var_buildPhaseRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildPhaseRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 153)) ;
-  }
-  GALGAS_string var_targetRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_targetRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 154)) ;
-  }
-  GALGAS_string var_buildConfigurationListRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationListRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 155)) ;
-  }
-  GALGAS_string var_buildConfigurationRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 156)) ;
-  }
-  GALGAS_string var_frameworkBuildRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_frameworkBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 157)) ;
-  }
-  GALGAS_string var_resourceBuildRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_resourceBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 158)) ;
-  }
-  GALGAS__32_stringlist var_dependentTargets = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 159)) ;
-  cEnumerator_stringlist enumerator_6737 (constinArgument_inDependentTargetRefList, kEnumeration_up) ;
-  while (enumerator_6737.hasCurrentObject ()) {
-    GALGAS_string var_dependencyBuildRef ;
-    {
-    categoryModifier_getReferenceKey (ioObject, var_dependencyBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 161)) ;
-    }
-    var_dependentTargets.addAssign_operation (var_dependencyBuildRef, enumerator_6737.current_mValue (HERE)  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 162)) ;
-    enumerator_6737.gotoNextObject () ;
-  }
-  GALGAS_stringlist var_resourceFileBuildRefs = constinArgument_inResourceFileBuildRefs ;
-  cEnumerator__32_stringlist enumerator_6952 (constinArgument_inProductCopyList, kEnumeration_up) ;
-  while (enumerator_6952.hasCurrentObject ()) {
-    GALGAS_string var_buildRef ;
-    {
-    categoryModifier_addBuildFile (ioObject, enumerator_6952.current_mValue_30_ (HERE), enumerator_6952.current_mValue_31_ (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 166)) ;
-    }
-    var_resourceFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 167)) ;
-    enumerator_6952.gotoNextObject () ;
-  }
-  ioObject.mAttribute_mAppTargetList.addAssign_operation (var_targetRef, constinArgument_inTargetName, outArgument_outProductFileRef, constinArgument_inProductFileName, constinArgument_inSourceList, var_buildPhaseRef, var_buildConfigurationListRef, constinArgument_inBuildConfigurationSettingList, var_buildConfigurationRef, constinArgument_inFrameworksFileRefList, var_frameworkBuildRef, var_dependentTargets, var_resourceBuildRef, var_resourceFileBuildRefs, constinArgument_inInfoPList  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 169)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category method '@XcodeProjectDescriptor addGroup'                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addGroup (GALGAS_XcodeProjectDescriptor & ioObject,
-                                const GALGAS_string constinArgument_inGroupName,
-                                const GALGAS_string constinArgument_inGroupPath,
-                                const GALGAS_stringlist constinArgument_inChildrenRefs,
-                                GALGAS_string & outArgument_outGroupRef,
-                                C_Compiler * inCompiler
-                                COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outGroupRef.drop () ; // Release 'out' argument
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mDefaultConfigurationRef.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    {
-    categoryModifier_getReferenceKey (ioObject, ioObject.mAttribute_mDefaultConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 195)) ;
-    }
-  }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mProjectBuildConfigurationRef.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    {
-    categoryModifier_getReferenceKey (ioObject, ioObject.mAttribute_mProjectBuildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 198)) ;
-    }
-  }
-  const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mMainGroupReference.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_2) {
-    {
-    categoryModifier_getReferenceKey (ioObject, ioObject.mAttribute_mMainGroupReference, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 201)) ;
-    }
-  }
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outGroupRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 203)) ;
-  }
-  ioObject.mAttribute_mGroupList.addAssign_operation (outArgument_outGroupRef, constinArgument_inGroupName, constinArgument_inGroupPath, constinArgument_inChildrenRefs  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 204)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@XcodeProjectDescriptor addGroupWithFiles'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addGroupWithFiles (GALGAS_XcodeProjectDescriptor & ioObject,
-                                         const GALGAS_string constinArgument_inGroupName,
-                                         const GALGAS_string constinArgument_inGroupPath,
-                                         const GALGAS_stringset constinArgument_inFileNames,
-                                         GALGAS_stringlist & ioArgument_ioCppFileBuildRefs,
-                                         GALGAS_stringlist & ioArgument_ioMFileBuildRefs,
-                                         GALGAS_stringlist & ioArgument_ioMMFileBuildRefs,
-                                         GALGAS_stringlist & ioArgument_ioSwiftFileBuildRefs,
-                                         GALGAS_stringlist & ioArgument_ioFrameWorkFileBuildRefs,
-                                         GALGAS_stringlist & ioArgument_ioResourceFileBuildRefs,
-                                         GALGAS_string & outArgument_outGroupRef,
-                                         C_Compiler * inCompiler
-                                         COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outGroupRef.drop () ; // Release 'out' argument
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mDefaultConfigurationRef.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    {
-    categoryModifier_getReferenceKey (ioObject, ioObject.mAttribute_mDefaultConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 221)) ;
-    }
-  }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mProjectBuildConfigurationRef.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    {
-    categoryModifier_getReferenceKey (ioObject, ioObject.mAttribute_mProjectBuildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 224)) ;
-    }
-  }
-  const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mMainGroupReference.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_2) {
-    {
-    categoryModifier_getReferenceKey (ioObject, ioObject.mAttribute_mMainGroupReference, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 227)) ;
-    }
-  }
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outGroupRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 229)) ;
-  }
-  GALGAS_stringlist var_childrenRefs = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 231)) ;
-  cEnumerator_stringset enumerator_9257 (constinArgument_inFileNames, kEnumeration_up) ;
-  while (enumerator_9257.hasCurrentObject ()) {
-    const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 233)).objectCompare (GALGAS_string ("cpp"))).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      GALGAS_string var_cppFileRef ;
-      {
-      categoryModifier_addCppFile (ioObject, enumerator_9257.current_key (HERE), var_cppFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 234)) ;
-      }
-      var_childrenRefs.addAssign_operation (var_cppFileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 235)) ;
-      GALGAS_string var_buildRef ;
-      {
-      categoryModifier_addBuildFile (ioObject, var_cppFileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 236)) ;
-      }
-      ioArgument_ioCppFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 237)) ;
-    }else if (kBoolFalse == test_3) {
-      const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 238)).objectCompare (GALGAS_string ("h"))).boolEnum () ;
-      if (kBoolTrue == test_4) {
-        GALGAS_string var_headerFileRef ;
-        {
-        categoryModifier_addHeaderFile (ioObject, enumerator_9257.current_key (HERE), var_headerFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 239)) ;
-        }
-        var_childrenRefs.addAssign_operation (var_headerFileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 240)) ;
-      }else if (kBoolFalse == test_4) {
-        const enumGalgasBool test_5 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 241)).objectCompare (GALGAS_string ("m"))).boolEnum () ;
-        if (kBoolTrue == test_5) {
-          GALGAS_string var_m_5F_FileRef ;
-          {
-          categoryModifier_addMFile (ioObject, enumerator_9257.current_key (HERE), var_m_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 242)) ;
-          }
-          GALGAS_string var_buildRef ;
-          {
-          categoryModifier_addBuildFile (ioObject, var_m_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 243)) ;
-          }
-          var_childrenRefs.addAssign_operation (var_m_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 244)) ;
-          ioArgument_ioMFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 245)) ;
-        }else if (kBoolFalse == test_5) {
-          const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 246)).objectCompare (GALGAS_string ("swift"))).boolEnum () ;
-          if (kBoolTrue == test_6) {
-            GALGAS_string var_swift_5F_FileRef ;
-            {
-            categoryModifier_addSwiftFile (ioObject, enumerator_9257.current_key (HERE), var_swift_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 247)) ;
-            }
-            GALGAS_string var_buildRef ;
-            {
-            categoryModifier_addBuildFile (ioObject, var_swift_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 248)) ;
-            }
-            var_childrenRefs.addAssign_operation (var_swift_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 249)) ;
-            ioArgument_ioSwiftFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 250)) ;
-          }else if (kBoolFalse == test_6) {
-            const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 251)).objectCompare (GALGAS_string ("mm"))).boolEnum () ;
-            if (kBoolTrue == test_7) {
-              GALGAS_string var_m_5F_FileRef ;
-              {
-              categoryModifier_addMMFile (ioObject, enumerator_9257.current_key (HERE), var_m_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 252)) ;
-              }
-              GALGAS_string var_buildRef ;
-              {
-              categoryModifier_addBuildFile (ioObject, var_m_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 253)) ;
-              }
-              var_childrenRefs.addAssign_operation (var_m_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 254)) ;
-              ioArgument_ioMMFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 255)) ;
-            }else if (kBoolFalse == test_7) {
-              const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 256)).objectCompare (GALGAS_string ("framework"))).boolEnum () ;
-              if (kBoolTrue == test_8) {
-                GALGAS_string var_framework_5F_FileRef ;
-                {
-                categoryModifier_addFrameworkFile (ioObject, enumerator_9257.current_key (HERE), var_framework_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 257)) ;
-                }
-                GALGAS_string var_buildRef ;
-                {
-                categoryModifier_addBuildFile (ioObject, var_framework_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 258)) ;
-                }
-                var_childrenRefs.addAssign_operation (var_framework_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 259)) ;
-                ioArgument_ioFrameWorkFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 260)) ;
-              }else if (kBoolFalse == test_8) {
-                const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 261)).objectCompare (GALGAS_string ("plist"))).boolEnum () ;
-                if (kBoolTrue == test_9) {
-                  GALGAS_string var_resource_5F_FileRef ;
-                  {
-                  categoryModifier_addInfoPlistFile (ioObject, enumerator_9257.current_key (HERE), var_resource_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 262)) ;
-                  }
-                  var_childrenRefs.addAssign_operation (var_resource_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 263)) ;
-                }else if (kBoolFalse == test_9) {
-                  const enumGalgasBool test_10 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 264)).objectCompare (GALGAS_string ("xib"))).boolEnum () ;
-                  if (kBoolTrue == test_10) {
-                    GALGAS_string var_resource_5F_FileRef ;
-                    {
-                    categoryModifier_addXIBFile (ioObject, enumerator_9257.current_key (HERE), var_resource_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 265)) ;
-                    }
-                    var_childrenRefs.addAssign_operation (var_resource_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 266)) ;
-                    GALGAS_string var_buildRef ;
-                    {
-                    categoryModifier_addBuildFile (ioObject, var_resource_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 267)) ;
-                    }
-                    ioArgument_ioResourceFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 268)) ;
-                  }else if (kBoolFalse == test_10) {
-                    const enumGalgasBool test_11 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 269)).objectCompare (GALGAS_string ("tiff"))).boolEnum () ;
-                    if (kBoolTrue == test_11) {
-                      GALGAS_string var_resource_5F_FileRef ;
-                      {
-                      categoryModifier_addTIFF_5F_file (ioObject, enumerator_9257.current_key (HERE), var_resource_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 270)) ;
-                      }
-                      var_childrenRefs.addAssign_operation (var_resource_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 271)) ;
-                      GALGAS_string var_buildRef ;
-                      {
-                      categoryModifier_addBuildFile (ioObject, var_resource_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 272)) ;
-                      }
-                      ioArgument_ioResourceFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 273)) ;
-                    }else if (kBoolFalse == test_11) {
-                      const enumGalgasBool test_12 = GALGAS_bool (kIsEqual, enumerator_9257.current_key (HERE).reader_pathExtension (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 274)).objectCompare (GALGAS_string ("icns"))).boolEnum () ;
-                      if (kBoolTrue == test_12) {
-                        GALGAS_string var_resource_5F_FileRef ;
-                        {
-                        categoryModifier_addICNS_5F_file (ioObject, enumerator_9257.current_key (HERE), var_resource_5F_FileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 275)) ;
-                        }
-                        var_childrenRefs.addAssign_operation (var_resource_5F_FileRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 276)) ;
-                        GALGAS_string var_buildRef ;
-                        {
-                        categoryModifier_addBuildFile (ioObject, var_resource_5F_FileRef, enumerator_9257.current_key (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 277)) ;
-                        }
-                        ioArgument_ioResourceFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 278)) ;
-                      }else if (kBoolFalse == test_12) {
-                        inCompiler->emitSemanticError (GALGAS_location::constructor_nowhere (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 280)), GALGAS_string ("unhandled extension for file '").add_operation (enumerator_9257.current_key (HERE), inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 280)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 280))  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 280)) ;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    enumerator_9257.gotoNextObject () ;
-  }
-  ioObject.mAttribute_mGroupList.addAssign_operation (outArgument_outGroupRef, constinArgument_inGroupName, constinArgument_inGroupPath, var_childrenRefs  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 283)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Category method '@XcodeProjectDescriptor placeGroupAsMainGroup'                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_placeGroupAsMainGroup (GALGAS_XcodeProjectDescriptor & ioObject,
-                                             const GALGAS_string constinArgument_inGroupRef,
-                                             C_Compiler * /* inCompiler */
-                                             COMMA_UNUSED_LOCATION_ARGS) {
-  ioObject.mAttribute_mMainGroupChildrenRefs.addAssign_operation (constinArgument_inGroupRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 290)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Category method '@XcodeProjectDescriptor addSettingsToDefaultConfiguration'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addSettingsToDefaultConfiguration (GALGAS_XcodeProjectDescriptor & ioObject,
-                                                         const GALGAS_stringlist constinArgument_inSettingList,
-                                                         C_Compiler * /* inCompiler */
-                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  ioObject.mAttribute_mDefaultConfigurationSettingList.dotAssign_operation (constinArgument_inSettingList  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 297)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@XcodeProjectDescriptor getReferenceKey'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_getReferenceKey (GALGAS_XcodeProjectDescriptor & ioObject,
-                                       GALGAS_string & outArgument_outRef,
-                                       C_Compiler * inCompiler
-                                       COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outRef.drop () ; // Release 'out' argument
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, ioObject.mAttribute_mProjectObjectReference.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-  if (kBoolTrue == test_0) {
-    ioObject.mAttribute_mProjectObjectReference = ioObject.mAttribute_mSequenceNumber.reader_string (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 358)).reader_md_35_ (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 358)).reader_rightSubString (GALGAS_uint ((uint32_t) 24U) COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 358)) ;
-    ioObject.mAttribute_mSequenceNumber.increment_operation (inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 359)) ;
-  }
-  outArgument_outRef = ioObject.mAttribute_mSequenceNumber.reader_string (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 361)).reader_md_35_ (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 361)).reader_rightSubString (GALGAS_uint ((uint32_t) 24U) COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 361)) ;
-  ioObject.mAttribute_mSequenceNumber.increment_operation (inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 362)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@XcodeProjectDescriptor generateAtPath'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_generateAtPath (const GALGAS_XcodeProjectDescriptor inObject,
-                                    const GALGAS_string constinArgument_inPath,
-                                    const GALGAS_string constinArgument_inCacheFilePath,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents = GALGAS_string (filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (inCompiler, inObject.mAttribute_mProjectObjectReference, inObject.mAttribute_mMainGroupReference, inObject.mAttribute_mGroupList, inObject.mAttribute_mMainGroupChildrenRefs, inObject.mAttribute_mToolTargetList, inObject.mAttribute_mAppTargetList, inObject.mAttribute_mCppFileList, inObject.mAttribute_m_5F_M_5F_FileList, inObject.mAttribute_m_5F_MM_5F_FileList, inObject.mAttribute_m_5F_SwiftFileList, inObject.mAttribute_mFrameworkFileList, inObject.mAttribute_mHeaderFileList, inObject.mAttribute_mInfoPlistFileList, inObject.mAttribute_mTIFF_5F_fileList, inObject.mAttribute_mICNS_5F_fileList, inObject.mAttribute_mXIB_5F_fileList, inObject.mAttribute_mBuildFileList, inObject.mAttribute_mDefaultConfigurationRef, inObject.mAttribute_mDefaultConfigurationSettingList, inObject.mAttribute_mProjectBuildConfigurationRef COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 426))) ;
-  GALGAS_string var_projectCoreFile = constinArgument_inPath.add_operation (GALGAS_string ("/project.pbxproj"), inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 448)) ;
-  GALGAS_bool test_0 = var_projectCoreFile.reader_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 449)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 449)) ;
-  if (kBoolTrue != test_0.boolEnum ()) {
-    test_0 = constinArgument_inCacheFilePath.reader_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 449)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 449)) ;
-  }
-  GALGAS_bool test_1 = test_0 ;
-  if (kBoolTrue != test_1.boolEnum ()) {
-    test_1 = GALGAS_bool (kIsNotEqual, GALGAS_string::constructor_stringWithContentsOfFile (constinArgument_inCacheFilePath, inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 449)).objectCompare (var_contents)) ;
-  }
-  const enumGalgasBool test_2 = test_1.boolEnum () ;
-  if (kBoolTrue == test_2) {
-    GALGAS_bool joker_17579 ; // Joker input parameter
-    var_contents.method_writeToFileWhenDifferentContents (constinArgument_inCacheFilePath, joker_17579, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 450)) ;
-    var_contents.method_makeDirectoryAndWriteToFile (var_projectCoreFile, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 451)) ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::GALGAS_astDeclarationList_2D_element (void) :
-mAttribute_mDeclaration () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::~ GALGAS_astDeclarationList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element::GALGAS_astDeclarationList_2D_element (const GALGAS_astDeclaration & inOperand0) :
-mAttribute_mDeclaration (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element GALGAS_astDeclarationList_2D_element::constructor_new (const GALGAS_astDeclaration & inOperand0 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_astDeclarationList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_astDeclarationList_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_astDeclarationList_2D_element::objectCompare (const GALGAS_astDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDeclaration.objectCompare (inOperand.mAttribute_mDeclaration) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_astDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mDeclaration.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationList_2D_element::drop (void) {
-  mAttribute_mDeclaration.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_astDeclarationList_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @astDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDeclaration.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclaration GALGAS_astDeclarationList_2D_element::reader_mDeclaration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDeclaration ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @astDeclarationList-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astDeclarationList_2D_element ("astDeclarationList-element",
-                                                      NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_astDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astDeclarationList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_astDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_astDeclarationList_2D_element GALGAS_astDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_astDeclarationList_2D_element result ;
-  const GALGAS_astDeclarationList_2D_element * p = (const GALGAS_astDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externSwiftFunctionList_2D_element::GALGAS_externSwiftFunctionList_2D_element (void) :
-mAttribute_mExternSwiftFunctionName (),
-mAttribute_mCallerName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externSwiftFunctionList_2D_element::~ GALGAS_externSwiftFunctionList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externSwiftFunctionList_2D_element::GALGAS_externSwiftFunctionList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                      const GALGAS_lstring & inOperand1) :
-mAttribute_mExternSwiftFunctionName (inOperand0),
-mAttribute_mCallerName (inOperand1) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_externSwiftFunctionList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                    GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                      const GALGAS_lstring & inOperand1 
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_externSwiftFunctionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_externSwiftFunctionList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_externSwiftFunctionList_2D_element::objectCompare (const GALGAS_externSwiftFunctionList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mExternSwiftFunctionName.objectCompare (inOperand.mAttribute_mExternSwiftFunctionName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mCallerName.objectCompare (inOperand.mAttribute_mCallerName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_externSwiftFunctionList_2D_element::isValid (void) const {
-  return mAttribute_mExternSwiftFunctionName.isValid () && mAttribute_mCallerName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_externSwiftFunctionList_2D_element::drop (void) {
-  mAttribute_mExternSwiftFunctionName.drop () ;
-  mAttribute_mCallerName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_externSwiftFunctionList_2D_element::description (C_String & ioString,
-                                                             const int32_t inIndentation) const {
-  ioString << "<struct @externSwiftFunctionList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mExternSwiftFunctionName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mCallerName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_externSwiftFunctionList_2D_element::reader_mExternSwiftFunctionName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mExternSwiftFunctionName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_externSwiftFunctionList_2D_element::reader_mCallerName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mCallerName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @externSwiftFunctionList-element type                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_externSwiftFunctionList_2D_element ("externSwiftFunctionList-element",
-                                                           NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_externSwiftFunctionList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_externSwiftFunctionList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_externSwiftFunctionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_externSwiftFunctionList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_externSwiftFunctionList_2D_element result ;
-  const GALGAS_externSwiftFunctionList_2D_element * p = (const GALGAS_externSwiftFunctionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_externSwiftFunctionList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("externSwiftFunctionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externFunctionMap_2D_element::GALGAS_externFunctionMap_2D_element (void) :
-mAttribute_lkey () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externFunctionMap_2D_element::~ GALGAS_externFunctionMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externFunctionMap_2D_element::GALGAS_externFunctionMap_2D_element (const GALGAS_lstring & inOperand0) :
-mAttribute_lkey (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_externFunctionMap_2D_element (GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_externFunctionMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_externFunctionMap_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_externFunctionMap_2D_element::objectCompare (const GALGAS_externFunctionMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_externFunctionMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_externFunctionMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_externFunctionMap_2D_element::description (C_String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString << "<struct @externFunctionMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_externFunctionMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           @externFunctionMap-element type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_externFunctionMap_2D_element ("externFunctionMap-element",
-                                                     NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_externFunctionMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_externFunctionMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_externFunctionMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_externFunctionMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_externFunctionMap_2D_element result ;
-  const GALGAS_externFunctionMap_2D_element * p = (const GALGAS_externFunctionMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_externFunctionMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("externFunctionMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element::GALGAS_enumConstantMap_2D_element (void) :
-mAttribute_lkey () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element::~ GALGAS_enumConstantMap_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element::GALGAS_enumConstantMap_2D_element (const GALGAS_lstring & inOperand0) :
-mAttribute_lkey (inOperand0) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_enumConstantMap_2D_element (GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_enumConstantMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_enumConstantMap_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_enumConstantMap_2D_element::objectCompare (const GALGAS_enumConstantMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_lkey.objectCompare (inOperand.mAttribute_lkey) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_enumConstantMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_enumConstantMap_2D_element::drop (void) {
-  mAttribute_lkey.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_enumConstantMap_2D_element::description (C_String & ioString,
-                                                     const int32_t inIndentation) const {
-  ioString << "<struct @enumConstantMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_lkey.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_enumConstantMap_2D_element::reader_lkey (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_lkey ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                            @enumConstantMap-element type                                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_enumConstantMap_2D_element ("enumConstantMap-element",
-                                                   NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_enumConstantMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_enumConstantMap_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_enumConstantMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_enumConstantMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_enumConstantMap_2D_element result ;
-  const GALGAS_enumConstantMap_2D_element * p = (const GALGAS_enumConstantMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_enumConstantMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("enumConstantMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element::GALGAS_toOneRelationshipList_2D_element (void) :
-mAttribute_mDestinationEntityName (),
-mAttribute_mToOneRelationshipName (),
-mAttribute_mInverseRelationshipName (),
-mAttribute_mInverseRelationMultiplicity () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element::~ GALGAS_toOneRelationshipList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element::GALGAS_toOneRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                  const GALGAS_lstring & inOperand2,
-                                                                                  const GALGAS_propertyMultiplicity & inOperand3) :
-mAttribute_mDestinationEntityName (inOperand0),
-mAttribute_mToOneRelationshipName (inOperand1),
-mAttribute_mInverseRelationshipName (inOperand2),
-mAttribute_mInverseRelationMultiplicity (inOperand3) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                                  const GALGAS_lstring & inOperand2,
-                                                                                                  const GALGAS_propertyMultiplicity & inOperand3 
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_toOneRelationshipList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_toOneRelationshipList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_toOneRelationshipList_2D_element::objectCompare (const GALGAS_toOneRelationshipList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDestinationEntityName.objectCompare (inOperand.mAttribute_mDestinationEntityName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mToOneRelationshipName.objectCompare (inOperand.mAttribute_mToOneRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationshipName.objectCompare (inOperand.mAttribute_mInverseRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationMultiplicity.objectCompare (inOperand.mAttribute_mInverseRelationMultiplicity) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_toOneRelationshipList_2D_element::isValid (void) const {
-  return mAttribute_mDestinationEntityName.isValid () && mAttribute_mToOneRelationshipName.isValid () && mAttribute_mInverseRelationshipName.isValid () && mAttribute_mInverseRelationMultiplicity.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toOneRelationshipList_2D_element::drop (void) {
-  mAttribute_mDestinationEntityName.drop () ;
-  mAttribute_mToOneRelationshipName.drop () ;
-  mAttribute_mInverseRelationshipName.drop () ;
-  mAttribute_mInverseRelationMultiplicity.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toOneRelationshipList_2D_element::description (C_String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString << "<struct @toOneRelationshipList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDestinationEntityName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mToOneRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationMultiplicity.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::reader_mDestinationEntityName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDestinationEntityName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::reader_mToOneRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mToOneRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::reader_mInverseRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyMultiplicity GALGAS_toOneRelationshipList_2D_element::reader_mInverseRelationMultiplicity (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationMultiplicity ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                         @toOneRelationshipList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toOneRelationshipList_2D_element ("toOneRelationshipList-element",
-                                                         NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_toOneRelationshipList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toOneRelationshipList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_toOneRelationshipList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_toOneRelationshipList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_toOneRelationshipList_2D_element result ;
-  const GALGAS_toOneRelationshipList_2D_element * p = (const GALGAS_toOneRelationshipList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toOneRelationshipList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("toOneRelationshipList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (void) :
-mAttribute_mDestinationEntityName (),
-mAttribute_mToManyRelationshipName (),
-mAttribute_mInverseRelationshipName () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element::~ GALGAS_toManyRelationshipList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_lstring & inOperand1,
-                                                                                    const GALGAS_lstring & inOperand2) :
-mAttribute_mDestinationEntityName (inOperand0),
-mAttribute_mToManyRelationshipName (inOperand1),
-mAttribute_mInverseRelationshipName (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_toManyRelationshipList_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                                   GALGAS_lstring::constructor_default (HERE),
-                                                   GALGAS_lstring::constructor_default (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_lstring & inOperand1,
-                                                                                                    const GALGAS_lstring & inOperand2 
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_toManyRelationshipList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_toManyRelationshipList_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_toManyRelationshipList_2D_element::objectCompare (const GALGAS_toManyRelationshipList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mDestinationEntityName.objectCompare (inOperand.mAttribute_mDestinationEntityName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mToManyRelationshipName.objectCompare (inOperand.mAttribute_mToManyRelationshipName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mInverseRelationshipName.objectCompare (inOperand.mAttribute_mInverseRelationshipName) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_toManyRelationshipList_2D_element::isValid (void) const {
-  return mAttribute_mDestinationEntityName.isValid () && mAttribute_mToManyRelationshipName.isValid () && mAttribute_mInverseRelationshipName.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toManyRelationshipList_2D_element::drop (void) {
-  mAttribute_mDestinationEntityName.drop () ;
-  mAttribute_mToManyRelationshipName.drop () ;
-  mAttribute_mInverseRelationshipName.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_toManyRelationshipList_2D_element::description (C_String & ioString,
-                                                            const int32_t inIndentation) const {
-  ioString << "<struct @toManyRelationshipList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mDestinationEntityName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mToManyRelationshipName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mInverseRelationshipName.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mDestinationEntityName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDestinationEntityName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mToManyRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mToManyRelationshipName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::reader_mInverseRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mInverseRelationshipName ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @toManyRelationshipList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toManyRelationshipList_2D_element ("toManyRelationshipList-element",
-                                                          NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_toManyRelationshipList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toManyRelationshipList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_toManyRelationshipList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_toManyRelationshipList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_toManyRelationshipList_2D_element result ;
-  const GALGAS_toManyRelationshipList_2D_element * p = (const GALGAS_toManyRelationshipList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toManyRelationshipList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("toManyRelationshipList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
 

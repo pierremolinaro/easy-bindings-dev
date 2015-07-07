@@ -80,7 +80,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [35] = {
+static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [37] = {
   {"no", easyBindings_lexique_1_no},
   {"to", easyBindings_lexique_1_to},
   {"all", easyBindings_lexique_1_all},
@@ -104,6 +104,7 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"include", easyBindings_lexique_1_include},
   {"inverse", easyBindings_lexique_1_inverse},
   {"mainxib", easyBindings_lexique_1_mainxib},
+  {"version", easyBindings_lexique_1_version},
   {"calledBy", easyBindings_lexique_1_calledBy},
   {"document", easyBindings_lexique_1_document},
   {"property", easyBindings_lexique_1_property},
@@ -115,11 +116,12 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"outletClass", easyBindings_lexique_1_outletClass},
   {"xcodeproject", easyBindings_lexique_1_xcodeproject},
   {"arrayController", easyBindings_lexique_1_arrayController},
-  {"selectionController", easyBindings_lexique_1_selectionController}
+  {"selectionController", easyBindings_lexique_1_selectionController},
+  {"versionShouldChange", easyBindings_lexique_1_versionShouldChange}
 } ;
 
 static NSInteger search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (NSString * inSearchedString) {
-  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 35) ;
+  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 37) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -300,7 +302,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 62 ;
+  return 64 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -330,7 +332,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [63] = {0,
+  static const NSUInteger kTerminalSymbolStyles [65] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1_bindingName */,
@@ -371,6 +373,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     1 /* easyBindings_lexique_1_toOne */,
     1 /* easyBindings_lexique_1_transient */,
     1 /* easyBindings_lexique_1_validates */,
+    1 /* easyBindings_lexique_1_version */,
+    1 /* easyBindings_lexique_1_versionShouldChange */,
     1 /* easyBindings_lexique_1_xcodeproject */,
     1 /* easyBindings_lexique_1_yes */,
     5 /* easyBindings_lexique_1_enabled */,
@@ -404,7 +408,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [63] = {NO,
+  static const BOOL kTerminalAtomicSelection [65] = {NO,
     YES /* easyBindings_lexique_1_identifier */,
     YES /* easyBindings_lexique_1_Identifier */,
     YES /* easyBindings_lexique_1_bindingName */,
@@ -445,6 +449,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_toOne */,
     YES /* easyBindings_lexique_1_transient */,
     YES /* easyBindings_lexique_1_validates */,
+    YES /* easyBindings_lexique_1_version */,
+    YES /* easyBindings_lexique_1_versionShouldChange */,
     YES /* easyBindings_lexique_1_xcodeproject */,
     YES /* easyBindings_lexique_1_yes */,
     YES /* easyBindings_lexique_1_enabled */,

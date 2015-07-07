@@ -1,14 +1,15 @@
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 let kFormatSignature = "PM-BINARY-FORMAT"
+let EBVersion = "EBVersion"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 private var gDebugMenuItemsAdded = false
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 enum EBDocumentCompressionEnum {
   case EBDocumentNoCompression
@@ -16,11 +17,9 @@ enum EBDocumentCompressionEnum {
   case EBDocumentZLIBCompression
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//  EBManagedDocument                                                                                                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBManagedDocument
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBManagedDocument : NSDocument, EBUserClassName {
   var mRootObject : EBManagedObject?
@@ -29,9 +28,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   private var mMetadataDictionary : NSMutableDictionary = [:]
   private var mManagedObjectContext : EBManagedObjectContext
 
-  //···················································································································*
-  //    init                                                                                                           *
-  //···················································································································*
+  //····················································································································
+  //    init
+  //····················································································································
 
   override init () {
     let theUndoManager = EBUndoManager ()
@@ -46,100 +45,75 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     theUndoManager.enableUndoRegistration ()
   }
 
-  //···················································································································*
-  //    deinit                                                                                                         *
-  //···················································································································*
+  //····················································································································
+  //    deinit
+  //····················································································································
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  //···················································································································*
-  //    hookOfInit                                                                                                     *
-  //···················································································································*
+  //····················································································································
+  //    hookOfInit
+  //····················································································································
 
   func hookOfInit () {
   }
 
-  //···················································································································*
-  //    hookOfNewDocumentCreation                                                                                      *
-  //···················································································································*
+  //····················································································································
+  //    hookOfNewDocumentCreation
+  //····················································································································
 
   func hookOfNewDocumentCreation () {
   }
 
-  //···················································································································*
-  //    rootEntityClassName                                                                                            *
-  //···················································································································*
+  //····················································································································
+  //    rootEntityClassName
+  //····················································································································
 
   func rootEntityClassName () -> String {
     return ""
   }
 
-  //···················································································································*
-  //    windowControllerDidLoadNib:                                                                                    *
-  //···················································································································*
-
-  override func windowControllerDidLoadNib (aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
-  //--- Add Debug menu items ?
-      if !gDebugMenuItemsAdded {
-        gDebugMenuItemsAdded = true
-        var menuItem = NSMenuItem (
-          title:"Explore document",
-          action:"showObjectExplorerWindow:",
-          keyEquivalent:""
-        )
-        addItemToDebugMenu (menuItem)
-        menuItem = NSMenuItem (
-          title:"Check Relationships",
-          action:"checkRelationships:",
-          keyEquivalent:""
-        )
-        addItemToDebugMenu (menuItem)
-        menuItem = NSMenuItem (
-          title:"Check All Objects are Reachable",
-          action:"checkEntityReachability:",
-          keyEquivalent:""
-        )
-        addItemToDebugMenu (menuItem)
-      }
-    //-------------- Check relationships
-/*      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;
-      const BOOL check = [[[sudc values] value_for_key:@"checkDocumentRelationships"] boolValue] ;
-      if (check) {
-        [self.windowForSheet makeKeyAndOrderFront:nil] ;
-        [self checkRelationships:nil] ;
-      }*/
-  }
-
-  //···················································································································*
-  //  S A V E    T O    D A T A                                                                                        *
-  //···················································································································*
+  //····················································································································
+  //  SAVE
+  //····················································································································
 
   func metadataStatusForSaving () -> UInt8 {
     return 0 ;
   }
 
-  //···················································································································*
+  //····················································································································
 
   func compressDataOnSaving () -> EBDocumentCompressionEnum {
     return EBDocumentCompressionEnum.EBDocumentBZ2Compression ;
   }
 
-  //···················································································································*
+  //····················································································································
 
   func hookOfWillSave () {
   }
 
-  //···················································································································*
-  //    dataOfType                                                                                                     *
-  //···················································································································*
+  //····················································································································
 
+  
   override func dataOfType (typeName: String?) throws -> NSData {
   //---
     hookOfWillSave ()
-  //--- Add to metadata dictionary the witdth and the height of main window
+  //--- Store the document version to metadata dictionary
+    var version = mVersionObserver.propval
+    switch mVersionShouldChangeObserver.prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let shouldChange) :
+      if shouldChange {
+        version += 1
+        mVersionObserver.setProp (version)
+        mVersionShouldChangeObserver.updateStartUpSignature ()
+      }
+    }
+    mMetadataDictionary.setObject (NSNumber (unsignedInteger:version), forKey:EBVersion)
+  //--- Add the witdth and the height of main window to metadata dictionary
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
       if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
         let windowSize = unwrappedWindowForSheet.frame.size ;
@@ -159,7 +133,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   //---
     let fileData = NSMutableData ()
-    var trace : String = ""
+    var trace : String? = nil
   //--- Append signature
     fileData.writeSignature (&trace)
   //--- Write status
@@ -198,7 +172,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     return fileData ;
   }
 
-  //···················································································································*
+  //····················································································································
 
   func dataForSavingFromRootObject () throws -> NSData {
     let objectsToSaveArray : Array<EBManagedObject> = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)
@@ -223,9 +197,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     )
   }
 
-  //···················································································································*
-  //    readFromData                                                                                                   *
-  //···················································································································*
+  //····················································································································
+  //    READ DOCUMENT FROM FILE
+  //····················································································································
 
   override func readFromData (data: NSData?, ofType typeName: String?) throws {
     undoManager?.disableUndoRegistration ()
@@ -246,7 +220,10 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       format:nil
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
-     //  NSLog (@"mReadMetadataDictionary %@", mReadMetadataDictionary) ;
+  //--- Read version from file
+    if let versionNumber = mMetadataDictionary.objectForKey (EBVersion) as? NSNumber {
+      mVersionObserver.setProp (versionNumber.integerValue)
+    }
   //--- Read data dictionary
     let dataFormat = dataScanner.parseByte ()
     switch dataFormat {
@@ -254,7 +231,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       let data = dataScanner.parseAutosizedData ()
       try readManagedObjectsFromData (data)
     default:
-      NSLog ("unknowm data format: %u", dataFormat)
+      NSLog ("unknown data format: %u", dataFormat)
     }
 /*    BOOL legacyDataWithoutConverterError = NO ;
     if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed
@@ -355,11 +332,11 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     undoManager?.enableUndoRegistration ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   let logReadFileDuration = false
 
-  //···················································································································*
+  //····················································································································
 
   func readManagedObjectsFromData (inData : NSData) throws {
     let startDate = NSDate ()
@@ -373,7 +350,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       NSLog ("Dictionary array: +%g s", timeTaken)
     }
     let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)
-    var progress : EBDocumentReadProgress?
+    var progress : EBDocumentReadProgress? = nil
     if dictionaryArray.count > 10000 {
       progress = EBDocumentReadProgress (title:lastComponentOfFileName.stringByDeletingPathExtension,
                                          dataLength:dictionaryArray.count * 2,
@@ -416,8 +393,8 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     var wait = true
     while wait {
       dispatch_semaphore_wait (semaphore, DISPATCH_TIME_FOREVER)
-      if let uwProgess = progress {
-        wait = uwProgess.displayAndTestWaiting ()
+      if progress != nil {
+        wait = progress!.displayAndTestWaiting ()
       }else{
         wait = false
       }
@@ -425,9 +402,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     progress?.orderOut ()
   }
 
-  //···················································································································*
-  //   showWindows                                                                                                     *
-  //···················································································································*
+  //····················································································································
+  //   showWindows
+  //····················································································································
 
   override func showWindows () {
     super.showWindows ()
@@ -445,9 +422,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   }
 
-  //···················································································································*
-  //   C H E C K    E N T I T Y   R E A C H A B I L I T Y                                                              *
-  //···················································································································*
+  //····················································································································
+  //   C H E C K    E N T I T Y   R E A C H A B I L I T Y
+  //····················································································································
 
   @IBAction func checkEntityReachability (AnyObject!) {
     if let rootObject = mRootObject, window = windowForSheet {
@@ -455,21 +432,20 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   }
 
-  //···················································································································*
-  //   showObjectExplorerWindow:                                                                                       *
-  //···················································································································*
+  //····················································································································
+  //   showObjectExplorerWindow:
+  //····················································································································
 
   @IBAction func showObjectExplorerWindow (AnyObject!) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
     mExplorerWindow?.makeKeyAndOrderFront (nil)
-//    mRootObject?.showExplorerWindow ()
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //   createAndPopulateObjectExplorerWindow                                                                           *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
+  //   createAndPopulateObjectExplorerWindow
+  //····················································································································
 
   func createAndPopulateObjectExplorerWindow () {
   //-------------------------------------------------- Create Window
@@ -505,9 +481,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     mExplorerWindow!.contentView = sw
   }
 
-  //-------------------------------------------------------------------------------------------------------------------*
-  //    populateExplorerWindow                                                                                         *
-  //-------------------------------------------------------------------------------------------------------------------*
+  //····················································································································
+  //    populateExplorerWindow
+  //····················································································································
 
   var mExplorerWindow : NSWindow?
   var mValueExplorer : NSButton? {
@@ -530,69 +506,153 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   }
   
-  //···················································································································*
-  //   removeWindowController                                                                                          *
-  //···················································································································*
+  //····················································································································
+  //    windowControllerDidLoadNib
+  //····················································································································
+
+  override func windowControllerDidLoadNib (aController: NSWindowController) {
+    super.windowControllerDidLoadNib (aController)
+  //--- Signature obbserver
+    mRootObject?.setSignatureObserver (mSignatureObserver)
+    mSignatureObserver.setRootObject (mRootObject!)
+  //--- Version did change observer
+    mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)
+    mSignatureObserver.addObserver (mVersionShouldChangeObserver, postEvent:true)
+  //--- Get version from metadadictionary
+    let possibleVersion = mMetadataDictionary.objectForKey ("EBVersion")
+    if let versionNumber = possibleVersion as? NSNumber {
+      let version : Int = versionNumber.integerValue
+      mVersionObserver.setProp (version)
+    }
+  //--- Add Debug menu items ?
+    if !gDebugMenuItemsAdded {
+      gDebugMenuItemsAdded = true
+      var menuItem = NSMenuItem (
+        title:"Explore document",
+        action:"showObjectExplorerWindow:",
+        keyEquivalent:""
+      )
+      addItemToDebugMenu (menuItem)
+      menuItem = NSMenuItem (
+        title:"Check Relationships",
+        action:"checkRelationships:",
+        keyEquivalent:""
+      )
+      addItemToDebugMenu (menuItem)
+      menuItem = NSMenuItem (
+        title:"Check All Objects are Reachable",
+        action:"checkEntityReachability:",
+        keyEquivalent:""
+      )
+      addItemToDebugMenu (menuItem)
+    }
+  //-------------- Check relationships
+/*      NSUserDefaultsController * sudc = [NSUserDefaultsController sharedUserDefaultsController] ;
+      const BOOL check = [[[sudc values] value_for_key:@"checkDocumentRelationships"] boolValue] ;
+      if (check) {
+        [self.windowForSheet makeKeyAndOrderFront:nil] ;
+        [self checkRelationships:nil] ;
+      }*/
+  }
+
+  //····················································································································
+  //   removeWindowController
+  //····················································································································
 
   func removeUserInterface () {
+    mSignatureObserver.removeObserver (mVersionShouldChangeObserver, postEvent:true)
     mManagedObjectContext.reset ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   override func removeWindowController (inWindowController : NSWindowController) {
     dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { self.removeUserInterface () }
     super.removeWindowController (inWindowController)
   }
 
-  //···················································································································*
+  //····················································································································
+  //    Signature observer
+  //····················································································································
+
+  private var mSignatureObserver = EBSignatureObserverEvent ()
+
+  //····················································································································
+
+  final func signatureObserver () -> EBSignatureObserverEvent {
+    return mSignatureObserver
+  }
+
+  //····················································································································
+  //    Version observer
+  //····················································································································
+
+  private var mVersionObserver = EBStoredProperty_Int (0)
+
+  //····················································································································
+
+  final func versionObserver () -> EBStoredProperty_Int {
+    return mVersionObserver
+  }
+
+  //····················································································································
+  //    Version observer
+  //····················································································································
+
+  private var mVersionShouldChangeObserver = EBVersionShouldChangeObserver ()
+
+  //····················································································································
+
+  final func versionShouldChangeObserver () -> EBVersionShouldChangeObserver {
+    return mVersionShouldChangeObserver
+  }
+
+  //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//     NSMutableData extension                                                                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//     NSMutableData extension
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension NSMutableData {
-  func writeSignature (inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+  func writeSignature (inout trace: String?) {
+    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
       var byte : UInt8 = UInt8 (c)
       appendBytes (&byte, length:1)
-      trace += String (format:"%02hhX ", byte)
+      trace? += String (format:"%02hhX ", byte)
     }
-    trace += "\n"
+    trace? += "\n"
   }
 
-  //···················································································································*
+  //····················································································································
 
   func writeAutosizedData (inData: NSData,
-                           inout trace: String) {
+                           inout trace: String?) {
     writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     appendData (inData)
-    trace += "(data, length \(inData.length))\n"
+    trace? += "(data, length \(inData.length))\n"
   }
 
-  //···················································································································*
+  //····················································································································
 
   func writeByte (inByte: UInt8,
-                  inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += String (format:"%02hhX ", inByte)
+                  inout trace: String?) {
+    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace? += String (format:"%02hhX ", inByte)
     var byte = inByte
     appendBytes (&byte, length:1)
-    trace += "\n"
+    trace? += "\n"
   }
 
-  //···················································································································*
+  //····················································································································
 
   func writeAutosizedUnsigned (inValue: UInt64,
-                               inout trace: String) {
-    trace += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    trace += "U "
+                               inout trace: String?) {
+    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+    trace? += "U "
     var value = inValue
     repeat{
       var byte : UInt8 = UInt8 (value & 0x7F)
@@ -600,21 +660,19 @@ extension NSMutableData {
       if (value != 0) {
         byte |= 0x80
       }
-      trace += String (format:"%02hhX ", byte)
+      trace? += String (format:"%02hhX ", byte)
       appendBytes (&byte, length:1)
     }while value != 0
-    trace += "\n"
+    trace? += "\n"
   }
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//     EBDocumentReadProgress                                                                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//     EBDocumentReadProgress
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBDocumentReadProgress {
+private struct EBDocumentReadProgress {
   private var mProgressWindow : NSWindow?
   private var mProgressIndicator : NSProgressIndicator?
   private var mTotal : Double
@@ -623,9 +681,9 @@ class EBDocumentReadProgress {
   private var mMutex : dispatch_semaphore_t
   private var mDisplayCounter = 0
   
-  //···················································································································*
-  //  init                                                                                                             *
-  //···················································································································*
+  //····················································································································
+  //  init
+  //····················································································································
 
   init (title : String, dataLength : Int, semaphore : dispatch_semaphore_t) {
     mMutex = dispatch_semaphore_create (1)
@@ -686,11 +744,11 @@ class EBDocumentReadProgress {
     }
   }
 
-  //···················································································································*
-  //  displayAndTestWaiting                                                                                            *
-  //···················································································································*
+  //····················································································································
+  //  displayAndTestWaiting
+  //····················································································································
 
-  func displayAndTestWaiting () -> Bool {
+  mutating func displayAndTestWaiting () -> Bool {
     mProgressIndicator?.doubleValue = mCurrentProgress
     mProgressIndicator?.display ()
     dispatch_semaphore_wait (mMutex, DISPATCH_TIME_FOREVER)
@@ -700,11 +758,11 @@ class EBDocumentReadProgress {
     return !stop
   }
 
-  //···················································································································*
-  //  setProgress                                                                                                      *
-  //···················································································································*
+  //····················································································································
+  //  setProgress
+  //····················································································································
 
-  func setProgress (inValue : Int) {
+  mutating func setProgress (inValue : Int) {
     let currentProgress = Double (inValue) / mTotal
     if (currentProgress - mCurrentProgress) > 0.02 {
       dispatch_semaphore_wait (mMutex, DISPATCH_TIME_FOREVER)
@@ -715,16 +773,16 @@ class EBDocumentReadProgress {
     }
   }
   
-  //···················································································································*
-  //  orderOut                                                                                                         *
-  //···················································································································*
+  //····················································································································
+  //  orderOut
+  //····················································································································
 
   func orderOut () {
-    mProgressWindow?.orderOut (self)
+    mProgressWindow?.orderOut (nil)
   }
 
-  //···················································································································*
+  //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

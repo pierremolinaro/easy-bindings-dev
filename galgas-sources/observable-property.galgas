@@ -11,6 +11,8 @@ enum @observablePropertyAST {
   case controllerProperty (@lstring controllerName @lstring propertyName)
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
   case signatureProperty (@location location)
+  case versionProperty (@location location)
+  case versionShouldChangeProperty (@location location)
 }
 
 #......................................................................................................................*
@@ -74,6 +76,12 @@ syntax extension easyBindings_syntax {
     or
       $signature$
       outObservablePropertyAST = .signatureProperty {!location:.here}
+    or
+      $version$
+      outObservablePropertyAST = .versionProperty {!location:.here}
+    or
+      $versionShouldChange$
+      outObservablePropertyAST = .versionShouldChangeProperty {!location:.here}
     end
   }
 
@@ -122,7 +130,11 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     outResult = inSelf + "." + controllerName + "." + propertyName + "." + secondaryPropertyName
   case signatureProperty (*) :
-    outResult = "mSignatureController"
+    outResult = "self.signatureObserver ()"
+  case versionProperty (*) :
+    outResult = "self.versionObserver ()"
+  case versionShouldChangeProperty (*) :
+    outResult = "self.versionShouldChangeObserver ()"
   end  
 }
 
@@ -145,6 +157,10 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   case controllerSecondaryProperty (* * *) :
     outResult = true
   case signatureProperty (*) :
+    outResult = true
+  case versionProperty (*) :
+    outResult = true
+  case versionShouldChangeProperty (*) :
     outResult = true
   end  
 }
@@ -174,6 +190,10 @@ getter @observablePropertyAST isPropertyDefined
     outResult = [inObservableProperties hasKey !controllerName.string]
   case signatureProperty (*) :
     outResult = true
+  case versionProperty (*) :
+    outResult = true
+  case versionShouldChangeProperty (*) :
+    outResult = true
   end  
 }
 
@@ -197,6 +217,10 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = secondaryPropertyName.location
   case signatureProperty (@location location) :
     outResult = location
+  case versionProperty (@location location) :
+    outResult = location
+  case versionShouldChangeProperty (@location location) :
+    outResult = location
   end  
 }
 
@@ -214,6 +238,16 @@ method @observablePropertyAST analyzeObservableProperty
   !@string outSwiftTypeStringForTransientFunctionArgument
 {
   switch self
+  case versionShouldChangeProperty (*) :
+    outKind = .transient
+    outMultiplicity = .single
+    outType = .boolType
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+  case versionProperty (*) :
+    outKind = .transient
+    outMultiplicity = .single
+    outType = .integerType
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case signatureProperty (*) :
     outKind = .transient
     outMultiplicity = .single

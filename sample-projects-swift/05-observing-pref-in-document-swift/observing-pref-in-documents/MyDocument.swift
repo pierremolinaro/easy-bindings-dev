@@ -36,12 +36,6 @@ import Cocoa
 
 
   //····················································································································
-  //    Selection Controllers
-  //····················································································································
-
-  private var mSignatureController = EBSignatureObserverEvent ()
-
-  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -76,8 +70,6 @@ import Cocoa
   //····················································································································
 
   override func windowControllerDidLoadNib (aController: NSWindowController) {
-    rootObject.setSignatureObserver (mSignatureController)
-    mSignatureController.setRootObject (rootObject)
   //--------------------------- Outlet checking
     if nil == docStringTextField {
       presentErrorWindow (__FILE__,

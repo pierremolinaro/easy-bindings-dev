@@ -1,6 +1,63 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBVersionShouldChangeObserver
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBVersionShouldChangeObserver) class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObserverProtocol {
+
+  private weak var mSignatureObserver : EBSignatureObserverEvent?
+  private var mSignatureAtStartUp : UInt32 = 0
+
+  override init () {
+    super.init ()
+    self.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        return .singleSelection (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func setSignatureObserver (signatureObserver : EBSignatureObserverEvent) {
+    mSignatureObserver = signatureObserver
+    mSignatureAtStartUp = signatureObserver.signature ()
+  }
+
+  //····················································································································
+
+  final func updateStartUpSignature () {
+    if let signatureObserver = mSignatureObserver {
+      mSignatureAtStartUp = signatureObserver.signature ()
+      postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  func signature () -> UInt32 {
+    if let signatureObserver = mSignatureObserver {
+      return signatureObserver.signature ()
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+
+  func clearSignatureCache () {
+    postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBSignatureObserverProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
