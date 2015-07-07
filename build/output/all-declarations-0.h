@@ -116,6 +116,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_toOne,
    kToken_transient,
    kToken_validates,
+   kToken_version,
+   kToken_versionShouldChange,
    kToken_xcodeproject,
    kToken_yes,
    kToken_enabled,
@@ -173,7 +175,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 62 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 64 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -3592,7 +3594,9 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_prefsProperty,
     kEnum_controllerProperty,
     kEnum_controllerSecondaryProperty,
-    kEnum_signatureProperty
+    kEnum_signatureProperty,
+    kEnum_versionProperty,
+    kEnum_versionShouldChangeProperty
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -3650,6 +3654,12 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : static GALGAS_observablePropertyAST constructor_signatureProperty (const class GALGAS_location & inOperand0
                                                                               COMMA_LOCATION_ARGS) ;
 
+  public : static GALGAS_observablePropertyAST constructor_versionProperty (const class GALGAS_location & inOperand0
+                                                                            COMMA_LOCATION_ARGS) ;
+
+  public : static GALGAS_observablePropertyAST constructor_versionShouldChangeProperty (const class GALGAS_location & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
+
 //--------------------------------- Implementation of reader 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
@@ -3698,6 +3708,14 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_versionProperty (class GALGAS_location & outArgument0,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_versionShouldChangeProperty (class GALGAS_location & outArgument0,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
@@ -3716,6 +3734,10 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isSelfProperty (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isSignatureProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isVersionProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool reader_isVersionShouldChangeProperty (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -3872,6 +3894,38 @@ class cEnumAssociatedValues_observablePropertyAST_signatureProperty : public cEn
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_observablePropertyAST_signatureProperty (void) {}
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumAssociatedValues_observablePropertyAST_versionProperty : public cEnumAssociatedValues {
+  public : const GALGAS_location mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_observablePropertyAST_versionProperty (const GALGAS_location & inAssociatedValue0
+                                                                        COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_versionProperty (void) {}
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty : public cEnumAssociatedValues {
+  public : const GALGAS_location mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty (const GALGAS_location & inAssociatedValue0
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty (void) {}
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*

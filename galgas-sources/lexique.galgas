@@ -47,6 +47,8 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "toOne",
   "transient",
   "validates",
+  "version",
+  "versionShouldChange",
   "xcodeproject",
   "yes"
 }
