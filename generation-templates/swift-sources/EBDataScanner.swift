@@ -1,6 +1,8 @@
 import Cocoa
 
-//---------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBDataScanner
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 struct EBDataScanner {
   private var mData : NSData
@@ -8,17 +10,13 @@ struct EBDataScanner {
   private var mReadOk : Bool = true
   private var mExpectedBytes : Array<UInt8> = []
 
-  //---------------------------------------------------------------------------*
-  //  init                                                                     *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   init (data: NSData) {
     mData = data
   }
 
-  //---------------------------------------------------------------------------*
-  //  ignoreBytes                                                              *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func ignoreBytes (inLengthToIgnore : Int) {
     if mReadOk {
@@ -26,9 +24,7 @@ struct EBDataScanner {
     }
   }
 
-  //---------------------------------------------------------------------------*
-  //  testAcceptByte                                                           *
-  //---------------------------------------------------------------------------*
+  //····················································································································
   // http://stackoverflow.com/questions/24067085/pointers-pointer-arithmetic-and-raw-data-in-swift
 
   mutating func testAcceptByte (inByte : UInt8) -> Bool {
@@ -55,9 +51,7 @@ struct EBDataScanner {
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  testAcceptFromByte                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func testAcceptFromByte (lowerBound: UInt8,
                                     upperBound: UInt8,
@@ -85,12 +79,9 @@ struct EBDataScanner {
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  acceptRequiredByte                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
-  mutating func acceptRequiredByte (inByte : UInt8,
-                                    sourceFile: String) {
+  mutating func acceptRequiredByte (inByte : UInt8) {
     if mReadOk {
       if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
@@ -106,16 +97,14 @@ struct EBDataScanner {
           for b in mExpectedBytes {
             message += String (format:"0x%02hhx, ", b)
           }
-          NSLog ("%s: invalid current byte (0x%02x): expected bytes:%@0x%02x", sourceFile, byte, message, inByte) ;
+          NSLog ("invalid current byte (0x%02x): expected bytes:%@0x%02x", byte, message, inByte) ;
           mReadOk = false
         }
       }
     }
   }
 
-  //---------------------------------------------------------------------------*
-  //  parseByte                                                                *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func parseByte () -> UInt8 {
     var result : UInt8 = 0
@@ -132,9 +121,7 @@ struct EBDataScanner {
     return result
   }
 
-  //---------------------------------------------------------------------------*
-  //  parseAutosizedUnsignedInteger                                            *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func parseAutosizedUnsignedInteger () -> UInt {
     var result : UInt = 0
@@ -157,33 +144,56 @@ struct EBDataScanner {
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  parseAutosizedData                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func parseAutosizedData () -> NSData {
-  var result = NSData ()
-  if mReadOk {
-    let dataLength : Int = Int (parseAutosizedUnsignedInteger ())
-    if (mReadIndex + dataLength) >= mData.length {
-      NSLog ("Read beyond end of data")
-      mReadOk = false
-    }else{
-      result = mData.subdataWithRange (NSMakeRange (mReadIndex, dataLength))
-      mReadIndex += dataLength
+    var result = NSData ()
+    if mReadOk {
+      let dataLength : Int = Int (parseAutosizedUnsignedInteger ())
+      if (mReadIndex + dataLength) >= mData.length {
+        NSLog ("Read beyond end of data")
+        mReadOk = false
+      }else{
+        result = mData.subdataWithRange (NSMakeRange (mReadIndex, dataLength))
+        mReadIndex += dataLength
+      }
     }
+    return result ;
   }
-  return result ;
-}
 
-  //---------------------------------------------------------------------------*
-  //  ok                                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
+
+  mutating func parseAutosizedString () -> String {
+    var result : String = ""
+    var ptr = UnsafePointer<UInt8> (mData.bytes)
+    ptr += mReadIndex
+    var stringLength = 0
+    var loop = true
+    while loop && mReadOk {
+      if (mReadIndex + stringLength) >= mData.length {
+         mReadOk = false
+      }else{
+        loop = ptr.memory != 0
+        ptr += 1
+        stringLength += 1
+      }
+    }
+    if (mReadOk) {
+      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength))
+      result = NSString (data:d, encoding: NSUTF8StringEncoding) as! String
+      mReadIndex += stringLength
+    }
+    return result
+  }
+
+  //····················································································································
 
   func ok () -> Bool {
     return mReadOk
   }
 
+  //····················································································································
+
 }
 
-//---------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

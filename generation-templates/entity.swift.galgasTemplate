@@ -619,8 +619,8 @@ end
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<EBManagedObject>) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+                                     inout managedObjectArray : Array<EBManagedObject>) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
@@ -628,7 +628,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 %    %!mToManyRelationshipName%.setProp (readEntityArrayFromDictionary (
       "%!mToManyRelationshipName%",
       inDictionary:inDictionary,
-      managedObjectArray:managedObjectArray
+      managedObjectArray:&managedObjectArray
     ) as! Array<%![mRelationshipType swiftTypeName]%>)\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
@@ -636,7 +636,7 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 %    %!mToOneRelationshipName%.prop = readEntityFromDictionary (
         "%!mToOneRelationshipName%",
         inDictionary:inDictionary,
-        managedObjectArray:managedObjectArray
+        managedObjectArray:&managedObjectArray
       ) as? %![mRelationshipType swiftTypeName]%\n%
   end
 end

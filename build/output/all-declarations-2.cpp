@@ -4024,61 +4024,61 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  override func setUpWithDictionary (inDictionary : NSDictionary,\n"
-    "                                     managedObjectArray : Array<EBManagedObject>) {\n"
-    "    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)\n" ;
-  GALGAS_uint index_23499_ (0) ;
+    "                                     inout managedObjectArray : Array<EBManagedObject>) {\n"
+    "    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)\n" ;
+  GALGAS_uint index_23506_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_simpleStoredPropertyListForGeneration enumerator_23499 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kEnumeration_up) ;
-    while (enumerator_23499.hasCurrentObject ()) {
+    cEnumerator_simpleStoredPropertyListForGeneration enumerator_23506 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kEnumeration_up) ;
+    while (enumerator_23506.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_23499.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_23506.current_mStoredPropertyName (HERE).stringValue () ;
       result << ".readFromDictionary (inDictionary, forKey:\"" ;
-      result << enumerator_23499.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_23506.current_mStoredPropertyName (HERE).stringValue () ;
       result << "\")\n" ;
-      index_23499_.increment () ;
-      enumerator_23499.gotoNextObject () ;
+      index_23506_.increment () ;
+      enumerator_23506.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_23640_ (0) ;
+  GALGAS_uint index_23647_ (0) ;
   if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toManyEntityRelationshipListForGeneration enumerator_23640 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
-    while (enumerator_23640.hasCurrentObject ()) {
+    cEnumerator_toManyEntityRelationshipListForGeneration enumerator_23647 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
+    while (enumerator_23647.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_23640.current_mToManyRelationshipName (HERE).stringValue () ;
+      result << enumerator_23647.current_mToManyRelationshipName (HERE).stringValue () ;
       result << ".setProp (readEntityArrayFromDictionary (\n"
         "      \"" ;
-      result << enumerator_23640.current_mToManyRelationshipName (HERE).stringValue () ;
+      result << enumerator_23647.current_mToManyRelationshipName (HERE).stringValue () ;
       result << "\",\n"
         "      inDictionary:inDictionary,\n"
-        "      managedObjectArray:managedObjectArray\n"
+        "      managedObjectArray:&managedObjectArray\n"
         "    ) as! Array<" ;
-      result << categoryReader_swiftTypeName (enumerator_23640.current_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 632)).stringValue () ;
+      result << categoryReader_swiftTypeName (enumerator_23647.current_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 632)).stringValue () ;
       result << ">)\n" ;
-      index_23640_.increment () ;
-      enumerator_23640.gotoNextObject () ;
+      index_23647_.increment () ;
+      enumerator_23647.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_23926_ (0) ;
+  GALGAS_uint index_23934_ (0) ;
   if (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toOneEntityRelationshipListForGeneration enumerator_23926 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
-    while (enumerator_23926.hasCurrentObject ()) {
-      const enumGalgasBool test_7 = enumerator_23926.current_mInverseRelationMultiplicity (HERE).reader_isSingle (SOURCE_FILE ("entity.swift.galgasTemplate", 635)).boolEnum () ;
+    cEnumerator_toOneEntityRelationshipListForGeneration enumerator_23934 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
+    while (enumerator_23934.hasCurrentObject ()) {
+      const enumGalgasBool test_7 = enumerator_23934.current_mInverseRelationMultiplicity (HERE).reader_isSingle (SOURCE_FILE ("entity.swift.galgasTemplate", 635)).boolEnum () ;
       if (kBoolTrue == test_7) {
         result << "    " ;
-        result << enumerator_23926.current_mToOneRelationshipName (HERE).stringValue () ;
+        result << enumerator_23934.current_mToOneRelationshipName (HERE).stringValue () ;
         result << ".prop = readEntityFromDictionary (\n"
           "        \"" ;
-        result << enumerator_23926.current_mToOneRelationshipName (HERE).stringValue () ;
+        result << enumerator_23934.current_mToOneRelationshipName (HERE).stringValue () ;
         result << "\",\n"
           "        inDictionary:inDictionary,\n"
-          "        managedObjectArray:managedObjectArray\n"
+          "        managedObjectArray:&managedObjectArray\n"
           "      ) as\? " ;
-        result << categoryReader_swiftTypeName (enumerator_23926.current_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 640)).stringValue () ;
+        result << categoryReader_swiftTypeName (enumerator_23934.current_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 640)).stringValue () ;
         result << "\n" ;
       }else if (kBoolFalse == test_7) {
       }
-      index_23926_.increment () ;
-      enumerator_23926.gotoNextObject () ;
+      index_23934_.increment () ;
+      enumerator_23934.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -4091,15 +4091,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       "\n"
       "  override func resetToManyRelationships () {\n"
       "    super.resetToManyRelationships ()\n" ;
-    GALGAS_uint index_24676_ (0) ;
+    GALGAS_uint index_24685_ (0) ;
     if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-      cEnumerator_toManyEntityRelationshipListForGeneration enumerator_24676 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
-      while (enumerator_24676.hasCurrentObject ()) {
+      cEnumerator_toManyEntityRelationshipListForGeneration enumerator_24685 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
+      while (enumerator_24685.hasCurrentObject ()) {
         result << "    " ;
-        result << enumerator_24676.current_mToManyRelationshipName (HERE).stringValue () ;
+        result << enumerator_24685.current_mToManyRelationshipName (HERE).stringValue () ;
         result << ".setProp (Array ())\n" ;
-        index_24676_.increment () ;
-        enumerator_24676.gotoNextObject () ;
+        index_24685_.increment () ;
+        enumerator_24685.gotoNextObject () ;
       }
     }
     result << "  }\n"
@@ -4114,15 +4114,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       "\n"
       "  override func resetToOneRelationships () {\n"
       "    super.resetToOneRelationships ()\n" ;
-    GALGAS_uint index_25189_ (0) ;
+    GALGAS_uint index_25198_ (0) ;
     if (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-      cEnumerator_toOneEntityRelationshipListForGeneration enumerator_25189 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
-      while (enumerator_25189.hasCurrentObject ()) {
+      cEnumerator_toOneEntityRelationshipListForGeneration enumerator_25198 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
+      while (enumerator_25198.hasCurrentObject ()) {
         result << "    " ;
-        result << enumerator_25189.current_mToOneRelationshipName (HERE).stringValue () ;
+        result << enumerator_25198.current_mToOneRelationshipName (HERE).stringValue () ;
         result << ".setProp (nil)\n" ;
-        index_25189_.increment () ;
-        enumerator_25189.gotoNextObject () ;
+        index_25198_.increment () ;
+        enumerator_25198.gotoNextObject () ;
       }
     }
     result << "  }\n"
@@ -4135,30 +4135,30 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "  override func accessibleObjects (inout objects : Array<EBManagedObject>) {\n"
     "    super.accessibleObjects (&objects)\n" ;
-  GALGAS_uint index_25678_ (0) ;
+  GALGAS_uint index_25687_ (0) ;
   if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toManyEntityRelationshipListForGeneration enumerator_25678 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
-    while (enumerator_25678.hasCurrentObject ()) {
+    cEnumerator_toManyEntityRelationshipListForGeneration enumerator_25687 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
+    while (enumerator_25687.hasCurrentObject ()) {
       result << "    for managedObject : EBManagedObject in " ;
-      result << enumerator_25678.current_mToManyRelationshipName (HERE).stringValue () ;
+      result << enumerator_25687.current_mToManyRelationshipName (HERE).stringValue () ;
       result << ".propval {\n"
         "      objects.append (managedObject)\n"
         "    }\n" ;
-      index_25678_.increment () ;
-      enumerator_25678.gotoNextObject () ;
+      index_25687_.increment () ;
+      enumerator_25687.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_25847_ (0) ;
+  GALGAS_uint index_25856_ (0) ;
   if (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toOneEntityRelationshipListForGeneration enumerator_25847 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
-    while (enumerator_25847.hasCurrentObject ()) {
+    cEnumerator_toOneEntityRelationshipListForGeneration enumerator_25856 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kEnumeration_up) ;
+    while (enumerator_25856.hasCurrentObject ()) {
       result << "    if let object = " ;
-      result << enumerator_25847.current_mToOneRelationshipName (HERE).stringValue () ;
+      result << enumerator_25856.current_mToOneRelationshipName (HERE).stringValue () ;
       result << ".propval {\n"
         "      objects.append (object)\n"
         "    }\n" ;
-      index_25847_.increment () ;
-      enumerator_25847.gotoNextObject () ;
+      index_25856_.increment () ;
+      enumerator_25856.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -4169,15 +4169,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "  override func computeSignature () -> UInt32 {\n"
     "    var crc = super.computeSignature ()\n" ;
-  GALGAS_uint index_26345_ (0) ;
+  GALGAS_uint index_26354_ (0) ;
   if (in_SIGNATURE_5F_SET.isValid ()) {
-    cEnumerator_stringset enumerator_26345 (in_SIGNATURE_5F_SET, kEnumeration_up) ;
-    while (enumerator_26345.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_26354 (in_SIGNATURE_5F_SET, kEnumeration_up) ;
+    while (enumerator_26354.hasCurrentObject ()) {
       result << "    crc.accumulateUInt32 (" ;
-      result << enumerator_26345.current_key (HERE).stringValue () ;
+      result << enumerator_26354.current_key (HERE).stringValue () ;
       result << ".signature ())\n" ;
-      index_26345_.increment () ;
-      enumerator_26345.gotoNextObject () ;
+      index_26354_.increment () ;
+      enumerator_26354.gotoNextObject () ;
     }
   }
   result << "    return crc\n"
