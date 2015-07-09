@@ -367,7 +367,7 @@ func presentErrorWindow (file : String!,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension Array {
-  func objectAtIndex (index:Int, file:String, line:Int) -> T {
+  func objectAtIndex (index:Int, file:String, line:Int) -> Element {
     if index < 0 {
       NSLog ("Negative index %d in '%@' line %d", index, file, line)
     }else if index >= count {
@@ -517,7 +517,7 @@ class EBSimpleController : EBOutletEvent {
   //   deleteWindowAction
   //····················································································································
 
-  final func deleteWindowAction (AnyObject) {
+  final func deleteWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 

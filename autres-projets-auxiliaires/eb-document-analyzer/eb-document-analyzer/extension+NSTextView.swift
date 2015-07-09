@@ -52,7 +52,7 @@ extension NSTextView {
 
   func appendMessageString (inString : String) {
     let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.systemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSFontAttributeName : NSFont.systemFontOfSize (NSFont.systemFontSize ()),
       NSForegroundColorAttributeName : NSColor.blackColor()
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)
@@ -68,7 +68,7 @@ extension NSTextView {
 
   func appendMessageString (inString : String, color:NSColor) {
     let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.systemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSFontAttributeName : NSFont.systemFontOfSize (NSFont.systemFontSize ()),
       NSForegroundColorAttributeName : color
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)

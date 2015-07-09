@@ -235,10 +235,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "simple-document/Info.plist";
+				OTHER_SWIFT_FLAGS = "-emit-ir";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.simple-document";
 				PRODUCT_NAME = "simple-document";
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
 			};
 			name = Default;
 		};
