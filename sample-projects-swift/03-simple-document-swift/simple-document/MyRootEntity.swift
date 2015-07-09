@@ -366,7 +366,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func computeSignature () -> UInt32 {
-    var crc = super.computeSignature ()
+    let crc = super.computeSignature ()
     return crc
   }
 

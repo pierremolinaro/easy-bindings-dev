@@ -27,28 +27,22 @@ func analyze (inFilePath : String, textView : NSTextView) throws {
   textView.appendMessageString ("Size: \(fileData.length) bytes\n")
   textView.appendMessageString ("------------------------------ File contents\n")
 //---- Define input data scanner
-  var dataScanner = DataScanner (data:fileData)
+  var dataScanner = DataScanner (data:fileData, textView:textView)
 //--- Check Signature
-  dataScanner.printAddress (textView)
   for c in kFormatSignature.utf8 {
-    textView.appendByte (c)
-    dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)
+    dataScanner.acceptRequiredByte (c, comment:"Magic tag")
   }
-  textView.appendMessageString (" | Magic tag\n")
 //--- Read Status
-  dataScanner.printAddress (textView)
+  dataScanner.printAddress ()
   let meadMetadataStatus = dataScanner.parseByte ()
   textView.appendByte (meadMetadataStatus)
   textView.appendMessageString (" | Status\n")
 //--- if ok, check byte is 1
-  dataScanner.printAddress (textView)
-  dataScanner.acceptRequiredByte (1, sourceFile:__FUNCTION__)
-  textView.appendByte (1)
-  textView.appendMessageString (" | Required byte\n")
+  dataScanner.acceptRequiredByte (1, comment:"Required byte")
 //--- Read metadata dictionary
-  let dictionaryData = dataScanner.parseAutosizedData (textView, lengthComment:"Metadata dictionary length", dataComment:"Metadata dictionary")
+  let dictionaryData = dataScanner.parseAutosizedData ("Metadata dictionary length", dataComment:"Metadata dictionary")
 //--- Read data format
-  dataScanner.printAddress (textView)
+  dataScanner.printAddress ()
   let dataFormat = dataScanner.parseByte ()
   textView.appendByte (dataFormat)
   switch dataFormat {
@@ -60,67 +54,9 @@ func analyze (inFilePath : String, textView : NSTextView) throws {
     textView.appendErrorString (" | Unknown data format\n")
   }
 //--- Read data
-  let data = dataScanner.parseAutosizedData (textView, lengthComment:"Encoded data length", dataComment:"Encoded data")
-/*    BOOL legacyDataWithoutConverterError = NO ;
-  if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed
-    NSData * data = [dataScanner parseAutosizedData] ;
-    if (NULL == legacyFormatLoader) {
-      data = nil ;
-      legacyDataWithoutConverterError = YES ;
-    }else if (nil != data) {
-      mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
-    }
-  }else if ([dataScanner testAcceptByte:4]) { // Legacy data, ZLIB Compressed
-    NSData * compressedData = [dataScanner parseAutosizedData] ;
-    NSData * data = nil ;
-    if (nil != compressedData) {
-       data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-    }
-    if (NULL == legacyFormatLoader) {
-      legacyDataWithoutConverterError = YES ;
-      data = nil ;
-    }else if (nil != data) {
-      mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
-    }
-  }else if ([dataScanner testAcceptByte:2]) { // Legacy data, BZ2 compressed
-    NSData * compressedData = [dataScanner parseAutosizedData] ;
-    NSData * data = nil ;
-    if (nil != compressedData) {
-      data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-    }
-    if (NULL == legacyFormatLoader) {
-      legacyDataWithoutConverterError = YES ;
-      data = nil ;
-    }else if (nil != data) {
-      mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
-    }
-  }else if ([dataScanner testAcceptByte:6]) { // Not compressed
-    NSData * data = [dataScanner parseAutosizedData] ;
-    if (nil != data) {
-      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-      macroRetain (mRootObject) ;
-    }
-  }else if ([dataScanner testAcceptByte:7]) { // ZLIB Compressed
-    NSData * compressedData = [dataScanner parseAutosizedData] ;
-    if (nil != compressedData) {
-      NSData * data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-      macroRetain (mRootObject) ;
-    }
-  }else{
-    [dataScanner acceptRequiredByte:5 sourceFile:__FUNCTION__] ; // BZ2 compressed
-    NSData * compressedData = [dataScanner parseAutosizedData] ;
-    if (nil != compressedData) {
-      NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-      mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-      macroRetain (mRootObject) ;
-    }
-  }*/
+  let data = dataScanner.parseAutosizedData ("Encoded data length", dataComment:"Encoded data")
 //--- if ok, check final byte (0)
-  dataScanner.printAddress (textView)
-  dataScanner.acceptRequiredByte (0, sourceFile:__FUNCTION__)
-  textView.appendByte (0)
-  textView.appendSuccessString (" | End of file\n")
+  dataScanner.acceptRequiredByte (0, comment:"End of file")
 //--- Display metadata dictionary
   textView.appendMessageString ("------------------------------ Metadata dictionary\n")
   let metadataDictionary = try NSPropertyListSerialization.propertyListWithData (dictionaryData,

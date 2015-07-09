@@ -31,7 +31,7 @@
 		CF9345B91B4D5CC800CA99F8 /* eb-document-analyzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eb-document-analyzer-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF9345BA1B4D5CC900CA99F8 /* bz2-uncompress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "bz2-uncompress.m"; sourceTree = "<group>"; };
 		CF9345BB1B4D5CC900CA99F8 /* bz2-uncompress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bz2-uncompress.h"; sourceTree = "<group>"; };
-		CFDF7E071B4D616600C75668 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = ../../../../usr/lib/libbz2.1.0.dylib; sourceTree = "<group>"; };
+		CFDF7E071B4D616600C75668 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = /usr/lib/libbz2.1.0.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +49,6 @@
 		CF9345981B4D212F00CA99F8 = {
 			isa = PBXGroup;
 			children = (
-				CFDF7E071B4D616600C75668 /* libbz2.1.0.dylib */,
 				CF9345A31B4D212F00CA99F8 /* eb-document-analyzer */,
 				CF9345A21B4D212F00CA99F8 /* Products */,
 			);
@@ -66,6 +65,7 @@
 		CF9345A31B4D212F00CA99F8 /* eb-document-analyzer */ = {
 			isa = PBXGroup;
 			children = (
+				CFDF7E071B4D616600C75668 /* libbz2.1.0.dylib */,
 				CF9345B11B4D25FB00CA99F8 /* analyze-document.swift */,
 				CF9345B71B4D5A5000CA99F8 /* legacy-bz2-data-analysis.swift */,
 				CF9345BA1B4D5CC900CA99F8 /* bz2-uncompress.m */,

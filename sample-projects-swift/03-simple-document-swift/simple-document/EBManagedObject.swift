@@ -173,7 +173,7 @@ var gAllocatedEntityCount = 0
   //   showObjectWindowFromExplorerButton
   //···················································································································*
 
-  func showObjectWindowFromExplorerButton (AnyObject) {
+  func showObjectWindowFromExplorerButton (_: AnyObject) {
     showExplorerWindow ()
   }
   
@@ -181,7 +181,7 @@ var gAllocatedEntityCount = 0
   //   deleteWindowAction
   //···················································································································*
 
-  func deleteWindowAction (AnyObject) {
+  func deleteWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 

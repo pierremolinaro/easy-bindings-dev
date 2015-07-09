@@ -1,28 +1,28 @@
 import Cocoa
 
-//---------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 struct DataScanner {
   private var mData : NSData
+  private var mTextView : NSTextView
   private var mReadIndex : Int = 0
   private var mReadOk : Bool = true
   private var mExpectedBytes : Array<UInt8> = []
 
-  //---------------------------------------------------------------------------*
-  //  init                                                                     *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
-  init (data: NSData) {
+  init (data: NSData, textView : NSTextView) {
     mData = data
+    mTextView = textView
   }
 
-  func printAddress (textView : NSTextView) {
-    textView.appendMessageString (String (format:"%04X %04X:", mReadIndex >> 16, mReadIndex & 0xFFFF))
+  //····················································································································
+
+  func printAddress () {
+    mTextView.appendMessageString (String (format:"%04X %04X:", mReadIndex >> 16, mReadIndex & 0xFFFF))
   }
 
-  //---------------------------------------------------------------------------*
-  //  ignoreBytes                                                              *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func ignoreBytes (inLengthToIgnore : Int) {
     if mReadOk {
@@ -30,12 +30,10 @@ struct DataScanner {
     }
   }
 
-  //---------------------------------------------------------------------------*
-  //  testAcceptByte                                                           *
-  //---------------------------------------------------------------------------*
+  //····················································································································
   // http://stackoverflow.com/questions/24067085/pointers-pointer-arithmetic-and-raw-data-in-swift
 
-  mutating func testAcceptByte (inByte : UInt8) -> Bool {
+  mutating func testAcceptByte (inByte : UInt8, comment : String) -> Bool {
     var result = mReadOk
     if result {
       if mReadIndex >= mData.length {
@@ -44,11 +42,11 @@ struct DataScanner {
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
         let byte = UnsafePointer<UInt8> (byteAsData).memory
-     //   let ptr = offsetPointer (mData.bytes, CInt(mReadIndex))
-     //   var array : COpaquePointer = mData.bytes ()
-     //   var byteArray : CConstPointer<UInt8> = CConstPointer<UInt8> (mData.bytes ())
         result = byte == inByte
         if result {
+          printAddress ()
+          mTextView.appendByte (inByte)
+          mTextView.appendMessageString (" | \(comment)\n")
           mReadIndex += 1
           mExpectedBytes = []
         }else{
@@ -59,9 +57,7 @@ struct DataScanner {
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  testAcceptFromByte                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func testAcceptFromByte (lowerBound: UInt8,
                                     upperBound: UInt8,
@@ -89,12 +85,11 @@ struct DataScanner {
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  acceptRequiredByte                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func acceptRequiredByte (inByte : UInt8,
-                                    sourceFile: String) {
+                                    comment : String) {
+    printAddress ()
     if mReadOk {
       if mReadIndex >= mData.length {
          NSLog ("Read beyond end of data")
@@ -102,6 +97,8 @@ struct DataScanner {
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
         let byte = UnsafePointer<UInt8> (byteAsData).memory
+        mTextView.appendMessageString (String (format:" %02X", byte))
+        mTextView.appendMessageString (" | \(comment)\n")
         if (byte == inByte) {
           mReadIndex += 1
           mExpectedBytes = []
@@ -109,17 +106,16 @@ struct DataScanner {
           var message = ""
           for b in mExpectedBytes {
             message += String (format:"0x%02hhx, ", b)
+            mTextView.appendMessageString (" | \(comment)\n")
           }
-          NSLog ("%s: invalid current byte (0x%02x): expected bytes:%@0x%02x", sourceFile, byte, message, inByte) ;
+          mTextView.appendErrorString (String (format:"invalid current byte (0x%02X): expected bytes:%@0x%02x\n", byte, message, inByte))
           mReadOk = false
         }
       }
     }
   }
 
-  //---------------------------------------------------------------------------*
-  //  parseByte                                                                *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
   mutating func parseByte () -> UInt8 {
     var result : UInt8 = 0
@@ -136,12 +132,10 @@ struct DataScanner {
     return result
   }
 
-  //---------------------------------------------------------------------------*
-  //  parseAutosizedUnsignedInteger                                            *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
-  mutating func parseAutosizedUnsignedInteger (textView : NSTextView, comment : String) -> UInt {
-    printAddress (textView)
+  mutating func parseAutosizedUnsignedInteger (comment : String) -> UInt {
+    printAddress ()
     var result : UInt = 0
     var shift : UInt = 0
     var loop = true
@@ -152,7 +146,7 @@ struct DataScanner {
       }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
         let byte = UnsafePointer<UInt8> (byteAsData).memory
-        textView.appendByte(byte)
+        mTextView.appendByte (byte)
         let w : UInt = UInt (byte) & 0x7F
         result |= (w << shift)
         shift += 7
@@ -160,39 +154,66 @@ struct DataScanner {
         mReadIndex += 1
       }
     }
-    textView.appendMessageString (" | \(comment) (\(result))\n")
+    mTextView.appendMessageString (" | \(comment) (\(result))\n")
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  parseAutosizedData                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
 
-  mutating func parseAutosizedData (textView : NSTextView, lengthComment : String, dataComment:String) -> NSData {
+  mutating func parseAutosizedData (lengthComment : String, dataComment:String) -> NSData {
     var result = NSData ()
     if mReadOk {
-      let dataLength : Int = Int (parseAutosizedUnsignedInteger (textView, comment:lengthComment))
+      let dataLength : Int = Int (parseAutosizedUnsignedInteger (lengthComment))
       if (mReadIndex + dataLength) >= mData.length {
         NSLog ("Read beyond end of data")
         mReadOk = false
       }else{
-        printAddress (textView)
+        printAddress ()
         result = mData.subdataWithRange (NSMakeRange (mReadIndex, dataLength))
-        textView.appendMessageString (" ... | \(dataComment) (\(dataLength) bytes)\n")
+        mTextView.appendMessageString (" ... | \(dataComment) (\(dataLength) bytes)\n")
         mReadIndex += dataLength
       }
     }
     return result ;
   }
 
-  //---------------------------------------------------------------------------*
-  //  ok                                                                       *
-  //---------------------------------------------------------------------------*
+  //····················································································································
+
+  mutating func parseAutosizedString (comment : String) -> String {
+    printAddress ()
+    var result : String = ""
+    var ptr = UnsafePointer<UInt8> (mData.bytes)
+    ptr += mReadIndex
+    var stringLength = 0
+    var loop = true
+    while loop && mReadOk {
+      if (mReadIndex + stringLength) >= mData.length {
+         mTextView.appendErrorString ("Read beyond end of data")
+         mReadOk = false
+      }else{
+        mTextView.appendByte (ptr.memory)
+        loop = ptr.memory != 0
+        ptr += 1
+        stringLength += 1
+      }
+    }
+    if (mReadOk) {
+      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength))
+      result = NSString (data:d, encoding: NSUTF8StringEncoding) as! String
+      mReadIndex += stringLength
+      mTextView.appendMessageString (" | \"" + result + "\": \(comment)\n")
+    }
+    return result
+  }
+
+  //····················································································································
 
   func ok () -> Bool {
     return mReadOk
   }
 
+  //····················································································································
+
 }
 
-//---------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
