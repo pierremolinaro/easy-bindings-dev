@@ -148,10 +148,10 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
         for managedObject : NameEntity in oldSet.subtract (mSet) {
           managedObject.setSignatureObserver (nil)
           for observer in mObserversOf_aValue {
-            managedObject.aValue.removeObserver (observer, postEvent:true)
+            managedObject.aValue.removeEBObserver (observer, postEvent:true)
           }
           for observer in mObserversOf_name {
-            managedObject.name.removeObserver (observer, postEvent:true)
+            managedObject.name.removeEBObserver (observer, postEvent:true)
           }
           managedObject.mRoot.owner = nil ;
         }
@@ -159,10 +159,10 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
         for managedObject : NameEntity in mSet.subtract (oldSet) {
           managedObject.setSignatureObserver (self)
           for observer in mObserversOf_aValue {
-            managedObject.aValue.addObserver (observer, postEvent:true)
+            managedObject.aValue.addEBObserver (observer)
           }
           for observer in mObserversOf_name {
-            managedObject.name.addObserver (observer, postEvent:true)
+            managedObject.name.addEBObserver (observer)
           }
           managedObject.mRoot.setProp (owner)
         }
@@ -345,12 +345,12 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<EBManagedObject>) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+                                     inout managedObjectArray : Array<EBManagedObject>) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     mNames.setProp (readEntityArrayFromDictionary (
       "mNames",
       inDictionary:inDictionary,
-      managedObjectArray:managedObjectArray
+      managedObjectArray:&managedObjectArray
     ) as! Array<NameEntity>)
   }
 

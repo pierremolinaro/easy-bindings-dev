@@ -131,7 +131,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
-    %    %![mDependency modelString !"self"]%.addObserver (%!mTransientName%, postEvent:true)\n%
+    %    %![mDependency modelString !"self"]%.addEBObserver (%!mTransientName%)\n%
   end
 end
 %  //--- Install bindings

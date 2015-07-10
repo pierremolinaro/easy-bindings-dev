@@ -15,26 +15,26 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : EBObject {
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
-  final func addObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.%!mStoredPropertyName%.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -99,7 +99,7 @@ if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
         for managedObject : %!ENTITY_NAME% in mSet.subtract (newSet) {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %          for observer in mObserversOf_%!mStoredPropertyName% {
-            managedObject.%!mStoredPropertyName%.removeObserver (observer, postEvent:true)
+            managedObject.%!mStoredPropertyName%.removeEBObserver (observer, postEvent:true)
           }
 %end
 %        }
@@ -107,7 +107,7 @@ if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
         for managedObject : %!ENTITY_NAME% in newSet.subtract (mSet) {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %          for observer in mObserversOf_%!mStoredPropertyName% {
-            managedObject.%!mStoredPropertyName%.addObserver (observer, postEvent:true)
+            managedObject.%!mStoredPropertyName%.addEBObserver (observer)
           }
 %end
 %        }
@@ -220,7 +220,7 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
-            managedObject.%!lkey.string%.removeObserver (observer, postEvent:true)
+            managedObject.%!lkey.string%.removeEBObserver (observer, postEvent:true)
           }
 %end
 end
@@ -232,7 +232,7 @@ end
 %for () in mDestinationEntityObservablePropertyMap do
 if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
 %          for observer in mObserversOf_%!lkey.string% {
-            managedObject.%!lkey.string%.addObserver (observer, postEvent:true)
+            managedObject.%!lkey.string%.addEBObserver (observer)
           }
 %end
 end
@@ -517,7 +517,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
-    %    %![mDependency generateAddObserverCall]% (%!mTransientName%, postEvent:true)\n%
+    %    %![mDependency generateAddObserverCall]% (%!mTransientName%)\n%
   end
 end
 %  //--- Install undoers for properties

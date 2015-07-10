@@ -76,7 +76,7 @@ import Cocoa
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line:line, errorMessage:"the EBTextField outlet has a formatter")
     }
-    object.addObserver (self, postEvent:true)
+    object.addEBObserver (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -84,7 +84,7 @@ import Cocoa
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

@@ -53,7 +53,7 @@ extension NSView {
     mComputeFunction = computeFunction
     super.init ()
     for object in mObjectArray {
-      object.addObserver (self, postEvent:true)
+      object.addEBObserver (self)
     }
   }
 
@@ -62,7 +62,7 @@ extension NSView {
   func unregister () {
     mComputeFunction = nil
     for object in mObjectArray {
-      object.removeObserver (self, postEvent:false)
+      object.removeEBObserver (self, postEvent:false)
     }
   }
 
@@ -169,7 +169,7 @@ extension NSControl {
     mComputeFunction = computeFunction
     super.init ()
     for object in mObjectArray {
-      object.addObserver (self, postEvent:true)
+      object.addEBObserver (self)
     }
   }
 
@@ -178,7 +178,7 @@ extension NSControl {
   func unregister () {
     mComputeFunction = nil
     for object in mObjectArray {
-      object.removeObserver (self, postEvent:false)
+      object.removeEBObserver (self, postEvent:false)
     }
   }
 

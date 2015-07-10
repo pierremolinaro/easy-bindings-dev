@@ -85,13 +85,13 @@ final class Controller_EBReadOnlyTextField_value : EBSimpleController {
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line:line, errorMessage:"the EBTextFieldObserver outlet has a formatter")
     }
-    object.addObserver (self, postEvent:true)
+    object.addEBObserver (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

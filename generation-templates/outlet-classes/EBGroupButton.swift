@@ -134,13 +134,13 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

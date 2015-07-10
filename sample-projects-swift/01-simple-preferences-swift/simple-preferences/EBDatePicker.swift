@@ -58,7 +58,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = "action:"
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -66,7 +66,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

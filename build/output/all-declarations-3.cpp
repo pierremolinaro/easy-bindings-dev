@@ -351,10 +351,10 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
                                  GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                  C_Compiler * inCompiler
                                  COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_transientDefinitionListForGeneration enumerator_12334 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
-  while (enumerator_12334.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_12334.current_mOwnerName (HERE), enumerator_12334.current_mTransientName (HERE), enumerator_12334.current_mDependencyList (HERE), enumerator_12334.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 289))) ;
-    GALGAS_string var_fileName = enumerator_12334.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 295)).add_operation (enumerator_12334.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 295)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 295)) ;
+  cEnumerator_transientDefinitionListForGeneration enumerator_12362 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
+  while (enumerator_12362.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_12362.current_mOwnerName (HERE), enumerator_12362.current_mTransientName (HERE), enumerator_12362.current_mDependencyList (HERE), enumerator_12362.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 289))) ;
+    GALGAS_string var_fileName = enumerator_12362.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 295)).add_operation (enumerator_12362.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 295)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 295)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 296)) ;
     {
     GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
@@ -363,7 +363,7 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
       "\n"
       "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 297)) ;
     }
-    enumerator_12334.gotoNextObject () ;
+    enumerator_12362.gotoNextObject () ;
   }
 }
 
@@ -1071,23 +1071,23 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   if (in_BOUND_5F_COLUMNS.isValid ()) {
     cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_1062 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
     while (enumerator_1062.hasCurrentObject ()) {
-      result << "    model.addObserverOf_" ;
+      result << "    model.addEBObserverOf_" ;
       result << enumerator_1062.current_mObservablePropertyName (HERE).stringValue () ;
-      result << " (self, postEvent:true)\n" ;
+      result << " (self)\n" ;
       index_1062_.increment () ;
       enumerator_1062.gotoNextObject () ;
     }
   }
   result << "  //--- Filter properties\n" ;
-  GALGAS_uint index_1206_ (0) ;
+  GALGAS_uint index_1192_ (0) ;
   if (in_FILTER_5F_PROPERTIES.isValid ()) {
-    cEnumerator_arrayControllerFilterListForGeneration enumerator_1206 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
-    while (enumerator_1206.hasCurrentObject ()) {
-      result << "    model.addObserverOf_" ;
-      result << enumerator_1206.current_mFilterPropertyName (HERE).stringValue () ;
-      result << " (self, postEvent:true)\n" ;
-      index_1206_.increment () ;
-      enumerator_1206.gotoNextObject () ;
+    cEnumerator_arrayControllerFilterListForGeneration enumerator_1192 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
+    while (enumerator_1192.hasCurrentObject ()) {
+      result << "    model.addEBObserverOf_" ;
+      result << enumerator_1192.current_mFilterPropertyName (HERE).stringValue () ;
+      result << " (self)\n" ;
+      index_1192_.increment () ;
+      enumerator_1192.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -1096,27 +1096,27 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "  \n"
     "  func removeDataSourceObservers () {\n"
     "  //--- Column properties\n" ;
-  GALGAS_uint index_1509_ (0) ;
+  GALGAS_uint index_1481_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_1509 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_1509.hasCurrentObject ()) {
-      result << "    mModel\?.removeObserverOf_" ;
-      result << enumerator_1509.current_mObservablePropertyName (HERE).stringValue () ;
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_1481 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_1481.hasCurrentObject ()) {
+      result << "    mModel\?.removeEBObserverOf_" ;
+      result << enumerator_1481.current_mObservablePropertyName (HERE).stringValue () ;
       result << " (self, postEvent:true)\n" ;
-      index_1509_.increment () ;
-      enumerator_1509.gotoNextObject () ;
+      index_1481_.increment () ;
+      enumerator_1481.gotoNextObject () ;
     }
   }
   result << "  //--- Filter properties\n" ;
-  GALGAS_uint index_1658_ (0) ;
+  GALGAS_uint index_1632_ (0) ;
   if (in_FILTER_5F_PROPERTIES.isValid ()) {
-    cEnumerator_arrayControllerFilterListForGeneration enumerator_1658 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
-    while (enumerator_1658.hasCurrentObject ()) {
-      result << "    mModel\?.removeObserverOf_" ;
-      result << enumerator_1658.current_mFilterPropertyName (HERE).stringValue () ;
+    cEnumerator_arrayControllerFilterListForGeneration enumerator_1632 (in_FILTER_5F_PROPERTIES, kEnumeration_up) ;
+    while (enumerator_1632.hasCurrentObject ()) {
+      result << "    mModel\?.removeEBObserverOf_" ;
+      result << enumerator_1632.current_mFilterPropertyName (HERE).stringValue () ;
       result << " (self, postEvent:true)\n" ;
-      index_1658_.increment () ;
-      enumerator_1658.gotoNextObject () ;
+      index_1632_.increment () ;
+      enumerator_1632.gotoNextObject () ;
     }
   }
   result << "    mModel = nil\n"
@@ -1258,44 +1258,44 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "        }\n"
     "        if mSet != newObjectSet {\n"
     "        //--- Removed object set\n" ;
-  GALGAS_uint index_5601_ (0) ;
+  GALGAS_uint index_5577_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5601 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_5601.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5577 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_5577.hasCurrentObject ()) {
       result << "          for managedObject : " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " in mSet.subtract (newObjectSet) {\n"
         "            for observer in mObserversOf_" ;
-      result << enumerator_5601.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_5577.current_mObservablePropertyName (HERE).stringValue () ;
       result << " {\n"
         "              managedObject." ;
-      result << enumerator_5601.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".removeObserver (observer, postEvent:true)\n"
+      result << enumerator_5577.current_mObservablePropertyName (HERE).stringValue () ;
+      result << ".removeEBObserver (observer, postEvent:true)\n"
         "            }\n"
         "          }\n" ;
-      index_5601_.increment () ;
-      enumerator_5601.gotoNextObject () ;
+      index_5577_.increment () ;
+      enumerator_5577.gotoNextObject () ;
     }
   }
   result << "        //--- Added object set\n" ;
-  GALGAS_uint index_5944_ (0) ;
+  GALGAS_uint index_5922_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5944 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_5944.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5922 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_5922.hasCurrentObject ()) {
       result << "          for managedObject : " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " in newObjectSet.subtract (mSet) {\n"
         "            for observer in mObserversOf_" ;
-      result << enumerator_5944.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_5922.current_mObservablePropertyName (HERE).stringValue () ;
       result << " {\n"
         "              managedObject." ;
-      result << enumerator_5944.current_mObservablePropertyName (HERE).stringValue () ;
-      result << ".addObserver (observer, postEvent:true)\n"
+      result << enumerator_5922.current_mObservablePropertyName (HERE).stringValue () ;
+      result << ".addEBObserver (observer)\n"
         "            }\n"
         "          }\n"
         " " ;
-      index_5944_.increment () ;
-      enumerator_5944.gotoNextObject () ;
+      index_5922_.increment () ;
+      enumerator_5922.gotoNextObject () ;
     }
   }
   result << "       //--- Update object set\n"
@@ -1545,31 +1545,31 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView\n"
     "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
     "      " ;
-  GALGAS_uint index_14533_ (0) ;
+  GALGAS_uint index_14497_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_14533 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_14533 = enumerator_14533.hasCurrentObject () ;
-    while (enumerator_14533.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_14497 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_14497 = enumerator_14497.hasCurrentObject () ;
+    while (enumerator_14497.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_14533.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_14497.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "      if let cell : " ;
-      result << enumerator_14533.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_14497.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell = result as\? " ;
-      result << enumerator_14533.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_14497.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "        cell.configureWithProperty (object." ;
-      result << enumerator_14533.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_14497.current_mObservablePropertyName (HERE).stringValue () ;
       result << ")\n"
         "      }\n"
         "      " ;
-      if (enumerator_14533.hasNextObject ()) {
+      if (enumerator_14497.hasNextObject ()) {
         result << "}else " ;
       }
-      index_14533_.increment () ;
-      enumerator_14533.gotoNextObject () ;
+      index_14497_.increment () ;
+      enumerator_14497.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_14533) {
+    if (nonEmpty_enumerator_14497) {
       result << "}\n" ;
     }
   }
@@ -1721,26 +1721,26 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      mTableViewControllerArray.append (tableViewController)\n"
     "      tableView.allowsEmptySelection = mAllowsEmptySelection\n"
     "      tableView.allowsMultipleSelection = mAllowsMultipleSelection\n" ;
-  GALGAS_uint index_19088_ (0) ;
+  GALGAS_uint index_19052_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_19088 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_19088.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_19052 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_19052.hasCurrentObject ()) {
       result << "    //--- Check '" ;
-      result << enumerator_19088.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "      if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_19088.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
       result << "\", owner:self) {\n"
         "        if let unwrappedTableCellView = anyObject as\? " ;
-      result << enumerator_19088.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "          if !unwrappedTableCellView.outletIsDefined () {\n"
         "            presentErrorWindow (file,\n"
         "              line: line,\n"
         "              errorMessage:\"\\\"" ;
-      result << enumerator_19088.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view is not an instance of " ;
-      result << enumerator_19088.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "\"\n"
         "            )\n"
         "          }\n"
@@ -1748,9 +1748,9 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "          presentErrorWindow (file,\n"
         "            line: line,\n"
         "            errorMessage:\"\\\"" ;
-      result << enumerator_19088.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column cell view is not an instance of " ;
-      result << enumerator_19088.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell\"\n"
         "          )\n"
         "        }\n"
@@ -1758,19 +1758,19 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "        presentErrorWindow (file,\n"
         "          line: line,\n"
         "          errorMessage:\"\\\"" ;
-      result << enumerator_19088.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown, or table view is NSCell-based\"\n"
         "        )\n"
         "      }\n"
         "      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_19088.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "        columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_19088.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_19052.current_mObservablePropertyName (HERE).stringValue () ;
       result << "_keyCodingValue\", ascending:true)\n"
         "      }\n" ;
-      index_19088_.increment () ;
-      enumerator_19088.gotoNextObject () ;
+      index_19052_.increment () ;
+      enumerator_19052.gotoNextObject () ;
     }
   }
   result << "    //--- Set descriptors from first column of table view\n"
@@ -1783,27 +1783,27 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "          sortedArray.setSortDescriptors (sortDescriptorArray)\n"
     "        }\n"
     "      }\n"
-    " //     sortedArray.addObserver (tableViewController, postEvent:true)\n"
-    " //     selectedSet.addObserver (tableViewController, postEvent:true)\n"
+    " //     sortedArray.addEBObserver (tableViewController)\n"
+    " //     selectedSet.addEBObserver (tableViewController)\n"
     "   //--- Set table view delegate and data source\n"
     "      tableView.setDataSource (sortedArray)\n"
     "      tableView.setDelegate (selectedSet)\n"
     "   }\n"
     "  //--- Add observers\n" ;
-  GALGAS_uint index_21010_ (0) ;
+  GALGAS_uint index_20946_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_21010 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_21010.hasCurrentObject ()) {
-      result << " //   model.addObserverOf_" ;
-      result << enumerator_21010.current_mObservablePropertyName (HERE).stringValue () ;
-      result << " (sortedArray, postEvent:true)\n" ;
-      index_21010_.increment () ;
-      enumerator_21010.gotoNextObject () ;
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_20946 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_20946.hasCurrentObject ()) {
+      result << " //   model.addEBObserverOf_" ;
+      result << enumerator_20946.current_mObservablePropertyName (HERE).stringValue () ;
+      result << " (sortedArray)\n" ;
+      index_20946_.increment () ;
+      enumerator_20946.gotoNextObject () ;
     }
   }
-  result << "//    model.addObserver (sortedArray, postEvent:true)\n"
-    "//    sortedArray.addObserver (selectedSet, postEvent:true)\n"
-    "//    selectedSet.addObserver (selectedArray, postEvent:true)\n"
+  result << "//    model.addEBObserver (sortedArray)\n"
+    "//    sortedArray.addEBObserver (selectedSet)\n"
+    "//    selectedSet.addEBObserver (selectedArray)\n"
     "  }\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -1811,25 +1811,25 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  func unbind_modelAndView () {\n" ;
-  GALGAS_uint index_21617_ (0) ;
+  GALGAS_uint index_21497_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_21617 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_21617.hasCurrentObject ()) {
-      result << " //   mModel\?.removeObserverOf_" ;
-      result << enumerator_21617.current_mObservablePropertyName (HERE).stringValue () ;
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_21497 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_21497.hasCurrentObject ()) {
+      result << " //   mModel\?.removeEBObserverOf_" ;
+      result << enumerator_21497.current_mObservablePropertyName (HERE).stringValue () ;
       result << " (sortedArray, postEvent:false)\n" ;
-      index_21617_.increment () ;
-      enumerator_21617.gotoNextObject () ;
+      index_21497_.increment () ;
+      enumerator_21497.gotoNextObject () ;
     }
   }
-  result << "//    mModel\?.removeObserver (sortedArray, postEvent:false)\n"
+  result << "//    mModel\?.removeEBObserver (sortedArray, postEvent:false)\n"
     "//    if let selectedSet = mSelectedSet {\n"
-    "//      sortedArray.removeObserver (selectedSet, postEvent:false)\n"
+    "//      sortedArray.removeEBObserver (selectedSet, postEvent:false)\n"
     "//    }\n"
-    "//    mSelectedSet\?.removeObserver (selectedArray, postEvent:false)\n"
+    "//    mSelectedSet\?.removeEBObserver (selectedArray, postEvent:false)\n"
     "//     for tableViewController in mTableViewControllerArray {\n"
-    " //     sortedArray.removeObserver (tableViewController, postEvent:false)\n"
-    "//      mSelectedSet\?.removeObserver (tableViewController, postEvent:false)\n"
+    " //     sortedArray.removeEBObserver (tableViewController, postEvent:false)\n"
+    "//      mSelectedSet\?.removeEBObserver (tableViewController, postEvent:false)\n"
     "//    }\n"
     "    mTableViewControllerArray = []\n"
     "    selectedArray.computeFunction = nil\n"
@@ -2623,14 +2623,14 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
         result << " (model : ReadOnlyArrayOf_" ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") {\n"
-          "    model.addObserverOf_" ;
+          "    model.addEBObserverOf_" ;
         result << enumerator_6049.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (" ;
         result << enumerator_6049.current_lkey (HERE).mAttribute_string.stringValue () ;
-        result << ", postEvent:true)\n"
-          "//    model.addObserver (" ;
+        result << ")\n"
+          "//    model.addEBObserver (" ;
         result << enumerator_6049.current_lkey (HERE).mAttribute_string.stringValue () ;
-        result << ", postEvent:true)\n"
+        result << ")\n"
           "    " ;
         result << enumerator_6049.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = {\n"
@@ -2728,36 +2728,36 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  func unbind_selection () {\n" ;
-  GALGAS_uint index_9080_ (0) ;
+  GALGAS_uint index_9052_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_9080 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_9080.hasCurrentObject ()) {
-      const enumGalgasBool test_4 = enumerator_9080.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 219)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 219)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_9052 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_9052.hasCurrentObject ()) {
+      const enumGalgasBool test_4 = enumerator_9052.current_mType (HERE).reader_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 219)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 219)).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "  //--- " ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\n"
           "    " ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = nil \n"
           "    " ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".writeModelFunction = nil \n"
           "    " ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".validateAndWriteModelFunction = nil \n"
-          "    mModel\?.removeObserverOf_" ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+          "    mModel\?.removeEBObserverOf_" ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (" ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n"
-          "//    mModel\?.removeObserver (" ;
-        result << enumerator_9080.current_lkey (HERE).mAttribute_string.stringValue () ;
+          "//    mModel\?.removeEBObserver (" ;
+        result << enumerator_9052.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ", postEvent:false)\n" ;
       }else if (kBoolFalse == test_4) {
       }
-      index_9080_.increment () ;
-      enumerator_9080.gotoNextObject () ;
+      index_9052_.increment () ;
+      enumerator_9052.gotoNextObject () ;
     }
   }
   result << "    mModel = nil    \n"
@@ -4550,7 +4550,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "    mSignatureObserver.setRootObject (mRootObject!)\n"
   "  //--- Version did change observer\n"
   "    mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)\n"
-  "    mSignatureObserver.addObserver (mVersionShouldChangeObserver, postEvent:true)\n"
+  "    mSignatureObserver.addEBObserver (mVersionShouldChangeObserver)\n"
   "  //--- Get version from metadadictionary\n"
   "    let possibleVersion = mMetadataDictionary.objectForKey (\"EBVersion\")\n"
   "    if let versionNumber = possibleVersion as\? NSNumber {\n"
@@ -4593,7 +4593,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  func removeUserInterface () {\n"
-  "    mSignatureObserver.removeObserver (mVersionShouldChangeObserver, postEvent:true)\n"
+  "    mSignatureObserver.removeEBObserver (mVersionShouldChangeObserver, postEvent:true)\n"
   "    mManagedObjectContext.reset ()\n"
   "  }\n"
   "\n"
@@ -4824,7 +4824,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  29367, // Text length
+  29355, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -5531,17 +5531,15 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "  \n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  final func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {\n"
+  "  final func addEBObserver (inObserver : EBEvent) {\n"
   "    mObservers.insert (inObserver)\n"
   "    updateObserverExplorer ()\n"
-  "    if inTrigger {\n"
-  "      inObserver.postEvent ()\n"
-  "    }\n"
+  "    inObserver.postEvent ()\n"
   "  }\n"
   " \n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  final func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {\n"
+  "  final func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {\n"
   "    mObservers.remove (inObserver)\n"
   "    updateObserverExplorer ()\n"
   "    if inTrigger {\n"
@@ -6361,9 +6359,9 @@ const char * gWrapperFileContent_7_swift_5F_sources = "import Cocoa\n"
   "\n"
   "@objc(EBReadOnlyEnumPropertyProtocol) protocol EBReadOnlyEnumPropertyProtocol {\n"
   "\n"
-  "  func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool)\n"
+  "  func addEBObserver (inObserver : EBEvent)\n"
   "\n"
-  "  func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool)\n"
+  "  func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool)\n"
   "\n"
   "  func count () -> Int\n"
   "\n"
@@ -6384,7 +6382,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  38252, // Text length
+  38181, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 
@@ -6445,7 +6443,7 @@ const char * gWrapperFileContent_8_swift_5F_sources = "import Cocoa\n"
   "    mComputeFunction = computeFunction\n"
   "    super.init ()\n"
   "    for object in mObjectArray {\n"
-  "      object.addObserver (self, postEvent:true)\n"
+  "      object.addEBObserver (self)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6454,7 +6452,7 @@ const char * gWrapperFileContent_8_swift_5F_sources = "import Cocoa\n"
   "  func unregister () {\n"
   "    mComputeFunction = nil\n"
   "    for object in mObjectArray {\n"
-  "      object.removeObserver (self, postEvent:false)\n"
+  "      object.removeEBObserver (self, postEvent:false)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6561,7 +6559,7 @@ const char * gWrapperFileContent_8_swift_5F_sources = "import Cocoa\n"
   "    mComputeFunction = computeFunction\n"
   "    super.init ()\n"
   "    for object in mObjectArray {\n"
-  "      object.addObserver (self, postEvent:true)\n"
+  "      object.addEBObserver (self)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6570,7 +6568,7 @@ const char * gWrapperFileContent_8_swift_5F_sources = "import Cocoa\n"
   "  func unregister () {\n"
   "    mComputeFunction = nil\n"
   "    for object in mObjectArray {\n"
-  "      object.removeObserver (self, postEvent:false)\n"
+  "      object.removeEBObserver (self, postEvent:false)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6603,7 +6601,7 @@ const cRegularFileWrapper gWrapperFile_8_swift_5F_sources (
   "generic-bindings.swift",
   "swift",
   true, // Text file
-  8249, // Text length
+  8225, // Text length
   gWrapperFileContent_8_swift_5F_sources
 ) ;
 

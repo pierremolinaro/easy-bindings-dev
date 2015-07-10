@@ -66,13 +66,13 @@ import Cocoa
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    object.addObserver (self, postEvent:true)
+    object.addEBObserver (self)
   }
 
   //···················································································································* 
   
   func unregister () {
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

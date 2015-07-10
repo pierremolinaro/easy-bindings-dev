@@ -121,17 +121,15 @@ import Cocoa
   
   //····················································································································
 
-  final func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserver (inObserver : EBEvent) {
     mObservers.insert (inObserver)
     updateObserverExplorer ()
-    if inTrigger {
-      inObserver.postEvent ()
-    }
+    inObserver.postEvent ()
   }
  
   //····················································································································
 
-  final func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObservers.remove (inObserver)
     updateObserverExplorer ()
     if inTrigger {
@@ -951,9 +949,9 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 
 @objc(EBReadOnlyEnumPropertyProtocol) protocol EBReadOnlyEnumPropertyProtocol {
 
-  func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+  func addEBObserver (inObserver : EBEvent)
 
-  func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+  func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
 
   func count () -> Int
 

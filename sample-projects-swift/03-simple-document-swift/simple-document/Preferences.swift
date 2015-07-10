@@ -71,7 +71,7 @@ var g_Preferences : Preferences? = nil
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func applicationWillTerminateAction (_: NSNotification) {
+  func applicationWillTerminateAction (NSNotification) {
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*

@@ -82,7 +82,7 @@ var g_Preferences : Preferences? = nil
       }
     }
   //--- Install property observers for transients
-    self.myPrefString.addObserver (prefTransientString, postEvent:true)
+    self.myPrefString.addEBObserver (prefTransientString)
   //--- Install bindings
     myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
   //--- Install multiple bindings

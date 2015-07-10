@@ -93,7 +93,7 @@ import Cocoa
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -101,7 +101,7 @@ import Cocoa
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

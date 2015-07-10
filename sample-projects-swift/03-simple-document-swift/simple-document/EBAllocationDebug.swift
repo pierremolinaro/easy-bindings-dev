@@ -206,7 +206,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    windowDidBecomeKey: create and validate timer                                                                  *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func windowDidBecomeKey (_: NSNotification) {
+  func windowDidBecomeKey (NSNotification) {
     installTimer ()
   }
 
@@ -214,7 +214,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    windowWillClose: invalidate timer and release timer                                                            *
   //-------------------------------------------------------------------------------------------------------------------*
 
-  func windowWillClose (_: NSNotification) {
+  func windowWillClose (NSNotification) {
     if let timer = mRefreshTimer {
       timer.invalidate ()
       mRefreshTimer = nil
@@ -233,7 +233,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    setAllocationStatsWindowVisibleAtLaunchAction:                                                                 *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func setAllocationStatsWindowVisibleAtLaunchAction (_: AnyObject!) {
+  func setAllocationStatsWindowVisibleAtLaunchAction (AnyObject!) {
     mAllocationStatsWindowVisibleAtLaunch = mAllocationStatsWindowVisibleAtLaunchCheckbox?.state != 0
   }
 
@@ -241,7 +241,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    setDisplayFilerAction:                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func setDisplayFilerAction (_: AnyObject!) {
+  func setDisplayFilerAction (AnyObject!) {
     if let displayFilterPopUpButton = mDisplayFilterPopUpButton {
       mDisplayFilter = displayFilterPopUpButton.indexOfSelectedItem
     }
@@ -251,7 +251,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    applicationWillTerminateAction:                                                                                *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func applicationWillTerminateAction (_: NSNotification) {
+  func applicationWillTerminateAction (NSNotification) {
     let ud = NSUserDefaults.standardUserDefaults ()
     ud.setBool (mAllocationStatsWindowVisibleAtLaunch,
       forKey:"EBAllocationDebug:allocationStatsWindowVisible"
@@ -265,7 +265,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    performSnapShotAction:                                                                                         *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  @IBAction func performSnapShotAction (_: AnyObject) {
+  @IBAction func performSnapShotAction (AnyObject) {
     mSnapShotDictionary = NSMutableDictionary ()
     for c : AnyObject in mAllocatedObjectCountByClass.allObjects  {
       let className = c as! String
@@ -355,7 +355,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   
   //-------------------------------------------------------------------------------------------------------------------*
   
-  func numberOfRowsInTableView (_: NSTableView) -> Int {
+  func numberOfRowsInTableView (NSTableView) -> Int {
     return mAllocationStatsDataSource.count
   }
   

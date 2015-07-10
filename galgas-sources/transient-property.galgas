@@ -226,19 +226,19 @@ getter @transientDependencyListForGeneration needs_unwSelf
 getter @observablePropertyAST generateAddObserverCall -> @string outResult {
   switch self
   case controllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = controllerName.string + "." + propertyName + ".addObserver"
+    outResult = controllerName.string + "." + propertyName + ".addEBObserver"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".addObserver"
+    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".addEBObserver"
   case selfProperty (@lstring masterName *) :
-    outResult = masterName.string + ".addObserver"
+    outResult = masterName.string + ".addEBObserver"
   case prefsProperty (@lstring propertyName *) :
-    outResult = "g_" + preferencesName () + "?."  + propertyName + ".addObserver"
+    outResult = "g_" + preferencesName () + "?."  + propertyName + ".addEBObserver"
   case rootProperty (@lstring masterName) :
-    outResult = "rootObject." + masterName + ".addObserver"
+    outResult = "rootObject." + masterName + ".addEBObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
-    outResult = "rootObject." + masterName + "." + optionName + ".addObserver"
+    outResult = "rootObject." + masterName + "." + optionName + ".addEBObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    outResult = "self.rootObject." + relationshipName + ".addObserverOf_" + propertyName
+    outResult = "self.rootObject." + relationshipName + ".addEBObserverOf_" + propertyName
   case signatureProperty (*) :
     outResult = "<< ligne 243 >>"
   case versionProperty (*) :
@@ -253,19 +253,19 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
 getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   switch self
   case controllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = controllerName.string + "." + propertyName + ".removeObserver"
+    outResult = controllerName.string + "." + propertyName + ".removeEBObserver"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".removeObserver"
+    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".removeEBObserver"
   case selfProperty (@lstring masterName *) :
-    outResult = masterName.string + ".removeObserver"
+    outResult = masterName.string + ".removeEBObserver"
   case prefsProperty (@lstring propertyName *) :
-    outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeObserver"
+    outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeEBObserver"
   case rootProperty (@lstring masterName) :
-    outResult = "rootObject." + masterName + ".removeObserver"
+    outResult = "rootObject." + masterName + ".removeEBObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
-    outResult = "rootObject." + masterName + "." + optionName + ".removeObserver"
+    outResult = "rootObject." + masterName + "." + optionName + ".removeEBObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    outResult = "self.rootObject." + relationshipName + ".removeObserverOf_" + propertyName
+    outResult = "self.rootObject." + relationshipName + ".removeEBObserverOf_" + propertyName
   case signatureProperty (*) :
     outResult = "<< ligne 270 >>"
   case versionProperty (*) :

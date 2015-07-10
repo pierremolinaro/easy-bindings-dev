@@ -14,26 +14,26 @@ class ReadOnlyArrayOf_%!CLASS_NAME% : EBObject {
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
-  func addObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.%!mStoredPropertyName%.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.%!mStoredPropertyName%.addEBObserver (inObserver)
       }
     }
   }
 
-  func removeObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.%!mStoredPropertyName%.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -169,7 +169,7 @@ class EBClassArray_%!CLASS_NAME% : TransientArrayOf_%!CLASS_NAME% {
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %          for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %            managedObject.%!mStoredPropertyName%.removeObserver (observer, postEvent:true)\n%
+  %            managedObject.%!mStoredPropertyName%.removeEBObserver (observer, postEvent:true)\n%
   %          }\n%
 end
 %        }
@@ -180,7 +180,7 @@ end
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %          for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %            managedObject.%!mStoredPropertyName%.addObserver (observer, postEvent:true)\n%
+  %            managedObject.%!mStoredPropertyName%.addEBObserver (observer)\n%
   %          }\n%
 end
 %        }
