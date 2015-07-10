@@ -5,7 +5,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(ReadOnlyArrayOf_MyRootEntity)
-class ReadOnlyArrayOf_MyRootEntity : EBObject {
+class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
 
@@ -146,7 +146,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   //····················································································································
 
-  func postEvent () {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
       for observer in mObserversOf_myString {
@@ -156,6 +156,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         observer.postEvent ()
       }
       count.postEvent ()
+      super.postEvent ()
     }
   }
 

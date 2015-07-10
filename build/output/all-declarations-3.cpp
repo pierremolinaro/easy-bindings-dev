@@ -1179,11 +1179,11 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "  func postEvent () {\n"
+    "  override func postEvent () {\n"
     "    if prop_cache != nil {\n"
     "      prop_cache = nil\n"
     "      count.postEvent ()\n"
-    " //     super.postEvent ()\n"
+    "      super.postEvent ()\n"
     "    }\n"
     "  }\n"
     "\n"
@@ -1258,44 +1258,44 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "        }\n"
     "        if mSet != newObjectSet {\n"
     "        //--- Removed object set\n" ;
-  GALGAS_uint index_5577_ (0) ;
+  GALGAS_uint index_5584_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5577 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_5577.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5584 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_5584.hasCurrentObject ()) {
       result << "          for managedObject : " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " in mSet.subtract (newObjectSet) {\n"
         "            for observer in mObserversOf_" ;
-      result << enumerator_5577.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_5584.current_mObservablePropertyName (HERE).stringValue () ;
       result << " {\n"
         "              managedObject." ;
-      result << enumerator_5577.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_5584.current_mObservablePropertyName (HERE).stringValue () ;
       result << ".removeEBObserver (observer, postEvent:true)\n"
         "            }\n"
         "          }\n" ;
-      index_5577_.increment () ;
-      enumerator_5577.gotoNextObject () ;
+      index_5584_.increment () ;
+      enumerator_5584.gotoNextObject () ;
     }
   }
   result << "        //--- Added object set\n" ;
-  GALGAS_uint index_5922_ (0) ;
+  GALGAS_uint index_5929_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5922 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_5922.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_5929 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_5929.hasCurrentObject ()) {
       result << "          for managedObject : " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " in newObjectSet.subtract (mSet) {\n"
         "            for observer in mObserversOf_" ;
-      result << enumerator_5922.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_5929.current_mObservablePropertyName (HERE).stringValue () ;
       result << " {\n"
         "              managedObject." ;
-      result << enumerator_5922.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_5929.current_mObservablePropertyName (HERE).stringValue () ;
       result << ".addEBObserver (observer)\n"
         "            }\n"
         "          }\n"
         " " ;
-      index_5922_.increment () ;
-      enumerator_5922.gotoNextObject () ;
+      index_5929_.increment () ;
+      enumerator_5929.gotoNextObject () ;
     }
   }
   result << "       //--- Update object set\n"
@@ -1545,31 +1545,31 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView\n"
     "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
     "      " ;
-  GALGAS_uint index_14497_ (0) ;
+  GALGAS_uint index_14504_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_14497 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_14497 = enumerator_14497.hasCurrentObject () ;
-    while (enumerator_14497.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_14504 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_14504 = enumerator_14504.hasCurrentObject () ;
+    while (enumerator_14504.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_14497.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_14504.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "      if let cell : " ;
-      result << enumerator_14497.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_14504.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell = result as\? " ;
-      result << enumerator_14497.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_14504.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "        cell.configureWithProperty (object." ;
-      result << enumerator_14497.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_14504.current_mObservablePropertyName (HERE).stringValue () ;
       result << ")\n"
         "      }\n"
         "      " ;
-      if (enumerator_14497.hasNextObject ()) {
+      if (enumerator_14504.hasNextObject ()) {
         result << "}else " ;
       }
-      index_14497_.increment () ;
-      enumerator_14497.gotoNextObject () ;
+      index_14504_.increment () ;
+      enumerator_14504.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_14497) {
+    if (nonEmpty_enumerator_14504) {
       result << "}\n" ;
     }
   }
@@ -1721,26 +1721,26 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      mTableViewControllerArray.append (tableViewController)\n"
     "      tableView.allowsEmptySelection = mAllowsEmptySelection\n"
     "      tableView.allowsMultipleSelection = mAllowsMultipleSelection\n" ;
-  GALGAS_uint index_19052_ (0) ;
+  GALGAS_uint index_19059_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_19052 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_19052.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_19059 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_19059.hasCurrentObject ()) {
       result << "    //--- Check '" ;
-      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "      if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnName (HERE).stringValue () ;
       result << "\", owner:self) {\n"
         "        if let unwrappedTableCellView = anyObject as\? " ;
-      result << enumerator_19052.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "          if !unwrappedTableCellView.outletIsDefined () {\n"
         "            presentErrorWindow (file,\n"
         "              line: line,\n"
         "              errorMessage:\"\\\"" ;
-      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view is not an instance of " ;
-      result << enumerator_19052.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "\"\n"
         "            )\n"
         "          }\n"
@@ -1748,9 +1748,9 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "          presentErrorWindow (file,\n"
         "            line: line,\n"
         "            errorMessage:\"\\\"" ;
-      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column cell view is not an instance of " ;
-      result << enumerator_19052.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell\"\n"
         "          )\n"
         "        }\n"
@@ -1758,19 +1758,19 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "        presentErrorWindow (file,\n"
         "          line: line,\n"
         "          errorMessage:\"\\\"" ;
-      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown, or table view is NSCell-based\"\n"
         "        )\n"
         "      }\n"
         "      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_19052.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_19059.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "        columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_19052.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_19059.current_mObservablePropertyName (HERE).stringValue () ;
       result << "_keyCodingValue\", ascending:true)\n"
         "      }\n" ;
-      index_19052_.increment () ;
-      enumerator_19052.gotoNextObject () ;
+      index_19059_.increment () ;
+      enumerator_19059.gotoNextObject () ;
     }
   }
   result << "    //--- Set descriptors from first column of table view\n"
@@ -1790,15 +1790,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      tableView.setDelegate (selectedSet)\n"
     "   }\n"
     "  //--- Add observers\n" ;
-  GALGAS_uint index_20946_ (0) ;
+  GALGAS_uint index_20953_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_20946 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_20946.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_20953 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_20953.hasCurrentObject ()) {
       result << " //   model.addEBObserverOf_" ;
-      result << enumerator_20946.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_20953.current_mObservablePropertyName (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_20946_.increment () ;
-      enumerator_20946.gotoNextObject () ;
+      index_20953_.increment () ;
+      enumerator_20953.gotoNextObject () ;
     }
   }
   result << "//    model.addEBObserver (sortedArray)\n"
@@ -1811,15 +1811,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  func unbind_modelAndView () {\n" ;
-  GALGAS_uint index_21497_ (0) ;
+  GALGAS_uint index_21504_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_21497 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_21497.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_21504 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_21504.hasCurrentObject ()) {
       result << " //   mModel\?.removeEBObserverOf_" ;
-      result << enumerator_21497.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_21504.current_mObservablePropertyName (HERE).stringValue () ;
       result << " (sortedArray, postEvent:false)\n" ;
-      index_21497_.increment () ;
-      enumerator_21497.gotoNextObject () ;
+      index_21504_.increment () ;
+      enumerator_21504.gotoNextObject () ;
     }
   }
   result << "//    mModel\?.removeEBObserver (sortedArray, postEvent:false)\n"

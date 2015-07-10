@@ -77,11 +77,11 @@ final class DataSource_PMDocument_selController : ReadOnlyArrayOf_NameEntity, EB
 
   //····················································································································
 
-  func postEvent () {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
- //     super.postEvent ()
+      super.postEvent ()
     }
   }
 

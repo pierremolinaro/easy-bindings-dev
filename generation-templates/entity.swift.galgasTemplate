@@ -5,7 +5,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(ReadOnlyArrayOf_%!ENTITY_NAME%)
-class ReadOnlyArrayOf_%!ENTITY_NAME% : EBObject {
+class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 
   var prop : EBProperty <Array<%!ENTITY_NAME%> > { get { return .noSelection } }
 
@@ -124,7 +124,7 @@ end
 
   //····················································································································
 
-  func postEvent () {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
 %
@@ -134,6 +134,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      }\n%
 end
 %      count.postEvent ()
+      super.postEvent ()
     }
   }
 
