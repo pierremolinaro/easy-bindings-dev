@@ -4,7 +4,7 @@ import Cocoa
 //    %!"ReadOnlyArrayOf_" + CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ReadOnlyArrayOf_%!CLASS_NAME% : EBObject {
+class ReadOnlyArrayOf_%!CLASS_NAME% : EBAbstractProperty {
 
   var prop : EBProperty <Array<%!CLASS_NAME%> > { get { return .noSelection } }
 
@@ -92,11 +92,11 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   //····················································································································
 
-  func postEvent () {
+  override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
-//      super.postEvent ()
+      super.postEvent ()
     }
   }
 
