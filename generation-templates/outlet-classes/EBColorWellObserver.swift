@@ -59,13 +59,13 @@ final class Controller_EBReadOnlyColorWell_color : EBSimpleController {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

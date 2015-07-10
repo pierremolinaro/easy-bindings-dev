@@ -139,8 +139,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //···················································································································*
 
   private final func bind_property_aValue (model : ReadOnlyArrayOf_NameEntity) {
-    model.addObserverOf_aValue (aValue, postEvent:true)
-//    model.addObserver (aValue, postEvent:true)
+    model.addEBObserverOf_aValue (aValue)
+//    model.addEBObserver (aValue)
     aValue.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -210,8 +210,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //···················································································································*
 
   private final func bind_property_name (model : ReadOnlyArrayOf_NameEntity) {
-    model.addObserverOf_name (name, postEvent:true)
-//    model.addObserver (name, postEvent:true)
+    model.addEBObserverOf_name (name)
+//    model.addEBObserver (name)
     name.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -289,14 +289,14 @@ final class SelectionController_PMDocument_detailController : EBObject {
     aValue.readModelFunction = nil 
     aValue.writeModelFunction = nil 
     aValue.validateAndWriteModelFunction = nil 
-    mModel?.removeObserverOf_aValue (aValue, postEvent:false)
-//    mModel?.removeObserver (aValue, postEvent:false)
+    mModel?.removeEBObserverOf_aValue (aValue, postEvent:false)
+//    mModel?.removeEBObserver (aValue, postEvent:false)
   //--- name
     name.readModelFunction = nil 
     name.writeModelFunction = nil 
     name.validateAndWriteModelFunction = nil 
-    mModel?.removeObserverOf_name (name, postEvent:false)
-//    mModel?.removeObserver (name, postEvent:false)
+    mModel?.removeEBObserverOf_name (name, postEvent:false)
+//    mModel?.removeEBObserver (name, postEvent:false)
     mModel = nil    
   }
 

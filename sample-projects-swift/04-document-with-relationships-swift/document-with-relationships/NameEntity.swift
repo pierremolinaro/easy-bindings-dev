@@ -13,26 +13,26 @@ class ReadOnlyArrayOf_NameEntity : EBObject {
 
   var mObserversOf_name = Set<EBEvent> ()
 
-  final func addObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_name (inObserver : EBEvent) {
     mObserversOf_name.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.name.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.name.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_name.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.name.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.name.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -41,26 +41,26 @@ class ReadOnlyArrayOf_NameEntity : EBObject {
 
   var mObserversOf_aValue = Set<EBEvent> ()
 
-  final func addObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_aValue (inObserver : EBEvent) {
     mObserversOf_aValue.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.aValue.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.aValue.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_aValue.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.aValue.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.aValue.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -120,19 +120,19 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
      //--- Removed object set
         for managedObject : NameEntity in mSet.subtract (newSet) {
           for observer in mObserversOf_name {
-            managedObject.name.removeObserver (observer, postEvent:true)
+            managedObject.name.removeEBObserver (observer, postEvent:true)
           }
           for observer in mObserversOf_aValue {
-            managedObject.aValue.removeObserver (observer, postEvent:true)
+            managedObject.aValue.removeEBObserver (observer, postEvent:true)
           }
         }
       //--- Added object set
         for managedObject : NameEntity in newSet.subtract (mSet) {
           for observer in mObserversOf_name {
-            managedObject.name.addObserver (observer, postEvent:true)
+            managedObject.name.addEBObserver (observer)
           }
           for observer in mObserversOf_aValue {
-            managedObject.aValue.addObserver (observer, postEvent:true)
+            managedObject.aValue.addEBObserver (observer)
           }
         }
         mSet = newSet
@@ -374,8 +374,8 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<EBManagedObject>) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+                                     inout managedObjectArray : Array<EBManagedObject>) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     name.readFromDictionary (inDictionary, forKey:"name")
     aValue.readFromDictionary (inDictionary, forKey:"aValue")
   }

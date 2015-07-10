@@ -147,7 +147,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (%!mTransientName%, postEvent:true)\n%
+%    %![mDependency generateAddObserverCall]% (%!mTransientName%)\n%
 end
 end
 %  //--- Install regular bindings

@@ -198,7 +198,7 @@ struct DataScanner {
       }
     }
     if (mReadOk) {
-      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength))
+      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength-1))
       result = NSString (data:d, encoding: NSUTF8StringEncoding) as! String
       mReadIndex += stringLength
       mTextView.appendMessageString (" | \"" + result + "\": \(comment)\n")

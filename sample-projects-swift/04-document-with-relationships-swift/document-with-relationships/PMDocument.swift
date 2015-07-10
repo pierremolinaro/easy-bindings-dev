@@ -327,11 +327,11 @@ import Cocoa
       }
     }
   //--- Install property observers for transients
-    selController.sortedArray.count.addObserver (selectionCountString, postEvent:true)
-    otherController.sortedArray.count.addObserver (evenValueString, postEvent:true)
-    nameController.selectedArray.count.addObserver (canRemoveString, postEvent:true)
-    rootObject.mNames.count.addObserver (countItemMessage, postEvent:true)
-    self.rootObject.mNames.addObserverOf_aValue (total, postEvent:true)
+    selController.sortedArray.count.addEBObserver (selectionCountString)
+    otherController.sortedArray.count.addEBObserver (evenValueString)
+    nameController.selectedArray.count.addEBObserver (canRemoveString)
+    rootObject.mNames.count.addEBObserver (countItemMessage)
+    self.rootObject.mNames.addEBObserverOf_aValue (total)
   //--- Install regular bindings
     mSelectionCountTextField?.bind_valueObserver (self.selectionCountString, file:__FILE__, line:__LINE__)
     evenValueTextField?.bind_valueObserver (self.evenValueString, file:__FILE__, line:__LINE__)
@@ -408,11 +408,11 @@ import Cocoa
   //--------------------------- Unbind selection controllers
     detailController.unbind_selection ()
   //--- Uninstall property observers for transients
-    selController.sortedArray.count.removeObserver (selectionCountString, postEvent:false)
-    otherController.sortedArray.count.removeObserver (evenValueString, postEvent:false)
-    nameController.selectedArray.count.removeObserver (canRemoveString, postEvent:false)
-    rootObject.mNames.count.removeObserver (countItemMessage, postEvent:false)
-    self.rootObject.mNames.removeObserverOf_aValue (total, postEvent:false)
+    selController.sortedArray.count.removeEBObserver (selectionCountString, postEvent:false)
+    otherController.sortedArray.count.removeEBObserver (evenValueString, postEvent:false)
+    nameController.selectedArray.count.removeEBObserver (canRemoveString, postEvent:false)
+    rootObject.mNames.count.removeEBObserver (countItemMessage, postEvent:false)
+    self.rootObject.mNames.removeEBObserverOf_aValue (total, postEvent:false)
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil

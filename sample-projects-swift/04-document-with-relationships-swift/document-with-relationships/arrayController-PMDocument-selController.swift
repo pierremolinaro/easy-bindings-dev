@@ -19,8 +19,8 @@ final class DataSourceDidChangeEvent_PMDocument_selController : EBOutletEvent {
     mModel = model
     super.init ()
   //--- Column properties
-    model.addObserverOf_name (self, postEvent:true)
-    model.addObserverOf_aValue (self, postEvent:true)
+    model.addEBObserverOf_name (self)
+    model.addEBObserverOf_aValue (self)
   //--- Filter properties
   }
 
@@ -28,8 +28,8 @@ final class DataSourceDidChangeEvent_PMDocument_selController : EBOutletEvent {
   
   func removeDataSourceObservers () {
   //--- Column properties
-    mModel?.removeObserverOf_name (self, postEvent:true)
-    mModel?.removeObserverOf_aValue (self, postEvent:true)
+    mModel?.removeEBObserverOf_name (self, postEvent:true)
+    mModel?.removeEBObserverOf_aValue (self, postEvent:true)
   //--- Filter properties
     mModel = nil
     mController = nil
@@ -126,23 +126,23 @@ final class DataSource_PMDocument_selController : ReadOnlyArrayOf_NameEntity, EB
         //--- Removed object set
           for managedObject : NameEntity in mSet.subtract (newObjectSet) {
             for observer in mObserversOf_name {
-              managedObject.name.removeObserver (observer, postEvent:true)
+              managedObject.name.removeEBObserver (observer, postEvent:true)
             }
           }
           for managedObject : NameEntity in mSet.subtract (newObjectSet) {
             for observer in mObserversOf_aValue {
-              managedObject.aValue.removeObserver (observer, postEvent:true)
+              managedObject.aValue.removeEBObserver (observer, postEvent:true)
             }
           }
         //--- Added object set
           for managedObject : NameEntity in newObjectSet.subtract (mSet) {
             for observer in mObserversOf_name {
-              managedObject.name.addObserver (observer, postEvent:true)
+              managedObject.name.addEBObserver (observer)
             }
           }
            for managedObject : NameEntity in newObjectSet.subtract (mSet) {
             for observer in mObserversOf_aValue {
-              managedObject.aValue.addObserver (observer, postEvent:true)
+              managedObject.aValue.addEBObserver (observer)
             }
           }
         //--- Update object set
@@ -534,18 +534,18 @@ final class ArrayController_PMDocument_selController : EBObject {
           sortedArray.setSortDescriptors (sortDescriptorArray)
         }
       }
- //     sortedArray.addObserver (tableViewController, postEvent:true)
- //     selectedSet.addObserver (tableViewController, postEvent:true)
+ //     sortedArray.addEBObserver (tableViewController)
+ //     selectedSet.addEBObserver (tableViewController)
    //--- Set table view delegate and data source
       tableView.setDataSource (sortedArray)
       tableView.setDelegate (selectedSet)
    }
   //--- Add observers
- //   model.addObserverOf_name (sortedArray, postEvent:true)
- //   model.addObserverOf_aValue (sortedArray, postEvent:true)
-//    model.addObserver (sortedArray, postEvent:true)
-//    sortedArray.addObserver (selectedSet, postEvent:true)
-//    selectedSet.addObserver (selectedArray, postEvent:true)
+ //   model.addEBObserverOf_name (sortedArray)
+ //   model.addEBObserverOf_aValue (sortedArray)
+//    model.addEBObserver (sortedArray)
+//    sortedArray.addEBObserver (selectedSet)
+//    selectedSet.addEBObserver (selectedArray)
   }
 
   //····················································································································
@@ -553,16 +553,16 @@ final class ArrayController_PMDocument_selController : EBObject {
   //····················································································································
 
   func unbind_modelAndView () {
- //   mModel?.removeObserverOf_name (sortedArray, postEvent:false)
- //   mModel?.removeObserverOf_aValue (sortedArray, postEvent:false)
-//    mModel?.removeObserver (sortedArray, postEvent:false)
+ //   mModel?.removeEBObserverOf_name (sortedArray, postEvent:false)
+ //   mModel?.removeEBObserverOf_aValue (sortedArray, postEvent:false)
+//    mModel?.removeEBObserver (sortedArray, postEvent:false)
 //    if let selectedSet = mSelectedSet {
-//      sortedArray.removeObserver (selectedSet, postEvent:false)
+//      sortedArray.removeEBObserver (selectedSet, postEvent:false)
 //    }
-//    mSelectedSet?.removeObserver (selectedArray, postEvent:false)
+//    mSelectedSet?.removeEBObserver (selectedArray, postEvent:false)
 //     for tableViewController in mTableViewControllerArray {
- //     sortedArray.removeObserver (tableViewController, postEvent:false)
-//      mSelectedSet?.removeObserver (tableViewController, postEvent:false)
+ //     sortedArray.removeEBObserver (tableViewController, postEvent:false)
+//      mSelectedSet?.removeEBObserver (tableViewController, postEvent:false)
 //    }
     mTableViewControllerArray = []
     selectedArray.computeFunction = nil

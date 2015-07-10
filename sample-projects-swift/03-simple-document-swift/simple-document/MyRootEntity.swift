@@ -13,26 +13,26 @@ class ReadOnlyArrayOf_MyRootEntity : EBObject {
 
   var mObserversOf_myString = Set<EBEvent> ()
 
-  final func addObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_myString (inObserver : EBEvent) {
     mObserversOf_myString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.myString.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.myString.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.myString.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.myString.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -41,26 +41,26 @@ class ReadOnlyArrayOf_MyRootEntity : EBObject {
 
   var mObserversOf_myColor = Set<EBEvent> ()
 
-  final func addObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_myColor (inObserver : EBEvent) {
     mObserversOf_myColor.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.myColor.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.myColor.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_myColor.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.myColor.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.myColor.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -120,19 +120,19 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
      //--- Removed object set
         for managedObject : MyRootEntity in mSet.subtract (newSet) {
           for observer in mObserversOf_myString {
-            managedObject.myString.removeObserver (observer, postEvent:true)
+            managedObject.myString.removeEBObserver (observer, postEvent:true)
           }
           for observer in mObserversOf_myColor {
-            managedObject.myColor.removeObserver (observer, postEvent:true)
+            managedObject.myColor.removeEBObserver (observer, postEvent:true)
           }
         }
       //--- Added object set
         for managedObject : MyRootEntity in newSet.subtract (mSet) {
           for observer in mObserversOf_myString {
-            managedObject.myString.addObserver (observer, postEvent:true)
+            managedObject.myString.addEBObserver (observer)
           }
           for observer in mObserversOf_myColor {
-            managedObject.myColor.addObserver (observer, postEvent:true)
+            managedObject.myColor.addEBObserver (observer)
           }
         }
         mSet = newSet
@@ -285,10 +285,10 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
       }
     }
   //--- Install property observers for transients
-    myString.addObserver (myStringMaj, postEvent:true)
-    myString.addObserver (myStringMin, postEvent:true)
-    myStringMaj.addObserver (myStringConcat, postEvent:true)
-    myStringMin.addObserver (myStringConcat, postEvent:true)
+    myString.addEBObserver (myStringMaj)
+    myString.addEBObserver (myStringMin)
+    myStringMaj.addEBObserver (myStringConcat)
+    myStringMin.addEBObserver (myStringConcat)
   //--- Install undoers for properties
     myString.undoManager = undoManager ()
     myColor.undoManager = undoManager ()
@@ -347,8 +347,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<EBManagedObject>) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+                                     inout managedObjectArray : Array<EBManagedObject>) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     myString.readFromDictionary (inDictionary, forKey:"myString")
     myColor.readFromDictionary (inDictionary, forKey:"myColor")
   }
@@ -366,7 +366,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func computeSignature () -> UInt32 {
-    let crc = super.computeSignature ()
+    var crc = super.computeSignature ()
     return crc
   }
 

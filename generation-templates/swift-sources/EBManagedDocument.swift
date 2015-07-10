@@ -450,7 +450,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     mSignatureObserver.setRootObject (mRootObject!)
   //--- Version did change observer
     mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)
-    mSignatureObserver.addObserver (mVersionShouldChangeObserver, postEvent:true)
+    mSignatureObserver.addEBObserver (mVersionShouldChangeObserver)
   //--- Get version from metadadictionary
     let possibleVersion = mMetadataDictionary.objectForKey ("EBVersion")
     if let versionNumber = possibleVersion as? NSNumber {
@@ -493,7 +493,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //····················································································································
 
   func removeUserInterface () {
-    mSignatureObserver.removeObserver (mVersionShouldChangeObserver, postEvent:true)
+    mSignatureObserver.removeEBObserver (mVersionShouldChangeObserver, postEvent:true)
     mManagedObjectContext.reset ()
   }
 

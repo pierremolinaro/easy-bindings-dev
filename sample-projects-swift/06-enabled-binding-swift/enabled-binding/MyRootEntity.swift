@@ -13,26 +13,26 @@ class ReadOnlyArrayOf_MyRootEntity : EBObject {
 
   var mObserversOf_docBool = Set<EBEvent> ()
 
-  final func addObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_docBool (inObserver : EBEvent) {
     mObserversOf_docBool.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.docBool.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.docBool.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docBool.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.docBool.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.docBool.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -92,13 +92,13 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
      //--- Removed object set
         for managedObject : MyRootEntity in mSet.subtract (newSet) {
           for observer in mObserversOf_docBool {
-            managedObject.docBool.removeObserver (observer, postEvent:true)
+            managedObject.docBool.removeEBObserver (observer, postEvent:true)
           }
         }
       //--- Added object set
         for managedObject : MyRootEntity in newSet.subtract (mSet) {
           for observer in mObserversOf_docBool {
-            managedObject.docBool.addObserver (observer, postEvent:true)
+            managedObject.docBool.addEBObserver (observer)
           }
         }
         mSet = newSet
@@ -219,8 +219,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<EBManagedObject>) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+                                     inout managedObjectArray : Array<EBManagedObject>) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     docBool.readFromDictionary (inDictionary, forKey:"docBool")
   }
 

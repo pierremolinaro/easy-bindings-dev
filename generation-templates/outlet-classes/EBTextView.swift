@@ -15,13 +15,6 @@ import Cocoa
 
   //····················································································································
 
-/*  override init (frame:NSRect) {
-    super.init (frame:frame)
-    noteObjectAllocation (self)
-  } */
-  
-  //····················································································································
-
   deinit {
     noteObjectDeallocation (self)
   }
@@ -63,13 +56,13 @@ import Cocoa
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     outlet.delegate = self
-    object.addObserver (self, postEvent:true)
+    object.addEBObserver (self)
   }
 
   //····················································································································
   
   func unregister () {
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.delegate = nil
   }
 

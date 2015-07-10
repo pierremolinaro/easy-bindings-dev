@@ -140,8 +140,8 @@ end
 if not [mType isEntityType] then
 %  //···················································································································*\n\n% 
 %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
-%    model.addObserverOf_%!lkey.string% (%!lkey.string%, postEvent:true)\n%
-%//    model.addObserver (%!lkey.string%, postEvent:true)\n%
+%    model.addEBObserverOf_%!lkey.string% (%!lkey.string%)\n%
+%//    model.addEBObserver (%!lkey.string%)\n%
 %    %!lkey.string%.readModelFunction = {\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
@@ -221,8 +221,8 @@ if not [mType isEntityType] then
 %    %!lkey.string%.readModelFunction = nil \n%
 %    %!lkey.string%.writeModelFunction = nil \n%
 %    %!lkey.string%.validateAndWriteModelFunction = nil \n%
-%    mModel?.removeObserverOf_%!lkey.string% (%!lkey.string%, postEvent:false)\n%
-%//    mModel?.removeObserver (%!lkey.string%, postEvent:false)\n%
+%    mModel?.removeEBObserverOf_%!lkey.string% (%!lkey.string%, postEvent:false)\n%
+%//    mModel?.removeEBObserver (%!lkey.string%, postEvent:false)\n%
 end
 end%    mModel = nil    
   }

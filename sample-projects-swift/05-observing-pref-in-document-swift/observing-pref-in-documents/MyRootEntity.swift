@@ -13,26 +13,26 @@ class ReadOnlyArrayOf_MyRootEntity : EBObject {
 
   var mObserversOf_docString = Set<EBEvent> ()
 
-  final func addObserverOf_docString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserverOf_docString (inObserver : EBEvent) {
     mObserversOf_docString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.docString.addObserver (inObserver, postEvent:inTrigger)
+        managedObject.docString.addEBObserver (inObserver)
       }
     }
   }
 
-  final func removeObserverOf_docString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_docString (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObserversOf_docString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.docString.removeObserver (inObserver, postEvent:inTrigger)
+        managedObject.docString.removeEBObserver (inObserver, postEvent:inTrigger)
       }
     }
   }
@@ -92,13 +92,13 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
      //--- Removed object set
         for managedObject : MyRootEntity in mSet.subtract (newSet) {
           for observer in mObserversOf_docString {
-            managedObject.docString.removeObserver (observer, postEvent:true)
+            managedObject.docString.removeEBObserver (observer, postEvent:true)
           }
         }
       //--- Added object set
         for managedObject : MyRootEntity in newSet.subtract (mSet) {
           for observer in mObserversOf_docString {
-            managedObject.docString.addObserver (observer, postEvent:true)
+            managedObject.docString.addEBObserver (observer)
           }
         }
         mSet = newSet
@@ -223,10 +223,10 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         }
     }
   //--- Install property observers for transients
-    docString.addObserver (transientConcatString, postEvent:true)
-    g_Preferences?.myPrefString.addObserver (transientConcatString, postEvent:true)
-    g_Preferences?.prefTransientString.addObserver (transientConcatString, postEvent:true)
-    g_Preferences?.myPrefString.addObserver (otherTransientConcatString, postEvent:true)
+    docString.addEBObserver (transientConcatString)
+    g_Preferences?.myPrefString.addEBObserver (transientConcatString)
+    g_Preferences?.prefTransientString.addEBObserver (transientConcatString)
+    g_Preferences?.myPrefString.addEBObserver (otherTransientConcatString)
   //--- Install undoers for properties
     docString.undoManager = undoManager ()
   //--- Install owner for relationships
@@ -273,8 +273,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     managedObjectArray : Array<EBManagedObject>) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:managedObjectArray)
+                                     inout managedObjectArray : Array<EBManagedObject>) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     docString.readFromDictionary (inDictionary, forKey:"docString")
   }
 

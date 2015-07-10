@@ -121,17 +121,15 @@ import Cocoa
   
   //····················································································································
 
-  final func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func addEBObserver (inObserver : EBEvent) {
     mObservers.insert (inObserver)
     updateObserverExplorer ()
-    if inTrigger {
-      inObserver.postEvent ()
-    }
+    inObserver.postEvent ()
   }
  
   //····················································································································
 
-  final func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
     mObservers.remove (inObserver)
     updateObserverExplorer ()
     if inTrigger {
@@ -367,7 +365,7 @@ func presentErrorWindow (file : String!,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension Array {
-  func objectAtIndex (index:Int, file:String, line:Int) -> Element {
+  func objectAtIndex (index:Int, file:String, line:Int) -> T {
     if index < 0 {
       NSLog ("Negative index %d in '%@' line %d", index, file, line)
     }else if index >= count {
@@ -517,7 +515,7 @@ class EBSimpleController : EBOutletEvent {
   //   deleteWindowAction
   //····················································································································
 
-  final func deleteWindowAction (_: AnyObject) {
+  final func deleteWindowAction (AnyObject) {
     clearObjectExplorer ()
   }
 
@@ -951,9 +949,9 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 
 @objc(EBReadOnlyEnumPropertyProtocol) protocol EBReadOnlyEnumPropertyProtocol {
 
-  func addObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+  func addEBObserver (inObserver : EBEvent)
 
-  func removeObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+  func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
 
   func count () -> Int
 

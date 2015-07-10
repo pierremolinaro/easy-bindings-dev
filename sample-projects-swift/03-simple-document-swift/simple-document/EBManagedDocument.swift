@@ -4,18 +4,11 @@ import Cocoa
 
 let kFormatSignature = "PM-BINARY-FORMAT"
 let EBVersion = "EBVersion"
+let kEntityKey = "--entity"
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 private var gDebugMenuItemsAdded = false
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-enum EBDocumentCompressionEnum {
-  case EBDocumentNoCompression
-  case EBDocumentBZ2Compression
-  case EBDocumentZLIBCompression
-}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBManagedDocument
@@ -38,10 +31,8 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     super.init ()
     noteObjectAllocation (self)
     undoManager = theUndoManager
-    hookOfInit ()
     theUndoManager.disableUndoRegistration ()
     mRootObject = mManagedObjectContext.newInstanceOfEntityNamed (rootEntityClassName ())
-    hookOfNewDocumentCreation ()
     theUndoManager.enableUndoRegistration ()
   }
 
@@ -54,17 +45,11 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   }
 
   //····················································································································
-  //    hookOfInit
+  //    managedObjectContext
   //····················································································································
 
-  func hookOfInit () {
-  }
-
-  //····················································································································
-  //    hookOfNewDocumentCreation
-  //····················································································································
-
-  func hookOfNewDocumentCreation () {
+  final func managedObjectContext () -> EBManagedObjectContext {
+    return mManagedObjectContext
   }
 
   //····················································································································
@@ -81,12 +66,6 @@ class EBManagedDocument : NSDocument, EBUserClassName {
 
   func metadataStatusForSaving () -> UInt8 {
     return 0 ;
-  }
-
-  //····················································································································
-
-  func compressDataOnSaving () -> EBDocumentCompressionEnum {
-    return EBDocumentCompressionEnum.EBDocumentBZ2Compression ;
   }
 
   //····················································································································
@@ -186,7 +165,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     var saveDataArray : [NSDictionary] = []
     for object in objectsToSaveArray {
       let d : NSMutableDictionary = [
-        "--entity" : object.className
+        kEntityKey : object.className
       ]
       object.saveIntoDictionary (d)
       saveDataArray.append (d)
@@ -207,12 +186,12 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     var dataScanner = EBDataScanner (data:data!)
   //--- Check Signature
     for c in kFormatSignature.utf8 {
-      dataScanner.acceptRequiredByte (c, sourceFile:__FUNCTION__)
+      dataScanner.acceptRequiredByte (c)
     }
   //--- Read Status
     mReadMetadataStatus = dataScanner.parseByte ()
   //--- if ok, check byte is 1
-    dataScanner.acceptRequiredByte (1, sourceFile:__FUNCTION__)
+    dataScanner.acceptRequiredByte (1)
   //--- Read metadata dictionary
     let dictionaryData = dataScanner.parseAutosizedData ()
     let metadataDictionary = try NSPropertyListSerialization.propertyListWithData (dictionaryData,
@@ -224,72 +203,11 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     if let versionNumber = mMetadataDictionary.objectForKey (EBVersion) as? NSNumber {
       mVersionObserver.setProp (versionNumber.integerValue)
     }
-  //--- Read data dictionary
+  //--- Read data
     let dataFormat = dataScanner.parseByte ()
-    switch dataFormat {
-    case 6 :
-      let data = dataScanner.parseAutosizedData ()
-      try readManagedObjectsFromData (data)
-    default:
-      NSLog ("unknown data format: %u", dataFormat)
-    }
-/*    BOOL legacyDataWithoutConverterError = NO ;
-    if ([dataScanner testAcceptByte:3]) { // Legacy data, not compressed
-      NSData * data = [dataScanner parseAutosizedData] ;
-      if (NULL == legacyFormatLoader) {
-        data = nil ;
-        legacyDataWithoutConverterError = YES ;
-      }else if (nil != data) {
-        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
-      }
-    }else if ([dataScanner testAcceptByte:4]) { // Legacy data, ZLIB Compressed
-      NSData * compressedData = [dataScanner parseAutosizedData] ;
-      NSData * data = nil ;
-      if (nil != compressedData) {
-         data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-      }
-      if (NULL == legacyFormatLoader) {
-        legacyDataWithoutConverterError = YES ;
-        data = nil ;
-      }else if (nil != data) {
-        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
-      }
-    }else if ([dataScanner testAcceptByte:2]) { // Legacy data, BZ2 compressed
-      NSData * compressedData = [dataScanner parseAutosizedData] ;
-      NSData * data = nil ;
-      if (nil != compressedData) {
-        data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-      }
-      if (NULL == legacyFormatLoader) {
-        legacyDataWithoutConverterError = YES ;
-        data = nil ;
-      }else if (nil != data) {
-        mRootObject = legacyFormatLoader (data, self.entityManager, self.rootEntityClass, & error) ;
-      }
-    }else if ([dataScanner testAcceptByte:6]) { // Not compressed
-      NSData * data = [dataScanner parseAutosizedData] ;
-      if (nil != data) {
-        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-        macroRetain (mRootObject) ;
-      }
-    }else if ([dataScanner testAcceptByte:7]) { // ZLIB Compressed
-      NSData * compressedData = [dataScanner parseAutosizedData] ;
-      if (nil != compressedData) {
-        NSData * data = [compressedData zlibDecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-        macroRetain (mRootObject) ;
-      }
-    }else{
-      [dataScanner acceptRequiredByte:5 sourceFile:__FUNCTION__] ; // BZ2 compressed
-      NSData * compressedData = [dataScanner parseAutosizedData] ;
-      if (nil != compressedData) {
-        NSData * data = [compressedData bz2DecompressedDataWithEstimedExpansion:10 returnedErrorCode:nil] ;
-        mRootObject = [mEntityManager readFromData:data withRootEntityClass:self.rootEntityClass] ;
-        macroRetain (mRootObject) ;
-      }
-    }*/
+    let fileData = dataScanner.parseAutosizedData ()
   //--- if ok, check final byte (0)
-    dataScanner.acceptRequiredByte (0, sourceFile:__FUNCTION__)
+    dataScanner.acceptRequiredByte (0)
   //--- Scanner error ?
     if !dataScanner.ok () {
       let dictionary = [
@@ -302,20 +220,15 @@ class EBManagedDocument : NSDocument, EBUserClassName {
         userInfo:dictionary
       )
     }
-  //---
-/*    if (legacyDataWithoutConverterError) {
-      NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        @"Cannot Open Document",  NSLocalizedDescriptionKey,
-        @"Legacy data, no helper function",  NSLocalizedRecoverySuggestionErrorKey,
-        nil
-      ] ;
-      macroReleaseSetToNil (error) ;
-      throw [[NSError alloc]
-        initWithDomain:[NSBundle mainBundle].bundleIdentifier
-        code:1
-        userInfo:dictionary
-      ] ;
-    }*/
+  //--- Analyze read data
+    switch dataFormat {
+    case 0x02 :
+      try readLegacyDataFormat (fileData)
+    case 0x06 :
+      try readManagedObjectsFromData (fileData)
+    default:
+      try raiseInvalidDataFormatArror (dataFormat)
+    }
   //---
     if mRootObject == nil {
       let dictionary = [
@@ -330,6 +243,26 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   //---
     undoManager?.enableUndoRegistration ()
+  }
+
+  //····················································································································
+
+  func readLegacyDataFormat (legacyData : NSData) throws {
+    try raiseInvalidDataFormatArror (3)
+  }
+
+  //····················································································································
+
+  final func raiseInvalidDataFormatArror (dataFormat : UInt8) throws {
+    let dictionary = [
+      "Cannot Open Document" :  NSLocalizedDescriptionKey,
+      "Unkown data format: \(dataFormat)" :  NSLocalizedRecoverySuggestionErrorKey
+    ]
+    throw NSError (
+      domain:NSBundle.mainBundle ().bundleIdentifier!,
+      code:1,
+      userInfo:dictionary
+    )
   }
 
   //····················································································································
@@ -361,7 +294,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       var objectArray : Array<EBManagedObject> = Array  ()
       var progressIdx = 0 ;
       for d in dictionaryArray {
-        let className = d.objectForKey ("--entity") as! String
+        let className = d.objectForKey (kEntityKey) as! String
         let object = self.mManagedObjectContext.newInstanceOfEntityNamed (className)
         objectArray.append (object!)
         progressIdx += 1
@@ -374,7 +307,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       var idx = 0
       for d in dictionaryArray {
         let object : EBManagedObject = objectArray [idx]
-        object.setUpWithDictionary (d, managedObjectArray:objectArray)
+        object.setUpWithDictionary (d, managedObjectArray:&objectArray)
         idx += 1
         progressIdx += 1
         progress?.setProgress (progressIdx)
@@ -426,7 +359,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //   C H E C K    E N T I T Y   R E A C H A B I L I T Y
   //····················································································································
 
-  @IBAction func checkEntityReachability (_: AnyObject!) {
+  @IBAction func checkEntityReachability (AnyObject!) {
     if let rootObject = mRootObject, window = windowForSheet {
       mManagedObjectContext.checkEntityReachabilityFromObject (rootObject, windowForSheet:window)
     }
@@ -436,7 +369,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //   showObjectExplorerWindow:
   //····················································································································
 
-  @IBAction func showObjectExplorerWindow (_: AnyObject!) {
+  @IBAction func showObjectExplorerWindow (AnyObject!) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
@@ -517,7 +450,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     mSignatureObserver.setRootObject (mRootObject!)
   //--- Version did change observer
     mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)
-    mSignatureObserver.addObserver (mVersionShouldChangeObserver, postEvent:true)
+    mSignatureObserver.addEBObserver (mVersionShouldChangeObserver)
   //--- Get version from metadadictionary
     let possibleVersion = mMetadataDictionary.objectForKey ("EBVersion")
     if let versionNumber = possibleVersion as? NSNumber {
@@ -560,7 +493,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //····················································································································
 
   func removeUserInterface () {
-    mSignatureObserver.removeObserver (mVersionShouldChangeObserver, postEvent:true)
+    mSignatureObserver.removeEBObserver (mVersionShouldChangeObserver, postEvent:true)
     mManagedObjectContext.reset ()
   }
 

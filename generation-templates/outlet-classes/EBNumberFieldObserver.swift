@@ -71,13 +71,13 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
     }
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

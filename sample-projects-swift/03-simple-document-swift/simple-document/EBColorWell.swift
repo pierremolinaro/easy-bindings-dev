@@ -63,7 +63,7 @@ import Cocoa
     mOutlet.target = self
     mOutlet.action = "action:"
     mOutlet.continuous = true
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*
@@ -71,7 +71,7 @@ import Cocoa
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

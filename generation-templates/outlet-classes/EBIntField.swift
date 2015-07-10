@@ -129,7 +129,7 @@ final class Controller_EBIntField_value : EBSimpleController {
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //···················································································································*
@@ -137,7 +137,7 @@ final class Controller_EBIntField_value : EBSimpleController {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

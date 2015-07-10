@@ -136,7 +136,7 @@ final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    mObject.addObserver (self, postEvent:true)
+    mObject.addEBObserver (self)
   }
 
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
@@ -144,7 +144,7 @@ final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeObserver (self, postEvent:false)
+    mObject.removeEBObserver (self, postEvent:false)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
