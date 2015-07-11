@@ -140,7 +140,7 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue))
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (integer:oldValue))
         postEvent ()
         clearSignatureCache ()
       }
@@ -447,7 +447,7 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (bool:oldValue))
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (bool:oldValue))
         postEvent ()
         clearSignatureCache ()
       }
@@ -754,7 +754,7 @@ final class EBStoredProperty_Double : EBReadWriteProperty_Double {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (double:oldValue))
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (double:oldValue))
         postEvent ()
         clearSignatureCache ()
       }
@@ -1060,7 +1060,7 @@ final class EBStoredProperty_String : EBReadWriteProperty_String {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }
@@ -1362,7 +1362,7 @@ final class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }
@@ -1670,7 +1670,7 @@ final class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }
@@ -1972,7 +1972,7 @@ final class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object: oldValue)
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }

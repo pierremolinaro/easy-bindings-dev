@@ -225,7 +225,7 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        owner?.undoManager()?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:oldValue)
       //--- Update explorer
         if let valueExplorer = mValueExplorer {
           updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
@@ -385,7 +385,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
     didSet {
       if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
-        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = mValueExplorer {
           updateManagedObjectToOneRelationshipDisplay (mValue, button:unwrappedExplorer)

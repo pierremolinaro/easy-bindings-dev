@@ -11,6 +11,132 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                             Category setter '@XcodeProjectDescriptor addInfoPlistFile'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                        const class GALGAS_string constin_inFileName,
+                                        class GALGAS_string & out_outFileRef,
+                                        class C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category setter '@XcodeProjectDescriptor addXIBFile'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addXIBFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                  const class GALGAS_string constin_inFileName,
+                                  class GALGAS_string & out_outFileRef,
+                                  class C_Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                             Category setter '@XcodeProjectDescriptor addFrameworkFile'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addFrameworkFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                        const class GALGAS_string constin_inFileName,
+                                        class GALGAS_string & out_outFileRef,
+                                        class C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Category setter '@XcodeProjectDescriptor addMFile'                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                const class GALGAS_string constin_inFileName,
+                                class GALGAS_string & out_outFileRef,
+                                class C_Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Category setter '@XcodeProjectDescriptor addSwiftFile'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addSwiftFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                    const class GALGAS_string constin_inFileName,
+                                    class GALGAS_string & out_outFileRef,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Category setter '@XcodeProjectDescriptor addMMFile'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                 const class GALGAS_string constin_inFileName,
+                                 class GALGAS_string & out_outFileRef,
+                                 class C_Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Category setter '@XcodeProjectDescriptor addCppFile'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                  const class GALGAS_string constin_inFileName,
+                                  class GALGAS_string & out_outFileRef,
+                                  class C_Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Category setter '@XcodeProjectDescriptor addHeaderFile'                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                     const class GALGAS_string constin_inFileName,
+                                     class GALGAS_string & out_outFileRef,
+                                     class C_Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Category setter '@XcodeProjectDescriptor addBuildFile'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                    const class GALGAS_string constin_inFileReference,
+                                    const class GALGAS_string constin_inFileName,
+                                    class GALGAS_string & out_outBuildRef,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Category setter '@XcodeProjectDescriptor addToolTarget'                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryModifier_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                     const class GALGAS_string constin_inTargetName,
+                                     const class GALGAS_string constin_inProductFileName,
+                                     const class GALGAS_stringlist constin_inSourceList,
+                                     const class GALGAS_stringlist constin_inToolFrameworksFileRefList,
+                                     const class GALGAS_stringlist constin_inBuildConfigurationSettingList,
+                                     class GALGAS_string & out_outTargetRef,
+                                     class GALGAS_string & out_outProductFileRef,
+                                     class C_Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                 Category setter '@XcodeProjectDescriptor addGroup'                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
