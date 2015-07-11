@@ -219,7 +219,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (%!mTransientName%, postEvent:false)\n%
+%    %![mDependency generateRemoveObserverCall]% (%!mTransientName%)\n%
 end
 end
 %  //--------------------------- Remove targets / actions

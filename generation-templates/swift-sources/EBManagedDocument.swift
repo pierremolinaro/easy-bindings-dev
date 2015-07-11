@@ -493,7 +493,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //····················································································································
 
   func removeUserInterface () {
-    mSignatureObserver.removeEBObserver (mVersionShouldChangeObserver, postEvent:true)
+    mSignatureObserver.removeEBObserver (mVersionShouldChangeObserver)
     mManagedObjectContext.reset ()
   }
 

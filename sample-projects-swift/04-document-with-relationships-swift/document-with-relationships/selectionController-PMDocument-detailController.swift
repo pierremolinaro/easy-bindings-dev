@@ -289,14 +289,14 @@ final class SelectionController_PMDocument_detailController : EBObject {
     aValue.readModelFunction = nil 
     aValue.writeModelFunction = nil 
     aValue.validateAndWriteModelFunction = nil 
-    mModel?.removeEBObserverOf_aValue (aValue, postEvent:false)
-//    mModel?.removeEBObserver (aValue, postEvent:false)
+    mModel?.removeEBObserverOf_aValue (aValue)
+//    mModel?.removeEBObserver (aValue)
   //--- name
     name.readModelFunction = nil 
     name.writeModelFunction = nil 
     name.validateAndWriteModelFunction = nil 
-    mModel?.removeEBObserverOf_name (name, postEvent:false)
-//    mModel?.removeEBObserver (name, postEvent:false)
+    mModel?.removeEBObserverOf_name (name)
+//    mModel?.removeEBObserver (name)
     mModel = nil    
   }
 

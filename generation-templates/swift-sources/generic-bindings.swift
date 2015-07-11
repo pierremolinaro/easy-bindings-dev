@@ -62,7 +62,7 @@ extension NSView {
   func unregister () {
     mComputeFunction = nil
     for object in mObjectArray {
-      object.removeEBObserver (self, postEvent:false)
+      object.removeEBObserver (self)
     }
   }
 
@@ -178,7 +178,7 @@ extension NSControl {
   func unregister () {
     mComputeFunction = nil
     for object in mObjectArray {
-      object.removeEBObserver (self, postEvent:false)
+      object.removeEBObserver (self)
     }
   }
 

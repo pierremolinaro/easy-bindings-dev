@@ -65,7 +65,7 @@ final class Controller_EBReadOnlyColorWell_color : EBSimpleController {
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeEBObserver (self, postEvent:false)
+    mObject.removeEBObserver (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

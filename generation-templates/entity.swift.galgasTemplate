@@ -7,13 +7,13 @@ import Cocoa
 @objc(ReadOnlyArrayOf_%!ENTITY_NAME%)
 class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 
-  var prop : EBProperty <Array<%!ENTITY_NAME%> > { get { return .noSelection } }
+  var prop : EBProperty < [%!ENTITY_NAME%] > { get { return .noSelection } }
 
   //····················································································································
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+%  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
   final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
@@ -27,14 +27,42 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_%!mStoredPropertyName% () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mStoredPropertyName%.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mStoredPropertyName% {
+        managedObject.%!mStoredPropertyName%.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      managedObject.%!mStoredPropertyName%.postEvent ()
+      for observer in mObserversOf_%!mStoredPropertyName% {
+        managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
       }
     }
   }
@@ -52,11 +80,11 @@ end
 @objc(TransientArrayOf_%!ENTITY_NAME%)
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
-  var computeFunction : Optional<() -> EBProperty <Array<%!ENTITY_NAME%> > >
+  var computeFunction : Optional<() -> EBProperty < [%!ENTITY_NAME%] > >
   
   var count = EBTransientProperty_Int ()
 
-  private var prop_cache : EBProperty <Array<%!ENTITY_NAME%> >? 
+  private var prop_cache : EBProperty < [%!ENTITY_NAME%] >? 
 
   //····················································································································
 
@@ -82,7 +110,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   private var mSet = Set <%!ENTITY_NAME%> ()
 
-  override var prop : EBProperty <Array<%!ENTITY_NAME%> > {
+  override var prop : EBProperty < [%!ENTITY_NAME%] > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -96,24 +124,18 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 %
 if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
 %     //--- Removed object set
-        for managedObject : %!ENTITY_NAME% in mSet.subtract (newSet) {
+        let removedSet = mSet.subtract (newSet)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%          for observer in mObserversOf_%!mStoredPropertyName% {
-            managedObject.%!mStoredPropertyName%.removeEBObserver (observer, postEvent:true)
-          }
-%end
-%        }
-      //--- Added object set
-        for managedObject : %!ENTITY_NAME% in newSet.subtract (mSet) {
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%          for observer in mObserversOf_%!mStoredPropertyName% {
-            managedObject.%!mStoredPropertyName%.addEBObserver (observer)
-          }
-%end
-%        }
-%
+  %        removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (removedSet)\n%
 end
-%        mSet = newSet
+%      //--- Added object set
+        let addedSet = newSet.subtract (mSet)
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %        addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (addedSet)\n%
+end
+end
+%      //--- Update object set
+        mSet = newSet
       }
       if prop_cache == nil {
         prop_cache = .noSelection
@@ -127,13 +149,7 @@ end
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-%
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %        observer.postEvent ()\n%
-  %      }\n%
-end
-%      count.postEvent ()
+      count.postEvent ()
       super.postEvent ()
     }
   }
@@ -203,12 +219,11 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
   //····················································································································
 
   private var mSet = Set<%![mRelationshipType swiftTypeName]%> ()
-  private var mValue = Array<%![mRelationshipType swiftTypeName]%> () {
+  private var mValue = [%![mRelationshipType swiftTypeName]%] () {
     didSet {
       if oldValue != mValue {
-        clearSignatureCache ()
+        let oldSet = mSet
         mSet = Set (mValue)
-        let oldSet = Set (oldValue)
       //--- Register old value in undo manager
         owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
@@ -216,31 +231,30 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
           updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
         }
       //--- Removed object set
-        for managedObject : %![mRelationshipType swiftTypeName]% in oldSet.subtract (mSet) {
+        let removedObjectSet = oldSet.subtract (mSet)
+        for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (nil)
-%for () in mDestinationEntityObservablePropertyMap do
-if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
-%          for observer in mObserversOf_%!lkey.string% {
-            managedObject.%!lkey.string%.removeEBObserver (observer, postEvent:true)
-          }
-%end
-end
-%          managedObject.%!mOppositeRelationshipName%.owner = nil ;
+          managedObject.%!mOppositeRelationshipName%.owner = nil ;
         }
-      //--- Added object set
+%for () in mDestinationEntityObservablePropertyMap do
+  if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
+    %        removeEBObserversOf_%!lkey.string%_fromElementsOfSet (removedObjectSet)\n%
+  end
+end
+%      //--- Added object set
+        let addedObjectSet = mSet.subtract (oldSet)
         for managedObject : %![mRelationshipType swiftTypeName]% in mSet.subtract (oldSet) {
           managedObject.setSignatureObserver (self)
-%for () in mDestinationEntityObservablePropertyMap do
-if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
-%          for observer in mObserversOf_%!lkey.string% {
-            managedObject.%!lkey.string%.addEBObserver (observer)
-          }
-%end
-end
-%          managedObject.%!mOppositeRelationshipName%.setProp (owner)
+          managedObject.%!mOppositeRelationshipName%.setProp (owner)
         }
-      //--- Notify observers object count did change
-        // postEvent ()
+%for () in mDestinationEntityObservablePropertyMap do
+  if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
+    %        addEBObserversOf_%!lkey.string%_toElementsOfSet (addedObjectSet)\n%
+  end
+end
+%      //--- Notify observers
+        clearSignatureCache ()
+        postEvent ()
         if oldValue.count != mValue.count {
           count.postEvent ()
         }
@@ -248,19 +262,19 @@ end
     }
   }
 
-  override var prop : EBProperty <Array<%![mRelationshipType swiftTypeName]%> > {
+  override var prop : EBProperty < [%![mRelationshipType swiftTypeName]%] > {
     get {
-      return .singleSelection (mValue ?? Array<%![mRelationshipType swiftTypeName]%> ())
+      return .singleSelection (mValue ?? [%![mRelationshipType swiftTypeName]%] ())
     }
   }
 
-  func setProp (inValue :  Array<%![mRelationshipType swiftTypeName]%>) { mValue = inValue }
+  func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) { mValue = inValue }
 
-  var propval : Array<%![mRelationshipType swiftTypeName]%> { get { return mValue ?? Array<%![mRelationshipType swiftTypeName]%> () } }
+  var propval : [%![mRelationshipType swiftTypeName]%] { get { return mValue ?? [%![mRelationshipType swiftTypeName]%] () } }
 
   //····················································································································
 
-  func performUndo (oldValue : Array<%![mRelationshipType swiftTypeName]%>) {
+  func performUndo (oldValue : [%![mRelationshipType swiftTypeName]%]) {
     mValue = oldValue
   }
 
@@ -286,10 +300,11 @@ end
   }
   
   //····················································································································
-  //   setSignatureObserver
+  //   signature
   //····················································································································
 
   private weak var mSignatureObserver : EBSignatureObserverProtocol?
+  private var mSignatureCache : UInt32?
 
   //····················································································································
 
@@ -300,12 +315,6 @@ end
     }
   }
 
-  //····················································································································
-  //   signature
-  //····················································································································
-
-  private var mSignatureCache : UInt32?
- 
   //····················································································································
 
   final func signature () -> UInt32 {
@@ -319,8 +328,6 @@ end
     return computedSignature
   }
   
-  //····················································································································
-  //   computeSignature
   //····················································································································
 
   final func computeSignature () -> UInt32 {
@@ -620,7 +627,7 @@ end
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : Array<EBManagedObject>) {
+                                     inout managedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
@@ -630,7 +637,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
       "%!mToManyRelationshipName%",
       inDictionary:inDictionary,
       managedObjectArray:&managedObjectArray
-    ) as! Array<%![mRelationshipType swiftTypeName]%>)\n%
+    ) as! [%![mRelationshipType swiftTypeName]%])\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mInverseRelationMultiplicity isSingle] then
@@ -676,7 +683,7 @@ end
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
+  override func accessibleObjects (inout objects : [EBManagedObject]) {
     super.accessibleObjects (&objects)
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
@@ -691,7 +698,9 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 end
 %  }
 
-  //····················································································································
+%
+if [SIGNATURE_SET count] > 0 then
+%  //····················································································································
   //   computeSignature
   //····················································································································
 
@@ -704,7 +713,9 @@ end
 %    return crc
   }
 
-  //····················································································································
+%
+end
+%  //····················································································································
 
 }
 

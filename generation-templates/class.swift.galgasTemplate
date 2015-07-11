@@ -6,15 +6,15 @@ import Cocoa
 
 class ReadOnlyArrayOf_%!CLASS_NAME% : EBAbstractProperty {
 
-  var prop : EBProperty <Array<%!CLASS_NAME%> > { get { return .noSelection } }
+  var prop : EBProperty < [%!CLASS_NAME%] > { get { return .noSelection } }
 
   //····················································································································
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%  var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+%  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
-  func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+  final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -26,17 +26,48 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver)
       }
     }
   }
+
+  final func postEventTo_%!mStoredPropertyName% () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mStoredPropertyName%.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mStoredPropertyName% {
+        managedObject.%!mStoredPropertyName%.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mStoredPropertyName% {
+        managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
+      }
+    }
+  }
+
+//  final func observersOf_%!mStoredPropertyName% () -> Set<EBEvent> {
+//    return mObserversOf_%!mStoredPropertyName% 
+//  }
 
   //····················································································································
 
@@ -50,11 +81,11 @@ end
 
 class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
-  var computeFunction : Optional<() -> EBProperty <Array<%!CLASS_NAME%> > >
+  var computeFunction : Optional<() -> EBProperty < [%!CLASS_NAME%] > >
   
   var count = EBTransientProperty_Int ()
 
-  private var prop_cache : EBProperty <Array<%!CLASS_NAME%> >? 
+  private var prop_cache : EBProperty < [%!CLASS_NAME%] >? 
 
   //····················································································································
 
@@ -78,7 +109,7 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   //····················································································································
 
-  override var prop : EBProperty <Array<%!CLASS_NAME%> > {
+  override var prop : EBProperty < [%!CLASS_NAME%] > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -154,37 +185,34 @@ class EBClassArray_%!CLASS_NAME% : TransientArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   private var mSet = Set<%!CLASS_NAME%> ()
-  private var mValue = Array<%!CLASS_NAME%> () {
+  private var mValue = [%!CLASS_NAME%] () {
     didSet {
       if oldValue != mValue {
+        let oldSet = mSet
         mSet = Set (mValue)
       //--- Update explorer
        // if explorer != nil {
        //   owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
        // }
       //--- Removed object set
-        var removedObjectSet : Set<%!CLASS_NAME%> = Set (oldValue)
-        removedObjectSet.subtractInPlace (mValue)
-        for managedObject : %!CLASS_NAME% in removedObjectSet {
+        let removedSet = oldSet.subtract (mSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %          for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %            managedObject.%!mStoredPropertyName%.removeEBObserver (observer, postEvent:true)\n%
-  %          }\n%
+  %        removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (removedSet)\n%
+  %//          for observer in mObserversOf_%!mStoredPropertyName% {\n%
+  %//            managedObject.%!mStoredPropertyName%.removeEBObserver (observer)\n%
+  %//          }\n%
 end
-%        }
-      //--- Added object set
-        var addedObjectSet : Set<%!CLASS_NAME%> = Set (mValue)
-        addedObjectSet.subtractInPlace (oldValue)
-        for managedObject : %!CLASS_NAME% in addedObjectSet {
+%      //--- Added object set
+        let addedSet = mSet.subtract (oldSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %          for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %            managedObject.%!mStoredPropertyName%.addEBObserver (observer)\n%
-  %          }\n%
+  %        addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (addedSet)\n%
+  %//          for observer in mObserversOf_%!mStoredPropertyName% {\n%
+  %//            managedObject.%!mStoredPropertyName%.addEBObserver (observer)\n%
+  %//          }\n%
 end
-%        }
-      //--- Notify observers object count did change
+%      //--- Notify observers object count did change
         postEvent ()
         if oldValue.count != mValue.count {
           count.postEvent ()
@@ -195,19 +223,19 @@ end
 
   //····················································································································
 
-  override var prop : EBProperty <Array<%!CLASS_NAME%> > {
+  override var prop : EBProperty < [%!CLASS_NAME%] > {
     get {
-      return .singleSelection (mValue ?? Array<%!CLASS_NAME%> ())
+      return .singleSelection (mValue ?? [%!CLASS_NAME%] ())
     }
   }
 
   //····················································································································
 
-  func setProp (inValue :  Array<%!CLASS_NAME%>) { mValue = inValue }
+  func setProp (inValue :  [%!CLASS_NAME%]) { mValue = inValue }
 
   //····················································································································
 
-  var propval : Array<%!CLASS_NAME%> { get { return mValue ?? Array<%!CLASS_NAME%> () } }
+  var propval : [%!CLASS_NAME%] { get { return mValue ?? [%!CLASS_NAME%] () } }
 
   //····················································································································
 
@@ -285,7 +313,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
-    %    %![mDependency generateAddObserverCall]% (%!mTransientName%, postEvent:true)\n%
+    %    %![mDependency generateAddObserverCall]% (%!mTransientName%)\n%
   end
 end
 %  }
