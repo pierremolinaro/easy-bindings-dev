@@ -21,6 +21,12 @@ import Cocoa
   }
 
   //····················································································································
+
+  override init () { // Used for legacy obsolete object
+    super.init ()
+  }
+
+  //····················································································································
   //  setup and save
   //····················································································································
 
@@ -30,8 +36,9 @@ import Cocoa
 
   //····················································································································
 
-  func customSetUpWithDictionary (inDictionary : NSDictionary,
-                                  legacyObjectArray : [NSDictionary]) {
+  func additionalSetUp (inDictionary : NSDictionary,
+                        inout managedObjectArray : [EBManagedObject],
+                        inout legacyObjectArray : [NSMutableDictionary]) {
   }
 
   //····················································································································

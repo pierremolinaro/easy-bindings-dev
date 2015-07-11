@@ -36,9 +36,6 @@ struct EBDataScanner {
        }else{
         let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
         let byte = UnsafePointer<UInt8> (byteAsData).memory
-     //   let ptr = offsetPointer (mData.bytes, CInt(mReadIndex))
-     //   var array : COpaquePointer = mData.bytes ()
-     //   var byteArray : CConstPointer<UInt8> = CConstPointer<UInt8> (mData.bytes ())
         result = byte == inByte
         if result {
           mReadIndex += 1
@@ -179,7 +176,7 @@ struct EBDataScanner {
       }
     }
     if (mReadOk) {
-      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength))
+      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength - 1))
       result = NSString (data:d, encoding: NSUTF8StringEncoding) as! String
       mReadIndex += stringLength
     }

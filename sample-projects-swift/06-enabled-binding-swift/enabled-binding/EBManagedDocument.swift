@@ -154,7 +154,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //····················································································································
 
   func dataForSavingFromRootObject () throws -> NSData {
-    let objectsToSaveArray : Array<EBManagedObject> = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)
+    let objectsToSaveArray : [EBManagedObject] = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)
   //--- Set savingIndex for each object
     var idx = 0 ;
     for object in objectsToSaveArray {
@@ -243,12 +243,49 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   //---
     undoManager?.enableUndoRegistration ()
+//    undoManager?.removeAllActions ()
   }
 
   //····················································································································
 
   func readLegacyDataFormat (legacyData : NSData) throws {
-    try raiseInvalidDataFormatArror (3)
+    #if READ_LEGACY_FORMAT
+      var dictionaryArray : [NSMutableDictionary] = []
+      analyzeLegacyBZ2Data (legacyData, objectArray : &dictionaryArray)
+    //--- Create objects
+      var objectArray = [EBManagedObject] ()
+      // var obsoleteObjectArray = [EBManagedObject] ()
+      for d in dictionaryArray {
+        let className = d.objectForKey (kEntityKey) as! String
+        let possibleObject = self.managedObjectContext ().newInstanceOfEntityNamed (className)
+        if let object = possibleObject {
+          objectArray.append (object)
+        }else{
+          let object = EBManagedObject ()
+          // obsoleteObjectArray.append (object)
+          objectArray.append (object)
+        }
+      }
+   //--- Set up objects
+      var idx = 0
+      for d in dictionaryArray {
+        let object : EBManagedObject = objectArray [idx]
+        object.setUpWithDictionary (d, managedObjectArray:&objectArray)
+        object.additionalSetUp (d, managedObjectArray:&objectArray, legacyObjectArray:&dictionaryArray)
+        idx += 1
+      }
+    //--- Remove obsolete objects
+/*      for obsoleteObject in obsoleteObjectArray {
+        self.managedObjectContext ().removeManagedObject (obsoleteObject)
+      } */
+    //--- Set root object
+      if let rootObject = self.mRootObject {
+        self.managedObjectContext ().removeManagedObject (rootObject)
+      }
+      self.mRootObject = objectArray [0]
+    #else
+      try raiseInvalidDataFormatArror (3)
+    #endif
   }
 
   //····················································································································
@@ -291,7 +328,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
     let queue = dispatch_queue_create ("readObjectFromData", DISPATCH_QUEUE_CONCURRENT)
     dispatch_after (DISPATCH_TIME_NOW, queue) {
-      var objectArray : Array<EBManagedObject> = Array  ()
+      var objectArray = [EBManagedObject] ()
       var progressIdx = 0 ;
       for d in dictionaryArray {
         let className = d.objectForKey (kEntityKey) as! String
