@@ -10,6 +10,163 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                        Routine 'generateStandardProperties'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateStandardProperties (const GALGAS_string constinArgument_inOutputDirectory,
+                                         GALGAS_stringset & ioArgument_ioGeneratedFileSet,
+                                         C_Compiler * inCompiler
+                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string var_contents = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 184))) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int"), GALGAS_string ("integer"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 186)))  COMMA_SOURCE_FILE ("code-generation.galgas", 186)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool"), GALGAS_string ("bool"), GALGAS_string ("propval \? 1 : 0") COMMA_SOURCE_FILE ("code-generation.galgas", 187)))  COMMA_SOURCE_FILE ("code-generation.galgas", 187)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double"), GALGAS_string ("double"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 188)))  COMMA_SOURCE_FILE ("code-generation.galgas", 188)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("String"), GALGAS_string::makeEmptyString (), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 190)))  COMMA_SOURCE_FILE ("code-generation.galgas", 190)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 191)))  COMMA_SOURCE_FILE ("code-generation.galgas", 191)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_string (".description"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 192)))  COMMA_SOURCE_FILE ("code-generation.galgas", 192)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 193)))  COMMA_SOURCE_FILE ("code-generation.galgas", 193)) ;
+  GALGAS_string var_fileName = GALGAS_string ("standard-properties.swift") ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 196)) ;
+  {
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 197)) ;
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                           Routine 'generateXcodeProject'                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateXcodeProject (const GALGAS_string constinArgument_inOutputDirectory,
+                                   const GALGAS_string constinArgument_inXcodeProjectString,
+                                   const GALGAS_stringset constinArgument_inGeneratedFileSet,
+                                   const GALGAS_string constinArgument_projectName,
+                                   C_Compiler * inCompiler
+                                   COMMA_UNUSED_LOCATION_ARGS) {
+  const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_inXcodeProjectString.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    {
+    routine_generateXcodeProjectInternal (constinArgument_inOutputDirectory, constinArgument_inXcodeProjectString, constinArgument_inGeneratedFileSet, constinArgument_projectName, inCompiler  COMMA_SOURCE_FILE ("xcode-project.galgas", 39)) ;
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'generateXcodeProjectInternal'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_inOutputDirectory,
+                                           const GALGAS_string constinArgument_inXcodeProjectString,
+                                           const GALGAS_stringset constinArgument_inGeneratedFileSet,
+                                           const GALGAS_string constinArgument_projectName,
+                                           C_Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_XcodeProjectDescriptor var_xcodeProject = GALGAS_XcodeProjectDescriptor::constructor_default (SOURCE_FILE ("xcode-project.galgas", 51)) ;
+  GALGAS_string var_SDK = GALGAS_string ("macosx10.11") ;
+  GALGAS_string var_DEPLOYMENT = GALGAS_string ("10.10") ;
+  {
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 92)) ;
+  temp_0.addAssign_operation (GALGAS_string ("ALWAYS_SEARCH_USER_PATHS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 56)) ;
+  temp_0.addAssign_operation (GALGAS_string ("ARCHS = \"$(ARCHS_STANDARD_64_BIT)\"")  COMMA_SOURCE_FILE ("xcode-project.galgas", 57)) ;
+  temp_0.addAssign_operation (GALGAS_string ("CLANG_ENABLE_OBJC_ARC = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 58)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_GENERATE_DEBUGGING_SYMBOLS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 59)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_PRECOMPILE_PREFIX_HEADER = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 60)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_THREADSAFE_STATICS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 61)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 62)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_TREAT_WARNINGS_AS_ERRORS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 63)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_64_TO_32_BIT_CONVERSION = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 64)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 65)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 66)) ;
+  temp_0.addAssign_operation (GALGAS_string ("CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 67)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_MISSING_NEWLINE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 68)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 69)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_ABOUT_RETURN_TYPE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 70)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_CHECK_SWITCH_STATEMENTS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 71)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 72)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 73)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_INHIBIT_ALL_WARNINGS = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 74)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 75)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_MISSING_PARENTHESES = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 76)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 77)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_PEDANTIC = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 78)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_SHADOW = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 79)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_SIGN_COMPARE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 80)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 81)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNINITIALIZED_AUTOS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 82)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNKNOWN_PRAGMAS = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 83)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_FUNCTION = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 84)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_LABEL = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 85)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_VALUE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 86)) ;
+  temp_0.addAssign_operation (GALGAS_string ("GCC_WARN_UNUSED_VARIABLE = YES")  COMMA_SOURCE_FILE ("xcode-project.galgas", 87)) ;
+  temp_0.addAssign_operation (GALGAS_string ("HEADER_SEARCH_PATHS = ()")  COMMA_SOURCE_FILE ("xcode-project.galgas", 88)) ;
+  temp_0.addAssign_operation (GALGAS_string ("MACOSX_DEPLOYMENT_TARGET = ").add_operation (var_DEPLOYMENT, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 89))  COMMA_SOURCE_FILE ("xcode-project.galgas", 89)) ;
+  temp_0.addAssign_operation (GALGAS_string ("SDKROOT = ").add_operation (var_SDK, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 90))  COMMA_SOURCE_FILE ("xcode-project.galgas", 90)) ;
+  temp_0.addAssign_operation (GALGAS_string ("COPY_PHASE_STRIP = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 91)) ;
+  temp_0.addAssign_operation (GALGAS_string ("LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\"")  COMMA_SOURCE_FILE ("xcode-project.galgas", 92)) ;
+  categoryModifier_addSettingsToDefaultConfiguration (var_xcodeProject, temp_0, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 55)) ;
+  }
+  GALGAS_stringlist var_swiftFileRefList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 95)) ;
+  GALGAS_stringlist var_resourceFileRefList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 96)) ;
+  GALGAS_stringset var_generatedFileSet = constinArgument_inGeneratedFileSet ;
+  var_generatedFileSet.addAssign_operation (GALGAS_string ("MainMenu.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 98)) ;
+  GALGAS_stringlist joker_4226 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 103)) ;
+  GALGAS_stringlist joker_4244 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 104)) ;
+  GALGAS_stringlist joker_4263 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 105)) ;
+  GALGAS_stringlist joker_4326 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 107)) ;
+  GALGAS_string var_groupRef ;
+  {
+  categoryModifier_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Sources"), constinArgument_projectName, var_generatedFileSet, joker_4226, joker_4244, joker_4263, var_swiftFileRefList, joker_4326, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 99)) ;
+  }
+  {
+  categoryModifier_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 111)) ;
+  }
+  GALGAS_stringlist joker_4605 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 116)) ;
+  GALGAS_stringlist joker_4623 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 117)) ;
+  GALGAS_stringlist joker_4642 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 118)) ;
+  GALGAS_stringlist joker_4705 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 120)) ;
+  {
+  GALGAS_stringset temp_1 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.galgas", 115)) ;
+  temp_1.addAssign_operation (GALGAS_string ("Info.plist")  COMMA_SOURCE_FILE ("xcode-project.galgas", 115)) ;
+  categoryModifier_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Resources"), constinArgument_projectName, temp_1, joker_4605, joker_4623, joker_4642, var_swiftFileRefList, joker_4705, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 112)) ;
+  }
+  {
+  categoryModifier_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 124)) ;
+  }
+  {
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 134)) ;
+  temp_2.addAssign_operation (GALGAS_string ("GCC_OPTIMIZATION_LEVEL = 0")  COMMA_SOURCE_FILE ("xcode-project.galgas", 133)) ;
+  temp_2.addAssign_operation (GALGAS_string ("GCC_PREPROCESSOR_DEFINITIONS = ()")  COMMA_SOURCE_FILE ("xcode-project.galgas", 134)) ;
+  GALGAS__32_stringlist temp_3 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 137)) ;
+  temp_3.addAssign_operation (GALGAS_string ("MainMenu.xib"), GALGAS_string ("EBAllocationDebug.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 137)) ;
+  GALGAS_string joker_5327 ; // Joker input parameter
+  categoryModifier_addAppTarget (var_xcodeProject, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 130)), var_resourceFileRefList, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 136)), temp_3, constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 138)), joker_5327, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 126)) ;
+  }
+  GALGAS_string var_sourceDir = constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)).add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)) ;
+  categoryMethod_generateAtPath (var_xcodeProject, constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (GALGAS_string (".xcodeproj"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)), var_sourceDir.add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)).add_operation (GALGAS_string (".xcodeproj.txt"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 143)) ;
+  GALGAS_stringset temp_4 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.galgas", 152)) ;
+  temp_4.addAssign_operation (constinArgument_projectName  COMMA_SOURCE_FILE ("xcode-project.galgas", 152)) ;
+  GALGAS_string var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_info_5F_plist (inCompiler, constinArgument_projectName, constinArgument_inXcodeProjectString, GALGAS_string ("1.0.0"), temp_4 COMMA_SOURCE_FILE ("xcode-project.galgas", 148))) ;
+  {
+  GALGAS_string::class_method_generateFile (var_sourceDir, GALGAS_string ("Info.plist"), var_s, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 154)) ;
+  }
+  var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_main_5F_xib (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.galgas", 159))) ;
+  {
+  GALGAS_string::class_method_generateFile (var_sourceDir, GALGAS_string ("MainMenu.xib"), var_s, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 162)) ;
+  }
+  var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_build_5F_command (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.galgas", 167))) ;
+  GALGAS_bool joker_6125 ; // Joker input parameter
+  var_s.method_writeToExecutableFileWhenDifferentContents (constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/build.py"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 171)), joker_6125, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 170)) ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                         Filewrapper 'additionalXcodeFiles'                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -17475,293 +17632,6 @@ void categoryModifier_addTIFF_5F_file (GALGAS_XcodeProjectDescriptor & ioObject,
   categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 22)) ;
   }
   ioObject.mAttribute_mTIFF_5F_fileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 23)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@XcodeProjectDescriptor addInfoPlistFile'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addInfoPlistFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const GALGAS_string constinArgument_inFileName,
-                                        GALGAS_string & outArgument_outFileRef,
-                                        C_Compiler * inCompiler
-                                        COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 31)) ;
-  }
-  ioObject.mAttribute_mInfoPlistFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 32)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category method '@XcodeProjectDescriptor addXIBFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addXIBFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                  const GALGAS_string constinArgument_inFileName,
-                                  GALGAS_string & outArgument_outFileRef,
-                                  C_Compiler * inCompiler
-                                  COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 40)) ;
-  }
-  ioObject.mAttribute_mXIB_5F_fileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 41)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@XcodeProjectDescriptor addFrameworkFile'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addFrameworkFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const GALGAS_string constinArgument_inFileName,
-                                        GALGAS_string & outArgument_outFileRef,
-                                        C_Compiler * inCompiler
-                                        COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 49)) ;
-  }
-  ioObject.mAttribute_mFrameworkFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 50)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category method '@XcodeProjectDescriptor addMFile'                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addMFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                const GALGAS_string constinArgument_inFileName,
-                                GALGAS_string & outArgument_outFileRef,
-                                C_Compiler * inCompiler
-                                COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 58)) ;
-  }
-  ioObject.mAttribute_m_5F_M_5F_FileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 59)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addSwiftFile'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addSwiftFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const GALGAS_string constinArgument_inFileName,
-                                    GALGAS_string & outArgument_outFileRef,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 67)) ;
-  }
-  ioObject.mAttribute_m_5F_SwiftFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 68)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Category method '@XcodeProjectDescriptor addMMFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addMMFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                 const GALGAS_string constinArgument_inFileName,
-                                 GALGAS_string & outArgument_outFileRef,
-                                 C_Compiler * inCompiler
-                                 COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 76)) ;
-  }
-  ioObject.mAttribute_m_5F_MM_5F_FileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 77)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Category method '@XcodeProjectDescriptor addCppFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addCppFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                  const GALGAS_string constinArgument_inFileName,
-                                  GALGAS_string & outArgument_outFileRef,
-                                  C_Compiler * inCompiler
-                                  COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 85)) ;
-  }
-  ioObject.mAttribute_mCppFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 86)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addHeaderFile'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addHeaderFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                     const GALGAS_string constinArgument_inFileName,
-                                     GALGAS_string & outArgument_outFileRef,
-                                     C_Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 94)) ;
-  }
-  ioObject.mAttribute_mHeaderFileList.addAssign_operation (outArgument_outFileRef, constinArgument_inFileName  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 95)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addBuildFile'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addBuildFile (GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const GALGAS_string constinArgument_inFileReference,
-                                    const GALGAS_string constinArgument_inFileName,
-                                    GALGAS_string & outArgument_outBuildRef,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outBuildRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 104)) ;
-  }
-  ioObject.mAttribute_mBuildFileList.addAssign_operation (constinArgument_inFileReference, constinArgument_inFileName, outArgument_outBuildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 105)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addToolTarget'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addToolTarget (GALGAS_XcodeProjectDescriptor & ioObject,
-                                     const GALGAS_string constinArgument_inTargetName,
-                                     const GALGAS_string constinArgument_inProductFileName,
-                                     const GALGAS_stringlist constinArgument_inSourceList,
-                                     const GALGAS_stringlist constinArgument_inToolFrameworksFileRefList,
-                                     const GALGAS_stringlist constinArgument_inBuildConfigurationSettingList,
-                                     GALGAS_string & outArgument_outTargetRef,
-                                     GALGAS_string & outArgument_outProductFileRef,
-                                     C_Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outTargetRef.drop () ; // Release 'out' argument
-  outArgument_outProductFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outProductFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 118)) ;
-  }
-  GALGAS_string var_buildPhaseRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildPhaseRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 119)) ;
-  }
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outTargetRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 120)) ;
-  }
-  GALGAS_string var_buildConfigurationListRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationListRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 121)) ;
-  }
-  GALGAS_string var_buildConfigurationRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 122)) ;
-  }
-  GALGAS_string var_frameworkBuildRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_frameworkBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 123)) ;
-  }
-  ioObject.mAttribute_mToolTargetList.addAssign_operation (outArgument_outTargetRef, constinArgument_inTargetName, outArgument_outProductFileRef, constinArgument_inProductFileName, constinArgument_inSourceList, var_buildPhaseRef, var_buildConfigurationListRef, constinArgument_inBuildConfigurationSettingList, var_buildConfigurationRef, constinArgument_inToolFrameworksFileRefList, var_frameworkBuildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 124)) ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addAppTarget'                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addAppTarget (GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const GALGAS_string constinArgument_inTargetName,
-                                    const GALGAS_string constinArgument_inProductFileName,
-                                    const GALGAS_stringlist constinArgument_inSourceList,
-                                    const GALGAS_stringlist constinArgument_inFrameworksFileRefList,
-                                    const GALGAS_stringlist constinArgument_inResourceFileBuildRefs,
-                                    const GALGAS_stringlist constinArgument_inBuildConfigurationSettingList,
-                                    const GALGAS_stringlist constinArgument_inDependentTargetRefList,
-                                    const GALGAS__32_stringlist constinArgument_inProductCopyList,
-                                    const GALGAS_string constinArgument_inInfoPList,
-                                    GALGAS_string & outArgument_outProductFileRef,
-                                    C_Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outProductFileRef.drop () ; // Release 'out' argument
-  {
-  categoryModifier_getReferenceKey (ioObject, outArgument_outProductFileRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 152)) ;
-  }
-  GALGAS_string var_buildPhaseRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildPhaseRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 153)) ;
-  }
-  GALGAS_string var_targetRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_targetRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 154)) ;
-  }
-  GALGAS_string var_buildConfigurationListRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationListRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 155)) ;
-  }
-  GALGAS_string var_buildConfigurationRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_buildConfigurationRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 156)) ;
-  }
-  GALGAS_string var_frameworkBuildRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_frameworkBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 157)) ;
-  }
-  GALGAS_string var_resourceBuildRef ;
-  {
-  categoryModifier_getReferenceKey (ioObject, var_resourceBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 158)) ;
-  }
-  GALGAS__32_stringlist var_dependentTargets = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 159)) ;
-  cEnumerator_stringlist enumerator_6737 (constinArgument_inDependentTargetRefList, kEnumeration_up) ;
-  while (enumerator_6737.hasCurrentObject ()) {
-    GALGAS_string var_dependencyBuildRef ;
-    {
-    categoryModifier_getReferenceKey (ioObject, var_dependencyBuildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 161)) ;
-    }
-    var_dependentTargets.addAssign_operation (var_dependencyBuildRef, enumerator_6737.current_mValue (HERE)  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 162)) ;
-    enumerator_6737.gotoNextObject () ;
-  }
-  GALGAS_stringlist var_resourceFileBuildRefs = constinArgument_inResourceFileBuildRefs ;
-  cEnumerator__32_stringlist enumerator_6952 (constinArgument_inProductCopyList, kEnumeration_up) ;
-  while (enumerator_6952.hasCurrentObject ()) {
-    GALGAS_string var_buildRef ;
-    {
-    categoryModifier_addBuildFile (ioObject, enumerator_6952.current_mValue_30_ (HERE), enumerator_6952.current_mValue_31_ (HERE), var_buildRef, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 166)) ;
-    }
-    var_resourceFileBuildRefs.addAssign_operation (var_buildRef  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 167)) ;
-    enumerator_6952.gotoNextObject () ;
-  }
-  ioObject.mAttribute_mAppTargetList.addAssign_operation (var_targetRef, constinArgument_inTargetName, outArgument_outProductFileRef, constinArgument_inProductFileName, constinArgument_inSourceList, var_buildPhaseRef, var_buildConfigurationListRef, constinArgument_inBuildConfigurationSettingList, var_buildConfigurationRef, constinArgument_inFrameworksFileRefList, var_frameworkBuildRef, var_dependentTargets, var_resourceBuildRef, var_resourceFileBuildRefs, constinArgument_inInfoPList  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 169)) ;
 }
 
 

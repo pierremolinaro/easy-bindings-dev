@@ -138,7 +138,7 @@ final class EBStoredProperty_%!TYPE% : EBReadWriteProperty_%!TYPE% {
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (%!TO_NSNUMBER%:oldValue))
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (%!TO_NSNUMBER%:oldValue))
         postEvent ()
         clearSignatureCache ()
       }

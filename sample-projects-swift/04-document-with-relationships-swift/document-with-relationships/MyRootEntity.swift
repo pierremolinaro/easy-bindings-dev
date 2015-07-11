@@ -140,7 +140,7 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
+        owner?.undoManager()?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:oldValue)
       //--- Update explorer
         if let valueExplorer = mValueExplorer {
           updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)

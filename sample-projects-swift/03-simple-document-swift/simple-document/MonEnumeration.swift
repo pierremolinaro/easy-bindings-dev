@@ -61,7 +61,7 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
-        undoManager?.registerUndoWithTarget (self, selector:"performUndo:", object:NSNumber (integer:oldValue.rawValue))
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (integer:oldValue.rawValue))
         postEvent ()
         clearSignatureCache ()
       }
