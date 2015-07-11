@@ -101,7 +101,7 @@ import Cocoa
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeEBObserver (self, postEvent:false)
+    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

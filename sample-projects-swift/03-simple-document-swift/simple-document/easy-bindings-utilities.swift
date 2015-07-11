@@ -129,12 +129,10 @@ import Cocoa
  
   //····················································································································
 
-  final func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserver (inObserver : EBEvent) {
     mObservers.remove (inObserver)
     updateObserverExplorer ()
-    if inTrigger {
-      inObserver.postEvent ()
-    }
+  //  inObserver.postEvent ()
   }
 
   //····················································································································
@@ -951,7 +949,7 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 
   func addEBObserver (inObserver : EBEvent)
 
-  func removeEBObserver (inObserver : EBEvent, postEvent inTrigger:Bool)
+  func removeEBObserver (inObserver : EBEvent)
 
   func count () -> Int
 

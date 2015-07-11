@@ -103,11 +103,11 @@ private var gDebugObject : EBAllocationDebug? = nil
     }
   }
 
-  private var mAllocatedObjectCountByClass = NSCountedSet ()
+  private var mLiveObjectCountByClass = [String : Int] ()
 
-  private var mTotalAllocatedObjectCountByClass = NSCountedSet ()
+  private var mTotalAllocatedObjectCountByClass = [String : Int] ()
 
-  private var mSnapShotDictionary = NSMutableDictionary ()
+  private var mSnapShotDictionary = [String : Int] ()
  
   private var mRefreshDisplay = false
 
@@ -266,11 +266,9 @@ private var gDebugObject : EBAllocationDebug? = nil
   //-------------------------------------------------------------------------------------------------------------------*
   
   @IBAction func performSnapShotAction (AnyObject) {
-    mSnapShotDictionary = NSMutableDictionary ()
-    for c : AnyObject in mAllocatedObjectCountByClass.allObjects  {
-      let className = c as! String
-      let liveByClass = mAllocatedObjectCountByClass.countForObject (className)
-      mSnapShotDictionary.setObject (liveByClass, forKey:className)
+    mSnapShotDictionary = [:]
+    for (className, liveByClass) in mLiveObjectCountByClass  {
+      mSnapShotDictionary [className] = liveByClass
     }
     mRefreshDisplay = true
   }
@@ -279,10 +277,12 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    pmNoteObjectAllocation:                                                                                        *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private func pmNoteObjectAllocation (inObjectClassName : NSString!) {
+  private func pmNoteObjectAllocation (inObjectClassName : String) {
   //NSLog (@"objectClassName %@", inObjectClassName) ;
-    mAllocatedObjectCountByClass.addObject (inObjectClassName)
-    mTotalAllocatedObjectCountByClass.addObject (inObjectClassName)
+    let currentLiveCount = mLiveObjectCountByClass [inObjectClassName] ?? 0
+    mLiveObjectCountByClass [inObjectClassName] = currentLiveCount + 1
+    let currentCount = mTotalAllocatedObjectCountByClass [inObjectClassName] ?? 0
+    mTotalAllocatedObjectCountByClass [inObjectClassName] = currentCount + 1
     mRefreshDisplay = true
     pmInstallDebugMenu ()
   }
@@ -291,9 +291,14 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    pmNoteObjectDeallocation:                                                                                      *
   //-------------------------------------------------------------------------------------------------------------------*
   
-  private func pmNoteObjectDeallocation (inObjectClassName : NSString) {
+  private func pmNoteObjectDeallocation (inObjectClassName : String) {
   // NSLog (@"DEALLOC objectClassName %@", inObjectClassName) ;
-    mAllocatedObjectCountByClass.removeObject (inObjectClassName)
+    let currentCount = mLiveObjectCountByClass [inObjectClassName] ?? 0
+    if currentCount > 1 {
+      mLiveObjectCountByClass [inObjectClassName] = currentCount - 1
+    }else{
+      mLiveObjectCountByClass [inObjectClassName] = nil
+    }
     mRefreshDisplay = true
   }
 
@@ -309,14 +314,12 @@ private var gDebugObject : EBAllocationDebug? = nil
       var totalObjectCount : Int = 0
     //---
       mAllocationStatsDataSource = NSMutableArray ()
-      let allObjects = mTotalAllocatedObjectCountByClass.allObjects
-      for object : AnyObject in allObjects {
-        let liveByClass = mAllocatedObjectCountByClass.countForObject (object)
-        let totalByClass = mTotalAllocatedObjectCountByClass.countForObject (object)
-        let snapShotByClass : Int? = mSnapShotDictionary.objectForKey (object)?.unsignedIntegerValue
-        liveObjectCount += liveByClass ;
-        totalObjectCount += totalByClass ;
-        var display = true ;
+      for (className, totalByClass) in mTotalAllocatedObjectCountByClass {
+        let liveByClass = mLiveObjectCountByClass [className] ?? 0
+        let snapShotByClass : Int = mSnapShotDictionary [className] ?? 0
+        liveObjectCount += liveByClass
+        totalObjectCount += totalByClass
+        var display = true
         if 1 == mDisplayFilter {
           display = liveByClass != 0 ;
         }else if 2 == mDisplayFilter {
@@ -324,15 +327,15 @@ private var gDebugObject : EBAllocationDebug? = nil
         }
         if display {
           mAllocationStatsDataSource.addObject (EBAllocationItemDisplay (
-            classname : object as! String,
+            classname : className,
             allCount : totalByClass,
             live : liveByClass,
-            snapshot : ((snapShotByClass != nil) ? snapShotByClass! : 0)
+            snapshot : snapShotByClass
           ))
         }
       }
-      mAllocatedObjectCount = liveObjectCount ;
-      mTotalAllocatedObjectCount = totalObjectCount ;
+      mAllocatedObjectCount = liveObjectCount
+      mTotalAllocatedObjectCount = totalObjectCount
     //---
       let sortDescriptors : [NSSortDescriptor]! = mStatsTableView?.sortDescriptors
       mAllocationStatsDataSource.sortUsingDescriptors (sortDescriptors)

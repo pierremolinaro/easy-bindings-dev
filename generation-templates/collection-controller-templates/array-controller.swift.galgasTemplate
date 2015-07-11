@@ -1,62 +1,8 @@
 import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//    %!"DataSourceDidChangeEvent_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
-final class DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBOutletEvent {
-
-  private var mModel      : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
-  private var mController : ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%?
-
-  //····················································································································
-
-  init (controller: ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%,
-        model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%,
-        file : String, line : Int) {
-    mController = controller
-    mModel = model
-    super.init ()
-  //--- Column properties
-%
-for () in BOUND_COLUMNS do
-  %    model.addEBObserverOf_%!mObservablePropertyName% (self)\n%
-end
-%  //--- Filter properties
-%
-for () in FILTER_PROPERTIES do
-  %    model.addEBObserverOf_%!mFilterPropertyName% (self)\n%
-end
-%  }
-
-  //····················································································································
-  
-  func removeDataSourceObservers () {
-  //--- Column properties
-%
-for () in BOUND_COLUMNS do
-  %    mModel?.removeEBObserverOf_%!mObservablePropertyName% (self, postEvent:true)\n%
-end
-%  //--- Filter properties
-%
-for () in FILTER_PROPERTIES do
-  %    mModel?.removeEBObserverOf_%!mFilterPropertyName% (self, postEvent:true)\n%
-end
-%    mModel = nil
-    mController = nil
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    mController?.postEventDataSourceDidChange ()
-    super.postEvent ()
-  }
-
-  //····················································································································
-
-}
+private let DEBUG_EVENT = false
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"DataSource_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
@@ -89,7 +35,17 @@ final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_
 
   //····················································································································
 
+  final func setModel (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {
+    mModel = model
+    model.addEBObserver (self)
+  }
+
+  //····················································································································
+
   override func postEvent () {
+    if DEBUG_EVENT {
+      print ("DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%:" + __FUNCTION__ + " prop_cache \(prop_cache != nil)")
+    }
     if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
@@ -99,7 +55,7 @@ final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_
 
   //····················································································································
 
-  private func filterAndSort () -> EBProperty <Array<%!ELEMENT_TYPE_NAME%> > {
+  private func filterAndSort () -> EBProperty < [%!ELEMENT_TYPE_NAME%] > {
     if let model = mModel {
       switch model.prop {
       case .noSelection :
@@ -110,7 +66,7 @@ final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_
 %if [FILTER_PROPERTIES length] == 0 then
 %        let array = NSMutableArray (array:modelArray)
         array.sortUsingDescriptors (mSortDescriptors)
-        let sortedObjectArray = array.mutableCopy () as! Array<%!ELEMENT_TYPE_NAME%>
+        let sortedObjectArray = array.mutableCopy () as! [%!ELEMENT_TYPE_NAME%]
         return .singleSelection (sortedObjectArray)
 %
 else
@@ -123,7 +79,7 @@ else
           return .multipleSelection
         }else{
           array.sortUsingDescriptors (mSortDescriptors)
-          let sortedObjectArray = array.mutableCopy () as! Array<NameEntity>
+          let sortedObjectArray = array.mutableCopy () as! [NameEntity]
           return .singleSelection (sortedObjectArray)
         }
 %end
@@ -137,9 +93,9 @@ else
   
   private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
 
-  var prop_cache : Optional < EBProperty <Array<%!ELEMENT_TYPE_NAME%> > >
+  var prop_cache : Optional < EBProperty < [%!ELEMENT_TYPE_NAME%] > >
 
-  override var prop : EBProperty <Array<%!ELEMENT_TYPE_NAME%> > {
+  override var prop : EBProperty < [%!ELEMENT_TYPE_NAME%] > {
     get {
       if prop_cache == nil {
         prop_cache = filterAndSort ()
@@ -152,20 +108,17 @@ else
         }
         if mSet != newObjectSet {
         //--- Removed object set
+          let removedObjectSet = mSet.subtract (newObjectSet)
 %for () in BOUND_COLUMNS do
-%          for managedObject : %!ELEMENT_TYPE_NAME% in mSet.subtract (newObjectSet) {
-            for observer in mObserversOf_%!mObservablePropertyName% {
-              managedObject.%!mObservablePropertyName%.removeEBObserver (observer, postEvent:true)
-            }
-          }
-%end%        //--- Added object set
-%for () in BOUND_COLUMNS do
-%          for managedObject : %!ELEMENT_TYPE_NAME% in newObjectSet.subtract (mSet) {
-            for observer in mObserversOf_%!mObservablePropertyName% {
-              managedObject.%!mObservablePropertyName%.addEBObserver (observer)
-            }
-          }
- %end%       //--- Update object set
+  %          removeEBObserversOf_%!mObservablePropertyName%_fromElementsOfSet (removedObjectSet)
+%end
+%        //--- Added object set
+          let addedObjectSet = newObjectSet.subtract (mSet)
+%
+for () in BOUND_COLUMNS do
+  %          addEBObserversOf_%!mObservablePropertyName%_toElementsOfSet (addedObjectSet)
+%end
+%       //--- Update object set
           mSet = newObjectSet
         }
       }
@@ -222,12 +175,11 @@ else
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
-final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableViewDelegate {
+final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty, EBTableViewDelegate {
   private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
   private var mSetShouldBeComputed = true
   private var mSortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
   private var mSelectedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%
-  private var mIgnoreTableViewSelectionDidChange = true
   var count = EBTransientProperty_Int ()
 
   //····················································································································
@@ -267,21 +219,9 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableV
           return .multipleSelection
         case .singleSelection (let v) :
           mSet.intersectInPlace (v)
-          // NSLog ("mSet \%d", mSet.count)
           if (mSet.count == 0) && (v.count > 0) {
             mSet.insert (v [0])
           }
-        //--- DEBUG :Dictionary of object indexes
-          /* var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-          for (index, object) in enumerate (v) {
-            objectDictionary [object] = index
-          }
-          for object in mSet {
-            if let index = objectDictionary [object] {
-              NSLog ("SELECTED : \%d, \%@", index, object)
-            }
-          } */
-        //--- DEBUG end
           return .singleSelection (mSet)
         }
       }else{
@@ -300,17 +240,19 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableV
   //····················································································································
 
   private func setProp (value : Set<%!ELEMENT_TYPE_NAME%>) {
-    mSet = value
-    postEvent ()
+    if (mSet != value) {
+      mSet = value
+      postEvent ()
+    }
   }
 
   //····················································································································
 
-  private func postEvent () {
+  override func postEvent () {
     if !mSetShouldBeComputed {
       mSetShouldBeComputed = true
       count.postEvent ()
-      mSelectedArray.postEvent ()
+      super.postEvent ()
     }
   }
 
@@ -346,19 +288,16 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableV
   //····················································································································
 
   func tableViewSelectionDidChange (notication : NSNotification) {
-    // NSLog ("\%@ \%d", __FUNCTION__, mIgnoreTableViewSelectionDidChange)
-    if !mIgnoreTableViewSelectionDidChange {
-      switch mSortedArray.prop {
-      case .noSelection, .multipleSelection :
-        break
-      case .singleSelection (let v) :
-        let tableView = notication.object as! EBTableView
-        var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
-        for index in tableView.selectedRowIndexes {
-          newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
-        }
-        setProp (newSelectedObjectSet)
+    switch mSortedArray.prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      let tableView = notication.object as! EBTableView
+      var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
+      for index in tableView.selectedRowIndexes {
+        newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
       }
+      setProp (newSelectedObjectSet)
     }
   }
 
@@ -394,18 +333,6 @@ end
 
   //····················································································································
 
-  func willReload () {
-    mIgnoreTableViewSelectionDidChange = true
-  }
-
-  //····················································································································
-  
-  func didReload () {
-    mIgnoreTableViewSelectionDidChange = false
-  }
-
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -414,8 +341,6 @@ end
 
 @objc(ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
 final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
-  private let mAllowsEmptySelection = false
-  private let mAllowsMultipleSelection = true
 
   var sortedArray = DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% ()
 
@@ -426,8 +351,6 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   private var mTableViewControllerArray = [Controller_EBTableView_controller] ()
 
   private var mModel : %!MODEL_TYPE_NAME_2%?
- 
-  private var mDataSourceController : DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%?
 
   //····················································································································
   //    init
@@ -449,7 +372,7 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
           case .multipleSelection :
             return .multipleSelection
           case .singleSelection (let v) :
-            var result = Array<%!ELEMENT_TYPE_NAME%> ()
+            var result = [%!ELEMENT_TYPE_NAME%] ()
             for object in v {
               if selSet.contains (object) {
                 result.append (object)
@@ -479,15 +402,9 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
 
   func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%, tableViewArray:[EBTableView], file:String, line:Int) {
     mModel = model
-    sortedArray.mModel = model
+    sortedArray.setModel (model)
     let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray, selectedArray:selectedArray)
     mSelectedSet = selectedSet
-    mDataSourceController = DataSourceDidChangeEvent_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
-      controller: self,
-      model: model,
-      file: file,
-      line: line
-    )
     for tableView in tableViewArray {
       let tableViewController = Controller_EBTableView_controller (
         delegate:selectedSet,
@@ -495,9 +412,6 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
         file:file,
         line:line
       )
-      mTableViewControllerArray.append (tableViewController)
-      tableView.allowsEmptySelection = mAllowsEmptySelection
-      tableView.allowsMultipleSelection = mAllowsMultipleSelection
 %for () in BOUND_COLUMNS do
 %    //--- Check '%!mColumnName%' column
       if let anyObject: NSView = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
@@ -534,20 +448,15 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
           sortedArray.setSortDescriptors (sortDescriptorArray)
         }
       }
- //     sortedArray.addEBObserver (tableViewController)
- //     selectedSet.addEBObserver (tableViewController)
+      sortedArray.addEBObserver (tableViewController)
+      mTableViewControllerArray.append (tableViewController)
    //--- Set table view delegate and data source
       tableView.setDataSource (sortedArray)
       tableView.setDelegate (selectedSet)
    }
   //--- Add observers
-%
-for () in BOUND_COLUMNS do
-  % //   model.addEBObserverOf_%!mObservablePropertyName% (sortedArray)\n%
-end
-%//    model.addEBObserver (sortedArray)
-//    sortedArray.addEBObserver (selectedSet)
-//    selectedSet.addEBObserver (selectedArray)
+    sortedArray.addEBObserver (selectedSet)
+    selectedSet.addEBObserver (selectedArray)
   }
 
   //····················································································································
@@ -555,40 +464,20 @@ end
   //····················································································································
 
   func unbind_modelAndView () {
-%
-for () in BOUND_COLUMNS do
-  % //   mModel?.removeEBObserverOf_%!mObservablePropertyName% (sortedArray, postEvent:false)\n%
-end
-%//    mModel?.removeEBObserver (sortedArray, postEvent:false)
-//    if let selectedSet = mSelectedSet {
-//      sortedArray.removeEBObserver (selectedSet, postEvent:false)
-//    }
-//    mSelectedSet?.removeEBObserver (selectedArray, postEvent:false)
-//     for tableViewController in mTableViewControllerArray {
- //     sortedArray.removeEBObserver (tableViewController, postEvent:false)
-//      mSelectedSet?.removeEBObserver (tableViewController, postEvent:false)
-//    }
+    if let selectedSet = mSelectedSet {
+      sortedArray.removeEBObserver (selectedSet)
+      selectedSet.removeEBObserver (selectedArray)
+    }
+    for tvc in mTableViewControllerArray {
+      sortedArray.removeEBObserver (tvc)
+    }
     mTableViewControllerArray = []
     selectedArray.computeFunction = nil
     mSelectedSet = nil
     mModel = nil
-    mDataSourceController?.removeDataSourceObservers ()
-    mDataSourceController = nil
  }
  
-  //····················································································································
-  //    postEventDataSourceDidChange
-  //····················································································································
-
-  func postEventDataSourceDidChange () {
-    sortedArray.postEvent ()
-    selectedArray.postEvent ()
-    mSelectedSet?.postEvent ()
-    for tableViewController in mTableViewControllerArray {
-      tableViewController.postEvent ()
-    }
-  }
- %switch MODEL_KIND
+%switch MODEL_KIND
 case transientModel :
 case storedArrayModel :
 % 

@@ -408,11 +408,11 @@ import Cocoa
   //--------------------------- Unbind selection controllers
     detailController.unbind_selection ()
   //--- Uninstall property observers for transients
-    selController.sortedArray.count.removeEBObserver (selectionCountString, postEvent:false)
-    otherController.sortedArray.count.removeEBObserver (evenValueString, postEvent:false)
-    nameController.selectedArray.count.removeEBObserver (canRemoveString, postEvent:false)
-    rootObject.mNames.count.removeEBObserver (countItemMessage, postEvent:false)
-    self.rootObject.mNames.removeEBObserverOf_aValue (total, postEvent:false)
+    selController.sortedArray.count.removeEBObserver (selectionCountString)
+    otherController.sortedArray.count.removeEBObserver (evenValueString)
+    nameController.selectedArray.count.removeEBObserver (canRemoveString)
+    rootObject.mNames.count.removeEBObserver (countItemMessage)
+    self.rootObject.mNames.removeEBObserverOf_aValue (total)
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil

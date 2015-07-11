@@ -6,21 +6,21 @@ import Cocoa
 
 @objc(EBTableView) class EBTableView : NSTableView, EBUserClassName {
 
-  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+  //····················································································································
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
   }
 
-  //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
+  //····················································································································
 
   override init (frame:NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
   }
   
-  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+  //····················································································································
 
   deinit {
     noteObjectDeallocation (self)
@@ -40,8 +40,6 @@ import Cocoa
 
 @objc(EBTableViewDelegate) protocol EBTableViewDelegate : NSTableViewDelegate {
   func selectedObjectIndexSet () -> NSIndexSet
-  func willReload ()
-  func didReload ()
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -53,7 +51,7 @@ import Cocoa
   private let mDelegate : EBTableViewDelegate
   private let mTableView : EBTableView
 
-  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+  //····················································································································
 
   init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
     mTableView = tableView
@@ -61,11 +59,12 @@ import Cocoa
     super.init ()
   }
 
-  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+  //····················································································································
   
   override func sendUpdateEvent () {
+    mTableView.setDelegate (nil)
   //---------------- So tableViewSelectionDidChange is not called
-    mDelegate.willReload ()
+//    mDelegate.willReload ()
   //---------------- Reload data
     mTableView.reloadData ()
   //---------------- Update table view selection
@@ -77,10 +76,11 @@ import Cocoa
       self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
   //---------------- So tableViewSelectionDidChange will be called on user change
-    mDelegate.didReload ()
+//    mDelegate.didReload ()
+    mTableView.setDelegate (mDelegate)
   }
 
-  //••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+  //····················································································································
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

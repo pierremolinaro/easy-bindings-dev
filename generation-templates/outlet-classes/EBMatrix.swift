@@ -61,7 +61,7 @@ final class Controller_EBMatrix_selectedIndex : EBSimpleController {
   func unregister () {
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeEBObserver (self, postEvent:false)
+    mObject.removeEBObserver (self)
   }
 
   //-------------------------------------------------------------------------------------------------------------------*

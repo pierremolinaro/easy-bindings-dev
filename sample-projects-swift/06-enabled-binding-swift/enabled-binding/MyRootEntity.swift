@@ -7,11 +7,11 @@ import Cocoa
 @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
-  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
+  var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
 
   //····················································································································
 
-  var mObserversOf_docBool = Set<EBEvent> ()
+  private var mObserversOf_docBool = Set<EBEvent> ()
 
   final func addEBObserverOf_docBool (inObserver : EBEvent) {
     mObserversOf_docBool.insert (inObserver)
@@ -25,14 +25,42 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  final func removeEBObserverOf_docBool (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_docBool (inObserver : EBEvent) {
     mObserversOf_docBool.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.docBool.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.docBool.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_docBool () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.docBool.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_docBool_toElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_docBool {
+        managedObject.docBool.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_docBool_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      managedObject.docBool.postEvent ()
+      for observer in mObserversOf_docBool {
+        managedObject.docBool.removeEBObserver (observer)
       }
     }
   }
@@ -48,11 +76,11 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
   
   var count = EBTransientProperty_Int ()
 
-  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty < [MyRootEntity] >? 
 
   //····················································································································
 
@@ -78,7 +106,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   private var mSet = Set <MyRootEntity> ()
 
-  override var prop : EBProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty < [MyRootEntity] > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -90,17 +118,12 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
           newSet = Set (array)
         }
      //--- Removed object set
-        for managedObject : MyRootEntity in mSet.subtract (newSet) {
-          for observer in mObserversOf_docBool {
-            managedObject.docBool.removeEBObserver (observer, postEvent:true)
-          }
-        }
+        let removedSet = mSet.subtract (newSet)
+        removeEBObserversOf_docBool_fromElementsOfSet (removedSet)
       //--- Added object set
-        for managedObject : MyRootEntity in newSet.subtract (mSet) {
-          for observer in mObserversOf_docBool {
-            managedObject.docBool.addEBObserver (observer)
-          }
-        }
+        let addedSet = newSet.subtract (mSet)
+        addEBObserversOf_docBool_toElementsOfSet (addedSet)
+      //--- Update object set
         mSet = newSet
       }
       if prop_cache == nil {
@@ -115,9 +138,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      for observer in mObserversOf_docBool {
-        observer.postEvent ()
-      }
       count.postEvent ()
       super.postEvent ()
     }
@@ -220,7 +240,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : Array<EBManagedObject>) {
+                                     inout managedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     docBool.readFromDictionary (inDictionary, forKey:"docBool")
   }
@@ -229,17 +249,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
+  override func accessibleObjects (inout objects : [EBManagedObject]) {
     super.accessibleObjects (&objects)
-  }
-
-  //····················································································································
-  //   computeSignature
-  //····················································································································
-
-  override func computeSignature () -> UInt32 {
-    var crc = super.computeSignature ()
-    return crc
   }
 
   //····················································································································

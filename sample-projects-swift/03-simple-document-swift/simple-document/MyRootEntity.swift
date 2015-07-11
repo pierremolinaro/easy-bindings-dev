@@ -7,11 +7,11 @@ import Cocoa
 @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
-  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
+  var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
 
   //····················································································································
 
-  var mObserversOf_myString = Set<EBEvent> ()
+  private var mObserversOf_myString = Set<EBEvent> ()
 
   final func addEBObserverOf_myString (inObserver : EBEvent) {
     mObserversOf_myString.insert (inObserver)
@@ -25,21 +25,49 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  final func removeEBObserverOf_myString (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_myString (inObserver : EBEvent) {
     mObserversOf_myString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.myString.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.myString.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_myString () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myString.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_myString_toElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myString {
+        managedObject.myString.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_myString_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      managedObject.myString.postEvent ()
+      for observer in mObserversOf_myString {
+        managedObject.myString.removeEBObserver (observer)
       }
     }
   }
 
   //····················································································································
 
-  var mObserversOf_myColor = Set<EBEvent> ()
+  private var mObserversOf_myColor = Set<EBEvent> ()
 
   final func addEBObserverOf_myColor (inObserver : EBEvent) {
     mObserversOf_myColor.insert (inObserver)
@@ -53,14 +81,42 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
-  final func removeEBObserverOf_myColor (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_myColor (inObserver : EBEvent) {
     mObserversOf_myColor.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.myColor.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.myColor.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_myColor () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myColor.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_myColor_toElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myColor {
+        managedObject.myColor.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_myColor_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      managedObject.myColor.postEvent ()
+      for observer in mObserversOf_myColor {
+        managedObject.myColor.removeEBObserver (observer)
       }
     }
   }
@@ -76,11 +132,11 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
   
   var count = EBTransientProperty_Int ()
 
-  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty < [MyRootEntity] >? 
 
   //····················································································································
 
@@ -106,7 +162,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   private var mSet = Set <MyRootEntity> ()
 
-  override var prop : EBProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty < [MyRootEntity] > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -118,23 +174,14 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
           newSet = Set (array)
         }
      //--- Removed object set
-        for managedObject : MyRootEntity in mSet.subtract (newSet) {
-          for observer in mObserversOf_myString {
-            managedObject.myString.removeEBObserver (observer, postEvent:true)
-          }
-          for observer in mObserversOf_myColor {
-            managedObject.myColor.removeEBObserver (observer, postEvent:true)
-          }
-        }
+        let removedSet = mSet.subtract (newSet)
+        removeEBObserversOf_myString_fromElementsOfSet (removedSet)
+        removeEBObserversOf_myColor_fromElementsOfSet (removedSet)
       //--- Added object set
-        for managedObject : MyRootEntity in newSet.subtract (mSet) {
-          for observer in mObserversOf_myString {
-            managedObject.myString.addEBObserver (observer)
-          }
-          for observer in mObserversOf_myColor {
-            managedObject.myColor.addEBObserver (observer)
-          }
-        }
+        let addedSet = newSet.subtract (mSet)
+        addEBObserversOf_myString_toElementsOfSet (addedSet)
+        addEBObserversOf_myColor_toElementsOfSet (addedSet)
+      //--- Update object set
         mSet = newSet
       }
       if prop_cache == nil {
@@ -149,12 +196,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      for observer in mObserversOf_myString {
-        observer.postEvent ()
-      }
-      for observer in mObserversOf_myColor {
-        observer.postEvent ()
-      }
       count.postEvent ()
       super.postEvent ()
     }
@@ -348,7 +389,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : Array<EBManagedObject>) {
+                                     inout managedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     myString.readFromDictionary (inDictionary, forKey:"myString")
     myColor.readFromDictionary (inDictionary, forKey:"myColor")
@@ -358,17 +399,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
+  override func accessibleObjects (inout objects : [EBManagedObject]) {
     super.accessibleObjects (&objects)
-  }
-
-  //····················································································································
-  //   computeSignature
-  //····················································································································
-
-  override func computeSignature () -> UInt32 {
-    var crc = super.computeSignature ()
-    return crc
   }
 
   //····················································································································

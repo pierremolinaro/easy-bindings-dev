@@ -86,7 +86,7 @@ final class Controller_EBReadOnlyIntField_readOnlyValue : EBSimpleController {
   //-------------------------------------------------------------------------------------------------------------------*
   
   func unregister () {
-    mObject.removeEBObserver (self, postEvent:false)
+    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

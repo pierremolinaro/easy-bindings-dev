@@ -7,11 +7,11 @@ import Cocoa
 @objc(ReadOnlyArrayOf_NameEntity)
 class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
-  var prop : EBProperty <Array<NameEntity> > { get { return .noSelection } }
+  var prop : EBProperty < [NameEntity] > { get { return .noSelection } }
 
   //····················································································································
 
-  var mObserversOf_name = Set<EBEvent> ()
+  private var mObserversOf_name = Set<EBEvent> ()
 
   final func addEBObserverOf_name (inObserver : EBEvent) {
     mObserversOf_name.insert (inObserver)
@@ -25,21 +25,49 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
-  final func removeEBObserverOf_name (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_name (inObserver : EBEvent) {
     mObserversOf_name.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.name.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.name.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_name () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.name.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_name_toElementsOfSet (inSet : Set<NameEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_name {
+        managedObject.name.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_name_fromElementsOfSet (inSet : Set<NameEntity>) {
+    for managedObject in inSet {
+      managedObject.name.postEvent ()
+      for observer in mObserversOf_name {
+        managedObject.name.removeEBObserver (observer)
       }
     }
   }
 
   //····················································································································
 
-  var mObserversOf_aValue = Set<EBEvent> ()
+  private var mObserversOf_aValue = Set<EBEvent> ()
 
   final func addEBObserverOf_aValue (inObserver : EBEvent) {
     mObserversOf_aValue.insert (inObserver)
@@ -53,14 +81,42 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
-  final func removeEBObserverOf_aValue (inObserver : EBEvent, postEvent inTrigger:Bool) {
+  final func removeEBObserverOf_aValue (inObserver : EBEvent) {
     mObserversOf_aValue.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
       for managedObject in v {
-        managedObject.aValue.removeEBObserver (inObserver, postEvent:inTrigger)
+        managedObject.aValue.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_aValue () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.aValue.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_aValue_toElementsOfSet (inSet : Set<NameEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_aValue {
+        managedObject.aValue.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_aValue_fromElementsOfSet (inSet : Set<NameEntity>) {
+    for managedObject in inSet {
+      managedObject.aValue.postEvent ()
+      for observer in mObserversOf_aValue {
+        managedObject.aValue.removeEBObserver (observer)
       }
     }
   }
@@ -76,11 +132,11 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 @objc(TransientArrayOf_NameEntity)
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
-  var computeFunction : Optional<() -> EBProperty <Array<NameEntity> > >
+  var computeFunction : Optional<() -> EBProperty < [NameEntity] > >
   
   var count = EBTransientProperty_Int ()
 
-  private var prop_cache : EBProperty <Array<NameEntity> >? 
+  private var prop_cache : EBProperty < [NameEntity] >? 
 
   //····················································································································
 
@@ -106,7 +162,7 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   private var mSet = Set <NameEntity> ()
 
-  override var prop : EBProperty <Array<NameEntity> > {
+  override var prop : EBProperty < [NameEntity] > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -118,23 +174,14 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
           newSet = Set (array)
         }
      //--- Removed object set
-        for managedObject : NameEntity in mSet.subtract (newSet) {
-          for observer in mObserversOf_name {
-            managedObject.name.removeEBObserver (observer, postEvent:true)
-          }
-          for observer in mObserversOf_aValue {
-            managedObject.aValue.removeEBObserver (observer, postEvent:true)
-          }
-        }
+        let removedSet = mSet.subtract (newSet)
+        removeEBObserversOf_name_fromElementsOfSet (removedSet)
+        removeEBObserversOf_aValue_fromElementsOfSet (removedSet)
       //--- Added object set
-        for managedObject : NameEntity in newSet.subtract (mSet) {
-          for observer in mObserversOf_name {
-            managedObject.name.addEBObserver (observer)
-          }
-          for observer in mObserversOf_aValue {
-            managedObject.aValue.addEBObserver (observer)
-          }
-        }
+        let addedSet = newSet.subtract (mSet)
+        addEBObserversOf_name_toElementsOfSet (addedSet)
+        addEBObserversOf_aValue_toElementsOfSet (addedSet)
+      //--- Update object set
         mSet = newSet
       }
       if prop_cache == nil {
@@ -149,12 +196,6 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
-      for observer in mObserversOf_name {
-        observer.postEvent ()
-      }
-      for observer in mObserversOf_aValue {
-        observer.postEvent ()
-      }
       count.postEvent ()
       super.postEvent ()
     }
@@ -375,7 +416,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : Array<EBManagedObject>) {
+                                     inout managedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     name.readFromDictionary (inDictionary, forKey:"name")
     aValue.readFromDictionary (inDictionary, forKey:"aValue")
@@ -394,20 +435,11 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
+  override func accessibleObjects (inout objects : [EBManagedObject]) {
     super.accessibleObjects (&objects)
     if let object = mRoot.propval {
       objects.append (object)
     }
-  }
-
-  //····················································································································
-  //   computeSignature
-  //····················································································································
-
-  override func computeSignature () -> UInt32 {
-    var crc = super.computeSignature ()
-    return crc
   }
 
   //····················································································································

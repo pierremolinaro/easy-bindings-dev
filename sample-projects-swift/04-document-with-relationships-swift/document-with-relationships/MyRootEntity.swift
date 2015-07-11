@@ -7,7 +7,7 @@ import Cocoa
 @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
-  var prop : EBProperty <Array<MyRootEntity> > { get { return .noSelection } }
+  var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
 
   //····················································································································
 
@@ -20,11 +20,11 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> EBProperty <Array<MyRootEntity> > >
+  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
   
   var count = EBTransientProperty_Int ()
 
-  private var prop_cache : EBProperty <Array<MyRootEntity> >? 
+  private var prop_cache : EBProperty < [MyRootEntity] >? 
 
   //····················································································································
 
@@ -50,7 +50,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   private var mSet = Set <MyRootEntity> ()
 
-  override var prop : EBProperty <Array<MyRootEntity> > {
+  override var prop : EBProperty < [MyRootEntity] > {
     get {
       if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
@@ -61,6 +61,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         case .singleSelection (let array) :
           newSet = Set (array)
         }
+      //--- Update object set
         mSet = newSet
       }
       if prop_cache == nil {
@@ -133,12 +134,11 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   //····················································································································
 
   private var mSet = Set<NameEntity> ()
-  private var mValue = Array<NameEntity> () {
+  private var mValue = [NameEntity] () {
     didSet {
       if oldValue != mValue {
-        clearSignatureCache ()
+        let oldSet = mSet
         mSet = Set (mValue)
-        let oldSet = Set (oldValue)
       //--- Register old value in undo manager
         owner?.undoManager()?.registerUndoWithTarget (self, selector:"performUndo:", object:oldValue)
       //--- Update explorer
@@ -146,29 +146,24 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
           updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
         }
       //--- Removed object set
-        for managedObject : NameEntity in oldSet.subtract (mSet) {
+        let removedObjectSet = oldSet.subtract (mSet)
+        for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (nil)
-          for observer in mObserversOf_aValue {
-            managedObject.aValue.removeEBObserver (observer, postEvent:true)
-          }
-          for observer in mObserversOf_name {
-            managedObject.name.removeEBObserver (observer, postEvent:true)
-          }
           managedObject.mRoot.owner = nil ;
         }
+        removeEBObserversOf_aValue_fromElementsOfSet (removedObjectSet)
+        removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
       //--- Added object set
+        let addedObjectSet = mSet.subtract (oldSet)
         for managedObject : NameEntity in mSet.subtract (oldSet) {
           managedObject.setSignatureObserver (self)
-          for observer in mObserversOf_aValue {
-            managedObject.aValue.addEBObserver (observer)
-          }
-          for observer in mObserversOf_name {
-            managedObject.name.addEBObserver (observer)
-          }
           managedObject.mRoot.setProp (owner)
         }
-      //--- Notify observers object count did change
-        // postEvent ()
+        addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
+        addEBObserversOf_name_toElementsOfSet (addedObjectSet)
+      //--- Notify observers
+        clearSignatureCache ()
+        postEvent ()
         if oldValue.count != mValue.count {
           count.postEvent ()
         }
@@ -176,19 +171,19 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
     }
   }
 
-  override var prop : EBProperty <Array<NameEntity> > {
+  override var prop : EBProperty < [NameEntity] > {
     get {
-      return .singleSelection (mValue ?? Array<NameEntity> ())
+      return .singleSelection (mValue ?? [NameEntity] ())
     }
   }
 
-  func setProp (inValue :  Array<NameEntity>) { mValue = inValue }
+  func setProp (inValue :  [NameEntity]) { mValue = inValue }
 
-  var propval : Array<NameEntity> { get { return mValue ?? Array<NameEntity> () } }
+  var propval : [NameEntity] { get { return mValue ?? [NameEntity] () } }
 
   //····················································································································
 
-  func performUndo (oldValue : Array<NameEntity>) {
+  func performUndo (oldValue : [NameEntity]) {
     mValue = oldValue
   }
 
@@ -214,10 +209,11 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   }
   
   //····················································································································
-  //   setSignatureObserver
+  //   signature
   //····················································································································
 
   private weak var mSignatureObserver : EBSignatureObserverProtocol?
+  private var mSignatureCache : UInt32?
 
   //····················································································································
 
@@ -228,12 +224,6 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
     }
   }
 
-  //····················································································································
-  //   signature
-  //····················································································································
-
-  private var mSignatureCache : UInt32?
- 
   //····················································································································
 
   final func signature () -> UInt32 {
@@ -247,8 +237,6 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
     return computedSignature
   }
   
-  //····················································································································
-  //   computeSignature
   //····················································································································
 
   final func computeSignature () -> UInt32 {
@@ -346,13 +334,13 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   //····················································································································
 
   override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : Array<EBManagedObject>) {
+                                     inout managedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     mNames.setProp (readEntityArrayFromDictionary (
       "mNames",
       inDictionary:inDictionary,
       managedObjectArray:&managedObjectArray
-    ) as! Array<NameEntity>)
+    ) as! [NameEntity])
   }
 
   //····················································································································
@@ -368,20 +356,11 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : Array<EBManagedObject>) {
+  override func accessibleObjects (inout objects : [EBManagedObject]) {
     super.accessibleObjects (&objects)
     for managedObject : EBManagedObject in mNames.propval {
       objects.append (managedObject)
     }
-  }
-
-  //····················································································································
-  //   computeSignature
-  //····················································································································
-
-  override func computeSignature () -> UInt32 {
-    var crc = super.computeSignature ()
-    return crc
   }
 
   //····················································································································

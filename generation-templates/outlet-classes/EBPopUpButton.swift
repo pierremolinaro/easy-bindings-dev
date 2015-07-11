@@ -70,7 +70,7 @@ final class Controller_EBPopUpButton_selectedTag : EBSimpleController {
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
   
   func unregister () {
-    mObject.removeEBObserver (self, postEvent:false)
+    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

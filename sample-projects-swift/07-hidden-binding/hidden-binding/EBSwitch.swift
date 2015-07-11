@@ -72,7 +72,7 @@ import Cocoa
   //···················································································································* 
   
   func unregister () {
-    mObject.removeEBObserver (self, postEvent:false)
+    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
