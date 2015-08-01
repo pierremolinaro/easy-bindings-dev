@@ -274,17 +274,19 @@
 		44A3365A46C9077EBB5E35C3 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "document-with-relationships/Info.plist";
-				LLVM_LTO = YES;
+				LLVM_LTO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.document-with-relationships";
 				PRODUCT_NAME = "document-with-relationships";
-				SWIFT_DISABLE_SAFETY_CHECKS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Default;
 		};
