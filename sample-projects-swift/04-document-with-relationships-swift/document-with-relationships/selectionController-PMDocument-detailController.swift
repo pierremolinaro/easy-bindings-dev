@@ -110,7 +110,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //   showObjectWindowFromExplorerButton
   //····················································································································
 
-  func showObjectWindowFromExplorerButton (AnyObject?) {
+  func showObjectWindowFromExplorerButton (_: AnyObject?) {
     if mExplorerWindow == nil {
       buildExplorerWindow ()
     }
@@ -121,7 +121,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //   deleteWindowAction
   //····················································································································
 
-  func deleteWindowAction (AnyObject) {
+  func deleteWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 

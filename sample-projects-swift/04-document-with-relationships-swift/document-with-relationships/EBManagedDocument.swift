@@ -396,7 +396,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //   C H E C K    E N T I T Y   R E A C H A B I L I T Y
   //····················································································································
 
-  @IBAction func checkEntityReachability (AnyObject!) {
+  @IBAction func checkEntityReachability (_: AnyObject!) {
     if let rootObject = mRootObject, window = windowForSheet {
       mManagedObjectContext.checkEntityReachabilityFromObject (rootObject, windowForSheet:window)
     }
@@ -406,7 +406,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //   showObjectExplorerWindow:
   //····················································································································
 
-  @IBAction func showObjectExplorerWindow (AnyObject!) {
+  @IBAction func showObjectExplorerWindow (_: AnyObject!) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }

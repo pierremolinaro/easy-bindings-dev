@@ -154,7 +154,7 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView
   //····················································································································
 
-  func numberOfRowsInTableView (NSTableView) -> Int {
+  func numberOfRowsInTableView (_: NSTableView) -> Int {
     // NSLog ("%@ (%ld objects)", __FUNCTION__, prop.count)
     switch prop {
     case .noSelection, .multipleSelection :
