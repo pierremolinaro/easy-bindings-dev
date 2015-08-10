@@ -59,6 +59,28 @@ import Cocoa
   }
 
   //····················································································································
+  //    disableUndoRegistration
+  //····················································································································
+
+  override func disableUndoRegistration () {
+    if logEvents () {
+      appendToTransientEventLog ("disableUndoRegistration\n")
+    }
+    super.disableUndoRegistration ()
+  }
+
+  //····················································································································
+  //    enableUndoRegistration
+  //····················································································································
+
+  override func enableUndoRegistration () {
+    super.enableUndoRegistration ()
+    if logEvents () {
+      appendToTransientEventLog ("enableUndoRegistration\n")
+    }
+  }
+
+  //····················································································································
 
 }
 

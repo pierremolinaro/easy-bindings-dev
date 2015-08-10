@@ -97,7 +97,7 @@ class EBManagedObjectContext : EBObject {
     tf.drawsBackground = false
     tf.editable = false
     tf.font = NSFont.boldSystemFontOfSize (0.0)
-    panel.contentView.addSubview (tf)
+    panel.contentView?.addSubview (tf)
   //--- Sheet during search
     windowForSheet.beginSheet(panel, completionHandler:nil)
     let reachableObjects : Array<EBManagedObject> = reachableObjectsFromRootObject (rootObject)

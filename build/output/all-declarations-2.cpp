@@ -4363,7 +4363,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
     "    tf.drawsBackground = false\n"
     "    tf.editable = false\n"
     "    tf.font = NSFont.boldSystemFontOfSize (0.0)\n"
-    "    panel.contentView.addSubview (tf)\n"
+    "    panel.contentView\?.addSubview (tf)\n"
     "  //--- Sheet during search\n"
     "    windowForSheet.beginSheet(panel, completionHandler:nil)\n"
     "    let reachableObjects : Array<EBManagedObject> = reachableObjectsFromRootObject (rootObject)\n"
@@ -4445,27 +4445,27 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
     "\n"
     "  func newInstanceOfEntityNamed (inEntityTypeName : String) -> EBManagedObject\? {\n"
     "    var result : EBManagedObject\?\n" ;
-  GALGAS_uint index_8750_ (0) ;
+  GALGAS_uint index_8751_ (0) ;
   if (in_ENTITY_5F_LIST.isValid ()) {
-    cEnumerator_entityListForGeneration enumerator_8750 (in_ENTITY_5F_LIST, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_8750 = enumerator_8750.hasCurrentObject () ;
-    if (nonEmpty_enumerator_8750) {
+    cEnumerator_entityListForGeneration enumerator_8751 (in_ENTITY_5F_LIST, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_8751 = enumerator_8751.hasCurrentObject () ;
+    if (nonEmpty_enumerator_8751) {
       result << "    " ;
     }
-    while (enumerator_8750.hasCurrentObject ()) {
+    while (enumerator_8751.hasCurrentObject ()) {
       result << "if inEntityTypeName == \"" ;
-      result << enumerator_8750.current_mEntityName (HERE).stringValue () ;
+      result << enumerator_8751.current_mEntityName (HERE).stringValue () ;
       result << "\" {\n"
         "      result = " ;
-      result << enumerator_8750.current_mEntityName (HERE).stringValue () ;
+      result << enumerator_8751.current_mEntityName (HERE).stringValue () ;
       result << " (managedObjectContext:self)\n" ;
-      if (enumerator_8750.hasNextObject ()) {
+      if (enumerator_8751.hasNextObject ()) {
         result << "    }else " ;
       }
-      index_8750_.increment () ;
-      enumerator_8750.gotoNextObject () ;
+      index_8751_.increment () ;
+      enumerator_8751.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_8750) {
+    if (nonEmpty_enumerator_8751) {
       result << "    }\n" ;
     }
   }
@@ -5753,31 +5753,31 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
     "  //    applicationWillTerminateAction                                                                                 *\n"
     "  //\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""\xE2""\x80""\xA2""*\n"
     "\n"
-    "  func applicationWillTerminateAction (NSNotification) {\n" ;
-  GALGAS_uint index_7622_ (0) ;
+    "  func applicationWillTerminateAction (_ : NSNotification) {\n" ;
+  GALGAS_uint index_7626_ (0) ;
   if (in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_simpleStoredPropertyListForGeneration enumerator_7622 (in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kEnumeration_up) ;
-    while (enumerator_7622.hasCurrentObject ()) {
+    cEnumerator_simpleStoredPropertyListForGeneration enumerator_7626 (in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kEnumeration_up) ;
+    while (enumerator_7626.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_7622.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_7626.current_mStoredPropertyName (HERE).stringValue () ;
       result << ".storeInPreferencesWithKey (\"Preferences:" ;
-      result << enumerator_7622.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_7626.current_mStoredPropertyName (HERE).stringValue () ;
       result << "\")\n" ;
-      index_7622_.increment () ;
-      enumerator_7622.gotoNextObject () ;
+      index_7626_.increment () ;
+      enumerator_7626.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_7755_ (0) ;
+  GALGAS_uint index_7759_ (0) ;
   if (in_STORED_5F_ARRAY_5F_LIST.isValid ()) {
-    cEnumerator_storedArrayPropertyListForGeneration enumerator_7755 (in_STORED_5F_ARRAY_5F_LIST, kEnumeration_up) ;
-    while (enumerator_7755.hasCurrentObject ()) {
+    cEnumerator_storedArrayPropertyListForGeneration enumerator_7759 (in_STORED_5F_ARRAY_5F_LIST, kEnumeration_up) ;
+    while (enumerator_7759.hasCurrentObject ()) {
       result << "    " ;
-      result << enumerator_7755.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_7759.current_mStoredPropertyName (HERE).stringValue () ;
       result << ".storeInPreferencesWithKey (\"Preferences:" ;
-      result << enumerator_7755.current_mStoredPropertyName (HERE).stringValue () ;
+      result << enumerator_7759.current_mStoredPropertyName (HERE).stringValue () ;
       result << "\")\n" ;
-      index_7755_.increment () ;
-      enumerator_7755.gotoNextObject () ;
+      index_7759_.increment () ;
+      enumerator_7759.gotoNextObject () ;
     }
   }
   result << "  }\n"

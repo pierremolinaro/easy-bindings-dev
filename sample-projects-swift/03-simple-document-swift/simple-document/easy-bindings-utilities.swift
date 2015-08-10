@@ -343,7 +343,7 @@ func presentErrorWindow (file : String!,
     `defer`:true
   )
   window.title = "Outlet Error"
-  let contentView : NSView! = window.contentView as NSView
+  let contentView : NSView = window.contentView!
   let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)
   let tf = NSTextField.init (frame:tfRect)
   tf.editable = false
@@ -363,7 +363,7 @@ func presentErrorWindow (file : String!,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension Array {
-  func objectAtIndex (index:Int, file:String, line:Int) -> T {
+  func objectAtIndex (index:Int, file:String, line:Int) -> Element {
     if index < 0 {
       NSLog ("Negative index %d in '%@' line %d", index, file, line)
     }else if index >= count {
@@ -513,7 +513,7 @@ class EBSimpleController : EBOutletEvent {
   //   deleteWindowAction
   //····················································································································
 
-  final func deleteWindowAction (AnyObject) {
+  final func deleteWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 

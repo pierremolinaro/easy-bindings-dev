@@ -271,7 +271,7 @@ var g_Preferences : Preferences? = nil
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func applicationWillTerminateAction (NSNotification) {
+  func applicationWillTerminateAction (_ : NSNotification) {
     myString.storeInPreferencesWithKey ("Preferences:myString")
     mColor.storeInPreferencesWithKey ("Preferences:mColor")
     mDate.storeInPreferencesWithKey ("Preferences:mDate")

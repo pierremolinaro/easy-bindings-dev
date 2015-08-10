@@ -152,7 +152,7 @@ var g_Preferences : Preferences? = nil
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func applicationWillTerminateAction (NSNotification) {
+  func applicationWillTerminateAction (_ : NSNotification) {
     myHidden1.storeInPreferencesWithKey ("Preferences:myHidden1")
     myHidden2.storeInPreferencesWithKey ("Preferences:myHidden2")
   }

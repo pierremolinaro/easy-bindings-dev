@@ -189,7 +189,7 @@ end
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func applicationWillTerminateAction (NSNotification) {
+  func applicationWillTerminateAction (_ : NSNotification) {
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   %    %!mStoredPropertyName%.storeInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
