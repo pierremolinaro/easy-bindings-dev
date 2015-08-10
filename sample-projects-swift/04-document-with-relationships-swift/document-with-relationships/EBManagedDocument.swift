@@ -9,6 +9,7 @@ let kEntityKey = "--entity"
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 private var gDebugMenuItemsAdded = false
+private let kLogReadFileDuration = false
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBManagedDocument
@@ -77,7 +78,6 @@ class EBManagedDocument : NSDocument, EBUserClassName {
 
   
   override func dataOfType (typeName: String?) throws -> NSData {
-  //---
     hookOfWillSave ()
   //--- Store the document version to metadata dictionary
     var version = mVersionObserver.propval
@@ -128,25 +128,8 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     let documentData = try dataForSavingFromRootObject ()
     fileData.writeByte (6, trace:&trace)
     fileData.writeAutosizedData (documentData, trace:&trace)
-/*    switch ([self compressDataOnSaving]) {
-    case EBDocumentBZ2Compression:
-      data = [data bz2CompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;
-      [fileData writeByte:5 trace:nil] ;
-      [fileData writeAutosizedData:data trace:nil] ;
-      break ;
-    case EBDocumentZLIBCompression:
-      data = [data zlibCompressedDataWithCompressionFactor:9 returnedErrorCode:nil] ;
-      [fileData writeByte:7 trace:nil] ;
-      [fileData writeAutosizedData:data trace:nil] ;
-      break ;
-    default:
-      [fileData writeByte:6 trace:nil] ;
-      [fileData writeAutosizedData:data trace:nil] ;
-      break ;
-    }*/
   //--- Append final byte
     fileData.writeByte (0, trace:&trace)
-   // println (trace)
   //---
     return fileData ;
   }
@@ -243,7 +226,6 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     }
   //---
     undoManager?.enableUndoRegistration ()
-//    undoManager?.removeAllActions ()
   }
 
   //····················································································································
@@ -304,10 +286,6 @@ class EBManagedDocument : NSDocument, EBUserClassName {
 
   //····················································································································
 
-  let logReadFileDuration = false
-
-  //····················································································································
-
   func readManagedObjectsFromData (inData : NSData) throws {
     let startDate = NSDate ()
     let v : AnyObject = try NSPropertyListSerialization.propertyListWithData (inData,
@@ -315,14 +293,14 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       format:nil
     )
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
-    if logReadFileDuration {
+    if kLogReadFileDuration {
       let timeTaken = NSDate().timeIntervalSinceDate (startDate)
       NSLog ("Dictionary array: +%g s", timeTaken)
     }
     let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)
     var progress : EBDocumentReadProgress? = nil
     if dictionaryArray.count > 10000 {
-      progress = EBDocumentReadProgress (title:lastComponentOfFileName.stringByDeletingPathExtension,
+      progress = EBDocumentReadProgress (title:(lastComponentOfFileName as NSString).stringByDeletingPathExtension,
                                          dataLength:dictionaryArray.count * 2,
                                          semaphore:semaphore)
     }
@@ -337,7 +315,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
         progressIdx += 1
         progress?.setProgress (progressIdx)
       }
-      if self.logReadFileDuration {
+      if kLogReadFileDuration {
         let timeTaken = NSDate().timeIntervalSinceDate (startDate)
         NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
       }
@@ -349,7 +327,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
         progressIdx += 1
         progress?.setProgress (progressIdx)
       }
-      if self.logReadFileDuration {
+      if kLogReadFileDuration {
         let timeTaken = NSDate().timeIntervalSinceDate (startDate)
         NSLog ("Read: +%g s", timeTaken)
       }
@@ -677,7 +655,7 @@ private struct EBDocumentReadProgress {
       mProgressWindow = progressWindow
       progressWindow.excludedFromWindowsMenu = true
       progressWindow.title = "Progress"
-      let contientViewRect : NSRect = progressWindow.contentView.frame
+      let contientViewRect : NSRect = progressWindow.contentView!.frame
     //--- Add comment text
       let ts_r = NSRect (
         x:25.0,
@@ -692,7 +670,7 @@ private struct EBDocumentReadProgress {
       ts.bordered = false
       ts.editable = false
       ts.drawsBackground = false
-      progressWindow.contentView.addSubview (ts)
+      progressWindow.contentView?.addSubview (ts)
     //--- Add progress indicator
       let ps_r = NSRect (
         x:20.0,
@@ -702,7 +680,7 @@ private struct EBDocumentReadProgress {
       )
       mProgressIndicator = NSProgressIndicator (frame:ps_r)
       mProgressIndicator!.indeterminate = true
-      progressWindow.contentView.addSubview (mProgressIndicator!)
+      progressWindow.contentView?.addSubview (mProgressIndicator!)
     //---
       mProgressIndicator!.minValue = 0.0
       mProgressIndicator!.maxValue = 1.0

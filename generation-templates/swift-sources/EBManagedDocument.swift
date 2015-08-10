@@ -300,7 +300,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)
     var progress : EBDocumentReadProgress? = nil
     if dictionaryArray.count > 10000 {
-      progress = EBDocumentReadProgress (title:lastComponentOfFileName.stringByDeletingPathExtension,
+      progress = EBDocumentReadProgress (title:(lastComponentOfFileName as NSString).stringByDeletingPathExtension,
                                          dataLength:dictionaryArray.count * 2,
                                          semaphore:semaphore)
     }
@@ -374,7 +374,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //   C H E C K    E N T I T Y   R E A C H A B I L I T Y
   //····················································································································
 
-  @IBAction func checkEntityReachability (AnyObject!) {
+  @IBAction func checkEntityReachability (_: AnyObject!) {
     if let rootObject = mRootObject, window = windowForSheet {
       mManagedObjectContext.checkEntityReachabilityFromObject (rootObject, windowForSheet:window)
     }
@@ -384,7 +384,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
   //   showObjectExplorerWindow:
   //····················································································································
 
-  @IBAction func showObjectExplorerWindow (AnyObject!) {
+  @IBAction func showObjectExplorerWindow (_: AnyObject!) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
@@ -655,7 +655,7 @@ private struct EBDocumentReadProgress {
       mProgressWindow = progressWindow
       progressWindow.excludedFromWindowsMenu = true
       progressWindow.title = "Progress"
-      let contientViewRect : NSRect = progressWindow.contentView.frame
+      let contientViewRect : NSRect = progressWindow.contentView!.frame
     //--- Add comment text
       let ts_r = NSRect (
         x:25.0,
@@ -670,7 +670,7 @@ private struct EBDocumentReadProgress {
       ts.bordered = false
       ts.editable = false
       ts.drawsBackground = false
-      progressWindow.contentView.addSubview (ts)
+      progressWindow.contentView?.addSubview (ts)
     //--- Add progress indicator
       let ps_r = NSRect (
         x:20.0,
@@ -680,7 +680,7 @@ private struct EBDocumentReadProgress {
       )
       mProgressIndicator = NSProgressIndicator (frame:ps_r)
       mProgressIndicator!.indeterminate = true
-      progressWindow.contentView.addSubview (mProgressIndicator!)
+      progressWindow.contentView?.addSubview (mProgressIndicator!)
     //---
       mProgressIndicator!.minValue = 0.0
       mProgressIndicator!.maxValue = 1.0

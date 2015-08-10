@@ -95,7 +95,7 @@ var g_Preferences : Preferences? = nil
   //    applicationWillTerminateAction                                                                                 *
   //•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*
 
-  func applicationWillTerminateAction (NSNotification) {
+  func applicationWillTerminateAction (_ : NSNotification) {
     myPrefString.storeInPreferencesWithKey ("Preferences:myPrefString")
   }
 

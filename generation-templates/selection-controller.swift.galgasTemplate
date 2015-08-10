@@ -110,7 +110,7 @@ end
   //   showObjectWindowFromExplorerButton
   //····················································································································
 
-  func showObjectWindowFromExplorerButton (AnyObject?) {
+  func showObjectWindowFromExplorerButton (_ : AnyObject?) {
     if mExplorerWindow == nil {
       buildExplorerWindow ()
     }
@@ -121,7 +121,7 @@ end
   //   deleteWindowAction
   //····················································································································
 
-  func deleteWindowAction (AnyObject) {
+  func deleteWindowAction (_ : AnyObject) {
     clearObjectExplorer ()
   }
 

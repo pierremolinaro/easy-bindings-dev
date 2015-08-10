@@ -144,7 +144,7 @@ import Cocoa
   //   showObjectWindowFromExplorerButton
   //····················································································································
 
-  func showObjectWindowFromExplorerButton (AnyObject) {
+  func showObjectWindowFromExplorerButton (_: AnyObject) {
     showExplorerWindow ()
   }
   
@@ -152,7 +152,7 @@ import Cocoa
   //   deleteWindowAction
   //····················································································································
 
-  func deleteWindowAction (AnyObject) {
+  func deleteWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 
