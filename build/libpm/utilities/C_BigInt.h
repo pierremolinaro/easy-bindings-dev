@@ -60,6 +60,7 @@ class C_BigInt {
   public : explicit C_BigInt (const uint64_t inValue, const bool inNegate) ;
   public : explicit C_BigInt (const uint64_t inHighValue, const uint64_t inLowValue, const bool inNegate) ;
   public : explicit C_BigInt (const int64_t inValue) ;
+  public : explicit C_BigInt (const char * inString, const int32_t inBase, bool & outOk) ;
 
 //--- Destructor
   public : virtual ~ C_BigInt (void) ;
@@ -70,6 +71,7 @@ class C_BigInt {
 
 //--- Set to value
   public : void setToZero (void) ;
+  public : void setFromUnsigned (const uint32_t inValue) ;
 
 //--- Sign
   public : bool isZero (void) const ;
@@ -86,6 +88,7 @@ class C_BigInt {
   public : bool operator < (const C_BigInt & inOperand) const ;
   public : bool operator <= (const C_BigInt & inOperand) const ;
   public : int32_t compare (const C_BigInt & inValue) const ;
+  public : int32_t sign (void) const ;
 
 //--- Incrementation, decrementation
   public : C_BigInt & operator ++ (void) ;
@@ -98,8 +101,10 @@ class C_BigInt {
   public : void operator >>= (const uint32_t inValue) ;
 
 //--- String
-  public : C_String hexString (void) const ;
   public : C_String decimalString (void) const ;
+  public : C_String spacedDecimalString (const uint32_t inSeparation) const ;
+  public : C_String hexString (void) const ;
+  public : C_String xString (void) const ;
 
 //--- Add, subtract
   public : void operator += (const C_BigInt inValue) ;
@@ -132,23 +137,62 @@ class C_BigInt {
   public : void divideInPlace (const C_BigInt inDivisor, C_BigInt & outRemainder) ;
   public : void divideBy (const C_BigInt inDivisor, C_BigInt & outQuotient, C_BigInt & outRemainder) const ;
 
+  public : void floorDivideInPlace (const C_BigInt inDivisor, C_BigInt & outRemainder) ;
+  public : void floorDivideBy (const C_BigInt inDivisor, C_BigInt & outQuotient, C_BigInt & outRemainder) const ;
+
+  public : void ceilDivideInPlace (const C_BigInt inDivisor, C_BigInt & outRemainder) ;
+  public : void ceilDivideBy (const C_BigInt inDivisor, C_BigInt & outQuotient, C_BigInt & outRemainder) const ;
+
+  public : void operator /= (const C_BigInt inDivisor) ;
+  public : C_BigInt operator / (const C_BigInt & inDivisor) const ;
+
+  public : void operator %= (const C_BigInt inDivisor) ;
+  public : C_BigInt operator % (const C_BigInt & inDivisor) const ;
+
+//--- Absolute value
+  public : C_BigInt abs (void) const ;
+
+//--- Logical operators
+  public : void operator &= (const C_BigInt inOperand) ;
+  public : C_BigInt operator & (const C_BigInt & inOperand) const ;
+
+  public : void operator |= (const C_BigInt inOperand) ;
+  public : C_BigInt operator | (const C_BigInt & inOperand) const ;
+
+  public : void operator ^= (const C_BigInt inOperand) ;
+  public : C_BigInt operator ^ (const C_BigInt & inOperand) const ;
+
+  public : C_BigInt operator ~ (void) const ;
+
+//--- Bit manipulation
+  public : bool bitAtIndex (const uint32_t inIndex) const ;
+  public : void setBitAtIndex (const bool inBit, const uint32_t inIndex) ;
+  public : void complementBitAtIndex (const uint32_t inIndex) ;
+  
 //--- Value access
   public : uint32_t uint32 (void) const ;
   public : uint64_t uint64 (void) const ;
   public :  int32_t int32  (void) const ;
   public :  int64_t int64  (void) const ;
+  public : void extractBytesForUnsignedRepresentation (TC_UniqueArray <uint8_t> & outValue) const ;
+  public : void extractBytesForSignedRepresentation (TC_UniqueArray <uint8_t> & outValue) const ;
 
 //--- Testing value
   public : bool fitsInUInt32 (void) const ;
   public : bool fitsInUInt64 (void) const ;
   public : bool fitsInSInt32 (void) const ;
   public : bool fitsInSInt64 (void) const ;
+  public : uint32_t requiredBitCountForSignedRepresentation (void) const ;
+  public : uint32_t requiredBitCountForUnsignedRepresentation (void) const ;
   
 //--- Example
   public : static void example (void) ;
 
 //--- Value
-  protected : mpz_t mValue ;
+  protected : mpz_t mGMPint ;
+
+//--- Friend
+  friend void swap (C_BigInt & ioOp1, C_BigInt & ioOp2) ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
