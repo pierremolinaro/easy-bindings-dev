@@ -5223,6 +5223,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
                                                      GALGAS_string inSourceString,
+                                                     GALGAS_string inNameString,
                                                      const GALGAS_bool inArgument0,
                                                      GALGAS_astDeclarationStruct & ioArgument1,
                                                      GALGAS_location & outArgument2
