@@ -7700,8 +7700,8 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astDeclarationStruct var_declarationStruct = GALGAS_astDeclarationStruct::constructor_default (SOURCE_FILE ("program.galgas", 10)) ;
-  GALGAS_location joker_774 ; // Joker input parameter
-  cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (inCompiler, GALGAS_string (filewrapperTemplate_predefinedOutletClasses_sourceFile (inCompiler COMMA_SOURCE_FILE ("program.galgas", 12))), GALGAS_bool (false), var_declarationStruct, joker_774  COMMA_SOURCE_FILE ("program.galgas", 12)) ;
+  GALGAS_location joker_780 ; // Joker input parameter
+  cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (inCompiler, GALGAS_string (filewrapperTemplate_predefinedOutletClasses_sourceFile (inCompiler COMMA_SOURCE_FILE ("program.galgas", 12))), GALGAS_string::makeEmptyString (), GALGAS_bool (false), var_declarationStruct, joker_780  COMMA_SOURCE_FILE ("program.galgas", 12)) ;
   GALGAS_location var_endOfSourceFile ;
   var_endOfSourceFile.drop () ;
   cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile, GALGAS_bool (true), var_declarationStruct, var_endOfSourceFile  COMMA_SOURCE_FILE ("program.galgas", 17)) ;
@@ -7710,11 +7710,11 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct.mAttribute_mDeclarationList, var_unifiedTypeMap, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
   }
   GALGAS_lstringlist var_unsolvedProxyList = var_unifiedTypeMap.reader_unsolvedProxyList (SOURCE_FILE ("program.galgas", 24)) ;
-  cEnumerator_lstringlist enumerator_1285 (var_unsolvedProxyList, kEnumeration_up) ;
-  while (enumerator_1285.hasCurrentObject ()) {
-    GALGAS_location location_0 (enumerator_1285.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
-    inCompiler->emitSemanticError (location_0, GALGAS_string ("type ").add_operation (enumerator_1285.current_mValue (HERE).reader_string (SOURCE_FILE ("program.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26))  COMMA_SOURCE_FILE ("program.galgas", 26)) ;
-    enumerator_1285.gotoNextObject () ;
+  cEnumerator_lstringlist enumerator_1291 (var_unsolvedProxyList, kEnumeration_up) ;
+  while (enumerator_1291.hasCurrentObject ()) {
+    GALGAS_location location_0 (enumerator_1291.current_mValue (HERE).reader_location (HERE)) ; // Implicit use of 'location' reader
+    inCompiler->emitSemanticError (location_0, GALGAS_string ("type ").add_operation (enumerator_1291.current_mValue (HERE).reader_string (SOURCE_FILE ("program.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26))  COMMA_SOURCE_FILE ("program.galgas", 26)) ;
+    enumerator_1291.gotoNextObject () ;
   }
   const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_unsolvedProxyList.reader_length (SOURCE_FILE ("program.galgas", 29)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_1) {
@@ -7724,11 +7724,11 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
     const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, var_unsortedTypeNames.reader_length (SOURCE_FILE ("program.galgas", 34)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_2) {
       GALGAS_string var_s = GALGAS_string ("cannot sort types ; the following types are involved in circular dependence:") ;
-      cEnumerator_lstringlist enumerator_1763 (var_unsortedTypeNames, kEnumeration_up) ;
-      while (enumerator_1763.hasCurrentObject ()) {
+      cEnumerator_lstringlist enumerator_1769 (var_unsortedTypeNames, kEnumeration_up) ;
+      while (enumerator_1769.hasCurrentObject ()) {
         var_s.dotAssign_operation (GALGAS_string ("\n"
-          "-- ").add_operation (enumerator_1763.current_mValue (HERE).reader_string (SOURCE_FILE ("program.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 37))  COMMA_SOURCE_FILE ("program.galgas", 37)) ;
-        enumerator_1763.gotoNextObject () ;
+          "-- ").add_operation (enumerator_1769.current_mValue (HERE).reader_string (SOURCE_FILE ("program.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 37))  COMMA_SOURCE_FILE ("program.galgas", 37)) ;
+        enumerator_1769.gotoNextObject () ;
       }
       inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("program.galgas", 39)), var_s  COMMA_SOURCE_FILE ("program.galgas", 39)) ;
     }else if (kBoolFalse == test_2) {

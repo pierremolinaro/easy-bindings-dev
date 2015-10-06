@@ -9,7 +9,7 @@ case . "eb"
 {
   @astDeclarationStruct declarationStruct = .default
 #----------------------------------------- Parse predefined outlets files
-  grammar easyBindings_grammar on [filewrapper predefinedOutletClasses.sourceFile]
+  grammar easyBindings_grammar on ([filewrapper predefinedOutletClasses.sourceFile], "")
     !userDefined:false
     !?declarationStruct
     ?*

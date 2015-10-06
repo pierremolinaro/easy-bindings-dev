@@ -8248,22 +8248,27 @@ void cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (C_Compiler * 
 
 void cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (C_Compiler * inCompiler,
                                 GALGAS_string inSourceString,
+                                GALGAS_string inNameString,
                                 const GALGAS_bool  parameter_1,
                                 GALGAS_astDeclarationStruct &  parameter_2,
                                 GALGAS_location &  parameter_3
                                 COMMA_UNUSED_LOCATION_ARGS) {
-  C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
-  macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, inSourceString.stringValue (), "" COMMA_HERE)) ;
-  if (scanner->sourceText () != NULL) {
-    const bool ok = scanner->performBottomUpParsing (gActionTable_easyBindings_grammar, gNonTerminalNames_easyBindings_grammar,
-                                                     gActionTableIndex_easyBindings_grammar, gSuccessorTable_easyBindings_grammar,
-                                                     gProductionsTable_easyBindings_grammar) ;
-    if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
-      cGrammar_easyBindings_5F_grammar grammar ;
-      grammar.nt_start_5F_symbol_ (parameter_1, parameter_2, parameter_3, scanner) ;
+  if (inSourceString.isValid () && inNameString.isValid ()) {
+    const C_String sourceString = inSourceString.stringValue () ;
+    const C_String nameString = inNameString.stringValue () ;
+    C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+    macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
+    if (scanner->sourceText () != NULL) {
+      const bool ok = scanner->performBottomUpParsing (gActionTable_easyBindings_grammar, gNonTerminalNames_easyBindings_grammar,
+                                                       gActionTableIndex_easyBindings_grammar, gSuccessorTable_easyBindings_grammar,
+                                                       gProductionsTable_easyBindings_grammar) ;
+      if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
+        cGrammar_easyBindings_5F_grammar grammar ;
+        grammar.nt_start_5F_symbol_ (parameter_1, parameter_2, parameter_3, scanner) ;
       }
+    }
+    macroDetachSharedObject (scanner) ;
   }
-  macroDetachSharedObject (scanner) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
