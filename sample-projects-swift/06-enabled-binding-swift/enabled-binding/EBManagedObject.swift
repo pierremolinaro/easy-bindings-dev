@@ -179,7 +179,7 @@ import Cocoa
       let indexArray = NSMutableArray ()
       for object : AnyObject in inEntityArray {
         let managedObject = object as! EBManagedObject
-        indexArray.addObject (NSNumber (unsignedInteger:managedObject.savingIndex))
+        indexArray.addObject (NSNumber (integer:managedObject.savingIndex))
       }
       ioDictionary.setObject (indexArray, forKey:inRelationshipName)
     }
@@ -193,7 +193,7 @@ import Cocoa
                                       inRelationshipName: String,
                                       ioDictionary : NSMutableDictionary) {
     if nil != inObject {
-      ioDictionary.setObject (NSNumber (unsignedInteger:inObject!.savingIndex), forKey:inRelationshipName)
+      ioDictionary.setObject (NSNumber (integer:inObject!.savingIndex), forKey:inRelationshipName)
     }
   }
 

@@ -2039,7 +2039,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "import Cocoa\n"
   "        mVersionShouldChangeObserver.updateStartUpSignature ()\n"
   "      }\n"
   "    }\n"
-  "    mMetadataDictionary.setObject (NSNumber (unsignedInteger:version), forKey:EBVersion)\n"
+  "    mMetadataDictionary.setObject (NSNumber (integer:version), forKey:EBVersion)\n"
   "  //--- Add the witdth and the height of main window to metadata dictionary\n"
   "    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface\n"
   "      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable\n"
@@ -2687,7 +2687,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  29987, // Text length
+  29979, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -2874,7 +2874,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "import Cocoa\n"
   "      let indexArray = NSMutableArray ()\n"
   "      for object : AnyObject in inEntityArray {\n"
   "        let managedObject = object as! EBManagedObject\n"
-  "        indexArray.addObject (NSNumber (unsignedInteger:managedObject.savingIndex))\n"
+  "        indexArray.addObject (NSNumber (integer:managedObject.savingIndex))\n"
   "      }\n"
   "      ioDictionary.setObject (indexArray, forKey:inRelationshipName)\n"
   "    }\n"
@@ -2888,7 +2888,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "import Cocoa\n"
   "                                      inRelationshipName: String,\n"
   "                                      ioDictionary : NSMutableDictionary) {\n"
   "    if nil != inObject {\n"
-  "      ioDictionary.setObject (NSNumber (unsignedInteger:inObject!.savingIndex), forKey:inRelationshipName)\n"
+  "      ioDictionary.setObject (NSNumber (integer:inObject!.savingIndex), forKey:inRelationshipName)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -3018,7 +3018,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBManagedObject.swift",
   "swift",
   true, // Text file
-  14501, // Text length
+  14485, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 

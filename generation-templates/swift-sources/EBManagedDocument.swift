@@ -91,7 +91,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
         mVersionShouldChangeObserver.updateStartUpSignature ()
       }
     }
-    mMetadataDictionary.setObject (NSNumber (unsignedInteger:version), forKey:EBVersion)
+    mMetadataDictionary.setObject (NSNumber (integer:version), forKey:EBVersion)
   //--- Add the witdth and the height of main window to metadata dictionary
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
       if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
