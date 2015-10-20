@@ -22,50 +22,50 @@ void categoryMethod_typeInventory (const class GALGAS_prefDeclaration inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category Getter '@observablePropertyAST isPropertyDefined' (as function)                       *
+//                      Category getter '@observablePropertyAST isPropertyDefined' (as function)                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_bool categoryReader_isPropertyDefined (const class GALGAS_observablePropertyAST & inObject,
-                                                    const class GALGAS_semanticContext & constinArgument0,
-                                                    const class GALGAS_observablePropertyMap & constinArgument1,
-                                                    const class GALGAS_observablePropertyMap & constinArgument2,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
+class GALGAS_bool extensionGetter_isPropertyDefined (const class GALGAS_observablePropertyAST & inObject,
+                                                     const class GALGAS_semanticContext & constinArgument0,
+                                                     const class GALGAS_observablePropertyMap & constinArgument1,
+                                                     const class GALGAS_observablePropertyMap & constinArgument2,
+                                                     class C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category Getter '@arrayControllerModel modelString' (as function)                          *
+//                          Category getter '@arrayControllerModel modelString' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_modelString (const class GALGAS_arrayControllerModel & inObject,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_modelString (const class GALGAS_arrayControllerModel & inObject,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@arrayControllerModel modelTypeName' (as function)                         *
+//                         Category getter '@arrayControllerModel modelTypeName' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_modelTypeName (const class GALGAS_arrayControllerModel & inObject,
-                                                  const class GALGAS_string & constinArgument0,
-                                                  const class GALGAS_observablePropertyMap & constinArgument1,
-                                                  class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_modelTypeName (const class GALGAS_arrayControllerModel & inObject,
+                                                   const class GALGAS_string & constinArgument0,
+                                                   const class GALGAS_observablePropertyMap & constinArgument1,
+                                                   class C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category Getter '@arrayControllerModel modelTypeName2' (as function)                         *
+//                        Category getter '@arrayControllerModel modelTypeName2' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_modelTypeName_32_ (const class GALGAS_arrayControllerModel & inObject,
-                                                      const class GALGAS_string & constinArgument0,
-                                                      const class GALGAS_observablePropertyMap & constinArgument1,
-                                                      class C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_modelTypeName_32_ (const class GALGAS_arrayControllerModel & inObject,
+                                                       const class GALGAS_string & constinArgument0,
+                                                       const class GALGAS_observablePropertyMap & constinArgument1,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

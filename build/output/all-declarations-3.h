@@ -65,66 +65,66 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'          *
+//         Abstract category getter '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_string (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+typedef class GALGAS_string (*categoryGetterSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
                                                                                                                                class C_Compiler * inCompiler
                                                                                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_expressionString (const int32_t inClassIndex,
-                                           categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inMethod) ;
+void enterCategoryGetter_expressionString (const int32_t inClassIndex,
+                                           categoryGetterSignature_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string callCategoryReader_expressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+class GALGAS_string callCategoryGetter_expressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Abstract category reader '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'          *
+//         Abstract category getter '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef class GALGAS_stringset (*categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+typedef class GALGAS_stringset (*categoryGetterSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
                                                                                                                                   class C_Compiler * inCompiler
                                                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryReader_observedModelSet (const int32_t inClassIndex,
-                                           categoryReaderSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet inMethod) ;
+void enterCategoryGetter_observedModelSet (const int32_t inClassIndex,
+                                           categoryGetterSignature_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_stringset callCategoryReader_observedModelSet (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+class GALGAS_stringset callCategoryGetter_observedModelSet (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Category Getter '@observablePropertyAST generateRemoveObserverCall' (as function)                  *
+//                  Category getter '@observablePropertyAST generateRemoveObserverCall' (as function)                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_generateRemoveObserverCall (const class GALGAS_observablePropertyAST & inObject,
-                                                               class C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//             Category Getter '@tableViewBindingGenerationList outletNameListForController' (as function)             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_outletNameListForController (const class GALGAS_tableViewBindingGenerationList & inObject,
-                                                                const class GALGAS_string & constinArgument0,
+class GALGAS_string extensionGetter_generateRemoveObserverCall (const class GALGAS_observablePropertyAST & inObject,
                                                                 class C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//             Category getter '@tableViewBindingGenerationList outletNameListForController' (as function)             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string extensionGetter_outletNameListForController (const class GALGAS_tableViewBindingGenerationList & inObject,
+                                                                 const class GALGAS_string & constinArgument0,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -228,24 +228,24 @@ class GALGAS_string function_preferencesName (class C_Compiler * inCompiler
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category Getter '@mainXibDescriptorList generateCode' (as function)                         *
+//                         Category getter '@mainXibDescriptorList generateCode' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_generateCode (const class GALGAS_mainXibDescriptorList & inObject,
+class GALGAS_string extensionGetter_generateCode (const class GALGAS_mainXibDescriptorList & inObject,
+                                                  class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Category getter '@observablePropertyAST modelString' (as function)                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string extensionGetter_modelString (const class GALGAS_observablePropertyAST & inObject,
+                                                 const class GALGAS_string & constinArgument0,
                                                  class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Category Getter '@observablePropertyAST modelString' (as function)                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string categoryReader_modelString (const class GALGAS_observablePropertyAST & inObject,
-                                                const class GALGAS_string & constinArgument0,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -330,7 +330,7 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                    const class GALGAS_tableViewBindingGenerationList & inOperand10
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of reader 'description'
+//--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
 //--------------------------------- Comparison
@@ -342,27 +342,27 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration reader_mActionBindingListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_mActionBindingListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_mArrayControllerForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList reader_mExternSwiftFunctionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_mainXibDescriptorList reader_mMainXibDescriptorList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_mainXibDescriptorList getter_mMainXibDescriptorList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList reader_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList getter_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_decoratedOutletMap reader_mOutletMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList reader_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGeneration reader_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGeneration getter_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_storedArrayPropertyListForGeneration reader_mStoredArrayPropertyListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_storedArrayPropertyListForGeneration getter_mStoredArrayPropertyListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList reader_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mTransientDefinitionListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mTransientDefinitionListForGeneration (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -478,13 +478,13 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category Getter '@observablePropertyAST location' (as function)                           *
+//                           Category getter '@observablePropertyAST location' (as function)                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_location categoryReader_location (const class GALGAS_observablePropertyAST & inObject,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+class GALGAS_location extensionGetter_location (const class GALGAS_observablePropertyAST & inObject,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -617,7 +617,7 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
                                                           const class GALGAS_entityObservablePropertyMap & inOperand5
                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of reader 'description'
+//--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
 //--------------------------------- Comparison
@@ -629,17 +629,17 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bindingSpecificationMap reader_mBindingSpecificationMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bindingSpecificationMap getter_mBindingSpecificationMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_documentObservablePropertyMap reader_mDocumentObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_documentObservablePropertyMap getter_mDocumentObservablePropertyMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_entityObservablePropertyMap reader_mEntityObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_entityObservablePropertyMap getter_mEntityObservablePropertyMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_outletClassMap reader_mOutletClassMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_outletClassMap getter_mOutletClassMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap reader_mPreferencesObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap getter_mPreferencesObservablePropertyMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap reader_mUnifiedTypeMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_unifiedTypeMap getter_mUnifiedTypeMap (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -723,7 +723,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                               const class GALGAS_selectionControllerForGeneration & inOperand10
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of reader 'description'
+//--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
 //--------------------------------- Comparison
@@ -735,27 +735,27 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_actionListForGeneration reader_mActionListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_actionListForGeneration getter_mActionListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration reader_mAllArrayControllerForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mAllArrayControllerForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_classListForGeneration reader_mClassListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_classListForGeneration getter_mClassListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_documentListForGeneration reader_mDocumentListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_documentListForGeneration getter_mDocumentListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration reader_mEntityListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_mEntityListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_enumListForGeneration reader_mEnumListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_enumListForGeneration getter_mEnumListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringset reader_mNeededOutletClasses (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mNeededOutletClasses (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_preferencesForGeneration reader_mPreferencesForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_preferencesForGeneration getter_mPreferencesForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration reader_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration getter_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration reader_mTransientListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mTransientListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration reader_mValidationStubRoutineListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration getter_mValidationStubRoutineListForGeneration (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -966,13 +966,13 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category Getter '@arrayControllerFilterListForGeneration filterCode' (as function)                  *
+//                 Category getter '@arrayControllerFilterListForGeneration filterCode' (as function)                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string categoryReader_filterCode (const class GALGAS_arrayControllerFilterListForGeneration & inObject,
-                                               const class GALGAS_string & constinArgument0,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_filterCode (const class GALGAS_arrayControllerFilterListForGeneration & inObject,
+                                                const class GALGAS_string & constinArgument0,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 #endif
