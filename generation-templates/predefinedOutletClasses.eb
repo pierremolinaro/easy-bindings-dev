@@ -38,6 +38,7 @@ binding EBPopUpButton $selectedTag : property Int ;
 outletClass EBGroupButton $enabled ;
 binding EBGroupButton $selectedIndex : property Int ;
 
+outletClass EBProgressIndicator ;
 
 outletClass EBSegmentedControl $enabled ;
 binding EBSegmentedControl $selectedIndex : property Int ;
@@ -61,3 +62,5 @@ binding EBTextFieldObserver $valueObserver : transient String ;
 
 outletClass EBTextView ;
 binding EBTextView $value : property String ;
+
+outletClass EBWindow ;

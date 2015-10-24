@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(EBButton) class EBButton : NSButton, EBUserClassName {
+@objc(EBProgressIndicator) class EBProgressIndicator : NSProgressIndicator, EBUserClassName {
 
   //···················································································································*
 

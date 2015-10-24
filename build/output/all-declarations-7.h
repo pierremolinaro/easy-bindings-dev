@@ -1,5 +1,5 @@
-#ifndef all_2D_declarations_ENTITIES_DEFINED
-#define all_2D_declarations_ENTITIES_DEFINED
+#ifndef all_2D_declarations_2D__37__ENTITIES_DEFINED
+#define all_2D_declarations_2D__37__ENTITIES_DEFINED
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7,6 +7,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "all-declarations-7.h"
+#include "all-declarations-6.h"
 
 #endif
