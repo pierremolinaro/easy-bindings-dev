@@ -2,7 +2,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(EBButton) class EBButton : NSButton, EBUserClassName {
+@objc(EBWindow) class EBWindow : NSWindow, EBUserClassName {
 
   //···················································································································*
 
@@ -13,8 +13,11 @@ import Cocoa
 
   //···················································································································*
 
-  override init (frame:NSRect) {
-    super.init (frame:frame)
+  override init (contentRect: NSRect,
+                 styleMask aStyle: Int,
+                 backing bufferingType: NSBackingStoreType,
+                 `defer` flag: Bool) {
+    super.init (contentRect: contentRect, styleMask:aStyle, backing:bufferingType, `defer`:flag)
     noteObjectAllocation (self)
   }
   

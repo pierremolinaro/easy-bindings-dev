@@ -11688,6 +11688,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "outletClass EBGroupButton $enabled ;\n"
     "binding EBGroupButton $selectedIndex : property Int ;\n"
     "\n"
+    "outletClass EBProgressIndicator ;\n"
     "\n"
     "outletClass EBSegmentedControl $enabled ;\n"
     "binding EBSegmentedControl $selectedIndex : property Int ;\n"
@@ -11710,7 +11711,9 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "\n"
     "outletClass EBTextView ;\n"
-    "binding EBTextView $value : property String ;\n" ;
+    "binding EBTextView $value : property String ;\n"
+    "\n"
+    "outletClass EBWindow ;\n" ;
   return GALGAS_string (result) ;
 }
 
