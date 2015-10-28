@@ -11688,6 +11688,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "outletClass EBGroupButton $enabled ;\n"
     "binding EBGroupButton $selectedIndex : property Int ;\n"
     "\n"
+    "outletClass EBMenuItem ;\n"
+    "\n"
     "outletClass EBProgressIndicator ;\n"
     "\n"
     "outletClass EBSegmentedControl $enabled ;\n"
