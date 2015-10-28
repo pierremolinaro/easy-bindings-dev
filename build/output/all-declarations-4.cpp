@@ -10,6 +10,177 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                        Filewrapper 'validationStubExtension'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+//--- All files of 'collection-controller-templates' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_1 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'collection-controller-templates' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_1 [1] = {
+  NULL
+} ;
+
+//--- Directory 'collection-controller-templates'
+
+const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension (
+  "collection-controller-templates",
+  0,
+  gWrapperAllFiles_validationStubExtension_1,
+  0,
+  gWrapperAllDirectories_validationStubExtension_1
+) ;
+
+//--- All files of 'outlet-classes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_2 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'outlet-classes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_2 [1] = {
+  NULL
+} ;
+
+//--- Directory 'outlet-classes'
+
+const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension (
+  "outlet-classes",
+  0,
+  gWrapperAllFiles_validationStubExtension_2,
+  0,
+  gWrapperAllDirectories_validationStubExtension_2
+) ;
+
+//--- All files of 'standard-properties' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_3 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'standard-properties' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [1] = {
+  NULL
+} ;
+
+//--- Directory 'standard-properties'
+
+const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
+  "standard-properties",
+  0,
+  gWrapperAllFiles_validationStubExtension_3,
+  0,
+  gWrapperAllDirectories_validationStubExtension_3
+) ;
+
+//--- All files of 'swift-sources' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'swift-sources' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'swift-sources'
+
+const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension (
+  "swift-sources",
+  0,
+  gWrapperAllFiles_validationStubExtension_4,
+  0,
+  gWrapperAllDirectories_validationStubExtension_4
+) ;
+
+//--- All files of 'xcode-project' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_5 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'xcode-project' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_5 [1] = {
+  NULL
+} ;
+
+//--- Directory 'xcode-project'
+
+const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension (
+  "xcode-project",
+  0,
+  gWrapperAllFiles_validationStubExtension_5,
+  0,
+  gWrapperAllDirectories_validationStubExtension_5
+) ;
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [6] = {
+  & gWrapperDirectory_1_validationStubExtension,
+  & gWrapperDirectory_2_validationStubExtension,
+  & gWrapperDirectory_3_validationStubExtension,
+  & gWrapperDirectory_4_validationStubExtension,
+  & gWrapperDirectory_5_validationStubExtension,
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension (
+  "",
+  0,
+  gWrapperAllFiles_validationStubExtension_0,
+  5,
+  gWrapperAllDirectories_validationStubExtension_0
+) ;
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Filewrapper template 'validationStubExtension actionGeneration'                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (C_Compiler * /* inCompiler */,
+                                                                            const GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
+                                                                            const GALGAS_string & in_MODEL_5F_NAME,
+                                                                            const GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
+                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "import Cocoa\n"
+    "\n"
+    "//---------------------------------------------------------------------------------------------------------------------*\n"
+    "\n"
+    "extension " ;
+  result << in_OBJECT_5F_TYPE_5F_NAME.stringValue () ;
+  result << " {\n"
+    "  func validate_" ;
+  result << in_MODEL_5F_NAME.stringValue () ;
+  result << " (proposedValue : " ;
+  result << in_MODEL_5F_TYPE_5F_NAME.stringValue () ;
+  result << ") -> EBValidationResult {\n" ;
+  return GALGAS_string (result) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                      Routine 'generateValidationRoutineStubs'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

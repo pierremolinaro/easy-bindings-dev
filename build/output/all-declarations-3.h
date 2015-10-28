@@ -403,6 +403,7 @@ extern const char * gWrapperFileContent_18_outletClassGeneration ;
 extern const char * gWrapperFileContent_19_outletClassGeneration ;
 extern const char * gWrapperFileContent_20_outletClassGeneration ;
 extern const char * gWrapperFileContent_21_outletClassGeneration ;
+extern const char * gWrapperFileContent_22_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -431,6 +432,7 @@ extern const cRegularFileWrapper gWrapperFile_18_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_19_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_20_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_21_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_22_outletClassGeneration ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -818,39 +820,5 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        Filewrapper 'validationStubExtension'                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Filewrapper template 'validationStubExtension actionGeneration'                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C_Compiler * inCompiler,
-                                                                            const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
-                                                                            const class GALGAS_string & in_MODEL_5F_NAME,
-                                                                            const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
-                                                                            COMMA_LOCATION_ARGS) ;
 
 #endif

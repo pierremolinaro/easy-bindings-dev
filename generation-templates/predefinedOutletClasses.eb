@@ -38,6 +38,8 @@ binding EBPopUpButton $selectedTag : property Int ;
 outletClass EBGroupButton $enabled ;
 binding EBGroupButton $selectedIndex : property Int ;
 
+outletClass EBMenuItem ;
+
 outletClass EBProgressIndicator ;
 
 outletClass EBSegmentedControl $enabled ;
