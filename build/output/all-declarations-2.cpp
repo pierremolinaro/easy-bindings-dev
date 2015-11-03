@@ -14564,30 +14564,40 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
     "  //  newInstanceOfEntityNamed                                                                                         *\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
     "\n"
-    "  func newInstanceOfEntityNamed (inEntityTypeName : String) -> EBManagedObject\? {\n"
-    "    var result : EBManagedObject\?\n" ;
-  GALGAS_uint index_8751_ (0) ;
+    "  func newInstanceOfEntityNamed (inEntityTypeName : String) throws -> EBManagedObject {\n"
+    "    var result : EBManagedObject\n" ;
+  GALGAS_uint index_8756_ (0) ;
   if (in_ENTITY_5F_LIST.isValid ()) {
-    cEnumerator_entityListForGeneration enumerator_8751 (in_ENTITY_5F_LIST, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_8751 = enumerator_8751.hasCurrentObject () ;
-    if (nonEmpty_enumerator_8751) {
+    cEnumerator_entityListForGeneration enumerator_8756 (in_ENTITY_5F_LIST, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_8756 = enumerator_8756.hasCurrentObject () ;
+    if (nonEmpty_enumerator_8756) {
       result << "    " ;
     }
-    while (enumerator_8751.hasCurrentObject ()) {
+    while (enumerator_8756.hasCurrentObject ()) {
       result << "if inEntityTypeName == \"" ;
-      result << enumerator_8751.current_mEntityName (HERE).stringValue () ;
+      result << enumerator_8756.current_mEntityName (HERE).stringValue () ;
       result << "\" {\n"
         "      result = " ;
-      result << enumerator_8751.current_mEntityName (HERE).stringValue () ;
+      result << enumerator_8756.current_mEntityName (HERE).stringValue () ;
       result << " (managedObjectContext:self)\n" ;
-      if (enumerator_8751.hasNextObject ()) {
+      if (enumerator_8756.hasNextObject ()) {
         result << "    }else " ;
       }
-      index_8751_.increment () ;
-      enumerator_8751.gotoNextObject () ;
+      index_8756_.increment () ;
+      enumerator_8756.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_8751) {
-      result << "    }\n" ;
+    if (nonEmpty_enumerator_8756) {
+      result << "    }else{\n"
+        "       let dictionary : [NSObject : AnyObject] = [\n"
+        "        NSLocalizedDescriptionKey : \"Cannot read document\",\n"
+        "        NSLocalizedRecoverySuggestionErrorKey : \"Cannot create object of \\(inEntityTypeName) class\",\n"
+        "      ]\n"
+        "      throw NSError (\n"
+        "        domain:NSBundle.mainBundle ().bundleIdentifier!,\n"
+        "        code:1,\n"
+        "        userInfo:dictionary\n"
+        "      )\n"
+        "    }\n" ;
     }
   }
   result << "    return result\n"

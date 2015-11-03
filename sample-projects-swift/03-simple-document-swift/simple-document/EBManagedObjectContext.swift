@@ -177,10 +177,20 @@ class EBManagedObjectContext : EBObject {
   //  newInstanceOfEntityNamed                                                                                         *
   //···················································································································*
 
-  func newInstanceOfEntityNamed (inEntityTypeName : String) -> EBManagedObject? {
-    var result : EBManagedObject?
+  func newInstanceOfEntityNamed (inEntityTypeName : String) throws -> EBManagedObject {
+    var result : EBManagedObject
     if inEntityTypeName == "MyRootEntity" {
       result = MyRootEntity (managedObjectContext:self)
+    }else{
+       let dictionary : [NSObject : AnyObject] = [
+        NSLocalizedDescriptionKey : "Cannot read document",
+        NSLocalizedRecoverySuggestionErrorKey : "Cannot create object of \(inEntityTypeName) class",
+      ]
+      throw NSError (
+        domain:NSBundle.mainBundle ().bundleIdentifier!,
+        code:1,
+        userInfo:dictionary
+      )
     }
     return result
   }

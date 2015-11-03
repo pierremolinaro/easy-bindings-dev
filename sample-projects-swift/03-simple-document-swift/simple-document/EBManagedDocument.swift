@@ -33,7 +33,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     noteObjectAllocation (self)
     undoManager = theUndoManager
     theUndoManager.disableUndoRegistration ()
-    mRootObject = mManagedObjectContext.newInstanceOfEntityNamed (rootEntityClassName ())
+    mRootObject = try! mManagedObjectContext.newInstanceOfEntityNamed (rootEntityClassName ())
     theUndoManager.enableUndoRegistration ()
   }
 
@@ -204,12 +204,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       )
     }
   //--- Analyze read data
-    switch dataFormat {
-    case 0x02 :
-      try readLegacyDataFormat (fileData)
-    case 0x06 :
+    if dataFormat == 0x06 {
       try readManagedObjectsFromData (fileData)
-    default:
+    }else{
       try raiseInvalidDataFormatArror (dataFormat)
     }
   //---
@@ -228,49 +225,7 @@ class EBManagedDocument : NSDocument, EBUserClassName {
     undoManager?.enableUndoRegistration ()
   }
 
-  //····················································································································
-
-  func readLegacyDataFormat (legacyData : NSData) throws {
-    #if READ_LEGACY_FORMAT
-      var dictionaryArray : [NSMutableDictionary] = []
-      analyzeLegacyBZ2Data (legacyData, objectArray : &dictionaryArray)
-    //--- Create objects
-      var objectArray = [EBManagedObject] ()
-      // var obsoleteObjectArray = [EBManagedObject] ()
-      for d in dictionaryArray {
-        let className = d.objectForKey (kEntityKey) as! String
-        let possibleObject = self.managedObjectContext ().newInstanceOfEntityNamed (className)
-        if let object = possibleObject {
-          objectArray.append (object)
-        }else{
-          let object = EBManagedObject ()
-          // obsoleteObjectArray.append (object)
-          objectArray.append (object)
-        }
-      }
-   //--- Set up objects
-      var idx = 0
-      for d in dictionaryArray {
-        let object : EBManagedObject = objectArray [idx]
-        object.setUpWithDictionary (d, managedObjectArray:&objectArray)
-        object.additionalSetUp (d, managedObjectArray:&objectArray, legacyObjectArray:&dictionaryArray)
-        idx += 1
-      }
-    //--- Remove obsolete objects
-/*      for obsoleteObject in obsoleteObjectArray {
-        self.managedObjectContext ().removeManagedObject (obsoleteObject)
-      } */
-    //--- Set root object
-      if let rootObject = self.mRootObject {
-        self.managedObjectContext ().removeManagedObject (rootObject)
-      }
-      self.mRootObject = objectArray [0]
-    #else
-      try raiseInvalidDataFormatArror (3)
-    #endif
-  }
-
-  //····················································································································
+   //····················································································································
 
   final func raiseInvalidDataFormatArror (dataFormat : UInt8) throws {
     let dictionary = [
@@ -305,38 +260,44 @@ class EBManagedDocument : NSDocument, EBUserClassName {
                                          semaphore:semaphore)
     }
     let queue = dispatch_queue_create ("readObjectFromData", DISPATCH_QUEUE_CONCURRENT)
+    var possibleError : NSError? = nil
     dispatch_after (DISPATCH_TIME_NOW, queue) {
-      var objectArray = [EBManagedObject] ()
-      var progressIdx = 0 ;
-      for d in dictionaryArray {
-        let className = d.objectForKey (kEntityKey) as! String
-        let object = self.mManagedObjectContext.newInstanceOfEntityNamed (className)
-        objectArray.append (object!)
-        progressIdx += 1
-        progress?.setProgress (progressIdx)
+      do{
+        var objectArray = [EBManagedObject] ()
+        var progressIdx = 0 ;
+        for d in dictionaryArray {
+          let className = d.objectForKey (kEntityKey) as! String
+          let object = try self.mManagedObjectContext.newInstanceOfEntityNamed (className)
+          objectArray.append (object)
+          progressIdx += 1
+          progress?.setProgress (progressIdx)
+        }
+        if kLogReadFileDuration {
+          let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+          NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
+        }
+        var idx = 0
+        for d in dictionaryArray {
+          let object : EBManagedObject = objectArray [idx]
+          object.setUpWithDictionary (d, managedObjectArray:&objectArray)
+          idx += 1
+          progressIdx += 1
+          progress?.setProgress (progressIdx)
+        }
+        if kLogReadFileDuration {
+          let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+          NSLog ("Read: +%g s", timeTaken)
+        }
+      //--- Set root object
+        if let rootObject = self.mRootObject {
+          self.mManagedObjectContext.removeManagedObject (rootObject)
+        }
+        self.mRootObject = objectArray [0]
+        dispatch_semaphore_signal (semaphore)
+      }catch let error as NSError {
+        possibleError = error
+      }catch _ as AnyObject {
       }
-      if kLogReadFileDuration {
-        let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-        NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
-      }
-      var idx = 0
-      for d in dictionaryArray {
-        let object : EBManagedObject = objectArray [idx]
-        object.setUpWithDictionary (d, managedObjectArray:&objectArray)
-        idx += 1
-        progressIdx += 1
-        progress?.setProgress (progressIdx)
-      }
-      if kLogReadFileDuration {
-        let timeTaken = NSDate().timeIntervalSinceDate (startDate)
-        NSLog ("Read: +%g s", timeTaken)
-      }
-    //--- Set root object
-      if let rootObject = self.mRootObject {
-        self.mManagedObjectContext.removeManagedObject (rootObject)
-      }
-      self.mRootObject = objectArray [0]
-      dispatch_semaphore_signal (semaphore)
     }
     var wait = true
     while wait {
@@ -348,6 +309,9 @@ class EBManagedDocument : NSDocument, EBUserClassName {
       }
     }
     progress?.orderOut ()
+    if let error = possibleError {
+      throw error
+    }
   }
 
   //····················································································································
