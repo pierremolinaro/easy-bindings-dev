@@ -36,13 +36,6 @@ import Cocoa
 
   //····················································································································
 
-  func additionalSetUp (inDictionary : NSDictionary,
-                        inout managedObjectArray : [EBManagedObject],
-                        inout legacyObjectArray : [NSMutableDictionary]) {
-  }
-
-  //····················································································································
-
   func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
   }
 
