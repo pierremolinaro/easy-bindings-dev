@@ -503,6 +503,12 @@ class EBManagedDocument : NSDocument, EBUserClassName {
 
   //····················································································································
 
+  final func incrementVersionNumber () {
+    mVersionObserver.setProp (mVersionObserver.propval + 1)
+  }
+
+  //····················································································································
+
   final func versionObserver () -> EBStoredProperty_Int {
     return mVersionObserver
   }
