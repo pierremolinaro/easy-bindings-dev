@@ -19,7 +19,7 @@ func analyze (inFilePath : String, textView : NSTextView) throws {
 //--- Read data
   let fileData = try NSData (contentsOfFile:inFilePath, options: NSDataReadingOptions.DataReadingMappedIfSafe)
 //---- Show window
-  textView.window?.title = inFilePath.lastPathComponent
+  textView.window?.title = (inFilePath as NSString).lastPathComponent
   textView.window?.makeKeyAndOrderFront (nil)
 //---- Clear result
   textView.string = ""

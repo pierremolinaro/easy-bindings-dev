@@ -20,7 +20,7 @@ import Cocoa
 
   //····················································································································
 
-  @IBAction func openDocument (AnyObject?) {
+  @IBAction func openDocument (_: AnyObject?) {
     let op = NSOpenPanel ()
     op.allowsMultipleSelection = false
     op.canChooseDirectories = false
