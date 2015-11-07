@@ -168,9 +168,9 @@ end
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
       %!mModelString%,
-      tableViewArray:[%
+      tableView:%
       ![TABLE_VALUE_BINDING_GENERATION_LIST outletNameListForController !mControllerName]
-      %],
+      %,
       file:__FILE__,
       line:__LINE__
     )\n%
