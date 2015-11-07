@@ -406,57 +406,68 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray, selectedArray:selectedArray)
     mSelectedSet = selectedSet
     for tableView in tableViewArray {
-      let tableViewController = Controller_EBTableView_controller (
-        delegate:selectedSet,
-        tableView:tableView,
-        file:file,
-        line:line
-      )
+      bind_tableView (tableView, selectedSet:selectedSet, file:file, line:line)
+    }
+  //--- Add observers
+    sortedArray.addEBObserver (selectedSet)
+    selectedSet.addEBObserver (selectedArray)
+  }
+
+  //····················································································································
+  //    bind_tableView
+  //····················································································································
+
+  private func bind_tableView (tableView:EBTableView,
+                               selectedSet:Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%,
+                               file:String,
+                               line:Int) {
+    let tableViewController = Controller_EBTableView_controller (
+      delegate:selectedSet,
+      tableView:tableView,
+      file:file,
+      line:line
+    )
 %for () in BOUND_COLUMNS do
 %    //--- Check '%!mColumnName%' column
-      if let anyObject: NSView = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
-        if let unwrappedTableCellView = anyObject as? %!mColumnOutletTypeName%_Cell {
-          if !unwrappedTableCellView.outletIsDefined () {
-            presentErrorWindow (file,
-              line: line,
-              errorMessage:"\"%!mColumnName%\" column view is not an instance of %!mColumnOutletTypeName%"
-            )
-          }
-        }else{
+    if let anyObject: NSView = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
+      if let unwrappedTableCellView = anyObject as? %!mColumnOutletTypeName%_Cell {
+        if !unwrappedTableCellView.outletIsDefined () {
           presentErrorWindow (file,
             line: line,
-            errorMessage:"\"%!mColumnName%\" column cell view is not an instance of %!mColumnOutletTypeName%_Cell"
+            errorMessage:"\"%!mColumnName%\" column view is not an instance of %!mColumnOutletTypeName%"
           )
         }
       }else{
         presentErrorWindow (file,
           line: line,
-          errorMessage:"\"%!mColumnName%\" column view unknown, or table view is NSCell-based"
+          errorMessage:"\"%!mColumnName%\" column cell view is not an instance of %!mColumnOutletTypeName%_Cell"
         )
       }
-      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
-        columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true)
-      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"%!mColumnName%\" column view unknown, or table view is NSCell-based"
+      )
+    }
+    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
+      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_keyCodingValue", ascending:true)
+    }
 %end
 %    //--- Set descriptors from first column of table view
-      let columns = tableView.tableColumns as NSArray
-      if columns.count > 0 {
-        let firstColumn = columns [0] as! NSTableColumn
-        if let sdp = firstColumn.sortDescriptorPrototype {
-          let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
-          tableView.sortDescriptors = sortDescriptorArray
-          sortedArray.setSortDescriptors (sortDescriptorArray)
-        }
+    let columns = tableView.tableColumns as NSArray
+    if columns.count > 0 {
+      let firstColumn = columns [0] as! NSTableColumn
+      if let sdp = firstColumn.sortDescriptorPrototype {
+        let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
+        tableView.sortDescriptors = sortDescriptorArray
+        sortedArray.setSortDescriptors (sortDescriptorArray)
       }
-      sortedArray.addEBObserver (tableViewController)
-      mTableViewControllerArray.append (tableViewController)
-   //--- Set table view delegate and data source
-      tableView.setDataSource (sortedArray)
-      tableView.setDelegate (selectedSet)
-   }
-  //--- Add observers
-    sortedArray.addEBObserver (selectedSet)
-    selectedSet.addEBObserver (selectedArray)
+    }
+    sortedArray.addEBObserver (tableViewController)
+    mTableViewControllerArray.append (tableViewController)
+ //--- Set table view delegate and data source
+    tableView.setDataSource (sortedArray)
+    tableView.setDelegate (selectedSet)
   }
 
   //····················································································································

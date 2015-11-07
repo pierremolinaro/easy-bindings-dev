@@ -385,79 +385,90 @@ final class ArrayController_PMDocument_selController : EBObject {
     let selectedSet = Delegate_PMDocument_selController (model:sortedArray, selectedArray:selectedArray)
     mSelectedSet = selectedSet
     for tableView in tableViewArray {
-      let tableViewController = Controller_EBTableView_controller (
-        delegate:selectedSet,
-        tableView:tableView,
-        file:file,
-        line:line
-      )
-    //--- Check 'name' column
-      if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
-        if let unwrappedTableCellView = anyObject as? EBTextField_Cell {
-          if !unwrappedTableCellView.outletIsDefined () {
-            presentErrorWindow (file,
-              line: line,
-              errorMessage:"\"name\" column view is not an instance of EBTextField"
-            )
-          }
-        }else{
-          presentErrorWindow (file,
-            line: line,
-            errorMessage:"\"name\" column cell view is not an instance of EBTextField_Cell"
-          )
-        }
-      }else{
-        presentErrorWindow (file,
-          line: line,
-          errorMessage:"\"name\" column view unknown, or table view is NSCell-based"
-        )
-      }
-      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
-        columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
-      }
-    //--- Check 'int' column
-      if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
-        if let unwrappedTableCellView = anyObject as? EBIntField_Cell {
-          if !unwrappedTableCellView.outletIsDefined () {
-            presentErrorWindow (file,
-              line: line,
-              errorMessage:"\"int\" column view is not an instance of EBIntField"
-            )
-          }
-        }else{
-          presentErrorWindow (file,
-            line: line,
-            errorMessage:"\"int\" column cell view is not an instance of EBIntField_Cell"
-          )
-        }
-      }else{
-        presentErrorWindow (file,
-          line: line,
-          errorMessage:"\"int\" column view unknown, or table view is NSCell-based"
-        )
-      }
-      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
-        columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
-      }
-    //--- Set descriptors from first column of table view
-      let columns = tableView.tableColumns as NSArray
-      if columns.count > 0 {
-        let firstColumn = columns [0] as! NSTableColumn
-        if let sdp = firstColumn.sortDescriptorPrototype {
-          let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
-          tableView.sortDescriptors = sortDescriptorArray
-          sortedArray.setSortDescriptors (sortDescriptorArray)
-        }
-      }
-      sortedArray.addEBObserver (tableViewController)
-      mTableViewControllerArray.append (tableViewController)
-   //--- Set table view delegate and data source
-      tableView.setDataSource (sortedArray)
-      tableView.setDelegate (selectedSet)
-   }
+      bind_tableView (tableView, selectedSet:selectedSet, file:file, line:line)
+    }
   //--- Add observers
     sortedArray.addEBObserver (selectedSet)
     selectedSet.addEBObserver (selectedArray)
+  }
+
+  //····················································································································
+  //    bind_tableView
+  //····················································································································
+
+  private func bind_tableView (tableView:EBTableView,
+                               selectedSet:Delegate_PMDocument_selController,
+                               file:String,
+                               line:Int) {
+    let tableViewController = Controller_EBTableView_controller (
+      delegate:selectedSet,
+      tableView:tableView,
+      file:file,
+      line:line
+    )
+    //--- Check 'name' column
+    if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
+      if let unwrappedTableCellView = anyObject as? EBTextField_Cell {
+        if !unwrappedTableCellView.outletIsDefined () {
+          presentErrorWindow (file,
+            line: line,
+            errorMessage:"\"name\" column view is not an instance of EBTextField"
+          )
+        }
+      }else{
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"name\" column cell view is not an instance of EBTextField_Cell"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"name\" column view unknown, or table view is NSCell-based"
+      )
+    }
+    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
+      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
+    }
+    //--- Check 'int' column
+    if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
+      if let unwrappedTableCellView = anyObject as? EBIntField_Cell {
+        if !unwrappedTableCellView.outletIsDefined () {
+          presentErrorWindow (file,
+            line: line,
+            errorMessage:"\"int\" column view is not an instance of EBIntField"
+          )
+        }
+      }else{
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"int\" column cell view is not an instance of EBIntField_Cell"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"int\" column view unknown, or table view is NSCell-based"
+      )
+    }
+    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
+      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
+    }
+    //--- Set descriptors from first column of table view
+    let columns = tableView.tableColumns as NSArray
+    if columns.count > 0 {
+      let firstColumn = columns [0] as! NSTableColumn
+      if let sdp = firstColumn.sortDescriptorPrototype {
+        let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
+        tableView.sortDescriptors = sortDescriptorArray
+        sortedArray.setSortDescriptors (sortDescriptorArray)
+      }
+    }
+    sortedArray.addEBObserver (tableViewController)
+    mTableViewControllerArray.append (tableViewController)
+ //--- Set table view delegate and data source
+    tableView.setDataSource (sortedArray)
+    tableView.setDelegate (selectedSet)
   }
 
   //····················································································································

@@ -1575,83 +1575,98 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << " (model:sortedArray, selectedArray:selectedArray)\n"
     "    mSelectedSet = selectedSet\n"
     "    for tableView in tableViewArray {\n"
-    "      let tableViewController = Controller_EBTableView_controller (\n"
-    "        delegate:selectedSet,\n"
-    "        tableView:tableView,\n"
-    "        file:file,\n"
-    "        line:line\n"
-    "      )\n" ;
-  GALGAS_uint index_15658_ (0) ;
+    "      bind_tableView (tableView, selectedSet:selectedSet, file:file, line:line)\n"
+    "    }\n"
+    "  //--- Add observers\n"
+    "    sortedArray.addEBObserver (selectedSet)\n"
+    "    selectedSet.addEBObserver (selectedArray)\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "  //    bind_tableView\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
+    "  private func bind_tableView (tableView:EBTableView,\n"
+    "                               selectedSet:Delegate_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << ",\n"
+    "                               file:String,\n"
+    "                               line:Int) {\n"
+    "    let tableViewController = Controller_EBTableView_controller (\n"
+    "      delegate:selectedSet,\n"
+    "      tableView:tableView,\n"
+    "      file:file,\n"
+    "      line:line\n"
+    "    )\n" ;
+  GALGAS_uint index_16348_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_15658 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_15658.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16348 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_16348.hasCurrentObject ()) {
       result << "    //--- Check '" ;
-      result << enumerator_15658.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_16348.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
-        "      if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_15658.current_mColumnName (HERE).stringValue () ;
+        "    if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
+      result << enumerator_16348.current_mColumnName (HERE).stringValue () ;
       result << "\", owner:self) {\n"
-        "        if let unwrappedTableCellView = anyObject as\? " ;
-      result << enumerator_15658.current_mColumnOutletTypeName (HERE).stringValue () ;
+        "      if let unwrappedTableCellView = anyObject as\? " ;
+      result << enumerator_16348.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
-        "          if !unwrappedTableCellView.outletIsDefined () {\n"
-        "            presentErrorWindow (file,\n"
-        "              line: line,\n"
-        "              errorMessage:\"\\\"" ;
-      result << enumerator_15658.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column view is not an instance of " ;
-      result << enumerator_15658.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << "\"\n"
-        "            )\n"
-        "          }\n"
-        "        }else{\n"
+        "        if !unwrappedTableCellView.outletIsDefined () {\n"
         "          presentErrorWindow (file,\n"
         "            line: line,\n"
         "            errorMessage:\"\\\"" ;
-      result << enumerator_15658.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column cell view is not an instance of " ;
-      result << enumerator_15658.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << "_Cell\"\n"
+      result << enumerator_16348.current_mColumnName (HERE).stringValue () ;
+      result << "\\\" column view is not an instance of " ;
+      result << enumerator_16348.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << "\"\n"
         "          )\n"
         "        }\n"
         "      }else{\n"
         "        presentErrorWindow (file,\n"
         "          line: line,\n"
         "          errorMessage:\"\\\"" ;
-      result << enumerator_15658.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column view unknown, or table view is NSCell-based\"\n"
+      result << enumerator_16348.current_mColumnName (HERE).stringValue () ;
+      result << "\\\" column cell view is not an instance of " ;
+      result << enumerator_16348.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << "_Cell\"\n"
         "        )\n"
         "      }\n"
-        "      if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_15658.current_mColumnName (HERE).stringValue () ;
+        "    }else{\n"
+        "      presentErrorWindow (file,\n"
+        "        line: line,\n"
+        "        errorMessage:\"\\\"" ;
+      result << enumerator_16348.current_mColumnName (HERE).stringValue () ;
+      result << "\\\" column view unknown, or table view is NSCell-based\"\n"
+        "      )\n"
+        "    }\n"
+        "    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
+      result << enumerator_16348.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
-        "        columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_15658.current_mObservablePropertyName (HERE).stringValue () ;
+        "      columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
+      result << enumerator_16348.current_mObservablePropertyName (HERE).stringValue () ;
       result << "_keyCodingValue\", ascending:true)\n"
-        "      }\n" ;
-      index_15658_.increment () ;
-      enumerator_15658.gotoNextObject () ;
+        "    }\n" ;
+      index_16348_.increment () ;
+      enumerator_16348.gotoNextObject () ;
     }
   }
   result << "    //--- Set descriptors from first column of table view\n"
-    "      let columns = tableView.tableColumns as NSArray\n"
-    "      if columns.count > 0 {\n"
-    "        let firstColumn = columns [0] as! NSTableColumn\n"
-    "        if let sdp = firstColumn.sortDescriptorPrototype {\n"
-    "          let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]\n"
-    "          tableView.sortDescriptors = sortDescriptorArray\n"
-    "          sortedArray.setSortDescriptors (sortDescriptorArray)\n"
-    "        }\n"
+    "    let columns = tableView.tableColumns as NSArray\n"
+    "    if columns.count > 0 {\n"
+    "      let firstColumn = columns [0] as! NSTableColumn\n"
+    "      if let sdp = firstColumn.sortDescriptorPrototype {\n"
+    "        let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]\n"
+    "        tableView.sortDescriptors = sortDescriptorArray\n"
+    "        sortedArray.setSortDescriptors (sortDescriptorArray)\n"
     "      }\n"
-    "      sortedArray.addEBObserver (tableViewController)\n"
-    "      mTableViewControllerArray.append (tableViewController)\n"
-    "   //--- Set table view delegate and data source\n"
-    "      tableView.setDataSource (sortedArray)\n"
-    "      tableView.setDelegate (selectedSet)\n"
-    "   }\n"
-    "  //--- Add observers\n"
-    "    sortedArray.addEBObserver (selectedSet)\n"
-    "    selectedSet.addEBObserver (selectedArray)\n"
+    "    }\n"
+    "    sortedArray.addEBObserver (tableViewController)\n"
+    "    mTableViewControllerArray.append (tableViewController)\n"
+    " //--- Set table view delegate and data source\n"
+    "    tableView.setDataSource (sortedArray)\n"
+    "    tableView.setDelegate (selectedSet)\n"
     "  }\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
