@@ -587,7 +587,7 @@ proc generateArrayControllers
       !defaultUserZone1:"\n\n" # Defaut user zone1
       !generatedZone2:s
       !defaultUserZone2:"  return WHAT ?\n" # Defaut user zone2
-      !generatedZone3:"}\n\n//" + ["" stringByRightPadding !116 !'—'] + "*\n"
+      !generatedZone3:"}\n\n//" + ["" stringByRightPadding !117 !'—'] + "\n"
       !makeExecutable:false
     ]
     end

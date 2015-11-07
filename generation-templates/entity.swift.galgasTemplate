@@ -151,11 +151,11 @@ end
   //····················································································································
 
   override func postEvent () {
-    if prop_cache != nil {
+//    if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
       super.postEvent ()
-    }
+//    }
   }
 
   //····················································································································
@@ -462,7 +462,7 @@ end
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
-  %  var %!mStoredPropertyName%_keyCodingValue : %![mType swiftTypeName]% {\n%
+  %  dynamic var %!mStoredPropertyName%_kvc : %![mType swiftTypeName]% {\n%
   %    get {\n%
   %      switch %!mStoredPropertyName%.prop {\n%
   %      case .noSelection, .multipleSelection :\n%
