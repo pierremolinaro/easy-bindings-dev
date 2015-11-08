@@ -4,11 +4,11 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBIntField) class EBIntField : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
-  //···················································································································*
+  //····················································································································
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
@@ -16,7 +16,7 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
-  //···················································································································*
+  //····················································································································
 
   override init (frame:NSRect) {
     super.init (frame:frame)
@@ -24,15 +24,15 @@ import Cocoa
     noteObjectAllocation (self)
   }
   
-  //···················································································································*
+  //····················································································································
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  //···················································································································*
-  //    NSTextFieldDelegate delegate function                                                                          *
-  //···················································································································*
+  //····················································································································
+  //    NSTextFieldDelegate delegate function
+  //····················································································································
 
   override func controlTextDidChange (inNotification : NSNotification) {
     if mSendContinously {
@@ -52,9 +52,9 @@ import Cocoa
     }
   }
 
-  //···················································································································*
-  //    NSTextFieldDelegate delegate function                                                                          *
-  //···················································································································*
+  //····················································································································
+  //    NSTextFieldDelegate delegate function
+  //····················································································································
   
   func control (control: NSControl,
                 didFailToFormatString string: String,
@@ -74,9 +74,9 @@ import Cocoa
     return false
   }
 
-  //···················································································································*
-  //  value binding                                                                                                    *
-  //···················································································································*
+  //····················································································································
+  //  value binding
+  //····················································································································
 
   private var mValueController : Controller_EBIntField_value?
   private var mSendContinously : Bool = false
@@ -101,9 +101,9 @@ import Cocoa
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_EBIntField_value                                                                                       *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller_EBIntField_value
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(Controller_EBIntField_value)
 final class Controller_EBIntField_value : EBSimpleController {
@@ -111,7 +111,7 @@ final class Controller_EBIntField_value : EBSimpleController {
   private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBIntField
 
-  //···················································································································*
+  //····················································································································
 
   init (object : EBReadWriteProperty_Int,
         outlet : EBIntField,
@@ -136,7 +136,7 @@ final class Controller_EBIntField_value : EBSimpleController {
     mObject.addEBObserver (self)
   }
 
-  //···················································································································*
+  //····················································································································
   
   func unregister () {
     mOutlet.target = nil
@@ -145,7 +145,7 @@ final class Controller_EBIntField_value : EBSimpleController {
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   override func sendUpdateEvent () {
     switch mObject.prop {
@@ -162,59 +162,71 @@ final class Controller_EBIntField_value : EBSimpleController {
     mOutlet.updateEnabledState ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   func action (sender : EBIntField) {
     mObject.validateAndSetProp (mOutlet.integerValue, windowForSheet:sender.window)
   }
 
-  //···················································································································*
+  //····················································································································
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   EBIntField_TableViewCell                                                                                          *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBIntField_Cell
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBIntField_Cell) class EBIntField_Cell : NSTableCellView {
-  @IBOutlet private var cellOutlet : EBIntField?
+  @IBOutlet private var mCellOutlet : EBIntField?
   private weak var mProperty : EBReadWriteProperty_Int?
 
-  //···················································································································*
+  //····················································································································
 
-  func outletIsDefined () -> Bool {
-    return cellOutlet != nil
+  func checkOutlet (columnName : String, file:String, line:Int) {
+    if let cellOutlet : NSObject = mCellOutlet {
+      if !(cellOutlet is EBIntField) {
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBIntField"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBIntField)"
+      )
+    }
   }
 
-  //···················································································································*
+  //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_Int) {
     mProperty = inProperty
     switch inProperty.prop {
     case .noSelection :
-      cellOutlet?.stringValue = "No Selection"
-      cellOutlet?.enabled = false
-      cellOutlet?.target = nil
-      cellOutlet?.action = ""
+      mCellOutlet?.stringValue = "No Selection"
+      mCellOutlet?.enabled = false
+      mCellOutlet?.target = nil
+      mCellOutlet?.action = ""
     case .singleSelection (let v) :
-      cellOutlet?.integerValue = v
-      cellOutlet?.enabled = true
-      cellOutlet?.target = self
-      cellOutlet?.action = "myAction:"
+      mCellOutlet?.integerValue = v
+      mCellOutlet?.enabled = true
+      mCellOutlet?.target = self
+      mCellOutlet?.action = "myAction:"
      case .multipleSelection :
-      cellOutlet?.stringValue = "Multiple Selection"
-      cellOutlet?.enabled = false
-      cellOutlet?.target = nil
-      cellOutlet?.action = ""
+      mCellOutlet?.stringValue = "Multiple Selection"
+      mCellOutlet?.enabled = false
+      mCellOutlet?.target = nil
+      mCellOutlet?.action = ""
     }
   }
 
-  //···················································································································*
+  //····················································································································
   
   func myAction (sender : EBIntField) {
     mProperty?.validateAndSetProp (sender.integerValue, windowForSheet:sender.window)
   }
 
-  //···················································································································* 
+  //····················································································································
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

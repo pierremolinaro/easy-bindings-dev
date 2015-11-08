@@ -9,27 +9,41 @@ private let DEBUG_EVENT = false
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
-final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, EBTableViewDataSource {
+final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : TransientArrayOf_%!ELEMENT_TYPE_NAME%, EBTableViewDataSource {
+
   private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
-  var count = EBTransientProperty_Int ()
+
+  private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
 
   //····················································································································
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
+    self.computeFunction = { [weak self] in
+      let result = self?.filterAndSort () ?? .noSelection
+      let newObjectSet : Set<%!ELEMENT_TYPE_NAME%>
+      switch result {
+      case .noSelection, .multipleSelection :
+        newObjectSet = Set ()
+      case .singleSelection (let array) :
+        newObjectSet = Set (array)
       }
+    //---
+      let currentSet = self?.mSet ?? Set ()
+    //--- Removed object set
+      let removedObjectSet = currentSet.subtract (newObjectSet)
+%for () in BOUND_COLUMNS do
+  %      self?.removeEBObserversOf_%!mObservablePropertyName%_fromElementsOfSet (removedObjectSet)
+%end
+%   //--- Added object set
+      let addedObjectSet = newObjectSet.subtract (currentSet)
+%
+for () in BOUND_COLUMNS do
+  %      self?.addEBObserversOf_%!mObservablePropertyName%_toElementsOfSet (addedObjectSet)
+%end
+%   //--- Update object set
+      self?.mSet = newObjectSet
+      return result
     }
   }
 
@@ -38,19 +52,6 @@ final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyArrayOf_
   final func setModel (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {
     mModel = model
     model.addEBObserver (self)
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if DEBUG_EVENT {
-      print ("DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%:" + __FUNCTION__ + " prop_cache \(prop_cache != nil)")
-    }
-    if prop_cache != nil {
-      prop_cache = nil
-      count.postEvent ()
-      super.postEvent ()
-    }
   }
 
   //····················································································································
@@ -86,43 +87,6 @@ else
 %     }
     }else{
       return .noSelection
-    }
-  }
-
-  //····················································································································
-  
-  private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
-
-  var prop_cache : Optional < EBProperty < [%!ELEMENT_TYPE_NAME%] > >
-
-  override var prop : EBProperty < [%!ELEMENT_TYPE_NAME%] > {
-    get {
-      if prop_cache == nil {
-        prop_cache = filterAndSort ()
-        let newObjectSet : Set<%!ELEMENT_TYPE_NAME%>
-        switch prop_cache! {
-        case .noSelection, .multipleSelection :
-          newObjectSet = Set<%!ELEMENT_TYPE_NAME%> ()
-        case .singleSelection (let v) :
-          newObjectSet = Set<%!ELEMENT_TYPE_NAME%> (v)
-        }
-        if mSet != newObjectSet {
-        //--- Removed object set
-          let removedObjectSet = mSet.subtract (newObjectSet)
-%for () in BOUND_COLUMNS do
-  %          removeEBObserversOf_%!mObservablePropertyName%_fromElementsOfSet (removedObjectSet)
-%end
-%        //--- Added object set
-          let addedObjectSet = newObjectSet.subtract (mSet)
-%
-for () in BOUND_COLUMNS do
-  %          addEBObserversOf_%!mObservablePropertyName%_toElementsOfSet (addedObjectSet)
-%end
-%       //--- Update object set
-          mSet = newObjectSet
-        }
-      }
-      return prop_cache!
     }
   }
 
@@ -312,7 +276,9 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty
   func tableView (tableView : NSTableView,
                   viewForTableColumn inTableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
- //   NSLog ("\%@, row \%d, column \%@", __FUNCTION__, inRowIndex, inTableColumn!.identifier)
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       return nil
@@ -324,14 +290,14 @@ final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty
 for () in BOUND_COLUMNS
   do
     %if columnIdentifier == "%!mColumnName%" {\n%
-    %      if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
-    %        cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
-    %      }\n%
+    %        if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
+    %          cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
+    %        }\n%
     %      %
   between %}else %
   after %}\n%
 end
-%     return result
+%      return result
     }
   }
 
@@ -438,15 +404,10 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
       line:line
     )
 %for () in BOUND_COLUMNS do
-%    //--- Check '%!mColumnName%' column
+%  //--- Check '%!mColumnName%' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
       if let unwrappedTableCellView = anyObject as? %!mColumnOutletTypeName%_Cell {
-        if !unwrappedTableCellView.outletIsDefined () {
-          presentErrorWindow (file,
-            line: line,
-            errorMessage:"\"%!mColumnName%\" column view is not an instance of %!mColumnOutletTypeName%"
-          )
-        }
+        unwrappedTableCellView.checkOutlet ("%!mColumnName%", file:file, line:line)
       }else{
         presentErrorWindow (file,
           line: line,
@@ -463,7 +424,7 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
       columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_kvc", ascending:true)
     }
 %end
-%    //--- Set descriptors from first column of table view
+%  //--- Set descriptors from first column of table view
     let columns = tableView.tableColumns as NSArray
     if columns.count > 0 {
       let firstColumn = columns [0] as! NSTableColumn

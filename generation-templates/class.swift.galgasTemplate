@@ -14,9 +14,42 @@ class ReadOnlyArrayOf_%!CLASS_NAME% : EBAbstractProperty {
 
   //····················································································································
 
+  final var count = EBTransientProperty_Int ()
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
+  }
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+%  //····················································································································
+  // Stored property '%!mStoredPropertyName%'
+  //····················································································································
+
+  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
   final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
@@ -69,11 +102,71 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  //····················································································································
-
 %
 end
-%}
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  //····················································································································
+  // Transient property '%!mTransientName%'
+  //····················································································································
+
+  private var mObserversOf_%!mTransientName% = Set<EBEvent> ()
+
+  final func addEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+    mObserversOf_%!mTransientName%.insert (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mTransientName%.addEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func removeEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+    mObserversOf_%!mTransientName%.remove (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mTransientName%.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  final func postEventTo_%!mTransientName% () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mTransientName%.postEvent ()
+      }
+    }
+  }
+
+  final func addEBObserversOf_%!mTransientName%_toElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mTransientName% {
+        managedObject.%!mTransientName%.addEBObserver (observer)
+      }
+    }
+  }
+
+  final func removeEBObserversOf_%!mTransientName%_fromElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mTransientName% {
+        managedObject.%!mTransientName%.removeEBObserver (observer)
+      }
+    }
+  }
+  
+%
+end
+%  //····················································································································
+
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"TransientArrayOf_" + CLASS_NAME%
@@ -82,29 +175,13 @@ end
 class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   var computeFunction : Optional<() -> EBProperty < [%!CLASS_NAME%] > >
-  
-  var count = EBTransientProperty_Int ()
-
+ 
   private var prop_cache : EBProperty < [%!CLASS_NAME%] >? 
 
   //····················································································································
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
-      }
-    }
   }
 
   //····················································································································
@@ -124,11 +201,10 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   override func postEvent () {
- //   if prop_cache != nil {
+    if prop_cache != nil {
       prop_cache = nil
-      count.postEvent ()
       super.postEvent ()
-//    }
+    }
   }
 
   //····················································································································
@@ -151,7 +227,7 @@ end
 //    %!"Array of class: " + CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBClassArray_%!CLASS_NAME% : TransientArrayOf_%!CLASS_NAME% {
+class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   //····················································································································
 
@@ -199,24 +275,18 @@ class EBClassArray_%!CLASS_NAME% : TransientArrayOf_%!CLASS_NAME% {
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (removedSet)\n%
-  %//          for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %//            managedObject.%!mStoredPropertyName%.removeEBObserver (observer)\n%
-  %//          }\n%
 end
 %      //--- Added object set
         let addedSet = mSet.subtract (oldSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (addedSet)\n%
-  %//          for observer in mObserversOf_%!mStoredPropertyName% {\n%
-  %//            managedObject.%!mStoredPropertyName%.addEBObserver (observer)\n%
-  %//          }\n%
 end
 %      //--- Notify observers object count did change
         postEvent ()
-        if oldValue.count != mValue.count {
+/*        if oldValue.count != mValue.count {
           count.postEvent ()
-        }
+        } */
       }
     }
   }

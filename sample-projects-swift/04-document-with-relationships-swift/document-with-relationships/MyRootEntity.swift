@@ -15,20 +15,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    TransientArrayOf_MyRootEntity
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(TransientArrayOf_MyRootEntity)
-class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
-
-  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
-  
-  var count = EBTransientProperty_Int ()
-
-  private var prop_cache : EBProperty < [MyRootEntity] >? 
+  final var count = EBTransientProperty_Int ()
 
   //····················································································································
 
@@ -48,6 +35,34 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         return .noSelection
       }
     }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    TransientArrayOf_MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(TransientArrayOf_MyRootEntity)
+class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
+
+  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
+
+  private var prop_cache : EBProperty < [MyRootEntity] >? 
+
+  //····················································································································
+
+  override init () {
+    super.init ()
   }
 
   //····················································································································
@@ -78,11 +93,10 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func postEvent () {
-//    if prop_cache != nil {
+    if prop_cache != nil {
       prop_cache = nil
-      count.postEvent ()
       super.postEvent ()
-//    }
+    }
   }
 
   //····················································································································
@@ -133,10 +147,6 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
 
   //····················································································································
 
-  var count = EBTransientProperty_Int ()
-
-  //····················································································································
-
   private var mSet = Set<NameEntity> ()
   private var mValue = [NameEntity] () {
     didSet {
@@ -168,9 +178,9 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
       //--- Notify observers
         clearSignatureCache ()
         postEvent ()
-        if oldValue.count != mValue.count {
+ /*       if oldValue.count != mValue.count {
           count.postEvent ()
-        }
+        } */
       }
     }
   }

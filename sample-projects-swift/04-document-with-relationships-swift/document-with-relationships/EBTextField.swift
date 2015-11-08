@@ -4,13 +4,13 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   EBTextField                                                                                                       *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBTextField
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTextField) class EBTextField : NSTextField, EBUserClassName, NSTextFieldDelegate {
 
-  //···················································································································*
+  //····················································································································
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
@@ -18,7 +18,7 @@ import Cocoa
     noteObjectAllocation (self)
   }
 
-  //···················································································································*
+  //····················································································································
 
   override init (frame:NSRect) {
     super.init (frame:frame)
@@ -26,15 +26,15 @@ import Cocoa
     noteObjectAllocation (self)
   }
   
-  //···················································································································*
+  //····················································································································
 
   deinit {
     noteObjectDeallocation (self)
   }
 
-  //···················································································································*
-  //  value binding                                                                                                    *
-  //···················································································································*
+  //····················································································································
+  //  value binding
+  //····················································································································
 
   private var mValueController : Controller_EBTextField_value?
   private var mSendContinously : Bool = false
@@ -49,7 +49,7 @@ import Cocoa
     mValueController = nil
   }
 
-  //···················································································································*
+  //····················································································································
 
   override func controlTextDidChange (inNotification : NSNotification) {
     if mSendContinously {
@@ -57,19 +57,19 @@ import Cocoa
     }
   }
 
-  //···················································································································*
+  //····················································································································
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Controller_EBTextField_value                                                                           *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller Controller_EBTextField_value
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(Controller_EBTextField_value) final class Controller_EBTextField_value : EBSimpleController {
 
   private let mOutlet: EBTextField
   private let mObject : EBReadWriteProperty_String
 
-  //···················································································································*
+  //····················································································································
 
   init (object:EBReadWriteProperty_String, outlet : EBTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
@@ -83,7 +83,7 @@ import Cocoa
     object.addEBObserver (self)
   }
 
-  //···················································································································*
+  //····················································································································
   
   func unregister () {
     mOutlet.target = nil
@@ -92,7 +92,7 @@ import Cocoa
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   override func sendUpdateEvent () {
     switch mObject.prop {
@@ -109,57 +109,69 @@ import Cocoa
     mOutlet.updateEnabledState ()
   }
 
-  //···················································································································*
+  //····················································································································
 
   func action (sender : EBTextField) {
     mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
   }
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   EBTextField_TableViewCell                                                                                         *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBTextField_TableViewCell
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTextField_Cell) class EBTextField_Cell : NSTableCellView {
-  @IBOutlet private var cellOutlet : EBTextField?
+  @IBOutlet private var mCellOutlet : EBTextField?
   private weak var mProperty : EBReadWriteProperty_String?
 
-  //···················································································································*
+  //····················································································································
 
-  func outletIsDefined () -> Bool {
-    return cellOutlet != nil
+  func checkOutlet (columnName : String, file:String, line:Int) {
+    if let cellOutlet : NSObject = mCellOutlet {
+      if !(cellOutlet is EBTextField) {
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBTextField"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBTextField)"
+      )
+    }
   }
 
-  //···················································································································*
+  //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_String) {
     mProperty = inProperty
     switch inProperty.prop {
     case .noSelection :
-      cellOutlet?.stringValue = "No Selection"
-      cellOutlet?.enabled = false
-      cellOutlet?.target = nil
-      cellOutlet?.action = ""
+      mCellOutlet?.stringValue = "No Selection"
+      mCellOutlet?.enabled = false
+      mCellOutlet?.target = nil
+      mCellOutlet?.action = ""
     case .singleSelection (let v) :
-      cellOutlet?.stringValue = v
-      cellOutlet?.enabled = true
-      cellOutlet?.target = self
-      cellOutlet?.action = "myAction:"
+      mCellOutlet?.stringValue = v
+      mCellOutlet?.enabled = true
+      mCellOutlet?.target = self
+      mCellOutlet?.action = "myAction:"
      case .multipleSelection :
-      cellOutlet?.stringValue = "Multiple Selection"
-      cellOutlet?.enabled = false
-      cellOutlet?.target = nil
-      cellOutlet?.action = ""
+      mCellOutlet?.stringValue = "Multiple Selection"
+      mCellOutlet?.enabled = false
+      mCellOutlet?.target = nil
+      mCellOutlet?.action = ""
     }
   }
 
-  //···················································································································*
+  //····················································································································
   
   func myAction (sender : EBTextField) {
     mProperty?.validateAndSetProp (sender.stringValue, windowForSheet:sender.window)
   }
 
-  //···················································································································* 
+  //···················································································································· 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

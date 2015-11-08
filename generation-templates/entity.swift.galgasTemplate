@@ -15,9 +15,34 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 
   //····················································································································
 
+  final var count = EBTransientProperty_Int ()
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+%  //····················································································································
+  //   Stored property '%!mStoredPropertyName%'
+  //····················································································································
+    private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
 
   final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
@@ -70,12 +95,18 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
       }
     }
   }
+%
+end
+%  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
+  }
 
   //····················································································································
 
-%
-end
-%}
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"TransientArrayOf_" + ENTITY_NAME%
@@ -85,8 +116,6 @@ end
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   var computeFunction : Optional<() -> EBProperty < [%!ENTITY_NAME%] > >
-  
-  var count = EBTransientProperty_Int ()
 
   private var prop_cache : EBProperty < [%!ENTITY_NAME%] >? 
 
@@ -94,20 +123,6 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
-      }
-    }
   }
 
   //····················································································································
@@ -151,11 +166,10 @@ end
   //····················································································································
 
   override func postEvent () {
-//    if prop_cache != nil {
+    if prop_cache != nil {
       prop_cache = nil
-      count.postEvent ()
       super.postEvent ()
-//    }
+    }
   }
 
   //····················································································································
@@ -218,10 +232,6 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
 
   //····················································································································
 
-  var count = EBTransientProperty_Int ()
-
-  //····················································································································
-
   private var mSet = Set<%![mRelationshipType swiftTypeName]%> ()
   private var mValue = [%![mRelationshipType swiftTypeName]%] () {
     didSet {
@@ -259,9 +269,9 @@ end
 %      //--- Notify observers
         clearSignatureCache ()
         postEvent ()
-        if oldValue.count != mValue.count {
+ /*       if oldValue.count != mValue.count {
           count.postEvent ()
-        }
+        } */
       }
     }
   }
