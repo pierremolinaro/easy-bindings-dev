@@ -4,11 +4,11 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBSwitch) class EBSwitch : NSButton, EBUserClassName {
 
-  //···················································································································* 
+  //···················································································································· 
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
@@ -16,7 +16,7 @@ import Cocoa
     self.setButtonType(.SwitchButton)
   }
 
-  //···················································································································* 
+  //···················································································································· 
 
   override init (frame:NSRect) {
     super.init (frame:frame)
@@ -24,22 +24,22 @@ import Cocoa
     self.setButtonType(.SwitchButton)
   }
   
-  //···················································································································* 
+  //···················································································································· 
 
   deinit {
     noteObjectDeallocation (self)
   }
   
-  //···················································································································* 
+  //···················································································································· 
 
   override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
     mValueController?.updateModel ()
     return super.sendAction (inAction, to:to)
   }
 
-  //···················································································································* 
-  //  value binding                                                                                                    *
-  //···················································································································* 
+  //···················································································································· 
+  //  value binding
+  //···················································································································· 
 
   private var mValueController : Controller_EBSwitch_value?
 
@@ -52,19 +52,19 @@ import Cocoa
     mValueController = nil
   }
 
-  //···················································································································* 
+  //···················································································································· 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller Controller_EBSwitch_value                                                                              *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller Controller_EBSwitch_value
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(Controller_EBSwitch_value) final class Controller_EBSwitch_value : EBSimpleController {
 
   private let mOutlet : EBSwitch
   private let mObject : EBReadWriteProperty_Bool
 
-  //···················································································································* 
+  //···················································································································· 
 
   init (object:EBReadWriteProperty_Bool, outlet : EBSwitch, file : String, line:Int) {
     mObject = object
@@ -73,14 +73,14 @@ import Cocoa
     object.addEBObserver (self)
   }
 
-  //···················································································································* 
+  //···················································································································· 
   
   func unregister () {
     mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
-  //···················································································································* 
+  //···················································································································· 
 
   override func sendUpdateEvent () {
     switch mObject.prop {
@@ -97,7 +97,7 @@ import Cocoa
     mOutlet.updateEnabledState ()
   }
 
-  //···················································································································* 
+  //···················································································································· 
 
   func updateModel () {
     mObject.setProp (mOutlet.state == NSOnState)
@@ -105,50 +105,62 @@ import Cocoa
 }
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   EBSwitch_Cell                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBSwitch_Cell
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBSwitch_Cell) class EBSwitch_Cell : NSTableCellView {
-  @IBOutlet private var cellOutlet : EBSwitch?
+  @IBOutlet private var mCellOutlet : EBSwitch?
   private weak var mProperty : EBReadWriteProperty_Bool?
 
-  //···················································································································*
+  //····················································································································
 
-  func outletIsDefined () -> Bool {
-    return cellOutlet != nil
+  func checkOutlet (columnName : String, file:String, line:Int) {
+    if let cellOutlet : NSObject = mCellOutlet {
+      if !(cellOutlet is EBSwitch) {
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBSwitch"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBSwitch)"
+      )
+    }
   }
 
-  //···················································································································*
+  //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_Bool) {
     mProperty = inProperty
     switch inProperty.prop {
     case .noSelection :
-      cellOutlet?.stringValue = "No Selection"
-      cellOutlet?.enabled = false
-      cellOutlet?.target = nil
-      cellOutlet?.action = ""
+      mCellOutlet?.stringValue = "No Selection"
+      mCellOutlet?.enabled = false
+      mCellOutlet?.target = nil
+      mCellOutlet?.action = ""
     case .singleSelection (let v) :
-      cellOutlet?.state = v ? NSOnState : NSOffState
-      cellOutlet?.enabled = true
-      cellOutlet?.target = self
-      cellOutlet?.action = "myAction:"
+      mCellOutlet?.state = v ? NSOnState : NSOffState
+      mCellOutlet?.enabled = true
+      mCellOutlet?.target = self
+      mCellOutlet?.action = "myAction:"
      case .multipleSelection :
-      cellOutlet?.stringValue = "Multiple Selection"
-      cellOutlet?.enabled = false
-      cellOutlet?.target = nil
-      cellOutlet?.action = ""
+      mCellOutlet?.stringValue = "Multiple Selection"
+      mCellOutlet?.enabled = false
+      mCellOutlet?.target = nil
+      mCellOutlet?.action = ""
     }
   }
 
-  //···················································································································*
+  //····················································································································
   
   func myAction (sender : EBSwitch) {
     mProperty?.validateAndSetProp (sender.state == NSOnState, windowForSheet:sender.window)
   }
 
-  //···················································································································* 
+  //····················································································································
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

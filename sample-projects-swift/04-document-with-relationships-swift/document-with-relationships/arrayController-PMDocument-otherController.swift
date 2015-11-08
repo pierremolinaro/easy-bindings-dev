@@ -9,27 +9,38 @@ private let DEBUG_EVENT = false
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(DataSource_PMDocument_otherController)
-final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, EBTableViewDataSource {
+final class DataSource_PMDocument_otherController : TransientArrayOf_NameEntity, EBTableViewDataSource {
+
   private weak var mModel : ReadOnlyArrayOf_NameEntity?
-  var count = EBTransientProperty_Int ()
+
+  private var mSet = Set<NameEntity> ()
 
   //····················································································································
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
+    self.computeFunction = { [weak self] in
+      let result = self?.filterAndSort () ?? .noSelection
+      let newObjectSet : Set<NameEntity>
+      switch result {
+      case .noSelection, .multipleSelection :
+        newObjectSet = Set ()
+      case .singleSelection (let array) :
+        newObjectSet = Set (array)
       }
+    //---
+      let currentSet = self?.mSet ?? Set ()
+    //--- Removed object set
+      let removedObjectSet = currentSet.subtract (newObjectSet)
+      self?.removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
+      self?.removeEBObserversOf_aValue_fromElementsOfSet (removedObjectSet)
+   //--- Added object set
+      let addedObjectSet = newObjectSet.subtract (currentSet)
+      self?.addEBObserversOf_name_toElementsOfSet (addedObjectSet)
+      self?.addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
+   //--- Update object set
+      self?.mSet = newObjectSet
+      return result
     }
   }
 
@@ -38,19 +49,6 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   final func setModel (model : ReadOnlyArrayOf_NameEntity) {
     mModel = model
     model.addEBObserver (self)
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if DEBUG_EVENT {
-      print ("DataSource_PMDocument_otherController:" + __FUNCTION__ + " prop_cache \(prop_cache != nil)")
-    }
-    if prop_cache != nil {
-      prop_cache = nil
-      count.postEvent ()
-      super.postEvent ()
-    }
   }
 
   //····················································································································
@@ -87,40 +85,6 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
      }
     }else{
       return .noSelection
-    }
-  }
-
-  //····················································································································
-  
-  private var mSet = Set<NameEntity> ()
-
-  var prop_cache : Optional < EBProperty < [NameEntity] > >
-
-  override var prop : EBProperty < [NameEntity] > {
-    get {
-      if prop_cache == nil {
-        prop_cache = filterAndSort ()
-        let newObjectSet : Set<NameEntity>
-        switch prop_cache! {
-        case .noSelection, .multipleSelection :
-          newObjectSet = Set<NameEntity> ()
-        case .singleSelection (let v) :
-          newObjectSet = Set<NameEntity> (v)
-        }
-        if mSet != newObjectSet {
-        //--- Removed object set
-          let removedObjectSet = mSet.subtract (newObjectSet)
-          removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
-          removeEBObserversOf_aValue_fromElementsOfSet (removedObjectSet)
-        //--- Added object set
-          let addedObjectSet = newObjectSet.subtract (mSet)
-          addEBObserversOf_name_toElementsOfSet (addedObjectSet)
-          addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
-       //--- Update object set
-          mSet = newObjectSet
-        }
-      }
-      return prop_cache!
     }
   }
 
@@ -310,7 +274,9 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
   func tableView (tableView : NSTableView,
                   viewForTableColumn inTableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
- //   NSLog ("%@, row %d, column %@", __FUNCTION__, inRowIndex, inTableColumn!.identifier)
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       return nil
@@ -319,15 +285,15 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
       let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
-      if let cell : EBTextField_Cell = result as? EBTextField_Cell {
-        cell.configureWithProperty (object.name)
-      }
+        if let cell : EBTextField_Cell = result as? EBTextField_Cell {
+          cell.configureWithProperty (object.name)
+        }
       }else if columnIdentifier == "int" {
-      if let cell : EBIntField_Cell = result as? EBIntField_Cell {
-        cell.configureWithProperty (object.aValue)
+        if let cell : EBIntField_Cell = result as? EBIntField_Cell {
+          cell.configureWithProperty (object.aValue)
+        }
       }
-      }
-     return result
+      return result
     }
   }
 
@@ -433,15 +399,10 @@ final class ArrayController_PMDocument_otherController : EBObject {
       file:file,
       line:line
     )
-    //--- Check 'name' column
+  //--- Check 'name' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
       if let unwrappedTableCellView = anyObject as? EBTextField_Cell {
-        if !unwrappedTableCellView.outletIsDefined () {
-          presentErrorWindow (file,
-            line: line,
-            errorMessage:"\"name\" column view is not an instance of EBTextField"
-          )
-        }
+        unwrappedTableCellView.checkOutlet ("name", file:file, line:line)
       }else{
         presentErrorWindow (file,
           line: line,
@@ -457,15 +418,10 @@ final class ArrayController_PMDocument_otherController : EBObject {
     if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
       columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_kvc", ascending:true)
     }
-    //--- Check 'int' column
+  //--- Check 'int' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
       if let unwrappedTableCellView = anyObject as? EBIntField_Cell {
-        if !unwrappedTableCellView.outletIsDefined () {
-          presentErrorWindow (file,
-            line: line,
-            errorMessage:"\"int\" column view is not an instance of EBIntField"
-          )
-        }
+        unwrappedTableCellView.checkOutlet ("int", file:file, line:line)
       }else{
         presentErrorWindow (file,
           line: line,
@@ -481,7 +437,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
     if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
       columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_kvc", ascending:true)
     }
-    //--- Set descriptors from first column of table view
+  //--- Set descriptors from first column of table view
     let columns = tableView.tableColumns as NSArray
     if columns.count > 0 {
       let firstColumn = columns [0] as! NSTableColumn

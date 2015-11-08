@@ -15,7 +15,32 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   //····················································································································
 
-  private var mObserversOf_name = Set<EBEvent> ()
+  final var count = EBTransientProperty_Int ()
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    count.computeFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+  //   Stored property 'name'
+  //····················································································································
+    private var mObserversOf_name = Set<EBEvent> ()
 
   final func addEBObserverOf_name (inObserver : EBEvent) {
     mObserversOf_name.insert (inObserver)
@@ -68,10 +93,10 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
       }
     }
   }
-
   //····················································································································
-
-  private var mObserversOf_aValue = Set<EBEvent> ()
+  //   Stored property 'aValue'
+  //····················································································································
+    private var mObserversOf_aValue = Set<EBEvent> ()
 
   final func addEBObserverOf_aValue (inObserver : EBEvent) {
     mObserversOf_aValue.insert (inObserver)
@@ -124,6 +149,12 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
       }
     }
   }
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
+  }
 
   //····················································································································
 
@@ -137,8 +168,6 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   var computeFunction : Optional<() -> EBProperty < [NameEntity] > >
-  
-  var count = EBTransientProperty_Int ()
 
   private var prop_cache : EBProperty < [NameEntity] >? 
 
@@ -146,20 +175,6 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
-      }
-    }
   }
 
   //····················································································································
@@ -198,11 +213,10 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
   //····················································································································
 
   override func postEvent () {
-//    if prop_cache != nil {
+    if prop_cache != nil {
       prop_cache = nil
-      count.postEvent ()
       super.postEvent ()
-//    }
+    }
   }
 
   //····················································································································
