@@ -198,11 +198,11 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func postEvent () {
-    if prop_cache != nil {
+//    if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
       super.postEvent ()
-    }
+//    }
   }
 
   //····················································································································
@@ -233,7 +233,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   var myString = EBStoredProperty_String ("Hello")
-  var myString_keyCodingValue : String {
+  var myString_kvc : String {
     get {
       switch myString.prop {
       case .noSelection, .multipleSelection :
@@ -245,7 +245,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   }
 
   var myColor = EBStoredProperty_NSColor (NSColor.yellowColor ())
-  var myColor_keyCodingValue : NSColor {
+  var myColor_kvc : NSColor {
     get {
       switch myColor.prop {
       case .noSelection, .multipleSelection :

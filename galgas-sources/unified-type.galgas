@@ -8,6 +8,7 @@ enum @typeKind {
   case doubleType
   case stringType 
   case colorType 
+  case imageType 
   case dateType
   case fontType
   case enumType (@string enumTypeName @enumConstantMap constantMap)
@@ -24,6 +25,7 @@ getter @typeKind defaultSwiftTypeValueAsString -> @string outResult {
   case doubleType : outResult = "0.0"
   case stringType : outResult = "\"\"" 
   case colorType : outResult = "NSColor.blackColor ()"
+  case imageType : outResult = "NSImage (named:\"NSImageNameApplicationIcon\")"
   case dateType : outResult = "NSDate ()"
   case fontType : outResult = "NSFont (boldSystemFontOfSize:0.0)"
   case enumType (@string enumTypeName @enumConstantMap constantMap) :
@@ -97,6 +99,7 @@ proc typeInventory
   [!?outUnifiedTypeMap insertKey !["Double" nowhere] !.doubleType]
   [!?outUnifiedTypeMap insertKey !["Font" nowhere] !.fontType]
   [!?outUnifiedTypeMap insertKey !["String" nowhere] !.stringType]
+  [!?outUnifiedTypeMap insertKey !["Image" nowhere] !.imageType]
   [!?outUnifiedTypeMap insertKey !["Color" nowhere] !.colorType]
   [!?outUnifiedTypeMap insertKey !["Date" nowhere] !.dateType]
   [!?outUnifiedTypeMap insertKey !["Int" nowhere] !.integerType]
@@ -126,6 +129,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case dateType : outResult = "NSDate"
   case doubleType : outResult = "Double"
   case fontType : outResult = "NSFont"
+  case imageType : outResult = "NSImage"
   case entityType (@string entityName) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName

@@ -198,11 +198,11 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
   //····················································································································
 
   override func postEvent () {
-    if prop_cache != nil {
+//    if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
       super.postEvent ()
-    }
+//    }
   }
 
   //····················································································································
@@ -310,7 +310,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //····················································································································
 
   var name = EBStoredProperty_String ("Name")
-  var name_keyCodingValue : String {
+  var name_kvc : String {
     get {
       switch name.prop {
       case .noSelection, .multipleSelection :
@@ -322,7 +322,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   }
 
   var aValue = EBStoredProperty_Int (100)
-  var aValue_keyCodingValue : Int {
+  var aValue_kvc : Int {
     get {
       switch aValue.prop {
       case .noSelection, .multipleSelection :

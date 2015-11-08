@@ -36,9 +36,6 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   //····················································································································
 
   final func setModel (model : ReadOnlyArrayOf_NameEntity) {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
     mModel = model
     model.addEBObserver (self)
   }
@@ -47,7 +44,7 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
 
   override func postEvent () {
     if DEBUG_EVENT {
-      NSLog ("DataSource_PMDocument_otherController:" + __FUNCTION__ + " prop_cache \(prop_cache != nil)")
+      print ("DataSource_PMDocument_otherController:" + __FUNCTION__ + " prop_cache \(prop_cache != nil)")
     }
     if prop_cache != nil {
       prop_cache = nil
@@ -59,9 +56,6 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   //····················································································································
 
   private func filterAndSort () -> EBProperty < [NameEntity] > {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
     if let model = mModel {
       switch model.prop {
       case .noSelection :
@@ -143,10 +137,7 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   //····················································································································
   
   func setSortDescriptors (sortDescriptors : [NSSortDescriptor]) {
-     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
-   mSortDescriptors = sortDescriptors
+    mSortDescriptors = sortDescriptors
   }
   
   //····················································································································
@@ -156,7 +147,7 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   func tableView (aTableView: NSTableView,
                   sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
+      print ("\(__FUNCTION__)")
     }
     mSortDescriptors = aTableView.sortDescriptors
   }
@@ -166,21 +157,13 @@ final class DataSource_PMDocument_otherController : ReadOnlyArrayOf_NameEntity, 
   //····················································································································
 
   func numberOfRowsInTableView (_ : NSTableView) -> Int {
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
     switch prop {
-    case .noSelection :
-      if DEBUG_EVENT {
-        NSLog ("\(__FUNCTION__), noSelection")
-      }
-      return 0
-    case .multipleSelection :
-      if DEBUG_EVENT {
-        NSLog ("\(__FUNCTION__), multipleSelection")
-      }
+    case .noSelection, .multipleSelection :
       return 0
     case .singleSelection (let v) :
-      if DEBUG_EVENT {
-        NSLog ("\(__FUNCTION__), \(v.count) objects")
-      }
       return v.count
     }
   }
@@ -205,9 +188,6 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
 
   init (model:DataSource_PMDocument_otherController,
         selectedArray:TransientArrayOf_NameEntity) {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
     mSortedArray = model
     mSelectedArray = selectedArray
     super.init ()
@@ -262,9 +242,6 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
   //····················································································································
 
   private func setProp (value : Set<NameEntity>) {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
     if (mSet != value) {
       mSet = value
       postEvent ()
@@ -274,10 +251,7 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
   //····················································································································
 
   override func postEvent () {
-     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
-   if !mSetShouldBeComputed {
+    if !mSetShouldBeComputed {
       mSetShouldBeComputed = true
       count.postEvent ()
       super.postEvent ()
@@ -287,9 +261,6 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
   //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
        return NSIndexSet ()
@@ -319,9 +290,6 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
   //····················································································································
 
   func tableViewSelectionDidChange (notication : NSNotification) {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
-    }
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       break
@@ -342,9 +310,7 @@ final class Delegate_PMDocument_otherController : EBAbstractProperty, EBTableVie
   func tableView (tableView : NSTableView,
                   viewForTableColumn inTableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
-    if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__), row \(inRowIndex), column \(inTableColumn!.identifier)")
-    }
+ //   NSLog ("%@, row %d, column %@", __FUNCTION__, inRowIndex, inTableColumn!.identifier)
     switch mSortedArray.prop {
     case .noSelection, .multipleSelection :
       return nil
@@ -436,7 +402,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
 
   func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[EBTableView], file:String, line:Int) {
     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
+      print ("\(__FUNCTION__)")
     }
     mModel = model
     sortedArray.setModel (model)
@@ -459,7 +425,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
                                file:String,
                                line:Int) {
     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
+      print ("\(__FUNCTION__)")
     }
     let tableViewController = Controller_EBTableView_controller (
       delegate:selectedSet,
@@ -489,7 +455,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
       )
     }
     if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_keyCodingValue", ascending:true)
+      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_kvc", ascending:true)
     }
     //--- Check 'int' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
@@ -513,7 +479,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
       )
     }
     if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_keyCodingValue", ascending:true)
+      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_kvc", ascending:true)
     }
     //--- Set descriptors from first column of table view
     let columns = tableView.tableColumns as NSArray
@@ -538,7 +504,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
 
   func unbind_modelAndView () {
     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
+      print ("\(__FUNCTION__)")
     }
     if let selectedSet = mSelectedSet {
       sortedArray.removeEBObserver (selectedSet)
@@ -560,7 +526,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
 
    func add (inSender : NSButton?) {
     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
+      print ("\(__FUNCTION__)")
     }
     if let model = mModel,
            owner = model.owner,
@@ -588,7 +554,7 @@ final class ArrayController_PMDocument_otherController : EBObject {
 
   func remove (inSender : NSButton?) {
     if DEBUG_EVENT {
-      NSLog ("\(__FUNCTION__)")
+      print ("\(__FUNCTION__)")
     }
     if let model = mModel,
            owner = model.owner,

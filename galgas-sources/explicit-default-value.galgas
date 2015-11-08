@@ -116,7 +116,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, colorType, dateType, doubleType, stringType, fontType :
+    case integerType, colorType, dateType, doubleType, stringType, fontType, imageType :
     case entityType (*) :
     case classType (*) :
     case enumType (* *) :
@@ -144,7 +144,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFontOfSize (" + mValue.uint + ".0)"
       found = true
-    case boolType, colorType, dateType, doubleType, stringType :
+    case boolType, colorType, dateType, doubleType, stringType, imageType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
@@ -169,7 +169,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, colorType, dateType, integerType, stringType, fontType :
+    case boolType, colorType, dateType, integerType, stringType, fontType, imageType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
@@ -198,6 +198,9 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case imageType :
+      outSwiftDefaultValueAsString = "NSImage (named:\""+ mValue.string + "\")"
+      found = true    
     end
   end
   if not found then
@@ -309,6 +312,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid string type"  
     case fontType :
       error mValue : "invalid font type"  
+    case imageType :
+      error mValue : "invalid image type"  
     end
   end
   if not found then

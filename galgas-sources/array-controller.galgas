@@ -226,7 +226,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
   #--- Check bound model type is an entity
     switch modelType
-    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -251,7 +251,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
   #--- Check bound model type is an entity
     switch modelType
-    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -274,7 +274,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
   #--- Check bound model type is an entity
     switch modelType
-    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType :
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -301,7 +301,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ]
   #--- Check bound model type is a simple type
     switch columnType
-    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType : # Ok
+    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType : # Ok
     case enumType (* *) : # Ok
     case classType (*) :
       error [mObservablePropertyName location] : "the model should not be a relationship"
@@ -457,6 +457,7 @@ getter @typeKind transformerForTableViewAction ?let @string inSenderOutletName -
   case stringType : outResult = inSenderOutletName + ".stringValue"
   case integerType : outResult = inSenderOutletName + ".integerValue"
 #--- TODO
+  case imageType : outResult = "<<TODO @typeKind transformerForTableViewAction " + inSenderOutletName + " >>"
   case boolType : outResult = "NSNumber (bool:" + inSenderOutletName + ")"
   case doubleType : outResult = "NSNumber (double:" + inSenderOutletName + ")"
   case colorType, fontType : outResult = inSenderOutletName + ".stringValue"
@@ -479,7 +480,7 @@ getter @typeKind formatterStringForFormatPrinting -> @string outResult {
   case boolType : outResult = "%d"
   case doubleType : outResult = "%g"
   case colorType : outResult = "%@"
-  case dateType, fontType : outResult = "%@"
+  case dateType, fontType, imageType : outResult = "%@"
   case enumType (* *) :
     outResult = "<internal error enum, formatterStringForFormatPrinting' >"
   case classType (*) :
