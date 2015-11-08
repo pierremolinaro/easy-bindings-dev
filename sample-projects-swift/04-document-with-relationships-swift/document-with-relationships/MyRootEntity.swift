@@ -78,11 +78,11 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   override func postEvent () {
-    if prop_cache != nil {
+//    if prop_cache != nil {
       prop_cache = nil
       count.postEvent ()
       super.postEvent ()
-    }
+//    }
   }
 
   //····················································································································

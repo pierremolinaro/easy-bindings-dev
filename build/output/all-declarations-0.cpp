@@ -9802,6 +9802,14 @@ GALGAS_typeKind GALGAS_typeKind::constructor_colorType (UNUSED_LOCATION_ARGS) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_typeKind GALGAS_typeKind::constructor_imageType (UNUSED_LOCATION_ARGS) {
+  GALGAS_typeKind result ;
+  result.mEnum = kEnum_imageType ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 GALGAS_typeKind GALGAS_typeKind::constructor_dateType (UNUSED_LOCATION_ARGS) {
   GALGAS_typeKind result ;
   result.mEnum = kEnum_dateType ;
@@ -9915,13 +9923,14 @@ void GALGAS_typeKind::method_classType (GALGAS_string & outAssociatedValue0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const char * gEnumNameArrayFor_typeKind [11] = {
+static const char * gEnumNameArrayFor_typeKind [12] = {
   "(not built)",
   "boolType",
   "integerType",
   "doubleType",
   "stringType",
   "colorType",
+  "imageType",
   "dateType",
   "fontType",
   "enumType",
@@ -9957,6 +9966,12 @@ GALGAS_bool GALGAS_typeKind::getter_isStringType (UNUSED_LOCATION_ARGS) const {
 
 GALGAS_bool GALGAS_typeKind::getter_isColorType (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_colorType == mEnum) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_typeKind::getter_isImageType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_imageType == mEnum) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

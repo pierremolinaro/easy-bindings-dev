@@ -193,6 +193,15 @@ extension String {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+extension NSImage {
+  final func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedDataWithRootObject (self)
+    return data.ebHashValue ()
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
 extension NSColor {
   final func ebHashValue () -> UInt32 {
     let data = NSArchiver.archivedDataWithRootObject (self)

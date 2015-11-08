@@ -59,7 +59,7 @@ method @storedArrayPropertyList buildObservablePropertyMap
   #--- Check type
     @typeKindList typeList
     switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType :
+    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
     case enumType (* *) :
       error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
@@ -93,7 +93,7 @@ method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
   #--- Check type
     @typeKindList typeList
     switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType :
+    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
     case enumType (* *) :
       error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
