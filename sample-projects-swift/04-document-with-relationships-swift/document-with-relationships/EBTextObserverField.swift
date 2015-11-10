@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTextFieldObserver) class EBTextFieldObserver : NSTextField, EBUserClassName, NSTextFieldDelegate {
+@objc(EBTextObserverField) class EBTextObserverField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 
@@ -37,30 +37,18 @@ import Cocoa
   }
 
   //····················································································································
-
-  var enableFromEnableBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //····················································································································
-
-  var enableFromValueBinding : Bool = true {
-    didSet {
-      self.enabled = enableFromEnableBinding && enableFromValueBinding
-    }
-  }
-
-  //····················································································································
   //  valueObserver binding
   //····················································································································
 
-  private var mValueController : Controller_EBReadOnlyTextField_value?
+  private var mValueController : Controller_EBTextObserverField_value?
+
+  //····················································································································
 
   func bind_valueObserver (object:EBReadOnlyProperty_String, file:String, line:Int) {
-    mValueController = Controller_EBReadOnlyTextField_value (object:object, outlet:self, file:file, line:line)
+    mValueController = Controller_EBTextObserverField_value (object:object, outlet:self, file:file, line:line)
   }
+
+  //····················································································································
 
   func unbind_valueObserver () {
     mValueController?.unregister ()
@@ -71,23 +59,23 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller Controller_EBReadOnlyTextField_value
+//   Controller Controller_EBTextObserverField_value
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBReadOnlyTextField_value)
-final class Controller_EBReadOnlyTextField_value : EBSimpleController {
+@objc(Controller_EBTextObserverField_value)
+final class Controller_EBTextObserverField_value : EBSimpleController {
 
-  private var mOutlet : EBTextFieldObserver
+  private var mOutlet : EBTextObserverField
   private var mObject : EBReadOnlyProperty_String
 
   //····················································································································
 
-  init (object:EBReadOnlyProperty_String, outlet : EBTextFieldObserver, file : String, line : Int) {
+  init (object:EBReadOnlyProperty_String, outlet : EBTextObserverField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     if mOutlet.formatter != nil {
-      presentErrorWindow (file, line:line, errorMessage:"the EBTextFieldObserver outlet has a formatter")
+      presentErrorWindow (file, line:line, errorMessage:"the EBTextObserverField outlet has a formatter")
     }
     object.addEBObserver (self)
   }
@@ -117,6 +105,66 @@ final class Controller_EBReadOnlyTextField_value : EBSimpleController {
   }
 
   //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBTextObserverField_Cell
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBTextObserverField_Cell) class EBTextObserverField_Cell : EBTableCellView {
+  @IBOutlet private var mCellOutlet : EBTextObserverField?
+
+  //····················································································································
+
+  func checkOutlet (columnName : String, file:String, line:Int) {
+    if let cellOutlet : NSObject = mCellOutlet {
+      if !(cellOutlet is EBTextObserverField) {
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBTextObserverField"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBTextObserverField)"
+      )
+    }
+  }
+
+  //····················································································································
+
+  func configureWithProperty (inProperty : EBReadOnlyProperty_String) {
+  //--- Remove a previous binding (does nothing if no binding)
+    mCellOutlet?.unbind_valueObserver ()
+  //--- Set new binding
+    mCellOutlet?.bind_valueObserver (inProperty, file: __FILE__, line: __LINE__)
+  }
+
+  //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_valueObserver ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_valueObserver ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //···················································································································· 
+
+  deinit {
+    mCellOutlet?.unbind_valueObserver ()
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

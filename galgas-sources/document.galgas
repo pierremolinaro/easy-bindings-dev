@@ -185,6 +185,7 @@ override method @documentDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?documentArrayControllerListForGeneration
       !?selectionControllerListForGeneration
+      !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration

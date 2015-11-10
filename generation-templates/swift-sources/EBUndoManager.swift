@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBUndoManager) class EBUndoManager : NSUndoManager, EBUserClassName {
+@objc(EBUndoManager) class EBUndoManager : NSUndoManager, EBUserClassNameProtocol {
 
   //····················································································································
   //    init

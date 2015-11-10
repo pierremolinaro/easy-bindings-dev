@@ -18,11 +18,11 @@ prefs {
 document MyDocument root MyRootEntity {
   outlet EBTextField docStringTextField $value root.docString {sendContinously : yes} ;
 
-  outlet EBTextFieldObserver prefStringTextField $valueObserver prefs.myPrefString ;
+  outlet EBTextObserverField prefStringTextField $valueObserver prefs.myPrefString ;
 
-  outlet EBTextFieldObserver prefTransientStringTextField $valueObserver prefs.prefTransientString ;
+  outlet EBTextObserverField prefTransientStringTextField $valueObserver prefs.prefTransientString ;
 
-  outlet EBTextFieldObserver transientConcatStringTextField $valueObserver root.transientConcatString ;
+  outlet EBTextObserverField transientConcatStringTextField $valueObserver root.transientConcatString ;
 }
 
 #--------------------------------------------------------------*

@@ -6,13 +6,16 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBFontButton) class EBFontButton : NSButton, EBUserClassNameProtocol {
-  private var mFont : NSFont?
-  
+@objc(EBTextObserverField) class EBTextObserverField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
+
   //····················································································································
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
 
@@ -20,45 +23,13 @@ import Cocoa
 
   override init (frame:NSRect) {
     super.init (frame:frame)
+    self.delegate = self
+    self.editable = false
+    self.drawsBackground = false
+    self.bordered = false
     noteObjectAllocation (self)
   }
   
-  //····················································································································
-
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
-    showFontManager ()
-    return super.sendAction (inAction, to:to)
-  }
-
-  //····················································································································
-
-  func showFontManager () {
-    if let font = mFont {
-      self.window?.makeFirstResponder (self)
-      let fontManager = NSFontManager.sharedFontManager ()
-      fontManager.delegate = self
-      fontManager.setSelectedFont (font, isMultiple:false)
-      fontManager.orderFrontFontPanel (self)
-    }
-  }
-
-  //····················································································································
-
-  override func changeFont (sender : AnyObject?) {
-    if let valueController = mValueController, fontManager = sender as! NSFontManager? {
-      let newFont = fontManager.convertFont (mFont!)
-      valueController.mObject.setProp (newFont)
-    }
-  }
-
-  //····················································································································
-
-  func mySetFont (font : NSFont) {
-    mFont = font
-    let newTitle = String (format:"%@ — %g pt.", font.displayName!, font.pointSize)
-    self.title = newTitle
-  }
-
   //····················································································································
 
   deinit {
@@ -66,45 +37,52 @@ import Cocoa
   }
 
   //····················································································································
-  //  color binding
+  //  valueObserver binding
   //····················································································································
 
-  private var mValueController : Controller_EBFontButton_fontValue?
+  private var mValueController : Controller_EBTextObserverField_value?
 
-  func bind_fontValue (object:EBReadWriteProperty_NSFont, file:String, line:Int) {
-    mValueController = Controller_EBFontButton_fontValue (object:object, outlet:self, file:file, line:line)
+  //····················································································································
+
+  func bind_valueObserver (object:EBReadOnlyProperty_String, file:String, line:Int) {
+    mValueController = Controller_EBTextObserverField_value (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_fontValue () {
+  //····················································································································
+
+  func unbind_valueObserver () {
     mValueController?.unregister ()
     mValueController = nil
   }
 
+  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller_EBFontButton_fontValue
+//   Controller Controller_EBTextObserverField_value
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBFontButton_fontValue) class Controller_EBFontButton_fontValue : EBSimpleController {
+@objc(Controller_EBTextObserverField_value)
+final class Controller_EBTextObserverField_value : EBSimpleController {
 
-  private let mObject : EBReadWriteProperty_NSFont
-  private let mOutlet : EBFontButton
+  private var mOutlet : EBTextObserverField
+  private var mObject : EBReadOnlyProperty_String
 
   //····················································································································
 
-  init (object : EBReadWriteProperty_NSFont, outlet : EBFontButton, file : String, line : Int) {
+  init (object:EBReadOnlyProperty_String, outlet : EBTextObserverField, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    mObject.addEBObserver (self)
+    if mOutlet.formatter != nil {
+      presentErrorWindow (file, line:line, errorMessage:"the EBTextObserverField outlet has a formatter")
+    }
+    object.addEBObserver (self)
   }
 
   //····················································································································
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -115,24 +93,78 @@ import Cocoa
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.title = ""
-    case .singleSelection (let v) :
+      mOutlet.stringValue = "No Selection"
+    case .singleSelection (let v):
       mOutlet.enableFromValue (true)
-      mOutlet.mySetFont (v)
+      mOutlet.stringValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.title = ""
+      mOutlet.stringValue = "Multiple Selection"
     }
-    mOutlet.updateEnabledState ()
+    mOutlet.updateEnabledState()
+  }
+
+  //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBTextObserverField_Cell
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBTextObserverField_Cell) class EBTextObserverField_Cell : EBTableCellView {
+  @IBOutlet private var mCellOutlet : EBTextObserverField?
+
+  //····················································································································
+
+  func checkOutlet (columnName : String, file:String, line:Int) {
+    if let cellOutlet : NSObject = mCellOutlet {
+      if !(cellOutlet is EBTextObserverField) {
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBTextObserverField"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBTextObserverField)"
+      )
+    }
   }
 
   //····················································································································
 
-  func updateModel (sender : EBFontButton) {
-//    mObject.validateAndSetProp (mOutlet.tag, windowForSheet:sender.window)
+  func configureWithProperty (inProperty : EBReadOnlyProperty_String) {
+  //--- Remove a previous binding (does nothing if no binding)
+    mCellOutlet?.unbind_valueObserver ()
+  //--- Set new binding
+    mCellOutlet?.bind_valueObserver (inProperty, file: __FILE__, line: __LINE__)
   }
 
   //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_valueObserver ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_valueObserver ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //···················································································································· 
+
+  deinit {
+    mCellOutlet?.unbind_valueObserver ()
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

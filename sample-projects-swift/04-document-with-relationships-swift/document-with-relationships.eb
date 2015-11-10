@@ -33,26 +33,26 @@ document PMDocument root MyRootEntity {
   ;
 
   transient String selectionCountString dependsFrom selController.sortedArray.count ;
-  outlet EBTextFieldObserver mSelectionCountTextField $valueObserver self.selectionCountString ;
+  outlet EBTextObserverField mSelectionCountTextField $valueObserver self.selectionCountString ;
 
   transient String evenValueString dependsFrom otherController.sortedArray.count ;
-  outlet EBTextFieldObserver evenValueTextField $valueObserver self.evenValueString ;
+  outlet EBTextObserverField evenValueTextField $valueObserver self.evenValueString ;
 
   transient String canRemoveString dependsFrom nameController.selectedArray.count ;
-  outlet EBTextFieldObserver canRemoveTextField $valueObserver self.canRemoveString ;
+  outlet EBTextObserverField canRemoveTextField $valueObserver self.canRemoveString ;
 
   outlet EBButton addPathButton $run nameController.add ;
 
   outlet EBButton removePathButton $run nameController.remove $enabled nameController.selectedArray.count > 0 ;
 
-  outlet EBIntFieldObserver countItemTextField $valueObserver root.mNames.count {autoFormatter:no} ;
+  outlet EBIntObserverField countItemTextField $valueObserver root.mNames.count {autoFormatter:no} ;
 
   transient String countItemMessage dependsFrom root.mNames.count ;
 
-  outlet EBTextFieldObserver countItemMessageTextField $valueObserver self.countItemMessage  ;
+  outlet EBTextObserverField countItemMessageTextField $valueObserver self.countItemMessage  ;
 
   transient Int total dependsFrom root.mNames.all.aValue ;
-  outlet EBIntFieldObserver totalTextField $valueObserver self.total {autoFormatter:no} ;
+  outlet EBIntObserverField totalTextField $valueObserver self.total {autoFormatter:no} ;
   
   action increment ;
   outlet EBButton incrementButton $run self.increment $enabled root.mNames.count > 0 ;

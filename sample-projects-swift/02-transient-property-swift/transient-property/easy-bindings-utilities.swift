@@ -397,10 +397,39 @@ enum EBValidationResult {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    EBUserClassName protocol
+//    EBUserClassNameProtocol protocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBUserClassName) protocol EBUserClassName {
+@objc(EBUserClassNameProtocol) protocol EBUserClassNameProtocol {
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBTableCellView
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBTableCellView) class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
+
+  //····················································································································
+
+  required init? (coder: NSCoder) {
+    super.init (coder:coder)
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  override init (frame:NSRect) {
+    super.init (frame:frame)
+    noteObjectAllocation (self)
+  }
+  
+  //····················································································································
+  
+  deinit {
+    noteObjectDeallocation (self)
+  }
+
+  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -411,7 +440,7 @@ private var gExplorerObjectIndex = 0
 
 //······················································································································
 
-@objc(EBObject) class EBObject : NSObject, EBUserClassName {
+@objc(EBObject) class EBObject : NSObject, EBUserClassNameProtocol {
   let mExplorerObjectIndex : Int
 
   override init () {

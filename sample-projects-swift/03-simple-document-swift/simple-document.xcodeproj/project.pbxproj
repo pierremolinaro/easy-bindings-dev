@@ -29,7 +29,7 @@
 		CF71F9A71B3EA66700FB5049 /* EBUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9A01B3EA66700FB5049 /* EBUndoManager.swift */; };
 		CF8E79DE1B3E9B11000E28CC /* EBColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79DA1B3E9B11000E28CC /* EBColorWell.swift */; };
 		CF8E79E01B3E9B11000E28CC /* EBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79DC1B3E9B11000E28CC /* EBTextField.swift */; };
-		CF8E79E11B3E9B11000E28CC /* EBTextFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79DD1B3E9B11000E28CC /* EBTextFieldObserver.swift */; };
+		CFC7AEC21BF220D20076C604 /* EBTextObserverField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */; };
 		E76FC522773286A895BC8436 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AD8176D665453CFB2E55F0 /* main.swift */; settings = {ATTRIBUTES = (); }; };
 		E875A2E075A1A4A6E1B9770F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7260AE62E3B1396831A8398F /* Preferences.swift */; settings = {ATTRIBUTES = (); }; };
 		FB98AB9159F51FD0297E236D /* MonEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA167A5A36DEDD4BEA2543 /* MonEnumeration.swift */; settings = {ATTRIBUTES = (); }; };
@@ -60,7 +60,7 @@
 		CF71F9A01B3EA66700FB5049 /* EBUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBUndoManager.swift; sourceTree = "<group>"; };
 		CF8E79DA1B3E9B11000E28CC /* EBColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBColorWell.swift; sourceTree = "<group>"; };
 		CF8E79DC1B3E9B11000E28CC /* EBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextField.swift; sourceTree = "<group>"; };
-		CF8E79DD1B3E9B11000E28CC /* EBTextFieldObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextFieldObserver.swift; sourceTree = "<group>"; };
+		CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextObserverField.swift; sourceTree = "<group>"; };
 		D9CAA6E02C990B0A82652DCA /* MyRootEntity+transient+myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMaj.swift"; sourceTree = "<group>"; };
 		E0327AD868D138F2B4FDD6F0 /* PMDocument+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+monAction.swift"; sourceTree = "<group>"; };
 		F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 				CF71F99E1B3EA66700FB5049 /* EBManagedObject.swift */,
 				CF71F99F1B3EA66700FB5049 /* EBManagedObjectContext.swift */,
 				CF8E79DC1B3E9B11000E28CC /* EBTextField.swift */,
-				CF8E79DD1B3E9B11000E28CC /* EBTextFieldObserver.swift */,
+				CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */,
 				CF71F9A01B3EA66700FB5049 /* EBUndoManager.swift */,
 				778DFAECDC212708F721B788 /* generic-bindings.swift */,
 				19AD8176D665453CFB2E55F0 /* main.swift */,
@@ -207,13 +207,13 @@
 				6FE97759AA27A0C99BFF6710 /* MyRootEntity+transient+myStringMaj.swift in Sources */,
 				22BCC25A6F606EB525FFDC56 /* MyRootEntity+transient+myStringMin.swift in Sources */,
 				CF8E79E01B3E9B11000E28CC /* EBTextField.swift in Sources */,
+				CFC7AEC21BF220D20076C604 /* EBTextObserverField.swift in Sources */,
 				1EAE257E44AA9D5BADE97BAF /* MyRootEntity.swift in Sources */,
 				3463D06DE0CA9A15B6153677 /* PMDocument+action+autreAction.swift in Sources */,
 				9DD601BBE69F351039152189 /* PMDocument+action+monAction.swift in Sources */,
 				CF71F9A51B3EA66700FB5049 /* EBManagedObject.swift in Sources */,
 				CF8E79DE1B3E9B11000E28CC /* EBColorWell.swift in Sources */,
 				CF71F9A61B3EA66700FB5049 /* EBManagedObjectContext.swift in Sources */,
-				CF8E79E11B3E9B11000E28CC /* EBTextFieldObserver.swift in Sources */,
 				CF71F9A41B3EA66700FB5049 /* EBManagedDocument.swift in Sources */,
 				8F07F89DDBEBC2AC9128303F /* PMDocument.swift in Sources */,
 				E875A2E075A1A4A6E1B9770F /* Preferences.swift in Sources */,

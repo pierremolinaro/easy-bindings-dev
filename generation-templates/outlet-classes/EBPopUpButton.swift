@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBPopUpButton) class EBPopUpButton : NSPopUpButton, EBUserClassName {
+@objc(EBPopUpButton) class EBPopUpButton : NSPopUpButton, EBUserClassNameProtocol {
 
   //····················································································································
 

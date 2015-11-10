@@ -109,6 +109,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
+  ?!@stringset unused ioNeededOutletClasses
 {
 #--- Get model controller
   [inObservableProperties searchKey

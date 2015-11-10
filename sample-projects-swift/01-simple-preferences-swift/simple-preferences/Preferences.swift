@@ -19,10 +19,10 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mColorWell : EBColorWell? = nil
   @IBOutlet var mContinousColorWell : EBColorWell? = nil
   @IBOutlet var mDatePicker : EBDatePicker? = nil
-  @IBOutlet var mInteger32ObserverTextField : EBIntFieldObserver? = nil
+  @IBOutlet var mInteger32ObserverTextField : EBIntObserverField? = nil
   @IBOutlet var mInteger32TextField : EBIntField? = nil
-  @IBOutlet var mObserverColorWell : EBColorWellObserver? = nil
-  @IBOutlet var myObserverTextField : EBTextFieldObserver? = nil
+  @IBOutlet var mObserverColorWell : EBColorObserverWell? = nil
+  @IBOutlet var myObserverTextField : EBTextObserverField? = nil
   @IBOutlet var myOtherTextField : EBTextField? = nil
   @IBOutlet var myTextField : EBTextField? = nil
  
@@ -126,7 +126,7 @@ var g_Preferences : Preferences? = nil
     tf3.bordered = false
     view.addSubview (tf3)
   //--- Outlet myObserverTextField
-    myObserverTextField = EBTextFieldObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    myObserverTextField = EBTextObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     myObserverTextField?.setAccessibilityIdentifier ("myObserverTextField")
     view.addSubview (myObserverTextField!)
     y -= OUTLET_HEIGHT / 2.0
@@ -168,7 +168,7 @@ var g_Preferences : Preferences? = nil
     tf6.bordered = false
     view.addSubview (tf6)
   //--- Outlet mObserverColorWell
-    mObserverColorWell = EBColorWellObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mObserverColorWell = EBColorObserverWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mObserverColorWell?.setAccessibilityIdentifier ("mObserverColorWell")
     view.addSubview (mObserverColorWell!)
     y -= OUTLET_HEIGHT / 2.0
@@ -210,7 +210,7 @@ var g_Preferences : Preferences? = nil
     tf9.bordered = false
     view.addSubview (tf9)
   //--- Outlet mInteger32ObserverTextField
-    mInteger32ObserverTextField = EBIntFieldObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mInteger32ObserverTextField = EBIntObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mInteger32ObserverTextField?.setAccessibilityIdentifier ("mInteger32ObserverTextField")
     view.addSubview (mInteger32ObserverTextField!)
     y -= OUTLET_HEIGHT / 2.0

@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBButton) class EBButton : NSButton, EBUserClassName {
+@objc(EBButton) class EBButton : NSButton, EBUserClassNameProtocol {
 
   //····················································································································
 

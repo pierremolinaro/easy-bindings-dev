@@ -18,11 +18,11 @@ entity MyRootEntity {
 document PMDocument root MyRootEntity {
   outlet EBTextField myTextField $value root.myString {sendContinously : yes} ;
 
-  outlet EBTextFieldObserver myTextMajField $valueObserver root.myStringMaj ;
+  outlet EBTextObserverField myTextMajField $valueObserver root.myStringMaj ;
 
-  outlet EBTextFieldObserver myTextMinField $valueObserver root.myStringMin ;
+  outlet EBTextObserverField myTextMinField $valueObserver root.myStringMin ;
 
-  outlet EBTextFieldObserver myTextConcatField $valueObserver root.myStringConcat ;
+  outlet EBTextObserverField myTextConcatField $valueObserver root.myStringConcat ;
 
 #  outlet EBMatrix myMatrix $selectedIndex root.myEnumeration  ;
 

@@ -4,30 +4,26 @@
 
 import Cocoa
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   EBColorObserverWell
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(EBIntFieldObserver) class EBIntFieldObserver : NSTextField, EBUserClassName, NSTextFieldDelegate {
+@objc(EBColorObserverWell) class EBColorObserverWell : NSColorWell, EBUserClassNameProtocol {
 
   //···················································································································*
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
-    self.delegate = self
-    self.editable = false
-    self.drawsBackground = false
-    self.bordered = false
     noteObjectAllocation (self)
+    self.enabled = false
   }
 
   //···················································································································*
 
   override init (frame:NSRect) {
     super.init (frame:frame)
-    self.delegate = self
-    self.editable = false
-    self.drawsBackground = false
-    self.bordered = false
     noteObjectAllocation (self)
+    self.enabled = false
   }
   
   //···················································································································*
@@ -37,51 +33,38 @@ import Cocoa
   }
 
   //···················································································································*
-  //  valueObserver binding                                                                                            *
+  //  color binding                                                                                                    *
   //···················································································································*
 
-  private var mValueController : Controller_EBReadOnlyIntField_readOnlyValue?
+  private var mValueController : Controller_EBColorObserverWell_color?
 
-  func bind_valueObserver (object:EBReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
-    mValueController = Controller_EBReadOnlyIntField_readOnlyValue (
-      object:object,
-      outlet:self,
-      file:file,
-      line:line,
-      autoFormatter:autoFormatter
-    )
+  func bind_colorObserver (object:EBReadOnlyProperty_NSColor, file:String, line:Int) {
+    mValueController = Controller_EBColorObserverWell_color (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_valueObserver () {
+  func unbind_colorObserver () {
     mValueController?.unregister ()
     mValueController = nil
   }
+
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Controller_EBReadOnlyIntField_readOnlyValue                                                                       *
+//   Controller_EBColorObserverWell_color                                                                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Controller_EBReadOnlyIntField_readOnlyValue)
-final class Controller_EBReadOnlyIntField_readOnlyValue : EBSimpleController {
+@objc(Controller_EBColorObserverWell_color)
+final class Controller_EBColorObserverWell_color : EBSimpleController {
 
-  private let mObject : EBReadOnlyProperty_Int
-  private let mOutlet : EBIntFieldObserver
+  private let mObject : EBReadOnlyProperty_NSColor
+  private let mOutlet : EBColorObserverWell
 
   //···················································································································*
 
-  init (object : EBReadOnlyProperty_Int, outlet : EBIntFieldObserver, file : String, line : Int, autoFormatter:Bool) {
+  init (object : EBReadOnlyProperty_NSColor, outlet : EBColorObserverWell, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    if autoFormatter {
-      let formatter = NSNumberFormatter ()
-      mOutlet.formatter = formatter
-    }else if mOutlet.formatter == nil {
-      presentErrorWindow (file, line:line, errorMessage:"the outlet has no formatter")
-    }else if !(mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
-    }
     mObject.addEBObserver (self)
   }
 
@@ -89,24 +72,17 @@ final class Controller_EBReadOnlyIntField_readOnlyValue : EBSimpleController {
   
   func unregister () {
     mObject.removeEBObserver (self)
-    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //···················································································································*
 
   override func sendUpdateEvent () {
     switch mObject.prop {
-    case .noSelection :
-      mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
+    case .noSelection, .multipleSelection :
+      mOutlet.color = NSColor.whiteColor ()
     case .singleSelection (let v) :
-      mOutlet.enableFromValue (true)
-      mOutlet.integerValue = v
-    case .multipleSelection :
-      mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
+      mOutlet.color = v
     }
-    mOutlet.updateEnabledState()
   }
 
   //···················································································································*

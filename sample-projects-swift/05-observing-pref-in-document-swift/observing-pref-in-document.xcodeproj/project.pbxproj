@@ -18,7 +18,6 @@
 		CF71F9C21B3EA6EE00FB5049 /* EBManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9BB1B3EA6EE00FB5049 /* EBManagedObjectContext.swift */; };
 		CF71F9C31B3EA6EE00FB5049 /* EBUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9BC1B3EA6EE00FB5049 /* EBUndoManager.swift */; };
 		CF8E79F01B3E9EF3000E28CC /* EBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79EE1B3E9EF3000E28CC /* EBTextField.swift */; };
-		CF8E79F11B3E9EF3000E28CC /* EBTextFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E79EF1B3E9EF3000E28CC /* EBTextFieldObserver.swift */; };
 		CFA9571C1AC8631B00CA6D6D /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957081AC8631B00CA6D6D /* application.swift */; };
 		CFA9571D1AC8631B00CA6D6D /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957091AC8631B00CA6D6D /* easy-bindings-utilities.swift */; };
 		CFA9571E1AC8631B00CA6D6D /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570A1AC8631B00CA6D6D /* generic-bindings.swift */; };
@@ -32,6 +31,7 @@
 		CFA9572F1AC8631B00CA6D6D /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */; };
 		CFA957311AC8642C00CA6D6D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA957301AC8642C00CA6D6D /* MyDocument.xib */; };
 		CFA957331AC8644A00CA6D6D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA957321AC8644A00CA6D6D /* MainMenu.xib */; };
+		CFC7AEC81BF221140076C604 /* EBTextObserverField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AEC71BF221140076C604 /* EBTextObserverField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,6 @@
 		CF71F9BB1B3EA6EE00FB5049 /* EBManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBManagedObjectContext.swift; sourceTree = "<group>"; };
 		CF71F9BC1B3EA6EE00FB5049 /* EBUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBUndoManager.swift; sourceTree = "<group>"; };
 		CF8E79EE1B3E9EF3000E28CC /* EBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextField.swift; sourceTree = "<group>"; };
-		CF8E79EF1B3E9EF3000E28CC /* EBTextFieldObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextFieldObserver.swift; sourceTree = "<group>"; };
 		CFA957081AC8631B00CA6D6D /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CFA957091AC8631B00CA6D6D /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		CFA9570A1AC8631B00CA6D6D /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
@@ -64,6 +63,7 @@
 		CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CFA957301AC8642C00CA6D6D /* MyDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDocument.xib; sourceTree = "<group>"; };
 		CFA957321AC8644A00CA6D6D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		CFC7AEC71BF221140076C604 /* EBTextObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextObserverField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +130,7 @@
 				CF71F9BA1B3EA6EE00FB5049 /* EBManagedObject.swift */,
 				CF71F9BB1B3EA6EE00FB5049 /* EBManagedObjectContext.swift */,
 				CF8E79EE1B3E9EF3000E28CC /* EBTextField.swift */,
-				CF8E79EF1B3E9EF3000E28CC /* EBTextFieldObserver.swift */,
+				CFC7AEC71BF221140076C604 /* EBTextObserverField.swift */,
 				CF71F9BC1B3EA6EE00FB5049 /* EBUndoManager.swift */,
 				CFA9570A1AC8631B00CA6D6D /* generic-bindings.swift */,
 				CFA9570B1AC8631B00CA6D6D /* main.swift */,
@@ -214,7 +214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA957211AC8631B00CA6D6D /* MyRootEntity.swift in Sources */,
-				CF8E79F11B3E9EF3000E28CC /* EBTextFieldObserver.swift in Sources */,
 				CF71F9BF1B3EA6EE00FB5049 /* EBDataScanner.swift in Sources */,
 				CF71F9C21B3EA6EE00FB5049 /* EBManagedObjectContext.swift in Sources */,
 				CFA957231AC8631B00CA6D6D /* MyRootEntity+transient+transientConcatString.swift in Sources */,
@@ -222,6 +221,7 @@
 				CF71F9C01B3EA6EE00FB5049 /* EBManagedDocument.swift in Sources */,
 				CFA9571D1AC8631B00CA6D6D /* easy-bindings-utilities.swift in Sources */,
 				CF71F9C31B3EA6EE00FB5049 /* EBUndoManager.swift in Sources */,
+				CFC7AEC81BF221140076C604 /* EBTextObserverField.swift in Sources */,
 				CF8E79F01B3E9EF3000E28CC /* EBTextField.swift in Sources */,
 				CFA9571E1AC8631B00CA6D6D /* generic-bindings.swift in Sources */,
 				CFA9571F1AC8631B00CA6D6D /* main.swift in Sources */,

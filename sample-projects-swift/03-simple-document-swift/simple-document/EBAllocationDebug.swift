@@ -8,7 +8,7 @@ import Cocoa
 //    Public routines
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func noteObjectAllocation (inObject : EBUserClassName) {
+func noteObjectAllocation (inObject : EBUserClassNameProtocol) {
   installDebugMenu ()
   let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
   gDebugObject?.pmNoteObjectAllocation (className)
@@ -16,7 +16,7 @@ func noteObjectAllocation (inObject : EBUserClassName) {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func noteObjectDeallocation (inObject : EBUserClassName) {
+func noteObjectDeallocation (inObject : EBUserClassNameProtocol) {
   let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
   gDebugObject?.pmNoteObjectDeallocation (className)
 }
