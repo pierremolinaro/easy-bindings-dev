@@ -1525,7 +1525,8 @@ class GALGAS_classDeclaration : public GALGAS_astDeclaration {
                                                            const class GALGAS_simpleStoredPropertyList & inOperand2,
                                                            const class GALGAS_secondaryPropertyList & inOperand3,
                                                            const class GALGAS_externSwiftFunctionList & inOperand4,
-                                                           const class GALGAS_externSwiftDelegateList & inOperand5
+                                                           const class GALGAS_externSwiftDelegateList & inOperand5,
+                                                           const class GALGAS_lstringlist & inOperand6
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1537,6 +1538,8 @@ class GALGAS_classDeclaration : public GALGAS_astDeclaration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mClassName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
@@ -2115,6 +2118,7 @@ class cPtr_classDeclaration : public cPtr_astDeclaration {
   public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
   public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
   public : GALGAS_externSwiftDelegateList mAttribute_mExternSwiftDelegateList ;
+  public : GALGAS_lstringlist mAttribute_mActionDeclarationList ;
 
 //--- Constructor
   public : cPtr_classDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -2122,7 +2126,8 @@ class cPtr_classDeclaration : public cPtr_astDeclaration {
                                   const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
                                   const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                   const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                  const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                  const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                  const GALGAS_lstringlist & in_mActionDeclarationList
                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2134,6 +2139,7 @@ class cPtr_classDeclaration : public cPtr_astDeclaration {
   public : VIRTUAL_IN_DEBUG GALGAS_secondaryPropertyList getter_mSecondaryPropertyList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

@@ -19,15 +19,15 @@ void routine_generateClasses (const GALGAS_classListForGeneration constinArgumen
                               GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                               C_Compiler * inCompiler
                               COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_classListForGeneration enumerator_11814 (constinArgument_inClassListForGeneration, kEnumeration_up) ;
-  while (enumerator_11814.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, enumerator_11814.current_mClassName (HERE), enumerator_11814.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11814.current_mTransientListForGeneration (HERE), enumerator_11814.current_mExternSwiftFunctionList (HERE), enumerator_11814.current_mExternSwiftDelegateList (HERE) COMMA_SOURCE_FILE ("class.galgas", 290))) ;
-    GALGAS_string var_fileName = enumerator_11814.current_mClassName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 299)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("class.galgas", 300)) ;
+  cEnumerator_classListForGeneration enumerator_12229 (constinArgument_inClassListForGeneration, kEnumeration_up) ;
+  while (enumerator_12229.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, enumerator_12229.current_mClassName (HERE), enumerator_12229.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_12229.current_mTransientListForGeneration (HERE), enumerator_12229.current_mExternSwiftFunctionList (HERE), enumerator_12229.current_mExternSwiftDelegateList (HERE) COMMA_SOURCE_FILE ("class.galgas", 301))) ;
+    GALGAS_string var_fileName = enumerator_12229.current_mClassName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 310)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("class.galgas", 311)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("class.galgas", 301)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("class.galgas", 312)) ;
     }
-    enumerator_11814.gotoNextObject () ;
+    enumerator_12229.gotoNextObject () ;
   }
 }
 
