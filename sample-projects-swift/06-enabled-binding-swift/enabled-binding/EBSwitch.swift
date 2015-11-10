@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSwitch) class EBSwitch : NSButton, EBUserClassName {
+@objc(EBSwitch) class EBSwitch : NSButton, EBUserClassNameProtocol {
 
   //···················································································································· 
 
@@ -113,7 +113,7 @@ import Cocoa
 //   EBSwitch_Cell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSwitch_Cell) class EBSwitch_Cell : NSTableCellView {
+@objc(EBSwitch_Cell) class EBSwitch_Cell : EBTableCellView {
   @IBOutlet private var mCellOutlet : EBSwitch?
 
   //····················································································································
@@ -137,10 +137,36 @@ import Cocoa
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_Bool) {
+  //--- Remove a previous binding (does nothing if no binding)
+    mCellOutlet?.unbind_value ()
+  //--- Set new binding
     mCellOutlet?.bind_value (inProperty, file: __FILE__, line: __LINE__)
   }
 
   //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_value ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_value ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //···················································································································· 
+
+  deinit {
+    mCellOutlet?.unbind_value ()
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

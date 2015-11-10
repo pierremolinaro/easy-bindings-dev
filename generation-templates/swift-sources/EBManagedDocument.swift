@@ -19,7 +19,7 @@ private let kLogReadFileDuration = false
 //  EBManagedDocument
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBManagedDocument : NSDocument, EBUserClassName {
+class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   var mRootObject : EBManagedObject?
 
   private var mReadMetadataStatus : UInt8 = 0

@@ -19,13 +19,13 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  02A44259755D38E6D163E820 /* EBColorWell.swift */ = {
+  02A44259755D38E6D163E820 /* EBColorObserverWell.swift */ = {
     isa = PBXBuildFile;
     fileRef = 2E2D7FBDEA1AFC51C7C6AD26 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  6FE97759AA27A0C99BFF6710 /* EBColorWellObserver.swift */ = {
+  6FE97759AA27A0C99BFF6710 /* EBColorWell.swift */ = {
     isa = PBXBuildFile;
     fileRef = D9CAA6E02C990B0A82652DCA ;
     settings = {ATTRIBUTES = (); };
@@ -43,7 +43,7 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  5568161A8CDF4AD2299F6D23 /* EBIntFieldObserver.swift */ = {
+  5568161A8CDF4AD2299F6D23 /* EBIntObserverField.swift */ = {
     isa = PBXBuildFile;
     fileRef = C9B086079795C442636B55FB ;
     settings = {ATTRIBUTES = (); };
@@ -55,7 +55,7 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  F8ED5D21A44B0E5886680CB9 /* EBTextFieldObserver.swift */ = {
+  F8ED5D21A44B0E5886680CB9 /* EBTextObserverField.swift */ = {
     isa = PBXBuildFile;
     fileRef = 8E8850243BE8079A5C74D079 ;
     settings = {ATTRIBUTES = (); };
@@ -125,21 +125,21 @@
     sourceTree = "<group>";
   };
 
-  2E2D7FBDEA1AFC51C7C6AD26 /* EBColorWell.swift */ = {
+  2E2D7FBDEA1AFC51C7C6AD26 /* EBColorObserverWell.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "EBColorObserverWell.swift";
+    path = "EBColorObserverWell.swift";
+    sourceTree = "<group>";
+  };
+
+  D9CAA6E02C990B0A82652DCA /* EBColorWell.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "EBColorWell.swift";
     path = "EBColorWell.swift";
-    sourceTree = "<group>";
-  };
-
-  D9CAA6E02C990B0A82652DCA /* EBColorWellObserver.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "EBColorWellObserver.swift";
-    path = "EBColorWellObserver.swift";
     sourceTree = "<group>";
   };
 
@@ -161,12 +161,12 @@
     sourceTree = "<group>";
   };
 
-  C9B086079795C442636B55FB /* EBIntFieldObserver.swift */ = {
+  C9B086079795C442636B55FB /* EBIntObserverField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
-    name = "EBIntFieldObserver.swift";
-    path = "EBIntFieldObserver.swift";
+    name = "EBIntObserverField.swift";
+    path = "EBIntObserverField.swift";
     sourceTree = "<group>";
   };
 
@@ -179,12 +179,12 @@
     sourceTree = "<group>";
   };
 
-  8E8850243BE8079A5C74D079 /* EBTextFieldObserver.swift */ = {
+  8E8850243BE8079A5C74D079 /* EBTextObserverField.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
-    name = "EBTextFieldObserver.swift";
-    path = "EBTextFieldObserver.swift";
+    name = "EBTextObserverField.swift";
+    path = "EBTextObserverField.swift";
     sourceTree = "<group>";
   };
 

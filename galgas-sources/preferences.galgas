@@ -166,6 +166,7 @@ method @prefDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?arrayControllerListForGeneration
       !?* # No selection controller
+      !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration

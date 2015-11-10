@@ -6,7 +6,7 @@ import Cocoa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(EBMatrix) class EBMatrix : NSMatrix, EBUserClassName {
+@objc(EBMatrix) class EBMatrix : NSMatrix, EBUserClassNameProtocol {
 
   //···················································································································*
 

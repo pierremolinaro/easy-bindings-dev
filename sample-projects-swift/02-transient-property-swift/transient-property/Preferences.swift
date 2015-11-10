@@ -17,9 +17,9 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   @IBOutlet var mFirstNameTextField : EBTextField? = nil
-  @IBOutlet var mFullNameTextField : EBTextFieldObserver? = nil
+  @IBOutlet var mFullNameTextField : EBTextObserverField? = nil
   @IBOutlet var mLastNameTextField : EBTextField? = nil
-  @IBOutlet var mUpperCaseFullNameTextField : EBTextFieldObserver? = nil
+  @IBOutlet var mUpperCaseFullNameTextField : EBTextObserverField? = nil
   @IBOutlet var myButton : EBButton? = nil
  
   //····················································································································
@@ -119,7 +119,7 @@ var g_Preferences : Preferences? = nil
     tf3.bordered = false
     view.addSubview (tf3)
   //--- Outlet mFullNameTextField
-    mFullNameTextField = EBTextFieldObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mFullNameTextField = EBTextObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mFullNameTextField?.setAccessibilityIdentifier ("mFullNameTextField")
     view.addSubview (mFullNameTextField!)
     y -= OUTLET_HEIGHT / 2.0
@@ -133,7 +133,7 @@ var g_Preferences : Preferences? = nil
     tf4.bordered = false
     view.addSubview (tf4)
   //--- Outlet mUpperCaseFullNameTextField
-    mUpperCaseFullNameTextField = EBTextFieldObserver(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mUpperCaseFullNameTextField = EBTextObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     mUpperCaseFullNameTextField?.setAccessibilityIdentifier ("mUpperCaseFullNameTextField")
     view.addSubview (mUpperCaseFullNameTextField!)
     y -= OUTLET_HEIGHT / 2.0

@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBIntField) class EBIntField : NSTextField, EBUserClassName, NSTextFieldDelegate {
+@objc(EBIntField) class EBIntField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 
@@ -80,6 +80,8 @@ import Cocoa
 
   private var mValueController : Controller_EBIntField_value?
   private var mSendContinously : Bool = false
+
+  //····················································································································
 
   func bind_value (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
@@ -179,9 +181,8 @@ final class Controller_EBIntField_value : EBSimpleController {
 //   EBIntField_Cell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBIntField_Cell) class EBIntField_Cell : NSTableCellView {
+@objc(EBIntField_Cell) class EBIntField_Cell : EBTableCellView {
   @IBOutlet private var mCellOutlet : EBIntField?
-  private var mController : Controller_EBIntField_value? = nil
 
   //····················································································································
 
@@ -204,14 +205,32 @@ final class Controller_EBIntField_value : EBSimpleController {
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_Int) {
-    mController = Controller_EBIntField_value (
-      object : inProperty,
-      outlet : mCellOutlet!,
-      file : __FILE__,
-      line : __LINE__,
-      sendContinously : false,
-      autoFormatter: true
-    )
+  //--- Remove a previous binding (does nothing if no binding)
+    mCellOutlet?.unbind_value ()
+  //--- Set new binding
+    mCellOutlet?.bind_value (inProperty, file: __FILE__, line: __LINE__, sendContinously : false, autoFormatter: true)
+  }
+
+  //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_value ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_value ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //···················································································································· 
+
+  deinit {
+    mCellOutlet?.unbind_value ()
   }
 
   //····················································································································

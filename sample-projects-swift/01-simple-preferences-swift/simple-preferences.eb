@@ -3,13 +3,13 @@ xcodeproject "fr.irccyn.molinaro" ;
 mainxib {
   {"String:", EBTextField myTextField},
   {"String (send continously): ", EBTextField myOtherTextField},
-  {"String observer:", EBTextFieldObserver myObserverTextField},
+  {"String observer:", EBTextObserverField myObserverTextField},
   {"Color:", EBColorWell mColorWell},
   {"Color (send continously):", EBColorWell mContinousColorWell},
-  {"Color Observer:", EBColorWellObserver mObserverColorWell},
+  {"Color Observer:", EBColorObserverWell mObserverColorWell},
   {"Date:", EBDatePicker mDatePicker},
   {"Even Integer:", EBIntField mInteger32TextField},
-  {"Even Integer Observer:", EBIntFieldObserver mInteger32ObserverTextField}
+  {"Even Integer Observer:", EBIntObserverField mInteger32ObserverTextField}
 }
 
 
@@ -18,12 +18,12 @@ prefs {
   property String myString default "hello" ;
   outlet EBTextField myTextField $value self.myString {sendContinously : no} ;
   outlet EBTextField myOtherTextField $value self.myString {sendContinously : yes} ;
-  outlet EBTextFieldObserver myObserverTextField $valueObserver self.myString ;
+  outlet EBTextObserverField myObserverTextField $valueObserver self.myString ;
 #--- Color
   property Color mColor default yellowColor ;
   outlet EBColorWell mContinousColorWell $color self.mColor {sendContinously : yes} ;
   outlet EBColorWell mColorWell $color self.mColor {sendContinously : no} ;
-  outlet EBColorWellObserver mObserverColorWell $colorObserver self.mColor ;
+  outlet EBColorObserverWell mObserverColorWell $colorObserver self.mColor ;
 #--- Date
   property Date mDate default date ;
   outlet EBDatePicker mDatePicker $date self.mDate  ;
@@ -32,7 +32,7 @@ prefs {
   outlet EBIntField mInteger32TextField
     $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
   ;
-  outlet EBIntFieldObserver mInteger32ObserverTextField
+  outlet EBIntObserverField mInteger32ObserverTextField
     $valueObserver self.mIntegerValue {autoFormatter:yes}
   ;
 }

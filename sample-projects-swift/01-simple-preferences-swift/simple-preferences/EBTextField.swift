@@ -8,7 +8,7 @@ import Cocoa
 //   EBTextField
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTextField) class EBTextField : NSTextField, EBUserClassName, NSTextFieldDelegate {
+@objc(EBTextField) class EBTextField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 
@@ -39,10 +39,14 @@ import Cocoa
   private var mValueController : Controller_EBTextField_value?
   private var mSendContinously : Bool = false
 
+  //····················································································································
+
   func bind_value (object:EBReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_EBTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
+
+  //····················································································································
 
   func unbind_value () {
     mValueController?.unregister ()
@@ -58,6 +62,7 @@ import Cocoa
   }
 
   //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -120,7 +125,7 @@ import Cocoa
 //   EBTextField_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTextField_Cell) class EBTextField_Cell : NSTableCellView {
+@objc(EBTextField_Cell) class EBTextField_Cell : EBTableCellView {
   @IBOutlet private var mCellOutlet : EBTextField?
 
   //····················································································································
@@ -144,10 +149,35 @@ import Cocoa
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_String) {
+  //--- Remove a previous binding (does nothing if no binding)
+    mCellOutlet?.unbind_value ()
+  //--- Set new binding
     mCellOutlet?.bind_value (inProperty, file: __FILE__, line: __LINE__, sendContinously : false)
   }
 
+  //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_value ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_value ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
   //···················································································································· 
+
+  deinit {
+    mCellOutlet?.unbind_value ()
+  }
+
+  //····················································································································
 
 }
 

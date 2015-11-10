@@ -195,6 +195,7 @@ override method @entityDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
+      !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration

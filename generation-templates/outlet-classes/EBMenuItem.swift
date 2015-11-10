@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBMenuItem) class EBMenuItem : NSMenuItem, EBUserClassName {
+@objc(EBMenuItem) class EBMenuItem : NSMenuItem, EBUserClassNameProtocol {
 
   //····················································································································
 

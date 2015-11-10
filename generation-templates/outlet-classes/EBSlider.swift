@@ -8,7 +8,7 @@ import Cocoa
 //   EBSlider
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSlider) class EBSlider : NSSlider, EBUserClassName {
+@objc(EBSlider) class EBSlider : NSSlider, EBUserClassNameProtocol {
 
   //····················································································································
 

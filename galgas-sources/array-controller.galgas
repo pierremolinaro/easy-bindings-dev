@@ -203,6 +203,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
+  ?!@stringset ioNeededOutletClasses
 {
   @typeKind modelType
   @propertyKind kind
@@ -317,6 +318,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       !mObservablePropertyName.string
       !columnType
       !mBindingOptionList
+    ioNeededOutletClasses += !mColumnOutletTypeName.string
   end
 #--- Check filter properties
   @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}

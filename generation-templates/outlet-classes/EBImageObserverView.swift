@@ -5,21 +5,21 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBImageViewObserver
+//   EBImageObserverView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBImageViewObserver) class EBImageViewObserver : NSImageView, EBUserClassName {
+@objc(EBImageObserverView) class EBImageObserverView : NSImageView, EBUserClassNameProtocol {
 
   //····················································································································
 
-  required init? (coder: NSCoder) {
+  required init? (coder : NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
   }
 
   //····················································································································
 
-  override init (frame:NSRect) {
+  override init (frame : NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
   }
@@ -31,37 +31,37 @@ import Cocoa
   }
 
   //····················································································································
-  //  value binding
+  //  image binding
   //····················································································································
 
-  private var mValueController : Controller_EBImageFieldObserver_image?
+  private var mImageController : Controller_EBImageView_image?
 
-  func bind_value (object:EBReadOnlyProperty_NSImage, file:String, line:Int) {
-    mValueController = Controller_EBImageFieldObserver_image (object:object, outlet:self, file:file, line:line)
+  func bind_image (object:EBReadOnlyProperty_NSImage, file:String, line:Int) {
+    mImageController = Controller_EBImageView_image (object:object, outlet:self, file:file, line:line)
   }
 
   //····················································································································
 
-  func unbind_value () {
-    mValueController?.unregister ()
-    mValueController = nil
+  func unbind_image () {
+    mImageController?.unregister ()
+    mImageController = nil
   }
 
   //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller Controller_EBImageFieldObserver_image
+//   Controller Controller_EBImageView_image
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBImageFieldObserver_image) final class Controller_EBImageFieldObserver_image : EBSimpleController {
+@objc(Controller_EBImageView_image) final class Controller_EBImageView_image : EBSimpleController {
 
-  private let mOutlet : EBImageViewObserver
+  private let mOutlet : EBImageObserverView
   private let mObject : EBReadOnlyProperty_NSImage
 
   //····················································································································
 
-  init (object:EBReadOnlyProperty_NSImage, outlet : EBImageViewObserver, file : String, line : Int) {
+  init (object:EBReadOnlyProperty_NSImage, outlet : EBImageObserverView, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
@@ -97,26 +97,26 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBImageView_Cell
+//   EBImageObserverView_Cell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBImageView_Cell) class EBImageView_Cell : NSTableCellView {
-  @IBOutlet private var mCellOutlet : EBImageViewObserver? = nil
+@objc(EBImageObserverView_Cell) class EBImageObserverView_Cell : EBTableCellView {
+  @IBOutlet private var mCellOutlet : EBImageObserverView? = nil
 
   //····················································································································
 
   func checkOutlet (columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
-      if !(cellOutlet is EBImageViewObserver) {
+      if !(cellOutlet is EBImageObserverView) {
         presentErrorWindow (file,
           line: line,
-          errorMessage:"\"\(columnName)\" column view is not an instance of EBImageViewObserver"
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBImageObserverView"
         )
       }
     }else{
       presentErrorWindow (file,
         line: line,
-        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBImageViewObserver)"
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBImageObserverView)"
       )
     }
   }
@@ -124,7 +124,32 @@ import Cocoa
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadOnlyProperty_NSImage) {
+  //--- Remove a previous binding (does nothing if no binding)
+    mCellOutlet?.unbind_image ()
+  //--- Set new binding
     mCellOutlet?.bind_image (inProperty, file: __FILE__, line: __LINE__)
+  }
+
+  //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_image ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mCellOutlet?.unbind_image ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //···················································································································· 
+
+  deinit {
+    mCellOutlet?.unbind_image ()
   }
 
   //····················································································································

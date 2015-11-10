@@ -163,7 +163,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="100085" customClass="EBIntFieldObserver">
+                    <textField verticalHuggingPriority="750" id="100085" customClass="EBIntObserverField">
                         <rect key="frame" x="165" y="21" width="73" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="nnn" id="100086">
@@ -174,7 +174,7 @@
                         </textFieldCell>
                         <accessibility description="entryCount"/>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="100099" customClass="EBTextFieldObserver">
+                    <textField verticalHuggingPriority="750" id="100099" customClass="EBTextObserverField">
                         <rect key="frame" x="247" y="21" width="103" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="nnn Items" id="100100">
@@ -184,7 +184,7 @@
                         </textFieldCell>
                         <accessibility description="entryCountString"/>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="100117" customClass="EBIntFieldObserver">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="100117" customClass="EBIntObserverField">
                         <rect key="frame" x="23" y="49" width="215" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="…TOTAL…" id="100118">
@@ -317,7 +317,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableHeaderView>
                                 </scrollView>
-                                <textField verticalHuggingPriority="750" id="NiN-AW-qvE" customClass="EBTextFieldObserver">
+                                <textField verticalHuggingPriority="750" id="NiN-AW-qvE" customClass="EBTextObserverField">
                                     <rect key="frame" x="16" y="211" width="428" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="--- even value count ---" id="AkT-yA-auF">
@@ -438,7 +438,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableHeaderView>
                                 </scrollView>
-                                <textField verticalHuggingPriority="750" id="WNh-TU-o5d" customClass="EBTextFieldObserver">
+                                <textField verticalHuggingPriority="750" id="WNh-TU-o5d" customClass="EBTextObserverField">
                                     <rect key="frame" x="16" y="263" width="453" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="--- selection count ---" id="wkG-Yp-SO8">
@@ -489,7 +489,7 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <textField verticalHuggingPriority="750" id="100056" customClass="EBTextFieldObserver">
+                    <textField verticalHuggingPriority="750" id="100056" customClass="EBTextObserverField">
                         <rect key="frame" x="352" y="21" width="137" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="*** can remove ***" id="100057">

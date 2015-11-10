@@ -8,7 +8,7 @@ import Cocoa
 //    EBTableView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTableView) class EBTableView : NSTableView, EBUserClassName {
+@objc(EBTableView) class EBTableView : NSTableView, EBUserClassNameProtocol {
 
   //····················································································································
 
