@@ -122,7 +122,6 @@ import Cocoa
 
 @objc(EBTextField_Cell) class EBTextField_Cell : NSTableCellView {
   @IBOutlet private var mCellOutlet : EBTextField?
-  private weak var mProperty : EBReadWriteProperty_String?
 
   //····················································································································
 
@@ -145,33 +144,11 @@ import Cocoa
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_String) {
-    mProperty = inProperty
-    switch inProperty.prop {
-    case .noSelection :
-      mCellOutlet?.stringValue = "No Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    case .singleSelection (let v) :
-      mCellOutlet?.stringValue = v
-      mCellOutlet?.enabled = true
-      mCellOutlet?.target = self
-      mCellOutlet?.action = "myAction:"
-     case .multipleSelection :
-      mCellOutlet?.stringValue = "Multiple Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    }
-  }
-
-  //····················································································································
-  
-  func myAction (sender : EBTextField) {
-    mProperty?.validateAndSetProp (sender.stringValue, windowForSheet:sender.window)
+    mCellOutlet?.bind_value (inProperty, file: __FILE__, line: __LINE__, sendContinously : false)
   }
 
   //···················································································································· 
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

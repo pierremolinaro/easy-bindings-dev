@@ -294,8 +294,12 @@ for () in BOUND_COLUMNS
     %          cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
     %        }\n%
     %      %
-  between %}else %
-  after %}\n%
+  between
+    %}else %
+  after
+   %}else{\n%
+   %        NSLog ("Unknown column '\(columnIdentifier)'")\n%
+   %      }\n% 
 end
 %      return result
     }

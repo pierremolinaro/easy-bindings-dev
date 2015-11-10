@@ -34,13 +34,13 @@ import Cocoa
   //  value binding
   //····················································································································
 
-  private var mValueController : Controller_EBImageFieldObserver_value?
-  private var mSendContinously : Bool = false
+  private var mValueController : Controller_EBImageFieldObserver_image?
 
-  func bind_value (object:EBReadOnlyProperty_NSImage, file:String, line:Int, sendContinously:Bool) {
-    mSendContinously = sendContinously
-    mValueController = Controller_EBImageFieldObserver_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
+  func bind_value (object:EBReadOnlyProperty_NSImage, file:String, line:Int) {
+    mValueController = Controller_EBImageFieldObserver_image (object:object, outlet:self, file:file, line:line)
   }
+
+  //····················································································································
 
   func unbind_value () {
     mValueController?.unregister ()
@@ -48,44 +48,29 @@ import Cocoa
   }
 
   //····················································································································
-
-  override func controlTextDidChange (inNotification : NSNotification) {
-    if mSendContinously {
-      NSApp.sendAction (self.action, to: self.target, from: self)
-    }
-  }
-
-  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller Controller_EBImageFieldObserver_value                                                                           *
+//   Controller Controller_EBImageFieldObserver_image
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBImageFieldObserver_value) final class Controller_EBImageFieldObserver_value : EBSimpleController {
+@objc(Controller_EBImageFieldObserver_image) final class Controller_EBImageFieldObserver_image : EBSimpleController {
 
-  private let mOutlet: EBImageViewObserver
+  private let mOutlet : EBImageViewObserver
   private let mObject : EBReadOnlyProperty_NSImage
 
   //····················································································································
 
-  init (object:EBReadOnlyProperty_NSImage, outlet : EBImageViewObserver, file : String, line : Int, sendContinously : Bool) {
+  init (object:EBReadOnlyProperty_NSImage, outlet : EBImageViewObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    mOutlet.target = self
-    mOutlet.action = "action:"
-    if mOutlet.formatter != nil {
-      presentErrorWindow (file, line:line, errorMessage:"the EBImageViewObserver outlet has a formatter")
-    }
     object.addEBObserver (self)
   }
 
   //····················································································································
   
   func unregister () {
-    mOutlet.target = nil
-    mOutlet.action = nil
     mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -95,16 +80,13 @@ import Cocoa
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
-      mOutlet.stringValue = "No selection"
       mOutlet.image = nil
       mOutlet.enableFromValue (false)
     case .multipleSelection :
-      mOutlet.stringValue = "Multiple selection"
       mOutlet.image = nil
       mOutlet.enableFromValue (false)
     case .singleSelection (let propertyValue) :
       mOutlet.image = propertyValue
-      mOutlet.stringValue = ""
       mOutlet.enableFromValue (true)
     }
     mOutlet.updateEnabledState ()
@@ -119,8 +101,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBImageView_Cell) class EBImageView_Cell : NSTableCellView {
-  @IBOutlet private var mCellOutlet : EBImageViewObserver?
-  private weak var mProperty : EBReadOnlyProperty_NSImage?
+  @IBOutlet private var mCellOutlet : EBImageViewObserver? = nil
 
   //····················································································································
 
@@ -143,24 +124,7 @@ import Cocoa
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadOnlyProperty_NSImage) {
-    mProperty = inProperty
-    switch inProperty.prop {
-    case .noSelection :
-      mCellOutlet?.stringValue = "No Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    case .singleSelection (let v) :
-      mCellOutlet?.image = v
-      mCellOutlet?.enabled = true
-      mCellOutlet?.target = self
-      mCellOutlet?.action = "myAction:"
-     case .multipleSelection :
-      mCellOutlet?.stringValue = "Multiple Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    }
+    mCellOutlet?.bind_image (inProperty, file: __FILE__, line: __LINE__)
   }
 
   //····················································································································

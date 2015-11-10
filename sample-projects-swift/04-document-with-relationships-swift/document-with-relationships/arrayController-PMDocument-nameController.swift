@@ -246,15 +246,6 @@ final class Delegate_PMDocument_nameController : EBAbstractProperty, EBTableView
       for index in tableView.selectedRowIndexes {
         newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
       }
-    //--- Removed object set
-      let removedObjectSet = mSet.subtract (newSelectedObjectSet)
-      mSelectedArray.removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
-      mSelectedArray.removeEBObserversOf_aValue_fromElementsOfSet (removedObjectSet)
-   //--- Added object set
-      let addedObjectSet = newSelectedObjectSet.subtract (mSet)
-      mSelectedArray.addEBObserversOf_name_toElementsOfSet (addedObjectSet)
-      mSelectedArray.addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
-    //---
       setProp (newSelectedObjectSet)
     }
   }
@@ -284,6 +275,8 @@ final class Delegate_PMDocument_nameController : EBAbstractProperty, EBTableView
         if let cell : EBIntField_Cell = result as? EBIntField_Cell {
           cell.configureWithProperty (object.aValue)
         }
+      }else{
+        NSLog ("Unknown column '\(columnIdentifier)'")
       }
       return result
     }
