@@ -7591,6 +7591,9 @@ typeComparisonResult cPtr_classDeclaration::dynamicObjectCompare (const acPtr_cl
   if (kOperandEqual == result) {
     result = mAttribute_mExternSwiftDelegateList.objectCompare (p->mAttribute_mExternSwiftDelegateList) ;
   }
+  if (kOperandEqual == result) {
+    result = mAttribute_mActionDeclarationList.objectCompare (p->mAttribute_mActionDeclarationList) ;
+  }
   return result ;
 }
 
@@ -7627,7 +7630,8 @@ GALGAS_classDeclaration GALGAS_classDeclaration::constructor_default (LOCATION_A
                                                    GALGAS_simpleStoredPropertyList::constructor_emptyList (HERE),
                                                    GALGAS_secondaryPropertyList::constructor_emptyList (HERE),
                                                    GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
-                                                   GALGAS_externSwiftDelegateList::constructor_emptyList (HERE)
+                                                   GALGAS_externSwiftDelegateList::constructor_emptyList (HERE),
+                                                   GALGAS_lstringlist::constructor_emptyList (HERE)
                                                    COMMA_THERE) ;
 }
 
@@ -7645,11 +7649,12 @@ GALGAS_classDeclaration GALGAS_classDeclaration::constructor_new (const GALGAS_b
                                                                   const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredAttributeList,
                                                                   const GALGAS_secondaryPropertyList & inAttribute_mSecondaryPropertyList,
                                                                   const GALGAS_externSwiftFunctionList & inAttribute_mExternSwiftFunctionList,
-                                                                  const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList
+                                                                  const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList,
+                                                                  const GALGAS_lstringlist & inAttribute_mActionDeclarationList
                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_classDeclaration result ;
-  if (inAttribute_mUserDefined.isValid () && inAttribute_mClassName.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mSecondaryPropertyList.isValid () && inAttribute_mExternSwiftFunctionList.isValid () && inAttribute_mExternSwiftDelegateList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_classDeclaration (inAttribute_mUserDefined, inAttribute_mClassName, inAttribute_mSimpleStoredAttributeList, inAttribute_mSecondaryPropertyList, inAttribute_mExternSwiftFunctionList, inAttribute_mExternSwiftDelegateList COMMA_THERE)) ;
+  if (inAttribute_mUserDefined.isValid () && inAttribute_mClassName.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mSecondaryPropertyList.isValid () && inAttribute_mExternSwiftFunctionList.isValid () && inAttribute_mExternSwiftDelegateList.isValid () && inAttribute_mActionDeclarationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_classDeclaration (inAttribute_mUserDefined, inAttribute_mClassName, inAttribute_mSimpleStoredAttributeList, inAttribute_mSecondaryPropertyList, inAttribute_mExternSwiftFunctionList, inAttribute_mExternSwiftDelegateList, inAttribute_mActionDeclarationList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -7745,6 +7750,24 @@ GALGAS_externSwiftDelegateList cPtr_classDeclaration::getter_mExternSwiftDelegat
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstringlist GALGAS_classDeclaration::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstringlist result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_classDeclaration * p = (const cPtr_classDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_classDeclaration) ;
+    result = p->mAttribute_mActionDeclarationList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstringlist cPtr_classDeclaration::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mActionDeclarationList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 //                                      Pointer class for @classDeclaration class                                      *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7753,14 +7776,16 @@ cPtr_classDeclaration::cPtr_classDeclaration (const GALGAS_bool & in_mUserDefine
                                               const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
                                               const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                               const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                              const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                              const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                              const GALGAS_lstringlist & in_mActionDeclarationList
                                               COMMA_LOCATION_ARGS) :
 cPtr_astDeclaration (in_mUserDefined COMMA_THERE),
 mAttribute_mClassName (in_mClassName),
 mAttribute_mSimpleStoredAttributeList (in_mSimpleStoredAttributeList),
 mAttribute_mSecondaryPropertyList (in_mSecondaryPropertyList),
 mAttribute_mExternSwiftFunctionList (in_mExternSwiftFunctionList),
-mAttribute_mExternSwiftDelegateList (in_mExternSwiftDelegateList) {
+mAttribute_mExternSwiftDelegateList (in_mExternSwiftDelegateList),
+mAttribute_mActionDeclarationList (in_mActionDeclarationList) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7783,6 +7808,8 @@ void cPtr_classDeclaration::description (C_String & ioString,
   mAttribute_mExternSwiftFunctionList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mExternSwiftDelegateList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mActionDeclarationList.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -7790,7 +7817,7 @@ void cPtr_classDeclaration::description (C_String & ioString,
 
 acPtr_class * cPtr_classDeclaration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_classDeclaration (mAttribute_mUserDefined, mAttribute_mClassName, mAttribute_mSimpleStoredAttributeList, mAttribute_mSecondaryPropertyList, mAttribute_mExternSwiftFunctionList, mAttribute_mExternSwiftDelegateList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_classDeclaration (mAttribute_mUserDefined, mAttribute_mClassName, mAttribute_mSimpleStoredAttributeList, mAttribute_mSecondaryPropertyList, mAttribute_mExternSwiftFunctionList, mAttribute_mExternSwiftDelegateList, mAttribute_mActionDeclarationList COMMA_THERE)) ;
   return ptr ;
 }
 

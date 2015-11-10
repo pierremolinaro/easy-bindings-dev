@@ -11,6 +11,7 @@ class @classDeclaration : @astDeclaration {
   @secondaryPropertyList mSecondaryPropertyList
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
+  @lstringlist mActionDeclarationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -42,6 +43,7 @@ syntax extension easyBindings_syntax {
     @stringset signatureList = {}
     @externSwiftFunctionList externSwiftFunctionList = {}
     @externSwiftDelegateList externSwiftDelegateList = {}
+    @lstringlist actionDeclarationList = {}
     repeat
     while
       <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
@@ -55,6 +57,8 @@ syntax extension easyBindings_syntax {
       <extern_swift_func> !?externSwiftFunctionList
     while
       <extern_swift_delegate> !?externSwiftDelegateList
+    while
+     <action_declaration> !?actionDeclarationList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@classDeclaration.new {
@@ -67,6 +71,7 @@ syntax extension easyBindings_syntax {
       !secondaryPropertyList
       !externSwiftFunctionList
       !externSwiftDelegateList
+      !actionDeclarationList
     }
   }
 
@@ -233,6 +238,12 @@ override method @classDeclaration semanticAnalysis
       end
       error mCallerName : m
     end
+  end
+#--- Check declared actions are unique
+  @actionMap actionMap = {}
+  for (actionName) in mActionDeclarationList do
+    [!?actionMap insertKey !actionName]
+    ioGeneration.mActionListForGeneration += !mClassName.string !actionName.string
   end
 #--- Generation
   ioGeneration.mClassListForGeneration +=
