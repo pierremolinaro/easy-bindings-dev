@@ -11,6 +11,7 @@ project (0:0:1) -> "eb" {
   "galgas-sources/program.galgas"
 
 #--- Extern Swift functions
+  "galgas-sources/extern-delegate.galgas"
   "galgas-sources/extern-swift-func.galgas"
 
 #--- Components  

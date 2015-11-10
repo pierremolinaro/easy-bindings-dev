@@ -275,6 +275,8 @@ final class Delegate_PMDocument_selController : EBAbstractProperty, EBTableViewD
         if let cell : EBIntField_Cell = result as? EBIntField_Cell {
           cell.configureWithProperty (object.aValue)
         }
+      }else{
+        NSLog ("Unknown column '\(columnIdentifier)'")
       }
       return result
     }

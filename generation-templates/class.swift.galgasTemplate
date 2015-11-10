@@ -327,7 +327,7 @@ end
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+  %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n\n%
   %  var %!mStoredPropertyName%_kvc : %![mType swiftTypeName]% {\n%
   %    get {\n%
   %      switch %!mStoredPropertyName%.prop {\n%
@@ -338,6 +338,8 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      }\n%
   %    }\n%
   %  }\n\n%
+between
+%  //····················································································································\n\n%
 end
 %  //····················································································································
   //    Transient properties
@@ -349,6 +351,15 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
 end
 
+%
+  //····················································································································
+  //    Extern delegates
+  //····················································································································
+
+%
+  for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+    %  var mExternDelegate%![idx string]% : %!mExternSwiftDelegateName.string%? = nil\n%
+  end
 %
   //····················································································································
   //    init
@@ -386,6 +397,18 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     %    %![mDependency generateAddObserverCall]% (%!mTransientName%)\n%
   end
 end
+%  //--- Extern functions
+%
+  for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
+    if mCallerName.string == "init" then
+      %    %!mExternSwiftFunctionName.string% ()\n%
+    end
+  end
+%  //--- Extern delegates
+%
+  for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+    %    mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object:self)\n%
+  end
 %  }
 
   //····················································································································
@@ -394,7 +417,8 @@ end
 
   override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%!mStoredPropertyName%",\n%
   %      idx:%!mStoredPropertyName%.mExplorerObjectIndex,\n%
@@ -427,6 +451,11 @@ end
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %    %!mStoredPropertyName%.storeInDictionary (ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
+  for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
+    if mCallerName.string == "saveIntoDictionary" then
+      %    %!mExternSwiftFunctionName.string% ()\n%
+    end
+  end
 %  }
 
   //····················································································································
@@ -438,6 +467,11 @@ end
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
+  for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
+    if mCallerName.string == "setUpWithDictionary" then
+      %    %!mExternSwiftFunctionName.string% ()\n%
+    end
+  end
 %  }
 
   //····················································································································

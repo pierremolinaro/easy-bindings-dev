@@ -43,9 +43,13 @@ import Cocoa
 
   private var mValueController : Controller_EBSwitch_value?
 
+  //···················································································································· 
+
   func bind_value (object:EBReadWriteProperty_Bool, file:String, line:Int) {
     mValueController = Controller_EBSwitch_value (object:object, outlet:self, file:file, line:line)
   }
+
+  //···················································································································· 
 
   func unbind_value () {
     mValueController?.unregister ()
@@ -111,7 +115,6 @@ import Cocoa
 
 @objc(EBSwitch_Cell) class EBSwitch_Cell : NSTableCellView {
   @IBOutlet private var mCellOutlet : EBSwitch?
-  private weak var mProperty : EBReadWriteProperty_Bool?
 
   //····················································································································
 
@@ -134,30 +137,7 @@ import Cocoa
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_Bool) {
-    mProperty = inProperty
-    switch inProperty.prop {
-    case .noSelection :
-      mCellOutlet?.stringValue = "No Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    case .singleSelection (let v) :
-      mCellOutlet?.state = v ? NSOnState : NSOffState
-      mCellOutlet?.enabled = true
-      mCellOutlet?.target = self
-      mCellOutlet?.action = "myAction:"
-     case .multipleSelection :
-      mCellOutlet?.stringValue = "Multiple Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    }
-  }
-
-  //····················································································································
-  
-  func myAction (sender : EBSwitch) {
-    mProperty?.validateAndSetProp (sender.state == NSOnState, windowForSheet:sender.window)
+    mCellOutlet?.bind_value (inProperty, file: __FILE__, line: __LINE__)
   }
 
   //····················································································································

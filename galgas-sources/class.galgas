@@ -9,6 +9,8 @@ class @classDeclaration : @astDeclaration {
 #  @toOneRelationshipList mToOneRelationshipList
 #  @toManyRelationshipList mToManyRelationshipList
   @secondaryPropertyList mSecondaryPropertyList
+  @externSwiftFunctionList mExternSwiftFunctionList
+  @externSwiftDelegateList mExternSwiftDelegateList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -38,6 +40,8 @@ syntax extension easyBindings_syntax {
     @toOneRelationshipList toOneRelationshipList = {}
     @toManyRelationshipList toManyRelationshipList = {}
     @stringset signatureList = {}
+    @externSwiftFunctionList externSwiftFunctionList = {}
+    @externSwiftDelegateList externSwiftDelegateList = {}
     repeat
     while
       <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
@@ -47,6 +51,10 @@ syntax extension easyBindings_syntax {
 #      <toMany_relationship> !?toManyRelationshipList
 #    while
 #      <toOne_relationship> !?toOneRelationshipList
+    while
+      <extern_swift_func> !?externSwiftFunctionList
+    while
+      <extern_swift_delegate> !?externSwiftDelegateList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@classDeclaration.new {
@@ -57,6 +65,8 @@ syntax extension easyBindings_syntax {
 #      !toOneRelationshipList
 #      !toManyRelationshipList
       !secondaryPropertyList
+      !externSwiftFunctionList
+      !externSwiftDelegateList
     }
   }
 
@@ -165,6 +175,12 @@ override method @classDeclaration solveSecondaryProperty
 
 #......................................................................................................................*
 
+func %once externSwiftFunctionCallerSet -> @stringset outResult {
+  outResult = {!"setUpWithDictionary", !"init", !"saveIntoDictionary"}
+}
+
+#......................................................................................................................*
+
 override method @classDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
@@ -206,12 +222,25 @@ override method @classDeclaration semanticAnalysis
 #    !inSemanticContext
 #    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
 #  ]
+#--- Check extern declarations
+  for () in mExternSwiftFunctionList do
+    if not [externSwiftFunctionCallerSet () hasKey !mCallerName.string] then
+      var m = "allowed here:"
+      for s in externSwiftFunctionCallerSet ()
+        do m += " '" + s + "'"
+        between m += ","
+      end
+      error mCallerName : m
+    end
+  end
 #--- Generation
   ioGeneration.mClassListForGeneration +=
     !mClassName.string
 #    !mSuperClassName.string
     !simpleStoredPropertyListForGeneration
     !transientDefinitionListForGeneration
+    !mExternSwiftFunctionList
+    !mExternSwiftDelegateList
 #    !toOneEntityRelationshipListForGeneration
 #    !toManyEntityRelationshipListForGeneration
 }
@@ -227,6 +256,8 @@ list @classListForGeneration {
   @transientDefinitionListForGeneration mTransientListForGeneration
 #  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
 #  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
+  @externSwiftFunctionList mExternSwiftFunctionList
+  @externSwiftDelegateList mExternSwiftDelegateList
 }
 
 #......................................................................................................................*
@@ -234,10 +265,13 @@ list @classListForGeneration {
 private filewrapper classGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template entityImplementationInSwift "class.swift.galgasTemplate"
+  template classImplementationInSwift "class.swift.galgasTemplate"
     ?@string CLASS_NAME
     ?@simpleStoredPropertyListForGeneration SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@externSwiftFunctionList EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION
+    ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
+
 #    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
 #    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
 }
@@ -252,12 +286,14 @@ proc generateClasses
   ?!@stringset ioGeneratedFileSet
 {
   for () in inClassListForGeneration do
-    let s = [filewrapper classGenerationTemplate.entityImplementationInSwift
+    let s = [filewrapper classGenerationTemplate.classImplementationInSwift
       !mClassName
       !mSimpleStoredPropertyListForGeneration
       !mTransientListForGeneration
 #      !mToOneEntityRelationshipList
 #      !mToManyEntityRelationshipList
+      !mExternSwiftFunctionList
+      !mExternSwiftDelegateList
     ]
     let fileName = mClassName + ".swift"
     ioGeneratedFileSet += !fileName

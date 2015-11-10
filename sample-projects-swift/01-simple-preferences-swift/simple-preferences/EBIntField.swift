@@ -93,11 +93,15 @@ import Cocoa
     )
   }
 
+  //····················································································································
+
   func unbind_value () {
     mValueController?.unregister ()
     mValueController = nil
   }
 
+
+  //····················································································································
 
 }
 
@@ -177,13 +181,13 @@ final class Controller_EBIntField_value : EBSimpleController {
 
 @objc(EBIntField_Cell) class EBIntField_Cell : NSTableCellView {
   @IBOutlet private var mCellOutlet : EBIntField?
-  private weak var mProperty : EBReadWriteProperty_Int?
+  private var mController : Controller_EBIntField_value? = nil
 
   //····················································································································
 
   func checkOutlet (columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
-      if !(cellOutlet is EBTextField) {
+      if !(cellOutlet is EBIntField) {
         presentErrorWindow (file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBIntField"
@@ -200,30 +204,14 @@ final class Controller_EBIntField_value : EBSimpleController {
   //····················································································································
 
   func configureWithProperty (inProperty : EBReadWriteProperty_Int) {
-    mProperty = inProperty
-    switch inProperty.prop {
-    case .noSelection :
-      mCellOutlet?.stringValue = "No Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    case .singleSelection (let v) :
-      mCellOutlet?.integerValue = v
-      mCellOutlet?.enabled = true
-      mCellOutlet?.target = self
-      mCellOutlet?.action = "myAction:"
-     case .multipleSelection :
-      mCellOutlet?.stringValue = "Multiple Selection"
-      mCellOutlet?.enabled = false
-      mCellOutlet?.target = nil
-      mCellOutlet?.action = ""
-    }
-  }
-
-  //····················································································································
-  
-  func myAction (sender : EBIntField) {
-    mProperty?.validateAndSetProp (sender.integerValue, windowForSheet:sender.window)
+    mController = Controller_EBIntField_value (
+      object : inProperty,
+      outlet : mCellOutlet!,
+      file : __FILE__,
+      line : __LINE__,
+      sendContinously : false,
+      autoFormatter: true
+    )
   }
 
   //····················································································································
