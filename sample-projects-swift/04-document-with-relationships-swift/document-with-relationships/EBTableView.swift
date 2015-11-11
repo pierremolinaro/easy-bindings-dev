@@ -39,7 +39,7 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    EBTableViewDataSource
+//    EBTableViewDelegate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTableViewDelegate) protocol EBTableViewDelegate : NSTableViewDelegate {
@@ -60,15 +60,15 @@ import Cocoa
   init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
     mTableView = tableView
     mDelegate = delegate
+    mTableView.setDelegate (delegate)
     super.init ()
   }
 
   //····················································································································
   
   override func sendUpdateEvent () {
-    mTableView.setDelegate (nil)
   //---------------- So tableViewSelectionDidChange is not called
-//    mDelegate.willReload ()
+    mTableView.setDelegate (nil)
   //---------------- Reload data
     mTableView.reloadData ()
   //---------------- Update table view selection
@@ -79,8 +79,7 @@ import Cocoa
     if newTableViewSelectionIndexSet.count > 0 {
       self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
-  //---------------- So tableViewSelectionDidChange will be called on user change
-//    mDelegate.didReload ()
+  //---------------- So delegate tableViewSelectionDidChange will be called on user change
     mTableView.setDelegate (mDelegate)
   }
 

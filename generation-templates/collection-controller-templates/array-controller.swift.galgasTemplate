@@ -11,85 +11,6 @@ private let DEBUG_EVENT = false
 @objc(DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
 final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : TransientArrayOf_%!ELEMENT_TYPE_NAME%, EBTableViewDataSource {
 
-  private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
-
-  private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-    self.computeFunction = { [weak self] in
-      let result = self?.filterAndSort () ?? .noSelection
-      let newObjectSet : Set<%!ELEMENT_TYPE_NAME%>
-      switch result {
-      case .noSelection, .multipleSelection :
-        newObjectSet = Set ()
-      case .singleSelection (let array) :
-        newObjectSet = Set (array)
-      }
-    //---
-      let currentSet = self?.mSet ?? Set ()
-    //--- Removed object set
-      let removedObjectSet = currentSet.subtract (newObjectSet)
-%for () in BOUND_COLUMNS do
-  %      self?.removeEBObserversOf_%!mObservablePropertyName%_fromElementsOfSet (removedObjectSet)
-%end
-%   //--- Added object set
-      let addedObjectSet = newObjectSet.subtract (currentSet)
-%
-for () in BOUND_COLUMNS do
-  %      self?.addEBObserversOf_%!mObservablePropertyName%_toElementsOfSet (addedObjectSet)
-%end
-%   //--- Update object set
-      self?.mSet = newObjectSet
-      return result
-    }
-  }
-
-  //····················································································································
-
-  final func setModel (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {
-    mModel = model
-    model.addEBObserver (self)
-  }
-
-  //····················································································································
-
-  private func filterAndSort () -> EBProperty < [%!ELEMENT_TYPE_NAME%] > {
-    if let model = mModel {
-      switch model.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let modelArray) :
-%if [FILTER_PROPERTIES length] == 0 then
-%        let array = NSMutableArray (array:modelArray)
-        array.sortUsingDescriptors (mSortDescriptors)
-        let sortedObjectArray = array.mutableCopy () as! [%!ELEMENT_TYPE_NAME%]
-        return .singleSelection (sortedObjectArray)
-%
-else
-%        let array = NSMutableArray ()\n%
-%        var isMultiple = false\n%
-%        for object in modelArray {\n%
-![FILTER_PROPERTIES filterCode !"arrayControllerFilter_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME]
-%        }
-        if isMultiple {
-          return .multipleSelection
-        }else{
-          array.sortUsingDescriptors (mSortDescriptors)
-          let sortedObjectArray = array.mutableCopy () as! [NameEntity]
-          return .singleSelection (sortedObjectArray)
-        }
-%end
-%     }
-    }else{
-      return .noSelection
-    }
-  }
-
   //····················································································································
   //    Sort descriptors
   //····················································································································
@@ -139,169 +60,19 @@ else
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"Delegate_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
+//    %!"SelectedSet_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
-final class Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty, EBTableViewDelegate {
-  private var mSet = Set<%!ELEMENT_TYPE_NAME%> ()
-  private var mSetShouldBeComputed = true
-  private var mSortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
-  private var mSelectedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%
-  var count = EBTransientProperty_Int ()
+@objc(SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
+final class SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty {
 
   //····················································································································
 
-  init (model:DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%,
-        selectedArray:TransientArrayOf_%!ELEMENT_TYPE_NAME%) {
-    mSortedArray = model
-    mSelectedArray = selectedArray
-    super.init ()
-    count.computeFunction = { [weak self] in
-     if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
+  private var mSet = Set<NameEntity> () {
+    didSet {
+      if mSet != oldValue {
+        postEvent ()
       }
-    }
-  }
-
-  //····················································································································
-  
-  var prop : EBProperty <Set<%!ELEMENT_TYPE_NAME%> > {
-    get {
-      if mSetShouldBeComputed {
-        mSetShouldBeComputed = false
-        // NSLog ("mSet \%d", mSet.count)
-        switch mSortedArray.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          mSet.intersectInPlace (v)
-          if (mSet.count == 0) && (v.count > 0) {
-            mSet.insert (v [0])
-          }
-          return .singleSelection (mSet)
-        }
-      }else{
-        switch mSortedArray.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection :
-          return .singleSelection (mSet)
-        }
-      }
-    }
-  }
-
-  //····················································································································
-
-  private func setProp (value : Set<%!ELEMENT_TYPE_NAME%>) {
-    if (mSet != value) {
-      mSet = value
-      postEvent ()
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if !mSetShouldBeComputed {
-      mSetShouldBeComputed = true
-      count.postEvent ()
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-  func selectedObjectIndexSet () -> NSIndexSet {
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-       return NSIndexSet ()
-    case .singleSelection (let v) :
-      switch prop {
-      case .noSelection, .multipleSelection :
-        return NSIndexSet ()
-      case .singleSelection (let vv) :
-      //--- Dictionary of object indexes
-        var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-        for (index, object) in v.enumerate () {
-          objectDictionary [object] = index
-        }
-        let indexSet = NSMutableIndexSet ()
-        for object in vv {
-          if let index = objectDictionary [object] {
-            indexSet.addIndex (index)
-          }
-        }
-        return indexSet
-      }
-    }
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
-  //····················································································································
-
-  func tableViewSelectionDidChange (notication : NSNotification) {
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      let tableView = notication.object as! EBTableView
-      var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
-      for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
-      }
-      setProp (newSelectedObjectSet)
-    }
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
-  //····················································································································
-
-  func tableView (tableView : NSTableView,
-                  viewForTableColumn inTableColumn: NSTableColumn?,
-                  row inRowIndex: Int) -> NSView? {
-    if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
-    }
-    switch mSortedArray.prop {
-    case .noSelection, .multipleSelection :
-      return nil
-    case .singleSelection (let v) :
-      let columnIdentifier = inTableColumn!.identifier
-      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
-      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
-      %
-for () in BOUND_COLUMNS
-  do
-    %if columnIdentifier == "%!mColumnName%" {\n%
-    %        if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
-    %          cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
-    %        }\n%
-    %      %
-  between
-    %}else %
-  after
-   %}else{\n%
-   %        NSLog ("Unknown column '\(columnIdentifier)'")\n%
-   %      }\n% 
-end
-%      return result
     }
   }
 
@@ -314,17 +85,17 @@ end
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
-final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
+final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableViewDelegate {
+
+  private var mModel : %!MODEL_TYPE_NAME_2%?
 
   var sortedArray = DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% ()
 
   var selectedArray = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
-  private var mSelectedSet : Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%?
+  private var mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% ()
 
   private var mTableViewControllerArray = [Controller_EBTableView_controller] ()
-
-  private var mModel : %!MODEL_TYPE_NAME_2%?
 
   //····················································································································
   //    init
@@ -332,32 +103,72 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
 
   override init () {
     super.init ()
+  //--- Set selected array compute function
     selectedArray.computeFunction = {
-      if let selectedSet = self.mSelectedSet {
-        switch selectedSet.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let selSet) :
-          switch self.sortedArray.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            return .multipleSelection
-          case .singleSelection (let v) :
-            var result = [%!ELEMENT_TYPE_NAME%] ()
-            for object in v {
-              if selSet.contains (object) {
-                result.append (object)
-              }
-            }
-            return .singleSelection (result)
+      switch self.sortedArray.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let v) :
+        var result = [%!ELEMENT_TYPE_NAME%] ()
+        for object in v {
+          if self.mSelectedSet.mSet.contains (object) {
+            result.append (object)
           }
         }
-      }else{
-        return .noSelection
+        return .singleSelection (result)
       }
+    }
+  //--- Set sorted array compute function
+    sortedArray.computeFunction = { [weak self] in
+      let result = self?.filterAndSort () ?? .noSelection
+/*      let newObjectSet : Set<%!ELEMENT_TYPE_NAME%>
+      switch result {
+      case .noSelection, .multipleSelection :
+        newObjectSet = Set ()
+      case .singleSelection (let array) :
+        newObjectSet = Set (array)
+      }
+   //--- Update object set
+      self?.mSelectedSet.mSet = newObjectSet */
+      return result
+    }
+  }
+
+  //····················································································································
+
+  private func filterAndSort () -> EBProperty < [%!ELEMENT_TYPE_NAME%] > {
+    if let model = mModel {
+      switch model.prop {
+      case .noSelection :
+        return .noSelection
+      case .multipleSelection :
+        return .multipleSelection
+      case .singleSelection (let modelArray) :
+%if [FILTER_PROPERTIES length] == 0 then
+%        let array = NSMutableArray (array:modelArray)
+        array.sortUsingDescriptors (sortedArray.mSortDescriptors)
+        let sortedObjectArray = array.mutableCopy () as! [%!ELEMENT_TYPE_NAME%]
+        return .singleSelection (sortedObjectArray)
+%
+else
+%        let array = NSMutableArray ()\n%
+%        var isMultiple = false\n%
+%        for object in modelArray {\n%
+![FILTER_PROPERTIES filterCode !"arrayControllerFilter_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME]
+%        }
+        if isMultiple {
+          return .multipleSelection
+        }else{
+          array.sortUsingDescriptors (sortedArray.mSortDescriptors)
+          let sortedObjectArray = array.mutableCopy () as! [%!ELEMENT_TYPE_NAME%]
+          return .singleSelection (sortedObjectArray)
+        }
+%end
+%     }
+    }else{
+      return .noSelection
     }
   }
 
@@ -378,16 +189,20 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
-    mModel = model
-    sortedArray.setModel (model)
-    let selectedSet = Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (model:sortedArray, selectedArray:selectedArray)
-    mSelectedSet = selectedSet
-    for tableView in tableViewArray {
-      bind_tableView (tableView, selectedSet:selectedSet, file:file, line:line)
-    }
   //--- Add observers
-    sortedArray.addEBObserver (selectedSet)
-    selectedSet.addEBObserver (selectedArray)
+    mModel = model
+    model.addEBObserver (sortedArray)
+    sortedArray.addEBObserver (selectedArray)
+    mSelectedSet.addEBObserver (selectedArray)
+  //--- Add observed properties (for filtering)
+%
+for () in FILTER_PROPERTIES do
+  %    model.addEBObserverOf_%!mFilterPropertyName% (sortedArray)\n%
+end
+%  //--- Bind table views
+    for tableView in tableViewArray {
+      bind_tableView (tableView, file:file, line:line)
+    }
   }
 
   //····················································································································
@@ -395,14 +210,13 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   //····················································································································
 
   private func bind_tableView (tableView:EBTableView,
-                               selectedSet:Delegate_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%,
                                file:String,
                                line:Int) {
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
     let tableViewController = Controller_EBTableView_controller (
-      delegate:selectedSet,
+      delegate:self,
       tableView:tableView,
       file:file,
       line:line
@@ -442,7 +256,7 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     mTableViewControllerArray.append (tableViewController)
  //--- Set table view delegate and data source
     tableView.setDataSource (sortedArray)
-    tableView.setDelegate (selectedSet)
+    tableView.setDelegate (self)
   }
 
   //····················································································································
@@ -453,18 +267,99 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
-    if let selectedSet = mSelectedSet {
-      sortedArray.removeEBObserver (selectedSet)
-      selectedSet.removeEBObserver (selectedArray)
-    }
-    for tvc in mTableViewControllerArray {
+    mModel?.removeEBObserver (sortedArray)
+    sortedArray.removeEBObserver (selectedArray)
+    mSelectedSet.removeEBObserver (selectedArray)
+  //--- Remode observed properties (for filtering)
+%
+for () in FILTER_PROPERTIES do
+  %    mModel?.removeEBObserverOf_%!mFilterPropertyName% (sortedArray)\n%
+end
+%    for tvc in mTableViewControllerArray {
       sortedArray.removeEBObserver (tvc)
     }
-    mTableViewControllerArray = []
     selectedArray.computeFunction = nil
-    mSelectedSet = nil
+    sortedArray.computeFunction = nil
+    mSelectedSet.mSet = Set ()
+    mTableViewControllerArray = []
     mModel = nil
  }
+
+ //····················································································································
+
+  func selectedObjectIndexSet () -> NSIndexSet {
+    switch sortedArray.prop {
+    case .noSelection, .multipleSelection :
+       return NSIndexSet ()
+    case .singleSelection (let v) :
+    //--- Dictionary of object indexes
+      var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+      for (index, object) in v.enumerate () {
+        objectDictionary [object] = index
+      }
+      let indexSet = NSMutableIndexSet ()
+      for object in mSelectedSet.mSet {
+        if let index = objectDictionary [object] {
+          indexSet.addIndex (index)
+        }
+      }
+      return indexSet
+    }
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
+  //····················································································································
+
+  func tableViewSelectionDidChange (notication : NSNotification) {
+    switch sortedArray.prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      let tableView = notication.object as! EBTableView
+      var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
+      for index in tableView.selectedRowIndexes {
+        newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
+      }
+      mSelectedSet.mSet = newSelectedObjectSet
+    }
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
+  //····················································································································
+
+  func tableView (tableView : NSTableView,
+                  viewForTableColumn inTableColumn: NSTableColumn?,
+                  row inRowIndex: Int) -> NSView? {
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
+    switch sortedArray.prop {
+    case .noSelection, .multipleSelection :
+      return nil
+    case .singleSelection (let v) :
+      let columnIdentifier = inTableColumn!.identifier
+      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
+      %
+for () in BOUND_COLUMNS
+  do
+    %if columnIdentifier == "%!mColumnName%" {\n%
+    %        if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
+    %          cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
+    %        }\n%
+    %      %
+  between
+    %}else %
+  after
+   %}else{\n%
+   %        NSLog ("Unknown column '\(columnIdentifier)'")\n%
+   %      }\n% 
+end
+%      return result
+    }
+  }
  
 %switch MODEL_KIND
 case transientModel :
@@ -478,7 +373,7 @@ case storedArrayModel :
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
-    if let model = mModel, selectedSet = mSelectedSet {
+    if let model = mModel {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
@@ -489,7 +384,7 @@ case storedArrayModel :
       //--- New object is the selection
         var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
         newSelectedObjectSet.insert (newObject)
-        selectedSet.setProp (newSelectedObjectSet)
+        mSelectedSet.mSet = newSelectedObjectSet
         model.setProp (array)
       }
     }
@@ -503,77 +398,72 @@ case storedArrayModel :
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
-    if let model = mModel, selectedSet = mSelectedSet {
+    if let model = mModel {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let model_prop) :
-        switch selectedSet.prop {
+        switch sortedArray.prop {
         case .noSelection, .multipleSelection :
           break
-        case .singleSelection (let selectedSet_prop) :
-          switch sortedArray.prop {
-          case .noSelection, .multipleSelection :
-            break
-          case .singleSelection (let sortedArray_prop) :
-          //------------- Find the object to be selected after selected object removing
-          //--- Dictionary of object sorted indexes
-            var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-            for (index, object) in sortedArray_prop.enumerate () {
-              sortedObjectDictionary [object] = index
-            }
-            var indexArrayOfSelectedObjects = [Int] ()
-            for object in selectedSet_prop {
-              let index = sortedObjectDictionary [object]
-              if let idx = index {
-                indexArrayOfSelectedObjects.append (idx)
-              }
-            }
-          //--- Sort
-            indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
-          //--- Find the first index of a non selected object
-            var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
-            for index in indexArrayOfSelectedObjects {
-              if newSelectionIndex < index {
-                break
-              }else{
-                newSelectionIndex = index + 1
-              }
-            }
-            var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
-            if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {
-              newSelectedObject = sortedArray_prop [newSelectionIndex]
-            }
-          //----------------------------------------- Remove selected object
-          //--- Dictionary of object absolute indexes
-            var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-            for (index, object) in model_prop.enumerate () {
-              objectDictionary [object] = index
-            }
-          //--- Build selected objects index array
-            var selectedObjectIndexArray = [Int] ()
-            for object in selectedSet_prop {
-              let index = objectDictionary [object]
-              if let idx = index {
-                selectedObjectIndexArray.append (idx)
-              }
-            }
-          //--- Sort in reverse order
-            selectedObjectIndexArray.sortInPlace { $1 < $0 }
-          //--- Remove objects, in reverse of order of their index
-            var newObjectArray = model_prop
-            for index in selectedObjectIndexArray {
-              newObjectArray.removeAtIndex (index)
-            }
-          //----------------------------------------- Set new selection
-            var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
-            if let object = newSelectedObject {
-              newSelectionSet.insert (object)
-            }
-            mSelectedSet?.setProp (newSelectionSet)
-          //----------------------------------------- Set new object array
-            model.setProp (newObjectArray)
+        case .singleSelection (let sortedArray_prop) :
+        //------------- Find the object to be selected after selected object removing
+        //--- Dictionary of object sorted indexes
+          var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+          for (index, object) in sortedArray_prop.enumerate () {
+            sortedObjectDictionary [object] = index
           }
+          var indexArrayOfSelectedObjects = [Int] ()
+          for object in mSelectedSet.mSet {
+            let index = sortedObjectDictionary [object]
+            if let idx = index {
+              indexArrayOfSelectedObjects.append (idx)
+            }
+          }
+        //--- Sort
+          indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
+        //--- Find the first index of a non selected object
+          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
+          for index in indexArrayOfSelectedObjects {
+            if newSelectionIndex < index {
+              break
+            }else{
+              newSelectionIndex = index + 1
+            }
+          }
+          var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
+          if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {
+            newSelectedObject = sortedArray_prop [newSelectionIndex]
+          }
+        //----------------------------------------- Remove selected object
+        //--- Dictionary of object absolute indexes
+          var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+          for (index, object) in model_prop.enumerate () {
+            objectDictionary [object] = index
+          }
+        //--- Build selected objects index array
+          var selectedObjectIndexArray = [Int] ()
+          for object in mSelectedSet.mSet {
+            let index = objectDictionary [object]
+            if let idx = index {
+              selectedObjectIndexArray.append (idx)
+            }
+          }
+        //--- Sort in reverse order
+          selectedObjectIndexArray.sortInPlace { $1 < $0 }
+        //--- Remove objects, in reverse of order of their index
+          var newObjectArray = model_prop
+          for index in selectedObjectIndexArray {
+            newObjectArray.removeAtIndex (index)
+          }
+        //----------------------------------------- Set new selection
+          var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
+          if let object = newSelectedObject {
+            newSelectionSet.insert (object)
+          }
+          mSelectedSet.mSet = newSelectionSet
+        //----------------------------------------- Set new object array
+          model.setProp (newObjectArray)
         }
       }
     }
@@ -591,8 +481,7 @@ case relationshipModel :
     }
     if let model = mModel,
            owner = model.owner,
-           managedObjectContext = owner.managedObjectContext (),
-           selectedSet = mSelectedSet {
+           managedObjectContext = owner.managedObjectContext () {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
@@ -603,7 +492,7 @@ case relationshipModel :
       //--- New object is the selection
         var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
         newSelectedObjectSet.insert (newObject)
-        selectedSet.setProp (newSelectedObjectSet)
+        mSelectedSet.mSet = newSelectedObjectSet
         model.setProp (array)
       }
     }
@@ -619,79 +508,73 @@ case relationshipModel :
     }
     if let model = mModel,
            owner = model.owner,
-           managedObjectContext = owner.managedObjectContext (),
-           selectedSet = mSelectedSet {
+           managedObjectContext = owner.managedObjectContext () {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
       case .singleSelection (let model_prop) :
-        switch selectedSet.prop {
+        switch sortedArray.prop {
         case .noSelection, .multipleSelection :
           break
-        case .singleSelection (let selectedSet_prop) :
-          switch sortedArray.prop {
-          case .noSelection, .multipleSelection :
-            break
-          case .singleSelection (let sortedArray_prop) :
-          //------------- Find the object to be selected after selected object removing
-          //--- Dictionary of object sorted indexes
-            var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-            for (index, object) in sortedArray_prop.enumerate () {
-              sortedObjectDictionary [object] = index
-            }
-            var indexArrayOfSelectedObjects = [Int] ()
-            for object in selectedSet_prop {
-              managedObjectContext.removeManagedObject (object)
-              let index = sortedObjectDictionary [object]
-              if let idx = index {
-                indexArrayOfSelectedObjects.append (idx)
-              }
-            }
-          //--- Sort
-            indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
-          //--- Find the first index of a non selected object
-            var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
-            for index in indexArrayOfSelectedObjects {
-              if newSelectionIndex < index {
-                break
-              }else{
-                newSelectionIndex = index + 1
-              }
-            }
-            var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
-            if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {
-              newSelectedObject = sortedArray_prop [newSelectionIndex]
-            }
-          //----------------------------------------- Remove selected object
-          //--- Dictionary of object absolute indexes
-            var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-            for (index, object) in model_prop.enumerate () {
-              objectDictionary [object] = index
-            }
-          //--- Build selected objects index array
-            var selectedObjectIndexArray = [Int] ()
-            for object in selectedSet_prop {
-              let index = objectDictionary [object]
-              if let idx = index {
-                selectedObjectIndexArray.append (idx)
-              }
-            }
-          //--- Sort in reverse order
-            selectedObjectIndexArray.sortInPlace { $1 < $0 }
-          //--- Remove objects, in reverse of order of their index
-            var newObjectArray = model_prop
-            for index in selectedObjectIndexArray {
-              newObjectArray.removeAtIndex (index)
-            }
-          //----------------------------------------- Set new selection
-            var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
-            if let object = newSelectedObject {
-              newSelectionSet.insert (object)
-            }
-            mSelectedSet?.setProp (newSelectionSet)
-          //----------------------------------------- Set new object array
-            model.setProp (newObjectArray)
+        case .singleSelection (let sortedArray_prop) :
+        //------------- Find the object to be selected after selected object removing
+        //--- Dictionary of object sorted indexes
+          var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+          for (index, object) in sortedArray_prop.enumerate () {
+            sortedObjectDictionary [object] = index
           }
+          var indexArrayOfSelectedObjects = [Int] ()
+          for object in mSelectedSet.mSet {
+            managedObjectContext.removeManagedObject (object)
+            let index = sortedObjectDictionary [object]
+            if let idx = index {
+              indexArrayOfSelectedObjects.append (idx)
+            }
+          }
+        //--- Sort
+          indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
+        //--- Find the first index of a non selected object
+          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
+          for index in indexArrayOfSelectedObjects {
+            if newSelectionIndex < index {
+              break
+            }else{
+              newSelectionIndex = index + 1
+            }
+          }
+          var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
+          if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {
+            newSelectedObject = sortedArray_prop [newSelectionIndex]
+          }
+        //----------------------------------------- Remove selected object
+        //--- Dictionary of object absolute indexes
+          var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+          for (index, object) in model_prop.enumerate () {
+            objectDictionary [object] = index
+          }
+        //--- Build selected objects index array
+          var selectedObjectIndexArray = [Int] ()
+          for object in mSelectedSet.mSet {
+            let index = objectDictionary [object]
+            if let idx = index {
+              selectedObjectIndexArray.append (idx)
+            }
+          }
+        //--- Sort in reverse order
+          selectedObjectIndexArray.sortInPlace { $1 < $0 }
+        //--- Remove objects, in reverse of order of their index
+          var newObjectArray = model_prop
+          for index in selectedObjectIndexArray {
+            newObjectArray.removeAtIndex (index)
+          }
+        //----------------------------------------- Set new selection
+          var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
+          if let object = newSelectedObject {
+            newSelectionSet.insert (object)
+          }
+          mSelectedSet.mSet = newSelectionSet
+        //----------------------------------------- Set new object array
+          model.setProp (newObjectArray)
         }
       }
     }
