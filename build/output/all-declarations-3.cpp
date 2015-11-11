@@ -5716,7 +5716,6 @@ const char * gWrapperFileContent_19_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {\n"
   "    mTableView = tableView\n"
   "    mDelegate = delegate\n"
-  "    mTableView.setDelegate (delegate)\n"
   "    super.init ()\n"
   "  }\n"
   "\n"
@@ -5748,7 +5747,7 @@ const cRegularFileWrapper gWrapperFile_19_outletClassGeneration (
   "EBTableView.swift",
   "swift",
   true, // Text file
-  4052, // Text length
+  4014, // Text length
   gWrapperFileContent_19_outletClassGeneration
 ) ;
 

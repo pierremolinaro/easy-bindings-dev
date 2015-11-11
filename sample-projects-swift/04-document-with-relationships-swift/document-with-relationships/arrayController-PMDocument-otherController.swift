@@ -104,6 +104,14 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
   override init () {
     super.init ()
   //--- Set selected array compute function
+    setSelectedArrayComputeFunction ()
+  //--- Set sorted array compute function
+    setFilterAndSortFunction ()
+  }
+
+  //····················································································································
+
+  private final func setSelectedArrayComputeFunction () {
     selectedArray.computeFunction = {
       switch self.sortedArray.prop {
       case .noSelection :
@@ -120,56 +128,44 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
         return .singleSelection (result)
       }
     }
-  //--- Set sorted array compute function
-    sortedArray.computeFunction = { [weak self] in
-      let result = self?.filterAndSort () ?? .noSelection
-/*      let newObjectSet : Set<NameEntity>
-      switch result {
-      case .noSelection, .multipleSelection :
-        newObjectSet = Set ()
-      case .singleSelection (let array) :
-        newObjectSet = Set (array)
-      }
-   //--- Update object set
-      self?.mSelectedSet.mSet = newObjectSet */
-      return result
-    }
   }
 
   //····················································································································
 
-  private func filterAndSort () -> EBProperty < [NameEntity] > {
-    if let model = mModel {
-      switch model.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let modelArray) :
-        let array = NSMutableArray ()
-        var isMultiple = false
-        for object in modelArray {
-          switch object.aValue.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            isMultiple = true
-          case .singleSelection (let v1) :
-            if arrayControllerFilter_PMDocument_otherController (v1) {
-              array.addObject (object)
+  private final func setFilterAndSortFunction () {
+    sortedArray.computeFunction = {
+      if let model = self.mModel {
+        switch model.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let modelArray) :
+          let array = NSMutableArray ()
+          var isMultiple = false
+          for object in modelArray {
+            switch object.aValue.prop {
+            case .noSelection :
+              return .noSelection
+            case .multipleSelection :
+              isMultiple = true
+            case .singleSelection (let v1) :
+              if arrayControllerFilter_PMDocument_otherController (v1) {
+                array.addObject (object)
+              }
             }
           }
+          if isMultiple {
+            return .multipleSelection
+          }else{
+            array.sortUsingDescriptors (self.sortedArray.mSortDescriptors)
+            let sortedObjectArray = array.mutableCopy () as! [NameEntity]
+            return .singleSelection (sortedObjectArray)
+          }
         }
-        if isMultiple {
-          return .multipleSelection
-        }else{
-          array.sortUsingDescriptors (sortedArray.mSortDescriptors)
-          let sortedObjectArray = array.mutableCopy () as! [NameEntity]
-          return .singleSelection (sortedObjectArray)
-        }
-     }
-    }else{
-      return .noSelection
+      }else{
+        return .noSelection
+      }
     }
   }
 
@@ -195,13 +191,38 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     model.addEBObserver (sortedArray)
     sortedArray.addEBObserver (selectedArray)
     mSelectedSet.addEBObserver (selectedArray)
-  //--- Add observed properties (for filtering)
+  //--- Add observed properties (for filtering and sorting)
     model.addEBObserverOf_aValue (sortedArray)
+    model.addEBObserverOf_name (sortedArray)
   //--- Bind table views
     for tableView in tableViewArray {
       bind_tableView (tableView, file:file, line:line)
     }
   }
+
+  //····················································································································
+  //    unbind_modelAndView
+  //····················································································································
+
+  func unbind_modelAndView () {
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
+    mModel?.removeEBObserver (sortedArray)
+    sortedArray.removeEBObserver (selectedArray)
+    mSelectedSet.removeEBObserver (selectedArray)
+  //--- Remode observed properties (for filtering)
+    mModel?.removeEBObserverOf_aValue (sortedArray)
+    mModel?.removeEBObserverOf_name (sortedArray)
+    for tvc in mTableViewControllerArray {
+      sortedArray.removeEBObserver (tvc)
+    }
+    selectedArray.computeFunction = nil
+    sortedArray.computeFunction = nil
+    mSelectedSet.mSet = Set ()
+    mTableViewControllerArray = []
+    mModel = nil
+ }
 
   //····················································································································
   //    bind_tableView
@@ -273,29 +294,6 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     tableView.setDataSource (sortedArray)
     tableView.setDelegate (self)
   }
-
-  //····················································································································
-  //    unbind_modelAndView
-  //····················································································································
-
-  func unbind_modelAndView () {
-    if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
-    }
-    mModel?.removeEBObserver (sortedArray)
-    sortedArray.removeEBObserver (selectedArray)
-    mSelectedSet.removeEBObserver (selectedArray)
-  //--- Remode observed properties (for filtering)
-    mModel?.removeEBObserverOf_aValue (sortedArray)
-    for tvc in mTableViewControllerArray {
-      sortedArray.removeEBObserver (tvc)
-    }
-    selectedArray.computeFunction = nil
-    sortedArray.computeFunction = nil
-    mSelectedSet.mSet = Set ()
-    mTableViewControllerArray = []
-    mModel = nil
- }
 
  //····················································································································
 

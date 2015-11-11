@@ -60,7 +60,6 @@ import Cocoa
   init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
     mTableView = tableView
     mDelegate = delegate
-    mTableView.setDelegate (delegate)
     super.init ()
   }
 
