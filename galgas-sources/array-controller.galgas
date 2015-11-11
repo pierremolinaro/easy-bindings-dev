@@ -497,7 +497,7 @@ getter @typeKind formatterStringForFormatPrinting -> @string outResult {
 getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
   var filterProperties = self
   [!?filterProperties popFirst ?let firstFilterProperty ?*]
-  @string indent = "          "
+  @string indent = "            "
   outResult  = indent + "switch object." +firstFilterProperty + ".prop {\n"
   outResult += indent + "case .noSelection :\n"
   outResult += indent + "  return .noSelection\n"
@@ -541,6 +541,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string MODEL_TYPE_NAME_2
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
+    ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
 
   template filterFunction "array-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
@@ -558,6 +559,14 @@ proc generateArrayControllers
   ?!@stringset ioGeneratedFileSet
 {
   for () in inArrayControllerListForGeneration do
+  #--- Build observed property set (for sorting and filtering)
+    @stringset observedProperties = {}
+    for () in mArrayControllerBoundColumnListForGeneration do
+      observedProperties += !mObservablePropertyName
+    end
+    for () in mArrayControllerFilterListForGeneration do
+      observedProperties += !mFilterPropertyName
+    end
     let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
       !mOwnerName
       !mControllerName
@@ -568,6 +577,7 @@ proc generateArrayControllers
       !mModelTypeName2
       !mArrayControllerBoundColumnListForGeneration
       !mElementTypeName
+      !observedProperties
     ]
     [@string generateFile
       !inOutputDirectory
