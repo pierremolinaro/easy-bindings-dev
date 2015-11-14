@@ -63,7 +63,7 @@ private let DEBUG_EVENT = false
   //   When init is called, table view delegate and data source are set
   //····················································································································
   
-  init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
+  init (delegate:EBTableViewDelegate, tableView:EBTableView) {
     mTableView = tableView
     mDelegate = delegate
     super.init ()
@@ -75,8 +75,7 @@ private let DEBUG_EVENT = false
     if DEBUG_EVENT {
       print ("DataSource_EBTableView_controller::\(__FUNCTION__)")
     }
-  //---------------- Clear delegate, so tableViewSelectionDidChange is not called
- //   mTableView.setDelegate (nil)
+  //---------------- Get current selection, as reloadData may change it
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
   //---------------- Reload data
     mTableView.reloadData ()
@@ -89,8 +88,6 @@ private let DEBUG_EVENT = false
     if newTableViewSelectionIndexSet.count > 0 {
       self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
-  //---------------- So delegate tableViewSelectionDidChange will be called on user change
-//    mTableView.setDelegate (mDelegate)
   }
 
   //····················································································································
@@ -109,7 +106,7 @@ private let DEBUG_EVENT = false
   //   When init is called, table view delegate and data source are set
   //····················································································································
   
-  init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
+  init (delegate:EBTableViewDelegate, tableView:EBTableView) {
     mTableView = tableView
     mDelegate = delegate
     super.init ()
