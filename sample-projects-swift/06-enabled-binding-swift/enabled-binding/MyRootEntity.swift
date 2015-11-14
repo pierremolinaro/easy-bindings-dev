@@ -40,7 +40,10 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
   //   Stored property 'docBool'
   //····················································································································
-    private var mObserversOf_docBool = Set<EBEvent> ()
+
+  private var mObserversOf_docBool = Set<EBEvent> ()
+
+  //····················································································································
 
   final func addEBObserverOf_docBool (inObserver : EBEvent) {
     mObserversOf_docBool.insert (inObserver)
@@ -54,6 +57,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserverOf_docBool (inObserver : EBEvent) {
     mObserversOf_docBool.remove (inObserver)
     switch prop {
@@ -66,6 +71,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func postEventTo_docBool () {
     switch prop {
     case .noSelection, .multipleSelection :
@@ -77,6 +84,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func addEBObserversOf_docBool_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docBool {
@@ -85,14 +94,16 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserversOf_docBool_fromElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
-      managedObject.docBool.postEvent ()
       for observer in mObserversOf_docBool {
         managedObject.docBool.removeEBObserver (observer)
       }
     }
   }
+
   //····················································································································
 
   override func postEvent () {

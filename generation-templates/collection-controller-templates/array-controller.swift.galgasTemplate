@@ -65,14 +65,50 @@ final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : TransientArrayOf
 
 @objc(SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%)
 final class SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty {
+  private var mAllowsEmptySelection : Bool
+  private var mAllowsMultipleSelection : Bool
+  private var mSortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
 
   //····················································································································
 
-  private var mSet = Set<%!ELEMENT_TYPE_NAME%> () {
+  init (allowsEmptySelection : Bool,
+        allowsMultipleSelection : Bool,
+        sortedArray : DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%) {
+    mAllowsMultipleSelection = allowsMultipleSelection
+    mAllowsEmptySelection = allowsEmptySelection
+    mSortedArray = sortedArray
+    super.init ()
+  }
+
+  //····················································································································
+
+  private var mPrivateSet = Set<%!ELEMENT_TYPE_NAME%> () {
     didSet {
-      if mSet != oldValue {
+      if mPrivateSet != oldValue {
         postEvent ()
       }
+    }
+  }
+
+  //····················································································································
+
+  var mSet : Set<%!ELEMENT_TYPE_NAME%> {
+    set {
+      var newSelectedSet = newValue
+      switch mSortedArray.prop {
+      case .noSelection, .multipleSelection :
+        break ;
+      case .singleSelection (let sortedArray) :
+        if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
+          newSelectedSet = Set (arrayLiteral: sortedArray [0])
+        }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
+          newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)
+        }
+      }
+      mPrivateSet = newSelectedSet
+    }
+    get {
+      return mPrivateSet
     }
   }
 
@@ -93,16 +129,24 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, E
 
   var selectedArray = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
-  private var mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% ()
+  private var mSelectedSet : SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
 
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
 
+  private var mAllowsEmptySelection = false
+  private var mAllowsMultipleSelection = false
+  
   //····················································································································
   //    init
   //····················································································································
 
   override init () {
+    mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
+      allowsEmptySelection:mAllowsEmptySelection,
+      allowsMultipleSelection:mAllowsMultipleSelection,
+      sortedArray:sortedArray
+    )
     super.init ()
   //--- Set selected array compute function
     setSelectedArrayComputeFunction ()
@@ -243,6 +287,8 @@ end
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
+    tableView.allowsEmptySelection = mAllowsEmptySelection
+    tableView.allowsMultipleSelection = mAllowsMultipleSelection
     tableView.setDataSource (sortedArray)
     tableView.setDelegate (self)
   //--- Set table view data source controller

@@ -65,14 +65,50 @@ final class DataSource_PMDocument_selController : TransientArrayOf_NameEntity, E
 
 @objc(SelectedSet_PMDocument_selController)
 final class SelectedSet_PMDocument_selController : EBAbstractProperty {
+  private var mAllowsEmptySelection : Bool
+  private var mAllowsMultipleSelection : Bool
+  private var mSortedArray : DataSource_PMDocument_selController
 
   //····················································································································
 
-  private var mSet = Set<NameEntity> () {
+  init (allowsEmptySelection : Bool,
+        allowsMultipleSelection : Bool,
+        sortedArray : DataSource_PMDocument_selController) {
+    mAllowsMultipleSelection = allowsMultipleSelection
+    mAllowsEmptySelection = allowsEmptySelection
+    mSortedArray = sortedArray
+    super.init ()
+  }
+
+  //····················································································································
+
+  private var mPrivateSet = Set<NameEntity> () {
     didSet {
-      if mSet != oldValue {
+      if mPrivateSet != oldValue {
         postEvent ()
       }
+    }
+  }
+
+  //····················································································································
+
+  var mSet : Set<NameEntity> {
+    set {
+      var newSelectedSet = newValue
+      switch mSortedArray.prop {
+      case .noSelection, .multipleSelection :
+        break ;
+      case .singleSelection (let sortedArray) :
+        if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
+          newSelectedSet = Set (arrayLiteral: sortedArray [0])
+        }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
+          newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)
+        }
+      }
+      mPrivateSet = newSelectedSet
+    }
+    get {
+      return mPrivateSet
     }
   }
 
@@ -93,16 +129,24 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
 
   var selectedArray = TransientArrayOf_NameEntity ()
 
-  private var mSelectedSet = SelectedSet_PMDocument_selController ()
+  private var mSelectedSet : SelectedSet_PMDocument_selController
 
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
 
+  private var mAllowsEmptySelection = false
+  private var mAllowsMultipleSelection = false
+  
   //····················································································································
   //    init
   //····················································································································
 
   override init () {
+    mSelectedSet = SelectedSet_PMDocument_selController (
+      allowsEmptySelection:mAllowsEmptySelection,
+      allowsMultipleSelection:mAllowsMultipleSelection,
+      sortedArray:sortedArray
+    )
     super.init ()
   //--- Set selected array compute function
     setSelectedArrayComputeFunction ()
@@ -223,6 +267,8 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
+    tableView.allowsEmptySelection = mAllowsEmptySelection
+    tableView.allowsMultipleSelection = mAllowsMultipleSelection
     tableView.setDataSource (sortedArray)
     tableView.setDelegate (self)
   //--- Set table view data source controller

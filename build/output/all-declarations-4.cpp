@@ -1127,16 +1127,62 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << "_" ;
   result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
   result << " : EBAbstractProperty {\n"
+    "  private var mAllowsEmptySelection : Bool\n"
+    "  private var mAllowsMultipleSelection : Bool\n"
+    "  private var mSortedArray : DataSource_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << "\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "  private var mSet = Set<" ;
+    "  init (allowsEmptySelection : Bool,\n"
+    "        allowsMultipleSelection : Bool,\n"
+    "        sortedArray : DataSource_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << ") {\n"
+    "    mAllowsMultipleSelection = allowsMultipleSelection\n"
+    "    mAllowsEmptySelection = allowsEmptySelection\n"
+    "    mSortedArray = sortedArray\n"
+    "    super.init ()\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
+    "  private var mPrivateSet = Set<" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> () {\n"
     "    didSet {\n"
-    "      if mSet != oldValue {\n"
+    "      if mPrivateSet != oldValue {\n"
     "        postEvent ()\n"
     "      }\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
+    "  var mSet : Set<" ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "> {\n"
+    "    set {\n"
+    "      var newSelectedSet = newValue\n"
+    "      switch mSortedArray.prop {\n"
+    "      case .noSelection, .multipleSelection :\n"
+    "        break ;\n"
+    "      case .singleSelection (let sortedArray) :\n"
+    "        if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {\n"
+    "          newSelectedSet = Set (arrayLiteral: sortedArray [0])\n"
+    "        }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {\n"
+    "          newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)\n"
+    "        }\n"
+    "      }\n"
+    "      mPrivateSet = newSelectedSet\n"
+    "    }\n"
+    "    get {\n"
+    "      return mPrivateSet\n"
     "    }\n"
     "  }\n"
     "\n"
@@ -1146,7 +1192,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "//    " ;
-  result << GALGAS_string ("ArrayController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 84)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 84)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 84)).stringValue () ;
+  result << GALGAS_string ("ArrayController_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 120)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 120)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 120)).stringValue () ;
   result << "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
@@ -1175,20 +1221,32 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << " ()\n"
     "\n"
-    "  private var mSelectedSet = SelectedSet_" ;
+    "  private var mSelectedSet : SelectedSet_" ;
   result << in_OWNER_5F_NAME.stringValue () ;
   result << "_" ;
   result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " ()\n"
+  result << "\n"
     "\n"
     "  private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()\n"
     "  private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()\n"
     "\n"
+    "  private var mAllowsEmptySelection = false\n"
+    "  private var mAllowsMultipleSelection = false\n"
+    "  \n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "  //    init\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  override init () {\n"
+    "    mSelectedSet = SelectedSet_" ;
+  result << in_OWNER_5F_NAME.stringValue () ;
+  result << "_" ;
+  result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
+  result << " (\n"
+    "      allowsEmptySelection:mAllowsEmptySelection,\n"
+    "      allowsMultipleSelection:mAllowsMultipleSelection,\n"
+    "      sortedArray:sortedArray\n"
+    "    )\n"
     "    super.init ()\n"
     "  //--- Set selected array compute function\n"
     "    setSelectedArrayComputeFunction ()\n"
@@ -1230,7 +1288,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "        case .multipleSelection :\n"
     "          return .multipleSelection\n"
     "        case .singleSelection (let modelArray) :\n" ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, in_FILTER_5F_PROPERTIES.getter_length (SOURCE_FILE ("array-controller.swift.galgasTemplate", 145)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, in_FILTER_5F_PROPERTIES.getter_length (SOURCE_FILE ("array-controller.swift.galgasTemplate", 189)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
     result << "          let array = NSMutableArray (array:modelArray)\n"
       "          array.sortUsingDescriptors (self.sortedArray.mSortDescriptors)\n"
@@ -1242,7 +1300,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     result << "          let array = NSMutableArray ()\n"
       "          var isMultiple = false\n"
       "          for object in modelArray {\n" ;
-    result << extensionGetter_filterCode (in_FILTER_5F_PROPERTIES, GALGAS_string ("arrayControllerFilter_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 155)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 155)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 155)), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 155)).stringValue () ;
+    result << extensionGetter_filterCode (in_FILTER_5F_PROPERTIES, GALGAS_string ("arrayControllerFilter_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 199)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 199)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 199)), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 199)).stringValue () ;
     result << "          }\n"
       "          if isMultiple {\n"
       "            return .multipleSelection\n"
@@ -1286,15 +1344,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    sortedArray.addEBObserver (mSelectedSet)\n"
     "    mSelectedSet.addEBObserver (selectedArray)\n"
     "  //--- Add observed properties (for filtering and sorting)\n" ;
-  GALGAS_uint index_7962_ (0) ;
+  GALGAS_uint index_9639_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING.isValid ()) {
-    cEnumerator_stringset enumerator_7962 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
-    while (enumerator_7962.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_9639 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
+    while (enumerator_9639.hasCurrentObject ()) {
       result << "    model.addEBObserverOf_" ;
-      result << enumerator_7962.current_key (HERE).stringValue () ;
+      result << enumerator_9639.current_key (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_7962_.increment () ;
-      enumerator_7962.gotoNextObject () ;
+      index_9639_.increment () ;
+      enumerator_9639.gotoNextObject () ;
     }
   }
   result << "  //--- Bind table views\n"
@@ -1315,15 +1373,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    sortedArray.removeEBObserver (mSelectedSet)\n"
     "    mSelectedSet.removeEBObserver (selectedArray)\n"
     "  //--- Remove observed properties (for filtering and sorting)\n" ;
-  GALGAS_uint index_8775_ (0) ;
+  GALGAS_uint index_10452_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING.isValid ()) {
-    cEnumerator_stringset enumerator_8775 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
-    while (enumerator_8775.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_10452 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
+    while (enumerator_10452.hasCurrentObject ()) {
       result << "    mModel\?.removeEBObserverOf_" ;
-      result << enumerator_8775.current_key (HERE).stringValue () ;
+      result << enumerator_10452.current_key (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_8775_.increment () ;
-      enumerator_8775.gotoNextObject () ;
+      index_10452_.increment () ;
+      enumerator_10452.gotoNextObject () ;
     }
   }
   result << "    for tvc in mTableViewDataSourceControllerArray {\n"
@@ -1351,6 +1409,8 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    if DEBUG_EVENT {\n"
     "      print (\"\\(__FUNCTION__)\")\n"
     "    }\n"
+    "    tableView.allowsEmptySelection = mAllowsEmptySelection\n"
+    "    tableView.allowsMultipleSelection = mAllowsMultipleSelection\n"
     "    tableView.setDataSource (sortedArray)\n"
     "    tableView.setDelegate (self)\n"
     "  //--- Set table view data source controller\n"
@@ -1371,29 +1431,29 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    )\n"
     "    mSelectedSet.addEBObserver (selectionTableViewController)\n"
     "    mTableViewSelectionControllerArray.append (selectionTableViewController)\n" ;
-  GALGAS_uint index_10528_ (0) ;
+  GALGAS_uint index_12329_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_10528 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_10528.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_12329 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_12329.hasCurrentObject ()) {
       result << "  //--- Check '" ;
-      result << enumerator_10528.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "    if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_10528.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
       result << "\", owner:self) {\n"
         "      if let unwrappedTableCellView = anyObject as\? " ;
-      result << enumerator_10528.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "        unwrappedTableCellView.checkOutlet (\"" ;
-      result << enumerator_10528.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
       result << "\", file:file, line:line)\n"
         "      }else{\n"
         "        presentErrorWindow (file,\n"
         "          line: line,\n"
         "          errorMessage:\"\\\"" ;
-      result << enumerator_10528.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column cell view is not an instance of " ;
-      result << enumerator_10528.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell\"\n"
         "        )\n"
         "      }\n"
@@ -1401,19 +1461,19 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "      presentErrorWindow (file,\n"
         "        line: line,\n"
         "        errorMessage:\"\\\"" ;
-      result << enumerator_10528.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown, or table view is NSCell-based\"\n"
         "      )\n"
         "    }\n"
         "    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_10528.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "      columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_10528.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_12329.current_mObservablePropertyName (HERE).stringValue () ;
       result << "_kvc\", ascending:true)\n"
         "    }\n" ;
-      index_10528_.increment () ;
-      enumerator_10528.gotoNextObject () ;
+      index_12329_.increment () ;
+      enumerator_12329.gotoNextObject () ;
     }
   }
   result << "  //--- Set descriptors from first column of table view\n"
@@ -1493,31 +1553,31 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView\n"
     "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
     "      " ;
-  GALGAS_uint index_14470_ (0) ;
+  GALGAS_uint index_16271_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_14470 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_14470 = enumerator_14470.hasCurrentObject () ;
-    while (enumerator_14470.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16271 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_16271 = enumerator_16271.hasCurrentObject () ;
+    while (enumerator_16271.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_14470.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_16271.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "        if let cell : " ;
-      result << enumerator_14470.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16271.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell = result as\? " ;
-      result << enumerator_14470.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16271.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "          cell.configureWithProperty (object." ;
-      result << enumerator_14470.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_16271.current_mObservablePropertyName (HERE).stringValue () ;
       result << ")\n"
         "        }\n"
         "      " ;
-      if (enumerator_14470.hasNextObject ()) {
+      if (enumerator_16271.hasNextObject ()) {
         result << "}else " ;
       }
-      index_14470_.increment () ;
-      enumerator_14470.gotoNextObject () ;
+      index_16271_.increment () ;
+      enumerator_16271.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_14470) {
+    if (nonEmpty_enumerator_16271) {
       result << "}else{\n"
         "        NSLog (\"Unknown column '\\(columnIdentifier)'\")\n"
         "      }\n" ;
