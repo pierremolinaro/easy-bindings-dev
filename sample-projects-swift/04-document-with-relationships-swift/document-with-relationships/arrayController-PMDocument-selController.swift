@@ -95,7 +95,8 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
 
   private var mSelectedSet = SelectedSet_PMDocument_selController ()
 
-  private var mTableViewControllerArray = [Controller_EBTableView_controller] ()
+  private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
+  private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
 
   //····················································································································
   //    init
@@ -172,7 +173,7 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
   //--- Add observers
     mModel = model
     model.addEBObserver (sortedArray)
-    sortedArray.addEBObserver (selectedArray)
+    sortedArray.addEBObserver (mSelectedSet)
     mSelectedSet.addEBObserver (selectedArray)
   //--- Add observed properties (for filtering and sorting)
     model.addEBObserverOf_aValue (sortedArray)
@@ -192,18 +193,23 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
       print ("\(__FUNCTION__)")
     }
     mModel?.removeEBObserver (sortedArray)
-    sortedArray.removeEBObserver (selectedArray)
+    sortedArray.removeEBObserver (mSelectedSet)
     mSelectedSet.removeEBObserver (selectedArray)
-  //--- Remode observed properties (for filtering)
+  //--- Remove observed properties (for filtering and sorting)
     mModel?.removeEBObserverOf_aValue (sortedArray)
     mModel?.removeEBObserverOf_name (sortedArray)
-    for tvc in mTableViewControllerArray {
+    for tvc in mTableViewDataSourceControllerArray {
       sortedArray.removeEBObserver (tvc)
     }
+    for tvc in mTableViewSelectionControllerArray {
+      mSelectedSet.removeEBObserver (tvc)
+    }
+  //---
     selectedArray.computeFunction = nil
     sortedArray.computeFunction = nil
     mSelectedSet.mSet = Set ()
-    mTableViewControllerArray = []
+    mTableViewDataSourceControllerArray = []
+    mTableViewSelectionControllerArray = []
     mModel = nil
  }
 
@@ -217,12 +223,26 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
-    let tableViewController = Controller_EBTableView_controller (
+    tableView.setDataSource (sortedArray)
+    tableView.setDelegate (self)
+  //--- Set table view data source controller
+    let dataSourceTableViewController = DataSource_EBTableView_controller (
       delegate:self,
       tableView:tableView,
       file:file,
       line:line
     )
+    sortedArray.addEBObserver (dataSourceTableViewController)
+    mTableViewDataSourceControllerArray.append (dataSourceTableViewController)
+  //--- Set table view selection controller
+    let selectionTableViewController = Selection_EBTableView_controller (
+      delegate:self,
+      tableView:tableView,
+      file:file,
+      line:line
+    )
+    mSelectedSet.addEBObserver (selectionTableViewController)
+    mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
       if let unwrappedTableCellView = anyObject as? EBTextField_Cell {
@@ -271,11 +291,6 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
         sortedArray.setSortDescriptors (sortDescriptorArray)
       }
     }
-    sortedArray.addEBObserver (tableViewController)
-    mTableViewControllerArray.append (tableViewController)
- //--- Set table view delegate and data source
-    tableView.setDataSource (sortedArray)
-    tableView.setDelegate (self)
   }
 
  //····················································································································
@@ -305,6 +320,9 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
   //····················································································································
 
   func tableViewSelectionDidChange (notication : NSNotification) {
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
     switch sortedArray.prop {
     case .noSelection, .multipleSelection :
       break

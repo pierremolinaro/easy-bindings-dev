@@ -150,6 +150,7 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   private var mSet = Set<NameEntity> ()
   private var mValue = [NameEntity] () {
     didSet {
+      postEvent ()
       if oldValue != mValue {
         let oldSet = mSet
         mSet = Set (mValue)
@@ -177,10 +178,6 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
         addEBObserversOf_name_toElementsOfSet (addedObjectSet)
       //--- Notify observers
         clearSignatureCache ()
-        postEvent ()
- /*       if oldValue.count != mValue.count {
-          count.postEvent ()
-        } */
       }
     }
   }

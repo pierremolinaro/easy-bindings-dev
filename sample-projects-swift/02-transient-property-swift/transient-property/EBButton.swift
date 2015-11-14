@@ -30,3 +30,39 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBButton_TableViewCell
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBButton_TableViewCell) class EBButton_TableViewCell : EBTableCellView {
+  @IBOutlet private var mCellOutlet : EBButton?
+
+  //····················································································································
+
+  func checkOutlet (columnName : String, file:String, line:Int) {
+    if let cellOutlet : NSObject = mCellOutlet {
+      if !(cellOutlet is EBButton) {
+        presentErrorWindow (file,
+          line: line,
+          errorMessage:"\"\(columnName)\" column view is not an instance of EBButton"
+        )
+      }
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBButton)"
+      )
+    }
+  }
+
+  //····················································································································
+
+  func configureWithProperty (target : NSObject, action : Selector) {
+    mCellOutlet?.target = target
+    mCellOutlet?.action = action
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

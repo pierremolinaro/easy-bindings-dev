@@ -387,7 +387,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
-    closeButton!.action = "deleteWindowAction:"
+    closeButton!.action = "deleteDocumentWindowAction:"
   //--- Set window title
     mExplorerWindow!.title = "Document " + className
   //--- Add Scroll view
@@ -399,10 +399,32 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   }
 
   //····················································································································
+  //   deleteDocumentWindowAction
+  //····················································································································
+
+  func deleteDocumentWindowAction (_ : AnyObject) {
+    clearObjectExplorer ()
+  }
+
+  //····················································································································
+  //   clearObjectExplorer
+  //····················································································································
+
+  func clearObjectExplorer () {
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    closeButton!.target = nil
+    mExplorerWindow?.orderOut (nil)
+    mExplorerWindow = nil
+  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
   var mExplorerWindow : NSWindow?
+
+  //····················································································································
+
   var mValueExplorer : NSButton? {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
@@ -410,6 +432,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       }
     }
   }
+
+  //····················································································································
 
   func populateExplorerWindow (inout y : CGFloat, view : NSView) {
     if let rootObject = mRootObject {

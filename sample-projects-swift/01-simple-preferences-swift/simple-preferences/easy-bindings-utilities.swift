@@ -539,7 +539,7 @@ class EBSimpleController : EBOutletEvent {
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
-    closeButton!.action = "deleteWindowAction:"
+    closeButton!.action = "deleteSimpleControllerWindowAction:"
   //--- Set window title
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
@@ -552,10 +552,10 @@ class EBSimpleController : EBOutletEvent {
   }
 
   //····················································································································
-  //   deleteWindowAction
+  //   deleteSimpleControllerWindowAction
   //····················································································································
 
-  final func deleteWindowAction (_: AnyObject) {
+  final func deleteSimpleControllerWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 

@@ -40,7 +40,10 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
   //   Stored property 'myString'
   //····················································································································
-    private var mObserversOf_myString = Set<EBEvent> ()
+
+  private var mObserversOf_myString = Set<EBEvent> ()
+
+  //····················································································································
 
   final func addEBObserverOf_myString (inObserver : EBEvent) {
     mObserversOf_myString.insert (inObserver)
@@ -54,6 +57,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserverOf_myString (inObserver : EBEvent) {
     mObserversOf_myString.remove (inObserver)
     switch prop {
@@ -66,6 +71,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func postEventTo_myString () {
     switch prop {
     case .noSelection, .multipleSelection :
@@ -77,6 +84,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func addEBObserversOf_myString_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myString {
@@ -85,18 +94,23 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserversOf_myString_fromElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
-      managedObject.myString.postEvent ()
       for observer in mObserversOf_myString {
         managedObject.myString.removeEBObserver (observer)
       }
     }
   }
+
   //····················································································································
   //   Stored property 'myColor'
   //····················································································································
-    private var mObserversOf_myColor = Set<EBEvent> ()
+
+  private var mObserversOf_myColor = Set<EBEvent> ()
+
+  //····················································································································
 
   final func addEBObserverOf_myColor (inObserver : EBEvent) {
     mObserversOf_myColor.insert (inObserver)
@@ -110,6 +124,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserverOf_myColor (inObserver : EBEvent) {
     mObserversOf_myColor.remove (inObserver)
     switch prop {
@@ -122,6 +138,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func postEventTo_myColor () {
     switch prop {
     case .noSelection, .multipleSelection :
@@ -133,6 +151,8 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func addEBObserversOf_myColor_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myColor {
@@ -141,14 +161,16 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserversOf_myColor_fromElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
-      managedObject.myColor.postEvent ()
       for observer in mObserversOf_myColor {
         managedObject.myColor.removeEBObserver (observer)
       }
     }
   }
+
   //····················································································································
 
   override func postEvent () {

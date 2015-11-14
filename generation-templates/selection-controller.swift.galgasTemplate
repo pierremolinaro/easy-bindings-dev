@@ -42,9 +42,7 @@ end%  }
 
   //····················································································································
 
-  final func addExplorer (name : String,
-                          inout y : CGFloat,
-                          view : NSView) {
+  final func addExplorer (name : String, inout y : CGFloat, view : NSView) {
     let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
     let tf = NSTextField (frame:secondColumn (y))
     tf.enabled = true
@@ -98,7 +96,7 @@ end
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
-    closeButton!.action = "deleteWindowAction:"
+    closeButton!.action = "deleteSelectionControllerWindowAction:"
   //--- Set window title
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
@@ -122,10 +120,10 @@ end
   }
   
   //····················································································································
-  //   deleteWindowAction
+  //   deleteSelectionControllerWindowAction
   //····················································································································
 
-  func deleteWindowAction (_ : AnyObject) {
+  func deleteSelectionControllerWindowAction (_ : AnyObject) {
     clearObjectExplorer ()
   }
 
