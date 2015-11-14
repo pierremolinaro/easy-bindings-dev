@@ -5742,7 +5742,6 @@ const char * gWrapperFileContent_19_outletClassGeneration = "//\xE2""\x80""\x94"
   "  //---------------- Reload data\n"
   "    mTableView.reloadData ()\n"
   "  //---------------- Update table view selection\n"
-  "    // NSLog (\"newTableViewSelectionIndexSet %@\", newTableViewSelectionIndexSet)\n"
   "    if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {\n"
   "      mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)\n"
   "    }\n"
@@ -5780,8 +5779,6 @@ const char * gWrapperFileContent_19_outletClassGeneration = "//\xE2""\x80""\x94"
   "    if DEBUG_EVENT {\n"
   "      print (\"Selection_EBTableView_controller::\\(__FUNCTION__)\")\n"
   "    }\n"
-  "  //---------------- Clear delegate, so tableViewSelectionDidChange is not called\n"
-  " //   mTableView.setDelegate (nil)\n"
   "  //---------------- Update table view selection\n"
   "    let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()\n"
   "    if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {\n"
@@ -5791,8 +5788,6 @@ const char * gWrapperFileContent_19_outletClassGeneration = "//\xE2""\x80""\x94"
   "    if newTableViewSelectionIndexSet.count > 0 {\n"
   "      self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)\n"
   "    }\n"
-  "  //---------------- So delegate tableViewSelectionDidChange will be called on user change\n"
-  "  //  mTableView.setDelegate (mDelegate)\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -5804,7 +5799,7 @@ const cRegularFileWrapper gWrapperFile_19_outletClassGeneration (
   "EBTableView.swift",
   "swift",
   true, // Text file
-  6457, // Text length
+  6127, // Text length
   gWrapperFileContent_19_outletClassGeneration
 ) ;
 

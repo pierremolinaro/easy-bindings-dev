@@ -80,7 +80,6 @@ private let DEBUG_EVENT = false
   //---------------- Reload data
     mTableView.reloadData ()
   //---------------- Update table view selection
-    // NSLog ("newTableViewSelectionIndexSet %@", newTableViewSelectionIndexSet)
     if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {
       mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
     }
@@ -118,8 +117,6 @@ private let DEBUG_EVENT = false
     if DEBUG_EVENT {
       print ("Selection_EBTableView_controller::\(__FUNCTION__)")
     }
-  //---------------- Clear delegate, so tableViewSelectionDidChange is not called
- //   mTableView.setDelegate (nil)
   //---------------- Update table view selection
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
     if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {
@@ -129,8 +126,6 @@ private let DEBUG_EVENT = false
     if newTableViewSelectionIndexSet.count > 0 {
       self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
     }
-  //---------------- So delegate tableViewSelectionDidChange will be called on user change
-  //  mTableView.setDelegate (mDelegate)
   }
 
   //····················································································································

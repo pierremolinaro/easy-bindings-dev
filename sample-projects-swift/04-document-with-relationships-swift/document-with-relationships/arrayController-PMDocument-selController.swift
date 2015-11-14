@@ -65,9 +65,9 @@ final class DataSource_PMDocument_selController : TransientArrayOf_NameEntity, E
 
 @objc(SelectedSet_PMDocument_selController)
 final class SelectedSet_PMDocument_selController : EBAbstractProperty {
-  private var mAllowsEmptySelection : Bool
-  private var mAllowsMultipleSelection : Bool
-  private var mSortedArray : DataSource_PMDocument_selController
+  private let mAllowsEmptySelection : Bool
+  private let mAllowsMultipleSelection : Bool
+  private let mSortedArray : DataSource_PMDocument_selController
 
   //····················································································································
 
@@ -79,6 +79,16 @@ final class SelectedSet_PMDocument_selController : EBAbstractProperty {
     mSortedArray = sortedArray
     super.init ()
   }
+
+  //····················································································································
+
+/*  private var mSet = Set<NameEntity> () {
+    didSet {
+      if mSet != oldValue {
+        postEvent ()
+      }
+    }
+  } */
 
   //····················································································································
 
@@ -123,19 +133,19 @@ final class SelectedSet_PMDocument_selController : EBAbstractProperty {
 @objc(ArrayController_PMDocument_selController)
 final class ArrayController_PMDocument_selController : EBObject, EBTableViewDelegate {
 
-  private var mModel : ReadOnlyArrayOf_NameEntity?
+  private var mModel : ReadOnlyArrayOf_NameEntity? = nil
 
-  var sortedArray = DataSource_PMDocument_selController ()
+  let sortedArray = DataSource_PMDocument_selController ()
 
-  var selectedArray = TransientArrayOf_NameEntity ()
+  let selectedArray = TransientArrayOf_NameEntity ()
 
-  private var mSelectedSet : SelectedSet_PMDocument_selController
+  private let mSelectedSet : SelectedSet_PMDocument_selController
 
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
 
-  private var mAllowsEmptySelection = false
-  private var mAllowsMultipleSelection = false
+  private let mAllowsEmptySelection = false
+  private let mAllowsMultipleSelection = false
   
   //····················································································································
   //    init
