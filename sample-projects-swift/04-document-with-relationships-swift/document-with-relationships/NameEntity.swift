@@ -40,7 +40,10 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   //····················································································································
   //   Stored property 'name'
   //····················································································································
-    private var mObserversOf_name = Set<EBEvent> ()
+
+  private var mObserversOf_name = Set<EBEvent> ()
+
+  //····················································································································
 
   final func addEBObserverOf_name (inObserver : EBEvent) {
     mObserversOf_name.insert (inObserver)
@@ -54,6 +57,8 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserverOf_name (inObserver : EBEvent) {
     mObserversOf_name.remove (inObserver)
     switch prop {
@@ -66,6 +71,8 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func postEventTo_name () {
     switch prop {
     case .noSelection, .multipleSelection :
@@ -77,6 +84,8 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func addEBObserversOf_name_toElementsOfSet (inSet : Set<NameEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_name {
@@ -85,18 +94,23 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserversOf_name_fromElementsOfSet (inSet : Set<NameEntity>) {
     for managedObject in inSet {
-      managedObject.name.postEvent ()
       for observer in mObserversOf_name {
         managedObject.name.removeEBObserver (observer)
       }
     }
   }
+
   //····················································································································
   //   Stored property 'aValue'
   //····················································································································
-    private var mObserversOf_aValue = Set<EBEvent> ()
+
+  private var mObserversOf_aValue = Set<EBEvent> ()
+
+  //····················································································································
 
   final func addEBObserverOf_aValue (inObserver : EBEvent) {
     mObserversOf_aValue.insert (inObserver)
@@ -110,6 +124,8 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserverOf_aValue (inObserver : EBEvent) {
     mObserversOf_aValue.remove (inObserver)
     switch prop {
@@ -122,6 +138,8 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func postEventTo_aValue () {
     switch prop {
     case .noSelection, .multipleSelection :
@@ -133,6 +151,8 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func addEBObserversOf_aValue_toElementsOfSet (inSet : Set<NameEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_aValue {
@@ -141,14 +161,16 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     }
   }
 
+  //····················································································································
+
   final func removeEBObserversOf_aValue_fromElementsOfSet (inSet : Set<NameEntity>) {
     for managedObject in inSet {
-      managedObject.aValue.postEvent ()
       for observer in mObserversOf_aValue {
         managedObject.aValue.removeEBObserver (observer)
       }
     }
   }
+
   //····················································································································
 
   override func postEvent () {

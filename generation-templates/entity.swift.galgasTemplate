@@ -42,7 +42,10 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
   //   Stored property '%!mStoredPropertyName%'
   //····················································································································
-    private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+
+  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+
+  //····················································································································
 
   final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
@@ -56,6 +59,8 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
+  //····················································································································
+
   final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
@@ -68,6 +73,8 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
+  //····················································································································
+
   final func postEventTo_%!mStoredPropertyName% () {
     switch prop {
     case .noSelection, .multipleSelection :
@@ -79,6 +86,8 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
+  //····················································································································
+
   final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
@@ -87,14 +96,16 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
+  //····················································································································
+
   final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      managedObject.%!mStoredPropertyName%.postEvent ()
       for observer in mObserversOf_%!mStoredPropertyName% {
         managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
       }
     }
   }
+
 %
 end
 %  //····················································································································
@@ -235,6 +246,7 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
   private var mSet = Set<%![mRelationshipType swiftTypeName]%> ()
   private var mValue = [%![mRelationshipType swiftTypeName]%] () {
     didSet {
+      postEvent ()
       if oldValue != mValue {
         let oldSet = mSet
         mSet = Set (mValue)
@@ -268,10 +280,6 @@ end
 end
 %      //--- Notify observers
         clearSignatureCache ()
-        postEvent ()
- /*       if oldValue.count != mValue.count {
-          count.postEvent ()
-        } */
       }
     }
   }

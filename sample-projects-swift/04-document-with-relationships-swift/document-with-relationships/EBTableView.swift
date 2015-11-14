@@ -5,6 +5,10 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+private let DEBUG_EVENT = false
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    EBTableView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -47,16 +51,18 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller Controller_EBTableView_controller
+//   Controller DataSource_EBTableView_controller
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBTableView_controller) final class Controller_EBTableView_controller : EBOutletEvent {
+@objc(DataSource_EBTableView_controller) final class DataSource_EBTableView_controller : EBOutletEvent {
 
   private let mDelegate : EBTableViewDelegate
   private let mTableView : EBTableView
 
   //····················································································································
-
+  //   When init is called, table view delegate and data source are set
+  //····················································································································
+  
   init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
     mTableView = tableView
     mDelegate = delegate
@@ -66,14 +72,62 @@ import Cocoa
   //····················································································································
   
   override func sendUpdateEvent () {
-  //---------------- So tableViewSelectionDidChange is not called
+    if DEBUG_EVENT {
+      print ("DataSource_EBTableView_controller::\(__FUNCTION__)")
+    }
+  //---------------- Clear delegate, so tableViewSelectionDidChange is not called
     mTableView.setDelegate (nil)
   //---------------- Reload data
     mTableView.reloadData ()
   //---------------- Update table view selection
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
     // NSLog ("newTableViewSelectionIndexSet %@", newTableViewSelectionIndexSet)
-    self.mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
+    if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {
+      mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
+    }
+  //---------------- Scroll first selected row to visible
+    if newTableViewSelectionIndexSet.count > 0 {
+      self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
+    }
+  //---------------- So delegate tableViewSelectionDidChange will be called on user change
+    mTableView.setDelegate (mDelegate)
+  }
+
+  //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller Selection_EBTableView_controller
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(Selection_EBTableView_controller) final class Selection_EBTableView_controller : EBOutletEvent {
+
+  private let mDelegate : EBTableViewDelegate
+  private let mTableView : EBTableView
+
+  //····················································································································
+  //   When init is called, table view delegate and data source are set
+  //····················································································································
+  
+  init (delegate:EBTableViewDelegate, tableView:EBTableView, file:String, line:Int) {
+    mTableView = tableView
+    mDelegate = delegate
+    super.init ()
+  }
+
+  //····················································································································
+  
+  override func sendUpdateEvent () {
+    if DEBUG_EVENT {
+      print ("Selection_EBTableView_controller::\(__FUNCTION__)")
+    }
+  //---------------- Clear delegate, so tableViewSelectionDidChange is not called
+    mTableView.setDelegate (nil)
+  //---------------- Update table view selection
+    let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
+    if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {
+      mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
+    }
   //---------------- Scroll first selected row to visible
     if newTableViewSelectionIndexSet.count > 0 {
       self.mTableView.scrollRowToVisible (newTableViewSelectionIndexSet.firstIndex)
