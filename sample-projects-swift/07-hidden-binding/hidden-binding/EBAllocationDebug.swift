@@ -5,20 +5,32 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+private var gEnableObjectAllocationDebug = false
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+private let prefsEnableObjectAllocationDebugString = "eb:enableObjectAllocationDebug"
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Public routines
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func noteObjectAllocation (inObject : EBUserClassNameProtocol) {
-  installDebugMenu ()
-  let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
-  gDebugObject?.pmNoteObjectAllocation (className)
+  if gEnableObjectAllocationDebug {
+    installDebugMenu ()
+    let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
+    gDebugObject?.pmNoteObjectAllocation (className)
+  }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func noteObjectDeallocation (inObject : EBUserClassNameProtocol) {
-  let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
-  gDebugObject?.pmNoteObjectDeallocation (className)
+  if gEnableObjectAllocationDebug {
+    let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
+    gDebugObject?.pmNoteObjectDeallocation (className)
+  }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -77,6 +89,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField?
   @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField?
   @IBOutlet var mStatsTableView : NSTableView?
+  @IBOutlet var mEnableObjectAllocationDebug : NSButton?
 
 
   private var mTopLevelObjects : NSArray?
@@ -126,9 +139,11 @@ private var gDebugObject : EBAllocationDebug? = nil
    override init () {
       //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
     super.init ()
+    let df = NSUserDefaults.standardUserDefaults ()
+    gEnableObjectAllocationDebug = df.boolForKey (prefsEnableObjectAllocationDebugString)
     assert (gDebugObject == nil, "EBAllocationDebug already exists", file:__FILE__, line:__LINE__)
-    let df = NSNotificationCenter.defaultCenter ()
-    df.addObserver (self,
+    let nc = NSNotificationCenter.defaultCenter ()
+    nc.addObserver (self,
       selector:"applicationWillTerminateAction:",
       name:NSApplicationWillTerminateNotification,
       object:nil
@@ -165,6 +180,14 @@ private var gDebugObject : EBAllocationDebug? = nil
     let df = NSUserDefaults.standardUserDefaults ()
     mAllocationStatsWindowVisibleAtLaunch = df.boolForKey ("EBAllocationDebug:allocationStatsWindowVisible")
     mDisplayFilter = df.integerForKey ("EBAllocationDebug:allocationStatsDisplayFilter")
+  //--- Enable / disable object allocation debug
+    gEnableObjectAllocationDebug = df.boolForKey (prefsEnableObjectAllocationDebugString)
+    mEnableObjectAllocationDebug?.bind (
+      NSValueBinding,
+      toObject: NSUserDefaultsController.sharedUserDefaultsController (),
+      withKeyPath: "values." + prefsEnableObjectAllocationDebugString,
+      options: nil
+    )
   //--- will call windowDidBecomeKey: and windowWillClose:
     mAllocationStatsWindow?.delegate = self
   //--- Allocation stats window visibility at Launch
