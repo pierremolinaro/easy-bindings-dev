@@ -2287,6 +2287,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_string mAttribute_mModelTypeName_32_ ;
   public : GALGAS_arrayControllerModelKind mAttribute_mModelKind ;
   public : GALGAS_string mAttribute_mElementTypeName ;
+  public : GALGAS__32_stringlist mAttribute_mAttributeListForGeneration ;
 
 
 //--------------------------------- Accessors
@@ -2308,7 +2309,8 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                            const GALGAS_string & in_mModelTypeName,
                                                            const GALGAS_string & in_mModelTypeName_32_,
                                                            const GALGAS_arrayControllerModelKind & in_mModelKind,
-                                                           const GALGAS_string & in_mElementTypeName) ;
+                                                           const GALGAS_string & in_mElementTypeName,
+                                                           const GALGAS__32_stringlist & in_mAttributeListForGeneration) ;
 
 //-- Start of generic part --*
 
@@ -2329,7 +2331,8 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                                                   const class GALGAS_string & inOperand5,
                                                                                   const class GALGAS_string & inOperand6,
                                                                                   const class GALGAS_arrayControllerModelKind & inOperand7,
-                                                                                  const class GALGAS_string & inOperand8
+                                                                                  const class GALGAS_string & inOperand8,
+                                                                                  const class GALGAS__32_stringlist & inOperand9
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -2347,6 +2350,8 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListForGeneration getter_mArrayControllerBoundColumnListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerFilterListForGeneration getter_mArrayControllerFilterListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS__32_stringlist getter_mAttributeListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mControllerName (LOCATION_ARGS) const ;
 
@@ -5657,14 +5662,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoun
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              @arrayControllerFilterListForGeneration_2D_element struct                              *
+//                                  @arrayControllerAttributListAST_2D_element struct                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGAS_root {
+class GALGAS_arrayControllerAttributListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mFilterPropertyName ;
-  public : GALGAS_typeKind mAttribute_mFilterPropertyType ;
+  public : GALGAS_lstring mAttribute_mAttributeName ;
+  public : GALGAS_abstractDefaultValue mAttribute_mAttributeValue ;
 
 
 //--------------------------------- Accessors
@@ -5672,14 +5677,14 @@ class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGA
   public : VIRTUAL_IN_DEBUG void drop (void) ;
 
 //--------------------------------- Default constructor
-  public : GALGAS_arrayControllerFilterListForGeneration_2D_element (void) ;
+  public : GALGAS_arrayControllerAttributListAST_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerFilterListForGeneration_2D_element (void) ;
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerAttributListAST_2D_element (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_arrayControllerFilterListForGeneration_2D_element (const GALGAS_string & in_mFilterPropertyName,
-                                                                     const GALGAS_typeKind & in_mFilterPropertyType) ;
+  public : GALGAS_arrayControllerAttributListAST_2D_element (const GALGAS_lstring & in_mAttributeName,
+                                                             const GALGAS_abstractDefaultValue & in_mAttributeValue) ;
 
 //-- Start of generic part --*
 
@@ -5687,20 +5692,20 @@ class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGA
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_arrayControllerFilterListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_arrayControllerAttributListAST_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_arrayControllerFilterListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                                            const class GALGAS_typeKind & inOperand1
-                                                                                            COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_arrayControllerAttributListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                    const class GALGAS_abstractDefaultValue & inOperand1
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerFilterListForGeneration_2D_element & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerAttributListAST_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5708,19 +5713,19 @@ class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGA
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mFilterPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mAttributeName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mFilterPropertyType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mAttributeValue (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_arrayControllerFilterListForGeneration_2D_element class
+} ; // End of GALGAS_arrayControllerAttributListAST_2D_element class
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerFilterListForGeneration_2D_element ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerAttributListAST_2D_element ;
 
 #endif

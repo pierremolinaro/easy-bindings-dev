@@ -5138,55 +5138,75 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i27_ (GALGAS_secondaryPropertyList & ioArgument_ioSecondaryPropertyList,
                                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_arrayController) COMMA_SOURCE_FILE ("array-controller.galgas", 40)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_arrayController) COMMA_SOURCE_FILE ("array-controller.galgas", 48)) ;
   GALGAS_lstring var_controllerName = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 41)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("array-controller.galgas", 42)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 49)) ;
+  GALGAS_arrayControllerAttributListAST var_arrayControllerAttributListAST = GALGAS_arrayControllerAttributListAST::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 50)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("array-controller.galgas", 51)) ;
+  bool repeatFlag_0 = true ;
+  while (repeatFlag_0) {
+    GALGAS_lstring var_attributeName = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 53)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("array-controller.galgas", 54)) ;
+    GALGAS_abstractDefaultValue var_attributeValue ;
+    nt_explicit_5F_value_ (var_attributeValue, inCompiler) ;
+    var_arrayControllerAttributListAST.addAssign_operation (var_attributeName, var_attributeValue  COMMA_SOURCE_FILE ("array-controller.galgas", 56)) ;
+    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 58)) ;
+    } break ;
+    default:
+      repeatFlag_0 = false ;
+      break ;
+    }
+  }
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("array-controller.galgas", 60)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("array-controller.galgas", 61)) ;
   GALGAS_arrayControllerModel var_arrayControllerModel ;
-  switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
   case 1: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_root) COMMA_SOURCE_FILE ("array-controller.galgas", 45)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 46)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_root) COMMA_SOURCE_FILE ("array-controller.galgas", 64)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 65)) ;
     GALGAS_lstring var_relationshipName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 47)) ;
-    var_arrayControllerModel = GALGAS_arrayControllerModel::constructor_rootToManyRelationship (var_relationshipName  COMMA_SOURCE_FILE ("array-controller.galgas", 48)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 66)) ;
+    var_arrayControllerModel = GALGAS_arrayControllerModel::constructor_rootToManyRelationship (var_relationshipName  COMMA_SOURCE_FILE ("array-controller.galgas", 67)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("array-controller.galgas", 50)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 51)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("array-controller.galgas", 69)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 70)) ;
     GALGAS_lstring var_storedPropertyName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 52)) ;
-    var_arrayControllerModel = GALGAS_arrayControllerModel::constructor_selfCollection (var_storedPropertyName  COMMA_SOURCE_FILE ("array-controller.galgas", 53)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 71)) ;
+    var_arrayControllerModel = GALGAS_arrayControllerModel::constructor_selfCollection (var_storedPropertyName  COMMA_SOURCE_FILE ("array-controller.galgas", 72)) ;
   } break ;
   case 3: {
     GALGAS_lstring var_controllerName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 55)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 56)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 75)) ;
     GALGAS_lstring var_propertyName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 57)) ;
-    var_arrayControllerModel = GALGAS_arrayControllerModel::constructor_controllerArray (var_controllerName, var_propertyName  COMMA_SOURCE_FILE ("array-controller.galgas", 58)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 76)) ;
+    var_arrayControllerModel = GALGAS_arrayControllerModel::constructor_controllerArray (var_controllerName, var_propertyName  COMMA_SOURCE_FILE ("array-controller.galgas", 77)) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_arrayControllerBoundColumnListAST var_arrayControllerBoundColumnListAST = GALGAS_arrayControllerBoundColumnListAST::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 60)) ;
-  GALGAS_lstringlist var_filterProperties = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 61)) ;
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  GALGAS_arrayControllerBoundColumnListAST var_arrayControllerBoundColumnListAST = GALGAS_arrayControllerBoundColumnListAST::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 79)) ;
+  GALGAS_lstringlist var_filterProperties = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 80)) ;
+  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller.galgas", 64)) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller.galgas", 83)) ;
+    bool repeatFlag_1 = true ;
+    while (repeatFlag_1) {
       GALGAS_lstring var_filterProperty = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 66)) ;
-      var_filterProperties.addAssign_operation (var_filterProperty  COMMA_SOURCE_FILE ("array-controller.galgas", 67)) ;
-      switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 85)) ;
+      var_filterProperties.addAssign_operation (var_filterProperty  COMMA_SOURCE_FILE ("array-controller.galgas", 86)) ;
+      switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 69)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 88)) ;
       } break ;
       default:
-        repeatFlag_0 = false ;
+        repeatFlag_1 = false ;
         break ;
       }
     }
@@ -5194,69 +5214,85 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller.galgas", 73)) ;
+  bool repeatFlag_2 = true ;
+  while (repeatFlag_2) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller.galgas", 92)) ;
     GALGAS_lstring var_columnName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller.galgas", 93)) ;
     GALGAS_lstring var_columnOutletTypeName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 75)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 94)) ;
     GALGAS_lstring var_observablePropertyName = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 76)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 95)) ;
     GALGAS_bindingOptionList var_bindingOptions ;
     nt_binding_5F_option_5F_list_ (var_bindingOptions, inCompiler) ;
-    var_arrayControllerBoundColumnListAST.addAssign_operation (var_columnName, var_columnOutletTypeName, var_observablePropertyName, var_bindingOptions  COMMA_SOURCE_FILE ("array-controller.galgas", 78)) ;
-    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    var_arrayControllerBoundColumnListAST.addAssign_operation (var_columnName, var_columnOutletTypeName, var_observablePropertyName, var_bindingOptions  COMMA_SOURCE_FILE ("array-controller.galgas", 97)) ;
+    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
     case 2: {
     } break ;
     default:
-      repeatFlag_1 = false ;
+      repeatFlag_2 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller.galgas", 85)) ;
-  ioArgument_ioSecondaryPropertyList.addAssign_operation (GALGAS_arrayControllerDeclaration::constructor_new (var_controllerName, var_arrayControllerModel, var_filterProperties, var_arrayControllerBoundColumnListAST  COMMA_SOURCE_FILE ("array-controller.galgas", 86))  COMMA_SOURCE_FILE ("array-controller.galgas", 86)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller.galgas", 104)) ;
+  ioArgument_ioSecondaryPropertyList.addAssign_operation (GALGAS_arrayControllerDeclaration::constructor_new (var_controllerName, var_arrayControllerModel, var_filterProperties, var_arrayControllerBoundColumnListAST, var_arrayControllerAttributListAST  COMMA_SOURCE_FILE ("array-controller.galgas", 105))  COMMA_SOURCE_FILE ("array-controller.galgas", 105)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i27_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_arrayController) COMMA_SOURCE_FILE ("array-controller.galgas", 40)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 41)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("array-controller.galgas", 42)) ;
-  switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_arrayController) COMMA_SOURCE_FILE ("array-controller.galgas", 48)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 49)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("array-controller.galgas", 51)) ;
+  bool repeatFlag_0 = true ;
+  while (repeatFlag_0) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 53)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("array-controller.galgas", 54)) ;
+    nt_explicit_5F_value_parse (inCompiler) ;
+    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+    case 2: {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 58)) ;
+    } break ;
+    default:
+      repeatFlag_0 = false ;
+      break ;
+    }
+  }
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("array-controller.galgas", 60)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("array-controller.galgas", 61)) ;
+  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
   case 1: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_root) COMMA_SOURCE_FILE ("array-controller.galgas", 45)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 46)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 47)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_root) COMMA_SOURCE_FILE ("array-controller.galgas", 64)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 65)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 66)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("array-controller.galgas", 50)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 51)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 52)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("array-controller.galgas", 69)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 70)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 71)) ;
   } break ;
   case 3: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 55)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 56)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 57)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 75)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 76)) ;
   } break ;
   default:
     break ;
   }
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller.galgas", 64)) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 66)) ;
-      switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_filter) COMMA_SOURCE_FILE ("array-controller.galgas", 83)) ;
+    bool repeatFlag_1 = true ;
+    while (repeatFlag_1) {
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 85)) ;
+      switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 69)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 88)) ;
       } break ;
       default:
-        repeatFlag_0 = false ;
+        repeatFlag_1 = false ;
         break ;
       }
     }
@@ -5264,22 +5300,22 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller.galgas", 73)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 75)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 76)) ;
+  bool repeatFlag_2 = true ;
+  while (repeatFlag_2) {
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_column) COMMA_SOURCE_FILE ("array-controller.galgas", 92)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string) COMMA_SOURCE_FILE ("array-controller.galgas", 93)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 94)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("array-controller.galgas", 95)) ;
     nt_binding_5F_option_5F_list_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
     case 2: {
     } break ;
     default:
-      repeatFlag_1 = false ;
+      repeatFlag_2 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller.galgas", 85)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("array-controller.galgas", 104)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -5318,7 +5354,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i29_ (GALGAS_abstractDefaultValue & outArgument_outDefaultValue,
                                                                                          C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outDefaultValue.drop () ; // Release 'out' argument
-  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_yes) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62)) ;
     outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (true), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 63))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 63))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 63)) ;
@@ -5356,7 +5392,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
       GALGAS_abstractDefaultValue var_defaultValue ;
       nt_explicit_5F_value_ (var_defaultValue, inCompiler) ;
       var_defaultValueList.addAssign_operation (var_defaultValue  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 85)) ;
-      switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 87)) ;
       } break ;
@@ -5376,7 +5412,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i29_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_yes) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62)) ;
   } break ;
@@ -5400,7 +5436,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
       nt_explicit_5F_value_parse (inCompiler) ;
-      switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 87)) ;
       } break ;
@@ -5457,7 +5493,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i31
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
     case 1: {
       GALGAS_lstring var_outletType = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
@@ -5484,7 +5520,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i31
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
     } break ;
@@ -5503,7 +5539,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i31
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
@@ -5519,7 +5555,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i31
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
     } break ;
@@ -5540,7 +5576,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
   outArgument_outLineDescription = GALGAS_mainXibLineDescriptorList::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 62)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
     case 1: {
       GALGAS_lstring var_outletType = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
@@ -5556,7 +5592,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 74)) ;
     } break ;
@@ -5572,7 +5608,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i32_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_Identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("main-xib.galgas", 66)) ;
@@ -5583,7 +5619,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("main-xib.galgas", 74)) ;
     } break ;

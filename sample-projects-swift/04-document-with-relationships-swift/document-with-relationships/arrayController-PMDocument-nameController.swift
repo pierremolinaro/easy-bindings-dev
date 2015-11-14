@@ -144,8 +144,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
 
-  private let mAllowsEmptySelection = false
-  private let mAllowsMultipleSelection = false
+  private let allowsEmptySelection = false
+  private let allowsMultipleSelection = true
   
   //····················································································································
   //    init
@@ -153,8 +153,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
 
   override init () {
     mSelectedSet = SelectedSet_PMDocument_nameController (
-      allowsEmptySelection:mAllowsEmptySelection,
-      allowsMultipleSelection:mAllowsMultipleSelection,
+      allowsEmptySelection:allowsEmptySelection,
+      allowsMultipleSelection:allowsMultipleSelection,
       sortedArray:sortedArray
     )
     super.init ()
@@ -277,8 +277,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     if DEBUG_EVENT {
       print ("\(__FUNCTION__)")
     }
-    tableView.allowsEmptySelection = mAllowsEmptySelection
-    tableView.allowsMultipleSelection = mAllowsMultipleSelection
+    tableView.allowsEmptySelection = allowsEmptySelection
+    tableView.allowsMultipleSelection = allowsMultipleSelection
     tableView.setDataSource (sortedArray)
     tableView.setDelegate (self)
   //--- Set table view data source controller

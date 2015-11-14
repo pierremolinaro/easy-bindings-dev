@@ -11,6 +11,13 @@ list @arrayControllerBoundColumnListAST {
 
 #......................................................................................................................*
 
+list @arrayControllerAttributListAST {
+  @lstring mAttributeName
+  @abstractDefaultValue mAttributeValue
+}
+
+#......................................................................................................................*
+
 enum @arrayControllerModel {
   case rootToManyRelationship (@lstring rootRelationshipName)
   case selfCollection (@lstring collectionPropertyName)
@@ -24,6 +31,7 @@ class @arrayControllerDeclaration : @abstractSecondaryProperty {
   @arrayControllerModel mArrayControllerModel
   @lstringlist mFilterProperties
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
+  @arrayControllerAttributListAST mArrayControllerAttributListAST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -39,6 +47,17 @@ syntax extension easyBindings_syntax {
   {
     $arrayController$
     $identifier$ ?let @lstring controllerName
+    @arrayControllerAttributListAST arrayControllerAttributListAST = {}
+    ${$
+    repeat
+      $identifier$ ?let @lstring attributeName
+      $:$
+      <explicit_value> ?let @abstractDefaultValue attributeValue
+      arrayControllerAttributListAST += !attributeName !attributeValue
+    while
+      $,$
+    end
+    $}$
     $:$
     @arrayControllerModel arrayControllerModel
     select
@@ -88,6 +107,7 @@ syntax extension easyBindings_syntax {
       !arrayControllerModel
       !filterProperties
       !arrayControllerBoundColumnListAST
+      !arrayControllerAttributListAST
     }
   }
 
@@ -205,6 +225,28 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@stringset ioNeededOutletClasses
 {
+#------------------------------------------------------------ Check array controller attributes
+  let attributes = @stringset {!"allowsEmptySelection", !"allowsMultipleSelection"}
+  let allowedTypes = @typeKindList {!.boolType}
+  @stringset definedAttributes = {}
+  @2stringlist attributeListForGeneration = {}
+  for (name value) in mArrayControllerAttributListAST do
+    if not [attributes hasKey !name.string] then
+      error name : "unknown attribute"
+    elsif [definedAttributes hasKey !name.string] then
+      error name : "attribute multiply defined"
+    else
+      definedAttributes += !name.string
+    end
+    [value analyzeDefaultValueType !allowedTypes ?let valueAsString]
+    attributeListForGeneration += !name.string !valueAsString
+  end
+  for s in attributes do
+    if not [definedAttributes hasKey !s] then
+      error mControllerName : "attribute '" + s + "' not defined"
+    end
+  end
+#------
   @typeKind modelType
   @propertyKind kind
   @location errorLocation
@@ -221,11 +263,11 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?let @propertyMultiplicity multiplicity
       ?2*
     ]
-  #--- Check bound model is a collection
+  #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
       error errorLocation : "the bound property should be a collection"
     end
-  #--- Check bound model type is an entity
+  #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
     case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -246,11 +288,11 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?let @propertyMultiplicity multiplicity
       ?2*
     ]
-  #--- Check bound model is a collection
+  #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
       error errorLocation : "the bound property should be a collection"
     end
-  #--- Check bound model type is an entity
+  #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
     case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -273,7 +315,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
       error errorLocation : "'sortedArray' or 'selectedArray' are required here"
     end
-  #--- Check bound model type is an entity
+  #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
     case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -320,7 +362,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       !mBindingOptionList
     ioNeededOutletClasses += !mColumnOutletTypeName.string
   end
-#--- Check filter properties
+#------------------------------------------------------------ Check filter properties
   @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
   for (filterPropertyName) in mFilterProperties do
     [boundModelObservablePropertyMap searchKey
@@ -347,6 +389,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ![mArrayControllerModel modelTypeName2 !inRootEntityName !inObservableProperties]
     !modelKind
     ![modelType swiftTypeName]
+    !attributeListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -371,6 +414,7 @@ list @arrayControllerForGeneration {
   @string mModelTypeName2
   @arrayControllerModelKind mModelKind
   @string mElementTypeName
+  @2stringlist mAttributeListForGeneration
 }
 
 #......................................................................................................................*
@@ -542,6 +586,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
+    ?@2stringlist ATTRIBUTE_VALUES
 
   template filterFunction "array-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
@@ -578,6 +623,7 @@ proc generateArrayControllers
       !mArrayControllerBoundColumnListForGeneration
       !mElementTypeName
       !observedProperties
+      !mAttributeListForGeneration
     ]
     [@string generateFile
       !inOutputDirectory

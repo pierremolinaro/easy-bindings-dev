@@ -15,19 +15,19 @@ entity NameEntity {
 
 document PMDocument root MyRootEntity {
   outlet EBTableView mNamesTableView $tableValue nameController ;
-  arrayController nameController : root.mNames
+  arrayController nameController {allowsEmptySelection:no, allowsMultipleSelection:yes} : root.mNames
      column "name" EBTextField name { sendContinously : no}
      column "int"  EBIntField aValue { sendContinously : no}
   ;
 
   outlet EBTableView mOtherTableView $tableValue otherController ;
-  arrayController otherController : root.mNames filter aValue
+  arrayController otherController {allowsEmptySelection:no, allowsMultipleSelection:yes} : root.mNames filter aValue
      column "name" EBTextField name { sendContinously : no}
      column "int"  EBIntField aValue { sendContinously : no}
   ;
 
   outlet EBTableView mSelectionTableView $tableValue selController ;
-  arrayController selController : nameController.selectedArray
+  arrayController selController {allowsEmptySelection:no, allowsMultipleSelection:yes} : nameController.selectedArray
      column "name" EBTextField name { sendContinously : no}
      column "int"  EBIntField aValue { sendContinously : no}
   ;
