@@ -37,11 +37,11 @@
         <window title="Allocation Stats" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="EBAllocationStatsWindowLocation" animationBehavior="default" id="13" userLabel="AllocationStats Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="18" y="448" width="583" height="401"/>
+            <rect key="contentRect" x="18" y="448" width="583" height="405"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="532" height="360"/>
             <view key="contentView" id="14">
-                <rect key="frame" x="0.0" y="0.0" width="583" height="401"/>
+                <rect key="frame" x="0.0" y="0.0" width="583" height="405"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="15">
@@ -219,15 +219,22 @@
                         </connections>
                     </button>
                     <button id="Hp6-Mx-RXI">
-                        <rect key="frame" x="16" y="366" width="150" height="18"/>
+                        <rect key="frame" x="16" y="368" width="150" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Enable Allocation Debug" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="sPw-LR-CFC">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                     </button>
+                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="INL-Ly-eQ6">
+                        <rect key="frame" x="0.0" y="361.5" width="584" height="4"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
                     <textField verticalHuggingPriority="750" id="RTb-MN-Pgw">
-                        <rect key="frame" x="200" y="369" width="365" height="14"/>
+                        <rect key="frame" x="200" y="371" width="365" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="You should restart the application for this setting to take effect." id="ITZ-aH-HUM">
                             <font key="font" metaFont="smallSystemBold"/>
@@ -237,7 +244,7 @@
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="363.5" y="80.5"/>
+            <point key="canvasLocation" x="363.5" y="78.5"/>
         </window>
         <window title="Transient Event Log" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="TransientEventLog" animationBehavior="default" id="215" userLabel="Transient Event Log">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

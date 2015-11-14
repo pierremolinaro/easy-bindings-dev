@@ -181,13 +181,18 @@ private var gDebugObject : EBAllocationDebug? = nil
     mAllocationStatsWindowVisibleAtLaunch = df.boolForKey ("EBAllocationDebug:allocationStatsWindowVisible")
     mDisplayFilter = df.integerForKey ("EBAllocationDebug:allocationStatsDisplayFilter")
   //--- Enable / disable object allocation debug
-    gEnableObjectAllocationDebug = df.boolForKey (prefsEnableObjectAllocationDebugString)
     mEnableObjectAllocationDebug?.bind (
       NSValueBinding,
       toObject: NSUserDefaultsController.sharedUserDefaultsController (),
       withKeyPath: "values." + prefsEnableObjectAllocationDebugString,
       options: nil
     )
+    mDisplayFilterPopUpButton?.enabled = gEnableObjectAllocationDebug
+    mStatsTableView?.enabled = gEnableObjectAllocationDebug
+    mPerformSnapShotButton?.enabled = gEnableObjectAllocationDebug
+//  @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField?
+//  @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField?
+    
   //--- will call windowDidBecomeKey: and windowWillClose:
     mAllocationStatsWindow?.delegate = self
   //--- Allocation stats window visibility at Launch
