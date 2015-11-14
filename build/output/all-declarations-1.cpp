@@ -2839,7 +2839,8 @@ class cCollectionElement_arrayControllerForGeneration : public cCollectionElemen
                                                             const GALGAS_string & in_mModelTypeName,
                                                             const GALGAS_string & in_mModelTypeName_32_,
                                                             const GALGAS_arrayControllerModelKind & in_mModelKind,
-                                                            const GALGAS_string & in_mElementTypeName
+                                                            const GALGAS_string & in_mElementTypeName,
+                                                            const GALGAS__32_stringlist & in_mAttributeListForGeneration
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -2865,10 +2866,11 @@ cCollectionElement_arrayControllerForGeneration::cCollectionElement_arrayControl
                                                                                                   const GALGAS_string & in_mModelTypeName,
                                                                                                   const GALGAS_string & in_mModelTypeName_32_,
                                                                                                   const GALGAS_arrayControllerModelKind & in_mModelKind,
-                                                                                                  const GALGAS_string & in_mElementTypeName
+                                                                                                  const GALGAS_string & in_mElementTypeName,
+                                                                                                  const GALGAS__32_stringlist & in_mAttributeListForGeneration
                                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mOwnerName, in_mControllerName, in_mArrayControllerFilterListForGeneration, in_mModelString, in_mArrayControllerBoundColumnListForGeneration, in_mModelTypeName, in_mModelTypeName_32_, in_mModelKind, in_mElementTypeName) {
+mObject (in_mOwnerName, in_mControllerName, in_mArrayControllerFilterListForGeneration, in_mModelString, in_mArrayControllerBoundColumnListForGeneration, in_mModelTypeName, in_mModelTypeName_32_, in_mModelKind, in_mElementTypeName, in_mAttributeListForGeneration) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2881,7 +2883,7 @@ bool cCollectionElement_arrayControllerForGeneration::isValid (void) const {
 
 cCollectionElement * cCollectionElement_arrayControllerForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_arrayControllerForGeneration (mObject.mAttribute_mOwnerName, mObject.mAttribute_mControllerName, mObject.mAttribute_mArrayControllerFilterListForGeneration, mObject.mAttribute_mModelString, mObject.mAttribute_mArrayControllerBoundColumnListForGeneration, mObject.mAttribute_mModelTypeName, mObject.mAttribute_mModelTypeName_32_, mObject.mAttribute_mModelKind, mObject.mAttribute_mElementTypeName COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_arrayControllerForGeneration (mObject.mAttribute_mOwnerName, mObject.mAttribute_mControllerName, mObject.mAttribute_mArrayControllerFilterListForGeneration, mObject.mAttribute_mModelString, mObject.mAttribute_mArrayControllerBoundColumnListForGeneration, mObject.mAttribute_mModelTypeName, mObject.mAttribute_mModelTypeName_32_, mObject.mAttribute_mModelKind, mObject.mAttribute_mElementTypeName, mObject.mAttribute_mAttributeListForGeneration COMMA_HERE)) ;
   return result ;
 }
 
@@ -2924,6 +2926,10 @@ void cCollectionElement_arrayControllerForGeneration::description (C_String & io
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mElementTypeName" ":" ;
   mObject.mAttribute_mElementTypeName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mAttributeListForGeneration" ":" ;
+  mObject.mAttribute_mAttributeListForGeneration.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2967,13 +2973,14 @@ GALGAS_arrayControllerForGeneration GALGAS_arrayControllerForGeneration::constru
                                                                                                     const GALGAS_string & inOperand5,
                                                                                                     const GALGAS_string & inOperand6,
                                                                                                     const GALGAS_arrayControllerModelKind & inOperand7,
-                                                                                                    const GALGAS_string & inOperand8
+                                                                                                    const GALGAS_string & inOperand8,
+                                                                                                    const GALGAS__32_stringlist & inOperand9
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
     result.createNewEmptyList (THERE) ;
     capCollectionElement attributes ;
-    GALGAS_arrayControllerForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8 COMMA_THERE) ;
+    GALGAS_arrayControllerForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9 COMMA_THERE) ;
     result.addObject (attributes) ;
   }
   return result ;
@@ -2990,7 +2997,8 @@ void GALGAS_arrayControllerForGeneration::makeAttributesFromObjects (capCollecti
                                                                      const GALGAS_string & in_mModelTypeName,
                                                                      const GALGAS_string & in_mModelTypeName_32_,
                                                                      const GALGAS_arrayControllerModelKind & in_mModelKind,
-                                                                     const GALGAS_string & in_mElementTypeName
+                                                                     const GALGAS_string & in_mElementTypeName,
+                                                                     const GALGAS__32_stringlist & in_mAttributeListForGeneration
                                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement_arrayControllerForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_arrayControllerForGeneration (in_mOwnerName,
@@ -3001,7 +3009,8 @@ void GALGAS_arrayControllerForGeneration::makeAttributesFromObjects (capCollecti
                                                                   in_mModelTypeName,
                                                                   in_mModelTypeName_32_,
                                                                   in_mModelKind,
-                                                                  in_mElementTypeName COMMA_THERE)) ;
+                                                                  in_mElementTypeName,
+                                                                  in_mAttributeListForGeneration COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -3016,11 +3025,12 @@ void GALGAS_arrayControllerForGeneration::addAssign_operation (const GALGAS_stri
                                                                const GALGAS_string & inOperand5,
                                                                const GALGAS_string & inOperand6,
                                                                const GALGAS_arrayControllerModelKind & inOperand7,
-                                                               const GALGAS_string & inOperand8
+                                                               const GALGAS_string & inOperand8,
+                                                               const GALGAS__32_stringlist & inOperand9
                                                                COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_arrayControllerForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_arrayControllerForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -3039,12 +3049,13 @@ void GALGAS_arrayControllerForGeneration::modifier_insertAtIndex (const GALGAS_s
                                                                   const GALGAS_string inOperand6,
                                                                   const GALGAS_arrayControllerModelKind inOperand7,
                                                                   const GALGAS_string inOperand8,
+                                                                  const GALGAS__32_stringlist inOperand9,
                                                                   const GALGAS_uint inInsertionIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_arrayControllerForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_arrayControllerForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -3063,6 +3074,7 @@ void GALGAS_arrayControllerForGeneration::modifier_removeAtIndex (GALGAS_string 
                                                                   GALGAS_string & outOperand6,
                                                                   GALGAS_arrayControllerModelKind & outOperand7,
                                                                   GALGAS_string & outOperand8,
+                                                                  GALGAS__32_stringlist & outOperand9,
                                                                   const GALGAS_uint inRemoveIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
@@ -3080,6 +3092,7 @@ void GALGAS_arrayControllerForGeneration::modifier_removeAtIndex (GALGAS_string 
       outOperand6.drop () ;
       outOperand7.drop () ;
       outOperand8.drop () ;
+      outOperand9.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
       outOperand0 = p->mObject.mAttribute_mOwnerName ;
@@ -3091,6 +3104,7 @@ void GALGAS_arrayControllerForGeneration::modifier_removeAtIndex (GALGAS_string 
       outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
       outOperand7 = p->mObject.mAttribute_mModelKind ;
       outOperand8 = p->mObject.mAttribute_mElementTypeName ;
+      outOperand9 = p->mObject.mAttribute_mAttributeListForGeneration ;
     }
   }
 }
@@ -3106,6 +3120,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popFirst (GALGAS_string & out
                                                              GALGAS_string & outOperand6,
                                                              GALGAS_arrayControllerModelKind & outOperand7,
                                                              GALGAS_string & outOperand8,
+                                                             GALGAS__32_stringlist & outOperand9,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -3121,6 +3136,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popFirst (GALGAS_string & out
     outOperand6.drop () ;
     outOperand7.drop () ;
     outOperand8.drop () ;
+    outOperand9.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOwnerName ;
@@ -3132,6 +3148,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popFirst (GALGAS_string & out
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelKind ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
+    outOperand9 = p->mObject.mAttribute_mAttributeListForGeneration ;
   }
 }
 
@@ -3146,6 +3163,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popLast (GALGAS_string & outO
                                                             GALGAS_string & outOperand6,
                                                             GALGAS_arrayControllerModelKind & outOperand7,
                                                             GALGAS_string & outOperand8,
+                                                            GALGAS__32_stringlist & outOperand9,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -3161,6 +3179,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popLast (GALGAS_string & outO
     outOperand6.drop () ;
     outOperand7.drop () ;
     outOperand8.drop () ;
+    outOperand9.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOwnerName ;
@@ -3172,6 +3191,7 @@ void GALGAS_arrayControllerForGeneration::modifier_popLast (GALGAS_string & outO
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelKind ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
+    outOperand9 = p->mObject.mAttribute_mAttributeListForGeneration ;
   }
 }
 
@@ -3186,6 +3206,7 @@ void GALGAS_arrayControllerForGeneration::method_first (GALGAS_string & outOpera
                                                         GALGAS_string & outOperand6,
                                                         GALGAS_arrayControllerModelKind & outOperand7,
                                                         GALGAS_string & outOperand8,
+                                                        GALGAS__32_stringlist & outOperand9,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -3201,6 +3222,7 @@ void GALGAS_arrayControllerForGeneration::method_first (GALGAS_string & outOpera
     outOperand6.drop () ;
     outOperand7.drop () ;
     outOperand8.drop () ;
+    outOperand9.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOwnerName ;
@@ -3212,6 +3234,7 @@ void GALGAS_arrayControllerForGeneration::method_first (GALGAS_string & outOpera
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelKind ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
+    outOperand9 = p->mObject.mAttribute_mAttributeListForGeneration ;
   }
 }
 
@@ -3226,6 +3249,7 @@ void GALGAS_arrayControllerForGeneration::method_last (GALGAS_string & outOperan
                                                        GALGAS_string & outOperand6,
                                                        GALGAS_arrayControllerModelKind & outOperand7,
                                                        GALGAS_string & outOperand8,
+                                                       GALGAS__32_stringlist & outOperand9,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -3241,6 +3265,7 @@ void GALGAS_arrayControllerForGeneration::method_last (GALGAS_string & outOperan
     outOperand6.drop () ;
     outOperand7.drop () ;
     outOperand8.drop () ;
+    outOperand9.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOwnerName ;
@@ -3252,6 +3277,7 @@ void GALGAS_arrayControllerForGeneration::method_last (GALGAS_string & outOperan
     outOperand6 = p->mObject.mAttribute_mModelTypeName_32_ ;
     outOperand7 = p->mObject.mAttribute_mModelKind ;
     outOperand8 = p->mObject.mAttribute_mElementTypeName ;
+    outOperand9 = p->mObject.mAttribute_mAttributeListForGeneration ;
   }
 }
 
@@ -3442,6 +3468,21 @@ GALGAS_string GALGAS_arrayControllerForGeneration::getter_mElementTypeNameAtInde
   return result ;
 }
 
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS__32_stringlist GALGAS_arrayControllerForGeneration::getter_mAttributeListForGenerationAtIndex (const GALGAS_uint & inIndex,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerForGeneration * p = (cCollectionElement_arrayControllerForGeneration *) attributes.ptr () ;
+  GALGAS__32_stringlist result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
+    result = p->mObject.mAttribute_mAttributeListForGeneration ;
+  }
+  return result ;
+}
+
 
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3531,6 +3572,14 @@ GALGAS_string cEnumerator_arrayControllerForGeneration::current_mElementTypeName
   const cCollectionElement_arrayControllerForGeneration * p = (const cCollectionElement_arrayControllerForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
   return p->mObject.mAttribute_mElementTypeName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS__32_stringlist cEnumerator_arrayControllerForGeneration::current_mAttributeListForGeneration (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerForGeneration * p = (const cCollectionElement_arrayControllerForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerForGeneration) ;
+  return p->mObject.mAttribute_mAttributeListForGeneration ;
 }
 
 
@@ -13240,6 +13289,421 @@ GALGAS_arrayControllerBoundColumnListAST GALGAS_arrayControllerBoundColumnListAS
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                             Class for element of '@arrayControllerAttributListAST' list                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cCollectionElement_arrayControllerAttributListAST : public cCollectionElement {
+  public : GALGAS_arrayControllerAttributListAST_2D_element mObject ;
+
+//--- Constructor
+  public : cCollectionElement_arrayControllerAttributListAST (const GALGAS_lstring & in_mAttributeName,
+                                                              const GALGAS_abstractDefaultValue & in_mAttributeValue
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+ public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement_arrayControllerAttributListAST::cCollectionElement_arrayControllerAttributListAST (const GALGAS_lstring & in_mAttributeName,
+                                                                                                      const GALGAS_abstractDefaultValue & in_mAttributeValue
+                                                                                                      COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mAttributeName, in_mAttributeValue) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cCollectionElement_arrayControllerAttributListAST::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement * cCollectionElement_arrayControllerAttributListAST::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_arrayControllerAttributListAST (mObject.mAttribute_mAttributeName, mObject.mAttribute_mAttributeValue COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cCollectionElement_arrayControllerAttributListAST::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mAttributeName" ":" ;
+  mObject.mAttribute_mAttributeName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mAttributeValue" ":" ;
+  mObject.mAttribute_mAttributeValue.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cCollectionElement_arrayControllerAttributListAST::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_arrayControllerAttributListAST * operand = (cCollectionElement_arrayControllerAttributListAST *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_arrayControllerAttributListAST) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST::GALGAS_arrayControllerAttributListAST (void) :
+AC_GALGAS_list () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST::GALGAS_arrayControllerAttributListAST (cSharedList * inSharedListPtr) :
+AC_GALGAS_list (inSharedListPtr) {
+  if (NULL == inSharedListPtr) {
+    createNewEmptyList (HERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::constructor_emptyList (LOCATION_ARGS) {
+  GALGAS_arrayControllerAttributListAST result ;
+  result.createNewEmptyList (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::constructor_listWithValue (const GALGAS_lstring & inOperand0,
+                                                                                                        const GALGAS_abstractDefaultValue & inOperand1
+                                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_arrayControllerAttributListAST result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result.createNewEmptyList (THERE) ;
+    capCollectionElement attributes ;
+    GALGAS_arrayControllerAttributListAST::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    result.addObject (attributes) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                       const GALGAS_lstring & in_mAttributeName,
+                                                                       const GALGAS_abstractDefaultValue & in_mAttributeValue
+                                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement_arrayControllerAttributListAST * p = NULL ;
+  macroMyNew (p, cCollectionElement_arrayControllerAttributListAST (in_mAttributeName,
+                                                                    in_mAttributeValue COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::addAssign_operation (const GALGAS_lstring & inOperand0,
+                                                                 const GALGAS_abstractDefaultValue & inOperand1
+                                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_arrayControllerAttributListAST (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObject (attributes) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                                    const GALGAS_abstractDefaultValue inOperand1,
+                                                                    const GALGAS_uint inInsertionIndex,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_arrayControllerAttributListAST (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                                    GALGAS_abstractDefaultValue & outOperand1,
+                                                                    const GALGAS_uint inRemoveIndex,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+      outOperand1.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+      outOperand0 = p->mObject.mAttribute_mAttributeName ;
+      outOperand1 = p->mObject.mAttribute_mAttributeValue ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::modifier_popFirst (GALGAS_lstring & outOperand0,
+                                                               GALGAS_abstractDefaultValue & outOperand1,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+    outOperand0 = p->mObject.mAttribute_mAttributeName ;
+    outOperand1 = p->mObject.mAttribute_mAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::modifier_popLast (GALGAS_lstring & outOperand0,
+                                                              GALGAS_abstractDefaultValue & outOperand1,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+    outOperand0 = p->mObject.mAttribute_mAttributeName ;
+    outOperand1 = p->mObject.mAttribute_mAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::method_first (GALGAS_lstring & outOperand0,
+                                                          GALGAS_abstractDefaultValue & outOperand1,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+    outOperand0 = p->mObject.mAttribute_mAttributeName ;
+    outOperand1 = p->mObject.mAttribute_mAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::method_last (GALGAS_lstring & outOperand0,
+                                                         GALGAS_abstractDefaultValue & outOperand1,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+    outOperand0 = p->mObject.mAttribute_mAttributeName ;
+    outOperand1 = p->mObject.mAttribute_mAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::operator_concat (const GALGAS_arrayControllerAttributListAST & inOperand
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_arrayControllerAttributListAST result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::add_operation (const GALGAS_arrayControllerAttributListAST & inOperand,
+                                                                                            C_Compiler * /* inCompiler */
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_arrayControllerAttributListAST result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_arrayControllerAttributListAST result = GALGAS_arrayControllerAttributListAST::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_arrayControllerAttributListAST result = GALGAS_arrayControllerAttributListAST::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_arrayControllerAttributListAST::dotAssign_operation (const GALGAS_arrayControllerAttributListAST inOperand
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_arrayControllerAttributListAST::getter_mAttributeNameAtIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+  GALGAS_lstring result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+    result = p->mObject.mAttribute_mAttributeName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractDefaultValue GALGAS_arrayControllerAttributListAST::getter_mAttributeValueAtIndex (const GALGAS_uint & inIndex,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerAttributListAST * p = (cCollectionElement_arrayControllerAttributListAST *) attributes.ptr () ;
+  GALGAS_abstractDefaultValue result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+    result = p->mObject.mAttribute_mAttributeValue ;
+  }
+  return result ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_arrayControllerAttributListAST::cEnumerator_arrayControllerAttributListAST (const GALGAS_arrayControllerAttributListAST & inEnumeratedObject,
+                                                                                        const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST_2D_element cEnumerator_arrayControllerAttributListAST::current (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerAttributListAST * p = (const cCollectionElement_arrayControllerAttributListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+  return p->mObject ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cEnumerator_arrayControllerAttributListAST::current_mAttributeName (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerAttributListAST * p = (const cCollectionElement_arrayControllerAttributListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+  return p->mObject.mAttribute_mAttributeName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_abstractDefaultValue cEnumerator_arrayControllerAttributListAST::current_mAttributeValue (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerAttributListAST * p = (const cCollectionElement_arrayControllerAttributListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerAttributListAST) ;
+  return p->mObject.mAttribute_mAttributeValue ;
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @arrayControllerAttributListAST type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_arrayControllerAttributListAST ("arrayControllerAttributListAST",
+                                                       NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_arrayControllerAttributListAST::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_arrayControllerAttributListAST ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_arrayControllerAttributListAST::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_arrayControllerAttributListAST (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::extractObject (const GALGAS_object & inObject,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_arrayControllerAttributListAST result ;
+  const GALGAS_arrayControllerAttributListAST * p = (const GALGAS_arrayControllerAttributListAST *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_arrayControllerAttributListAST *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("arrayControllerAttributListAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_arrayControllerModelKind::GALGAS_arrayControllerModelKind (void) :
 mEnum (kNotBuilt) {
@@ -13358,421 +13822,6 @@ GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::extractObject (
       result = *p ;
     }else{
       inCompiler->castError ("arrayControllerModelKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Class for element of '@arrayControllerFilterListForGeneration' list                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cCollectionElement_arrayControllerFilterListForGeneration : public cCollectionElement {
-  public : GALGAS_arrayControllerFilterListForGeneration_2D_element mObject ;
-
-//--- Constructor
-  public : cCollectionElement_arrayControllerFilterListForGeneration (const GALGAS_string & in_mFilterPropertyName,
-                                                                      const GALGAS_typeKind & in_mFilterPropertyType
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cCollectionElement_arrayControllerFilterListForGeneration::cCollectionElement_arrayControllerFilterListForGeneration (const GALGAS_string & in_mFilterPropertyName,
-                                                                                                                      const GALGAS_typeKind & in_mFilterPropertyType
-                                                                                                                      COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mFilterPropertyName, in_mFilterPropertyType) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cCollectionElement_arrayControllerFilterListForGeneration::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cCollectionElement * cCollectionElement_arrayControllerFilterListForGeneration::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_arrayControllerFilterListForGeneration (mObject.mAttribute_mFilterPropertyName, mObject.mAttribute_mFilterPropertyType COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cCollectionElement_arrayControllerFilterListForGeneration::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mFilterPropertyName" ":" ;
-  mObject.mAttribute_mFilterPropertyName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mFilterPropertyType" ":" ;
-  mObject.mAttribute_mFilterPropertyType.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cCollectionElement_arrayControllerFilterListForGeneration::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_arrayControllerFilterListForGeneration * operand = (cCollectionElement_arrayControllerFilterListForGeneration *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_arrayControllerFilterListForGeneration) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration::GALGAS_arrayControllerFilterListForGeneration (void) :
-AC_GALGAS_list () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration::GALGAS_arrayControllerFilterListForGeneration (cSharedList * inSharedListPtr) :
-AC_GALGAS_list (inSharedListPtr) {
-  if (NULL == inSharedListPtr) {
-    createNewEmptyList (HERE) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::constructor_emptyList (LOCATION_ARGS) {
-  GALGAS_arrayControllerFilterListForGeneration result ;
-  result.createNewEmptyList (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                        const GALGAS_typeKind & inOperand1
-                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerFilterListForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result.createNewEmptyList (THERE) ;
-    capCollectionElement attributes ;
-    GALGAS_arrayControllerFilterListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
-    result.addObject (attributes) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                               const GALGAS_string & in_mFilterPropertyName,
-                                                                               const GALGAS_typeKind & in_mFilterPropertyType
-                                                                               COMMA_LOCATION_ARGS) {
-  cCollectionElement_arrayControllerFilterListForGeneration * p = NULL ;
-  macroMyNew (p, cCollectionElement_arrayControllerFilterListForGeneration (in_mFilterPropertyName,
-                                                                            in_mFilterPropertyType COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                         const GALGAS_typeKind & inOperand1
-                                                                         COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_arrayControllerFilterListForGeneration (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObject (attributes) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                                            const GALGAS_typeKind inOperand1,
-                                                                            const GALGAS_uint inInsertionIndex,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_arrayControllerFilterListForGeneration (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                                            GALGAS_typeKind & outOperand1,
-                                                                            const GALGAS_uint inRemoveIndex,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-      outOperand0 = p->mObject.mAttribute_mFilterPropertyName ;
-      outOperand1 = p->mObject.mAttribute_mFilterPropertyType ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                                       GALGAS_typeKind & outOperand1,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mAttribute_mFilterPropertyName ;
-    outOperand1 = p->mObject.mAttribute_mFilterPropertyType ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                                      GALGAS_typeKind & outOperand1,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mAttribute_mFilterPropertyName ;
-    outOperand1 = p->mObject.mAttribute_mFilterPropertyType ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::method_first (GALGAS_string & outOperand0,
-                                                                  GALGAS_typeKind & outOperand1,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mAttribute_mFilterPropertyName ;
-    outOperand1 = p->mObject.mAttribute_mFilterPropertyType ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::method_last (GALGAS_string & outOperand0,
-                                                                 GALGAS_typeKind & outOperand1,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mAttribute_mFilterPropertyName ;
-    outOperand1 = p->mObject.mAttribute_mFilterPropertyType ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::operator_concat (const GALGAS_arrayControllerFilterListForGeneration & inOperand
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_arrayControllerFilterListForGeneration result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::add_operation (const GALGAS_arrayControllerFilterListForGeneration & inOperand,
-                                                                                                            C_Compiler * /* inCompiler */
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_arrayControllerFilterListForGeneration result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) const {
-  GALGAS_arrayControllerFilterListForGeneration result = GALGAS_arrayControllerFilterListForGeneration::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) const {
-  GALGAS_arrayControllerFilterListForGeneration result = GALGAS_arrayControllerFilterListForGeneration::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_arrayControllerFilterListForGeneration::dotAssign_operation (const GALGAS_arrayControllerFilterListForGeneration inOperand
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_arrayControllerFilterListForGeneration::getter_mFilterPropertyNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-    result = p->mObject.mAttribute_mFilterPropertyName ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind GALGAS_arrayControllerFilterListForGeneration::getter_mFilterPropertyTypeAtIndex (const GALGAS_uint & inIndex,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_arrayControllerFilterListForGeneration * p = (cCollectionElement_arrayControllerFilterListForGeneration *) attributes.ptr () ;
-  GALGAS_typeKind result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-    result = p->mObject.mAttribute_mFilterPropertyType ;
-  }
-  return result ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_arrayControllerFilterListForGeneration::cEnumerator_arrayControllerFilterListForGeneration (const GALGAS_arrayControllerFilterListForGeneration & inEnumeratedObject,
-                                                                                                        const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration_2D_element cEnumerator_arrayControllerFilterListForGeneration::current (LOCATION_ARGS) const {
-  const cCollectionElement_arrayControllerFilterListForGeneration * p = (const cCollectionElement_arrayControllerFilterListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-  return p->mObject ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string cEnumerator_arrayControllerFilterListForGeneration::current_mFilterPropertyName (LOCATION_ARGS) const {
-  const cCollectionElement_arrayControllerFilterListForGeneration * p = (const cCollectionElement_arrayControllerFilterListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-  return p->mObject.mAttribute_mFilterPropertyName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind cEnumerator_arrayControllerFilterListForGeneration::current_mFilterPropertyType (LOCATION_ARGS) const {
-  const cCollectionElement_arrayControllerFilterListForGeneration * p = (const cCollectionElement_arrayControllerFilterListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_arrayControllerFilterListForGeneration) ;
-  return p->mObject.mAttribute_mFilterPropertyType ;
-}
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    @arrayControllerFilterListForGeneration type                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_arrayControllerFilterListForGeneration ("arrayControllerFilterListForGeneration",
-                                                               NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_arrayControllerFilterListForGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerFilterListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_arrayControllerFilterListForGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_arrayControllerFilterListForGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerFilterListForGeneration::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerFilterListForGeneration result ;
-  const GALGAS_arrayControllerFilterListForGeneration * p = (const GALGAS_arrayControllerFilterListForGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerFilterListForGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerFilterListForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

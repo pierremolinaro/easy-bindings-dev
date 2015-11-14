@@ -6828,6 +6828,9 @@ typeComparisonResult cPtr_arrayControllerDeclaration::dynamicObjectCompare (cons
   if (kOperandEqual == result) {
     result = mAttribute_mArrayControllerBoundColumnListAST.objectCompare (p->mAttribute_mArrayControllerBoundColumnListAST) ;
   }
+  if (kOperandEqual == result) {
+    result = mAttribute_mArrayControllerAttributListAST.objectCompare (p->mAttribute_mArrayControllerAttributListAST) ;
+  }
   return result ;
 }
 
@@ -6868,11 +6871,12 @@ GALGAS_abstractSecondaryProperty (inSourcePtr) {
 GALGAS_arrayControllerDeclaration GALGAS_arrayControllerDeclaration::constructor_new (const GALGAS_lstring & inAttribute_mControllerName,
                                                                                       const GALGAS_arrayControllerModel & inAttribute_mArrayControllerModel,
                                                                                       const GALGAS_lstringlist & inAttribute_mFilterProperties,
-                                                                                      const GALGAS_arrayControllerBoundColumnListAST & inAttribute_mArrayControllerBoundColumnListAST
+                                                                                      const GALGAS_arrayControllerBoundColumnListAST & inAttribute_mArrayControllerBoundColumnListAST,
+                                                                                      const GALGAS_arrayControllerAttributListAST & inAttribute_mArrayControllerAttributListAST
                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerDeclaration result ;
-  if (inAttribute_mControllerName.isValid () && inAttribute_mArrayControllerModel.isValid () && inAttribute_mFilterProperties.isValid () && inAttribute_mArrayControllerBoundColumnListAST.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_arrayControllerDeclaration (inAttribute_mControllerName, inAttribute_mArrayControllerModel, inAttribute_mFilterProperties, inAttribute_mArrayControllerBoundColumnListAST COMMA_THERE)) ;
+  if (inAttribute_mControllerName.isValid () && inAttribute_mArrayControllerModel.isValid () && inAttribute_mFilterProperties.isValid () && inAttribute_mArrayControllerBoundColumnListAST.isValid () && inAttribute_mArrayControllerAttributListAST.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_arrayControllerDeclaration (inAttribute_mControllerName, inAttribute_mArrayControllerModel, inAttribute_mFilterProperties, inAttribute_mArrayControllerBoundColumnListAST, inAttribute_mArrayControllerAttributListAST COMMA_THERE)) ;
   }
   return result ;
 }
@@ -6950,19 +6954,39 @@ GALGAS_arrayControllerBoundColumnListAST cPtr_arrayControllerDeclaration::getter
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerDeclaration::getter_mArrayControllerAttributListAST (UNUSED_LOCATION_ARGS) const {
+  GALGAS_arrayControllerAttributListAST result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_arrayControllerDeclaration * p = (const cPtr_arrayControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_arrayControllerDeclaration) ;
+    result = p->mAttribute_mArrayControllerAttributListAST ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_arrayControllerAttributListAST cPtr_arrayControllerDeclaration::getter_mArrayControllerAttributListAST (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mArrayControllerAttributListAST ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 //                                 Pointer class for @arrayControllerDeclaration class                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_arrayControllerDeclaration::cPtr_arrayControllerDeclaration (const GALGAS_lstring & in_mControllerName,
                                                                   const GALGAS_arrayControllerModel & in_mArrayControllerModel,
                                                                   const GALGAS_lstringlist & in_mFilterProperties,
-                                                                  const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST
+                                                                  const GALGAS_arrayControllerBoundColumnListAST & in_mArrayControllerBoundColumnListAST,
+                                                                  const GALGAS_arrayControllerAttributListAST & in_mArrayControllerAttributListAST
                                                                   COMMA_LOCATION_ARGS) :
 cPtr_abstractSecondaryProperty (THERE),
 mAttribute_mControllerName (in_mControllerName),
 mAttribute_mArrayControllerModel (in_mArrayControllerModel),
 mAttribute_mFilterProperties (in_mFilterProperties),
-mAttribute_mArrayControllerBoundColumnListAST (in_mArrayControllerBoundColumnListAST) {
+mAttribute_mArrayControllerBoundColumnListAST (in_mArrayControllerBoundColumnListAST),
+mAttribute_mArrayControllerAttributListAST (in_mArrayControllerAttributListAST) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6981,6 +7005,8 @@ void cPtr_arrayControllerDeclaration::description (C_String & ioString,
   mAttribute_mFilterProperties.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mArrayControllerBoundColumnListAST.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mArrayControllerAttributListAST.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -6988,7 +7014,7 @@ void cPtr_arrayControllerDeclaration::description (C_String & ioString,
 
 acPtr_class * cPtr_arrayControllerDeclaration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_arrayControllerDeclaration (mAttribute_mControllerName, mAttribute_mArrayControllerModel, mAttribute_mFilterProperties, mAttribute_mArrayControllerBoundColumnListAST COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_arrayControllerDeclaration (mAttribute_mControllerName, mAttribute_mArrayControllerModel, mAttribute_mFilterProperties, mAttribute_mArrayControllerBoundColumnListAST, mAttribute_mArrayControllerAttributListAST COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -10030,33 +10056,33 @@ GALGAS_string extensionGetter_transformerForTableViewAction (const GALGAS_typeKi
     break ;
   case GALGAS_typeKind::kEnum_stringType:
     {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 459)) ;
+      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 503)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_integerType:
     {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 460)) ;
+      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".integerValue"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 504)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_imageType:
     {
-      result_outResult = GALGAS_string ("<<TODO @typeKind transformerForTableViewAction ").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 462)).add_operation (GALGAS_string (" >>"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 462)) ;
+      result_outResult = GALGAS_string ("<<TODO @typeKind transformerForTableViewAction ").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 506)).add_operation (GALGAS_string (" >>"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 506)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_boolType:
     {
-      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 463)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 463)) ;
+      result_outResult = GALGAS_string ("NSNumber (bool:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 507)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 507)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_doubleType:
     {
-      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 464)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 464)) ;
+      result_outResult = GALGAS_string ("NSNumber (double:").add_operation (constinArgument_inSenderOutletName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 508)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 508)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_colorType:
   case GALGAS_typeKind::kEnum_fontType:
     {
-      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 465)) ;
+      result_outResult = constinArgument_inSenderOutletName.add_operation (GALGAS_string (".stringValue"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 509)) ;
     }
     break ;
   case GALGAS_typeKind::kEnum_dateType:
@@ -10171,38 +10197,38 @@ GALGAS_string extensionGetter_filterCode (const GALGAS_arrayControllerFilterList
   GALGAS_arrayControllerFilterListForGeneration var_filterProperties = temp_0 ;
   GALGAS_string var_firstFilterProperty ;
   {
-  GALGAS_typeKind joker_19189 ; // Joker input parameter
-  var_filterProperties.modifier_popFirst (var_firstFilterProperty, joker_19189, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)) ;
+  GALGAS_typeKind joker_21172 ; // Joker input parameter
+  var_filterProperties.modifier_popFirst (var_firstFilterProperty, joker_21172, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 543)) ;
   }
   GALGAS_string var_indent = GALGAS_string ("            ") ;
-  result_outResult = var_indent.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 501)).add_operation (var_firstFilterProperty, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 501)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 501)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 502))  COMMA_SOURCE_FILE ("array-controller.galgas", 502)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 503))  COMMA_SOURCE_FILE ("array-controller.galgas", 503)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 504))  COMMA_SOURCE_FILE ("array-controller.galgas", 504)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505))  COMMA_SOURCE_FILE ("array-controller.galgas", 505)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .singleSelection (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 506))  COMMA_SOURCE_FILE ("array-controller.galgas", 506)) ;
+  result_outResult = var_indent.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 545)).add_operation (var_firstFilterProperty, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 545)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 545)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 546))  COMMA_SOURCE_FILE ("array-controller.galgas", 546)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 547))  COMMA_SOURCE_FILE ("array-controller.galgas", 547)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 548))  COMMA_SOURCE_FILE ("array-controller.galgas", 548)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 549))  COMMA_SOURCE_FILE ("array-controller.galgas", 549)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .singleSelection (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 550))  COMMA_SOURCE_FILE ("array-controller.galgas", 550)) ;
   GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 2U) ;
   GALGAS_string var_args = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd = var_indent.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 509)) ;
-  cEnumerator_arrayControllerFilterListForGeneration enumerator_19663 (var_filterProperties, kEnumeration_up) ;
-  while (enumerator_19663.hasCurrentObject ()) {
-    var_indent.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("array-controller.galgas", 511)) ;
-    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 512)).add_operation (enumerator_19663.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 512)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 512))  COMMA_SOURCE_FILE ("array-controller.galgas", 512)) ;
-    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 513))  COMMA_SOURCE_FILE ("array-controller.galgas", 513)) ;
-    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 514))  COMMA_SOURCE_FILE ("array-controller.galgas", 514)) ;
-    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 515))  COMMA_SOURCE_FILE ("array-controller.galgas", 515)) ;
-    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 516))  COMMA_SOURCE_FILE ("array-controller.galgas", 516)) ;
-    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .singleSelection (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 517)).add_operation (var_idx.getter_string (SOURCE_FILE ("array-controller.galgas", 517)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 517)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 517))  COMMA_SOURCE_FILE ("array-controller.galgas", 517)) ;
-    var_blockEnd = var_indent.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 518)).add_operation (var_blockEnd, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 518)) ;
-    var_args.dotAssign_operation (GALGAS_string (", v").add_operation (var_idx.getter_string (SOURCE_FILE ("array-controller.galgas", 519)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 519))  COMMA_SOURCE_FILE ("array-controller.galgas", 519)) ;
-    var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 520)) ;
-    enumerator_19663.gotoNextObject () ;
+  GALGAS_string var_blockEnd = var_indent.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 553)) ;
+  cEnumerator_arrayControllerFilterListForGeneration enumerator_21646 (var_filterProperties, kEnumeration_up) ;
+  while (enumerator_21646.hasCurrentObject ()) {
+    var_indent.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("array-controller.galgas", 555)) ;
+    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556)).add_operation (enumerator_21646.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556))  COMMA_SOURCE_FILE ("array-controller.galgas", 556)) ;
+    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 557))  COMMA_SOURCE_FILE ("array-controller.galgas", 557)) ;
+    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 558))  COMMA_SOURCE_FILE ("array-controller.galgas", 558)) ;
+    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 559))  COMMA_SOURCE_FILE ("array-controller.galgas", 559)) ;
+    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 560))  COMMA_SOURCE_FILE ("array-controller.galgas", 560)) ;
+    result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("case .singleSelection (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 561)).add_operation (var_idx.getter_string (SOURCE_FILE ("array-controller.galgas", 561)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 561)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 561))  COMMA_SOURCE_FILE ("array-controller.galgas", 561)) ;
+    var_blockEnd = var_indent.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 562)).add_operation (var_blockEnd, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 562)) ;
+    var_args.dotAssign_operation (GALGAS_string (", v").add_operation (var_idx.getter_string (SOURCE_FILE ("array-controller.galgas", 563)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 563))  COMMA_SOURCE_FILE ("array-controller.galgas", 563)) ;
+    var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 564)) ;
+    enumerator_21646.gotoNextObject () ;
   }
-  var_indent.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("array-controller.galgas", 522)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 523)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 523)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 523)).add_operation (var_args, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 523)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 523))  COMMA_SOURCE_FILE ("array-controller.galgas", 523)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  array.addObject (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 524))  COMMA_SOURCE_FILE ("array-controller.galgas", 524)) ;
-  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 525))  COMMA_SOURCE_FILE ("array-controller.galgas", 525)) ;
-  result_outResult.dotAssign_operation (var_blockEnd  COMMA_SOURCE_FILE ("array-controller.galgas", 526)) ;
+  var_indent.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("array-controller.galgas", 566)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 567)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 567)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 567)).add_operation (var_args, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 567)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 567))  COMMA_SOURCE_FILE ("array-controller.galgas", 567)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("  array.addObject (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 568))  COMMA_SOURCE_FILE ("array-controller.galgas", 568)) ;
+  result_outResult.dotAssign_operation (var_indent.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 569))  COMMA_SOURCE_FILE ("array-controller.galgas", 569)) ;
+  result_outResult.dotAssign_operation (var_blockEnd  COMMA_SOURCE_FILE ("array-controller.galgas", 570)) ;
 //---
   return result_outResult ;
 }
