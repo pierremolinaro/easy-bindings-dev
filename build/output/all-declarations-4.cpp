@@ -3129,13 +3129,18 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey (\"EBAllocationDebug:allocationStatsWindowVisible\")\n"
   "    mDisplayFilter = df.integerForKey (\"EBAllocationDebug:allocationStatsDisplayFilter\")\n"
   "  //--- Enable / disable object allocation debug\n"
-  "    gEnableObjectAllocationDebug = df.boolForKey (prefsEnableObjectAllocationDebugString)\n"
   "    mEnableObjectAllocationDebug\?.bind (\n"
   "      NSValueBinding,\n"
   "      toObject: NSUserDefaultsController.sharedUserDefaultsController (),\n"
   "      withKeyPath: \"values.\" + prefsEnableObjectAllocationDebugString,\n"
   "      options: nil\n"
   "    )\n"
+  "    mDisplayFilterPopUpButton\?.enabled = gEnableObjectAllocationDebug\n"
+  "    mStatsTableView\?.enabled = gEnableObjectAllocationDebug\n"
+  "    mPerformSnapShotButton\?.enabled = gEnableObjectAllocationDebug\n"
+  "//  @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField\?\n"
+  "//  @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField\?\n"
+  "    \n"
   "  //--- will call windowDidBecomeKey: and windowWillClose:\n"
   "    mAllocationStatsWindow\?.delegate = self\n"
   "  //--- Allocation stats window visibility at Launch\n"
@@ -3357,7 +3362,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "EBAllocationDebug.swift",
   "swift",
   true, // Text file
-  17379, // Text length
+  17633, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
@@ -3405,11 +3410,11 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "s Window\">\n"
   "            <windowStyleMask key=\"styleMask\" titled=\"YES\" closable=\"YES\" miniaturizable=\"YES\"/>\n"
   "            <windowPositionMask key=\"initialPositionMask\" leftStrut=\"YES\" rightStrut=\"YES\" topStrut=\"YES\" bottomStrut=\"YES\"/>\n"
-  "            <rect key=\"contentRect\" x=\"18\" y=\"448\" width=\"583\" height=\"401\"/>\n"
+  "            <rect key=\"contentRect\" x=\"18\" y=\"448\" width=\"583\" height=\"405\"/>\n"
   "            <rect key=\"screenRect\" x=\"0.0\" y=\"0.0\" width=\"2560\" height=\"1418\"/>\n"
   "            <value key=\"minSize\" type=\"size\" width=\"532\" height=\"360\"/>\n"
   "            <view key=\"contentView\" id=\"14\">\n"
-  "                <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"583\" height=\"401\"/>\n"
+  "                <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"583\" height=\"405\"/>\n"
   "                <autoresizingMask key=\"autoresizingMask\"/>\n"
   "                <subviews>\n"
   "                    <scrollView borderType=\"none\" horizontalLineScroll=\"16\" horizontalPageScroll=\"10\" verticalLineScroll=\"16\" verticalPageScroll=\"10\" "
@@ -3423,7 +3428,7 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "                                <tableView focusRingType=\"none\" verticalHuggingPriority=\"750\" allowsExpansionToolTips=\"YES\" columnAutoresizingStyle=\"f"
   "irstColumnOnly\" alternatingRowBackgroundColors=\"YES\" multipleSelection=\"NO\" emptySelection=\"NO\" autosaveColumns=\"NO\" typeSelect=\"NO\" rowHeight=\"14\" hea"
   "derView=\"29\" id=\"32\">\n"
-  "                                    <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"572\" height=\"262\"/>\n"
+  "                                    <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"572\" height=\"16\"/>\n"
   "                                    <autoresizingMask key=\"autoresizingMask\"/>\n"
   "                                    <size key=\"intercellSpacing\" width=\"3\" height=\"2\"/>\n"
   "                                    <color key=\"backgroundColor\" name=\"controlBackgroundColor\" catalog=\"System\" colorSpace=\"catalog\"/>\n"
@@ -3610,7 +3615,7 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "                        </connections>\n"
   "                    </button>\n"
   "                    <button id=\"Hp6-Mx-RXI\">\n"
-  "                        <rect key=\"frame\" x=\"16\" y=\"366\" width=\"150\" height=\"18\"/>\n"
+  "                        <rect key=\"frame\" x=\"16\" y=\"368\" width=\"150\" height=\"18\"/>\n"
   "                        <autoresizingMask key=\"autoresizingMask\" flexibleMaxX=\"YES\" flexibleMinY=\"YES\"/>\n"
   "                        <buttonCell key=\"cell\" type=\"check\" title=\"Enable Allocation Debug\" bezelStyle=\"regularSquare\" imagePosition=\"left\" alignment="
   "\"left\" controlSize=\"small\" state=\"on\" inset=\"2\" id=\"sPw-LR-CFC\">\n"
@@ -3618,8 +3623,15 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "                            <font key=\"font\" metaFont=\"smallSystem\"/>\n"
   "                        </buttonCell>\n"
   "                    </button>\n"
+  "                    <box verticalHuggingPriority=\"750\" title=\"Box\" boxType=\"separator\" titlePosition=\"noTitle\" id=\"INL-Ly-eQ6\">\n"
+  "                        <rect key=\"frame\" x=\"0.0\" y=\"361.5\" width=\"584\" height=\"4\"/>\n"
+  "                        <autoresizingMask key=\"autoresizingMask\" widthSizable=\"YES\" flexibleMinY=\"YES\"/>\n"
+  "                        <color key=\"borderColor\" white=\"0.0\" alpha=\"0.41999999999999998\" colorSpace=\"calibratedWhite\"/>\n"
+  "                        <color key=\"fillColor\" white=\"0.0\" alpha=\"0.0\" colorSpace=\"calibratedWhite\"/>\n"
+  "                        <font key=\"titleFont\" metaFont=\"system\"/>\n"
+  "                    </box>\n"
   "                    <textField verticalHuggingPriority=\"750\" id=\"RTb-MN-Pgw\">\n"
-  "                        <rect key=\"frame\" x=\"200\" y=\"369\" width=\"365\" height=\"14\"/>\n"
+  "                        <rect key=\"frame\" x=\"200\" y=\"371\" width=\"365\" height=\"14\"/>\n"
   "                        <autoresizingMask key=\"autoresizingMask\" flexibleMaxX=\"YES\" flexibleMinY=\"YES\"/>\n"
   "                        <textFieldCell key=\"cell\" controlSize=\"small\" sendsActionOnEndEditing=\"YES\" alignment=\"left\" title=\"You should restart the app"
   "lication for this setting to take effect.\" id=\"ITZ-aH-HUM\">\n"
@@ -3630,7 +3642,7 @@ const char * gWrapperFileContent_1_swift_5F_sources = "<\?xml version=\"1.0\" en
   "                    </textField>\n"
   "                </subviews>\n"
   "            </view>\n"
-  "            <point key=\"canvasLocation\" x=\"363.5\" y=\"80.5\"/>\n"
+  "            <point key=\"canvasLocation\" x=\"363.5\" y=\"78.5\"/>\n"
   "        </window>\n"
   "        <window title=\"Transient Event Log\" allowsToolTipsWhenApplicationIsInactive=\"NO\" autorecalculatesKeyViewLoop=\"NO\" oneShot=\"NO\" releasedWhenClo"
   "sed=\"NO\" showsToolbarButton=\"NO\" visibleAtLaunch=\"NO\" frameAutosaveName=\"TransientEventLog\" animationBehavior=\"default\" id=\"215\" userLabel=\"Transient E"
@@ -3697,7 +3709,7 @@ const cRegularFileWrapper gWrapperFile_1_swift_5F_sources (
   "EBAllocationDebug.xib",
   "xib",
   true, // Text file
-  26378, // Text length
+  27010, // Text length
   gWrapperFileContent_1_swift_5F_sources
 ) ;
 
