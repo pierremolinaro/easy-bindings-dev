@@ -272,21 +272,11 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
     tableView.setDataSource (sortedArray)
     tableView.setDelegate (self)
   //--- Set table view data source controller
-    let dataSourceTableViewController = DataSource_EBTableView_controller (
-      delegate:self,
-      tableView:tableView,
-      file:file,
-      line:line
-    )
+    let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
     sortedArray.addEBObserver (dataSourceTableViewController)
     mTableViewDataSourceControllerArray.append (dataSourceTableViewController)
   //--- Set table view selection controller
-    let selectionTableViewController = Selection_EBTableView_controller (
-      delegate:self,
-      tableView:tableView,
-      file:file,
-      line:line
-    )
+    let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)
     mSelectedSet.addEBObserver (selectionTableViewController)
     mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column

@@ -1414,46 +1414,36 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    tableView.setDataSource (sortedArray)\n"
     "    tableView.setDelegate (self)\n"
     "  //--- Set table view data source controller\n"
-    "    let dataSourceTableViewController = DataSource_EBTableView_controller (\n"
-    "      delegate:self,\n"
-    "      tableView:tableView,\n"
-    "      file:file,\n"
-    "      line:line\n"
-    "    )\n"
+    "    let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)\n"
     "    sortedArray.addEBObserver (dataSourceTableViewController)\n"
     "    mTableViewDataSourceControllerArray.append (dataSourceTableViewController)\n"
     "  //--- Set table view selection controller\n"
-    "    let selectionTableViewController = Selection_EBTableView_controller (\n"
-    "      delegate:self,\n"
-    "      tableView:tableView,\n"
-    "      file:file,\n"
-    "      line:line\n"
-    "    )\n"
+    "    let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)\n"
     "    mSelectedSet.addEBObserver (selectionTableViewController)\n"
     "    mTableViewSelectionControllerArray.append (selectionTableViewController)\n" ;
-  GALGAS_uint index_12329_ (0) ;
+  GALGAS_uint index_12225_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_12329 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_12329.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_12225 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_12225.hasCurrentObject ()) {
       result << "  //--- Check '" ;
-      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "    if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnName (HERE).stringValue () ;
       result << "\", owner:self) {\n"
         "      if let unwrappedTableCellView = anyObject as\? " ;
-      result << enumerator_12329.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "        unwrappedTableCellView.checkOutlet (\"" ;
-      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnName (HERE).stringValue () ;
       result << "\", file:file, line:line)\n"
         "      }else{\n"
         "        presentErrorWindow (file,\n"
         "          line: line,\n"
         "          errorMessage:\"\\\"" ;
-      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column cell view is not an instance of " ;
-      result << enumerator_12329.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell\"\n"
         "        )\n"
         "      }\n"
@@ -1461,19 +1451,19 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "      presentErrorWindow (file,\n"
         "        line: line,\n"
         "        errorMessage:\"\\\"" ;
-      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown, or table view is NSCell-based\"\n"
         "      )\n"
         "    }\n"
         "    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_12329.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12225.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "      columnName.sortDescriptorPrototype = NSSortDescriptor (key:\"" ;
-      result << enumerator_12329.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_12225.current_mObservablePropertyName (HERE).stringValue () ;
       result << "_kvc\", ascending:true)\n"
         "    }\n" ;
-      index_12329_.increment () ;
-      enumerator_12329.gotoNextObject () ;
+      index_12225_.increment () ;
+      enumerator_12225.gotoNextObject () ;
     }
   }
   result << "  //--- Set descriptors from first column of table view\n"
@@ -1553,31 +1543,31 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView\n"
     "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
     "      " ;
-  GALGAS_uint index_16271_ (0) ;
+  GALGAS_uint index_16167_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16271 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_16271 = enumerator_16271.hasCurrentObject () ;
-    while (enumerator_16271.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16167 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_16167 = enumerator_16167.hasCurrentObject () ;
+    while (enumerator_16167.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_16271.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_16167.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "        if let cell : " ;
-      result << enumerator_16271.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16167.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell = result as\? " ;
-      result << enumerator_16271.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16167.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_Cell {\n"
         "          cell.configureWithProperty (object." ;
-      result << enumerator_16271.current_mObservablePropertyName (HERE).stringValue () ;
+      result << enumerator_16167.current_mObservablePropertyName (HERE).stringValue () ;
       result << ")\n"
         "        }\n"
         "      " ;
-      if (enumerator_16271.hasNextObject ()) {
+      if (enumerator_16167.hasNextObject ()) {
         result << "}else " ;
       }
-      index_16271_.increment () ;
-      enumerator_16271.gotoNextObject () ;
+      index_16167_.increment () ;
+      enumerator_16167.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_16271) {
+    if (nonEmpty_enumerator_16167) {
       result << "}else{\n"
         "        NSLog (\"Unknown column '\\(columnIdentifier)'\")\n"
         "      }\n" ;
