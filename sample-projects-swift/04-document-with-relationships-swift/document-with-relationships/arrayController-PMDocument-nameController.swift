@@ -286,7 +286,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     mSelectedSet.addEBObserver (selectionTableViewController)
     mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column
-    if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
+/*    if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
       if let unwrappedTableCellView = anyObject as? EBTextField_TableViewCell {
         unwrappedTableCellView.checkOutlet ("name", file:file, line:line)
       }else{
@@ -300,9 +300,17 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         line: line,
         errorMessage:"\"name\" column view unknown, or table view is NSCell-based"
       )
+    } */
+    if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
+      column.sortDescriptorPrototype = nil
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"name\" column view unknown"
+      )
     }
   //--- Check 'int' column
-    if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
+/*    if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
       if let unwrappedTableCellView = anyObject as? EBIntField_TableViewCell {
         unwrappedTableCellView.checkOutlet ("int", file:file, line:line)
       }else{
@@ -316,11 +324,19 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         line: line,
         errorMessage:"\"int\" column view unknown, or table view is NSCell-based"
       )
+    } */
+    if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
+      column.sortDescriptorPrototype = nil
+    }else{
+      presentErrorWindow (file,
+        line: line,
+        errorMessage:"\"int\" column view unknown"
+      )
     }
   //--- Set descriptors from first column of table view
-    let columns = tableView.tableColumns as NSArray
+    let columns = tableView.tableColumns
     if columns.count > 0 {
-      let firstColumn = columns [0] as! NSTableColumn
+      let firstColumn : NSTableColumn = columns [0]
       if let sdp = firstColumn.sortDescriptorPrototype {
         let sortDescriptorArray = NSArray (object:sdp) as! [NSSortDescriptor]
         tableView.sortDescriptors = sortDescriptorArray

@@ -130,9 +130,51 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     "class EBReadOnlyProperty_" ;
   result << in_TYPE.stringValue () ;
   result << " : EBAbstractProperty {\n"
+    " \n"
     "  var prop : EBProperty <" ;
   result << in_TYPE.stringValue () ;
   result << "> { get { return .noSelection } } // Abstract method\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
+    "  func compare (other : EBReadOnlyProperty_" ;
+  result << in_TYPE.stringValue () ;
+  result << ") -> NSComparisonResult {\n"
+    "    switch prop {\n"
+    "    case .noSelection :\n"
+    "      switch other.prop {\n"
+    "      case .noSelection :\n"
+    "        return .OrderedSame\n"
+    "      default:\n"
+    "        return .OrderedAscending\n"
+    "      }\n"
+    "    case .multipleSelection :\n"
+    "      switch other.prop {\n"
+    "      case .noSelection :\n"
+    "        return .OrderedDescending\n"
+    "      case .multipleSelection :\n"
+    "        return .OrderedSame\n"
+    "     case .singleSelection (_) :\n"
+    "        return .OrderedAscending\n"
+    "     }\n"
+    "   case .singleSelection (let currentValue) :\n"
+    "      switch other.prop {\n"
+    "      case .noSelection, .multipleSelection :\n"
+    "        return .OrderedDescending\n"
+    "      case .singleSelection (let otherValue) :\n"
+    "        if currentValue < otherValue {\n"
+    "          return .OrderedAscending\n"
+    "        }else if currentValue > otherValue {\n"
+    "          return .OrderedDescending\n"
+    "        }else{\n"
+    "          return .OrderedSame\n"
+    "        }\n"
+    "      }\n"
+    "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
     "}\n"
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -528,6 +570,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compiler * /* inCompiler */,
                                                                         const GALGAS_string & in_CLASS_5F_NAME,
+                                                                        const GALGAS_bool & in_COMPARABLE,
                                                                         const GALGAS_string & in_EXPLORER_5F_ACCESS,
                                                                         const GALGAS_bool & in_USE_5F_ARCHIVER
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
@@ -547,6 +590,51 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     "  var prop : EBProperty <" ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << "> { get { return .noSelection } } // Abstract method\n"
+    "\n" ;
+  const enumGalgasBool test_0 = in_COMPARABLE.boolEnum () ;
+  if (kBoolTrue == test_0) {
+    result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+      "\n"
+      "  func compare (other : EBReadOnlyProperty_" ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << ") -> NSComparisonResult {\n"
+      "    switch prop {\n"
+      "    case .noSelection :\n"
+      "      switch other.prop {\n"
+      "      case .noSelection :\n"
+      "        return .OrderedSame\n"
+      "      default:\n"
+      "        return .OrderedAscending\n"
+      "      }\n"
+      "    case .multipleSelection :\n"
+      "      switch other.prop {\n"
+      "      case .noSelection :\n"
+      "        return .OrderedDescending\n"
+      "      case .multipleSelection :\n"
+      "        return .OrderedSame\n"
+      "     case .singleSelection (_) :\n"
+      "        return .OrderedAscending\n"
+      "     }\n"
+      "   case .singleSelection (let currentValue) :\n"
+      "      switch other.prop {\n"
+      "      case .noSelection, .multipleSelection :\n"
+      "        return .OrderedDescending\n"
+      "      case .singleSelection (let otherValue) :\n"
+      "        if currentValue < otherValue {\n"
+      "          return .OrderedAscending\n"
+      "        }else if currentValue > otherValue {\n"
+      "          return .OrderedDescending\n"
+      "        }else{\n"
+      "          return .OrderedSame\n"
+      "        }\n"
+      "      }\n"
+      "    }\n"
+      "  }\n"
+      "\n" ;
+  }else if (kBoolFalse == test_0) {
+  }
+  result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
     "}\n"
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -799,8 +887,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n" ;
-  const enumGalgasBool test_0 = in_USE_5F_ARCHIVER.boolEnum () ;
-  if (kBoolTrue == test_0) {
+  const enumGalgasBool test_1 = in_USE_5F_ARCHIVER.boolEnum () ;
+  if (kBoolTrue == test_1) {
     result << "  func readInPreferencesWithKey (inKey : String) {\n"
       "    let ud = NSUserDefaults.standardUserDefaults ()\n"
       "    let value : AnyObject\? = ud.objectForKey (inKey)\n"
@@ -815,7 +903,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
       "      }\n"
       "    }\n"
       "  }\n" ;
-  }else if (kBoolFalse == test_0) {
+  }else if (kBoolFalse == test_1) {
     result << "  func readInPreferencesWithKey (inKey : String) {\n"
       "    let ud = NSUserDefaults.standardUserDefaults ()\n"
       "    let value : AnyObject\? = ud.objectForKey (inKey)\n"
@@ -833,17 +921,6 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     "  func storeInPreferencesWithKey (inKey : String) {\n"
     "    let ud = NSUserDefaults.standardUserDefaults ()\n"
     "    ud.setObject (" ;
-  const enumGalgasBool test_1 = in_USE_5F_ARCHIVER.boolEnum () ;
-  if (kBoolTrue == test_1) {
-    result << "NSArchiver.archivedDataWithRootObject (mValue)" ;
-  }else if (kBoolFalse == test_1) {
-    result << "mValue" ;
-  }
-  result << ", forKey:inKey)\n"
-    "  }\n"
-    "\n"
-    "  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {\n"
-    "    ioDictionary.setValue (" ;
   const enumGalgasBool test_2 = in_USE_5F_ARCHIVER.boolEnum () ;
   if (kBoolTrue == test_2) {
     result << "NSArchiver.archivedDataWithRootObject (mValue)" ;
@@ -852,9 +929,20 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
   }
   result << ", forKey:inKey)\n"
     "  }\n"
-    "\n" ;
+    "\n"
+    "  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {\n"
+    "    ioDictionary.setValue (" ;
   const enumGalgasBool test_3 = in_USE_5F_ARCHIVER.boolEnum () ;
   if (kBoolTrue == test_3) {
+    result << "NSArchiver.archivedDataWithRootObject (mValue)" ;
+  }else if (kBoolFalse == test_3) {
+    result << "mValue" ;
+  }
+  result << ", forKey:inKey)\n"
+    "  }\n"
+    "\n" ;
+  const enumGalgasBool test_4 = in_USE_5F_ARCHIVER.boolEnum () ;
+  if (kBoolTrue == test_4) {
     result << "  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {\n"
       "    let value : AnyObject\? = inDictionary.objectForKey (inKey)\n"
       "    if let unwValue : AnyObject = value where unwValue is NSData {\n"
@@ -868,7 +956,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
       "      }\n"
       "    }\n"
       "  }\n" ;
-  }else if (kBoolFalse == test_3) {
+  }else if (kBoolFalse == test_4) {
     result << "  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {\n"
       "    let value : AnyObject\? = inDictionary.objectForKey (inKey)\n"
       "    if let unwValue : AnyObject = value where unwValue is " ;
@@ -990,19 +1078,19 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
                                          GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 184))) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int"), GALGAS_string ("integer"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 186)))  COMMA_SOURCE_FILE ("code-generation.galgas", 186)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool"), GALGAS_string ("bool"), GALGAS_string ("propval \? 1 : 0") COMMA_SOURCE_FILE ("code-generation.galgas", 187)))  COMMA_SOURCE_FILE ("code-generation.galgas", 187)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double"), GALGAS_string ("double"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 188)))  COMMA_SOURCE_FILE ("code-generation.galgas", 188)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("String"), GALGAS_string::makeEmptyString (), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 190)))  COMMA_SOURCE_FILE ("code-generation.galgas", 190)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 191)))  COMMA_SOURCE_FILE ("code-generation.galgas", 191)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_string (".description"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 192)))  COMMA_SOURCE_FILE ("code-generation.galgas", 192)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 193)))  COMMA_SOURCE_FILE ("code-generation.galgas", 193)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSImage"), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 194)))  COMMA_SOURCE_FILE ("code-generation.galgas", 194)) ;
+  GALGAS_string var_contents = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 185))) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int"), GALGAS_string ("integer"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 187)))  COMMA_SOURCE_FILE ("code-generation.galgas", 187)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool"), GALGAS_string ("bool"), GALGAS_string ("propval \? 1 : 0") COMMA_SOURCE_FILE ("code-generation.galgas", 188)))  COMMA_SOURCE_FILE ("code-generation.galgas", 188)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double"), GALGAS_string ("double"), GALGAS_string ("UInt64 (propval)") COMMA_SOURCE_FILE ("code-generation.galgas", 189)))  COMMA_SOURCE_FILE ("code-generation.galgas", 189)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("String"), GALGAS_bool (true), GALGAS_string::makeEmptyString (), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 191)))  COMMA_SOURCE_FILE ("code-generation.galgas", 191)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_bool (false), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 192)))  COMMA_SOURCE_FILE ("code-generation.galgas", 192)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_bool (true), GALGAS_string (".description"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 193)))  COMMA_SOURCE_FILE ("code-generation.galgas", 193)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 194)))  COMMA_SOURCE_FILE ("code-generation.galgas", 194)) ;
+  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSImage"), GALGAS_bool (false), GALGAS_string (".description"), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 195)))  COMMA_SOURCE_FILE ("code-generation.galgas", 195)) ;
   GALGAS_string var_fileName = GALGAS_string ("standard-properties.swift") ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 197)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 198)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 198)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 199)) ;
   }
 }
 
@@ -11616,228 +11704,6 @@ GALGAS_classListForGeneration_2D_element GALGAS_classListForGeneration_2D_elemen
       result = *p ;
     }else{
       inCompiler->castError ("classListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_element (void) :
-mAttribute_mEntityName (),
-mAttribute_mSuperEntityName (),
-mAttribute_mSimpleStoredPropertyListForGeneration (),
-mAttribute_mDecoratedTransientListForGeneration (),
-mAttribute_mToOneEntityRelationshipList (),
-mAttribute_mToManyEntityRelationshipList (),
-mAttribute_mSignatureSet () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration_2D_element::~ GALGAS_entityListForGeneration_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_element (const GALGAS_string & inOperand0,
-                                                                                      const GALGAS_string & inOperand1,
-                                                                                      const GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                      const GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                      const GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                      const GALGAS_stringset & inOperand6) :
-mAttribute_mEntityName (inOperand0),
-mAttribute_mSuperEntityName (inOperand1),
-mAttribute_mSimpleStoredPropertyListForGeneration (inOperand2),
-mAttribute_mDecoratedTransientListForGeneration (inOperand3),
-mAttribute_mToOneEntityRelationshipList (inOperand4),
-mAttribute_mToManyEntityRelationshipList (inOperand5),
-mAttribute_mSignatureSet (inOperand6) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_entityListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
-                                                    GALGAS_string::constructor_default (HERE),
-                                                    GALGAS_simpleStoredPropertyListForGeneration::constructor_emptyList (HERE),
-                                                    GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
-                                                    GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (HERE),
-                                                    GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (HERE),
-                                                    GALGAS_stringset::constructor_emptySet (HERE)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
-                                                                                                      const GALGAS_string & inOperand1,
-                                                                                                      const GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                                      const GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                                      const GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                                      const GALGAS_stringset & inOperand6 
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_entityListForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
-    result = GALGAS_entityListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_entityListForGeneration_2D_element::objectCompare (const GALGAS_entityListForGeneration_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mEntityName.objectCompare (inOperand.mAttribute_mEntityName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mSuperEntityName.objectCompare (inOperand.mAttribute_mSuperEntityName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mSimpleStoredPropertyListForGeneration.objectCompare (inOperand.mAttribute_mSimpleStoredPropertyListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mDecoratedTransientListForGeneration.objectCompare (inOperand.mAttribute_mDecoratedTransientListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mToOneEntityRelationshipList.objectCompare (inOperand.mAttribute_mToOneEntityRelationshipList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mToManyEntityRelationshipList.objectCompare (inOperand.mAttribute_mToManyEntityRelationshipList) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mSignatureSet.objectCompare (inOperand.mAttribute_mSignatureSet) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_entityListForGeneration_2D_element::isValid (void) const {
-  return mAttribute_mEntityName.isValid () && mAttribute_mSuperEntityName.isValid () && mAttribute_mSimpleStoredPropertyListForGeneration.isValid () && mAttribute_mDecoratedTransientListForGeneration.isValid () && mAttribute_mToOneEntityRelationshipList.isValid () && mAttribute_mToManyEntityRelationshipList.isValid () && mAttribute_mSignatureSet.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_entityListForGeneration_2D_element::drop (void) {
-  mAttribute_mEntityName.drop () ;
-  mAttribute_mSuperEntityName.drop () ;
-  mAttribute_mSimpleStoredPropertyListForGeneration.drop () ;
-  mAttribute_mDecoratedTransientListForGeneration.drop () ;
-  mAttribute_mToOneEntityRelationshipList.drop () ;
-  mAttribute_mToManyEntityRelationshipList.drop () ;
-  mAttribute_mSignatureSet.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_entityListForGeneration_2D_element::description (C_String & ioString,
-                                                             const int32_t inIndentation) const {
-  ioString << "<struct @entityListForGeneration-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mEntityName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mSuperEntityName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mSimpleStoredPropertyListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mDecoratedTransientListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mToOneEntityRelationshipList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mToManyEntityRelationshipList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mSignatureSet.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_entityListForGeneration_2D_element::getter_mEntityName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mEntityName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_string GALGAS_entityListForGeneration_2D_element::getter_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSuperEntityName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_simpleStoredPropertyListForGeneration GALGAS_entityListForGeneration_2D_element::getter_mSimpleStoredPropertyListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSimpleStoredPropertyListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_transientDefinitionListForGeneration GALGAS_entityListForGeneration_2D_element::getter_mDecoratedTransientListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mDecoratedTransientListForGeneration ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toOneEntityRelationshipListForGeneration GALGAS_entityListForGeneration_2D_element::getter_mToOneEntityRelationshipList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mToOneEntityRelationshipList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_toManyEntityRelationshipListForGeneration GALGAS_entityListForGeneration_2D_element::getter_mToManyEntityRelationshipList (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mToManyEntityRelationshipList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_stringset GALGAS_entityListForGeneration_2D_element::getter_mSignatureSet (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mSignatureSet ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @entityListForGeneration-element type                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_entityListForGeneration_2D_element ("entityListForGeneration-element",
-                                                           NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_entityListForGeneration_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_entityListForGeneration_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_entityListForGeneration_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_entityListForGeneration_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_entityListForGeneration_2D_element result ;
-  const GALGAS_entityListForGeneration_2D_element * p = (const GALGAS_entityListForGeneration_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_entityListForGeneration_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("entityListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
