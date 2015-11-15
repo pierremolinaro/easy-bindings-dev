@@ -401,11 +401,21 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
         if let cell : EBTextField_Cell = result as? EBTextField_Cell {
-          cell.configureWithProperty (object.name)
+          cell.mUnbindFunction = { [weak cell] in
+            cell?.mCellOutlet?.unbind_value ()
+          }
+          cell.mUnbindFunction? ()
+          cell.mCellOutlet?.bind_value (object.name, file: __FILE__, line: __LINE__, sendContinously : false)
+          // cell.configureWithProperty (object.name)
         }
       }else if columnIdentifier == "int" {
         if let cell : EBIntField_Cell = result as? EBIntField_Cell {
-          cell.configureWithProperty (object.aValue)
+          cell.mUnbindFunction = { [weak cell] in
+            cell?.mCellOutlet?.unbind_value ()
+          }
+          cell.mUnbindFunction? ()
+          cell.mCellOutlet?.bind_value (object.aValue, file: __FILE__, line: __LINE__, sendContinously : false, autoFormatter : true)
+          // cell.configureWithProperty (object.aValue)
         }
       }else{
         NSLog ("Unknown column '\(columnIdentifier)'")

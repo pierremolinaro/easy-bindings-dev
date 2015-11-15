@@ -101,7 +101,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBImageObserverView_Cell) class EBImageObserverView_Cell : EBTableCellView {
-  @IBOutlet private var mCellOutlet : EBImageObserverView? = nil
+  @IBOutlet var mCellOutlet : EBImageObserverView? = nil
 
   //····················································································································
 
@@ -119,37 +119,6 @@ import Cocoa
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBImageObserverView)"
       )
     }
-  }
-
-  //····················································································································
-
-  func configureWithProperty (inProperty : EBReadOnlyProperty_NSImage) {
-  //--- Remove a previous binding (does nothing if no binding)
-    mCellOutlet?.unbind_image ()
-  //--- Set new binding
-    mCellOutlet?.bind_image (inProperty, file: __FILE__, line: __LINE__)
-  }
-
-  //····················································································································
-
-  override func removeFromSuperview () {
-   // NSLog ("\(__FUNCTION__)")
-    mCellOutlet?.unbind_image ()
-    super.removeFromSuperview ()
-  }
-
-  //····················································································································
-  
-  override func removeFromSuperviewWithoutNeedingDisplay () {
-   // NSLog ("\(__FUNCTION__)")
-    mCellOutlet?.unbind_image ()
-    super.removeFromSuperviewWithoutNeedingDisplay ()
-  }
-  
-  //···················································································································· 
-
-  deinit {
-    mCellOutlet?.unbind_image ()
   }
 
   //····················································································································

@@ -124,7 +124,7 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBIntObserverField_Cell) class EBIntObserverField_Cell : EBTableCellView {
-  @IBOutlet private var mCellOutlet : EBIntObserverField?
+  @IBOutlet var mCellOutlet : EBIntObserverField?
 
   //····················································································································
 
@@ -146,36 +146,6 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 
   //····················································································································
 
-  func configureWithProperty (inProperty : EBReadOnlyProperty_Int) {
-  //--- Remove a previous binding (does nothing if no binding)
-    mCellOutlet?.unbind_valueObserver ()
-  //--- Set new binding
-    mCellOutlet?.bind_valueObserver (inProperty, file: __FILE__, line: __LINE__, autoFormatter: true)
-  }
-
-  //····················································································································
-
-  override func removeFromSuperview () {
-   // NSLog ("\(__FUNCTION__)")
-    mCellOutlet?.unbind_valueObserver ()
-    super.removeFromSuperview ()
-  }
-
-  //····················································································································
-  
-  override func removeFromSuperviewWithoutNeedingDisplay () {
-   // NSLog ("\(__FUNCTION__)")
-    mCellOutlet?.unbind_valueObserver ()
-    super.removeFromSuperviewWithoutNeedingDisplay ()
-  }
-  
-  //···················································································································· 
-
-  deinit {
-    mCellOutlet?.unbind_valueObserver ()
-  }
-
-  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
