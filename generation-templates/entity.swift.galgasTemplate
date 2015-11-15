@@ -43,7 +43,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Stored property '%!mStoredPropertyName%'
   //····················································································································
 
-  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+  private var mObserversOf_%!mStoredPropertyName% = EBWeakEventSet ()
 
   //····················································································································
 

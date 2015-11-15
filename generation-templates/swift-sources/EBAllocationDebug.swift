@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private var gEnableObjectAllocationDebug = false
+private var gEnableObjectAllocationDebug = NSUserDefaults.standardUserDefaults ().boolForKey (prefsEnableObjectAllocationDebugString)
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -137,10 +137,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //····················································································································
   
    override init () {
-      //  NSLog (@"%s %p", __PRETTY_FUNCTION__, self) ;
     super.init ()
-    let df = NSUserDefaults.standardUserDefaults ()
-    gEnableObjectAllocationDebug = df.boolForKey (prefsEnableObjectAllocationDebugString)
     assert (gDebugObject == nil, "EBAllocationDebug already exists", file:__FILE__, line:__LINE__)
     let nc = NSNotificationCenter.defaultCenter ()
     nc.addObserver (self,
