@@ -409,7 +409,12 @@ for () in BOUND_COLUMNS
   do
     %if columnIdentifier == "%!mColumnName%" {\n%
     %        if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
-    %          cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
+    %          cell.mUnbindFunction = { [weak cell] in\n%
+    %            cell?.mCellOutlet?.unbind_value ()\n%
+    %          }\n%
+    %          cell.mUnbindFunction? ()\n%
+    %          cell.mCellOutlet?.bind_value (object.%!mObservablePropertyName%, file: __FILE__, line: __LINE__, sendContinously : false)\n%
+    %          // cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
     %        }\n%
     %      %
   between
