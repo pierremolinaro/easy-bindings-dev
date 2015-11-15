@@ -116,12 +116,78 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBWeakEventSetElement
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBWeakEventSetElement) class EBWeakEventSetElement : EBObject {
+  private weak var mObserver : EBEvent? = nil {
+    didSet {
+      if mObserver == nil, let object = mObject {
+        object.mDictionary [mObserverAddress] = nil
+      }
+    }
+  }
+
+  private weak var mObject : EBWeakEventSet? = nil
+  private var mObserverAddress : Int
+  
+  init (object : EBWeakEventSet, observer : EBEvent) {
+    mObserver = observer
+    mObject = object
+    mObserverAddress = unsafeAddressOf (observer).hashValue
+    super.init ()
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBWeakEventSet
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBWeakEventSet) class EBWeakEventSet : EBObject, SequenceType {
+  private var mDictionary = [Int : EBWeakEventSetElement] ()
+
+  //····················································································································
+  
+  func insert (inObserver : EBEvent) {
+    let address : Int = unsafeAddressOf (inObserver).hashValue
+    mDictionary [address] = EBWeakEventSetElement (object:self, observer:inObserver)
+  }
+
+  //····················································································································
+  
+  func remove (inObserver : EBEvent) {
+    let address : Int = unsafeAddressOf (inObserver).hashValue
+    mDictionary [address] = nil
+  }
+
+  //····················································································································
+
+  func generate () -> IndexingGenerator <[EBEvent]> {
+    var array = [EBEvent] ()
+    for (_, entry) in mDictionary {
+      if let observer = entry.mObserver {
+        array.append(observer)
+      }
+    }
+    return array.generate ()
+  }
+
+  //····················································································································
+  
+  var count : Int {
+    get {
+      return mDictionary.count
+    }
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBAbstractProperty (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBAbstractProperty) class EBAbstractProperty : EBEvent {
 
-  private final var mObservers = Set <EBEvent> ()
+  private final var mObservers = EBWeakEventSet ()
   
   //····················································································································
 
@@ -136,7 +202,6 @@ import Cocoa
   final func removeEBObserver (inObserver : EBEvent) {
     mObservers.remove (inObserver)
     updateObserverExplorer ()
-  //  inObserver.postEvent ()
   }
 
   //····················································································································

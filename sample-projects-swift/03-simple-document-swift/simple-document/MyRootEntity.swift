@@ -41,7 +41,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //   Stored property 'myString'
   //····················································································································
 
-  private var mObserversOf_myString = Set<EBEvent> ()
+  private var mObserversOf_myString = EBWeakEventSet ()
 
   //····················································································································
 
@@ -108,7 +108,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //   Stored property 'myColor'
   //····················································································································
 
-  private var mObserversOf_myColor = Set<EBEvent> ()
+  private var mObserversOf_myColor = EBWeakEventSet ()
 
   //····················································································································
 

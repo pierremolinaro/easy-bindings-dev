@@ -49,7 +49,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   // Stored property '%!mStoredPropertyName%'
   //····················································································································
 
-  private var mObserversOf_%!mStoredPropertyName% = Set<EBEvent> ()
+  private var mObserversOf_%!mStoredPropertyName% = EBWeakEventSet ()
 
   final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
@@ -109,7 +109,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   // Transient property '%!mTransientName%'
   //····················································································································
 
-  private var mObserversOf_%!mTransientName% = Set<EBEvent> ()
+  private var mObserversOf_%!mTransientName% = EBWeakEventSet ()
 
   final func addEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
     mObserversOf_%!mTransientName%.insert (inObserver)
