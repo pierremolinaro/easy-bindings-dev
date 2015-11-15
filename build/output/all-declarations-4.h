@@ -55,16 +55,6 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category getter '@observablePropertyAST location' (as function)                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_location extensionGetter_location (const class GALGAS_observablePropertyAST & inObject,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //     Abstract category method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -98,45 +88,20 @@ void callCategoryMethod_analyzeExpressionForMultipleBinding (const class cPtr_ab
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Abstract category method '@abstractDefaultValue analyzeDefaultValueType'                       *
+//                                           Routine 'analyzeRegularBinding'                                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
-                                                                                      const class GALGAS_typeKindList constinArgument0,
-                                                                                      class GALGAS_string & outArgument1,
-                                                                                      class C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterCategoryMethod_analyzeDefaultValueType (const int32_t inClassIndex,
-                                                  categoryMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callCategoryMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
-                                                 const GALGAS_typeKindList constin_inAttributeActualTypeList,
-                                                 GALGAS_string & out_outSwiftDefaultValueAsString,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Category method '@observablePropertyAST analyzeObservableProperty'                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
-                                               const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                               const class GALGAS_semanticContext constin_inSemanticContext,
-                                               const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
-                                               class GALGAS_typeKind & out_outType,
-                                               class GALGAS_propertyKind & out_outKind,
-                                               class GALGAS_propertyMultiplicity & out_outMultiplicity,
-                                               class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+void routine_analyzeRegularBinding (const class GALGAS_observablePropertyMap constinArgument0,
+                                    const class GALGAS_semanticContext constinArgument1,
+                                    const class GALGAS_observablePropertyMap constinArgument2,
+                                    const class GALGAS_lstring constinArgument3,
+                                    const class GALGAS_string constinArgument4,
+                                    const class GALGAS_regularBindingList constinArgument5,
+                                    const class GALGAS_string constinArgument6,
+                                    class GALGAS_regularBindingsGenerationList & ioArgument7,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -344,6 +309,58 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_structForGeneration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Category getter '@observablePropertyAST location' (as function)                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_location extensionGetter_location (const class GALGAS_observablePropertyAST & inObject,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Abstract category method '@abstractDefaultValue analyzeDefaultValueType'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*categoryMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
+                                                                                      const class GALGAS_typeKindList constinArgument0,
+                                                                                      class GALGAS_string & outArgument1,
+                                                                                      class C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterCategoryMethod_analyzeDefaultValueType (const int32_t inClassIndex,
+                                                  categoryMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callCategoryMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
+                                                 const GALGAS_typeKindList constin_inAttributeActualTypeList,
+                                                 GALGAS_string & out_outSwiftDefaultValueAsString,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Category method '@observablePropertyAST analyzeObservableProperty'                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
+                                               const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
+                                               const class GALGAS_semanticContext constin_inSemanticContext,
+                                               const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
+                                               class GALGAS_typeKind & out_outType,
+                                               class GALGAS_propertyKind & out_outKind,
+                                               class GALGAS_propertyMultiplicity & out_outMultiplicity,
+                                               class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

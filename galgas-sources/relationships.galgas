@@ -122,7 +122,7 @@ method @toOneRelationshipList buildObservablePropertyMap
 {
   for () in self do
   #--- Property type
-    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
   #--- Check type
     switch type
     case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
@@ -140,7 +140,7 @@ method @toOneRelationshipList buildObservablePropertyMap
       !.stored
       !.single
       !mInverseRelationshipName.string
-      !{} # No action map
+      !actionMap
     ]
   end
 }
@@ -153,7 +153,7 @@ method @toManyRelationshipList buildObservablePropertyMap
 {
   for () in self do
   #--- Property type
-    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
   #--- Check type
     switch type
     case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
@@ -171,7 +171,7 @@ method @toManyRelationshipList buildObservablePropertyMap
       !.stored
       !.collection
       !mInverseRelationshipName.string
-      !{} # No action map
+      !actionMap
     ]
   end
 }
@@ -186,7 +186,7 @@ method @toOneRelationshipList semanticAnalysis
 {
   outToOneEntityRelationshipListForGeneration = {}
   for () in self do
-    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?*]
     [inSemanticContext.mEntityObservablePropertyMap searchKey
       !mDestinationEntityName
       ?@observablePropertyMap destinationEntityObservablePropertyMap
@@ -237,7 +237,7 @@ method @toManyRelationshipList semanticAnalysis
 {
   outToManyEntityRelationshipListForGeneration = {}
   for () in self do
-    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type]
+    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?*]
     [inSemanticContext.mEntityObservablePropertyMap searchKey
       !mDestinationEntityName
       ?@observablePropertyMap destinationEntityObservablePropertyMap

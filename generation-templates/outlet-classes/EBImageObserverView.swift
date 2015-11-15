@@ -97,10 +97,10 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBImageObserverView_Cell
+//   EBImageObserverView_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBImageObserverView_Cell) class EBImageObserverView_Cell : EBTableCellView {
+@objc(EBImageObserverView_TableViewCell) class EBImageObserverView_TableViewCell : EBTableCellView {
   @IBOutlet var mCellOutlet : EBImageObserverView? = nil
 
   //····················································································································

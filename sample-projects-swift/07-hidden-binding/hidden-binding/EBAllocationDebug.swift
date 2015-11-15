@@ -6,11 +6,24 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+private let prefsEnableObjectAllocationDebugString        = "EBAllocationDebug:enableObjectAllocationDebug"
+private let prefsEnableObjectAllocationStatsWindowVisible = "EBAllocationDebug:allocationStatsWindowVisible"
+private let prefsEnableObjectAllocationStatsDisplayFilter = "EBAllocationDebug:allocationStatsDisplayFilter"
+private let prefsReuseTableViewCells                      = "EBAllocationDebug:reuseTableViewCells"
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
 private var gEnableObjectAllocationDebug = NSUserDefaults.standardUserDefaults ().boolForKey (prefsEnableObjectAllocationDebugString)
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private let prefsEnableObjectAllocationDebugString = "eb:enableObjectAllocationDebug"
+func reuseTableViewCells () -> Bool {
+  var result = !gEnableObjectAllocationDebug
+  if !result {
+    result = NSUserDefaults.standardUserDefaults ().boolForKey (prefsReuseTableViewCells)
+  }
+  return result
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Public routines
@@ -90,6 +103,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField?
   @IBOutlet var mStatsTableView : NSTableView?
   @IBOutlet var mEnableObjectAllocationDebug : NSButton?
+  @IBOutlet var mReuseTableViewCellsButton : NSButton?
 
 
   private var mTopLevelObjects : NSArray?
@@ -175,8 +189,8 @@ private var gDebugObject : EBAllocationDebug? = nil
   // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
   //--- Allocation Window visibility
     let df = NSUserDefaults.standardUserDefaults ()
-    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey ("EBAllocationDebug:allocationStatsWindowVisible")
-    mDisplayFilter = df.integerForKey ("EBAllocationDebug:allocationStatsDisplayFilter")
+    mAllocationStatsWindowVisibleAtLaunch = df.boolForKey (prefsEnableObjectAllocationStatsWindowVisible)
+    mDisplayFilter = df.integerForKey (prefsEnableObjectAllocationStatsDisplayFilter)
   //--- Enable / disable object allocation debug
     mEnableObjectAllocationDebug?.bind (
       NSValueBinding,
@@ -184,12 +198,23 @@ private var gDebugObject : EBAllocationDebug? = nil
       withKeyPath: "values." + prefsEnableObjectAllocationDebugString,
       options: nil
     )
+    if gEnableObjectAllocationDebug {
+      mReuseTableViewCellsButton?.bind (
+        NSValueBinding,
+        toObject: NSUserDefaultsController.sharedUserDefaultsController (),
+        withKeyPath: "values." + prefsReuseTableViewCells,
+        options: nil
+      )
+    }else{
+      mReuseTableViewCellsButton?.state = NSOnState
+    }
     mDisplayFilterPopUpButton?.enabled = gEnableObjectAllocationDebug
     mStatsTableView?.enabled = gEnableObjectAllocationDebug
     mPerformSnapShotButton?.enabled = gEnableObjectAllocationDebug
-//  @IBOutlet var mCurrentlyAllocatedObjectCountTextField : NSTextField?
-//  @IBOutlet var mTotalAllocatedObjectCountTextField : NSTextField?
-    
+    mReuseTableViewCellsButton?.enabled = gEnableObjectAllocationDebug
+    mCurrentlyAllocatedObjectCountTextField?.enabled = gEnableObjectAllocationDebug
+    mTotalAllocatedObjectCountTextField?.enabled = gEnableObjectAllocationDebug
+
   //--- will call windowDidBecomeKey: and windowWillClose:
     mAllocationStatsWindow?.delegate = self
   //--- Allocation stats window visibility at Launch
@@ -283,10 +308,10 @@ private var gDebugObject : EBAllocationDebug? = nil
   func applicationWillTerminateAction (_: NSNotification) {
     let ud = NSUserDefaults.standardUserDefaults ()
     ud.setBool (mAllocationStatsWindowVisibleAtLaunch,
-      forKey:"EBAllocationDebug:allocationStatsWindowVisible"
+      forKey:prefsEnableObjectAllocationStatsWindowVisible
     )
     ud.setInteger (mDisplayFilter,
-      forKey:"EBAllocationDebug:allocationStatsDisplayFilter"
+      forKey:prefsEnableObjectAllocationStatsDisplayFilter
     )
   }
 

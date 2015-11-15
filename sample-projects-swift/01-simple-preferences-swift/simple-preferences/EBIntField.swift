@@ -178,11 +178,11 @@ final class Controller_EBIntField_value : EBSimpleController {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBIntField_Cell
+//   EBIntField_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBIntField_Cell) class EBIntField_Cell : EBTableCellView {
-  @IBOutlet private var mCellOutlet : EBIntField?
+@objc(EBIntField_TableViewCell) class EBIntField_TableViewCell : EBTableCellView {
+  @IBOutlet var mCellOutlet : EBIntField?
 
   //····················································································································
 
@@ -200,37 +200,6 @@ final class Controller_EBIntField_value : EBSimpleController {
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBIntField)"
       )
     }
-  }
-
-  //····················································································································
-
-  func configureWithProperty (inProperty : EBReadWriteProperty_Int) {
-  //--- Remove a previous binding (does nothing if no binding)
-    mCellOutlet?.unbind_value ()
-  //--- Set new binding
-    mCellOutlet?.bind_value (inProperty, file: __FILE__, line: __LINE__, sendContinously : false, autoFormatter: true)
-  }
-
-  //····················································································································
-
-  override func removeFromSuperview () {
-   // NSLog ("\(__FUNCTION__)")
-    mCellOutlet?.unbind_value ()
-    super.removeFromSuperview ()
-  }
-
-  //····················································································································
-  
-  override func removeFromSuperviewWithoutNeedingDisplay () {
-   // NSLog ("\(__FUNCTION__)")
-    mCellOutlet?.unbind_value ()
-    super.removeFromSuperviewWithoutNeedingDisplay ()
-  }
-  
-  //···················································································································· 
-
-  deinit {
-    mCellOutlet?.unbind_value ()
   }
 
   //····················································································································

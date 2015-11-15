@@ -59,6 +59,7 @@ override method @enumDeclaration typeInventory
   [!?ioUnifiedTypeMap insertKey
     !mEnumTypeName
     !@typeKind.enumType {!enumTypeName:mEnumTypeName.string !constantMap:enumConstantMap}
+    !{}
   ]
 }
 

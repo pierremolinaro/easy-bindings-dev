@@ -34,7 +34,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBButton_TableViewCell) class EBButton_TableViewCell : EBTableCellView {
-  @IBOutlet private var mCellOutlet : EBButton?
+  @IBOutlet var mCellOutlet : EBButton?
 
   //····················································································································
 
@@ -52,13 +52,6 @@ import Cocoa
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBButton)"
       )
     }
-  }
-
-  //····················································································································
-
-  func configureWithProperty (target : NSObject, action : Selector) {
-    mCellOutlet?.target = target
-    mCellOutlet?.action = action
   }
 
   //····················································································································

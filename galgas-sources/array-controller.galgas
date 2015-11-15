@@ -5,8 +5,16 @@
 list @arrayControllerBoundColumnListAST {
   @lstring mColumnName
   @lstring mColumnOutletTypeName
-  @lstring mObservablePropertyName
-  @bindingOptionList mBindingOptionList
+  @columnBindingAST mColumnBindingAST
+}
+
+#......................................................................................................................*
+
+struct @columnBindingAST {
+  @lstring mRunActionName # Empty string if no run binding
+  @multipleBindingDescriptor mEnabledBindingDescriptor
+  @multipleBindingDescriptor mHiddenBindingDescriptor
+  @regularBindingList mRegularBindingList
 }
 
 #......................................................................................................................*
@@ -58,7 +66,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    $:$
+  #--- Model
     @arrayControllerModel arrayControllerModel
     select
       $root$
@@ -76,7 +84,6 @@ syntax extension easyBindings_syntax {
       $identifier$ ?let @lstring propertyName
       arrayControllerModel = .controllerArray {!controllerName:controllerName !propertyName:propertyName}
     end
-    @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     @lstringlist filterProperties = {}
     select
     or
@@ -88,20 +95,20 @@ syntax extension easyBindings_syntax {
         $,$
       end
     end
+    ${$
+    @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     repeat
+    while
       $column$
       $literal_string$ ?let columnName
       $Identifier$ ?let columnOutletTypeName
-      $identifier$ ?let observablePropertyName
-      <binding_option_list> ?let bindingOptions
+      <column_bindings> ?let @columnBindingAST columnBindingAST
       arrayControllerBoundColumnListAST +=
         !columnName
         !columnOutletTypeName
-        !observablePropertyName
-        !bindingOptions
-    while
+        !columnBindingAST
     end
-    $;$
+    $}$
     ioSecondaryPropertyList += !@arrayControllerDeclaration.new {
       !controllerName
       !arrayControllerModel
@@ -111,6 +118,63 @@ syntax extension easyBindings_syntax {
     }
   }
 
+#......................................................................................................................*
+
+  rule <column_bindings> !@columnBindingAST outColumnBindingAST {
+    @lstring runActionDescriptor = ["" nowhere]
+    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
+    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
+    @regularBindingList regularBindingList = {}
+    repeat
+    while
+      $run$
+      if runActionDescriptor.string != "" then
+        error .here : "duplicated $run binding"
+      end
+      $self$
+      $.$
+      $identifier$ ?runActionDescriptor
+  #--- Enabled
+    while
+      $enabled$
+      if enabledBindingDescriptor != .noBinding then
+        error .here : "duplicated $enabled binding"
+      end
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      enabledBindingDescriptor = .binding {!expression:bindingExpression}
+  #--- Hidden
+    while
+      $hidden$
+      if hiddenBindingDescriptor != .noBinding then
+        error .here : "duplicated $hidden binding"
+      end
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      hiddenBindingDescriptor = .binding {!expression:bindingExpression}
+  #--- Regular binding
+    while
+      $bindingName$ ?let @lstring bindingName
+      @observablePropertyList observablePropertyList = {}
+      repeat
+        <observable_property> ?let @observablePropertyAST observableProperty
+        observablePropertyList += !observableProperty
+      while
+        $,$
+      end
+      <binding_option_list> ?let bindingOptions
+      regularBindingList +=
+        !bindingName
+        !observablePropertyList
+        !bindingOptions
+    end
+  #---
+    outColumnBindingAST = @columnBindingAST.new {
+      !runActionDescriptor
+      !enabledBindingDescriptor
+      !hiddenBindingDescriptor
+      !regularBindingList
+    }
+  }
+  
   #....................................................................................................................*
 
 }
@@ -252,6 +316,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @location errorLocation
   @arrayControllerModelKind modelKind
   @string entityName
+  @actionMap actionMap
   switch mArrayControllerModel
   case selfCollection (@lstring storedPropertyName) :
     errorLocation = storedPropertyName.location
@@ -261,7 +326,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?modelType
       ?kind
       ?let @propertyMultiplicity multiplicity
-      ?2*
+      ?*
+      ?actionMap
     ]
   #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
@@ -286,7 +352,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?modelType
       ?kind
       ?let @propertyMultiplicity multiplicity
-      ?2*
+      ?*
+      ?actionMap
     ]
   #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
@@ -310,7 +377,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       !controllerName
       ?modelType
       ?kind
-      ?3*
+      ?2*
+      ?actionMap
     ]
     if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
       error errorLocation : "'sortedArray' or 'selectedArray' are required here"
@@ -327,39 +395,37 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       entityName = kEntityName
     end
   end
-#--- Check colum bound models (TODO : get also super entity observable property)
+#------------------------------------------------------------ Check colum bound models
+# (TODO : get also super entity observable property)
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     ![entityName nowhere]
     ?let @observablePropertyMap boundModelObservablePropertyMap
   ]
   @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
   for () in mArrayControllerBoundColumnListAST do
-    [boundModelObservablePropertyMap searchKey
-      !mObservablePropertyName
-      ?let @typeKind columnType
-      ?let @propertyKind unused columnKind
-      ?let @propertyMultiplicity columnMultiplicity
-      ?let @string unused inverseRelationshipName # "" if not a relationship
-      ?*
-    ]
-  #--- Check bound model type is a simple type
-    switch columnType
-    case boolType, colorType, dateType, doubleType, integerType, stringType, fontType, imageType : # Ok
-    case enumType (* *) : # Ok
-    case classType (*) :
-      error [mObservablePropertyName location] : "the model should not be a relationship"
-    case entityType (@string unused entityTypeName) :
-      error [mObservablePropertyName location] : "the model should not be a relationship"
+  #-------- Run action ? Check action is declared
+    if mColumnBindingAST.mRunActionName.string != "" then
+      [actionMap searchKey !mColumnBindingAST.mRunActionName]
     end
-    if columnMultiplicity == .collection then
-      error mObservablePropertyName : "the bound column property should not be a collection"
-    end
+  #-------- Simple bindings
+    @regularBindingsGenerationList regularBindingsGenerationList = {}
+    analyzeRegularBinding (
+      !{} # No root observable property map
+      !inSemanticContext
+      !boundModelObservablePropertyMap
+      !mColumnOutletTypeName
+      !"<<not used>>"
+      !mColumnBindingAST.mRegularBindingList
+      !"object"
+      !?regularBindingsGenerationList
+    )    
+  #-------- Binding generation
     arrayControllerBoundColumnListForGeneration +=
       !mColumnName.string
       !mColumnOutletTypeName.string
-      !mObservablePropertyName.string
-      !columnType
-      !mBindingOptionList
+      !"" # Observable property for sorting
+      !mColumnBindingAST.mRunActionName.string
+      !regularBindingsGenerationList
     ioNeededOutletClasses += !mColumnOutletTypeName.string
   end
 #------------------------------------------------------------ Check filter properties
@@ -491,9 +557,9 @@ list @arrayControllerFilterListForGeneration {
 list @arrayControllerBoundColumnListForGeneration {
   @string mColumnName
   @string mColumnOutletTypeName
-  @string mObservablePropertyName
-  @typeKind mPropertyType
-  @bindingOptionList mBindingOptionList
+  @string mObservablePropertyForSorting
+  @string mRunAction # Empty string if no action
+  @regularBindingsGenerationList mRegularBindingsGenerationList
 }
 
 #......................................................................................................................*
@@ -607,7 +673,9 @@ proc generateArrayControllers
   #--- Build observed property set (for sorting and filtering)
     @stringset observedProperties = {}
     for () in mArrayControllerBoundColumnListForGeneration do
-      observedProperties += !mObservablePropertyName
+      if mObservablePropertyForSorting != "" then
+        observedProperties += !mObservablePropertyForSorting
+      end
     end
     for () in mArrayControllerFilterListForGeneration do
       observedProperties += !mFilterPropertyName

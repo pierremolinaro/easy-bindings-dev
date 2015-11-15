@@ -11,6 +11,74 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                  @arrayControllerAttributListAST_2D_element struct                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_arrayControllerAttributListAST_2D_element : public AC_GALGAS_root {
+//--------------------------------- Public data members
+  public : GALGAS_lstring mAttribute_mAttributeName ;
+  public : GALGAS_abstractDefaultValue mAttribute_mAttributeValue ;
+
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerAttributListAST_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerAttributListAST_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_arrayControllerAttributListAST_2D_element (const GALGAS_lstring & in_mAttributeName,
+                                                             const GALGAS_abstractDefaultValue & in_mAttributeValue) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerAttributListAST_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static GALGAS_arrayControllerAttributListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                    const class GALGAS_abstractDefaultValue & inOperand1
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerAttributListAST_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mAttributeName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mAttributeValue (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerAttributListAST_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerAttributListAST_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                              @arrayControllerFilterListForGeneration_2D_element struct                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -87,14 +155,17 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
 //--------------------------------- Public data members
   public : GALGAS_string mAttribute_mColumnName ;
   public : GALGAS_string mAttribute_mColumnOutletTypeName ;
-  public : GALGAS_string mAttribute_mObservablePropertyName ;
-  public : GALGAS_typeKind mAttribute_mPropertyType ;
-  public : GALGAS_bindingOptionList mAttribute_mBindingOptionList ;
+  public : GALGAS_string mAttribute_mObservablePropertyForSorting ;
+  public : GALGAS_string mAttribute_mRunAction ;
+  public : GALGAS_regularBindingsGenerationList mAttribute_mRegularBindingsGenerationList ;
 
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_arrayControllerBoundColumnListForGeneration_2D_element constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Default constructor
   public : GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (void) ;
@@ -105,9 +176,9 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
 //--------------------------------- Native constructor
   public : GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (const GALGAS_string & in_mColumnName,
                                                                           const GALGAS_string & in_mColumnOutletTypeName,
-                                                                          const GALGAS_string & in_mObservablePropertyName,
-                                                                          const GALGAS_typeKind & in_mPropertyType,
-                                                                          const GALGAS_bindingOptionList & in_mBindingOptionList) ;
+                                                                          const GALGAS_string & in_mObservablePropertyForSorting,
+                                                                          const GALGAS_string & in_mRunAction,
+                                                                          const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList) ;
 
 //-- Start of generic part --*
 
@@ -123,8 +194,8 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
   public : static GALGAS_arrayControllerBoundColumnListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
                                                                                                  const class GALGAS_string & inOperand1,
                                                                                                  const class GALGAS_string & inOperand2,
-                                                                                                 const class GALGAS_typeKind & inOperand3,
-                                                                                                 const class GALGAS_bindingOptionList & inOperand4
+                                                                                                 const class GALGAS_string & inOperand3,
+                                                                                                 const class GALGAS_regularBindingsGenerationList & inOperand4
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -139,15 +210,15 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bindingOptionList getter_mBindingOptionList (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnOutletTypeName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservablePropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservablePropertyForSorting (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mPropertyType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mRunAction (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -262,8 +333,14 @@ class GALGAS_unifiedTypeMap : public AC_GALGAS_uniqueMap {
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void modifier_insertKey (class GALGAS_lstring constinArgument0,
                                                      class GALGAS_typeKind constinArgument1,
+                                                     class GALGAS_actionMap constinArgument2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void modifier_setMActionMapForKey (class GALGAS_actionMap constinArgument0,
+                                                               class GALGAS_string constinArgument1,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_setMTypeKindForKey (class GALGAS_typeKind constinArgument0,
                                                               class GALGAS_string constinArgument1,
@@ -274,12 +351,17 @@ class GALGAS_unifiedTypeMap : public AC_GALGAS_uniqueMap {
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
                                                    class GALGAS_typeKind & outArgument1,
+                                                   class GALGAS_actionMap & outArgument2,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMapForKey (const class GALGAS_string & constinOperand0,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mTypeKindForKey (const class GALGAS_string & constinOperand0,
                                                                           C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const ;
@@ -308,6 +390,7 @@ class cEnumerator_unifiedTypeMap : public cGenericAbstractEnumerator {
 //--- Current element access
   public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
   public : class GALGAS_typeKind current_mTypeKind (LOCATION_ARGS) const ;
+  public : class GALGAS_actionMap current_mActionMap (LOCATION_ARGS) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -323,10 +406,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_unifiedTypeMap ;
 class cMapElement_unifiedTypeMap : public cMapElement {
 //--- Map attributes
   public : GALGAS_typeKind mAttribute_mTypeKind ;
+  public : GALGAS_actionMap mAttribute_mActionMap ;
 
 //--- Constructor
   public : cMapElement_unifiedTypeMap (const GALGAS_lstring & inKey,
-                                       const GALGAS_typeKind & in_mTypeKind
+                                       const GALGAS_typeKind & in_mTypeKind,
+                                       const GALGAS_actionMap & in_mActionMap
                                        COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -387,6 +472,9 @@ class GALGAS_unifiedTypeMap_2D_proxy : public AC_GALGAS_uniqueMapProxy {
 
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMap (C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mTypeKind (C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) const ;
 

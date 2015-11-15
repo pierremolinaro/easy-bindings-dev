@@ -137,12 +137,12 @@ proc buildBindingSpecificationMap
     for () in bindingList do
       @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
       for () in mOutletClassBindingSpecificationModelList do
-        [inUnifiedTypeMap searchKey !mModelTypeName ?let @typeKind type]
+        [inUnifiedTypeMap searchKey !mModelTypeName ?let @typeKind type ?*]
         outletBindingSpecificationModelList += !type !mModelShouldBeWritableProperty
       end
       @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
       for () in mBindingOptionList do
-        [inUnifiedTypeMap searchKey !mOptionTypeName ?let @typeKind type]
+        [inUnifiedTypeMap searchKey !mOptionTypeName ?let @typeKind type ?*]
         controllerBindingOptionDecoratedList += !type !mOptionName
       end
       [!?outletBindingSpecificationMap insertKey

@@ -75,14 +75,14 @@ override method @transientAST tryToSolveSecondaryProperty
     ]
   end
   if solved then
-    [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+    [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?let actionMap]
     [!?ioObservableProperties insertKey
       !mTransientName
       !type
       !.transient
       !.single
       !""
-      !{} # No action map
+      !actionMap
     ]
   else
     ioUnsolvedProperties += !self
@@ -103,7 +103,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
   ?!@stringset unused ioNeededOutletClasses
 {
 #--- Property type
-  [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type]
+  [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?*]
 #--- Check type
   @typeKindList typeList
   switch type

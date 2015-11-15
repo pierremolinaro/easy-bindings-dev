@@ -40,7 +40,7 @@ binding EBGroupButton $selectedIndex : property Int ;
 
 
 outletClass EBImageObserverView $enabled ;
-binding EBImageObserverView $image : property Image ;
+binding EBImageObserverView $image : transient Image ;
 
 
 outletClass EBMenuItem ;
