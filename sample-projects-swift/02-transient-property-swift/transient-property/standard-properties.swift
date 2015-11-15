@@ -10,7 +10,47 @@ import Cocoa
 
 @objc(EBReadOnlyProperty_Int)
 class EBReadOnlyProperty_Int : EBAbstractProperty {
+ 
   var prop : EBProperty <Int> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
+  func compare (other : EBReadOnlyProperty_Int) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue < otherValue {
+          return .OrderedAscending
+        }else if currentValue > otherValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -317,7 +357,47 @@ class EBTransientProperty_Int : EBReadOnlyProperty_Int {
 
 @objc(EBReadOnlyProperty_Bool)
 class EBReadOnlyProperty_Bool : EBAbstractProperty {
+ 
   var prop : EBProperty <Bool> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
+  func compare (other : EBReadOnlyProperty_Bool) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue < otherValue {
+          return .OrderedAscending
+        }else if currentValue > otherValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -624,7 +704,47 @@ class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
 
 @objc(EBReadOnlyProperty_Double)
 class EBReadOnlyProperty_Double : EBAbstractProperty {
+ 
   var prop : EBProperty <Double> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
+  func compare (other : EBReadOnlyProperty_Double) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue < otherValue {
+          return .OrderedAscending
+        }else if currentValue > otherValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -932,6 +1052,45 @@ class EBTransientProperty_Double : EBReadOnlyProperty_Double {
 @objc(EBReadOnlyProperty_String)
 class EBReadOnlyProperty_String : EBAbstractProperty {
   var prop : EBProperty <String> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
+  func compare (other : EBReadOnlyProperty_String) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue < otherValue {
+          return .OrderedAscending
+        }else if currentValue > otherValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1234,6 +1393,9 @@ class EBTransientProperty_String : EBReadOnlyProperty_String {
 @objc(EBReadOnlyProperty_NSColor)
 class EBReadOnlyProperty_NSColor : EBAbstractProperty {
   var prop : EBProperty <NSColor> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1542,6 +1704,45 @@ class EBTransientProperty_NSColor : EBReadOnlyProperty_NSColor {
 @objc(EBReadOnlyProperty_NSDate)
 class EBReadOnlyProperty_NSDate : EBAbstractProperty {
   var prop : EBProperty <NSDate> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
+  func compare (other : EBReadOnlyProperty_NSDate) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue < otherValue {
+          return .OrderedAscending
+        }else if currentValue > otherValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1844,6 +2045,9 @@ class EBTransientProperty_NSDate : EBReadOnlyProperty_NSDate {
 @objc(EBReadOnlyProperty_NSFont)
 class EBReadOnlyProperty_NSFont : EBAbstractProperty {
   var prop : EBProperty <NSFont> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -2152,6 +2356,9 @@ class EBTransientProperty_NSFont : EBReadOnlyProperty_NSFont {
 @objc(EBReadOnlyProperty_NSImage)
 class EBReadOnlyProperty_NSImage : EBAbstractProperty {
   var prop : EBProperty <NSImage> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

@@ -55,6 +55,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class C
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class C_Compiler * inCompiler,
                                                                         const class GALGAS_string & in_CLASS_5F_NAME,
+                                                                        const class GALGAS_bool & in_COMPARABLE,
                                                                         const class GALGAS_string & in_EXPLORER_5F_ACCESS,
                                                                         const class GALGAS_bool & in_USE_5F_ARCHIVER
                                                                         COMMA_LOCATION_ARGS) ;
