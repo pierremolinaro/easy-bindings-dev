@@ -125,7 +125,7 @@ import Cocoa
 //   EBTextField_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTextField_Cell) class EBTextField_Cell : EBTableCellView {
+@objc(EBTextField_TableViewCell) class EBTextField_TableViewCell : EBTableCellView {
   @IBOutlet var mCellOutlet : EBTextField?
 
   //····················································································································

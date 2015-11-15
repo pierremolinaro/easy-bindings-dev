@@ -314,12 +314,12 @@ end
 %for () in BOUND_COLUMNS do
 %  //--- Check '%!mColumnName%' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
-      if let unwrappedTableCellView = anyObject as? %!mColumnOutletTypeName%_Cell {
+      if let unwrappedTableCellView = anyObject as? %!mColumnOutletTypeName%_TableViewCell {
         unwrappedTableCellView.checkOutlet ("%!mColumnName%", file:file, line:line)
       }else{
         presentErrorWindow (file,
           line: line,
-          errorMessage:"\"%!mColumnName%\" column cell view is not an instance of %!mColumnOutletTypeName%_Cell"
+          errorMessage:"\"%!mColumnName%\" column cell view is not an instance of %!mColumnOutletTypeName%_TableViewCell"
         )
       }
     }else{
@@ -328,10 +328,13 @@ end
         errorMessage:"\"%!mColumnName%\" column view unknown, or table view is NSCell-based"
       )
     }
-    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyName%_kvc", ascending:true)
+%if mObservablePropertyForSorting != "" then
+%    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
+      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"%!mObservablePropertyForSorting%_kvc", ascending:true)
     }
-%end
+%
+end
+end
 %  //--- Set descriptors from first column of table view
     let columns = tableView.tableColumns as NSArray
     if columns.count > 0 {
@@ -403,18 +406,36 @@ end
     case .singleSelection (let v) :
       let columnIdentifier = inTableColumn!.identifier
       let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+      if !reuseTableViewCells () {
+        result.identifier = nil // So result cannot be reused, will be freed
+      }
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       %
 for () in BOUND_COLUMNS
   do
     %if columnIdentifier == "%!mColumnName%" {\n%
-    %        if let cell : %!mColumnOutletTypeName%_Cell = result as? %!mColumnOutletTypeName%_Cell {\n%
+    %        if let cell : %!mColumnOutletTypeName%_TableViewCell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
     %          cell.mUnbindFunction = { [weak cell] in\n%
-    %            cell?.mCellOutlet?.unbind_value ()\n%
+    if mRunAction != "" then
+    %            cell?.mCellOutlet?.target = nil\n%
+    %            cell?.mCellOutlet?.action = ""\n%
+    end
+    for () in mRegularBindingsGenerationList do
+    %            cell?.mCellOutlet?.unbind_%!mBindingName% ()\n%
+    end
     %          }\n%
     %          cell.mUnbindFunction? ()\n%
-    %          cell.mCellOutlet?.bind_value (object.%!mObservablePropertyName%, file: __FILE__, line: __LINE__, sendContinously : false)\n%
-    %          // cell.configureWithProperty (object.%!mObservablePropertyName%)\n%
+    if mRunAction != "" then
+    %          cell.mCellOutlet?.target = object\n%
+    %          cell.mCellOutlet?.action = "%!mRunAction%:"\n%
+    end
+    for () in mRegularBindingsGenerationList do
+    %          cell.mCellOutlet?.bind_%!mBindingName% (%
+      for () in mBoundObjectStringList do
+        !mValue%, %
+      end
+      %file:__FILE__, line:__LINE__%!mBindingOptionsString%)\n%
+    end
     %        }\n%
     %      %
   between

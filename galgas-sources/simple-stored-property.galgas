@@ -81,7 +81,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
 {
   for () in self do
   #--- Property type
-    [inUnifiedTypeMap searchKey !mPropertyTypeName ?let type]
+    [inUnifiedTypeMap searchKey !mPropertyTypeName ?let type ?let actionMap]
   #--- Check type
     @typeKindList typeList
     switch type
@@ -101,7 +101,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
       !.stored
       !.single
       !""
-      !{} # No action
+      !actionMap
     ]
   end
 }
@@ -117,7 +117,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
   outSimpleStoredPropertyListForGeneration = {}
   for () in self do
   #--- Property type
-    [inUnifiedTypeMap searchKey !mPropertyTypeName ?let type]
+    [inUnifiedTypeMap searchKey !mPropertyTypeName ?let type ?*]
   #--- Check type
     @typeKindList typeList
     switch type

@@ -178,10 +178,10 @@ final class Controller_EBIntField_value : EBSimpleController {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBIntField_Cell
+//   EBIntField_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBIntField_Cell) class EBIntField_Cell : EBTableCellView {
+@objc(EBIntField_TableViewCell) class EBIntField_TableViewCell : EBTableCellView {
   @IBOutlet var mCellOutlet : EBIntField?
 
   //····················································································································

@@ -108,10 +108,10 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTextObserverField_Cell
+//   EBTextObserverField_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTextObserverField_Cell) class EBTextObserverField_Cell : EBTableCellView {
+@objc(EBTextObserverField_TableViewCell) class EBTextObserverField_TableViewCell : EBTableCellView {
   @IBOutlet var mCellOutlet : EBTextObserverField?
 
   //····················································································································

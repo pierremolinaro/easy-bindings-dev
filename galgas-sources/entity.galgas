@@ -10,6 +10,7 @@ class @entityDeclaration : @astDeclaration {
   @toManyRelationshipList mToManyRelationshipList
   @secondaryPropertyList mSecondaryPropertyList
   @stringset mSignatureList
+  @lstringlist mActionDeclarationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -39,6 +40,7 @@ syntax extension easyBindings_syntax {
     @toOneRelationshipList toOneRelationshipList = {}
     @toManyRelationshipList toManyRelationshipList = {}
     @stringset signatureList = {}
+    @lstringlist actionDeclarationList = {}
     repeat
     while
       <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
@@ -48,6 +50,8 @@ syntax extension easyBindings_syntax {
       <toMany_relationship> !?toManyRelationshipList !?signatureList
     while
       <toOne_relationship> !?toOneRelationshipList
+    while
+      <action_declaration> !?actionDeclarationList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@entityDeclaration.new {
@@ -59,6 +63,7 @@ syntax extension easyBindings_syntax {
       !toManyRelationshipList
       !secondaryPropertyList
       !signatureList
+      !actionDeclarationList
     }
   }
 
@@ -79,9 +84,13 @@ override method @entityDeclaration typeInventory
       !?ioUnifiedTypeMap
     ]
   end
+  @actionMap actionMap = {}
+  for (act) in mActionDeclarationList do
+    [!?actionMap insertKey !act]
+  end
   [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
   [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
-  [!?ioUnifiedTypeMap insertKey !mEntityName !.entityType {!entityName:mEntityName.string}]
+  [!?ioUnifiedTypeMap insertKey !mEntityName !.entityType {!entityName:mEntityName.string} !actionMap]
   if mSuperEntityName.string != "" then
     [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperEntityName ?*]
   end

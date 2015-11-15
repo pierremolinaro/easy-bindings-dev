@@ -110,10 +110,10 @@ import Cocoa
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBSwitch_Cell
+//   EBSwitch_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSwitch_Cell) class EBSwitch_Cell : EBTableCellView {
+@objc(EBSwitch_TableViewCell) class EBSwitch_TableViewCell : EBTableCellView {
   @IBOutlet var mCellOutlet : EBSwitch?
 
   //····················································································································

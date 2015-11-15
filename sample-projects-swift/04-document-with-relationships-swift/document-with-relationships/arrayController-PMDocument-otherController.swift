@@ -248,7 +248,6 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     mSelectedSet.addEBObserver (selectedArray)
   //--- Add observed properties (for filtering and sorting)
     model.addEBObserverOf_aValue (sortedArray)
-    model.addEBObserverOf_name (sortedArray)
   //--- Bind table views
     for tableView in tableViewArray {
       bind_tableView (tableView, file:file, line:line)
@@ -268,7 +267,6 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     mSelectedSet.removeEBObserver (selectedArray)
   //--- Remove observed properties (for filtering and sorting)
     mModel?.removeEBObserverOf_aValue (sortedArray)
-    mModel?.removeEBObserverOf_name (sortedArray)
     for tvc in mTableViewDataSourceControllerArray {
       sortedArray.removeEBObserver (tvc)
     }
@@ -308,12 +306,12 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
-      if let unwrappedTableCellView = anyObject as? EBTextField_Cell {
+      if let unwrappedTableCellView = anyObject as? EBTextField_TableViewCell {
         unwrappedTableCellView.checkOutlet ("name", file:file, line:line)
       }else{
         presentErrorWindow (file,
           line: line,
-          errorMessage:"\"name\" column cell view is not an instance of EBTextField_Cell"
+          errorMessage:"\"name\" column cell view is not an instance of EBTextField_TableViewCell"
         )
       }
     }else{
@@ -322,17 +320,14 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
         errorMessage:"\"name\" column view unknown, or table view is NSCell-based"
       )
     }
-    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"name_kvc", ascending:true)
-    }
   //--- Check 'int' column
     if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
-      if let unwrappedTableCellView = anyObject as? EBIntField_Cell {
+      if let unwrappedTableCellView = anyObject as? EBIntField_TableViewCell {
         unwrappedTableCellView.checkOutlet ("int", file:file, line:line)
       }else{
         presentErrorWindow (file,
           line: line,
-          errorMessage:"\"int\" column cell view is not an instance of EBIntField_Cell"
+          errorMessage:"\"int\" column cell view is not an instance of EBIntField_TableViewCell"
         )
       }
     }else{
@@ -340,9 +335,6 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
         line: line,
         errorMessage:"\"int\" column view unknown, or table view is NSCell-based"
       )
-    }
-    if let columnName : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
-      columnName.sortDescriptorPrototype = NSSortDescriptor (key:"aValue_kvc", ascending:true)
     }
   //--- Set descriptors from first column of table view
     let columns = tableView.tableColumns as NSArray
@@ -415,24 +407,25 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     case .singleSelection (let v) :
       let columnIdentifier = inTableColumn!.identifier
       let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+      if !reuseTableViewCells () {
+        result.identifier = nil // So result cannot be reused, will be freed
+      }
       let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
       if columnIdentifier == "name" {
-        if let cell : EBTextField_Cell = result as? EBTextField_Cell {
+        if let cell : EBTextField_TableViewCell = result as? EBTextField_TableViewCell {
           cell.mUnbindFunction = { [weak cell] in
             cell?.mCellOutlet?.unbind_value ()
           }
           cell.mUnbindFunction? ()
-          cell.mCellOutlet?.bind_value (object.name, file: __FILE__, line: __LINE__, sendContinously : false)
-          // cell.configureWithProperty (object.name)
+          cell.mCellOutlet?.bind_value (object.name, file:__FILE__, line:__LINE__, sendContinously:false)
         }
       }else if columnIdentifier == "int" {
-        if let cell : EBIntField_Cell = result as? EBIntField_Cell {
+        if let cell : EBIntField_TableViewCell = result as? EBIntField_TableViewCell {
           cell.mUnbindFunction = { [weak cell] in
             cell?.mCellOutlet?.unbind_value ()
           }
           cell.mUnbindFunction? ()
-          cell.mCellOutlet?.bind_value (object.aValue, file: __FILE__, line: __LINE__, sendContinously : false, autoFormatter : true)
-          // cell.configureWithProperty (object.aValue)
+          cell.mCellOutlet?.bind_value (object.aValue, file:__FILE__, line:__LINE__, sendContinously:false, autoFormatter:true)
         }
       }else{
         NSLog ("Unknown column '\(columnIdentifier)'")

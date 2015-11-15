@@ -32,9 +32,9 @@ list @outletDeclarationList {
 
 syntax extension easyBindings_syntax {
 
-  rule <outlet_declaration>
-    ?!@outletDeclarationList ioOutletDeclarationList
-  {
+#......................................................................................................................*
+
+  rule <outlet_declaration> ?!@outletDeclarationList ioOutletDeclarationList {
     $outlet$
     $Identifier$ ?let outletTypeName
     $identifier$ ?let outletName
@@ -109,6 +109,9 @@ syntax extension easyBindings_syntax {
       !hiddenBindingDescriptor
       !regularBindingList
   }
+  
+  #......................................................................................................................*
+
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -257,82 +260,106 @@ proc analyzeOutlets
         !"hidden"
         !hiddenExpression
     end
-  #--- Regular bindings
-    for () in outlet_mRegularBindingList do
-    #--- Analyse model
-      var @outletBindingModelList boundModelTypeList = {}
-      var @stringlist boundModelStringListForGeneration = {}
-      for () in mObservablePropertyList do
-        boundModelStringListForGeneration += ![mObservableProperty modelString !"self"]
-        [mObservableProperty analyzeObservableProperty
-          !inRootObservablePropertyMap
-          !inSemanticContext
-          !inObservablePropertyMap
-          ?@typeKind type
-          ?@propertyKind kind
-          ?@propertyMultiplicity multiplicity
-          ?let @string unused swiftTypeStringForTransientFunctionArgument
-        ]
-        if multiplicity != .single then
-          error [mObservableProperty location]:"a collection cannot be bound"
-        end
-        boundModelTypeList += !type !kind ![mObservableProperty location]
-      end
-    #--- Analyze outlet binding
-      [inSemanticContext.mBindingSpecificationMap searchKey
-        !outlet_mOutletTypeName
-        ?let @outletBindingSpecificationMap bindingMap
+  #---------------------------------- Regular bindings
+    analyzeRegularBinding (
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !outlet_mOutletTypeName
+      !outlet_mOutletName.string
+      !outlet_mRegularBindingList
+      !"self"
+      !?outRegularBindingsGenerationList
+    )
+  end
+}
+
+#......................................................................................................................*
+
+proc analyzeRegularBinding
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inObservablePropertyMap
+  ?let @lstring inOutletTypeName
+  ?let @string inOutletName
+  ?let @regularBindingList inRegularBindingList
+  ?let @string inSelfSwiftName
+  ?!@regularBindingsGenerationList ioRegularBindingsGenerationList
+{
+  for () in inRegularBindingList do
+  #--- Analyze model
+    var @outletBindingModelList boundModelTypeList = {}
+    var @stringlist boundModelStringListForGeneration = {}
+    for () in mObservablePropertyList do
+      boundModelStringListForGeneration += ![mObservableProperty modelString !inSelfSwiftName]
+      [mObservableProperty analyzeObservableProperty
+        !inRootObservablePropertyMap
+        !inSemanticContext
+        !inObservablePropertyMap
+        ?@typeKind type
+        ?@propertyKind kind
+        ?@propertyMultiplicity multiplicity
+        ?let @string unused swiftTypeStringForTransientFunctionArgument
       ]
-      [bindingMap searchKey
-        !mBindingName
-        ?let @outletBindingSpecificationModelList outletBindingSpecificationModelList
-        ?let @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
-      ]
-      if [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
-        error mBindingName : [[outletBindingSpecificationModelList length] string] + " model(s) required for this binding"
-      else
-        for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do
-          if required_mModelShouldBeWritableProperty && (found_mKind == .transient) then
-            error found_mErrorLocation : "the model is transient and the binding requires an writable model"
-          end
-          if [required_mModelType isEnumType] && [found_mModelType isEnumType] then # Ok
-          elsif [required_mModelType swiftTypeName] != [found_mModelType swiftTypeName] then
-            error found_mErrorLocation : "the model type should be " + [required_mModelType swiftTypeName]
-          end
-        end
+      if multiplicity != .single then
+        error [mObservableProperty location]:"a collection cannot be bound"
       end
-    #--- Check options
-      var bindingOptionString = ""
-      if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
-        @string s
-        if [controllerBindingOptionDecoratedList length] == 0 then
-          s = "this binding has no option"
-        else 
-          s = "this binding requires the following options:"
-          for () in controllerBindingOptionDecoratedList do
-            s += "\n  - " + mOptionName + " : " + [mOptionType swiftTypeName]
-          end
-        end
-        error mBindingName : s
-      else
-        for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
-          if controller_mOptionName.string != binding_mOptionName.string then
-            error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
-          end
-          [binding_mOptionValue analyzeDefaultValueType 
-            !{!controller_mOptionType}
-            ?let @string optionValueAsString
-          ]
-          bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
-        end
-      end
-    #--- Generate binding
-      outRegularBindingsGenerationList +=
-        !outlet_mOutletName.string
-        !mBindingName.string
-        !boundModelStringListForGeneration
-        !bindingOptionString
+      boundModelTypeList += !type !kind ![mObservableProperty location]
     end
+  #--- Analyze outlet binding
+    [inSemanticContext.mBindingSpecificationMap searchKey
+      !inOutletTypeName # outlet_mOutletTypeName
+      ?let @outletBindingSpecificationMap bindingMap
+    ]
+    [bindingMap searchKey
+      !mBindingName
+      ?let @outletBindingSpecificationModelList outletBindingSpecificationModelList
+      ?let @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
+    ]
+    if [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
+      error mBindingName : [[outletBindingSpecificationModelList length] string] + " model(s) required for this binding"
+    else
+      for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do
+        if required_mModelShouldBeWritableProperty && (found_mKind == .transient) then
+          error found_mErrorLocation : "the model is transient and the binding requires an writable model"
+        end
+        if [required_mModelType isEnumType] && [found_mModelType isEnumType] then # Ok
+        elsif [required_mModelType swiftTypeName] != [found_mModelType swiftTypeName] then
+          error found_mErrorLocation : "the model type should be " + [required_mModelType swiftTypeName]
+        end
+      end
+    end
+  #--- Check options
+    var bindingOptionString = ""
+    if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
+      @string s
+      if [controllerBindingOptionDecoratedList length] == 0 then
+        s = "this binding has no option"
+      else 
+        s = "this binding requires the following options:"
+        for () in controllerBindingOptionDecoratedList do
+          s += "\n  - " + mOptionName + " : " + [mOptionType swiftTypeName]
+        end
+      end
+      error mBindingName : s
+    else
+      for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
+        if controller_mOptionName.string != binding_mOptionName.string then
+          error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
+        end
+        [binding_mOptionValue analyzeDefaultValueType 
+          !{!controller_mOptionType}
+          ?let @string optionValueAsString
+        ]
+        bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
+      end
+    end
+  #--- Generate binding
+    ioRegularBindingsGenerationList +=
+      !inOutletName
+      !mBindingName.string
+      !boundModelStringListForGeneration
+      !bindingOptionString
   end
 }
 

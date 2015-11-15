@@ -120,10 +120,10 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBIntObserverField_Cell
+//   EBIntObserverField_TableViewCell
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBIntObserverField_Cell) class EBIntObserverField_Cell : EBTableCellView {
+@objc(EBIntObserverField_TableViewCell) class EBIntObserverField_TableViewCell : EBTableCellView {
   @IBOutlet var mCellOutlet : EBIntObserverField?
 
   //····················································································································

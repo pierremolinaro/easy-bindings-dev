@@ -88,13 +88,15 @@ override method @classDeclaration typeInventory
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
-    [item typeInventory
-      !?ioUnifiedTypeMap
-    ]
+    [item typeInventory !?ioUnifiedTypeMap]
+  end
+  @actionMap actionMap = {}
+  for (act) in mActionDeclarationList do
+    [!?actionMap insertKey !act]
   end
 #  [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
 #  [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
-  [!?ioUnifiedTypeMap insertKey !mClassName !.classType {!className:mClassName.string}]
+  [!?ioUnifiedTypeMap insertKey !mClassName !.classType {!className:mClassName.string} !actionMap]
 #  if mSuperClassName.string != "" then
 #    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperClassName ?*]
 #  end

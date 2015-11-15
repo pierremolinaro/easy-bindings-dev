@@ -473,6 +473,7 @@ enum EBValidationResult {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTableCellView) class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
+  final var mUnbindFunction : Optional < () -> Void > = nil
 
   //····················································································································
 
@@ -491,10 +492,28 @@ enum EBValidationResult {
   //····················································································································
   
   deinit {
+    mUnbindFunction? ()
     noteObjectDeallocation (self)
   }
 
   //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mUnbindFunction? ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mUnbindFunction? ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
