@@ -2499,16 +2499,6 @@ class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Category getter '@typeKind defaultSwiftTypeValueAsString' (as function)                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string extensionGetter_defaultSwiftTypeValueAsString (const class GALGAS_typeKind & inObject,
-                                                                   class C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                               Category getter '@typeKind swiftTypeName' (as function)                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*

@@ -328,16 +328,6 @@ end
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %  var %!mStoredPropertyName% = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n\n%
-  %/*  var %!mStoredPropertyName%_kvc : %![mType swiftTypeName]% {\n%
-  %    get {\n%
-  %      switch %!mStoredPropertyName%.prop {\n%
-  %      case .noSelection, .multipleSelection :\n%
-  %        return %![mType defaultSwiftTypeValueAsString]%\n%
-  %      case .singleSelection (let v) :\n%
-  %        return v\n%
-  %      }\n%
-  %    }\n%
-  %  } */\n\n%
 between
 %  //····················································································································\n\n%
 end

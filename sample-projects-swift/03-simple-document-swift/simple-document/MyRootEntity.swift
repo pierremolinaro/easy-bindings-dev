@@ -269,28 +269,8 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   var myString = EBStoredProperty_String ("Hello")
-/*  var myString_kvc : String {
-    get {
-      switch myString.prop {
-      case .noSelection, .multipleSelection :
-        return ""
-      case .singleSelection (let v) :
-        return v
-      }
-    }
-  } */
 
   var myColor = EBStoredProperty_NSColor (NSColor.yellowColor ())
-/*  var myColor_kvc : NSColor {
-    get {
-      switch myColor.prop {
-      case .noSelection, .multipleSelection :
-        return NSColor.blackColor ()
-      case .singleSelection (let v) :
-        return v
-      }
-    }
-  } */
 
   //····················································································································
   //    Transient properties

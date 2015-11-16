@@ -346,28 +346,8 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //····················································································································
 
   var name = EBStoredProperty_String ("Name")
-/*  var name_kvc : String {
-    get {
-      switch name.prop {
-      case .noSelection, .multipleSelection :
-        return ""
-      case .singleSelection (let v) :
-        return v
-      }
-    }
-  } */
 
   var aValue = EBStoredProperty_Int (100)
-/*  var aValue_kvc : Int {
-    get {
-      switch aValue.prop {
-      case .noSelection, .multipleSelection :
-        return 0
-      case .singleSelection (let v) :
-        return v
-      }
-    }
-  } */
 
   //····················································································································
   //    Transient properties

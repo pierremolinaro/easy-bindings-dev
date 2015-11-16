@@ -1288,6 +1288,16 @@ class GALGAS_bool extensionGetter_isComparable (const class GALGAS_typeKind & in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                       Category getter '@typeKind defaultSwiftTypeValueAsString' (as function)                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_string extensionGetter_defaultSwiftTypeValueAsString (const class GALGAS_typeKind & inObject,
+                                                                   class C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                  Abstract category method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
