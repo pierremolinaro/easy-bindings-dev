@@ -230,6 +230,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     sortedArray.addEBObserver (mSelectedSet)
     mSelectedSet.addEBObserver (selectedArray)
   //--- Add observed properties (for filtering and sorting)
+    model.addEBObserverOf_aValue (sortedArray)
+    model.addEBObserverOf_name (sortedArray)
   //--- Bind table views
     for tableView in tableViewArray {
       bind_tableView (tableView, file:file, line:line)
@@ -248,6 +250,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     sortedArray.removeEBObserver (mSelectedSet)
     mSelectedSet.removeEBObserver (selectedArray)
   //--- Remove observed properties (for filtering and sorting)
+    mModel?.removeEBObserverOf_aValue (sortedArray)
+    mModel?.removeEBObserverOf_name (sortedArray)
     for tvc in mTableViewDataSourceControllerArray {
       sortedArray.removeEBObserver (tvc)
     }
@@ -302,7 +306,11 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
       )
     } */
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
-      column.sortDescriptorPrototype = nil
+      column.sortDescriptorPrototype = NSSortDescriptor (
+        key:"name",
+        ascending:true,
+        selector:"compare:"
+      )
     }else{
       presentErrorWindow (file,
         line: line,
@@ -326,7 +334,11 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
       )
     } */
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
-      column.sortDescriptorPrototype = nil
+      column.sortDescriptorPrototype = NSSortDescriptor (
+        key:"aValue",
+        ascending:true,
+        selector:"compare:"
+      )
     }else{
       presentErrorWindow (file,
         line: line,

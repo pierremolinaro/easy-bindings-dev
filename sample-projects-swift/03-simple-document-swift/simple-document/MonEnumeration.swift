@@ -41,6 +41,44 @@ class EBReadOnlyProperty_MonEnumeration : EBAbstractProperty, EBReadOnlyEnumProp
   func rawValue () -> Int { return MonEnumeration.premier.rawValue }  // Abstract method
 
   func count () -> Int { return 3 }
+
+  //····················································································································
+
+  func compare (other : EBReadOnlyProperty_MonEnumeration) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue.rawValue < otherValue.rawValue {
+          return .OrderedAscending
+        }else if currentValue.rawValue > otherValue.rawValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  }
+
+  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

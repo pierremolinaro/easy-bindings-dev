@@ -6,6 +6,7 @@ list @arrayControllerBoundColumnListAST {
   @lstring mColumnName
   @lstring mColumnOutletTypeName
   @columnBindingAST mColumnBindingAST
+  @lstring mSortPropertyName
 }
 
 #......................................................................................................................*
@@ -101,12 +102,20 @@ syntax extension easyBindings_syntax {
     while
       $column$
       $literal_string$ ?let columnName
+      @lstring sortPropertyName
+      select
+        sortPropertyName = ["" nowhere]
+      or
+        $sort$
+        $identifier$ ?sortPropertyName
+      end
       $Identifier$ ?let columnOutletTypeName
       <column_bindings> ?let @columnBindingAST columnBindingAST
       arrayControllerBoundColumnListAST +=
         !columnName
         !columnOutletTypeName
         !columnBindingAST
+        !sortPropertyName
     end
     $}$
     ioSecondaryPropertyList += !@arrayControllerDeclaration.new {
@@ -418,12 +427,23 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       !mColumnBindingAST.mRegularBindingList
       !"object"
       !?regularBindingsGenerationList
-    )    
+    )
+  #-------- Sort property
+    if mSortPropertyName.string != "" then
+      [boundModelObservablePropertyMap searchKey
+        !mSortPropertyName
+        ?let @typeKind type
+        ?4*
+      ]
+      if not [type isComparable] then
+        error mSortPropertyName : "this property is not comparable"
+      end    
+    end
   #-------- Binding generation
     arrayControllerBoundColumnListForGeneration +=
       !mColumnName.string
       !mColumnOutletTypeName.string
-      !"" # Observable property for sorting
+      !mSortPropertyName.string
       !mColumnBindingAST.mRunActionName.string
       !regularBindingsGenerationList
     ioNeededOutletClasses += !mColumnOutletTypeName.string
