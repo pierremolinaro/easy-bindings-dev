@@ -290,21 +290,6 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     mSelectedSet.addEBObserver (selectionTableViewController)
     mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column
-/*    if let anyObject: NSView = tableView.makeViewWithIdentifier ("name", owner:self) {
-      if let unwrappedTableCellView = anyObject as? EBTextField_TableViewCell {
-        unwrappedTableCellView.checkOutlet ("name", file:file, line:line)
-      }else{
-        presentErrorWindow (file,
-          line: line,
-          errorMessage:"\"name\" column cell view is not an instance of EBTextField_TableViewCell"
-        )
-      }
-    }else{
-      presentErrorWindow (file,
-        line: line,
-        errorMessage:"\"name\" column view unknown, or table view is NSCell-based"
-      )
-    } */
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
       column.sortDescriptorPrototype = NSSortDescriptor (
         key:"name",
@@ -318,21 +303,6 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
       )
     }
   //--- Check 'int' column
-/*    if let anyObject: NSView = tableView.makeViewWithIdentifier ("int", owner:self) {
-      if let unwrappedTableCellView = anyObject as? EBIntField_TableViewCell {
-        unwrappedTableCellView.checkOutlet ("int", file:file, line:line)
-      }else{
-        presentErrorWindow (file,
-          line: line,
-          errorMessage:"\"int\" column cell view is not an instance of EBIntField_TableViewCell"
-        )
-      }
-    }else{
-      presentErrorWindow (file,
-        line: line,
-        errorMessage:"\"int\" column view unknown, or table view is NSCell-based"
-      )
-    } */
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
       column.sortDescriptorPrototype = NSSortDescriptor (
         key:"aValue",

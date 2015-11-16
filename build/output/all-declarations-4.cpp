@@ -1476,33 +1476,6 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
       result << "  //--- Check '" ;
       result << enumerator_12475.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
-        "/*    if let anyObject: NSView = tableView.makeViewWithIdentifier (\"" ;
-      result << enumerator_12475.current_mColumnName (HERE).stringValue () ;
-      result << "\", owner:self) {\n"
-        "      if let unwrappedTableCellView = anyObject as\? " ;
-      result << enumerator_12475.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << "_TableViewCell {\n"
-        "        unwrappedTableCellView.checkOutlet (\"" ;
-      result << enumerator_12475.current_mColumnName (HERE).stringValue () ;
-      result << "\", file:file, line:line)\n"
-        "      }else{\n"
-        "        presentErrorWindow (file,\n"
-        "          line: line,\n"
-        "          errorMessage:\"\\\"" ;
-      result << enumerator_12475.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column cell view is not an instance of " ;
-      result << enumerator_12475.current_mColumnOutletTypeName (HERE).stringValue () ;
-      result << "_TableViewCell\"\n"
-        "        )\n"
-        "      }\n"
-        "    }else{\n"
-        "      presentErrorWindow (file,\n"
-        "        line: line,\n"
-        "        errorMessage:\"\\\"" ;
-      result << enumerator_12475.current_mColumnName (HERE).stringValue () ;
-      result << "\\\" column view unknown, or table view is NSCell-based\"\n"
-        "      )\n"
-        "    } */\n"
         "    if let column : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
       result << enumerator_12475.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n" ;
@@ -1610,80 +1583,80 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      }\n"
     "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
     "      " ;
-  GALGAS_uint index_16832_ (0) ;
+  GALGAS_uint index_16174_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16832 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_16832 = enumerator_16832.hasCurrentObject () ;
-    while (enumerator_16832.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16174 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_16174 = enumerator_16174.hasCurrentObject () ;
+    while (enumerator_16174.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_16832.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_16174.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "        if let cell : " ;
-      result << enumerator_16832.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16174.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_TableViewCell = result as\? " ;
-      result << enumerator_16832.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16174.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_TableViewCell {\n"
         "          cell.mUnbindFunction = { [weak cell] in\n" ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_16832.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_16174.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
         result << "            cell\?.mCellOutlet\?.target = nil\n"
           "            cell\?.mCellOutlet\?.action = \"\"\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      GALGAS_uint index_17251_ (0) ;
-      if (enumerator_16832.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-        cEnumerator_regularBindingsGenerationList enumerator_17251 (enumerator_16832.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
-        while (enumerator_17251.hasCurrentObject ()) {
+      GALGAS_uint index_16593_ (0) ;
+      if (enumerator_16174.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+        cEnumerator_regularBindingsGenerationList enumerator_16593 (enumerator_16174.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
+        while (enumerator_16593.hasCurrentObject ()) {
           result << "            cell\?.mCellOutlet\?.unbind_" ;
-          result << enumerator_17251.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_16593.current_mBindingName (HERE).stringValue () ;
           result << " ()\n" ;
-          index_17251_.increment () ;
-          enumerator_17251.gotoNextObject () ;
+          index_16593_.increment () ;
+          enumerator_16593.gotoNextObject () ;
         }
       }
       result << "          }\n"
         "          cell.mUnbindFunction\? ()\n" ;
-      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, enumerator_16832.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, enumerator_16174.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "          cell.mCellOutlet\?.target = object\n"
           "          cell.mCellOutlet\?.action = \"" ;
-        result << enumerator_16832.current_mRunAction (HERE).stringValue () ;
+        result << enumerator_16174.current_mRunAction (HERE).stringValue () ;
         result << ":\"\n" ;
       }else if (kBoolFalse == test_3) {
       }
-      GALGAS_uint index_17586_ (0) ;
-      if (enumerator_16832.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-        cEnumerator_regularBindingsGenerationList enumerator_17586 (enumerator_16832.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
-        while (enumerator_17586.hasCurrentObject ()) {
+      GALGAS_uint index_16928_ (0) ;
+      if (enumerator_16174.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+        cEnumerator_regularBindingsGenerationList enumerator_16928 (enumerator_16174.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
+        while (enumerator_16928.hasCurrentObject ()) {
           result << "          cell.mCellOutlet\?.bind_" ;
-          result << enumerator_17586.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_16928.current_mBindingName (HERE).stringValue () ;
           result << " (" ;
-          GALGAS_uint index_17685_ (0) ;
-          if (enumerator_17586.current_mBoundObjectStringList (HERE).isValid ()) {
-            cEnumerator_stringlist enumerator_17685 (enumerator_17586.current_mBoundObjectStringList (HERE), kEnumeration_up) ;
-            while (enumerator_17685.hasCurrentObject ()) {
-              result << enumerator_17685.current_mValue (HERE).stringValue () ;
+          GALGAS_uint index_17027_ (0) ;
+          if (enumerator_16928.current_mBoundObjectStringList (HERE).isValid ()) {
+            cEnumerator_stringlist enumerator_17027 (enumerator_16928.current_mBoundObjectStringList (HERE), kEnumeration_up) ;
+            while (enumerator_17027.hasCurrentObject ()) {
+              result << enumerator_17027.current_mValue (HERE).stringValue () ;
               result << ", " ;
-              index_17685_.increment () ;
-              enumerator_17685.gotoNextObject () ;
+              index_17027_.increment () ;
+              enumerator_17027.gotoNextObject () ;
             }
           }
           result << "file:__FILE__, line:__LINE__" ;
-          result << enumerator_17586.current_mBindingOptionsString (HERE).stringValue () ;
+          result << enumerator_16928.current_mBindingOptionsString (HERE).stringValue () ;
           result << ")\n" ;
-          index_17586_.increment () ;
-          enumerator_17586.gotoNextObject () ;
+          index_16928_.increment () ;
+          enumerator_16928.gotoNextObject () ;
         }
       }
       result << "        }\n"
         "      " ;
-      if (enumerator_16832.hasNextObject ()) {
+      if (enumerator_16174.hasNextObject ()) {
         result << "}else " ;
       }
-      index_16832_.increment () ;
-      enumerator_16832.gotoNextObject () ;
+      index_16174_.increment () ;
+      enumerator_16174.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_16832) {
+    if (nonEmpty_enumerator_16174) {
       result << "}else{\n"
         "        NSLog (\"Unknown column '\\(columnIdentifier)'\")\n"
         "      }\n" ;

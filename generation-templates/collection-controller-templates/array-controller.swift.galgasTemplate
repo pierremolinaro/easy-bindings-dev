@@ -313,21 +313,6 @@ end
     mTableViewSelectionControllerArray.append (selectionTableViewController)
 %for () in BOUND_COLUMNS do
 %  //--- Check '%!mColumnName%' column
-/*    if let anyObject: NSView = tableView.makeViewWithIdentifier ("%!mColumnName%", owner:self) {
-      if let unwrappedTableCellView = anyObject as? %!mColumnOutletTypeName%_TableViewCell {
-        unwrappedTableCellView.checkOutlet ("%!mColumnName%", file:file, line:line)
-      }else{
-        presentErrorWindow (file,
-          line: line,
-          errorMessage:"\"%!mColumnName%\" column cell view is not an instance of %!mColumnOutletTypeName%_TableViewCell"
-        )
-      }
-    }else{
-      presentErrorWindow (file,
-        line: line,
-        errorMessage:"\"%!mColumnName%\" column view unknown, or table view is NSCell-based"
-      )
-    } */
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
 %if mObservablePropertyForSorting != "" then
 %      column.sortDescriptorPrototype = NSSortDescriptor (
