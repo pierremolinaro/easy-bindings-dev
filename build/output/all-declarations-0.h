@@ -111,6 +111,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_selectionController,
    kToken_self,
    kToken_signature,
+   kToken_sort,
    kToken_struct,
    kToken_to,
    kToken_toMany,
@@ -176,7 +177,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 65 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 66 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -639,6 +640,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_42 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_43 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_44 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -1302,7 +1305,8 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mColumnName,
                                                   const class GALGAS_lstring & in_mColumnOutletTypeName,
-                                                  const class GALGAS_columnBindingAST & in_mColumnBindingAST
+                                                  const class GALGAS_columnBindingAST & in_mColumnBindingAST,
+                                                  const class GALGAS_lstring & in_mSortPropertyName
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -1320,7 +1324,8 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
 
   public : static GALGAS_arrayControllerBoundColumnListAST constructor_listWithValue (const class GALGAS_lstring & inOperand0,
                                                                                       const class GALGAS_lstring & inOperand1,
-                                                                                      const class GALGAS_columnBindingAST & inOperand2
+                                                                                      const class GALGAS_columnBindingAST & inOperand2,
+                                                                                      const class GALGAS_lstring & inOperand3
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -1330,7 +1335,8 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                       const class GALGAS_lstring & inOperand1,
-                                                      const class GALGAS_columnBindingAST & inOperand2
+                                                      const class GALGAS_columnBindingAST & inOperand2,
+                                                      const class GALGAS_lstring & inOperand3
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerBoundColumnListAST operator_concat (const GALGAS_arrayControllerBoundColumnListAST & inOperand
@@ -1346,26 +1352,30 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG void modifier_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                          class GALGAS_lstring constinArgument1,
                                                          class GALGAS_columnBindingAST constinArgument2,
-                                                         class GALGAS_uint constinArgument3,
+                                                         class GALGAS_lstring constinArgument3,
+                                                         class GALGAS_uint constinArgument4,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_popFirst (class GALGAS_lstring & outArgument0,
                                                     class GALGAS_lstring & outArgument1,
                                                     class GALGAS_columnBindingAST & outArgument2,
+                                                    class GALGAS_lstring & outArgument3,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_popLast (class GALGAS_lstring & outArgument0,
                                                    class GALGAS_lstring & outArgument1,
                                                    class GALGAS_columnBindingAST & outArgument2,
+                                                   class GALGAS_lstring & outArgument3,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void modifier_removeAtIndex (class GALGAS_lstring & outArgument0,
                                                          class GALGAS_lstring & outArgument1,
                                                          class GALGAS_columnBindingAST & outArgument2,
-                                                         class GALGAS_uint constinArgument3,
+                                                         class GALGAS_lstring & outArgument3,
+                                                         class GALGAS_uint constinArgument4,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -1374,12 +1384,14 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
                                                class GALGAS_lstring & outArgument1,
                                                class GALGAS_columnBindingAST & outArgument2,
+                                               class GALGAS_lstring & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
                                               class GALGAS_lstring & outArgument1,
                                               class GALGAS_columnBindingAST & outArgument2,
+                                              class GALGAS_lstring & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -1397,6 +1409,10 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnOutletTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSortPropertyNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundColumnListAST getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
                                                                                                     C_Compiler * inCompiler
@@ -1427,6 +1443,7 @@ class cEnumerator_arrayControllerBoundColumnListAST : public cGenericAbstractEnu
   public : class GALGAS_lstring current_mColumnName (LOCATION_ARGS) const ;
   public : class GALGAS_lstring current_mColumnOutletTypeName (LOCATION_ARGS) const ;
   public : class GALGAS_columnBindingAST current_mColumnBindingAST (LOCATION_ARGS) const ;
+  public : class GALGAS_lstring current_mSortPropertyName (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_arrayControllerBoundColumnListAST_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -5822,6 +5839,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_42 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_43 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_44 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*

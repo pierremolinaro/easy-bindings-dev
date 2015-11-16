@@ -5683,6 +5683,7 @@ class GALGAS_arrayControllerBoundColumnListAST_2D_element : public AC_GALGAS_roo
   public : GALGAS_lstring mAttribute_mColumnName ;
   public : GALGAS_lstring mAttribute_mColumnOutletTypeName ;
   public : GALGAS_columnBindingAST mAttribute_mColumnBindingAST ;
+  public : GALGAS_lstring mAttribute_mSortPropertyName ;
 
 
 //--------------------------------- Accessors
@@ -5698,7 +5699,8 @@ class GALGAS_arrayControllerBoundColumnListAST_2D_element : public AC_GALGAS_roo
 //--------------------------------- Native constructor
   public : GALGAS_arrayControllerBoundColumnListAST_2D_element (const GALGAS_lstring & in_mColumnName,
                                                                 const GALGAS_lstring & in_mColumnOutletTypeName,
-                                                                const GALGAS_columnBindingAST & in_mColumnBindingAST) ;
+                                                                const GALGAS_columnBindingAST & in_mColumnBindingAST,
+                                                                const GALGAS_lstring & in_mSortPropertyName) ;
 
 //-- Start of generic part --*
 
@@ -5713,7 +5715,8 @@ class GALGAS_arrayControllerBoundColumnListAST_2D_element : public AC_GALGAS_roo
 //--------------------------------- GALGAS constructors
   public : static GALGAS_arrayControllerBoundColumnListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                                        const class GALGAS_lstring & inOperand1,
-                                                                                       const class GALGAS_columnBindingAST & inOperand2
+                                                                                       const class GALGAS_columnBindingAST & inOperand2,
+                                                                                       const class GALGAS_lstring & inOperand3
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -5733,6 +5736,8 @@ class GALGAS_arrayControllerBoundColumnListAST_2D_element : public AC_GALGAS_roo
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnOutletTypeName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSortPropertyName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection

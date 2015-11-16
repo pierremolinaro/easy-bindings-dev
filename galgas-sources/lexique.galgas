@@ -42,6 +42,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "selectionController",
   "self",
   "signature",
+  "sort",
   "struct",
   "to",
   "toMany",

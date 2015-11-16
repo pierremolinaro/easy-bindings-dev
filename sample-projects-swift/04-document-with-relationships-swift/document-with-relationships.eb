@@ -16,20 +16,20 @@ entity NameEntity {
 document PMDocument root MyRootEntity {
   outlet EBTableView mNamesTableView $tableValue nameController ;
   arrayController nameController {allowsEmptySelection:no, allowsMultipleSelection:yes} root.mNames {
-     column "name" EBTextField $value self.name { sendContinously : no}
-     column "int"  EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
+     column "name" sort name EBTextField $value self.name { sendContinously : no}
+     column "int" sort aValue EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
   }
  
   outlet EBTableView mOtherTableView $tableValue otherController ;
   arrayController otherController {allowsEmptySelection:no, allowsMultipleSelection:yes} root.mNames filter aValue {
-     column "name" EBTextField $value self.name { sendContinously : no}
-     column "int"  EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
+     column "name" sort name EBTextField $value self.name { sendContinously : no}
+     column "int" sort aValue EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
   }
 
   outlet EBTableView mSelectionTableView $tableValue selController ;
   arrayController selController {allowsEmptySelection:no, allowsMultipleSelection:yes} nameController.selectedArray {
-     column "name" EBTextField $value self.name { sendContinously : no}
-     column "int"  EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
+     column "name" sort name EBTextField $value self.name { sendContinously : no}
+     column "int" sort aValue EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
   }
 
   transient String selectionCountString dependsFrom selController.sortedArray.count ;

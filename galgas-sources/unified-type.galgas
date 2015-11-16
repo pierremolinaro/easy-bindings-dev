@@ -18,6 +18,24 @@ enum @typeKind {
 
 #......................................................................................................................*
 
+getter @typeKind isComparable -> @bool outResult {
+  switch self
+  case boolType, integerType, doubleType, stringType, dateType :
+    outResult = true
+  case colorType, imageType, fontType :
+    outResult = false
+  case enumType (* *) :
+    outResult = false
+  case entityType (*) :
+    outResult = false
+  case classType (*) :
+    outResult = false
+  end
+}
+
+
+#......................................................................................................................*
+
 getter @typeKind defaultSwiftTypeValueAsString -> @string outResult {
   switch self
   case boolType : outResult = "false"

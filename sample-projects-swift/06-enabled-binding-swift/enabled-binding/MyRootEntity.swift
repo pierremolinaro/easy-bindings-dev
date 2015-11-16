@@ -194,7 +194,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   //····················································································································
 
   var docBool = EBStoredProperty_Bool (true)
-  var docBool_kvc : Bool {
+/*  var docBool_kvc : Bool {
     get {
       switch docBool.prop {
       case .noSelection, .multipleSelection :
@@ -203,7 +203,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         return v
       }
     }
-  }
+  } */
 
   //····················································································································
   //    Transient properties
