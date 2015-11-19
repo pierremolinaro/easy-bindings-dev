@@ -22,6 +22,8 @@ for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
     %        oldValue?.%!lkey.string%.removeEBObserver (mObjectObserver)\n%
     %        mSelectedObject?.%!lkey.string%.addEBObserver (mObjectObserver)\n%
+    %        oldValue?.%!lkey.string%.removeEBObserver (%!lkey.string%)\n%
+    %        mSelectedObject?.%!lkey.string%.addEBObserver (%!lkey.string%)\n%
     %        %!lkey.string%.postEvent ()\n%
   end
 end
