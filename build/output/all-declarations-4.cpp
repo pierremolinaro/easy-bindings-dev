@@ -3005,15 +3005,15 @@ void routine_generateCustomObjectControllers (const GALGAS_customObjectControlle
                                               GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                               C_Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_customObjectControllerForGeneration enumerator_6874 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_6874.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (inCompiler, enumerator_6874.current_mOwnerName (HERE), enumerator_6874.current_mCustomObjectControllerName (HERE), enumerator_6874.current_mEntityTypeName (HERE), enumerator_6874.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("custom-object-controller.galgas", 163))) ;
-    GALGAS_string var_fileName = GALGAS_string ("customObjectController-").add_operation (enumerator_6874.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 169)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 169)).add_operation (enumerator_6874.current_mCustomObjectControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 169)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 169)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 170)) ;
+  cEnumerator_customObjectControllerForGeneration enumerator_6491 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_6491.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (inCompiler, enumerator_6491.current_mOwnerName (HERE), enumerator_6491.current_mCustomObjectControllerName (HERE), enumerator_6491.current_mEntityTypeName (HERE), enumerator_6491.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("custom-object-controller.galgas", 152))) ;
+    GALGAS_string var_fileName = GALGAS_string ("customObjectController-").add_operation (enumerator_6491.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)).add_operation (enumerator_6491.current_mCustomObjectControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 159)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 171)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 160)) ;
     }
-    enumerator_6874.gotoNextObject () ;
+    enumerator_6491.gotoNextObject () ;
   }
 }
 

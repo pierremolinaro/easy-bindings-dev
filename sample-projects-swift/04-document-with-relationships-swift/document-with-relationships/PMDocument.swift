@@ -57,6 +57,10 @@ import Cocoa
 
   private var detailController = SelectionController_PMDocument_detailController ()
 
+  //····················································································································
+  //    Custom object Controllers
+  //····················································································································
+
 
   //····················································································································
   //    populateExplorerWindow
@@ -233,7 +237,7 @@ import Cocoa
                               line:__LINE__,
                               errorMessage:"the 'valueDetailTextField' outlet is not an instance of 'EBIntField'") ;
     }
-  //--------------------------- Array controller
+  //--------------------------- Array controllers
     nameController.bind_modelAndView (
       rootObject.mNames,
       tableViewArray:[mNamesTableView!],
@@ -252,12 +256,13 @@ import Cocoa
       file:__FILE__,
       line:__LINE__
     )
-  //--------------------------- Selection controller
+  //--------------------------- Selection controllers
     detailController.bind_selection (
       nameController.selectedArray,
       file:__FILE__,
       line:__LINE__
     )
+  //--------------------------- Custom object controllers
   //--- Transient compute functions
     selectionCountString.computeFunction = { [weak self] in
       if let unwSelf = self {

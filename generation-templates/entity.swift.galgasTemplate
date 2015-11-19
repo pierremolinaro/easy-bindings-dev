@@ -269,7 +269,7 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
 end
 %      //--- Added object set
         let addedObjectSet = mSet.subtract (oldSet)
-        for managedObject : %![mRelationshipType swiftTypeName]% in mSet.subtract (oldSet) {
+        for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
           managedObject.setSignatureObserver (self)
           managedObject.%!mOppositeRelationshipName%.setProp (owner)
         }

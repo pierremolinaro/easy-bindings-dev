@@ -1,0 +1,18 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../easy-bindings.tex
+
+
+\chapterLabel{Tableau, contrôleur et \emph{table view}}{chapitreArrayController}
+
+
+La propriété \texttt{sortedArray} observe :
+\begin{itemize}
+  \item le \emph{modèle} : ainsi  \texttt{sortedArray} est averti de tout changement dans la composition des éléments ;
+  \item les propriétés affichées et utilisées pour filtrage et tri : ainsi  \texttt{sortedArray} est averti de tout changement dans valeur de ces propriétés.
+\end{itemize}
+
+La propriété \texttt{mSelectedSet} peut être modifiée :
+\begin{itemize}
+\item par l'utilisateur, lorqu'il change la sélection dans le \emph{table view} ;
+\item par programme, via la méthode \texttt{tableViewSelectionDidChange:} du délégué de la \emph{table view}.
+\end{itemize}

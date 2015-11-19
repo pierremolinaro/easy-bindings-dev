@@ -170,7 +170,7 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
         removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
       //--- Added object set
         let addedObjectSet = mSet.subtract (oldSet)
-        for managedObject : NameEntity in mSet.subtract (oldSet) {
+        for managedObject : NameEntity in addedObjectSet {
           managedObject.setSignatureObserver (self)
           managedObject.mRoot.setProp (owner)
         }

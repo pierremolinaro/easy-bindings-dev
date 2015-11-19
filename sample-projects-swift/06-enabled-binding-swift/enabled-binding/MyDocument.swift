@@ -35,6 +35,10 @@ import Cocoa
   //····················································································································
 
 
+  //····················································································································
+  //    Custom object Controllers
+  //····················································································································
+
 
   //····················································································································
   //    populateExplorerWindow
@@ -90,8 +94,9 @@ import Cocoa
                               line:__LINE__,
                               errorMessage:"the 'myButton' outlet is not an instance of 'EBButton'") ;
     }
-  //--------------------------- Array controller
-  //--------------------------- Selection controller
+  //--------------------------- Array controllers
+  //--------------------------- Selection controllers
+  //--------------------------- Custom object controllers
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
