@@ -296,6 +296,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
+  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
   ?!@stringset ioNeededOutletClasses
 {
 #------------------------------------------------------------ Check array controller attributes

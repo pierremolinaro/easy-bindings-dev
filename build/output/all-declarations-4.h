@@ -213,6 +213,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : GALGAS_arrayControllerForGeneration mAttribute_mAllArrayControllerForGeneration ;
   public : GALGAS_validationStubRoutineListForGeneration mAttribute_mValidationStubRoutineListForGeneration ;
   public : GALGAS_selectionControllerForGeneration mAttribute_mSelectionControllerListForGeneration ;
+  public : GALGAS_customObjectControllerForGeneration mAttribute_mCustomObjectControllerListForGeneration ;
 
 
 //--------------------------------- Accessors
@@ -239,7 +240,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_stringset & in_mNeededOutletClasses,
                                        const GALGAS_arrayControllerForGeneration & in_mAllArrayControllerForGeneration,
                                        const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
-                                       const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration) ;
+                                       const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
+                                       const GALGAS_customObjectControllerForGeneration & in_mCustomObjectControllerListForGeneration) ;
 
 //-- Start of generic part --*
 
@@ -262,7 +264,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                               const class GALGAS_stringset & inOperand7,
                                                               const class GALGAS_arrayControllerForGeneration & inOperand8,
                                                               const class GALGAS_validationStubRoutineListForGeneration & inOperand9,
-                                                              const class GALGAS_selectionControllerForGeneration & inOperand10
+                                                              const class GALGAS_selectionControllerForGeneration & inOperand10,
+                                                              const class GALGAS_customObjectControllerForGeneration & inOperand11
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -282,6 +285,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mAllArrayControllerForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_classListForGeneration getter_mClassListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_customObjectControllerForGeneration getter_mCustomObjectControllerListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_documentListForGeneration getter_mDocumentListForGeneration (LOCATION_ARGS) const ;
 
@@ -589,14 +594,12 @@ void routine_generateArrayControllers (const class GALGAS_arrayControllerForGene
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-extern const char * gWrapperFileContent_0_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extern const cRegularFileWrapper gWrapperFile_0_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -631,6 +634,53 @@ void routine_generateSelectionControllers (const class GALGAS_selectionControlle
                                            class GALGAS_stringset & ioArgument2,
                                            class C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Filewrapper 'customObjectControllerGenerationTemplate'                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_customObjectControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_customObjectControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_customObjectControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_customObjectControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_customObjectControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_customObjectControllerGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                   Filewrapper template 'customObjectControllerGenerationTemplate implementation'                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (class C_Compiler * inCompiler,
+                                                                                           const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                           const class GALGAS_string & in_CUSTOM_5F_OBJECT_5F_CONTROLLER_5F_NAME,
+                                                                                           const class GALGAS_string & in_ENTITY_5F_TYPE_5F_NAME,
+                                                                                           const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
+                                                                                           COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Routine 'generateCustomObjectControllers'                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateCustomObjectControllers (const class GALGAS_customObjectControllerForGeneration constinArgument0,
+                                              const class GALGAS_string constinArgument1,
+                                              class GALGAS_stringset & ioArgument2,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

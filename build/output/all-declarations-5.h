@@ -1079,7 +1079,8 @@ typedef void (*categoryMethodSignature_abstractSecondaryProperty_secondaryProper
                                                                                                      class GALGAS_transientDefinitionListForGeneration & ioArgument5,
                                                                                                      class GALGAS_arrayControllerForGeneration & ioArgument6,
                                                                                                      class GALGAS_selectionControllerForGeneration & ioArgument7,
-                                                                                                     class GALGAS_stringset & ioArgument8,
+                                                                                                     class GALGAS_customObjectControllerForGeneration & ioArgument8,
+                                                                                                     class GALGAS_stringset & ioArgument9,
                                                                                                      class C_Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) ;
 
@@ -1099,6 +1100,7 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abst
                                                            GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
                                                            GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
                                                            GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
+                                                           GALGAS_customObjectControllerForGeneration & io_ioCustomObjectControllerDeclaration,
                                                            GALGAS_stringset & io_ioNeededOutletClasses,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;

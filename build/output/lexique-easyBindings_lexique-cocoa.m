@@ -80,7 +80,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [39] = {
+static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [41] = {
   {"no", easyBindings_lexique_1_no},
   {"to", easyBindings_lexique_1_to},
   {"all", easyBindings_lexique_1_all},
@@ -116,14 +116,16 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"dependsFrom", easyBindings_lexique_1_dependsFrom},
   {"outletClass", easyBindings_lexique_1_outletClass},
   {"xcodeproject", easyBindings_lexique_1_xcodeproject},
+  {"classForSwift", easyBindings_lexique_1_classForSwift},
   {"externDelegate", easyBindings_lexique_1_externDelegate},
   {"arrayController", easyBindings_lexique_1_arrayController},
   {"selectionController", easyBindings_lexique_1_selectionController},
-  {"versionShouldChange", easyBindings_lexique_1_versionShouldChange}
+  {"versionShouldChange", easyBindings_lexique_1_versionShouldChange},
+  {"customObjectController", easyBindings_lexique_1_customObjectController}
 } ;
 
 static NSInteger search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (NSString * inSearchedString) {
-  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 39) ;
+  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 41) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -304,7 +306,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 66 ;
+  return 68 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -334,7 +336,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [67] = {0,
+  static const NSUInteger kTerminalSymbolStyles [69] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1_bindingName */,
@@ -349,7 +351,9 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     1 /* easyBindings_lexique_1_binding */,
     1 /* easyBindings_lexique_1_calledBy */,
     1 /* easyBindings_lexique_1_class */,
+    1 /* easyBindings_lexique_1_classForSwift */,
     1 /* easyBindings_lexique_1_column */,
+    1 /* easyBindings_lexique_1_customObjectController */,
     1 /* easyBindings_lexique_1_default */,
     1 /* easyBindings_lexique_1_dependsFrom */,
     1 /* easyBindings_lexique_1_document */,
@@ -412,7 +416,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [67] = {NO,
+  static const BOOL kTerminalAtomicSelection [69] = {NO,
     YES /* easyBindings_lexique_1_identifier */,
     YES /* easyBindings_lexique_1_Identifier */,
     YES /* easyBindings_lexique_1_bindingName */,
@@ -427,7 +431,9 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_binding */,
     YES /* easyBindings_lexique_1_calledBy */,
     YES /* easyBindings_lexique_1_class */,
+    YES /* easyBindings_lexique_1_classForSwift */,
     YES /* easyBindings_lexique_1_column */,
+    YES /* easyBindings_lexique_1_customObjectController */,
     YES /* easyBindings_lexique_1_default */,
     YES /* easyBindings_lexique_1_dependsFrom */,
     YES /* easyBindings_lexique_1_document */,
