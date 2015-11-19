@@ -2239,13 +2239,67 @@ C_PrologueEpilogue gMethod_customObjectControllerDeclaration_typeInventory (defi
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void categoryMethod_customObjectControllerDeclaration_tryToSolveSecondaryProperty (const cPtr_abstractSecondaryProperty * /* inObject */,
-                                                                                          GALGAS_semanticContext & /* ioArgument_ioSemanticContext */,
+static void categoryMethod_customObjectControllerDeclaration_tryToSolveSecondaryProperty (const cPtr_abstractSecondaryProperty * inObject,
+                                                                                          GALGAS_semanticContext & ioArgument_ioSemanticContext,
                                                                                           const GALGAS_observablePropertyMap /* constinArgument_inRootObservableProperties */,
-                                                                                          GALGAS_observablePropertyMap & /* ioArgument_ioObservableProperties */,
-                                                                                          GALGAS_secondaryPropertyList & /* ioArgument_ioUnsolvedProperties */,
-                                                                                          C_Compiler * /* inCompiler */
+                                                                                          GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
+                                                                                          GALGAS_secondaryPropertyList & ioArgument_ioUnsolvedProperties,
+                                                                                          C_Compiler * inCompiler
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_customObjectControllerDeclaration * object = (const cPtr_customObjectControllerDeclaration *) inObject ;
+  macroValidSharedObject (object, cPtr_customObjectControllerDeclaration) ;
+  const enumGalgasBool test_0 = ioArgument_ioSemanticContext.mAttribute_mUnifiedTypeMap.getter_hasKey (object->mAttribute_mPropertyEntityName.mAttribute_string COMMA_SOURCE_FILE ("custom-object-controller.galgas", 57)).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    GALGAS_typeKind var_kind ;
+    GALGAS_actionMap joker_2765 ; // Joker input parameter
+    ioArgument_ioSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (object->mAttribute_mPropertyEntityName, var_kind, joker_2765, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 59)) ;
+    GALGAS_string var_entityName ;
+    switch (var_kind.enumValue ()) {
+    case GALGAS_typeKind::kNotBuilt:
+      break ;
+    case GALGAS_typeKind::kEnum_stringType:
+    case GALGAS_typeKind::kEnum_boolType:
+    case GALGAS_typeKind::kEnum_colorType:
+    case GALGAS_typeKind::kEnum_dateType:
+    case GALGAS_typeKind::kEnum_doubleType:
+    case GALGAS_typeKind::kEnum_integerType:
+    case GALGAS_typeKind::kEnum_fontType:
+    case GALGAS_typeKind::kEnum_imageType:
+      {
+        GALGAS_location location_1 (object->mAttribute_mPropertyEntityName.getter_location (HERE)) ; // Implicit use of 'location' getter
+        inCompiler->emitSemanticError (location_1, GALGAS_string ("the controller model should be an entity")  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 68)) ;
+        var_entityName.drop () ; // Release error dropped variable
+      }
+      break ;
+    case GALGAS_typeKind::kEnum_enumType:
+      {
+        GALGAS_location location_2 (object->mAttribute_mPropertyEntityName.getter_location (HERE)) ; // Implicit use of 'location' getter
+        inCompiler->emitSemanticError (location_2, GALGAS_string ("the controller model should be an entity")  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 70)) ;
+        var_entityName.drop () ; // Release error dropped variable
+      }
+      break ;
+    case GALGAS_typeKind::kEnum_classType:
+      {
+        GALGAS_location location_3 (object->mAttribute_mPropertyEntityName.getter_location (HERE)) ; // Implicit use of 'location' getter
+        inCompiler->emitSemanticError (location_3, GALGAS_string ("the controller model should be an entity")  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 72)) ;
+        var_entityName.drop () ; // Release error dropped variable
+      }
+      break ;
+    case GALGAS_typeKind::kEnum_entityType:
+      {
+        const cEnumAssociatedValues_typeKind_entityType * extractPtr_3329 = (const cEnumAssociatedValues_typeKind_entityType *) (var_kind.unsafePointer ()) ;
+        const GALGAS_string extractedValue_kEntityName = extractPtr_3329->mAssociatedValue0 ;
+        var_entityName = extractedValue_kEntityName ;
+      }
+      break ;
+    }
+    {
+    ioArgument_ioObservableProperties.modifier_insertKey (object->mAttribute_mCustomObjectControllerName, var_kind, GALGAS_propertyKind::constructor_selectionController (SOURCE_FILE ("custom-object-controller.galgas", 80)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("custom-object-controller.galgas", 81)), GALGAS_string::makeEmptyString (), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("custom-object-controller.galgas", 83)), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 77)) ;
+    }
+  }else if (kBoolFalse == test_0) {
+    const GALGAS_customObjectControllerDeclaration temp_4 = object ;
+    ioArgument_ioUnsolvedProperties.addAssign_operation (temp_4  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 86)) ;
+  }
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2280,8 +2334,8 @@ static void categoryMethod_customObjectControllerDeclaration_secondaryPropertySe
   const cPtr_customObjectControllerDeclaration * object = (const cPtr_customObjectControllerDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_customObjectControllerDeclaration) ;
   GALGAS_observablePropertyMap var_selectionObservablePropertyMap ;
-  constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mPropertyEntityName, var_selectionObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 116)) ;
-  ioArgument_ioCustomObjectControllerDeclaration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mCustomObjectControllerName.mAttribute_string, object->mAttribute_mClassNameForSwift.mAttribute_string, object->mAttribute_mPropertyEntityName.mAttribute_string, var_selectionObservablePropertyMap  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 121)) ;
+  constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mPropertyEntityName, var_selectionObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 105)) ;
+  ioArgument_ioCustomObjectControllerDeclaration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mCustomObjectControllerName.mAttribute_string, object->mAttribute_mClassNameForSwift.mAttribute_string, object->mAttribute_mPropertyEntityName.mAttribute_string, var_selectionObservablePropertyMap  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 110)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 

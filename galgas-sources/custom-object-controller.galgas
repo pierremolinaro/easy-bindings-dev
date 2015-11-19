@@ -49,53 +49,42 @@ override method @customObjectControllerDeclaration typeInventory
 #......................................................................................................................*
 
 override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
-  ?!@semanticContext unused ioSemanticContext
+  ?!@semanticContext ioSemanticContext
   ?let @observablePropertyMap unused inRootObservableProperties
-  ?!@observablePropertyMap unused ioObservableProperties
-  ?!@secondaryPropertyList unused ioUnsolvedProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
 {
-#  if [ioObservableProperties hasKey !mModelControllerName.string] then
-#  #--- Get model controller
-#    [ioObservableProperties searchKey
-#      !mModelControllerName
-#      ?let type
-#      ?let kind
-#      ?let multiplicity
-#      ?2*
-#    ]
-#  #--- Check kind
-#    if kind != .arrayController then
-#      error mModelControllerName : "the model should be an array controller"
-#    end
-#  #--- Check multiplicity
-#    if multiplicity != .collection then
-#      error mModelControllerName : "the model should be an array controller"
-#    end
-#  #--- Check type
-#    @string entityName
-#    switch type
-#    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case enumType (* *) :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case classType (*) :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case entityType (kEntityName) :
-#      entityName = kEntityName
-#    end
-#  #--- Store selection controller
-#    [!?ioObservableProperties insertKey
-#      !mSelectionControllerName
-#      !type
-#      !.selectionController
-#      !.single
-#      !"" # No inverse relationship
-#      !{} # No action
-#    ]
-#  
-#  else
-#    ioUnsolvedProperties += !self
-#  end
+  if [ioSemanticContext.mUnifiedTypeMap hasKey !mPropertyEntityName.string] then
+  #--- Get model controller
+    [ioSemanticContext.mUnifiedTypeMap searchKey
+      !mPropertyEntityName
+      ?let kind
+      ?* # Action map
+    ]
+  #--- Check type
+    @string entityName
+    switch kind
+    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+      error mPropertyEntityName : "the controller model should be an entity" : entityName
+    case enumType (* *) :
+      error mPropertyEntityName : "the controller model should be an entity" : entityName
+    case classType (*) :
+      error mPropertyEntityName : "the controller model should be an entity" : entityName
+    case entityType (kEntityName) :
+      entityName = kEntityName
+    end
+  #--- Store selection controller
+    [!?ioObservableProperties insertKey
+      !mCustomObjectControllerName
+      !kind
+      !.selectionController
+      !.single
+      !"" # No inverse relationship
+      !{} # No action
+    ]
+  else
+    ioUnsolvedProperties += !self
+  end
 }
 
 #......................................................................................................................*
