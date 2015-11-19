@@ -175,6 +175,7 @@ override method @documentDeclaration semanticAnalysis
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
+  @customObjectControllerForGeneration customObjectControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mDocumentName.string
@@ -185,12 +186,14 @@ override method @documentDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?documentArrayControllerListForGeneration
       !?selectionControllerListForGeneration
+      !?customObjectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
+  ioGeneration.mCustomObjectControllerListForGeneration += customObjectControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do
@@ -225,6 +228,7 @@ override method @documentDeclaration semanticAnalysis
     !documentArrayControllerListForGeneration
     !tableViewBindingGenerationList
     !selectionControllerListForGeneration
+    !customObjectControllerListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -243,6 +247,7 @@ list @documentListForGeneration {
   @arrayControllerForGeneration mDocumentArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @selectionControllerForGeneration mSelectionControllerListForGeneration
+  @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
 }
 
 #......................................................................................................................*
@@ -262,6 +267,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
+    ?@customObjectControllerForGeneration CUSTOM_OBJECT_CONTROLLER_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -283,14 +289,6 @@ proc generateDocuments
       !fileName
       !contents
     ]
-
-#    ioGeneratedFileSet += !fileName
-#    let s = [filewrapper documentGenerationTemplate.managedDocument]
-#    [@string generateFile
-#      !inOutputDirectory
-#      !fileName
-#      !s
-#    ]
   end
   for () in inDocumentListForGeneration do
     let s = [filewrapper documentGenerationTemplate.documentImplementation
@@ -305,6 +303,7 @@ proc generateDocuments
       !multipleBindingGenerationList
       !mTableViewBindingGenerationList
       !mSelectionControllerListForGeneration
+      !mCustomObjectControllerListForGeneration
     ]
     let fileName = mDocumentName + ".swift"
     ioGeneratedFileSet += !fileName

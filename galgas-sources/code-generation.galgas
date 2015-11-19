@@ -13,6 +13,7 @@ struct @structForGeneration {
   @arrayControllerForGeneration mAllArrayControllerForGeneration
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
+  @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -75,6 +76,11 @@ proc generateCode
   )
   generateSelectionControllers (
     !inGeneration.mSelectionControllerListForGeneration
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+  generateCustomObjectControllers (
+    !inGeneration.mCustomObjectControllerListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
