@@ -38,7 +38,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   }
 
   //····················································································································
-  //   Stored property 'name'
+  //   Observers of 'name' stored property
   //····················································································································
 
   private var mObserversOf_name = EBWeakEventSet ()
@@ -105,7 +105,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   }
 
   //····················································································································
-  //   Stored property 'aValue'
+  //   Observers of 'aValue' stored property
   //····················································································································
 
   private var mObserversOf_aValue = EBWeakEventSet ()

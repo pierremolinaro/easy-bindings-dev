@@ -38,7 +38,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   }
 
   //····················································································································
-  //   Stored property 'myString'
+  //   Observers of 'myString' stored property
   //····················································································································
 
   private var mObserversOf_myString = EBWeakEventSet ()
@@ -105,7 +105,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   }
 
   //····················································································································
-  //   Stored property 'myColor'
+  //   Observers of 'myColor' stored property
   //····················································································································
 
   private var mObserversOf_myColor = EBWeakEventSet ()
@@ -167,6 +167,207 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     for managedObject in inSet {
       for observer in mObserversOf_myColor {
         managedObject.myColor.removeEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+  //   Observers of 'myStringMaj' transient property
+  //····················································································································
+
+  private var mObserversOf_myStringMaj = EBWeakEventSet ()
+
+  //····················································································································
+
+  final func addEBObserverOf_myStringMaj (inObserver : EBEvent) {
+    mObserversOf_myStringMaj.insert (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringMaj.addEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserverOf_myStringMaj (inObserver : EBEvent) {
+    mObserversOf_myStringMaj.remove (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringMaj.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func postEventTo_myStringMaj () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringMaj.postEvent ()
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserversOf_myStringMaj_toElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myStringMaj {
+        managedObject.myStringMaj.addEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserversOf_myStringMaj_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myStringMaj {
+        managedObject.myStringMaj.removeEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+  //   Observers of 'myStringMin' transient property
+  //····················································································································
+
+  private var mObserversOf_myStringMin = EBWeakEventSet ()
+
+  //····················································································································
+
+  final func addEBObserverOf_myStringMin (inObserver : EBEvent) {
+    mObserversOf_myStringMin.insert (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringMin.addEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserverOf_myStringMin (inObserver : EBEvent) {
+    mObserversOf_myStringMin.remove (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringMin.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func postEventTo_myStringMin () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringMin.postEvent ()
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserversOf_myStringMin_toElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myStringMin {
+        managedObject.myStringMin.addEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserversOf_myStringMin_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myStringMin {
+        managedObject.myStringMin.removeEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+  //   Observers of 'myStringConcat' transient property
+  //····················································································································
+
+  private var mObserversOf_myStringConcat = EBWeakEventSet ()
+
+  //····················································································································
+
+  final func addEBObserverOf_myStringConcat (inObserver : EBEvent) {
+    mObserversOf_myStringConcat.insert (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringConcat.addEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserverOf_myStringConcat (inObserver : EBEvent) {
+    mObserversOf_myStringConcat.remove (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringConcat.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func postEventTo_myStringConcat () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.myStringConcat.postEvent ()
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserversOf_myStringConcat_toElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myStringConcat {
+        managedObject.myStringConcat.addEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserversOf_myStringConcat_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_myStringConcat {
+        managedObject.myStringConcat.removeEBObserver (observer)
       }
     }
   }
@@ -257,12 +458,30 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   var myColor : EBStoredProperty_NSColor { get }
 }
 
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(MyRootEntity_myStringMaj) protocol MyRootEntity_myStringMaj {
+  var myStringMaj : EBTransientProperty_String { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(MyRootEntity_myStringMin) protocol MyRootEntity_myStringMin {
+  var myStringMin : EBTransientProperty_String { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(MyRootEntity_myStringConcat) protocol MyRootEntity_myStringConcat {
+  var myStringConcat : EBTransientProperty_String { get }
+}
+
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor {
+@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat {
 
   //····················································································································
   //    Properties
