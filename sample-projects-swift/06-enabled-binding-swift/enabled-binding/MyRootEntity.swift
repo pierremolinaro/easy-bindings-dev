@@ -38,7 +38,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   }
 
   //····················································································································
-  //   Stored property 'docBool'
+  //   Observers of 'docBool' stored property
   //····················································································································
 
   private var mObserversOf_docBool = EBWeakEventSet ()
