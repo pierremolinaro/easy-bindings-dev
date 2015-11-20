@@ -120,6 +120,8 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   override var prop : EBProperty <%!ENUM_TYPE_NAME%> { get { return .singleSelection (mValue) } }
 
+  var propval : %!ENUM_TYPE_NAME% { get { return mValue } }
+
   func setProp (inValue : %!ENUM_TYPE_NAME%) { mValue = inValue }
 
   override func rawValue () -> Int {
@@ -158,10 +160,10 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   //····················································································································
  
-  var validationFunction : (%!ENUM_TYPE_NAME%) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (%!ENUM_TYPE_NAME%, inout %!ENUM_TYPE_NAME%) -> EBValidationResult = defaultValidationFunction
   
-  func validate (proposedValue : %!ENUM_TYPE_NAME%) -> EBValidationResult {
-    return validationFunction (proposedValue)
+  func validate (var proposedValue : %!ENUM_TYPE_NAME%) -> EBValidationResult {
+    return validationFunction (propval, &proposedValue)
   }
 
   //····················································································································

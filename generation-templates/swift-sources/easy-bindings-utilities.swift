@@ -956,7 +956,7 @@ extension NSTextView {
 //    defaultValidationFunction
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func defaultValidationFunction<T> (proposedValue : T) -> EBValidationResult {
+func defaultValidationFunction <T> (currentValue : T, inout proposedValue : T) -> EBValidationResult {
   return EBValidationResult.ok
 }
 
