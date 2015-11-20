@@ -35,7 +35,22 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %  private var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+  if not mIsArray then
+    %  private var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+  end
+end
+
+%
+  //····················································································································
+  //    Transient arraies
+  //····················································································································
+
+%
+
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  if mIsArray then
+    %  private var %!mTransientName% = TransientArrayOf_%![mTransientType swiftTypeName]% ()\n%
+  end
 end
 
 %

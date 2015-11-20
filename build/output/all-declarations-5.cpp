@@ -7592,6 +7592,9 @@ typeComparisonResult cPtr_transientAST::dynamicObjectCompare (const acPtr_class 
     result = mAttribute_mTransientTypeName.objectCompare (p->mAttribute_mTransientTypeName) ;
   }
   if (kOperandEqual == result) {
+    result = mAttribute_mIsArray.objectCompare (p->mAttribute_mIsArray) ;
+  }
+  if (kOperandEqual == result) {
     result = mAttribute_mTransientName.objectCompare (p->mAttribute_mTransientName) ;
   }
   if (kOperandEqual == result) {
@@ -7629,6 +7632,7 @@ GALGAS_abstractSecondaryProperty () {
 
 GALGAS_transientAST GALGAS_transientAST::constructor_default (LOCATION_ARGS) {
   return GALGAS_transientAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
+                                               GALGAS_bool::constructor_default (HERE),
                                                GALGAS_lstring::constructor_default (HERE),
                                                GALGAS_observablePropertyList::constructor_emptyList (HERE)
                                                COMMA_THERE) ;
@@ -7644,12 +7648,13 @@ GALGAS_abstractSecondaryProperty (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_transientAST GALGAS_transientAST::constructor_new (const GALGAS_lstring & inAttribute_mTransientTypeName,
+                                                          const GALGAS_bool & inAttribute_mIsArray,
                                                           const GALGAS_lstring & inAttribute_mTransientName,
                                                           const GALGAS_observablePropertyList & inAttribute_mDependencyList
                                                           COMMA_LOCATION_ARGS) {
   GALGAS_transientAST result ;
-  if (inAttribute_mTransientTypeName.isValid () && inAttribute_mTransientName.isValid () && inAttribute_mDependencyList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_transientAST (inAttribute_mTransientTypeName, inAttribute_mTransientName, inAttribute_mDependencyList COMMA_THERE)) ;
+  if (inAttribute_mTransientTypeName.isValid () && inAttribute_mIsArray.isValid () && inAttribute_mTransientName.isValid () && inAttribute_mDependencyList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_transientAST (inAttribute_mTransientTypeName, inAttribute_mIsArray, inAttribute_mTransientName, inAttribute_mDependencyList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -7670,6 +7675,24 @@ GALGAS_lstring GALGAS_transientAST::getter_mTransientTypeName (UNUSED_LOCATION_A
 
 GALGAS_lstring cPtr_transientAST::getter_mTransientTypeName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTransientTypeName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_transientAST::getter_mIsArray (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_transientAST * p = (const cPtr_transientAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_transientAST) ;
+    result = p->mAttribute_mIsArray ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool cPtr_transientAST::getter_mIsArray (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mIsArray ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7713,11 +7736,13 @@ GALGAS_observablePropertyList cPtr_transientAST::getter_mDependencyList (UNUSED_
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_transientAST::cPtr_transientAST (const GALGAS_lstring & in_mTransientTypeName,
+                                      const GALGAS_bool & in_mIsArray,
                                       const GALGAS_lstring & in_mTransientName,
                                       const GALGAS_observablePropertyList & in_mDependencyList
                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractSecondaryProperty (THERE),
 mAttribute_mTransientTypeName (in_mTransientTypeName),
+mAttribute_mIsArray (in_mIsArray),
 mAttribute_mTransientName (in_mTransientName),
 mAttribute_mDependencyList (in_mDependencyList) {
 }
@@ -7733,6 +7758,8 @@ void cPtr_transientAST::description (C_String & ioString,
   ioString << "[@transientAST:" ;
   mAttribute_mTransientTypeName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
+  mAttribute_mIsArray.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
   mAttribute_mTransientName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mDependencyList.description (ioString, inIndentation+1) ;
@@ -7743,7 +7770,7 @@ void cPtr_transientAST::description (C_String & ioString,
 
 acPtr_class * cPtr_transientAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_transientAST (mAttribute_mTransientTypeName, mAttribute_mTransientName, mAttribute_mDependencyList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_transientAST (mAttribute_mTransientTypeName, mAttribute_mIsArray, mAttribute_mTransientName, mAttribute_mDependencyList COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -9796,49 +9823,49 @@ GALGAS_string extensionGetter_transientComputeFunctionCall (const GALGAS_transie
   GALGAS_transientDependencyListForGeneration var_dependencies = temp_0 ;
   GALGAS_observablePropertyAST var_first ;
   {
-  GALGAS_string joker_6832 ; // Joker input parameter
-  GALGAS_string joker_6835 ; // Joker input parameter
-  var_dependencies.modifier_popFirst (var_first, joker_6832, joker_6835, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 175)) ;
+  GALGAS_string joker_6971 ; // Joker input parameter
+  GALGAS_string joker_6974 ; // Joker input parameter
+  var_dependencies.modifier_popFirst (var_first, joker_6971, joker_6974, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 186)) ;
   }
   GALGAS_string var_ident = GALGAS_string ("        ") ;
-  result_outResult = var_ident.add_operation (GALGAS_string ("switch "), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 177)).add_operation (extensionGetter_modelString (var_first, GALGAS_string ("unwSelf"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 177)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 177)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 177)) ;
-  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 178))  COMMA_SOURCE_FILE ("transient-property.galgas", 178)) ;
-  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 179))  COMMA_SOURCE_FILE ("transient-property.galgas", 179)) ;
-  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 180))  COMMA_SOURCE_FILE ("transient-property.galgas", 180)) ;
-  GALGAS_string var_finalCloseString = var_ident.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 181)) ;
+  result_outResult = var_ident.add_operation (GALGAS_string ("switch "), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 188)).add_operation (extensionGetter_modelString (var_first, GALGAS_string ("unwSelf"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 188)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 188)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 188)) ;
+  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 189))  COMMA_SOURCE_FILE ("transient-property.galgas", 189)) ;
+  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 190))  COMMA_SOURCE_FILE ("transient-property.galgas", 190)) ;
+  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 191))  COMMA_SOURCE_FILE ("transient-property.galgas", 191)) ;
+  GALGAS_string var_finalCloseString = var_ident.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 192)) ;
   GALGAS_string var_closeString = GALGAS_string::makeEmptyString () ;
-  cEnumerator_transientDependencyListForGeneration enumerator_7181 (var_dependencies, kEnumeration_up) ;
-  while (enumerator_7181.hasCurrentObject ()) {
-    var_ident.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("transient-property.galgas", 184)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("switch "), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 185)).add_operation (extensionGetter_modelString (enumerator_7181.current_mDependency (HERE), GALGAS_string ("unwSelf"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 185)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 185)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 185))  COMMA_SOURCE_FILE ("transient-property.galgas", 185)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 186))  COMMA_SOURCE_FILE ("transient-property.galgas", 186)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 187))  COMMA_SOURCE_FILE ("transient-property.galgas", 187)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .multipleSelection, .singleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 188))  COMMA_SOURCE_FILE ("transient-property.galgas", 188)) ;
-    var_closeString = var_ident.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 189)).add_operation (var_closeString, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 189)) ;
-    enumerator_7181.gotoNextObject () ;
+  cEnumerator_transientDependencyListForGeneration enumerator_7320 (var_dependencies, kEnumeration_up) ;
+  while (enumerator_7320.hasCurrentObject ()) {
+    var_ident.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("transient-property.galgas", 195)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("switch "), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 196)).add_operation (extensionGetter_modelString (enumerator_7320.current_mDependency (HERE), GALGAS_string ("unwSelf"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 196)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 196)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 196))  COMMA_SOURCE_FILE ("transient-property.galgas", 196)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 197))  COMMA_SOURCE_FILE ("transient-property.galgas", 197)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 198))  COMMA_SOURCE_FILE ("transient-property.galgas", 198)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .multipleSelection, .singleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 199))  COMMA_SOURCE_FILE ("transient-property.galgas", 199)) ;
+    var_closeString = var_ident.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 200)).add_operation (var_closeString, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 200)) ;
+    enumerator_7320.gotoNextObject () ;
   }
-  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .multipleSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 191))  COMMA_SOURCE_FILE ("transient-property.galgas", 191)) ;
-  result_outResult.dotAssign_operation (var_closeString  COMMA_SOURCE_FILE ("transient-property.galgas", 192)) ;
+  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .multipleSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 202))  COMMA_SOURCE_FILE ("transient-property.galgas", 202)) ;
+  result_outResult.dotAssign_operation (var_closeString  COMMA_SOURCE_FILE ("transient-property.galgas", 203)) ;
   var_ident = GALGAS_string ("        ") ;
-  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .singleSelection (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 194))  COMMA_SOURCE_FILE ("transient-property.galgas", 194)) ;
+  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .singleSelection (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 205))  COMMA_SOURCE_FILE ("transient-property.galgas", 205)) ;
   GALGAS_uint var_idx = GALGAS_uint ((uint32_t) 2U) ;
   GALGAS_string var_args = GALGAS_string::makeEmptyString () ;
-  cEnumerator_transientDependencyListForGeneration enumerator_7733 (var_dependencies, kEnumeration_up) ;
-  while (enumerator_7733.hasCurrentObject ()) {
-    var_ident.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("transient-property.galgas", 198)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("switch "), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 199)).add_operation (extensionGetter_modelString (enumerator_7733.current_mDependency (HERE), GALGAS_string ("unwSelf"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 199)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 199)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 199))  COMMA_SOURCE_FILE ("transient-property.galgas", 199)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 200))  COMMA_SOURCE_FILE ("transient-property.galgas", 200)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 201))  COMMA_SOURCE_FILE ("transient-property.galgas", 201)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 202))  COMMA_SOURCE_FILE ("transient-property.galgas", 202)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .multipleSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 203))  COMMA_SOURCE_FILE ("transient-property.galgas", 203)) ;
-    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .singleSelection (let v"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 204)).add_operation (var_idx.getter_string (SOURCE_FILE ("transient-property.galgas", 204)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 204)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 204))  COMMA_SOURCE_FILE ("transient-property.galgas", 204)) ;
-    var_args.dotAssign_operation (GALGAS_string (", v").add_operation (var_idx.getter_string (SOURCE_FILE ("transient-property.galgas", 205)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 205))  COMMA_SOURCE_FILE ("transient-property.galgas", 205)) ;
-    var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 206)) ;
-    enumerator_7733.gotoNextObject () ;
+  cEnumerator_transientDependencyListForGeneration enumerator_7872 (var_dependencies, kEnumeration_up) ;
+  while (enumerator_7872.hasCurrentObject ()) {
+    var_ident.dotAssign_operation (GALGAS_string ("  ")  COMMA_SOURCE_FILE ("transient-property.galgas", 209)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("switch "), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 210)).add_operation (extensionGetter_modelString (enumerator_7872.current_mDependency (HERE), GALGAS_string ("unwSelf"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 210)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 210)).add_operation (GALGAS_string (".prop {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 210))  COMMA_SOURCE_FILE ("transient-property.galgas", 210)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .noSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 211))  COMMA_SOURCE_FILE ("transient-property.galgas", 211)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .noSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 212))  COMMA_SOURCE_FILE ("transient-property.galgas", 212)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .multipleSelection :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 213))  COMMA_SOURCE_FILE ("transient-property.galgas", 213)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .multipleSelection\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 214))  COMMA_SOURCE_FILE ("transient-property.galgas", 214)) ;
+    result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("case .singleSelection (let v"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 215)).add_operation (var_idx.getter_string (SOURCE_FILE ("transient-property.galgas", 215)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 215)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 215))  COMMA_SOURCE_FILE ("transient-property.galgas", 215)) ;
+    var_args.dotAssign_operation (GALGAS_string (", v").add_operation (var_idx.getter_string (SOURCE_FILE ("transient-property.galgas", 216)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 216))  COMMA_SOURCE_FILE ("transient-property.galgas", 216)) ;
+    var_idx.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 217)) ;
+    enumerator_7872.gotoNextObject () ;
   }
-  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .singleSelection (compute_"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208)).add_operation (constinArgument_inOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208)).add_operation (constinArgument_inTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208)).add_operation (var_args, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208)).add_operation (GALGAS_string ("))\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 208))  COMMA_SOURCE_FILE ("transient-property.galgas", 208)) ;
-  result_outResult.dotAssign_operation (var_closeString  COMMA_SOURCE_FILE ("transient-property.galgas", 209)) ;
-  result_outResult.dotAssign_operation (var_finalCloseString  COMMA_SOURCE_FILE ("transient-property.galgas", 210)) ;
+  result_outResult.dotAssign_operation (var_ident.add_operation (GALGAS_string ("  return .singleSelection (compute_"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219)).add_operation (constinArgument_inOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219)).add_operation (constinArgument_inTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219)).add_operation (var_args, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219)).add_operation (GALGAS_string ("))\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 219))  COMMA_SOURCE_FILE ("transient-property.galgas", 219)) ;
+  result_outResult.dotAssign_operation (var_closeString  COMMA_SOURCE_FILE ("transient-property.galgas", 220)) ;
+  result_outResult.dotAssign_operation (var_finalCloseString  COMMA_SOURCE_FILE ("transient-property.galgas", 221)) ;
 //---
   return result_outResult ;
 }
@@ -9858,14 +9885,14 @@ GALGAS_bool extensionGetter_needs_5F_unwSelf (const GALGAS_transientDependencyLi
   GALGAS_bool result_outResult ; // Returned variable
   result_outResult = GALGAS_bool (false) ;
   const GALGAS_transientDependencyListForGeneration temp_0 = inObject ;
-  cEnumerator_transientDependencyListForGeneration enumerator_8601 (temp_0, kEnumeration_up) ;
-  bool bool_1 = result_outResult.operator_not (SOURCE_FILE ("transient-property.galgas", 219)).isValidAndTrue () ;
-  if (enumerator_8601.hasCurrentObject () && bool_1) {
-    while (enumerator_8601.hasCurrentObject () && bool_1) {
-      result_outResult = extensionGetter_needs_5F_unwSelf (enumerator_8601.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 220)) ;
-      enumerator_8601.gotoNextObject () ;
-      if (enumerator_8601.hasCurrentObject ()) {
-        bool_1 = result_outResult.operator_not (SOURCE_FILE ("transient-property.galgas", 219)).isValidAndTrue () ;
+  cEnumerator_transientDependencyListForGeneration enumerator_8740 (temp_0, kEnumeration_up) ;
+  bool bool_1 = result_outResult.operator_not (SOURCE_FILE ("transient-property.galgas", 230)).isValidAndTrue () ;
+  if (enumerator_8740.hasCurrentObject () && bool_1) {
+    while (enumerator_8740.hasCurrentObject () && bool_1) {
+      result_outResult = extensionGetter_needs_5F_unwSelf (enumerator_8740.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 231)) ;
+      enumerator_8740.gotoNextObject () ;
+      if (enumerator_8740.hasCurrentObject ()) {
+        bool_1 = result_outResult.operator_not (SOURCE_FILE ("transient-property.galgas", 230)).isValidAndTrue () ;
       }
     }
   }
