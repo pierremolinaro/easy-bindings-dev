@@ -330,7 +330,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   switch mArrayControllerModel
   case selfCollection (@lstring storedPropertyName) :
     errorLocation = storedPropertyName.location
-    modelKind = .storedArrayModel
     [inObservableProperties searchKey
       !storedPropertyName
       ?modelType
@@ -339,6 +338,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?*
       ?actionMap
     ]
+    modelKind = if [kind isStored] then .storedArrayModel else .transientModel end
   #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
       error errorLocation : "the bound property should be a collection"
@@ -551,9 +551,19 @@ getter @arrayControllerModel modelTypeName2
     [inObservablePropertyMap searchKey
       !storedProprtyName
       ?let modelType
-      ?4*
+      ?let @propertyKind kind
+      ?3*
     ]
-    outResult = "EBClassArray_" + [modelType swiftTypeName]
+    switch kind
+    case stored :
+      outResult = "EBClassArray_" + [modelType swiftTypeName]
+    case transient :
+      outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName]
+    case arrayController :
+      outResult = "<< arrayController >>"
+    case selectionController :
+      outResult = "<< selectionController >>"
+    end
   case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
