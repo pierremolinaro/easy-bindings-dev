@@ -11,6 +11,9 @@ for () in DEPENDENCY_LIST
 do !mFunctionArgumentName% : %!mFunctionArgumentTypeString
 between %,\n%!^%_ %
 end
-%) -> %![TRANSIENT_TYPE swiftTypeName]
+%) -> %
+if IS_ARRAY then %[% end
+![TRANSIENT_TYPE swiftTypeName]
+if IS_ARRAY then %]% end
 % {
 

@@ -4,6 +4,7 @@
 
 class @transientAST : @abstractSecondaryProperty {
   @lstring mTransientTypeName
+  @bool mIsArray
   @lstring mTransientName
   @observablePropertyList mDependencyList
 }
@@ -20,6 +21,13 @@ syntax extension easyBindings_syntax {
     ?!@secondaryPropertyList ioSecondaryPropertyList
   {
     $transient$
+    @bool isArray
+    select
+      isArray = false
+    or
+      $array$
+      isArray = true
+    end
     $Identifier$ ?var @lstring transientTypeName
     $identifier$ ?let @lstring transientName
     $dependsFrom$
@@ -33,6 +41,7 @@ syntax extension easyBindings_syntax {
     $;$
     ioSecondaryPropertyList += !@transientAST.new {
       !transientTypeName
+      !isArray
       !transientName
       !dependanceList
     }
@@ -80,7 +89,7 @@ override method @transientAST tryToSolveSecondaryProperty
       !mTransientName
       !type
       !.transient
-      !.single
+      !if mIsArray then .collection else .single end
       !""
       !actionMap
     ]
@@ -115,7 +124,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
   case entityType (*) :
     error mTransientName: "an entity cannot be used as simple property type" : typeList
   case classType (*) :
-    error mTransientName: "a class cannot be used as simple property type" : typeList
+    typeList = {!type}
   end
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}
@@ -141,6 +150,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
   ioTransientDefinitionListForGeneration +=
     !inOwnerName
     !mTransientName.string
+    !mIsArray
     !type
     !dependencies
 }
@@ -152,6 +162,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
 list @transientDefinitionListForGeneration {
   @string mOwnerName
   @string mTransientName
+  @bool mIsArray
   @typeKind mTransientType
   @transientDependencyListForGeneration mDependencyList
 }
@@ -291,6 +302,7 @@ proc generateTransients
     let s = [filewrapper transientManager.transientComputationFunctionFile
       !mOwnerName
       !mTransientName
+      !mIsArray
       !mDependencyList
       !mTransientType 
     ]
@@ -318,6 +330,7 @@ private filewrapper transientManager in "../generation-templates" {
   template transientComputationFunctionFile "transient-computation-function.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string TRANSIENT_NAME
+    ?@bool IS_ARRAY
     ?@transientDependencyListForGeneration DEPENDENCY_LIST
     ?@typeKind TRANSIENT_TYPE
 }
