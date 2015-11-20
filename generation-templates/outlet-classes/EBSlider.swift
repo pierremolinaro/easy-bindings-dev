@@ -34,6 +34,7 @@ import Cocoa
 
   override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
     mDoubleValueController?.updateModel ()
+    mIntValueController?.updateModel ()
     return super.sendAction (inAction, to:to)
   }
 
@@ -43,7 +44,7 @@ import Cocoa
 
   private var mDoubleValueController : Controller_EBSlider_doubleValue?
 
-  func bind_doubleValue(object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool) {
+  func bind_doubleValue (object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool) {
     mDoubleValueController = Controller_EBSlider_doubleValue (object:object, outlet:self, file:file, line:line)
     self.continuous = sendContinously
   }
@@ -51,6 +52,22 @@ import Cocoa
   func unbind_doubleValue () {
     mDoubleValueController?.unregister ()
     mDoubleValueController = nil
+  }
+
+  //····················································································································
+  //  intValue binding
+  //····················································································································
+
+  private var mIntValueController : Controller_EBSlider_intValue?
+
+  func bind_intValue (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
+    mIntValueController = Controller_EBSlider_intValue (object:object, outlet:self, file:file, line:line)
+    self.continuous = sendContinously
+  }
+
+  func unbind_intValue () {
+    mIntValueController?.unregister ()
+    mIntValueController = nil
   }
 
   //····················································································································
@@ -103,6 +120,59 @@ final class Controller_EBSlider_doubleValue : EBSimpleController {
 
   func updateModel () {
     mObject.validateAndSetProp (mOutlet.doubleValue, windowForSheet:mOutlet.window)
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller Controller_EBSlider_intValue
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(Controller_EBSlider_intValue)
+final class Controller_EBSlider_intValue : EBSimpleController {
+
+  private let mOutlet: EBSlider
+  private let mObject : EBReadWriteProperty_Int
+
+  //····················································································································
+
+  init (object:EBReadWriteProperty_Int, outlet : EBSlider, file : String, line : Int) {
+    mObject = object
+    mOutlet = outlet
+    super.init (objects:[object], outlet:outlet)
+    object.addEBObserver (self)
+  }
+
+  //····················································································································
+  
+  func unregister () {
+    mObject.removeEBObserver (self)
+    mOutlet.removeFromEnabledFromValueDictionary ()
+  }
+
+  //····················································································································
+
+  override func sendUpdateEvent () {
+    switch mObject.prop {
+    case .noSelection :
+      mOutlet.stringValue = "No selection"
+      mOutlet.enableFromValue (false)
+    case .multipleSelection :
+      mOutlet.stringValue = "Multiple selection"
+      mOutlet.enableFromValue (false)
+    case .singleSelection (let propertyValue) :
+      mOutlet.doubleValue = Double (propertyValue)
+      mOutlet.enableFromValue (true)
+    }
+    mOutlet.updateEnabledState ()
+  }
+
+  //····················································································································
+
+  func updateModel () {
+    mObject.validateAndSetProp (Int (round (mOutlet.doubleValue)), windowForSheet:mOutlet.window)
   }
 
   //····················································································································

@@ -14627,6 +14627,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "outletClass EBSlider $enabled ;\n"
     "binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;\n"
+    "binding EBSlider $intValue : property Int {sendContinously:Bool} ;\n"
     "\n"
     "\n"
     "outletClass EBSwitch $enabled ;\n"

@@ -55,6 +55,7 @@ binding EBSegmentedControl $selectedIndex : property Int ;
 
 outletClass EBSlider $enabled ;
 binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;
+binding EBSlider $intValue : property Int {sendContinously:Bool} ;
 
 
 outletClass EBSwitch $enabled ;
