@@ -391,19 +391,21 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     " \n"
     "  var validationFunction : (" ;
   result << in_TYPE.stringValue () ;
-  result << ", inout " ;
+  result << ", " ;
   result << in_TYPE.stringValue () ;
-  result << ") -> EBValidationResult = defaultValidationFunction\n"
+  result << ") -> EBValidationResult <" ;
+  result << in_TYPE.stringValue () ;
+  result << "> = defaultValidationFunction\n"
     "  \n"
-    "  override func validateAndSetProp (var candidateValue : " ;
+    "  override func validateAndSetProp (candidateValue : " ;
   result << in_TYPE.stringValue () ;
   result << ",\n"
     "                                    windowForSheet inWindow:NSWindow\?) -> Bool {\n"
     "    var result = true\n"
-    "    let validationResult = validationFunction (propval, &candidateValue)\n"
+    "    let validationResult = validationFunction (propval, candidateValue)\n"
     "    switch validationResult {\n"
-    "    case EBValidationResult.ok :\n"
-    "      setProp (candidateValue)\n"
+    "    case EBValidationResult.ok (let validatedValue) :\n"
+    "      setProp (validatedValue)\n"
     "    case EBValidationResult.rejectWithBeep :\n"
     "      result = false\n"
     "      NSBeep ()\n"
@@ -854,19 +856,21 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     " \n"
     "  var validationFunction : (" ;
   result << in_CLASS_5F_NAME.stringValue () ;
-  result << ", inout " ;
+  result << ", " ;
   result << in_CLASS_5F_NAME.stringValue () ;
-  result << ") -> EBValidationResult = defaultValidationFunction\n"
+  result << ") -> EBValidationResult <" ;
+  result << in_CLASS_5F_NAME.stringValue () ;
+  result << "> = defaultValidationFunction\n"
     "\n"
-    "  override func validateAndSetProp (var candidateValue : " ;
+    "  override func validateAndSetProp (candidateValue : " ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << ",\n"
     "                                    windowForSheet inWindow:NSWindow\?) -> Bool {\n"
-    "    let validationResult = validationFunction (propval, &candidateValue)\n"
+    "    let validationResult = validationFunction (propval, candidateValue)\n"
     "    var result = true\n"
     "    switch validationResult {\n"
-    "    case EBValidationResult.ok :\n"
-    "      setProp (candidateValue)\n"
+    "    case EBValidationResult.ok (let validatedValue) :\n"
+    "      setProp (validatedValue)\n"
     "    case EBValidationResult.rejectWithBeep :\n"
     "      NSBeep ()\n"
     "    case EBValidationResult.rejectWithAlert (let informativeText) :\n"

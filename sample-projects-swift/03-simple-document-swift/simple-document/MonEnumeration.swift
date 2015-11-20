@@ -118,6 +118,8 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
 
   override var prop : EBProperty <MonEnumeration> { get { return .singleSelection (mValue) } }
 
+  var propval : MonEnumeration { get { return mValue } }
+
   func setProp (inValue : MonEnumeration) { mValue = inValue }
 
   override func rawValue () -> Int {
@@ -156,10 +158,10 @@ class EBStoredProperty_MonEnumeration : EBReadOnlyProperty_MonEnumeration, EBEnu
 
   //····················································································································
  
-  var validationFunction : (MonEnumeration) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (MonEnumeration, MonEnumeration) -> EBValidationResult <MonEnumeration> = defaultValidationFunction
   
-  func validate (proposedValue : MonEnumeration) -> EBValidationResult {
-    return validationFunction (proposedValue)
+  func validate (proposedValue : MonEnumeration) -> EBValidationResult <MonEnumeration> {
+    return validationFunction (propval, proposedValue)
   }
 
   //····················································································································

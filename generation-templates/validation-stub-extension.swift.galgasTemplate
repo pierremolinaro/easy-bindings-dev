@@ -7,4 +7,5 @@ import Cocoa
 //---------------------------------------------------------------------------------------------------------------------*
 
 extension %!OBJECT_TYPE_NAME% {
-  func validate_%!MODEL_NAME% (currentValue : %!MODEL_TYPE_NAME%, inout proposedValue : %!MODEL_TYPE_NAME%) -> EBValidationResult {
+  func validate_%!MODEL_NAME% (%?^%currentValue : %!MODEL_TYPE_NAME%,
+                 %!^%proposedValue : %!MODEL_TYPE_NAME%) -> EBValidationResult <%!MODEL_TYPE_NAME%> {

@@ -479,8 +479,8 @@ extension Array {
 //    EBValidationResult
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum EBValidationResult {
-  case ok
+enum EBValidationResult <T> {
+  case ok (T /* validated value */)
   case rejectWithBeep
   case rejectWithAlert (String /* informativeText */)
 }
@@ -956,8 +956,8 @@ extension NSTextView {
 //    defaultValidationFunction
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func defaultValidationFunction<T> (proposedValue : T) -> EBValidationResult {
-  return EBValidationResult.ok
+func defaultValidationFunction <T> (currentValue : T, proposedValue : T) -> EBValidationResult <T> {
+  return EBValidationResult.ok (proposedValue)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

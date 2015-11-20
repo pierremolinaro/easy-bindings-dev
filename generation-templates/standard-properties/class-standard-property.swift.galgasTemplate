@@ -203,15 +203,15 @@ final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 
   //····················································································································
  
-  var validationFunction : (%!CLASS_NAME%, inout %!CLASS_NAME%) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (%!CLASS_NAME%, %!CLASS_NAME%) -> EBValidationResult <%!CLASS_NAME%> = defaultValidationFunction
 
-  override func validateAndSetProp (var candidateValue : %!CLASS_NAME%,
+  override func validateAndSetProp (candidateValue : %!CLASS_NAME%,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (propval, &candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     var result = true
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
