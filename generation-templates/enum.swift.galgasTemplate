@@ -160,10 +160,10 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   //····················································································································
  
-  var validationFunction : (%!ENUM_TYPE_NAME%, inout %!ENUM_TYPE_NAME%) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (%!ENUM_TYPE_NAME%, %!ENUM_TYPE_NAME%) -> EBValidationResult <%!ENUM_TYPE_NAME%> = defaultValidationFunction
   
-  func validate (var proposedValue : %!ENUM_TYPE_NAME%) -> EBValidationResult {
-    return validationFunction (propval, &proposedValue)
+  func validate (proposedValue : %!ENUM_TYPE_NAME%) -> EBValidationResult <%!ENUM_TYPE_NAME%> {
+    return validationFunction (propval, proposedValue)
   }
 
   //····················································································································

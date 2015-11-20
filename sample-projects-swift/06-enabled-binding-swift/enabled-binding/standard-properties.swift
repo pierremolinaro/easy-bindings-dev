@@ -207,15 +207,15 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
 
   //····················································································································
  
-  var validationFunction : (Int) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (Int, Int) -> EBValidationResult <Int> = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : Int,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -554,15 +554,15 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
 
   //····················································································································
  
-  var validationFunction : (Bool) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (Bool, Bool) -> EBValidationResult <Bool> = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : Bool,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -901,15 +901,15 @@ final class EBStoredProperty_Double : EBReadWriteProperty_Double {
 
   //····················································································································
  
-  var validationFunction : (Double) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (Double, Double) -> EBValidationResult <Double> = defaultValidationFunction
   
   override func validateAndSetProp (candidateValue : Double,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -1246,15 +1246,15 @@ final class EBStoredProperty_String : EBReadWriteProperty_String {
 
   //····················································································································
  
-  var validationFunction : (String) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (String, String) -> EBValidationResult <String> = defaultValidationFunction
 
   override func validateAndSetProp (candidateValue : String,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     var result = true
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
@@ -1551,15 +1551,15 @@ final class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
 
   //····················································································································
  
-  var validationFunction : (NSColor) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (NSColor, NSColor) -> EBValidationResult <NSColor> = defaultValidationFunction
 
   override func validateAndSetProp (candidateValue : NSColor,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     var result = true
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
@@ -1898,15 +1898,15 @@ final class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
 
   //····················································································································
  
-  var validationFunction : (NSDate) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (NSDate, NSDate) -> EBValidationResult <NSDate> = defaultValidationFunction
 
   override func validateAndSetProp (candidateValue : NSDate,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     var result = true
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
@@ -2203,15 +2203,15 @@ final class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
 
   //····················································································································
  
-  var validationFunction : (NSFont) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (NSFont, NSFont) -> EBValidationResult <NSFont> = defaultValidationFunction
 
   override func validateAndSetProp (candidateValue : NSFont,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     var result = true
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
@@ -2514,15 +2514,15 @@ final class EBStoredProperty_NSImage : EBReadWriteProperty_NSImage {
 
   //····················································································································
  
-  var validationFunction : (NSImage) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (NSImage, NSImage) -> EBValidationResult <NSImage> = defaultValidationFunction
 
   override func validateAndSetProp (candidateValue : NSImage,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     var result = true
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
