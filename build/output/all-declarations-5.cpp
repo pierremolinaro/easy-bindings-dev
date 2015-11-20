@@ -391,14 +391,16 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     " \n"
     "  var validationFunction : (" ;
   result << in_TYPE.stringValue () ;
+  result << ", inout " ;
+  result << in_TYPE.stringValue () ;
   result << ") -> EBValidationResult = defaultValidationFunction\n"
     "  \n"
-    "  override func validateAndSetProp (candidateValue : " ;
+    "  override func validateAndSetProp (var candidateValue : " ;
   result << in_TYPE.stringValue () ;
   result << ",\n"
     "                                    windowForSheet inWindow:NSWindow\?) -> Bool {\n"
     "    var result = true\n"
-    "    let validationResult = validationFunction (candidateValue)\n"
+    "    let validationResult = validationFunction (propval, &candidateValue)\n"
     "    switch validationResult {\n"
     "    case EBValidationResult.ok :\n"
     "      setProp (candidateValue)\n"
@@ -852,13 +854,15 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     " \n"
     "  var validationFunction : (" ;
   result << in_CLASS_5F_NAME.stringValue () ;
+  result << ", inout " ;
+  result << in_CLASS_5F_NAME.stringValue () ;
   result << ") -> EBValidationResult = defaultValidationFunction\n"
     "\n"
-    "  override func validateAndSetProp (candidateValue : " ;
+    "  override func validateAndSetProp (var candidateValue : " ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << ",\n"
     "                                    windowForSheet inWindow:NSWindow\?) -> Bool {\n"
-    "    let validationResult = validationFunction (candidateValue)\n"
+    "    let validationResult = validationFunction (propval, &candidateValue)\n"
     "    var result = true\n"
     "    switch validationResult {\n"
     "    case EBValidationResult.ok :\n"

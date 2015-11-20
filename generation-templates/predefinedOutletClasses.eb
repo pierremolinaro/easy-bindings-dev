@@ -58,6 +58,10 @@ binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;
 binding EBSlider $intValue : property Int {sendContinously:Bool} ;
 
 
+outletClass EBStepper $enabled ;
+binding EBStepper $value : property Int {sendContinously:Bool} ;
+
+
 outletClass EBSwitch $enabled ;
 binding EBSwitch $value : property Bool ;
 
