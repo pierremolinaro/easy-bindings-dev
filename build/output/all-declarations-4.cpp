@@ -2006,39 +2006,39 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
                                        GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_arrayControllerForGeneration enumerator_26643 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_26643.hasCurrentObject ()) {
-    GALGAS_stringset var_observedProperties = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("array-controller.galgas", 695)) ;
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_26807 (enumerator_26643.current_mArrayControllerBoundColumnListForGeneration (HERE), kEnumeration_up) ;
-    while (enumerator_26807.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, enumerator_26807.current_mObservablePropertyForSorting (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+  cEnumerator_arrayControllerForGeneration enumerator_26998 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_26998.hasCurrentObject ()) {
+    GALGAS_stringset var_observedProperties = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("array-controller.galgas", 705)) ;
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_27162 (enumerator_26998.current_mArrayControllerBoundColumnListForGeneration (HERE), kEnumeration_up) ;
+    while (enumerator_27162.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, enumerator_27162.current_mObservablePropertyForSorting (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_0) {
-        var_observedProperties.addAssign_operation (enumerator_26807.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 698)) ;
+        var_observedProperties.addAssign_operation (enumerator_27162.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 708)) ;
       }
-      enumerator_26807.gotoNextObject () ;
+      enumerator_27162.gotoNextObject () ;
     }
-    cEnumerator_arrayControllerFilterListForGeneration enumerator_26993 (enumerator_26643.current_mArrayControllerFilterListForGeneration (HERE), kEnumeration_up) ;
-    while (enumerator_26993.hasCurrentObject ()) {
-      var_observedProperties.addAssign_operation (enumerator_26993.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 702)) ;
-      enumerator_26993.gotoNextObject () ;
+    cEnumerator_arrayControllerFilterListForGeneration enumerator_27348 (enumerator_26998.current_mArrayControllerFilterListForGeneration (HERE), kEnumeration_up) ;
+    while (enumerator_27348.hasCurrentObject ()) {
+      var_observedProperties.addAssign_operation (enumerator_27348.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 712)) ;
+      enumerator_27348.gotoNextObject () ;
     }
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_26643.current_mOwnerName (HERE), enumerator_26643.current_mControllerName (HERE), enumerator_26643.current_mArrayControllerFilterListForGeneration (HERE), enumerator_26643.current_mModelString (HERE), enumerator_26643.current_mModelKind (HERE), enumerator_26643.current_mModelTypeName (HERE), enumerator_26643.current_mModelTypeName_32_ (HERE), enumerator_26643.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_26643.current_mElementTypeName (HERE), var_observedProperties, enumerator_26643.current_mAttributeListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 704))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_26998.current_mOwnerName (HERE), enumerator_26998.current_mControllerName (HERE), enumerator_26998.current_mArrayControllerFilterListForGeneration (HERE), enumerator_26998.current_mModelString (HERE), enumerator_26998.current_mModelKind (HERE), enumerator_26998.current_mModelTypeName (HERE), enumerator_26998.current_mModelTypeName_32_ (HERE), enumerator_26998.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_26998.current_mElementTypeName (HERE), var_observedProperties, enumerator_26998.current_mAttributeListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 714))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_26643.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 719)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 719)).add_operation (enumerator_26643.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 719)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 719)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 717)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_26998.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 729)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 729)).add_operation (enumerator_26998.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 729)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 729)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 727)) ;
     }
-    const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_26643.current_mArrayControllerFilterListForGeneration (HERE).getter_length (SOURCE_FILE ("array-controller.galgas", 722)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_26998.current_mArrayControllerFilterListForGeneration (HERE).getter_length (SOURCE_FILE ("array-controller.galgas", 732)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_26643.current_mOwnerName (HERE), enumerator_26643.current_mControllerName (HERE), enumerator_26643.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 723))) ;
-      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_26643.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 728)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 728)).add_operation (enumerator_26643.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 728)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 728)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("array-controller.galgas", 729)) ;
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_26998.current_mOwnerName (HERE), enumerator_26998.current_mControllerName (HERE), enumerator_26998.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 733))) ;
+      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_26998.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 738)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 738)).add_operation (enumerator_26998.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 738)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 738)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("array-controller.galgas", 739)) ;
       {
       GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
         "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 738)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 738)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 738)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 730)) ;
+        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 748)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 748)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 748)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 740)) ;
       }
     }
-    enumerator_26643.gotoNextObject () ;
+    enumerator_26998.gotoNextObject () ;
   }
 }
 
