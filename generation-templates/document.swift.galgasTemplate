@@ -23,7 +23,7 @@ end
 
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  private var %!mStoredPropertyName% = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+%  var %!mStoredPropertyName% = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 
 
@@ -36,7 +36,7 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if not mIsArray then
-    %  private var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+    %  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
   end
 end
 
@@ -49,7 +49,7 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if mIsArray then
-    %  private var %!mTransientName% = TransientArrayOf_%![mTransientType swiftTypeName]% ()\n%
+    %  var %!mTransientName% = TransientArrayOf_%![mTransientType swiftTypeName]% ()\n%
   end
 end
 
@@ -60,7 +60,7 @@ end
 
 %
 for () in ARRAY_CONTROLLER_LIST do
-%  private var %!mControllerName% = ArrayController_%!mOwnerName%_%!mControllerName% ()\n%
+%  var %!mControllerName% = ArrayController_%!mOwnerName%_%!mControllerName% ()\n%
 end
 %
   //····················································································································
@@ -69,7 +69,7 @@ end
 
 %
 for () in SELECTION_CONTROLLER_LIST do
-%  private var %!mSelectionControllerName% = SelectionController_%!mOwnerName%_%!mSelectionControllerName% ()\n%
+%  var %!mSelectionControllerName% = SelectionController_%!mOwnerName%_%!mSelectionControllerName% ()\n%
 end
 %
   //····················································································································
@@ -78,7 +78,7 @@ end
 
 %
 for () in CUSTOM_OBJECT_CONTROLLER_LIST do
-%  private var %!mCustomObjectControllerName% = %!mClassNameForSwift% ()\n%
+%  var %!mCustomObjectControllerName% = %!mClassNameForSwift% ()\n%
 end
 %
   //····················································································································

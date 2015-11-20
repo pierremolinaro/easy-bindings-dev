@@ -37,11 +37,11 @@ import Cocoa
   //    Transient properties
   //····················································································································
 
-  private var selectionCountString = EBTransientProperty_String ()
-  private var evenValueString = EBTransientProperty_String ()
-  private var canRemoveString = EBTransientProperty_String ()
-  private var countItemMessage = EBTransientProperty_String ()
-  private var total = EBTransientProperty_Int ()
+  var selectionCountString = EBTransientProperty_String ()
+  var evenValueString = EBTransientProperty_String ()
+  var canRemoveString = EBTransientProperty_String ()
+  var countItemMessage = EBTransientProperty_String ()
+  var total = EBTransientProperty_Int ()
 
   //····················································································································
   //    Transient arraies
@@ -52,15 +52,15 @@ import Cocoa
   //    Array Controllers
   //····················································································································
 
-  private var nameController = ArrayController_PMDocument_nameController ()
-  private var otherController = ArrayController_PMDocument_otherController ()
-  private var selController = ArrayController_PMDocument_selController ()
+  var nameController = ArrayController_PMDocument_nameController ()
+  var otherController = ArrayController_PMDocument_otherController ()
+  var selController = ArrayController_PMDocument_selController ()
 
   //····················································································································
   //    Selection Controllers
   //····················································································································
 
-  private var detailController = SelectionController_PMDocument_detailController ()
+  var detailController = SelectionController_PMDocument_detailController ()
 
   //····················································································································
   //    Custom object Controllers
