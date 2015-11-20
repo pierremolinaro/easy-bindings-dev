@@ -267,6 +267,15 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
 %
 end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(%!ENTITY_NAME%_%!mTransientName%) protocol %!ENTITY_NAME%_%!mTransientName% {
+  var %!mTransientName% : EBTransientProperty_%![mTransientType swiftTypeName]% { get }
+}
+
+%
+end
 
 for () in TO_MANY_RELATIONSHIP_LIST do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -540,6 +549,9 @@ end
 @objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : EBManagedObject%
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %, %!ENTITY_NAME%_%!mStoredPropertyName
+end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %, %!ENTITY_NAME%_%!mTransientName
 end
 % {
 
