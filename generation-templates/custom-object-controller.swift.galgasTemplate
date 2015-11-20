@@ -158,24 +158,26 @@ end
   }
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
-%  //···················································································································*\n\n% 
-%  private final func bind_property_%!lkey.string% () {\n%
-%    %!lkey.string%.readModelFunction = { [weak self] in\n%
-%      if let model = self?.mSelectedObject {\n%
-%        return model.%!lkey.string%.prop\n%
-%      }else{\n%
-%        return .noSelection\n%
-%      }\n%
-%    }\n%
-%    %!lkey.string%.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
-%      self?.mSelectedObject?.%!lkey.string%.setProp (inValue)\n%
-%    }\n%
-%    %!lkey.string%.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-%      self?.mSelectedObject?.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet) ?? false\n%
-%    }\n%
-%  }\n\n%
-end
+  if not [mType isEntityType] then
+    %  //···················································································································*\n\n% 
+    %  private final func bind_property_%!lkey.string% () {\n%
+    %    %!lkey.string%.readModelFunction = { [weak self] in\n%
+    %      if let model = self?.mSelectedObject {\n%
+    %        return model.%!lkey.string%.prop\n%
+    %      }else{\n%
+    %        return .noSelection\n%
+    %      }\n%
+    %    }\n%
+    if [mKind isStored] then
+      %    %!lkey.string%.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
+      %      self?.mSelectedObject?.%!lkey.string%.setProp (inValue)\n%
+      %    }\n%
+      %    %!lkey.string%.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+      %      self?.mSelectedObject?.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet) ?? false\n%
+      %    }\n%
+    end
+    %  }\n\n%
+  end
 end%
 
   //····················································································································

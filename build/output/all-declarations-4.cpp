@@ -385,7 +385,7 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
       "\n"), var_s, GALGAS_string ("\n"
       "\n"), GALGAS_string ("}\n"
       "\n"
-      "//----------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 299)) ;
+      "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 299)) ;
     }
     enumerator_12510.gotoNextObject () ;
   }
@@ -556,7 +556,7 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
     "\n"
     "import Cocoa\n"
     "\n"
-    "//----------------------------------------------------------------------------*\n"
+    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
     "func compute_" ;
   result << in_OWNER_5F_NAME.stringValue () ;
@@ -564,20 +564,20 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
   result << in_TRANSIENT_5F_NAME.stringValue () ;
   result << " (" ;
   columnMarker = result.currentColumn () ;
-  GALGAS_uint index_477_ (0) ;
+  GALGAS_uint index_518_ (0) ;
   if (in_DEPENDENCY_5F_LIST.isValid ()) {
-    cEnumerator_transientDependencyListForGeneration enumerator_477 (in_DEPENDENCY_5F_LIST, kEnumeration_up) ;
-    while (enumerator_477.hasCurrentObject ()) {
-      result << enumerator_477.current_mFunctionArgumentName (HERE).stringValue () ;
+    cEnumerator_transientDependencyListForGeneration enumerator_518 (in_DEPENDENCY_5F_LIST, kEnumeration_up) ;
+    while (enumerator_518.hasCurrentObject ()) {
+      result << enumerator_518.current_mFunctionArgumentName (HERE).stringValue () ;
       result << " : " ;
-      result << enumerator_477.current_mFunctionArgumentTypeString (HERE).stringValue () ;
-      if (enumerator_477.hasNextObject ()) {
+      result << enumerator_518.current_mFunctionArgumentTypeString (HERE).stringValue () ;
+      if (enumerator_518.hasNextObject ()) {
         result << ",\n" ;
         result.appendSpacesUntilColumn (columnMarker) ;
         result << "_ " ;
       }
-      index_477_.increment () ;
-      enumerator_477.gotoNextObject () ;
+      index_518_.increment () ;
+      enumerator_518.gotoNextObject () ;
     }
   }
   result << ") -> " ;
@@ -2976,26 +2976,30 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
           "      }else{\n"
           "        return .noSelection\n"
           "      }\n"
-          "    }\n"
-          "    " ;
-        result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
-        result << ".writeModelFunction = { [weak self] (inValue : " ;
-        result << extensionGetter_swiftTypeName (enumerator_6804.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 171)).stringValue () ;
-        result << ") in\n"
-          "      self\?.mSelectedObject\?." ;
-        result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
-        result << ".setProp (inValue)\n"
-          "    }\n"
-          "    " ;
-        result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
-        result << ".validateAndWriteModelFunction = { [weak self] (candidateValue : " ;
-        result << extensionGetter_swiftTypeName (enumerator_6804.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 174)).stringValue () ;
-        result << ", windowForSheet : NSWindow\?) in\n"
-          "      self\?.mSelectedObject\?." ;
-        result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
-        result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet) \?\? false\n"
-          "    }\n"
-          "  }\n"
+          "    }\n" ;
+        const enumGalgasBool test_5 = enumerator_6804.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 171)).boolEnum () ;
+        if (kBoolTrue == test_5) {
+          result << "    " ;
+          result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << ".writeModelFunction = { [weak self] (inValue : " ;
+          result << extensionGetter_swiftTypeName (enumerator_6804.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 172)).stringValue () ;
+          result << ") in\n"
+            "      self\?.mSelectedObject\?." ;
+          result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << ".setProp (inValue)\n"
+            "    }\n"
+            "    " ;
+          result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << ".validateAndWriteModelFunction = { [weak self] (candidateValue : " ;
+          result << extensionGetter_swiftTypeName (enumerator_6804.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 175)).stringValue () ;
+          result << ", windowForSheet : NSWindow\?) in\n"
+            "      self\?.mSelectedObject\?." ;
+          result << enumerator_6804.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet) \?\? false\n"
+            "    }\n" ;
+        }else if (kBoolFalse == test_5) {
+        }
+        result << "  }\n"
           "\n" ;
       }else if (kBoolFalse == test_4) {
       }

@@ -40,7 +40,7 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
-  //   Stored property '%!mStoredPropertyName%'
+  //   Observers of '%!mStoredPropertyName%' stored property
   //····················································································································
 
   private var mObserversOf_%!mStoredPropertyName% = EBWeakEventSet ()
@@ -102,6 +102,76 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
         managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
+      }
+    }
+  }
+
+%
+end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%  //····················································································································
+  //   Observers of '%!mTransientName%' transient property
+  //····················································································································
+
+  private var mObserversOf_%!mTransientName% = EBWeakEventSet ()
+
+  //····················································································································
+
+  final func addEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+    mObserversOf_%!mTransientName%.insert (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mTransientName%.addEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+    mObserversOf_%!mTransientName%.remove (inObserver)
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mTransientName%.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func postEventTo_%!mTransientName% () {
+    switch prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let v) :
+      for managedObject in v {
+        managedObject.%!mTransientName%.postEvent ()
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserversOf_%!mTransientName%_toElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mTransientName% {
+        managedObject.%!mTransientName%.addEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserversOf_%!mTransientName%_fromElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      for observer in mObserversOf_%!mTransientName% {
+        managedObject.%!mTransientName%.removeEBObserver (observer)
       }
     }
   }
