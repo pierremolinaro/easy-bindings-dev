@@ -242,9 +242,13 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = controllerName.string + "." + propertyName + ".addEBObserver"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".addEBObserver"
-  case selfProperty (@lstring masterName *) :
+  case selfProperty (@lstring masterName) :
     outResult = masterName.string + ".addEBObserver"
-  case prefsProperty (@lstring propertyName *) :
+  case selfPropertyWithOption (@lstring masterName *) :
+    outResult = masterName.string + ".addEBObserver"
+  case prefsProperty (@lstring propertyName) :
+    outResult = "g_" + preferencesName () + "?."  + propertyName + ".addEBObserver"
+  case prefsPropertyWithOption (@lstring propertyName *) :
     outResult = "g_" + preferencesName () + "?."  + propertyName + ".addEBObserver"
   case rootProperty (@lstring masterName) :
     outResult = "rootObject." + masterName + ".addEBObserver"
@@ -269,9 +273,13 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = controllerName.string + "." + propertyName + ".removeEBObserver"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".removeEBObserver"
-  case selfProperty (@lstring masterName *) :
+  case selfProperty (@lstring masterName) :
     outResult = masterName.string + ".removeEBObserver"
-  case prefsProperty (@lstring propertyName *) :
+  case selfPropertyWithOption (@lstring masterName *) :
+    outResult = masterName.string + ".removeEBObserver"
+  case prefsProperty (@lstring propertyName) :
+    outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeEBObserver"
+  case prefsPropertyWithOption (@lstring propertyName *) :
     outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeEBObserver"
   case rootProperty (@lstring masterName) :
     outResult = "rootObject." + masterName + ".removeEBObserver"

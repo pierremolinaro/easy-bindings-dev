@@ -6,8 +6,10 @@ enum @observablePropertyAST {
   case rootProperty (@lstring propertyName)
   case rootPropertyWithOption (@lstring propertyName @lstring optionName)
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName)
-  case selfProperty (@lstring propertyName @lstring optionName)
-  case prefsProperty (@lstring propertyName @lstring optionName)
+  case selfProperty (@lstring propertyName)
+  case selfPropertyWithOption (@lstring propertyName @lstring optionName)
+  case prefsProperty (@lstring propertyName)
+  case prefsPropertyWithOption (@lstring propertyName @lstring optionName)
   case controllerProperty (@lstring controllerName @lstring propertyName)
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
   case signatureProperty (@location location)
@@ -52,12 +54,26 @@ syntax extension easyBindings_syntax {
       end
     or
       $self$
-      <observable_property_extension> ?let propertyName ?let optionName
-      outObservablePropertyAST = .selfProperty {!propertyName:propertyName !optionName:optionName}
+      $.$
+      $identifier$ ?let propertyName
+      select
+        outObservablePropertyAST = .selfProperty {!propertyName:propertyName}
+      or
+        $.$ ;
+        $identifier$ ?let optionName
+        outObservablePropertyAST = .selfPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+      end
     or
       $prefs$
-      <observable_property_extension> ?let propertyName ?let optionName
-      outObservablePropertyAST = .prefsProperty {!propertyName:propertyName !optionName:optionName}
+      $.$
+      $identifier$ ?let propertyName
+      select
+        outObservablePropertyAST = .prefsProperty {!propertyName:propertyName}
+      or
+        $.$ ;
+        $identifier$ ?let optionName
+        outObservablePropertyAST = .prefsPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+      end
     or
       $identifier$ ?let controllerName
       $.$
@@ -86,20 +102,6 @@ syntax extension easyBindings_syntax {
   }
 
   #--------------------------------------------------------------------------------------------------------------------*
-  
-  rule <observable_property_extension>
-    !@lstring outPropertyName
-    !@lstring outOptionName
-  {
-    $.$
-    $identifier$ ?outPropertyName
-    select
-      outOptionName = ["" nowhere]
-    or
-      $.$ ;
-      $identifier$ ?outOptionName
-    end
-  }
 
 }
    
@@ -115,16 +117,14 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
     outResult = inSelf + ".rootObject." + propertyName + "." + optionName
   case rootPropertyRelationship (@lstring relationshipName *) :
     outResult = inSelf + ".rootObject." + relationshipName
-  case selfProperty (@lstring propertyName @lstring optionName) :
+  case selfProperty (@lstring propertyName) :
     outResult = inSelf + "." + propertyName
-    if optionName.string != "" then
-      outResult += "." + optionName
-    end
-  case prefsProperty (@lstring propertyName @lstring optionName) :
+  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = inSelf + "." + propertyName + "." + optionName
+  case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "!." + propertyName
-    if optionName.string != "" then
-      outResult += "." + optionName
-    end
+  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = "g_" + preferencesName () + "!." + propertyName + "." + optionName
   case controllerProperty (@lstring controllerName @lstring propertyName) :
     outResult = inSelf + "." + controllerName + "." + propertyName
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
@@ -148,9 +148,13 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
     outResult = true
   case rootPropertyRelationship (* *) :
     outResult = true
-  case selfProperty (* *) :
+  case selfProperty (*) :
     outResult = true
-  case prefsProperty (* *) :
+  case selfPropertyWithOption (* *) :
+    outResult = true
+  case prefsProperty (*) :
+    outResult = false
+  case prefsPropertyWithOption (* *) :
     outResult = false
   case controllerProperty (* *) :
     outResult = true
@@ -180,9 +184,13 @@ getter @observablePropertyAST isPropertyDefined
     outResult = [inRootObservableProperties hasKey !propertyName.string]
   case rootPropertyRelationship (@lstring relationshipName *) :
     outResult = [inRootObservableProperties hasKey !relationshipName.string]
-  case selfProperty (@lstring propertyName @lstring unused optionName) :
+  case selfProperty (@lstring propertyName) :
     outResult = [inObservableProperties hasKey !propertyName.string]
-  case prefsProperty (@lstring propertyName @lstring unused optionName) :
+  case selfPropertyWithOption (@lstring propertyName @lstring unused optionName) :
+    outResult = [inObservableProperties hasKey !propertyName.string]
+  case prefsProperty (@lstring propertyName) :
+    outResult = [inSemanticContext.mPreferencesObservablePropertyMap hasKey !propertyName.string]
+  case prefsPropertyWithOption (@lstring propertyName @lstring unused optionName) :
     outResult = [inSemanticContext.mPreferencesObservablePropertyMap hasKey !propertyName.string]
   case controllerProperty (@lstring controllerName @lstring unused propertyName) :
     outResult = [inObservableProperties hasKey !controllerName.string]
@@ -207,9 +215,13 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = optionName.location
   case rootPropertyRelationship (* @lstring propertyName) :
     outResult = propertyName.location
-  case selfProperty (@lstring propertyName *) :
+  case selfProperty (@lstring propertyName) :
     outResult = propertyName.location
-  case prefsProperty (@lstring propertyName *) :
+  case selfPropertyWithOption (@lstring propertyName *) :
+    outResult = propertyName.location
+  case prefsProperty (@lstring propertyName) :
+    outResult = propertyName.location
+  case prefsPropertyWithOption (@lstring propertyName *) :
     outResult = propertyName.location
   case controllerProperty (* @lstring propertyName) :
     outResult = propertyName.location
@@ -319,7 +331,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = "[" + [relationshipType swiftTypeName] + "_" + propertyName + "]"
-  case selfProperty (@lstring propertyName @lstring optionName) :
+  case selfProperty (@lstring propertyName) :
     [inObservablePropertyMap searchKey
       !propertyName
       ?outType
@@ -327,9 +339,18 @@ method @observablePropertyAST analyzeObservableProperty
       ?outMultiplicity
       ?2*
     ]
-    if (optionName.string != "") && (outMultiplicity == .single) then
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+    [inObservablePropertyMap searchKey
+      !propertyName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?2*
+    ]
+    if outMultiplicity == .single then
       error optionName : "a property cannot accept any option"
-    elsif (outMultiplicity == .collection) && (optionName.string != "") then
+    elsif outMultiplicity == .collection then
       outKind = .transient
       outMultiplicity = .single
       if optionName.string == "count" then
@@ -339,7 +360,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
-  case prefsProperty (@lstring propertyName @lstring optionName) :
+  case prefsProperty (@lstring propertyName) :
     [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName
       ?outType
@@ -347,9 +368,18 @@ method @observablePropertyAST analyzeObservableProperty
       ?outMultiplicity
       ?2*
     ]
-    if (optionName.string != "") && (outMultiplicity == .single) then
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+    [inSemanticContext.mPreferencesObservablePropertyMap searchKey
+      !propertyName
+      ?outType
+      ?outKind
+      ?outMultiplicity
+      ?2*
+    ]
+    if outMultiplicity == .single then
       error optionName : "a single property cannot accept any option"
-    elsif (outMultiplicity == .collection) && (optionName.string != "") then
+    elsif outMultiplicity == .collection then
       outKind = .transient
       outMultiplicity = .single
       if optionName.string == "count" then
