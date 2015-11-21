@@ -172,8 +172,6 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
 
   template scalarProperty "scalar-standard-property.swift.galgasTemplate"
     ?@string TYPE
-    ?@string TO_NSNUMBER
-    ?@string SIGNATURE
 
   template classProperty "class-standard-property.swift.galgasTemplate"
     ?@string CLASS_NAME
@@ -190,11 +188,11 @@ private proc generateStandardProperties
 {
   var contents = [filewrapper standard_properties.stub]
 #--- Add Int type
-  contents += [filewrapper standard_properties.scalarProperty !"Int"    !"integer" !"UInt64 (propval)"]
-  contents += [filewrapper standard_properties.scalarProperty !"Bool"   !"bool"    !"propval ? 1 : 0"]
-  contents += [filewrapper standard_properties.scalarProperty !"Double" !"double"  !"UInt64 (propval)"]
+  contents += [filewrapper standard_properties.scalarProperty !"Int"   ]
+  contents += [filewrapper standard_properties.scalarProperty !"Bool"  ]
+  contents += [filewrapper standard_properties.scalarProperty !"Double"]
+  contents += [filewrapper standard_properties.scalarProperty !"String"]
 #--- Add Class type
-  contents += [filewrapper standard_properties.classProperty !"String"  !true  !""             !false]
   contents += [filewrapper standard_properties.classProperty !"NSColor" !false !".description" !true ]
   contents += [filewrapper standard_properties.classProperty !"NSDate"  !true  !".description" !false]
   contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !".description" !true ]

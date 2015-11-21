@@ -1,4 +1,16 @@
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Class property %!CLASS_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+/*
+typealias EBReadOnlyProperty_%!CLASS_NAME%  = EBReadOnlyProperty <%!CLASS_NAME%>
+typealias EBReadWriteProperty_%!CLASS_NAME% = EBReadWriteProperty <%!CLASS_NAME%>
+typealias EBPropertyProxy_%!CLASS_NAME%     = EBPropertyProxy <%!CLASS_NAME%>
+typealias EBStoredProperty_%!CLASS_NAME%    = EBStoredProperty <%!CLASS_NAME%>
+typealias EBTransientProperty_%!CLASS_NAME% = EBTransientProperty <%!CLASS_NAME%>
+*/
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBReadOnlyProperty_%!CLASS_NAME% (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -363,6 +375,7 @@ class EBTransientProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
   }
 
   //····················································································································
+
 
 }
 
