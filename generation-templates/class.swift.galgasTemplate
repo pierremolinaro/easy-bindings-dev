@@ -510,6 +510,14 @@ class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 
   //····················································································································
 
+  var mValueExplorer : NSTextField? {
+    didSet {
+      mValueExplorer?.stringValue = "%!EXPLORER_ACCESS%"
+    }
+  }
+
+  //····················································································································
+
   override func postEvent() {
     if prop_cache != nil {
       prop_cache = nil
@@ -570,9 +578,18 @@ final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 
   //····················································································································
 
+  var mValueExplorer : NSTextField? {
+    didSet {
+      mValueExplorer?.stringValue = "%!EXPLORER_ACCESS%"
+    }
+  }
+
+  //····················································································································
+
   private var mValue : %!CLASS_NAME% {
     didSet {
       if mValue != oldValue {
+        mValueExplorer?.stringValue = "%!EXPLORER_ACCESS%"
         postEvent ()
       }
     }

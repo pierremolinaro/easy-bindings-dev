@@ -8,6 +8,7 @@ enum @observablePropertyAST {
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName)
   case selfProperty (@lstring propertyName)
   case selfPropertyWithOption (@lstring propertyName @lstring optionName)
+  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName)
   case prefsProperty (@lstring propertyName)
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName)
   case controllerProperty (@lstring controllerName @lstring propertyName)
@@ -60,8 +61,15 @@ syntax extension easyBindings_syntax {
         outObservablePropertyAST = .selfProperty {!propertyName:propertyName}
       or
         $.$ ;
-        $identifier$ ?let optionName
-        outObservablePropertyAST = .selfPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+        select
+          $all$
+          $.$
+          $identifier$ ?let elementPropertyName
+          outObservablePropertyAST = .selfPropertyArray {!propertyName:propertyName !elementPropertyName:elementPropertyName}
+        or
+          $identifier$ ?let optionName
+          outObservablePropertyAST = .selfPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+        end
       end
     or
       $prefs$
@@ -121,6 +129,8 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
     outResult = inSelf + "." + propertyName
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
     outResult = inSelf + "." + propertyName + "." + optionName
+  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) :
+    outResult = inSelf + "." + propertyName # + ".all." + elementPropertyName
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "!." + propertyName
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -151,6 +161,8 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   case selfProperty (*) :
     outResult = true
   case selfPropertyWithOption (* *) :
+    outResult = true
+  case selfPropertyArray (* *) :
     outResult = true
   case prefsProperty (*) :
     outResult = false
@@ -188,6 +200,8 @@ getter @observablePropertyAST isPropertyDefined
     outResult = [inObservableProperties hasKey !propertyName.string]
   case selfPropertyWithOption (@lstring propertyName @lstring unused optionName) :
     outResult = [inObservableProperties hasKey !propertyName.string]
+  case selfPropertyArray (@lstring propertyName @lstring unused elementPropertyName) :
+    outResult = [inObservableProperties hasKey !propertyName.string]
   case prefsProperty (@lstring propertyName) :
     outResult = [inSemanticContext.mPreferencesObservablePropertyMap hasKey !propertyName.string]
   case prefsPropertyWithOption (@lstring propertyName @lstring unused optionName) :
@@ -218,6 +232,8 @@ getter @observablePropertyAST location -> @location outResult {
   case selfProperty (@lstring propertyName) :
     outResult = propertyName.location
   case selfPropertyWithOption (@lstring propertyName *) :
+    outResult = propertyName.location
+  case selfPropertyArray (@lstring propertyName *) :
     outResult = propertyName.location
   case prefsProperty (@lstring propertyName) :
     outResult = propertyName.location
@@ -360,6 +376,41 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) : # self.xxx.all.xxx
+    [inObservablePropertyMap searchKey
+      !propertyName
+      ?let propertyType
+      ?outKind
+      ?outMultiplicity
+      ?2*
+    ]
+    if outMultiplicity == .single then
+      error propertyName : "a property cannot accept 'all'"
+    end
+    switch propertyType
+    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+      error propertyName : "a property cannot accept 'all'" : outType
+    case enumType (* *) :
+      error propertyName : "a property cannot accept 'all'" : outType
+    case classType (*) :
+      error propertyName : "a property cannot accept 'all'" : outType
+    case entityType (@string entityName) :
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        ![entityName nowhere]
+        ?let @observablePropertyMap entityObservablePropertyMap
+      ]
+      [entityObservablePropertyMap searchKey
+        !elementPropertyName
+        ?outType
+        ?outKind
+        ?outMultiplicity
+        ?2*
+      ]
+      if outMultiplicity == .collection then
+        error elementPropertyName : "the observed property cannot be a collection"
+      end
+    end
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [propertyType swiftTypeName] + "_" + elementPropertyName + "]"
   case prefsProperty (@lstring propertyName) :
     [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName
