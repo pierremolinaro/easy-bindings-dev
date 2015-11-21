@@ -246,6 +246,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = masterName.string + ".addEBObserver"
   case selfPropertyWithOption (@lstring masterName *) :
     outResult = masterName.string + ".addEBObserver"
+  case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
+    outResult = masterName.string + ".addEBObserverOf_" + elementPropertyName
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "?."  + propertyName + ".addEBObserver"
   case prefsPropertyWithOption (@lstring propertyName *) :
@@ -277,6 +279,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = masterName.string + ".removeEBObserver"
   case selfPropertyWithOption (@lstring masterName *) :
     outResult = masterName.string + ".removeEBObserver"
+  case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
+    outResult = masterName.string + ".removeEBObserverOf_" + elementPropertyName
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeEBObserver"
   case prefsPropertyWithOption (@lstring propertyName *) :

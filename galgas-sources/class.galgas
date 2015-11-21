@@ -286,6 +286,7 @@ private filewrapper classGenerationTemplate in "../generation-templates" {
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@externSwiftFunctionList EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION
     ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
+    ?@string EXPLORER_ACCESS
 
 #    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
 #    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
@@ -309,6 +310,7 @@ proc generateClasses
 #      !mToManyEntityRelationshipList
       !mExternSwiftFunctionList
       !mExternSwiftDelegateList
+      !"<< not handled>>"
     ]
     let fileName = mClassName + ".swift"
     ioGeneratedFileSet += !fileName

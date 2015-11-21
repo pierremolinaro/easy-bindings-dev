@@ -9,6 +9,194 @@
 
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (void) :
+mAttribute_mDeclarationList (),
+mAttribute_mOutletClassDeclarationList (),
+mAttribute_mBindingSpecificationListMap (),
+mAttribute_mPreferences (),
+mAttribute_mXcodeProject () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationStruct::~ GALGAS_astDeclarationStruct (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (const GALGAS_astDeclarationList & inOperand0,
+                                                          const GALGAS_outletClassDeclarationList & inOperand1,
+                                                          const GALGAS_bindingSpecificationListMap & inOperand2,
+                                                          const GALGAS_prefDeclaration & inOperand3,
+                                                          const GALGAS_lstring & inOperand4) :
+mAttribute_mDeclarationList (inOperand0),
+mAttribute_mOutletClassDeclarationList (inOperand1),
+mAttribute_mBindingSpecificationListMap (inOperand2),
+mAttribute_mPreferences (inOperand3),
+mAttribute_mXcodeProject (inOperand4) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_astDeclarationStruct (GALGAS_astDeclarationList::constructor_emptyList (HERE),
+                                      GALGAS_outletClassDeclarationList::constructor_emptyList (HERE),
+                                      GALGAS_bindingSpecificationListMap::constructor_emptyMap (HERE),
+                                      GALGAS_prefDeclaration::constructor_default (HERE),
+                                      GALGAS_lstring::constructor_default (HERE)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_new (const GALGAS_astDeclarationList & inOperand0,
+                                                                          const GALGAS_outletClassDeclarationList & inOperand1,
+                                                                          const GALGAS_bindingSpecificationListMap & inOperand2,
+                                                                          const GALGAS_prefDeclaration & inOperand3,
+                                                                          const GALGAS_lstring & inOperand4 
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_astDeclarationStruct result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_astDeclarationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_astDeclarationStruct::objectCompare (const GALGAS_astDeclarationStruct & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mDeclarationList.objectCompare (inOperand.mAttribute_mDeclarationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mOutletClassDeclarationList.objectCompare (inOperand.mAttribute_mOutletClassDeclarationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mBindingSpecificationListMap.objectCompare (inOperand.mAttribute_mBindingSpecificationListMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mPreferences.objectCompare (inOperand.mAttribute_mPreferences) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mXcodeProject.objectCompare (inOperand.mAttribute_mXcodeProject) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_astDeclarationStruct::isValid (void) const {
+  return mAttribute_mDeclarationList.isValid () && mAttribute_mOutletClassDeclarationList.isValid () && mAttribute_mBindingSpecificationListMap.isValid () && mAttribute_mPreferences.isValid () && mAttribute_mXcodeProject.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_astDeclarationStruct::drop (void) {
+  mAttribute_mDeclarationList.drop () ;
+  mAttribute_mOutletClassDeclarationList.drop () ;
+  mAttribute_mBindingSpecificationListMap.drop () ;
+  mAttribute_mPreferences.drop () ;
+  mAttribute_mXcodeProject.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_astDeclarationStruct::description (C_String & ioString,
+                                               const int32_t inIndentation) const {
+  ioString << "<struct @astDeclarationStruct:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mDeclarationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mOutletClassDeclarationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mPreferences.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mXcodeProject.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationList GALGAS_astDeclarationStruct::getter_mDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDeclarationList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletClassDeclarationList GALGAS_astDeclarationStruct::getter_mOutletClassDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mOutletClassDeclarationList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bindingSpecificationListMap GALGAS_astDeclarationStruct::getter_mBindingSpecificationListMap (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mBindingSpecificationListMap ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_prefDeclaration GALGAS_astDeclarationStruct::getter_mPreferences (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mPreferences ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_astDeclarationStruct::getter_mXcodeProject (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mXcodeProject ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             @astDeclarationStruct type                                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
+                                             NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_astDeclarationStruct::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astDeclarationStruct ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_astDeclarationStruct::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_astDeclarationStruct (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_astDeclarationStruct result ;
+  const GALGAS_astDeclarationStruct * p = (const GALGAS_astDeclarationStruct *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_astDeclarationStruct *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astDeclarationStruct", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Category method '@XcodeProjectDescriptor addICNS_file'                                *
 //                                                                                                                     *
