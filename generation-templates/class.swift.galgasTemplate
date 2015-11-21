@@ -469,4 +469,168 @@ end
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBReadOnlyProperty_%!CLASS_NAME% (abstract class)
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBReadOnlyProperty_%!CLASS_NAME%)
+class EBReadOnlyProperty_%!CLASS_NAME% : EBAbstractProperty {
+
+  var prop : EBProperty <%!CLASS_NAME%> { get { return .noSelection } } // Abstract method
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBReadWriteProperty_%!CLASS_NAME% (abstract class)
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBReadWriteProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
+  func setProp (inValue : %!CLASS_NAME%) { } // Abstract method
+  func validateAndSetProp (candidateValue : %!CLASS_NAME%, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBPropertyProxy_%!CLASS_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBPropertyProxy_%!CLASS_NAME%)
+class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
+  var readModelFunction : Optional < () -> EBProperty <%!CLASS_NAME%> >
+  var writeModelFunction : Optional < (%!CLASS_NAME%) -> Void >
+  var validateAndWriteModelFunction : Optional < (%!CLASS_NAME%, NSWindow?) -> Bool >
+  
+  private var prop_cache : EBProperty <%!CLASS_NAME%>?
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+  }
+
+  //····················································································································
+
+  override func postEvent() {
+    if prop_cache != nil {
+      prop_cache = nil
+      super.postEvent()
+    }
+  }
+
+  //····················································································································
+
+  override var prop : EBProperty <%!CLASS_NAME%> {
+    get {
+      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+        prop_cache = unReadModelFunction ()
+      }
+      if prop_cache == nil {
+        prop_cache = .noSelection
+      }
+      return prop_cache!
+    }
+  }
+
+  //····················································································································
+  
+  override func setProp (inValue : %!CLASS_NAME%) {
+    if let unWriteModelFunction = writeModelFunction {
+      unWriteModelFunction (inValue)
+    }
+  }
+
+  //····················································································································
+
+  override func validateAndSetProp (candidateValue : %!CLASS_NAME%,
+                                    windowForSheet inWindow:NSWindow?) -> Bool {
+    var result = false
+    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
+      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
+    }
+    return result
+  }
+  
+  //····················································································································
+  
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBStoredProperty_%!CLASS_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBStoredProperty_%!CLASS_NAME%)
+final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
+
+  //····················································································································
+
+  init (_ inValue : %!CLASS_NAME%) {
+    mValue = inValue
+    super.init ()
+  }
+
+  //····················································································································
+
+  private var mValue : %!CLASS_NAME% {
+    didSet {
+      if mValue != oldValue {
+        postEvent ()
+      }
+    }
+  }
+
+  //····················································································································
+
+  override var prop : EBProperty <%!CLASS_NAME%> { get { return .singleSelection (mValue) } }
+
+  var propval : %!CLASS_NAME% { get { return mValue } }
+
+  override func setProp (inValue : %!CLASS_NAME%) { mValue = inValue }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBTransientProperty_%!CLASS_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBTransientProperty_%!CLASS_NAME%)
+class EBTransientProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
+  private var mValueCache : EBProperty <%!CLASS_NAME%>? = nil
+  var computeFunction : Optional<() -> EBProperty <%!CLASS_NAME%>>
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+  }
+
+  //····················································································································
+
+  override var prop : EBProperty <%!CLASS_NAME%> {
+    get {
+      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+        mValueCache = unwrappedComputeFunction ()
+      }
+      if mValueCache == nil {
+        mValueCache = .noSelection
+      }
+      return mValueCache!
+    }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    if mValueCache != nil {
+      mValueCache = nil
+      super.postEvent ()
+    }
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
