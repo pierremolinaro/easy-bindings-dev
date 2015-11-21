@@ -8,7 +8,7 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ReadOnlyArrayOf_MyRootEntity)
+// @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
@@ -52,7 +52,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 //    TransientArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(TransientArrayOf_MyRootEntity)
+// @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
@@ -107,7 +107,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    To many relationship: mNames
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ToManyRelationship_MyRootEntity_mNames)
+// @objc(ToManyRelationship_MyRootEntity_mNames)
 final class ToManyRelationship_MyRootEntity_mNames :
 ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
   weak var owner : MyRootEntity?
@@ -275,7 +275,10 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity) class MyRootEntity : EBManagedObject {
+// @objc(MyRootEntity)
+class MyRootEntity : EBManagedObject
+// 
+{
 
   //····················································································································
   //    Properties

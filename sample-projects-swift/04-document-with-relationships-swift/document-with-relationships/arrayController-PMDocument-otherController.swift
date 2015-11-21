@@ -308,11 +308,12 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
-      column.sortDescriptorPrototype = NSSortDescriptor (
+     /* column.sortDescriptorPrototype = NSSortDescriptor (
         key:"name",
         ascending:true,
         selector:"compare:"
-      )
+      ) */
+      column.sortDescriptorPrototype = nil
     }else{
       presentErrorWindow (file,
         line: line,
@@ -321,11 +322,12 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     }
   //--- Check 'int' column
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
-      column.sortDescriptorPrototype = NSSortDescriptor (
+     /* column.sortDescriptorPrototype = NSSortDescriptor (
         key:"aValue",
         ascending:true,
         selector:"compare:"
-      )
+      ) */
+      column.sortDescriptorPrototype = nil
     }else{
       presentErrorWindow (file,
         line: line,

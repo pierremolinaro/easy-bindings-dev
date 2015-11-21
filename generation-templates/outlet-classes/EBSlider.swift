@@ -60,7 +60,7 @@ import Cocoa
 
   private var mIntValueController : Controller_EBSlider_intValue?
 
-  func bind_intValue (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
+  func bind_intValue (object:EBReadWriteProperty <Int>, file:String, line:Int, sendContinously:Bool) {
     mIntValueController = Controller_EBSlider_intValue (object:object, outlet:self, file:file, line:line)
     self.continuous = sendContinously
   }
@@ -134,11 +134,11 @@ final class Controller_EBSlider_doubleValue : EBSimpleController {
 final class Controller_EBSlider_intValue : EBSimpleController {
 
   private let mOutlet: EBSlider
-  private let mObject : EBReadWriteProperty_Int
+  private let mObject : EBReadWriteProperty <Int>
 
   //····················································································································
 
-  init (object:EBReadWriteProperty_Int, outlet : EBSlider, file : String, line : Int) {
+  init (object:EBReadWriteProperty <Int>, outlet : EBSlider, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)

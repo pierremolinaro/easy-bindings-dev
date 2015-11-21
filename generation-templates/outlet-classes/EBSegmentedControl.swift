@@ -113,7 +113,7 @@ import Cocoa
 
   private var mValueController : Controller_EBSegmentedControl_selectedIndex?
 
-  func bind_selectedIndex (object:EBReadWriteProperty_Int, file:String, line:Int) {
+  func bind_selectedIndex (object:EBReadWriteProperty <Int>, file:String, line:Int) {
     mValueController = Controller_EBSegmentedControl_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 
@@ -131,12 +131,12 @@ import Cocoa
 @objc(Controller_EBSegmentedControl_selectedIndex)
 final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
 
-  private let mObject : EBReadWriteProperty_Int
+  private let mObject : EBReadWriteProperty <Int>
   private let mOutlet : EBSegmentedControl
 
   //···················································································································*
 
-  init (object : EBReadWriteProperty_Int, outlet : EBSegmentedControl, file : String, line : Int) {
+  init (object : EBReadWriteProperty <Int>, outlet : EBSegmentedControl, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)

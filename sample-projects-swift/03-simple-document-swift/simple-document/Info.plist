@@ -12,7 +12,7 @@
 				<string>simple-document</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>simple-document_icns</string>
+			<string></string>
 			<key>CFBundleTypeName</key>
 			<string>simple-document</string>
 			<key>CFBundleTypeOSTypes</key>
