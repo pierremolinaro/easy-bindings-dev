@@ -42,9 +42,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_stub (class C_Compiler 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class C_Compiler * inCompiler,
-                                                                         const class GALGAS_string & in_TYPE,
-                                                                         const class GALGAS_string & in_TO_5F_NSNUMBER,
-                                                                         const class GALGAS_string & in_SIGNATURE
+                                                                         const class GALGAS_string & in_TYPE
                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*

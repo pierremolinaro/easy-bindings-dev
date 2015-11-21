@@ -10,6 +10,108 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                      Overriding category method '@documentDeclaration solveSecondaryProperty'                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_documentDeclaration_solveSecondaryProperty (const cPtr_astDeclaration * inObject,
+                                                                       GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                       const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
+                                                                       const GALGAS_secondaryPropertyList constinArgument_inPropertiesToSolve,
+                                                                       GALGAS_secondaryPropertyList & outArgument_outUnsolvedProperties,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_documentDeclaration * object = (const cPtr_documentDeclaration *) inObject ;
+  macroValidSharedObject (object, cPtr_documentDeclaration) ;
+  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 130)) ;
+  GALGAS_observablePropertyMap var_observablePropertyMap ;
+  ioArgument_ioSemanticContext.mAttribute_mDocumentObservablePropertyMap.method_searchKey (object->mAttribute_mDocumentName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 131)) ;
+  GALGAS_observablePropertyMap var_rootObservablePropertyMap ;
+  ioArgument_ioSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mRootEntityName, var_rootObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 135)) ;
+  cEnumerator_secondaryPropertyList enumerator_5831 (constinArgument_inPropertiesToSolve, kEnumeration_up) ;
+  while (enumerator_5831.hasCurrentObject ()) {
+    callCategoryMethod_tryToSolveSecondaryProperty ((const cPtr_abstractSecondaryProperty *) enumerator_5831.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioSemanticContext, var_rootObservablePropertyMap, var_observablePropertyMap, outArgument_outUnsolvedProperties, inCompiler COMMA_SOURCE_FILE ("document.galgas", 140)) ;
+    enumerator_5831.gotoNextObject () ;
+  }
+  {
+  ioArgument_ioSemanticContext.mAttribute_mDocumentObservablePropertyMap.modifier_setMObservablePropertyMapForKey (var_observablePropertyMap, object->mAttribute_mDocumentName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("document.galgas", 147)) ;
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_documentDeclaration_solveSecondaryProperty (void) {
+  enterCategoryMethod_solveSecondaryProperty (kTypeDescriptor_GALGAS_documentDeclaration.mSlotID,
+                                              categoryMethod_documentDeclaration_solveSecondaryProperty) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_documentDeclaration_solveSecondaryProperty (defineCategoryMethod_documentDeclaration_solveSecondaryProperty, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Overriding category method '@documentDeclaration semanticAnalysis'                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void categoryMethod_documentDeclaration_semanticAnalysis (const cPtr_astDeclaration * inObject,
+                                                                 const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                 GALGAS_structForGeneration & ioArgument_ioGeneration,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_documentDeclaration * object = (const cPtr_documentDeclaration *) inObject ;
+  macroValidSharedObject (object, cPtr_documentDeclaration) ;
+  GALGAS_observablePropertyMap var_observablePropertyMap ;
+  constinArgument_inSemanticContext.mAttribute_mDocumentObservablePropertyMap.method_searchKey (object->mAttribute_mDocumentName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 159)) ;
+  GALGAS_observablePropertyMap var_rootObservablePropertyMap ;
+  constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mRootEntityName, var_rootObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 163)) ;
+  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration ;
+  categoryMethod_simpleStoredPropertySemanticAnalysis (object->mAttribute_mSimpleStoredAttributeList, object->mAttribute_mDocumentName.mAttribute_string, constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap, ioArgument_ioGeneration.mAttribute_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration, inCompiler COMMA_SOURCE_FILE ("document.galgas", 168)) ;
+  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration = GALGAS_transientDefinitionListForGeneration::constructor_emptyList (SOURCE_FILE ("document.galgas", 175)) ;
+  GALGAS_arrayControllerForGeneration var_documentArrayControllerListForGeneration = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("document.galgas", 176)) ;
+  GALGAS_selectionControllerForGeneration var_selectionControllerListForGeneration = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("document.galgas", 177)) ;
+  GALGAS_customObjectControllerForGeneration var_customObjectControllerListForGeneration = GALGAS_customObjectControllerForGeneration::constructor_emptyList (SOURCE_FILE ("document.galgas", 178)) ;
+  cEnumerator_secondaryPropertyList enumerator_7397 (object->mAttribute_mSecondaryPropertyList, kEnumeration_up) ;
+  while (enumerator_7397.hasCurrentObject ()) {
+    callCategoryMethod_secondaryPropertySemanticAnalysis ((const cPtr_abstractSecondaryProperty *) enumerator_7397.current_mSecondaryProperty (HERE).ptr (), object->mAttribute_mDocumentName.mAttribute_string, object->mAttribute_mRootEntityName.mAttribute_string, var_rootObservablePropertyMap, constinArgument_inSemanticContext, var_observablePropertyMap, var_transientDefinitionListForGeneration, var_documentArrayControllerListForGeneration, var_selectionControllerListForGeneration, var_customObjectControllerListForGeneration, ioArgument_ioGeneration.mAttribute_mNeededOutletClasses, inCompiler COMMA_SOURCE_FILE ("document.galgas", 180)) ;
+    enumerator_7397.gotoNextObject () ;
+  }
+  ioArgument_ioGeneration.mAttribute_mTransientListForGeneration.dotAssign_operation (var_transientDefinitionListForGeneration  COMMA_SOURCE_FILE ("document.galgas", 193)) ;
+  ioArgument_ioGeneration.mAttribute_mAllArrayControllerForGeneration.dotAssign_operation (var_documentArrayControllerListForGeneration  COMMA_SOURCE_FILE ("document.galgas", 194)) ;
+  ioArgument_ioGeneration.mAttribute_mSelectionControllerListForGeneration.dotAssign_operation (var_selectionControllerListForGeneration  COMMA_SOURCE_FILE ("document.galgas", 195)) ;
+  ioArgument_ioGeneration.mAttribute_mCustomObjectControllerListForGeneration.dotAssign_operation (var_customObjectControllerListForGeneration  COMMA_SOURCE_FILE ("document.galgas", 196)) ;
+  GALGAS_actionMap var_actionMap ;
+  {
+  routine_buildActionMap (object->mAttribute_mActionDeclarationList, var_actionMap, inCompiler  COMMA_SOURCE_FILE ("document.galgas", 198)) ;
+  }
+  cEnumerator_actionMap enumerator_8310 (var_actionMap, kEnumeration_up) ;
+  while (enumerator_8310.hasCurrentObject ()) {
+    ioArgument_ioGeneration.mAttribute_mActionListForGeneration.addAssign_operation (object->mAttribute_mDocumentName.mAttribute_string, enumerator_8310.current_lkey (HERE).mAttribute_string  COMMA_SOURCE_FILE ("document.galgas", 200)) ;
+    enumerator_8310.gotoNextObject () ;
+  }
+  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList ;
+  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList ;
+  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration ;
+  GALGAS_decoratedOutletMap var_outletMap ;
+  GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList ;
+  {
+  routine_analyzeOutlets (var_rootObservablePropertyMap, constinArgument_inSemanticContext, object->mAttribute_mOutletDeclarationList, var_observablePropertyMap, var_actionMap, ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, var_tableViewBindingGenerationList, inCompiler  COMMA_SOURCE_FILE ("document.galgas", 205)) ;
+  }
+  ioArgument_ioGeneration.mAttribute_mDocumentListForGeneration.addAssign_operation (object->mAttribute_mDocumentName.mAttribute_string, object->mAttribute_mRootEntityName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, var_outletMap, var_actionBindingListForGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_documentArrayControllerListForGeneration, var_tableViewBindingGenerationList, var_selectionControllerListForGeneration, var_customObjectControllerListForGeneration  COMMA_SOURCE_FILE ("document.galgas", 219)) ;
+}
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineCategoryMethod_documentDeclaration_semanticAnalysis (void) {
+  enterCategoryMethod_semanticAnalysis (kTypeDescriptor_GALGAS_documentDeclaration.mSlotID,
+                                        categoryMethod_documentDeclaration_semanticAnalysis) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_documentDeclaration_semanticAnalysis (defineCategoryMethod_documentDeclaration_semanticAnalysis, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                              Overriding category method '@transientAST typeInventory'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
