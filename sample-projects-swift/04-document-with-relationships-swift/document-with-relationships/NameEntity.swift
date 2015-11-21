@@ -8,7 +8,7 @@ import Cocoa
 //    ReadOnlyArrayOf_NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ReadOnlyArrayOf_NameEntity)
+// @objc(ReadOnlyArrayOf_NameEntity)
 class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   var prop : EBProperty < [NameEntity] > { get { return .noSelection } }
@@ -186,7 +186,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 //    TransientArrayOf_NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(TransientArrayOf_NameEntity)
+// @objc(TransientArrayOf_NameEntity)
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   var computeFunction : Optional<() -> EBProperty < [NameEntity] > >
@@ -247,21 +247,21 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(NameEntity_name) protocol NameEntity_name {
+/* @objc(NameEntity_name) protocol NameEntity_name {
   var name : EBStoredProperty_String { get }
-}
+} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(NameEntity_aValue) protocol NameEntity_aValue {
+/* @objc(NameEntity_aValue) protocol NameEntity_aValue {
   var aValue : EBStoredProperty_Int { get }
-}
+} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    To one relationship: mRoot
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ToOneRelationship_NameEntity_mRoot)
+// @objc(ToOneRelationship_NameEntity_mRoot)
 final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   var mValueExplorer : NSButton? {
     didSet {
@@ -339,7 +339,10 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 //    Entity: NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(NameEntity) class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
+// @objc(NameEntity)
+class NameEntity : EBManagedObject
+// , NameEntity_name, NameEntity_aValue
+{
 
   //····················································································································
   //    Properties

@@ -75,9 +75,9 @@ colorRows [selectedRowIndex].AXSelected = True ;
 time.sleep(.5)
 
 #--- Select matrix
-matrix = window.findFirst (AXDescription='matrix')
-matrixSelectedRowIndex = int (time.time()) % 3
-matrix.AXChildren [matrixSelectedRowIndex].Press ()
+# matrix = window.findFirst (AXDescription='matrix')
+# matrixSelectedRowIndex = int (time.time()) % 3
+# matrix.AXChildren [matrixSelectedRowIndex].Press ()
 
 #--- Save
 monAppli.menuItem ('File', u'Save').Press()
@@ -144,7 +144,7 @@ monAppli.menuItem ('Edit', 'Undo').Press()
 time.sleep(.5)
 
 #--- Check matrix
-matrix = window.findFirst (AXDescription='matrix')
+#matrix = window.findFirst (AXDescription='matrix')
 # print matrix.AXChildren [matrixSelectedRowIndex].AXValue
 #if matrix.AXChildren [matrixSelectedRowIndex].AXValue != 1:
 #    print '*** Erreur 16 ***'

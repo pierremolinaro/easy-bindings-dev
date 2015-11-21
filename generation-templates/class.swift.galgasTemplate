@@ -215,9 +215,9 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!CLASS_NAME%_%!mStoredPropertyName%) protocol %!CLASS_NAME%_%!mStoredPropertyName% {
+/* @objc(%!CLASS_NAME%_%!mStoredPropertyName%) protocol %!CLASS_NAME%_%!mStoredPropertyName% {
   var %!mStoredPropertyName% : EBStoredProperty_%![mType swiftTypeName]% { get }
-}
+} */
 
 %
 end
@@ -315,11 +315,13 @@ end
 //    %!"Class: " + CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!CLASS_NAME%) class %!CLASS_NAME% : EBSimpleClass%
+@objc(%!CLASS_NAME%) class %!CLASS_NAME% : EBSimpleClass\n%
+%// %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %, %!CLASS_NAME%_%!mStoredPropertyName
 end
-% {
+%
+ {
 
   //····················································································································
   //    Properties

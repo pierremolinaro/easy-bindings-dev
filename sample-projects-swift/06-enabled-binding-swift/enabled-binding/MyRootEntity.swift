@@ -8,7 +8,7 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ReadOnlyArrayOf_MyRootEntity)
+// @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
@@ -119,7 +119,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 //    TransientArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(TransientArrayOf_MyRootEntity)
+// @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
@@ -178,16 +178,19 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity_docBool) protocol MyRootEntity_docBool {
+/* @objc(MyRootEntity_docBool) protocol MyRootEntity_docBool {
   var docBool : EBStoredProperty_Bool { get }
-}
+} */
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
+// @objc(MyRootEntity)
+class MyRootEntity : EBManagedObject
+// , MyRootEntity_docBool
+{
 
   //····················································································································
   //    Properties

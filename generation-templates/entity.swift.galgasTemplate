@@ -8,7 +8,7 @@ import Cocoa
 //    %!"ReadOnlyArrayOf_" + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ReadOnlyArrayOf_%!ENTITY_NAME%)
+// @objc(ReadOnlyArrayOf_%!ENTITY_NAME%)
 class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 
   var prop : EBProperty < [%!ENTITY_NAME%] > { get { return .noSelection } }
@@ -193,7 +193,7 @@ end
 //    %!"TransientArrayOf_" + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(TransientArrayOf_%!ENTITY_NAME%)
+// @objc(TransientArrayOf_%!ENTITY_NAME%)
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   var computeFunction : Optional<() -> EBProperty < [%!ENTITY_NAME%] > >
@@ -261,18 +261,18 @@ end
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!ENTITY_NAME%_%!mStoredPropertyName%) protocol %!ENTITY_NAME%_%!mStoredPropertyName% {
+/* @objc(%!ENTITY_NAME%_%!mStoredPropertyName%) protocol %!ENTITY_NAME%_%!mStoredPropertyName% {
   var %!mStoredPropertyName% : EBStoredProperty_%![mType swiftTypeName]% { get }
-}
+} */
 
 %
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!ENTITY_NAME%_%!mTransientName%) protocol %!ENTITY_NAME%_%!mTransientName% {
+/* @objc(%!ENTITY_NAME%_%!mTransientName%) protocol %!ENTITY_NAME%_%!mTransientName% {
   var %!mTransientName% : EBTransientProperty_%![mTransientType swiftTypeName]% { get }
-}
+} */
 
 %
 end
@@ -282,7 +282,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 //    %!"To many relationship: " + mToManyRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName%)
+// @objc(ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName%)
 final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
 ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtocol {
   weak var owner : %!ENTITY_NAME%?
@@ -459,7 +459,7 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 //    %!"To one relationship: " + mToOneRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName%)
+// @objc(ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName%)
 final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstractProperty {
   var mValueExplorer : NSButton? {
     didSet {
@@ -546,14 +546,17 @@ end
 //    %!"Entity: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!ENTITY_NAME%) class %!ENTITY_NAME% : EBManagedObject%
+// @objc(%!ENTITY_NAME%)
+class %!ENTITY_NAME% : EBManagedObject\n%
+%// %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %, %!ENTITY_NAME%_%!mStoredPropertyName
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %, %!ENTITY_NAME%_%!mTransientName
 end
-% {
+%
+{
 
   //····················································································································
   //    Properties

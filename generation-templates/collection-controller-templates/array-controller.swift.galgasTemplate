@@ -315,15 +315,14 @@ end
 %  //--- Check '%!mColumnName%' column
     if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("%!mColumnName%") {
 %if mObservablePropertyForSorting != "" then
-%      column.sortDescriptorPrototype = NSSortDescriptor (
+%     /* column.sortDescriptorPrototype = NSSortDescriptor (
         key:"%!mObservablePropertyForSorting%",
         ascending:true,
         selector:"compare:"
-      )
-%
+      ) */\n%
+%      column.sortDescriptorPrototype = nil\n%
 else
-%      column.sortDescriptorPrototype = nil
-%
+%      column.sortDescriptorPrototype = nil\n%
 end
 %    }else{
       presentErrorWindow (file,

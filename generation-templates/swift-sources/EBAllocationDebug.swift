@@ -32,7 +32,8 @@ func reuseTableViewCells () -> Bool {
 func noteObjectAllocation (inObject : EBUserClassNameProtocol) {
   if gEnableObjectAllocationDebug {
     installDebugMenu ()
-    let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
+    // let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
+    let className = _stdlib_getDemangledTypeName (inObject)
     gDebugObject?.pmNoteObjectAllocation (className)
   }
 }
@@ -41,7 +42,8 @@ func noteObjectAllocation (inObject : EBUserClassNameProtocol) {
 
 func noteObjectDeallocation (inObject : EBUserClassNameProtocol) {
   if gEnableObjectAllocationDebug {
-    let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
+    // let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension
+    let className = _stdlib_getDemangledTypeName (inObject)
     gDebugObject?.pmNoteObjectDeallocation (className)
   }
 }

@@ -208,7 +208,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "binary-flat-file-analyzer/binary-flat-file-analyzer-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.10;
 			};
 			name = Release;
 		};

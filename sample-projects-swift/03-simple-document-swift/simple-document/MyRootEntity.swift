@@ -8,7 +8,7 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ReadOnlyArrayOf_MyRootEntity)
+// @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
@@ -387,7 +387,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 //    TransientArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(TransientArrayOf_MyRootEntity)
+// @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
@@ -448,40 +448,43 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity_myString) protocol MyRootEntity_myString {
+/* @objc(MyRootEntity_myString) protocol MyRootEntity_myString {
   var myString : EBStoredProperty_String { get }
-}
+} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity_myColor) protocol MyRootEntity_myColor {
+/* @objc(MyRootEntity_myColor) protocol MyRootEntity_myColor {
   var myColor : EBStoredProperty_NSColor { get }
-}
+} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity_myStringMaj) protocol MyRootEntity_myStringMaj {
+/* @objc(MyRootEntity_myStringMaj) protocol MyRootEntity_myStringMaj {
   var myStringMaj : EBTransientProperty_String { get }
-}
+} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity_myStringMin) protocol MyRootEntity_myStringMin {
+/* @objc(MyRootEntity_myStringMin) protocol MyRootEntity_myStringMin {
   var myStringMin : EBTransientProperty_String { get }
-}
+} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity_myStringConcat) protocol MyRootEntity_myStringConcat {
+/* @objc(MyRootEntity_myStringConcat) protocol MyRootEntity_myStringConcat {
   var myStringConcat : EBTransientProperty_String { get }
-}
+} */
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(MyRootEntity) class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat {
+// @objc(MyRootEntity)
+class MyRootEntity : EBManagedObject
+// , MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat
+{
 
   //····················································································································
   //    Properties
