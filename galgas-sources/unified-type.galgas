@@ -14,6 +14,7 @@ enum @typeKind {
   case enumType (@string enumTypeName @enumConstantMap constantMap)
   case entityType (@string entityName)
   case classType (@string className)
+  case propertyClassType (@string classPropertyName @propertyClassDefaultValues defaultValues)
 }
 
 #......................................................................................................................*
@@ -29,6 +30,8 @@ getter @typeKind isComparable -> @bool outResult {
   case entityType (*) :
     outResult = false
   case classType (*) :
+    outResult = false
+  case propertyClassType (* *) :
     outResult = false
   end
 }
@@ -52,6 +55,8 @@ getter @typeKind defaultSwiftTypeValueAsString -> @string outResult {
     outResult = "<<invalid defaultSwiftTypeValueAsString for entity>>"
   case classType (*) :
     outResult = "<<invalid defaultSwiftTypeValueAsString for class>>"
+  case propertyClassType (**) :
+    outResult = "<<invalid defaultSwiftTypeValueAsString for property class>>"
   end
 }
 
@@ -154,6 +159,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case entityType (@string entityName) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName
+  case propertyClassType (@string classTypeName *) : outResult = classTypeName
   case integerType : outResult = "Int"
   end
 }

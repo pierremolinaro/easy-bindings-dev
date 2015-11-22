@@ -349,6 +349,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
+    case propertyClassType (**) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (@string kClassTypeName) :
       entityName = kClassTypeName
      case entityType (*) :
@@ -377,7 +379,9 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName
-     case entityType (@string kEntityName) :
+    case propertyClassType (**) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case entityType (@string kEntityName) :
       entityName = kEntityName
     end
   case controllerArray (@lstring controllerName @lstring propertyName) :
@@ -400,6 +404,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (*) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName
      case entityType (@string kEntityName) :
       entityName = kEntityName
@@ -608,43 +614,45 @@ list @arrayControllerSortedColumnListForGeneration {
 
 #......................................................................................................................*
 
-getter @typeKind transformerForTableViewAction ?let @string inSenderOutletName -> @string outResult {
-  switch self
-  case stringType : outResult = inSenderOutletName + ".stringValue"
-  case integerType : outResult = inSenderOutletName + ".integerValue"
-#--- TODO
-  case imageType : outResult = "<<TODO @typeKind transformerForTableViewAction " + inSenderOutletName + " >>"
-  case boolType : outResult = "NSNumber (bool:" + inSenderOutletName + ")"
-  case doubleType : outResult = "NSNumber (double:" + inSenderOutletName + ")"
-  case colorType, fontType : outResult = inSenderOutletName + ".stringValue"
-  case dateType : outResult = "NSDate"
-  case enumType (* *) :
-    outResult = "<unhandled enum for transformerForTableViewAction>"
-  case classType (*) :
-    outResult = "<unhandled class for transformerForTableViewAction>"
-  case entityType (*) :
-    outResult = "<unhandled entity for transformerForTableViewAction>"
-  end
-}
+#getter @typeKind transformerForTableViewAction ?let @string inSenderOutletName -> @string outResult {
+#  switch self
+#  case stringType : outResult = inSenderOutletName + ".stringValue"
+#  case integerType : outResult = inSenderOutletName + ".integerValue"
+##--- TODO
+#  case imageType : outResult = "<<TODO @typeKind transformerForTableViewAction " + inSenderOutletName + " >>"
+#  case boolType : outResult = "NSNumber (bool:" + inSenderOutletName + ")"
+#  case doubleType : outResult = "NSNumber (double:" + inSenderOutletName + ")"
+#  case colorType, fontType : outResult = inSenderOutletName + ".stringValue"
+#  case dateType : outResult = "NSDate"
+#  case enumType (* *) :
+#    outResult = "<unhandled enum for transformerForTableViewAction>"
+#  case classType (*) :
+#    outResult = "<unhandled class for transformerForTableViewAction>"
+#  case entityType (*) :
+#    outResult = "<unhandled entity for transformerForTableViewAction>"
+#  end
+#}
 
 #......................................................................................................................*
 
-getter @typeKind formatterStringForFormatPrinting -> @string outResult {
-  switch self
-  case stringType : outResult = "%@"
-  case integerType : outResult = "%d"
-  case boolType : outResult = "%d"
-  case doubleType : outResult = "%g"
-  case colorType : outResult = "%@"
-  case dateType, fontType, imageType : outResult = "%@"
-  case enumType (* *) :
-    outResult = "<internal error enum, formatterStringForFormatPrinting' >"
-  case classType (*) :
-    outResult = "<internal error 'class', formatterStringForFormatPrinting' >"
-  case entityType (*) :
-    outResult = "<internal error entity, formatterStringForFormatPrinting' >"
-  end
-}
+#getter @typeKind formatterStringForFormatPrinting -> @string outResult {
+#  switch self
+#  case stringType : outResult = "%@"
+#  case integerType : outResult = "%d"
+#  case boolType : outResult = "%d"
+#  case doubleType : outResult = "%g"
+#  case colorType : outResult = "%@"
+#  case dateType, fontType, imageType : outResult = "%@"
+#  case enumType (* *) :
+#    outResult = "<internal error enum, formatterStringForFormatPrinting' >"
+#  case classType (*) :
+#    outResult = "<internal error 'class', formatterStringForFormatPrinting' >"
+#  case classType (*) :
+#    outResult = "<internal error 'class', formatterStringForFormatPrinting' >"
+#  case entityType (*) :
+#    outResult = "<internal error entity, formatterStringForFormatPrinting' >"
+#  end
+#}
 
 #......................................................................................................................*
 

@@ -375,19 +375,19 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
                                  GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                  C_Compiler * inCompiler
                                  COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_transientDefinitionListForGeneration enumerator_13466 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
-  while (enumerator_13466.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_13466.current_mOwnerName (HERE), enumerator_13466.current_mTransientName (HERE), enumerator_13466.current_mIsArray (HERE), enumerator_13466.current_mDependencyList (HERE), enumerator_13466.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 314))) ;
-    GALGAS_string var_fileName = enumerator_13466.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 321)).add_operation (enumerator_13466.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 321)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 321)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 322)) ;
+  cEnumerator_transientDefinitionListForGeneration enumerator_13521 (constinArgument_inTransientListForGeneration, kEnumeration_up) ;
+  while (enumerator_13521.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, enumerator_13521.current_mOwnerName (HERE), enumerator_13521.current_mTransientName (HERE), enumerator_13521.current_mIsArray (HERE), enumerator_13521.current_mDependencyList (HERE), enumerator_13521.current_mTransientType (HERE) COMMA_SOURCE_FILE ("transient-property.galgas", 316))) ;
+    GALGAS_string var_fileName = enumerator_13521.current_mOwnerName (HERE).add_operation (GALGAS_string ("+transient+"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 323)).add_operation (enumerator_13521.current_mTransientName (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 323)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 323)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("transient-property.galgas", 324)) ;
     {
     GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, GALGAS_string ("\n"
       "\n"), GALGAS_string ("}\n"
       "\n"
-      "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 323)) ;
+      "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 325)) ;
     }
-    enumerator_13466.gotoNextObject () ;
+    enumerator_13521.gotoNextObject () ;
   }
 }
 
@@ -2057,36 +2057,36 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
                                        GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_arrayControllerForGeneration enumerator_27666 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_27666.hasCurrentObject ()) {
-    GALGAS_stringset var_observedProperties = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("array-controller.galgas", 719)) ;
-    cEnumerator_arrayControllerSortedColumnListForGeneration enumerator_27831 (enumerator_27666.current_mArrayControllerSortedColumnListForGeneration (HERE), kEnumeration_up) ;
-    while (enumerator_27831.hasCurrentObject ()) {
-      var_observedProperties.addAssign_operation (enumerator_27831.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 721)) ;
-      enumerator_27831.gotoNextObject () ;
+  cEnumerator_arrayControllerForGeneration enumerator_28160 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_28160.hasCurrentObject ()) {
+    GALGAS_stringset var_observedProperties = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("array-controller.galgas", 727)) ;
+    cEnumerator_arrayControllerSortedColumnListForGeneration enumerator_28325 (enumerator_28160.current_mArrayControllerSortedColumnListForGeneration (HERE), kEnumeration_up) ;
+    while (enumerator_28325.hasCurrentObject ()) {
+      var_observedProperties.addAssign_operation (enumerator_28325.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 729)) ;
+      enumerator_28325.gotoNextObject () ;
     }
-    cEnumerator_arrayControllerFilterListForGeneration enumerator_27955 (enumerator_27666.current_mArrayControllerFilterListForGeneration (HERE), kEnumeration_up) ;
-    while (enumerator_27955.hasCurrentObject ()) {
-      var_observedProperties.addAssign_operation (enumerator_27955.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 724)) ;
-      enumerator_27955.gotoNextObject () ;
+    cEnumerator_arrayControllerFilterListForGeneration enumerator_28449 (enumerator_28160.current_mArrayControllerFilterListForGeneration (HERE), kEnumeration_up) ;
+    while (enumerator_28449.hasCurrentObject ()) {
+      var_observedProperties.addAssign_operation (enumerator_28449.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 732)) ;
+      enumerator_28449.gotoNextObject () ;
     }
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_27666.current_mOwnerName (HERE), enumerator_27666.current_mControllerName (HERE), enumerator_27666.current_mArrayControllerFilterListForGeneration (HERE), enumerator_27666.current_mModelString (HERE), enumerator_27666.current_mModelKind (HERE), enumerator_27666.current_mModelTypeName (HERE), enumerator_27666.current_mModelTypeName_32_ (HERE), enumerator_27666.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_27666.current_mArrayControllerSortedColumnListForGeneration (HERE), enumerator_27666.current_mElementTypeName (HERE), var_observedProperties, enumerator_27666.current_mAttributeListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 726))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_28160.current_mOwnerName (HERE), enumerator_28160.current_mControllerName (HERE), enumerator_28160.current_mArrayControllerFilterListForGeneration (HERE), enumerator_28160.current_mModelString (HERE), enumerator_28160.current_mModelKind (HERE), enumerator_28160.current_mModelTypeName (HERE), enumerator_28160.current_mModelTypeName_32_ (HERE), enumerator_28160.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_28160.current_mArrayControllerSortedColumnListForGeneration (HERE), enumerator_28160.current_mElementTypeName (HERE), var_observedProperties, enumerator_28160.current_mAttributeListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 734))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_27666.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 742)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 742)).add_operation (enumerator_27666.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 742)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 742)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 740)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_28160.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 750)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 750)).add_operation (enumerator_28160.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 750)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 750)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 748)) ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_27666.current_mArrayControllerFilterListForGeneration (HERE).getter_length (SOURCE_FILE ("array-controller.galgas", 745)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_28160.current_mArrayControllerFilterListForGeneration (HERE).getter_length (SOURCE_FILE ("array-controller.galgas", 753)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_27666.current_mOwnerName (HERE), enumerator_27666.current_mControllerName (HERE), enumerator_27666.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 746))) ;
-      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_27666.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 751)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 751)).add_operation (enumerator_27666.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 751)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 751)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("array-controller.galgas", 752)) ;
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_28160.current_mOwnerName (HERE), enumerator_28160.current_mControllerName (HERE), enumerator_28160.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 754))) ;
+      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_28160.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 759)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 759)).add_operation (enumerator_28160.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 759)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 759)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("array-controller.galgas", 760)) ;
       {
       GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
         "\n"), var_s, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 761)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 761)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 761)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 753)) ;
+        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 769)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 769)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 769)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 761)) ;
       }
     }
-    enumerator_27666.gotoNextObject () ;
+    enumerator_28160.gotoNextObject () ;
   }
 }
 
@@ -2615,15 +2615,15 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
                                            GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_selectionControllerForGeneration enumerator_7656 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_7656.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_7656.current_mOwnerName (HERE), enumerator_7656.current_mSelectionControllerName (HERE), enumerator_7656.current_mSelectionTypeName (HERE), enumerator_7656.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 185))) ;
-    GALGAS_string var_fileName = GALGAS_string ("selectionController-").add_operation (enumerator_7656.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 191)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 191)).add_operation (enumerator_7656.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 191)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 191)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("selection-controller.galgas", 192)) ;
+  cEnumerator_selectionControllerForGeneration enumerator_7923 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_7923.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_7923.current_mOwnerName (HERE), enumerator_7923.current_mSelectionControllerName (HERE), enumerator_7923.current_mSelectionTypeName (HERE), enumerator_7923.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 189))) ;
+    GALGAS_string var_fileName = GALGAS_string ("selectionController-").add_operation (enumerator_7923.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 195)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 195)).add_operation (enumerator_7923.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 195)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 195)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("selection-controller.galgas", 196)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 193)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 197)) ;
     }
-    enumerator_7656.gotoNextObject () ;
+    enumerator_7923.gotoNextObject () ;
   }
 }
 
@@ -3088,15 +3088,15 @@ void routine_generateCustomObjectControllers (const GALGAS_customObjectControlle
                                               GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                               C_Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_customObjectControllerForGeneration enumerator_6491 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_6491.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (inCompiler, enumerator_6491.current_mOwnerName (HERE), enumerator_6491.current_mCustomObjectControllerName (HERE), enumerator_6491.current_mEntityTypeName (HERE), enumerator_6491.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("custom-object-controller.galgas", 152))) ;
-    GALGAS_string var_fileName = GALGAS_string ("customObjectController-").add_operation (enumerator_6491.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)).add_operation (enumerator_6491.current_mCustomObjectControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 158)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 159)) ;
+  cEnumerator_customObjectControllerForGeneration enumerator_6615 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_6615.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (inCompiler, enumerator_6615.current_mOwnerName (HERE), enumerator_6615.current_mCustomObjectControllerName (HERE), enumerator_6615.current_mEntityTypeName (HERE), enumerator_6615.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("custom-object-controller.galgas", 154))) ;
+    GALGAS_string var_fileName = GALGAS_string ("customObjectController-").add_operation (enumerator_6615.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 160)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 160)).add_operation (enumerator_6615.current_mCustomObjectControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 160)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 160)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 161)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 160)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)) ;
     }
-    enumerator_6491.gotoNextObject () ;
+    enumerator_6615.gotoNextObject () ;
   }
 }
 
@@ -3110,49 +3110,49 @@ void routine_generateCustomObjectControllers (const GALGAS_customObjectControlle
 static GALGAS_stringset onceFunction_predefinedColors (C_Compiler * /* inCompiler */
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_outResult ; // Returned variable
-  result_outResult = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 215)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("blackColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 216)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("blueColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 217)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("brownColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 218)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("clearColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 219)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("controlColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 220)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("controlDarkShadowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 221)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("controlHighlightColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 222)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("controlLightHighlightColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 223)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("controlShadowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 224)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("controlTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 225)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("cyanColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 226)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("darkGrayColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 227)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("disabledControlTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 228)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("grayColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 229)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("greenColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 230)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("gridColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 231)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("headerColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 232)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("headerTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 233)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("highlightColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 234)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("keyboardFocusIndicatorColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 235)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("knobColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 236)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("lightGrayColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 237)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("magentaColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 238)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("orangeColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 239)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("purpleColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 240)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("redColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 241)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("scrollBarColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedControlColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 243)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedControlTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 244)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedKnobColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 245)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedMenuItemColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 246)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedMenuItemTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 247)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedTextBackgroundColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 248)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("selectedTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 249)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("shadowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 250)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("textBackgroundColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 251)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("textColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 252)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("whiteColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 253)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("windowBackgroundColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 254)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("windowFrameColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 255)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("windowFrameTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 256)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("yellowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 257)) ;
+  result_outResult = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 219)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("blackColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 220)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("blueColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 221)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("brownColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 222)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("clearColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 223)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("controlColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 224)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("controlDarkShadowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 225)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("controlHighlightColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 226)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("controlLightHighlightColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 227)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("controlShadowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 228)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("controlTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 229)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("cyanColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 230)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("darkGrayColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 231)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("disabledControlTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 232)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("grayColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 233)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("greenColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 234)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("gridColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 235)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("headerColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 236)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("headerTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 237)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("highlightColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 238)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("keyboardFocusIndicatorColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 239)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("knobColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 240)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("lightGrayColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 241)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("magentaColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("orangeColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 243)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("purpleColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 244)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("redColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 245)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("scrollBarColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 246)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedControlColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 247)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedControlTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 248)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedKnobColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 249)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedMenuItemColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 250)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedMenuItemTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 251)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedTextBackgroundColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 252)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("selectedTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 253)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("shadowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 254)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("textBackgroundColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 255)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("textColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 256)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("whiteColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 257)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("windowBackgroundColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 258)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("windowFrameColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 259)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("windowFrameTextColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 260)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("yellowColor")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 261)) ;
 //---
   return result_outResult ;
 }
@@ -3222,8 +3222,8 @@ C_galgas_function_descriptor functionDescriptor_predefinedColors ("predefinedCol
 static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler */
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_outResult ; // Returned variable
-  result_outResult = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 263)) ;
-  result_outResult.addAssign_operation (GALGAS_string ("date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 264)) ;
+  result_outResult = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 267)) ;
+  result_outResult.addAssign_operation (GALGAS_string ("date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 268)) ;
 //---
   return result_outResult ;
 }
@@ -3296,45 +3296,45 @@ void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
                             C_Compiler * inCompiler
                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUnifiedTypeMap.drop () ; // Release 'out' argument
-  outArgument_outUnifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 116)) ;
+  outArgument_outUnifiedTypeMap = GALGAS_unifiedTypeMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 121)) ;
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Double").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 118)), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("unified-type.galgas", 118)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 118)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 118)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Double").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 123)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 119)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 119)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 119)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 119)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 124)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 120)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 120)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 120)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 120)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 125)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 121)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 121)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 121)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 126)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSFont").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_typeKind::constructor_fontType (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 123)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSFont").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 128)), GALGAS_typeKind::constructor_fontType (SOURCE_FILE ("unified-type.galgas", 128)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 128)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 128)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSImage").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_typeKind::constructor_imageType (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 124)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSImage").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 129)), GALGAS_typeKind::constructor_imageType (SOURCE_FILE ("unified-type.galgas", 129)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 129)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 129)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSColor").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 125)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSColor").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 130)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 130)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 130)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 130)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSDate").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 126)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSDate").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 131)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 131)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 131)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 131)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 128)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 128))  COMMA_SOURCE_FILE ("unified-type.galgas", 128)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 128)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 128)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 133)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 133))  COMMA_SOURCE_FILE ("unified-type.galgas", 133)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 133)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 133)) ;
   }
-  cEnumerator_astDeclarationList enumerator_5156 (constinArgument_inDeclarationList, kEnumeration_up) ;
-  while (enumerator_5156.hasCurrentObject ()) {
-    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_5156.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 131)) ;
-    enumerator_5156.gotoNextObject () ;
+  cEnumerator_astDeclarationList enumerator_5417 (constinArgument_inDeclarationList, kEnumeration_up) ;
+  while (enumerator_5417.hasCurrentObject ()) {
+    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_5417.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 136)) ;
+    enumerator_5417.gotoNextObject () ;
   }
   const enumGalgasBool test_0 = GALGAS_bool (gOption_easyBindings_5F_options_outputClassDependencyGraph.getter_value ()).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = outArgument_outUnifiedTypeMap.getter_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 135)) ;
-    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 136)) ;
-    GALGAS_bool joker_5493 ; // Joker input parameter
-    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5493, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 137)) ;
+    GALGAS_string var_s = outArgument_outUnifiedTypeMap.getter_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 140)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 141)) ;
+    GALGAS_bool joker_5754 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5754, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 142)) ;
   }
 }
 
