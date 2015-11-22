@@ -118,6 +118,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
       found = true
     case integerType, colorType, dateType, doubleType, stringType, fontType, imageType :
     case entityType (*) :
+    case propertyClassType (* *) :
     case classType (*) :
     case enumType (* *) :
     end
@@ -148,6 +149,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case propertyClassType (**) :
     end
   end
   if not found then
@@ -173,6 +175,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case propertyClassType (**) :
     end
   end
   if not found then
@@ -198,6 +201,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case propertyClassType (**) :
     case imageType :
       outSwiftDefaultValueAsString = "NSImage (named:\""+ mValue.string + "\")"
       found = true    
@@ -212,7 +216,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
 #......................................................................................................................*
 
 func %once predefinedColors -> @stringset outResult {
-  outResult = @stringset. emptySet
+  outResult = @stringset.emptySet
   outResult += !"blackColor"
   outResult += !"blueColor"
   outResult += !"brownColor"
@@ -314,6 +318,15 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid font type"  
     case imageType :
       error mValue : "invalid image type"  
+    case propertyClassType (@string propertyClassTypeName @propertyClassDefaultValues defaultValues) :
+      switch defaultValues
+      case string (@stringset values) :
+        if [values hasKey !mValue.string] then
+          outSwiftDefaultValueAsString = propertyClassTypeName + "." + mValue + " ()"
+        else
+          error mValue : "invalid default value" : outSwiftDefaultValueAsString
+        end
+      end
     end
   end
   if not found then

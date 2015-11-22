@@ -129,7 +129,7 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
     outResult = inSelf + "." + propertyName
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
     outResult = inSelf + "." + propertyName + "." + optionName
-  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) :
+  case selfPropertyArray (@lstring propertyName @lstring unused elementPropertyName) :
     outResult = inSelf + "." + propertyName # + ".all." + elementPropertyName
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "!." + propertyName
@@ -330,6 +330,8 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'" : outType
     case classType (*) :
       error relationshipName : "a property cannot accept 'all'" : outType
+    case propertyClassType (**) :
+      error relationshipName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
@@ -394,6 +396,8 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'" : outType
     case classType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
+    case propertyClassType (**) :
+      error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
@@ -453,6 +457,8 @@ method @observablePropertyAST analyzeObservableProperty
       case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case classType (*) :
+        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
+      case propertyClassType (**) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case enumType (* *) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

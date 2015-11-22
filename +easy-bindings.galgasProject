@@ -14,6 +14,9 @@ project (0:0:1) -> "eb" {
   "galgas-sources/extern-delegate.galgas"
   "galgas-sources/extern-swift-func.galgas"
 
+#--- Property class
+  "galgas-sources/property-class.galgas"
+
 #--- Components  
   "galgas-sources/enumeration.galgas"
   "galgas-sources/relationships.galgas"

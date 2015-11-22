@@ -125,6 +125,8 @@ override method @transientAST secondaryPropertySemanticAnalysis
     error mTransientName: "an entity cannot be used as simple property type" : typeList
   case classType (*) :
     typeList = {!type}
+  case propertyClassType (**) :
+    typeList = {!type}
   end
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}

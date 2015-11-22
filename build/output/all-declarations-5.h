@@ -1159,16 +1159,4 @@ void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList i
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@toManyRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList inObject,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_toManyEntityRelationshipListForGeneration & out_outToManyEntityRelationshipListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
 #endif

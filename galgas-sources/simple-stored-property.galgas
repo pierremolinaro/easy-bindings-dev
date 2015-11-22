@@ -91,6 +91,8 @@ method @simpleStoredPropertyList buildObservablePropertyMap
       typeList = {!type}
     case classType (*) :
       error mPropertyName: "a class cannot be used as simple property type" : typeList
+    case propertyClassType (**) :
+      typeList = {!type}
     case entityType (*) :
       error mPropertyName: "an entity cannot be used as simple property type" : typeList
     end
@@ -127,6 +129,8 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
       typeList = {!type}
     case classType (*) :
       error mPropertyName: "a class cannot be used as simple property type" : typeList
+    case propertyClassType (**) :
+      typeList = {!type}
     case entityType (*) :
       error mPropertyName: "an entity cannot be used as simple property type" : typeList
     end
