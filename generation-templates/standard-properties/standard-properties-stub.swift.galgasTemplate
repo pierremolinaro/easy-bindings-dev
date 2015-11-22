@@ -460,36 +460,6 @@ public func > (left:Bool, right:Bool) -> Bool {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    extension NSImage : ClassPropertyProtocol
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSImage : ClassPropertyProtocol {
-
-  //····················································································································
-
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
-  }
-
-
-  //····················································································································
-
-  func archiveToNSData () -> NSData {
-    return NSArchiver.archivedDataWithRootObject (self)
-  }
-  
-  //····················································································································
-
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    extension NSColor : ClassPropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -517,7 +487,6 @@ extension NSColor : ClassPropertyProtocol {
   //····················································································································
 
 }
-
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    extension NSDate : ClassPropertyProtocol
@@ -622,49 +591,13 @@ protocol ClassPropertyProtocol : class, Equatable {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyClassProperty <T : ClassPropertyProtocol>
+//   EBReadOnlyClassProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadOnlyClassProperty <T : ClassPropertyProtocol> : EBAbstractProperty {
+class EBReadOnlyClassProperty <T> : EBAbstractProperty {
+
   var prop : EBProperty <T> { get { return .noSelection } } // Abstract method
 
-  //····················································································································
-
-/*  func compare (other : EBReadOnlyClassProperty <T>) -> NSComparisonResult {
-    switch prop {
-    case .noSelection :
-      switch other.prop {
-      case .noSelection :
-        return .OrderedSame
-      default:
-        return .OrderedAscending
-      }
-    case .multipleSelection :
-      switch other.prop {
-      case .noSelection :
-        return .OrderedDescending
-      case .multipleSelection :
-        return .OrderedSame
-     case .singleSelection (_) :
-        return .OrderedAscending
-     }
-   case .singleSelection (let currentValue) :
-      switch other.prop {
-      case .noSelection, .multipleSelection :
-        return .OrderedDescending
-      case .singleSelection (let otherValue) :
-        if currentValue < otherValue {
-          return .OrderedAscending
-        }else if currentValue > otherValue {
-          return .OrderedDescending
-        }else{
-          return .OrderedSame
-        }
-      }
-    }
-  } */
-
-  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -920,12 +853,11 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   //····················································································································
 }
 
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientClassProperty <T : ClassPropertyProtocol>
+//   EBTransientClassProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBTransientClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProperty <T> {
+class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
   private var mValueCache : EBProperty <T>? = nil
   var computeFunction : Optional<() -> EBProperty <T> >
   
