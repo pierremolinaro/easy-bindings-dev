@@ -46,6 +46,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_docBool (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_docBool.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -60,6 +61,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_docBool (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_docBool.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :

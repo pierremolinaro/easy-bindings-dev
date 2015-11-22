@@ -46,6 +46,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_myString (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_myString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -60,6 +61,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_myString (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_myString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -113,6 +115,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_myColor (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_myColor.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -127,6 +130,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_myColor (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_myColor.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
