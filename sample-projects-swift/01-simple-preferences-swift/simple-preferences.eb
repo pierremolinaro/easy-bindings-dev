@@ -20,12 +20,12 @@ prefs {
   outlet EBTextField myOtherTextField $value self.myString {sendContinously : yes} ;
   outlet EBTextObserverField myObserverTextField $valueObserver self.myString ;
 #--- Color
-  property Color mColor default yellowColor ;
+  property NSColor mColor default yellowColor ;
   outlet EBColorWell mContinousColorWell $color self.mColor {sendContinously : yes} ;
   outlet EBColorWell mColorWell $color self.mColor {sendContinously : no} ;
   outlet EBColorObserverWell mObserverColorWell $colorObserver self.mColor ;
 #--- Date
-  property Date mDate default date ;
+  property NSDate mDate default date ;
   outlet EBDatePicker mDatePicker $date self.mDate  ;
 #--- Number
   property validates Int mIntegerValue default 12 ;

@@ -116,14 +116,16 @@ proc typeInventory
   outUnifiedTypeMap = .emptyMap
 #------------------------ Add predefined types
   [!?outUnifiedTypeMap insertKey !["Double" nowhere] !.doubleType !{}]
-  [!?outUnifiedTypeMap insertKey !["Font" nowhere] !.fontType !{}]
   [!?outUnifiedTypeMap insertKey !["String" nowhere] !.stringType !{}]
-  [!?outUnifiedTypeMap insertKey !["Image" nowhere] !.imageType !{}]
-  [!?outUnifiedTypeMap insertKey !["Color" nowhere] !.colorType !{}]
-  [!?outUnifiedTypeMap insertKey !["Date" nowhere] !.dateType !{}]
-  [!?outUnifiedTypeMap insertKey !["Int" nowhere] !.integerType !{}]
-  [!?outUnifiedTypeMap insertKey !["Bool" nowhere] !.boolType !{}]
-  [!?outUnifiedTypeMap insertKey !["enum" nowhere] !.enumType {!enumTypeName:"" !constantMap:{}} !{}]
+  [!?outUnifiedTypeMap insertKey !["Int" nowhere]    !.integerType !{}]
+  [!?outUnifiedTypeMap insertKey !["Bool" nowhere]   !.boolType !{}]
+
+  [!?outUnifiedTypeMap insertKey !["NSFont" nowhere]   !.fontType !{}]
+  [!?outUnifiedTypeMap insertKey !["NSImage" nowhere]  !.imageType !{}]
+  [!?outUnifiedTypeMap insertKey !["NSColor" nowhere]  !.colorType !{}]
+  [!?outUnifiedTypeMap insertKey !["NSDate" nowhere]   !.dateType !{}]
+
+  [!?outUnifiedTypeMap insertKey !["enum" nowhere]   !.enumType {!enumTypeName:"" !constantMap:{}} !{}]
 #------------------------ Add user defined types and compute transient dependancy graph
   for () in inDeclarationList do
     [mDeclaration typeInventory !?outUnifiedTypeMap]

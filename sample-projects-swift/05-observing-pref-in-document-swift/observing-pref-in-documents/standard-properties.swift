@@ -5,37 +5,45 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_Int (abstract class)
+//   Protocol ValuePropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_Int)
-class EBReadOnlyProperty_Int : EBAbstractProperty {
-  var prop : EBProperty <Int> { get { return .noSelection } } // Abstract method
+protocol ValuePropertyProtocol : Comparable {
+  func ebHashValue () -> UInt32
+  func convertToNSObject () -> NSObject
+  static func convertFromNSObject (object : NSObject) -> Self
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_Int (abstract class)
+//   EBReadOnlyValueProperty <T : ValuePropertyProtocol>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadWriteProperty_Int)
-class EBReadWriteProperty_Int : EBReadOnlyProperty_Int {
-  func setProp (inValue : Int) { } // Abstract method
-  func validateAndSetProp (candidateValue : Int, windowForSheet inWindow:NSWindow?) -> Bool {
+class EBReadOnlyValueProperty <T : ValuePropertyProtocol> : EBAbstractProperty {
+
+  var prop : EBProperty <T> { get { return .noSelection } } // Abstract method
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBReadWriteValueProperty <T : ValuePropertyProtocol> (abstract class)
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBReadWriteValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
+  func setProp (inValue : T) { } // Abstract method
+  func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
   } // Abstract method
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_Int
+//   EBPropertyValueProxy <T : ValuePropertyProtocol>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBPropertyProxy_Int)
-final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
-  var readModelFunction : Optional < () -> EBProperty <Int> >
-  var writeModelFunction : Optional < (Int) -> Void >
-  var validateAndWriteModelFunction : Optional < (Int, NSWindow?) -> Bool >
+final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueProperty <T> {
+  var readModelFunction : Optional < () -> EBProperty <T> >
+  var writeModelFunction : Optional < (T) -> Void >
+  var validateAndWriteModelFunction : Optional < (T, NSWindow?) -> Bool >
   
-  private var prop_cache : EBProperty <Int>?
+  private var prop_cache : EBProperty <T>?
   
   //····················································································································
 
@@ -53,7 +61,7 @@ final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
 
   //····················································································································
 
-  private func updateValueExplorer (possibleValue : EBProperty <Int>?) {
+  private func updateValueExplorer (possibleValue : EBProperty <T>?) {
     if let valueExplorer = mValueExplorer, unwProp = possibleValue {
       switch unwProp {
       case .noSelection :
@@ -61,7 +69,7 @@ final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
       case .multipleSelection :
         valueExplorer.stringValue = "Multiple selection"
       case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
+        valueExplorer.stringValue = "\(value)"
       }
     }else{
       mValueExplorer?.stringValue = "nil"
@@ -79,7 +87,7 @@ final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
 
   //····················································································································
 
-  override var prop : EBProperty <Int> {
+  override var prop : EBProperty <T> {
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
@@ -94,7 +102,7 @@ final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
 
   //····················································································································
   
-  override func setProp (inValue : Int) {
+  override func setProp (inValue : T) {
     if let unWriteModelFunction = writeModelFunction {
       unWriteModelFunction (inValue)
     }
@@ -102,7 +110,7 @@ final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
 
   //····················································································································
 
-  override func validateAndSetProp (candidateValue : Int,
+  override func validateAndSetProp (candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = false
     if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
@@ -116,35 +124,34 @@ final class EBPropertyProxy_Int : EBReadWriteProperty_Int {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_Int
+//   EBStoredValueProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBStoredProperty_Int)
-final class EBStoredProperty_Int : EBReadWriteProperty_Int {
+final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValueProperty <T> {
   weak var undoManager : NSUndoManager?
 
   //····················································································································
 
   var mValueExplorer : NSTextField? {
     didSet {
-      mValueExplorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = "\(mValue)"
     }
   }
 
   //····················································································································
 
-  init (_ inValue : Int) {
+  init (_ inValue : T) {
     mValue = inValue
     super.init ()
   }
 
   //····················································································································
 
-  private var mValue : Int {
+  private var mValue : T {
     didSet {
       if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (integer:oldValue))
+        mValueExplorer?.stringValue = "\(mValue)"
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue.convertToNSObject ())
         postEvent ()
         clearSignatureCache ()
       }
@@ -154,28 +161,28 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
   //····················································································································
 
   func performUndo (oldValue : NSNumber) {
-    mValue = oldValue.integerValue
+    mValue = T.convertFromNSObject (oldValue)
   }
 
   //····················································································································
 
-  override var prop : EBProperty<Int> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty<T> { get { return .singleSelection (mValue) } }
 
-  var propval : Int { get { return mValue } }
+  var propval : T { get { return mValue } }
 
-  override func setProp (inValue : Int) { mValue = inValue }
+  override func setProp (inValue : T) { mValue = inValue }
 
   //····················································································································
  
-  var validationFunction : (Int) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (T, T) -> EBValidationResult <T> = defaultValidationFunction
   
-  override func validateAndSetProp (candidateValue : Int,
+  override func validateAndSetProp (candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -204,8 +211,8 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
   func readInPreferencesWithKey (inKey : String) {
     let ud = NSUserDefaults.standardUserDefaults ()
     let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setProp ((unwValue as! NSNumber).integerValue)
+    if let unwValue : NSObject = value as? NSObject {
+      setProp (T.convertFromNSObject (unwValue))
     }
   }
 
@@ -213,21 +220,21 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
 
   func storeInPreferencesWithKey (inKey : String) {
     let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (integer:mValue), forKey:inKey)
+    ud.setObject (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
 
   func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSNumber (integer:mValue), forKey:inKey)
+    ioDictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
     let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setProp ((unwValue as! NSNumber).integerValue)
+    if let unwValue : NSObject = value as? NSObject {
+      setProp (T.convertFromNSObject (unwValue))
     }
   }
 
@@ -269,14 +276,14 @@ final class EBStoredProperty_Int : EBReadWriteProperty_Int {
   //····················································································································
 }
 
+
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_Int
+//   EBTransientValueProperty <T : ValuePropertyProtocol>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_Int)
-class EBTransientProperty_Int : EBReadOnlyProperty_Int {
-  private var mValueCache : EBProperty <Int>? = nil
-  var computeFunction : Optional<() -> EBProperty <Int> >
+class EBTransientValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
+  private var mValueCache : EBProperty <T>? = nil
+  var computeFunction : Optional<() -> EBProperty <T> >
   
   //····················································································································
 
@@ -286,7 +293,7 @@ class EBTransientProperty_Int : EBReadOnlyProperty_Int {
 
   //····················································································································
 
-  override var prop : EBProperty <Int> {
+  override var prop : EBProperty <T> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -312,37 +319,375 @@ class EBTransientProperty_Int : EBReadOnlyProperty_Int {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_Bool (abstract class)
+//    extension String : ValuePropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_Bool)
-class EBReadOnlyProperty_Bool : EBAbstractProperty {
-  var prop : EBProperty <Bool> { get { return .noSelection } } // Abstract method
+extension String : ValuePropertyProtocol {
+
+  //····················································································································
+
+  func ebHashValue () -> UInt32 {
+    let possibleData = self.dataUsingEncoding (NSUTF8StringEncoding)
+    if let data = possibleData {
+      return data.ebHashValue ()
+    }else{
+      return 0
+    }
+  }
+  
+  //····················································································································
+
+  func convertToNSObject () -> NSObject {
+    return self
+  }
+
+  //····················································································································
+
+  static func convertFromNSObject (object : NSObject) -> String {
+    return object as! String
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_Bool (abstract class)
+//    extension Int : ValuePropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadWriteProperty_Bool)
-class EBReadWriteProperty_Bool : EBReadOnlyProperty_Bool {
-  func setProp (inValue : Bool) { } // Abstract method
-  func validateAndSetProp (candidateValue : Bool, windowForSheet inWindow:NSWindow?) -> Bool {
+extension Int : ValuePropertyProtocol {
+
+  //····················································································································
+
+  func ebHashValue () -> UInt32 {
+    var crc : UInt32 = 0
+    var ptr = UnsafePointer <UInt8> ([self])
+    for _ in 0 ..< sizeof (Int) {
+      crc.accumulateByte (ptr.memory)
+      ptr += 1
+    }
+    return crc
+  }
+  
+  //····················································································································
+
+  func convertToNSObject () -> NSObject {
+    return NSNumber (integer: self)
+  }
+
+  //····················································································································
+
+  static func convertFromNSObject (object : NSObject) -> Int {
+    let number = object as! NSNumber
+    return number.integerValue
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension Double : ValuePropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension Double : ValuePropertyProtocol {
+
+  //····················································································································
+
+  func ebHashValue () -> UInt32 {
+    let nsValue = NSNumber (double:self)
+    let data = NSArchiver.archivedDataWithRootObject (nsValue)
+    return data.ebHashValue ()
+  }
+
+  //····················································································································
+
+  func convertToNSObject () -> NSObject {
+    return NSNumber (double: self)
+  }
+
+  //····················································································································
+
+  static func convertFromNSObject (object : NSObject) -> Double {
+    let number = object as! NSNumber
+    return number.doubleValue
+  }
+
+  //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension Bool : ValuePropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension Bool : ValuePropertyProtocol {
+
+  //····················································································································
+
+  func ebHashValue () -> UInt32 {
+    var crc : UInt32 = 0
+    crc.accumulateByte (self ? 1 : 0)
+    return crc
+  }
+
+  //····················································································································
+
+  func convertToNSObject () -> NSObject {
+    return NSNumber (bool: self)
+  }
+
+  //····················································································································
+
+  static func convertFromNSObject (object : NSObject) -> Bool {
+    let number = object as! NSNumber
+    return number.boolValue
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+public func < (left:Bool, right:Bool) -> Bool {
+  return !left && right
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+public func > (left:Bool, right:Bool) -> Bool {
+  return left && !right
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension NSImage : ClassPropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSImage : ClassPropertyProtocol {
+
+  //····················································································································
+
+  final func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedDataWithRootObject (self)
+    return data.ebHashValue ()
+  }
+
+
+  //····················································································································
+
+  func archiveToNSData () -> NSData {
+    return NSArchiver.archivedDataWithRootObject (self)
+  }
+  
+  //····················································································································
+
+  static func unarchiveFromNSData (data : NSData) -> NSObject {
+    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension NSColor : ClassPropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSColor : ClassPropertyProtocol {
+
+  //····················································································································
+
+  final func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedDataWithRootObject (self)
+    return data.ebHashValue ()
+  }
+
+  //····················································································································
+
+  func archiveToNSData () -> NSData {
+    return NSArchiver.archivedDataWithRootObject (self)
+  }
+  
+  //····················································································································
+
+  static func unarchiveFromNSData (data : NSData) -> NSObject {
+    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+  }
+
+  //····················································································································
+
+}
+
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension NSDate : ClassPropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSDate : ClassPropertyProtocol {
+
+  //····················································································································
+
+  final func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedDataWithRootObject (self)
+    return data.ebHashValue ()
+  }
+
+  //····················································································································
+
+  func archiveToNSData () -> NSData {
+    return NSArchiver.archivedDataWithRootObject (self)
+  }
+  
+  //····················································································································
+
+  static func unarchiveFromNSData (data : NSData) -> NSObject {
+    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension NSFont : ClassPropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSFont : ClassPropertyProtocol {
+
+  //····················································································································
+
+  final func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedDataWithRootObject (self)
+    return data.ebHashValue ()
+  }
+
+  //····················································································································
+
+  func archiveToNSData () -> NSData {
+    return NSArchiver.archivedDataWithRootObject (self)
+  }
+  
+  //····················································································································
+
+  static func unarchiveFromNSData (data : NSData) -> NSObject {
+    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    extension NSData : ClassPropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSData : ClassPropertyProtocol {
+
+  //····················································································································
+
+  final func ebHashValue () -> UInt32 {
+    var crc : UInt32 = 0
+    var ptr = UnsafePointer <UInt8> (self.bytes)
+    for _ in 0 ..< self.length {
+      crc.accumulateByte (ptr.memory)
+      ptr += 1
+    }
+    return crc
+  }
+
+  //····················································································································
+
+  func archiveToNSData () -> NSData {
+    return self
+  }
+  
+  //····················································································································
+
+  static func unarchiveFromNSData (data : NSData) -> NSObject {
+    return data
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Protocol ClassPropertyProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol ClassPropertyProtocol : class, Equatable {
+  func ebHashValue () -> UInt32
+  func archiveToNSData () -> NSData
+  static func unarchiveFromNSData (data : NSData) -> NSObject
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBReadOnlyClassProperty <T : ClassPropertyProtocol>
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBReadOnlyClassProperty <T : ClassPropertyProtocol> : EBAbstractProperty {
+  var prop : EBProperty <T> { get { return .noSelection } } // Abstract method
+
+  //····················································································································
+
+/*  func compare (other : EBReadOnlyClassProperty <T>) -> NSComparisonResult {
+    switch prop {
+    case .noSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedSame
+      default:
+        return .OrderedAscending
+      }
+    case .multipleSelection :
+      switch other.prop {
+      case .noSelection :
+        return .OrderedDescending
+      case .multipleSelection :
+        return .OrderedSame
+     case .singleSelection (_) :
+        return .OrderedAscending
+     }
+   case .singleSelection (let currentValue) :
+      switch other.prop {
+      case .noSelection, .multipleSelection :
+        return .OrderedDescending
+      case .singleSelection (let otherValue) :
+        if currentValue < otherValue {
+          return .OrderedAscending
+        }else if currentValue > otherValue {
+          return .OrderedDescending
+        }else{
+          return .OrderedSame
+        }
+      }
+    }
+  } */
+
+  //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBReadWriteClassProperty <T : ClassPropertyProtocol> (abstract class)
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBReadWriteClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProperty <T> {
+  func setProp (inValue : T) { } // Abstract method
+  func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
   } // Abstract method
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_Bool
+//   EBPropertyClassProxy <T : ClassPropertyProtocol>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBPropertyProxy_Bool)
-final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
-  var readModelFunction : Optional < () -> EBProperty <Bool> >
-  var writeModelFunction : Optional < (Bool) -> Void >
-  var validateAndWriteModelFunction : Optional < (Bool, NSWindow?) -> Bool >
+final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassProperty <T> {
+  var readModelFunction : Optional < () -> EBProperty <T> >
+  var writeModelFunction : Optional < (T) -> Void >
+  var validateAndWriteModelFunction : Optional < (T, NSWindow?) -> Bool >
   
-  private var prop_cache : EBProperty <Bool>?
+  private var prop_cache : EBProperty <T>?
   
   //····················································································································
 
@@ -360,7 +705,7 @@ final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
 
   //····················································································································
 
-  private func updateValueExplorer (possibleValue : EBProperty <Bool>?) {
+  private func updateValueExplorer (possibleValue : EBProperty <T>?) {
     if let valueExplorer = mValueExplorer, unwProp = possibleValue {
       switch unwProp {
       case .noSelection :
@@ -368,7 +713,7 @@ final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
       case .multipleSelection :
         valueExplorer.stringValue = "Multiple selection"
       case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
+        valueExplorer.stringValue = "\(value)"
       }
     }else{
       mValueExplorer?.stringValue = "nil"
@@ -386,7 +731,7 @@ final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
 
   //····················································································································
 
-  override var prop : EBProperty <Bool> {
+  override var prop : EBProperty <T> {
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
@@ -401,7 +746,7 @@ final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
 
   //····················································································································
   
-  override func setProp (inValue : Bool) {
+  override func setProp (inValue : T) {
     if let unWriteModelFunction = writeModelFunction {
       unWriteModelFunction (inValue)
     }
@@ -409,7 +754,7 @@ final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
 
   //····················································································································
 
-  override func validateAndSetProp (candidateValue : Bool,
+  override func validateAndSetProp (candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = false
     if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
@@ -423,35 +768,34 @@ final class EBPropertyProxy_Bool : EBReadWriteProperty_Bool {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_Bool
+//   EBStoredClassProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBStoredProperty_Bool)
-final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
+final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClassProperty <T> {
   weak var undoManager : NSUndoManager?
 
   //····················································································································
 
   var mValueExplorer : NSTextField? {
     didSet {
-      mValueExplorer?.stringValue = mValue.description
+      mValueExplorer?.stringValue = "\(mValue)"
     }
   }
 
   //····················································································································
 
-  init (_ inValue : Bool) {
+  init (_ inValue : T) {
     mValue = inValue
     super.init ()
   }
 
   //····················································································································
 
-  private var mValue : Bool {
+  private var mValue : T {
     didSet {
       if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (bool:oldValue))
+        mValueExplorer?.stringValue = "\(mValue)"
+        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }
@@ -460,29 +804,29 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
 
   //····················································································································
 
-  func performUndo (oldValue : NSNumber) {
-    mValue = oldValue.boolValue
+  func performUndo (oldValue : NSObject) {
+    mValue = oldValue as! T
   }
 
   //····················································································································
 
-  override var prop : EBProperty<Bool> { get { return .singleSelection (mValue) } }
+  override var prop : EBProperty<T> { get { return .singleSelection (mValue) } }
 
-  var propval : Bool { get { return mValue } }
+  var propval : T { get { return mValue } }
 
-  override func setProp (inValue : Bool) { mValue = inValue }
+  override func setProp (inValue : T) { mValue = inValue }
 
   //····················································································································
  
-  var validationFunction : (Bool) -> EBValidationResult = defaultValidationFunction
+  var validationFunction : (T, T) -> EBValidationResult <T> = defaultValidationFunction
   
-  override func validateAndSetProp (candidateValue : Bool,
+  override func validateAndSetProp (candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
-    let validationResult = validationFunction (candidateValue)
+    let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
+    case EBValidationResult.ok (let validatedValue) :
+      setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -511,8 +855,8 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
   func readInPreferencesWithKey (inKey : String) {
     let ud = NSUserDefaults.standardUserDefaults ()
     let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setProp ((unwValue as! NSNumber).boolValue)
+    if let unwValue : NSData = value as? NSData {
+      setProp (T.unarchiveFromNSData (unwValue) as! T)
     }
   }
 
@@ -520,21 +864,21 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
 
   func storeInPreferencesWithKey (inKey : String) {
     let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (bool:mValue), forKey:inKey)
+    ud.setObject (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
 
   func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSNumber (bool:mValue), forKey:inKey)
+    ioDictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
 
   func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
     let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setProp ((unwValue as! NSNumber).boolValue)
+    if let unwValue : NSData = value as? NSData {
+      setProp (T.unarchiveFromNSData (unwValue) as! T)
     }
   }
 
@@ -576,14 +920,14 @@ final class EBStoredProperty_Bool : EBReadWriteProperty_Bool {
   //····················································································································
 }
 
+
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_Bool
+//   EBTransientClassProperty <T : ClassPropertyProtocol>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_Bool)
-class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
-  private var mValueCache : EBProperty <Bool>? = nil
-  var computeFunction : Optional<() -> EBProperty <Bool> >
+class EBTransientClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProperty <T> {
+  private var mValueCache : EBProperty <T>? = nil
+  var computeFunction : Optional<() -> EBProperty <T> >
   
   //····················································································································
 
@@ -593,7 +937,7 @@ class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
 
   //····················································································································
 
-  override var prop : EBProperty <Bool> {
+  override var prop : EBProperty <T> {
     get {
       if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
@@ -619,1837 +963,262 @@ class EBTransientProperty_Bool : EBReadOnlyProperty_Bool {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_Double (abstract class)
+//   Property Int
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_Double)
-class EBReadOnlyProperty_Double : EBAbstractProperty {
-  var prop : EBProperty <Double> { get { return .noSelection } } // Abstract method
-}
+typealias EBReadOnlyProperty_Int  = EBReadOnlyValueProperty <Int>
+typealias EBReadWriteProperty_Int = EBReadWriteValueProperty <Int>
+typealias EBPropertyProxy_Int     = EBPropertyValueProxy <Int>
+typealias EBStoredProperty_Int    = EBStoredValueProperty <Int>
+typealias EBTransientProperty_Int = EBTransientValueProperty <Int>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_Double (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadWriteProperty_Double)
-class EBReadWriteProperty_Double : EBReadOnlyProperty_Double {
-  func setProp (inValue : Double) { } // Abstract method
-  func validateAndSetProp (candidateValue : Double, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_Double
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBPropertyProxy_Double)
-final class EBPropertyProxy_Double : EBReadWriteProperty_Double {
-  var readModelFunction : Optional < () -> EBProperty <Double> >
-  var writeModelFunction : Optional < (Double) -> Void >
-  var validateAndWriteModelFunction : Optional < (Double, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <Double>?
-  
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-  
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      updateValueExplorer (prop_cache)
+func compare_Int (left : EBReadOnlyProperty_Int, right : EBReadOnlyProperty_Int) -> NSComparisonResult {
+  switch left.prop {
+  case .noSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedSame
+    default:
+      return .OrderedAscending
     }
-  }
-
-  //····················································································································
-
-  private func updateValueExplorer (possibleValue : EBProperty <Double>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
-      switch unwProp {
-      case .noSelection :
-        valueExplorer.stringValue = "No selection"
-      case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
-      case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
-      }
-    }else{
-      mValueExplorer?.stringValue = "nil"
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <Double> {
-    get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (inValue : Double) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (candidateValue : Double,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_Double
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBStoredProperty_Double)
-final class EBStoredProperty_Double : EBReadWriteProperty_Double {
-  weak var undoManager : NSUndoManager?
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue.description
-    }
-  }
-
-  //····················································································································
-
-  init (_ inValue : Double) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mValue : Double {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (double:oldValue))
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  func performUndo (oldValue : NSNumber) {
-    mValue = oldValue.doubleValue
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty<Double> { get { return .singleSelection (mValue) } }
-
-  var propval : Double { get { return mValue } }
-
-  override func setProp (inValue : Double) { mValue = inValue }
-
-  //····················································································································
- 
-  var validationFunction : (Double) -> EBValidationResult = defaultValidationFunction
-  
-  override func validateAndSetProp (candidateValue : Double,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = true
-    let validationResult = validationFunction (candidateValue)
-    switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
-    case EBValidationResult.rejectWithBeep :
-      result = false
-      NSBeep ()
-    case EBValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = "The value " + String (candidateValue) + " is invalid."
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
+  case .multipleSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedDescending
+    case .multipleSelection :
+      return .OrderedSame
+   case .singleSelection (_) :
+      return .OrderedAscending
+   }
+ case .singleSelection (let currentValue) :
+    switch right.prop {
+    case .noSelection, .multipleSelection :
+      return .OrderedDescending
+    case .singleSelection (let otherValue) :
+      if currentValue < otherValue {
+        return .OrderedAscending
+      }else if currentValue > otherValue {
+        return .OrderedDescending
       }else{
-        alert.runModal ()
+        return .OrderedSame
       }
     }
-    return result
   }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setProp ((unwValue as! NSNumber).doubleValue)
-    }
-  }
-
-  //····················································································································
-
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (double:mValue), forKey:inKey)
-  }
-
-  //····················································································································
-
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSNumber (double:mValue), forKey:inKey)
-  }
-
-  //····················································································································
-
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setProp ((unwValue as! NSNumber).doubleValue)
-    }
-  }
-
-  //····················································································································
-  //    SIGNATURE
-  //····················································································································
-
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
-  }
-
-  //····················································································································
-
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = propval.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_Double
+//   Property Bool
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_Double)
-class EBTransientProperty_Double : EBReadOnlyProperty_Double {
-  private var mValueCache : EBProperty <Double>? = nil
-  var computeFunction : Optional<() -> EBProperty <Double> >
-  
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <Double> {
-    get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
-        mValueCache = unwrappedComputeFunction ()
-      }
-      if mValueCache == nil {
-        mValueCache = .noSelection
-      }
-      return mValueCache!
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-}
+typealias EBReadOnlyProperty_Bool  = EBReadOnlyValueProperty <Bool>
+typealias EBReadWriteProperty_Bool = EBReadWriteValueProperty <Bool>
+typealias EBPropertyProxy_Bool     = EBPropertyValueProxy <Bool>
+typealias EBStoredProperty_Bool    = EBStoredValueProperty <Bool>
+typealias EBTransientProperty_Bool = EBTransientValueProperty <Bool>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_String (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_String)
-class EBReadOnlyProperty_String : EBAbstractProperty {
-  var prop : EBProperty <String> { get { return .noSelection } } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_String (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBReadWriteProperty_String : EBReadOnlyProperty_String {
-  func setProp (inValue : String) { } // Abstract method
-  func validateAndSetProp (candidateValue : String, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_String
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBPropertyProxy_String)
-class EBPropertyProxy_String : EBReadWriteProperty_String {
-  var readModelFunction : Optional < () -> EBProperty <String> >
-  var writeModelFunction : Optional < (String) -> Void >
-  var validateAndWriteModelFunction : Optional < (String, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <String>?
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent()
+func compare_Bool (left : EBReadOnlyProperty_Bool, right : EBReadOnlyProperty_Bool) -> NSComparisonResult {
+  switch left.prop {
+  case .noSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedSame
+    default:
+      return .OrderedAscending
     }
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      updateValueExplorer (prop_cache)
-    }
-  }
-
-  //····················································································································
-
-  private func updateValueExplorer (possibleValue : EBProperty <String>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
-      switch unwProp {
-      case .noSelection :
-        valueExplorer.stringValue = "No selection"
-      case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
-      case .singleSelection (let value) :
-        valueExplorer.stringValue = value
-      }
-    }else{
-      mValueExplorer?.stringValue = "nil"
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <String> {
-    get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (inValue : String) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (candidateValue : String,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_String
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBStoredProperty_String)
-final class EBStoredProperty_String : EBReadWriteProperty_String {
-  weak var undoManager : NSUndoManager?
-  
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue
-    }
-  }
-
-  //····················································································································
-
-  init (_ inValue : String) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mValue : String {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  func performUndo (oldValue : String) {
-    mValue = oldValue
-  }
-  
-  //····················································································································
-
-  override var prop : EBProperty <String> { get { return .singleSelection (mValue) } }
-
-  var propval : String { get { return mValue } }
-
-  override func setProp (inValue : String) { mValue = inValue }
-
-  //····················································································································
- 
-  var validationFunction : (String) -> EBValidationResult = defaultValidationFunction
-
-  override func validateAndSetProp (candidateValue : String,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
-    var result = true
-    switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
-    case EBValidationResult.rejectWithBeep :
-      NSBeep ()
-    case EBValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
+  case .multipleSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedDescending
+    case .multipleSelection :
+      return .OrderedSame
+   case .singleSelection (_) :
+      return .OrderedAscending
+   }
+ case .singleSelection (let currentValue) :
+    switch right.prop {
+    case .noSelection, .multipleSelection :
+      return .OrderedDescending
+    case .singleSelection (let otherValue) :
+      if currentValue < otherValue {
+        return .OrderedAscending
+      }else if currentValue > otherValue {
+        return .OrderedDescending
       }else{
-        alert.runModal ()
+        return .OrderedSame
       }
     }
-    return result
   }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is String {
-      setProp (unwValue as! String)
-    }
-  }
-
-  
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mValue, forKey:inKey)
-  }
-
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue, forKey:inKey)
-  }
-
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is String {
-      setProp (unwValue as! String)
-    }
-  }
-
-
-  //····················································································································
-  //    SIGNATURE
-  //····················································································································
-
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
-  }
-
-  //····················································································································
-
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = propval.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_String
+//   Property Double
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_String)
-class EBTransientProperty_String : EBReadOnlyProperty_String {
-  private var mValueCache : EBProperty <String>? = nil
-  var computeFunction : Optional<() -> EBProperty <String>>
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <String> {
-    get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
-        mValueCache = unwrappedComputeFunction ()
-      }
-      if mValueCache == nil {
-        mValueCache = .noSelection
-      }
-      return mValueCache!
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-}
+typealias EBReadOnlyProperty_Double  = EBReadOnlyValueProperty <Double>
+typealias EBReadWriteProperty_Double = EBReadWriteValueProperty <Double>
+typealias EBPropertyProxy_Double     = EBPropertyValueProxy <Double>
+typealias EBStoredProperty_Double    = EBStoredValueProperty <Double>
+typealias EBTransientProperty_Double = EBTransientValueProperty <Double>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_NSColor (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_NSColor)
-class EBReadOnlyProperty_NSColor : EBAbstractProperty {
-  var prop : EBProperty <NSColor> { get { return .noSelection } } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_NSColor (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBReadWriteProperty_NSColor : EBReadOnlyProperty_NSColor {
-  func setProp (inValue : NSColor) { } // Abstract method
-  func validateAndSetProp (candidateValue : NSColor, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_NSColor
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBPropertyProxy_NSColor)
-class EBPropertyProxy_NSColor : EBReadWriteProperty_NSColor {
-  var readModelFunction : Optional < () -> EBProperty <NSColor> >
-  var writeModelFunction : Optional < (NSColor) -> Void >
-  var validateAndWriteModelFunction : Optional < (NSColor, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <NSColor>?
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent()
+func compare_Double (left : EBReadOnlyProperty_Double, right : EBReadOnlyProperty_Double) -> NSComparisonResult {
+  switch left.prop {
+  case .noSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedSame
+    default:
+      return .OrderedAscending
     }
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      updateValueExplorer (prop_cache)
-    }
-  }
-
-  //····················································································································
-
-  private func updateValueExplorer (possibleValue : EBProperty <NSColor>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
-      switch unwProp {
-      case .noSelection :
-        valueExplorer.stringValue = "No selection"
-      case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
-      case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
-      }
-    }else{
-      mValueExplorer?.stringValue = "nil"
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSColor> {
-    get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (inValue : NSColor) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (candidateValue : NSColor,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_NSColor
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBStoredProperty_NSColor)
-final class EBStoredProperty_NSColor : EBReadWriteProperty_NSColor {
-  weak var undoManager : NSUndoManager?
-  
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue.description
-    }
-  }
-
-  //····················································································································
-
-  init (_ inValue : NSColor) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mValue : NSColor {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  func performUndo (oldValue : NSColor) {
-    mValue = oldValue
-  }
-  
-  //····················································································································
-
-  override var prop : EBProperty <NSColor> { get { return .singleSelection (mValue) } }
-
-  var propval : NSColor { get { return mValue } }
-
-  override func setProp (inValue : NSColor) { mValue = inValue }
-
-  //····················································································································
- 
-  var validationFunction : (NSColor) -> EBValidationResult = defaultValidationFunction
-
-  override func validateAndSetProp (candidateValue : NSColor,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
-    var result = true
-    switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
-    case EBValidationResult.rejectWithBeep :
-      NSBeep ()
-    case EBValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
+  case .multipleSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedDescending
+    case .multipleSelection :
+      return .OrderedSame
+   case .singleSelection (_) :
+      return .OrderedAscending
+   }
+ case .singleSelection (let currentValue) :
+    switch right.prop {
+    case .noSelection, .multipleSelection :
+      return .OrderedDescending
+    case .singleSelection (let otherValue) :
+      if currentValue < otherValue {
+        return .OrderedAscending
+      }else if currentValue > otherValue {
+        return .OrderedDescending
       }else{
-        alert.runModal ()
-      }
-    }
-    return result
-  }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSData {
-      let possibleObject : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
-      if let unwPossibleObject : AnyObject = possibleObject where unwPossibleObject is NSColor {
-        setProp (unwPossibleObject as! NSColor)
+        return .OrderedSame
       }
     }
   }
-
-  
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
-  }
-
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
-  }
-
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSData {
-      let possibleObject : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
-      if let unwPossibleObject : AnyObject = possibleObject where unwPossibleObject is NSColor {
-        setProp (unwPossibleObject as! NSColor)
-      }
-    }
-  }
-
-
-  //····················································································································
-  //    SIGNATURE
-  //····················································································································
-
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
-  }
-
-  //····················································································································
-
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = propval.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_NSColor
+//   Property String
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_NSColor)
-class EBTransientProperty_NSColor : EBReadOnlyProperty_NSColor {
-  private var mValueCache : EBProperty <NSColor>? = nil
-  var computeFunction : Optional<() -> EBProperty <NSColor>>
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSColor> {
-    get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
-        mValueCache = unwrappedComputeFunction ()
-      }
-      if mValueCache == nil {
-        mValueCache = .noSelection
-      }
-      return mValueCache!
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-}
+typealias EBReadOnlyProperty_String  = EBReadOnlyValueProperty <String>
+typealias EBReadWriteProperty_String = EBReadWriteValueProperty <String>
+typealias EBPropertyProxy_String     = EBPropertyValueProxy <String>
+typealias EBStoredProperty_String    = EBStoredValueProperty <String>
+typealias EBTransientProperty_String = EBTransientValueProperty <String>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_NSDate (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_NSDate)
-class EBReadOnlyProperty_NSDate : EBAbstractProperty {
-  var prop : EBProperty <NSDate> { get { return .noSelection } } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_NSDate (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBReadWriteProperty_NSDate : EBReadOnlyProperty_NSDate {
-  func setProp (inValue : NSDate) { } // Abstract method
-  func validateAndSetProp (candidateValue : NSDate, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_NSDate
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBPropertyProxy_NSDate)
-class EBPropertyProxy_NSDate : EBReadWriteProperty_NSDate {
-  var readModelFunction : Optional < () -> EBProperty <NSDate> >
-  var writeModelFunction : Optional < (NSDate) -> Void >
-  var validateAndWriteModelFunction : Optional < (NSDate, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <NSDate>?
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent()
+func compare_String (left : EBReadOnlyProperty_String, right : EBReadOnlyProperty_String) -> NSComparisonResult {
+  switch left.prop {
+  case .noSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedSame
+    default:
+      return .OrderedAscending
     }
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      updateValueExplorer (prop_cache)
-    }
-  }
-
-  //····················································································································
-
-  private func updateValueExplorer (possibleValue : EBProperty <NSDate>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
-      switch unwProp {
-      case .noSelection :
-        valueExplorer.stringValue = "No selection"
-      case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
-      case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
-      }
-    }else{
-      mValueExplorer?.stringValue = "nil"
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSDate> {
-    get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (inValue : NSDate) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (candidateValue : NSDate,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_NSDate
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBStoredProperty_NSDate)
-final class EBStoredProperty_NSDate : EBReadWriteProperty_NSDate {
-  weak var undoManager : NSUndoManager?
-  
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue.description
-    }
-  }
-
-  //····················································································································
-
-  init (_ inValue : NSDate) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mValue : NSDate {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  func performUndo (oldValue : NSDate) {
-    mValue = oldValue
-  }
-  
-  //····················································································································
-
-  override var prop : EBProperty <NSDate> { get { return .singleSelection (mValue) } }
-
-  var propval : NSDate { get { return mValue } }
-
-  override func setProp (inValue : NSDate) { mValue = inValue }
-
-  //····················································································································
- 
-  var validationFunction : (NSDate) -> EBValidationResult = defaultValidationFunction
-
-  override func validateAndSetProp (candidateValue : NSDate,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
-    var result = true
-    switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
-    case EBValidationResult.rejectWithBeep :
-      NSBeep ()
-    case EBValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
+  case .multipleSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedDescending
+    case .multipleSelection :
+      return .OrderedSame
+   case .singleSelection (_) :
+      return .OrderedAscending
+   }
+ case .singleSelection (let currentValue) :
+    switch right.prop {
+    case .noSelection, .multipleSelection :
+      return .OrderedDescending
+    case .singleSelection (let otherValue) :
+      if currentValue < otherValue {
+        return .OrderedAscending
+      }else if currentValue > otherValue {
+        return .OrderedDescending
       }else{
-        alert.runModal ()
+        return .OrderedSame
       }
     }
-    return result
   }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSDate {
-      setProp (unwValue as! NSDate)
-    }
-  }
-
-  
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mValue, forKey:inKey)
-  }
-
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue, forKey:inKey)
-  }
-
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSDate {
-      setProp (unwValue as! NSDate)
-    }
-  }
-
-
-  //····················································································································
-  //    SIGNATURE
-  //····················································································································
-
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
-  }
-
-  //····················································································································
-
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = propval.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_NSDate
+//   Class property NSColor
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_NSDate)
-class EBTransientProperty_NSDate : EBReadOnlyProperty_NSDate {
-  private var mValueCache : EBProperty <NSDate>? = nil
-  var computeFunction : Optional<() -> EBProperty <NSDate>>
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSDate> {
-    get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
-        mValueCache = unwrappedComputeFunction ()
-      }
-      if mValueCache == nil {
-        mValueCache = .noSelection
-      }
-      return mValueCache!
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-}
+typealias EBReadOnlyProperty_NSColor  = EBReadOnlyClassProperty <NSColor>
+typealias EBReadWriteProperty_NSColor = EBReadWriteClassProperty <NSColor>
+typealias EBPropertyProxy_NSColor     = EBPropertyClassProxy <NSColor>
+typealias EBStoredProperty_NSColor    = EBStoredClassProperty <NSColor>
+typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_NSFont (abstract class)
+//   Class property NSDate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_NSFont)
-class EBReadOnlyProperty_NSFont : EBAbstractProperty {
-  var prop : EBProperty <NSFont> { get { return .noSelection } } // Abstract method
-}
+typealias EBReadOnlyProperty_NSDate  = EBReadOnlyClassProperty <NSDate>
+typealias EBReadWriteProperty_NSDate = EBReadWriteClassProperty <NSDate>
+typealias EBPropertyProxy_NSDate     = EBPropertyClassProxy <NSDate>
+typealias EBStoredProperty_NSDate    = EBStoredClassProperty <NSDate>
+typealias EBTransientProperty_NSDate = EBTransientClassProperty <NSDate>
+
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_NSFont (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadWriteProperty_NSFont : EBReadOnlyProperty_NSFont {
-  func setProp (inValue : NSFont) { } // Abstract method
-  func validateAndSetProp (candidateValue : NSFont, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_NSFont
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBPropertyProxy_NSFont)
-class EBPropertyProxy_NSFont : EBReadWriteProperty_NSFont {
-  var readModelFunction : Optional < () -> EBProperty <NSFont> >
-  var writeModelFunction : Optional < (NSFont) -> Void >
-  var validateAndWriteModelFunction : Optional < (NSFont, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <NSFont>?
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent()
+func compare_NSDate (left : EBReadOnlyProperty_NSDate, right : EBReadOnlyProperty_NSDate) -> NSComparisonResult {
+  switch left.prop {
+  case .noSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedSame
+    default:
+      return .OrderedAscending
     }
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      updateValueExplorer (prop_cache)
-    }
-  }
-
-  //····················································································································
-
-  private func updateValueExplorer (possibleValue : EBProperty <NSFont>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
-      switch unwProp {
-      case .noSelection :
-        valueExplorer.stringValue = "No selection"
-      case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
-      case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
-      }
-    }else{
-      mValueExplorer?.stringValue = "nil"
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSFont> {
-    get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (inValue : NSFont) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (candidateValue : NSFont,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_NSFont
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBStoredProperty_NSFont)
-final class EBStoredProperty_NSFont : EBReadWriteProperty_NSFont {
-  weak var undoManager : NSUndoManager?
-  
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue.description
-    }
-  }
-
-  //····················································································································
-
-  init (_ inValue : NSFont) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mValue : NSFont {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  func performUndo (oldValue : NSFont) {
-    mValue = oldValue
-  }
-  
-  //····················································································································
-
-  override var prop : EBProperty <NSFont> { get { return .singleSelection (mValue) } }
-
-  var propval : NSFont { get { return mValue } }
-
-  override func setProp (inValue : NSFont) { mValue = inValue }
-
-  //····················································································································
- 
-  var validationFunction : (NSFont) -> EBValidationResult = defaultValidationFunction
-
-  override func validateAndSetProp (candidateValue : NSFont,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
-    var result = true
-    switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
-    case EBValidationResult.rejectWithBeep :
-      NSBeep ()
-    case EBValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
+  case .multipleSelection :
+    switch right.prop {
+    case .noSelection :
+      return .OrderedDescending
+    case .multipleSelection :
+      return .OrderedSame
+   case .singleSelection (_) :
+      return .OrderedAscending
+   }
+ case .singleSelection (let currentValue) :
+    switch right.prop {
+    case .noSelection, .multipleSelection :
+      return .OrderedDescending
+    case .singleSelection (let otherValue) :
+      if currentValue < otherValue {
+        return .OrderedAscending
+      }else if currentValue > otherValue {
+        return .OrderedDescending
       }else{
-        alert.runModal ()
-      }
-    }
-    return result
-  }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSData {
-      let possibleObject : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
-      if let unwPossibleObject : AnyObject = possibleObject where unwPossibleObject is NSFont {
-        setProp (unwPossibleObject as! NSFont)
+        return .OrderedSame
       }
     }
   }
-
-  
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
-  }
-
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
-  }
-
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSData {
-      let possibleObject : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
-      if let unwPossibleObject : AnyObject = possibleObject where unwPossibleObject is NSFont {
-        setProp (unwPossibleObject as! NSFont)
-      }
-    }
-  }
-
-
-  //····················································································································
-  //    SIGNATURE
-  //····················································································································
-
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
-  }
-
-  //····················································································································
-
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = propval.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
-
 }
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_NSFont
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBTransientProperty_NSFont)
-class EBTransientProperty_NSFont : EBReadOnlyProperty_NSFont {
-  private var mValueCache : EBProperty <NSFont>? = nil
-  var computeFunction : Optional<() -> EBProperty <NSFont>>
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSFont> {
-    get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
-        mValueCache = unwrappedComputeFunction ()
-      }
-      if mValueCache == nil {
-        mValueCache = .noSelection
-      }
-      return mValueCache!
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyProperty_NSImage (abstract class)
+//   Class property NSFont
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_NSImage)
-class EBReadOnlyProperty_NSImage : EBAbstractProperty {
-  var prop : EBProperty <NSImage> { get { return .noSelection } } // Abstract method
-}
+typealias EBReadOnlyProperty_NSFont  = EBReadOnlyClassProperty <NSFont>
+typealias EBReadWriteProperty_NSFont = EBReadWriteClassProperty <NSFont>
+typealias EBPropertyProxy_NSFont     = EBPropertyClassProxy <NSFont>
+typealias EBStoredProperty_NSFont    = EBStoredClassProperty <NSFont>
+typealias EBTransientProperty_NSFont = EBTransientClassProperty <NSFont>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_NSImage (abstract class)
+//   Class property NSImage
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadWriteProperty_NSImage : EBReadOnlyProperty_NSImage {
-  func setProp (inValue : NSImage) { } // Abstract method
-  func validateAndSetProp (candidateValue : NSImage, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_NSImage
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBPropertyProxy_NSImage)
-class EBPropertyProxy_NSImage : EBReadWriteProperty_NSImage {
-  var readModelFunction : Optional < () -> EBProperty <NSImage> >
-  var writeModelFunction : Optional < (NSImage) -> Void >
-  var validateAndWriteModelFunction : Optional < (NSImage, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <NSImage>?
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent()
-    }
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      updateValueExplorer (prop_cache)
-    }
-  }
-
-  //····················································································································
-
-  private func updateValueExplorer (possibleValue : EBProperty <NSImage>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
-      switch unwProp {
-      case .noSelection :
-        valueExplorer.stringValue = "No selection"
-      case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
-      case .singleSelection (let value) :
-        valueExplorer.stringValue = value.description
-      }
-    }else{
-      mValueExplorer?.stringValue = "nil"
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSImage> {
-    get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (inValue : NSImage) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (candidateValue : NSImage,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_NSImage
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBStoredProperty_NSImage)
-final class EBStoredProperty_NSImage : EBReadWriteProperty_NSImage {
-  weak var undoManager : NSUndoManager?
-  
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue.description
-    }
-  }
-
-  //····················································································································
-
-  init (_ inValue : NSImage) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mValue : NSImage {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.description
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  func performUndo (oldValue : NSImage) {
-    mValue = oldValue
-  }
-  
-  //····················································································································
-
-  override var prop : EBProperty <NSImage> { get { return .singleSelection (mValue) } }
-
-  var propval : NSImage { get { return mValue } }
-
-  override func setProp (inValue : NSImage) { mValue = inValue }
-
-  //····················································································································
- 
-  var validationFunction : (NSImage) -> EBValidationResult = defaultValidationFunction
-
-  override func validateAndSetProp (candidateValue : NSImage,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    let validationResult = validationFunction (candidateValue)
-    var result = true
-    switch validationResult {
-    case EBValidationResult.ok :
-      setProp (candidateValue)
-    case EBValidationResult.rejectWithBeep :
-      NSBeep ()
-    case EBValidationResult.rejectWithAlert (let informativeText) :
-      result = false
-      let alert = NSAlert ()
-      alert.messageText = String (format:"The value “%@” is invalid.", candidateValue)
-      alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
-          }
-        })
-      }else{
-        alert.runModal ()
-      }
-    }
-    return result
-  }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSData {
-      let possibleObject : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
-      if let unwPossibleObject : AnyObject = possibleObject where unwPossibleObject is NSImage {
-        setProp (unwPossibleObject as! NSImage)
-      }
-    }
-  }
-
-  
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
-  }
-
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSArchiver.archivedDataWithRootObject (mValue), forKey:inKey)
-  }
-
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
-    if let unwValue : AnyObject = value where unwValue is NSData {
-      let possibleObject : AnyObject? = NSUnarchiver.unarchiveObjectWithData (unwValue as! NSData)
-      if let unwPossibleObject : AnyObject = possibleObject where unwPossibleObject is NSImage {
-        setProp (unwPossibleObject as! NSImage)
-      }
-    }
-  }
-
-
-  //····················································································································
-  //    SIGNATURE
-  //····················································································································
-
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
-  }
-
-  //····················································································································
-
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
-    }
-  }
-
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = propval.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientProperty_NSImage
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBTransientProperty_NSImage)
-class EBTransientProperty_NSImage : EBReadOnlyProperty_NSImage {
-  private var mValueCache : EBProperty <NSImage>? = nil
-  var computeFunction : Optional<() -> EBProperty <NSImage>>
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <NSImage> {
-    get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
-        mValueCache = unwrappedComputeFunction ()
-      }
-      if mValueCache == nil {
-        mValueCache = .noSelection
-      }
-      return mValueCache!
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-}
+typealias EBReadOnlyProperty_NSImage  = EBReadOnlyClassProperty <NSImage>
+typealias EBReadWriteProperty_NSImage = EBReadWriteClassProperty <NSImage>
+typealias EBPropertyProxy_NSImage     = EBPropertyClassProxy <NSImage>
+typealias EBStoredProperty_NSImage    = EBStoredClassProperty <NSImage>
+typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
 

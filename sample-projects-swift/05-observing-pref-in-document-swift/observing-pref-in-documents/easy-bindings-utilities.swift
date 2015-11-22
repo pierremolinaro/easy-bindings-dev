@@ -5,10 +5,19 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBSignatureObserverProtocol
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBSignatureObserverProtocol) protocol EBSignatureObserverProtocol {
+  func clearSignatureCache ()
+  func signature () -> UInt32
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBVersionShouldChangeObserver
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBVersionShouldChangeObserver) class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObserverProtocol {
+class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObserverProtocol {
 
   private weak var mSignatureObserver : EBSignatureObserverEvent?
   private var mSignatureAtStartUp : UInt32 = 0
@@ -62,19 +71,10 @@ import Cocoa
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//  EBSignatureObserverProtocol
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBSignatureObserverProtocol) protocol EBSignatureObserverProtocol {
-  func clearSignatureCache ()
-  func signature () -> UInt32
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBSignatureObserverEvent
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSignatureObserverEvent) class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverProtocol {
+class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverProtocol {
 
   private weak var mRootObject : EBSignatureObserverProtocol?
 
@@ -116,12 +116,78 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBWeakEventSetElement
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBWeakEventSetElement) class EBWeakEventSetElement : EBObject {
+  private weak var mObserver : EBEvent? = nil {
+    didSet {
+      if mObserver == nil, let object = mObject {
+        object.mDictionary [mObserverAddress] = nil
+      }
+    }
+  }
+
+  private weak var mObject : EBWeakEventSet? = nil
+  private var mObserverAddress : Int
+  
+  init (object : EBWeakEventSet, observer : EBEvent) {
+    mObserver = observer
+    mObject = object
+    mObserverAddress = unsafeAddressOf (observer).hashValue
+    super.init ()
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBWeakEventSet
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(EBWeakEventSet) class EBWeakEventSet : EBObject, SequenceType {
+  private var mDictionary = [Int : EBWeakEventSetElement] ()
+
+  //····················································································································
+  
+  func insert (inObserver : EBEvent) {
+    let address : Int = unsafeAddressOf (inObserver).hashValue
+    mDictionary [address] = EBWeakEventSetElement (object:self, observer:inObserver)
+  }
+
+  //····················································································································
+  
+  func remove (inObserver : EBEvent) {
+    let address : Int = unsafeAddressOf (inObserver).hashValue
+    mDictionary [address] = nil
+  }
+
+  //····················································································································
+
+  func generate () -> IndexingGenerator <[EBEvent]> {
+    var array = [EBEvent] ()
+    for (_, entry) in mDictionary {
+      if let observer = entry.mObserver {
+        array.append(observer)
+      }
+    }
+    return array.generate ()
+  }
+
+  //····················································································································
+  
+  var count : Int {
+    get {
+      return mDictionary.count
+    }
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBAbstractProperty (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBAbstractProperty) class EBAbstractProperty : EBEvent {
 
-  private final var mObservers = Set <EBEvent> ()
+  private final var mObservers = EBWeakEventSet ()
   
   //····················································································································
 
@@ -136,7 +202,6 @@ import Cocoa
   final func removeEBObserver (inObserver : EBEvent) {
     mObservers.remove (inObserver)
     updateObserverExplorer ()
-  //  inObserver.postEvent ()
   }
 
   //····················································································································
@@ -177,105 +242,28 @@ import Cocoa
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   ebHashValue
+//    EBObserver
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension String {
-  func ebHashValue () -> UInt32 {
-    let possibleData = self.dataUsingEncoding (NSUTF8StringEncoding)
-    if let data = possibleData {
-      return data.ebHashValue ()
-    }else{
-      return 0
-    }
+@objc(EBObserver) class EBObserver : EBAbstractProperty {
+  private var mPostEventFunction : Optional < () -> Void > = nil
+  
+  //····················································································································
+
+  func setPostEventFunction (function : Optional < () -> Void >) {
+    mPostEventFunction = function
   }
-}
+  
+  //····················································································································
 
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSImage {
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
+  override func postEvent() {
+    mPostEventFunction? ()
+    super.postEvent ()
   }
+
+  //····················································································································
+
 }
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSColor {
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
-  }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSDate {
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
-  }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSFont {
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
-  }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSData {
-  final func ebHashValue () -> UInt32 {
-    var crc : UInt32 = 0
-    var ptr = UnsafePointer <UInt8> (self.bytes)
-    for _ in 0 ..< self.length {
-      crc.accumulateByte (ptr.memory)
-      ptr += 1
-    }
-    return crc
-  }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension Int {
-  func ebHashValue () -> UInt32 {
-    var crc : UInt32 = 0
-    var ptr = UnsafePointer <UInt8> ([self])
-    for _ in 0 ..< sizeof (Int) {
-      // print ("\(ptr)")
-      crc.accumulateByte (ptr.memory)
-      ptr += 1
-    }
-    return crc
-  }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension Double {
-  func ebHashValue () -> UInt32 {
-    let nsValue = NSNumber (double:self)
-    let data = NSArchiver.archivedDataWithRootObject (nsValue)
-    return data.ebHashValue ()
-  }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension Bool {
-  func ebHashValue () -> UInt32 {
-    var crc : UInt32 = 0
-    crc.accumulateByte (self ? 1 : 0)
-    return crc
-  }
-}
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   CRC computations for signature
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -390,8 +378,8 @@ extension Array {
 //    EBValidationResult
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum EBValidationResult {
-  case ok
+enum EBValidationResult <T> {
+  case ok (T /* validated value */)
   case rejectWithBeep
   case rejectWithAlert (String /* informativeText */)
 }
@@ -408,6 +396,7 @@ enum EBValidationResult {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBTableCellView) class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
+  final var mUnbindFunction : Optional < () -> Void > = nil
 
   //····················································································································
 
@@ -426,10 +415,28 @@ enum EBValidationResult {
   //····················································································································
   
   deinit {
+    mUnbindFunction? ()
     noteObjectDeallocation (self)
   }
 
   //····················································································································
+
+  override func removeFromSuperview () {
+   // NSLog ("\(__FUNCTION__)")
+    mUnbindFunction? ()
+    super.removeFromSuperview ()
+  }
+
+  //····················································································································
+  
+  override func removeFromSuperviewWithoutNeedingDisplay () {
+   // NSLog ("\(__FUNCTION__)")
+    mUnbindFunction? ()
+    super.removeFromSuperviewWithoutNeedingDisplay ()
+  }
+  
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -539,7 +546,7 @@ class EBSimpleController : EBOutletEvent {
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
     closeButton!.target = self
-    closeButton!.action = "deleteWindowAction:"
+    closeButton!.action = "deleteSimpleControllerWindowAction:"
   //--- Set window title
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
@@ -552,10 +559,10 @@ class EBSimpleController : EBOutletEvent {
   }
 
   //····················································································································
-  //   deleteWindowAction
+  //   deleteSimpleControllerWindowAction
   //····················································································································
 
-  final func deleteWindowAction (_: AnyObject) {
+  final func deleteSimpleControllerWindowAction (_: AnyObject) {
     clearObjectExplorer ()
   }
 
@@ -848,8 +855,8 @@ extension NSTextView {
 //    defaultValidationFunction
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func defaultValidationFunction<T> (proposedValue : T) -> EBValidationResult {
-  return EBValidationResult.ok
+func defaultValidationFunction <T> (currentValue : T, proposedValue : T) -> EBValidationResult <T> {
+  return EBValidationResult.ok (proposedValue)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1004,6 +1011,20 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 
 @objc(EBEnumPropertyProtocol) protocol EBEnumPropertyProtocol : EBReadOnlyEnumPropertyProtocol {
   func setFromRawValue (rawValue : Int)
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   NSDate operators
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+func < (left:NSDate, right:NSDate) -> Bool {
+  return left.compare (right) == .OrderedAscending
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+func > (left:NSDate, right:NSDate) -> Bool {
+  return left.compare (right) == .OrderedDescending
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

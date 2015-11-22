@@ -176,8 +176,6 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
   template classProperty "class-standard-property.swift.galgasTemplate"
     ?@string CLASS_NAME
     ?@bool COMPARABLE
-    ?@string EXPLORER_ACCESS
-    ?@bool USE_ARCHIVER
 }
 
 #......................................................................................................................*
@@ -187,16 +185,16 @@ private proc generateStandardProperties
   ?!@stringset ioGeneratedFileSet
 {
   var contents = [filewrapper standard_properties.stub]
-#--- Add Int type
+#--- Add scalar property types
   contents += [filewrapper standard_properties.scalarProperty !"Int"   ]
   contents += [filewrapper standard_properties.scalarProperty !"Bool"  ]
   contents += [filewrapper standard_properties.scalarProperty !"Double"]
   contents += [filewrapper standard_properties.scalarProperty !"String"]
-#--- Add Class type
-  contents += [filewrapper standard_properties.classProperty !"NSColor" !false !".description" !true ]
-  contents += [filewrapper standard_properties.classProperty !"NSDate"  !true  !".description" !false]
-  contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !".description" !true ]
-  contents += [filewrapper standard_properties.classProperty !"NSImage" !false !".description" !true ]
+#--- Add class property types
+  contents += [filewrapper standard_properties.classProperty !"NSColor" !false]
+  contents += [filewrapper standard_properties.classProperty !"NSDate"  !true ]
+  contents += [filewrapper standard_properties.classProperty !"NSFont"  !false]
+  contents += [filewrapper standard_properties.classProperty !"NSImage" !false]
 #--- Generate file
   let fileName = "standard-properties.swift"
   ioGeneratedFileSet += !fileName

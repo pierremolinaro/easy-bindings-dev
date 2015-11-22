@@ -1,14 +1,14 @@
 outletClass EBButton $run $enabled ;
 
 outletClass EBColorObserverWell $enabled ;
-binding EBColorObserverWell $colorObserver : property Color ;
+binding EBColorObserverWell $colorObserver : property NSColor ;
 
 outletClass EBColorWell $enabled ;
-binding EBColorWell $color : property Color {sendContinously : Bool} ;
+binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 
 
 outletClass EBDatePicker $enabled ;
-binding EBDatePicker $date : property Date ;
+binding EBDatePicker $date : property NSDate ;
 
 
 outletClass EBMatrix $enabled ;
@@ -28,7 +28,7 @@ binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
 outletClass EBFontButton $enabled ;
-binding EBFontButton $fontValue : property Font ;
+binding EBFontButton $fontValue : property NSFont ;
 
 
 outletClass EBPopUpButton $enabled ;
@@ -40,7 +40,7 @@ binding EBGroupButton $selectedIndex : property Int ;
 
 
 outletClass EBImageObserverView $enabled ;
-binding EBImageObserverView $image : transient Image ;
+binding EBImageObserverView $image : transient NSImage ;
 
 
 outletClass EBMenuItem ;

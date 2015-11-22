@@ -60,13 +60,13 @@ syntax extension easyBindings_syntax {
     !@abstractDefaultValue outDefaultValue {
     select
       $yes$
-      outDefaultValue = @boolAsDefaultValue. new { !@lbool. new { !true !@location.here}}
+      outDefaultValue = @boolAsDefaultValue.new { !@lbool. new { !true !@location.here}}
     or
       $no$
-      outDefaultValue = @boolAsDefaultValue. new { !@lbool. new { !false !@location.here}}
+      outDefaultValue = @boolAsDefaultValue.new { !@lbool. new { !false !@location.here}}
     or
       $literal_integer$ ?var  @luint integerValue
-      outDefaultValue = @integerAsDefaultValue. new { !integerValue}
+      outDefaultValue = @integerAsDefaultValue.new { !integerValue}
     or
       $literal_double$ ?var  @ldouble doubleValue ?*
       outDefaultValue = @doubleAsDefaultValue. new { !doubleValue}
