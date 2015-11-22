@@ -1,6 +1,11 @@
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Class property %!CLASS_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+%
+if TRANSIENT then
+  %//   Transient property class %!CLASS_NAME%\n%
+else
+  %//   Property class %!CLASS_NAME%\n%
+end
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_%!CLASS_NAME%  = EBReadOnlyClassProperty <%!CLASS_NAME%>
 typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_NAME%>
