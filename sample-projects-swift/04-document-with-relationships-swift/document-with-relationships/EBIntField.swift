@@ -83,7 +83,7 @@ import Cocoa
 
   //····················································································································
 
-  func bind_value (object:EBReadWriteProperty <Int>, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
+  func bind_value (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_EBIntField_value (
       object:object,
@@ -114,12 +114,12 @@ import Cocoa
 @objc(Controller_EBIntField_value)
 final class Controller_EBIntField_value : EBSimpleController {
 
-  private let mObject : EBReadWriteProperty <Int>
+  private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBIntField
 
   //····················································································································
 
-  init (object : EBReadWriteProperty <Int>,
+  init (object : EBReadWriteProperty_Int,
         outlet : EBIntField,
         file : String,
         line : Int,

@@ -41,7 +41,7 @@ import Cocoa
 
   private var mSelectedTagController : Controller_EBPopUpButton_selectedTag?
 
-  func bind_selectedTag (object:EBReadWriteProperty <Int>, file:String, line:Int) {
+  func bind_selectedTag (object:EBReadWriteProperty_Int, file:String, line:Int) {
     mSelectedTagController = Controller_EBPopUpButton_selectedTag (object:object, outlet:self, file:file, line:line)
   }
 
@@ -59,12 +59,12 @@ import Cocoa
 @objc (Controller_EBPopUpButton_selectedTag)
 final class Controller_EBPopUpButton_selectedTag : EBSimpleController {
 
-  private let mObject : EBReadWriteProperty <Int>
+  private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBPopUpButton
 
   //····················································································································
 
-  init (object : EBReadWriteProperty <Int>, outlet : EBPopUpButton, file : String, line : Int) {
+  init (object : EBReadWriteProperty_Int, outlet : EBPopUpButton, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
