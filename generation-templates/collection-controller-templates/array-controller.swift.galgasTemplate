@@ -16,34 +16,6 @@ private let DEBUG_EVENT = false
 final class DataSource_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : TransientArrayOf_%!ELEMENT_TYPE_NAME%, EBTableViewDataSource {
 
   //····················································································································
-  //    Sort descriptors
-  //····················································································································
-  
-/*  private var mSortDescriptors : [NSSortDescriptor] = [NSSortDescriptor] () {
-    didSet {
-      postEvent () // Force sorting
-    }
-  } */
-
-  //····················································································································
-  
-/*  func setSortDescriptors (sortDescriptors : [NSSortDescriptor]) {
-    mSortDescriptors = sortDescriptors
-  } */
-  
-  //····················································································································
-  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:
-  //····················································································································
-
-/*  func tableView (aTableView: NSTableView,
-                  sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
-    if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
-    }
-    mSortDescriptors = aTableView.sortDescriptors
-  } */
-
-  //····················································································································
   //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView
   //····················································································································
 
@@ -187,17 +159,23 @@ end
     }
   }
 
-  //····················································································································
+%
+if [SORTED_COLUMNS length] > 0 then
+%  //····················································································································
 
   func isOrderedBefore (left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) -> Bool {
     var order = NSComparisonResult.OrderedSame
     for (column, ascending) in mSortDescriptorArray {\n%
-for () in BOUND_COLUMNS do
-  if mObservablePropertyForSorting != "" then
-    %      if column == "%!mColumnName%" {\n%
-    %        order = compare_%![mSortPropertyType swiftTypeName]% (left.%!mObservablePropertyForSorting%, right:right.%!mObservablePropertyForSorting%)\n%
-    %      }\n%
-  end
+for () in SORTED_COLUMNS
+  before
+  %      %
+  do
+  %if column == "%!mColumnName%" {\n%
+  %        order = compare_%![mSortPropertyType swiftTypeName]% (left.%!mObservablePropertyForSorting%, right:right.%!mObservablePropertyForSorting%)\n%
+  between
+  %      }else %
+  after
+  %      }\n%
 end
 %      if !ascending {
         switch order {
@@ -213,7 +191,9 @@ end
     return order == .OrderedAscending
   }
 
-  //····················································································································
+%
+end
+%  //····················································································································
 
   private final func setFilterAndSortFunction () {
     sortedArray.computeFunction = {
@@ -225,21 +205,29 @@ end
           return .multipleSelection
         case .singleSelection (let modelArray) :
 %if [FILTER_PROPERTIES length] == 0 then
-  %          let sortedArray = modelArray.sort ({self.isOrderedBefore ($0, $1)})\n%
-  %          return .singleSelection (sortedArray)\n%
+  if [SORTED_COLUMNS length] == 0 then
+    %          return .singleSelection (modelArray)\n%
+  else
+    %          let sortedArray = modelArray.sort ({self.isOrderedBefore ($0, $1)})\n%
+    %          return .singleSelection (sortedArray)\n%
+  end
 else
   %          var filteredArray = [%!ELEMENT_TYPE_NAME%] ()\n%
   %          var isMultiple = false\n%
   %          for object in modelArray {\n%
   ![FILTER_PROPERTIES filterCode !"arrayControllerFilter_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME]
-%          }
-          if isMultiple {
-            return .multipleSelection
-          }else{
-            let sortedFilteredArray = filteredArray.sort ({self.isOrderedBefore ($0, $1)})
-            return .singleSelection (sortedFilteredArray)
-          }
-%end
+  %          }\n%
+  %          if isMultiple {\n%
+  %            return .multipleSelection\n%
+  %          }else{\n%
+  if [SORTED_COLUMNS length] == 0 then
+    %            return .singleSelection (filteredArray)\n%
+  else
+    %            let sortedFilteredArray = filteredArray.sort ({self.isOrderedBefore ($0, $1)})\n%
+    %            return .singleSelection (sortedFilteredArray)\n%
+  end
+  %          }\n%
+end
 %        }
       }else{
         return .noSelection

@@ -7352,6 +7352,7 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_arrayControllerFilterListForGeneration & in_mArrayControllerFilterListForGeneration,
                                                   const class GALGAS_string & in_mModelString,
                                                   const class GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
+                                                  const class GALGAS_arrayControllerSortedColumnListForGeneration & in_mArrayControllerSortedColumnListForGeneration,
                                                   const class GALGAS_string & in_mModelTypeName,
                                                   const class GALGAS_string & in_mModelTypeName_32_,
                                                   const class GALGAS_arrayControllerModelKind & in_mModelKind,
@@ -7377,11 +7378,12 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                                                  const class GALGAS_arrayControllerFilterListForGeneration & inOperand2,
                                                                                  const class GALGAS_string & inOperand3,
                                                                                  const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
-                                                                                 const class GALGAS_string & inOperand5,
+                                                                                 const class GALGAS_arrayControllerSortedColumnListForGeneration & inOperand5,
                                                                                  const class GALGAS_string & inOperand6,
-                                                                                 const class GALGAS_arrayControllerModelKind & inOperand7,
-                                                                                 const class GALGAS_string & inOperand8,
-                                                                                 const class GALGAS__32_stringlist & inOperand9
+                                                                                 const class GALGAS_string & inOperand7,
+                                                                                 const class GALGAS_arrayControllerModelKind & inOperand8,
+                                                                                 const class GALGAS_string & inOperand9,
+                                                                                 const class GALGAS__32_stringlist & inOperand10
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -7394,11 +7396,12 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_arrayControllerFilterListForGeneration & inOperand2,
                                                       const class GALGAS_string & inOperand3,
                                                       const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
-                                                      const class GALGAS_string & inOperand5,
+                                                      const class GALGAS_arrayControllerSortedColumnListForGeneration & inOperand5,
                                                       const class GALGAS_string & inOperand6,
-                                                      const class GALGAS_arrayControllerModelKind & inOperand7,
-                                                      const class GALGAS_string & inOperand8,
-                                                      const class GALGAS__32_stringlist & inOperand9
+                                                      const class GALGAS_string & inOperand7,
+                                                      const class GALGAS_arrayControllerModelKind & inOperand8,
+                                                      const class GALGAS_string & inOperand9,
+                                                      const class GALGAS__32_stringlist & inOperand10
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- . (concat) operator
   public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGeneration operator_concat (const GALGAS_arrayControllerForGeneration & inOperand
@@ -7416,12 +7419,13 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_arrayControllerFilterListForGeneration constinArgument2,
                                                          class GALGAS_string constinArgument3,
                                                          class GALGAS_arrayControllerBoundColumnListForGeneration constinArgument4,
-                                                         class GALGAS_string constinArgument5,
+                                                         class GALGAS_arrayControllerSortedColumnListForGeneration constinArgument5,
                                                          class GALGAS_string constinArgument6,
-                                                         class GALGAS_arrayControllerModelKind constinArgument7,
-                                                         class GALGAS_string constinArgument8,
-                                                         class GALGAS__32_stringlist constinArgument9,
-                                                         class GALGAS_uint constinArgument10,
+                                                         class GALGAS_string constinArgument7,
+                                                         class GALGAS_arrayControllerModelKind constinArgument8,
+                                                         class GALGAS_string constinArgument9,
+                                                         class GALGAS__32_stringlist constinArgument10,
+                                                         class GALGAS_uint constinArgument11,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -7430,11 +7434,12 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                     class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
                                                     class GALGAS_string & outArgument3,
                                                     class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                                    class GALGAS_string & outArgument5,
+                                                    class GALGAS_arrayControllerSortedColumnListForGeneration & outArgument5,
                                                     class GALGAS_string & outArgument6,
-                                                    class GALGAS_arrayControllerModelKind & outArgument7,
-                                                    class GALGAS_string & outArgument8,
-                                                    class GALGAS__32_stringlist & outArgument9,
+                                                    class GALGAS_string & outArgument7,
+                                                    class GALGAS_arrayControllerModelKind & outArgument8,
+                                                    class GALGAS_string & outArgument9,
+                                                    class GALGAS__32_stringlist & outArgument10,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -7443,11 +7448,12 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                    class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
                                                    class GALGAS_string & outArgument3,
                                                    class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                                   class GALGAS_string & outArgument5,
+                                                   class GALGAS_arrayControllerSortedColumnListForGeneration & outArgument5,
                                                    class GALGAS_string & outArgument6,
-                                                   class GALGAS_arrayControllerModelKind & outArgument7,
-                                                   class GALGAS_string & outArgument8,
-                                                   class GALGAS__32_stringlist & outArgument9,
+                                                   class GALGAS_string & outArgument7,
+                                                   class GALGAS_arrayControllerModelKind & outArgument8,
+                                                   class GALGAS_string & outArgument9,
+                                                   class GALGAS__32_stringlist & outArgument10,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -7456,12 +7462,13 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                          class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
                                                          class GALGAS_string & outArgument3,
                                                          class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                                         class GALGAS_string & outArgument5,
+                                                         class GALGAS_arrayControllerSortedColumnListForGeneration & outArgument5,
                                                          class GALGAS_string & outArgument6,
-                                                         class GALGAS_arrayControllerModelKind & outArgument7,
-                                                         class GALGAS_string & outArgument8,
-                                                         class GALGAS__32_stringlist & outArgument9,
-                                                         class GALGAS_uint constinArgument10,
+                                                         class GALGAS_string & outArgument7,
+                                                         class GALGAS_arrayControllerModelKind & outArgument8,
+                                                         class GALGAS_string & outArgument9,
+                                                         class GALGAS__32_stringlist & outArgument10,
+                                                         class GALGAS_uint constinArgument11,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
@@ -7472,11 +7479,12 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                                class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
                                                class GALGAS_string & outArgument3,
                                                class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                               class GALGAS_string & outArgument5,
+                                               class GALGAS_arrayControllerSortedColumnListForGeneration & outArgument5,
                                                class GALGAS_string & outArgument6,
-                                               class GALGAS_arrayControllerModelKind & outArgument7,
-                                               class GALGAS_string & outArgument8,
-                                               class GALGAS__32_stringlist & outArgument9,
+                                               class GALGAS_string & outArgument7,
+                                               class GALGAS_arrayControllerModelKind & outArgument8,
+                                               class GALGAS_string & outArgument9,
+                                               class GALGAS__32_stringlist & outArgument10,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -7485,11 +7493,12 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
                                               class GALGAS_arrayControllerFilterListForGeneration & outArgument2,
                                               class GALGAS_string & outArgument3,
                                               class GALGAS_arrayControllerBoundColumnListForGeneration & outArgument4,
-                                              class GALGAS_string & outArgument5,
+                                              class GALGAS_arrayControllerSortedColumnListForGeneration & outArgument5,
                                               class GALGAS_string & outArgument6,
-                                              class GALGAS_arrayControllerModelKind & outArgument7,
-                                              class GALGAS_string & outArgument8,
-                                              class GALGAS__32_stringlist & outArgument9,
+                                              class GALGAS_string & outArgument7,
+                                              class GALGAS_arrayControllerModelKind & outArgument8,
+                                              class GALGAS_string & outArgument9,
+                                              class GALGAS__32_stringlist & outArgument10,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -7503,6 +7512,10 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerFilterListForGeneration getter_mArrayControllerFilterListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                                                        C_Compiler * inCompiler
                                                                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerSortedColumnListForGeneration getter_mArrayControllerSortedColumnListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                                   C_Compiler * inCompiler
+                                                                                                                                                   COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS__32_stringlist getter_mAttributeListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                    C_Compiler * inCompiler
@@ -7567,6 +7580,7 @@ class cEnumerator_arrayControllerForGeneration : public cGenericAbstractEnumerat
   public : class GALGAS_arrayControllerFilterListForGeneration current_mArrayControllerFilterListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mModelString (LOCATION_ARGS) const ;
   public : class GALGAS_arrayControllerBoundColumnListForGeneration current_mArrayControllerBoundColumnListForGeneration (LOCATION_ARGS) const ;
+  public : class GALGAS_arrayControllerSortedColumnListForGeneration current_mArrayControllerSortedColumnListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mModelTypeName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mModelTypeName_32_ (LOCATION_ARGS) const ;
   public : class GALGAS_arrayControllerModelKind current_mModelKind (LOCATION_ARGS) const ;

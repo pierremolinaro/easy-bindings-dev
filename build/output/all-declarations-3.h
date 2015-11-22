@@ -11,6 +11,39 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                        Filewrapper 'enumGenerationTemplate'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Filewrapper template 'enumGenerationTemplate enumGenerationInSwift'                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (class C_Compiler * inCompiler,
+                                                                                const class GALGAS_string & in_ENUM_5F_TYPE_5F_NAME,
+                                                                                const class GALGAS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                               Routine 'generateEnums'                                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
