@@ -14,6 +14,8 @@ struct @structForGeneration {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
+  @stringlist mPropertyClassList
+  @stringlist mTransientPropertyClassList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -96,6 +98,8 @@ proc generateCode
   )
   generateStandardProperties (
     !fileOutputDirectory
+    !inGeneration.mPropertyClassList
+    !inGeneration.mTransientPropertyClassList
     !?generatedFileSet
   )
   generateXcodeProject (
@@ -176,12 +180,15 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
   template classProperty "class-standard-property.swift.galgasTemplate"
     ?@string CLASS_NAME
     ?@bool COMPARABLE
+    ?@bool TRANSIENT
 }
 
 #......................................................................................................................*
 
 private proc generateStandardProperties
   ?let @string inOutputDirectory
+  ?let @stringlist inPropertyClassList
+  ?let @stringlist inTransientPropertyClassList
   ?!@stringset ioGeneratedFileSet
 {
   var contents = [filewrapper standard_properties.stub]
@@ -191,10 +198,15 @@ private proc generateStandardProperties
   contents += [filewrapper standard_properties.scalarProperty !"Double"]
   contents += [filewrapper standard_properties.scalarProperty !"String"]
 #--- Add class property types
-  contents += [filewrapper standard_properties.classProperty !"NSColor" !false]
-  contents += [filewrapper standard_properties.classProperty !"NSDate"  !true ]
-  contents += [filewrapper standard_properties.classProperty !"NSFont"  !false]
-  contents += [filewrapper standard_properties.classProperty !"NSImage" !false]
+  for (propertyClass) in inPropertyClassList do
+    contents += [filewrapper standard_properties.classProperty !propertyClass !false !false]
+  end
+  for (propertyClass) in inTransientPropertyClassList do
+    contents += [filewrapper standard_properties.classProperty !propertyClass !false !true]
+  end
+  contents += [filewrapper standard_properties.classProperty !"NSDate"  !true  !false]
+  contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
+  contents += [filewrapper standard_properties.classProperty !"NSImage" !false !false]
 #--- Generate file
   let fileName = "standard-properties.swift"
   ioGeneratedFileSet += !fileName

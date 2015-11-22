@@ -214,6 +214,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : GALGAS_validationStubRoutineListForGeneration mAttribute_mValidationStubRoutineListForGeneration ;
   public : GALGAS_selectionControllerForGeneration mAttribute_mSelectionControllerListForGeneration ;
   public : GALGAS_customObjectControllerForGeneration mAttribute_mCustomObjectControllerListForGeneration ;
+  public : GALGAS_stringlist mAttribute_mPropertyClassList ;
+  public : GALGAS_stringlist mAttribute_mTransientPropertyClassList ;
 
 
 //--------------------------------- Accessors
@@ -241,7 +243,9 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_arrayControllerForGeneration & in_mAllArrayControllerForGeneration,
                                        const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
                                        const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
-                                       const GALGAS_customObjectControllerForGeneration & in_mCustomObjectControllerListForGeneration) ;
+                                       const GALGAS_customObjectControllerForGeneration & in_mCustomObjectControllerListForGeneration,
+                                       const GALGAS_stringlist & in_mPropertyClassList,
+                                       const GALGAS_stringlist & in_mTransientPropertyClassList) ;
 
 //-- Start of generic part --*
 
@@ -265,7 +269,9 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                               const class GALGAS_arrayControllerForGeneration & inOperand8,
                                                               const class GALGAS_validationStubRoutineListForGeneration & inOperand9,
                                                               const class GALGAS_selectionControllerForGeneration & inOperand10,
-                                                              const class GALGAS_customObjectControllerForGeneration & inOperand11
+                                                              const class GALGAS_customObjectControllerForGeneration & inOperand11,
+                                                              const class GALGAS_stringlist & inOperand12,
+                                                              const class GALGAS_stringlist & inOperand13
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -298,9 +304,13 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_preferencesForGeneration getter_mPreferencesForGeneration (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_mPropertyClassList (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration getter_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mTransientListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_mTransientPropertyClassList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration getter_mValidationStubRoutineListForGeneration (LOCATION_ARGS) const ;
 
@@ -686,15 +696,6 @@ void routine_generateCustomObjectControllers (const class GALGAS_customObjectCon
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                             Function 'predefinedColors'                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                             Function 'predefinedDates'                                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -923,7 +924,9 @@ void routine_generateCode (const class GALGAS_string constinArgument0,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
-                                         class GALGAS_stringset & ioArgument1,
+                                         const class GALGAS_stringlist constinArgument1,
+                                         const class GALGAS_stringlist constinArgument2,
+                                         class GALGAS_stringset & ioArgument3,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 

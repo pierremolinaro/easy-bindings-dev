@@ -74,13 +74,15 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   #--- Check type
     @string entityName
     switch type
-    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, imageType :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case enumType (* *) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case classType (*) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case propertyClassType (**) :
+      error mModelControllerName : "the array controller model should be an entity" : entityName
+    case transientPropertyClassType (*) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case entityType (kEntityName) :
       entityName = kEntityName
@@ -125,7 +127,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
 #--- Check type
   @string selectionEntityName
   switch type
-  case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+  case stringType, boolType, dateType, doubleType, integerType, fontType, imageType :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case enumType (* *) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
@@ -135,6 +137,8 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case entityType (kEntityName) :
     selectionEntityName = kEntityName
+  case transientPropertyClassType (*) :
+    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   end
 #--- Find root entity observable properties
   [inSemanticContext.mEntityObservablePropertyMap searchKey

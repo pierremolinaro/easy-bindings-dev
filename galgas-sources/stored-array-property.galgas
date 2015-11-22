@@ -59,10 +59,12 @@ method @storedArrayPropertyList buildObservablePropertyMap
   #--- Check type
     @typeKindList typeList
     switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
+    case boolType, integerType, stringType, dateType, doubleType, fontType, imageType :
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
     case propertyClassType (**) :
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
+    case transientPropertyClassType (*) :
+      error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
     case enumType (* *) :
       error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
     case entityType (*) :
@@ -95,7 +97,7 @@ method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
   #--- Check type
     @typeKindList typeList
     switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
+    case boolType, integerType, stringType, dateType, doubleType, fontType, imageType :
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
     case enumType (* *) :
       error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
@@ -104,6 +106,8 @@ method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
     case classType (*) :
       typeList = {!type}
     case propertyClassType (**) :
+      error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
+    case transientPropertyClassType (*) :
       error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
     end
   #--- Code Generation

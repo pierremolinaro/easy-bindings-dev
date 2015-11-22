@@ -324,7 +324,7 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'"
     end
     switch relationshipType
-    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, imageType :
       error relationshipName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
       error relationshipName : "a property cannot accept 'all'" : outType
@@ -332,6 +332,8 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'" : outType
     case propertyClassType (**) :
       error relationshipName : "a property cannot accept 'all'" : outType
+    case transientPropertyClassType (*) :
+      error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
@@ -390,13 +392,15 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'"
     end
     switch propertyType
-    case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, imageType :
       error propertyName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
       error propertyName : "a property cannot accept 'all'" : outType
     case classType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case propertyClassType (**) :
+      error propertyName : "a property cannot accept 'all'" : outType
+    case transientPropertyClassType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -454,11 +458,13 @@ method @observablePropertyAST analyzeObservableProperty
     switch propertyKind
     case selectionController :
       switch type
-      case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType :
+      case stringType, boolType, dateType, doubleType, integerType, fontType, imageType :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case classType (*) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case propertyClassType (**) :
+        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
+      case transientPropertyClassType (*) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case enumType (* *) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

@@ -3,11 +3,15 @@
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_%!CLASS_NAME%  = EBReadOnlyClassProperty <%!CLASS_NAME%>
-typealias EBReadWriteProperty_%!CLASS_NAME% = EBReadWriteClassProperty <%!CLASS_NAME%>
+typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_NAME%>
+%
+if not TRANSIENT then
+%typealias EBReadWriteProperty_%!CLASS_NAME% = EBReadWriteClassProperty <%!CLASS_NAME%>
 typealias EBPropertyProxy_%!CLASS_NAME%     = EBPropertyClassProxy <%!CLASS_NAME%>
 typealias EBStoredProperty_%!CLASS_NAME%    = EBStoredClassProperty <%!CLASS_NAME%>
-typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_NAME%>
-
+%
+end
+%
 %
 if COMPARABLE then
 %

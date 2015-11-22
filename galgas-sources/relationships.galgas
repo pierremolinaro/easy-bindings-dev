@@ -125,7 +125,7 @@ method @toOneRelationshipList buildObservablePropertyMap
     [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
   #--- Check type
     switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
+    case boolType, integerType, stringType, dateType, doubleType, fontType, imageType :
       error mDestinationEntityName: "a simple type cannot be used as entitytype"
     case enumType (* *) :
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
@@ -133,6 +133,8 @@ method @toOneRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "a class type cannot be used as entitytype"
     case propertyClassType (**) :
       error mDestinationEntityName: "a property class type cannot be used as entitytype"
+    case transientPropertyClassType (*) :
+      error mInverseRelationshipName: "the opposite type cannot be used as entity type"
     case entityType (*) : # Ok
     end
   #--- Enter in property map
@@ -158,7 +160,7 @@ method @toManyRelationshipList buildObservablePropertyMap
     [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
   #--- Check type
     switch type
-    case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
+    case boolType, integerType, stringType, dateType, doubleType, fontType, imageType :
       error mDestinationEntityName: "a simple type cannot be used as entitytype"
     case enumType (* *) :
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
@@ -166,6 +168,8 @@ method @toManyRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "a class type cannot be used as entitytype"
     case propertyClassType (**) :
       error mDestinationEntityName: "a property class type cannot be used as entitytype"
+    case transientPropertyClassType (*) :
+      error mInverseRelationshipName: "the opposite type cannot be used as entity type"
     case entityType (*) : # Ok
     end
   #--- Enter in property map
@@ -212,13 +216,15 @@ method @toOneRelationshipList semanticAnalysis
      ]
    #--- Check opposite type
      switch oppositeType
-     case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
+     case boolType, integerType, stringType, dateType, doubleType, fontType, imageType :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case enumType (* *) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case classType (*) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case propertyClassType (**) :
+       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+     case transientPropertyClassType (*) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case entityType (*) : # Ok
      end
@@ -263,13 +269,15 @@ method @toManyRelationshipList semanticAnalysis
        ?*
      ]
      switch oppositeType
-     case boolType, integerType, stringType, colorType, dateType, doubleType, fontType, imageType :
+     case boolType, integerType, stringType, dateType, doubleType, fontType, imageType :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case enumType (* *) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case classType (*) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case propertyClassType (**) :
+       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+     case transientPropertyClassType (*) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case entityType (*) : # Ok
      end
