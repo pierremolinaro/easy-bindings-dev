@@ -1655,6 +1655,7 @@ class cCollectionElement_arrayControllerBoundColumnListForGeneration : public cC
 
 //--- Constructor
   public : cCollectionElement_arrayControllerBoundColumnListForGeneration (const GALGAS_string & in_mColumnName,
+                                                                           const GALGAS_typeKind & in_mSortPropertyType,
                                                                            const GALGAS_string & in_mColumnOutletTypeName,
                                                                            const GALGAS_string & in_mObservablePropertyForSorting,
                                                                            const GALGAS_string & in_mRunAction,
@@ -1677,13 +1678,14 @@ class cCollectionElement_arrayControllerBoundColumnListForGeneration : public cC
 //---------------------------------------------------------------------------------------------------------------------*
 
 cCollectionElement_arrayControllerBoundColumnListForGeneration::cCollectionElement_arrayControllerBoundColumnListForGeneration (const GALGAS_string & in_mColumnName,
+                                                                                                                                const GALGAS_typeKind & in_mSortPropertyType,
                                                                                                                                 const GALGAS_string & in_mColumnOutletTypeName,
                                                                                                                                 const GALGAS_string & in_mObservablePropertyForSorting,
                                                                                                                                 const GALGAS_string & in_mRunAction,
                                                                                                                                 const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList
                                                                                                                                 COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mColumnName, in_mColumnOutletTypeName, in_mObservablePropertyForSorting, in_mRunAction, in_mRegularBindingsGenerationList) {
+mObject (in_mColumnName, in_mSortPropertyType, in_mColumnOutletTypeName, in_mObservablePropertyForSorting, in_mRunAction, in_mRegularBindingsGenerationList) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1696,7 +1698,7 @@ bool cCollectionElement_arrayControllerBoundColumnListForGeneration::isValid (vo
 
 cCollectionElement * cCollectionElement_arrayControllerBoundColumnListForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_arrayControllerBoundColumnListForGeneration (mObject.mAttribute_mColumnName, mObject.mAttribute_mColumnOutletTypeName, mObject.mAttribute_mObservablePropertyForSorting, mObject.mAttribute_mRunAction, mObject.mAttribute_mRegularBindingsGenerationList COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_arrayControllerBoundColumnListForGeneration (mObject.mAttribute_mColumnName, mObject.mAttribute_mSortPropertyType, mObject.mAttribute_mColumnOutletTypeName, mObject.mAttribute_mObservablePropertyForSorting, mObject.mAttribute_mRunAction, mObject.mAttribute_mRegularBindingsGenerationList COMMA_HERE)) ;
   return result ;
 }
 
@@ -1707,6 +1709,10 @@ void cCollectionElement_arrayControllerBoundColumnListForGeneration::description
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mColumnName" ":" ;
   mObject.mAttribute_mColumnName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mSortPropertyType" ":" ;
+  mObject.mAttribute_mSortPropertyType.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mColumnOutletTypeName" ":" ;
@@ -1759,16 +1765,17 @@ GALGAS_arrayControllerBoundColumnListForGeneration GALGAS_arrayControllerBoundCo
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_arrayControllerBoundColumnListForGeneration GALGAS_arrayControllerBoundColumnListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                                  const GALGAS_string & inOperand1,
+                                                                                                                                  const GALGAS_typeKind & inOperand1,
                                                                                                                                   const GALGAS_string & inOperand2,
                                                                                                                                   const GALGAS_string & inOperand3,
-                                                                                                                                  const GALGAS_regularBindingsGenerationList & inOperand4
+                                                                                                                                  const GALGAS_string & inOperand4,
+                                                                                                                                  const GALGAS_regularBindingsGenerationList & inOperand5
                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerBoundColumnListForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     result.createNewEmptyList (THERE) ;
     capCollectionElement attributes ;
-    GALGAS_arrayControllerBoundColumnListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE) ;
+    GALGAS_arrayControllerBoundColumnListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE) ;
     result.addObject (attributes) ;
   }
   return result ;
@@ -1778,6 +1785,7 @@ GALGAS_arrayControllerBoundColumnListForGeneration GALGAS_arrayControllerBoundCo
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                                     const GALGAS_string & in_mColumnName,
+                                                                                    const GALGAS_typeKind & in_mSortPropertyType,
                                                                                     const GALGAS_string & in_mColumnOutletTypeName,
                                                                                     const GALGAS_string & in_mObservablePropertyForSorting,
                                                                                     const GALGAS_string & in_mRunAction,
@@ -1785,6 +1793,7 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::makeAttributesFromObjec
                                                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement_arrayControllerBoundColumnListForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_arrayControllerBoundColumnListForGeneration (in_mColumnName,
+                                                                                 in_mSortPropertyType,
                                                                                  in_mColumnOutletTypeName,
                                                                                  in_mObservablePropertyForSorting,
                                                                                  in_mRunAction,
@@ -1796,14 +1805,15 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::makeAttributesFromObjec
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                              const GALGAS_string & inOperand1,
+                                                                              const GALGAS_typeKind & inOperand1,
                                                                               const GALGAS_string & inOperand2,
                                                                               const GALGAS_string & inOperand3,
-                                                                              const GALGAS_regularBindingsGenerationList & inOperand4
+                                                                              const GALGAS_string & inOperand4,
+                                                                              const GALGAS_regularBindingsGenerationList & inOperand5
                                                                               COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_arrayControllerBoundColumnListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_arrayControllerBoundColumnListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -1814,16 +1824,17 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::addAssign_operation (co
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                                                 const GALGAS_string inOperand1,
+                                                                                 const GALGAS_typeKind inOperand1,
                                                                                  const GALGAS_string inOperand2,
                                                                                  const GALGAS_string inOperand3,
-                                                                                 const GALGAS_regularBindingsGenerationList inOperand4,
+                                                                                 const GALGAS_string inOperand4,
+                                                                                 const GALGAS_regularBindingsGenerationList inOperand5,
                                                                                  const GALGAS_uint inInsertionIndex,
                                                                                  C_Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_arrayControllerBoundColumnListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_arrayControllerBoundColumnListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -1834,10 +1845,11 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_insertAtIndex 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                                                 GALGAS_string & outOperand1,
+                                                                                 GALGAS_typeKind & outOperand1,
                                                                                  GALGAS_string & outOperand2,
                                                                                  GALGAS_string & outOperand3,
-                                                                                 GALGAS_regularBindingsGenerationList & outOperand4,
+                                                                                 GALGAS_string & outOperand4,
+                                                                                 GALGAS_regularBindingsGenerationList & outOperand5,
                                                                                  const GALGAS_uint inRemoveIndex,
                                                                                  C_Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) {
@@ -1851,13 +1863,15 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_removeAtIndex 
       outOperand2.drop () ;
       outOperand3.drop () ;
       outOperand4.drop () ;
+      outOperand5.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
       outOperand0 = p->mObject.mAttribute_mColumnName ;
-      outOperand1 = p->mObject.mAttribute_mColumnOutletTypeName ;
-      outOperand2 = p->mObject.mAttribute_mObservablePropertyForSorting ;
-      outOperand3 = p->mObject.mAttribute_mRunAction ;
-      outOperand4 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
+      outOperand1 = p->mObject.mAttribute_mSortPropertyType ;
+      outOperand2 = p->mObject.mAttribute_mColumnOutletTypeName ;
+      outOperand3 = p->mObject.mAttribute_mObservablePropertyForSorting ;
+      outOperand4 = p->mObject.mAttribute_mRunAction ;
+      outOperand5 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
     }
   }
 }
@@ -1865,10 +1879,11 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_removeAtIndex 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                                            GALGAS_string & outOperand1,
+                                                                            GALGAS_typeKind & outOperand1,
                                                                             GALGAS_string & outOperand2,
                                                                             GALGAS_string & outOperand3,
-                                                                            GALGAS_regularBindingsGenerationList & outOperand4,
+                                                                            GALGAS_string & outOperand4,
+                                                                            GALGAS_regularBindingsGenerationList & outOperand5,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -1880,23 +1895,26 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_popFirst (GALG
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mColumnName ;
-    outOperand1 = p->mObject.mAttribute_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mAttribute_mObservablePropertyForSorting ;
-    outOperand3 = p->mObject.mAttribute_mRunAction ;
-    outOperand4 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
+    outOperand1 = p->mObject.mAttribute_mSortPropertyType ;
+    outOperand2 = p->mObject.mAttribute_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mAttribute_mObservablePropertyForSorting ;
+    outOperand4 = p->mObject.mAttribute_mRunAction ;
+    outOperand5 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                                           GALGAS_string & outOperand1,
+                                                                           GALGAS_typeKind & outOperand1,
                                                                            GALGAS_string & outOperand2,
                                                                            GALGAS_string & outOperand3,
-                                                                           GALGAS_regularBindingsGenerationList & outOperand4,
+                                                                           GALGAS_string & outOperand4,
+                                                                           GALGAS_regularBindingsGenerationList & outOperand5,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -1908,23 +1926,26 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::modifier_popLast (GALGA
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mColumnName ;
-    outOperand1 = p->mObject.mAttribute_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mAttribute_mObservablePropertyForSorting ;
-    outOperand3 = p->mObject.mAttribute_mRunAction ;
-    outOperand4 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
+    outOperand1 = p->mObject.mAttribute_mSortPropertyType ;
+    outOperand2 = p->mObject.mAttribute_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mAttribute_mObservablePropertyForSorting ;
+    outOperand4 = p->mObject.mAttribute_mRunAction ;
+    outOperand5 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::method_first (GALGAS_string & outOperand0,
-                                                                       GALGAS_string & outOperand1,
+                                                                       GALGAS_typeKind & outOperand1,
                                                                        GALGAS_string & outOperand2,
                                                                        GALGAS_string & outOperand3,
-                                                                       GALGAS_regularBindingsGenerationList & outOperand4,
+                                                                       GALGAS_string & outOperand4,
+                                                                       GALGAS_regularBindingsGenerationList & outOperand5,
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -1936,23 +1957,26 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::method_first (GALGAS_st
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mColumnName ;
-    outOperand1 = p->mObject.mAttribute_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mAttribute_mObservablePropertyForSorting ;
-    outOperand3 = p->mObject.mAttribute_mRunAction ;
-    outOperand4 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
+    outOperand1 = p->mObject.mAttribute_mSortPropertyType ;
+    outOperand2 = p->mObject.mAttribute_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mAttribute_mObservablePropertyForSorting ;
+    outOperand4 = p->mObject.mAttribute_mRunAction ;
+    outOperand5 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_arrayControllerBoundColumnListForGeneration::method_last (GALGAS_string & outOperand0,
-                                                                      GALGAS_string & outOperand1,
+                                                                      GALGAS_typeKind & outOperand1,
                                                                       GALGAS_string & outOperand2,
                                                                       GALGAS_string & outOperand3,
-                                                                      GALGAS_regularBindingsGenerationList & outOperand4,
+                                                                      GALGAS_string & outOperand4,
+                                                                      GALGAS_regularBindingsGenerationList & outOperand5,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -1964,13 +1988,15 @@ void GALGAS_arrayControllerBoundColumnListForGeneration::method_last (GALGAS_str
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mColumnName ;
-    outOperand1 = p->mObject.mAttribute_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mAttribute_mObservablePropertyForSorting ;
-    outOperand3 = p->mObject.mAttribute_mRunAction ;
-    outOperand4 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
+    outOperand1 = p->mObject.mAttribute_mSortPropertyType ;
+    outOperand2 = p->mObject.mAttribute_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mAttribute_mObservablePropertyForSorting ;
+    outOperand4 = p->mObject.mAttribute_mRunAction ;
+    outOperand5 = p->mObject.mAttribute_mRegularBindingsGenerationList ;
   }
 }
 
@@ -2037,6 +2063,21 @@ GALGAS_string GALGAS_arrayControllerBoundColumnListForGeneration::getter_mColumn
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
     result = p->mObject.mAttribute_mColumnName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_typeKind GALGAS_arrayControllerBoundColumnListForGeneration::getter_mSortPropertyTypeAtIndex (const GALGAS_uint & inIndex,
+                                                                                                     C_Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_arrayControllerBoundColumnListForGeneration * p = (cCollectionElement_arrayControllerBoundColumnListForGeneration *) attributes.ptr () ;
+  GALGAS_typeKind result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
+    result = p->mObject.mAttribute_mSortPropertyType ;
   }
   return result ;
 }
@@ -2126,6 +2167,14 @@ GALGAS_string cEnumerator_arrayControllerBoundColumnListForGeneration::current_m
   const cCollectionElement_arrayControllerBoundColumnListForGeneration * p = (const cCollectionElement_arrayControllerBoundColumnListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
   return p->mObject.mAttribute_mColumnName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_typeKind cEnumerator_arrayControllerBoundColumnListForGeneration::current_mSortPropertyType (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerBoundColumnListForGeneration * p = (const cCollectionElement_arrayControllerBoundColumnListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerBoundColumnListForGeneration) ;
+  return p->mObject.mAttribute_mSortPropertyType ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

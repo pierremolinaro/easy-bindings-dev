@@ -232,6 +232,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerFilt
 class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_string mAttribute_mColumnName ;
+  public : GALGAS_typeKind mAttribute_mSortPropertyType ;
   public : GALGAS_string mAttribute_mColumnOutletTypeName ;
   public : GALGAS_string mAttribute_mObservablePropertyForSorting ;
   public : GALGAS_string mAttribute_mRunAction ;
@@ -242,9 +243,6 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_arrayControllerBoundColumnListForGeneration_2D_element constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public : GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (void) ;
 
@@ -253,6 +251,7 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
 
 //--------------------------------- Native constructor
   public : GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (const GALGAS_string & in_mColumnName,
+                                                                          const GALGAS_typeKind & in_mSortPropertyType,
                                                                           const GALGAS_string & in_mColumnOutletTypeName,
                                                                           const GALGAS_string & in_mObservablePropertyForSorting,
                                                                           const GALGAS_string & in_mRunAction,
@@ -270,10 +269,11 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
 
 //--------------------------------- GALGAS constructors
   public : static GALGAS_arrayControllerBoundColumnListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                                                 const class GALGAS_string & inOperand1,
+                                                                                                 const class GALGAS_typeKind & inOperand1,
                                                                                                  const class GALGAS_string & inOperand2,
                                                                                                  const class GALGAS_string & inOperand3,
-                                                                                                 const class GALGAS_regularBindingsGenerationList & inOperand4
+                                                                                                 const class GALGAS_string & inOperand4,
+                                                                                                 const class GALGAS_regularBindingsGenerationList & inOperand5
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -297,6 +297,8 @@ class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_
   public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mRunAction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mSortPropertyType (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
