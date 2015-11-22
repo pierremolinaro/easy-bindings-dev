@@ -412,6 +412,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ?let @observablePropertyMap boundModelObservablePropertyMap
   ]
   @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+  @arrayControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
   for () in mArrayControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if mColumnBindingAST.mRunActionName.string != "" then
@@ -430,23 +431,24 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       !?regularBindingsGenerationList
     )
   #-------- Sort property
-    @typeKind sortPropertyType = .stringType # Any value
     if mSortPropertyName.string != "" then
       [boundModelObservablePropertyMap searchKey
         !mSortPropertyName
-        ?sortPropertyType
+        ?let sortPropertyType
         ?4*
       ]
       if not [sortPropertyType isComparable] then
         error mSortPropertyName : "this property is not comparable"
-      end    
+      end 
+      arrayControllerSortedColumnListForGeneration +=    
+        !mColumnName.string
+        !sortPropertyType
+        !mSortPropertyName.string
     end
   #-------- Binding generation
     arrayControllerBoundColumnListForGeneration +=
       !mColumnName.string
-      !sortPropertyType
       !mColumnOutletTypeName.string
-      !mSortPropertyName.string
       !mColumnBindingAST.mRunActionName.string
       !regularBindingsGenerationList
     ioNeededOutletClasses += !mColumnOutletTypeName.string
@@ -474,6 +476,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     !arrayControllerFilterListForGeneration
     ![mArrayControllerModel modelString]
     !arrayControllerBoundColumnListForGeneration
+    !arrayControllerSortedColumnListForGeneration
     ![mArrayControllerModel modelTypeName !inRootEntityName !inObservableProperties]
     ![mArrayControllerModel modelTypeName2 !inRootEntityName !inObservableProperties]
     !modelKind
@@ -499,6 +502,7 @@ list @arrayControllerForGeneration {
   @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
   @string mModelString
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
+  @arrayControllerSortedColumnListForGeneration mArrayControllerSortedColumnListForGeneration
   @string mModelTypeName
   @string mModelTypeName2
   @arrayControllerModelKind mModelKind
@@ -589,11 +593,17 @@ list @arrayControllerFilterListForGeneration {
 
 list @arrayControllerBoundColumnListForGeneration {
   @string mColumnName
-  @typeKind mSortPropertyType
   @string mColumnOutletTypeName
-  @string mObservablePropertyForSorting
   @string mRunAction # Empty string if no action
   @regularBindingsGenerationList mRegularBindingsGenerationList
+}
+
+#......................................................................................................................*
+
+list @arrayControllerSortedColumnListForGeneration {
+  @string mColumnName
+  @typeKind mSortPropertyType
+  @string mObservablePropertyForSorting
 }
 
 #......................................................................................................................*
@@ -684,6 +694,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string MODEL_TYPE_NAME
     ?@string MODEL_TYPE_NAME_2
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@arrayControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
     ?@2stringlist ATTRIBUTE_VALUES
@@ -706,10 +717,8 @@ proc generateArrayControllers
   for () in inArrayControllerListForGeneration do
   #--- Build observed property set (for sorting and filtering)
     @stringset observedProperties = {}
-    for () in mArrayControllerBoundColumnListForGeneration do
-      if mObservablePropertyForSorting != "" then
-        observedProperties += !mObservablePropertyForSorting
-      end
+    for () in mArrayControllerSortedColumnListForGeneration do
+      observedProperties += !mObservablePropertyForSorting
     end
     for () in mArrayControllerFilterListForGeneration do
       observedProperties += !mFilterPropertyName
@@ -723,6 +732,7 @@ proc generateArrayControllers
       !mModelTypeName
       !mModelTypeName2
       !mArrayControllerBoundColumnListForGeneration
+      !mArrayControllerSortedColumnListForGeneration
       !mElementTypeName
       !observedProperties
       !mAttributeListForGeneration

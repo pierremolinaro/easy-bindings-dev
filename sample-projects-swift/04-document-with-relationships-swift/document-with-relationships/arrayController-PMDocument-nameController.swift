@@ -16,34 +16,6 @@ private let DEBUG_EVENT = false
 final class DataSource_PMDocument_nameController : TransientArrayOf_NameEntity, EBTableViewDataSource {
 
   //····················································································································
-  //    Sort descriptors
-  //····················································································································
-  
-/*  private var mSortDescriptors : [NSSortDescriptor] = [NSSortDescriptor] () {
-    didSet {
-      postEvent () // Force sorting
-    }
-  } */
-
-  //····················································································································
-  
-/*  func setSortDescriptors (sortDescriptors : [NSSortDescriptor]) {
-    mSortDescriptors = sortDescriptors
-  } */
-  
-  //····················································································································
-  //    T A B L E V I E W    D A T A S O U R C E : tableView:sortDescriptorsDidChange:
-  //····················································································································
-
-/*  func tableView (aTableView: NSTableView,
-                  sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
-    if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
-    }
-    mSortDescriptors = aTableView.sortDescriptors
-  } */
-
-  //····················································································································
   //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView
   //····················································································································
 
@@ -192,8 +164,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     for (column, ascending) in mSortDescriptorArray {
       if column == "name" {
         order = compare_String (left.name, right:right.name)
-      }
-      if column == "int" {
+      }else if column == "int" {
         order = compare_Int (left.aValue, right:right.aValue)
       }
       if !ascending {
