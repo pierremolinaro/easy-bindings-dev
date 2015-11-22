@@ -56,30 +56,29 @@ syntax extension easyBindings_syntax {
 
   #....................................................................................................................*
   
-   rule <explicit_value>
-    !@abstractDefaultValue outDefaultValue {
+   rule <explicit_value> !@abstractDefaultValue outDefaultValue {
     select
       $yes$
-      outDefaultValue = @boolAsDefaultValue.new { !@lbool. new { !true !@location.here}}
+      outDefaultValue = @boolAsDefaultValue.new {!.new {!true !.here}}
     or
       $no$
-      outDefaultValue = @boolAsDefaultValue.new { !@lbool. new { !false !@location.here}}
+      outDefaultValue = @boolAsDefaultValue.new {!.new {!false !.here}}
     or
       $literal_integer$ ?var  @luint integerValue
-      outDefaultValue = @integerAsDefaultValue.new { !integerValue}
+      outDefaultValue = @integerAsDefaultValue.new {!integerValue}
     or
       $literal_double$ ?var  @ldouble doubleValue ?*
-      outDefaultValue = @doubleAsDefaultValue. new { !doubleValue}
+      outDefaultValue = @doubleAsDefaultValue.new {!doubleValue}
     or
       $literal_string$ ?var @lstring stringValue
-      outDefaultValue = @stringAsDefaultValue. new { !stringValue}
+      outDefaultValue = @stringAsDefaultValue.new {!stringValue}
     or
       $identifier$ ?let @lstring stringValue
-      outDefaultValue = @identifierAsDefaultValue. new { !stringValue}
+      outDefaultValue = @identifierAsDefaultValue.new {!stringValue}
     or
       $($
-      let @location startLocation = @location.here
-      var defaultValueList =@defaultValueList.emptyList{}
+      let startLocation = @location.here
+      @defaultValueList defaultValueList = {}
       repeat
         <explicit_value> ?var @abstractDefaultValue defaultValue
         defaultValueList += !defaultValue
@@ -87,7 +86,7 @@ syntax extension easyBindings_syntax {
         $,$
       end
       $)$
-      outDefaultValue = @listAsDefaultValue. new { !startLocation !defaultValueList}
+      outDefaultValue = @listAsDefaultValue.new {!startLocation !defaultValueList}
     end
   }
 
@@ -116,11 +115,12 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, colorType, dateType, doubleType, stringType, fontType, imageType :
+    case integerType, dateType, doubleType, stringType, fontType, imageType :
     case entityType (*) :
     case propertyClassType (* *) :
     case classType (*) :
     case enumType (* *) :
+    case transientPropertyClassType (*) :
     end
   end
   if not found then
@@ -145,11 +145,12 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFontOfSize (" + mValue.uint + ".0)"
       found = true
-    case boolType, colorType, dateType, doubleType, stringType, imageType :
+    case boolType, dateType, doubleType, stringType, imageType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
     case propertyClassType (**) :
+    case transientPropertyClassType (*) :
     end
   end
   if not found then
@@ -171,11 +172,12 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, colorType, dateType, integerType, stringType, fontType, imageType :
+    case boolType, dateType, integerType, stringType, fontType, imageType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
     case propertyClassType (**) :
+    case transientPropertyClassType (*) :
     end
   end
   if not found then
@@ -197,11 +199,12 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case stringType :
       outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
       found = true
-    case boolType, colorType, dateType, integerType, doubleType, fontType :
+    case boolType, dateType, integerType, doubleType, fontType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
     case propertyClassType (**) :
+    case transientPropertyClassType (*) :
     case imageType :
       outSwiftDefaultValueAsString = "NSImage (named:\""+ mValue.string + "\")"
       found = true    
@@ -211,54 +214,6 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     error mValue
     : "only a string attribute can be initialized by a string constant"  
   end
-}
-
-#......................................................................................................................*
-
-func %once predefinedColors -> @stringset outResult {
-  outResult = @stringset.emptySet
-  outResult += !"blackColor"
-  outResult += !"blueColor"
-  outResult += !"brownColor"
-  outResult += !"clearColor"
-  outResult += !"controlColor"
-  outResult += !"controlDarkShadowColor"
-  outResult += !"controlHighlightColor"
-  outResult += !"controlLightHighlightColor"
-  outResult += !"controlShadowColor"
-  outResult += !"controlTextColor"
-  outResult += !"cyanColor"
-  outResult += !"darkGrayColor"
-  outResult += !"disabledControlTextColor"
-  outResult += !"grayColor"
-  outResult += !"greenColor"
-  outResult += !"gridColor"
-  outResult += !"headerColor"
-  outResult += !"headerTextColor"
-  outResult += !"highlightColor"
-  outResult += !"keyboardFocusIndicatorColor"
-  outResult += !"knobColor"
-  outResult += !"lightGrayColor"
-  outResult += !"magentaColor"
-  outResult += !"orangeColor"
-  outResult += !"purpleColor"
-  outResult += !"redColor"
-  outResult += !"scrollBarColor"
-  outResult += !"selectedControlColor"
-  outResult += !"selectedControlTextColor"
-  outResult += !"selectedKnobColor"
-  outResult += !"selectedMenuItemColor"
-  outResult += !"selectedMenuItemTextColor"
-  outResult += !"selectedTextBackgroundColor"
-  outResult += !"selectedTextColor"
-  outResult += !"shadowColor"
-  outResult += !"textBackgroundColor"
-  outResult += !"textColor"
-  outResult += !"whiteColor"
-  outResult += !"windowBackgroundColor"
-  outResult += !"windowFrameColor"
-  outResult += !"windowFrameTextColor"
-  outResult += !"yellowColor"
 }
 
 #......................................................................................................................*
@@ -278,14 +233,6 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
   @bool found = false
   for () in  inAttributeActualTypeList while not found do
     switch mType 
-    case colorType :
-      found = true
-      if [predefinedColors () hasKey !mValue.string] then
-        outSwiftDefaultValueAsString = "NSColor." + mValue.string + " ()"
-      else
-        error mValue
-        : "unknown predefined color"  
-      end
     case dateType :
       found = true
       if [predefinedDates () hasKey !mValue.string] then
@@ -318,7 +265,10 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid font type"  
     case imageType :
       error mValue : "invalid image type"  
+    case transientPropertyClassType (*) :
+      error mValue : "invalid image type"  
     case propertyClassType (@string propertyClassTypeName @propertyClassDefaultValues defaultValues) :
+      found = true
       switch defaultValues
       case string (@stringset values) :
         if [values hasKey !mValue.string] then

@@ -1151,20 +1151,20 @@ func compare_String (left : EBReadOnlyProperty_String, right : EBReadOnlyPropert
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSColor  = EBReadOnlyClassProperty <NSColor>
+typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
 typealias EBReadWriteProperty_NSColor = EBReadWriteClassProperty <NSColor>
 typealias EBPropertyProxy_NSColor     = EBPropertyClassProxy <NSColor>
 typealias EBStoredProperty_NSColor    = EBStoredClassProperty <NSColor>
-typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Class property NSDate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSDate  = EBReadOnlyClassProperty <NSDate>
+typealias EBTransientProperty_NSDate = EBTransientClassProperty <NSDate>
 typealias EBReadWriteProperty_NSDate = EBReadWriteClassProperty <NSDate>
 typealias EBPropertyProxy_NSDate     = EBPropertyClassProxy <NSDate>
 typealias EBStoredProperty_NSDate    = EBStoredClassProperty <NSDate>
-typealias EBTransientProperty_NSDate = EBTransientClassProperty <NSDate>
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1207,18 +1207,18 @@ func compare_NSDate (left : EBReadOnlyProperty_NSDate, right : EBReadOnlyPropert
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSFont  = EBReadOnlyClassProperty <NSFont>
+typealias EBTransientProperty_NSFont = EBTransientClassProperty <NSFont>
 typealias EBReadWriteProperty_NSFont = EBReadWriteClassProperty <NSFont>
 typealias EBPropertyProxy_NSFont     = EBPropertyClassProxy <NSFont>
 typealias EBStoredProperty_NSFont    = EBStoredClassProperty <NSFont>
-typealias EBTransientProperty_NSFont = EBTransientClassProperty <NSFont>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Class property NSImage
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSImage  = EBReadOnlyClassProperty <NSImage>
+typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
 typealias EBReadWriteProperty_NSImage = EBReadWriteClassProperty <NSImage>
 typealias EBPropertyProxy_NSImage     = EBPropertyClassProxy <NSImage>
 typealias EBStoredProperty_NSImage    = EBStoredClassProperty <NSImage>
-typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
 

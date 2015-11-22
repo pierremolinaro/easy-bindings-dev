@@ -7,7 +7,6 @@ enum @typeKind {
   case integerType 
   case doubleType
   case stringType 
-  case colorType 
   case imageType 
   case dateType
   case fontType
@@ -15,6 +14,7 @@ enum @typeKind {
   case entityType (@string entityName)
   case classType (@string className)
   case propertyClassType (@string classPropertyName @propertyClassDefaultValues defaultValues)
+  case transientPropertyClassType (@string classPropertyName)
 }
 
 #......................................................................................................................*
@@ -23,7 +23,7 @@ getter @typeKind isComparable -> @bool outResult {
   switch self
   case boolType, integerType, doubleType, stringType, dateType :
     outResult = true
-  case colorType, imageType, fontType :
+  case imageType, fontType :
     outResult = false
   case enumType (* *) :
     outResult = false
@@ -33,32 +33,11 @@ getter @typeKind isComparable -> @bool outResult {
     outResult = false
   case propertyClassType (* *) :
     outResult = false
+  case transientPropertyClassType (*) :
+    outResult = false
   end
 }
 
-
-#......................................................................................................................*
-
-getter @typeKind defaultSwiftTypeValueAsString -> @string outResult {
-  switch self
-  case boolType : outResult = "false"
-  case integerType : outResult = "0"
-  case doubleType : outResult = "0.0"
-  case stringType : outResult = "\"\"" 
-  case colorType : outResult = "NSColor.blackColor ()"
-  case imageType : outResult = "NSImage (named:\"NSImageNameApplicationIcon\")"
-  case dateType : outResult = "NSDate ()"
-  case fontType : outResult = "NSFont (boldSystemFontOfSize:0.0)"
-  case enumType (@string enumTypeName @enumConstantMap constantMap) :
-    outResult = enumTypeName + "." + [[constantMap keyList] mValueAtIndex !0]
-  case entityType (*) :
-    outResult = "<<invalid defaultSwiftTypeValueAsString for entity>>"
-  case classType (*) :
-    outResult = "<<invalid defaultSwiftTypeValueAsString for class>>"
-  case propertyClassType (**) :
-    outResult = "<<invalid defaultSwiftTypeValueAsString for property class>>"
-  end
-}
 
 #......................................................................................................................*
 
@@ -127,7 +106,6 @@ proc typeInventory
 
   [!?outUnifiedTypeMap insertKey !["NSFont" nowhere]   !.fontType !{}]
   [!?outUnifiedTypeMap insertKey !["NSImage" nowhere]  !.imageType !{}]
-  [!?outUnifiedTypeMap insertKey !["NSColor" nowhere]  !.colorType !{}]
   [!?outUnifiedTypeMap insertKey !["NSDate" nowhere]   !.dateType !{}]
 
   [!?outUnifiedTypeMap insertKey !["enum" nowhere]   !.enumType {!enumTypeName:"" !constantMap:{}} !{}]
@@ -151,7 +129,6 @@ getter @typeKind swiftTypeName -> @string outResult {
   switch self
   case stringType : outResult = "String"
   case boolType : outResult = "Bool"
-  case colorType : outResult = "NSColor"
   case dateType : outResult = "NSDate"
   case doubleType : outResult = "Double"
   case fontType : outResult = "NSFont"
@@ -160,6 +137,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case enumType (@string enumTypeName *) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName
   case propertyClassType (@string classTypeName *) : outResult = classTypeName
+  case transientPropertyClassType (@string classTypeName) : outResult = classTypeName
   case integerType : outResult = "Int"
   end
 }

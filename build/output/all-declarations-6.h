@@ -11,6 +11,18 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList inObject,
+                                      const class GALGAS_semanticContext constin_inSemanticContext,
+                                      class GALGAS_toOneEntityRelationshipListForGeneration & out_outToOneEntityRelationshipListForGeneration,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                             Category method '@toManyRelationshipList semanticAnalysis'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -199,16 +211,6 @@ class GALGAS_string extensionGetter_modelTypeName_32_ (const class GALGAS_arrayC
 class GALGAS_bool extensionGetter_isComparable (const class GALGAS_typeKind & inObject,
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Category getter '@typeKind defaultSwiftTypeValueAsString' (as function)                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string extensionGetter_defaultSwiftTypeValueAsString (const class GALGAS_typeKind & inObject,
-                                                                   class C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

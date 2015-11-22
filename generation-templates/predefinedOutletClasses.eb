@@ -1,4 +1,14 @@
-property class NSColore (blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor, controlLightHighlightColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor, disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, headerTextColor, highlightColor, keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor, scrollBarColor, selectedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor, selectedMenuItemTextColor, selectedTextBackgroundColor, selectedTextColor, shadowColor, textBackgroundColor, textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor) ;
+property class NSColor (
+  blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor,
+  controlLightHighlightColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor,
+  disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, headerTextColor, highlightColor,
+  keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor,
+  scrollBarColor, selectedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor,
+  selectedMenuItemTextColor, selectedTextBackgroundColor, selectedTextColor, shadowColor, textBackgroundColor,
+  textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor
+) ;
+
+#transient property class NSImage ;
 
 outletClass EBButton $run $enabled ;
 

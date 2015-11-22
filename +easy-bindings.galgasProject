@@ -16,6 +16,7 @@ project (0:0:1) -> "eb" {
 
 #--- Property class
   "galgas-sources/property-class.galgas"
+  "galgas-sources/transient-property-class.galgas"
 
 #--- Components  
   "galgas-sources/enumeration.galgas"

@@ -252,11 +252,13 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "a collection cannot be observed"
   end
   switch outType
-  case stringType, boolType, colorType, dateType, doubleType, integerType, fontType, imageType : # Ok
+  case stringType, boolType, dateType, doubleType, integerType, fontType, imageType : # Ok
   case enumType (* *) : # Ok
   case entityType (*) :
     error [mProperty location] : "an entity cannot be observed"
   case classType (*) :
+    error [mProperty location] : "a class cannot be observed"
+  case transientPropertyClassType (*) :
     error [mProperty location] : "a class cannot be observed"
   case propertyClassType (**) : # Ok
   end

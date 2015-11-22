@@ -711,11 +711,11 @@ const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses (
 GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "property class NSColore (blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor, controlLightHighli"
-    "ghtColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor, disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, head"
-    "erTextColor, highlightColor, keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor, scrollBarColor, "
-    "selectedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor, selectedMenuItemTextColor, selectedTextBackgroundColor, selec"
-    "tedTextColor, shadowColor, textBackgroundColor, textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor) ;\n"
+  result << "property class NSColor (blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor, controlLightHighlig"
+    "htColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor, disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, heade"
+    "rTextColor, highlightColor, keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor, scrollBarColor, s"
+    "electedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor, selectedMenuItemTextColor, selectedTextBackgroundColor, select"
+    "edTextColor, shadowColor, textBackgroundColor, textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor) ;\n"
     "\n"
     "outletClass EBButton $run $enabled ;\n"
     "\n"

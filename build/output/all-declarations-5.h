@@ -53,7 +53,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class C
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class C_Compiler * inCompiler,
                                                                         const class GALGAS_string & in_CLASS_5F_NAME,
-                                                                        const class GALGAS_bool & in_COMPARABLE
+                                                                        const class GALGAS_bool & in_COMPARABLE,
+                                                                        const class GALGAS_bool & in_TRANSIENT
                                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1146,17 +1147,5 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_toManyRelatio
                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList inObject,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_toOneEntityRelationshipListForGeneration & out_outToOneEntityRelationshipListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
 
 #endif
