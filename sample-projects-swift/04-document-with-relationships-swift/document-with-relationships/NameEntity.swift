@@ -46,6 +46,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_name (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_name.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -60,6 +61,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_name (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_name.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -113,6 +115,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_aValue (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_aValue.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -127,6 +130,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_aValue (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_aValue.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :

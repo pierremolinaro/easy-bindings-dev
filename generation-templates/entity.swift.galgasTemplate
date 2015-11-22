@@ -48,6 +48,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -62,6 +63,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
