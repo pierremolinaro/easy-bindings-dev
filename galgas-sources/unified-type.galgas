@@ -7,7 +7,6 @@ enum @typeKind {
   case integerType 
   case doubleType
   case stringType 
-  case imageType 
   case dateType
   case fontType
   case enumType (@string enumTypeName @enumConstantMap constantMap)
@@ -23,7 +22,7 @@ getter @typeKind isComparable -> @bool outResult {
   switch self
   case boolType, integerType, doubleType, stringType, dateType :
     outResult = true
-  case imageType, fontType :
+  case fontType :
     outResult = false
   case enumType (* *) :
     outResult = false
@@ -105,7 +104,6 @@ proc typeInventory
   [!?outUnifiedTypeMap insertKey !["Bool" nowhere]   !.boolType !{}]
 
   [!?outUnifiedTypeMap insertKey !["NSFont" nowhere]   !.fontType !{}]
-  [!?outUnifiedTypeMap insertKey !["NSImage" nowhere]  !.imageType !{}]
   [!?outUnifiedTypeMap insertKey !["NSDate" nowhere]   !.dateType !{}]
 
   [!?outUnifiedTypeMap insertKey !["enum" nowhere]   !.enumType {!enumTypeName:"" !constantMap:{}} !{}]
@@ -132,7 +130,6 @@ getter @typeKind swiftTypeName -> @string outResult {
   case dateType : outResult = "NSDate"
   case doubleType : outResult = "Double"
   case fontType : outResult = "NSFont"
-  case imageType : outResult = "NSImage"
   case entityType (@string entityName) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName

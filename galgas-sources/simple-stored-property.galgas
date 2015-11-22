@@ -85,7 +85,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
   #--- Check type
     @typeKindList typeList
     switch type
-    case boolType, integerType, stringType, dateType, doubleType, fontType, imageType : # Ok
+    case boolType, integerType, stringType, dateType, doubleType, fontType : # Ok
       typeList = {!type}
     case enumType (* *) : # Ok
       typeList = {!type}
@@ -125,7 +125,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
   #--- Check type
     @typeKindList typeList
     switch type
-    case boolType, integerType, stringType, dateType, doubleType, fontType, imageType : # Ok
+    case boolType, integerType, stringType, dateType, doubleType, fontType : # Ok
       typeList = {!type}
     case enumType (* *) : # Ok
       typeList = {!type}
@@ -134,7 +134,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
     case propertyClassType (**) :
       typeList = {!type}
     case transientPropertyClassType (*) :
-      typeList = {!type}
+      error mPropertyName: "a transient property class cannot be used as simple property type" : typeList
     case entityType (*) :
       error mPropertyName: "an entity cannot be used as simple property type" : typeList
     end

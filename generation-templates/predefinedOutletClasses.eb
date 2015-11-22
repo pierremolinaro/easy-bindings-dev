@@ -8,7 +8,7 @@ property class NSColor (
   textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor
 ) ;
 
-#transient property class NSImage ;
+transient property class NSImage ;
 
 outletClass EBButton $run $enabled ;
 

@@ -221,16 +221,6 @@ override method @classDeclaration semanticAnalysis
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#--- Analyze toOne relationships
-#  [mToOneRelationshipList semanticAnalysis
-#    !inSemanticContext
-#    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
-#  ]
-##--- Analyze toMany relationships
-#  [mToManyRelationshipList semanticAnalysis
-#    !inSemanticContext
-#    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
-#  ]
 #--- Check extern declarations
   for () in mExternSwiftFunctionList do
     if not [externSwiftFunctionCallerSet () hasKey !mCallerName.string] then
@@ -251,13 +241,10 @@ override method @classDeclaration semanticAnalysis
 #--- Generation
   ioGeneration.mClassListForGeneration +=
     !mClassName.string
-#    !mSuperClassName.string
     !simpleStoredPropertyListForGeneration
     !transientDefinitionListForGeneration
     !mExternSwiftFunctionList
     !mExternSwiftDelegateList
-#    !toOneEntityRelationshipListForGeneration
-#    !toManyEntityRelationshipListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -266,11 +253,8 @@ override method @classDeclaration semanticAnalysis
 
 list @classListForGeneration {
   @string mClassName
-#  @string mSuperClassName
   @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mTransientListForGeneration
-#  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
-#  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
 }
@@ -287,9 +271,6 @@ private filewrapper classGenerationTemplate in "../generation-templates" {
     ?@externSwiftFunctionList EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION
     ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
     ?@string EXPLORER_ACCESS
-
-#    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
-#    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -306,8 +287,6 @@ proc generateClasses
       !mClassName
       !mSimpleStoredPropertyListForGeneration
       !mTransientListForGeneration
-#      !mToOneEntityRelationshipList
-#      !mToManyEntityRelationshipList
       !mExternSwiftFunctionList
       !mExternSwiftDelegateList
       !"<< not handled>>"

@@ -115,7 +115,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, dateType, doubleType, stringType, fontType, imageType :
+    case integerType, dateType, doubleType, stringType, fontType :
     case entityType (*) :
     case propertyClassType (* *) :
     case classType (*) :
@@ -145,7 +145,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFontOfSize (" + mValue.uint + ".0)"
       found = true
-    case boolType, dateType, doubleType, stringType, imageType :
+    case boolType, dateType, doubleType, stringType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
@@ -172,7 +172,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, dateType, integerType, stringType, fontType, imageType :
+    case boolType, dateType, integerType, stringType, fontType :
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
@@ -205,9 +205,6 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case classType (*) :
     case propertyClassType (**) :
     case transientPropertyClassType (*) :
-    case imageType :
-      outSwiftDefaultValueAsString = "NSImage (named:\""+ mValue.string + "\")"
-      found = true    
     end
   end
   if not found then
@@ -263,8 +260,6 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid string type"  
     case fontType :
       error mValue : "invalid font type"  
-    case imageType :
-      error mValue : "invalid image type"  
     case transientPropertyClassType (*) :
       error mValue : "invalid image type"  
     case propertyClassType (@string propertyClassTypeName @propertyClassDefaultValues defaultValues) :

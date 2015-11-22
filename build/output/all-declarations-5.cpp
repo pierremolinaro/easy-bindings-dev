@@ -1163,11 +1163,18 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
                                                                         const GALGAS_bool & in_TRANSIENT
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
+  result << "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n" ;
+  const enumGalgasBool test_0 = in_TRANSIENT.boolEnum () ;
+  if (kBoolTrue == test_0) {
+    result << "//   Transient property class " ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << "\n" ;
+  }else if (kBoolFalse == test_0) {
+    result << "//   Property class " ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << "\n" ;
+  }
   result << "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
-    "//   Class property " ;
-  result << in_CLASS_5F_NAME.stringValue () ;
-  result << "\n"
-    "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
     "typealias EBReadOnlyProperty_" ;
   result << in_CLASS_5F_NAME.stringValue () ;
@@ -1179,8 +1186,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
   result << " = EBTransientClassProperty <" ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << ">\n" ;
-  const enumGalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 8)).boolEnum () ;
-  if (kBoolTrue == test_0) {
+  const enumGalgasBool test_1 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 13)).boolEnum () ;
+  if (kBoolTrue == test_1) {
     result << "typealias EBReadWriteProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << " = EBReadWriteClassProperty <" ;
@@ -1196,11 +1203,11 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << "    = EBStoredClassProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n" ;
-  }else if (kBoolFalse == test_0) {
+  }else if (kBoolFalse == test_1) {
   }
   result << "\n" ;
-  const enumGalgasBool test_1 = in_COMPARABLE.boolEnum () ;
-  if (kBoolTrue == test_1) {
+  const enumGalgasBool test_2 = in_COMPARABLE.boolEnum () ;
+  if (kBoolTrue == test_2) {
     result << "\n"
       "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
       "\n"
@@ -1243,7 +1250,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
       "    }\n"
       "  }\n"
       "}\n" ;
-  }else if (kBoolFalse == test_1) {
+  }else if (kBoolFalse == test_2) {
   }
   return GALGAS_string (result) ;
 }
@@ -1277,11 +1284,10 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
   }
   var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_bool (true), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 207)))  COMMA_SOURCE_FILE ("code-generation.galgas", 207)) ;
   var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 208)))  COMMA_SOURCE_FILE ("code-generation.galgas", 208)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSImage"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 209)))  COMMA_SOURCE_FILE ("code-generation.galgas", 209)) ;
   GALGAS_string var_fileName = GALGAS_string ("standard-properties.swift") ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 212)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 211)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 213)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_contents, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 212)) ;
   }
 }
 
@@ -10028,7 +10034,6 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
     case GALGAS_typeKind::kEnum_dateType:
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
-    case GALGAS_typeKind::kEnum_imageType:
       {
         GALGAS_location location_1 (enumerator_4343.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 129)) ;
@@ -10083,11 +10088,11 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
                                                 C_Compiler * inCompiler
                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_5663 (temp_0, kEnumeration_up) ;
-  while (enumerator_5663.hasCurrentObject ()) {
+  cEnumerator_toManyRelationshipList enumerator_5652 (temp_0, kEnumeration_up) ;
+  while (enumerator_5652.hasCurrentObject ()) {
     GALGAS_typeKind var_type ;
     GALGAS_actionMap var_actionMap ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5663.current_mDestinationEntityName (HERE), var_type, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 160)) ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5652.current_mDestinationEntityName (HERE), var_type, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 160)) ;
     switch (var_type.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
@@ -10097,33 +10102,32 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
     case GALGAS_typeKind::kEnum_dateType:
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
-    case GALGAS_typeKind::kEnum_imageType:
       {
-        GALGAS_location location_1 (enumerator_5663.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
+        GALGAS_location location_1 (enumerator_5652.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_1, GALGAS_string ("a simple type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 164)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_location location_2 (enumerator_5663.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
+        GALGAS_location location_2 (enumerator_5652.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_2, GALGAS_string ("an enumeration type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 166)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_location location_3 (enumerator_5663.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
+        GALGAS_location location_3 (enumerator_5652.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_3, GALGAS_string ("a class type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 168)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_propertyClassType:
       {
-        GALGAS_location location_4 (enumerator_5663.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
+        GALGAS_location location_4 (enumerator_5652.current_mDestinationEntityName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_4, GALGAS_string ("a property class type cannot be used as entitytype")  COMMA_SOURCE_FILE ("relationships.galgas", 170)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyClassType:
       {
-        GALGAS_location location_5 (enumerator_5663.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
+        GALGAS_location location_5 (enumerator_5652.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
         inCompiler->emitSemanticError (location_5, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 172)) ;
       }
       break ;
@@ -10133,9 +10137,9 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
       break ;
     }
     {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_5663.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 179)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 180)), enumerator_5663.current_mInverseRelationshipName (HERE).mAttribute_string, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 176)) ;
+    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_5652.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 179)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 180)), enumerator_5652.current_mInverseRelationshipName (HERE).mAttribute_string, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 176)) ;
     }
-    enumerator_5663.gotoNextObject () ;
+    enumerator_5652.gotoNextObject () ;
   }
 }
 

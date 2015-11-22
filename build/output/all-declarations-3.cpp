@@ -711,11 +711,17 @@ const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses (
 GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "property class NSColor (blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor, controlLightHighlig"
-    "htColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor, disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, heade"
-    "rTextColor, highlightColor, keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor, scrollBarColor, s"
-    "electedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor, selectedMenuItemTextColor, selectedTextBackgroundColor, select"
-    "edTextColor, shadowColor, textBackgroundColor, textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor) ;\n"
+  result << "property class NSColor (\n"
+    "  blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor,\n"
+    "  controlLightHighlightColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor,\n"
+    "  disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, headerTextColor, highlightColor,\n"
+    "  keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor,\n"
+    "  scrollBarColor, selectedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor,\n"
+    "  selectedMenuItemTextColor, selectedTextBackgroundColor, selectedTextColor, shadowColor, textBackgroundColor,\n"
+    "  textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor\n"
+    ") ;\n"
+    "\n"
+    "transient property class NSImage ;\n"
     "\n"
     "outletClass EBButton $run $enabled ;\n"
     "\n"
@@ -2605,15 +2611,15 @@ void routine_generateClasses (const GALGAS_classListForGeneration constinArgumen
                               GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                               C_Compiler * inCompiler
                               COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_classListForGeneration enumerator_12406 (constinArgument_inClassListForGeneration, kEnumeration_up) ;
-  while (enumerator_12406.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, enumerator_12406.current_mClassName (HERE), enumerator_12406.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_12406.current_mTransientListForGeneration (HERE), enumerator_12406.current_mExternSwiftFunctionList (HERE), enumerator_12406.current_mExternSwiftDelegateList (HERE), GALGAS_string ("<< not handled>>") COMMA_SOURCE_FILE ("class.galgas", 305))) ;
-    GALGAS_string var_fileName = enumerator_12406.current_mClassName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 315)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("class.galgas", 316)) ;
+  cEnumerator_classListForGeneration enumerator_11553 (constinArgument_inClassListForGeneration, kEnumeration_up) ;
+  while (enumerator_11553.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, enumerator_11553.current_mClassName (HERE), enumerator_11553.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11553.current_mTransientListForGeneration (HERE), enumerator_11553.current_mExternSwiftFunctionList (HERE), enumerator_11553.current_mExternSwiftDelegateList (HERE), GALGAS_string ("<< not handled>>") COMMA_SOURCE_FILE ("class.galgas", 286))) ;
+    GALGAS_string var_fileName = enumerator_11553.current_mClassName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 294)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("class.galgas", 295)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("class.galgas", 317)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("class.galgas", 296)) ;
     }
-    enumerator_12406.gotoNextObject () ;
+    enumerator_11553.gotoNextObject () ;
   }
 }
 

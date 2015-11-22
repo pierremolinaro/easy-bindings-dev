@@ -64,7 +64,7 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
   #--- Check type
     @string entityName
     switch kind
-    case stringType, boolType, dateType, doubleType, integerType, fontType, imageType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case enumType (* *) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
