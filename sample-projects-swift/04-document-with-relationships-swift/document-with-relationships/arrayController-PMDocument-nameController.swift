@@ -109,10 +109,23 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
 
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
+  private var mTableViewArray = [EBTableView] ()
 
   private var mSortDescriptorArray = [(String, Bool)] () { // Key, ascending
     didSet {
       sortedArray.postEvent ()
+      for tableView in mTableViewArray {
+        var first = true
+        for (key, ascending) in mSortDescriptorArray {
+          if let column = tableView.tableColumnWithIdentifier (key) {
+            tableView.setIndicatorImage (
+              first ? NSImage (named:ascending ? "NSAscendingSortIndicator" : "NSDescendingSortIndicator") : nil,
+              inTableColumn:column
+            )
+            first = false
+          }
+        }
+      }
     }
   }
 
@@ -227,6 +240,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     model.addEBObserverOf_aValue (sortedArray)
     model.addEBObserverOf_name (sortedArray)
   //--- Bind table views
+    mTableViewArray = tableViewArray
     for tableView in tableViewArray {
       bind_tableView (tableView, file:file, line:line)
     }
@@ -253,6 +267,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
       mSelectedSet.removeEBObserver (tvc)
     }
   //---
+    mTableViewArray = [EBTableView] ()
     selectedArray.computeFunction = nil
     sortedArray.computeFunction = nil
     mSelectedSet.mSet = Set ()

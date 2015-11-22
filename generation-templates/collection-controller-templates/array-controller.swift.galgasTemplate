@@ -109,10 +109,23 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, E
 
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
+  private var mTableViewArray = [EBTableView] ()
 
   private var mSortDescriptorArray = [(String, Bool)] () { // Key, ascending
     didSet {
       sortedArray.postEvent ()
+      for tableView in mTableViewArray {
+        var first = true
+        for (key, ascending) in mSortDescriptorArray {
+          if let column = tableView.tableColumnWithIdentifier (key) {
+            tableView.setIndicatorImage (
+              first ? NSImage (named:ascending ? "NSAscendingSortIndicator" : "NSDescendingSortIndicator") : nil,
+              inTableColumn:column
+            )
+            first = false
+          }
+        }
+      }
     }
   }
 
@@ -263,6 +276,7 @@ for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
   %    model.addEBObserverOf_%!key% (sortedArray)\n%
 end
 %  //--- Bind table views
+    mTableViewArray = tableViewArray
     for tableView in tableViewArray {
       bind_tableView (tableView, file:file, line:line)
     }
@@ -291,6 +305,7 @@ end
       mSelectedSet.removeEBObserver (tvc)
     }
   //---
+    mTableViewArray = [EBTableView] ()
     selectedArray.computeFunction = nil
     sortedArray.computeFunction = nil
     mSelectedSet.mSet = Set ()
