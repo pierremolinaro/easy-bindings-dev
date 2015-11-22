@@ -3301,40 +3301,40 @@ void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
   outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Double").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 118)), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("unified-type.galgas", 118)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 118)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 118)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Font").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 119)), GALGAS_typeKind::constructor_fontType (SOURCE_FILE ("unified-type.galgas", 119)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 119)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 119)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 119)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 119)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 119)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 119)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("String").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 120)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("unified-type.galgas", 120)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 120)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 120)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 120)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 120)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 120)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 120)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Image").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 121)), GALGAS_typeKind::constructor_imageType (SOURCE_FILE ("unified-type.galgas", 121)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 121)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 121)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 121)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 121)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 121)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Color").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 122)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 122)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 122)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSFont").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_typeKind::constructor_fontType (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 123)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Date").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 123)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 123)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSImage").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_typeKind::constructor_imageType (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 124)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Int").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("unified-type.galgas", 124)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 124)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSColor").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 125)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("Bool").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("unified-type.galgas", 125)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 125)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("NSDate").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 126)) ;
   }
   {
-  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 126))  COMMA_SOURCE_FILE ("unified-type.galgas", 126)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 126)) ;
+  outArgument_outUnifiedTypeMap.modifier_insertKey (GALGAS_string ("enum").getter_nowhere (SOURCE_FILE ("unified-type.galgas", 128)), GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 128))  COMMA_SOURCE_FILE ("unified-type.galgas", 128)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("unified-type.galgas", 128)), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 128)) ;
   }
-  cEnumerator_astDeclarationList enumerator_5133 (constinArgument_inDeclarationList, kEnumeration_up) ;
-  while (enumerator_5133.hasCurrentObject ()) {
-    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_5133.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 129)) ;
-    enumerator_5133.gotoNextObject () ;
+  cEnumerator_astDeclarationList enumerator_5156 (constinArgument_inDeclarationList, kEnumeration_up) ;
+  while (enumerator_5156.hasCurrentObject ()) {
+    callCategoryMethod_typeInventory ((const cPtr_astDeclaration *) enumerator_5156.current_mDeclaration (HERE).ptr (), outArgument_outUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 131)) ;
+    enumerator_5156.gotoNextObject () ;
   }
   const enumGalgasBool test_0 = GALGAS_bool (gOption_easyBindings_5F_options_outputClassDependencyGraph.getter_value ()).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_s = outArgument_outUnifiedTypeMap.getter_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 133)) ;
-    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 134)) ;
-    GALGAS_bool joker_5470 ; // Joker input parameter
-    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5470, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 135)) ;
+    GALGAS_string var_s = outArgument_outUnifiedTypeMap.getter_edgeGraphvizRepresentation (SOURCE_FILE ("unified-type.galgas", 135)) ;
+    GALGAS_string var_path = constinArgument_inSourceFile.mAttribute_string.add_operation (GALGAS_string (".typeDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 136)) ;
+    GALGAS_bool joker_5493 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_path, joker_5493, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 137)) ;
   }
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.17"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EBAllocationDebug">
@@ -11,7 +11,9 @@
                 <outlet property="mCurrentlyAllocatedObjectCountTextField" destination="18" id="186"/>
                 <outlet property="mDebugMenu" destination="6" id="10"/>
                 <outlet property="mDisplayFilterPopUpButton" destination="16" id="153"/>
+                <outlet property="mEnableObjectAllocationDebug" destination="Hp6-Mx-RXI" id="Ogd-Av-IRf"/>
                 <outlet property="mPerformSnapShotButton" destination="207" id="209"/>
+                <outlet property="mReuseTableViewCellsButton" destination="Rqx-8z-rBk" id="D72-fD-cqI"/>
                 <outlet property="mStatsTableView" destination="32" id="108"/>
                 <outlet property="mTotalAllocatedObjectCountTextField" destination="171" id="187"/>
             </connections>
@@ -34,31 +36,31 @@
             </items>
         </menu>
         <window title="Allocation Stats" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="EBAllocationStatsWindowLocation" animationBehavior="default" id="13" userLabel="AllocationStats Window">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="18" y="448" width="532" height="360"/>
+            <rect key="contentRect" x="18" y="448" width="583" height="410"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="532" height="360"/>
             <view key="contentView" id="14">
-                <rect key="frame" x="0.0" y="0.0" width="532" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="583" height="410"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="15">
-                        <rect key="frame" x="0.0" y="0.0" width="532" height="290"/>
+                        <rect key="frame" x="0.0" y="0.0" width="583" height="290"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="C0j-Pb-rrG">
-                            <rect key="frame" x="0.0" y="17" width="521" height="262"/>
+                            <rect key="frame" x="0.0" y="0.0" width="572" height="279"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="14" headerView="29" id="32">
-                                    <rect key="frame" x="0.0" y="0.0" width="521" height="262"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="572" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="mClassname" editable="NO" width="285.60546875" minWidth="40" maxWidth="1000" id="33">
+                                        <tableColumn identifier="mClassname" editable="NO" width="337.10546875" minWidth="40" maxWidth="1000" id="33">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Class Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -118,60 +120,51 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="30">
-                            <rect key="frame" x="0.0" y="279" width="521" height="11"/>
+                            <rect key="frame" x="0.0" y="279" width="572" height="11"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="31">
-                            <rect key="frame" x="521" y="17" width="11" height="262"/>
+                            <rect key="frame" x="572" y="17" width="11" height="262"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="29">
-                            <rect key="frame" x="0.0" y="0.0" width="521" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="572" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
                     <textField verticalHuggingPriority="750" id="18">
-                        <rect key="frame" x="404" y="308" width="111" height="14"/>
+                        <rect key="frame" x="454" y="308" width="111" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" title="…live count… " id="23">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="107"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="…live count… " id="23">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" allowsFloats="NO" minimumIntegerDigits="0" maximumIntegerDigits="42" groupingSeparator=" " id="107"/>
                             <font key="font" metaFont="smallSystemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <popUpButton id="16">
-                        <rect key="frame" x="78" y="306" width="164" height="19"/>
+                        <rect key="frame" x="161" y="306" width="162" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="square" title="All Classes" bezelStyle="shadowlessSquare" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="27" id="25">
+                        <popUpButtonCell key="cell" type="square" title="Differences with Snap Shot" bezelStyle="shadowlessSquare" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="212" id="25">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="26">
                                 <items>
-                                    <menuItem title="All Classes" state="on" id="27">
+                                    <menuItem title="All Classes" id="27">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Allocated Classes" id="28">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Differences with Snap Shot" id="212">
+                                    <menuItem title="Differences with Snap Shot" state="on" id="212">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                 </items>
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" id="17">
-                        <rect key="frame" x="17" y="308" width="56" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Display:" id="24">
-                            <font key="font" metaFont="smallSystemBold"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button id="138">
-                        <rect key="frame" x="19" y="333" width="125" height="18"/>
+                        <rect key="frame" x="16" y="333" width="118" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Visible At Launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="139">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -179,7 +172,7 @@
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" id="154">
-                        <rect key="frame" x="255" y="307" width="147" height="15"/>
+                        <rect key="frame" x="329" y="308" width="121" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Currently Allocated:" id="156">
                             <font key="font" metaFont="smallSystemBold"/>
@@ -188,17 +181,17 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="171">
-                        <rect key="frame" x="404" y="335" width="111" height="14"/>
+                        <rect key="frame" x="454" y="335" width="111" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" title="…total count… " id="177">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="178"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="…total count… " id="177">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" allowsFloats="NO" minimumIntegerDigits="0" maximumIntegerDigits="42" groupingSeparator=" " id="178"/>
                             <font key="font" metaFont="smallSystemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="172">
-                        <rect key="frame" x="255" y="334" width="147" height="15"/>
+                        <rect key="frame" x="329" y="334" width="121" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Total Allocated:" id="175">
                             <font key="font" metaFont="smallSystemBold"/>
@@ -207,7 +200,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" id="207">
-                        <rect key="frame" x="145" y="327" width="102" height="28"/>
+                        <rect key="frame" x="14" y="300" width="87" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Snap Shot" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="208">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -217,8 +210,50 @@
                             <action selector="performSnapShotAction:" target="-2" id="214"/>
                         </connections>
                     </button>
+                    <button id="Hp6-Mx-RXI">
+                        <rect key="frame" x="16" y="375" width="150" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Enable Allocation Debug" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="sPw-LR-CFC">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                    </button>
+                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="INL-Ly-eQ6">
+                        <rect key="frame" x="0.0" y="361.5" width="584" height="4"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <textField verticalHuggingPriority="750" id="RTb-MN-Pgw">
+                        <rect key="frame" x="200" y="376" width="365" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="You should restart the application for this setting to take effect." id="ITZ-aH-HUM">
+                            <font key="font" metaFont="smallSystemBold"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button id="Rqx-8z-rBk">
+                        <rect key="frame" x="158" y="333" width="167" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Reuse Table View Cells" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Dp4-Mg-7iL">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                    </button>
+                    <textField verticalHuggingPriority="750" id="17">
+                        <rect key="frame" x="102" y="308" width="53" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Display:" id="24">
+                            <font key="font" metaFont="smallSystemBold"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="363.5" y="76"/>
         </window>
         <window title="Transient Event Log" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="TransientEventLog" animationBehavior="default" id="215" userLabel="Transient Event Log">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -241,10 +276,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="465" height="236"/>
-                                    <size key="maxSize" width="465" height="10000000"/>
+                                    <size key="maxSize" width="482" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="465" height="236"/>
-                                    <size key="maxSize" width="465" height="10000000"/>
+                                    <size key="maxSize" width="482" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
