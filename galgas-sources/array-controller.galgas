@@ -430,19 +430,21 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       !?regularBindingsGenerationList
     )
   #-------- Sort property
+    @typeKind sortPropertyType = .stringType # Any value
     if mSortPropertyName.string != "" then
       [boundModelObservablePropertyMap searchKey
         !mSortPropertyName
-        ?let @typeKind type
+        ?sortPropertyType
         ?4*
       ]
-      if not [type isComparable] then
+      if not [sortPropertyType isComparable] then
         error mSortPropertyName : "this property is not comparable"
       end    
     end
   #-------- Binding generation
     arrayControllerBoundColumnListForGeneration +=
       !mColumnName.string
+      !sortPropertyType
       !mColumnOutletTypeName.string
       !mSortPropertyName.string
       !mColumnBindingAST.mRunActionName.string
@@ -587,6 +589,7 @@ list @arrayControllerFilterListForGeneration {
 
 list @arrayControllerBoundColumnListForGeneration {
   @string mColumnName
+  @typeKind mSortPropertyType
   @string mColumnOutletTypeName
   @string mObservablePropertyForSorting
   @string mRunAction # Empty string if no action
@@ -662,7 +665,7 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
   end
   indent += "  "
   outResult += indent + "if " + inFilterFunction + " (v1" + args + ") {\n"
-  outResult += indent + "  array.addObject (object)\n"
+  outResult += indent + "  filteredArray.append (object)\n"
   outResult += indent + "}\n"
   outResult += blockEnd
 }
