@@ -43,7 +43,7 @@ import Cocoa
 
   private var mIntValueController : Controller_EBStepper_value?
 
-  func bind_value (object:EBReadWriteProperty <Int>, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
     mIntValueController = Controller_EBStepper_value (object:object, outlet:self, file:file, line:line)
     self.continuous = sendContinously
   }
@@ -64,11 +64,11 @@ import Cocoa
 final class Controller_EBStepper_value : EBSimpleController {
 
   private let mOutlet: EBStepper
-  private let mObject : EBReadWriteProperty <Int>
+  private let mObject : EBReadWriteProperty_Int
 
   //····················································································································
 
-  init (object:EBReadWriteProperty <Int>, outlet : EBStepper, file : String, line : Int) {
+  init (object:EBReadWriteProperty_Int, outlet : EBStepper, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)

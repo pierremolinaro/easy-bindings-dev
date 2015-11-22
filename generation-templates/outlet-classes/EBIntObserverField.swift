@@ -44,7 +44,7 @@ import Cocoa
 
   //···················································································································*
 
-  func bind_valueObserver (object:EBReadOnlyProperty <Int>, file:String, line:Int, autoFormatter:Bool) {
+  func bind_valueObserver (object:EBReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
     mValueController = Controller_EBIntObserverField_readOnlyValue (
       object:object,
       outlet:self,
@@ -72,12 +72,12 @@ import Cocoa
 @objc(Controller_EBIntObserverField_readOnlyValue)
 final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 
-  private let mObject : EBReadOnlyProperty <Int>
+  private let mObject :EBReadOnlyProperty_Int
   private let mOutlet : EBIntObserverField
 
   //···················································································································*
 
-  init (object : EBReadOnlyProperty <Int>, outlet : EBIntObserverField, file : String, line : Int, autoFormatter:Bool) {
+  init (object :EBReadOnlyProperty_Int, outlet : EBIntObserverField, file : String, line : Int, autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
