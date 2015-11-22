@@ -10,188 +10,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObject,
-                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                      GALGAS_toOneEntityRelationshipListForGeneration & outArgument_outToOneEntityRelationshipListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outToOneEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 195)) ;
-  const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_7289 (temp_0, kEnumeration_up) ;
-  while (enumerator_7289.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    GALGAS_actionMap joker_7377 ; // Joker input parameter
-    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_7289.current_mDestinationEntityName (HERE), var_type, joker_7377, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 197)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_7289.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 198)) ;
-    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_7289.current_mToOneRelationshipName (HERE).mAttribute_string, var_type, enumerator_7289.current_mInverseRelationshipName (HERE).mAttribute_string, enumerator_7289.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 202)) ;
-    GALGAS_typeKind var_oppositeType ;
-    GALGAS_propertyKind var_oppositeKind ;
-    GALGAS_propertyMultiplicity var_oppositeMultiplicity ;
-    GALGAS_string var_oppositeOfOpposite ;
-    GALGAS_actionMap joker_8084 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_7289.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_8084, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 209)) ;
-    switch (var_oppositeType.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-    case GALGAS_typeKind::kEnum_fontType:
-      {
-        GALGAS_location location_1 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 220)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_location location_2 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 222)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_classType:
-      {
-        GALGAS_location location_3 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 224)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_propertyClassType:
-      {
-        GALGAS_location location_4 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_4, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 226)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_transientPropertyClassType:
-      {
-        GALGAS_location location_5 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_5, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 228)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
-    }
-    const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 231)))).boolEnum () ;
-    if (kBoolTrue == test_6) {
-      GALGAS_location location_7 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 232)) ;
-    }
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, enumerator_7289.current_mInverseRelationMultiplicity (HERE).objectCompare (var_oppositeMultiplicity)).boolEnum () ;
-    if (kBoolTrue == test_8) {
-      GALGAS_location location_9 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_9, GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)")  COMMA_SOURCE_FILE ("relationships.galgas", 235)) ;
-    }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_7289.current_mToOneRelationshipName (HERE).mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      GALGAS_location location_11 (enumerator_7289.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_11, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_7289.current_mToOneRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 238)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 238)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 239))  COMMA_SOURCE_FILE ("relationships.galgas", 238)) ;
-    }
-    enumerator_7289.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Category method '@toManyRelationshipList semanticAnalysis'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObject,
-                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                      GALGAS_toManyEntityRelationshipListForGeneration & outArgument_outToManyEntityRelationshipListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outToManyEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 250)) ;
-  const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_9744 (temp_0, kEnumeration_up) ;
-  while (enumerator_9744.hasCurrentObject ()) {
-    GALGAS_typeKind var_type ;
-    GALGAS_actionMap joker_9832 ; // Joker input parameter
-    constinArgument_inSemanticContext.mAttribute_mUnifiedTypeMap.method_searchKey (enumerator_9744.current_mDestinationEntityName (HERE), var_type, joker_9832, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 252)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap ;
-    constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (enumerator_9744.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 253)) ;
-    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_9744.current_mToManyRelationshipName (HERE).mAttribute_string, var_type, enumerator_9744.current_mInverseRelationshipName (HERE).mAttribute_string, var_destinationEntityObservablePropertyMap  COMMA_SOURCE_FILE ("relationships.galgas", 257)) ;
-    GALGAS_typeKind var_oppositeType ;
-    GALGAS_propertyKind var_oppositeKind ;
-    GALGAS_propertyMultiplicity var_oppositeMultiplicity ;
-    GALGAS_string var_oppositeOfOpposite ;
-    GALGAS_actionMap joker_10505 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap.method_searchForInverseRelationship (enumerator_9744.current_mInverseRelationshipName (HERE), var_oppositeType, var_oppositeKind, var_oppositeMultiplicity, var_oppositeOfOpposite, joker_10505, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 263)) ;
-    switch (var_oppositeType.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-    case GALGAS_typeKind::kEnum_fontType:
-      {
-        GALGAS_location location_1 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_1, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 273)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        GALGAS_location location_2 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 275)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_classType:
-      {
-        GALGAS_location location_3 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_3, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 277)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_propertyClassType:
-      {
-        GALGAS_location location_4 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_4, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 279)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_transientPropertyClassType:
-      {
-        GALGAS_location location_5 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_5, GALGAS_string ("the opposite type cannot be used as entity type")  COMMA_SOURCE_FILE ("relationships.galgas", 281)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
-    }
-    const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_oppositeKind.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 284)))).boolEnum () ;
-    if (kBoolTrue == test_6) {
-      GALGAS_location location_7 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("this relationship is transient, should be stored")  COMMA_SOURCE_FILE ("relationships.galgas", 285)) ;
-    }
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_oppositeMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 287)))).boolEnum () ;
-    if (kBoolTrue == test_8) {
-      GALGAS_location location_9 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_9, GALGAS_string ("the inverse relationship should be toOne")  COMMA_SOURCE_FILE ("relationships.galgas", 288)) ;
-    }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite.objectCompare (enumerator_9744.current_mToManyRelationshipName (HERE).mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      GALGAS_location location_11 (enumerator_9744.current_mInverseRelationshipName (HERE).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_11, GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_9744.current_mToManyRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 291)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 292))  COMMA_SOURCE_FILE ("relationships.galgas", 291)) ;
-    }
-    enumerator_9744.gotoNextObject () ;
-  }
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                          Category method '@outletClassDeclarationList buildOutletClassMap'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12863,6 +12681,362 @@ GALGAS_bindingOptionList_2D_element GALGAS_bindingOptionList_2D_element::extract
       result = *p ;
     }else{
       inCompiler->castError ("bindingOptionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList_2D_element::GALGAS_outletDeclarationList_2D_element (void) :
+mAttribute_mOutletTypeName (),
+mAttribute_mOutletName (),
+mAttribute_mTableValueBindingDescriptor (),
+mAttribute_mRunDescriptor (),
+mAttribute_mEnabledBindingDescriptor (),
+mAttribute_mHiddenBindingDescriptor (),
+mAttribute_mRegularBindingList () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList_2D_element::~ GALGAS_outletDeclarationList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList_2D_element::GALGAS_outletDeclarationList_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                  const GALGAS_lstring & inOperand1,
+                                                                                  const GALGAS_tableValueBinding & inOperand2,
+                                                                                  const GALGAS_runActionDescriptor & inOperand3,
+                                                                                  const GALGAS_multipleBindingDescriptor & inOperand4,
+                                                                                  const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                                  const GALGAS_regularBindingList & inOperand6) :
+mAttribute_mOutletTypeName (inOperand0),
+mAttribute_mOutletName (inOperand1),
+mAttribute_mTableValueBindingDescriptor (inOperand2),
+mAttribute_mRunDescriptor (inOperand3),
+mAttribute_mEnabledBindingDescriptor (inOperand4),
+mAttribute_mHiddenBindingDescriptor (inOperand5),
+mAttribute_mRegularBindingList (inOperand6) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                  const GALGAS_lstring & inOperand1,
+                                                                                                  const GALGAS_tableValueBinding & inOperand2,
+                                                                                                  const GALGAS_runActionDescriptor & inOperand3,
+                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand4,
+                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                                                  const GALGAS_regularBindingList & inOperand6 
+                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_outletDeclarationList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_outletDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_outletDeclarationList_2D_element::objectCompare (const GALGAS_outletDeclarationList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mOutletTypeName.objectCompare (inOperand.mAttribute_mOutletTypeName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mOutletName.objectCompare (inOperand.mAttribute_mOutletName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mTableValueBindingDescriptor.objectCompare (inOperand.mAttribute_mTableValueBindingDescriptor) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRunDescriptor.objectCompare (inOperand.mAttribute_mRunDescriptor) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mEnabledBindingDescriptor.objectCompare (inOperand.mAttribute_mEnabledBindingDescriptor) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mHiddenBindingDescriptor.objectCompare (inOperand.mAttribute_mHiddenBindingDescriptor) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mRegularBindingList.objectCompare (inOperand.mAttribute_mRegularBindingList) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_outletDeclarationList_2D_element::isValid (void) const {
+  return mAttribute_mOutletTypeName.isValid () && mAttribute_mOutletName.isValid () && mAttribute_mTableValueBindingDescriptor.isValid () && mAttribute_mRunDescriptor.isValid () && mAttribute_mEnabledBindingDescriptor.isValid () && mAttribute_mHiddenBindingDescriptor.isValid () && mAttribute_mRegularBindingList.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList_2D_element::drop (void) {
+  mAttribute_mOutletTypeName.drop () ;
+  mAttribute_mOutletName.drop () ;
+  mAttribute_mTableValueBindingDescriptor.drop () ;
+  mAttribute_mRunDescriptor.drop () ;
+  mAttribute_mEnabledBindingDescriptor.drop () ;
+  mAttribute_mHiddenBindingDescriptor.drop () ;
+  mAttribute_mRegularBindingList.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList_2D_element::description (C_String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString << "<struct @outletDeclarationList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mOutletTypeName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mOutletName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mTableValueBindingDescriptor.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRunDescriptor.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mEnabledBindingDescriptor.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mHiddenBindingDescriptor.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mRegularBindingList.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_outletDeclarationList_2D_element::getter_mOutletTypeName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mOutletTypeName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_outletDeclarationList_2D_element::getter_mOutletName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mOutletName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_tableValueBinding GALGAS_outletDeclarationList_2D_element::getter_mTableValueBindingDescriptor (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mTableValueBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_runActionDescriptor GALGAS_outletDeclarationList_2D_element::getter_mRunDescriptor (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRunDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList_2D_element::getter_mEnabledBindingDescriptor (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mEnabledBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList_2D_element::getter_mHiddenBindingDescriptor (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mHiddenBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_regularBindingList GALGAS_outletDeclarationList_2D_element::getter_mRegularBindingList (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mRegularBindingList ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         @outletDeclarationList-element type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_outletDeclarationList_2D_element ("outletDeclarationList-element",
+                                                         NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_outletDeclarationList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_outletDeclarationList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_outletDeclarationList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_outletDeclarationList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_outletDeclarationList_2D_element result ;
+  const GALGAS_outletDeclarationList_2D_element * p = (const GALGAS_outletDeclarationList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_outletDeclarationList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("outletDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletBindingModelList_2D_element::GALGAS_outletBindingModelList_2D_element (void) :
+mAttribute_mModelType (),
+mAttribute_mKind (),
+mAttribute_mErrorLocation () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletBindingModelList_2D_element::~ GALGAS_outletBindingModelList_2D_element (void) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletBindingModelList_2D_element::GALGAS_outletBindingModelList_2D_element (const GALGAS_typeKind & inOperand0,
+                                                                                    const GALGAS_propertyKind & inOperand1,
+                                                                                    const GALGAS_location & inOperand2) :
+mAttribute_mModelType (inOperand0),
+mAttribute_mKind (inOperand1),
+mAttribute_mErrorLocation (inOperand2) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletBindingModelList_2D_element GALGAS_outletBindingModelList_2D_element::constructor_new (const GALGAS_typeKind & inOperand0,
+                                                                                                    const GALGAS_propertyKind & inOperand1,
+                                                                                                    const GALGAS_location & inOperand2 
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_outletBindingModelList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_outletBindingModelList_2D_element (inOperand0, inOperand1, inOperand2) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult GALGAS_outletBindingModelList_2D_element::objectCompare (const GALGAS_outletBindingModelList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAttribute_mModelType.objectCompare (inOperand.mAttribute_mModelType) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mKind.objectCompare (inOperand.mAttribute_mKind) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mErrorLocation.objectCompare (inOperand.mAttribute_mErrorLocation) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool GALGAS_outletBindingModelList_2D_element::isValid (void) const {
+  return mAttribute_mModelType.isValid () && mAttribute_mKind.isValid () && mAttribute_mErrorLocation.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletBindingModelList_2D_element::drop (void) {
+  mAttribute_mModelType.drop () ;
+  mAttribute_mKind.drop () ;
+  mAttribute_mErrorLocation.drop () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletBindingModelList_2D_element::description (C_String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString << "<struct @outletBindingModelList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mAttribute_mModelType.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mKind.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mErrorLocation.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_typeKind GALGAS_outletBindingModelList_2D_element::getter_mModelType (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mModelType ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_propertyKind GALGAS_outletBindingModelList_2D_element::getter_mKind (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mKind ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location GALGAS_outletBindingModelList_2D_element::getter_mErrorLocation (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mErrorLocation ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                        @outletBindingModelList-element type                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ("outletBindingModelList-element",
+                                                          NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_outletBindingModelList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_outletBindingModelList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_outletBindingModelList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletBindingModelList_2D_element GALGAS_outletBindingModelList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_outletBindingModelList_2D_element result ;
+  const GALGAS_outletBindingModelList_2D_element * p = (const GALGAS_outletBindingModelList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_outletBindingModelList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("outletBindingModelList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
