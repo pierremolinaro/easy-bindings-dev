@@ -184,6 +184,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_myStringMaj (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_myStringMaj.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -198,6 +199,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_myStringMaj (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_myStringMaj.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -251,6 +253,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_myStringMin (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_myStringMin.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -265,6 +268,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_myStringMin (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_myStringMin.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -318,6 +322,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_myStringConcat (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_myStringConcat.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -332,6 +337,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_myStringConcat (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_myStringConcat.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :

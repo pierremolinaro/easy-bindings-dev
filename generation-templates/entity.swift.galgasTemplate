@@ -120,6 +120,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //····················································································································
 
   final func addEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_%!mTransientName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -134,6 +135,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //····················································································································
 
   final func removeEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_%!mTransientName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
