@@ -418,7 +418,8 @@ method @observablePropertyAST analyzeObservableProperty
         error elementPropertyName : "the observed property cannot be a collection"
       end
     end
-    outSwiftTypeStringForTransientFunctionArgument = "[" + [propertyType swiftTypeName] + "_" + elementPropertyName + "]"
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [propertyType swiftTypeName]
+       + " /* _" + elementPropertyName + " */]"
   case prefsProperty (@lstring propertyName) :
     [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName

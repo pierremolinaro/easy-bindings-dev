@@ -276,14 +276,13 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   //····················································································································
 }
 
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBTransientValueProperty <T : ValuePropertyProtocol>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBTransientValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
   private var mValueCache : EBProperty <T>? = nil
-  var computeFunction : Optional<() -> EBProperty <T> >
+  var readModelFunction : Optional<() -> EBProperty <T> >
   
   //····················································································································
 
@@ -295,7 +294,7 @@ class EBTransientValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProp
 
   override var prop : EBProperty <T> {
     get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
@@ -458,36 +457,6 @@ public func < (left:Bool, right:Bool) -> Bool {
 public func > (left:Bool, right:Bool) -> Bool {
   return left && !right
 }
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    extension NSImage : ClassPropertyProtocol
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-/* extension NSImage : ClassPropertyProtocol {
-
-  //····················································································································
-
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
-  }
-
-
-  //····················································································································
-
-  func archiveToNSData () -> NSData {
-    return NSArchiver.archivedDataWithRootObject (self)
-  }
-  
-  //····················································································································
-
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
-  }
-
-  //····················································································································
-
-} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    extension NSColor : ClassPropertyProtocol
@@ -889,7 +858,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
 class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
   private var mValueCache : EBProperty <T>? = nil
-  var computeFunction : Optional<() -> EBProperty <T> >
+  var readModelFunction : Optional<() -> EBProperty <T> >
   
   //····················································································································
 
@@ -901,7 +870,7 @@ class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
 
   override var prop : EBProperty <T> {
     get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
@@ -1124,6 +1093,8 @@ typealias EBStoredProperty_NSColor    = EBStoredClassProperty <NSColor>
 
 typealias EBReadOnlyProperty_NSImage  = EBReadOnlyClassProperty <NSImage>
 typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
+typealias EBReadOnlyPropertyArray_NSImage  = EBReadOnlyClassProperty <[NSImage]>
+typealias EBTransientPropertyArray_NSImage = EBTransientClassProperty <[NSImage]>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Property class NSDate

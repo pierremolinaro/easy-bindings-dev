@@ -21,7 +21,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
+    count.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
         case .noSelection :
@@ -394,7 +394,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 // @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
+  var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
 
   private var prop_cache : EBProperty < [MyRootEntity] >? 
 
@@ -410,7 +410,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override var prop : EBProperty < [MyRootEntity] > {
     get {
-      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <MyRootEntity>
         switch prop_cache! {
@@ -518,7 +518,7 @@ class MyRootEntity : EBManagedObject
   override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
-    myStringMaj.computeFunction = { [weak self] in
+    myStringMaj.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myString.prop {
         case .noSelection :
@@ -532,7 +532,7 @@ class MyRootEntity : EBManagedObject
         return .noSelection
       }
     }
-    myStringMin.computeFunction = { [weak self] in
+    myStringMin.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myString.prop {
         case .noSelection :
@@ -546,7 +546,7 @@ class MyRootEntity : EBManagedObject
         return .noSelection
       }
     }
-    myStringConcat.computeFunction = { [weak self] in
+    myStringConcat.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myStringMaj.prop {
         case .noSelection :

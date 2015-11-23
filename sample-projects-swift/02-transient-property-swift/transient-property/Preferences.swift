@@ -167,7 +167,7 @@ var g_Preferences : Preferences? = nil
       presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myButton' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.computeFunction = { [weak self] in
+    mFullName.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.mFirstName.prop {
         case .noSelection :
@@ -193,7 +193,7 @@ var g_Preferences : Preferences? = nil
         return .noSelection
       }
     }
-    mUpperCaseFullName.computeFunction = { [weak self] in
+    mUpperCaseFullName.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.mFullName.prop {
         case .noSelection :
