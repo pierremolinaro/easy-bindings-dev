@@ -142,8 +142,8 @@ override method @transientAST secondaryPropertySemanticAnalysis
       ?@propertyMultiplicity outMultiplicity
       ?let @string swiftTypeStringForTransientFunctionArgument
     ]
-    if outMultiplicity != .single then
-      error [mObservableProperty location] : "a collection cannot be observed"
+    if (outMultiplicity == .collection) && (dependencyKind == .stored)  then
+      error [mObservableProperty location] : "a collection property cannot be observed"
     end
     dependencies +=
       !mObservableProperty

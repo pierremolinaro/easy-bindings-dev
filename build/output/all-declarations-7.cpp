@@ -3788,9 +3788,13 @@ static void categoryMethod_transientAST_secondaryPropertySemanticAnalysis (const
     GALGAS_propertyMultiplicity var_outMultiplicity ;
     GALGAS_string var_swiftTypeStringForTransientFunctionArgument ;
     categoryMethod_analyzeObservableProperty (enumerator_5063.current_mObservableProperty (HERE), constinArgument_inRootObservableProperties, constinArgument_inSemanticContext, constinArgument_inObservableProperties, var_dependencyType, var_dependencyKind, var_outMultiplicity, var_swiftTypeStringForTransientFunctionArgument, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 136)) ;
-    const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("transient-property.galgas", 145)))).boolEnum () ;
-    if (kBoolTrue == test_6) {
-      inCompiler->emitSemanticError (extensionGetter_location (enumerator_5063.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 146)), GALGAS_string ("a collection cannot be observed")  COMMA_SOURCE_FILE ("transient-property.galgas", 146)) ;
+    GALGAS_bool test_6 = GALGAS_bool (kIsEqual, var_outMultiplicity.objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("transient-property.galgas", 145)))) ;
+    if (kBoolTrue == test_6.boolEnum ()) {
+      test_6 = GALGAS_bool (kIsEqual, var_dependencyKind.objectCompare (GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("transient-property.galgas", 145)))) ;
+    }
+    const enumGalgasBool test_7 = test_6.boolEnum () ;
+    if (kBoolTrue == test_7) {
+      inCompiler->emitSemanticError (extensionGetter_location (enumerator_5063.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 146)), GALGAS_string ("a collection property cannot be observed")  COMMA_SOURCE_FILE ("transient-property.galgas", 146)) ;
     }
     var_dependencies.addAssign_operation (enumerator_5063.current_mObservableProperty (HERE), extensionGetter_modelString (enumerator_5063.current_mObservableProperty (HERE), GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 150)).getter_nameRepresentation (SOURCE_FILE ("transient-property.galgas", 150)), var_swiftTypeStringForTransientFunctionArgument  COMMA_SOURCE_FILE ("transient-property.galgas", 148)) ;
     enumerator_5063.gotoNextObject () ;
