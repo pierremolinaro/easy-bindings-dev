@@ -350,7 +350,8 @@ method @observablePropertyAST analyzeObservableProperty
         error propertyName : "the observed property cannot be a collection"
       end
     end
-    outSwiftTypeStringForTransientFunctionArgument = "[" + [relationshipType swiftTypeName] + " /* _" + propertyName + " */]"
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [relationshipType swiftTypeName]
+       + " /* _" + propertyName + " */]"
   case selfProperty (@lstring propertyName) :
     [inObservablePropertyMap searchKey
       !propertyName
@@ -359,7 +360,11 @@ method @observablePropertyAST analyzeObservableProperty
       ?outMultiplicity
       ?2*
     ]
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    if [outMultiplicity isCollection] then
+      outSwiftTypeStringForTransientFunctionArgument = "[" + [outType swiftTypeName] + "]"
+    else
+      outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    end
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inObservablePropertyMap searchKey
       !propertyName
