@@ -269,7 +269,7 @@ import Cocoa
     )
   //--------------------------- Custom object controllers
   //--- Transient compute functions
-    selectionCountString.computeFunction = { [weak self] in
+    selectionCountString.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.selController.sortedArray.count.prop {
         case .noSelection :
@@ -283,7 +283,7 @@ import Cocoa
         return .noSelection
       }
     }
-    evenValueString.computeFunction = { [weak self] in
+    evenValueString.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.otherController.sortedArray.count.prop {
         case .noSelection :
@@ -297,7 +297,7 @@ import Cocoa
         return .noSelection
       }
     }
-    canRemoveString.computeFunction = { [weak self] in
+    canRemoveString.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.nameController.selectedArray.count.prop {
         case .noSelection :
@@ -311,7 +311,7 @@ import Cocoa
         return .noSelection
       }
     }
-    countItemMessage.computeFunction = { [weak self] in
+    countItemMessage.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.rootObject.mNames.count.prop {
         case .noSelection :
@@ -325,7 +325,7 @@ import Cocoa
         return .noSelection
       }
     }
-    total.computeFunction = { [weak self] in
+    total.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.rootObject.mNames.prop {
         case .noSelection :
@@ -409,11 +409,11 @@ import Cocoa
     incrementButton?.unbind_enabled ()
     decrementButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
-    selectionCountString.computeFunction = nil
-    evenValueString.computeFunction = nil
-    canRemoveString.computeFunction = nil
-    countItemMessage.computeFunction = nil
-    total.computeFunction = nil
+    selectionCountString.readModelFunction = nil
+    evenValueString.readModelFunction = nil
+    canRemoveString.readModelFunction = nil
+    countItemMessage.readModelFunction = nil
+    total.readModelFunction = nil
   //--------------------------- Unbind array controllers
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()

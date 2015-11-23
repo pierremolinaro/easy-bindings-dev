@@ -24,7 +24,7 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
 
   override init () {
     super.init ()
-    self.computeFunction = { [weak self] in
+    self.readModelFunction = { [weak self] in
       if let unwSelf = self {
         return .singleSelection (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
       }else{
@@ -80,7 +80,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 
   override init () {
     super.init ()
-    self.computeFunction = { [weak self] in
+    self.readModelFunction = { [weak self] in
       if let unwSelf = self {
         return .singleSelection (Int (unwSelf.signature ()))
       }else{

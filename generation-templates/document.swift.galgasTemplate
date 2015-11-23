@@ -166,7 +166,7 @@ end
 %  //--- Transient compute functions
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = { [weak self] in\n%
+  %    %!mTransientName%.readModelFunction = { [weak self] in\n%
   %      if let unwSelf = self {\n%
   ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName]
   %      }else{\n%
@@ -234,7 +234,7 @@ end
 %  //--- Uninstall compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.computeFunction = nil\n%
+  %    %!mTransientName%.readModelFunction = nil\n%
 end
 %  //--------------------------- Unbind array controllers
 %

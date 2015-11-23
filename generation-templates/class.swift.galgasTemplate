@@ -20,7 +20,7 @@ class ReadOnlyArrayOf_%!CLASS_NAME% : EBAbstractProperty {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
+    count.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
         case .noSelection :
@@ -174,7 +174,7 @@ end
 
 class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
-  var computeFunction : Optional<() -> EBProperty < [%!CLASS_NAME%] > >
+  var readModelFunction : Optional<() -> EBProperty < [%!CLASS_NAME%] > >
  
   private var prop_cache : EBProperty < [%!CLASS_NAME%] >? 
 
@@ -188,7 +188,7 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   override var prop : EBProperty < [%!CLASS_NAME%] > {
     get {
-      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
@@ -369,7 +369,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if [mDependencyList needs_unwSelf] then
-    %    %!mTransientName%.computeFunction = { [weak self] in\n%
+    %    %!mTransientName%.readModelFunction = { [weak self] in\n%
     %      if let unwSelf = self {\n%
     ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName]
     %      }else{\n%
@@ -377,7 +377,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     %      }\n%
     %    }\n%
   else
-    %    %!mTransientName%.computeFunction = {\n%
+    %    %!mTransientName%.readModelFunction = {\n%
     ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName]
     %    }\n%
   end
@@ -616,7 +616,7 @@ final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 @objc(EBTransientProperty_%!CLASS_NAME%)
 class EBTransientProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
   private var mValueCache : EBProperty <%!CLASS_NAME%>? = nil
-  var computeFunction : Optional<() -> EBProperty <%!CLASS_NAME%>>
+  var readModelFunction : Optional<() -> EBProperty <%!CLASS_NAME%>>
 
   //····················································································································
 
@@ -628,7 +628,7 @@ class EBTransientProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
 
   override var prop : EBProperty <%!CLASS_NAME%> {
     get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {

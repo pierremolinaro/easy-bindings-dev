@@ -21,7 +21,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
+    count.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
         case .noSelection :
@@ -193,7 +193,7 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 // @objc(TransientArrayOf_NameEntity)
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
-  var computeFunction : Optional<() -> EBProperty < [NameEntity] > >
+  var readModelFunction : Optional<() -> EBProperty < [NameEntity] > >
 
   private var prop_cache : EBProperty < [NameEntity] >? 
 
@@ -209,7 +209,7 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   override var prop : EBProperty < [NameEntity] > {
     get {
-      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <NameEntity>
         switch prop_cache! {

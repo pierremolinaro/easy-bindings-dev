@@ -21,7 +21,7 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : EBAbstractProperty {
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
+    count.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
         case .noSelection :
@@ -198,7 +198,7 @@ end
 // @objc(TransientArrayOf_%!ENTITY_NAME%)
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
-  var computeFunction : Optional<() -> EBProperty < [%!ENTITY_NAME%] > >
+  var readModelFunction : Optional<() -> EBProperty < [%!ENTITY_NAME%] > >
 
   private var prop_cache : EBProperty < [%!ENTITY_NAME%] >? 
 
@@ -214,7 +214,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   override var prop : EBProperty < [%!ENTITY_NAME%] > {
     get {
-      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <%!ENTITY_NAME%>
         switch prop_cache! {
@@ -306,7 +306,7 @@ ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtoco
 
   override init () {
     super.init ()
-    count.computeFunction = { [weak self] in
+    count.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
         case .noSelection :
@@ -575,7 +575,11 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+  if mIsArray then
+    %  var %!mTransientName% = EBTransientPropertyArray_%![mTransientType swiftTypeName]% ()\n%
+  else
+    %  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+  end
 end
 
 %
@@ -607,7 +611,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if [mDependencyList needs_unwSelf] then
-    %    %!mTransientName%.computeFunction = { [weak self] in\n%
+    %    %!mTransientName%.readModelFunction = { [weak self] in\n%
     %      if let unwSelf = self {\n%
     ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName]
     %      }else{\n%
@@ -615,7 +619,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     %      }\n%
     %    }\n%
   else
-    %    %!mTransientName%.computeFunction = {\n%
+    %    %!mTransientName%.readModelFunction = {\n%
     ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName]
     %    }\n%
   end

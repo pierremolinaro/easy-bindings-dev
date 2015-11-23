@@ -152,7 +152,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //····················································································································
 
   private final func setSelectedArrayComputeFunction () {
-    selectedArray.computeFunction = {
+    selectedArray.readModelFunction = {
       switch self.sortedArray.prop {
       case .noSelection :
         return .noSelection
@@ -197,7 +197,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //····················································································································
 
   private final func setFilterAndSortFunction () {
-    sortedArray.computeFunction = {
+    sortedArray.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
         case .noSelection :
@@ -268,8 +268,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     }
   //---
     mTableViewArray = [EBTableView] ()
-    selectedArray.computeFunction = nil
-    sortedArray.computeFunction = nil
+    selectedArray.readModelFunction = nil
+    sortedArray.readModelFunction = nil
     mSelectedSet.mSet = Set ()
     mTableViewDataSourceControllerArray = []
     mTableViewSelectionControllerArray = []

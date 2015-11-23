@@ -48,7 +48,13 @@ end%  }
 %
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
-    %  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
+    if not [mKind isTransient] then
+      %  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
+    elsif [mMultiplicity isCollection] then
+      %  var %!lkey.string% = EBTransientPropertyArray_%![mType swiftTypeName]% () \n%
+    else
+      %  var %!lkey.string% = EBTransientProperty_%![mType swiftTypeName]% () \n%
+    end
   end
 end
 %
@@ -95,7 +101,7 @@ end
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
+if (not [mType isEntityType]) & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
   %      idx:%!lkey.string%.mExplorerObjectIndex,\n%
