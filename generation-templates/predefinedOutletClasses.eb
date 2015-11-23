@@ -88,6 +88,10 @@ outletClass EBTextObserverField ;
 binding EBTextObserverField $valueObserver : transient String ;
 
 
+outletClass EBTextObserverView ;
+binding EBTextObserverView $valueObserver : transient String ;
+
+
 outletClass EBTextView ;
 binding EBTextView $value : property String ;
 
