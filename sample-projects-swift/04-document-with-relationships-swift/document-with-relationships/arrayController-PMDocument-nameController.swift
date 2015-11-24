@@ -12,7 +12,6 @@ private let DEBUG_EVENT = false
 //    DataSource_PMDocument_nameController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(DataSource_PMDocument_nameController)
 final class DataSource_PMDocument_nameController : TransientArrayOf_NameEntity, EBTableViewDataSource {
 
   //····················································································································
@@ -39,7 +38,6 @@ final class DataSource_PMDocument_nameController : TransientArrayOf_NameEntity, 
 //    SelectedSet_PMDocument_nameController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(SelectedSet_PMDocument_nameController)
 final class SelectedSet_PMDocument_nameController : EBAbstractProperty {
   private let mAllowsEmptySelection : Bool
   private let mAllowsMultipleSelection : Bool
@@ -96,7 +94,6 @@ final class SelectedSet_PMDocument_nameController : EBAbstractProperty {
 //    ArrayController_PMDocument_nameController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(ArrayController_PMDocument_nameController)
 final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDelegate {
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames? = nil
