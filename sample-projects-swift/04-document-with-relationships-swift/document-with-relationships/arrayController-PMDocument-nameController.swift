@@ -9,45 +9,19 @@ import Cocoa
 private let DEBUG_EVENT = false
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    DataSource_PMDocument_nameController
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-final class DataSource_PMDocument_nameController : TransientArrayOf_NameEntity, EBTableViewDataSource {
-
-  //····················································································································
-  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView
-  //····················································································································
-
-  func numberOfRowsInTableView (_ : NSTableView) -> Int {
-    if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
-    }
-    switch prop {
-    case .noSelection, .multipleSelection :
-      return 0
-    case .singleSelection (let v) :
-      return v.count
-    }
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    SelectedSet_PMDocument_nameController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class SelectedSet_PMDocument_nameController : EBAbstractProperty {
   private let mAllowsEmptySelection : Bool
   private let mAllowsMultipleSelection : Bool
-  private let mSortedArray : DataSource_PMDocument_nameController
+  private let mSortedArray : TransientArrayOf_NameEntity
 
   //····················································································································
 
   init (allowsEmptySelection : Bool,
         allowsMultipleSelection : Bool,
-        sortedArray : DataSource_PMDocument_nameController) {
+        sortedArray : TransientArrayOf_NameEntity) {
     mAllowsMultipleSelection = allowsMultipleSelection
     mAllowsEmptySelection = allowsEmptySelection
     mSortedArray = sortedArray
@@ -94,11 +68,11 @@ final class SelectedSet_PMDocument_nameController : EBAbstractProperty {
 //    ArrayController_PMDocument_nameController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDelegate {
+final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDelegate, EBTableViewDataSource {
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames? = nil
 
-  let sortedArray = DataSource_PMDocument_nameController ()
+  let sortedArray = TransientArrayOf_NameEntity ()
 
   let selectedArray = TransientArrayOf_NameEntity ()
 
@@ -285,7 +259,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     }
     tableView.allowsEmptySelection = allowsEmptySelection
     tableView.allowsMultipleSelection = allowsMultipleSelection
-    tableView.setDataSource (sortedArray)
+    tableView.setDataSource (self)
     tableView.setDelegate (self)
   //--- Set table view data source controller
     let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
@@ -340,6 +314,22 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         }
       }
       return indexSet
+    }
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView
+  //····················································································································
+
+  func numberOfRowsInTableView (_ : NSTableView) -> Int {
+    if DEBUG_EVENT {
+      print ("\(__FUNCTION__)")
+    }
+    switch sortedArray.prop {
+    case .noSelection, .multipleSelection :
+      return 0
+    case .singleSelection (let v) :
+      return v.count
     }
   }
 
