@@ -8,40 +8,7 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
-
-  var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
-
-  //····················································································································
-
-  final var count = EBTransientProperty_Int ()
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-    count.readModelFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
-      }
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    count.postEvent ()
-    super.postEvent ()
-  }
+class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity> {
 
   //····················································································································
   //   Observers of 'myString' stored property
