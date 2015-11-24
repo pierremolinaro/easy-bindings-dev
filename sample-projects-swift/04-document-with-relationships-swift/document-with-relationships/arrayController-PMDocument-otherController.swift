@@ -12,7 +12,7 @@ private let DEBUG_EVENT = false
 //    DataSource_PMDocument_otherController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(DataSource_PMDocument_otherController)
+// @objc(DataSource_PMDocument_otherController)
 final class DataSource_PMDocument_otherController : TransientArrayOf_NameEntity, EBTableViewDataSource {
 
   //····················································································································
@@ -39,7 +39,7 @@ final class DataSource_PMDocument_otherController : TransientArrayOf_NameEntity,
 //    SelectedSet_PMDocument_otherController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(SelectedSet_PMDocument_otherController)
+// @objc(SelectedSet_PMDocument_otherController)
 final class SelectedSet_PMDocument_otherController : EBAbstractProperty {
   private let mAllowsEmptySelection : Bool
   private let mAllowsMultipleSelection : Bool
@@ -96,7 +96,7 @@ final class SelectedSet_PMDocument_otherController : EBAbstractProperty {
 //    ArrayController_PMDocument_otherController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ArrayController_PMDocument_otherController)
+// @objc(ArrayController_PMDocument_otherController)
 final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDelegate {
 
   private var mModel : ToManyRelationship_MyRootEntity_mNames? = nil

@@ -12,7 +12,7 @@ private let DEBUG_EVENT = false
 //    DataSource_PMDocument_selController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(DataSource_PMDocument_selController)
+// @objc(DataSource_PMDocument_selController)
 final class DataSource_PMDocument_selController : TransientArrayOf_NameEntity, EBTableViewDataSource {
 
   //····················································································································
@@ -39,7 +39,7 @@ final class DataSource_PMDocument_selController : TransientArrayOf_NameEntity, E
 //    SelectedSet_PMDocument_selController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(SelectedSet_PMDocument_selController)
+// @objc(SelectedSet_PMDocument_selController)
 final class SelectedSet_PMDocument_selController : EBAbstractProperty {
   private let mAllowsEmptySelection : Bool
   private let mAllowsMultipleSelection : Bool
@@ -96,7 +96,7 @@ final class SelectedSet_PMDocument_selController : EBAbstractProperty {
 //    ArrayController_PMDocument_selController
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(ArrayController_PMDocument_selController)
+// @objc(ArrayController_PMDocument_selController)
 final class ArrayController_PMDocument_selController : EBObject, EBTableViewDelegate {
 
   private var mModel : ReadOnlyArrayOf_NameEntity? = nil

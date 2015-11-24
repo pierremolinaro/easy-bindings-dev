@@ -1101,7 +1101,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
-    "@objc(DataSource_" ;
+    "// @objc(DataSource_" ;
   result << in_OWNER_5F_NAME.stringValue () ;
   result << "_" ;
   result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
@@ -1140,7 +1140,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
-    "@objc(SelectedSet_" ;
+    "// @objc(SelectedSet_" ;
   result << in_OWNER_5F_NAME.stringValue () ;
   result << "_" ;
   result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
@@ -1219,7 +1219,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
-    "@objc(ArrayController_" ;
+    "// @objc(ArrayController_" ;
   result << in_OWNER_5F_NAME.stringValue () ;
   result << "_" ;
   result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
@@ -1272,17 +1272,17 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    }\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_5473_ (0) ;
+  GALGAS_uint index_5482_ (0) ;
   if (in_ATTRIBUTE_5F_VALUES.isValid ()) {
-    cEnumerator__32_stringlist enumerator_5473 (in_ATTRIBUTE_5F_VALUES, kEnumeration_up) ;
-    while (enumerator_5473.hasCurrentObject ()) {
+    cEnumerator__32_stringlist enumerator_5482 (in_ATTRIBUTE_5F_VALUES, kEnumeration_up) ;
+    while (enumerator_5482.hasCurrentObject ()) {
       result << "  private let " ;
-      result << enumerator_5473.current_mValue_30_ (HERE).stringValue () ;
+      result << enumerator_5482.current_mValue_30_ (HERE).stringValue () ;
       result << " = " ;
-      result << enumerator_5473.current_mValue_31_ (HERE).stringValue () ;
+      result << enumerator_5482.current_mValue_31_ (HERE).stringValue () ;
       result << "\n" ;
-      index_5473_.increment () ;
-      enumerator_5473.gotoNextObject () ;
+      index_5482_.increment () ;
+      enumerator_5482.gotoNextObject () ;
     }
   }
   result << "  \n"
@@ -1341,31 +1341,31 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     result << ") -> Bool {\n"
       "    var order = NSComparisonResult.OrderedSame\n"
       "    for (column, ascending) in mSortDescriptorArray {\n" ;
-    GALGAS_uint index_7263_ (0) ;
+    GALGAS_uint index_7272_ (0) ;
     if (in_SORTED_5F_COLUMNS.isValid ()) {
-      cEnumerator_arrayControllerSortedColumnListForGeneration enumerator_7263 (in_SORTED_5F_COLUMNS, kEnumeration_up) ;
-      const bool nonEmpty_enumerator_7263 = enumerator_7263.hasCurrentObject () ;
-      if (nonEmpty_enumerator_7263) {
+      cEnumerator_arrayControllerSortedColumnListForGeneration enumerator_7272 (in_SORTED_5F_COLUMNS, kEnumeration_up) ;
+      const bool nonEmpty_enumerator_7272 = enumerator_7272.hasCurrentObject () ;
+      if (nonEmpty_enumerator_7272) {
         result << "      " ;
       }
-      while (enumerator_7263.hasCurrentObject ()) {
+      while (enumerator_7272.hasCurrentObject ()) {
         result << "if column == \"" ;
-        result << enumerator_7263.current_mColumnName (HERE).stringValue () ;
+        result << enumerator_7272.current_mColumnName (HERE).stringValue () ;
         result << "\" {\n"
           "        order = compare_" ;
-        result << extensionGetter_swiftTypeName (enumerator_7263.current_mSortPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 187)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_7272.current_mSortPropertyType (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 187)).stringValue () ;
         result << " (left." ;
-        result << enumerator_7263.current_mObservablePropertyForSorting (HERE).stringValue () ;
+        result << enumerator_7272.current_mObservablePropertyForSorting (HERE).stringValue () ;
         result << ", right:right." ;
-        result << enumerator_7263.current_mObservablePropertyForSorting (HERE).stringValue () ;
+        result << enumerator_7272.current_mObservablePropertyForSorting (HERE).stringValue () ;
         result << ")\n" ;
-        if (enumerator_7263.hasNextObject ()) {
+        if (enumerator_7272.hasNextObject ()) {
           result << "      }else " ;
         }
-        index_7263_.increment () ;
-        enumerator_7263.gotoNextObject () ;
+        index_7272_.increment () ;
+        enumerator_7272.gotoNextObject () ;
       }
-      if (nonEmpty_enumerator_7263) {
+      if (nonEmpty_enumerator_7272) {
         result << "      }\n" ;
       }
     }
@@ -1457,15 +1457,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    sortedArray.addEBObserver (mSelectedSet)\n"
     "    mSelectedSet.addEBObserver (selectedArray)\n"
     "  //--- Add observed properties (for filtering and sorting)\n" ;
-  GALGAS_uint index_10475_ (0) ;
+  GALGAS_uint index_10484_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING.isValid ()) {
-    cEnumerator_stringset enumerator_10475 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
-    while (enumerator_10475.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_10484 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
+    while (enumerator_10484.hasCurrentObject ()) {
       result << "    model.addEBObserverOf_" ;
-      result << enumerator_10475.current_key (HERE).stringValue () ;
+      result << enumerator_10484.current_key (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_10475_.increment () ;
-      enumerator_10475.gotoNextObject () ;
+      index_10484_.increment () ;
+      enumerator_10484.gotoNextObject () ;
     }
   }
   result << "  //--- Bind table views\n"
@@ -1487,15 +1487,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    sortedArray.removeEBObserver (mSelectedSet)\n"
     "    mSelectedSet.removeEBObserver (selectedArray)\n"
     "  //--- Remove observed properties (for filtering and sorting)\n" ;
-  GALGAS_uint index_11325_ (0) ;
+  GALGAS_uint index_11334_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING.isValid ()) {
-    cEnumerator_stringset enumerator_11325 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
-    while (enumerator_11325.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_11334 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
+    while (enumerator_11334.hasCurrentObject ()) {
       result << "    mModel\?.removeEBObserverOf_" ;
-      result << enumerator_11325.current_key (HERE).stringValue () ;
+      result << enumerator_11334.current_key (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_11325_.increment () ;
-      enumerator_11325.gotoNextObject () ;
+      index_11334_.increment () ;
+      enumerator_11334.gotoNextObject () ;
     }
   }
   result << "    for tvc in mTableViewDataSourceControllerArray {\n"
@@ -1536,27 +1536,27 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)\n"
     "    mSelectedSet.addEBObserver (selectionTableViewController)\n"
     "    mTableViewSelectionControllerArray.append (selectionTableViewController)\n" ;
-  GALGAS_uint index_13139_ (0) ;
+  GALGAS_uint index_13148_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_13139 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_13139.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_13148 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_13148.hasCurrentObject ()) {
       result << "  //--- Check '" ;
-      result << enumerator_13139.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_13148.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "    if let column : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_13139.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_13148.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "      column.sortDescriptorPrototype = nil\n"
         "    }else{\n"
         "      presentErrorWindow (file,\n"
         "        line: line,\n"
         "        errorMessage:\"\\\"" ;
-      result << enumerator_13139.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_13148.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown\"\n"
         "      )\n"
         "    }\n" ;
-      index_13139_.increment () ;
-      enumerator_13139.gotoNextObject () ;
+      index_13148_.increment () ;
+      enumerator_13148.gotoNextObject () ;
     }
   }
   result << "  //--- Set descriptors from first column of table view\n"
@@ -1651,80 +1651,80 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      }\n"
     "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
     "      " ;
-  GALGAS_uint index_17314_ (0) ;
+  GALGAS_uint index_17323_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_17314 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_17314 = enumerator_17314.hasCurrentObject () ;
-    while (enumerator_17314.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_17323 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_17323 = enumerator_17323.hasCurrentObject () ;
+    while (enumerator_17323.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_17314.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_17323.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "        if let cell : " ;
-      result << enumerator_17314.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_17323.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_TableViewCell = result as\? " ;
-      result << enumerator_17314.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_17323.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_TableViewCell {\n"
         "          cell.mUnbindFunction = { [weak cell] in\n" ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_17314.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_17323.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "            cell\?.mCellOutlet\?.target = nil\n"
           "            cell\?.mCellOutlet\?.action = \"\"\n" ;
       }else if (kBoolFalse == test_4) {
       }
-      GALGAS_uint index_17733_ (0) ;
-      if (enumerator_17314.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-        cEnumerator_regularBindingsGenerationList enumerator_17733 (enumerator_17314.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
-        while (enumerator_17733.hasCurrentObject ()) {
+      GALGAS_uint index_17742_ (0) ;
+      if (enumerator_17323.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+        cEnumerator_regularBindingsGenerationList enumerator_17742 (enumerator_17323.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
+        while (enumerator_17742.hasCurrentObject ()) {
           result << "            cell\?.mCellOutlet\?.unbind_" ;
-          result << enumerator_17733.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_17742.current_mBindingName (HERE).stringValue () ;
           result << " ()\n" ;
-          index_17733_.increment () ;
-          enumerator_17733.gotoNextObject () ;
+          index_17742_.increment () ;
+          enumerator_17742.gotoNextObject () ;
         }
       }
       result << "          }\n"
         "          cell.mUnbindFunction\? ()\n" ;
-      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_17314.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_17323.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_5) {
         result << "          cell.mCellOutlet\?.target = object\n"
           "          cell.mCellOutlet\?.action = \"" ;
-        result << enumerator_17314.current_mRunAction (HERE).stringValue () ;
+        result << enumerator_17323.current_mRunAction (HERE).stringValue () ;
         result << ":\"\n" ;
       }else if (kBoolFalse == test_5) {
       }
-      GALGAS_uint index_18068_ (0) ;
-      if (enumerator_17314.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-        cEnumerator_regularBindingsGenerationList enumerator_18068 (enumerator_17314.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
-        while (enumerator_18068.hasCurrentObject ()) {
+      GALGAS_uint index_18077_ (0) ;
+      if (enumerator_17323.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+        cEnumerator_regularBindingsGenerationList enumerator_18077 (enumerator_17323.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
+        while (enumerator_18077.hasCurrentObject ()) {
           result << "          cell.mCellOutlet\?.bind_" ;
-          result << enumerator_18068.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_18077.current_mBindingName (HERE).stringValue () ;
           result << " (" ;
-          GALGAS_uint index_18167_ (0) ;
-          if (enumerator_18068.current_mBoundObjectStringList (HERE).isValid ()) {
-            cEnumerator_stringlist enumerator_18167 (enumerator_18068.current_mBoundObjectStringList (HERE), kEnumeration_up) ;
-            while (enumerator_18167.hasCurrentObject ()) {
-              result << enumerator_18167.current_mValue (HERE).stringValue () ;
+          GALGAS_uint index_18176_ (0) ;
+          if (enumerator_18077.current_mBoundObjectStringList (HERE).isValid ()) {
+            cEnumerator_stringlist enumerator_18176 (enumerator_18077.current_mBoundObjectStringList (HERE), kEnumeration_up) ;
+            while (enumerator_18176.hasCurrentObject ()) {
+              result << enumerator_18176.current_mValue (HERE).stringValue () ;
               result << ", " ;
-              index_18167_.increment () ;
-              enumerator_18167.gotoNextObject () ;
+              index_18176_.increment () ;
+              enumerator_18176.gotoNextObject () ;
             }
           }
           result << "file:__FILE__, line:__LINE__" ;
-          result << enumerator_18068.current_mBindingOptionsString (HERE).stringValue () ;
+          result << enumerator_18077.current_mBindingOptionsString (HERE).stringValue () ;
           result << ")\n" ;
-          index_18068_.increment () ;
-          enumerator_18068.gotoNextObject () ;
+          index_18077_.increment () ;
+          enumerator_18077.gotoNextObject () ;
         }
       }
       result << "        }\n"
         "      " ;
-      if (enumerator_17314.hasNextObject ()) {
+      if (enumerator_17323.hasNextObject ()) {
         result << "}else " ;
       }
-      index_17314_.increment () ;
-      enumerator_17314.gotoNextObject () ;
+      index_17323_.increment () ;
+      enumerator_17323.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_17314) {
+    if (nonEmpty_enumerator_17323) {
       result << "}else{\n"
         "        NSLog (\"Unknown column '\\(columnIdentifier)'\")\n"
         "      }\n" ;
@@ -2567,7 +2567,7 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
   result << "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"
-    "@objc(CustomObjectController_" ;
+    "//@objc(CustomObjectController_" ;
   result << in_OWNER_5F_NAME.stringValue () ;
   result << "_" ;
   result << in_CUSTOM_5F_OBJECT_5F_CONTROLLER_5F_NAME.stringValue () ;
@@ -2585,35 +2585,35 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "  var mSelectedObject : FontCharacterEntity\? {\n"
     "    didSet {\n"
     "      if mSelectedObject != oldValue {\n" ;
-  GALGAS_uint index_1124_ (0) ;
+  GALGAS_uint index_1126_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_1124 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_1124.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = enumerator_1124.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 22)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 22)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_1126 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_1126.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = enumerator_1126.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 22)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 22)).boolEnum () ;
       if (kBoolTrue == test_0) {
         result << "        oldValue\?." ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".removeEBObserver (mObjectObserver)\n"
           "        mSelectedObject\?." ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".addEBObserver (mObjectObserver)\n"
           "        oldValue\?." ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".removeEBObserver (" ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ")\n"
           "        mSelectedObject\?." ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".addEBObserver (" ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ")\n"
           "        " ;
-        result << enumerator_1124.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1126.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".postEvent ()\n" ;
       }else if (kBoolFalse == test_0) {
       }
-      index_1124_.increment () ;
-      enumerator_1124.gotoNextObject () ;
+      index_1126_.increment () ;
+      enumerator_1126.gotoNextObject () ;
     }
   }
   result << "      }\n"
@@ -2624,19 +2624,19 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "\n"
     "  override init () {\n"
     "    super.init ()\n" ;
-  GALGAS_uint index_1752_ (0) ;
+  GALGAS_uint index_1754_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_1752 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_1752.hasCurrentObject ()) {
-      const enumGalgasBool test_1 = enumerator_1752.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 39)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 39)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_1754 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_1754.hasCurrentObject ()) {
+      const enumGalgasBool test_1 = enumerator_1754.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 39)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 39)).boolEnum () ;
       if (kBoolTrue == test_1) {
         result << "    bind_property_" ;
-        result << enumerator_1752.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_1754.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " ()\n" ;
       }else if (kBoolFalse == test_1) {
       }
-      index_1752_.increment () ;
-      enumerator_1752.gotoNextObject () ;
+      index_1754_.increment () ;
+      enumerator_1754.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -2645,34 +2645,34 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "  //   TOMANY RELATIONSHIPS\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n" ;
-  GALGAS_uint index_2160_ (0) ;
+  GALGAS_uint index_2162_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_2160 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_2160.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = enumerator_2160.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 50)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_2162 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_2162.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = enumerator_2162.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 50)).boolEnum () ;
       if (kBoolTrue == test_2) {
-        const enumGalgasBool test_3 = enumerator_2160.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 51)).boolEnum () ;
+        const enumGalgasBool test_3 = enumerator_2162.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 51)).boolEnum () ;
         if (kBoolTrue == test_3) {
           result << "  // var " ;
-          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_2162.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << " = ToManyRelationship_" ;
           result << in_OWNER_5F_NAME.stringValue () ;
           result << "_" ;
-          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_2162.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << " () \n" ;
         }else if (kBoolFalse == test_3) {
           result << "  // var " ;
-          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_2162.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << " = ToOneRelationship_" ;
           result << in_OWNER_5F_NAME.stringValue () ;
           result << "_" ;
-          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_2162.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << " () \n" ;
         }
       }else if (kBoolFalse == test_2) {
       }
-      index_2160_.increment () ;
-      enumerator_2160.gotoNextObject () ;
+      index_2162_.increment () ;
+      enumerator_2162.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -2680,39 +2680,39 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "  //   OBJECT OBSERVABLE PROPERTIES\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n" ;
-  GALGAS_uint index_2774_ (0) ;
+  GALGAS_uint index_2776_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_2774 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_2774.hasCurrentObject ()) {
-      const enumGalgasBool test_4 = enumerator_2774.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 65)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 65)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_2776 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_2776.hasCurrentObject ()) {
+      const enumGalgasBool test_4 = enumerator_2776.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 65)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 65)).boolEnum () ;
       if (kBoolTrue == test_4) {
-        const enumGalgasBool test_5 = enumerator_2774.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 66)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 66)).boolEnum () ;
+        const enumGalgasBool test_5 = enumerator_2776.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 66)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 66)).boolEnum () ;
         if (kBoolTrue == test_5) {
           result << "  var " ;
-          result << enumerator_2774.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_2776.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << " = EBPropertyProxy_" ;
-          result << extensionGetter_swiftTypeName (enumerator_2774.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 67)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_2776.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 67)).stringValue () ;
           result << " () \n" ;
         }else if (kBoolFalse == test_5) {
-          const enumGalgasBool test_6 = enumerator_2774.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 68)).boolEnum () ;
+          const enumGalgasBool test_6 = enumerator_2776.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 68)).boolEnum () ;
           if (kBoolTrue == test_6) {
             result << "  var " ;
-            result << enumerator_2774.current_lkey (HERE).mAttribute_string.stringValue () ;
+            result << enumerator_2776.current_lkey (HERE).mAttribute_string.stringValue () ;
             result << " = EBTransientPropertyArray_" ;
-            result << extensionGetter_swiftTypeName (enumerator_2774.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 69)).stringValue () ;
+            result << extensionGetter_swiftTypeName (enumerator_2776.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 69)).stringValue () ;
             result << " () \n" ;
           }else if (kBoolFalse == test_6) {
             result << "  var " ;
-            result << enumerator_2774.current_lkey (HERE).mAttribute_string.stringValue () ;
+            result << enumerator_2776.current_lkey (HERE).mAttribute_string.stringValue () ;
             result << " = EBTransientProperty_" ;
-            result << extensionGetter_swiftTypeName (enumerator_2774.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 71)).stringValue () ;
+            result << extensionGetter_swiftTypeName (enumerator_2776.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 71)).stringValue () ;
             result << " () \n" ;
           }
         }
       }else if (kBoolFalse == test_4) {
       }
-      index_2774_.increment () ;
-      enumerator_2774.gotoNextObject () ;
+      index_2776_.increment () ;
+      enumerator_2776.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -2758,32 +2758,32 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "  //-------------------------------------------------- Adding properties\n"
     "    let view = NSView (frame:r)\n"
     "    var y : CGFloat = 0.0\n" ;
-  GALGAS_uint index_4983_ (0) ;
+  GALGAS_uint index_4985_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_4983 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_4983.hasCurrentObject ()) {
-      const enumGalgasBool test_7 = enumerator_4983.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_and (enumerator_4983.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)) COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_4985 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_4985.hasCurrentObject ()) {
+      const enumGalgasBool test_7 = enumerator_4985.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_and (enumerator_4985.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)) COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).boolEnum () ;
       if (kBoolTrue == test_7) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4985.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\",\n"
           "      idx:" ;
-        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4985.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mExplorerObjectIndex,\n"
           "      y:&y,\n"
           "      view:view,\n"
           "      observerExplorer:&" ;
-        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4985.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mObserverExplorer,\n"
           "      valueExplorer:&" ;
-        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4985.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mValueExplorer\n"
           "    )\n" ;
       }else if (kBoolFalse == test_7) {
       }
-      index_4983_.increment () ;
-      enumerator_4983.gotoNextObject () ;
+      index_4985_.increment () ;
+      enumerator_4985.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -2837,46 +2837,46 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "    mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_7706_ (0) ;
+  GALGAS_uint index_7708_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_7706 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_7706.hasCurrentObject ()) {
-      const enumGalgasBool test_8 = enumerator_7706.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 182)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 182)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_7708 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_7708.hasCurrentObject ()) {
+      const enumGalgasBool test_8 = enumerator_7708.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 182)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 182)).boolEnum () ;
       if (kBoolTrue == test_8) {
         result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
           "\n"
           "  private final func bind_property_" ;
-        result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " () {\n"
           "    " ;
-        result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = { [weak self] in\n"
           "      if let model = self\?.mSelectedObject {\n"
           "        return model." ;
-        result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".prop\n"
           "      }else{\n"
           "        return .noSelection\n"
           "      }\n"
           "    }\n" ;
-        const enumGalgasBool test_9 = enumerator_7706.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 192)).boolEnum () ;
+        const enumGalgasBool test_9 = enumerator_7708.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 192)).boolEnum () ;
         if (kBoolTrue == test_9) {
           result << "    " ;
-          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".writeModelFunction = { [weak self] (inValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7706.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 193)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7708.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 193)).stringValue () ;
           result << ") in\n"
             "      self\?.mSelectedObject\?." ;
-          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".setProp (inValue)\n"
             "    }\n"
             "    " ;
-          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".validateAndWriteModelFunction = { [weak self] (candidateValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7706.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 196)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7708.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 196)).stringValue () ;
           result << ", windowForSheet : NSWindow\?) in\n"
             "      self\?.mSelectedObject\?." ;
-          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7708.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet) \?\? false\n"
             "    }\n" ;
         }else if (kBoolFalse == test_9) {
@@ -2885,8 +2885,8 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
           "\n" ;
       }else if (kBoolFalse == test_8) {
       }
-      index_7706_.increment () ;
-      enumerator_7706.gotoNextObject () ;
+      index_7708_.increment () ;
+      enumerator_7708.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -5759,7 +5759,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  \n"
-  "  var count : Int {\n"
+  "  var count : Swift.Int {\n"
   "    get {\n"
   "      return mDictionary.count\n"
   "    }\n"
@@ -6612,13 +6612,56 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  return left.compare (right) == .OrderedDescending\n"
   "}\n"
   "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
+  "//    ReadOnlyAbstractArrayProperty\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
+  "\n"
+  "class ReadOnlyAbstractArrayProperty <T> : EBAbstractProperty {\n"
+  "\n"
+  "  var prop : EBProperty < [T] > { get { return .noSelection } }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  final var count = EBTransientProperty_Int ()\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  override init () {\n"
+  "    super.init ()\n"
+  "    count.readModelFunction = { [weak self] in\n"
+  "      if let unwSelf = self {\n"
+  "        switch unwSelf.prop {\n"
+  "        case .noSelection :\n"
+  "          return .noSelection\n"
+  "        case .multipleSelection :\n"
+  "          return .multipleSelection\n"
+  "        case .singleSelection (let v) :\n"
+  "          return .singleSelection (v.count)\n"
+  "        }\n"
+  "      }else{\n"
+  "        return .noSelection\n"
+  "      }\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  override func postEvent () {\n"
+  "    count.postEvent ()\n"
+  "    super.postEvent ()\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "}\n"
+  "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n" ;
 
 const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  41830, // Text length
+  43293, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 
