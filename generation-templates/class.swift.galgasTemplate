@@ -42,17 +42,6 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  final func postEventTo_%!mStoredPropertyName% () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.%!mStoredPropertyName%.postEvent ()
-      }
-    }
-  }
-
   final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
@@ -282,7 +271,8 @@ end
 //    %!"Class: " + CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!CLASS_NAME%) class %!CLASS_NAME% : EBSimpleClass\n%
+// @objc(%!CLASS_NAME%)
+class %!CLASS_NAME% : EBSimpleClass\n%
 %// %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %, %!CLASS_NAME%_%!mStoredPropertyName
@@ -441,7 +431,7 @@ end
 //   EBReadOnlyProperty_%!CLASS_NAME% (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBReadOnlyProperty_%!CLASS_NAME%)
+// @objc(EBReadOnlyProperty_%!CLASS_NAME%)
 class EBReadOnlyProperty_%!CLASS_NAME% : EBAbstractProperty {
 
   var prop : EBProperty <%!CLASS_NAME%> { get { return .noSelection } } // Abstract method
@@ -463,7 +453,7 @@ class EBReadWriteProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
 //   EBPropertyProxy_%!CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBPropertyProxy_%!CLASS_NAME%)
+// @objc(EBPropertyProxy_%!CLASS_NAME%)
 class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
   var readModelFunction : Optional < () -> EBProperty <%!CLASS_NAME%> >
   var writeModelFunction : Optional < (%!CLASS_NAME%) -> Void >
@@ -535,7 +525,7 @@ class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 //   EBStoredProperty_%!CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBStoredProperty_%!CLASS_NAME%)
+// @objc(EBStoredProperty_%!CLASS_NAME%)
 final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 
   //····················································································································
@@ -580,7 +570,7 @@ final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
 //   EBTransientProperty_%!CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTransientProperty_%!CLASS_NAME%)
+// @objc(EBTransientProperty_%!CLASS_NAME%)
 class EBTransientProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
   private var mValueCache : EBProperty <%!CLASS_NAME%>? = nil
   var readModelFunction : Optional<() -> EBProperty <%!CLASS_NAME%>>
