@@ -7,7 +7,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 let kFormatSignature = "PM-BINARY-FORMAT"
-let EBVersion = "EBVersion"
+private let EBVersion = "EBVersion"
 let kEntityKey = "--entity"
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -188,9 +188,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
   //--- Read version from file
-    if let versionNumber = mMetadataDictionary.objectForKey (EBVersion) as? NSNumber {
-      mVersionObserver.setProp (versionNumber.integerValue)
-    }
+    mVersionObserver.setProp (readVersionFromMetadataDictionary (metadataDictionary))
   //--- Read data
     let dataFormat = dataScanner.parseByte ()
     let fileData = dataScanner.parseAutosizedData ()
@@ -230,7 +228,17 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     undoManager?.enableUndoRegistration ()
   }
 
-   //····················································································································
+  //····················································································································
+
+  func readVersionFromMetadataDictionary (metadataDictionary : NSDictionary) -> Int {
+    var result = 0
+    if let versionNumber = metadataDictionary.objectForKey (EBVersion) as? NSNumber {
+      result = versionNumber.integerValue
+    }
+    return result
+  }
+
+  //····················································································································
 
   final func raiseInvalidDataFormatArror (dataFormat : UInt8) throws {
     let dictionary = [
@@ -459,12 +467,6 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //--- Version did change observer
     mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)
     mSignatureObserver.addEBObserver (mVersionShouldChangeObserver)
-  //--- Get version from metadadictionary
-    let possibleVersion = mMetadataDictionary.objectForKey ("EBVersion")
-    if let versionNumber = possibleVersion as? NSNumber {
-      let version : Int = versionNumber.integerValue
-      mVersionObserver.setProp (version)
-    }
   //--- Add Debug menu items ?
     if !gDebugMenuItemsAdded {
       gDebugMenuItemsAdded = true

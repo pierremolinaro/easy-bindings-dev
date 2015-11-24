@@ -616,11 +616,6 @@ void routine_generateArrayControllers (const class GALGAS_arrayControllerForGene
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_selectionControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_selectionControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_4_selectionControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_5_selectionControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -663,11 +658,6 @@ void routine_generateSelectionControllers (const class GALGAS_selectionControlle
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_customObjectControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_customObjectControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_customObjectControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_customObjectControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_4_customObjectControllerGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_5_customObjectControllerGenerationTemplate ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
