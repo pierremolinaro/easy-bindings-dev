@@ -133,7 +133,7 @@ list @customObjectControllerForGeneration {
 
 #......................................................................................................................*
 
-private filewrapper customObjectControllerGenerationTemplate in "../generation-templates" {
+private filewrapper customObjectControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
   template implementation "custom-object-controller.swift.galgasTemplate"

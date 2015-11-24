@@ -8,7 +8,6 @@ import Cocoa
 //    ReadOnlyArrayOf_NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(ReadOnlyArrayOf_NameEntity)
 class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   var prop : EBProperty < [NameEntity] > { get { return .noSelection } }
@@ -35,6 +34,13 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
         return .noSelection
       }
     }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
   }
 
   //····················································································································
@@ -69,19 +75,6 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
     case .singleSelection (let v) :
       for managedObject in v {
         managedObject.name.removeEBObserver (inObserver)
-      }
-    }
-  }
-
-  //····················································································································
-
-  final func postEventTo_name () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.name.postEvent ()
       }
     }
   }
@@ -144,19 +137,6 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   //····················································································································
 
-  final func postEventTo_aValue () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.aValue.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
   final func addEBObserversOf_aValue_toElementsOfSet (inSet : Set<NameEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_aValue {
@@ -177,20 +157,12 @@ class ReadOnlyArrayOf_NameEntity : EBAbstractProperty {
 
   //····················································································································
 
-  override func postEvent () {
-    count.postEvent ()
-    super.postEvent ()
-  }
-
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    TransientArrayOf_NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(TransientArrayOf_NameEntity)
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   var readModelFunction : Optional<() -> EBProperty < [NameEntity] > >
@@ -265,7 +237,6 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 //    To one relationship: mRoot
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(ToOneRelationship_NameEntity_mRoot)
 final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   var mValueExplorer : NSButton? {
     didSet {
@@ -343,7 +314,6 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 //    Entity: NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(NameEntity)
 class NameEntity : EBManagedObject
 // , NameEntity_name, NameEntity_aValue
 {

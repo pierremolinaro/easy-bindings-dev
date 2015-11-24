@@ -398,22 +398,22 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- All files of 'collection-controller-templates' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_1 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'collection-controller-templates' directory
+//--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_1 [1] = {
   NULL
 } ;
 
-//--- Directory 'collection-controller-templates'
+//--- Directory 'controllers'
 
 const cDirectoryWrapper gWrapperDirectory_1_transientManager (
-  "collection-controller-templates",
+  "controllers",
   0,
   gWrapperAllFiles_transientManager_1,
   0,
@@ -604,22 +604,22 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- All files of 'collection-controller-templates' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_1 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'collection-controller-templates' directory
+//--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_1 [1] = {
   NULL
 } ;
 
-//--- Directory 'collection-controller-templates'
+//--- Directory 'controllers'
 
 const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension (
-  "collection-controller-templates",
+  "controllers",
   0,
   gWrapperAllFiles_validationStubExtension_1,
   0,
@@ -868,22 +868,22 @@ void routine_generateActions (const GALGAS_string constinArgument_inOutputDirect
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- All files of 'collection-controller-templates' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_1 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'collection-controller-templates' directory
+//--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_1 [1] = {
   NULL
 } ;
 
-//--- Directory 'collection-controller-templates'
+//--- Directory 'controllers'
 
 const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate (
-  "collection-controller-templates",
+  "controllers",
   0,
   gWrapperAllFiles_actionGenerationTemplate_1,
   0,
@@ -2057,27 +2057,27 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
                                        GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_arrayControllerForGeneration enumerator_26518 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_26518.hasCurrentObject ()) {
+  cEnumerator_arrayControllerForGeneration enumerator_26498 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_26498.hasCurrentObject ()) {
     GALGAS_stringset var_observedProperties = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("array-controller.galgas", 691)) ;
-    cEnumerator_arrayControllerSortedColumnListForGeneration enumerator_26683 (enumerator_26518.current_mArrayControllerSortedColumnListForGeneration (HERE), kEnumeration_up) ;
-    while (enumerator_26683.hasCurrentObject ()) {
-      var_observedProperties.addAssign_operation (enumerator_26683.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 693)) ;
-      enumerator_26683.gotoNextObject () ;
+    cEnumerator_arrayControllerSortedColumnListForGeneration enumerator_26663 (enumerator_26498.current_mArrayControllerSortedColumnListForGeneration (HERE), kEnumeration_up) ;
+    while (enumerator_26663.hasCurrentObject ()) {
+      var_observedProperties.addAssign_operation (enumerator_26663.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 693)) ;
+      enumerator_26663.gotoNextObject () ;
     }
-    cEnumerator_arrayControllerFilterListForGeneration enumerator_26807 (enumerator_26518.current_mArrayControllerFilterListForGeneration (HERE), kEnumeration_up) ;
-    while (enumerator_26807.hasCurrentObject ()) {
-      var_observedProperties.addAssign_operation (enumerator_26807.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 696)) ;
-      enumerator_26807.gotoNextObject () ;
+    cEnumerator_arrayControllerFilterListForGeneration enumerator_26787 (enumerator_26498.current_mArrayControllerFilterListForGeneration (HERE), kEnumeration_up) ;
+    while (enumerator_26787.hasCurrentObject ()) {
+      var_observedProperties.addAssign_operation (enumerator_26787.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 696)) ;
+      enumerator_26787.gotoNextObject () ;
     }
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_26518.current_mOwnerName (HERE), enumerator_26518.current_mControllerName (HERE), enumerator_26518.current_mArrayControllerFilterListForGeneration (HERE), enumerator_26518.current_mModelString (HERE), enumerator_26518.current_mModelKind (HERE), enumerator_26518.current_mModelTypeName (HERE), enumerator_26518.current_mModelTypeName_32_ (HERE), enumerator_26518.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_26518.current_mArrayControllerSortedColumnListForGeneration (HERE), enumerator_26518.current_mElementTypeName (HERE), var_observedProperties, enumerator_26518.current_mAttributeListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 698))) ;
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, enumerator_26498.current_mOwnerName (HERE), enumerator_26498.current_mControllerName (HERE), enumerator_26498.current_mArrayControllerFilterListForGeneration (HERE), enumerator_26498.current_mModelString (HERE), enumerator_26498.current_mModelKind (HERE), enumerator_26498.current_mModelTypeName (HERE), enumerator_26498.current_mModelTypeName_32_ (HERE), enumerator_26498.current_mArrayControllerBoundColumnListForGeneration (HERE), enumerator_26498.current_mArrayControllerSortedColumnListForGeneration (HERE), enumerator_26498.current_mElementTypeName (HERE), var_observedProperties, enumerator_26498.current_mAttributeListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 698))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_26518.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)).add_operation (enumerator_26518.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 712)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (enumerator_26498.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)).add_operation (enumerator_26498.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 714)), var_s, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 712)) ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_26518.current_mArrayControllerFilterListForGeneration (HERE).getter_length (SOURCE_FILE ("array-controller.galgas", 717)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_26498.current_mArrayControllerFilterListForGeneration (HERE).getter_length (SOURCE_FILE ("array-controller.galgas", 717)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_26518.current_mOwnerName (HERE), enumerator_26518.current_mControllerName (HERE), enumerator_26518.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 718))) ;
-      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_26518.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)).add_operation (enumerator_26518.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)) ;
+      GALGAS_string var_s = GALGAS_string (filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (inCompiler, enumerator_26498.current_mOwnerName (HERE), enumerator_26498.current_mControllerName (HERE), enumerator_26498.current_mArrayControllerFilterListForGeneration (HERE) COMMA_SOURCE_FILE ("array-controller.galgas", 718))) ;
+      GALGAS_string var_fileName = GALGAS_string ("arrayControllerFilter-").add_operation (enumerator_26498.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)).add_operation (enumerator_26498.current_mControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 723)) ;
       ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("array-controller.galgas", 724)) ;
       {
       GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
@@ -2086,7 +2086,7 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
         "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("array-controller.galgas", 733)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 733)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 733)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 725)) ;
       }
     }
-    enumerator_26518.gotoNextObject () ;
+    enumerator_26498.gotoNextObject () ;
   }
 }
 
@@ -2097,116 +2097,6 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- All files of 'collection-controller-templates' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_1 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'collection-controller-templates' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_1 [1] = {
-  NULL
-} ;
-
-//--- Directory 'collection-controller-templates'
-
-const cDirectoryWrapper gWrapperDirectory_1_selectionControllerGenerationTemplate (
-  "collection-controller-templates",
-  0,
-  gWrapperAllFiles_selectionControllerGenerationTemplate_1,
-  0,
-  gWrapperAllDirectories_selectionControllerGenerationTemplate_1
-) ;
-
-//--- All files of 'outlet-classes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_2 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'outlet-classes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_2 [1] = {
-  NULL
-} ;
-
-//--- Directory 'outlet-classes'
-
-const cDirectoryWrapper gWrapperDirectory_2_selectionControllerGenerationTemplate (
-  "outlet-classes",
-  0,
-  gWrapperAllFiles_selectionControllerGenerationTemplate_2,
-  0,
-  gWrapperAllDirectories_selectionControllerGenerationTemplate_2
-) ;
-
-//--- All files of 'standard-properties' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'standard-properties' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- Directory 'standard-properties'
-
-const cDirectoryWrapper gWrapperDirectory_3_selectionControllerGenerationTemplate (
-  "standard-properties",
-  0,
-  gWrapperAllFiles_selectionControllerGenerationTemplate_3,
-  0,
-  gWrapperAllDirectories_selectionControllerGenerationTemplate_3
-) ;
-
-//--- All files of 'swift-sources' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_4 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'swift-sources' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_4 [1] = {
-  NULL
-} ;
-
-//--- Directory 'swift-sources'
-
-const cDirectoryWrapper gWrapperDirectory_4_selectionControllerGenerationTemplate (
-  "swift-sources",
-  0,
-  gWrapperAllFiles_selectionControllerGenerationTemplate_4,
-  0,
-  gWrapperAllDirectories_selectionControllerGenerationTemplate_4
-) ;
-
-//--- All files of 'xcode-project' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'xcode-project' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- Directory 'xcode-project'
-
-const cDirectoryWrapper gWrapperDirectory_5_selectionControllerGenerationTemplate (
-  "xcode-project",
-  0,
-  gWrapperAllFiles_selectionControllerGenerationTemplate_5,
-  0,
-  gWrapperAllDirectories_selectionControllerGenerationTemplate_5
-) ;
-
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_0 [1] = {
@@ -2215,12 +2105,7 @@ static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGeneratio
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_0 [6] = {
-  & gWrapperDirectory_1_selectionControllerGenerationTemplate,
-  & gWrapperDirectory_2_selectionControllerGenerationTemplate,
-  & gWrapperDirectory_3_selectionControllerGenerationTemplate,
-  & gWrapperDirectory_4_selectionControllerGenerationTemplate,
-  & gWrapperDirectory_5_selectionControllerGenerationTemplate,
+static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_0 [1] = {
   NULL
 } ;
 
@@ -2230,7 +2115,7 @@ const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplat
   "",
   0,
   gWrapperAllFiles_selectionControllerGenerationTemplate_0,
-  5,
+  0,
   gWrapperAllDirectories_selectionControllerGenerationTemplate_0
 ) ;
 
@@ -2615,15 +2500,15 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
                                            GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_selectionControllerForGeneration enumerator_8162 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_8162.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_8162.current_mOwnerName (HERE), enumerator_8162.current_mSelectionControllerName (HERE), enumerator_8162.current_mSelectionTypeName (HERE), enumerator_8162.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 193))) ;
-    GALGAS_string var_fileName = GALGAS_string ("selectionController-").add_operation (enumerator_8162.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)).add_operation (enumerator_8162.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)) ;
+  cEnumerator_selectionControllerForGeneration enumerator_8174 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_8174.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_8174.current_mOwnerName (HERE), enumerator_8174.current_mSelectionControllerName (HERE), enumerator_8174.current_mSelectionTypeName (HERE), enumerator_8174.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 193))) ;
+    GALGAS_string var_fileName = GALGAS_string ("selectionController-").add_operation (enumerator_8174.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)).add_operation (enumerator_8174.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("selection-controller.galgas", 200)) ;
     {
     GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 201)) ;
     }
-    enumerator_8162.gotoNextObject () ;
+    enumerator_8174.gotoNextObject () ;
   }
 }
 
@@ -2634,116 +2519,6 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-//--- All files of 'collection-controller-templates' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenerationTemplate_1 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'collection-controller-templates' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_1 [1] = {
-  NULL
-} ;
-
-//--- Directory 'collection-controller-templates'
-
-const cDirectoryWrapper gWrapperDirectory_1_customObjectControllerGenerationTemplate (
-  "collection-controller-templates",
-  0,
-  gWrapperAllFiles_customObjectControllerGenerationTemplate_1,
-  0,
-  gWrapperAllDirectories_customObjectControllerGenerationTemplate_1
-) ;
-
-//--- All files of 'outlet-classes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenerationTemplate_2 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'outlet-classes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_2 [1] = {
-  NULL
-} ;
-
-//--- Directory 'outlet-classes'
-
-const cDirectoryWrapper gWrapperDirectory_2_customObjectControllerGenerationTemplate (
-  "outlet-classes",
-  0,
-  gWrapperAllFiles_customObjectControllerGenerationTemplate_2,
-  0,
-  gWrapperAllDirectories_customObjectControllerGenerationTemplate_2
-) ;
-
-//--- All files of 'standard-properties' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'standard-properties' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- Directory 'standard-properties'
-
-const cDirectoryWrapper gWrapperDirectory_3_customObjectControllerGenerationTemplate (
-  "standard-properties",
-  0,
-  gWrapperAllFiles_customObjectControllerGenerationTemplate_3,
-  0,
-  gWrapperAllDirectories_customObjectControllerGenerationTemplate_3
-) ;
-
-//--- All files of 'swift-sources' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenerationTemplate_4 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'swift-sources' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_4 [1] = {
-  NULL
-} ;
-
-//--- Directory 'swift-sources'
-
-const cDirectoryWrapper gWrapperDirectory_4_customObjectControllerGenerationTemplate (
-  "swift-sources",
-  0,
-  gWrapperAllFiles_customObjectControllerGenerationTemplate_4,
-  0,
-  gWrapperAllDirectories_customObjectControllerGenerationTemplate_4
-) ;
-
-//--- All files of 'xcode-project' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'xcode-project' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- Directory 'xcode-project'
-
-const cDirectoryWrapper gWrapperDirectory_5_customObjectControllerGenerationTemplate (
-  "xcode-project",
-  0,
-  gWrapperAllFiles_customObjectControllerGenerationTemplate_5,
-  0,
-  gWrapperAllDirectories_customObjectControllerGenerationTemplate_5
-) ;
-
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenerationTemplate_0 [1] = {
@@ -2752,12 +2527,7 @@ static const cRegularFileWrapper * gWrapperAllFiles_customObjectControllerGenera
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_0 [6] = {
-  & gWrapperDirectory_1_customObjectControllerGenerationTemplate,
-  & gWrapperDirectory_2_customObjectControllerGenerationTemplate,
-  & gWrapperDirectory_3_customObjectControllerGenerationTemplate,
-  & gWrapperDirectory_4_customObjectControllerGenerationTemplate,
-  & gWrapperDirectory_5_customObjectControllerGenerationTemplate,
+static const cDirectoryWrapper * gWrapperAllDirectories_customObjectControllerGenerationTemplate_0 [1] = {
   NULL
 } ;
 
@@ -2767,7 +2537,7 @@ const cDirectoryWrapper gWrapperDirectory_0_customObjectControllerGenerationTemp
   "",
   0,
   gWrapperAllFiles_customObjectControllerGenerationTemplate_0,
-  5,
+  0,
   gWrapperAllDirectories_customObjectControllerGenerationTemplate_0
 ) ;
 
@@ -2872,42 +2642,77 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
   result << "  }\n"
     "  \n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-    "  //   OBJECT OBSERVABLE PROPERTIES\n"
+    "  //   TOMANY RELATIONSHIPS\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n" ;
-  GALGAS_uint index_2168_ (0) ;
+  GALGAS_uint index_2160_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_2168 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_2168.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = enumerator_2168.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 50)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 50)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_2160 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_2160.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = enumerator_2160.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 50)).boolEnum () ;
       if (kBoolTrue == test_2) {
-        const enumGalgasBool test_3 = enumerator_2168.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 51)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 51)).boolEnum () ;
+        const enumGalgasBool test_3 = enumerator_2160.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 51)).boolEnum () ;
         if (kBoolTrue == test_3) {
-          result << "  var " ;
-          result << enumerator_2168.current_lkey (HERE).mAttribute_string.stringValue () ;
-          result << " = EBPropertyProxy_" ;
-          result << extensionGetter_swiftTypeName (enumerator_2168.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 52)).stringValue () ;
+          result << "  // var " ;
+          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << " = ToManyRelationship_" ;
+          result << in_OWNER_5F_NAME.stringValue () ;
+          result << "_" ;
+          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << " () \n" ;
         }else if (kBoolFalse == test_3) {
-          const enumGalgasBool test_4 = enumerator_2168.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 53)).boolEnum () ;
-          if (kBoolTrue == test_4) {
-            result << "  var " ;
-            result << enumerator_2168.current_lkey (HERE).mAttribute_string.stringValue () ;
-            result << " = EBTransientPropertyArray_" ;
-            result << extensionGetter_swiftTypeName (enumerator_2168.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 54)).stringValue () ;
-            result << " () \n" ;
-          }else if (kBoolFalse == test_4) {
-            result << "  var " ;
-            result << enumerator_2168.current_lkey (HERE).mAttribute_string.stringValue () ;
-            result << " = EBTransientProperty_" ;
-            result << extensionGetter_swiftTypeName (enumerator_2168.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 56)).stringValue () ;
-            result << " () \n" ;
-          }
+          result << "  // var " ;
+          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << " = ToOneRelationship_" ;
+          result << in_OWNER_5F_NAME.stringValue () ;
+          result << "_" ;
+          result << enumerator_2160.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << " () \n" ;
         }
       }else if (kBoolFalse == test_2) {
       }
-      index_2168_.increment () ;
-      enumerator_2168.gotoNextObject () ;
+      index_2160_.increment () ;
+      enumerator_2160.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "  //   OBJECT OBSERVABLE PROPERTIES\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n" ;
+  GALGAS_uint index_2774_ (0) ;
+  if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
+    cEnumerator_observablePropertyMap enumerator_2774 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_2774.hasCurrentObject ()) {
+      const enumGalgasBool test_4 = enumerator_2774.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 65)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 65)).boolEnum () ;
+      if (kBoolTrue == test_4) {
+        const enumGalgasBool test_5 = enumerator_2774.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 66)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 66)).boolEnum () ;
+        if (kBoolTrue == test_5) {
+          result << "  var " ;
+          result << enumerator_2774.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << " = EBPropertyProxy_" ;
+          result << extensionGetter_swiftTypeName (enumerator_2774.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 67)).stringValue () ;
+          result << " () \n" ;
+        }else if (kBoolFalse == test_5) {
+          const enumGalgasBool test_6 = enumerator_2774.current_mMultiplicity (HERE).getter_isCollection (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 68)).boolEnum () ;
+          if (kBoolTrue == test_6) {
+            result << "  var " ;
+            result << enumerator_2774.current_lkey (HERE).mAttribute_string.stringValue () ;
+            result << " = EBTransientPropertyArray_" ;
+            result << extensionGetter_swiftTypeName (enumerator_2774.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 69)).stringValue () ;
+            result << " () \n" ;
+          }else if (kBoolFalse == test_6) {
+            result << "  var " ;
+            result << enumerator_2774.current_lkey (HERE).mAttribute_string.stringValue () ;
+            result << " = EBTransientProperty_" ;
+            result << extensionGetter_swiftTypeName (enumerator_2774.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 71)).stringValue () ;
+            result << " () \n" ;
+          }
+        }
+      }else if (kBoolFalse == test_4) {
+      }
+      index_2774_.increment () ;
+      enumerator_2774.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -2953,32 +2758,32 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "  //-------------------------------------------------- Adding properties\n"
     "    let view = NSView (frame:r)\n"
     "    var y : CGFloat = 0.0\n" ;
-  GALGAS_uint index_4377_ (0) ;
+  GALGAS_uint index_4983_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_4377 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_4377.hasCurrentObject ()) {
-      const enumGalgasBool test_5 = enumerator_4377.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 104)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 104)).operator_and (enumerator_4377.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 104)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 104)) COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 104)).boolEnum () ;
-      if (kBoolTrue == test_5) {
+    cEnumerator_observablePropertyMap enumerator_4983 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_4983.hasCurrentObject ()) {
+      const enumGalgasBool test_7 = enumerator_4983.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_and (enumerator_4983.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)) COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 119)).boolEnum () ;
+      if (kBoolTrue == test_7) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_4377.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\",\n"
           "      idx:" ;
-        result << enumerator_4377.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mExplorerObjectIndex,\n"
           "      y:&y,\n"
           "      view:view,\n"
           "      observerExplorer:&" ;
-        result << enumerator_4377.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mObserverExplorer,\n"
           "      valueExplorer:&" ;
-        result << enumerator_4377.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_4983.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mValueExplorer\n"
           "    )\n" ;
-      }else if (kBoolFalse == test_5) {
+      }else if (kBoolFalse == test_7) {
       }
-      index_4377_.increment () ;
-      enumerator_4377.gotoNextObject () ;
+      index_4983_.increment () ;
+      enumerator_4983.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -3032,56 +2837,56 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "    mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_7100_ (0) ;
+  GALGAS_uint index_7706_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_7100 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_7100.hasCurrentObject ()) {
-      const enumGalgasBool test_6 = enumerator_7100.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 167)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 167)).boolEnum () ;
-      if (kBoolTrue == test_6) {
+    cEnumerator_observablePropertyMap enumerator_7706 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_7706.hasCurrentObject ()) {
+      const enumGalgasBool test_8 = enumerator_7706.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 182)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 182)).boolEnum () ;
+      if (kBoolTrue == test_8) {
         result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
           "\n"
           "  private final func bind_property_" ;
-        result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " () {\n"
           "    " ;
-        result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = { [weak self] in\n"
           "      if let model = self\?.mSelectedObject {\n"
           "        return model." ;
-        result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".prop\n"
           "      }else{\n"
           "        return .noSelection\n"
           "      }\n"
           "    }\n" ;
-        const enumGalgasBool test_7 = enumerator_7100.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 177)).boolEnum () ;
-        if (kBoolTrue == test_7) {
+        const enumGalgasBool test_9 = enumerator_7706.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 192)).boolEnum () ;
+        if (kBoolTrue == test_9) {
           result << "    " ;
-          result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".writeModelFunction = { [weak self] (inValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7100.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 178)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7706.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 193)).stringValue () ;
           result << ") in\n"
             "      self\?.mSelectedObject\?." ;
-          result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".setProp (inValue)\n"
             "    }\n"
             "    " ;
-          result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".validateAndWriteModelFunction = { [weak self] (candidateValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7100.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 181)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7706.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 196)).stringValue () ;
           result << ", windowForSheet : NSWindow\?) in\n"
             "      self\?.mSelectedObject\?." ;
-          result << enumerator_7100.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet) \?\? false\n"
             "    }\n" ;
-        }else if (kBoolFalse == test_7) {
+        }else if (kBoolFalse == test_9) {
         }
         result << "  }\n"
           "\n" ;
-      }else if (kBoolFalse == test_6) {
+      }else if (kBoolFalse == test_8) {
       }
-      index_7100_.increment () ;
-      enumerator_7100.gotoNextObject () ;
+      index_7706_.increment () ;
+      enumerator_7706.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -3106,15 +2911,15 @@ void routine_generateCustomObjectControllers (const GALGAS_customObjectControlle
                                               GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                               C_Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_customObjectControllerForGeneration enumerator_6725 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
-  while (enumerator_6725.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (inCompiler, enumerator_6725.current_mOwnerName (HERE), enumerator_6725.current_mCustomObjectControllerName (HERE), enumerator_6725.current_mEntityTypeName (HERE), enumerator_6725.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("custom-object-controller.galgas", 156))) ;
-    GALGAS_string var_fileName = GALGAS_string ("customObjectController-").add_operation (enumerator_6725.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)).add_operation (enumerator_6725.current_mCustomObjectControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)) ;
+  cEnumerator_customObjectControllerForGeneration enumerator_6737 (constinArgument_inArrayControllerListForGeneration, kEnumeration_up) ;
+  while (enumerator_6737.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (inCompiler, enumerator_6737.current_mOwnerName (HERE), enumerator_6737.current_mCustomObjectControllerName (HERE), enumerator_6737.current_mEntityTypeName (HERE), enumerator_6737.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("custom-object-controller.galgas", 156))) ;
+    GALGAS_string var_fileName = GALGAS_string ("customObjectController-").add_operation (enumerator_6737.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)).add_operation (enumerator_6737.current_mCustomObjectControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 162)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 163)) ;
     {
     GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName, var_s, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 164)) ;
     }
-    enumerator_6725.gotoNextObject () ;
+    enumerator_6737.gotoNextObject () ;
   }
 }
 
@@ -4415,7 +4220,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "let kFormatSignature = \"PM-BINARY-FORMAT\"\n"
-  "let EBVersion = \"EBVersion\"\n"
+  "private let EBVersion = \"EBVersion\"\n"
   "let kEntityKey = \"--entity\"\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -4596,9 +4401,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    ) as! NSDictionary\n"
   "    mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary\n"
   "  //--- Read version from file\n"
-  "    if let versionNumber = mMetadataDictionary.objectForKey (EBVersion) as\? NSNumber {\n"
-  "      mVersionObserver.setProp (versionNumber.integerValue)\n"
-  "    }\n"
+  "    mVersionObserver.setProp (readVersionFromMetadataDictionary (metadataDictionary))\n"
   "  //--- Read data\n"
   "    let dataFormat = dataScanner.parseByte ()\n"
   "    let fileData = dataScanner.parseAutosizedData ()\n"
@@ -4638,7 +4441,17 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    undoManager\?.enableUndoRegistration ()\n"
   "  }\n"
   "\n"
-  "   //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  func readVersionFromMetadataDictionary (metadataDictionary : NSDictionary) -> Int {\n"
+  "    var result = 0\n"
+  "    if let versionNumber = metadataDictionary.objectForKey (EBVersion) as\? NSNumber {\n"
+  "      result = versionNumber.integerValue\n"
+  "    }\n"
+  "    return result\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  final func raiseInvalidDataFormatArror (dataFormat : UInt8) throws {\n"
   "    let dictionary = [\n"
@@ -4867,12 +4680,6 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  //--- Version did change observer\n"
   "    mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)\n"
   "    mSignatureObserver.addEBObserver (mVersionShouldChangeObserver)\n"
-  "  //--- Get version from metadadictionary\n"
-  "    let possibleVersion = mMetadataDictionary.objectForKey (\"EBVersion\")\n"
-  "    if let versionNumber = possibleVersion as\? NSNumber {\n"
-  "      let version : Int = versionNumber.integerValue\n"
-  "      mVersionObserver.setProp (version)\n"
-  "    }\n"
   "  //--- Add Debug menu items \?\n"
   "    if !gDebugMenuItemsAdded {\n"
   "      gDebugMenuItemsAdded = true\n"
@@ -5146,7 +4953,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  30339, // Text length
+  30390, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 

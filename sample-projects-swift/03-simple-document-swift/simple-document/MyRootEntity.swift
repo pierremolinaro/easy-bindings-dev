@@ -8,7 +8,6 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
@@ -35,6 +34,13 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
         return .noSelection
       }
     }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
   }
 
   //····················································································································
@@ -69,19 +75,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     case .singleSelection (let v) :
       for managedObject in v {
         managedObject.myString.removeEBObserver (inObserver)
-      }
-    }
-  }
-
-  //····················································································································
-
-  final func postEventTo_myString () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myString.postEvent ()
       }
     }
   }
@@ -144,19 +137,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  final func postEventTo_myColor () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myColor.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
   final func addEBObserversOf_myColor_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myColor {
@@ -207,19 +187,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     case .singleSelection (let v) :
       for managedObject in v {
         managedObject.myStringMaj.removeEBObserver (inObserver)
-      }
-    }
-  }
-
-  //····················································································································
-
-  final func postEventTo_myStringMaj () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myStringMaj.postEvent ()
       }
     }
   }
@@ -282,19 +249,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  final func postEventTo_myStringMin () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myStringMin.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
   final func addEBObserversOf_myStringMin_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringMin {
@@ -351,19 +305,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  final func postEventTo_myStringConcat () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.myStringConcat.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
   final func addEBObserversOf_myStringConcat_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringConcat {
@@ -384,20 +325,12 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  override func postEvent () {
-    count.postEvent ()
-    super.postEvent ()
-  }
-
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    TransientArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
@@ -491,7 +424,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(MyRootEntity)
 class MyRootEntity : EBManagedObject
 // , MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat
 {

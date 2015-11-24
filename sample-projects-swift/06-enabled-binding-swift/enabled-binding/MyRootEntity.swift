@@ -8,7 +8,6 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(ReadOnlyArrayOf_MyRootEntity)
 class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
@@ -35,6 +34,13 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
         return .noSelection
       }
     }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
   }
 
   //····················································································································
@@ -75,19 +81,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  final func postEventTo_docBool () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.docBool.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
   final func addEBObserversOf_docBool_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docBool {
@@ -108,20 +101,12 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  override func postEvent () {
-    count.postEvent ()
-    super.postEvent ()
-  }
-
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    TransientArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
@@ -189,7 +174,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(MyRootEntity)
 class MyRootEntity : EBManagedObject
 // , MyRootEntity_docBool
 {
