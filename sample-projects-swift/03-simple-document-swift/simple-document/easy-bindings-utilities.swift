@@ -130,12 +130,22 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 
   private weak var mObject : EBWeakEventSet? = nil
   private var mObserverAddress : Int
+  private var mObserverRetainCount = 1
   
   init (object : EBWeakEventSet, observer : EBEvent) {
     mObserver = observer
     mObject = object
     mObserverAddress = unsafeAddressOf (observer).hashValue
     super.init ()
+  }
+  
+  final func retainObserver () {
+    ++mObserverRetainCount
+  }
+  
+  final func releaseObserver () -> Int {
+    --mObserverRetainCount
+    return mObserverRetainCount
   }
 }
 
@@ -150,14 +160,22 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
   
   func insert (inObserver : EBEvent) {
     let address : Int = unsafeAddressOf (inObserver).hashValue
-    mDictionary [address] = EBWeakEventSetElement (object:self, observer:inObserver)
+    if let entry = mDictionary [address] {
+      entry.retainObserver ()
+    }else{
+      mDictionary [address] = EBWeakEventSetElement (object:self, observer:inObserver)
+    }
   }
 
   //····················································································································
   
   func remove (inObserver : EBEvent) {
     let address : Int = unsafeAddressOf (inObserver).hashValue
-    mDictionary [address] = nil
+    if let entry = mDictionary [address] {
+      if entry.releaseObserver () == 0 {
+        mDictionary [address] = nil
+      }
+    }
   }
 
   //····················································································································
