@@ -8,40 +8,7 @@ import Cocoa
 //    %!"ReadOnlyArrayOf_" + CLASS_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ReadOnlyArrayOf_%!CLASS_NAME% : EBAbstractProperty {
-
-  var prop : EBProperty < [%!CLASS_NAME%] > { get { return .noSelection } }
-
-  //····················································································································
-
-  final var count = EBTransientProperty_Int ()
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-    count.readModelFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
-      }
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent () {
-    count.postEvent ()
-    super.postEvent ()
-  }
+class ReadOnlyArrayOf_%!CLASS_NAME% : ReadOnlyAbstractArrayProperty <%!CLASS_NAME%> {
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
