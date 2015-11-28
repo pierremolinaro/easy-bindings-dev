@@ -49,10 +49,76 @@ controlleur.selection.unique
 \end{ebcode}
 
 
-% var prop : (String, PMSelectionKind) \{ get\}
-% PMReadOnlyProperty\_String
-
 \section{Graphe d'héritage des classes des simples propriétés}
+
+Les propriétés ont des valeurs atomiques. Elles ont :
+\begin{itemize}
+\item soit une sémantique de \emph{valeur}, comme \eb+Int+, \eb+String+, ... ; 
+\item soit une sémantique de \emph{référence}, comme \eb+NSFont+, ... 
+\end{itemize}
+
+\subsection{Propriétés à sémantique de valeur}
+
+Les propriétés à sémantique de valeur prédéfinies sont : \eb+Int+, \eb+Double+, \eb+String+ et \eb+Bool+. L'utilisateur peut en définir de nouvelles qui sont des énumérations ou des structures.
+
+\begin{figure}[t]
+  \centering
+  \small
+  \texttt{
+    \begin{tikzpicture}
+      \node[rectangle,draw=red] (absProp) {PMAbstractProperty} ;
+      \node[rectangle,draw=red, below=of absProp] (readOnly) {EBReadOnlyValueProperty <T>} ;
+      \node[rectangle,draw=red, below=of readOnly] (readWrite){EBReadWriteValueProperty <T>} ;
+      \node[rectangle,draw, below= 2cm of readWrite] (proxy) {EBPropertyValueProxy <T : ValuePropertyProtocol>} ;
+      \node[rectangle,draw, below right=of readWrite] (stored) {EBStoredValueProperty <T : ValuePropertyProtocol>} ;
+      \node[rectangle,draw, right=of readOnly] (transient){EBTransientValueProperty <T>} ;
+      \draw [-stealth, thick] (readOnly) -- (absProp) ;
+      \draw [-stealth, thick] (transient) -- (readOnly) ;
+      \draw [-stealth, thick] (readWrite) -- (readOnly) ;
+      \draw [-stealth, thick] (stored) -- (readWrite) ;
+      \draw [-stealth, thick] (proxy) -- (readWrite) ;
+    \end{tikzpicture}
+  }
+  \caption{Classes génériques des propriétés à sémantique de valeur}
+  \labelFigure{classesGeneriquesPropValeur}
+  \ligne
+\end{figure}
+
+\subsection{Propriétés à sémantique de référence}
+
+Les propriétés à sémantique de valeur prédéfinies sont : \eb+NSColor+, \eb+NSData+, \eb+NSFont+ et \eb+NSDate+. L'utilisateur peut en définir de nouvelles.
+
+Définir de nouvelles classes de propriété \emph{transient} à valeur de référence se fait par la déclaration :
+\begin{ebcode}
+transient property class MyClass ;
+\end{ebcode}
+
+Seules les classes \texttt{EBReadOnlyClassProperty<MyClass>} et \texttt{EBTransientClassProperty<MyClass>} sont définies, aussi il n'est pas nécessaire que la classe \texttt{MyClass} implémente le protocole \texttt{ClassPropertyProtocol}. 
+
+\begin{figure}[t]
+  \centering
+  \small
+  \texttt{
+    \begin{tikzpicture}
+      \node[rectangle,draw=red] (absProp) {PMAbstractProperty} ;
+      \node[rectangle,draw=red, below=of absProp] (readOnly) {EBReadOnlyClassProperty <T>} ;
+      \node[rectangle,draw=red, below=of readOnly] (readWrite){EBReadWriteClassProperty <T>} ;
+      \node[rectangle,draw, below= 1.5cm of readWrite] (proxy) {EBPropertyClassProxy <T : ClassPropertyProtocol>} ;
+      \node[rectangle,draw, below= 2cm of transient] (stored) {EBStoredClassProperty <T : ClassPropertyProtocol>} ;
+      \node[rectangle,draw, right=of readOnly] (transient){EBTransientClassProperty <T>} ;
+      \draw [-stealth, thick] (readOnly) -- (absProp) ;
+      \draw [-stealth, thick] (transient) -- (readOnly) ;
+      \draw [-stealth, thick] (readWrite) -- (readOnly) ;
+      \draw [-stealth, thick] (stored) -- (readWrite) ;
+      \draw [-stealth, thick] (proxy) -- (readWrite) ;
+    \end{tikzpicture}
+  }
+  \caption{Classes génériques des propriétés à sémantique de référence}
+  \labelFigure{classesGeneriquesPropReference}
+  \ligne
+\end{figure}
+
+
 
 \begin{figure}[t]
   \newcommand\classe[2] {
@@ -73,23 +139,26 @@ controlleur.selection.unique
             rectangle split parts=3
          }
       }
-      \node[bnode3]{\nodepart{one}\bf PMAbstractProperty\nodepart{two}\footnotesize addObserver \nodepart{three}\footnotesize removeObserver}
-        child{
-          node[bnode2]{
-            \nodepart{one}\bf PMReadOnlyProperty\_String
-            \nodepart {two}\footnotesize var prop : (String, PMSelectionKind) \{ get \}
-          }[sibling distance=9cm]
-          child{node[bnode3]{
-            \nodepart{one}\bf PMReadWriteProperty\_String
-            \nodepart{two}\footnotesize func setProp (inValue : String)
-            \nodepart{three}\footnotesize func validateAndSetProp (candidateValue:String, windowForSheet:NSWindow?) -> Bool
-          }
-          child{node[rectangle,draw]{\bf PMPropertyProxy\_String}}
-          child{node[rectangle,draw]{\bf PMStoredProperty\_String}}
-        }
-        child{node[rectangle,draw]{\bf PMTransientProperty\_String}}
-        }
-      ;
+      \node[bnode3] (absProp) {
+        \nodepart{one}\bf PMAbstractProperty\nodepart{two}\footnotesize addObserver \nodepart{three}\footnotesize removeObserver
+      } ;
+      \node[below=of absProp, bnode2] (readOnly) {
+        \nodepart{one}\bf PMReadOnlyProperty\_String
+        \nodepart {two}\footnotesize var prop : EBProperty <String> \{ get \}
+      } ;
+      \node[bnode3, below=of readOnly] (readWrite){
+        \nodepart{one}\bf PMReadWriteProperty\_String
+        \nodepart{two}\footnotesize func setProp (inValue : String)
+        \nodepart{three}\footnotesize func validateAndSetProp (...) -> ...
+      } ;
+      \node[rectangle,draw, below=of readWrite] (proxy) {\bf PMPropertyProxy\_String} ;
+      \node[rectangle,draw, below right=of readWrite] (stored) {\bf PMStoredProperty\_String} ;
+      \node[rectangle,draw, right=of readOnly] (transient){\bf PMTransientProperty\_String} ;
+      \draw [-stealth, thick] (readOnly) -- (absProp) ;
+      \draw [-stealth, thick] (transient) -- (readOnly) ;
+      \draw [-stealth, thick] (readWrite) -- (readOnly) ;
+      \draw [-stealth, thick] (stored) -- (readWrite) ;
+      \draw [-stealth, thick] (proxy) -- (readWrite) ;
     \end{tikzpicture}
   }
   \caption{Graphe d'héritage de la propriété \texttt{String}}

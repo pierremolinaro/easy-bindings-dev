@@ -15,19 +15,19 @@ protocol ValuePropertyProtocol : Comparable {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyValueProperty <T : ValuePropertyProtocol>
+//   EBReadOnlyValueProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadOnlyValueProperty <T : ValuePropertyProtocol> : EBAbstractProperty {
+class EBReadOnlyValueProperty <T> : EBAbstractProperty {
 
   var prop : EBProperty <T> { get { return .noSelection } } // Abstract method
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteValueProperty <T : ValuePropertyProtocol> (abstract class)
+//   EBReadWriteValueProperty <T> (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadWriteValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
+class EBReadWriteValueProperty <T> : EBReadOnlyValueProperty <T> {
   func setProp (inValue : T) { } // Abstract method
   func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -277,10 +277,10 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientValueProperty <T : ValuePropertyProtocol>
+//   EBTransientValueProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBTransientValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
+class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> {
   private var mValueCache : EBProperty <T>? = nil
   var readModelFunction : Optional<() -> EBProperty <T> >
   
@@ -600,10 +600,10 @@ class EBReadOnlyClassProperty <T> : EBAbstractProperty {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteClassProperty <T : ClassPropertyProtocol> (abstract class)
+//   EBReadWriteClassProperty <T> (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadWriteClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProperty <T> {
+class EBReadWriteClassProperty <T> : EBReadOnlyClassProperty <T> {
   func setProp (inValue : T) { } // Abstract method
   func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
