@@ -219,15 +219,63 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
 %
 end
-
 for () in TO_MANY_RELATIONSHIP_LIST do
-%
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"To many relationship read write: " + mToManyRelationshipName%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
+
+  //····················································································································
+ 
+  func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) { } // Abstract method
+  
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"To many relationship proxy: " + mToManyRelationshipName%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+final class ToManyRelationshipProxy_%!ENTITY_NAME%_%!mToManyRelationshipName% : ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% {
+  private var mModel : ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%?
+
+  //····················································································································
+  
+  final func setModel (model : ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%?) {
+    mModel = model
+  }
+
+  //····················································································································
+  
+  override var prop : EBProperty < [%![mRelationshipType swiftTypeName]%] > {
+    get {
+      return mModel?.prop ?? .noSelection
+    }
+  }
+ 
+   //····················································································································
+ 
+  override func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) {
+    switch self.prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let array) :
+      mModel?.setProp (array)
+    }
+  }
+ 
+  //····················································································································
+
+}
+
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"To many relationship: " + mToManyRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
-ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]%, EBSignatureObserverProtocol {
+ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatureObserverProtocol {
   weak var owner : %!ENTITY_NAME%?
 
   var mValueExplorer : NSPopUpButton? {
@@ -312,7 +360,7 @@ end
     }
   }
 
-  func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) { mValue = inValue }
+  override func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) { mValue = inValue }
 
   var propval : [%![mRelationshipType swiftTypeName]%] { get { return mValue ?? [%![mRelationshipType swiftTypeName]%] () } }
 

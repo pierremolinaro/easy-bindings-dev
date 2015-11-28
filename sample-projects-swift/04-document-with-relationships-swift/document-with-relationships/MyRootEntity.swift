@@ -68,13 +68,62 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 }
 
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    To many relationship read write: mNames
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class ToManyRelationshipReadWrite_MyRootEntity_mNames : ReadOnlyArrayOf_NameEntity {
+
+  //····················································································································
+ 
+  func setProp (inValue :  [NameEntity]) { } // Abstract method
+  
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    To many relationship proxy: mNames
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+final class ToManyRelationshipProxy_MyRootEntity_mNames : ToManyRelationshipReadWrite_MyRootEntity_mNames {
+  private var mModel : ToManyRelationshipReadWrite_MyRootEntity_mNames?
+
+  //····················································································································
+  
+  final func setModel (model : ToManyRelationshipReadWrite_MyRootEntity_mNames?) {
+    mModel = model
+  }
+
+  //····················································································································
+  
+  override var prop : EBProperty < [NameEntity] > {
+    get {
+      return mModel?.prop ?? .noSelection
+    }
+  }
+ 
+   //····················································································································
+ 
+  override func setProp (inValue :  [NameEntity]) {
+    switch self.prop {
+    case .noSelection, .multipleSelection :
+      break
+    case .singleSelection (let array) :
+      mModel?.setProp (array)
+    }
+  }
+ 
+  //····················································································································
+
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    To many relationship: mNames
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class ToManyRelationship_MyRootEntity_mNames :
-ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
+ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
   weak var owner : MyRootEntity?
 
   var mValueExplorer : NSPopUpButton? {
@@ -153,7 +202,7 @@ ReadOnlyArrayOf_NameEntity, EBSignatureObserverProtocol {
     }
   }
 
-  func setProp (inValue :  [NameEntity]) { mValue = inValue }
+  override func setProp (inValue :  [NameEntity]) { mValue = inValue }
 
   var propval : [NameEntity] { get { return mValue ?? [NameEntity] () } }
 
