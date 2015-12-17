@@ -8,23 +8,25 @@ import Cocoa
 //    %!"CustomObjectController_" + OWNER_NAME + "_" + CUSTOM_OBJECT_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-//@objc(CustomObjectController_%!OWNER_NAME%_%!CUSTOM_OBJECT_CONTROLLER_NAME%)
 class CustomObjectController_%!OWNER_NAME%_%!CUSTOM_OBJECT_CONTROLLER_NAME% : EBObject {
  
   var mObjectObserver = EBObserver ()
 
   //····················································································································
 
-  var mSelectedObject : FontCharacterEntity? {
+  var mSelectedObject : %!ENTITY_TYPE_NAME%? {
     didSet {
       if mSelectedObject != oldValue {\n%
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
+    %      //--- Property %!lkey.string%\n%
     %        oldValue?.%!lkey.string%.removeEBObserver (mObjectObserver)\n%
     %        mSelectedObject?.%!lkey.string%.addEBObserver (mObjectObserver)\n%
     %        oldValue?.%!lkey.string%.removeEBObserver (%!lkey.string%)\n%
     %        mSelectedObject?.%!lkey.string%.addEBObserver (%!lkey.string%)\n%
     %        %!lkey.string%.postEvent ()\n%
+  else
+    %      //--- Relationship %!lkey.string%\n%
   end
 end
 %      }
@@ -49,9 +51,9 @@ end%  }
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if [mType isEntityType] then
     if [mMultiplicity isCollection] then # To Many
-      %  // var %!lkey.string% = ToManyRelationship_%!OWNER_NAME%_%!lkey.string% () \n%
+      %  var %!lkey.string% = ToManyRelationshipProxy_%!ENTITY_TYPE_NAME%_%!lkey.string% () \n%
     else
-      %  // var %!lkey.string% = ToOneRelationship_%!OWNER_NAME%_%!lkey.string% () \n%
+      %  // var %!lkey.string% = ToOneRelationshipProxy_%!ENTITY_TYPE_NAME%_%!lkey.string% () \n%
     end
   end
 end
