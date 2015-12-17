@@ -37,7 +37,7 @@ class cCollectionElement_outletDeclarationList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -970,7 +970,7 @@ class cCollectionElement_documentListForGeneration : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2134,7 +2134,7 @@ class cCollectionElement_actionBindingListForGeneration : public cCollectionElem
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2609,7 +2609,7 @@ class cCollectionElement_regularBindingsGenerationList : public cCollectionEleme
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3131,7 +3131,7 @@ class cCollectionElement_multipleBindingGenerationList : public cCollectionEleme
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3613,7 +3613,7 @@ class cCollectionElement_arrayControllerForGeneration : public cCollectionElemen
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4470,7 +4470,7 @@ class cCollectionElement_tableViewBindingGenerationList : public cCollectionElem
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4899,7 +4899,7 @@ class cCollectionElement_selectionControllerForGeneration : public cCollectionEl
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5519,7 +5519,7 @@ class cCollectionElement_customObjectControllerForGeneration : public cCollectio
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6087,7 +6087,7 @@ class cCollectionElement_mainXibDescriptorList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6464,7 +6464,7 @@ class cCollectionElement_storedArrayPropertyList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7147,7 +7147,7 @@ class cCollectionElement_storedArrayPropertyListForGeneration : public cCollecti
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7932,7 +7932,7 @@ class cCollectionElement_controllerBindingOptionList : public cCollectionElement
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8357,7 +8357,7 @@ class cCollectionElement_outletClassBindingSpecificationModelList : public cColl
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8784,7 +8784,7 @@ class cCollectionElement_outletClassBindingSpecificationList : public cCollectio
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9872,7 +9872,7 @@ class cCollectionElement_outletBindingSpecificationModelList : public cCollectio
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10297,7 +10297,7 @@ class cCollectionElement_controllerBindingOptionDecoratedList : public cCollecti
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10722,7 +10722,7 @@ class cCollectionElement_bindingOptionList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11148,7 +11148,7 @@ class cCollectionElement_regularBindingList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11622,7 +11622,7 @@ class cCollectionElement_outletBindingModelList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12233,7 +12233,7 @@ class cCollectionElement_observablePropertyList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12611,7 +12611,7 @@ class cCollectionElement_transientDependencyListForGeneration : public cCollecti
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13085,7 +13085,7 @@ class cCollectionElement_validationStubRoutineListForGeneration : public cCollec
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*

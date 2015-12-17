@@ -119,7 +119,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //   EBWeakEventSetElement
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBWeakEventSetElement) class EBWeakEventSetElement : EBObject {
+class EBWeakEventSetElement : EBObject {
   private weak var mObserver : EBEvent? = nil {
     didSet {
       if mObserver == nil, let object = mObject {
@@ -140,11 +140,11 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
   }
   
   final func retainObserver () {
-    ++mObserverRetainCount
+    mObserverRetainCount += 1
   }
   
   final func releaseObserver () -> Int {
-    --mObserverRetainCount
+    mObserverRetainCount -= 1
     return mObserverRetainCount
   }
 }
@@ -153,7 +153,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //   EBWeakEventSet
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBWeakEventSet) class EBWeakEventSet : EBObject, SequenceType {
+class EBWeakEventSet : EBObject, SequenceType {
   private var mDictionary = [Int : EBWeakEventSetElement] ()
 
   //····················································································································
@@ -203,7 +203,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //   EBAbstractProperty (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBAbstractProperty) class EBAbstractProperty : EBEvent {
+class EBAbstractProperty : EBEvent {
 
   private final var mObservers = EBWeakEventSet ()
   
@@ -263,7 +263,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //    EBObserver
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBObserver) class EBObserver : EBAbstractProperty {
+class EBObserver : EBAbstractProperty {
   private var mPostEventFunction : Optional < () -> Void > = nil
   
   //····················································································································
@@ -413,7 +413,7 @@ enum EBValidationResult <T> {
 //    EBTableCellView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTableCellView) class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
+class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
   final var mUnbindFunction : Optional < () -> Void > = nil
 
   //····················································································································
@@ -465,7 +465,7 @@ private var gExplorerObjectIndex = 0
 
 //······················································································································
 
-@objc(EBObject) class EBObject : NSObject, EBUserClassNameProtocol {
+class EBObject : NSObject, EBUserClassNameProtocol {
   let mExplorerObjectIndex : Int
 
   override init () {
@@ -484,7 +484,7 @@ private var gExplorerObjectIndex = 0
 //    EBSimpleClass class
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSimpleClass) class EBSimpleClass : EBObject {
+class EBSimpleClass : EBObject {
 
   func populateExplorerWindow (inout y : CGFloat, view : NSView) {
   }

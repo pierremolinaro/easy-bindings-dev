@@ -28,19 +28,19 @@ mLexicalAttribute_uint_33__32_value () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_Lexique_easyBindings_5F_lexique::C_Lexique_easyBindings_5F_lexique (C_Compiler * inCallerCompiler,
-                const C_String & inDependencyFileExtension,
-                const C_String & inDependencyFilePath,
-                const C_String & inSourceFileName
-                COMMA_LOCATION_ARGS) :
+                                                                      const C_String & inDependencyFileExtension,
+                                                                      const C_String & inDependencyFilePath,
+                                                                      const C_String & inSourceFileName
+                                                                      COMMA_LOCATION_ARGS) :
 C_Lexique (inCallerCompiler, inDependencyFileExtension, inDependencyFilePath, inSourceFileName COMMA_THERE) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_Lexique_easyBindings_5F_lexique::C_Lexique_easyBindings_5F_lexique (C_Compiler * inCallerCompiler,
-                const C_String & inSourceString,
-                const C_String & inStringForError
-                COMMA_LOCATION_ARGS) :
+                                                                      const C_String & inSourceString,
+                                                                      const C_String & inStringForError
+                                                                      COMMA_LOCATION_ARGS) :
 C_Lexique (inCallerCompiler, inSourceString, inStringForError COMMA_THERE) {
 }
 
@@ -6138,7 +6138,7 @@ class cCollectionElement_astDeclarationList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6518,7 +6518,7 @@ class cCollectionElement_outletClassDeclarationList : public cCollectionElement 
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7086,7 +7086,7 @@ class cCollectionElement_secondaryPropertyList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7462,7 +7462,7 @@ class cCollectionElement_externSwiftDelegateList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7839,7 +7839,7 @@ class cCollectionElement_externSwiftFunctionList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8659,7 +8659,7 @@ class cCollectionElement_enumListForGeneration : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9086,7 +9086,7 @@ class cCollectionElement_toOneRelationshipList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9717,7 +9717,7 @@ class cCollectionElement_toManyRelationshipList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -10193,7 +10193,7 @@ class cCollectionElement_toOneEntityRelationshipListForGeneration : public cColl
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11260,7 +11260,7 @@ class cCollectionElement_toManyEntityRelationshipListForGeneration : public cCol
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11783,7 +11783,7 @@ class cCollectionElement_simpleStoredPropertyList : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12565,7 +12565,7 @@ class cCollectionElement_classListForGeneration : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13136,7 +13136,7 @@ class cCollectionElement_simpleStoredPropertyListForGeneration : public cCollect
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13660,7 +13660,7 @@ class cCollectionElement_transientDefinitionListForGeneration : public cCollecti
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -14492,7 +14492,7 @@ class cCollectionElement_entityListForGeneration : public cCollectionElement {
   public : virtual cCollectionElement * copy (void) ;
 
 //--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
