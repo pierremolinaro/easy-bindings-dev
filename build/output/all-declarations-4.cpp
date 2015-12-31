@@ -333,8 +333,8 @@ void routine_analyzeRegularBinding (const GALGAS_observablePropertyMap constinAr
         var_s = GALGAS_string ("this binding requires the following options:") ;
         cEnumerator_controllerBindingOptionDecoratedList enumerator_13256 (var_controllerBindingOptionDecoratedList, kEnumeration_up) ;
         while (enumerator_13256.hasCurrentObject ()) {
-          var_s.dotAssign_operation (GALGAS_string ("\n"
-            "  - ").add_operation (enumerator_13256.current_mOptionName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 341)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)).add_operation (extensionGetter_swiftTypeName (enumerator_13256.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)) ;
+          var_s.plusAssign_operation(GALGAS_string ("\n"
+            "  - ").add_operation (enumerator_13256.current_mOptionName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 341)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)).add_operation (extensionGetter_swiftTypeName (enumerator_13256.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 341)) ;
           enumerator_13256.gotoNextObject () ;
         }
       }
@@ -353,7 +353,7 @@ void routine_analyzeRegularBinding (const GALGAS_observablePropertyMap constinAr
         GALGAS_typeKindList temp_13 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 351)) ;
         temp_13.addAssign_operation (enumerator_13460.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 351)) ;
         callCategoryMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_13495.current_mOptionValue (HERE).ptr (), temp_13, var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 350)) ;
-        var_bindingOptionString.dotAssign_operation (GALGAS_string (", ").add_operation (enumerator_13460.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)) ;
+        var_bindingOptionString.plusAssign_operation(GALGAS_string (", ").add_operation (enumerator_13460.current_mOptionName (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)).add_operation (var_optionValueAsString, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)) ;
         enumerator_13460.gotoNextObject () ;
         enumerator_13495.gotoNextObject () ;
       }
