@@ -1209,22 +1209,22 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string var_contents = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 194))) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int") COMMA_SOURCE_FILE ("code-generation.galgas", 196)))  COMMA_SOURCE_FILE ("code-generation.galgas", 196)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool") COMMA_SOURCE_FILE ("code-generation.galgas", 197)))  COMMA_SOURCE_FILE ("code-generation.galgas", 197)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double") COMMA_SOURCE_FILE ("code-generation.galgas", 198)))  COMMA_SOURCE_FILE ("code-generation.galgas", 198)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("String") COMMA_SOURCE_FILE ("code-generation.galgas", 199)))  COMMA_SOURCE_FILE ("code-generation.galgas", 199)) ;
+  var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int") COMMA_SOURCE_FILE ("code-generation.galgas", 196))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 196)) ;
+  var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool") COMMA_SOURCE_FILE ("code-generation.galgas", 197))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 197)) ;
+  var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double") COMMA_SOURCE_FILE ("code-generation.galgas", 198))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 198)) ;
+  var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("String") COMMA_SOURCE_FILE ("code-generation.galgas", 199))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 199)) ;
   cEnumerator_stringlist enumerator_6540 (constinArgument_inPropertyClassList, kEnumeration_up) ;
   while (enumerator_6540.hasCurrentObject ()) {
-    var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_6540.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 202)))  COMMA_SOURCE_FILE ("code-generation.galgas", 202)) ;
+    var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_6540.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 202))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 202)) ;
     enumerator_6540.gotoNextObject () ;
   }
   cEnumerator_stringlist enumerator_6696 (constinArgument_inTransientPropertyClassList, kEnumeration_up) ;
   while (enumerator_6696.hasCurrentObject ()) {
-    var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_6696.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 205)))  COMMA_SOURCE_FILE ("code-generation.galgas", 205)) ;
+    var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_6696.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 205))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 205)) ;
     enumerator_6696.gotoNextObject () ;
   }
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_bool (true), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 207)))  COMMA_SOURCE_FILE ("code-generation.galgas", 207)) ;
-  var_contents.dotAssign_operation (GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 208)))  COMMA_SOURCE_FILE ("code-generation.galgas", 208)) ;
+  var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSDate"), GALGAS_bool (true), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 207))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 207)) ;
+  var_contents.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 208))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 208)) ;
   GALGAS_string var_fileName = GALGAS_string ("standard-properties.swift") ;
   ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("code-generation.galgas", 211)) ;
   {
@@ -9554,6 +9554,7 @@ GALGAS_transientPropertyClassDeclaration GALGAS_transientPropertyClassDeclaratio
 #include "command_line_interface/F_Analyze_CLI_Options.h"
 #include "utilities/F_DisplayException.h"
 #include "galgas2/C_galgas_CLI_Options.h"
+#include "galgas2/F_verbose_output.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -9643,8 +9644,8 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
       GALGAS_string var_s = GALGAS_string ("cannot sort types ; the following types are involved in circular dependence:") ;
       cEnumerator_lstringlist enumerator_1769 (var_unsortedTypeNames, kEnumeration_up) ;
       while (enumerator_1769.hasCurrentObject ()) {
-        var_s.dotAssign_operation (GALGAS_string ("\n"
-          "-- ").add_operation (enumerator_1769.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 37))  COMMA_SOURCE_FILE ("program.galgas", 37)) ;
+        var_s.plusAssign_operation(GALGAS_string ("\n"
+          "-- ").add_operation (enumerator_1769.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 37)), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 37)) ;
         enumerator_1769.gotoNextObject () ;
       }
       inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("program.galgas", 39)), var_s  COMMA_SOURCE_FILE ("program.galgas", 39)) ;
@@ -9679,8 +9680,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
                          kSourceFileHelpMessages,
                          print_tool_help_message) ;
 //---
-  bool verboseOptionOn = true ;
-  int16_t returnCode = 0 ; // No error
+  int returnCode = 0 ; // No error
 //--- Set Execution mode
   C_String executionModeOptionErrorMessage ;
   setExecutionMode (executionModeOptionErrorMessage) ;
@@ -9693,7 +9693,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     macroMyNew (commonLexique, C_Compiler (NULL, "", "" COMMA_HERE)) ;
     try{
       routine_before (commonLexique COMMA_HERE) ;
-      verboseOptionOn = gOption_galgas_5F_builtin_5F_options_verbose_5F_output.mValue ;
+      const bool verboseOptionOn = verboseOutput () ;
       for (int32_t i=0 ; i<sourceFilesArray.count () ; i++) {
         if (gOption_galgas_5F_builtin_5F_options_trace.mValue) {
           enableTraceWithPath (sourceFilesArray (i COMMA_HERE)) ;
@@ -9702,7 +9702,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
         const GALGAS_string sfp = GALGAS_string (sourceFilesArray (i COMMA_HERE)) ;
         const GALGAS_location location = commonLexique->here () ;
         const GALGAS_lstring sourceFilePath (sfp, location) ;
-        int16_t r = 0 ;
+        int r = 0 ;
         if (fileExtension == "eb") {
           switch (executionMode ()) {
           case kExecutionModeNormal :
@@ -9744,7 +9744,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     //--- Epilogue
       routine_after (commonLexique COMMA_HERE) ;
     //--- Display error and warnings count
-      if (gOption_galgas_5F_builtin_5F_options_verbose_5F_output.mValue || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
+      if (verboseOptionOn || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
         C_String message ;
         if (totalWarningCount () == 0) {
           message << "No warning" ;
