@@ -56,1948 +56,228 @@ C_String C_Lexique_easyBindings_5F_lexique::indexingDirectory (void) const {
 //                        Lexical error message list                                                                   *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const utf32 gLexicalMessage_easyBindings_5F_lexique_decimalNumberTooLarge [] = {
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('o'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_easyBindings_5F_lexique_decimalNumberTooLarge = "decimal number too large" ;
 
-static const utf32 gLexicalMessage_easyBindings_5F_lexique_floatNumberConversionError [] = {
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('v'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_easyBindings_5F_lexique_floatNumberConversionError = "invalid float number" ;
 
-static const utf32 gLexicalMessage_easyBindings_5F_lexique_incorrectStringEnd [] = {
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('\"'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_easyBindings_5F_lexique_incorrectStringEnd = "string does not end with '\"'" ;
 
-static const utf32 gLexicalMessage_easyBindings_5F_lexique_internalError [] = {
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gLexicalMessage_easyBindings_5F_lexique_internalError = "internal error" ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //          Syntax error messages, for every terminal symbol                                                           *
 //---------------------------------------------------------------------------------------------------------------------*
 
 //--- Syntax error message for terminal '$identifier$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_identifier [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('('),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('-'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (')'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_identifier = "an identifier (beginning with a lower-case letter)" ;
 
 //--- Syntax error message for terminal '$Identifier$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('('),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('-'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (')'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier = "an identifier (beginning with a upper-case letter)" ;
 
 //--- Syntax error message for terminal '$bindingName$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_bindingName [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('('),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('x'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('y'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('$'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (')'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_bindingName = "a binding name (identifier prefixed by '$')" ;
 
 //--- Syntax error message for terminal '$literal_integer$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_integer [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('3'),
-  TO_UNICODE ('2'),
-  TO_UNICODE ('-'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_integer = "a 32-bit unsigned decimal number" ;
 
 //--- Syntax error message for terminal '$literal_double$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_double [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_double = "a float number" ;
 
 //--- Syntax error message for terminal '$literal_string$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_string [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\"'),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('\"'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_string = "a character string constant \"...\"" ;
 
 //--- Syntax error message for terminal '$comment$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_comment [] = {
-  TO_UNICODE ('a'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_comment = "a comment" ;
 
 //--- Syntax error message for terminal '$action$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_action [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_action = "the 'action' keyword" ;
 
 //--- Syntax error message for terminal '$all$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_all [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_all = "the 'all' keyword" ;
 
 //--- Syntax error message for terminal '$array$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_array [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_array = "the 'array' keyword" ;
 
 //--- Syntax error message for terminal '$arrayController$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_arrayController [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('C'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_arrayController = "the 'arrayController' keyword" ;
 
 //--- Syntax error message for terminal '$binding$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_binding [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_binding = "the 'binding' keyword" ;
 
 //--- Syntax error message for terminal '$calledBy$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_calledBy [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('B'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_calledBy = "the 'calledBy' keyword" ;
 
 //--- Syntax error message for terminal '$class$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_class [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_class = "the 'class' keyword" ;
 
 //--- Syntax error message for terminal '$classForSwift$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_classForSwift [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('F'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('S'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_classForSwift = "the 'classForSwift' keyword" ;
 
 //--- Syntax error message for terminal '$column$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_column [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_column = "the 'column' keyword" ;
 
 //--- Syntax error message for terminal '$customObjectController$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_customObjectController [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('O'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('j'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('C'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_customObjectController = "the 'customObjectController' keyword" ;
 
 //--- Syntax error message for terminal '$default$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_default [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_default = "the 'default' keyword" ;
 
 //--- Syntax error message for terminal '$dependsFrom$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_dependsFrom [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('F'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_dependsFrom = "the 'dependsFrom' keyword" ;
 
 //--- Syntax error message for terminal '$document$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_document [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_document = "the 'document' keyword" ;
 
 //--- Syntax error message for terminal '$enum$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_enum [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_enum = "the 'enum' keyword" ;
 
 //--- Syntax error message for terminal '$entity$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_entity [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_entity = "the 'entity' keyword" ;
 
 //--- Syntax error message for terminal '$externDelegate$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_externDelegate [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('x'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('D'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_externDelegate = "the 'externDelegate' keyword" ;
 
 //--- Syntax error message for terminal '$externFunc$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_externFunc [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('x'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('F'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_externFunc = "the 'externFunc' keyword" ;
 
 //--- Syntax error message for terminal '$filter$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_filter [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_filter = "the 'filter' keyword" ;
 
 //--- Syntax error message for terminal '$include$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_include [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_include = "the 'include' keyword" ;
 
 //--- Syntax error message for terminal '$inverse$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_inverse [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('v'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_inverse = "the 'inverse' keyword" ;
 
 //--- Syntax error message for terminal '$mainxib$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_mainxib [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('x'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_mainxib = "the 'mainxib' keyword" ;
 
 //--- Syntax error message for terminal '$no$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_no [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_no = "the 'no' keyword" ;
 
 //--- Syntax error message for terminal '$outlet$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_outlet [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_outlet = "the 'outlet' keyword" ;
 
 //--- Syntax error message for terminal '$outletClass$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_outletClass [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('C'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_outletClass = "the 'outletClass' keyword" ;
 
 //--- Syntax error message for terminal '$prefs$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_prefs [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_prefs = "the 'prefs' keyword" ;
 
 //--- Syntax error message for terminal '$property$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_property [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_property = "the 'property' keyword" ;
 
 //--- Syntax error message for terminal '$root$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_root [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_root = "the 'root' keyword" ;
 
 //--- Syntax error message for terminal '$selectionController$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_selectionController [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('C'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_selectionController = "the 'selectionController' keyword" ;
 
 //--- Syntax error message for terminal '$self$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_self [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('f'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_self = "the 'self' keyword" ;
 
 //--- Syntax error message for terminal '$signature$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_signature [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_signature = "the 'signature' keyword" ;
 
 //--- Syntax error message for terminal '$sort$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_sort [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_sort = "the 'sort' keyword" ;
 
 //--- Syntax error message for terminal '$struct$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_struct [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_struct = "the 'struct' keyword" ;
 
 //--- Syntax error message for terminal '$to$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_to [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_to = "the 'to' keyword" ;
 
 //--- Syntax error message for terminal '$toMany$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_toMany [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('M'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_toMany = "the 'toMany' keyword" ;
 
 //--- Syntax error message for terminal '$toOne$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_toOne [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('O'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_toOne = "the 'toOne' keyword" ;
 
 //--- Syntax error message for terminal '$transient$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_transient [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_transient = "the 'transient' keyword" ;
 
 //--- Syntax error message for terminal '$validates$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_validates [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('v'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_validates = "the 'validates' keyword" ;
 
 //--- Syntax error message for terminal '$version$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_version [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('v'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_version = "the 'version' keyword" ;
 
 //--- Syntax error message for terminal '$versionShouldChange$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_versionShouldChange [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('v'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('S'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('C'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('g'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_versionShouldChange = "the 'versionShouldChange' keyword" ;
 
 //--- Syntax error message for terminal '$xcodeproject$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('x'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('p'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('j'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject = "the 'xcodeproject' keyword" ;
 
 //--- Syntax error message for terminal '$yes$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_yes [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('s'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_yes = "the 'yes' keyword" ;
 
 //--- Syntax error message for terminal '$enabled$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_enabled [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('$'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_enabled = "the '$enabled' keyword" ;
 
 //--- Syntax error message for terminal '$hidden$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_hidden [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('$'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_hidden = "the '$hidden' keyword" ;
 
 //--- Syntax error message for terminal '$tableValue$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_tableValue [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('$'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('b'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('V'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_tableValue = "the '$tableValue' keyword" ;
 
 //--- Syntax error message for terminal '$run$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique_run [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('$'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('y'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE ('d'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_run = "the '$run' keyword" ;
 
 //--- Syntax error message for terminal '$:$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__3A_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (':'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3A_ = "the ':' delimitor" ;
 
 //--- Syntax error message for terminal '$,$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__2C_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (','),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2C_ = "the ',' delimitor" ;
 
 //--- Syntax error message for terminal '$;$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__3B_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (';'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3B_ = "the ';' delimitor" ;
 
 //--- Syntax error message for terminal '$!$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__21_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('!'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__21_ = "the '!' delimitor" ;
 
 //--- Syntax error message for terminal '$[$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__5B_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('['),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5B_ = "the '[' delimitor" ;
 
 //--- Syntax error message for terminal '$]$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__5D_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (']'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5D_ = "the ']' delimitor" ;
 
 //--- Syntax error message for terminal '${$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__7B_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('{'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__7B_ = "the '{' delimitor" ;
 
 //--- Syntax error message for terminal '$}$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__7D_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('}'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__7D_ = "the '}' delimitor" ;
 
 //--- Syntax error message for terminal '$($' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__28_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('('),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__28_ = "the '(' delimitor" ;
 
 //--- Syntax error message for terminal '$)$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__29_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE (')'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__29_ = "the ')' delimitor" ;
 
 //--- Syntax error message for terminal '$.$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__2E_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('.'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2E_ = "the '.' delimitor" ;
 
 //--- Syntax error message for terminal '$|$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__7C_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('|'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__7C_ = "the '|' delimitor" ;
 
 //--- Syntax error message for terminal '$&$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__26_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('&'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__26_ = "the '&' delimitor" ;
 
 //--- Syntax error message for terminal '$<$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__3C_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('<'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3C_ = "the '<' delimitor" ;
 
 //--- Syntax error message for terminal '$>$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__3E_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('>'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3E_ = "the '>' delimitor" ;
 
 //--- Syntax error message for terminal '$^$' :
-static const utf32 gSyntaxErrorMessage_easyBindings_5F_lexique__5E_ [] = {
-  TO_UNICODE ('t'),
-  TO_UNICODE ('h'),
-  TO_UNICODE ('e'),
-  TO_UNICODE (' '),
-  TO_UNICODE ('\''),
-  TO_UNICODE ('^'),
-  TO_UNICODE ('\''),
-  TO_UNICODE (' '),
-  TO_UNICODE ('d'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('l'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('r'),
-  TO_UNICODE (0)
-} ;
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5E_ = "the '^' delimitor" ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                getMessageForTerminal                                                                                *
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const utf32 * syntaxErrorMessageArray [69] = {kEndOfSourceLexicalErrorMessage,
+  static const char * syntaxErrorMessageArray [69] = {kEndOfSourceLexicalErrorMessage,
     gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
     gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
     gSyntaxErrorMessage_easyBindings_5F_lexique_bindingName,
@@ -6244,10 +4524,10 @@ void GALGAS_astDeclarationList::addAssign_operation (const GALGAS_astDeclaration
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_astDeclarationList::modifier_insertAtIndex (const GALGAS_astDeclaration inOperand0,
-                                                        const GALGAS_uint inInsertionIndex,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_astDeclarationList::setter_insertAtIndex (const GALGAS_astDeclaration inOperand0,
+                                                      const GALGAS_uint inInsertionIndex,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_astDeclarationList (inOperand0 COMMA_THERE)) ;
@@ -6260,10 +4540,10 @@ void GALGAS_astDeclarationList::modifier_insertAtIndex (const GALGAS_astDeclarat
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_astDeclarationList::modifier_removeAtIndex (GALGAS_astDeclaration & outOperand0,
-                                                        const GALGAS_uint inRemoveIndex,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_astDeclarationList::setter_removeAtIndex (GALGAS_astDeclaration & outOperand0,
+                                                      const GALGAS_uint inRemoveIndex,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -6279,9 +4559,9 @@ void GALGAS_astDeclarationList::modifier_removeAtIndex (GALGAS_astDeclaration & 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_astDeclarationList::modifier_popFirst (GALGAS_astDeclaration & outOperand0,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_astDeclarationList::setter_popFirst (GALGAS_astDeclaration & outOperand0,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_astDeclarationList * p = (cCollectionElement_astDeclarationList *) attributes.ptr () ;
@@ -6295,9 +4575,9 @@ void GALGAS_astDeclarationList::modifier_popFirst (GALGAS_astDeclaration & outOp
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_astDeclarationList::modifier_popLast (GALGAS_astDeclaration & outOperand0,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_astDeclarationList::setter_popLast (GALGAS_astDeclaration & outOperand0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_astDeclarationList * p = (cCollectionElement_astDeclarationList *) attributes.ptr () ;
@@ -6649,14 +4929,14 @@ void GALGAS_outletClassDeclarationList::addAssign_operation (const GALGAS_bool &
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_outletClassDeclarationList::modifier_insertAtIndex (const GALGAS_bool inOperand0,
-                                                                const GALGAS_lstring inOperand1,
-                                                                const GALGAS_bool inOperand2,
-                                                                const GALGAS_bool inOperand3,
-                                                                const GALGAS_bool inOperand4,
-                                                                const GALGAS_uint inInsertionIndex,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) {
+void GALGAS_outletClassDeclarationList::setter_insertAtIndex (const GALGAS_bool inOperand0,
+                                                              const GALGAS_lstring inOperand1,
+                                                              const GALGAS_bool inOperand2,
+                                                              const GALGAS_bool inOperand3,
+                                                              const GALGAS_bool inOperand4,
+                                                              const GALGAS_uint inInsertionIndex,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_outletClassDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
@@ -6669,14 +4949,14 @@ void GALGAS_outletClassDeclarationList::modifier_insertAtIndex (const GALGAS_boo
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_outletClassDeclarationList::modifier_removeAtIndex (GALGAS_bool & outOperand0,
-                                                                GALGAS_lstring & outOperand1,
-                                                                GALGAS_bool & outOperand2,
-                                                                GALGAS_bool & outOperand3,
-                                                                GALGAS_bool & outOperand4,
-                                                                const GALGAS_uint inRemoveIndex,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) {
+void GALGAS_outletClassDeclarationList::setter_removeAtIndex (GALGAS_bool & outOperand0,
+                                                              GALGAS_lstring & outOperand1,
+                                                              GALGAS_bool & outOperand2,
+                                                              GALGAS_bool & outOperand3,
+                                                              GALGAS_bool & outOperand4,
+                                                              const GALGAS_uint inRemoveIndex,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -6700,13 +4980,13 @@ void GALGAS_outletClassDeclarationList::modifier_removeAtIndex (GALGAS_bool & ou
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_outletClassDeclarationList::modifier_popFirst (GALGAS_bool & outOperand0,
-                                                           GALGAS_lstring & outOperand1,
-                                                           GALGAS_bool & outOperand2,
-                                                           GALGAS_bool & outOperand3,
-                                                           GALGAS_bool & outOperand4,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_outletClassDeclarationList::setter_popFirst (GALGAS_bool & outOperand0,
+                                                         GALGAS_lstring & outOperand1,
+                                                         GALGAS_bool & outOperand2,
+                                                         GALGAS_bool & outOperand3,
+                                                         GALGAS_bool & outOperand4,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_outletClassDeclarationList * p = (cCollectionElement_outletClassDeclarationList *) attributes.ptr () ;
@@ -6728,13 +5008,13 @@ void GALGAS_outletClassDeclarationList::modifier_popFirst (GALGAS_bool & outOper
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_outletClassDeclarationList::modifier_popLast (GALGAS_bool & outOperand0,
-                                                          GALGAS_lstring & outOperand1,
-                                                          GALGAS_bool & outOperand2,
-                                                          GALGAS_bool & outOperand3,
-                                                          GALGAS_bool & outOperand4,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_outletClassDeclarationList::setter_popLast (GALGAS_bool & outOperand0,
+                                                        GALGAS_lstring & outOperand1,
+                                                        GALGAS_bool & outOperand2,
+                                                        GALGAS_bool & outOperand3,
+                                                        GALGAS_bool & outOperand4,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_outletClassDeclarationList * p = (cCollectionElement_outletClassDeclarationList *) attributes.ptr () ;
@@ -7170,10 +5450,10 @@ void GALGAS_secondaryPropertyList::addAssign_operation (const GALGAS_abstractSec
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_secondaryPropertyList::modifier_insertAtIndex (const GALGAS_abstractSecondaryProperty inOperand0,
-                                                           const GALGAS_uint inInsertionIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_secondaryPropertyList::setter_insertAtIndex (const GALGAS_abstractSecondaryProperty inOperand0,
+                                                         const GALGAS_uint inInsertionIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_secondaryPropertyList (inOperand0 COMMA_THERE)) ;
@@ -7186,10 +5466,10 @@ void GALGAS_secondaryPropertyList::modifier_insertAtIndex (const GALGAS_abstract
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_secondaryPropertyList::modifier_removeAtIndex (GALGAS_abstractSecondaryProperty & outOperand0,
-                                                           const GALGAS_uint inRemoveIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_secondaryPropertyList::setter_removeAtIndex (GALGAS_abstractSecondaryProperty & outOperand0,
+                                                         const GALGAS_uint inRemoveIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -7205,9 +5485,9 @@ void GALGAS_secondaryPropertyList::modifier_removeAtIndex (GALGAS_abstractSecond
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_secondaryPropertyList::modifier_popFirst (GALGAS_abstractSecondaryProperty & outOperand0,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_secondaryPropertyList::setter_popFirst (GALGAS_abstractSecondaryProperty & outOperand0,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_secondaryPropertyList * p = (cCollectionElement_secondaryPropertyList *) attributes.ptr () ;
@@ -7221,9 +5501,9 @@ void GALGAS_secondaryPropertyList::modifier_popFirst (GALGAS_abstractSecondaryPr
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_secondaryPropertyList::modifier_popLast (GALGAS_abstractSecondaryProperty & outOperand0,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_secondaryPropertyList::setter_popLast (GALGAS_abstractSecondaryProperty & outOperand0,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_secondaryPropertyList * p = (cCollectionElement_secondaryPropertyList *) attributes.ptr () ;
@@ -7535,10 +5815,10 @@ void GALGAS_externSwiftDelegateList::addAssign_operation (const GALGAS_lstring &
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftDelegateList::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                             const GALGAS_uint inInsertionIndex,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftDelegateList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                           const GALGAS_uint inInsertionIndex,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_externSwiftDelegateList (inOperand0 COMMA_THERE)) ;
@@ -7551,10 +5831,10 @@ void GALGAS_externSwiftDelegateList::modifier_insertAtIndex (const GALGAS_lstrin
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftDelegateList::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                             const GALGAS_uint inRemoveIndex,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftDelegateList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                           const GALGAS_uint inRemoveIndex,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -7570,9 +5850,9 @@ void GALGAS_externSwiftDelegateList::modifier_removeAtIndex (GALGAS_lstring & ou
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftDelegateList::modifier_popFirst (GALGAS_lstring & outOperand0,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftDelegateList::setter_popFirst (GALGAS_lstring & outOperand0,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_externSwiftDelegateList * p = (cCollectionElement_externSwiftDelegateList *) attributes.ptr () ;
@@ -7586,9 +5866,9 @@ void GALGAS_externSwiftDelegateList::modifier_popFirst (GALGAS_lstring & outOper
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftDelegateList::modifier_popLast (GALGAS_lstring & outOperand0,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftDelegateList::setter_popLast (GALGAS_lstring & outOperand0,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_externSwiftDelegateList * p = (cCollectionElement_externSwiftDelegateList *) attributes.ptr () ;
@@ -7910,11 +6190,11 @@ void GALGAS_externSwiftFunctionList::addAssign_operation (const GALGAS_lstring &
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftFunctionList::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                             const GALGAS_lstring inOperand1,
-                                                             const GALGAS_uint inInsertionIndex,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftFunctionList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                           const GALGAS_lstring inOperand1,
+                                                           const GALGAS_uint inInsertionIndex,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_externSwiftFunctionList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -7927,11 +6207,11 @@ void GALGAS_externSwiftFunctionList::modifier_insertAtIndex (const GALGAS_lstrin
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftFunctionList::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                             GALGAS_lstring & outOperand1,
-                                                             const GALGAS_uint inRemoveIndex,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftFunctionList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                           GALGAS_lstring & outOperand1,
+                                                           const GALGAS_uint inRemoveIndex,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -7949,10 +6229,10 @@ void GALGAS_externSwiftFunctionList::modifier_removeAtIndex (GALGAS_lstring & ou
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftFunctionList::modifier_popFirst (GALGAS_lstring & outOperand0,
-                                                        GALGAS_lstring & outOperand1,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftFunctionList::setter_popFirst (GALGAS_lstring & outOperand0,
+                                                      GALGAS_lstring & outOperand1,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_externSwiftFunctionList * p = (cCollectionElement_externSwiftFunctionList *) attributes.ptr () ;
@@ -7968,10 +6248,10 @@ void GALGAS_externSwiftFunctionList::modifier_popFirst (GALGAS_lstring & outOper
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externSwiftFunctionList::modifier_popLast (GALGAS_lstring & outOperand0,
-                                                       GALGAS_lstring & outOperand1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_externSwiftFunctionList::setter_popLast (GALGAS_lstring & outOperand0,
+                                                     GALGAS_lstring & outOperand1,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_externSwiftFunctionList * p = (cCollectionElement_externSwiftFunctionList *) attributes.ptr () ;
@@ -8281,9 +6561,9 @@ void GALGAS_externFunctionMap::addAssign_operation (const GALGAS_lstring & inKey
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_externFunctionMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_externFunctionMap::setter_insertKey (GALGAS_lstring inKey,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
   cMapElement_externFunctionMap * p = NULL ;
   macroMyNew (p, cMapElement_externFunctionMap (inKey COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -8469,9 +6749,9 @@ void GALGAS_enumConstantMap::addAssign_operation (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_enumConstantMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_enumConstantMap::setter_insertKey (GALGAS_lstring inKey,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
   cMapElement_enumConstantMap * p = NULL ;
   macroMyNew (p, cMapElement_enumConstantMap (inKey COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -8719,11 +6999,11 @@ void GALGAS_enumListForGeneration::addAssign_operation (const GALGAS_string & in
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_enumListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                           const GALGAS_lstringlist inOperand1,
-                                                           const GALGAS_uint inInsertionIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_enumListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                         const GALGAS_lstringlist inOperand1,
+                                                         const GALGAS_uint inInsertionIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_enumListForGeneration (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -8736,11 +7016,11 @@ void GALGAS_enumListForGeneration::modifier_insertAtIndex (const GALGAS_string i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_enumListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                           GALGAS_lstringlist & outOperand1,
-                                                           const GALGAS_uint inRemoveIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_enumListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                         GALGAS_lstringlist & outOperand1,
+                                                         const GALGAS_uint inRemoveIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -8758,10 +7038,10 @@ void GALGAS_enumListForGeneration::modifier_removeAtIndex (GALGAS_string & outOp
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_enumListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                      GALGAS_lstringlist & outOperand1,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_enumListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
+                                                    GALGAS_lstringlist & outOperand1,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_enumListForGeneration * p = (cCollectionElement_enumListForGeneration *) attributes.ptr () ;
@@ -8777,10 +7057,10 @@ void GALGAS_enumListForGeneration::modifier_popFirst (GALGAS_string & outOperand
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_enumListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                     GALGAS_lstringlist & outOperand1,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_enumListForGeneration::setter_popLast (GALGAS_string & outOperand0,
+                                                   GALGAS_lstringlist & outOperand1,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_enumListForGeneration * p = (cCollectionElement_enumListForGeneration *) attributes.ptr () ;
@@ -9153,13 +7433,13 @@ void GALGAS_toOneRelationshipList::addAssign_operation (const GALGAS_lstring & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneRelationshipList::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                           const GALGAS_lstring inOperand1,
-                                                           const GALGAS_lstring inOperand2,
-                                                           const GALGAS_propertyMultiplicity inOperand3,
-                                                           const GALGAS_uint inInsertionIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_toOneRelationshipList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                         const GALGAS_lstring inOperand1,
+                                                         const GALGAS_lstring inOperand2,
+                                                         const GALGAS_propertyMultiplicity inOperand3,
+                                                         const GALGAS_uint inInsertionIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_toOneRelationshipList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -9172,13 +7452,13 @@ void GALGAS_toOneRelationshipList::modifier_insertAtIndex (const GALGAS_lstring 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneRelationshipList::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                           GALGAS_lstring & outOperand1,
-                                                           GALGAS_lstring & outOperand2,
-                                                           GALGAS_propertyMultiplicity & outOperand3,
-                                                           const GALGAS_uint inRemoveIndex,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_toOneRelationshipList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                         GALGAS_lstring & outOperand1,
+                                                         GALGAS_lstring & outOperand2,
+                                                         GALGAS_propertyMultiplicity & outOperand3,
+                                                         const GALGAS_uint inRemoveIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -9200,12 +7480,12 @@ void GALGAS_toOneRelationshipList::modifier_removeAtIndex (GALGAS_lstring & outO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneRelationshipList::modifier_popFirst (GALGAS_lstring & outOperand0,
-                                                      GALGAS_lstring & outOperand1,
-                                                      GALGAS_lstring & outOperand2,
-                                                      GALGAS_propertyMultiplicity & outOperand3,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_toOneRelationshipList::setter_popFirst (GALGAS_lstring & outOperand0,
+                                                    GALGAS_lstring & outOperand1,
+                                                    GALGAS_lstring & outOperand2,
+                                                    GALGAS_propertyMultiplicity & outOperand3,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toOneRelationshipList * p = (cCollectionElement_toOneRelationshipList *) attributes.ptr () ;
@@ -9225,12 +7505,12 @@ void GALGAS_toOneRelationshipList::modifier_popFirst (GALGAS_lstring & outOperan
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneRelationshipList::modifier_popLast (GALGAS_lstring & outOperand0,
-                                                     GALGAS_lstring & outOperand1,
-                                                     GALGAS_lstring & outOperand2,
-                                                     GALGAS_propertyMultiplicity & outOperand3,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_toOneRelationshipList::setter_popLast (GALGAS_lstring & outOperand0,
+                                                   GALGAS_lstring & outOperand1,
+                                                   GALGAS_lstring & outOperand2,
+                                                   GALGAS_propertyMultiplicity & outOperand3,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toOneRelationshipList * p = (cCollectionElement_toOneRelationshipList *) attributes.ptr () ;
@@ -9764,12 +8044,12 @@ void GALGAS_toManyRelationshipList::addAssign_operation (const GALGAS_lstring & 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyRelationshipList::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                            const GALGAS_lstring inOperand1,
-                                                            const GALGAS_lstring inOperand2,
-                                                            const GALGAS_uint inInsertionIndex,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_toManyRelationshipList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                          const GALGAS_lstring inOperand1,
+                                                          const GALGAS_lstring inOperand2,
+                                                          const GALGAS_uint inInsertionIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_toManyRelationshipList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -9782,12 +8062,12 @@ void GALGAS_toManyRelationshipList::modifier_insertAtIndex (const GALGAS_lstring
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyRelationshipList::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                            GALGAS_lstring & outOperand1,
-                                                            GALGAS_lstring & outOperand2,
-                                                            const GALGAS_uint inRemoveIndex,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_toManyRelationshipList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                          GALGAS_lstring & outOperand1,
+                                                          GALGAS_lstring & outOperand2,
+                                                          const GALGAS_uint inRemoveIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -9807,11 +8087,11 @@ void GALGAS_toManyRelationshipList::modifier_removeAtIndex (GALGAS_lstring & out
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyRelationshipList::modifier_popFirst (GALGAS_lstring & outOperand0,
-                                                       GALGAS_lstring & outOperand1,
-                                                       GALGAS_lstring & outOperand2,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_toManyRelationshipList::setter_popFirst (GALGAS_lstring & outOperand0,
+                                                     GALGAS_lstring & outOperand1,
+                                                     GALGAS_lstring & outOperand2,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toManyRelationshipList * p = (cCollectionElement_toManyRelationshipList *) attributes.ptr () ;
@@ -9829,11 +8109,11 @@ void GALGAS_toManyRelationshipList::modifier_popFirst (GALGAS_lstring & outOpera
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyRelationshipList::modifier_popLast (GALGAS_lstring & outOperand0,
-                                                      GALGAS_lstring & outOperand1,
-                                                      GALGAS_lstring & outOperand2,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_toManyRelationshipList::setter_popLast (GALGAS_lstring & outOperand0,
+                                                    GALGAS_lstring & outOperand1,
+                                                    GALGAS_lstring & outOperand2,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toManyRelationshipList * p = (cCollectionElement_toManyRelationshipList *) attributes.ptr () ;
@@ -10247,14 +8527,14 @@ void GALGAS_toOneEntityRelationshipListForGeneration::addAssign_operation (const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneEntityRelationshipListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                                              const GALGAS_typeKind inOperand1,
-                                                                              const GALGAS_string inOperand2,
-                                                                              const GALGAS_propertyMultiplicity inOperand3,
-                                                                              const GALGAS_observablePropertyMap inOperand4,
-                                                                              const GALGAS_uint inInsertionIndex,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_toOneEntityRelationshipListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                                            const GALGAS_typeKind inOperand1,
+                                                                            const GALGAS_string inOperand2,
+                                                                            const GALGAS_propertyMultiplicity inOperand3,
+                                                                            const GALGAS_observablePropertyMap inOperand4,
+                                                                            const GALGAS_uint inInsertionIndex,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_toOneEntityRelationshipListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
@@ -10267,14 +8547,14 @@ void GALGAS_toOneEntityRelationshipListForGeneration::modifier_insertAtIndex (co
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneEntityRelationshipListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                                              GALGAS_typeKind & outOperand1,
-                                                                              GALGAS_string & outOperand2,
-                                                                              GALGAS_propertyMultiplicity & outOperand3,
-                                                                              GALGAS_observablePropertyMap & outOperand4,
-                                                                              const GALGAS_uint inRemoveIndex,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_toOneEntityRelationshipListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                                            GALGAS_typeKind & outOperand1,
+                                                                            GALGAS_string & outOperand2,
+                                                                            GALGAS_propertyMultiplicity & outOperand3,
+                                                                            GALGAS_observablePropertyMap & outOperand4,
+                                                                            const GALGAS_uint inRemoveIndex,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -10298,13 +8578,13 @@ void GALGAS_toOneEntityRelationshipListForGeneration::modifier_removeAtIndex (GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneEntityRelationshipListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                                         GALGAS_typeKind & outOperand1,
-                                                                         GALGAS_string & outOperand2,
-                                                                         GALGAS_propertyMultiplicity & outOperand3,
-                                                                         GALGAS_observablePropertyMap & outOperand4,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_toOneEntityRelationshipListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
+                                                                       GALGAS_typeKind & outOperand1,
+                                                                       GALGAS_string & outOperand2,
+                                                                       GALGAS_propertyMultiplicity & outOperand3,
+                                                                       GALGAS_observablePropertyMap & outOperand4,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toOneEntityRelationshipListForGeneration * p = (cCollectionElement_toOneEntityRelationshipListForGeneration *) attributes.ptr () ;
@@ -10326,13 +8606,13 @@ void GALGAS_toOneEntityRelationshipListForGeneration::modifier_popFirst (GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toOneEntityRelationshipListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                                        GALGAS_typeKind & outOperand1,
-                                                                        GALGAS_string & outOperand2,
-                                                                        GALGAS_propertyMultiplicity & outOperand3,
-                                                                        GALGAS_observablePropertyMap & outOperand4,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_toOneEntityRelationshipListForGeneration::setter_popLast (GALGAS_string & outOperand0,
+                                                                      GALGAS_typeKind & outOperand1,
+                                                                      GALGAS_string & outOperand2,
+                                                                      GALGAS_propertyMultiplicity & outOperand3,
+                                                                      GALGAS_observablePropertyMap & outOperand4,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toOneEntityRelationshipListForGeneration * p = (cCollectionElement_toOneEntityRelationshipListForGeneration *) attributes.ptr () ;
@@ -10785,14 +9065,14 @@ void GALGAS_observablePropertyMap::addAssign_operation (const GALGAS_lstring & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_observablePropertyMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                       GALGAS_typeKind inArgument0,
-                                                       GALGAS_propertyKind inArgument1,
-                                                       GALGAS_propertyMultiplicity inArgument2,
-                                                       GALGAS_string inArgument3,
-                                                       GALGAS_actionMap inArgument4,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_observablePropertyMap::setter_insertKey (GALGAS_lstring inKey,
+                                                     GALGAS_typeKind inArgument0,
+                                                     GALGAS_propertyKind inArgument1,
+                                                     GALGAS_propertyMultiplicity inArgument2,
+                                                     GALGAS_string inArgument3,
+                                                     GALGAS_actionMap inArgument4,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   cMapElement_observablePropertyMap * p = NULL ;
   macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -10948,10 +9228,10 @@ GALGAS_actionMap GALGAS_observablePropertyMap::getter_mActionMapForKey (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_observablePropertyMap::modifier_setMTypeForKey (GALGAS_typeKind inAttributeValue,
-                                                            GALGAS_string inKey,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_observablePropertyMap::setter_setMTypeForKey (GALGAS_typeKind inAttributeValue,
+                                                          GALGAS_string inKey,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -10962,10 +9242,10 @@ void GALGAS_observablePropertyMap::modifier_setMTypeForKey (GALGAS_typeKind inAt
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_observablePropertyMap::modifier_setMKindForKey (GALGAS_propertyKind inAttributeValue,
-                                                            GALGAS_string inKey,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_observablePropertyMap::setter_setMKindForKey (GALGAS_propertyKind inAttributeValue,
+                                                          GALGAS_string inKey,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -10976,10 +9256,10 @@ void GALGAS_observablePropertyMap::modifier_setMKindForKey (GALGAS_propertyKind 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_observablePropertyMap::modifier_setMMultiplicityForKey (GALGAS_propertyMultiplicity inAttributeValue,
-                                                                    GALGAS_string inKey,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_observablePropertyMap::setter_setMMultiplicityForKey (GALGAS_propertyMultiplicity inAttributeValue,
+                                                                  GALGAS_string inKey,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -10990,10 +9270,10 @@ void GALGAS_observablePropertyMap::modifier_setMMultiplicityForKey (GALGAS_prope
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_observablePropertyMap::modifier_setMInverseRelationshipNameForKey (GALGAS_string inAttributeValue,
-                                                                               GALGAS_string inKey,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_observablePropertyMap::setter_setMInverseRelationshipNameForKey (GALGAS_string inAttributeValue,
+                                                                             GALGAS_string inKey,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -11004,10 +9284,10 @@ void GALGAS_observablePropertyMap::modifier_setMInverseRelationshipNameForKey (G
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_observablePropertyMap::modifier_setMActionMapForKey (GALGAS_actionMap inAttributeValue,
-                                                                 GALGAS_string inKey,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
+void GALGAS_observablePropertyMap::setter_setMActionMapForKey (GALGAS_actionMap inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -11294,13 +9574,13 @@ void GALGAS_toManyEntityRelationshipListForGeneration::addAssign_operation (cons
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyEntityRelationshipListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                                               const GALGAS_typeKind inOperand1,
-                                                                               const GALGAS_string inOperand2,
-                                                                               const GALGAS_observablePropertyMap inOperand3,
-                                                                               const GALGAS_uint inInsertionIndex,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_toManyEntityRelationshipListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                                             const GALGAS_typeKind inOperand1,
+                                                                             const GALGAS_string inOperand2,
+                                                                             const GALGAS_observablePropertyMap inOperand3,
+                                                                             const GALGAS_uint inInsertionIndex,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_toManyEntityRelationshipListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -11313,13 +9593,13 @@ void GALGAS_toManyEntityRelationshipListForGeneration::modifier_insertAtIndex (c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyEntityRelationshipListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                                               GALGAS_typeKind & outOperand1,
-                                                                               GALGAS_string & outOperand2,
-                                                                               GALGAS_observablePropertyMap & outOperand3,
-                                                                               const GALGAS_uint inRemoveIndex,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_toManyEntityRelationshipListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                                             GALGAS_typeKind & outOperand1,
+                                                                             GALGAS_string & outOperand2,
+                                                                             GALGAS_observablePropertyMap & outOperand3,
+                                                                             const GALGAS_uint inRemoveIndex,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -11341,12 +9621,12 @@ void GALGAS_toManyEntityRelationshipListForGeneration::modifier_removeAtIndex (G
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyEntityRelationshipListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                                          GALGAS_typeKind & outOperand1,
-                                                                          GALGAS_string & outOperand2,
-                                                                          GALGAS_observablePropertyMap & outOperand3,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_toManyEntityRelationshipListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
+                                                                        GALGAS_typeKind & outOperand1,
+                                                                        GALGAS_string & outOperand2,
+                                                                        GALGAS_observablePropertyMap & outOperand3,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toManyEntityRelationshipListForGeneration * p = (cCollectionElement_toManyEntityRelationshipListForGeneration *) attributes.ptr () ;
@@ -11366,12 +9646,12 @@ void GALGAS_toManyEntityRelationshipListForGeneration::modifier_popFirst (GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_toManyEntityRelationshipListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                                         GALGAS_typeKind & outOperand1,
-                                                                         GALGAS_string & outOperand2,
-                                                                         GALGAS_observablePropertyMap & outOperand3,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_toManyEntityRelationshipListForGeneration::setter_popLast (GALGAS_string & outOperand0,
+                                                                       GALGAS_typeKind & outOperand1,
+                                                                       GALGAS_string & outOperand2,
+                                                                       GALGAS_observablePropertyMap & outOperand3,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_toManyEntityRelationshipListForGeneration * p = (cCollectionElement_toManyEntityRelationshipListForGeneration *) attributes.ptr () ;
@@ -11806,13 +10086,13 @@ void GALGAS_simpleStoredPropertyList::addAssign_operation (const GALGAS_lstring 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyList::modifier_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                              const GALGAS_lstring inOperand1,
-                                                              const GALGAS_abstractDefaultValue inOperand2,
-                                                              const GALGAS_bool inOperand3,
-                                                              const GALGAS_uint inInsertionIndex,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                            const GALGAS_lstring inOperand1,
+                                                            const GALGAS_abstractDefaultValue inOperand2,
+                                                            const GALGAS_bool inOperand3,
+                                                            const GALGAS_uint inInsertionIndex,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_simpleStoredPropertyList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -11825,13 +10105,13 @@ void GALGAS_simpleStoredPropertyList::modifier_insertAtIndex (const GALGAS_lstri
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyList::modifier_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                              GALGAS_lstring & outOperand1,
-                                                              GALGAS_abstractDefaultValue & outOperand2,
-                                                              GALGAS_bool & outOperand3,
-                                                              const GALGAS_uint inRemoveIndex,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                            GALGAS_lstring & outOperand1,
+                                                            GALGAS_abstractDefaultValue & outOperand2,
+                                                            GALGAS_bool & outOperand3,
+                                                            const GALGAS_uint inRemoveIndex,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -11853,12 +10133,12 @@ void GALGAS_simpleStoredPropertyList::modifier_removeAtIndex (GALGAS_lstring & o
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyList::modifier_popFirst (GALGAS_lstring & outOperand0,
-                                                         GALGAS_lstring & outOperand1,
-                                                         GALGAS_abstractDefaultValue & outOperand2,
-                                                         GALGAS_bool & outOperand3,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyList::setter_popFirst (GALGAS_lstring & outOperand0,
+                                                       GALGAS_lstring & outOperand1,
+                                                       GALGAS_abstractDefaultValue & outOperand2,
+                                                       GALGAS_bool & outOperand3,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_simpleStoredPropertyList * p = (cCollectionElement_simpleStoredPropertyList *) attributes.ptr () ;
@@ -11878,12 +10158,12 @@ void GALGAS_simpleStoredPropertyList::modifier_popFirst (GALGAS_lstring & outOpe
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyList::modifier_popLast (GALGAS_lstring & outOperand0,
-                                                        GALGAS_lstring & outOperand1,
-                                                        GALGAS_abstractDefaultValue & outOperand2,
-                                                        GALGAS_bool & outOperand3,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyList::setter_popLast (GALGAS_lstring & outOperand0,
+                                                      GALGAS_lstring & outOperand1,
+                                                      GALGAS_abstractDefaultValue & outOperand2,
+                                                      GALGAS_bool & outOperand3,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_simpleStoredPropertyList * p = (cCollectionElement_simpleStoredPropertyList *) attributes.ptr () ;
@@ -12265,10 +10545,10 @@ void GALGAS_classObservablePropertyMap::addAssign_operation (const GALGAS_lstrin
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_classObservablePropertyMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                            GALGAS_observablePropertyMap inArgument0,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_classObservablePropertyMap::setter_insertKey (GALGAS_lstring inKey,
+                                                          GALGAS_observablePropertyMap inArgument0,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   cMapElement_classObservablePropertyMap * p = NULL ;
   macroMyNew (p, cMapElement_classObservablePropertyMap (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -12318,10 +10598,10 @@ GALGAS_observablePropertyMap GALGAS_classObservablePropertyMap::getter_mObservab
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_classObservablePropertyMap::modifier_setMObservablePropertyMapForKey (GALGAS_observablePropertyMap inAttributeValue,
-                                                                                  GALGAS_string inKey,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_classObservablePropertyMap::setter_setMObservablePropertyMapForKey (GALGAS_observablePropertyMap inAttributeValue,
+                                                                                GALGAS_string inKey,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_classObservablePropertyMap * p = (cMapElement_classObservablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -12586,14 +10866,14 @@ void GALGAS_classListForGeneration::addAssign_operation (const GALGAS_string & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_classListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                            const GALGAS_simpleStoredPropertyListForGeneration inOperand1,
-                                                            const GALGAS_transientDefinitionListForGeneration inOperand2,
-                                                            const GALGAS_externSwiftFunctionList inOperand3,
-                                                            const GALGAS_externSwiftDelegateList inOperand4,
-                                                            const GALGAS_uint inInsertionIndex,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_classListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                          const GALGAS_simpleStoredPropertyListForGeneration inOperand1,
+                                                          const GALGAS_transientDefinitionListForGeneration inOperand2,
+                                                          const GALGAS_externSwiftFunctionList inOperand3,
+                                                          const GALGAS_externSwiftDelegateList inOperand4,
+                                                          const GALGAS_uint inInsertionIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_classListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
@@ -12606,14 +10886,14 @@ void GALGAS_classListForGeneration::modifier_insertAtIndex (const GALGAS_string 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_classListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                            GALGAS_simpleStoredPropertyListForGeneration & outOperand1,
-                                                            GALGAS_transientDefinitionListForGeneration & outOperand2,
-                                                            GALGAS_externSwiftFunctionList & outOperand3,
-                                                            GALGAS_externSwiftDelegateList & outOperand4,
-                                                            const GALGAS_uint inRemoveIndex,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+void GALGAS_classListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                          GALGAS_simpleStoredPropertyListForGeneration & outOperand1,
+                                                          GALGAS_transientDefinitionListForGeneration & outOperand2,
+                                                          GALGAS_externSwiftFunctionList & outOperand3,
+                                                          GALGAS_externSwiftDelegateList & outOperand4,
+                                                          const GALGAS_uint inRemoveIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -12637,13 +10917,13 @@ void GALGAS_classListForGeneration::modifier_removeAtIndex (GALGAS_string & outO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_classListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                       GALGAS_simpleStoredPropertyListForGeneration & outOperand1,
-                                                       GALGAS_transientDefinitionListForGeneration & outOperand2,
-                                                       GALGAS_externSwiftFunctionList & outOperand3,
-                                                       GALGAS_externSwiftDelegateList & outOperand4,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_classListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
+                                                     GALGAS_simpleStoredPropertyListForGeneration & outOperand1,
+                                                     GALGAS_transientDefinitionListForGeneration & outOperand2,
+                                                     GALGAS_externSwiftFunctionList & outOperand3,
+                                                     GALGAS_externSwiftDelegateList & outOperand4,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_classListForGeneration * p = (cCollectionElement_classListForGeneration *) attributes.ptr () ;
@@ -12665,13 +10945,13 @@ void GALGAS_classListForGeneration::modifier_popFirst (GALGAS_string & outOperan
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_classListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                      GALGAS_simpleStoredPropertyListForGeneration & outOperand1,
-                                                      GALGAS_transientDefinitionListForGeneration & outOperand2,
-                                                      GALGAS_externSwiftFunctionList & outOperand3,
-                                                      GALGAS_externSwiftDelegateList & outOperand4,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_classListForGeneration::setter_popLast (GALGAS_string & outOperand0,
+                                                    GALGAS_simpleStoredPropertyListForGeneration & outOperand1,
+                                                    GALGAS_transientDefinitionListForGeneration & outOperand2,
+                                                    GALGAS_externSwiftFunctionList & outOperand3,
+                                                    GALGAS_externSwiftDelegateList & outOperand4,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_classListForGeneration * p = (cCollectionElement_classListForGeneration *) attributes.ptr () ;
@@ -13137,13 +11417,13 @@ void GALGAS_simpleStoredPropertyListForGeneration::addAssign_operation (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyListForGeneration::modifier_insertAtIndex (const GALGAS_typeKind inOperand0,
-                                                                           const GALGAS_string inOperand1,
-                                                                           const GALGAS_string inOperand2,
-                                                                           const GALGAS_bool inOperand3,
-                                                                           const GALGAS_uint inInsertionIndex,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyListForGeneration::setter_insertAtIndex (const GALGAS_typeKind inOperand0,
+                                                                         const GALGAS_string inOperand1,
+                                                                         const GALGAS_string inOperand2,
+                                                                         const GALGAS_bool inOperand3,
+                                                                         const GALGAS_uint inInsertionIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_simpleStoredPropertyListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -13156,13 +11436,13 @@ void GALGAS_simpleStoredPropertyListForGeneration::modifier_insertAtIndex (const
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyListForGeneration::modifier_removeAtIndex (GALGAS_typeKind & outOperand0,
-                                                                           GALGAS_string & outOperand1,
-                                                                           GALGAS_string & outOperand2,
-                                                                           GALGAS_bool & outOperand3,
-                                                                           const GALGAS_uint inRemoveIndex,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyListForGeneration::setter_removeAtIndex (GALGAS_typeKind & outOperand0,
+                                                                         GALGAS_string & outOperand1,
+                                                                         GALGAS_string & outOperand2,
+                                                                         GALGAS_bool & outOperand3,
+                                                                         const GALGAS_uint inRemoveIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -13184,12 +11464,12 @@ void GALGAS_simpleStoredPropertyListForGeneration::modifier_removeAtIndex (GALGA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyListForGeneration::modifier_popFirst (GALGAS_typeKind & outOperand0,
-                                                                      GALGAS_string & outOperand1,
-                                                                      GALGAS_string & outOperand2,
-                                                                      GALGAS_bool & outOperand3,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyListForGeneration::setter_popFirst (GALGAS_typeKind & outOperand0,
+                                                                    GALGAS_string & outOperand1,
+                                                                    GALGAS_string & outOperand2,
+                                                                    GALGAS_bool & outOperand3,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_simpleStoredPropertyListForGeneration * p = (cCollectionElement_simpleStoredPropertyListForGeneration *) attributes.ptr () ;
@@ -13209,12 +11489,12 @@ void GALGAS_simpleStoredPropertyListForGeneration::modifier_popFirst (GALGAS_typ
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_simpleStoredPropertyListForGeneration::modifier_popLast (GALGAS_typeKind & outOperand0,
-                                                                     GALGAS_string & outOperand1,
-                                                                     GALGAS_string & outOperand2,
-                                                                     GALGAS_bool & outOperand3,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_simpleStoredPropertyListForGeneration::setter_popLast (GALGAS_typeKind & outOperand0,
+                                                                   GALGAS_string & outOperand1,
+                                                                   GALGAS_string & outOperand2,
+                                                                   GALGAS_bool & outOperand3,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_simpleStoredPropertyListForGeneration * p = (cCollectionElement_simpleStoredPropertyListForGeneration *) attributes.ptr () ;
@@ -13659,14 +11939,14 @@ void GALGAS_transientDefinitionListForGeneration::addAssign_operation (const GAL
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_transientDefinitionListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                                          const GALGAS_string inOperand1,
-                                                                          const GALGAS_bool inOperand2,
-                                                                          const GALGAS_typeKind inOperand3,
-                                                                          const GALGAS_transientDependencyListForGeneration inOperand4,
-                                                                          const GALGAS_uint inInsertionIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_transientDefinitionListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                                        const GALGAS_string inOperand1,
+                                                                        const GALGAS_bool inOperand2,
+                                                                        const GALGAS_typeKind inOperand3,
+                                                                        const GALGAS_transientDependencyListForGeneration inOperand4,
+                                                                        const GALGAS_uint inInsertionIndex,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_transientDefinitionListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
@@ -13679,14 +11959,14 @@ void GALGAS_transientDefinitionListForGeneration::modifier_insertAtIndex (const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_transientDefinitionListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                                          GALGAS_string & outOperand1,
-                                                                          GALGAS_bool & outOperand2,
-                                                                          GALGAS_typeKind & outOperand3,
-                                                                          GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                          const GALGAS_uint inRemoveIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_transientDefinitionListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                                        GALGAS_string & outOperand1,
+                                                                        GALGAS_bool & outOperand2,
+                                                                        GALGAS_typeKind & outOperand3,
+                                                                        GALGAS_transientDependencyListForGeneration & outOperand4,
+                                                                        const GALGAS_uint inRemoveIndex,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -13710,13 +11990,13 @@ void GALGAS_transientDefinitionListForGeneration::modifier_removeAtIndex (GALGAS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_transientDefinitionListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                                     GALGAS_string & outOperand1,
-                                                                     GALGAS_bool & outOperand2,
-                                                                     GALGAS_typeKind & outOperand3,
-                                                                     GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
+void GALGAS_transientDefinitionListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
+                                                                   GALGAS_string & outOperand1,
+                                                                   GALGAS_bool & outOperand2,
+                                                                   GALGAS_typeKind & outOperand3,
+                                                                   GALGAS_transientDependencyListForGeneration & outOperand4,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_transientDefinitionListForGeneration * p = (cCollectionElement_transientDefinitionListForGeneration *) attributes.ptr () ;
@@ -13738,13 +12018,13 @@ void GALGAS_transientDefinitionListForGeneration::modifier_popFirst (GALGAS_stri
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_transientDefinitionListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                                    GALGAS_string & outOperand1,
-                                                                    GALGAS_bool & outOperand2,
-                                                                    GALGAS_typeKind & outOperand3,
-                                                                    GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_transientDefinitionListForGeneration::setter_popLast (GALGAS_string & outOperand0,
+                                                                  GALGAS_string & outOperand1,
+                                                                  GALGAS_bool & outOperand2,
+                                                                  GALGAS_typeKind & outOperand3,
+                                                                  GALGAS_transientDependencyListForGeneration & outOperand4,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_transientDefinitionListForGeneration * p = (cCollectionElement_transientDefinitionListForGeneration *) attributes.ptr () ;
@@ -14157,10 +12437,10 @@ void GALGAS_entityObservablePropertyMap::addAssign_operation (const GALGAS_lstri
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_entityObservablePropertyMap::modifier_insertKey (GALGAS_lstring inKey,
-                                                             GALGAS_observablePropertyMap inArgument0,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_entityObservablePropertyMap::setter_insertKey (GALGAS_lstring inKey,
+                                                           GALGAS_observablePropertyMap inArgument0,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   cMapElement_entityObservablePropertyMap * p = NULL ;
   macroMyNew (p, cMapElement_entityObservablePropertyMap (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
@@ -14210,10 +12490,10 @@ GALGAS_observablePropertyMap GALGAS_entityObservablePropertyMap::getter_mObserva
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_entityObservablePropertyMap::modifier_setMObservablePropertyMapForKey (GALGAS_observablePropertyMap inAttributeValue,
-                                                                                   GALGAS_string inKey,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_entityObservablePropertyMap::setter_setMObservablePropertyMapForKey (GALGAS_observablePropertyMap inAttributeValue,
+                                                                                 GALGAS_string inKey,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_entityObservablePropertyMap * p = (cMapElement_entityObservablePropertyMap *) attributes ;
   if (NULL != p) {
@@ -14498,16 +12778,16 @@ void GALGAS_entityListForGeneration::addAssign_operation (const GALGAS_string & 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_entityListForGeneration::modifier_insertAtIndex (const GALGAS_string inOperand0,
-                                                             const GALGAS_string inOperand1,
-                                                             const GALGAS_simpleStoredPropertyListForGeneration inOperand2,
-                                                             const GALGAS_transientDefinitionListForGeneration inOperand3,
-                                                             const GALGAS_toOneEntityRelationshipListForGeneration inOperand4,
-                                                             const GALGAS_toManyEntityRelationshipListForGeneration inOperand5,
-                                                             const GALGAS_stringset inOperand6,
-                                                             const GALGAS_uint inInsertionIndex,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_entityListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                           const GALGAS_string inOperand1,
+                                                           const GALGAS_simpleStoredPropertyListForGeneration inOperand2,
+                                                           const GALGAS_transientDefinitionListForGeneration inOperand3,
+                                                           const GALGAS_toOneEntityRelationshipListForGeneration inOperand4,
+                                                           const GALGAS_toManyEntityRelationshipListForGeneration inOperand5,
+                                                           const GALGAS_stringset inOperand6,
+                                                           const GALGAS_uint inInsertionIndex,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_entityListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE)) ;
@@ -14520,16 +12800,16 @@ void GALGAS_entityListForGeneration::modifier_insertAtIndex (const GALGAS_string
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_entityListForGeneration::modifier_removeAtIndex (GALGAS_string & outOperand0,
-                                                             GALGAS_string & outOperand1,
-                                                             GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                             GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                             GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                             GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                             GALGAS_stringset & outOperand6,
-                                                             const GALGAS_uint inRemoveIndex,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
+void GALGAS_entityListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                           GALGAS_string & outOperand1,
+                                                           GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
+                                                           GALGAS_transientDefinitionListForGeneration & outOperand3,
+                                                           GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
+                                                           GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
+                                                           GALGAS_stringset & outOperand6,
+                                                           const GALGAS_uint inRemoveIndex,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
@@ -14557,15 +12837,15 @@ void GALGAS_entityListForGeneration::modifier_removeAtIndex (GALGAS_string & out
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_entityListForGeneration::modifier_popFirst (GALGAS_string & outOperand0,
-                                                        GALGAS_string & outOperand1,
-                                                        GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                        GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                        GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                        GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                        GALGAS_stringset & outOperand6,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_entityListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
+                                                      GALGAS_string & outOperand1,
+                                                      GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
+                                                      GALGAS_transientDefinitionListForGeneration & outOperand3,
+                                                      GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
+                                                      GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
+                                                      GALGAS_stringset & outOperand6,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_entityListForGeneration * p = (cCollectionElement_entityListForGeneration *) attributes.ptr () ;
@@ -14591,15 +12871,15 @@ void GALGAS_entityListForGeneration::modifier_popFirst (GALGAS_string & outOpera
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_entityListForGeneration::modifier_popLast (GALGAS_string & outOperand0,
-                                                       GALGAS_string & outOperand1,
-                                                       GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                       GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                       GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                       GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                       GALGAS_stringset & outOperand6,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
+void GALGAS_entityListForGeneration::setter_popLast (GALGAS_string & outOperand0,
+                                                     GALGAS_string & outOperand1,
+                                                     GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
+                                                     GALGAS_transientDefinitionListForGeneration & outOperand3,
+                                                     GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
+                                                     GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
+                                                     GALGAS_stringset & outOperand6,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_entityListForGeneration * p = (cCollectionElement_entityListForGeneration *) attributes.ptr () ;
@@ -14963,6 +13243,665 @@ GALGAS_entityListForGeneration GALGAS_entityListForGeneration::extractObject (co
       result = *p ;
     }else{
       inCompiler->castError ("entityListForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Class for element of '@outletDeclarationList' list                                  *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cCollectionElement_outletDeclarationList : public cCollectionElement {
+  public : GALGAS_outletDeclarationList_2D_element mObject ;
+
+//--- Constructor
+  public : cCollectionElement_outletDeclarationList (const GALGAS_lstring & in_mOutletTypeName,
+                                                     const GALGAS_lstring & in_mOutletName,
+                                                     const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
+                                                     const GALGAS_runActionDescriptor & in_mRunDescriptor,
+                                                     const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                     const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                     const GALGAS_regularBindingList & in_mRegularBindingList
+                                                     COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement_outletDeclarationList::cCollectionElement_outletDeclarationList (const GALGAS_lstring & in_mOutletTypeName,
+                                                                                    const GALGAS_lstring & in_mOutletName,
+                                                                                    const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
+                                                                                    const GALGAS_runActionDescriptor & in_mRunDescriptor,
+                                                                                    const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                                                    const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                                                    const GALGAS_regularBindingList & in_mRegularBindingList
+                                                                                    COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mOutletTypeName, in_mOutletName, in_mTableValueBindingDescriptor, in_mRunDescriptor, in_mEnabledBindingDescriptor, in_mHiddenBindingDescriptor, in_mRegularBindingList) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cCollectionElement_outletDeclarationList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement * cCollectionElement_outletDeclarationList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_outletDeclarationList (mObject.mAttribute_mOutletTypeName, mObject.mAttribute_mOutletName, mObject.mAttribute_mTableValueBindingDescriptor, mObject.mAttribute_mRunDescriptor, mObject.mAttribute_mEnabledBindingDescriptor, mObject.mAttribute_mHiddenBindingDescriptor, mObject.mAttribute_mRegularBindingList COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cCollectionElement_outletDeclarationList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mOutletTypeName" ":" ;
+  mObject.mAttribute_mOutletTypeName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mOutletName" ":" ;
+  mObject.mAttribute_mOutletName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mTableValueBindingDescriptor" ":" ;
+  mObject.mAttribute_mTableValueBindingDescriptor.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mRunDescriptor" ":" ;
+  mObject.mAttribute_mRunDescriptor.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mEnabledBindingDescriptor" ":" ;
+  mObject.mAttribute_mEnabledBindingDescriptor.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mHiddenBindingDescriptor" ":" ;
+  mObject.mAttribute_mHiddenBindingDescriptor.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mRegularBindingList" ":" ;
+  mObject.mAttribute_mRegularBindingList.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cCollectionElement_outletDeclarationList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_outletDeclarationList * operand = (cCollectionElement_outletDeclarationList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_outletDeclarationList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList::GALGAS_outletDeclarationList (void) :
+AC_GALGAS_list () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList::GALGAS_outletDeclarationList (cSharedList * inSharedListPtr) :
+AC_GALGAS_list (inSharedListPtr) {
+  if (NULL == inSharedListPtr) {
+    createNewEmptyList (HERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::constructor_emptyList (LOCATION_ARGS) {
+  GALGAS_outletDeclarationList result ;
+  result.createNewEmptyList (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::constructor_listWithValue (const GALGAS_lstring & inOperand0,
+                                                                                      const GALGAS_lstring & inOperand1,
+                                                                                      const GALGAS_tableValueBinding & inOperand2,
+                                                                                      const GALGAS_runActionDescriptor & inOperand3,
+                                                                                      const GALGAS_multipleBindingDescriptor & inOperand4,
+                                                                                      const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                                                      const GALGAS_regularBindingList & inOperand6
+                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_outletDeclarationList result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result.createNewEmptyList (THERE) ;
+    capCollectionElement attributes ;
+    GALGAS_outletDeclarationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE) ;
+    result.addObject (attributes) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                              const GALGAS_lstring & in_mOutletTypeName,
+                                                              const GALGAS_lstring & in_mOutletName,
+                                                              const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
+                                                              const GALGAS_runActionDescriptor & in_mRunDescriptor,
+                                                              const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                              const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                              const GALGAS_regularBindingList & in_mRegularBindingList
+                                                              COMMA_LOCATION_ARGS) {
+  cCollectionElement_outletDeclarationList * p = NULL ;
+  macroMyNew (p, cCollectionElement_outletDeclarationList (in_mOutletTypeName,
+                                                           in_mOutletName,
+                                                           in_mTableValueBindingDescriptor,
+                                                           in_mRunDescriptor,
+                                                           in_mEnabledBindingDescriptor,
+                                                           in_mHiddenBindingDescriptor,
+                                                           in_mRegularBindingList COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::addAssign_operation (const GALGAS_lstring & inOperand0,
+                                                        const GALGAS_lstring & inOperand1,
+                                                        const GALGAS_tableValueBinding & inOperand2,
+                                                        const GALGAS_runActionDescriptor & inOperand3,
+                                                        const GALGAS_multipleBindingDescriptor & inOperand4,
+                                                        const GALGAS_multipleBindingDescriptor & inOperand5,
+                                                        const GALGAS_regularBindingList & inOperand6
+                                                        COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_outletDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObject (attributes) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                         const GALGAS_lstring inOperand1,
+                                                         const GALGAS_tableValueBinding inOperand2,
+                                                         const GALGAS_runActionDescriptor inOperand3,
+                                                         const GALGAS_multipleBindingDescriptor inOperand4,
+                                                         const GALGAS_multipleBindingDescriptor inOperand5,
+                                                         const GALGAS_regularBindingList inOperand6,
+                                                         const GALGAS_uint inInsertionIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_outletDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                         GALGAS_lstring & outOperand1,
+                                                         GALGAS_tableValueBinding & outOperand2,
+                                                         GALGAS_runActionDescriptor & outOperand3,
+                                                         GALGAS_multipleBindingDescriptor & outOperand4,
+                                                         GALGAS_multipleBindingDescriptor & outOperand5,
+                                                         GALGAS_regularBindingList & outOperand6,
+                                                         const GALGAS_uint inRemoveIndex,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+      outOperand1.drop () ;
+      outOperand2.drop () ;
+      outOperand3.drop () ;
+      outOperand4.drop () ;
+      outOperand5.drop () ;
+      outOperand6.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+      outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
+      outOperand1 = p->mObject.mAttribute_mOutletName ;
+      outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
+      outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
+      outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
+      outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+      outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::setter_popFirst (GALGAS_lstring & outOperand0,
+                                                    GALGAS_lstring & outOperand1,
+                                                    GALGAS_tableValueBinding & outOperand2,
+                                                    GALGAS_runActionDescriptor & outOperand3,
+                                                    GALGAS_multipleBindingDescriptor & outOperand4,
+                                                    GALGAS_multipleBindingDescriptor & outOperand5,
+                                                    GALGAS_regularBindingList & outOperand6,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
+    outOperand1 = p->mObject.mAttribute_mOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
+    outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
+    outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::setter_popLast (GALGAS_lstring & outOperand0,
+                                                   GALGAS_lstring & outOperand1,
+                                                   GALGAS_tableValueBinding & outOperand2,
+                                                   GALGAS_runActionDescriptor & outOperand3,
+                                                   GALGAS_multipleBindingDescriptor & outOperand4,
+                                                   GALGAS_multipleBindingDescriptor & outOperand5,
+                                                   GALGAS_regularBindingList & outOperand6,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
+    outOperand1 = p->mObject.mAttribute_mOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
+    outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
+    outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::method_first (GALGAS_lstring & outOperand0,
+                                                 GALGAS_lstring & outOperand1,
+                                                 GALGAS_tableValueBinding & outOperand2,
+                                                 GALGAS_runActionDescriptor & outOperand3,
+                                                 GALGAS_multipleBindingDescriptor & outOperand4,
+                                                 GALGAS_multipleBindingDescriptor & outOperand5,
+                                                 GALGAS_regularBindingList & outOperand6,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
+    outOperand1 = p->mObject.mAttribute_mOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
+    outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
+    outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::method_last (GALGAS_lstring & outOperand0,
+                                                GALGAS_lstring & outOperand1,
+                                                GALGAS_tableValueBinding & outOperand2,
+                                                GALGAS_runActionDescriptor & outOperand3,
+                                                GALGAS_multipleBindingDescriptor & outOperand4,
+                                                GALGAS_multipleBindingDescriptor & outOperand5,
+                                                GALGAS_regularBindingList & outOperand6,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    outOperand0 = p->mObject.mAttribute_mOutletTypeName ;
+    outOperand1 = p->mObject.mAttribute_mOutletName ;
+    outOperand2 = p->mObject.mAttribute_mTableValueBindingDescriptor ;
+    outOperand3 = p->mObject.mAttribute_mRunDescriptor ;
+    outOperand4 = p->mObject.mAttribute_mEnabledBindingDescriptor ;
+    outOperand5 = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+    outOperand6 = p->mObject.mAttribute_mRegularBindingList ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::add_operation (const GALGAS_outletDeclarationList & inOperand,
+                                                                          C_Compiler * /* inCompiler */
+                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_outletDeclarationList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_outletDeclarationList result = GALGAS_outletDeclarationList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_outletDeclarationList result = GALGAS_outletDeclarationList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_outletDeclarationList result = GALGAS_outletDeclarationList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletDeclarationList::plusAssign_operation (const GALGAS_outletDeclarationList inOperand,
+                                                         C_Compiler * /* inCompiler */
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_outletDeclarationList::getter_mOutletTypeNameAtIndex (const GALGAS_uint & inIndex,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_lstring result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mOutletTypeName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_outletDeclarationList::getter_mOutletNameAtIndex (const GALGAS_uint & inIndex,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_lstring result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mOutletName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_tableValueBinding GALGAS_outletDeclarationList::getter_mTableValueBindingDescriptorAtIndex (const GALGAS_uint & inIndex,
+                                                                                                   C_Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_tableValueBinding result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mTableValueBindingDescriptor ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_runActionDescriptor GALGAS_outletDeclarationList::getter_mRunDescriptorAtIndex (const GALGAS_uint & inIndex,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_runActionDescriptor result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mRunDescriptor ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList::getter_mEnabledBindingDescriptorAtIndex (const GALGAS_uint & inIndex,
+                                                                                                        C_Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_multipleBindingDescriptor result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mEnabledBindingDescriptor ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor GALGAS_outletDeclarationList::getter_mHiddenBindingDescriptorAtIndex (const GALGAS_uint & inIndex,
+                                                                                                       C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_multipleBindingDescriptor result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mHiddenBindingDescriptor ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_regularBindingList GALGAS_outletDeclarationList::getter_mRegularBindingListAtIndex (const GALGAS_uint & inIndex,
+                                                                                           C_Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletDeclarationList * p = (cCollectionElement_outletDeclarationList *) attributes.ptr () ;
+  GALGAS_regularBindingList result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+    result = p->mObject.mAttribute_mRegularBindingList ;
+  }
+  return result ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_outletDeclarationList::cEnumerator_outletDeclarationList (const GALGAS_outletDeclarationList & inEnumeratedObject,
+                                                                      const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList_2D_element cEnumerator_outletDeclarationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cEnumerator_outletDeclarationList::current_mOutletTypeName (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mOutletTypeName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cEnumerator_outletDeclarationList::current_mOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mOutletName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_tableValueBinding cEnumerator_outletDeclarationList::current_mTableValueBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mTableValueBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_runActionDescriptor cEnumerator_outletDeclarationList::current_mRunDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mRunDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mEnabledBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mEnabledBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mHiddenBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mHiddenBindingDescriptor ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_regularBindingList cEnumerator_outletDeclarationList::current_mRegularBindingList (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mAttribute_mRegularBindingList ;
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             @outletDeclarationList type                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_outletDeclarationList ("outletDeclarationList",
+                                              NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_outletDeclarationList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_outletDeclarationList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_outletDeclarationList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_outletDeclarationList (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_outletDeclarationList result ;
+  const GALGAS_outletDeclarationList * p = (const GALGAS_outletDeclarationList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_outletDeclarationList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("outletDeclarationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

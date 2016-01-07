@@ -10010,7 +10010,7 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
       break ;
     }
     {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_4343.current_mToOneRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 144)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 145)), enumerator_4343.current_mInverseRelationshipName (HERE).mAttribute_string, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 141)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_4343.current_mToOneRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 144)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 145)), enumerator_4343.current_mInverseRelationshipName (HERE).mAttribute_string, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 141)) ;
     }
     enumerator_4343.gotoNextObject () ;
   }
@@ -10078,7 +10078,7 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
       break ;
     }
     {
-    ioArgument_ioObservableProperties.modifier_insertKey (enumerator_5652.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 179)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 180)), enumerator_5652.current_mInverseRelationshipName (HERE).mAttribute_string, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 176)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_5652.current_mToManyRelationshipName (HERE), var_type, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 179)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 180)), enumerator_5652.current_mInverseRelationshipName (HERE).mAttribute_string, var_actionMap, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 176)) ;
     }
     enumerator_5652.gotoNextObject () ;
   }
