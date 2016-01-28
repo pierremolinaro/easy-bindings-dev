@@ -2203,38 +2203,38 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "      contentRect:r,\n"
     "      styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
     "      backing:NSBackingStoreType.Buffered,\n"
-    "      `defer`:true,\n"
+    "      defer:true,\n"
     "      screen:nil\n"
     "    )\n"
     "  //-------------------------------------------------- Adding properties\n"
     "    let view = NSView (frame:r)\n"
     "    var y : CGFloat = 0.0\n" ;
-  GALGAS_uint index_3672_ (0) ;
+  GALGAS_uint index_3670_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_3672 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_3672.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = enumerator_3672.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 79)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 79)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_3670 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_3670.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = enumerator_3670.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 79)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 79)).boolEnum () ;
       if (kBoolTrue == test_2) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_3672.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_3670.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\",\n"
           "      idx:" ;
-        result << enumerator_3672.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_3670.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mExplorerObjectIndex,\n"
           "      y:&y,\n"
           "      view:view,\n"
           "      observerExplorer:&" ;
-        result << enumerator_3672.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_3670.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mObserverExplorer,\n"
           "      valueExplorer:&" ;
-        result << enumerator_3672.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_3670.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mValueExplorer\n"
           "    )\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      index_3672_.increment () ;
-      enumerator_3672.gotoNextObject () ;
+      index_3670_.increment () ;
+      enumerator_3670.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -2288,29 +2288,29 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "    mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_6367_ (0) ;
+  GALGAS_uint index_6365_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_6367 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_6367.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = enumerator_6367.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 142)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 142)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_6365 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_6365.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = enumerator_6365.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 142)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 142)).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
           "\n"
           "  private final func bind_property_" ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (model : ReadOnlyArrayOf_" ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") {\n"
           "    model.addEBObserverOf_" ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (" ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ")\n"
           "//    model.addEBObserver (" ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ")\n"
           "    " ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = {\n"
           "      if let model = self.mModel {\n"
           "        switch model.prop {\n"
@@ -2320,12 +2320,12 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "          return .multipleSelection\n"
           "        case .singleSelection (let v) :\n"
           "          var s = Set<" ;
-        result << extensionGetter_swiftTypeName (enumerator_6367.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 155)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_6365.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 155)).stringValue () ;
         result << "> ()\n"
           "          var isMultipleSelection = false\n"
           "          for object in v {\n"
           "            switch object." ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".prop {\n"
           "            case .noSelection :\n"
           "              return .noSelection\n"
@@ -2350,9 +2350,9 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "      }\n"
           "    }\n"
           "    " ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".writeModelFunction = { (inValue : " ;
-        result << extensionGetter_swiftTypeName (enumerator_6367.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 181)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_6365.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 181)).stringValue () ;
         result << ") in\n"
           "      if let model = self.mModel {\n"
           "        switch model.prop {\n"
@@ -2361,16 +2361,16 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "        case .singleSelection (let v) :\n"
           "          for object in v {\n"
           "            object." ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".setProp (inValue)\n"
           "          }\n"
           "        }\n"
           "      }\n"
           "    }\n"
           "    " ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".validateAndWriteModelFunction = { (candidateValue : " ;
-        result << extensionGetter_swiftTypeName (enumerator_6367.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 193)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_6365.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 193)).stringValue () ;
         result << ", windowForSheet : NSWindow\?) in\n"
           "      if let model = self.mModel {\n"
           "        switch model.prop {\n"
@@ -2379,7 +2379,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "        case .singleSelection (let v) :\n"
           "          for object in v {\n"
           "            let result = object." ;
-        result << enumerator_6367.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_6365.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
           "            if !result {\n"
           "              return false\n"
@@ -2395,8 +2395,8 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "\n" ;
       }else if (kBoolFalse == test_3) {
       }
-      index_6367_.increment () ;
-      enumerator_6367.gotoNextObject () ;
+      index_6365_.increment () ;
+      enumerator_6365.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -2406,36 +2406,36 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  func unbind_selection () {\n" ;
-  GALGAS_uint index_9370_ (0) ;
+  GALGAS_uint index_9368_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_9370 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_9370.hasCurrentObject ()) {
-      const enumGalgasBool test_4 = enumerator_9370.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 221)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 221)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_9368 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_9368.hasCurrentObject ()) {
+      const enumGalgasBool test_4 = enumerator_9368.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 221)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 221)).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "  //--- " ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\n"
           "    " ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = nil \n"
           "    " ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".writeModelFunction = nil \n"
           "    " ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".validateAndWriteModelFunction = nil \n"
           "    mModel\?.removeEBObserverOf_" ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " (" ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ")\n"
           "//    mModel\?.removeEBObserver (" ;
-        result << enumerator_9370.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_9368.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ")\n" ;
       }else if (kBoolFalse == test_4) {
       }
-      index_9370_.increment () ;
-      enumerator_9370.gotoNextObject () ;
+      index_9368_.increment () ;
+      enumerator_9368.gotoNextObject () ;
     }
   }
   result << "    mModel = nil    \n"
@@ -2716,38 +2716,38 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "      contentRect:r,\n"
     "      styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
     "      backing:NSBackingStoreType.Buffered,\n"
-    "      `defer`:true,\n"
+    "      defer:true,\n"
     "      screen:nil\n"
     "    )\n"
     "  //-------------------------------------------------- Adding properties\n"
     "    let view = NSView (frame:r)\n"
     "    var y : CGFloat = 0.0\n" ;
-  GALGAS_uint index_5024_ (0) ;
+  GALGAS_uint index_5022_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_5024 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_5024.hasCurrentObject ()) {
-      const enumGalgasBool test_7 = enumerator_5024.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).operator_and (enumerator_5024.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)) COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_5022 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_5022.hasCurrentObject ()) {
+      const enumGalgasBool test_7 = enumerator_5022.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).operator_and (enumerator_5022.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)) COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 121)).boolEnum () ;
       if (kBoolTrue == test_7) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_5024.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5022.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << "\",\n"
           "      idx:" ;
-        result << enumerator_5024.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5022.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mExplorerObjectIndex,\n"
           "      y:&y,\n"
           "      view:view,\n"
           "      observerExplorer:&" ;
-        result << enumerator_5024.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5022.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mObserverExplorer,\n"
           "      valueExplorer:&" ;
-        result << enumerator_5024.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_5022.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".mValueExplorer\n"
           "    )\n" ;
       }else if (kBoolFalse == test_7) {
       }
-      index_5024_.increment () ;
-      enumerator_5024.gotoNextObject () ;
+      index_5022_.increment () ;
+      enumerator_5022.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -2801,46 +2801,46 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
     "    mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_7747_ (0) ;
+  GALGAS_uint index_7745_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_7747 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
-    while (enumerator_7747.hasCurrentObject ()) {
-      const enumGalgasBool test_8 = enumerator_7747.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 184)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 184)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_7745 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kEnumeration_up) ;
+    while (enumerator_7745.hasCurrentObject ()) {
+      const enumGalgasBool test_8 = enumerator_7745.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 184)).operator_not (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 184)).boolEnum () ;
       if (kBoolTrue == test_8) {
         result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
           "\n"
           "  private final func bind_property_" ;
-        result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << " () {\n"
           "    " ;
-        result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".readModelFunction = { [weak self] in\n"
           "      if let model = self\?.mSelectedObject {\n"
           "        return model." ;
-        result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+        result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
         result << ".prop\n"
           "      }else{\n"
           "        return .noSelection\n"
           "      }\n"
           "    }\n" ;
-        const enumGalgasBool test_9 = enumerator_7747.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 194)).boolEnum () ;
+        const enumGalgasBool test_9 = enumerator_7745.current_mKind (HERE).getter_isStored (SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 194)).boolEnum () ;
         if (kBoolTrue == test_9) {
           result << "    " ;
-          result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".writeModelFunction = { [weak self] (inValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7747.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 195)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7745.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 195)).stringValue () ;
           result << ") in\n"
             "      self\?.mSelectedObject\?." ;
-          result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".setProp (inValue)\n"
             "    }\n"
             "    " ;
-          result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".validateAndWriteModelFunction = { [weak self] (candidateValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7747.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 198)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7745.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("custom-object-controller.swift.galgasTemplate", 198)).stringValue () ;
           result << ", windowForSheet : NSWindow\?) in\n"
             "      self\?.mSelectedObject\?." ;
-          result << enumerator_7747.current_lkey (HERE).mAttribute_string.stringValue () ;
+          result << enumerator_7745.current_lkey (HERE).mAttribute_string.stringValue () ;
           result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet) \?\? false\n"
             "    }\n" ;
         }else if (kBoolFalse == test_9) {
@@ -2849,8 +2849,8 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
           "\n" ;
       }else if (kBoolFalse == test_8) {
       }
-      index_7747_.increment () ;
-      enumerator_7747.gotoNextObject () ;
+      index_7745_.increment () ;
+      enumerator_7745.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -3195,8 +3195,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "func noteObjectAllocation (inObject : EBUserClassNameProtocol) {\n"
   "  if gEnableObjectAllocationDebug {\n"
   "    installDebugMenu ()\n"
-  "    // let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension\n"
-  "    let className = _stdlib_getDemangledTypeName (inObject)\n"
+  "    let className = String (inObject.dynamicType)\n"
   "    gDebugObject\?.pmNoteObjectAllocation (className)\n"
   "  }\n"
   "}\n"
@@ -3205,8 +3204,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "\n"
   "func noteObjectDeallocation (inObject : EBUserClassNameProtocol) {\n"
   "  if gEnableObjectAllocationDebug {\n"
-  "    // let className = (_stdlib_getDemangledTypeName (inObject) as NSString).pathExtension\n"
-  "    let className = _stdlib_getDemangledTypeName (inObject)\n"
+  "    let className = String (inObject.dynamicType)\n"
   "    gDebugObject\?.pmNoteObjectDeallocation (className)\n"
   "  }\n"
   "}\n"
@@ -3601,7 +3599,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "EBAllocationDebug.swift",
   "swift",
   true, // Text file
-  18787, // Text length
+  18585, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
@@ -4556,7 +4554,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "      contentRect:r,\n"
   "      styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
   "      backing:NSBackingStoreType.Buffered,\n"
-  "      `defer`:true,\n"
+  "      defer:true,\n"
   "      screen:nil\n"
   "    )\n"
   "  //-------------------------------------------------- Adding properties\n"
@@ -4828,7 +4826,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "        contentRect:windowRect,\n"
   "        styleMask:NSTitledWindowMask,\n"
   "        backing:NSBackingStoreType.Buffered,\n"
-  "        `defer`:false\n"
+  "        defer:false\n"
   "      )\n"
   "      mProgressWindow = progressWindow\n"
   "      progressWindow.excludedFromWindowsMenu = true\n"
@@ -4917,7 +4915,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  30390, // Text length
+  30386, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -5030,7 +5028,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "      contentRect:r,\n"
   "      styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
   "      backing:NSBackingStoreType.Buffered,\n"
-  "      `defer`:true,\n"
+  "      defer:true,\n"
   "      screen:nil\n"
   "    )\n"
   "  //-------------------------------------------------- Adding properties\n"
@@ -5245,7 +5243,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBManagedObject.swift",
   "swift",
   true, // Text file
-  14465, // Text length
+  14463, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
@@ -5890,7 +5888,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    contentRect:r,\n"
   "    styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
   "    backing:NSBackingStoreType.Buffered,\n"
-  "    `defer`:true\n"
+  "    defer:true\n"
   "  )\n"
   "  window.title = \"Outlet Error\"\n"
   "  let contentView : NSView = window.contentView!\n"
@@ -6066,7 +6064,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "      contentRect:r,\n"
   "      styleMask:NSTitledWindowMask | NSClosableWindowMask,\n"
   "      backing:NSBackingStoreType.Buffered,\n"
-  "      `defer`:true,\n"
+  "      defer:true,\n"
   "      screen:nil\n"
   "    )\n"
   "  //-------------------------------------------------- Adding properties\n"
@@ -6258,7 +6256,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  let vtf = NSTextField (frame:thirdColumn (y))\n"
   "  vtf.enabled = true\n"
   "  vtf.editable = false\n"
-  "  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + _stdlib_getDemangledTypeName (object)\n"
+  "  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (object.dynamicType)\n"
   "  vtf.font = font\n"
   "  view.addSubview (vtf)\n"
   "//--- Update rect origin\n"
@@ -6625,7 +6623,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  43144, // Text length
+  43130, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 
