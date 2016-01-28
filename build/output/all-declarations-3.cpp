@@ -3625,7 +3625,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
     "    let panel = NSPanel (contentRect:panelRect,\n"
     "      styleMask:NSTitledWindowMask,\n"
     "      backing:NSBackingStoreType.Buffered,\n"
-    "      `defer`:false\n"
+    "      defer:false\n"
     "    )\n"
     "    let textRect = NSRect (\n"
     "     x:17.0,\n"
@@ -3722,27 +3722,27 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
     "\n"
     "  func newInstanceOfEntityNamed (inEntityTypeName : String) throws -> EBManagedObject {\n"
     "    var result : EBManagedObject\n" ;
-  GALGAS_uint index_7987_ (0) ;
+  GALGAS_uint index_7985_ (0) ;
   if (in_ENTITY_5F_LIST.isValid ()) {
-    cEnumerator_entityListForGeneration enumerator_7987 (in_ENTITY_5F_LIST, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_7987 = enumerator_7987.hasCurrentObject () ;
-    if (nonEmpty_enumerator_7987) {
+    cEnumerator_entityListForGeneration enumerator_7985 (in_ENTITY_5F_LIST, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_7985 = enumerator_7985.hasCurrentObject () ;
+    if (nonEmpty_enumerator_7985) {
       result << "    " ;
     }
-    while (enumerator_7987.hasCurrentObject ()) {
+    while (enumerator_7985.hasCurrentObject ()) {
       result << "if inEntityTypeName == \"" ;
-      result << enumerator_7987.current_mEntityName (HERE).stringValue () ;
+      result << enumerator_7985.current_mEntityName (HERE).stringValue () ;
       result << "\" {\n"
         "      result = " ;
-      result << enumerator_7987.current_mEntityName (HERE).stringValue () ;
+      result << enumerator_7985.current_mEntityName (HERE).stringValue () ;
       result << " (managedObjectContext:self)\n" ;
-      if (enumerator_7987.hasNextObject ()) {
+      if (enumerator_7985.hasNextObject ()) {
         result << "    }else " ;
       }
-      index_7987_.increment () ;
-      enumerator_7987.gotoNextObject () ;
+      index_7985_.increment () ;
+      enumerator_7985.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_7987) {
+    if (nonEmpty_enumerator_7985) {
       result << "    }else{\n"
         "       let dictionary : [NSObject : AnyObject] = [\n"
         "        NSLocalizedDescriptionKey : \"Cannot read document\",\n"
@@ -8544,8 +8544,8 @@ const char * gWrapperFileContent_25_outletClassGeneration = "//\xE2""\x80""\x94"
   "  override init (contentRect: NSRect,\n"
   "                 styleMask aStyle: Int,\n"
   "                 backing bufferingType: NSBackingStoreType,\n"
-  "                 `defer` flag: Bool) {\n"
-  "    super.init (contentRect: contentRect, styleMask:aStyle, backing:bufferingType, `defer`:flag)\n"
+  "                 defer flag: Bool) {\n"
+  "    super.init (contentRect: contentRect, styleMask:aStyle, backing:bufferingType, defer:flag)\n"
   "    noteObjectAllocation (self)\n"
   "  }\n"
   "  \n"
@@ -8562,7 +8562,7 @@ const cRegularFileWrapper gWrapperFile_25_outletClassGeneration (
   "EBWindow.swift",
   "swift",
   true, // Text file
-  1465, // Text length
+  1461, // Text length
   gWrapperFileContent_25_outletClassGeneration
 ) ;
 

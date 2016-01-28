@@ -20,8 +20,8 @@ import Cocoa
   override init (contentRect: NSRect,
                  styleMask aStyle: Int,
                  backing bufferingType: NSBackingStoreType,
-                 `defer` flag: Bool) {
-    super.init (contentRect: contentRect, styleMask:aStyle, backing:bufferingType, `defer`:flag)
+                 defer flag: Bool) {
+    super.init (contentRect: contentRect, styleMask:aStyle, backing:bufferingType, defer:flag)
     noteObjectAllocation (self)
   }
   
