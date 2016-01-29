@@ -105,7 +105,7 @@ import Cocoa
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
       backing:NSBackingStoreType.Buffered,
-      `defer`:true,
+      defer:true,
       screen:nil
     )
   //-------------------------------------------------- Adding properties

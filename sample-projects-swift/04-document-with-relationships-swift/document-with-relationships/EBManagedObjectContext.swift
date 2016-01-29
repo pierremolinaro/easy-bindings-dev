@@ -84,7 +84,7 @@ class EBManagedObjectContext : EBObject {
     let panel = NSPanel (contentRect:panelRect,
       styleMask:NSTitledWindowMask,
       backing:NSBackingStoreType.Buffered,
-      `defer`:false
+      defer:false
     )
     let textRect = NSRect (
      x:17.0,

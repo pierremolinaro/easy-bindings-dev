@@ -379,7 +379,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
       backing:NSBackingStoreType.Buffered,
-      `defer`:true,
+      defer:true,
       screen:nil
     )
   //-------------------------------------------------- Adding properties
@@ -651,7 +651,7 @@ private struct EBDocumentReadProgress {
         contentRect:windowRect,
         styleMask:NSTitledWindowMask,
         backing:NSBackingStoreType.Buffered,
-        `defer`:false
+        defer:false
       )
       mProgressWindow = progressWindow
       progressWindow.excludedFromWindowsMenu = true

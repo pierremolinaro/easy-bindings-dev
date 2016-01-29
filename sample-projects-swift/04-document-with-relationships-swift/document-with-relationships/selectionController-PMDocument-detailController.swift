@@ -65,7 +65,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
       backing:NSBackingStoreType.Buffered,
-      `defer`:true,
+      defer:true,
       screen:nil
     )
   //-------------------------------------------------- Adding properties
