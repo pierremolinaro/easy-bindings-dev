@@ -359,7 +359,7 @@ func presentErrorWindow (file : String!,
     contentRect:r,
     styleMask:NSTitledWindowMask | NSClosableWindowMask,
     backing:NSBackingStoreType.Buffered,
-    `defer`:true
+    defer:true
   )
   window.title = "Outlet Error"
   let contentView : NSView = window.contentView!
@@ -535,7 +535,7 @@ class EBSimpleController : EBOutletEvent {
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
       backing:NSBackingStoreType.Buffered,
-      `defer`:true,
+      defer:true,
       screen:nil
     )
   //-------------------------------------------------- Adding properties
@@ -727,7 +727,7 @@ func createEntryForObjectNamed (name : String,
   let vtf = NSTextField (frame:thirdColumn (y))
   vtf.enabled = true
   vtf.editable = false
-  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + _stdlib_getDemangledTypeName (object)
+  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (object.dynamicType)
   vtf.font = font
   view.addSubview (vtf)
 //--- Update rect origin
