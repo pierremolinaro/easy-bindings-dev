@@ -794,20 +794,20 @@ void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument
                                              GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                              C_Compiler * inCompiler
                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_defaultUserZone_32_ = GALGAS_string ("    var result = EBValidationResult.ok\n").add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 31)).add_operation (GALGAS_string ("    if !validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 32)).add_operation (GALGAS_string ("      result = EBValidationResult.rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 33)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 34)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 35)) ;
-  cEnumerator_validationStubRoutineListForGeneration enumerator_1783 (constinArgument_inValidationStubRoutineListForGeneration, kEnumeration_up) ;
-  while (enumerator_1783.hasCurrentObject ()) {
-    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_validationStubExtension_actionGeneration (inCompiler, enumerator_1783.current_mObjectTypeName (HERE), enumerator_1783.current_mModelName (HERE), enumerator_1783.current_mModelTypeName (HERE) COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 38))) ;
-    GALGAS_string var_fileName = enumerator_1783.current_mObjectTypeName (HERE).add_operation (GALGAS_string ("+validation+"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (enumerator_1783.current_mModelName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 44)) ;
+  cEnumerator_validationStubRoutineListForGeneration enumerator_1453 (constinArgument_inValidationStubRoutineListForGeneration, kEnumeration_up) ;
+  while (enumerator_1453.hasCurrentObject ()) {
+    GALGAS_string var_s = GALGAS_string (filewrapperTemplate_validationStubExtension_actionGeneration (inCompiler, enumerator_1453.current_mObjectTypeName (HERE), enumerator_1453.current_mModelName (HERE), enumerator_1453.current_mModelTypeName (HERE) COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 32))) ;
+    GALGAS_string var_fileName = enumerator_1453.current_mObjectTypeName (HERE).add_operation (GALGAS_string ("+validation+"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 37)).add_operation (enumerator_1453.current_mModelName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 37)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 37)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 38)) ;
+    GALGAS_string var_defaultUserZone_32_ = GALGAS_string ("    var result : EBValidationResult<").add_operation (enumerator_1453.current_mModelTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string (">\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string ("    if !validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 41)).add_operation (GALGAS_string ("      result = .rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 42)).add_operation (GALGAS_string ("    }else{\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (GALGAS_string ("      result = .ok (proposedValue)\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 44)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 45)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 46)) ;
     {
     GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, var_defaultUserZone_32_, GALGAS_string ("  }\n"
       "}\n"
       "\n"
-      "//---------------------------------------------------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 45)) ;
+      "//---------------------------------------------------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 48)) ;
     }
-    enumerator_1783.gotoNextObject () ;
+    enumerator_1453.gotoNextObject () ;
   }
 }
 
