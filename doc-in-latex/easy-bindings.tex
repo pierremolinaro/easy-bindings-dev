@@ -1,6 +1,6 @@
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass [a4paper, 10pt, openany] {book}
+\documentclass [a4paper, 11pt, openany] {book}
 \usepackage{verbatim}
 %\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
 %\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
@@ -146,8 +146,8 @@
 \fancyhead[ER]{\leftmark}
 %--- Nom de section : à gauche page impaires
 \fancyhead[OL]{\rightmark}
-%--- Version GALGAS : au milieu du pied de chaque page
-\fancyfoot[C]{Esay Bindings}
+%--- Version : au milieu du pied de chaque page
+\fancyfoot[C]{Easy Bindings}
 %--- filet en haut et en bas de chaque page
 \renewcommand{\headrulewidth}{0.5 pt}
 \renewcommand{\footrulewidth}{0.5 pt}
@@ -270,6 +270,12 @@
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 %-----------------------------------------------------------------------------------------------------------------------*
+%   A F F I C H A G E    D U    C O D E    S H E L L                                                                    *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\newcommand\tpp[1]{\colorbox{gray!12}{\ttfamily #1}}
+
+%-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
 %   C O D E   S O U R C E    E A S Y - B I N D I N G S                                                                  *
 %                                                                                                                       *
@@ -279,10 +285,10 @@
 
 \newcommand\idfStyleEB[1]{\textcolor{gray}{#1}}
 \newcommand\IdfStyleEB[1]{\textcolor{gray}{#1}}
+\newcommand\bindingNameStyleEB[1]{\textcolor{orange}{#1}}
 
 \newcommand\keywordsStyleEB[1]{\textcolor{blue}{\textbf{#1}}}
 \newcommand\delimitersStyleEB[1]{\textcolor{brown}{\textbf{#1}}}
-\newcommand\selectorStyleEB[1]{\textcolor{orange}{#1}}
 \newcommand\terminalStyleEB[1]{\textcolor{orange}{#1}}
 \newcommand\nonTerminalStyleEB[1]{\textcolor{orange}{#1}}
 \newcommand\integerStyleEB[1]{\textcolor{brown}{#1}}
@@ -297,6 +303,7 @@
 
 \newcommand\idfStyleeb[1]{\textcolor{gray}{#1}}
 \newcommand\IdfStyleeb[1]{\textcolor{gray}{#1}}
+\newcommand\bindingNameStyleeb[1]{\textcolor{orange}{#1}}
 
 \newcommand\keywordsStyleeb[1]{\textcolor{blue}{\textbf{#1}}}
 \newcommand\delimitersStyleeb[1]{\textcolor{brown}{\textbf{#1}}}
@@ -342,7 +349,7 @@
   \@esphack
   \endgroup
   \immediate\write18{eb --mode=latex:eb temp.eb}
-  {\begin{siderules}\ttfamily\input{temp.eb.tex}\end{siderules}}
+  {\begin{siderules}\small\ttfamily\input{temp.eb.tex}\end{siderules}}
 }
 \makeatother
 
@@ -449,6 +456,7 @@
 %    On met cette définition ici, sinon elle affecte la table des matières, la liste des tableaux, ...
 \setlength{\parskip}{1.2ex}
 
+\input{chapitres/chapitre-tutorial.tex}
 \input{chapitres/chapitre-structure-globale.tex}
 \input{chapitres/chapitre-template-controleur.tex}
 \input{chapitres/chapitre-preferences.tex}

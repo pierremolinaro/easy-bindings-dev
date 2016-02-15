@@ -1,0 +1,118 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = ../easy-bindings.tex
+
+
+\chapter{Tutorial}
+
+\section{Introduction}
+
+À partir de mac OS X 10.3 (Panther), le pattern MVC\index{MVC} (\emph{Model View Controller}) peut être mis en œuvre au moyen des \emph{Cocoa Bindings}. Ceux-ci ont perduré jusqu'aux systèmes actuels, et notamment peuvent actuellement être exprimés en Swift.
+
+La technique préconisée par Apple pour exprimer le pattern MVC est d'écrire les \emph{bindings} directement dans l'interface graphique \emph{Interface Builder} de \emph{Xcode}. Cette approche, si elle est simple pour des petits programmes d'exemple, présente à notre avis plusieurs inconvénients pour des projets importants :
+\begin{itemize}
+  \item la moindre erreur, le \emph{binding} ne fonctionne pas, ou assez souvent il en résulte un \emph{crash} de l'application ;
+  \item suite à un changement de nom d'une propriété, il faut revoir tous les \emph{outlets} qui lui sont liés, en balayant les multiples items graphiques ;
+  \item les valeurs transmises sont des objets Objective-C : les entiers, structures, énumérations sont convertis en instances de \texttt{NSNumber} ou de \texttt{NSValue}, les objets en instance de \texttt{NSObject}, perdant ainsi toute possibilité de vérification statique de la correction des types. 
+\end{itemize}
+
+Si tous ces points ne sont pas gênants pour un petit exemple, il s'avère en pratique que la maintenance d'une application comportant de nombreux \emph{bindings} est plus compliquée qu'il n'y paraît. Comme il n'y a pas de possibilité de vérification statique à la compilation, au moindre changement on doit s'astreindre à passer en revue dans \emph{Interface Builder} tous les \emph{outlets} : en pratique, il est fatal d'en oublier. L'erreur peut apparaître bien longtemps après la modification, si la fonction concernée n'est que peu utilisée.
+
+
+\tpp{eb} est un outil facilitant la mise en œuvre du pattern MVC\index{MVC} (\emph{Model View Controller}) pour des applications Mac OS X écrites en Swift :
+\begin{itemize}
+  \item \emph{Interface Builder} est utilisé uniquement pour dessiner l'interface, et définir les \emph{outlets} ;
+  \item aucune information de \emph{binding} n'apparaît dans \emph{Interface Builder} ;
+  \item un texte \emph{Easy Bindings} est écrit pour définir les modèles et les bindings ;
+  \item la compilation par l'outil \tpp{eb} de ce texte engendre du code \emph{Swift} prêt à être compilé.
+\end{itemize}
+
+Cet outil en fait va plus loin que la seule définition des \emph{bindings} :
+\begin{itemize}
+ \item il permet la définition des préférences ;
+ \item il permet la définition des documents, y compris sauvegarde sur fichier et leur lecture ;
+ \item le code engendré permet une vérification statique de la correction des bindings ;
+ \item il engendre du code code qui à l'exécution maintient une liste des objets alloués, facilitant ainsi la bonne gestion des objets, notamment pour vérifier que la fermeture d'un document libère tous ses objets.
+\end{itemize}
+
+La génération du code \emph{Swift} par \tpp{eb} est effectuée de telle façon qu'elle conserve certaines modifications qui lui sont apportées : ainsi, en suivant quelques règles élémentaires, une regénération provoquée par une compilation des sources \emph{Easy Bindings} ne détruit pas le code ajouté à la main.
+
+\section{Premier exemple : gestion des préférences}
+
+\subsectionLabel{Texte source}{textSourceTutorialUn}
+
+\begin{ebcode}
+mainxib {
+  {"String:", EBTextField myTextField},
+  {"String (send continously): ", EBTextField myOtherTextField},
+  {"String observer:", EBTextObserverField myObserverTextField},
+  {"Color:", EBColorWell mColorWell},
+  {"Color (send continously):", EBColorWell mContinousColorWell},
+  {"Color Observer:", EBColorObserverWell mObserverColorWell},
+  {"Date:", EBDatePicker mDatePicker},
+  {"Even Integer:", EBIntField mInteger32TextField},
+  {"Even Integer Observer:", EBIntObserverField mInteger32ObserverTextField}
+}
+
+prefs {
+#--- String
+  property String myString default "hello" ;
+  outlet EBTextField myTextField $value self.myString {sendContinously : no} ;
+  outlet EBTextField myOtherTextField $value self.myString {sendContinously : yes} ;
+  outlet EBTextObserverField myObserverTextField $valueObserver self.myString ;
+#--- Color
+  property NSColor mColor default yellowColor ;
+  outlet EBColorWell mContinousColorWell $color self.mColor {sendContinously : yes} ;
+  outlet EBColorWell mColorWell $color self.mColor {sendContinously : no} ;
+  outlet EBColorObserverWell mObserverColorWell $colorObserver self.mColor ;
+#--- Date
+  property NSDate mDate default date ;
+  outlet EBDatePicker mDatePicker $date self.mDate  ;
+#--- Number
+  property validates Int mIntegerValue default 12 ;
+  outlet EBIntField mInteger32TextField
+    $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
+  ;
+  outlet EBIntObserverField mInteger32ObserverTextField
+    $valueObserver self.mIntegerValue {autoFormatter:yes}
+  ;
+}
+\end{ebcode}
+
+Le texte source est divisé en deux parties :
+\begin{itemize}
+  \item description de l'interface (\eb!mainxib {...}!) ;
+  \item description des préférences (\eb!prefs {...}!).
+\end{itemize}
+
+La première partie permet de décrire une interface très sommaire, utile simplement pour un petit programme d'exemple, destiné à un tutorial comme celui-ci. La déclaration \eb!mainxib! ordonne aussi la génération d'un projet Xcode prêt à l'emploi. Dans un vrai projet, on préfèrera écrire le projet et l'interface à la main.
+
+La seconde partie est la définition des préférences, c'est-à-dire des propriétés (\eb!property!), et outlets (\eb!outlet!) et de leurs bindings (\eb!$value!),  (\eb!$valueObserver!), ...
+
+\subsection{Compilation du texte source}
+
+Le code ci-dessus (\refSubsectionPage{textSourceTutorialUn}) doit être contenu dans un fichier dont l'extension est \tpp{.eb}, par exemple \tpp{tutorial1.eb}. Pour le compiler, on peut utiliser l'outil en ligne de commande \tpp{eb}, ou l'application Mac OS X \tpp{CocoaEb} :
+
+\tpp{eb tutorial1.eb}
+
+Sont engendrés, dans le même répertoire que le fichier source :
+\begin{itemize}
+  \item un fichier projet Xcode : \tpp{tutorial1.xcodeproj} ;
+  \item un répertoire \tpp{tutorial1} contenant tous les sources Swift et les fichiers d'interface graphique.
+\end{itemize}
+
+La compilation du projet Xcode fait apparaître plusieurs warnings :
+\begin{itemize}
+\item des warnings « \emph{Update to recommended settings} » et « \emph{This file is set to build for a version older than the deployment target. Functionality may be limited.} » que l'on peut ignorer pour ce programme d'exemple ;
+\item le warning « \emph{Will never be executed} » qui désigne une portion de code inatteignable ; ce warning concerne un code qui doit être modifié à la main, la génération de ce warning est volontaire pour que l'utilisateur en soit averti ; il sera étudié à la section §§§.
+\end{itemize}
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=10cm]{chapitres/tutorial1.png}
+  \caption{Interface graphique du premier tutorial}
+  \labelFigure{interfaceGraphiquePremierTutorial}
+  \ligne
+\end{figure}
+
+
