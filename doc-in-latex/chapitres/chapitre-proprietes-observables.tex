@@ -5,6 +5,44 @@
 \chapterLabel{Propriétés observables}{chapitreProprietesObservables}
 
 
+\section{Types prédéfinis des propriétés}
+
+\begin{table}[t]
+  \centering
+  \begin{tabular}{ll}
+    \textbf{Type Easy Binding et Swift} & \textbf{Sémantique}\\
+    \eb!Bool!   & Valeur \\
+    \eb!Int!    & Valeur \\
+    \eb!String!   & Valeur \\
+    \eb!NSColor!   & Référence \\
+    \eb!NSDate!   & Référence \\
+    \eb!NSFont!   & Référence \\
+    \eb!NSImage!   & Référence \\
+  \end{tabular}
+  \caption{Types prédéfinis des propriétés}
+  \labelTableau{typesProprietes}
+  \ligne
+\end{table}
+
+Les types prédéfinis des propriétés sont listés dans le \refTableau{typesProprietes}. Les noms de types adoptés en \emph{Easy Bindings} sont les mêmes qu'en Swift.
+
+Il est possible d'ajouter des types de propriétés ayant une sémantique de référence (voir \refSectionPage{ajoutTypePropriete}).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Propriétés de l'objet courant}
 
 
@@ -165,5 +203,75 @@ Seules les classes \texttt{EBReadOnlyClassProperty<MyClass>} et \texttt{EBTransi
   \labelFigure{figureRepertoireLOGOapresCompGALGAS}
   \ligne
 \end{figure}
+
+
+
+
+
+
+
+
+\sectionLabel{Ajouter des types de propriété}{ajoutTypePropriete}
+
+
+Il est possible de définir des nouveaux types qui seront utilisables pour des propriétés, et pour lesquels on pourra définir des bindings. Il faut faire une distinction entre le type qui est déclaré en \emph{Easy Binding}, et ceux utilisés dans le code swift engendré. Par exemple, si on désire utiliser le type \texttt{NSData}, on écrira :
+
+\begin{ebcode}
+property class NSData (empty) ;
+\end{ebcode}
+
+Cette déclaration nomme le type déclaré \eb!NSData! et, entre parenthèses, l'initialiseur \eb!empty!\footnote{Plusieurs initialiseurs peuvent être déclarés, il suffit de les séparer par des virgules.}.
+
+Le code Swift engendré ne déclare pas le type \texttt{NSData}, il suppose qu'il est utilisable dans le projet, en l'occurence il est défini dans l'\emph{Application Kit}. 
+
+Par contre, la compilation \emph{Easy Binding} engendre les classes \texttt{EBReadOnlyClassProperty\_NSData}, \texttt{PMPropertyProxy\_NSData}, \texttt{PMStoredProperty\_NSData}, \texttt{PMTransientProperty\_NSData}.
+
+Quand on déclare une propriété en \emph{Easy Binding}, il faut préciser sa valeur initiale. Celle-ci est mentionnée après le mot réservé \eb!default!. Par exemple :
+
+\begin{ebcode}
+property class NSData (empty) ;
+
+prefs {
+  property NSData mData default empty ;
+}
+\end{ebcode}
+
+Si on compile le code engendré avec Xcode, on voit apparaître une erreur sur la ligne :
+\begin{lstlisting}[language=swift]
+  var mData = EBStoredProperty_NSData (NSData.empty ())
+\end{lstlisting}
+
+En effet, \texttt{empty} n'est pas un initialiseur valide de \texttt{NSData} : il faudrait écrire \texttt{NSData ()} pour instancier un objet de type \texttt{NSData}.
+
+Pour corriger l'erreur, if suffit d'écrire une fonction statique \texttt{empty} dans une extension de \texttt{NSData} :
+\begin{lstlisting}[language=swift]
+extension NSData {
+  static func empty () -> NSData { return NSData () }
+}
+\end{lstlisting}
+
+Cette extension peut être placée n'importe où dans le projet, la visibilité des extension étant globale. Il faut simplement ne pas la placer dans un fichier qui sera ré-engendré lors d'une recompilation ultérieure : la modification sera perdue. On peut simplement créer un nouveau fichier qui contient cette extension, et l'ajouter au projet.
+
+
+
+
+
+
+
+
+
+
+\sectionLabel{Ajouter des types de propriété transitoire}{ajoutTypeProprieteTransitoire}
+
+
+Il est possible de définir des nouveaux types qui seront utilisables pour des propriétés transitoires, c'est-à-dire les propriétés déclarées \eb!transient!. Par exemple, le type \eb!NSImage! est prédéclaré ainsi en \emph{Easy Bindings} :
+\begin{ebcode}
+transient property class NSImage ;
+\end{ebcode}
+
+Le code Swift engendré ne déclare pas le type \texttt{NSImage}, il suppose qu'il est utilisable dans le projet, en l'occurence il est défini dans l'\emph{Application Kit}. 
+
+Par contre, la compilation \emph{Easy Binding} engendre les classes \texttt{EBReadOnlyClassProperty\_NSImage} et \texttt{PMTransientProperty\_NSImage}.
+
 
 
