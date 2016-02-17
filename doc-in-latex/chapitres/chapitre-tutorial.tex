@@ -10,7 +10,7 @@
 
 La technique préconisée par Apple pour exprimer le pattern MVC est d'écrire les \emph{bindings} directement dans l'interface graphique \emph{Interface Builder} de \emph{Xcode}. Cette approche, si elle est simple pour des petits programmes d'exemple, présente à notre avis plusieurs inconvénients pour des projets importants :
 \begin{itemize}
-  \item la moindre erreur, le \emph{binding} ne fonctionne pas, ou assez souvent il en résulte un \emph{crash} de l'application ;
+  \item à la moindre erreur, le \emph{binding} ne fonctionne pas, ou assez souvent il en résulte un \emph{crash} de l'application ;
   \item suite à un changement de nom d'une propriété, il faut revoir tous les \emph{outlets} qui lui sont liés, en balayant les multiples items graphiques ;
   \item les valeurs transmises sont des objets Objective-C : les entiers, structures, énumérations sont convertis en instances de \texttt{NSNumber} ou de \texttt{NSValue}, les objets en instance de \texttt{NSObject}, perdant ainsi toute possibilité de vérification statique de la correction des types. 
 \end{itemize}
@@ -109,8 +109,22 @@ La compilation du projet Xcode fait apparaître plusieurs warnings :
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=10cm]{chapitres/tutorial1.png}
-  \caption{Interface graphique du premier tutorial}
+  \includegraphics[width=8cm]{chapitres/tutorial1.png}
+  \small
+\begin{ebcode}
+mainxib {
+  {"String:", EBTextField myTextField},
+  {"String (send continously): ", EBTextField myOtherTextField},
+  {"String observer:", EBTextObserverField myObserverTextField},
+  {"Color:", EBColorWell mColorWell},
+  {"Color (send continously):", EBColorWell mContinousColorWell},
+  {"Color Observer:", EBColorObserverWell mObserverColorWell},
+  {"Date:", EBDatePicker mDatePicker},
+  {"Even Integer:", EBIntField mIntegerTextField},
+  {"Even Integer Observer:", EBIntObserverField mIntegerObserverTextField}
+}
+\end{ebcode}
+  \caption{Interface graphique du premier tutorial et sa description}
   \labelFigure{interfaceGraphiquePremierTutorial}
   \ligne
 \end{figure}
@@ -127,7 +141,26 @@ Les sections qui suivent sont consacrées à la description du texte source \emp
 
 \subsection{Construction \texttt{mainxib}}\index{mainxib}
 
+La construction \eb!mainxib! permet de décrire une fenêtre liées aux \emph{préférences} de l'application. La présentation est systématique (\refFigurePage{}{interfaceGraphiquePremierTutorial}), deux colonnes, celle de gauche étant un commentaire, celle de droite contenant l'item graphique (bouton, champ texte, …). Ceci est uniquement destiné à réaliser rapidement des petits exemples illustratifs.
+
+Le code est une description ligne par ligne de la composition de la fenêtre, en commençant par le haut ; Chaque ligne a la forme suivante : 
+\begin{ebcode}
+  {"commentaire", TypeOutlet nomOutlet}
+\end{ebcode}
+
+\eb!"commentaire"! est le texte qui est affiché dans la colonne de gauche ; \eb!TypeOutlet! et \eb!nomOutlet! sont évidemment le type et le nom de l'outlet. À noter que les types définis par Cocoa (\texttt{NSTextField}, \texttt{NSColorWell}, …) ne sont pas utilisés, au profit de types propres à \emph{Easy Bindings} : \eb!EBTextField!,  \eb!EBTextObserverField!, \eb!EBObserverWell!, \eb!EBColorObserverWell!, … La raison en est la suivante : les bindings d'\emph{Easy Bindings} nécessitent des propriétés complémentaires et un typage fort qui ne ne peuvent pas être exprimés directement avec les classes définies dans Cocoa ; les classes définies dans \emph{Easy Bindings} en héritent et implémentent les bindings.
+
+{\bf Attention : } La vérification de la cohérence \eb!TypeOutlet! et \eb!nomOutlet! avec leur utilisation dans la construction \eb!prefs! n'est pas effectuée : une erreur n'est pas décelée lors de la compilation \emph{Easy Bindings}, et a des conséquences imprévisibles dans le projet Xcode : erreur de compilation, d'exécution, …
 
 
+
+
+
+
+
+
+
+
+\subsection{Construction \texttt{prefs}}\index{prefs}
 
 

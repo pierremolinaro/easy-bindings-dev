@@ -6,6 +6,7 @@
 %\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
 %   E N C O D A G E    D E S    S O U R C E S     :     U T F 8                                                         *
@@ -49,7 +50,9 @@
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
-% Voir "Une courte introduction à Latex2e", § 6.4
+%--- Interligne 1,5 ligne
+\usepackage{setspace}
+\onehalfspacing
 
 %--- Marge gauche : 2,8 cm ; le paramètre \hoffset contient cette valeur, moins 1 pouce
 %    \hoffset = 2,8 cm - 2,54 cm = 0,26 cm
@@ -109,7 +112,36 @@
 %-----------------------------------------------------------------------------------------------------------------------*
 
 \usepackage{array}
-\usepackage[table]{xcolor} % À placer avant \usepackage{listings}
+
+%  http://en.wikibooks.org/wiki/LaTeX/Colors
+\usepackage[dvipsnames, svgnames, table]{xcolor} % À placer avant \usepackage{listings}
+
+%--- Ce paquetage permet de changer le style des légendes des tableaux et des figures (voir caption-eng.pdf) :
+%  - l'étiquette est en italique gras
+%  - le titre est en italique.
+\usepackage[font=it, labelfont=bf]{caption}
+
+%--- Par défaut, le paquetage nomme "Table" les tableaux. La commande
+%   suivante impose le nom "Tableau"
+% Voir http://fr.wikibooks.org/wiki/LaTeX/Éléments_flottants_et_figures
+\addto\captionsfrench{\def\tablename{Tableau}}
+
+%------------------------------------------------------------------------------------------ RÉFÉRENCES À UN TABLEAU
+% La référence au tableau "nom-du-tableau" est définie par \labelTableau{nom-du-tableau}
+\newcommand\labelTableau[1]{\label{tab:#1}}
+% Latex autorise deux types d'appel à une référence \ref{tab:nom-du-tableau} et \pageref{tab:nom-du-tableau}
+
+% \refTableau{}{nom-du-tableau} ---> "tableau x.y"   où x.y est le n° du tableau
+\newcommand\refTableau[1]{\hyperref[tab:#1]{tableau \ref*{tab:#1}}}
+
+% \refTableauSansPrefixe{}{nom-du-tableau} ---> "x.y"   où x.y est le n° du tableau
+\newcommand\refTableauSansPrefixe[1]{\hyperref[tab:#1]{\ref*{tab:#1}}}
+
+% \refTableauPage{}{nom-du-tableau} ---> "tableau x.y page n"   où x.y est le n° du tableau
+\newcommand\refTableauPage[1]{\hyperref[tab:#1]{tableau \ref*{tab:#1} page \pageref{tab:#1}}}
+
+% \refTableauPageSansPrefixe{}{nom-du-tableau} ---> "x.y page n"   où x.y est le n° du tableau
+\newcommand\refTableauPageSansPrefixe[1]{\hyperref[tab:#1]{\ref*{tab:#1} page \pageref{tab:#1}}}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *
@@ -214,6 +246,8 @@
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
+\usepackage{subfig}
+
 %---- Nécessaire pour \refFigure...
 \usepackage{ifthen}
 
@@ -277,6 +311,44 @@
 %-----------------------------------------------------------------------------------------------------------------------*
 
 \newcommand\tpp[1]{\colorbox{gray!12}{\ttfamily #1}}
+
+%-----------------------------------------------------------------------------------------------------------------------*
+%                                                                                                                       *
+%   C O D E   S O U R C E    S W I F T                                                                                  *
+%                                                                                                                       *
+%-----------------------------------------------------------------------------------------------------------------------*
+
+\usepackage{listings}
+
+\lstdefinelanguage{swift}
+{
+  morekeywords={
+    func,if,then,else,for,in,while,do,switch,case,default,where,break,continue,fallthrough,return,
+    typealias,struct,class,enum,protocol,var,func,let,get,set,willSet,didSet,inout,init,deinit,extension,
+    subscript,prefix,operator,infix,postfix,precedence,associativity,left,right,none,convenience,dynamic,
+    final,lazy,mutating,nonmutating,optional,override,required,static,unowned,safe,weak,internal,
+    private,public,is,as,self,unsafe,dynamicType,true,false,nil,Type,Protocol,
+  },
+  morecomment=[l]{//}, % l is for line comment
+  morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+  morestring=[b]" % defines that strings are enclosed in double quotes
+}
+
+\definecolor{keyword}{HTML}{BA2CA3}
+\definecolor{string}{HTML}{D12F1B}
+\definecolor{comment}{HTML}{008400}
+
+\lstset{
+  language=swift,
+  basicstyle=\ttfamily,
+  showstringspaces=false, % lets spaces in strings appear as real spaces
+  columns=fixed,
+  keepspaces=true,
+  keywordstyle=\color{keyword},
+  stringstyle=\color{string},
+  commentstyle=\color{comment},
+  frame=L,
+}
 
 %-----------------------------------------------------------------------------------------------------------------------*
 %                                                                                                                       *

@@ -228,7 +228,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
 {
   outSwiftDefaultValueAsString = ""
   @bool found = false
-  for () in  inAttributeActualTypeList while not found do
+  for () in inAttributeActualTypeList while not found do
     switch mType 
     case dateType :
       found = true

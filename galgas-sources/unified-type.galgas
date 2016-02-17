@@ -125,6 +125,7 @@ proc typeInventory
 
 getter @typeKind swiftTypeName -> @string outResult {
   switch self
+  case integerType : outResult = "Int"
   case stringType : outResult = "String"
   case boolType : outResult = "Bool"
   case dateType : outResult = "NSDate"
@@ -135,7 +136,6 @@ getter @typeKind swiftTypeName -> @string outResult {
   case classType (@string classTypeName) : outResult = classTypeName
   case propertyClassType (@string classTypeName *) : outResult = classTypeName
   case transientPropertyClassType (@string classTypeName) : outResult = classTypeName
-  case integerType : outResult = "Int"
   end
 }
 

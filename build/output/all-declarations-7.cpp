@@ -5794,11 +5794,11 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
   macroValidSharedObject (object, cPtr_identifierAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
   GALGAS_bool var_found = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_8296 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
+  cEnumerator_typeKindList enumerator_8295 (constinArgument_inAttributeActualTypeList, kEnumeration_up) ;
   bool bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 231)).isValidAndTrue () ;
-  if (enumerator_8296.hasCurrentObject () && bool_0) {
-    while (enumerator_8296.hasCurrentObject () && bool_0) {
-      switch (enumerator_8296.current_mType (HERE).enumValue ()) {
+  if (enumerator_8295.hasCurrentObject () && bool_0) {
+    while (enumerator_8295.hasCurrentObject () && bool_0) {
+      switch (enumerator_8295.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_dateType:
@@ -5815,9 +5815,9 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
         break ;
       case GALGAS_typeKind::kEnum_enumType:
         {
-          const cEnumAssociatedValues_typeKind_enumType * extractPtr_8943 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_8296.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_enumTypeName = extractPtr_8943->mAssociatedValue0 ;
-          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_8943->mAssociatedValue1 ;
+          const cEnumAssociatedValues_typeKind_enumType * extractPtr_8942 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_8295.current_mType (HERE).unsafePointer ()) ;
+          const GALGAS_string extractedValue_enumTypeName = extractPtr_8942->mAssociatedValue0 ;
+          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_8942->mAssociatedValue1 ;
           var_found = GALGAS_bool (true) ;
           const enumGalgasBool test_3 = extractedValue_constantMap.getter_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)).boolEnum () ;
           if (kBoolTrue == test_3) {
@@ -5879,17 +5879,17 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
         break ;
       case GALGAS_typeKind::kEnum_propertyClassType:
         {
-          const cEnumAssociatedValues_typeKind_propertyClassType * extractPtr_9935 = (const cEnumAssociatedValues_typeKind_propertyClassType *) (enumerator_8296.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_propertyClassTypeName = extractPtr_9935->mAssociatedValue0 ;
-          const GALGAS_propertyClassDefaultValues extractedValue_defaultValues = extractPtr_9935->mAssociatedValue1 ;
+          const cEnumAssociatedValues_typeKind_propertyClassType * extractPtr_9934 = (const cEnumAssociatedValues_typeKind_propertyClassType *) (enumerator_8295.current_mType (HERE).unsafePointer ()) ;
+          const GALGAS_string extractedValue_propertyClassTypeName = extractPtr_9934->mAssociatedValue0 ;
+          const GALGAS_propertyClassDefaultValues extractedValue_defaultValues = extractPtr_9934->mAssociatedValue1 ;
           var_found = GALGAS_bool (true) ;
           switch (extractedValue_defaultValues.enumValue ()) {
           case GALGAS_propertyClassDefaultValues::kNotBuilt:
             break ;
           case GALGAS_propertyClassDefaultValues::kEnum_string:
             {
-              const cEnumAssociatedValues_propertyClassDefaultValues_string * extractPtr_9925 = (const cEnumAssociatedValues_propertyClassDefaultValues_string *) (extractedValue_defaultValues.unsafePointer ()) ;
-              const GALGAS_stringset extractedValue_values = extractPtr_9925->mAssociatedValue0 ;
+              const cEnumAssociatedValues_propertyClassDefaultValues_string * extractPtr_9924 = (const cEnumAssociatedValues_propertyClassDefaultValues_string *) (extractedValue_defaultValues.unsafePointer ()) ;
+              const GALGAS_stringset extractedValue_values = extractPtr_9924->mAssociatedValue0 ;
               const enumGalgasBool test_13 = extractedValue_values.getter_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)).boolEnum () ;
               if (kBoolTrue == test_13) {
                 outArgument_outSwiftDefaultValueAsString = extractedValue_propertyClassTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (object->mAttribute_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 270)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)) ;
@@ -5904,8 +5904,8 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
         }
         break ;
       }
-      enumerator_8296.gotoNextObject () ;
-      if (enumerator_8296.hasCurrentObject ()) {
+      enumerator_8295.gotoNextObject () ;
+      if (enumerator_8295.hasCurrentObject ()) {
         bool_0 = var_found.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 231)).isValidAndTrue () ;
       }
     }
