@@ -49,8 +49,8 @@ mainxib {
   {"Color (send continously):", EBColorWell mContinousColorWell},
   {"Color Observer:", EBColorObserverWell mObserverColorWell},
   {"Date:", EBDatePicker mDatePicker},
-  {"Even Integer:", EBIntField mInteger32TextField},
-  {"Even Integer Observer:", EBIntObserverField mInteger32ObserverTextField}
+  {"Even Integer:", EBIntField mIntegerTextField},
+  {"Even Integer Observer:", EBIntObserverField mIntegerObserverTextField}
 }
 
 prefs {
@@ -69,10 +69,10 @@ prefs {
   outlet EBDatePicker mDatePicker $date self.mDate  ;
 #--- Number
   property validates Int mIntegerValue default 12 ;
-  outlet EBIntField mInteger32TextField
+  outlet EBIntField mIntegerTextField
     $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
   ;
-  outlet EBIntObserverField mInteger32ObserverTextField
+  outlet EBIntObserverField mIntegerObserverTextField
     $valueObserver self.mIntegerValue {autoFormatter:yes}
   ;
 }
@@ -114,5 +114,20 @@ La compilation du projet Xcode fait apparaître plusieurs warnings :
   \labelFigure{interfaceGraphiquePremierTutorial}
   \ligne
 \end{figure}
+
+Après compilation Xcode, le projet est prêt à être exécuté ; le lancer fait apparaître la fenêtre illustrée par la \refFigurePage{}{interfaceGraphiquePremierTutorial}.
+
+Les sections qui suivent sont consacrées à la description du texte source \emph{Easy Bindings}, en commençant par la construction \eb!mainxib!, suivie de la construction \eb!prefs!.
+
+
+
+
+
+
+
+\subsection{Construction \texttt{mainxib}}\index{mainxib}
+
+
+
 
 

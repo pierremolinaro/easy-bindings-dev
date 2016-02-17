@@ -19,8 +19,8 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mColorWell : EBColorWell? = nil
   @IBOutlet var mContinousColorWell : EBColorWell? = nil
   @IBOutlet var mDatePicker : EBDatePicker? = nil
-  @IBOutlet var mInteger32ObserverTextField : EBIntObserverField? = nil
-  @IBOutlet var mInteger32TextField : EBIntField? = nil
+  @IBOutlet var mIntegerObserverTextField : EBIntObserverField? = nil
+  @IBOutlet var mIntegerTextField : EBIntField? = nil
   @IBOutlet var mObserverColorWell : EBColorObserverWell? = nil
   @IBOutlet var myObserverTextField : EBTextObserverField? = nil
   @IBOutlet var myOtherTextField : EBTextField? = nil
@@ -195,10 +195,10 @@ var g_Preferences : Preferences? = nil
     tf8.drawsBackground = false
     tf8.bordered = false
     view.addSubview (tf8)
-  //--- Outlet mInteger32TextField
-    mInteger32TextField = EBIntField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
-    mInteger32TextField?.setAccessibilityIdentifier ("mInteger32TextField")
-    view.addSubview (mInteger32TextField!)
+  //--- Outlet mIntegerTextField
+    mIntegerTextField = EBIntField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mIntegerTextField?.setAccessibilityIdentifier ("mIntegerTextField")
+    view.addSubview (mIntegerTextField!)
     y -= OUTLET_HEIGHT / 2.0
     y -= OUTLET_HEIGHT
   //--- Text Even Integer Observer:
@@ -209,10 +209,10 @@ var g_Preferences : Preferences? = nil
     tf9.drawsBackground = false
     tf9.bordered = false
     view.addSubview (tf9)
-  //--- Outlet mInteger32ObserverTextField
-    mInteger32ObserverTextField = EBIntObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
-    mInteger32ObserverTextField?.setAccessibilityIdentifier ("mInteger32ObserverTextField")
-    view.addSubview (mInteger32ObserverTextField!)
+  //--- Outlet mIntegerObserverTextField
+    mIntegerObserverTextField = EBIntObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mIntegerObserverTextField?.setAccessibilityIdentifier ("mIntegerObserverTextField")
+    view.addSubview (mIntegerObserverTextField!)
     y -= OUTLET_HEIGHT / 2.0
   //--- Set pref window content view
     window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * 2.0, height:OUTLET_HEIGHT * (1.5 * 9.0 + 0.5)))
@@ -229,13 +229,13 @@ var g_Preferences : Preferences? = nil
     if nil == mDatePicker {
       presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mDatePicker' outlet is nil")
     }
-  //--- Check mInteger32ObserverTextField' outlet not nil
-    if nil == mInteger32ObserverTextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mInteger32ObserverTextField' outlet is nil")
+  //--- Check mIntegerObserverTextField' outlet not nil
+    if nil == mIntegerObserverTextField {
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mIntegerObserverTextField' outlet is nil")
     }
-  //--- Check mInteger32TextField' outlet not nil
-    if nil == mInteger32TextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mInteger32TextField' outlet is nil")
+  //--- Check mIntegerTextField' outlet not nil
+    if nil == mIntegerTextField {
+      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mIntegerTextField' outlet is nil")
     }
   //--- Check mObserverColorWell' outlet not nil
     if nil == mObserverColorWell {
@@ -263,8 +263,8 @@ var g_Preferences : Preferences? = nil
     mColorWell?.bind_color (self.mColor, file:__FILE__, line:__LINE__, sendContinously:false)
     mObserverColorWell?.bind_colorObserver (self.mColor, file:__FILE__, line:__LINE__)
     mDatePicker?.bind_date (self.mDate, file:__FILE__, line:__LINE__)
-    mInteger32TextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true, autoFormatter:true)
-    mInteger32ObserverTextField?.bind_valueObserver (self.mIntegerValue, file:__FILE__, line:__LINE__, autoFormatter:true)
+    mIntegerTextField?.bind_value (self.mIntegerValue, file:__FILE__, line:__LINE__, sendContinously:true, autoFormatter:true)
+    mIntegerObserverTextField?.bind_valueObserver (self.mIntegerValue, file:__FILE__, line:__LINE__, autoFormatter:true)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions

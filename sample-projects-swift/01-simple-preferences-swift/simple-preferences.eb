@@ -8,8 +8,8 @@ mainxib {
   {"Color (send continously):", EBColorWell mContinousColorWell},
   {"Color Observer:", EBColorObserverWell mObserverColorWell},
   {"Date:", EBDatePicker mDatePicker},
-  {"Even Integer:", EBIntField mInteger32TextField},
-  {"Even Integer Observer:", EBIntObserverField mInteger32ObserverTextField}
+  {"Even Integer:", EBIntField mIntegerTextField},
+  {"Even Integer Observer:", EBIntObserverField mIntegerObserverTextField}
 }
 
 
@@ -29,10 +29,10 @@ prefs {
   outlet EBDatePicker mDatePicker $date self.mDate  ;
 #--- Number
   property validates Int mIntegerValue default 12 ;
-  outlet EBIntField mInteger32TextField
+  outlet EBIntField mIntegerTextField
     $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
   ;
-  outlet EBIntObserverField mInteger32ObserverTextField
+  outlet EBIntObserverField mIntegerObserverTextField
     $valueObserver self.mIntegerValue {autoFormatter:yes}
   ;
 }
