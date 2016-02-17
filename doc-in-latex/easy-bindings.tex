@@ -214,6 +214,9 @@
 %                                                                                                                       *
 %-----------------------------------------------------------------------------------------------------------------------*
 
+%---- Nécessaire pour \refFigure...
+\usepackage{ifthen}
+
 % Au lieu d'écrire \chapter{titre-chapitre}, on écrit \chapterLabel{titre-chapitre}{label-chapitre}
 \newcommand \chapterLabel[2]{\chapter{#1}\label{chapter:#2}}
 

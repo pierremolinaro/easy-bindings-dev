@@ -60,10 +60,10 @@ def setUpPreferencesWindow (application) :
   mObserverColorWell = window.findFirst (AXIdentifier='mObserverColorWell')
   global mDatePicker
   mDatePicker = window.findFirst (AXIdentifier='mDatePicker')
-  global mInteger32TextField
-  mInteger32TextField = window.findFirst (AXIdentifier='mInteger32TextField')
-  global mInteger32ObserverTextField
-  mInteger32ObserverTextField = window.findFirst (AXIdentifier='mInteger32ObserverTextField')
+  global mIntegerTextField
+  mIntegerTextField = window.findFirst (AXIdentifier='mIntegerTextField')
+  global mIntegerObserverTextField
+  mIntegerObserverTextField = window.findFirst (AXIdentifier='mIntegerObserverTextField')
 
 #------------------------------------------------------------------------------*
 #   CHECK TEXT FIELD VALUE                                                     *
