@@ -3094,7 +3094,7 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
     GALGAS_string var_s = GALGAS_string::makeEmptyString () ;
     cEnumerator_outletClassMap enumerator_6198 (var_semanticContext.mAttribute_mOutletClassMap, kEnumeration_up) ;
     while (enumerator_6198.hasCurrentObject ()) {
-      var_s.plusAssign_operation(GALGAS_string ("\\section{Classe \\texttt{").add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}}\\index{"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}\n"
+      var_s.plusAssign_operation(GALGAS_string ("\\sectionLabel{Classe \\texttt{").add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}}{outletClass"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}\\index{"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}\n"
         "\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)) ;
       GALGAS_bool test_2 = enumerator_6198.current_mHandleEnabledBinding (HERE) ;
       if (kBoolTrue != test_2.boolEnum ()) {
@@ -3126,9 +3126,9 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
       }
       const enumGalgasBool test_8 = var_semanticContext.mAttribute_mBindingSpecificationMap.getter_hasKey (enumerator_6198.current_lkey (HERE).mAttribute_string COMMA_SOURCE_FILE ("semantic-analysis.galgas", 156)).boolEnum () ;
       if (kBoolTrue == test_8) {
-        cEnumerator_outletBindingSpecificationMap enumerator_7134 (var_semanticContext.mAttribute_mBindingSpecificationMap.getter_mBindingMapForKey (enumerator_6198.current_lkey (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 157)), kEnumeration_up) ;
-        while (enumerator_7134.hasCurrentObject ()) {
-          var_s.plusAssign_operation(GALGAS_string ("\\subsection{Binding \\texttt{\\$").add_operation (enumerator_7134.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (GALGAS_string ("}}\\index{\\$"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (enumerator_7134.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (GALGAS_string ("!"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (GALGAS_string ("}\n"
+        cEnumerator_outletBindingSpecificationMap enumerator_7169 (var_semanticContext.mAttribute_mBindingSpecificationMap.getter_mBindingMapForKey (enumerator_6198.current_lkey (HERE).mAttribute_string, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 157)), kEnumeration_up) ;
+        while (enumerator_7169.hasCurrentObject ()) {
+          var_s.plusAssign_operation(GALGAS_string ("\\subsection{Binding \\texttt{\\$").add_operation (enumerator_7169.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (GALGAS_string ("}}\\index{\\$"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (enumerator_7169.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (GALGAS_string ("!"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (enumerator_6198.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)).add_operation (GALGAS_string ("}\n"
             "\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 158)) ;
           var_s.plusAssign_operation(GALGAS_string ("\\subsubsection{Type du mod\xC3""\xA8""le}\n"
             "\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 159)) ;
@@ -3136,23 +3136,23 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
           var_s.plusAssign_operation(GALGAS_string ("\\hline\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 161)) ;
           var_s.plusAssign_operation(GALGAS_string ("\\textbf{Type du mod\xC3""\xA8""le} & \\textbf{Mod\xC3""\xA8""le modifiable via le binding}\\\\\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 162)) ;
           var_s.plusAssign_operation(GALGAS_string ("\\hline\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 163)) ;
-          cEnumerator_outletBindingSpecificationModelList enumerator_7573 (enumerator_7134.current_mOutletBindingSpecificationModelList (HERE), kEnumeration_up) ;
-          while (enumerator_7573.hasCurrentObject ()) {
+          cEnumerator_outletBindingSpecificationModelList enumerator_7608 (enumerator_7169.current_mOutletBindingSpecificationModelList (HERE), kEnumeration_up) ;
+          while (enumerator_7608.hasCurrentObject ()) {
             GALGAS_string temp_9 ;
-            const enumGalgasBool test_10 = enumerator_7573.current_mModelShouldBeWritableProperty (HERE).boolEnum () ;
+            const enumGalgasBool test_10 = enumerator_7608.current_mModelShouldBeWritableProperty (HERE).boolEnum () ;
             if (kBoolTrue == test_10) {
               temp_9 = GALGAS_string ("Oui") ;
             }else if (kBoolFalse == test_10) {
               temp_9 = GALGAS_string ("Non") ;
             }
-            var_s.plusAssign_operation(extensionGetter_swiftTypeName (enumerator_7573.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)).add_operation (GALGAS_string (" & "), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)).add_operation (temp_9, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)).add_operation (GALGAS_string ("\\\\\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)) ;
+            var_s.plusAssign_operation(extensionGetter_swiftTypeName (enumerator_7608.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)).add_operation (GALGAS_string (" & "), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)).add_operation (temp_9, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)).add_operation (GALGAS_string ("\\\\\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 165)) ;
             var_s.plusAssign_operation(GALGAS_string ("\\hline\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 166)) ;
-            enumerator_7573.gotoNextObject () ;
+            enumerator_7608.gotoNextObject () ;
           }
           var_s.plusAssign_operation(GALGAS_string ("\\end{tabular}\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 168)) ;
           var_s.plusAssign_operation(GALGAS_string ("\\subsubsection{Options}\n"
             "\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 169)) ;
-          const enumGalgasBool test_11 = GALGAS_bool (kIsEqual, enumerator_7134.current_mControllerBindingOptionList (HERE).getter_length (SOURCE_FILE ("semantic-analysis.galgas", 170)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+          const enumGalgasBool test_11 = GALGAS_bool (kIsEqual, enumerator_7169.current_mControllerBindingOptionList (HERE).getter_length (SOURCE_FILE ("semantic-analysis.galgas", 170)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
           if (kBoolTrue == test_11) {
             var_s.plusAssign_operation(GALGAS_string ("Ce binding n'a pas d'option.\n"
               "\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 171)) ;
@@ -3161,15 +3161,15 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
             var_s.plusAssign_operation(GALGAS_string ("\\hline\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 174)) ;
             var_s.plusAssign_operation(GALGAS_string ("\\textbf{Nom de l'option} & \\textbf{Type de l'option}\\\\\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 175)) ;
             var_s.plusAssign_operation(GALGAS_string ("\\hline\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 176)) ;
-            cEnumerator_controllerBindingOptionDecoratedList enumerator_8202 (enumerator_7134.current_mControllerBindingOptionList (HERE), kEnumeration_up) ;
-            while (enumerator_8202.hasCurrentObject ()) {
-              var_s.plusAssign_operation(enumerator_8202.current_mOptionName (HERE).mAttribute_string.add_operation (GALGAS_string (" & "), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)).add_operation (extensionGetter_swiftTypeName (enumerator_8202.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)).add_operation (GALGAS_string ("\\\\\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)) ;
+            cEnumerator_controllerBindingOptionDecoratedList enumerator_8237 (enumerator_7169.current_mControllerBindingOptionList (HERE), kEnumeration_up) ;
+            while (enumerator_8237.hasCurrentObject ()) {
+              var_s.plusAssign_operation(enumerator_8237.current_mOptionName (HERE).mAttribute_string.add_operation (GALGAS_string (" & "), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)).add_operation (extensionGetter_swiftTypeName (enumerator_8237.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)).add_operation (GALGAS_string ("\\\\\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 178)) ;
               var_s.plusAssign_operation(GALGAS_string ("\\hline\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 179)) ;
-              enumerator_8202.gotoNextObject () ;
+              enumerator_8237.gotoNextObject () ;
             }
             var_s.plusAssign_operation(GALGAS_string ("\\end{tabular}\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 181)) ;
           }
-          enumerator_7134.gotoNextObject () ;
+          enumerator_7169.gotoNextObject () ;
         }
       }
       var_s.plusAssign_operation(GALGAS_string ("\n"
@@ -3182,8 +3182,8 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
       enumerator_6198.gotoNextObject () ;
     }
     GALGAS_string var_latextFilePath = constinArgument_inSourceFile.add_operation (GALGAS_string (".bindings.tex"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 187)) ;
-    GALGAS_bool joker_8561 ; // Joker input parameter
-    var_s.method_writeToFileWhenDifferentContents (var_latextFilePath, joker_8561, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 188)) ;
+    GALGAS_bool joker_8596 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_latextFilePath, joker_8596, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 188)) ;
   }
 }
 

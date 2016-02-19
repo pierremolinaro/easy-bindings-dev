@@ -6,13 +6,11 @@
 
 \section{Introduction}
 
-À partir de mac OS X 10.3 (Panther), le pattern MVC\index{MVC} (\emph{Model View Controller}) peut être mis en œuvre au moyen des \emph{Cocoa Bindings}. Ceux-ci ont perduré jusqu'aux systèmes actuels, et notamment peuvent actuellement être exprimés en Swift.
-
-La technique préconisée par Apple pour exprimer le pattern MVC est d'écrire les \emph{bindings} directement dans l'interface graphique \emph{Interface Builder} de \emph{Xcode}. Cette approche, si elle est simple pour des petits programmes d'exemple, présente à notre avis plusieurs inconvénients pour des projets importants :
+À partir de mac OS X 10.3 (Panther), le pattern MVC\index{MVC} (\emph{Model View Controller}) peut être mis en œuvre au moyen des \emph{Cocoa Bindings}. Ceux-ci ont perduré jusqu'aux systèmes actuels, et notamment peuvent actuellement être exprimés en Swift. La technique préconisée par Apple est d'écrire les \emph{bindings} directement dans l'interface graphique \emph{Interface Builder} de \emph{Xcode}. Cette approche, si elle est simple pour des petits programmes d'exemple, présente à notre avis plusieurs inconvénients pour des projets importants :
 \begin{itemize}
-  \item à la moindre erreur, le \emph{binding} ne fonctionne pas, ou assez souvent il en résulte un \emph{crash} de l'application ;
+  \item à la moindre erreur, le \emph{binding} ne fonctionne pas, et assez souvent il en résulte un \emph{crash} de l'application ;
   \item suite à un changement de nom d'une propriété, il faut revoir tous les \emph{outlets} qui lui sont liés, en balayant les multiples items graphiques ;
-  \item les valeurs transmises sont des objets Objective-C : les entiers, structures, énumérations sont convertis en instances de \texttt{NSNumber} ou de \texttt{NSValue}, les objets en instance de \texttt{NSObject}, perdant ainsi toute possibilité de vérification statique de la correction des types. 
+  \item les valeurs transmises sont des objets Objective-C : les entiers, structures, énumérations sont convertis en instances de \texttt{NSNumber} ou de \texttt{NSValue}, les objets en instances de \texttt{NSObject}, perdant ainsi toute possibilité de vérification statique de la correction des types. 
 \end{itemize}
 
 Si tous ces points ne sont pas gênants pour un petit exemple, il s'avère en pratique que la maintenance d'une application comportant de nombreux \emph{bindings} est plus compliquée qu'il n'y paraît. Comme il n'y a pas de possibilité de vérification statique à la compilation, au moindre changement on doit s'astreindre à passer en revue dans \emph{Interface Builder} tous les \emph{outlets} : en pratique, il est fatal d'en oublier. L'erreur peut apparaître bien longtemps après la modification, si la fonction concernée n'est que peu utilisée.
@@ -29,7 +27,7 @@ Si tous ces points ne sont pas gênants pour un petit exemple, il s'avère en pr
 Cet outil en fait va plus loin que la seule définition des \emph{bindings} :
 \begin{itemize}
  \item il permet la définition des préférences ;
- \item il permet la définition des documents, y compris sauvegarde sur fichier et leur lecture ;
+ \item il permet la définition des documents, y compris l'enregistrement sur fichier et l'ouverture à partir d'un fichier ;
  \item le code engendré permet une vérification statique de la correction des bindings ;
  \item il engendre du code code qui à l'exécution maintient une liste des objets alloués, facilitant ainsi la bonne gestion des objets, notamment pour vérifier que la fermeture d'un document libère tous ses objets.
 \end{itemize}
@@ -222,17 +220,88 @@ La valeur initiale n'est utilisée que lors du premier lancement de l'applicatio
 
 Il en est de même pour les autres propriétés :
 \begin{ebcode}
-  property NSColor mColor default yellowColor ;
+property NSColor mColor default yellowColor ;
   ...
-  property NSDate mDate default date ;
+property NSDate mDate default date ;
   ...
-  property validates Int mIntegerValue default 12 ;
+property validates Int mIntegerValue default 12 ;
 \end{ebcode}
 
 La dernière déclaration fait apparaître le mot réservé \eb!validates! qui ordonne la validation des données saisie via l'interface ; ce point est examiné à la \refSubsubsectionTitlePage{validationSaisie}.
 
 
 \subsubsection{Déclaration des outlets de leurs bindings}
+
+Observons la déclaration des trois premiers outlets et de leurs bindings :
+\begin{ebcode}
+outlet EBTextField myTextField $value self.myString {sendContinously:no} ;
+outlet EBTextField myOtherTextField $value self.myString {sendContinously:yes} ;
+outlet EBTextObserverField myObserverTextField $valueObserver self.myString ;
+\end{ebcode}
+
+Chaque déclaration nomme d'abord le type de l'outlet (\eb!EBTextField!, \eb!EBTextObserverField!), puis le nom de l'outlet (\eb!myTextField!, \eb!myOtherTextField!, \eb!myObserverTextField!). Ensuite vient la définition d'un binding (\eb!$value!, \eb!$valueObserver!).
+
+Dans la classe Swift engendrée \texttt{Preferences}, les outlets ainsi déclarés sont des propriétés ; si on construit l'interface graphique à la main, avec \emph{Interface Builder}, ces outlets sont directement utilisables et on les lie à un item graphique.
+
+Pour des raisons techniques de vérification statique et de contrôle de la vie des objets, on n'utilise pas les classes Cocoa telles que \texttt{NSTextField}. L'application \emph{Easy Bindings} définit les classes à utiliser (décrites dans le \refChapterPage{referenceDesBindings}), qui d'ailleurs héritent des classes définies dans Cocoa, et l'utilisateur peut définir ses propres classes (voir §§§). Ainsi, à la place de la classe \texttt{NSTextField} on utilisera :
+\begin{itemize}
+  \item \eb!EBTextField!, pour la saisie d'un texte (\refSectionPage{outletClassEBTextField}) ;
+  \item \eb!EBTextObserverField!, pour l'affichage d'un texte, sans possibilité de saisie (\refSectionPage{outletClassEBTextObserverField}) ;
+  \item \eb!EBIntField!, pour la saisie d'un nombre entier (\refSectionPage{outletClassEBIntField}) ;
+  \item \eb!EBIntObserverField!, pour l'affichage d'un nombre entier, sans possibilité de saisie (\refSectionPage{outletClassEBIntObserverField}).
+\end{itemize}
+
+Un binding est décrit par trois champs :
+\begin{itemize}
+  \item son nom qui commence toujours par « \texttt{\$} », par exemple : \eb!$value! ;
+  \item le modèle auquel il est lié, par exemple : \eb!self.myString! ;
+  \item entre accolades, la liste des valeurs des options, par exemple \eb!{sendContinously : no}! ; si le binding n'a pas d'option, ce champ est vide.
+\end{itemize}
+
+\newcommand\FondModele{LightGray!25}
+
+\newcommand\Modele[4]{
+  \SetVertexNormal[Shape=rectangle, LineColor=black, FillColor=\FondModele, LineWidth=1pt]
+  \Vertex[x=#3, y=#4, L={\tt #2}]{#1}
+}
+
+\newcommand\ItemGraphique[4]{
+  \SetVertexNormal[Shape=rectangle, LineColor=blue, FillColor=\FondModele, LineWidth=1pt]
+  \Vertex[x=#3, y=#4, L={\tt #2}]{#1}
+}
+
+\newcommand\Fleche[4]{
+  \draw [#1, thick, black] (#2) edge[#4] (#3) ;
+}
+
+\begin{figure}[t]
+  \centering
+  \small
+  \begin{tikzpicture}
+    \node[right] at (-5cm, 2cm) {\bf Modèle} ;
+    \node[right] at (-5cm, 0cm) {\bf Items Graphiques} ;
+    \Modele{modele}{mString}{4cm}{2cm}
+    \ItemGraphique{item1}{myTextField}{0cm}{0cm}
+    \ItemGraphique{item2}{myOtherTextField}{4cm}{0cm}
+    \ItemGraphique{item3}{myObserverTextField}{8cm}{0cm}
+
+    \Fleche{o<->}{modele}{item1}{bend right}
+    \Fleche{o<->}{modele}{item2}{}
+    \Fleche{o->}{modele}{item3}{bend left}
+  \end{tikzpicture}
+  \caption{Bindings du modèle \texttt{mString} du premier tutorial}
+  \labelFigure{bindingsTutorial1}
+  \ligne
+\end{figure}
+
+Dans la \refFigurePage{}{bindingsTutorial1}, le cercle « \texttt{o} » à l'extrémité des flèches désigne le modèle ; l'information peut circuler dans le sens des flèches. Par exemple :
+\begin{itemize}
+  \item si le modèle \eb!mString! est modifié par l'exécution de code Swift, les items graphiques \eb!myTextField!, \eb!myOtherTextField! et \eb!myObserverTextField! sont mis à jour ;
+  \item si l'utilisateur édite le champ \eb!myTextField!, le modèle \eb!mString! est mis à jour, ce qui a pour conséquence de mettre à jour \eb!myOtherTextField! et \eb!myObserverTextField! ;
+  \item il en est de même si l'utilisateur édite le champ \eb!myOtherTextField! : le modèle \eb!mString! est mis à jour, ce qui a pour conséquence de mettre à jour \eb!myTextField! et \eb!myObserverTextField!.
+\end{itemize}
+
+La valeur de l'option \eb!sendContinously! permet de définir l'action qui valide l'édition : \eb!no!, c'est le retour-chariot, \eb!yes! l'édition est validée après la saisie de chaque caractère.
 
 
 
