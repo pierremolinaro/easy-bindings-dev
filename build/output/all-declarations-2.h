@@ -2396,6 +2396,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificatio
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
+extern C_BoolCommandLineOption gOption_easyBindings_5F_options_latexBindingDescription ;
+
 extern C_BoolCommandLineOption gOption_easyBindings_5F_options_outputClassDependencyGraph ;
 
 //---------------------------------------------------------------------------------------------------------------------*

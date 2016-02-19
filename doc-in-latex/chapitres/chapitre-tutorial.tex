@@ -131,7 +131,7 @@ mainxib {
 
 Après compilation Xcode, le projet est prêt à être exécuté ; le lancer fait apparaître la fenêtre illustrée par la \refFigurePage{}{interfaceGraphiquePremierTutorial}.
 
-Les sections qui suivent sont consacrées à la description du texte source \emph{Easy Bindings}, en commençant par la construction \eb!mainxib!, suivie de la construction \eb!prefs!.
+Les sections qui suivent sont consacrées à la description du texte source \emph{Easy Bindings}, en commençant par la clause \eb!mainxib!, suivie de la clause \eb!prefs!.
 
 
 
@@ -139,9 +139,9 @@ Les sections qui suivent sont consacrées à la description du texte source \emp
 
 
 
-\subsection{Construction \texttt{mainxib}}\index{mainxib}
+\subsection{Clause \texttt{mainxib}}\index{mainxib}
 
-La construction \eb!mainxib! permet de décrire une fenêtre liées aux \emph{préférences} de l'application. La présentation est systématique (\refFigurePage{}{interfaceGraphiquePremierTutorial}), deux colonnes, celle de gauche étant un commentaire, celle de droite contenant l'item graphique (bouton, champ texte, …). Ceci est uniquement destiné à réaliser rapidement des petits exemples illustratifs.
+La clause \eb!mainxib! permet de décrire une fenêtre liées aux \emph{préférences} de l'application. La présentation est systématique (\refFigurePage{}{interfaceGraphiquePremierTutorial}), deux colonnes, celle de gauche étant un commentaire, celle de droite contenant l'item graphique (bouton, champ texte, …). Ceci est uniquement destiné à réaliser rapidement des petits exemples illustratifs.
 
 Le code est une description ligne par ligne de la composition de la fenêtre, en commençant par le haut ; Chaque ligne a la forme suivante : 
 \begin{ebcode}
@@ -150,7 +150,7 @@ Le code est une description ligne par ligne de la composition de la fenêtre, en
 
 \eb!"commentaire"! est le texte qui est affiché dans la colonne de gauche ; \eb!TypeOutlet! et \eb!nomOutlet! sont évidemment le type et le nom de l'outlet. À noter que les types définis par Cocoa (\texttt{NSTextField}, \texttt{NSColorWell}, …) ne sont pas utilisés, au profit de types propres à \emph{Easy Bindings} : \eb!EBTextField!,  \eb!EBTextObserverField!, \eb!EBObserverWell!, \eb!EBColorObserverWell!, … La raison en est la suivante : les bindings d'\emph{Easy Bindings} nécessitent des propriétés complémentaires et un typage fort qui ne ne peuvent pas être exprimés directement avec les classes définies dans Cocoa ; les classes définies dans \emph{Easy Bindings} en héritent et implémentent les bindings.
 
-{\bf Attention : } La vérification de la cohérence \eb!TypeOutlet! et \eb!nomOutlet! avec leur utilisation dans la construction \eb!prefs! n'est pas effectuée : une erreur n'est pas décelée lors de la compilation \emph{Easy Bindings}, et a des conséquences imprévisibles dans le projet Xcode : erreur de compilation, d'exécution, …
+{\bf Attention : } La vérification de la cohérence \eb!TypeOutlet! et \eb!nomOutlet! avec leur utilisation dans la clause \eb!prefs! n'est pas effectuée : une erreur n'est pas décelée lors de la compilation \emph{Easy Bindings}, et a des conséquences imprévisibles dans le projet Xcode : erreur de compilation, d'exécution, …
 
 
 
@@ -161,6 +161,40 @@ Le code est une description ligne par ligne de la composition de la fenêtre, en
 
 
 
-\subsection{Construction \texttt{prefs}}\index{prefs}
+\subsection{Clause \texttt{prefs}}\index{prefs}
 
+Une clause \eb!prefs! décrit modèles et bindings. Le seul couplage entre cette description et la description graphique (dans une classe \eb!mainxib! ou à la main) est constitué par les outlets et leur type. Sa compilation engendre un fichier \texttt{Preferences.swift} qui définit la classe \texttt{Preferences}.
+
+%Un projet accepte zéro, une ou plusieurs clauses \eb!prefs! ; écrire :
+%\begin{ebcode}
+%prefs {
+%  # définitions A
+%}
+%prefs {
+%  # définitions B
+%}
+%prefs {
+%  # définitions C
+%}
+%\end{ebcode}
+%
+%est équivalent à :
+%\begin{ebcode}
+%prefs {
+%  # définitions A
+%  # définitions B
+%  # définitions C
+%}
+%\end{ebcode}
+
+Observons la première ligne de la clause \eb!prefs! (\refSubsectionPage{textSourceTutorialUn}) :
+\begin{ebcode}
+  property String myString default "hello" ;
+\end{ebcode}
+
+Elle déclare le modèle \eb!myString!, de type \eb!String!, dont la valeur initiale est \eb!"hello"!. Dans le code engendré, \texttt{myString} est une propriété de la classe \texttt{Preferences}. Son type est \texttt{EBStoredProperty\_String}. Cette classe prend complètement en charge l'écriture et la lecture de la valeur dans les préférences de l'application (la clef associée est \texttt{Preferences:myString}).
+
+La valeur initiale n'est utilisée que lors du premier lancement de l'application, ou lorsqu'une propriété est ajoutée, c'est-à-dire quand la clé \texttt{Preferences:myString} n'existe pas dans les préférences de l'application.
+
+ 
 

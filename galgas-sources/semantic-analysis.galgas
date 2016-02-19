@@ -58,7 +58,7 @@ struct @semanticContext {
 
 proc semanticAnalysis
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?let @string unused inSourceFile
+  ?let @string inSourceFile
   ?let @astDeclarationStruct inAstDeclarationStruct
   !@structForGeneration outGeneration
 {
@@ -136,6 +136,19 @@ proc semanticAnalysis
     !semanticContext
     !?outGeneration
   ]
+#----------------------------------------- Output a binding description in latex
+  if [option easyBindings_options.latexBindingDescription value] then
+    var s = ""
+    for () class_ in semanticContext.mBindingSpecificationMap do
+      s += "\\section{Classe \\texttt{" + class_lkey + "}}\\index{" + class_lkey + "}\n\n"
+      for () binding_ in class_mBindingMap do
+        s += "\\subsection{Binding \\texttt{\\$" + binding_lkey + "}}\\index{\\$" + binding_lkey + "}\n\n"
+      end
+      s += "\n\n\n\n\n\n\n"
+    end
+    let latextFilePath = inSourceFile + ".bindings.tex"
+    [s writeToFileWhenDifferentContents !latextFilePath ?*]
+  end
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

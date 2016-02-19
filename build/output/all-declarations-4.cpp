@@ -3015,7 +3015,7 @@ void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                               const GALGAS_string /* constinArgument_inSourceFile */,
+                               const GALGAS_string constinArgument_inSourceFile,
                                const GALGAS_astDeclarationStruct constinArgument_inAstDeclarationStruct,
                                GALGAS_structForGeneration & outArgument_outGeneration,
                                C_Compiler * inCompiler
@@ -3028,44 +3028,44 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
   routine_buildBindingSpecificationMap (constinArgument_inUnifiedTypeMap, constinArgument_inAstDeclarationStruct.mAttribute_mBindingSpecificationListMap, var_bindingSpecificationMap, inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 68)) ;
   }
   GALGAS_semanticContext var_semanticContext = GALGAS_semanticContext::constructor_new (constinArgument_inUnifiedTypeMap, var_outletClassMap, var_bindingSpecificationMap, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("semantic-analysis.galgas", 78)), GALGAS_documentObservablePropertyMap::constructor_emptyMap (SOURCE_FILE ("semantic-analysis.galgas", 79)), GALGAS_entityObservablePropertyMap::constructor_emptyMap (SOURCE_FILE ("semantic-analysis.galgas", 80))  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 74)) ;
-  cEnumerator_astDeclarationList enumerator_3707 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
-  while (enumerator_3707.hasCurrentObject ()) {
-    callCategoryMethod_buildObservablePropertyMapsFromStoredProperties ((const cPtr_astDeclaration *) enumerator_3707.current_mDeclaration (HERE).ptr (), constinArgument_inUnifiedTypeMap, var_semanticContext, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 84)) ;
-    enumerator_3707.gotoNextObject () ;
+  cEnumerator_astDeclarationList enumerator_3700 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
+  while (enumerator_3700.hasCurrentObject ()) {
+    callCategoryMethod_buildObservablePropertyMapsFromStoredProperties ((const cPtr_astDeclaration *) enumerator_3700.current_mDeclaration (HERE).ptr (), constinArgument_inUnifiedTypeMap, var_semanticContext, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 84)) ;
+    enumerator_3700.gotoNextObject () ;
   }
   categoryMethod_buildObservablePropertyMapsFromStoredProperties (constinArgument_inAstDeclarationStruct.mAttribute_mPreferences, constinArgument_inUnifiedTypeMap, var_semanticContext, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 89)) ;
   GALGAS_secondaryPropertyList var_preferencesSecondaryPropertyList = constinArgument_inAstDeclarationStruct.mAttribute_mPreferences.mAttribute_mSecondaryPropertyList ;
   GALGAS_secondaryDeclarationListWorkingList var_secondaryDeclarationListWorkingList = GALGAS_secondaryDeclarationListWorkingList::constructor_emptyList (SOURCE_FILE ("semantic-analysis.galgas", 95)) ;
   GALGAS_uint var_secondaryDeclarationCount = var_preferencesSecondaryPropertyList.getter_length (SOURCE_FILE ("semantic-analysis.galgas", 96)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 96)) ;
-  cEnumerator_astDeclarationList enumerator_4354 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
-  while (enumerator_4354.hasCurrentObject ()) {
-    callCategoryMethod_buildInitialSecondaryPropertyListMap ((const cPtr_astDeclaration *) enumerator_4354.current_mDeclaration (HERE).ptr (), var_secondaryDeclarationListWorkingList, var_secondaryDeclarationCount, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 98)) ;
-    enumerator_4354.gotoNextObject () ;
+  cEnumerator_astDeclarationList enumerator_4347 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
+  while (enumerator_4347.hasCurrentObject ()) {
+    callCategoryMethod_buildInitialSecondaryPropertyListMap ((const cPtr_astDeclaration *) enumerator_4347.current_mDeclaration (HERE).ptr (), var_secondaryDeclarationListWorkingList, var_secondaryDeclarationCount, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 98)) ;
+    enumerator_4347.gotoNextObject () ;
   }
   GALGAS_bool var_continue = GALGAS_bool (true) ;
   if (var_secondaryDeclarationCount.isValid ()) {
-    uint32_t variant_4567 = var_secondaryDeclarationCount.uintValue () ;
-    bool loop_4567 = true ;
-    while (loop_4567) {
-      loop_4567 = var_continue.isValid () ;
-      if (loop_4567) {
-        loop_4567 = var_continue.boolValue () ;
+    uint32_t variant_4560 = var_secondaryDeclarationCount.uintValue () ;
+    bool loop_4560 = true ;
+    while (loop_4560) {
+      loop_4560 = var_continue.isValid () ;
+      if (loop_4560) {
+        loop_4560 = var_continue.boolValue () ;
       }
-      if (loop_4567 && (0 == variant_4567)) {
-        loop_4567 = false ;
+      if (loop_4560 && (0 == variant_4560)) {
+        loop_4560 = false ;
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("semantic-analysis.galgas", 102)) ;
       }
-      if (loop_4567) {
-        variant_4567 -- ;
+      if (loop_4560) {
+        variant_4560 -- ;
         GALGAS_secondaryPropertyList var_newPreferencesSecondaryPropertyList ;
         categoryMethod_solveSecondaryProperty (constinArgument_inAstDeclarationStruct.mAttribute_mPreferences, var_semanticContext, constinArgument_inUnifiedTypeMap, var_preferencesSecondaryPropertyList, var_newPreferencesSecondaryPropertyList, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 103)) ;
         GALGAS_secondaryDeclarationListWorkingList var_newSecondaryDeclarationListWorkingList = GALGAS_secondaryDeclarationListWorkingList::constructor_emptyList (SOURCE_FILE ("semantic-analysis.galgas", 109)) ;
-        cEnumerator_secondaryDeclarationListWorkingList enumerator_4993 (var_secondaryDeclarationListWorkingList, kEnumeration_up) ;
-        while (enumerator_4993.hasCurrentObject ()) {
+        cEnumerator_secondaryDeclarationListWorkingList enumerator_4986 (var_secondaryDeclarationListWorkingList, kEnumeration_up) ;
+        while (enumerator_4986.hasCurrentObject ()) {
           GALGAS_secondaryPropertyList var_unsolvedProperties ;
-          callCategoryMethod_solveSecondaryProperty ((const cPtr_astDeclaration *) enumerator_4993.current_mDeclaration (HERE).ptr (), var_semanticContext, constinArgument_inUnifiedTypeMap, enumerator_4993.current_mSecondaryPropertyList (HERE), var_unsolvedProperties, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 111)) ;
-          var_newSecondaryDeclarationListWorkingList.addAssign_operation (enumerator_4993.current_mDeclaration (HERE), var_unsolvedProperties  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 117)) ;
-          enumerator_4993.gotoNextObject () ;
+          callCategoryMethod_solveSecondaryProperty ((const cPtr_astDeclaration *) enumerator_4986.current_mDeclaration (HERE).ptr (), var_semanticContext, constinArgument_inUnifiedTypeMap, enumerator_4986.current_mSecondaryPropertyList (HERE), var_unsolvedProperties, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 111)) ;
+          var_newSecondaryDeclarationListWorkingList.addAssign_operation (enumerator_4986.current_mDeclaration (HERE), var_unsolvedProperties  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 117)) ;
+          enumerator_4986.gotoNextObject () ;
         }
         GALGAS_bool test_0 = GALGAS_bool (kIsNotEqual, var_newSecondaryDeclarationListWorkingList.objectCompare (var_secondaryDeclarationListWorkingList)) ;
         if (kBoolTrue != test_0.boolEnum ()) {
@@ -3078,12 +3078,38 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
     }
   }
   outArgument_outGeneration = GALGAS_structForGeneration::constructor_default (SOURCE_FILE ("semantic-analysis.galgas", 127)) ;
-  cEnumerator_astDeclarationList enumerator_5722 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
-  while (enumerator_5722.hasCurrentObject ()) {
-    callCategoryMethod_semanticAnalysis ((const cPtr_astDeclaration *) enumerator_5722.current_mDeclaration (HERE).ptr (), var_semanticContext, outArgument_outGeneration, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 129)) ;
-    enumerator_5722.gotoNextObject () ;
+  cEnumerator_astDeclarationList enumerator_5715 (constinArgument_inAstDeclarationStruct.mAttribute_mDeclarationList, kEnumeration_up) ;
+  while (enumerator_5715.hasCurrentObject ()) {
+    callCategoryMethod_semanticAnalysis ((const cPtr_astDeclaration *) enumerator_5715.current_mDeclaration (HERE).ptr (), var_semanticContext, outArgument_outGeneration, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 129)) ;
+    enumerator_5715.gotoNextObject () ;
   }
   categoryMethod_semanticAnalysis (constinArgument_inAstDeclarationStruct.mAttribute_mPreferences, constinArgument_inAstDeclarationStruct.mAttribute_mPreferences.mAttribute_mExternSwiftFunctionList, var_semanticContext, outArgument_outGeneration, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 134)) ;
+  const enumGalgasBool test_1 = GALGAS_bool (gOption_easyBindings_5F_options_latexBindingDescription.getter_value ()).boolEnum () ;
+  if (kBoolTrue == test_1) {
+    GALGAS_string var_s = GALGAS_string::makeEmptyString () ;
+    cEnumerator_bindingSpecificationMap enumerator_6207 (var_semanticContext.mAttribute_mBindingSpecificationMap, kEnumeration_up) ;
+    while (enumerator_6207.hasCurrentObject ()) {
+      var_s.plusAssign_operation(GALGAS_string ("\\section{Classe \\texttt{").add_operation (enumerator_6207.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}}\\index{"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (enumerator_6207.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)).add_operation (GALGAS_string ("}\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)) ;
+      cEnumerator_outletBindingSpecificationMap enumerator_6344 (enumerator_6207.current_mBindingMap (HERE), kEnumeration_up) ;
+      while (enumerator_6344.hasCurrentObject ()) {
+        var_s.plusAssign_operation(GALGAS_string ("\\subsection{Binding \\texttt{\\$").add_operation (enumerator_6344.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 145)).add_operation (GALGAS_string ("}}\\index{\\$"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 145)).add_operation (enumerator_6344.current_lkey (HERE).getter_string (SOURCE_FILE ("semantic-analysis.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 145)).add_operation (GALGAS_string ("}\n"
+          "\n"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 145)), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 145)) ;
+        enumerator_6344.gotoNextObject () ;
+      }
+      var_s.plusAssign_operation(GALGAS_string ("\n"
+        "\n"
+        "\n"
+        "\n"
+        "\n"
+        "\n"
+        "\n"), inCompiler  COMMA_SOURCE_FILE ("semantic-analysis.galgas", 147)) ;
+      enumerator_6207.gotoNextObject () ;
+    }
+    GALGAS_string var_latextFilePath = constinArgument_inSourceFile.add_operation (GALGAS_string (".bindings.tex"), inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 149)) ;
+    GALGAS_bool joker_6614 ; // Joker input parameter
+    var_s.method_writeToFileWhenDifferentContents (var_latextFilePath, joker_6614, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 150)) ;
+  }
 }
 
 
