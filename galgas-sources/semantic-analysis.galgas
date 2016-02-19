@@ -143,17 +143,29 @@ proc semanticAnalysis
       s += "\\section{Classe \\texttt{" + class_lkey + "}}\\index{" + class_lkey + "}\n\n"
       for () binding_ in class_mBindingMap do
         s += "\\subsection{Binding \\texttt{\\$" + binding_lkey + "}}\\index{\\$" + binding_lkey + "}\n\n"
-        s += "{\\bf Type du modèle}\n\n"
-        s += "\\begin{tabular}{ll}\n"
+        s += "\\subsubsection{Type du modèle}\n\n"
+        s += "\\begin{tabular}{|l|l|}\n"
+        s += "\\hline\n"
         s += "\\textbf{Type du modèle} & \\textbf{Modèle modifiable via le binding}\\\\\n"
+        s += "\\hline\n"
         for () in binding_mOutletBindingSpecificationModelList do
-          s += [mModelType swiftTypeName] + "& " + if mModelShouldBeWritableProperty then "Oui" else "Non" end + "\\\\\n"
+          s += [mModelType swiftTypeName] + " & " + if mModelShouldBeWritableProperty then "Oui" else "Non" end + "\\\\\n"
+          s += "\\hline\n"
         end
         s += "\\end{tabular}\n"
+        s += "\\subsubsection{Options}\n\n"
         if [binding_mControllerBindingOptionList length] == 0 then
-          s += "{\\bf Type du modèle}\n\n"
+          s += "Ce binding n'a pas d'option.\n\n"
         else
-        
+          s += "\\begin{tabular}{|l|l|}\n"
+          s += "\\hline\n"
+          s += "\\textbf{Nom de l'option} & \\textbf{Type de l'option}\\\\\n"
+          s += "\\hline\n"
+          for () in binding_mControllerBindingOptionList do
+            s += mOptionName.string + " & " + [mOptionType swiftTypeName] + "\\\\\n"
+            s += "\\hline\n"
+          end
+          s += "\\end{tabular}\n"
         end
 #  @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
 #  @controllerBindingOptionDecoratedList mControllerBindingOptionList
