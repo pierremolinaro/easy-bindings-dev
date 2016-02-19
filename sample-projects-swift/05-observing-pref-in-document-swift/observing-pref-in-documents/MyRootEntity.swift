@@ -8,34 +8,7 @@ import Cocoa
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(ReadOnlyArrayOf_MyRootEntity)
-class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
-
-  var prop : EBProperty < [MyRootEntity] > { get { return .noSelection } }
-
-  //····················································································································
-
-  final var count = EBTransientProperty_Int ()
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-    count.computeFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
-        }
-      }else{
-        return .noSelection
-      }
-    }
-  }
+class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity> {
 
   //····················································································································
   //   Observers of 'docString' stored property
@@ -75,19 +48,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  final func postEventTo_docString () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.docString.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
   final func addEBObserversOf_docString_toElementsOfSet (inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docString {
@@ -115,6 +75,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_transientConcatString (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_transientConcatString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -129,6 +90,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_transientConcatString (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_transientConcatString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -136,19 +98,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     case .singleSelection (let v) :
       for managedObject in v {
         managedObject.transientConcatString.removeEBObserver (inObserver)
-      }
-    }
-  }
-
-  //····················································································································
-
-  final func postEventTo_transientConcatString () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.transientConcatString.postEvent ()
       }
     }
   }
@@ -182,6 +131,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func addEBObserverOf_otherTransientConcatString (inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     mObserversOf_otherTransientConcatString.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -196,6 +146,7 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
   //····················································································································
 
   final func removeEBObserverOf_otherTransientConcatString (inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
     mObserversOf_otherTransientConcatString.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -203,19 +154,6 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
     case .singleSelection (let v) :
       for managedObject in v {
         managedObject.otherTransientConcatString.removeEBObserver (inObserver)
-      }
-    }
-  }
-
-  //····················································································································
-
-  final func postEventTo_otherTransientConcatString () {
-    switch prop {
-    case .noSelection, .multipleSelection :
-      break
-    case .singleSelection (let v) :
-      for managedObject in v {
-        managedObject.otherTransientConcatString.postEvent ()
       }
     }
   }
@@ -242,23 +180,15 @@ class ReadOnlyArrayOf_MyRootEntity : EBAbstractProperty {
 
   //····················································································································
 
-  override func postEvent () {
-    count.postEvent ()
-    super.postEvent ()
-  }
-
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    TransientArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(TransientArrayOf_MyRootEntity)
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var computeFunction : Optional<() -> EBProperty < [MyRootEntity] > >
+  var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
 
   private var prop_cache : EBProperty < [MyRootEntity] >? 
 
@@ -274,7 +204,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override var prop : EBProperty < [MyRootEntity] > {
     get {
-      if let unwrappedComputeFunction = computeFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <MyRootEntity>
         switch prop_cache! {
@@ -335,7 +265,6 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// @objc(MyRootEntity)
 class MyRootEntity : EBManagedObject
 // , MyRootEntity_docString, MyRootEntity_transientConcatString, MyRootEntity_otherTransientConcatString
 {
@@ -365,7 +294,7 @@ class MyRootEntity : EBManagedObject
   override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
   //--- Install compute functions for transients
-    transientConcatString.computeFunction = { [weak self] in
+    transientConcatString.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.docString.prop {
         case .noSelection :
@@ -403,7 +332,7 @@ class MyRootEntity : EBManagedObject
         return .noSelection
       }
     }
-    otherTransientConcatString.computeFunction = {
+    otherTransientConcatString.readModelFunction = {
         switch g_Preferences!.myPrefString.prop {
         case .noSelection :
           return .noSelection

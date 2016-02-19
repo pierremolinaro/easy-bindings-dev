@@ -15,19 +15,19 @@ protocol ValuePropertyProtocol : Comparable {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyValueProperty <T : ValuePropertyProtocol>
+//   EBReadOnlyValueProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadOnlyValueProperty <T : ValuePropertyProtocol> : EBAbstractProperty {
+class EBReadOnlyValueProperty <T> : EBAbstractProperty {
 
   var prop : EBProperty <T> { get { return .noSelection } } // Abstract method
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteValueProperty <T : ValuePropertyProtocol> (abstract class)
+//   EBReadWriteValueProperty <T> (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadWriteValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
+class EBReadWriteValueProperty <T> : EBReadOnlyValueProperty <T> {
   func setProp (inValue : T) { } // Abstract method
   func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -276,14 +276,13 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   //····················································································································
 }
 
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientValueProperty <T : ValuePropertyProtocol>
+//   EBTransientValueProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBTransientValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProperty <T> {
+class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> {
   private var mValueCache : EBProperty <T>? = nil
-  var computeFunction : Optional<() -> EBProperty <T> >
+  var readModelFunction : Optional<() -> EBProperty <T> >
   
   //····················································································································
 
@@ -295,7 +294,7 @@ class EBTransientValueProperty <T : ValuePropertyProtocol> : EBReadOnlyValueProp
 
   override var prop : EBProperty <T> {
     get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
@@ -460,36 +459,6 @@ public func > (left:Bool, right:Bool) -> Bool {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    extension NSImage : ClassPropertyProtocol
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension NSImage : ClassPropertyProtocol {
-
-  //····················································································································
-
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
-    return data.ebHashValue ()
-  }
-
-
-  //····················································································································
-
-  func archiveToNSData () -> NSData {
-    return NSArchiver.archivedDataWithRootObject (self)
-  }
-  
-  //····················································································································
-
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    extension NSColor : ClassPropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -517,7 +486,6 @@ extension NSColor : ClassPropertyProtocol {
   //····················································································································
 
 }
-
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    extension NSDate : ClassPropertyProtocol
@@ -622,56 +590,20 @@ protocol ClassPropertyProtocol : class, Equatable {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyClassProperty <T : ClassPropertyProtocol>
+//   EBReadOnlyClassProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadOnlyClassProperty <T : ClassPropertyProtocol> : EBAbstractProperty {
+class EBReadOnlyClassProperty <T> : EBAbstractProperty {
+
   var prop : EBProperty <T> { get { return .noSelection } } // Abstract method
 
-  //····················································································································
-
-/*  func compare (other : EBReadOnlyClassProperty <T>) -> NSComparisonResult {
-    switch prop {
-    case .noSelection :
-      switch other.prop {
-      case .noSelection :
-        return .OrderedSame
-      default:
-        return .OrderedAscending
-      }
-    case .multipleSelection :
-      switch other.prop {
-      case .noSelection :
-        return .OrderedDescending
-      case .multipleSelection :
-        return .OrderedSame
-     case .singleSelection (_) :
-        return .OrderedAscending
-     }
-   case .singleSelection (let currentValue) :
-      switch other.prop {
-      case .noSelection, .multipleSelection :
-        return .OrderedDescending
-      case .singleSelection (let otherValue) :
-        if currentValue < otherValue {
-          return .OrderedAscending
-        }else if currentValue > otherValue {
-          return .OrderedDescending
-        }else{
-          return .OrderedSame
-        }
-      }
-    }
-  } */
-
-  //····················································································································
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteClassProperty <T : ClassPropertyProtocol> (abstract class)
+//   EBReadWriteClassProperty <T> (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadWriteClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProperty <T> {
+class EBReadWriteClassProperty <T> : EBReadOnlyClassProperty <T> {
   func setProp (inValue : T) { } // Abstract method
   func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
@@ -920,14 +852,13 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   //····················································································································
 }
 
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTransientClassProperty <T : ClassPropertyProtocol>
+//   EBTransientClassProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBTransientClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProperty <T> {
+class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
   private var mValueCache : EBProperty <T>? = nil
-  var computeFunction : Optional<() -> EBProperty <T> >
+  var readModelFunction : Optional<() -> EBProperty <T> >
   
   //····················································································································
 
@@ -939,7 +870,7 @@ class EBTransientClassProperty <T : ClassPropertyProtocol> : EBReadOnlyClassProp
 
   override var prop : EBProperty <T> {
     get {
-      if let unwrappedComputeFunction = computeFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
@@ -1147,24 +1078,33 @@ func compare_String (left : EBReadOnlyProperty_String, right : EBReadOnlyPropert
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Class property NSColor
+//   Property class NSColor
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSColor  = EBReadOnlyClassProperty <NSColor>
+typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
 typealias EBReadWriteProperty_NSColor = EBReadWriteClassProperty <NSColor>
 typealias EBPropertyProxy_NSColor     = EBPropertyClassProxy <NSColor>
 typealias EBStoredProperty_NSColor    = EBStoredClassProperty <NSColor>
-typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Class property NSDate
+//   Transient property class NSImage
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_NSImage  = EBReadOnlyClassProperty <NSImage>
+typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
+typealias EBReadOnlyPropertyArray_NSImage  = EBReadOnlyClassProperty <[NSImage]>
+typealias EBTransientPropertyArray_NSImage = EBTransientClassProperty <[NSImage]>
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Property class NSDate
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSDate  = EBReadOnlyClassProperty <NSDate>
+typealias EBTransientProperty_NSDate = EBTransientClassProperty <NSDate>
 typealias EBReadWriteProperty_NSDate = EBReadWriteClassProperty <NSDate>
 typealias EBPropertyProxy_NSDate     = EBPropertyClassProxy <NSDate>
 typealias EBStoredProperty_NSDate    = EBStoredClassProperty <NSDate>
-typealias EBTransientProperty_NSDate = EBTransientClassProperty <NSDate>
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1203,22 +1143,12 @@ func compare_NSDate (left : EBReadOnlyProperty_NSDate, right : EBReadOnlyPropert
   }
 }
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Class property NSFont
+//   Property class NSFont
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_NSFont  = EBReadOnlyClassProperty <NSFont>
+typealias EBTransientProperty_NSFont = EBTransientClassProperty <NSFont>
 typealias EBReadWriteProperty_NSFont = EBReadWriteClassProperty <NSFont>
 typealias EBPropertyProxy_NSFont     = EBPropertyClassProxy <NSFont>
 typealias EBStoredProperty_NSFont    = EBStoredClassProperty <NSFont>
-typealias EBTransientProperty_NSFont = EBTransientClassProperty <NSFont>
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Class property NSImage
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-typealias EBReadOnlyProperty_NSImage  = EBReadOnlyClassProperty <NSImage>
-typealias EBReadWriteProperty_NSImage = EBReadWriteClassProperty <NSImage>
-typealias EBPropertyProxy_NSImage     = EBPropertyClassProxy <NSImage>
-typealias EBStoredProperty_NSImage    = EBStoredClassProperty <NSImage>
-typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
 

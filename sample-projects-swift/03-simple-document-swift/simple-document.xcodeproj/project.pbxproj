@@ -32,7 +32,6 @@
 		CFC7AEC21BF220D20076C604 /* EBTextObserverField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */; };
 		E76FC522773286A895BC8436 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AD8176D665453CFB2E55F0 /* main.swift */; settings = {ATTRIBUTES = (); }; };
 		E875A2E075A1A4A6E1B9770F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7260AE62E3B1396831A8398F /* Preferences.swift */; settings = {ATTRIBUTES = (); }; };
-		FB98AB9159F51FD0297E236D /* MonEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA167A5A36DEDD4BEA2543 /* MonEnumeration.swift */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +47,6 @@
 		BBCE2345D7772B0674A318D5 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		C124A10E0DB5E4B97FC2AF39 /* MyRootEntity+transient+myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+myStringMin.swift"; sourceTree = "<group>"; };
 		CE56D3D6FA748AB6D9AF3FD7 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
-		CEEA167A5A36DEDD4BEA2543 /* MonEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonEnumeration.swift; sourceTree = "<group>"; };
 		CF3B47701AC80D3800DA3409 /* simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3B47721AC80DF000DA3409 /* PMDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDocument.xib; sourceTree = "<group>"; };
 		CF71F99A1B3EA66700FB5049 /* EBAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBAllocationDebug.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				778DFAECDC212708F721B788 /* generic-bindings.swift */,
 				19AD8176D665453CFB2E55F0 /* main.swift */,
 				BBCE2345D7772B0674A318D5 /* MainMenu.xib */,
-				CEEA167A5A36DEDD4BEA2543 /* MonEnumeration.swift */,
 				F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */,
 				2E2D7FBDEA1AFC51C7C6AD26 /* MyRootEntity+transient+myStringConcat.swift */,
 				D9CAA6E02C990B0A82652DCA /* MyRootEntity+transient+myStringMaj.swift */,
@@ -202,7 +199,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB98AB9159F51FD0297E236D /* MonEnumeration.swift in Sources */,
 				02A44259755D38E6D163E820 /* MyRootEntity+transient+myStringConcat.swift in Sources */,
 				6FE97759AA27A0C99BFF6710 /* MyRootEntity+transient+myStringMaj.swift in Sources */,
 				22BCC25A6F606EB525FFDC56 /* MyRootEntity+transient+myStringMin.swift in Sources */,

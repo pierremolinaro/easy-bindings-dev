@@ -4774,7 +4774,7 @@ class cCollectionElement_outletClassDeclarationList : public cCollectionElement 
                                                           const GALGAS_lstring & in_mOutletClassName,
                                                           const GALGAS_bool & in_mHasRunAction,
                                                           const GALGAS_bool & in_mHasEnabled,
-                                                          const GALGAS_bool & in_mHandlesTableViewBinding
+                                                          const GALGAS_bool & in_mHandlesTableValueBinding
                                                           COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -4796,10 +4796,10 @@ cCollectionElement_outletClassDeclarationList::cCollectionElement_outletClassDec
                                                                                               const GALGAS_lstring & in_mOutletClassName,
                                                                                               const GALGAS_bool & in_mHasRunAction,
                                                                                               const GALGAS_bool & in_mHasEnabled,
-                                                                                              const GALGAS_bool & in_mHandlesTableViewBinding
+                                                                                              const GALGAS_bool & in_mHandlesTableValueBinding
                                                                                               COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mUserDefined, in_mOutletClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableViewBinding) {
+mObject (in_mUserDefined, in_mOutletClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4812,7 +4812,7 @@ bool cCollectionElement_outletClassDeclarationList::isValid (void) const {
 
 cCollectionElement * cCollectionElement_outletClassDeclarationList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_outletClassDeclarationList (mObject.mAttribute_mUserDefined, mObject.mAttribute_mOutletClassName, mObject.mAttribute_mHasRunAction, mObject.mAttribute_mHasEnabled, mObject.mAttribute_mHandlesTableViewBinding COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_outletClassDeclarationList (mObject.mAttribute_mUserDefined, mObject.mAttribute_mOutletClassName, mObject.mAttribute_mHasRunAction, mObject.mAttribute_mHasEnabled, mObject.mAttribute_mHandlesTableValueBinding COMMA_HERE)) ;
   return result ;
 }
 
@@ -4837,8 +4837,8 @@ void cCollectionElement_outletClassDeclarationList::description (C_String & ioSt
   mObject.mAttribute_mHasEnabled.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mHandlesTableViewBinding" ":" ;
-  mObject.mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation) ;
+  ioString << "mHandlesTableValueBinding" ":" ;
+  mObject.mAttribute_mHandlesTableValueBinding.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4897,14 +4897,14 @@ void GALGAS_outletClassDeclarationList::makeAttributesFromObjects (capCollection
                                                                    const GALGAS_lstring & in_mOutletClassName,
                                                                    const GALGAS_bool & in_mHasRunAction,
                                                                    const GALGAS_bool & in_mHasEnabled,
-                                                                   const GALGAS_bool & in_mHandlesTableViewBinding
+                                                                   const GALGAS_bool & in_mHandlesTableValueBinding
                                                                    COMMA_LOCATION_ARGS) {
   cCollectionElement_outletClassDeclarationList * p = NULL ;
   macroMyNew (p, cCollectionElement_outletClassDeclarationList (in_mUserDefined,
                                                                 in_mOutletClassName,
                                                                 in_mHasRunAction,
                                                                 in_mHasEnabled,
-                                                                in_mHandlesTableViewBinding COMMA_THERE)) ;
+                                                                in_mHandlesTableValueBinding COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -4973,7 +4973,7 @@ void GALGAS_outletClassDeclarationList::setter_removeAtIndex (GALGAS_bool & outO
       outOperand1 = p->mObject.mAttribute_mOutletClassName ;
       outOperand2 = p->mObject.mAttribute_mHasRunAction ;
       outOperand3 = p->mObject.mAttribute_mHasEnabled ;
-      outOperand4 = p->mObject.mAttribute_mHandlesTableViewBinding ;
+      outOperand4 = p->mObject.mAttribute_mHandlesTableValueBinding ;
     }
   }
 }
@@ -5002,7 +5002,7 @@ void GALGAS_outletClassDeclarationList::setter_popFirst (GALGAS_bool & outOperan
     outOperand1 = p->mObject.mAttribute_mOutletClassName ;
     outOperand2 = p->mObject.mAttribute_mHasRunAction ;
     outOperand3 = p->mObject.mAttribute_mHasEnabled ;
-    outOperand4 = p->mObject.mAttribute_mHandlesTableViewBinding ;
+    outOperand4 = p->mObject.mAttribute_mHandlesTableValueBinding ;
   }
 }
 
@@ -5030,7 +5030,7 @@ void GALGAS_outletClassDeclarationList::setter_popLast (GALGAS_bool & outOperand
     outOperand1 = p->mObject.mAttribute_mOutletClassName ;
     outOperand2 = p->mObject.mAttribute_mHasRunAction ;
     outOperand3 = p->mObject.mAttribute_mHasEnabled ;
-    outOperand4 = p->mObject.mAttribute_mHandlesTableViewBinding ;
+    outOperand4 = p->mObject.mAttribute_mHandlesTableValueBinding ;
   }
 }
 
@@ -5058,7 +5058,7 @@ void GALGAS_outletClassDeclarationList::method_first (GALGAS_bool & outOperand0,
     outOperand1 = p->mObject.mAttribute_mOutletClassName ;
     outOperand2 = p->mObject.mAttribute_mHasRunAction ;
     outOperand3 = p->mObject.mAttribute_mHasEnabled ;
-    outOperand4 = p->mObject.mAttribute_mHandlesTableViewBinding ;
+    outOperand4 = p->mObject.mAttribute_mHandlesTableValueBinding ;
   }
 }
 
@@ -5086,7 +5086,7 @@ void GALGAS_outletClassDeclarationList::method_last (GALGAS_bool & outOperand0,
     outOperand1 = p->mObject.mAttribute_mOutletClassName ;
     outOperand2 = p->mObject.mAttribute_mHasRunAction ;
     outOperand3 = p->mObject.mAttribute_mHasEnabled ;
-    outOperand4 = p->mObject.mAttribute_mHandlesTableViewBinding ;
+    outOperand4 = p->mObject.mAttribute_mHandlesTableValueBinding ;
   }
 }
 
@@ -5203,15 +5203,15 @@ GALGAS_bool GALGAS_outletClassDeclarationList::getter_mHasEnabledAtIndex (const 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_outletClassDeclarationList::getter_mHandlesTableViewBindingAtIndex (const GALGAS_uint & inIndex,
-                                                                                       C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_outletClassDeclarationList::getter_mHandlesTableValueBindingAtIndex (const GALGAS_uint & inIndex,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_outletClassDeclarationList * p = (cCollectionElement_outletClassDeclarationList *) attributes.ptr () ;
   GALGAS_bool result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
-    result = p->mObject.mAttribute_mHandlesTableViewBinding ;
+    result = p->mObject.mAttribute_mHandlesTableValueBinding ;
   }
   return result ;
 }
@@ -5269,10 +5269,10 @@ GALGAS_bool cEnumerator_outletClassDeclarationList::current_mHasEnabled (LOCATIO
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cEnumerator_outletClassDeclarationList::current_mHandlesTableViewBinding (LOCATION_ARGS) const {
+GALGAS_bool cEnumerator_outletClassDeclarationList::current_mHandlesTableValueBinding (LOCATION_ARGS) const {
   const cCollectionElement_outletClassDeclarationList * p = (const cCollectionElement_outletClassDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
-  return p->mObject.mAttribute_mHandlesTableViewBinding ;
+  return p->mObject.mAttribute_mHandlesTableValueBinding ;
 }
 
 

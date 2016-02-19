@@ -24,8 +24,8 @@ if len (sys.argv) > 1 :
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
 os.chdir (scriptDir)
 #------------------- Build
-print "+ " + compiler + " -v hidden-binding.eb"
-buildProcess = subprocess.Popen ([compiler, "-v", "hidden-binding.eb"])
+print "+ " + compiler + " hidden-binding.eb"
+buildProcess = subprocess.Popen ([compiler, "hidden-binding.eb"])
 buildProcess.wait ()
 #------------------- Xcode build
 if buildProcess.returncode == 0 :

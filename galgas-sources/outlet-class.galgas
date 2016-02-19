@@ -7,7 +7,7 @@ list @outletClassDeclarationList {
   @lstring mOutletClassName
   @bool mHasRunAction
   @bool mHasEnabled
-  @bool mHandlesTableViewBinding
+  @bool mHandlesTableValueBinding
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -57,7 +57,8 @@ syntax extension easyBindings_syntax {
 
 map @outletClassMap {
   @bool mHandlesRunAction
-  @bool mHandlesTableViewBinding
+  @bool mHandlesTableValueBinding
+  @bool mHandleEnabledBinding
   @bool mUserDefined
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
@@ -72,7 +73,13 @@ method @outletClassDeclarationList buildOutletClassMap
 {
   outOutletClassMap = {}
   for () in self do
-    [!?outOutletClassMap insertKey !mOutletClassName !mHasRunAction !mHandlesTableViewBinding !mUserDefined]
+    [!?outOutletClassMap insertKey
+      !mOutletClassName
+      !mHasRunAction
+      !mHandlesTableValueBinding
+      !mHasEnabled
+      !mUserDefined
+    ]
   end
 }
 

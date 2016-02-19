@@ -1,11 +1,6 @@
 
-enum MonEnumeration {premier, deuxieme, troisieme}
-
-#--------------------------------------------------------------*
-
 entity MyRootEntity {
   property String myString default "Hello" ;
-#  property MonEnumeration myEnumeration default deuxieme ;
   property NSColor myColor default yellowColor ;
   
   transient String myStringMaj dependsFrom self.myString ;
@@ -23,8 +18,6 @@ document PMDocument root MyRootEntity {
   outlet EBTextObserverField myTextMinField $valueObserver root.myStringMin ;
 
   outlet EBTextObserverField myTextConcatField $valueObserver root.myStringConcat ;
-
-#  outlet EBMatrix myMatrix $selectedIndex root.myEnumeration  ;
 
   outlet EBColorWell myColorWell $color root.myColor {sendContinously : no} ;
   

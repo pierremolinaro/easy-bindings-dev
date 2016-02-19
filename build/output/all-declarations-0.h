@@ -7119,7 +7119,7 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                   const class GALGAS_lstring & in_mOutletClassName,
                                                   const class GALGAS_bool & in_mHasRunAction,
                                                   const class GALGAS_bool & in_mHasEnabled,
-                                                  const class GALGAS_bool & in_mHandlesTableViewBinding
+                                                  const class GALGAS_bool & in_mHandlesTableValueBinding
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -7216,9 +7216,9 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableViewBindingAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBindingAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasEnabledAtIndex (const class GALGAS_uint & constinOperand0,
                                                                          C_Compiler * inCompiler
@@ -7270,7 +7270,7 @@ class cEnumerator_outletClassDeclarationList : public cGenericAbstractEnumerator
   public : class GALGAS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHasRunAction (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHasEnabled (LOCATION_ARGS) const ;
-  public : class GALGAS_bool current_mHandlesTableViewBinding (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletClassDeclarationList_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -8243,7 +8243,7 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
   public : GALGAS_lstring mAttribute_mOutletClassName ;
   public : GALGAS_bool mAttribute_mHasRunAction ;
   public : GALGAS_bool mAttribute_mHasEnabled ;
-  public : GALGAS_bool mAttribute_mHandlesTableViewBinding ;
+  public : GALGAS_bool mAttribute_mHandlesTableValueBinding ;
 
 
 //--------------------------------- Accessors
@@ -8264,7 +8264,7 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
                                                          const GALGAS_lstring & in_mOutletClassName,
                                                          const GALGAS_bool & in_mHasRunAction,
                                                          const GALGAS_bool & in_mHasEnabled,
-                                                         const GALGAS_bool & in_mHandlesTableViewBinding) ;
+                                                         const GALGAS_bool & in_mHandlesTableValueBinding) ;
 
 //-- Start of generic part --*
 
@@ -8296,7 +8296,7 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableViewBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBinding (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasEnabled (LOCATION_ARGS) const ;
 

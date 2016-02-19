@@ -2210,10 +2210,10 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
     "scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
     "os.chdir (scriptDir)\n"
     "#------------------- Build\n"
-    "print \"+ \" + compiler + \" -v " ;
+    "print \"+ \" + compiler + \" " ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << ".eb\"\n"
-    "buildProcess = subprocess.Popen ([compiler, \"-v\", \"" ;
+    "buildProcess = subprocess.Popen ([compiler, \"" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << ".eb\"])\n"
     "buildProcess.wait ()\n"

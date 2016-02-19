@@ -6761,26 +6761,28 @@ GALGAS_storedArrayPropertyListForGeneration GALGAS_storedArrayPropertyListForGen
 
 cMapElement_outletClassMap::cMapElement_outletClassMap (const GALGAS_lstring & inKey,
                                                         const GALGAS_bool & in_mHandlesRunAction,
-                                                        const GALGAS_bool & in_mHandlesTableViewBinding,
+                                                        const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                        const GALGAS_bool & in_mHandleEnabledBinding,
                                                         const GALGAS_bool & in_mUserDefined
                                                         COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
 mAttribute_mHandlesRunAction (in_mHandlesRunAction),
-mAttribute_mHandlesTableViewBinding (in_mHandlesTableViewBinding),
+mAttribute_mHandlesTableValueBinding (in_mHandlesTableValueBinding),
+mAttribute_mHandleEnabledBinding (in_mHandleEnabledBinding),
 mAttribute_mUserDefined (in_mUserDefined) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool cMapElement_outletClassMap::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableViewBinding.isValid () && mAttribute_mUserDefined.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableValueBinding.isValid () && mAttribute_mHandleEnabledBinding.isValid () && mAttribute_mUserDefined.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement * cMapElement_outletClassMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_outletClassMap (mAttribute_lkey, mAttribute_mHandlesRunAction, mAttribute_mHandlesTableViewBinding, mAttribute_mUserDefined COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_outletClassMap (mAttribute_lkey, mAttribute_mHandlesRunAction, mAttribute_mHandlesTableValueBinding, mAttribute_mHandleEnabledBinding, mAttribute_mUserDefined COMMA_HERE)) ;
   return result ;
 }
 
@@ -6793,8 +6795,12 @@ void cMapElement_outletClassMap::description (C_String & ioString, const int32_t
   mAttribute_mHandlesRunAction.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mHandlesTableViewBinding" ":" ;
-  mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation) ;
+  ioString << "mHandlesTableValueBinding" ":" ;
+  mAttribute_mHandlesTableValueBinding.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mHandleEnabledBinding" ":" ;
+  mAttribute_mHandleEnabledBinding.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mUserDefined" ":" ;
@@ -6810,7 +6816,10 @@ typeComparisonResult cMapElement_outletClassMap::compare (const cCollectionEleme
     result = mAttribute_mHandlesRunAction.objectCompare (operand->mAttribute_mHandlesRunAction) ;
   }
   if (kOperandEqual == result) {
-    result = mAttribute_mHandlesTableViewBinding.objectCompare (operand->mAttribute_mHandlesTableViewBinding) ;
+    result = mAttribute_mHandlesTableValueBinding.objectCompare (operand->mAttribute_mHandlesTableValueBinding) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mHandleEnabledBinding.objectCompare (operand->mAttribute_mHandleEnabledBinding) ;
   }
   if (kOperandEqual == result) {
     result = mAttribute_mUserDefined.objectCompare (operand->mAttribute_mUserDefined) ;
@@ -6869,10 +6878,11 @@ void GALGAS_outletClassMap::addAssign_operation (const GALGAS_lstring & inKey,
                                                  const GALGAS_bool & inArgument0,
                                                  const GALGAS_bool & inArgument1,
                                                  const GALGAS_bool & inArgument2,
+                                                 const GALGAS_bool & inArgument3,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   cMapElement_outletClassMap * p = NULL ;
-  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -6887,10 +6897,11 @@ void GALGAS_outletClassMap::setter_insertKey (GALGAS_lstring inKey,
                                               GALGAS_bool inArgument0,
                                               GALGAS_bool inArgument1,
                                               GALGAS_bool inArgument2,
+                                              GALGAS_bool inArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) {
   cMapElement_outletClassMap * p = NULL ;
-  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -6909,6 +6920,7 @@ void GALGAS_outletClassMap::method_searchKey (GALGAS_lstring inKey,
                                               GALGAS_bool & outArgument0,
                                               GALGAS_bool & outArgument1,
                                               GALGAS_bool & outArgument2,
+                                              GALGAS_bool & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const {
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) performSearch (inKey,
@@ -6919,11 +6931,13 @@ void GALGAS_outletClassMap::method_searchKey (GALGAS_lstring inKey,
     outArgument0.drop () ;
     outArgument1.drop () ;
     outArgument2.drop () ;
+    outArgument3.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
     outArgument0 = p->mAttribute_mHandlesRunAction ;
-    outArgument1 = p->mAttribute_mHandlesTableViewBinding ;
-    outArgument2 = p->mAttribute_mUserDefined ;
+    outArgument1 = p->mAttribute_mHandlesTableValueBinding ;
+    outArgument2 = p->mAttribute_mHandleEnabledBinding ;
+    outArgument3 = p->mAttribute_mUserDefined ;
   }
 }
 
@@ -6944,15 +6958,30 @@ GALGAS_bool GALGAS_outletClassMap::getter_mHandlesRunActionForKey (const GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_outletClassMap::getter_mHandlesTableViewBindingForKey (const GALGAS_string & inKey,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_outletClassMap::getter_mHandlesTableValueBindingForKey (const GALGAS_string & inKey,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const {
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) attributes ;
   GALGAS_bool result ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
-    result = p->mAttribute_mHandlesTableViewBinding ;
+    result = p->mAttribute_mHandlesTableValueBinding ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_outletClassMap::getter_mHandleEnabledBindingForKey (const GALGAS_string & inKey,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) attributes ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_outletClassMap) ;
+    result = p->mAttribute_mHandleEnabledBinding ;
   }
   return result ;
 }
@@ -6988,15 +7017,29 @@ void GALGAS_outletClassMap::setter_setMHandlesRunActionForKey (GALGAS_bool inAtt
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void GALGAS_outletClassMap::setter_setMHandlesTableViewBindingForKey (GALGAS_bool inAttributeValue,
-                                                                      GALGAS_string inKey,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
+void GALGAS_outletClassMap::setter_setMHandlesTableValueBindingForKey (GALGAS_bool inAttributeValue,
+                                                                       GALGAS_string inKey,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
   cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
-    p->mAttribute_mHandlesTableViewBinding = inAttributeValue ;
+    p->mAttribute_mHandlesTableValueBinding = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_outletClassMap::setter_setMHandleEnabledBindingForKey (GALGAS_bool inAttributeValue,
+                                                                   GALGAS_string inKey,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_outletClassMap) ;
+    p->mAttribute_mHandleEnabledBinding = inAttributeValue ;
   }
 }
 
@@ -7037,7 +7080,7 @@ cGenericAbstractEnumerator () {
 GALGAS_outletClassMap_2D_element cEnumerator_outletClassMap::current (LOCATION_ARGS) const {
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_outletClassMap) ;
-  return GALGAS_outletClassMap_2D_element (p->mAttribute_lkey, p->mAttribute_mHandlesRunAction, p->mAttribute_mHandlesTableViewBinding, p->mAttribute_mUserDefined) ;
+  return GALGAS_outletClassMap_2D_element (p->mAttribute_lkey, p->mAttribute_mHandlesRunAction, p->mAttribute_mHandlesTableValueBinding, p->mAttribute_mHandleEnabledBinding, p->mAttribute_mUserDefined) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7058,10 +7101,18 @@ GALGAS_bool cEnumerator_outletClassMap::current_mHandlesRunAction (LOCATION_ARGS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool cEnumerator_outletClassMap::current_mHandlesTableViewBinding (LOCATION_ARGS) const {
+GALGAS_bool cEnumerator_outletClassMap::current_mHandlesTableValueBinding (LOCATION_ARGS) const {
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_outletClassMap) ;
-  return p->mAttribute_mHandlesTableViewBinding ;
+  return p->mAttribute_mHandlesTableValueBinding ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool cEnumerator_outletClassMap::current_mHandleEnabledBinding (LOCATION_ARGS) const {
+  const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_outletClassMap) ;
+  return p->mAttribute_mHandleEnabledBinding ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
