@@ -15258,6 +15258,12 @@ GALGAS_mainXibElement GALGAS_mainXibElement::extractObject (const GALGAS_object 
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
+C_BoolCommandLineOption gOption_easyBindings_5F_options_latexBindingDescription ("easyBindings_options",
+                                         "latexBindingDescription",
+                                         98,
+                                         "output-binding-description",
+                                         "Output binding description in Latex") ;
+
 C_BoolCommandLineOption gOption_easyBindings_5F_options_outputClassDependencyGraph ("easyBindings_options",
                                          "outputClassDependencyGraph",
                                          99,
