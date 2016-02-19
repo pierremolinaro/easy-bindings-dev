@@ -13,7 +13,7 @@ transient property class NSImage ;
 outletClass EBButton $run $enabled ;
 
 outletClass EBColorObserverWell $enabled ;
-binding EBColorObserverWell $colorObserver : property NSColor ;
+binding EBColorObserverWell $colorObserver : transient NSColor ;
 
 outletClass EBColorWell $enabled ;
 binding EBColorWell $color : property NSColor {sendContinously : Bool} ;

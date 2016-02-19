@@ -176,7 +176,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "outletClass EBButton $run $enabled ;\n"
     "\n"
     "outletClass EBColorObserverWell $enabled ;\n"
-    "binding EBColorObserverWell $colorObserver : property NSColor ;\n"
+    "binding EBColorObserverWell $colorObserver : transient NSColor ;\n"
     "\n"
     "outletClass EBColorWell $enabled ;\n"
     "binding EBColorWell $color : property NSColor {sendContinously : Bool} ;\n"
