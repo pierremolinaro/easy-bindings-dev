@@ -140,7 +140,7 @@ proc semanticAnalysis
   if [option easyBindings_options.latexBindingDescription value] then
     var s = ""
     for () class_ in semanticContext.mOutletClassMap do
-      s += "\\section{Classe \\texttt{" + class_lkey + "}}\\index{" + class_lkey + "}\n\n"
+      s += "\\sectionLabel{Classe \\texttt{" + class_lkey + "}}{outletClass" +class_lkey + "}\\index{" + class_lkey + "}\n\n"
       if class_mHandleEnabledBinding || class_mHandlesRunAction || class_mHandlesTableValueBinding then
         s += "\\subsection{Bindings spéciaux}\n\n"
         if class_mHandleEnabledBinding then
