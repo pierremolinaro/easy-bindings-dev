@@ -143,6 +143,20 @@ proc semanticAnalysis
       s += "\\section{Classe \\texttt{" + class_lkey + "}}\\index{" + class_lkey + "}\n\n"
       for () binding_ in class_mBindingMap do
         s += "\\subsection{Binding \\texttt{\\$" + binding_lkey + "}}\\index{\\$" + binding_lkey + "}\n\n"
+        s += "{\\bf Type du modèle}\n\n"
+        s += "\\begin{tabular}{ll}\n"
+        s += "\\textbf{Type du modèle} & \\textbf{Modèle modifiable via le binding}\\\\\n"
+        for () in binding_mOutletBindingSpecificationModelList do
+          s += [mModelType swiftTypeName] + "& " + if mModelShouldBeWritableProperty then "Oui" else "Non" end + "\\\\\n"
+        end
+        s += "\\end{tabular}\n"
+        if [binding_mControllerBindingOptionList length] == 0 then
+          s += "{\\bf Type du modèle}\n\n"
+        else
+        
+        end
+#  @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
+#  @controllerBindingOptionDecoratedList mControllerBindingOptionList
       end
       s += "\n\n\n\n\n\n\n"
     end
