@@ -41,6 +41,8 @@ La génération du code \emph{Swift} par \tpp{eb} est effectuée de telle façon
 \subsectionLabel{Texte source}{textSourceTutorialUn}
 
 \begin{ebcode}
+xcodeproject "fr.irccyn.molinaro" ;
+
 mainxib {
   {"String:", EBTextField myTextField},
   {"String (send continously): ", EBTextField myOtherTextField},
@@ -78,15 +80,23 @@ prefs {
 }
 \end{ebcode}
 
-Le texte source est divisé en deux parties :
+Le texte source est divisé en trois parties :
 \begin{itemize}
-  \item description de l'interface (\eb!mainxib {...}!) ;
-  \item description des préférences (\eb!prefs {...}!).
+  \item génération d'un projet Xcode (clause \eb!xcodeproject!, \refSubsectionPage{clauseProject}) ;
+  \item description de l'interface (clause \eb!mainxib!, \refSubsectionPage{clauseMainXIB}) ;
+  \item description des préférences (clause \eb!prefs!, \refSubsectionPage{clausePrefs}).
 \end{itemize}
 
-La première partie permet de décrire une interface très sommaire, utile simplement pour un petit programme d'exemple, destiné à un tutorial comme celui-ci. La déclaration \eb!mainxib! ordonne aussi la génération d'un projet Xcode prêt à l'emploi. Dans un vrai projet, on préfèrera écrire le projet et l'interface à la main.
+La première partie (clause \eb!xcodeproject!) ordonne la génération d'un projet Xcode, ce qui est utile dans le cadre d'un petit programme d'exemple.  Dans un vrai projet, on préfèrera écrire le projet à la main.
+ 
+La deuxième partie (clause \eb!mainxib!) permet de décrire une interface très sommaire, utile simplement pour un petit programme d'exemple, destiné à un tutorial comme celui-ci. Dans un vrai projet, on préfèrera écrire l'interface à la main.
 
-La seconde partie est la définition des préférences, c'est-à-dire des propriétés (\eb!property!), et outlets (\eb!outlet!) et de leurs bindings (\eb!$value!),  (\eb!$valueObserver!), ...
+La troisième partie (clause \eb!prefs!) est la définition des préférences, c'est-à-dire des propriétés (\eb!property!), et outlets (\eb!outlet!) et de leurs bindings (\eb!$value!),  (\eb!$valueObserver!), ...
+
+
+
+
+
 
 \subsection{Compilation du texte source}
 
@@ -103,7 +113,7 @@ Sont engendrés, dans le même répertoire que le fichier source :
 La compilation du projet Xcode fait apparaître plusieurs warnings :
 \begin{itemize}
 \item des warnings « \emph{Update to recommended settings} » et « \emph{This file is set to build for a version older than the deployment target. Functionality may be limited.} » que l'on peut ignorer pour ce programme d'exemple ;
-\item le warning « \emph{Will never be executed} » qui désigne une portion de code inatteignable ; ce warning concerne un code qui doit être modifié à la main, la génération de ce warning est volontaire pour que l'utilisateur en soit averti ; il sera étudié à la section §§§.
+\item le warning « \emph{Will never be executed} » qui désigne une portion de code inatteignable ; ce warning concerne un code qui doit être modifié à la main, la génération de ce warning est volontaire pour que l'utilisateur en soit averti ; il sera étudié à la \refSubsubsectionTitlePage{validationSaisie}.
 \end{itemize}
 
 
@@ -139,7 +149,19 @@ Les sections qui suivent sont consacrées à la description du texte source \emp
 
 
 
-\subsection{Clause \texttt{mainxib}}\index{mainxib}
+\subsectionLabel{Clause \texttt{xcodeproject}}{clauseProject}\index{xcodeproject}
+
+La clause \eb!xcodeproject! permet d'ordonner la génération d'un projet Xcode. Le seul paramètre à fournir est la chaîne permettant de définir le « \emph{Bundle Identifier} » de l'application :
+\begin{ebcode}
+xcodeproject "fr.irccyn.molinaro" ;
+\end{ebcode}
+
+Le « \emph{Bundle Identifier} » de l'application est construit à partir de la chaîne fournie, en ajoutant un point suivi du nom du fichier source \emph{Easy Binding} sans son extension : pour le fichier \texttt{tutorial1.eb}, le « \emph{Bundle Identifier} » est \texttt{fr.irccyn.molinaro.tutorial1}.
+
+
+
+
+\subsectionLabel{Clause \texttt{mainxib}}{clauseMainXIB}\index{mainxib}
 
 La clause \eb!mainxib! permet de décrire une fenêtre liées aux \emph{préférences} de l'application. La présentation est systématique (\refFigurePage{}{interfaceGraphiquePremierTutorial}), deux colonnes, celle de gauche étant un commentaire, celle de droite contenant l'item graphique (bouton, champ texte, …). Ceci est uniquement destiné à réaliser rapidement des petits exemples illustratifs.
 
@@ -161,7 +183,7 @@ Le code est une description ligne par ligne de la composition de la fenêtre, en
 
 
 
-\subsection{Clause \texttt{prefs}}\index{prefs}
+\subsectionLabel{Clause \texttt{prefs}}{clausePrefs}\index{prefs}
 
 Une clause \eb!prefs! décrit modèles et bindings. Le seul couplage entre cette description et la description graphique (dans une classe \eb!mainxib! ou à la main) est constitué par les outlets et leur type. Sa compilation engendre un fichier \texttt{Preferences.swift} qui définit la classe \texttt{Preferences}.
 
@@ -187,6 +209,8 @@ Une clause \eb!prefs! décrit modèles et bindings. Le seul couplage entre cette
 %}
 %\end{ebcode}
 
+\subsubsection{Déclaration des propriétés}
+
 Observons la première ligne de la clause \eb!prefs! (\refSubsectionPage{textSourceTutorialUn}) :
 \begin{ebcode}
   property String myString default "hello" ;
@@ -196,5 +220,22 @@ Elle déclare le modèle \eb!myString!, de type \eb!String!, dont la valeur init
 
 La valeur initiale n'est utilisée que lors du premier lancement de l'application, ou lorsqu'une propriété est ajoutée, c'est-à-dire quand la clé \texttt{Preferences:myString} n'existe pas dans les préférences de l'application.
 
- 
+Il en est de même pour les autres propriétés :
+\begin{ebcode}
+  property NSColor mColor default yellowColor ;
+  ...
+  property NSDate mDate default date ;
+  ...
+  property validates Int mIntegerValue default 12 ;
+\end{ebcode}
+
+La dernière déclaration fait apparaître le mot réservé \eb!validates! qui ordonne la validation des données saisie via l'interface ; ce point est examiné à la \refSubsubsectionTitlePage{validationSaisie}.
+
+
+\subsubsection{Déclaration des outlets de leurs bindings}
+
+
+
+\subsubsectionLabel{Validation de la saisie}{validationSaisie}
+
 
