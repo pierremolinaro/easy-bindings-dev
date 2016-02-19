@@ -24,8 +24,8 @@ if len (sys.argv) > 1 :
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
 os.chdir (scriptDir)
 #------------------- Build
-print "+ " + compiler + " -v simple-preferences.eb"
-buildProcess = subprocess.Popen ([compiler, "-v", "simple-preferences.eb"])
+print "+ " + compiler + " simple-preferences.eb"
+buildProcess = subprocess.Popen ([compiler, "simple-preferences.eb"])
 buildProcess.wait ()
 #------------------- Xcode build
 if buildProcess.returncode == 0 :

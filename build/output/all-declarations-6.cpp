@@ -19,14 +19,14 @@ void categoryMethod_buildOutletClassMap (const GALGAS_outletClassDeclarationList
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outOutletClassMap.drop () ; // Release 'out' argument
-  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 73)) ;
+  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 74)) ;
   const GALGAS_outletClassDeclarationList temp_0 = inObject ;
-  cEnumerator_outletClassDeclarationList enumerator_2940 (temp_0, kEnumeration_up) ;
-  while (enumerator_2940.hasCurrentObject ()) {
+  cEnumerator_outletClassDeclarationList enumerator_2972 (temp_0, kEnumeration_up) ;
+  while (enumerator_2972.hasCurrentObject ()) {
     {
-    outArgument_outOutletClassMap.setter_insertKey (enumerator_2940.current_mOutletClassName (HERE), enumerator_2940.current_mHasRunAction (HERE), enumerator_2940.current_mHandlesTableViewBinding (HERE), enumerator_2940.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 75)) ;
+    outArgument_outOutletClassMap.setter_insertKey (enumerator_2972.current_mOutletClassName (HERE), enumerator_2972.current_mHasRunAction (HERE), enumerator_2972.current_mHandlesTableValueBinding (HERE), enumerator_2972.current_mHasEnabled (HERE), enumerator_2972.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 76)) ;
     }
-    enumerator_2940.gotoNextObject () ;
+    enumerator_2972.gotoNextObject () ;
   }
 }
 
@@ -11213,7 +11213,7 @@ mAttribute_mUserDefined (),
 mAttribute_mOutletClassName (),
 mAttribute_mHasRunAction (),
 mAttribute_mHasEnabled (),
-mAttribute_mHandlesTableViewBinding () {
+mAttribute_mHandlesTableValueBinding () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11232,7 +11232,7 @@ mAttribute_mUserDefined (inOperand0),
 mAttribute_mOutletClassName (inOperand1),
 mAttribute_mHasRunAction (inOperand2),
 mAttribute_mHasEnabled (inOperand3),
-mAttribute_mHandlesTableViewBinding (inOperand4) {
+mAttribute_mHandlesTableValueBinding (inOperand4) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11277,7 +11277,7 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
     result = mAttribute_mHasEnabled.objectCompare (inOperand.mAttribute_mHasEnabled) ;
   }
   if (result == kOperandEqual) {
-    result = mAttribute_mHandlesTableViewBinding.objectCompare (inOperand.mAttribute_mHandlesTableViewBinding) ;
+    result = mAttribute_mHandlesTableValueBinding.objectCompare (inOperand.mAttribute_mHandlesTableValueBinding) ;
   }
   return result ;
 }
@@ -11285,7 +11285,7 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mAttribute_mUserDefined.isValid () && mAttribute_mOutletClassName.isValid () && mAttribute_mHasRunAction.isValid () && mAttribute_mHasEnabled.isValid () && mAttribute_mHandlesTableViewBinding.isValid () ;
+  return mAttribute_mUserDefined.isValid () && mAttribute_mOutletClassName.isValid () && mAttribute_mHasRunAction.isValid () && mAttribute_mHasEnabled.isValid () && mAttribute_mHandlesTableValueBinding.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11295,7 +11295,7 @@ void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
   mAttribute_mOutletClassName.drop () ;
   mAttribute_mHasRunAction.drop () ;
   mAttribute_mHasEnabled.drop () ;
-  mAttribute_mHandlesTableViewBinding.drop () ;
+  mAttribute_mHandlesTableValueBinding.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11314,7 +11314,7 @@ void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioStr
     ioString << ", " ;
     mAttribute_mHasEnabled.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation+1) ;
+    mAttribute_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -11345,8 +11345,8 @@ GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHasEnabled (UN
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHandlesTableViewBinding (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesTableViewBinding ;
+GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHandlesTableValueBinding (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mHandlesTableValueBinding ;
 }
 
 
@@ -11399,7 +11399,8 @@ GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2
 GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (void) :
 mAttribute_lkey (),
 mAttribute_mHandlesRunAction (),
-mAttribute_mHandlesTableViewBinding (),
+mAttribute_mHandlesTableValueBinding (),
+mAttribute_mHandleEnabledBinding (),
 mAttribute_mUserDefined () {
 }
 
@@ -11413,17 +11414,20 @@ GALGAS_outletClassMap_2D_element::~ GALGAS_outletClassMap_2D_element (void) {
 GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS_lstring & inOperand0,
                                                                     const GALGAS_bool & inOperand1,
                                                                     const GALGAS_bool & inOperand2,
-                                                                    const GALGAS_bool & inOperand3) :
+                                                                    const GALGAS_bool & inOperand3,
+                                                                    const GALGAS_bool & inOperand4) :
 mAttribute_lkey (inOperand0),
 mAttribute_mHandlesRunAction (inOperand1),
-mAttribute_mHandlesTableViewBinding (inOperand2),
-mAttribute_mUserDefined (inOperand3) {
+mAttribute_mHandlesTableValueBinding (inOperand2),
+mAttribute_mHandleEnabledBinding (inOperand3),
+mAttribute_mUserDefined (inOperand4) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                           GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE)) ;
@@ -11434,11 +11438,12 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_d
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
                                                                                     const GALGAS_bool & inOperand1,
                                                                                     const GALGAS_bool & inOperand2,
-                                                                                    const GALGAS_bool & inOperand3 
+                                                                                    const GALGAS_bool & inOperand3,
+                                                                                    const GALGAS_bool & inOperand4 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
   }
   return result ;
 }
@@ -11454,7 +11459,10 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
     result = mAttribute_mHandlesRunAction.objectCompare (inOperand.mAttribute_mHandlesRunAction) ;
   }
   if (result == kOperandEqual) {
-    result = mAttribute_mHandlesTableViewBinding.objectCompare (inOperand.mAttribute_mHandlesTableViewBinding) ;
+    result = mAttribute_mHandlesTableValueBinding.objectCompare (inOperand.mAttribute_mHandlesTableValueBinding) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAttribute_mHandleEnabledBinding.objectCompare (inOperand.mAttribute_mHandleEnabledBinding) ;
   }
   if (result == kOperandEqual) {
     result = mAttribute_mUserDefined.objectCompare (inOperand.mAttribute_mUserDefined) ;
@@ -11465,7 +11473,7 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableViewBinding.isValid () && mAttribute_mUserDefined.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mHandlesRunAction.isValid () && mAttribute_mHandlesTableValueBinding.isValid () && mAttribute_mHandleEnabledBinding.isValid () && mAttribute_mUserDefined.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -11473,7 +11481,8 @@ bool GALGAS_outletClassMap_2D_element::isValid (void) const {
 void GALGAS_outletClassMap_2D_element::drop (void) {
   mAttribute_lkey.drop () ;
   mAttribute_mHandlesRunAction.drop () ;
-  mAttribute_mHandlesTableViewBinding.drop () ;
+  mAttribute_mHandlesTableValueBinding.drop () ;
+  mAttribute_mHandleEnabledBinding.drop () ;
   mAttribute_mUserDefined.drop () ;
 }
 
@@ -11489,7 +11498,9 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
     ioString << ", " ;
     mAttribute_mHandlesRunAction.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mAttribute_mHandlesTableViewBinding.description (ioString, inIndentation+1) ;
+    mAttribute_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mHandleEnabledBinding.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mUserDefined.description (ioString, inIndentation+1) ;
   }
@@ -11510,8 +11521,14 @@ GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandlesRunAction (UNUSED_L
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandlesTableViewBinding (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mHandlesTableViewBinding ;
+GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandlesTableValueBinding (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mHandlesTableValueBinding ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandleEnabledBinding (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mHandleEnabledBinding ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -12896,152 +12913,6 @@ GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element:
       result = *p ;
     }else{
       inCompiler->castError ("outletDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingModelList_2D_element::GALGAS_outletBindingModelList_2D_element (void) :
-mAttribute_mModelType (),
-mAttribute_mKind (),
-mAttribute_mErrorLocation () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingModelList_2D_element::~ GALGAS_outletBindingModelList_2D_element (void) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingModelList_2D_element::GALGAS_outletBindingModelList_2D_element (const GALGAS_typeKind & inOperand0,
-                                                                                    const GALGAS_propertyKind & inOperand1,
-                                                                                    const GALGAS_location & inOperand2) :
-mAttribute_mModelType (inOperand0),
-mAttribute_mKind (inOperand1),
-mAttribute_mErrorLocation (inOperand2) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingModelList_2D_element GALGAS_outletBindingModelList_2D_element::constructor_new (const GALGAS_typeKind & inOperand0,
-                                                                                                    const GALGAS_propertyKind & inOperand1,
-                                                                                                    const GALGAS_location & inOperand2 
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_outletBindingModelList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_outletBindingModelList_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult GALGAS_outletBindingModelList_2D_element::objectCompare (const GALGAS_outletBindingModelList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAttribute_mModelType.objectCompare (inOperand.mAttribute_mModelType) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mKind.objectCompare (inOperand.mAttribute_mKind) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAttribute_mErrorLocation.objectCompare (inOperand.mAttribute_mErrorLocation) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool GALGAS_outletBindingModelList_2D_element::isValid (void) const {
-  return mAttribute_mModelType.isValid () && mAttribute_mKind.isValid () && mAttribute_mErrorLocation.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletBindingModelList_2D_element::drop (void) {
-  mAttribute_mModelType.drop () ;
-  mAttribute_mKind.drop () ;
-  mAttribute_mErrorLocation.drop () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_outletBindingModelList_2D_element::description (C_String & ioString,
-                                                            const int32_t inIndentation) const {
-  ioString << "<struct @outletBindingModelList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mAttribute_mModelType.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mKind.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mAttribute_mErrorLocation.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_typeKind GALGAS_outletBindingModelList_2D_element::getter_mModelType (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mModelType ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_propertyKind GALGAS_outletBindingModelList_2D_element::getter_mKind (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mKind ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_location GALGAS_outletBindingModelList_2D_element::getter_mErrorLocation (UNUSED_LOCATION_ARGS) const {
-  return mAttribute_mErrorLocation ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        @outletBindingModelList-element type                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ("outletBindingModelList-element",
-                                                          NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_outletBindingModelList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_outletBindingModelList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_outletBindingModelList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_outletBindingModelList_2D_element GALGAS_outletBindingModelList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_outletBindingModelList_2D_element result ;
-  const GALGAS_outletBindingModelList_2D_element * p = (const GALGAS_outletBindingModelList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletBindingModelList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletBindingModelList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

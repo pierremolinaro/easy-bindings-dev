@@ -71,7 +71,7 @@ var g_Preferences : Preferences? = nil
       presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    prefTransientString.computeFunction = { [weak self] in
+    prefTransientString.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.myPrefString.prop {
         case .noSelection :

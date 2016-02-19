@@ -22,11 +22,6 @@ binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 outletClass EBDatePicker $enabled ;
 binding EBDatePicker $date : property NSDate ;
 
-
-outletClass EBMatrix $enabled ;
-binding EBMatrix $selectedIndex : property enum ;
-
-
 outletClass EBDoubleField ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 

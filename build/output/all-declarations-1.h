@@ -3565,6 +3565,7 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                       const class GALGAS_bool & inOperand1,
                                                       const class GALGAS_bool & inOperand2,
                                                       const class GALGAS_bool & inOperand3,
+                                                      const class GALGAS_bool & inOperand4,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -3573,18 +3574,24 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                    class GALGAS_bool constinArgument1,
                                                    class GALGAS_bool constinArgument2,
                                                    class GALGAS_bool constinArgument3,
+                                                   class GALGAS_bool constinArgument4,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMHandleEnabledBindingForKey (class GALGAS_bool constinArgument0,
+                                                                        class GALGAS_string constinArgument1,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMHandlesRunActionForKey (class GALGAS_bool constinArgument0,
                                                                     class GALGAS_string constinArgument1,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMHandlesTableViewBindingForKey (class GALGAS_bool constinArgument0,
-                                                                           class GALGAS_string constinArgument1,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void setter_setMHandlesTableValueBindingForKey (class GALGAS_bool constinArgument0,
+                                                                            class GALGAS_string constinArgument1,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMUserDefinedForKey (class GALGAS_bool constinArgument0,
                                                                class GALGAS_string constinArgument1,
@@ -3597,19 +3604,24 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                    class GALGAS_bool & outArgument1,
                                                    class GALGAS_bool & outArgument2,
                                                    class GALGAS_bool & outArgument3,
+                                                   class GALGAS_bool & outArgument4,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleEnabledBindingForKey (const class GALGAS_string & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesRunActionForKey (const class GALGAS_string & constinOperand0,
                                                                               C_Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableViewBindingForKey (const class GALGAS_string & constinOperand0,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBindingForKey (const class GALGAS_string & constinOperand0,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUserDefinedForKey (const class GALGAS_string & constinOperand0,
                                                                          C_Compiler * inCompiler
@@ -3642,7 +3654,8 @@ class cEnumerator_outletClassMap : public cGenericAbstractEnumerator {
 //--- Current element access
   public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
-  public : class GALGAS_bool current_mHandlesTableViewBinding (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mUserDefined (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletClassMap_2D_element current (LOCATION_ARGS) const ;
@@ -3661,13 +3674,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap ;
 class cMapElement_outletClassMap : public cMapElement {
 //--- Map attributes
   public : GALGAS_bool mAttribute_mHandlesRunAction ;
-  public : GALGAS_bool mAttribute_mHandlesTableViewBinding ;
+  public : GALGAS_bool mAttribute_mHandlesTableValueBinding ;
+  public : GALGAS_bool mAttribute_mHandleEnabledBinding ;
   public : GALGAS_bool mAttribute_mUserDefined ;
 
 //--- Constructor
   public : cMapElement_outletClassMap (const GALGAS_lstring & inKey,
                                        const GALGAS_bool & in_mHandlesRunAction,
-                                       const GALGAS_bool & in_mHandlesTableViewBinding,
+                                       const GALGAS_bool & in_mHandlesTableValueBinding,
+                                       const GALGAS_bool & in_mHandleEnabledBinding,
                                        const GALGAS_bool & in_mUserDefined
                                        COMMA_LOCATION_ARGS) ;
 
@@ -3694,7 +3709,8 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_lstring mAttribute_lkey ;
   public : GALGAS_bool mAttribute_mHandlesRunAction ;
-  public : GALGAS_bool mAttribute_mHandlesTableViewBinding ;
+  public : GALGAS_bool mAttribute_mHandlesTableValueBinding ;
+  public : GALGAS_bool mAttribute_mHandleEnabledBinding ;
   public : GALGAS_bool mAttribute_mUserDefined ;
 
 
@@ -3714,7 +3730,8 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public : GALGAS_outletClassMap_2D_element (const GALGAS_lstring & in_lkey,
                                              const GALGAS_bool & in_mHandlesRunAction,
-                                             const GALGAS_bool & in_mHandlesTableViewBinding,
+                                             const GALGAS_bool & in_mHandlesTableValueBinding,
+                                             const GALGAS_bool & in_mHandleEnabledBinding,
                                              const GALGAS_bool & in_mUserDefined) ;
 
 //-- Start of generic part --*
@@ -3731,7 +3748,8 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
   public : static GALGAS_outletClassMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                     const class GALGAS_bool & inOperand1,
                                                                     const class GALGAS_bool & inOperand2,
-                                                                    const class GALGAS_bool & inOperand3
+                                                                    const class GALGAS_bool & inOperand3,
+                                                                    const class GALGAS_bool & inOperand4
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -3748,9 +3766,11 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleEnabledBinding (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesRunAction (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableViewBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBinding (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUserDefined (LOCATION_ARGS) const ;
 

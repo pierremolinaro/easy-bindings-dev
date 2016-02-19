@@ -24,7 +24,7 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
 
   override init () {
     super.init ()
-    self.computeFunction = { [weak self] in
+    self.readModelFunction = { [weak self] in
       if let unwSelf = self {
         return .singleSelection (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
       }else{
@@ -80,7 +80,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 
   override init () {
     super.init ()
-    self.computeFunction = { [weak self] in
+    self.readModelFunction = { [weak self] in
       if let unwSelf = self {
         return .singleSelection (Int (unwSelf.signature ()))
       }else{
@@ -119,7 +119,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //   EBWeakEventSetElement
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBWeakEventSetElement) class EBWeakEventSetElement : EBObject {
+class EBWeakEventSetElement : EBObject {
   private weak var mObserver : EBEvent? = nil {
     didSet {
       if mObserver == nil, let object = mObject {
@@ -130,6 +130,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 
   private weak var mObject : EBWeakEventSet? = nil
   private var mObserverAddress : Int
+  private var mObserverRetainCount = 1
   
   init (object : EBWeakEventSet, observer : EBEvent) {
     mObserver = observer
@@ -137,27 +138,44 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
     mObserverAddress = unsafeAddressOf (observer).hashValue
     super.init ()
   }
+  
+  final func retainObserver () {
+    mObserverRetainCount += 1
+  }
+  
+  final func releaseObserver () -> Int {
+    mObserverRetainCount -= 1
+    return mObserverRetainCount
+  }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBWeakEventSet
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBWeakEventSet) class EBWeakEventSet : EBObject, SequenceType {
+class EBWeakEventSet : EBObject, SequenceType {
   private var mDictionary = [Int : EBWeakEventSetElement] ()
 
   //····················································································································
   
   func insert (inObserver : EBEvent) {
     let address : Int = unsafeAddressOf (inObserver).hashValue
-    mDictionary [address] = EBWeakEventSetElement (object:self, observer:inObserver)
+    if let entry = mDictionary [address] {
+      entry.retainObserver ()
+    }else{
+      mDictionary [address] = EBWeakEventSetElement (object:self, observer:inObserver)
+    }
   }
 
   //····················································································································
   
   func remove (inObserver : EBEvent) {
     let address : Int = unsafeAddressOf (inObserver).hashValue
-    mDictionary [address] = nil
+    if let entry = mDictionary [address] {
+      if entry.releaseObserver () == 0 {
+        mDictionary [address] = nil
+      }
+    }
   }
 
   //····················································································································
@@ -174,7 +192,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 
   //····················································································································
   
-  var count : Int {
+  var count : Swift.Int {
     get {
       return mDictionary.count
     }
@@ -185,7 +203,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //   EBAbstractProperty (abstract class)
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBAbstractProperty) class EBAbstractProperty : EBEvent {
+class EBAbstractProperty : EBEvent {
 
   private final var mObservers = EBWeakEventSet ()
   
@@ -245,7 +263,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //    EBObserver
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBObserver) class EBObserver : EBAbstractProperty {
+class EBObserver : EBAbstractProperty {
   private var mPostEventFunction : Optional < () -> Void > = nil
   
   //····················································································································
@@ -341,7 +359,7 @@ func presentErrorWindow (file : String!,
     contentRect:r,
     styleMask:NSTitledWindowMask | NSClosableWindowMask,
     backing:NSBackingStoreType.Buffered,
-    `defer`:true
+    defer:true
   )
   window.title = "Outlet Error"
   let contentView : NSView = window.contentView!
@@ -395,7 +413,7 @@ enum EBValidationResult <T> {
 //    EBTableCellView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTableCellView) class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
+class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
   final var mUnbindFunction : Optional < () -> Void > = nil
 
   //····················································································································
@@ -447,7 +465,7 @@ private var gExplorerObjectIndex = 0
 
 //······················································································································
 
-@objc(EBObject) class EBObject : NSObject, EBUserClassNameProtocol {
+class EBObject : NSObject, EBUserClassNameProtocol {
   let mExplorerObjectIndex : Int
 
   override init () {
@@ -466,7 +484,7 @@ private var gExplorerObjectIndex = 0
 //    EBSimpleClass class
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBSimpleClass) class EBSimpleClass : EBObject {
+class EBSimpleClass : EBObject {
 
   func populateExplorerWindow (inout y : CGFloat, view : NSView) {
   }
@@ -517,7 +535,7 @@ class EBSimpleController : EBOutletEvent {
       contentRect:r,
       styleMask:NSTitledWindowMask | NSClosableWindowMask,
       backing:NSBackingStoreType.Buffered,
-      `defer`:true,
+      defer:true,
       screen:nil
     )
   //-------------------------------------------------- Adding properties
@@ -709,7 +727,7 @@ func createEntryForObjectNamed (name : String,
   let vtf = NSTextField (frame:thirdColumn (y))
   vtf.enabled = true
   vtf.editable = false
-  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + _stdlib_getDemangledTypeName (object)
+  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (object.dynamicType)
   vtf.font = font
   view.addSubview (vtf)
 //--- Update rect origin
@@ -1025,6 +1043,49 @@ func < (left:NSDate, right:NSDate) -> Bool {
 
 func > (left:NSDate, right:NSDate) -> Bool {
   return left.compare (right) == .OrderedDescending
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    ReadOnlyAbstractArrayProperty
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class ReadOnlyAbstractArrayProperty <T> : EBAbstractProperty {
+
+  var prop : EBProperty < [T] > { get { return .noSelection } }
+
+  //····················································································································
+
+  final var count = EBTransientProperty_Int ()
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    count.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .noSelection :
+          return .noSelection
+        case .multipleSelection :
+          return .multipleSelection
+        case .singleSelection (let v) :
+          return .singleSelection (v.count)
+        }
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    count.postEvent ()
+    super.postEvent ()
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

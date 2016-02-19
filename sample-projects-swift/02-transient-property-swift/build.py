@@ -24,8 +24,8 @@ if len (sys.argv) > 1 :
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
 os.chdir (scriptDir)
 #------------------- Build
-print "+ " + compiler + " -v transient-property.eb"
-buildProcess = subprocess.Popen ([compiler, "-v", "transient-property.eb"])
+print "+ " + compiler + " transient-property.eb"
+buildProcess = subprocess.Popen ([compiler, "transient-property.eb"])
 buildProcess.wait ()
 #------------------- Xcode build
 if buildProcess.returncode == 0 :

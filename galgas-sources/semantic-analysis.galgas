@@ -139,36 +139,48 @@ proc semanticAnalysis
 #----------------------------------------- Output a binding description in latex
   if [option easyBindings_options.latexBindingDescription value] then
     var s = ""
-    for () class_ in semanticContext.mBindingSpecificationMap do
+    for () class_ in semanticContext.mOutletClassMap do
       s += "\\section{Classe \\texttt{" + class_lkey + "}}\\index{" + class_lkey + "}\n\n"
-      for () binding_ in class_mBindingMap do
-        s += "\\subsection{Binding \\texttt{\\$" + binding_lkey + "}}\\index{\\$" + binding_lkey + "}\n\n"
-        s += "\\subsubsection{Type du modèle}\n\n"
-        s += "\\begin{tabular}{|l|l|}\n"
-        s += "\\hline\n"
-        s += "\\textbf{Type du modèle} & \\textbf{Modèle modifiable via le binding}\\\\\n"
-        s += "\\hline\n"
-        for () in binding_mOutletBindingSpecificationModelList do
-          s += [mModelType swiftTypeName] + " & " + if mModelShouldBeWritableProperty then "Oui" else "Non" end + "\\\\\n"
-          s += "\\hline\n"
+      if class_mHandleEnabledBinding || class_mHandlesRunAction || class_mHandlesTableValueBinding then
+        s += "\\subsection{Bindings spéciaux}\n\n"
+        if class_mHandleEnabledBinding then
+          s += "Cette classe définit le binding \\$enabled.\\index{\\$enabled!" + class_lkey + "}\n\n"    
         end
-        s += "\\end{tabular}\n"
-        s += "\\subsubsection{Options}\n\n"
-        if [binding_mControllerBindingOptionList length] == 0 then
-          s += "Ce binding n'a pas d'option.\n\n"
-        else
+        if class_mHandlesRunAction then
+          s += "Cette classe définit le binding \\$run.\\index{\\$run!" + class_lkey + "}\n\n"    
+        end
+        if class_mHandlesTableValueBinding then
+          s += "Cette classe définit le binding \\$tableValue.\\index{\\$tableValue!" + class_lkey + "}\n\n"    
+        end
+      end
+      if [semanticContext.mBindingSpecificationMap hasKey !class_lkey.string] then
+        for () binding_ in [semanticContext.mBindingSpecificationMap mBindingMapForKey !class_lkey.string] do
+          s += "\\subsection{Binding \\texttt{\\$" + binding_lkey + "}}\\index{\\$" + binding_lkey + "!" + class_lkey + "}\n\n"
+          s += "\\subsubsection{Type du modèle}\n\n"
           s += "\\begin{tabular}{|l|l|}\n"
           s += "\\hline\n"
-          s += "\\textbf{Nom de l'option} & \\textbf{Type de l'option}\\\\\n"
+          s += "\\textbf{Type du modèle} & \\textbf{Modèle modifiable via le binding}\\\\\n"
           s += "\\hline\n"
-          for () in binding_mControllerBindingOptionList do
-            s += mOptionName.string + " & " + [mOptionType swiftTypeName] + "\\\\\n"
+          for () in binding_mOutletBindingSpecificationModelList do
+            s += [mModelType swiftTypeName] + " & " + if mModelShouldBeWritableProperty then "Oui" else "Non" end + "\\\\\n"
             s += "\\hline\n"
           end
           s += "\\end{tabular}\n"
+          s += "\\subsubsection{Options}\n\n"
+          if [binding_mControllerBindingOptionList length] == 0 then
+            s += "Ce binding n'a pas d'option.\n\n"
+          else
+            s += "\\begin{tabular}{|l|l|}\n"
+            s += "\\hline\n"
+            s += "\\textbf{Nom de l'option} & \\textbf{Type de l'option}\\\\\n"
+            s += "\\hline\n"
+            for () in binding_mControllerBindingOptionList do
+              s += mOptionName.string + " & " + [mOptionType swiftTypeName] + "\\\\\n"
+              s += "\\hline\n"
+            end
+            s += "\\end{tabular}\n"
+          end
         end
-#  @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
-#  @controllerBindingOptionDecoratedList mControllerBindingOptionList
       end
       s += "\n\n\n\n\n\n\n"
     end
