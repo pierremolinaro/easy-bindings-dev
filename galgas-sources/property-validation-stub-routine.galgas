@@ -39,10 +39,10 @@ proc generateValidationRoutineStubs
   let defaultUserZone2 =
         "    var result : EBValidationResult<" + mModelTypeName + ">\n"
       + "    let validates = false // Add your validation condition here\n"
-      + "    if !validates {\n"
-      + "      result = .rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"
-      + "    }else{\n"
+      + "    if validates {\n"
       + "      result = .ok (proposedValue)\n"
+      + "    }else{\n"
+      + "      result = .rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"
       + "    }\n"
       + "    return result\n"    
     [@string generateFileWithPattern
