@@ -804,7 +804,7 @@ void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument
     GALGAS_string var_s = GALGAS_string (filewrapperTemplate_validationStubExtension_actionGeneration (inCompiler, enumerator_1453.current_mObjectTypeName (HERE), enumerator_1453.current_mModelName (HERE), enumerator_1453.current_mModelTypeName (HERE) COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 32))) ;
     GALGAS_string var_fileName = enumerator_1453.current_mObjectTypeName (HERE).add_operation (GALGAS_string ("+validation+"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 37)).add_operation (enumerator_1453.current_mModelName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 37)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 37)) ;
     ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName  COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 38)) ;
-    GALGAS_string var_defaultUserZone_32_ = GALGAS_string ("    var result : EBValidationResult<").add_operation (enumerator_1453.current_mModelTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string (">\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string ("    if validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 41)).add_operation (GALGAS_string ("      result = .ok (proposedValue)\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 42)).add_operation (GALGAS_string ("    }else{\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (GALGAS_string ("      result = .rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 44)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 45)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 46)) ;
+    GALGAS_string var_defaultUserZone_32_ = GALGAS_string ("    var result : EBValidationResult<").add_operation (enumerator_1453.current_mModelTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string (">\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 40)).add_operation (GALGAS_string ("    if validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 41)).add_operation (GALGAS_string ("      result = .ok (proposedValue)\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 42)).add_operation (GALGAS_string ("    }else{\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 43)).add_operation (GALGAS_string ("      result = .rejectWithAlert (\"Rejected in \\(#file), line \\(#line)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 44)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 45)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.galgas", 46)) ;
     {
     GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
       "\n"), var_s, var_defaultUserZone_32_, GALGAS_string ("  }\n"
@@ -1399,7 +1399,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << in_MODEL_5F_TYPE_5F_NAME_5F__32_.stringValue () ;
   result << ", tableViewArray:[EBTableView], file:String, line:Int) {\n"
     "    if DEBUG_EVENT {\n"
-    "      print (\"\\(__FUNCTION__)\")\n"
+    "      print (\"\\(#function)\")\n"
     "    }\n"
     "  //--- Add observers\n"
     "    mModel = model\n"
@@ -1407,15 +1407,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    sortedArray.addEBObserver (mSelectedSet)\n"
     "    mSelectedSet.addEBObserver (selectedArray)\n"
     "  //--- Add observed properties (for filtering and sorting)\n" ;
-  GALGAS_uint index_9143_ (0) ;
+  GALGAS_uint index_9140_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING.isValid ()) {
-    cEnumerator_stringset enumerator_9143 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
-    while (enumerator_9143.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_9140 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
+    while (enumerator_9140.hasCurrentObject ()) {
       result << "    model.addEBObserverOf_" ;
-      result << enumerator_9143.current_key (HERE).stringValue () ;
+      result << enumerator_9140.current_key (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_9143_.increment () ;
-      enumerator_9143.gotoNextObject () ;
+      index_9140_.increment () ;
+      enumerator_9140.gotoNextObject () ;
     }
   }
   result << "  //--- Bind table views\n"
@@ -1431,21 +1431,21 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "\n"
     "  func unbind_modelAndView () {\n"
     "    if DEBUG_EVENT {\n"
-    "      print (\"\\(__FUNCTION__)\")\n"
+    "      print (\"\\(#function)\")\n"
     "    }\n"
     "    mModel\?.removeEBObserver (sortedArray)\n"
     "    sortedArray.removeEBObserver (mSelectedSet)\n"
     "    mSelectedSet.removeEBObserver (selectedArray)\n"
     "  //--- Remove observed properties (for filtering and sorting)\n" ;
-  GALGAS_uint index_9993_ (0) ;
+  GALGAS_uint index_9987_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING.isValid ()) {
-    cEnumerator_stringset enumerator_9993 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
-    while (enumerator_9993.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_9987 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING, kEnumeration_up) ;
+    while (enumerator_9987.hasCurrentObject ()) {
       result << "    mModel\?.removeEBObserverOf_" ;
-      result << enumerator_9993.current_key (HERE).stringValue () ;
+      result << enumerator_9987.current_key (HERE).stringValue () ;
       result << " (sortedArray)\n" ;
-      index_9993_.increment () ;
-      enumerator_9993.gotoNextObject () ;
+      index_9987_.increment () ;
+      enumerator_9987.gotoNextObject () ;
     }
   }
   result << "    for tvc in mTableViewDataSourceControllerArray {\n"
@@ -1472,7 +1472,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "                               file:String,\n"
     "                               line:Int) {\n"
     "    if DEBUG_EVENT {\n"
-    "      print (\"\\(__FUNCTION__)\")\n"
+    "      print (\"\\(#function)\")\n"
     "    }\n"
     "    tableView.allowsEmptySelection = allowsEmptySelection\n"
     "    tableView.allowsMultipleSelection = allowsMultipleSelection\n"
@@ -1486,27 +1486,27 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "    let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)\n"
     "    mSelectedSet.addEBObserver (selectionTableViewController)\n"
     "    mTableViewSelectionControllerArray.append (selectionTableViewController)\n" ;
-  GALGAS_uint index_11800_ (0) ;
+  GALGAS_uint index_11791_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_11800 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    while (enumerator_11800.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_11791 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    while (enumerator_11791.hasCurrentObject ()) {
       result << "  //--- Check '" ;
-      result << enumerator_11800.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_11791.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "    if let column : NSTableColumn = tableView.tableColumnWithIdentifier (\"" ;
-      result << enumerator_11800.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_11791.current_mColumnName (HERE).stringValue () ;
       result << "\") {\n"
         "      column.sortDescriptorPrototype = nil\n"
         "    }else{\n"
         "      presentErrorWindow (file,\n"
         "        line: line,\n"
         "        errorMessage:\"\\\"" ;
-      result << enumerator_11800.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_11791.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown\"\n"
         "      )\n"
         "    }\n" ;
-      index_11800_.increment () ;
-      enumerator_11800.gotoNextObject () ;
+      index_11791_.increment () ;
+      enumerator_11791.gotoNextObject () ;
     }
   }
   result << "  //--- Set descriptors from first column of table view\n"
@@ -1547,7 +1547,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "\n"
     "  func numberOfRowsInTableView (_ : NSTableView) -> Int {\n"
     "    if DEBUG_EVENT {\n"
-    "      print (\"\\(__FUNCTION__)\")\n"
+    "      print (\"\\(#function)\")\n"
     "    }\n"
     "    switch sortedArray.prop {\n"
     "    case .noSelection, .multipleSelection :\n"
@@ -1563,7 +1563,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "\n"
     "  func tableViewSelectionDidChange (notication : NSNotification) {\n"
     "    if DEBUG_EVENT {\n"
-    "      print (\"\\(__FUNCTION__)\")\n"
+    "      print (\"\\(#function)\")\n"
     "    }\n"
     "    switch sortedArray.prop {\n"
     "    case .noSelection, .multipleSelection :\n"
@@ -1574,7 +1574,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> ()\n"
     "      for index in tableView.selectedRowIndexes {\n"
-    "        newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))\n"
+    "        newSelectedObjectSet.insert (v.objectAtIndex (index, file: #file, line: #line))\n"
     "      }\n"
     "      mSelectedSet.mSet = newSelectedObjectSet\n"
     "    }\n"
@@ -1604,7 +1604,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "                  viewForTableColumn inTableColumn: NSTableColumn\?,\n"
     "                  row inRowIndex: Int) -> NSView\? {\n"
     "    if DEBUG_EVENT {\n"
-    "      print (\"\\(__FUNCTION__)\")\n"
+    "      print (\"\\(#function)\")\n"
     "    }\n"
     "    switch sortedArray.prop {\n"
     "    case .noSelection, .multipleSelection :\n"
@@ -1615,82 +1615,82 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
     "      if !reuseTableViewCells () {\n"
     "        result.identifier = nil // So result cannot be reused, will be freed\n"
     "      }\n"
-    "      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)\n"
+    "      let object = v.objectAtIndex (inRowIndex, file:#file, line:#line)\n"
     "      " ;
-  GALGAS_uint index_16567_ (0) ;
+  GALGAS_uint index_16537_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16567 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
-    const bool nonEmpty_enumerator_16567 = enumerator_16567.hasCurrentObject () ;
-    while (enumerator_16567.hasCurrentObject ()) {
+    cEnumerator_arrayControllerBoundColumnListForGeneration enumerator_16537 (in_BOUND_5F_COLUMNS, kEnumeration_up) ;
+    const bool nonEmpty_enumerator_16537 = enumerator_16537.hasCurrentObject () ;
+    while (enumerator_16537.hasCurrentObject ()) {
       result << "if columnIdentifier == \"" ;
-      result << enumerator_16567.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_16537.current_mColumnName (HERE).stringValue () ;
       result << "\" {\n"
         "        if let cell : " ;
-      result << enumerator_16567.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16537.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_TableViewCell = result as\? " ;
-      result << enumerator_16567.current_mColumnOutletTypeName (HERE).stringValue () ;
+      result << enumerator_16537.current_mColumnOutletTypeName (HERE).stringValue () ;
       result << "_TableViewCell {\n"
         "          cell.mUnbindFunction = { [weak cell] in\n" ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_16567.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_16537.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "            cell\?.mCellOutlet\?.target = nil\n"
           "            cell\?.mCellOutlet\?.action = \"\"\n" ;
       }else if (kBoolFalse == test_4) {
       }
-      GALGAS_uint index_16986_ (0) ;
-      if (enumerator_16567.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-        cEnumerator_regularBindingsGenerationList enumerator_16986 (enumerator_16567.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
-        while (enumerator_16986.hasCurrentObject ()) {
+      GALGAS_uint index_16956_ (0) ;
+      if (enumerator_16537.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+        cEnumerator_regularBindingsGenerationList enumerator_16956 (enumerator_16537.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
+        while (enumerator_16956.hasCurrentObject ()) {
           result << "            cell\?.mCellOutlet\?.unbind_" ;
-          result << enumerator_16986.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_16956.current_mBindingName (HERE).stringValue () ;
           result << " ()\n" ;
-          index_16986_.increment () ;
-          enumerator_16986.gotoNextObject () ;
+          index_16956_.increment () ;
+          enumerator_16956.gotoNextObject () ;
         }
       }
       result << "          }\n"
         "          cell.mUnbindFunction\? ()\n" ;
-      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_16567.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_16537.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_5) {
         result << "          cell.mCellOutlet\?.target = object\n"
           "          cell.mCellOutlet\?.action = \"" ;
-        result << enumerator_16567.current_mRunAction (HERE).stringValue () ;
+        result << enumerator_16537.current_mRunAction (HERE).stringValue () ;
         result << ":\"\n" ;
       }else if (kBoolFalse == test_5) {
       }
-      GALGAS_uint index_17321_ (0) ;
-      if (enumerator_16567.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-        cEnumerator_regularBindingsGenerationList enumerator_17321 (enumerator_16567.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
-        while (enumerator_17321.hasCurrentObject ()) {
+      GALGAS_uint index_17291_ (0) ;
+      if (enumerator_16537.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+        cEnumerator_regularBindingsGenerationList enumerator_17291 (enumerator_16537.current_mRegularBindingsGenerationList (HERE), kEnumeration_up) ;
+        while (enumerator_17291.hasCurrentObject ()) {
           result << "          cell.mCellOutlet\?.bind_" ;
-          result << enumerator_17321.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_17291.current_mBindingName (HERE).stringValue () ;
           result << " (" ;
-          GALGAS_uint index_17420_ (0) ;
-          if (enumerator_17321.current_mBoundObjectStringList (HERE).isValid ()) {
-            cEnumerator_stringlist enumerator_17420 (enumerator_17321.current_mBoundObjectStringList (HERE), kEnumeration_up) ;
-            while (enumerator_17420.hasCurrentObject ()) {
-              result << enumerator_17420.current_mValue (HERE).stringValue () ;
+          GALGAS_uint index_17390_ (0) ;
+          if (enumerator_17291.current_mBoundObjectStringList (HERE).isValid ()) {
+            cEnumerator_stringlist enumerator_17390 (enumerator_17291.current_mBoundObjectStringList (HERE), kEnumeration_up) ;
+            while (enumerator_17390.hasCurrentObject ()) {
+              result << enumerator_17390.current_mValue (HERE).stringValue () ;
               result << ", " ;
-              index_17420_.increment () ;
-              enumerator_17420.gotoNextObject () ;
+              index_17390_.increment () ;
+              enumerator_17390.gotoNextObject () ;
             }
           }
-          result << "file:__FILE__, line:__LINE__" ;
-          result << enumerator_17321.current_mBindingOptionsString (HERE).stringValue () ;
+          result << "file:#file, line:#line" ;
+          result << enumerator_17291.current_mBindingOptionsString (HERE).stringValue () ;
           result << ")\n" ;
-          index_17321_.increment () ;
-          enumerator_17321.gotoNextObject () ;
+          index_17291_.increment () ;
+          enumerator_17291.gotoNextObject () ;
         }
       }
       result << "        }\n"
         "      " ;
-      if (enumerator_16567.hasNextObject ()) {
+      if (enumerator_16537.hasNextObject ()) {
         result << "}else " ;
       }
-      index_16567_.increment () ;
-      enumerator_16567.gotoNextObject () ;
+      index_16537_.increment () ;
+      enumerator_16537.gotoNextObject () ;
     }
-    if (nonEmpty_enumerator_16567) {
+    if (nonEmpty_enumerator_16537) {
       result << "}else{\n"
         "        NSLog (\"Unknown column '\\(columnIdentifier)'\")\n"
         "      }\n" ;
@@ -1714,7 +1714,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "\n"
         "   func add (inSender : NSButton\?) {\n"
         "    if DEBUG_EVENT {\n"
-        "      print (\"\\(__FUNCTION__)\")\n"
+        "      print (\"\\(#function)\")\n"
         "    }\n"
         "    if let model = mModel {\n"
         "      switch model.prop {\n"
@@ -1745,7 +1745,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "\n"
         "  func remove (inSender : NSButton\?) {\n"
         "    if DEBUG_EVENT {\n"
-        "      print (\"\\(__FUNCTION__)\")\n"
+        "      print (\"\\(#function)\")\n"
         "    }\n"
         "    if let model = mModel {\n"
         "      switch model.prop {\n"
@@ -1836,7 +1836,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "\n"
         "   func add (inSender : NSButton\?) {\n"
         "    if DEBUG_EVENT {\n"
-        "      print (\"\\(__FUNCTION__)\")\n"
+        "      print (\"\\(#function)\")\n"
         "    }\n"
         "    if let model = mModel,\n"
         "           owner = model.owner,\n"
@@ -1869,7 +1869,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "\n"
         "  func remove (inSender : NSButton\?) {\n"
         "    if DEBUG_EVENT {\n"
-        "      print (\"\\(__FUNCTION__)\")\n"
+        "      print (\"\\(#function)\")\n"
         "    }\n"
         "    if let model = mModel,\n"
         "           owner = model.owner,\n"
@@ -3328,7 +3328,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    let mainBundle = NSBundle.mainBundle ()\n"
   "    let ok = mainBundle.loadNibNamed (\"EBAllocationDebug\", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)\n"
   "    if !ok {\n"
-  "      presentErrorWindow (__FILE__, line: __LINE__, errorMessage: \"Cannot load 'EBAllocationDebug' nib file\") ;\n"
+  "      presentErrorWindow (#file, line: #line, errorMessage: \"Cannot load 'EBAllocationDebug' nib file\") ;\n"
   "    }\n"
   "  }\n"
   "}\n"
@@ -3416,10 +3416,10 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  \n"
   "   override init () {\n"
   "    super.init ()\n"
-  "    assert (gDebugObject == nil, \"EBAllocationDebug already exists\", file:__FILE__, line:__LINE__)\n"
+  "    assert (gDebugObject == nil, \"EBAllocationDebug already exists\", file:#file, line:#line)\n"
   "    let nc = NSNotificationCenter.defaultCenter ()\n"
   "    nc.addObserver (self,\n"
-  "      selector:\"applicationWillTerminateAction:\",\n"
+  "      selector:#selector(EBAllocationDebug.applicationWillTerminateAction(_:)),\n"
   "      name:NSApplicationWillTerminateNotification,\n"
   "      object:nil\n"
   "    )\n"
@@ -3484,14 +3484,14 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  //--- Allocation stats window visibility at Launch\n"
   "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.state = Int (mAllocationStatsWindowVisibleAtLaunch)\n"
   "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.target = self\n"
-  "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.action = \"setAllocationStatsWindowVisibleAtLaunchAction:\"\n"
+  "    mAllocationStatsWindowVisibleAtLaunchCheckbox\?.action = #selector(EBAllocationDebug.setAllocationStatsWindowVisibleAtLaunchAction(_:))\n"
   "    if mAllocationStatsWindowVisibleAtLaunch {\n"
   "      mAllocationStatsWindow\?.makeKeyAndOrderFront (nil)\n"
   "      installTimer ()\n"
   "    }\n"
   "    mDisplayFilterPopUpButton\?.selectItemAtIndex (mDisplayFilter)\n"
   "    mDisplayFilterPopUpButton\?.target = self\n"
-  "    mDisplayFilterPopUpButton\?.action = \"setDisplayFilerAction:\"\n"
+  "    mDisplayFilterPopUpButton\?.action = #selector(EBAllocationDebug.setDisplayFilerAction(_:))\n"
   "    let columns = mStatsTableView!.tableColumns as NSArray\n"
   "    if columns.count > 0 {\n"
   "      let firstColumn = columns [0] as! NSTableColumn\n"
@@ -3510,7 +3510,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "      mRefreshTimer = NSTimer (\n"
   "        timeInterval: 1.0,\n"
   "        target:self,\n"
-  "        selector:\"refreshDisplay:\",\n"
+  "        selector:#selector(EBAllocationDebug.refreshDisplay(_:)),\n"
   "        userInfo: nil,\n"
   "        repeats: true\n"
   "      )\n"
@@ -3700,7 +3700,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "EBAllocationDebug.swift",
   "swift",
   true, // Text file
-  18585, // Text length
+  18693, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
@@ -4670,8 +4670,8 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    mExplorerWindow\?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))\n"
   "  //--- Set close button as 'remove window' button\n"
   "    let closeButton : NSButton\? = mExplorerWindow\?.standardWindowButton (NSWindowButton.CloseButton)\n"
-  "    closeButton!.target = self\n"
-  "    closeButton!.action = \"deleteDocumentWindowAction:\"\n"
+  "    closeButton\?.target = self\n"
+  "    closeButton\?.action = #selector(EBManagedDocument.deleteDocumentWindowAction(_:))\n"
   "  //--- Set window title\n"
   "    mExplorerWindow!.title = \"Document \" + className\n"
   "  //--- Add Scroll view\n"
@@ -4748,19 +4748,19 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "      gDebugMenuItemsAdded = true\n"
   "      var menuItem = NSMenuItem (\n"
   "        title:\"Explore document\",\n"
-  "        action:\"showObjectExplorerWindow:\",\n"
+  "        action:#selector(EBManagedDocument.showObjectExplorerWindow(_:)),\n"
   "        keyEquivalent:\"\"\n"
   "      )\n"
   "      addItemToDebugMenu (menuItem)\n"
-  "      menuItem = NSMenuItem (\n"
+  "/*      menuItem = NSMenuItem (\n"
   "        title:\"Check Relationships\",\n"
   "        action:\"checkRelationships:\",\n"
   "        keyEquivalent:\"\"\n"
   "      )\n"
-  "      addItemToDebugMenu (menuItem)\n"
+  "      addItemToDebugMenu (menuItem) */\n"
   "      menuItem = NSMenuItem (\n"
   "        title:\"Check All Objects are Reachable\",\n"
-  "        action:\"checkEntityReachability:\",\n"
+  "        action:#selector(EBManagedDocument.checkEntityReachability(_:)),\n"
   "        keyEquivalent:\"\"\n"
   "      )\n"
   "      addItemToDebugMenu (menuItem)\n"
@@ -5016,7 +5016,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  30386, // Text length
+  30481, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
@@ -5148,8 +5148,8 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    mExplorerWindow\?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))\n"
   "  //--- Set close button as 'remove window' button\n"
   "    let closeButton : NSButton\? = mExplorerWindow\?.standardWindowButton (NSWindowButton.CloseButton)\n"
-  "    closeButton!.target = self\n"
-  "    closeButton!.action = \"deleteWindowAction:\"\n"
+  "    closeButton\?.target = self\n"
+  "    closeButton\?.action = #selector(EBManagedObject.deleteWindowAction(_:))\n"
   "  //--- Set window title\n"
   "    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className\n"
   "    mExplorerWindow!.title = windowTitle\n"
@@ -5312,7 +5312,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  button\?.title = stringValue\n"
   "  button\?.toolTip = stringValue\n"
   "  button\?.target = inObject\n"
-  "  button\?.action = \"showObjectWindowFromExplorerButton:\"\n"
+  "  button\?.action = #selector(EBManagedObject.showObjectWindowFromExplorerButton(_:))\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -5334,7 +5334,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    popUpButton\?.addItemWithTitle (stringValue)\n"
   "    let item = popUpButton\?.lastItem\n"
   "    item\?.target = object\n"
-  "    item\?.action = \"showObjectWindowFromExplorerButton:\"\n"
+  "    item\?.action = #selector(EBManagedObject.showObjectWindowFromExplorerButton(_:))\n"
   "  }\n"
   "}\n"
   "\n"
@@ -5344,7 +5344,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBManagedObject.swift",
   "swift",
   true, // Text file
-  14463, // Text length
+  14547, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
@@ -5579,7 +5579,7 @@ const char * gWrapperFileContent_6_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  override func awakeFromNib () {\n"
   "    let menuItem = NSMenuItem (\n"
   "      title:\"Show Transient Event Log Window\",\n"
-  "      action:\"showTransientEventLogWindow:\",\n"
+  "      action:#selector(EBApplication.showTransientEventLogWindow(_:)),\n"
   "      keyEquivalent:\"\"\n"
   "    )\n"
   "    addItemToDebugMenu (menuItem)\n"
@@ -5622,7 +5622,7 @@ const cRegularFileWrapper gWrapperFile_6_swift_5F_sources (
   "application.swift",
   "swift",
   true, // Text file
-  6806, // Text length
+  6832, // Text length
   gWrapperFileContent_6_swift_5F_sources
 ) ;
 
@@ -5880,7 +5880,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "        observerExplorer.addItemWithTitle (stringValue)\n"
   "        let item = observerExplorer.lastItem\n"
   "        item\?.target = object\n"
-  "        item\?.action = \"showExplorerWindowAction:\"\n"
+  "        item\?.action = #selector(EBSimpleController.showExplorerWindowAction(_:))\n"
   "      }\n"
   "    }\n"
   "  }\n"
@@ -6070,7 +6070,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  override func removeFromSuperview () {\n"
-  "   // NSLog (\"\\(__FUNCTION__)\")\n"
+  "   // NSLog (\"\\(#function)\")\n"
   "    mUnbindFunction\? ()\n"
   "    super.removeFromSuperview ()\n"
   "  }\n"
@@ -6078,7 +6078,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  \n"
   "  override func removeFromSuperviewWithoutNeedingDisplay () {\n"
-  "   // NSLog (\"\\(__FUNCTION__)\")\n"
+  "   // NSLog (\"\\(#function)\")\n"
   "    mUnbindFunction\? ()\n"
   "    super.removeFromSuperviewWithoutNeedingDisplay ()\n"
   "  }\n"
@@ -6193,8 +6193,8 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    mExplorerWindow\?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))\n"
   "  //--- Set close button as 'remove window' button\n"
   "    let closeButton : NSButton\? = mExplorerWindow\?.standardWindowButton (NSWindowButton.CloseButton)\n"
-  "    closeButton!.target = self\n"
-  "    closeButton!.action = \"deleteSimpleControllerWindowAction:\"\n"
+  "    closeButton\?.target = self\n"
+  "    closeButton\?.action = #selector(EBSimpleController.deleteSimpleControllerWindowAction(_:))\n"
   "  //--- Set window title\n"
   "    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className\n"
   "    mExplorerWindow!.title = windowTitle\n"
@@ -6724,7 +6724,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  43130, // Text length
+  43186, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 

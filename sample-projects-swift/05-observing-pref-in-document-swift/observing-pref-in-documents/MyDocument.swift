@@ -84,39 +84,39 @@ import Cocoa
   override func windowControllerDidLoadNib (aController: NSWindowController) {
   //--------------------------- Outlet checking
     if nil == docStringTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'docStringTextField' outlet is nil") ;
     }else if !docStringTextField!.isKindOfClass (EBTextField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'docStringTextField' outlet is not an instance of 'EBTextField'") ;
     }
     if nil == prefStringTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'prefStringTextField' outlet is nil") ;
     }else if !prefStringTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'prefStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == prefTransientStringTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'prefTransientStringTextField' outlet is nil") ;
     }else if !prefTransientStringTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'prefTransientStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == transientConcatStringTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'transientConcatStringTextField' outlet is nil") ;
     }else if !transientConcatStringTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'transientConcatStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
   //--------------------------- Array controllers
@@ -125,10 +125,10 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    docStringTextField?.bind_value (self.rootObject.docString, file:__FILE__, line:__LINE__, sendContinously:true)
-    prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString, file:__FILE__, line:__LINE__)
-    prefTransientStringTextField?.bind_valueObserver (g_Preferences!.prefTransientString, file:__FILE__, line:__LINE__)
-    transientConcatStringTextField?.bind_valueObserver (self.rootObject.transientConcatString, file:__FILE__, line:__LINE__)
+    docStringTextField?.bind_value (self.rootObject.docString, file:#file, line:#line, sendContinously:true)
+    prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString, file:#file, line:#line)
+    prefTransientStringTextField?.bind_valueObserver (g_Preferences!.prefTransientString, file:#file, line:#line)
+    transientConcatStringTextField?.bind_valueObserver (self.rootObject.transientConcatString, file:#file, line:#line)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display

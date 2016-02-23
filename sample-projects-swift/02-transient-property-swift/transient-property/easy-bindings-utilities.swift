@@ -250,7 +250,7 @@ class EBAbstractProperty : EBEvent {
         observerExplorer.addItemWithTitle (stringValue)
         let item = observerExplorer.lastItem
         item?.target = object
-        item?.action = "showExplorerWindowAction:"
+        item?.action = #selector(EBSimpleController.showExplorerWindowAction(_:))
       }
     }
   }
@@ -440,7 +440,7 @@ class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
   //····················································································································
 
   override func removeFromSuperview () {
-   // NSLog ("\(__FUNCTION__)")
+   // NSLog ("\(#function)")
     mUnbindFunction? ()
     super.removeFromSuperview ()
   }
@@ -448,7 +448,7 @@ class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
   //····················································································································
   
   override func removeFromSuperviewWithoutNeedingDisplay () {
-   // NSLog ("\(__FUNCTION__)")
+   // NSLog ("\(#function)")
     mUnbindFunction? ()
     super.removeFromSuperviewWithoutNeedingDisplay ()
   }
@@ -563,8 +563,8 @@ class EBSimpleController : EBOutletEvent {
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
-    closeButton!.target = self
-    closeButton!.action = "deleteSimpleControllerWindowAction:"
+    closeButton?.target = self
+    closeButton?.action = #selector(EBSimpleController.deleteSimpleControllerWindowAction(_:))
   //--- Set window title
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle

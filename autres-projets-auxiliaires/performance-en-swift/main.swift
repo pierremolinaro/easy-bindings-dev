@@ -16,14 +16,14 @@ import Foundation
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocBoolInNativeArray () {
-  print ("Append Bool in native Swift array... ", appendNewline: false)
+  print ("Append Bool in native Swift array... ")
   var start = NSDate ()
   var array : [Bool] = []
   for _ in 0..<COUNT {
     array.append (true)
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   var sum = 0
   start = NSDate ()
   for b in array {
@@ -36,14 +36,14 @@ func allocBoolInNativeArray () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func alloNSNumberInNativeArray () {
-  print ("Append NSNumber in native Swift array... ", appendNewline: false)
+  print ("Append NSNumber in native Swift array... ")
   var start = NSDate ()
   var array : [NSNumber] = []
   for _ in 0..<COUNT {
     array.append (NSNumber (bool:true))
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   var sum = 0
   start = NSDate ()
   for b in array {
@@ -56,14 +56,14 @@ func alloNSNumberInNativeArray () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocNSNumberInNSMutableArray () {
-  print ("Append NSNumber in NSMutableArray... ", appendNewline: false)
+  print ("Append NSNumber in NSMutableArray... ")
   var start = NSDate ()
   let array = NSMutableArray ()
   for _ in 0..<COUNT {
     array.addObject (NSNumber (bool:true))
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   var sum = 0
   start = NSDate ()
   for b in array {
@@ -94,14 +94,14 @@ var unCompteurSansImportance = 0
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocObjcClassInNativeArray () {
-  print ("Append Objc class in native Swift array... ", appendNewline: false)
+  print ("Append Objc class in native Swift array... ")
   var start = NSDate ()
   var array : [MonProtocole] = [] // Ok en beta 6
   for _ in 0..<COUNT {
     array.append (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for object in array {
     object.doSomething ()
@@ -141,14 +141,14 @@ struct PMArray <T : AnyObject> {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocInNSArray () {
-  print ("Append Objc class in NSArray... ", appendNewline: false)
+  print ("Append Objc class in NSArray... ")
   var start = NSDate ()
   var array : PMArray<MaObjcClasse> = PMArray<MaObjcClasse> ()
   for _ in 0..<COUNT {
     array.add (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for i in 0..<array.count {
     let object : MaObjcClasse = array [i]
@@ -190,14 +190,14 @@ struct PMSequentialSet <T : AnyObject> {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocInSequentialSet1 () {
-  print ("Append in sequential set (by add1)... ", appendNewline: false)
+  print ("Append in sequential set (by add1)... ")
   var start = NSDate ()
   var array : PMSequentialSet<MaObjcClasse> = PMSequentialSet<MaObjcClasse> ()
   for _ in 0..<COUNT {
     array.add1 (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for object in array.allObjects () {
     object.doSomething ()
@@ -209,14 +209,14 @@ func allocInSequentialSet1 () {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocInSequentialSet2 () {
-  print ("Append in sequential set (by add2)... ", appendNewline: false)
+  print ("Append in sequential set (by add2)... ")
   var start = NSDate ()
   var array : PMSequentialSet<MaObjcClasse> = PMSequentialSet ()
   for _ in 0..<COUNT {
     array.add2 (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for object in array.allObjects () {
     object.doSomething ()
@@ -293,14 +293,14 @@ struct PMSetWithNSMutableSetGenerator <T : AnyObject> : GeneratorType {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocInNSMutableSet () {
-  print ("Append Objc class in NSMutableSet... ", appendNewline: false)
+  print ("Append Objc class in NSMutableSet... ")
   var start = NSDate ()
   var array : PMSetWithNSMutableSet<MaObjcClasse> = PMSetWithNSMutableSet ()
   for _ in 0..<COUNT {
     array.add (MaObjcClasse ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for object : MaObjcClasse in array {
     object.doSomething ()
@@ -328,14 +328,14 @@ class MaClasseSwift : MonProtocoleSwift {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocSwiftClassInNativeArray () {
-  print ("Append Swift class in native Swift array... ", appendNewline: false)
+  print ("Append Swift class in native Swift array... ")
   var start = NSDate ()
   var array : [MonProtocoleSwift] = []
   for _ in 0..<COUNT {
     array.append (MaClasseSwift ())
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(array.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(array.count) elements, enumeration... ")
   start = NSDate ()
   for object in array {
     object.doSomething ()
@@ -370,7 +370,7 @@ class MaClasseSwiftPourDictionnaire : MonProtocoleSwift {
 //---------------------------------------------------------------------------------------------------------------------*
 
 func allocSwiftClassInNativeDictionary () {
-  print ("Append Swift class in native Swift dictionary... ", appendNewline: false)
+  print ("Append Swift class in native Swift dictionary... ")
   var start = NSDate ()
   var dictionary : [Int : MaClasseSwiftPourDictionnaire] = [:]
   for _ in 0..<COUNT {
@@ -378,7 +378,7 @@ func allocSwiftClassInNativeDictionary () {
     dictionary [object.allocationIndex ()] = object
   }
   var duration : Int = Int (NSDate ().timeIntervalSinceDate (start) * 1000.0)
-  print ("\(duration) ms, \(dictionary.count) elements, enumeration... ", appendNewline: false)
+  print ("\(duration) ms, \(dictionary.count) elements, enumeration... ")
   start = NSDate ()
   for object in dictionary.values {
     object.doSomething ()

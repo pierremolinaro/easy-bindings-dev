@@ -42,7 +42,7 @@ proc generateValidationRoutineStubs
       + "    if validates {\n"
       + "      result = .ok (proposedValue)\n"
       + "    }else{\n"
-      + "      result = .rejectWithAlert (\"Rejected in \\(__FILE__), line \\(__LINE__)\")\n"
+      + "      result = .rejectWithAlert (\"Rejected in \\(#file), line \\(#line)\")\n"
       + "    }\n"
       + "    return result\n"    
     [@string generateFileWithPattern

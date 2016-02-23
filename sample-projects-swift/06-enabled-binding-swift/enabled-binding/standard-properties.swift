@@ -151,7 +151,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = "\(mValue)"
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue.convertToNSObject ())
+        undoManager?.registerUndoWithTarget (self, selector:#selector(EBStoredValueProperty.performUndo(_:)), object: oldValue.convertToNSObject ())
         postEvent ()
         clearSignatureCache ()
       }
@@ -727,7 +727,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = "\(mValue)"
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object: oldValue)
+        undoManager?.registerUndoWithTarget (self, selector:#selector(EBStoredClassProperty.performUndo(_:)), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }

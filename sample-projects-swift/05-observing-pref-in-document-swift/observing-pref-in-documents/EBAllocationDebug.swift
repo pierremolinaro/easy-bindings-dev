@@ -64,7 +64,7 @@ private func installDebugMenu () {
     let mainBundle = NSBundle.mainBundle ()
     let ok = mainBundle.loadNibNamed ("EBAllocationDebug", owner:debugObject, topLevelObjects:&debugObject.mTopLevelObjects)
     if !ok {
-      presentErrorWindow (__FILE__, line: __LINE__, errorMessage: "Cannot load 'EBAllocationDebug' nib file") ;
+      presentErrorWindow (#file, line: #line, errorMessage: "Cannot load 'EBAllocationDebug' nib file") ;
     }
   }
 }
@@ -152,10 +152,10 @@ private var gDebugObject : EBAllocationDebug? = nil
   
    override init () {
     super.init ()
-    assert (gDebugObject == nil, "EBAllocationDebug already exists", file:__FILE__, line:__LINE__)
+    assert (gDebugObject == nil, "EBAllocationDebug already exists", file:#file, line:#line)
     let nc = NSNotificationCenter.defaultCenter ()
     nc.addObserver (self,
-      selector:"applicationWillTerminateAction:",
+      selector:#selector(EBAllocationDebug.applicationWillTerminateAction(_:)),
       name:NSApplicationWillTerminateNotification,
       object:nil
     )
@@ -220,14 +220,14 @@ private var gDebugObject : EBAllocationDebug? = nil
   //--- Allocation stats window visibility at Launch
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.state = Int (mAllocationStatsWindowVisibleAtLaunch)
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.target = self
-    mAllocationStatsWindowVisibleAtLaunchCheckbox?.action = "setAllocationStatsWindowVisibleAtLaunchAction:"
+    mAllocationStatsWindowVisibleAtLaunchCheckbox?.action = #selector(EBAllocationDebug.setAllocationStatsWindowVisibleAtLaunchAction(_:))
     if mAllocationStatsWindowVisibleAtLaunch {
       mAllocationStatsWindow?.makeKeyAndOrderFront (nil)
       installTimer ()
     }
     mDisplayFilterPopUpButton?.selectItemAtIndex (mDisplayFilter)
     mDisplayFilterPopUpButton?.target = self
-    mDisplayFilterPopUpButton?.action = "setDisplayFilerAction:"
+    mDisplayFilterPopUpButton?.action = #selector(EBAllocationDebug.setDisplayFilerAction(_:))
     let columns = mStatsTableView!.tableColumns as NSArray
     if columns.count > 0 {
       let firstColumn = columns [0] as! NSTableColumn
@@ -246,7 +246,7 @@ private var gDebugObject : EBAllocationDebug? = nil
       mRefreshTimer = NSTimer (
         timeInterval: 1.0,
         target:self,
-        selector:"refreshDisplay:",
+        selector:#selector(EBAllocationDebug.refreshDisplay(_:)),
         userInfo: nil,
         repeats: true
       )

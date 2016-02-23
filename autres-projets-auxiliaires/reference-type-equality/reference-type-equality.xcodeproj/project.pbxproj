@@ -88,6 +88,8 @@
 		CF73429E199FFBF5000AA875 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Pierre Molinaro";
 				TargetAttributes = {
@@ -233,6 +235,7 @@
 				CF7342AF199FFBF6000AA875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

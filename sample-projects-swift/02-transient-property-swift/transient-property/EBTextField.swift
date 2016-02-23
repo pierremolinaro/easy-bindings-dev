@@ -81,7 +81,7 @@ import Cocoa
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
-    mOutlet.action = "action:"
+    mOutlet.action = #selector(Controller_EBTextField_value.action(_:))
     if mOutlet.formatter != nil {
       presentErrorWindow (file, line:line, errorMessage:"the EBTextField outlet has a formatter")
     }

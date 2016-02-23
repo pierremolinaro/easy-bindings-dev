@@ -57,7 +57,7 @@ var g_Preferences : Preferences? = nil
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
-     selector:"applicationWillTerminateAction:",
+     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
@@ -124,28 +124,28 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mButton' outlet not nil
     if nil == mButton {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mButton' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'mButton' outlet is nil")
     }
   //--- Check myHidden1Switch' outlet not nil
     if nil == myHidden1Switch {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myHidden1Switch' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'myHidden1Switch' outlet is nil")
     }
   //--- Check myHidden2Switch' outlet not nil
     if nil == myHidden2Switch {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myHidden2Switch' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'myHidden2Switch' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    myHidden1Switch?.bind_value (self.myHidden1, file:__FILE__, line:__LINE__)
-    myHidden2Switch?.bind_value (self.myHidden2, file:__FILE__, line:__LINE__)
+    myHidden1Switch?.bind_value (self.myHidden1, file:#file, line:#line)
+    myHidden2Switch?.bind_value (self.myHidden2, file:#file, line:#line)
   //--- Install multiple bindings
     mButton?.bind_hidden (
       [self.myHidden1, self.myHidden2],
       computeFunction:{
         return (self.myHidden1.prop || self.myHidden2.prop)
       },
-      file:__FILE__, line:__LINE__
+      file:#file, line:#line
     )
   //--------------------------- Array controller
   //--------------------------- Set targets / actions

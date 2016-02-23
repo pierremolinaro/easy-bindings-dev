@@ -195,7 +195,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "document-with-relationships" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -327,7 +327,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
