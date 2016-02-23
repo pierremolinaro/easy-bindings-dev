@@ -70,7 +70,7 @@ prefs {
 #--- Number
   property validates Int mIntegerValue default 12 ;
   outlet EBIntField mIntegerTextField
-    $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
+    $value self.mIntegerValue {sendContinously : no, autoFormatter:yes}
   ;
   outlet EBIntObserverField mIntegerObserverTextField
     $valueObserver self.mIntegerValue {autoFormatter:yes}
@@ -260,8 +260,13 @@ Un binding est décrit par trois champs :
 
 \newcommand\FondModele{LightGray!25}
 
-\newcommand\Modele[4]{
+\newcommand\ProprieteStockee[4]{
   \SetVertexNormal[Shape=rectangle, LineColor=black, FillColor=\FondModele, LineWidth=1pt]
+  \Vertex[x=#3, y=#4, L={\tt #2}]{#1}
+}
+
+\newcommand\ProprieteTransitoire[4]{
+  \SetVertexNormal[Shape=rectangle, LineColor=green, FillColor=\FondModele, LineWidth=1pt]
   \Vertex[x=#3, y=#4, L={\tt #2}]{#1}
 }
 
@@ -278,9 +283,9 @@ Un binding est décrit par trois champs :
   \centering
   \small
   \begin{tikzpicture}
-    \node[right] at (-5cm, 2cm) {\bf Modèle} ;
-    \node[right] at (-5cm, 0cm) {\bf Items Graphiques} ;
-    \Modele{modele}{mString}{4cm}{2cm}
+    \node[right] at (-5cm, 2cm) {\bf Propriété stockée} ;
+    \node[right] at (-5cm, 0cm) {\bf Items graphiques} ;
+    \ProprieteStockee{modele}{mString}{4cm}{2cm}
     \ItemGraphique{item1}{myTextField}{0cm}{0cm}
     \ItemGraphique{item2}{myOtherTextField}{4cm}{0cm}
     \ItemGraphique{item3}{myObserverTextField}{8cm}{0cm}
@@ -312,7 +317,7 @@ Intéressons-nous à la déclaration de la dernière propriété et des items gr
 \begin{ebcode}
 property validates Int mIntegerValue default 12 ;
 outlet EBIntField mIntegerTextField
-  $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
+  $value self.mIntegerValue {sendContinously : no, autoFormatter:yes}
 ;
 outlet EBIntObserverField mIntegerObserverTextField
   $valueObserver self.mIntegerValue {autoFormatter:yes}
@@ -386,4 +391,76 @@ Donc, si par exemple on n'accepte que les valeurs paires, on modifie le code de 
 //--- END OF USER ZONE 2
 \end{lstlisting}
 
+\section{Deuxième exemple : propriétés transitoires}
+
+Dans ce deuxième exemple, nous nous intéressons principalement aux \emph{propriétés transitoires}. Une proprité transitoire est une propriété dont la valeur n'est pas stockée (dans les préférences ou dans un document), mais dépend d'autres propriétés (transitoires ou non). Nous verrons le binding \eb!$run! qui s'applique aux boutons.
+
+Voici le code source du deuxième exemple :
+
+\begin{ebcode}
+xcodeproject "fr.irccyn.molinaro" ;
+
+mainxib {
+  {"First Name:", EBTextField mFirstNameTextField},
+  {"Name: ", EBTextField mLastNameTextField},
+  {"Full Name:", EBTextObserverField mFullNameTextField},
+  {"Uppercase full Name:", EBTextObserverField mUpperCaseFullNameTextField},
+  EBButton myButton
+}
+
+prefs {
+  property String mFirstName default "Amédée" ;
+  property String mLastName default "Schmurtz" ;
+  transient String mFullName dependsFrom self.mFirstName, self.mLastName ;
+  transient String mUpperCaseFullName dependsFrom self.mFullName ;
+  outlet EBTextField mLastNameTextField
+    $value self.mLastName {sendContinously:yes} ;
+  outlet EBTextField mFirstNameTextField
+    $value self.mFirstName {sendContinously:no} ;
+  outlet EBTextObserverField mFullNameTextField
+    $valueObserver self.mFullName ;
+  outlet EBTextObserverField mUpperCaseFullNameTextField
+    $valueObserver self.mUpperCaseFullName ;
+  
+  action monAction ;
+  outlet EBButton myButton $run self.monAction ;
+}
+\end{ebcode}
+
+
+
+\begin{figure}[t]
+  \centering
+  \small
+  \begin{tikzpicture}
+    \node[right] at (-5cm, 2cm) {\bf Propriétés stockées} ;
+    \node[right] at (-5cm, 0cm) {\bf Propriétés transitoires} ;
+    \node[right] at (-5cm, -2cm) {\bf Items graphiques} ;
+
+    \ProprieteStockee{firstName}{mFirstName}{2cm}{2cm}
+    \ProprieteStockee{lastName}{mLastName}{6cm}{2cm}
+
+    \ProprieteTransitoire{mFullName}{mFullName}{2cm}{0cm}
+    \ProprieteTransitoire{mUppercaseFullName}{mUppercaseFullName}{6cm}{0cm}
+
+    \ItemGraphique{firstNameTF}{myFirstNameTF}{0cm}{-2cm}
+    \ItemGraphique{fullNameTF}{myFullNameTF}{3cm}{-2cm}
+    \ItemGraphique{uppercaseFullNameTF}{myUppercaseFullNameTF}{6.5cm}{-2cm}
+    \ItemGraphique{lastNameTF}{myLastNameTF}{10cm}{-2cm}
+
+    \Fleche{o->}{lastName}{mFullName}{}
+    \Fleche{o->}{lastName}{mUppercaseFullName}{}
+
+    \Fleche{o->}{firstName}{mFullName}{}
+    \Fleche{o->}{firstName}{mUppercaseFullName}{}
+
+    \Fleche{o<->}{lastName}{lastNameTF}{bend left}
+    \Fleche{o<->}{firstName}{firstNameTF}{bend right}
+    \Fleche{o->}{mFullName}{fullNameTF}{}
+    \Fleche{o->}{mUppercaseFullName}{uppercaseFullNameTF}{}
+  \end{tikzpicture}
+  \caption{Bindings du deuxième tutorial}
+  \labelFigure{bindingsTutorial2}
+  \ligne
+\end{figure}
 

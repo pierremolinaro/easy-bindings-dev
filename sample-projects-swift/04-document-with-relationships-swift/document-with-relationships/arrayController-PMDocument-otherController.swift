@@ -218,7 +218,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
 
   func bind_modelAndView (model:ToManyRelationship_MyRootEntity_mNames, tableViewArray:[EBTableView], file:String, line:Int) {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
   //--- Add observers
     mModel = model
@@ -241,7 +241,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
 
   func unbind_modelAndView () {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     mModel?.removeEBObserver (sortedArray)
     sortedArray.removeEBObserver (mSelectedSet)
@@ -273,7 +273,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
                                file:String,
                                line:Int) {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     tableView.allowsEmptySelection = allowsEmptySelection
     tableView.allowsMultipleSelection = allowsMultipleSelection
@@ -341,7 +341,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
 
   func numberOfRowsInTableView (_ : NSTableView) -> Int {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     switch sortedArray.prop {
     case .noSelection, .multipleSelection :
@@ -357,7 +357,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
 
   func tableViewSelectionDidChange (notication : NSNotification) {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     switch sortedArray.prop {
     case .noSelection, .multipleSelection :
@@ -366,7 +366,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
       let tableView = notication.object as! EBTableView
       var newSelectedObjectSet = Set <NameEntity> ()
       for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (v.objectAtIndex (index, file: __FILE__, line: __LINE__))
+        newSelectedObjectSet.insert (v.objectAtIndex (index, file: #file, line: #line))
       }
       mSelectedSet.mSet = newSelectedObjectSet
     }
@@ -396,7 +396,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
                   viewForTableColumn inTableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     switch sortedArray.prop {
     case .noSelection, .multipleSelection :
@@ -407,14 +407,14 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
       if !reuseTableViewCells () {
         result.identifier = nil // So result cannot be reused, will be freed
       }
-      let object = v.objectAtIndex (inRowIndex, file:__FILE__, line:__LINE__)
+      let object = v.objectAtIndex (inRowIndex, file:#file, line:#line)
       if columnIdentifier == "name" {
         if let cell : EBTextField_TableViewCell = result as? EBTextField_TableViewCell {
           cell.mUnbindFunction = { [weak cell] in
             cell?.mCellOutlet?.unbind_value ()
           }
           cell.mUnbindFunction? ()
-          cell.mCellOutlet?.bind_value (object.name, file:__FILE__, line:__LINE__, sendContinously:false)
+          cell.mCellOutlet?.bind_value (object.name, file:#file, line:#line, sendContinously:false)
         }
       }else if columnIdentifier == "int" {
         if let cell : EBIntField_TableViewCell = result as? EBIntField_TableViewCell {
@@ -422,7 +422,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
             cell?.mCellOutlet?.unbind_value ()
           }
           cell.mUnbindFunction? ()
-          cell.mCellOutlet?.bind_value (object.aValue, file:__FILE__, line:__LINE__, sendContinously:false, autoFormatter:true)
+          cell.mCellOutlet?.bind_value (object.aValue, file:#file, line:#line, sendContinously:false, autoFormatter:true)
         }
       }else{
         NSLog ("Unknown column '\(columnIdentifier)'")
@@ -438,7 +438,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
 
    func add (inSender : NSButton?) {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     if let model = mModel,
            owner = model.owner,
@@ -465,7 +465,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
 
   func remove (inSender : NSButton?) {
     if DEBUG_EVENT {
-      print ("\(__FUNCTION__)")
+      print ("\(#function)")
     }
     if let model = mModel,
            owner = model.owner,

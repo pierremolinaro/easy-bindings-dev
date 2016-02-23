@@ -124,7 +124,7 @@ func appendMessageString (message : String, color:NSColor) {
   override func awakeFromNib () {
     let menuItem = NSMenuItem (
       title:"Show Transient Event Log Window",
-      action:"showTransientEventLogWindow:",
+      action:#selector(EBApplication.showTransientEventLogWindow(_:)),
       keyEquivalent:""
     )
     addItemToDebugMenu (menuItem)

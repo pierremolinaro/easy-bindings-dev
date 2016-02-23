@@ -61,7 +61,7 @@ var g_Preferences : Preferences? = nil
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
-     selector:"applicationWillTerminateAction:",
+     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
@@ -148,23 +148,23 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mFirstNameTextField' outlet not nil
     if nil == mFirstNameTextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mFirstNameTextField' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'mFirstNameTextField' outlet is nil")
     }
   //--- Check mFullNameTextField' outlet not nil
     if nil == mFullNameTextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mFullNameTextField' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'mFullNameTextField' outlet is nil")
     }
   //--- Check mLastNameTextField' outlet not nil
     if nil == mLastNameTextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mLastNameTextField' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'mLastNameTextField' outlet is nil")
     }
   //--- Check mUpperCaseFullNameTextField' outlet not nil
     if nil == mUpperCaseFullNameTextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'mUpperCaseFullNameTextField' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Check myButton' outlet not nil
     if nil == myButton {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myButton' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'myButton' outlet is nil")
     }
   //--- Install compute functions for transients
     mFullName.readModelFunction = { [weak self] in
@@ -212,10 +212,10 @@ var g_Preferences : Preferences? = nil
     self.mLastName.addEBObserver (mFullName)
     self.mFullName.addEBObserver (mUpperCaseFullName)
   //--- Install bindings
-    mLastNameTextField?.bind_value (self.mLastName, file:__FILE__, line:__LINE__, sendContinously:true)
-    mFirstNameTextField?.bind_value (self.mFirstName, file:__FILE__, line:__LINE__, sendContinously:false)
-    mFullNameTextField?.bind_valueObserver (self.mFullName, file:__FILE__, line:__LINE__)
-    mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName, file:__FILE__, line:__LINE__)
+    mLastNameTextField?.bind_value (self.mLastName, file:#file, line:#line, sendContinously:true)
+    mFirstNameTextField?.bind_value (self.mFirstName, file:#file, line:#line, sendContinously:false)
+    mFullNameTextField?.bind_valueObserver (self.mFullName, file:#file, line:#line)
+    mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName, file:#file, line:#line)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions

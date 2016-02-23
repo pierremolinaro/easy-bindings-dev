@@ -82,21 +82,21 @@ import Cocoa
   override func windowControllerDidLoadNib (aController: NSWindowController) {
   //--------------------------- Outlet checking
     if nil == docBoolCheckBox {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'docBoolCheckBox' outlet is nil") ;
     }else if !docBoolCheckBox!.isKindOfClass (EBSwitch) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'docBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
     }
     if nil == myButton {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'myButton' outlet is nil") ;
     }else if !myButton!.isKindOfClass (EBButton) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'myButton' outlet is not an instance of 'EBButton'") ;
     }
   //--------------------------- Array controllers
@@ -105,14 +105,14 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    docBoolCheckBox?.bind_value (self.rootObject.docBool, file:__FILE__, line:__LINE__)
+    docBoolCheckBox?.bind_value (self.rootObject.docBool, file:#file, line:#line)
   //--- Install multiple bindings
     myButton?.bind_enabled (
       [g_Preferences!.prefBoolean, self.rootObject.docBool],
       computeFunction:{
         return (!self.rootObject.docBool.prop && g_Preferences!.prefBoolean.prop)
       },
-      file:__FILE__, line:__LINE__
+      file:#file, line:#line
     )
   //--------------------------- Set targets / actions
   //--------------------------- Update display

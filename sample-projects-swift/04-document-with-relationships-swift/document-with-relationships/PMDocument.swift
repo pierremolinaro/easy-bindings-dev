@@ -108,164 +108,164 @@ import Cocoa
   override func windowControllerDidLoadNib (aController: NSWindowController) {
   //--------------------------- Outlet checking
     if nil == addPathButton {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'addPathButton' outlet is nil") ;
     }else if !addPathButton!.isKindOfClass (EBButton) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'addPathButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == canRemoveTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'canRemoveTextField' outlet is nil") ;
     }else if !canRemoveTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'canRemoveTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == countItemMessageTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'countItemMessageTextField' outlet is nil") ;
     }else if !countItemMessageTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'countItemMessageTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == countItemTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'countItemTextField' outlet is nil") ;
     }else if !countItemTextField!.isKindOfClass (EBIntObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'countItemTextField' outlet is not an instance of 'EBIntObserverField'") ;
     }
     if nil == decrementButton {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'decrementButton' outlet is nil") ;
     }else if !decrementButton!.isKindOfClass (EBButton) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'decrementButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == evenValueTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'evenValueTextField' outlet is nil") ;
     }else if !evenValueTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'evenValueTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == incrementButton {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'incrementButton' outlet is nil") ;
     }else if !incrementButton!.isKindOfClass (EBButton) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'incrementButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == mNamesTableView {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mNamesTableView' outlet is nil") ;
     }else if !mNamesTableView!.isKindOfClass (EBTableView) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mNamesTableView' outlet is not an instance of 'EBTableView'") ;
     }
     if nil == mOtherTableView {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mOtherTableView' outlet is nil") ;
     }else if !mOtherTableView!.isKindOfClass (EBTableView) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mOtherTableView' outlet is not an instance of 'EBTableView'") ;
     }
     if nil == mSelectionCountTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mSelectionCountTextField' outlet is nil") ;
     }else if !mSelectionCountTextField!.isKindOfClass (EBTextObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mSelectionCountTextField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == mSelectionTableView {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mSelectionTableView' outlet is nil") ;
     }else if !mSelectionTableView!.isKindOfClass (EBTableView) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'mSelectionTableView' outlet is not an instance of 'EBTableView'") ;
     }
     if nil == nameDetailTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'nameDetailTextField' outlet is nil") ;
     }else if !nameDetailTextField!.isKindOfClass (EBTextField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'nameDetailTextField' outlet is not an instance of 'EBTextField'") ;
     }
     if nil == removePathButton {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'removePathButton' outlet is nil") ;
     }else if !removePathButton!.isKindOfClass (EBButton) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'removePathButton' outlet is not an instance of 'EBButton'") ;
     }
     if nil == totalTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'totalTextField' outlet is nil") ;
     }else if !totalTextField!.isKindOfClass (EBIntObserverField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'totalTextField' outlet is not an instance of 'EBIntObserverField'") ;
     }
     if nil == valueDetailTextField {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'valueDetailTextField' outlet is nil") ;
     }else if !valueDetailTextField!.isKindOfClass (EBIntField) {
-      presentErrorWindow (__FILE__,
-                              line:__LINE__,
+      presentErrorWindow (#file,
+                              line:#line,
                               errorMessage:"the 'valueDetailTextField' outlet is not an instance of 'EBIntField'") ;
     }
   //--------------------------- Array controllers
     nameController.bind_modelAndView (
       rootObject.mNames,
       tableViewArray:[mNamesTableView!],
-      file:__FILE__,
-      line:__LINE__
+      file:#file,
+      line:#line
     )
     otherController.bind_modelAndView (
       rootObject.mNames,
       tableViewArray:[mOtherTableView!],
-      file:__FILE__,
-      line:__LINE__
+      file:#file,
+      line:#line
     )
     selController.bind_modelAndView (
       nameController.selectedArray,
       tableViewArray:[mSelectionTableView!],
-      file:__FILE__,
-      line:__LINE__
+      file:#file,
+      line:#line
     )
   //--------------------------- Selection controllers
     detailController.bind_selection (
       nameController.selectedArray,
-      file:__FILE__,
-      line:__LINE__
+      file:#file,
+      line:#line
     )
   //--------------------------- Custom object controllers
   //--- Transient compute functions
@@ -346,35 +346,35 @@ import Cocoa
     rootObject.mNames.count.addEBObserver (countItemMessage)
     self.rootObject.mNames.addEBObserverOf_aValue (total)
   //--- Install regular bindings
-    mSelectionCountTextField?.bind_valueObserver (self.selectionCountString, file:__FILE__, line:__LINE__)
-    evenValueTextField?.bind_valueObserver (self.evenValueString, file:__FILE__, line:__LINE__)
-    canRemoveTextField?.bind_valueObserver (self.canRemoveString, file:__FILE__, line:__LINE__)
-    countItemTextField?.bind_valueObserver (self.rootObject.mNames.count, file:__FILE__, line:__LINE__, autoFormatter:false)
-    countItemMessageTextField?.bind_valueObserver (self.countItemMessage, file:__FILE__, line:__LINE__)
-    totalTextField?.bind_valueObserver (self.total, file:__FILE__, line:__LINE__, autoFormatter:false)
-    nameDetailTextField?.bind_value (self.detailController.name, file:__FILE__, line:__LINE__, sendContinously:true)
-    valueDetailTextField?.bind_value (self.detailController.aValue, file:__FILE__, line:__LINE__, sendContinously:true, autoFormatter:false)
+    mSelectionCountTextField?.bind_valueObserver (self.selectionCountString, file:#file, line:#line)
+    evenValueTextField?.bind_valueObserver (self.evenValueString, file:#file, line:#line)
+    canRemoveTextField?.bind_valueObserver (self.canRemoveString, file:#file, line:#line)
+    countItemTextField?.bind_valueObserver (self.rootObject.mNames.count, file:#file, line:#line, autoFormatter:false)
+    countItemMessageTextField?.bind_valueObserver (self.countItemMessage, file:#file, line:#line)
+    totalTextField?.bind_valueObserver (self.total, file:#file, line:#line, autoFormatter:false)
+    nameDetailTextField?.bind_value (self.detailController.name, file:#file, line:#line, sendContinously:true)
+    valueDetailTextField?.bind_value (self.detailController.aValue, file:#file, line:#line, sendContinously:true, autoFormatter:false)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
       [self.nameController.selectedArray.count],
       computeFunction:{
         return (self.nameController.selectedArray.count.prop > EBProperty.singleSelection (0))
       },
-      file:__FILE__, line:__LINE__
+      file:#file, line:#line
     )
     incrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
         return (self.rootObject.mNames.count.prop > EBProperty.singleSelection (0))
       },
-      file:__FILE__, line:__LINE__
+      file:#file, line:#line
     )
     decrementButton?.bind_enabled (
       [self.rootObject.mNames.count],
       computeFunction:{
         return (self.rootObject.mNames.count.prop > EBProperty.singleSelection (0))
       },
-      file:__FILE__, line:__LINE__
+      file:#file, line:#line
     )
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController

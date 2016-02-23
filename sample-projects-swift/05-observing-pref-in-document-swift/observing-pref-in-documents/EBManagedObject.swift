@@ -124,8 +124,8 @@ import Cocoa
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
-    closeButton!.target = self
-    closeButton!.action = "deleteWindowAction:"
+    closeButton?.target = self
+    closeButton?.action = #selector(EBManagedObject.deleteWindowAction(_:))
   //--- Set window title
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle
@@ -288,7 +288,7 @@ func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, b
   button?.title = stringValue
   button?.toolTip = stringValue
   button?.target = inObject
-  button?.action = "showObjectWindowFromExplorerButton:"
+  button?.action = #selector(EBManagedObject.showObjectWindowFromExplorerButton(_:))
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -310,7 +310,7 @@ func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [EBManagedObj
     popUpButton?.addItemWithTitle (stringValue)
     let item = popUpButton?.lastItem
     item?.target = object
-    item?.action = "showObjectWindowFromExplorerButton:"
+    item?.action = #selector(EBManagedObject.showObjectWindowFromExplorerButton(_:))
   }
 }
 

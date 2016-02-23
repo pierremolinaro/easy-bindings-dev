@@ -394,8 +394,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
-    closeButton!.target = self
-    closeButton!.action = "deleteDocumentWindowAction:"
+    closeButton?.target = self
+    closeButton?.action = #selector(EBManagedDocument.deleteDocumentWindowAction(_:))
   //--- Set window title
     mExplorerWindow!.title = "Document " + className
   //--- Add Scroll view
@@ -472,19 +472,19 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       gDebugMenuItemsAdded = true
       var menuItem = NSMenuItem (
         title:"Explore document",
-        action:"showObjectExplorerWindow:",
+        action:#selector(EBManagedDocument.showObjectExplorerWindow(_:)),
         keyEquivalent:""
       )
       addItemToDebugMenu (menuItem)
-      menuItem = NSMenuItem (
+/*      menuItem = NSMenuItem (
         title:"Check Relationships",
         action:"checkRelationships:",
         keyEquivalent:""
       )
-      addItemToDebugMenu (menuItem)
+      addItemToDebugMenu (menuItem) */
       menuItem = NSMenuItem (
         title:"Check All Objects are Reachable",
-        action:"checkEntityReachability:",
+        action:#selector(EBManagedDocument.checkEntityReachability(_:)),
         keyEquivalent:""
       )
       addItemToDebugMenu (menuItem)

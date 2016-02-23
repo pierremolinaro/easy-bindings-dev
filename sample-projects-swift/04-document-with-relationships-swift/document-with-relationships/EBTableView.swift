@@ -73,7 +73,7 @@ private let DEBUG_EVENT = false
   
   override func sendUpdateEvent () {
     if DEBUG_EVENT {
-      print ("DataSource_EBTableView_controller::\(__FUNCTION__)")
+      print ("DataSource_EBTableView_controller::\(#function)")
     }
   //---------------- Get current selection, as reloadData may change it
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
@@ -115,7 +115,7 @@ private let DEBUG_EVENT = false
   
   override func sendUpdateEvent () {
     if DEBUG_EVENT {
-      print ("Selection_EBTableView_controller::\(__FUNCTION__)")
+      print ("Selection_EBTableView_controller::\(#function)")
     }
   //---------------- Update table view selection
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()

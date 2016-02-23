@@ -65,7 +65,7 @@ import Cocoa
     mSendContinously = sendContinously
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
-    mOutlet.action = "action:"
+    mOutlet.action = #selector(Controller_EBColorWell_color.action(_:))
     mOutlet.continuous = true
     mObject.addEBObserver (self)
   }

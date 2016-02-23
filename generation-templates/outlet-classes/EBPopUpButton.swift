@@ -88,7 +88,7 @@ final class Controller_EBPopUpButton_selectedTag : EBSimpleController {
       mOutlet.enableFromValue (true)
       let result = mOutlet.selectItemWithTag (v)
       if !result {
-        presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"no item with tag: " + String (v))
+        presentErrorWindow (#file, line:#line, errorMessage:"no item with tag: " + String (v))
       }
     case .multipleSelection :
       mOutlet.enableFromValue (false)

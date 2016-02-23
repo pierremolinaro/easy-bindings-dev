@@ -54,7 +54,7 @@ var g_Preferences : Preferences? = nil
   //--- Property validation function
   //---
     NSNotificationCenter.defaultCenter ().addObserver (self,
-     selector:"applicationWillTerminateAction:",
+     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSApplicationWillTerminateNotification,
      object:nil
     )
@@ -68,7 +68,7 @@ var g_Preferences : Preferences? = nil
   override func awakeFromNib () {
   //--- Check myPrefStringTextField' outlet not nil
     if nil == myPrefStringTextField {
-      presentErrorWindow (__FILE__, line:__LINE__, errorMessage:"the 'myPrefStringTextField' outlet is nil")
+      presentErrorWindow (#file, line:#line, errorMessage:"the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
     prefTransientString.readModelFunction = { [weak self] in
@@ -88,7 +88,7 @@ var g_Preferences : Preferences? = nil
   //--- Install property observers for transients
     self.myPrefString.addEBObserver (prefTransientString)
   //--- Install bindings
-    myPrefStringTextField?.bind_value (self.myPrefString, file:__FILE__, line:__LINE__, sendContinously:false)
+    myPrefStringTextField?.bind_value (self.myPrefString, file:#file, line:#line, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions

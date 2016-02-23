@@ -26,5 +26,5 @@ var objectB = A (v:2)
 let eq1 = (objectA == objectB) ? "yes" : "no"
 let eq2 = (objectA === objectB) ? "yes" : "no"
 
-println("objectA == objectB \(eq1), objectA === objectB \(eq2)")
+print("objectA == objectB \(eq1), objectA === objectB \(eq2)")
 

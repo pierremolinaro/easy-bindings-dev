@@ -36,7 +36,7 @@ class EBManagedObjectContext : EBObject {
   func insertManagedObject (object : EBManagedObject) {
     if !mManagedObjectSet.contains(object) {
       mManagedObjectSet.insert (object)
-      mUndoManager?.registerUndoWithTarget(self, selector: Selector ("removeManagedObject:"), object: object)
+      mUndoManager?.registerUndoWithTarget(self, selector: #selector(EBManagedObjectContext.removeManagedObject(_:)), object: object)
     }
   }
 
@@ -49,7 +49,7 @@ class EBManagedObjectContext : EBObject {
       object.resetToManyRelationships ()
       object.resetToOneRelationships ()
       mManagedObjectSet.remove (object)
-      mUndoManager?.registerUndoWithTarget(self, selector: Selector ("insertManagedObject:"), object: object)
+      mUndoManager?.registerUndoWithTarget(self, selector: #selector(EBManagedObjectContext.insertManagedObject(_:)), object: object)
     }
   }
 
