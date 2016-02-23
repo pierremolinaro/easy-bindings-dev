@@ -430,7 +430,7 @@ for () in BOUND_COLUMNS
     %          cell.mUnbindFunction = { [weak cell] in\n%
     if mRunAction != "" then
     %            cell?.mCellOutlet?.target = nil\n%
-    %            cell?.mCellOutlet?.action = ""\n%
+    %            cell?.mCellOutlet?.action = nil\n%
     end
     for () in mRegularBindingsGenerationList do
     %            cell?.mCellOutlet?.unbind_%!mBindingName% ()\n%
@@ -439,7 +439,7 @@ for () in BOUND_COLUMNS
     %          cell.mUnbindFunction? ()\n%
     if mRunAction != "" then
     %          cell.mCellOutlet?.target = object\n%
-    %          cell.mCellOutlet?.action = "%!mRunAction%:"\n%
+    %          cell.mCellOutlet?.action = #selector (%!ELEMENT_TYPE_NAME%.%!mRunAction%(_:))\n%
     end
     for () in mRegularBindingsGenerationList do
     %          cell.mCellOutlet?.bind_%!mBindingName% (%

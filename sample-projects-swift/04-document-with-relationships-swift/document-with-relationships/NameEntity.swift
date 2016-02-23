@@ -230,7 +230,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
     didSet {
       if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
-        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:oldValue)
+        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:#selector(ToOneRelationship_NameEntity_mRoot.performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = mValueExplorer {
           updateManagedObjectToOneRelationshipDisplay (mValue, button:unwrappedExplorer)

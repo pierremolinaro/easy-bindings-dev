@@ -105,7 +105,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
-        undoManager?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:NSNumber (integer:oldValue.rawValue))
+        undoManager?.registerUndoWithTarget (self, selector:#selector(EBStoredProperty_%!ENUM_TYPE_NAME%.performUndo(_:)), object:NSNumber (integer:oldValue.rawValue))
         postEvent ()
         clearSignatureCache ()
       }

@@ -130,7 +130,7 @@ final class Controller_EBIntField_value : EBSimpleController {
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
-    mOutlet.action = "action:"
+    mOutlet.action = #selector(Controller_EBIntField_value.action(_:))
     if autoFormatter {
       let formatter = NSNumberFormatter ()
       mOutlet.formatter = formatter

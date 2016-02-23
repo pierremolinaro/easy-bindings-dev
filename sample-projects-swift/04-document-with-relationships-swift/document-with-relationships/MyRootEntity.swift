@@ -169,7 +169,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.undoManager()?.registerUndoWithTarget (self, selector:Selector ("performUndo:"), object:oldValue)
+        owner?.undoManager()?.registerUndoWithTarget (self, selector:#selector(ToManyRelationship_MyRootEntity_mNames.performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let valueExplorer = mValueExplorer {
           updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)

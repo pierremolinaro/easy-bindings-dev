@@ -122,7 +122,7 @@ import Cocoa
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
-    mOutlet.action = "action:"
+    mOutlet.action = #selector(Controller_EBDoubleField_value.action(_:))
     if autoFormatter {
       let formatter = NSNumberFormatter ()
       mOutlet.formatter = formatter
