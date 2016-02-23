@@ -1440,7 +1440,8 @@ class cCollectionElement_actionBindingListForGeneration : public cCollectionElem
 //--- Constructor
   public : cCollectionElement_actionBindingListForGeneration (const GALGAS_string & in_mOutletName,
                                                               const GALGAS_string & in_mTargetName,
-                                                              const GALGAS_string & in_mActionName
+                                                              const GALGAS_string & in_mActionName,
+                                                              const GALGAS_string & in_mTargetTypeName
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -1460,10 +1461,11 @@ class cCollectionElement_actionBindingListForGeneration : public cCollectionElem
 
 cCollectionElement_actionBindingListForGeneration::cCollectionElement_actionBindingListForGeneration (const GALGAS_string & in_mOutletName,
                                                                                                       const GALGAS_string & in_mTargetName,
-                                                                                                      const GALGAS_string & in_mActionName
+                                                                                                      const GALGAS_string & in_mActionName,
+                                                                                                      const GALGAS_string & in_mTargetTypeName
                                                                                                       COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mOutletName, in_mTargetName, in_mActionName) {
+mObject (in_mOutletName, in_mTargetName, in_mActionName, in_mTargetTypeName) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1476,7 +1478,7 @@ bool cCollectionElement_actionBindingListForGeneration::isValid (void) const {
 
 cCollectionElement * cCollectionElement_actionBindingListForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_actionBindingListForGeneration (mObject.mAttribute_mOutletName, mObject.mAttribute_mTargetName, mObject.mAttribute_mActionName COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_actionBindingListForGeneration (mObject.mAttribute_mOutletName, mObject.mAttribute_mTargetName, mObject.mAttribute_mActionName, mObject.mAttribute_mTargetTypeName COMMA_HERE)) ;
   return result ;
 }
 
@@ -1495,6 +1497,10 @@ void cCollectionElement_actionBindingListForGeneration::description (C_String & 
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mActionName" ":" ;
   mObject.mAttribute_mActionName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mTargetTypeName" ":" ;
+  mObject.mAttribute_mTargetTypeName.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1532,13 +1538,14 @@ GALGAS_actionBindingListForGeneration GALGAS_actionBindingListForGeneration::con
 
 GALGAS_actionBindingListForGeneration GALGAS_actionBindingListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
                                                                                                         const GALGAS_string & inOperand1,
-                                                                                                        const GALGAS_string & inOperand2
+                                                                                                        const GALGAS_string & inOperand2,
+                                                                                                        const GALGAS_string & inOperand3
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_actionBindingListForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     result.createNewEmptyList (THERE) ;
     capCollectionElement attributes ;
-    GALGAS_actionBindingListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2 COMMA_THERE) ;
+    GALGAS_actionBindingListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE) ;
     result.addObject (attributes) ;
   }
   return result ;
@@ -1549,12 +1556,14 @@ GALGAS_actionBindingListForGeneration GALGAS_actionBindingListForGeneration::con
 void GALGAS_actionBindingListForGeneration::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                        const GALGAS_string & in_mOutletName,
                                                                        const GALGAS_string & in_mTargetName,
-                                                                       const GALGAS_string & in_mActionName
+                                                                       const GALGAS_string & in_mActionName,
+                                                                       const GALGAS_string & in_mTargetTypeName
                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement_actionBindingListForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_actionBindingListForGeneration (in_mOutletName,
                                                                     in_mTargetName,
-                                                                    in_mActionName COMMA_THERE)) ;
+                                                                    in_mActionName,
+                                                                    in_mTargetTypeName COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -1563,11 +1572,12 @@ void GALGAS_actionBindingListForGeneration::makeAttributesFromObjects (capCollec
 
 void GALGAS_actionBindingListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
                                                                  const GALGAS_string & inOperand1,
-                                                                 const GALGAS_string & inOperand2
+                                                                 const GALGAS_string & inOperand2,
+                                                                 const GALGAS_string & inOperand3
                                                                  COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_actionBindingListForGeneration (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_actionBindingListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -1580,12 +1590,13 @@ void GALGAS_actionBindingListForGeneration::addAssign_operation (const GALGAS_st
 void GALGAS_actionBindingListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
                                                                   const GALGAS_string inOperand1,
                                                                   const GALGAS_string inOperand2,
+                                                                  const GALGAS_string inOperand3,
                                                                   const GALGAS_uint inInsertionIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_actionBindingListForGeneration (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_actionBindingListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -1598,6 +1609,7 @@ void GALGAS_actionBindingListForGeneration::setter_insertAtIndex (const GALGAS_s
 void GALGAS_actionBindingListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
                                                                   GALGAS_string & outOperand1,
                                                                   GALGAS_string & outOperand2,
+                                                                  GALGAS_string & outOperand3,
                                                                   const GALGAS_uint inRemoveIndex,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
@@ -1609,11 +1621,13 @@ void GALGAS_actionBindingListForGeneration::setter_removeAtIndex (GALGAS_string 
       outOperand0.drop () ;
       outOperand1.drop () ;
       outOperand2.drop () ;
+      outOperand3.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
       outOperand0 = p->mObject.mAttribute_mOutletName ;
       outOperand1 = p->mObject.mAttribute_mTargetName ;
       outOperand2 = p->mObject.mAttribute_mActionName ;
+      outOperand3 = p->mObject.mAttribute_mTargetTypeName ;
     }
   }
 }
@@ -1623,6 +1637,7 @@ void GALGAS_actionBindingListForGeneration::setter_removeAtIndex (GALGAS_string 
 void GALGAS_actionBindingListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
                                                              GALGAS_string & outOperand1,
                                                              GALGAS_string & outOperand2,
+                                                             GALGAS_string & outOperand3,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -1632,11 +1647,13 @@ void GALGAS_actionBindingListForGeneration::setter_popFirst (GALGAS_string & out
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
+    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOutletName ;
     outOperand1 = p->mObject.mAttribute_mTargetName ;
     outOperand2 = p->mObject.mAttribute_mActionName ;
+    outOperand3 = p->mObject.mAttribute_mTargetTypeName ;
   }
 }
 
@@ -1645,6 +1662,7 @@ void GALGAS_actionBindingListForGeneration::setter_popFirst (GALGAS_string & out
 void GALGAS_actionBindingListForGeneration::setter_popLast (GALGAS_string & outOperand0,
                                                             GALGAS_string & outOperand1,
                                                             GALGAS_string & outOperand2,
+                                                            GALGAS_string & outOperand3,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -1654,11 +1672,13 @@ void GALGAS_actionBindingListForGeneration::setter_popLast (GALGAS_string & outO
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
+    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOutletName ;
     outOperand1 = p->mObject.mAttribute_mTargetName ;
     outOperand2 = p->mObject.mAttribute_mActionName ;
+    outOperand3 = p->mObject.mAttribute_mTargetTypeName ;
   }
 }
 
@@ -1667,6 +1687,7 @@ void GALGAS_actionBindingListForGeneration::setter_popLast (GALGAS_string & outO
 void GALGAS_actionBindingListForGeneration::method_first (GALGAS_string & outOperand0,
                                                           GALGAS_string & outOperand1,
                                                           GALGAS_string & outOperand2,
+                                                          GALGAS_string & outOperand3,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -1676,11 +1697,13 @@ void GALGAS_actionBindingListForGeneration::method_first (GALGAS_string & outOpe
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
+    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOutletName ;
     outOperand1 = p->mObject.mAttribute_mTargetName ;
     outOperand2 = p->mObject.mAttribute_mActionName ;
+    outOperand3 = p->mObject.mAttribute_mTargetTypeName ;
   }
 }
 
@@ -1689,6 +1712,7 @@ void GALGAS_actionBindingListForGeneration::method_first (GALGAS_string & outOpe
 void GALGAS_actionBindingListForGeneration::method_last (GALGAS_string & outOperand0,
                                                          GALGAS_string & outOperand1,
                                                          GALGAS_string & outOperand2,
+                                                         GALGAS_string & outOperand3,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -1698,11 +1722,13 @@ void GALGAS_actionBindingListForGeneration::method_last (GALGAS_string & outOper
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
+    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
     outOperand0 = p->mObject.mAttribute_mOutletName ;
     outOperand1 = p->mObject.mAttribute_mTargetName ;
     outOperand2 = p->mObject.mAttribute_mActionName ;
+    outOperand3 = p->mObject.mAttribute_mTargetTypeName ;
   }
 }
 
@@ -1802,6 +1828,21 @@ GALGAS_string GALGAS_actionBindingListForGeneration::getter_mActionNameAtIndex (
   return result ;
 }
 
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_actionBindingListForGeneration::getter_mTargetTypeNameAtIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_actionBindingListForGeneration * p = (cCollectionElement_actionBindingListForGeneration *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+    result = p->mObject.mAttribute_mTargetTypeName ;
+  }
+  return result ;
+}
+
 
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1843,6 +1884,14 @@ GALGAS_string cEnumerator_actionBindingListForGeneration::current_mActionName (L
   const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
   return p->mObject.mAttribute_mActionName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string cEnumerator_actionBindingListForGeneration::current_mTargetTypeName (LOCATION_ARGS) const {
+  const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+  return p->mObject.mAttribute_mTargetTypeName ;
 }
 
 

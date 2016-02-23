@@ -352,7 +352,7 @@ extension Preferences {
     if validates {
       result = .ok (proposedValue)
     }else{
-      result = .rejectWithAlert ("Rejected in \(__FILE__), line \(__LINE__)")
+      result = .rejectWithAlert ("Rejected in \(#file), line \(#line)")
     }
     return result
 //--- END OF USER ZONE 2

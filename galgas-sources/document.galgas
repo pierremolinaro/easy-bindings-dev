@@ -208,6 +208,7 @@ override method @documentDeclaration semanticAnalysis
     !mOutletDeclarationList
     !observablePropertyMap
     !actionMap
+    !mDocumentName.string
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
     ?let @multipleBindingGenerationList multipleBindingGenerationList

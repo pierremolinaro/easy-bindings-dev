@@ -209,7 +209,7 @@ end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
 %    %!mOutletName%?.target = %!mTargetName%\n%
-%    %!mOutletName%?.action = "%!mActionName%:"\n%
+%    %!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
 %  //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)

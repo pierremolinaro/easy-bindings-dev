@@ -506,7 +506,8 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mOutletName,
                                                   const class GALGAS_string & in_mTargetName,
-                                                  const class GALGAS_string & in_mActionName
+                                                  const class GALGAS_string & in_mActionName,
+                                                  const class GALGAS_string & in_mTargetTypeName
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -524,7 +525,8 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
 
   public : static GALGAS_actionBindingListForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
                                                                                    const class GALGAS_string & inOperand1,
-                                                                                   const class GALGAS_string & inOperand2
+                                                                                   const class GALGAS_string & inOperand2,
+                                                                                   const class GALGAS_string & inOperand3
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -535,7 +537,8 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
                                                       const class GALGAS_string & inOperand1,
-                                                      const class GALGAS_string & inOperand2
+                                                      const class GALGAS_string & inOperand2,
+                                                      const class GALGAS_string & inOperand3
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration add_operation (const GALGAS_actionBindingListForGeneration & inOperand,
@@ -547,26 +550,30 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_string constinArgument2,
-                                                       class GALGAS_uint constinArgument3,
+                                                       class GALGAS_string constinArgument3,
+                                                       class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
                                                   class GALGAS_string & outArgument1,
                                                   class GALGAS_string & outArgument2,
+                                                  class GALGAS_string & outArgument3,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
                                                  class GALGAS_string & outArgument1,
                                                  class GALGAS_string & outArgument2,
+                                                 class GALGAS_string & outArgument3,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
                                                        class GALGAS_string & outArgument1,
                                                        class GALGAS_string & outArgument2,
-                                                       class GALGAS_uint constinArgument3,
+                                                       class GALGAS_string & outArgument3,
+                                                       class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -575,12 +582,14 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
                                                class GALGAS_string & outArgument1,
                                                class GALGAS_string & outArgument2,
+                                               class GALGAS_string & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
                                               class GALGAS_string & outArgument1,
                                               class GALGAS_string & outArgument2,
+                                              class GALGAS_string & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -598,6 +607,10 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTargetNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTargetTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
                                                                                                  C_Compiler * inCompiler
@@ -632,6 +645,7 @@ class cEnumerator_actionBindingListForGeneration : public cGenericAbstractEnumer
   public : class GALGAS_string current_mOutletName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mTargetName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mActionName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mTargetTypeName (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_actionBindingListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -1800,6 +1814,7 @@ class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_string mAttribute_mOutletName ;
   public : GALGAS_string mAttribute_mTargetName ;
   public : GALGAS_string mAttribute_mActionName ;
+  public : GALGAS_string mAttribute_mTargetTypeName ;
 
 
 //--------------------------------- Accessors
@@ -1818,7 +1833,8 @@ class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public : GALGAS_actionBindingListForGeneration_2D_element (const GALGAS_string & in_mOutletName,
                                                              const GALGAS_string & in_mTargetName,
-                                                             const GALGAS_string & in_mActionName) ;
+                                                             const GALGAS_string & in_mActionName,
+                                                             const GALGAS_string & in_mTargetTypeName) ;
 
 //-- Start of generic part --*
 
@@ -1833,7 +1849,8 @@ class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public : static GALGAS_actionBindingListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
                                                                                     const class GALGAS_string & inOperand1,
-                                                                                    const class GALGAS_string & inOperand2
+                                                                                    const class GALGAS_string & inOperand2,
+                                                                                    const class GALGAS_string & inOperand3
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1853,6 +1870,8 @@ class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTargetName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTargetTypeName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection

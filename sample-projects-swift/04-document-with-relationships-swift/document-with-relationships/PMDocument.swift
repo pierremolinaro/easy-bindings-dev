@@ -378,13 +378,13 @@ import Cocoa
     )
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
-    addPathButton?.action = "add:"
+    addPathButton?.action = #selector (ArrayController_PMDocument_nameController.add (_:))
     removePathButton?.target = nameController
-    removePathButton?.action = "remove:"
+    removePathButton?.action = #selector (ArrayController_PMDocument_nameController.remove (_:))
     incrementButton?.target = self
-    incrementButton?.action = "increment:"
+    incrementButton?.action = #selector (PMDocument.increment (_:))
     decrementButton?.target = self
-    decrementButton?.action = "decrement:"
+    decrementButton?.action = #selector (PMDocument.decrement (_:))
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
     flushOutletEvents ()
