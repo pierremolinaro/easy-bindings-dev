@@ -50,7 +50,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
     valueExplorer.font = font
     valueExplorer.title = explorerIndexString (mExplorerObjectIndex) + className
     valueExplorer.target = self
-    valueExplorer.action = "showObjectWindowFromExplorerButton:"
+    valueExplorer.action = #selector(SelectionController_PMDocument_detailController.showObjectWindowFromExplorerButton(_:))
     view.addSubview (valueExplorer)
     mValueExplorer = valueExplorer
     y += EXPLORER_ROW_HEIGHT
@@ -95,8 +95,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
     let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
-    closeButton!.target = self
-    closeButton!.action = "deleteSelectionControllerWindowAction:"
+    closeButton?.target = self
+    closeButton?.action = #selector(SelectionController_PMDocument_detailController.deleteSelectionControllerWindowAction(_:))
   //--- Set window title
     let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
     mExplorerWindow!.title = windowTitle

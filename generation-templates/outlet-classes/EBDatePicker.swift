@@ -61,7 +61,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
-    mOutlet.action = "action:"
+    mOutlet.action = #selector(Controller_EBDatePicker_date.action(_:))
     mObject.addEBObserver (self)
   }
 
