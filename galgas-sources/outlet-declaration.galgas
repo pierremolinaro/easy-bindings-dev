@@ -156,6 +156,7 @@ proc analyzeOutlets
   ?let @outletDeclarationList inOutletDeclarationList
   ?let @observablePropertyMap inObservablePropertyMap
   ?let @actionMap inActionMap
+  ?let @string inReceiverSwiftTypeName
   ?!@structForGeneration ioGeneration
   !@regularBindingsGenerationList outRegularBindingsGenerationList
   !@multipleBindingGenerationList outMultipleBindingGenerationList
@@ -215,10 +216,19 @@ proc analyzeOutlets
           !outlet_mOutletName.string
           !"self"
           !action.string
+          !inReceiverSwiftTypeName
       else # It is a controller
-        [inObservablePropertyMap searchKey !target ?4* ?let @actionMap controllerActionMap]
+        [inObservablePropertyMap searchKey
+          !target
+          ?4*
+          ?let @actionMap controllerActionMap
+        ]
         [controllerActionMap searchKey !action]
-        outTargetActionList += !outlet_mOutletName.string !target.string !action.string
+        outTargetActionList +=
+          !outlet_mOutletName.string
+          !target.string
+          !action.string
+          !"ArrayController_" + inReceiverSwiftTypeName + "_" + target
       end
     end
   #--- Enabled
@@ -384,6 +394,7 @@ list @actionBindingListForGeneration {
   @string mOutletName
   @string mTargetName
   @string mActionName
+  @string mTargetTypeName
 }
 
 #......................................................................................................................*

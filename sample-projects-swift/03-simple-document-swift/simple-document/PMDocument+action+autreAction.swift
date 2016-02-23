@@ -12,7 +12,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension PMDocument {
-  func autreAction (inSender : AnyObject) {
+  func autreAction (inSender : NSObject) {
 //--- START OF USER ZONE 2
 
 //--- END OF USER ZONE 2

@@ -186,6 +186,7 @@ method @prefDeclaration semanticAnalysis
     !mOutletDeclarationList
     !inSemanticContext.mPreferencesObservablePropertyMap
     !actionMap
+    !preferencesName ()
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
     ?let @multipleBindingGenerationList multipleBindingGenerationList

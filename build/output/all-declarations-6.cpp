@@ -2590,7 +2590,8 @@ GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGeneration
 GALGAS_actionBindingListForGeneration_2D_element::GALGAS_actionBindingListForGeneration_2D_element (void) :
 mAttribute_mOutletName (),
 mAttribute_mTargetName (),
-mAttribute_mActionName () {
+mAttribute_mActionName (),
+mAttribute_mTargetTypeName () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2602,16 +2603,19 @@ GALGAS_actionBindingListForGeneration_2D_element::~ GALGAS_actionBindingListForG
 
 GALGAS_actionBindingListForGeneration_2D_element::GALGAS_actionBindingListForGeneration_2D_element (const GALGAS_string & inOperand0,
                                                                                                     const GALGAS_string & inOperand1,
-                                                                                                    const GALGAS_string & inOperand2) :
+                                                                                                    const GALGAS_string & inOperand2,
+                                                                                                    const GALGAS_string & inOperand3) :
 mAttribute_mOutletName (inOperand0),
 mAttribute_mTargetName (inOperand1),
-mAttribute_mActionName (inOperand2) {
+mAttribute_mActionName (inOperand2),
+mAttribute_mTargetTypeName (inOperand3) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_actionBindingListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                           GALGAS_string::constructor_default (HERE),
                                                            GALGAS_string::constructor_default (HERE),
                                                            GALGAS_string::constructor_default (HERE)) ;
 }
@@ -2620,11 +2624,12 @@ GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGene
 
 GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
                                                                                                                     const GALGAS_string & inOperand1,
-                                                                                                                    const GALGAS_string & inOperand2 
+                                                                                                                    const GALGAS_string & inOperand2,
+                                                                                                                    const GALGAS_string & inOperand3 
                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_actionBindingListForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_actionBindingListForGeneration_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
+    result = GALGAS_actionBindingListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
   }
   return result ;
 }
@@ -2642,13 +2647,16 @@ typeComparisonResult GALGAS_actionBindingListForGeneration_2D_element::objectCom
   if (result == kOperandEqual) {
     result = mAttribute_mActionName.objectCompare (inOperand.mAttribute_mActionName) ;
   }
+  if (result == kOperandEqual) {
+    result = mAttribute_mTargetTypeName.objectCompare (inOperand.mAttribute_mTargetTypeName) ;
+  }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_actionBindingListForGeneration_2D_element::isValid (void) const {
-  return mAttribute_mOutletName.isValid () && mAttribute_mTargetName.isValid () && mAttribute_mActionName.isValid () ;
+  return mAttribute_mOutletName.isValid () && mAttribute_mTargetName.isValid () && mAttribute_mActionName.isValid () && mAttribute_mTargetTypeName.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2657,6 +2665,7 @@ void GALGAS_actionBindingListForGeneration_2D_element::drop (void) {
   mAttribute_mOutletName.drop () ;
   mAttribute_mTargetName.drop () ;
   mAttribute_mActionName.drop () ;
+  mAttribute_mTargetTypeName.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2672,6 +2681,8 @@ void GALGAS_actionBindingListForGeneration_2D_element::description (C_String & i
     mAttribute_mTargetName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mAttribute_mActionName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mAttribute_mTargetTypeName.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -2692,6 +2703,12 @@ GALGAS_string GALGAS_actionBindingListForGeneration_2D_element::getter_mTargetNa
 
 GALGAS_string GALGAS_actionBindingListForGeneration_2D_element::getter_mActionName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mActionName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string GALGAS_actionBindingListForGeneration_2D_element::getter_mTargetTypeName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mTargetTypeName ;
 }
 
 
@@ -5740,7 +5757,7 @@ void categoryMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
   GALGAS_decoratedOutletMap var_outletMap ;
   GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList ;
   {
-  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 184)), constinArgument_inSemanticContext, inObject.mAttribute_mOutletDeclarationList, constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap, var_actionMap, ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, var_tableViewBindingGenerationList, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 183)) ;
+  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 184)), constinArgument_inSemanticContext, inObject.mAttribute_mOutletDeclarationList, constinArgument_inSemanticContext.mAttribute_mPreferencesObservablePropertyMap, var_actionMap, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 189)), ioArgument_ioGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_actionBindingListForGeneration, var_outletMap, var_tableViewBindingGenerationList, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 183)) ;
   }
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mSimpleStoredPropertyListForGeneration = var_simpleStoredPropertyListForGeneration ;
   ioArgument_ioGeneration.mAttribute_mPreferencesForGeneration.mAttribute_mTransientDefinitionListForGeneration = var_transientDefinitionListForGeneration ;

@@ -8,4 +8,4 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension %!EXTENDED_CLASS_NAME% {
-  func %!ACTION_NAME% (inSender : AnyObject) {
+  func %!ACTION_NAME% (inSender : NSObject) {

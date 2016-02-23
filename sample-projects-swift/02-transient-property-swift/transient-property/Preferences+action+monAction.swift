@@ -12,7 +12,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension Preferences {
-  func monAction (inSender : AnyObject) {
+  func monAction (inSender : NSObject) {
 //--- START OF USER ZONE 2
    self.mFirstName.setProp ("Amédée")
    self.mLastName.setProp ("Schmurtz")

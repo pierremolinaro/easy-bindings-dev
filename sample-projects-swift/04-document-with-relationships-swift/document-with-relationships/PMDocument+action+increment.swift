@@ -12,7 +12,7 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension PMDocument {
-  func increment (inSender : AnyObject) {
+  func increment (inSender : NSObject) {
 //--- START OF USER ZONE 2
     for object in rootObject.mNames.propval {
       object.aValue.setProp (object.aValue.propval + 1)

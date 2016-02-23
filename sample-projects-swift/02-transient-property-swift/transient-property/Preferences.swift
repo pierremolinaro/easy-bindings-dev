@@ -220,7 +220,7 @@ var g_Preferences : Preferences? = nil
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
     myButton?.target = self
-    myButton?.action = "monAction:"
+    myButton?.action = #selector (Preferences.monAction (_:))
   //--- Extern functions
   }
   
