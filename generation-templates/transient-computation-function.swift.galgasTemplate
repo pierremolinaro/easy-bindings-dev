@@ -16,4 +16,3 @@ if IS_ARRAY then %[% end
 ![TRANSIENT_TYPE swiftTypeName]
 if IS_ARRAY then %]% end
 % {
-

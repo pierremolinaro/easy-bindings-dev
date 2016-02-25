@@ -395,6 +395,8 @@ Donc, si par exemple on n'accepte que les valeurs paires, on modifie le code de 
 
 Dans ce deuxième exemple, nous nous intéressons principalement aux \emph{propriétés transitoires}. Une proprité transitoire est une propriété dont la valeur n'est pas stockée (dans les préférences ou dans un document), mais dépend d'autres propriétés (transitoires ou non). Nous verrons le binding \eb!$run! qui s'applique aux boutons.
 
+\subsection{Texte source}
+
 Voici le code source du deuxième exemple :
 
 \begin{ebcode}
@@ -427,15 +429,58 @@ prefs {
 }
 \end{ebcode}
 
+Les clauses \eb!xcodeproject! et \eb!mainxib! ont été décrites dans le premier tutorial ; dans le clause \eb!prefs!, il y a deux nouvelles constructions :
+\begin{itemize}
+  \item les propriétés transitoires \eb!transient ...!, décrites à la \refSubsectionPage{proprietesTransitoires} ;
+  \item les actions \eb!action ...! et le binding \eb!$run!, décrits à la \refSubsectionPage{actionBoutonBindingRun}.
+\end{itemize}
 
+
+
+
+
+
+
+
+\subsection{Compilation}
+
+La compilation par \tpp{eb} engendre un projet \texttt{Xcode}. La compilation Xcode provoque trois erreurs, qui correspondent à des fonctions qu'il faut modifier :
+\begin{itemize}
+  \item dans \texttt{Preferences+action+monAction.swift}, il faut écrire le code exécuté par l'action \texttt{monAction} ; ceci est détaillé à la \refSubsectionPage{actionBoutonBindingRun} ;
+  \item dans \texttt{Preferences+transient+mFullName.swift}, il faut écrire le code qui calcule la valeur de la propriété transitoire \texttt{mFullName} en fonction des propriétés dont elle dépend (\texttt{mFirstName} et \texttt{mLastName}) ; ceci est détaillé à la \refSubsectionPage{codeProprietesTransitoiresFullName} ;
+  \item et de même dans \texttt{Preferences+transient+mUpperCaseFullName.swift}, détaillé à la \refSubsectionPage{codeProprietesTransitoiresUppercaseFullName}.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+\subsectionLabel{Propriétés transitoires}{proprietesTransitoires}
+
+
+L'exemple définit deux propriétés transitoires, \texttt{mFullName} et \texttt{mUpperCaseFullName}. Elle sont ainsi définies dans le texte source \emph{Easy Bindings} :
+\begin{ebcode}
+...
+prefs {
+  transient String mFullName dependsFrom self.mFirstName, self.mLastName ;
+  transient String mUpperCaseFullName dependsFrom self.mFullName ;
+  ...
+}
+\end{ebcode}
+
+Une déclaration de propriété transitoire déclare les propriétés \emph{maître} dont elle dépend : ici \texttt{mFirstName} et \texttt{mLastName} pour la première, et \texttt{mFullName} pour la seconde\footnote{\emph{Easy Bindings} vérifie à la compilation qu'il y a pas de circularité dans le graphe de dépendance, c'est-à-dire que le graphe est acyclique.}. Une propriété \emph{maître} peut être une propriété stockée ou transitoire.
 
 \begin{figure}[t]
   \centering
   \small
   \begin{tikzpicture}
-    \node[right] at (-5cm, 2cm) {\bf Propriétés stockées} ;
-    \node[right] at (-5cm, 0cm) {\bf Propriétés transitoires} ;
-    \node[right] at (-5cm, -2cm) {\bf Items graphiques} ;
+    \node[right] at (-4.5cm, 2cm) {\bf Propriétés stockées} ;
+    \node[right] at (-4.5cm, 0cm) {\bf Propriétés transitoires} ;
+    \node[right] at (-4.5cm, -2cm) {\bf Items graphiques} ;
 
     \ProprieteStockee{firstName}{mFirstName}{2cm}{2cm}
     \ProprieteStockee{lastName}{mLastName}{6cm}{2cm}
@@ -444,23 +489,143 @@ prefs {
     \ProprieteTransitoire{mUppercaseFullName}{mUppercaseFullName}{6cm}{0cm}
 
     \ItemGraphique{firstNameTF}{myFirstNameTF}{0cm}{-2cm}
-    \ItemGraphique{fullNameTF}{myFullNameTF}{3cm}{-2cm}
-    \ItemGraphique{uppercaseFullNameTF}{myUppercaseFullNameTF}{6.5cm}{-2cm}
-    \ItemGraphique{lastNameTF}{myLastNameTF}{10cm}{-2cm}
-
-    \Fleche{o->}{lastName}{mFullName}{}
-    \Fleche{o->}{lastName}{mUppercaseFullName}{}
+    \ItemGraphique{fullNameTF}{myFullNameTF}{2.75cm}{-2cm}
+    \ItemGraphique{uppercaseFullNameTF}{myUppercaseFullNameTF}{6.25cm}{-2cm}
+    \ItemGraphique{lastNameTF}{myLastNameTF}{9.75cm}{-2cm}
 
     \Fleche{o->}{firstName}{mFullName}{}
-    \Fleche{o->}{firstName}{mUppercaseFullName}{}
+    \Fleche{o->}{lastName}{mFullName}{}
+
+%    \Fleche{o->}{firstName}{mFullName}{}
+    \Fleche{o->}{mFullName}{mUppercaseFullName}{}
 
     \Fleche{o<->}{lastName}{lastNameTF}{bend left}
     \Fleche{o<->}{firstName}{firstNameTF}{bend right}
     \Fleche{o->}{mFullName}{fullNameTF}{}
     \Fleche{o->}{mUppercaseFullName}{uppercaseFullNameTF}{}
   \end{tikzpicture}
-  \caption{Bindings du deuxième tutorial}
+  \caption{Bindings du deuxième exemple}
   \labelFigure{bindingsTutorial2}
   \ligne
 \end{figure}
+
+Le graphe de dépendance entre toutes les propriétés et les items graphiques de ce deuxième exemple est illustré par la \refFigurePage{}{bindingsTutorial2}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsectionLabel{Code associé à la propriété transitoire \texttt{mFullName}}{codeProprietesTransitoiresFullName}
+
+Évidemment, \emph{Easy Bindings} ne peut pas deviner comment les valeurs des propriétés \texttt{mFirstName} et \texttt{mLastName} sont combinées pour calculer la valeur de \texttt{mFullName} ; c'est pour cela qu'une fonction est engendrée, dont le code est vide. Cela engendre une erreur de compilation Swift, il faut ajouter l'instruction \texttt{return} qui va renvoyer la valeur qui sera affectée à \texttt{mFullName}. La fonction engendrée dans \texttt{Preferences+transient+mFullName.swift} est la suivante :
+
+
+\begin{lstlisting}[language=swift]
+func compute_Preferences_mFullName (self_2E_mFirstName : String,
+                                    _ self_2E_mLastName : String) -> String {
+//--- START OF USER ZONE 2
+
+//--- END OF USER ZONE 2
+}
+\end{lstlisting}
+
+Les deux arguments \texttt{self\_2E\_mFirstName} et \texttt{self\_2E\_mLastName} contiennent les valeurs des propriétés maître \texttt{mFirstName} et \texttt{mLastName}. On complète donc la fonction de la façon suivante :
+\begin{lstlisting}[language=swift]
+func compute_Preferences_mFullName (self_2E_mFirstName : String,
+                                    _ self_2E_mLastName : String) -> String {
+//--- START OF USER ZONE 2
+  return self_2E_mFirstName + " " + self_2E_mLastName
+//--- END OF USER ZONE 2
+}
+\end{lstlisting}
+
+Le code ajouté est encadré par \texttt{//-{}-{}- START OF USER ZONE 2} et \texttt{//-{}-{}- START OF USER ZONE 2}, il sera préservé lors d'une compilation \emph{Easy Binding} ultérieure.
+
+
+
+
+
+
+
+\subsectionLabel{Code associé à la propriété transitoire \texttt{mUppercaseFullName}}{codeProprietesTransitoiresUppercaseFullName}
+
+La fonction engendrée \texttt{Preferences+transient+mUp-percaseFullName.swift} est la suivante :
+
+
+\begin{lstlisting}[language=swift]
+func compute_Preferences_mUpperCaseFullName (self_2E_mFullName : String) -> String {
+//--- START OF USER ZONE 2
+
+//--- END OF USER ZONE 2
+}
+\end{lstlisting}
+
+Et après ajout du code qui renvoie la valeur de \texttt{mFullName} en majuscule :
+\begin{lstlisting}[language=swift]
+func compute_Preferences_mUpperCaseFullName (self_2E_mFullName : String) -> String {
+//--- START OF USER ZONE 2
+  return self_2E_mFullName.uppercaseString
+//--- END OF USER ZONE 2
+}
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+\subsectionLabel{Action, bouton, et binding \texttt{\$run}}{actionBoutonBindingRun}
+
+Voyons maintenant comment action et bouton sont déclarés :
+\begin{ebcode}
+prefs {
+  ...
+  action monAction ;
+  outlet EBButton myButton $run self.monAction ;
+}
+\end{ebcode}
+
+La première ligne (\eb!action monAction ;!) déclare l'action ; la seconde ligne déclare \eb!myButton!, de type \eb!EBButton! ; le binding \eb!$run! nomme l'action qui est exécutée lorsque l'on relâche le bouton. Ici aussi, \emph{Easy Binding} ne peut pas deviner le code à exécuter. 
+
+La déclaration d'une action (\eb!action monAction ;!) provoque la génération d'un fichier (ici \texttt{Preferences+action+monAction.swift}) qui contient une extension de la classe \texttt{Preferences} définissant l'action (ici, par la fonction \texttt{monAction}) :
+
+\begin{lstlisting}[language=swift]
+extension Preferences {
+  func monAction (inSender : NSObject) {
+//--- START OF USER ZONE 2
+    ENTER USER CODE HERE
+//--- END OF USER ZONE 2
+  }
+}
+\end{lstlisting}
+
+Tel que, la fonction ne compile pas : la ligne \texttt{ENTER USER CODE HERE} déclenche des erreurs. Il faut la remplacer par du code effectif :
+
+\begin{lstlisting}[language=swift]
+extension Preferences {
+  func monAction (inSender : NSObject) {
+//--- START OF USER ZONE 2
+    self.mFirstName.setProp ("Joe")
+    self.mLastName.setProp ("Smith")
+//--- END OF USER ZONE 2
+  }
+}
+\end{lstlisting}
+
+La première ligne ajoutée affecte à la propriété \texttt{mFirstName} la valeur \texttt{"Joe"}. La propriété \texttt{mFirstName} ait été déclarée du type \eb!String! dans le texte source \emph{Easy Binding}, celle-ci est représentée dans le code Swift engendré par une instance de la classe \texttt{EBStoredProperty\_String}. Celle-ci possède une méthode \texttt{setProp} qui permet de modifier la valeur de la propriété par programme.
+
+
 
