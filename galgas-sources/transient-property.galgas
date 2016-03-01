@@ -186,43 +186,47 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   ?let @string inTransientName
   -> @string outResult
 {
-  var dependencies = self
-  [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
   @string ident = "        "
-  outResult = ident + "switch " + [first modelString !"unwSelf"] + ".prop {\n"
-  outResult += ident + "case .noSelection :\n"
+  outResult = ""
+  if [self length] == 1 then
+    [self first ?let @observablePropertyAST first ?* ?*]
+    outResult += ident + "let kind = " + [first modelString !"unwSelf"] + ".prop.kind ()\n"
+  else
+    var dependencies = self
+    [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
+    outResult += ident + "var kind = " + [first modelString !"unwSelf"] + ".prop.kind ()\n"
+    for () in dependencies do
+      outResult += ident + "kind &= " + [mDependency modelString !"unwSelf"] + ".prop.kind ()\n"
+    end
+  end
+  outResult += ident + "switch kind {\n"
+  outResult += ident + "case .noSelectionKind :\n"
   outResult += ident + "  return .noSelection\n"
-  outResult += ident + "case .multipleSelection :\n"
-  let finalCloseString = ident + "}\n"
-  var closeString = ""
-  for () in dependencies do
-    ident += "  "
-    outResult += ident + "switch " + [mDependency modelString !"unwSelf"] + ".prop {\n"
-    outResult += ident + "case .noSelection :\n"
-    outResult += ident + "  return .noSelection\n"
-    outResult += ident + "case .multipleSelection, .singleSelection :\n"
-    closeString = ident + "}\n" + closeString
-  end
+  outResult += ident + "case .multipleSelectionKind :\n"
   outResult += ident + "  return .multipleSelection\n"
-  outResult += closeString
-  ident = "        "
-  outResult += ident + "case .singleSelection (let v1) :\n"
-  var idx = 2
-  var args = ""
-  for () in dependencies do
-    ident += "  "
-    outResult += ident + "switch " + [mDependency modelString !"unwSelf"] + ".prop {\n"
-    outResult += ident + "case .noSelection :\n"
-    outResult += ident + "  return .noSelection\n"
-    outResult += ident + "case .multipleSelection :\n"
-    outResult += ident + "  return .multipleSelection\n"
-    outResult += ident + "case .singleSelection (let v" + idx + ") :\n"
-    args += ", v" + idx
-    idx ++
+  outResult += ident + "case .singleSelectionKind :\n"
+  outResult += ident + "  switch ("
+  for () in self
+  do outResult += [mDependency modelString !"unwSelf"] + ".prop"
+  between outResult += ", "
   end
-  outResult += ident + "  return .singleSelection (compute_" + inOwnerName + "_" + inTransientName + " (v1" + args + "))\n"
-  outResult += closeString
-  outResult += finalCloseString
+  outResult += ") {\n"
+  outResult += ident + "  case ("
+  for () in self
+  do (idx) outResult += ".singleSelection (let v" + idx + ")"
+  between outResult += ", "
+  end
+  outResult += ") :\n"
+  outResult += ident + "    return .singleSelection (compute_" + inOwnerName + "_" + inTransientName + " ("
+  for () in self
+  do (idx) outResult += "v" + idx
+  between outResult += ", "
+  end
+  outResult += "))\n"
+  outResult += ident + "  default :\n"
+  outResult += ident + "    return .noSelection\n"
+  outResult += ident + "  }\n"
+  outResult += ident + "}\n"
 }
 
 #......................................................................................................................*

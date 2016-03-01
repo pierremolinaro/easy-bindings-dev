@@ -296,36 +296,20 @@ class MyRootEntity : EBManagedObject
   //--- Install compute functions for transients
     transientConcatString.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.docString.prop {
-        case .noSelection :
+        var kind = unwSelf.docString.prop.kind ()
+        kind &= g_Preferences!.myPrefString.prop.kind ()
+        kind &= g_Preferences!.prefTransientString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
-          switch g_Preferences!.myPrefString.prop {
-          case .noSelection :
+        case .multipleSelectionKind :
+          return .multipleSelection
+        case .singleSelectionKind :
+          switch (unwSelf.docString.prop, g_Preferences!.myPrefString.prop, g_Preferences!.prefTransientString.prop) {
+          case (.singleSelection (let v0), .singleSelection (let v1), .singleSelection (let v2)) :
+            return .singleSelection (compute_MyRootEntity_transientConcatString (v0, v1, v2))
+          default :
             return .noSelection
-          case .multipleSelection, .singleSelection :
-            switch g_Preferences!.prefTransientString.prop {
-            case .noSelection :
-              return .noSelection
-            case .multipleSelection, .singleSelection :
-              return .multipleSelection
-            }
-          }
-        case .singleSelection (let v1) :
-          switch g_Preferences!.myPrefString.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            return .multipleSelection
-          case .singleSelection (let v2) :
-            switch g_Preferences!.prefTransientString.prop {
-            case .noSelection :
-              return .noSelection
-            case .multipleSelection :
-              return .multipleSelection
-            case .singleSelection (let v3) :
-              return .singleSelection (compute_MyRootEntity_transientConcatString (v1, v2, v3))
-            }
           }
         }
       }else{
@@ -333,13 +317,19 @@ class MyRootEntity : EBManagedObject
       }
     }
     otherTransientConcatString.readModelFunction = {
-        switch g_Preferences!.myPrefString.prop {
-        case .noSelection :
+        let kind = g_Preferences!.myPrefString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_MyRootEntity_otherTransientConcatString (v1))
+        case .singleSelectionKind :
+          switch (g_Preferences!.myPrefString.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_MyRootEntity_otherTransientConcatString (v0))
+          default :
+            return .noSelection
+          }
         }
     }
   //--- Install property observers for transients
