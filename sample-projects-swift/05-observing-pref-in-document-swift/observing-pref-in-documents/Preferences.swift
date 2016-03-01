@@ -73,13 +73,19 @@ var g_Preferences : Preferences? = nil
   //--- Install compute functions for transients
     prefTransientString.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.myPrefString.prop {
-        case .noSelection :
+        let kind = unwSelf.myPrefString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_Preferences_prefTransientString (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.myPrefString.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_Preferences_prefTransientString (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection

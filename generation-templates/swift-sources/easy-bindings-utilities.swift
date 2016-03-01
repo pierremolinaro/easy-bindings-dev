@@ -883,8 +883,45 @@ func defaultValidationFunction <T> (currentValue : T, proposedValue : T) -> EBVa
 
 enum EBProperty<T> {
   case noSelection
-  case singleSelection (T)
   case multipleSelection
+  case singleSelection (T)
+  
+  func kind () -> EBPropertyKind {
+    switch self {
+    case .noSelection : return .noSelectionKind
+    case .multipleSelection : return .multipleSelectionKind
+    case .singleSelection : return .singleSelectionKind
+    }
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+enum EBPropertyKind {
+  case noSelectionKind
+  case multipleSelectionKind
+  case singleSelectionKind
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+func &= (inout left:EBPropertyKind, right:EBPropertyKind) {
+  switch left {
+  case .noSelectionKind : break
+  case .multipleSelectionKind :
+    if right == .noSelectionKind {
+      left = .noSelectionKind
+    }
+  case .singleSelectionKind :
+    switch right {
+    case .noSelectionKind :
+      left = .noSelectionKind
+    case .multipleSelectionKind :
+      left = .multipleSelectionKind
+    case .singleSelectionKind :
+      break
+    }
+  }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

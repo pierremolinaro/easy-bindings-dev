@@ -271,13 +271,19 @@ import Cocoa
   //--- Transient compute functions
     selectionCountString.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.selController.sortedArray.count.prop {
-        case .noSelection :
+        let kind = unwSelf.selController.sortedArray.count.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_PMDocument_selectionCountString (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.selController.sortedArray.count.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_PMDocument_selectionCountString (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
@@ -285,13 +291,19 @@ import Cocoa
     }
     evenValueString.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.otherController.sortedArray.count.prop {
-        case .noSelection :
+        let kind = unwSelf.otherController.sortedArray.count.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_PMDocument_evenValueString (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.otherController.sortedArray.count.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_PMDocument_evenValueString (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
@@ -299,13 +311,19 @@ import Cocoa
     }
     canRemoveString.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.nameController.selectedArray.count.prop {
-        case .noSelection :
+        let kind = unwSelf.nameController.selectedArray.count.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_PMDocument_canRemoveString (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.nameController.selectedArray.count.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_PMDocument_canRemoveString (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
@@ -313,13 +331,19 @@ import Cocoa
     }
     countItemMessage.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.rootObject.mNames.count.prop {
-        case .noSelection :
+        let kind = unwSelf.rootObject.mNames.count.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_PMDocument_countItemMessage (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.rootObject.mNames.count.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_PMDocument_countItemMessage (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
@@ -327,13 +351,19 @@ import Cocoa
     }
     total.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.rootObject.mNames.prop {
-        case .noSelection :
+        let kind = unwSelf.rootObject.mNames.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_PMDocument_total (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.rootObject.mNames.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_PMDocument_total (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection

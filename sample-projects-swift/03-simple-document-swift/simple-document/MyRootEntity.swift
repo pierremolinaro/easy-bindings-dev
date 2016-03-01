@@ -425,13 +425,19 @@ class MyRootEntity : EBManagedObject
   //--- Install compute functions for transients
     myStringMaj.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.myString.prop {
-        case .noSelection :
+        let kind = unwSelf.myString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_MyRootEntity_myStringMaj (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.myString.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_MyRootEntity_myStringMaj (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
@@ -439,13 +445,19 @@ class MyRootEntity : EBManagedObject
     }
     myStringMin.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.myString.prop {
-        case .noSelection :
+        let kind = unwSelf.myString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_MyRootEntity_myStringMin (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.myString.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_MyRootEntity_myStringMin (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
@@ -453,24 +465,19 @@ class MyRootEntity : EBManagedObject
     }
     myStringConcat.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.myStringMaj.prop {
-        case .noSelection :
+        var kind = unwSelf.myStringMaj.prop.kind ()
+        kind &= unwSelf.myStringMin.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
-          switch unwSelf.myStringMin.prop {
-          case .noSelection :
+        case .multipleSelectionKind :
+          return .multipleSelection
+        case .singleSelectionKind :
+          switch (unwSelf.myStringMaj.prop, unwSelf.myStringMin.prop) {
+          case (.singleSelection (let v0), .singleSelection (let v1)) :
+            return .singleSelection (compute_MyRootEntity_myStringConcat (v0, v1))
+          default :
             return .noSelection
-          case .multipleSelection, .singleSelection :
-            return .multipleSelection
-          }
-        case .singleSelection (let v1) :
-          switch unwSelf.myStringMin.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            return .multipleSelection
-          case .singleSelection (let v2) :
-            return .singleSelection (compute_MyRootEntity_myStringConcat (v1, v2))
           }
         }
       }else{

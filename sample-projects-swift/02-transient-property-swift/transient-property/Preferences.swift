@@ -169,24 +169,19 @@ var g_Preferences : Preferences? = nil
   //--- Install compute functions for transients
     mFullName.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.mFirstName.prop {
-        case .noSelection :
+        var kind = unwSelf.mFirstName.prop.kind ()
+        kind &= unwSelf.mLastName.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
-          switch unwSelf.mLastName.prop {
-          case .noSelection :
+        case .multipleSelectionKind :
+          return .multipleSelection
+        case .singleSelectionKind :
+          switch (unwSelf.mFirstName.prop, unwSelf.mLastName.prop) {
+          case (.singleSelection (let v0), .singleSelection (let v1)) :
+            return .singleSelection (compute_Preferences_mFullName (v0, v1))
+          default :
             return .noSelection
-          case .multipleSelection, .singleSelection :
-            return .multipleSelection
-          }
-        case .singleSelection (let v1) :
-          switch unwSelf.mLastName.prop {
-          case .noSelection :
-            return .noSelection
-          case .multipleSelection :
-            return .multipleSelection
-          case .singleSelection (let v2) :
-            return .singleSelection (compute_Preferences_mFullName (v1, v2))
           }
         }
       }else{
@@ -195,13 +190,19 @@ var g_Preferences : Preferences? = nil
     }
     mUpperCaseFullName.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        switch unwSelf.mFullName.prop {
-        case .noSelection :
+        let kind = unwSelf.mFullName.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
           return .noSelection
-        case .multipleSelection :
+        case .multipleSelectionKind :
           return .multipleSelection
-        case .singleSelection (let v1) :
-          return .singleSelection (compute_Preferences_mUpperCaseFullName (v1))
+        case .singleSelectionKind :
+          switch (unwSelf.mFullName.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_Preferences_mUpperCaseFullName (v0))
+          default :
+            return .noSelection
+          }
         }
       }else{
         return .noSelection
