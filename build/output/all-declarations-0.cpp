@@ -16,6 +16,7 @@
 
 #include "strings/unicode_character_cpp.h"
 #include "galgas2/scanner_actions.h"
+#include "galgas2/cLexiqueIntrospection.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1847,6 +1848,100 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("^") COMMA_THERE) ;
   return result ;
 }
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void getKeywordLists_easyBindings_5F_lexique (TC_UniqueArray <C_String> & ioList) {
+  ioList.addObject ("easyBindings_lexique:delimitorsList") ;
+  ioList.addObject ("easyBindings_lexique:lowerCaseKeyWordList") ;
+  ioList.addObject ("easyBindings_lexique:reservedBindingNameKeyWordList") ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & inIdentifier,
+                                                              bool & ioFound,
+                                                              TC_UniqueArray <C_String> & ioList) {
+  if (inIdentifier == "easyBindings_lexique:delimitorsList") {
+    ioFound = true ;
+    ioList.addObject ("!") ;
+    ioList.addObject ("&") ;
+    ioList.addObject ("(") ;
+    ioList.addObject (")") ;
+    ioList.addObject (",") ;
+    ioList.addObject (".") ;
+    ioList.addObject (":") ;
+    ioList.addObject (";") ;
+    ioList.addObject ("<") ;
+    ioList.addObject (">") ;
+    ioList.addObject ("[") ;
+    ioList.addObject ("]") ;
+    ioList.addObject ("^") ;
+    ioList.addObject ("{") ;
+    ioList.addObject ("|") ;
+    ioList.addObject ("}") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+  if (inIdentifier == "easyBindings_lexique:lowerCaseKeyWordList") {
+    ioFound = true ;
+    ioList.addObject ("no") ;
+    ioList.addObject ("to") ;
+    ioList.addObject ("all") ;
+    ioList.addObject ("yes") ;
+    ioList.addObject ("enum") ;
+    ioList.addObject ("root") ;
+    ioList.addObject ("self") ;
+    ioList.addObject ("sort") ;
+    ioList.addObject ("array") ;
+    ioList.addObject ("class") ;
+    ioList.addObject ("prefs") ;
+    ioList.addObject ("toOne") ;
+    ioList.addObject ("action") ;
+    ioList.addObject ("column") ;
+    ioList.addObject ("entity") ;
+    ioList.addObject ("filter") ;
+    ioList.addObject ("outlet") ;
+    ioList.addObject ("struct") ;
+    ioList.addObject ("toMany") ;
+    ioList.addObject ("binding") ;
+    ioList.addObject ("default") ;
+    ioList.addObject ("include") ;
+    ioList.addObject ("inverse") ;
+    ioList.addObject ("mainxib") ;
+    ioList.addObject ("version") ;
+    ioList.addObject ("calledBy") ;
+    ioList.addObject ("document") ;
+    ioList.addObject ("property") ;
+    ioList.addObject ("signature") ;
+    ioList.addObject ("transient") ;
+    ioList.addObject ("validates") ;
+    ioList.addObject ("externFunc") ;
+    ioList.addObject ("dependsFrom") ;
+    ioList.addObject ("outletClass") ;
+    ioList.addObject ("xcodeproject") ;
+    ioList.addObject ("classForSwift") ;
+    ioList.addObject ("externDelegate") ;
+    ioList.addObject ("arrayController") ;
+    ioList.addObject ("selectionController") ;
+    ioList.addObject ("versionShouldChange") ;
+    ioList.addObject ("customObjectController") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+  if (inIdentifier == "easyBindings_lexique:reservedBindingNameKeyWordList") {
+    ioFound = true ;
+    ioList.addObject ("run") ;
+    ioList.addObject ("hidden") ;
+    ioList.addObject ("enabled") ;
+    ioList.addObject ("tableValue") ;
+    ioList.sortArrayUsingCompareMethod() ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static cLexiqueIntrospection lexiqueIntrospection_easyBindings_5F_lexique
+__attribute__ ((used))
+__attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsForIdentifier_easyBindings_5F_lexique) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //   S T Y L E   I N D E X    F O R    T E R M I N A L                                                                 *
