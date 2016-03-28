@@ -133,7 +133,7 @@ GALGAS_string filewrapperTemplate_classGenerationTemplate_classImplementationInS
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category getter '@observablePropertyAST generateAddObserverCall' (as function)                    *
+//                   Extension getter '@observablePropertyAST generateAddObserverCall' (as function)                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -143,7 +143,7 @@ class GALGAS_string extensionGetter_generateAddObserverCall (const class GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category getter '@transientDependencyListForGeneration needs_unwSelf' (as function)                 *
+//                Extension getter '@transientDependencyListForGeneration needs_unwSelf' (as function)                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -153,7 +153,7 @@ class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_transient
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Category getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)          *
+//         Extension getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -165,7 +165,7 @@ class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category getter '@typeKind swiftTypeName' (as function)                               *
+//                              Extension getter '@typeKind swiftTypeName' (as function)                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -289,7 +289,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Abstract category getter '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'          *
+//         Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -310,7 +310,7 @@ class GALGAS_string callCategoryGetter_expressionString (const class cPtr_abstra
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Abstract category getter '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'          *
+//         Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -331,7 +331,7 @@ class GALGAS_stringset callCategoryGetter_observedModelSet (const class cPtr_abs
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Category getter '@observablePropertyAST generateRemoveObserverCall' (as function)                  *
+//                 Extension getter '@observablePropertyAST generateRemoveObserverCall' (as function)                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -341,7 +341,7 @@ class GALGAS_string extensionGetter_generateRemoveObserverCall (const class GALG
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Category getter '@tableViewBindingGenerationList outletNameListForController' (as function)             *
+//            Extension getter '@tableViewBindingGenerationList outletNameListForController' (as function)             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -452,7 +452,7 @@ class GALGAS_string function_preferencesName (class C_Compiler * inCompiler
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category getter '@mainXibDescriptorList generateCode' (as function)                         *
+//                        Extension getter '@mainXibDescriptorList generateCode' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -462,7 +462,7 @@ class GALGAS_string extensionGetter_generateCode (const class GALGAS_mainXibDesc
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category getter '@observablePropertyAST modelString' (as function)                          *
+//                         Extension getter '@observablePropertyAST modelString' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

@@ -9780,7 +9780,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Abstract category method '@abstractSecondaryProperty typeInventory'                         *
+//                        Abstract extension method '@abstractSecondaryProperty typeInventory'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9840,7 +9840,7 @@ void callCategoryMethod_typeInventory (const cPtr_abstractSecondaryProperty * in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Abstract category method '@abstractSecondaryProperty secondaryPropertySemanticAnalysis'               *
+//              Abstract extension method '@abstractSecondaryProperty secondaryPropertySemanticAnalysis'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9909,7 +9909,7 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const cPtr_abstractSe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category method '@toOneRelationshipList typeInventory'                                *
+//                               Extension method '@toOneRelationshipList typeInventory'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9931,7 +9931,7 @@ void categoryMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category method '@toManyRelationshipList typeInventory'                               *
+//                              Extension method '@toManyRelationshipList typeInventory'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -9953,7 +9953,7 @@ void categoryMethod_typeInventory (const GALGAS_toManyRelationshipList inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category method '@toOneRelationshipList buildObservablePropertyMap'                         *
+//                        Extension method '@toOneRelationshipList buildObservablePropertyMap'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10021,7 +10021,7 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category method '@toManyRelationshipList buildObservablePropertyMap'                         *
+//                        Extension method '@toManyRelationshipList buildObservablePropertyMap'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10089,7 +10089,7 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
+//                             Extension method '@toOneRelationshipList semanticAnalysis'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -10180,7 +10180,7 @@ void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObjec
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@toManyRelationshipList semanticAnalysis'                              *
+//                             Extension method '@toManyRelationshipList semanticAnalysis'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

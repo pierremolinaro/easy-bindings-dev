@@ -2774,7 +2774,7 @@ GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::extractObject (const GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category method '@XcodeProjectDescriptor addICNS_file'                                *
+//                               Extension method '@XcodeProjectDescriptor addICNS_file'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2793,7 +2793,7 @@ void categoryModifier_addICNS_5F_file (GALGAS_XcodeProjectDescriptor & ioObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@propertyClassDeclaration typeInventory'                         *
+//                        Overriding extension method '@propertyClassDeclaration typeInventory'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2807,6 +2807,7 @@ static void categoryMethod_propertyClassDeclaration_typeInventory (const cPtr_as
   ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mAttribute_mClassPropertyName, GALGAS_typeKind::constructor_propertyClassType (object->mAttribute_mClassPropertyName.mAttribute_string, object->mAttribute_mDefaultValues  COMMA_SOURCE_FILE ("property-class.galgas", 64)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("property-class.galgas", 65)), inCompiler COMMA_SOURCE_FILE ("property-class.galgas", 62)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_propertyClassDeclaration_typeInventory (void) {
@@ -2820,7 +2821,7 @@ C_PrologueEpilogue gMethod_propertyClassDeclaration_typeInventory (defineCategor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Overriding category method '@propertyClassDeclaration buildObservablePropertyMapsFromStoredProperties'        *
+//       Overriding extension method '@propertyClassDeclaration buildObservablePropertyMapsFromStoredProperties'       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2830,6 +2831,7 @@ static void categoryMethod_propertyClassDeclaration_buildObservablePropertyMapsF
                                                                                                      C_Compiler * /* inCompiler */
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_propertyClassDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
@@ -2843,7 +2845,7 @@ C_PrologueEpilogue gMethod_propertyClassDeclaration_buildObservablePropertyMapsF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@propertyClassDeclaration buildInitialSecondaryPropertyListMap'             *
+//            Overriding extension method '@propertyClassDeclaration buildInitialSecondaryPropertyListMap'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2853,6 +2855,7 @@ static void categoryMethod_propertyClassDeclaration_buildInitialSecondaryPropert
                                                                                           C_Compiler * /* inCompiler */
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_propertyClassDeclaration_buildInitialSecondaryPropertyListMap (void) {
@@ -2866,7 +2869,7 @@ C_PrologueEpilogue gMethod_propertyClassDeclaration_buildInitialSecondaryPropert
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@propertyClassDeclaration solveSecondaryProperty'                    *
+//                   Overriding extension method '@propertyClassDeclaration solveSecondaryProperty'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2879,6 +2882,7 @@ static void categoryMethod_propertyClassDeclaration_solveSecondaryProperty (cons
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("property-class.galgas", 96)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_propertyClassDeclaration_solveSecondaryProperty (void) {
@@ -2892,7 +2896,7 @@ C_PrologueEpilogue gMethod_propertyClassDeclaration_solveSecondaryProperty (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@propertyClassDeclaration semanticAnalysis'                       *
+//                      Overriding extension method '@propertyClassDeclaration semanticAnalysis'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2905,6 +2909,7 @@ static void categoryMethod_propertyClassDeclaration_semanticAnalysis (const cPtr
   macroValidSharedObject (object, cPtr_propertyClassDeclaration) ;
   ioArgument_ioGeneration.mAttribute_mPropertyClassList.addAssign_operation (object->mAttribute_mClassPropertyName.mAttribute_string  COMMA_SOURCE_FILE ("property-class.galgas", 105)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_propertyClassDeclaration_semanticAnalysis (void) {
@@ -2918,7 +2923,7 @@ C_PrologueEpilogue gMethod_propertyClassDeclaration_semanticAnalysis (defineCate
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@transientPropertyClassDeclaration typeInventory'                    *
+//                   Overriding extension method '@transientPropertyClassDeclaration typeInventory'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2932,6 +2937,7 @@ static void categoryMethod_transientPropertyClassDeclaration_typeInventory (cons
   ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mAttribute_mClassPropertyName, GALGAS_typeKind::constructor_transientPropertyClassType (object->mAttribute_mClassPropertyName.mAttribute_string  COMMA_SOURCE_FILE ("transient-property-class.galgas", 45)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("transient-property-class.galgas", 46)), inCompiler COMMA_SOURCE_FILE ("transient-property-class.galgas", 43)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientPropertyClassDeclaration_typeInventory (void) {
@@ -2945,7 +2951,7 @@ C_PrologueEpilogue gMethod_transientPropertyClassDeclaration_typeInventory (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//   Overriding category method '@transientPropertyClassDeclaration buildObservablePropertyMapsFromStoredProperties'   *
+//  Overriding extension method '@transientPropertyClassDeclaration buildObservablePropertyMapsFromStoredProperties'   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2955,6 +2961,7 @@ static void categoryMethod_transientPropertyClassDeclaration_buildObservableProp
                                                                                                               C_Compiler * /* inCompiler */
                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientPropertyClassDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
@@ -2968,7 +2975,7 @@ C_PrologueEpilogue gMethod_transientPropertyClassDeclaration_buildObservableProp
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//        Overriding category method '@transientPropertyClassDeclaration buildInitialSecondaryPropertyListMap'         *
+//        Overriding extension method '@transientPropertyClassDeclaration buildInitialSecondaryPropertyListMap'        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -2978,6 +2985,7 @@ static void categoryMethod_transientPropertyClassDeclaration_buildInitialSeconda
                                                                                                    C_Compiler * /* inCompiler */
                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientPropertyClassDeclaration_buildInitialSecondaryPropertyListMap (void) {
@@ -2991,7 +2999,7 @@ C_PrologueEpilogue gMethod_transientPropertyClassDeclaration_buildInitialSeconda
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category method '@transientPropertyClassDeclaration solveSecondaryProperty'                *
+//               Overriding extension method '@transientPropertyClassDeclaration solveSecondaryProperty'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3004,6 +3012,7 @@ static void categoryMethod_transientPropertyClassDeclaration_solveSecondaryPrope
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("transient-property-class.galgas", 77)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientPropertyClassDeclaration_solveSecondaryProperty (void) {
@@ -3017,7 +3026,7 @@ C_PrologueEpilogue gMethod_transientPropertyClassDeclaration_solveSecondaryPrope
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Overriding category method '@transientPropertyClassDeclaration semanticAnalysis'                   *
+//                  Overriding extension method '@transientPropertyClassDeclaration semanticAnalysis'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3030,6 +3039,7 @@ static void categoryMethod_transientPropertyClassDeclaration_semanticAnalysis (c
   macroValidSharedObject (object, cPtr_transientPropertyClassDeclaration) ;
   ioArgument_ioGeneration.mAttribute_mTransientPropertyClassList.addAssign_operation (object->mAttribute_mClassPropertyName.mAttribute_string  COMMA_SOURCE_FILE ("transient-property-class.galgas", 86)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientPropertyClassDeclaration_semanticAnalysis (void) {
@@ -3043,7 +3053,7 @@ C_PrologueEpilogue gMethod_transientPropertyClassDeclaration_semanticAnalysis (d
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Overriding category method '@enumDeclaration typeInventory'                             *
+//                            Overriding extension method '@enumDeclaration typeInventory'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3065,6 +3075,7 @@ static void categoryMethod_enumDeclaration_typeInventory (const cPtr_astDeclarat
   ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mAttribute_mEnumTypeName, GALGAS_typeKind::constructor_enumType (object->mAttribute_mEnumTypeName.mAttribute_string, var_enumConstantMap  COMMA_SOURCE_FILE ("enumeration.galgas", 61)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 59)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_enumDeclaration_typeInventory (void) {
@@ -3078,7 +3089,7 @@ C_PrologueEpilogue gMethod_enumDeclaration_typeInventory (defineCategoryMethod_e
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category method '@enumDeclaration buildObservablePropertyMapsFromStoredProperties'            *
+//           Overriding extension method '@enumDeclaration buildObservablePropertyMapsFromStoredProperties'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3088,6 +3099,7 @@ static void categoryMethod_enumDeclaration_buildObservablePropertyMapsFromStored
                                                                                             C_Compiler * /* inCompiler */
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_enumDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
@@ -3101,7 +3113,7 @@ C_PrologueEpilogue gMethod_enumDeclaration_buildObservablePropertyMapsFromStored
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@enumDeclaration buildInitialSecondaryPropertyListMap'                  *
+//                 Overriding extension method '@enumDeclaration buildInitialSecondaryPropertyListMap'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3111,6 +3123,7 @@ static void categoryMethod_enumDeclaration_buildInitialSecondaryPropertyListMap 
                                                                                  C_Compiler * /* inCompiler */
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_enumDeclaration_buildInitialSecondaryPropertyListMap (void) {
@@ -3124,7 +3137,7 @@ C_PrologueEpilogue gMethod_enumDeclaration_buildInitialSecondaryPropertyListMap 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@enumDeclaration solveSecondaryProperty'                         *
+//                        Overriding extension method '@enumDeclaration solveSecondaryProperty'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3137,6 +3150,7 @@ static void categoryMethod_enumDeclaration_solveSecondaryProperty (const cPtr_as
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("enumeration.galgas", 92)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_enumDeclaration_solveSecondaryProperty (void) {
@@ -3150,7 +3164,7 @@ C_PrologueEpilogue gMethod_enumDeclaration_solveSecondaryProperty (defineCategor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@enumDeclaration semanticAnalysis'                            *
+//                           Overriding extension method '@enumDeclaration semanticAnalysis'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3163,6 +3177,7 @@ static void categoryMethod_enumDeclaration_semanticAnalysis (const cPtr_astDecla
   macroValidSharedObject (object, cPtr_enumDeclaration) ;
   ioArgument_ioGeneration.mAttribute_mEnumListForGeneration.addAssign_operation (object->mAttribute_mEnumTypeName.mAttribute_string, object->mAttribute_mEnumConstantNameList  COMMA_SOURCE_FILE ("enumeration.galgas", 101)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_enumDeclaration_semanticAnalysis (void) {
@@ -3176,7 +3191,7 @@ C_PrologueEpilogue gMethod_enumDeclaration_semanticAnalysis (defineCategoryMetho
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@classDeclaration typeInventory'                             *
+//                            Overriding extension method '@classDeclaration typeInventory'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3204,6 +3219,7 @@ static void categoryMethod_classDeclaration_typeInventory (const cPtr_astDeclara
   ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mAttribute_mClassName, GALGAS_typeKind::constructor_classType (object->mAttribute_mClassName.mAttribute_string  COMMA_SOURCE_FILE ("class.galgas", 99)), var_actionMap, inCompiler COMMA_SOURCE_FILE ("class.galgas", 99)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_classDeclaration_typeInventory (void) {
@@ -3217,7 +3233,7 @@ C_PrologueEpilogue gMethod_classDeclaration_typeInventory (defineCategoryMethod_
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@classDeclaration buildObservablePropertyMapsFromStoredProperties'            *
+//           Overriding extension method '@classDeclaration buildObservablePropertyMapsFromStoredProperties'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3234,6 +3250,7 @@ static void categoryMethod_classDeclaration_buildObservablePropertyMapsFromStore
   ioArgument_ioSemanticContext.mAttribute_mEntityObservablePropertyMap.setter_insertKey (object->mAttribute_mClassName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("class.galgas", 140)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_classDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
@@ -3247,7 +3264,7 @@ C_PrologueEpilogue gMethod_classDeclaration_buildObservablePropertyMapsFromStore
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Overriding category method '@classDeclaration buildInitialSecondaryPropertyListMap'                 *
+//                Overriding extension method '@classDeclaration buildInitialSecondaryPropertyListMap'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3262,6 +3279,7 @@ static void categoryMethod_classDeclaration_buildInitialSecondaryPropertyListMap
   const GALGAS_classDeclaration temp_0 = object ;
   ioArgument_ioSecondaryDeclarationListWorkingList.addAssign_operation (temp_0, object->mAttribute_mSecondaryPropertyList  COMMA_SOURCE_FILE ("class.galgas", 153)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_classDeclaration_buildInitialSecondaryPropertyListMap (void) {
@@ -3275,7 +3293,7 @@ C_PrologueEpilogue gMethod_classDeclaration_buildInitialSecondaryPropertyListMap
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Overriding category method '@classDeclaration solveSecondaryProperty'                        *
+//                       Overriding extension method '@classDeclaration solveSecondaryProperty'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3300,6 +3318,7 @@ static void categoryMethod_classDeclaration_solveSecondaryProperty (const cPtr_a
   ioArgument_ioSemanticContext.mAttribute_mEntityObservablePropertyMap.setter_setMObservablePropertyMapForKey (var_observablePropertyMap, object->mAttribute_mClassName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("class.galgas", 177)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_classDeclaration_solveSecondaryProperty (void) {
@@ -3313,7 +3332,7 @@ C_PrologueEpilogue gMethod_classDeclaration_solveSecondaryProperty (defineCatego
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@classDeclaration semanticAnalysis'                           *
+//                          Overriding extension method '@classDeclaration semanticAnalysis'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3367,6 +3386,7 @@ static void categoryMethod_classDeclaration_semanticAnalysis (const cPtr_astDecl
   }
   ioArgument_ioGeneration.mAttribute_mClassListForGeneration.addAssign_operation (object->mAttribute_mClassName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, object->mAttribute_mExternSwiftFunctionList, object->mAttribute_mExternSwiftDelegateList  COMMA_SOURCE_FILE ("class.galgas", 242)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_classDeclaration_semanticAnalysis (void) {
@@ -3380,7 +3400,7 @@ C_PrologueEpilogue gMethod_classDeclaration_semanticAnalysis (defineCategoryMeth
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                            Overriding category method '@entityDeclaration typeInventory'                            *
+//                           Overriding extension method '@entityDeclaration typeInventory'                            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3417,6 +3437,7 @@ static void categoryMethod_entityDeclaration_typeInventory (const cPtr_astDeclar
     }
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_entityDeclaration_typeInventory (void) {
@@ -3430,7 +3451,7 @@ C_PrologueEpilogue gMethod_entityDeclaration_typeInventory (defineCategoryMethod
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@entityDeclaration buildObservablePropertyMapsFromStoredProperties'           *
+//          Overriding extension method '@entityDeclaration buildObservablePropertyMapsFromStoredProperties'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3449,6 +3470,7 @@ static void categoryMethod_entityDeclaration_buildObservablePropertyMapsFromStor
   ioArgument_ioSemanticContext.mAttribute_mEntityObservablePropertyMap.setter_insertKey (object->mAttribute_mEntityName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 134)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_entityDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
@@ -3462,7 +3484,7 @@ C_PrologueEpilogue gMethod_entityDeclaration_buildObservablePropertyMapsFromStor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@entityDeclaration buildInitialSecondaryPropertyListMap'                 *
+//                Overriding extension method '@entityDeclaration buildInitialSecondaryPropertyListMap'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3477,6 +3499,7 @@ static void categoryMethod_entityDeclaration_buildInitialSecondaryPropertyListMa
   const GALGAS_entityDeclaration temp_0 = object ;
   ioArgument_ioSecondaryDeclarationListWorkingList.addAssign_operation (temp_0, object->mAttribute_mSecondaryPropertyList  COMMA_SOURCE_FILE ("entity.galgas", 147)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_entityDeclaration_buildInitialSecondaryPropertyListMap (void) {
@@ -3490,7 +3513,7 @@ C_PrologueEpilogue gMethod_entityDeclaration_buildInitialSecondaryPropertyListMa
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@entityDeclaration solveSecondaryProperty'                        *
+//                       Overriding extension method '@entityDeclaration solveSecondaryProperty'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3515,6 +3538,7 @@ static void categoryMethod_entityDeclaration_solveSecondaryProperty (const cPtr_
   ioArgument_ioSemanticContext.mAttribute_mEntityObservablePropertyMap.setter_setMObservablePropertyMapForKey (var_observablePropertyMap, object->mAttribute_mEntityName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 171)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_entityDeclaration_solveSecondaryProperty (void) {
@@ -3528,7 +3552,7 @@ C_PrologueEpilogue gMethod_entityDeclaration_solveSecondaryProperty (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Overriding category method '@entityDeclaration semanticAnalysis'                           *
+//                          Overriding extension method '@entityDeclaration semanticAnalysis'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3559,6 +3583,7 @@ static void categoryMethod_entityDeclaration_semanticAnalysis (const cPtr_astDec
   categoryMethod_semanticAnalysis (object->mAttribute_mToManyRelationshipList, constinArgument_inSemanticContext, var_toManyEntityRelationshipListForGeneration, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 218)) ;
   ioArgument_ioGeneration.mAttribute_mEntityListForGeneration.addAssign_operation (object->mAttribute_mEntityName.mAttribute_string, object->mAttribute_mSuperEntityName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, var_toOneEntityRelationshipListForGeneration, var_toManyEntityRelationshipListForGeneration, object->mAttribute_mSignatureList  COMMA_SOURCE_FILE ("entity.galgas", 223)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_entityDeclaration_semanticAnalysis (void) {
@@ -3572,7 +3597,7 @@ C_PrologueEpilogue gMethod_entityDeclaration_semanticAnalysis (defineCategoryMet
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Overriding category method '@documentDeclaration typeInventory'                           *
+//                          Overriding extension method '@documentDeclaration typeInventory'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3593,6 +3618,7 @@ static void categoryMethod_documentDeclaration_typeInventory (const cPtr_astDecl
   GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, object->mAttribute_mRootEntityName, joker_3156 COMMA_SOURCE_FILE ("document.galgas", 78)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_documentDeclaration_typeInventory (void) {
@@ -3606,7 +3632,7 @@ C_PrologueEpilogue gMethod_documentDeclaration_typeInventory (defineCategoryMeth
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Overriding category method '@documentDeclaration buildInitialSecondaryPropertyListMap'                *
+//               Overriding extension method '@documentDeclaration buildInitialSecondaryPropertyListMap'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3621,6 +3647,7 @@ static void categoryMethod_documentDeclaration_buildInitialSecondaryPropertyList
   const GALGAS_documentDeclaration temp_0 = object ;
   ioArgument_ioSecondaryDeclarationListWorkingList.addAssign_operation (temp_0, object->mAttribute_mSecondaryPropertyList  COMMA_SOURCE_FILE ("document.galgas", 98)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_documentDeclaration_buildInitialSecondaryPropertyListMap (void) {
@@ -3634,7 +3661,7 @@ C_PrologueEpilogue gMethod_documentDeclaration_buildInitialSecondaryPropertyList
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@documentDeclaration buildObservablePropertyMapsFromStoredProperties'          *
+//         Overriding extension method '@documentDeclaration buildObservablePropertyMapsFromStoredProperties'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3651,6 +3678,7 @@ static void categoryMethod_documentDeclaration_buildObservablePropertyMapsFromSt
   ioArgument_ioSemanticContext.mAttribute_mDocumentObservablePropertyMap.setter_insertKey (object->mAttribute_mDocumentName, var_observablePropertyMap, inCompiler COMMA_SOURCE_FILE ("document.galgas", 116)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_documentDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
@@ -3664,7 +3692,7 @@ C_PrologueEpilogue gMethod_documentDeclaration_buildObservablePropertyMapsFromSt
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@documentDeclaration solveSecondaryProperty'                       *
+//                      Overriding extension method '@documentDeclaration solveSecondaryProperty'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3691,6 +3719,7 @@ static void categoryMethod_documentDeclaration_solveSecondaryProperty (const cPt
   ioArgument_ioSemanticContext.mAttribute_mDocumentObservablePropertyMap.setter_setMObservablePropertyMapForKey (var_observablePropertyMap, object->mAttribute_mDocumentName.mAttribute_string, inCompiler COMMA_SOURCE_FILE ("document.galgas", 147)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_documentDeclaration_solveSecondaryProperty (void) {
@@ -3704,7 +3733,7 @@ C_PrologueEpilogue gMethod_documentDeclaration_solveSecondaryProperty (defineCat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Overriding category method '@documentDeclaration semanticAnalysis'                          *
+//                         Overriding extension method '@documentDeclaration semanticAnalysis'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3753,6 +3782,7 @@ static void categoryMethod_documentDeclaration_semanticAnalysis (const cPtr_astD
   }
   ioArgument_ioGeneration.mAttribute_mDocumentListForGeneration.addAssign_operation (object->mAttribute_mDocumentName.mAttribute_string, object->mAttribute_mRootEntityName.mAttribute_string, var_simpleStoredPropertyListForGeneration, var_transientDefinitionListForGeneration, var_outletMap, var_actionBindingListForGeneration, var_regularBindingsGenerationList, var_multipleBindingGenerationList, var_documentArrayControllerListForGeneration, var_tableViewBindingGenerationList, var_selectionControllerListForGeneration, var_customObjectControllerListForGeneration  COMMA_SOURCE_FILE ("document.galgas", 220)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_documentDeclaration_semanticAnalysis (void) {
@@ -3766,7 +3796,7 @@ C_PrologueEpilogue gMethod_documentDeclaration_semanticAnalysis (defineCategoryM
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Overriding category method '@transientAST typeInventory'                               *
+//                              Overriding extension method '@transientAST typeInventory'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3781,6 +3811,7 @@ static void categoryMethod_transientAST_typeInventory (const cPtr_abstractSecond
   GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, object->mAttribute_mTransientTypeName, joker_2402 COMMA_SOURCE_FILE ("transient-property.galgas", 61)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientAST_typeInventory (void) {
@@ -3794,7 +3825,7 @@ C_PrologueEpilogue gMethod_transientAST_typeInventory (defineCategoryMethod_tran
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@transientAST tryToSolveSecondaryProperty'                        *
+//                       Overriding extension method '@transientAST tryToSolveSecondaryProperty'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3839,6 +3870,7 @@ static void categoryMethod_transientAST_tryToSolveSecondaryProperty (const cPtr_
     ioArgument_ioUnsolvedProperties.addAssign_operation (temp_4  COMMA_SOURCE_FILE ("transient-property.galgas", 97)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientAST_tryToSolveSecondaryProperty (void) {
@@ -3852,7 +3884,7 @@ C_PrologueEpilogue gMethod_transientAST_tryToSolveSecondaryProperty (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@transientAST secondaryPropertySemanticAnalysis'                     *
+//                    Overriding extension method '@transientAST secondaryPropertySemanticAnalysis'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3947,6 +3979,7 @@ static void categoryMethod_transientAST_secondaryPropertySemanticAnalysis (const
   }
   ioArgument_ioTransientDefinitionListForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mTransientName.mAttribute_string, object->mAttribute_mIsArray, var_type, var_dependencies  COMMA_SOURCE_FILE ("transient-property.galgas", 154)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_transientAST_secondaryPropertySemanticAnalysis (void) {
@@ -3960,7 +3993,7 @@ C_PrologueEpilogue gMethod_transientAST_secondaryPropertySemanticAnalysis (defin
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
+//      Overriding extension method '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -3979,6 +4012,7 @@ static void categoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpress
   outArgument_outType = GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("multiple-binding.galgas", 228)) ;
   outArgument_outErrorLocation = object->mAttribute_mValue.mAttribute_location ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_literalIntMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -3992,7 +4026,7 @@ C_PrologueEpilogue gMethod_literalIntMultipleBindingExpressionAST_analyzeExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-// Overriding category method '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'  *
+// Overriding extension method '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding' *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4054,6 +4088,7 @@ static void categoryMethod_observablePropertyInMultipleBindingExpressionAST_anal
   outArgument_outEnableExpression = GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::constructor_new (extensionGetter_modelString (object->mAttribute_mProperty, GALGAS_string ("self"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 266))  COMMA_SOURCE_FILE ("multiple-binding.galgas", 265)) ;
   outArgument_outErrorLocation = extensionGetter_location (object->mAttribute_mProperty, inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 268)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_observablePropertyInMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -4067,7 +4102,7 @@ C_PrologueEpilogue gMethod_observablePropertyInMultipleBindingExpressionAST_anal
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//     Overriding category method '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
+//    Overriding extension method '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4090,6 +4125,7 @@ static void categoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpr
   }
   outArgument_outEnableExpression = GALGAS_negateBooleanMultipleBindingExpressionForGeneration::constructor_new (var_expression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 292)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -4103,7 +4139,7 @@ C_PrologueEpilogue gMethod_negateBooleanMultipleBindingExpressionAST_analyzeExpr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Overriding category method '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
+//      Overriding extension method '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4138,6 +4174,7 @@ static void categoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressi
   outArgument_outErrorLocation = var_outRightLocation ;
   outArgument_outEnableExpression = GALGAS_orBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 329)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -4151,7 +4188,7 @@ C_PrologueEpilogue gMethod_orBooleanMultipleBindingExpressionAST_analyzeExpressi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
+//      Overriding extension method '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4186,6 +4223,7 @@ static void categoryMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpress
   outArgument_outErrorLocation = var_outRightLocation ;
   outArgument_outEnableExpression = GALGAS_xorBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 366)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -4199,7 +4237,7 @@ C_PrologueEpilogue gMethod_xorBooleanMultipleBindingExpressionAST_analyzeExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
+//      Overriding extension method '@andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4234,6 +4272,7 @@ static void categoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpress
   outArgument_outErrorLocation = var_outRightLocation ;
   outArgument_outEnableExpression = GALGAS_andBooleanMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 403)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_andBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -4247,7 +4286,7 @@ C_PrologueEpilogue gMethod_andBooleanMultipleBindingExpressionAST_analyzeExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//      Overriding category method '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'       *
+//      Overriding extension method '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4286,6 +4325,7 @@ static void categoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpress
   outArgument_outErrorLocation = var_outRightLocation ;
   outArgument_outEnableExpression = GALGAS_comparisonMultipleBindingExpressionForGeneration::constructor_new (var_leftExpression, object->mAttribute_mOperator, var_rightExpression  COMMA_SOURCE_FILE ("multiple-binding.galgas", 440)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_comparisonMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding (void) {
@@ -4299,7 +4339,7 @@ C_PrologueEpilogue gMethod_comparisonMultipleBindingExpressionAST_analyzeExpress
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category getter '@booleanMultipleBindingLiteralIntForGeneration observedModelSet'             *
+//            Overriding extension getter '@booleanMultipleBindingLiteralIntForGeneration observedModelSet'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4326,7 +4366,7 @@ C_PrologueEpilogue gGetter_booleanMultipleBindingLiteralIntForGeneration_observe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//  Overriding category getter '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet'   *
+//  Overriding extension getter '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet'  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4357,7 +4397,7 @@ C_PrologueEpilogue gGetter_observablePropertyAsBooleanMultipleBindingExpressionF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category getter '@negateBooleanMultipleBindingExpressionForGeneration observedModelSet'          *
+//         Overriding extension getter '@negateBooleanMultipleBindingExpressionForGeneration observedModelSet'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4386,7 +4426,7 @@ C_PrologueEpilogue gGetter_negateBooleanMultipleBindingExpressionForGeneration_o
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@orBooleanMultipleBindingExpressionForGeneration observedModelSet'            *
+//           Overriding extension getter '@orBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4418,7 +4458,7 @@ C_PrologueEpilogue gGetter_orBooleanMultipleBindingExpressionForGeneration_obser
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@xorBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
+//          Overriding extension getter '@xorBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4450,7 +4490,7 @@ C_PrologueEpilogue gGetter_xorBooleanMultipleBindingExpressionForGeneration_obse
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@andBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
+//          Overriding extension getter '@andBooleanMultipleBindingExpressionForGeneration observedModelSet'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4482,7 +4522,7 @@ C_PrologueEpilogue gGetter_andBooleanMultipleBindingExpressionForGeneration_obse
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@comparisonMultipleBindingExpressionForGeneration observedModelSet'           *
+//          Overriding extension getter '@comparisonMultipleBindingExpressionForGeneration observedModelSet'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4514,7 +4554,7 @@ C_PrologueEpilogue gGetter_comparisonMultipleBindingExpressionForGeneration_obse
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//            Overriding category getter '@booleanMultipleBindingLiteralIntForGeneration expressionString'             *
+//            Overriding extension getter '@booleanMultipleBindingLiteralIntForGeneration expressionString'            *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4543,7 +4583,7 @@ C_PrologueEpilogue gGetter_booleanMultipleBindingLiteralIntForGeneration_express
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//  Overriding category getter '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString'   *
+//  Overriding extension getter '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString'  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4572,7 +4612,7 @@ C_PrologueEpilogue gGetter_observablePropertyAsBooleanMultipleBindingExpressionF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//         Overriding category getter '@negateBooleanMultipleBindingExpressionForGeneration expressionString'          *
+//         Overriding extension getter '@negateBooleanMultipleBindingExpressionForGeneration expressionString'         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4601,7 +4641,7 @@ C_PrologueEpilogue gGetter_negateBooleanMultipleBindingExpressionForGeneration_e
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@orBooleanMultipleBindingExpressionForGeneration expressionString'            *
+//           Overriding extension getter '@orBooleanMultipleBindingExpressionForGeneration expressionString'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4630,7 +4670,7 @@ C_PrologueEpilogue gGetter_orBooleanMultipleBindingExpressionForGeneration_expre
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@xorBooleanMultipleBindingExpressionForGeneration expressionString'           *
+//          Overriding extension getter '@xorBooleanMultipleBindingExpressionForGeneration expressionString'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4659,7 +4699,7 @@ C_PrologueEpilogue gGetter_xorBooleanMultipleBindingExpressionForGeneration_expr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@andBooleanMultipleBindingExpressionForGeneration expressionString'           *
+//          Overriding extension getter '@andBooleanMultipleBindingExpressionForGeneration expressionString'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4688,7 +4728,7 @@ C_PrologueEpilogue gGetter_andBooleanMultipleBindingExpressionForGeneration_expr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category getter '@comparisonMultipleBindingExpressionForGeneration expressionString'           *
+//          Overriding extension getter '@comparisonMultipleBindingExpressionForGeneration expressionString'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4752,7 +4792,7 @@ C_PrologueEpilogue gGetter_comparisonMultipleBindingExpressionForGeneration_expr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Overriding category method '@arrayControllerDeclaration typeInventory'                        *
+//                       Overriding extension method '@arrayControllerDeclaration typeInventory'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4761,6 +4801,7 @@ static void categoryMethod_arrayControllerDeclaration_typeInventory (const cPtr_
                                                                      C_Compiler * /* inCompiler */
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_arrayControllerDeclaration_typeInventory (void) {
@@ -4774,7 +4815,7 @@ C_PrologueEpilogue gMethod_arrayControllerDeclaration_typeInventory (defineCateg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                Overriding category method '@arrayControllerDeclaration tryToSolveSecondaryProperty'                 *
+//                Overriding extension method '@arrayControllerDeclaration tryToSolveSecondaryProperty'                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -4886,6 +4927,7 @@ static void categoryMethod_arrayControllerDeclaration_tryToSolveSecondaryPropert
     ioArgument_ioUnsolvedProperties.addAssign_operation (temp_7  COMMA_SOURCE_FILE ("array-controller.galgas", 284)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_arrayControllerDeclaration_tryToSolveSecondaryProperty (void) {
@@ -4899,7 +4941,7 @@ C_PrologueEpilogue gMethod_arrayControllerDeclaration_tryToSolveSecondaryPropert
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@arrayControllerDeclaration secondaryPropertySemanticAnalysis'              *
+//             Overriding extension method '@arrayControllerDeclaration secondaryPropertySemanticAnalysis'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5213,6 +5255,7 @@ static void categoryMethod_arrayControllerDeclaration_secondaryPropertySemanticA
   }
   ioArgument_ioArrayControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mControllerName.mAttribute_string, var_arrayControllerFilterListForGeneration, extensionGetter_modelString (object->mAttribute_mArrayControllerModel, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 489)), var_arrayControllerBoundColumnListForGeneration, var_arrayControllerSortedColumnListForGeneration, extensionGetter_modelTypeName (object->mAttribute_mArrayControllerModel, constinArgument_inRootEntityName, constinArgument_inObservableProperties, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 492)), extensionGetter_modelTypeName_32_ (object->mAttribute_mArrayControllerModel, constinArgument_inRootEntityName, constinArgument_inObservableProperties, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 493)), var_modelKind, extensionGetter_swiftTypeName (var_modelType, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 495)), var_attributeListForGeneration  COMMA_SOURCE_FILE ("array-controller.galgas", 485)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_arrayControllerDeclaration_secondaryPropertySemanticAnalysis (void) {
@@ -5226,7 +5269,7 @@ C_PrologueEpilogue gMethod_arrayControllerDeclaration_secondaryPropertySemanticA
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@selectionControllerDeclaration typeInventory'                      *
+//                     Overriding extension method '@selectionControllerDeclaration typeInventory'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5235,6 +5278,7 @@ static void categoryMethod_selectionControllerDeclaration_typeInventory (const c
                                                                          C_Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_selectionControllerDeclaration_typeInventory (void) {
@@ -5248,7 +5292,7 @@ C_PrologueEpilogue gMethod_selectionControllerDeclaration_typeInventory (defineC
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//              Overriding category method '@selectionControllerDeclaration tryToSolveSecondaryProperty'               *
+//              Overriding extension method '@selectionControllerDeclaration tryToSolveSecondaryProperty'              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5339,6 +5383,7 @@ static void categoryMethod_selectionControllerDeclaration_tryToSolveSecondaryPro
     ioArgument_ioUnsolvedProperties.addAssign_operation (temp_10  COMMA_SOURCE_FILE ("selection-controller.galgas", 101)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_selectionControllerDeclaration_tryToSolveSecondaryProperty (void) {
@@ -5352,7 +5397,7 @@ C_PrologueEpilogue gMethod_selectionControllerDeclaration_tryToSolveSecondaryPro
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//           Overriding category method '@selectionControllerDeclaration secondaryPropertySemanticAnalysis'            *
+//           Overriding extension method '@selectionControllerDeclaration secondaryPropertySemanticAnalysis'           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5433,6 +5478,7 @@ static void categoryMethod_selectionControllerDeclaration_secondaryPropertySeman
   constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (GALGAS_lstring::constructor_new (var_selectionEntityName, object->mAttribute_mSelectionControllerName.mAttribute_location  COMMA_SOURCE_FILE ("selection-controller.galgas", 145)), var_selectionObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 144)) ;
   ioArgument_ioSelectionControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mSelectionControllerName.mAttribute_string, object->mAttribute_mModelControllerName.mAttribute_string, object->mAttribute_mModelControllerPropertyName.mAttribute_string, var_selectionEntityName, var_selectionObservablePropertyMap  COMMA_SOURCE_FILE ("selection-controller.galgas", 149)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_selectionControllerDeclaration_secondaryPropertySemanticAnalysis (void) {
@@ -5446,7 +5492,7 @@ C_PrologueEpilogue gMethod_selectionControllerDeclaration_secondaryPropertySeman
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                    Overriding category method '@customObjectControllerDeclaration typeInventory'                    *
+//                   Overriding extension method '@customObjectControllerDeclaration typeInventory'                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5455,6 +5501,7 @@ static void categoryMethod_customObjectControllerDeclaration_typeInventory (cons
                                                                             C_Compiler * /* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_customObjectControllerDeclaration_typeInventory (void) {
@@ -5468,7 +5515,7 @@ C_PrologueEpilogue gMethod_customObjectControllerDeclaration_typeInventory (defi
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Overriding category method '@customObjectControllerDeclaration tryToSolveSecondaryProperty'             *
+//            Overriding extension method '@customObjectControllerDeclaration tryToSolveSecondaryProperty'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5546,6 +5593,7 @@ static void categoryMethod_customObjectControllerDeclaration_tryToSolveSecondary
     ioArgument_ioUnsolvedProperties.addAssign_operation (temp_6  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 90)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_customObjectControllerDeclaration_tryToSolveSecondaryProperty (void) {
@@ -5559,7 +5607,7 @@ C_PrologueEpilogue gMethod_customObjectControllerDeclaration_tryToSolveSecondary
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//          Overriding category method '@customObjectControllerDeclaration secondaryPropertySemanticAnalysis'          *
+//         Overriding extension method '@customObjectControllerDeclaration secondaryPropertySemanticAnalysis'          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5582,6 +5630,7 @@ static void categoryMethod_customObjectControllerDeclaration_secondaryPropertySe
   constinArgument_inSemanticContext.mAttribute_mEntityObservablePropertyMap.method_searchKey (object->mAttribute_mPropertyEntityName, var_selectionObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("custom-object-controller.galgas", 109)) ;
   ioArgument_ioCustomObjectControllerDeclaration.addAssign_operation (constinArgument_inOwnerName, object->mAttribute_mCustomObjectControllerName.mAttribute_string, object->mAttribute_mClassNameForSwift.mAttribute_string, object->mAttribute_mPropertyEntityName.mAttribute_string, var_selectionObservablePropertyMap  COMMA_SOURCE_FILE ("custom-object-controller.galgas", 114)) ;
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_customObjectControllerDeclaration_secondaryPropertySemanticAnalysis (void) {
@@ -5595,7 +5644,7 @@ C_PrologueEpilogue gMethod_customObjectControllerDeclaration_secondaryPropertySe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@boolAsDefaultValue analyzeDefaultValueType'                       *
+//                      Overriding extension method '@boolAsDefaultValue analyzeDefaultValueType'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5669,6 +5718,7 @@ static void categoryMethod_boolAsDefaultValue_analyzeDefaultValueType (const cPt
     inCompiler->emitSemanticError (location_4, GALGAS_string ("only a boolean attribute can be initialized by YES or NO")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 127)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_boolAsDefaultValue_analyzeDefaultValueType (void) {
@@ -5682,7 +5732,7 @@ C_PrologueEpilogue gMethod_boolAsDefaultValue_analyzeDefaultValueType (defineCat
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@integerAsDefaultValue analyzeDefaultValueType'                     *
+//                    Overriding extension method '@integerAsDefaultValue analyzeDefaultValueType'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5754,6 +5804,7 @@ static void categoryMethod_integerAsDefaultValue_analyzeDefaultValueType (const 
     inCompiler->emitSemanticError (location_2, GALGAS_string ("only an integer attribute can be initialized by an integer constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 157)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_integerAsDefaultValue_analyzeDefaultValueType (void) {
@@ -5767,7 +5818,7 @@ C_PrologueEpilogue gMethod_integerAsDefaultValue_analyzeDefaultValueType (define
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@doubleAsDefaultValue analyzeDefaultValueType'                      *
+//                     Overriding extension method '@doubleAsDefaultValue analyzeDefaultValueType'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5834,6 +5885,7 @@ static void categoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (const c
     inCompiler->emitSemanticError (location_2, GALGAS_string ("only a double attribute can be initialized by a floating point constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 184)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_doubleAsDefaultValue_analyzeDefaultValueType (void) {
@@ -5847,7 +5899,7 @@ C_PrologueEpilogue gMethod_doubleAsDefaultValue_analyzeDefaultValueType (defineC
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Overriding category method '@stringAsDefaultValue analyzeDefaultValueType'                      *
+//                     Overriding extension method '@stringAsDefaultValue analyzeDefaultValueType'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5914,6 +5966,7 @@ static void categoryMethod_stringAsDefaultValue_analyzeDefaultValueType (const c
     inCompiler->emitSemanticError (location_2, GALGAS_string ("only a string attribute can be initialized by a string constant")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 211)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_stringAsDefaultValue_analyzeDefaultValueType (void) {
@@ -5927,7 +5980,7 @@ C_PrologueEpilogue gMethod_stringAsDefaultValue_analyzeDefaultValueType (defineC
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Overriding category method '@identifierAsDefaultValue analyzeDefaultValueType'                    *
+//                   Overriding extension method '@identifierAsDefaultValue analyzeDefaultValueType'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6062,6 +6115,7 @@ static void categoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (con
     inCompiler->emitSemanticError (location_16, GALGAS_string ("unknow type for this identifier")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 278)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_identifierAsDefaultValue_analyzeDefaultValueType (void) {
@@ -6075,7 +6129,7 @@ C_PrologueEpilogue gMethod_identifierAsDefaultValue_analyzeDefaultValueType (def
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding category method '@listAsDefaultValue analyzeDefaultValueType'                       *
+//                      Overriding extension method '@listAsDefaultValue analyzeDefaultValueType'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -6093,6 +6147,7 @@ static void categoryMethod_listAsDefaultValue_analyzeDefaultValueType (const cPt
     inCompiler->emitSemanticError (object->mAttribute_mStartLocation, GALGAS_string ("invalid initialization value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 367)) ;
   }
 }
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 static void defineCategoryMethod_listAsDefaultValue_analyzeDefaultValueType (void) {

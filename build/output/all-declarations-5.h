@@ -122,7 +122,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class C
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@XcodeProjectDescriptor generateAtPath'                               *
+//                              Extension method '@XcodeProjectDescriptor generateAtPath'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -134,7 +134,7 @@ void categoryMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addAppTarget'                                *
+//                               Extension setter '@XcodeProjectDescriptor addAppTarget'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -154,7 +154,7 @@ void categoryModifier_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObje
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category setter '@XcodeProjectDescriptor addGroupWithFiles'                             *
+//                            Extension setter '@XcodeProjectDescriptor addGroupWithFiles'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -174,7 +174,7 @@ void categoryModifier_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & i
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                     Category setter '@XcodeProjectDescriptor addSettingsToDefaultConfiguration'                     *
+//                    Extension setter '@XcodeProjectDescriptor addSettingsToDefaultConfiguration'                     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -185,7 +185,7 @@ void categoryModifier_addSettingsToDefaultConfiguration (class GALGAS_XcodeProje
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category setter '@XcodeProjectDescriptor placeGroupAsMainGroup'                           *
+//                          Extension setter '@XcodeProjectDescriptor placeGroupAsMainGroup'                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1040,7 +1040,7 @@ class cPtr_xorBooleanMultipleBindingExpressionForGeneration : public cPtr_abstra
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Abstract category method '@abstractSecondaryProperty typeInventory'                         *
+//                        Abstract extension method '@abstractSecondaryProperty typeInventory'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1063,7 +1063,7 @@ void callCategoryMethod_typeInventory (const class cPtr_abstractSecondaryPropert
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//               Abstract category method '@abstractSecondaryProperty secondaryPropertySemanticAnalysis'               *
+//              Abstract extension method '@abstractSecondaryProperty secondaryPropertySemanticAnalysis'               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1104,7 +1104,7 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abst
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category method '@toOneRelationshipList typeInventory'                                *
+//                               Extension method '@toOneRelationshipList typeInventory'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1115,7 +1115,7 @@ void categoryMethod_typeInventory (const class GALGAS_toOneRelationshipList inOb
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category method '@toManyRelationshipList typeInventory'                               *
+//                              Extension method '@toManyRelationshipList typeInventory'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1126,7 +1126,7 @@ void categoryMethod_typeInventory (const class GALGAS_toManyRelationshipList inO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category method '@toOneRelationshipList buildObservablePropertyMap'                         *
+//                        Extension method '@toOneRelationshipList buildObservablePropertyMap'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1138,7 +1138,7 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_toOneRelation
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category method '@toManyRelationshipList buildObservablePropertyMap'                         *
+//                        Extension method '@toManyRelationshipList buildObservablePropertyMap'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1150,7 +1150,7 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_toManyRelatio
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@toOneRelationshipList semanticAnalysis'                              *
+//                             Extension method '@toOneRelationshipList semanticAnalysis'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1162,7 +1162,7 @@ void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList i
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category method '@toManyRelationshipList semanticAnalysis'                              *
+//                             Extension method '@toManyRelationshipList semanticAnalysis'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
