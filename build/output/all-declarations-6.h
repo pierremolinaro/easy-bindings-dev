@@ -11,7 +11,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category getter '@observablePropertyAST needs_unwSelf' (as function)                         *
+//                        Extension getter '@observablePropertyAST needs_unwSelf' (as function)                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -21,7 +21,7 @@ class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_observabl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@simpleStoredPropertyList typeInventory'                              *
+//                             Extension method '@simpleStoredPropertyList typeInventory'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -32,7 +32,7 @@ void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList i
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                       Category method '@simpleStoredPropertyList buildObservablePropertyMap'                        *
+//                       Extension method '@simpleStoredPropertyList buildObservablePropertyMap'                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -44,7 +44,7 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredP
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Category method '@simpleStoredPropertyList simpleStoredPropertySemanticAnalysis'                   *
+//                  Extension method '@simpleStoredPropertyList simpleStoredPropertySemanticAnalysis'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -58,7 +58,7 @@ void categoryMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_sim
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@storedArrayPropertyList typeInventory'                               *
+//                              Extension method '@storedArrayPropertyList typeInventory'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -69,7 +69,7 @@ void categoryMethod_typeInventory (const class GALGAS_storedArrayPropertyList in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category method '@storedArrayPropertyList buildObservablePropertyMap'                        *
+//                       Extension method '@storedArrayPropertyList buildObservablePropertyMap'                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -81,7 +81,7 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_storedArrayPr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Category method '@storedArrayPropertyList storedArrayPropertySemanticAnalysis'                    *
+//                   Extension method '@storedArrayPropertyList storedArrayPropertySemanticAnalysis'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -93,7 +93,7 @@ void categoryMethod_storedArrayPropertySemanticAnalysis (const class GALGAS_stor
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                  Abstract category method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
+//                 Abstract extension method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -122,7 +122,7 @@ void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSe
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                  Category method '@prefDeclaration typeInventory'                                   *
+//                                  Extension method '@prefDeclaration typeInventory'                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -133,7 +133,7 @@ void categoryMethod_typeInventory (const class GALGAS_prefDeclaration inObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Category getter '@observablePropertyAST isPropertyDefined' (as function)                       *
+//                      Extension getter '@observablePropertyAST isPropertyDefined' (as function)                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -146,7 +146,7 @@ class GALGAS_bool extensionGetter_isPropertyDefined (const class GALGAS_observab
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category getter '@arrayControllerModel modelString' (as function)                          *
+//                         Extension getter '@arrayControllerModel modelString' (as function)                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -156,7 +156,7 @@ class GALGAS_string extensionGetter_modelString (const class GALGAS_arrayControl
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category getter '@arrayControllerModel modelTypeName' (as function)                         *
+//                        Extension getter '@arrayControllerModel modelTypeName' (as function)                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -168,7 +168,7 @@ class GALGAS_string extensionGetter_modelTypeName (const class GALGAS_arrayContr
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                        Category getter '@arrayControllerModel modelTypeName2' (as function)                         *
+//                        Extension getter '@arrayControllerModel modelTypeName2' (as function)                        *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -180,7 +180,7 @@ class GALGAS_string extensionGetter_modelTypeName_32_ (const class GALGAS_arrayC
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category getter '@typeKind isComparable' (as function)                                *
+//                               Extension getter '@typeKind isComparable' (as function)                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -190,7 +190,7 @@ class GALGAS_bool extensionGetter_isComparable (const class GALGAS_typeKind & in
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addTIFF_file'                                *
+//                               Extension setter '@XcodeProjectDescriptor addTIFF_file'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -202,7 +202,7 @@ void categoryModifier_addTIFF_5F_file (class GALGAS_XcodeProjectDescriptor & ioO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category setter '@XcodeProjectDescriptor getReferenceKey'                              *
+//                             Extension setter '@XcodeProjectDescriptor getReferenceKey'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -213,7 +213,7 @@ void categoryModifier_getReferenceKey (class GALGAS_XcodeProjectDescriptor & ioO
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category setter '@XcodeProjectDescriptor addInfoPlistFile'                              *
+//                             Extension setter '@XcodeProjectDescriptor addInfoPlistFile'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -225,7 +225,7 @@ void categoryModifier_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & io
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category setter '@XcodeProjectDescriptor addXIBFile'                                 *
+//                                Extension setter '@XcodeProjectDescriptor addXIBFile'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -237,7 +237,7 @@ void categoryModifier_addXIBFile (class GALGAS_XcodeProjectDescriptor & ioObject
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Category setter '@XcodeProjectDescriptor addFrameworkFile'                              *
+//                             Extension setter '@XcodeProjectDescriptor addFrameworkFile'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -249,7 +249,7 @@ void categoryModifier_addFrameworkFile (class GALGAS_XcodeProjectDescriptor & io
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category setter '@XcodeProjectDescriptor addMFile'                                  *
+//                                 Extension setter '@XcodeProjectDescriptor addMFile'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -261,7 +261,7 @@ void categoryModifier_addMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addSwiftFile'                                *
+//                               Extension setter '@XcodeProjectDescriptor addSwiftFile'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -273,7 +273,7 @@ void categoryModifier_addSwiftFile (class GALGAS_XcodeProjectDescriptor & ioObje
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category setter '@XcodeProjectDescriptor addMMFile'                                 *
+//                                Extension setter '@XcodeProjectDescriptor addMMFile'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -285,7 +285,7 @@ void categoryModifier_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                Category setter '@XcodeProjectDescriptor addCppFile'                                 *
+//                                Extension setter '@XcodeProjectDescriptor addCppFile'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -297,7 +297,7 @@ void categoryModifier_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addHeaderFile'                               *
+//                              Extension setter '@XcodeProjectDescriptor addHeaderFile'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -309,7 +309,7 @@ void categoryModifier_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObj
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addBuildFile'                                *
+//                               Extension setter '@XcodeProjectDescriptor addBuildFile'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -322,7 +322,7 @@ void categoryModifier_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObje
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addToolTarget'                               *
+//                              Extension setter '@XcodeProjectDescriptor addToolTarget'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -339,7 +339,7 @@ void categoryModifier_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObj
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category setter '@XcodeProjectDescriptor addGroup'                                  *
+//                                 Extension setter '@XcodeProjectDescriptor addGroup'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -353,7 +353,7 @@ void categoryModifier_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                               Category setter '@XcodeProjectDescriptor addICNS_file'                                *
+//                               Extension setter '@XcodeProjectDescriptor addICNS_file'                               *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 

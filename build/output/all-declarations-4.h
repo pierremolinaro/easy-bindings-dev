@@ -56,7 +56,7 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//     Abstract category method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
+//    Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -328,7 +328,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_structForGeneration
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Category getter '@observablePropertyAST location' (as function)                           *
+//                          Extension getter '@observablePropertyAST location' (as function)                           *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -338,7 +338,7 @@ class GALGAS_location extensionGetter_location (const class GALGAS_observablePro
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Abstract category method '@abstractDefaultValue analyzeDefaultValueType'                       *
+//                      Abstract extension method '@abstractDefaultValue analyzeDefaultValueType'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -363,7 +363,7 @@ void callCategoryMethod_analyzeDefaultValueType (const class cPtr_abstractDefaul
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                         Category method '@observablePropertyAST analyzeObservableProperty'                          *
+//                         Extension method '@observablePropertyAST analyzeObservableProperty'                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -580,7 +580,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category getter '@arrayControllerFilterListForGeneration filterCode' (as function)                  *
+//                 Extension getter '@arrayControllerFilterListForGeneration filterCode' (as function)                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -708,7 +708,7 @@ void routine_typeInventory (const class GALGAS_lstring constinArgument0,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Abstract category method '@astDeclaration typeInventory'                               *
+//                              Abstract extension method '@astDeclaration typeInventory'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -744,7 +744,7 @@ void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                   Abstract category method '@astDeclaration buildInitialSecondaryPropertyListMap'                   *
+//                  Abstract extension method '@astDeclaration buildInitialSecondaryPropertyListMap'                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -769,7 +769,7 @@ void callCategoryMethod_buildInitialSecondaryPropertyListMap (const class cPtr_a
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//             Abstract category method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'              *
+//             Abstract extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -794,7 +794,7 @@ void callCategoryMethod_buildObservablePropertyMapsFromStoredProperties (const c
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                             Abstract category method '@astDeclaration semanticAnalysis'                             *
+//                            Abstract extension method '@astDeclaration semanticAnalysis'                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -819,7 +819,7 @@ void callCategoryMethod_semanticAnalysis (const class cPtr_astDeclaration * inOb
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Abstract category method '@astDeclaration solveSecondaryProperty'                          *
+//                         Abstract extension method '@astDeclaration solveSecondaryProperty'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -848,7 +848,7 @@ void callCategoryMethod_solveSecondaryProperty (const class cPtr_astDeclaration 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                          Category method '@outletClassDeclarationList buildOutletClassMap'                          *
+//                         Extension method '@outletClassDeclarationList buildOutletClassMap'                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -859,7 +859,7 @@ void categoryMethod_buildOutletClassMap (const class GALGAS_outletClassDeclarati
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Category method '@prefDeclaration buildObservablePropertyMapsFromStoredProperties'                  *
+//                 Extension method '@prefDeclaration buildObservablePropertyMapsFromStoredProperties'                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -871,7 +871,7 @@ void categoryMethod_buildObservablePropertyMapsFromStoredProperties (const class
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                 Category method '@prefDeclaration semanticAnalysis'                                 *
+//                                Extension method '@prefDeclaration semanticAnalysis'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -884,7 +884,7 @@ void categoryMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObjec
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Category method '@prefDeclaration solveSecondaryProperty'                              *
+//                             Extension method '@prefDeclaration solveSecondaryProperty'                              *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
