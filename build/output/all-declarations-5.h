@@ -126,11 +126,11 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class C
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor inObject,
-                                    const class GALGAS_string constin_inPath,
-                                    const class GALGAS_string constin_inCacheFilePath,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
+void extensionMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor inObject,
+                                     const class GALGAS_string constin_inPath,
+                                     const class GALGAS_string constin_inCacheFilePath,
+                                     class C_Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -138,19 +138,19 @@ void categoryMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor in
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const class GALGAS_string constin_inTargetName,
-                                    const class GALGAS_string constin_inProductFileName,
-                                    const class GALGAS_stringlist constin_inSourceList,
-                                    const class GALGAS_stringlist constin_inFrameworksFileRefList,
-                                    const class GALGAS_stringlist constin_inResourceFileBuildRefs,
-                                    const class GALGAS_stringlist constin_inBuildConfigurationSettingList,
-                                    const class GALGAS_stringlist constin_inDependentTargetRefList,
-                                    const class GALGAS__32_stringlist constin_inProductCopyList,
-                                    const class GALGAS_string constin_inInfoPList,
-                                    class GALGAS_string & out_outProductFileRef,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
+void extensionSetter_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                   const class GALGAS_string constin_inTargetName,
+                                   const class GALGAS_string constin_inProductFileName,
+                                   const class GALGAS_stringlist constin_inSourceList,
+                                   const class GALGAS_stringlist constin_inFrameworksFileRefList,
+                                   const class GALGAS_stringlist constin_inResourceFileBuildRefs,
+                                   const class GALGAS_stringlist constin_inBuildConfigurationSettingList,
+                                   const class GALGAS_stringlist constin_inDependentTargetRefList,
+                                   const class GALGAS__32_stringlist constin_inProductCopyList,
+                                   const class GALGAS_string constin_inInfoPList,
+                                   class GALGAS_string & out_outProductFileRef,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -158,19 +158,19 @@ void categoryModifier_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObje
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                         const class GALGAS_string constin_inGroupName,
-                                         const class GALGAS_string constin_inGroupPath,
-                                         const class GALGAS_stringset constin_inFileNames,
-                                         class GALGAS_stringlist & io_ioCppFileBuildRefs,
-                                         class GALGAS_stringlist & io_ioMFileBuildRefs,
-                                         class GALGAS_stringlist & io_ioMMFileBuildRefs,
-                                         class GALGAS_stringlist & io_ioSwiftFileBuildRefs,
-                                         class GALGAS_stringlist & io_ioFrameWorkFileBuildRefs,
-                                         class GALGAS_stringlist & io_ioResourceFileBuildRefs,
-                                         class GALGAS_string & out_outGroupRef,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void extensionSetter_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                        const class GALGAS_string constin_inGroupName,
+                                        const class GALGAS_string constin_inGroupPath,
+                                        const class GALGAS_stringset constin_inFileNames,
+                                        class GALGAS_stringlist & io_ioCppFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioMFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioMMFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioSwiftFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioFrameWorkFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioResourceFileBuildRefs,
+                                        class GALGAS_string & out_outGroupRef,
+                                        class C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -178,10 +178,10 @@ void categoryModifier_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & i
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addSettingsToDefaultConfiguration (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                                         const class GALGAS_stringlist constin_inSettingList,
-                                                         class C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void extensionSetter_addSettingsToDefaultConfiguration (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                                        const class GALGAS_stringlist constin_inSettingList,
+                                                        class C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -189,10 +189,10 @@ void categoryModifier_addSettingsToDefaultConfiguration (class GALGAS_XcodeProje
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_placeGroupAsMainGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                             const class GALGAS_string constin_inGroupRef,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void extensionSetter_placeGroupAsMainGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                            const class GALGAS_string constin_inGroupRef,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1044,22 +1044,22 @@ class cPtr_xorBooleanMultipleBindingExpressionForGeneration : public cPtr_abstra
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_abstractSecondaryProperty_typeInventory) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                 class GALGAS_unifiedTypeMap & ioArgument0,
-                                                                                 class C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_abstractSecondaryProperty_typeInventory) (const class cPtr_abstractSecondaryProperty * inObject,
+                                                                                  class GALGAS_unifiedTypeMap & ioArgument0,
+                                                                                  class C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
-                                        categoryMethodSignature_abstractSecondaryProperty_typeInventory inMethod) ;
+void enterExtensionMethod_typeInventory (const int32_t inClassIndex,
+                                         extensionMethodSignature_abstractSecondaryProperty_typeInventory inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_typeInventory (const class cPtr_abstractSecondaryProperty * inObject,
-                                       GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_typeInventory (const class cPtr_abstractSecondaryProperty * inObject,
+                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1067,40 +1067,40 @@ void callCategoryMethod_typeInventory (const class cPtr_abstractSecondaryPropert
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                                     const class GALGAS_string constinArgument0,
-                                                                                                     const class GALGAS_string constinArgument1,
-                                                                                                     const class GALGAS_observablePropertyMap constinArgument2,
-                                                                                                     const class GALGAS_semanticContext constinArgument3,
-                                                                                                     const class GALGAS_observablePropertyMap constinArgument4,
-                                                                                                     class GALGAS_transientDefinitionListForGeneration & ioArgument5,
-                                                                                                     class GALGAS_arrayControllerForGeneration & ioArgument6,
-                                                                                                     class GALGAS_selectionControllerForGeneration & ioArgument7,
-                                                                                                     class GALGAS_customObjectControllerForGeneration & ioArgument8,
-                                                                                                     class GALGAS_stringset & ioArgument9,
-                                                                                                     class C_Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis) (const class cPtr_abstractSecondaryProperty * inObject,
+                                                                                                      const class GALGAS_string constinArgument0,
+                                                                                                      const class GALGAS_string constinArgument1,
+                                                                                                      const class GALGAS_observablePropertyMap constinArgument2,
+                                                                                                      const class GALGAS_semanticContext constinArgument3,
+                                                                                                      const class GALGAS_observablePropertyMap constinArgument4,
+                                                                                                      class GALGAS_transientDefinitionListForGeneration & ioArgument5,
+                                                                                                      class GALGAS_arrayControllerForGeneration & ioArgument6,
+                                                                                                      class GALGAS_selectionControllerForGeneration & ioArgument7,
+                                                                                                      class GALGAS_customObjectControllerForGeneration & ioArgument8,
+                                                                                                      class GALGAS_stringset & ioArgument9,
+                                                                                                      class C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_secondaryPropertySemanticAnalysis (const int32_t inClassIndex,
-                                                            categoryMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis inMethod) ;
+void enterExtensionMethod_secondaryPropertySemanticAnalysis (const int32_t inClassIndex,
+                                                             extensionMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abstractSecondaryProperty * inObject,
-                                                           const GALGAS_string constin_inOwnerName,
-                                                           const GALGAS_string constin_inRootEntityName,
-                                                           const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                           const GALGAS_semanticContext constin_inSemanticContext,
-                                                           const GALGAS_observablePropertyMap constin_inObservableProperties,
-                                                           GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
-                                                           GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
-                                                           GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
-                                                           GALGAS_customObjectControllerForGeneration & io_ioCustomObjectControllerDeclaration,
-                                                           GALGAS_stringset & io_ioNeededOutletClasses,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_secondaryPropertySemanticAnalysis (const class cPtr_abstractSecondaryProperty * inObject,
+                                                            const GALGAS_string constin_inOwnerName,
+                                                            const GALGAS_string constin_inRootEntityName,
+                                                            const GALGAS_observablePropertyMap constin_inRootObservableProperties,
+                                                            const GALGAS_semanticContext constin_inSemanticContext,
+                                                            const GALGAS_observablePropertyMap constin_inObservableProperties,
+                                                            GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
+                                                            GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
+                                                            GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
+                                                            GALGAS_customObjectControllerForGeneration & io_ioCustomObjectControllerDeclaration,
+                                                            GALGAS_stringset & io_ioNeededOutletClasses,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1108,10 +1108,10 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const class cPtr_abst
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const class GALGAS_toOneRelationshipList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void extensionMethod_typeInventory (const class GALGAS_toOneRelationshipList inObject,
+                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1119,10 +1119,10 @@ void categoryMethod_typeInventory (const class GALGAS_toOneRelationshipList inOb
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const class GALGAS_toManyRelationshipList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void extensionMethod_typeInventory (const class GALGAS_toManyRelationshipList inObject,
+                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1130,11 +1130,11 @@ void categoryMethod_typeInventory (const class GALGAS_toManyRelationshipList inO
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_toOneRelationshipList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+void extensionMethod_buildObservablePropertyMap (const class GALGAS_toOneRelationshipList inObject,
+                                                 const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1142,11 +1142,11 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_toOneRelation
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_toManyRelationshipList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+void extensionMethod_buildObservablePropertyMap (const class GALGAS_toManyRelationshipList inObject,
+                                                 const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1154,11 +1154,11 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_toManyRelatio
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList inObject,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_toOneEntityRelationshipListForGeneration & out_outToOneEntityRelationshipListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void extensionMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList inObject,
+                                       const class GALGAS_semanticContext constin_inSemanticContext,
+                                       class GALGAS_toOneEntityRelationshipListForGeneration & out_outToOneEntityRelationshipListForGeneration,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -1166,10 +1166,10 @@ void categoryMethod_semanticAnalysis (const class GALGAS_toOneRelationshipList i
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList inObject,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_toManyEntityRelationshipListForGeneration & out_outToManyEntityRelationshipListForGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void extensionMethod_semanticAnalysis (const class GALGAS_toManyRelationshipList inObject,
+                                       const class GALGAS_semanticContext constin_inSemanticContext,
+                                       class GALGAS_toManyEntityRelationshipListForGeneration & out_outToManyEntityRelationshipListForGeneration,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 #endif

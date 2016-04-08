@@ -25,10 +25,10 @@ class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_observabl
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void extensionMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
+                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -36,11 +36,11 @@ void categoryMethod_typeInventory (const class GALGAS_simpleStoredPropertyList i
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+void extensionMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
+                                                 const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -48,13 +48,13 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredP
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
-                                                          const class GALGAS_string constin_inSwiftClassName,
-                                                          const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                          class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
-                                                          class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                                          class C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+void extensionMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
+                                                           const class GALGAS_string constin_inSwiftClassName,
+                                                           const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                           class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
+                                                           class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
+                                                           class C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -62,10 +62,10 @@ void categoryMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_sim
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const class GALGAS_storedArrayPropertyList inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void extensionMethod_typeInventory (const class GALGAS_storedArrayPropertyList inObject,
+                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -73,11 +73,11 @@ void categoryMethod_typeInventory (const class GALGAS_storedArrayPropertyList in
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const class GALGAS_storedArrayPropertyList inObject,
-                                                const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+void extensionMethod_buildObservablePropertyMap (const class GALGAS_storedArrayPropertyList inObject,
+                                                 const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -85,11 +85,11 @@ void categoryMethod_buildObservablePropertyMap (const class GALGAS_storedArrayPr
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_storedArrayPropertySemanticAnalysis (const class GALGAS_storedArrayPropertyList inObject,
-                                                         const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                         class GALGAS_storedArrayPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                                         class C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void extensionMethod_storedArrayPropertySemanticAnalysis (const class GALGAS_storedArrayPropertyList inObject,
+                                                          const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                          class GALGAS_storedArrayPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
+                                                          class C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -97,28 +97,28 @@ void categoryMethod_storedArrayPropertySemanticAnalysis (const class GALGAS_stor
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                               class GALGAS_semanticContext & ioArgument0,
-                                                                                               const class GALGAS_observablePropertyMap constinArgument1,
-                                                                                               class GALGAS_observablePropertyMap & ioArgument2,
-                                                                                               class GALGAS_secondaryPropertyList & ioArgument3,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty) (const class cPtr_abstractSecondaryProperty * inObject,
+                                                                                                class GALGAS_semanticContext & ioArgument0,
+                                                                                                const class GALGAS_observablePropertyMap constinArgument1,
+                                                                                                class GALGAS_observablePropertyMap & ioArgument2,
+                                                                                                class GALGAS_secondaryPropertyList & ioArgument3,
+                                                                                                class C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
-                                                      categoryMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) ;
+void enterExtensionMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
+                                                       extensionMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSecondaryProperty * inObject,
-                                                     GALGAS_semanticContext & io_ioSemanticContext,
-                                                     const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                     GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                     GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSecondaryProperty * inObject,
+                                                      GALGAS_semanticContext & io_ioSemanticContext,
+                                                      const GALGAS_observablePropertyMap constin_inRootObservableProperties,
+                                                      GALGAS_observablePropertyMap & io_ioObservableProperties,
+                                                      GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -126,10 +126,10 @@ void callCategoryMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSe
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const class GALGAS_prefDeclaration inObject,
-                                   class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void extensionMethod_typeInventory (const class GALGAS_prefDeclaration inObject,
+                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -194,11 +194,11 @@ class GALGAS_bool extensionGetter_isComparable (const class GALGAS_typeKind & in
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addTIFF_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                       const class GALGAS_string constin_inFileName,
-                                       class GALGAS_string & out_outFileRef,
-                                       class C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void extensionSetter_addTIFF_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                      const class GALGAS_string constin_inFileName,
+                                      class GALGAS_string & out_outFileRef,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -206,10 +206,10 @@ void categoryModifier_addTIFF_5F_file (class GALGAS_XcodeProjectDescriptor & ioO
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_getReferenceKey (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                       class GALGAS_string & out_outRef,
-                                       class C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void extensionSetter_getReferenceKey (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                      class GALGAS_string & out_outRef,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -217,11 +217,11 @@ void categoryModifier_getReferenceKey (class GALGAS_XcodeProjectDescriptor & ioO
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const class GALGAS_string constin_inFileName,
-                                        class GALGAS_string & out_outFileRef,
-                                        class C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
+void extensionSetter_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                       const class GALGAS_string constin_inFileName,
+                                       class GALGAS_string & out_outFileRef,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -229,55 +229,7 @@ void categoryModifier_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & io
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addXIBFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                  const class GALGAS_string constin_inFileName,
-                                  class GALGAS_string & out_outFileRef,
-                                  class C_Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Extension setter '@XcodeProjectDescriptor addFrameworkFile'                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addFrameworkFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const class GALGAS_string constin_inFileName,
-                                        class GALGAS_string & out_outFileRef,
-                                        class C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Extension setter '@XcodeProjectDescriptor addMFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                const class GALGAS_string constin_inFileName,
-                                class GALGAS_string & out_outFileRef,
-                                class C_Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Extension setter '@XcodeProjectDescriptor addSwiftFile'                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addSwiftFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const class GALGAS_string constin_inFileName,
-                                    class GALGAS_string & out_outFileRef,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Extension setter '@XcodeProjectDescriptor addMMFile'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void categoryModifier_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+void extensionSetter_addXIBFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                  const class GALGAS_string constin_inFileName,
                                  class GALGAS_string & out_outFileRef,
                                  class C_Compiler * inCompiler
@@ -285,15 +237,63 @@ void categoryModifier_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                             Extension setter '@XcodeProjectDescriptor addFrameworkFile'                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void extensionSetter_addFrameworkFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                       const class GALGAS_string constin_inFileName,
+                                       class GALGAS_string & out_outFileRef,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Extension setter '@XcodeProjectDescriptor addMFile'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void extensionSetter_addMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                               const class GALGAS_string constin_inFileName,
+                               class GALGAS_string & out_outFileRef,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Extension setter '@XcodeProjectDescriptor addSwiftFile'                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void extensionSetter_addSwiftFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                   const class GALGAS_string constin_inFileName,
+                                   class GALGAS_string & out_outFileRef,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Extension setter '@XcodeProjectDescriptor addMMFile'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void extensionSetter_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                const class GALGAS_string constin_inFileName,
+                                class GALGAS_string & out_outFileRef,
+                                class C_Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                Extension setter '@XcodeProjectDescriptor addCppFile'                                *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                  const class GALGAS_string constin_inFileName,
-                                  class GALGAS_string & out_outFileRef,
-                                  class C_Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) ;
+void extensionSetter_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                 const class GALGAS_string constin_inFileName,
+                                 class GALGAS_string & out_outFileRef,
+                                 class C_Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -301,11 +301,11 @@ void categoryModifier_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                     const class GALGAS_string constin_inFileName,
-                                     class GALGAS_string & out_outFileRef,
-                                     class C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
+void extensionSetter_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                    const class GALGAS_string constin_inFileName,
+                                    class GALGAS_string & out_outFileRef,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -313,12 +313,12 @@ void categoryModifier_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObj
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                    const class GALGAS_string constin_inFileReference,
-                                    const class GALGAS_string constin_inFileName,
-                                    class GALGAS_string & out_outBuildRef,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
+void extensionSetter_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                   const class GALGAS_string constin_inFileReference,
+                                   const class GALGAS_string constin_inFileName,
+                                   class GALGAS_string & out_outBuildRef,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -326,16 +326,16 @@ void categoryModifier_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObje
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                     const class GALGAS_string constin_inTargetName,
-                                     const class GALGAS_string constin_inProductFileName,
-                                     const class GALGAS_stringlist constin_inSourceList,
-                                     const class GALGAS_stringlist constin_inToolFrameworksFileRefList,
-                                     const class GALGAS_stringlist constin_inBuildConfigurationSettingList,
-                                     class GALGAS_string & out_outTargetRef,
-                                     class GALGAS_string & out_outProductFileRef,
-                                     class C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
+void extensionSetter_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                    const class GALGAS_string constin_inTargetName,
+                                    const class GALGAS_string constin_inProductFileName,
+                                    const class GALGAS_stringlist constin_inSourceList,
+                                    const class GALGAS_stringlist constin_inToolFrameworksFileRefList,
+                                    const class GALGAS_stringlist constin_inBuildConfigurationSettingList,
+                                    class GALGAS_string & out_outTargetRef,
+                                    class GALGAS_string & out_outProductFileRef,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -343,13 +343,13 @@ void categoryModifier_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObj
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                const class GALGAS_string constin_inGroupName,
-                                const class GALGAS_string constin_inGroupPath,
-                                const class GALGAS_stringlist constin_inChildrenRefs,
-                                class GALGAS_string & out_outGroupRef,
-                                class C_Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
+void extensionSetter_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
+                               const class GALGAS_string constin_inGroupName,
+                               const class GALGAS_string constin_inGroupPath,
+                               const class GALGAS_stringlist constin_inChildrenRefs,
+                               class GALGAS_string & out_outGroupRef,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -357,10 +357,10 @@ void categoryModifier_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryModifier_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                       const class GALGAS_string constin_inFileName,
-                                       class GALGAS_string & out_outFileRef,
-                                       class C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void extensionSetter_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                      const class GALGAS_string constin_inFileName,
+                                      class GALGAS_string & out_outFileRef,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 #endif

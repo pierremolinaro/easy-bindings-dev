@@ -1308,7 +1308,7 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   temp_0.addAssign_operation (GALGAS_string ("SDKROOT = ").add_operation (var_SDK, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 90))  COMMA_SOURCE_FILE ("xcode-project.galgas", 90)) ;
   temp_0.addAssign_operation (GALGAS_string ("COPY_PHASE_STRIP = NO")  COMMA_SOURCE_FILE ("xcode-project.galgas", 91)) ;
   temp_0.addAssign_operation (GALGAS_string ("LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\"")  COMMA_SOURCE_FILE ("xcode-project.galgas", 92)) ;
-  categoryModifier_addSettingsToDefaultConfiguration (var_xcodeProject, temp_0, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 55)) ;
+  extensionSetter_addSettingsToDefaultConfiguration (var_xcodeProject, temp_0, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 55)) ;
   }
   GALGAS_stringlist var_swiftFileRefList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 95)) ;
   GALGAS_stringlist var_resourceFileRefList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 96)) ;
@@ -1320,10 +1320,10 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   GALGAS_stringlist joker_4326 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 107)) ;
   GALGAS_string var_groupRef ;
   {
-  categoryModifier_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Sources"), constinArgument_projectName, var_generatedFileSet, joker_4226, joker_4244, joker_4263, var_swiftFileRefList, joker_4326, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 99)) ;
+  extensionSetter_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Sources"), constinArgument_projectName, var_generatedFileSet, joker_4226, joker_4244, joker_4263, var_swiftFileRefList, joker_4326, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 99)) ;
   }
   {
-  categoryModifier_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 111)) ;
+  extensionSetter_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 111)) ;
   }
   GALGAS_stringlist joker_4605 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 116)) ;
   GALGAS_stringlist joker_4623 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 117)) ;
@@ -1332,10 +1332,10 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   {
   GALGAS_stringset temp_1 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.galgas", 115)) ;
   temp_1.addAssign_operation (GALGAS_string ("Info.plist")  COMMA_SOURCE_FILE ("xcode-project.galgas", 115)) ;
-  categoryModifier_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Resources"), constinArgument_projectName, temp_1, joker_4605, joker_4623, joker_4642, var_swiftFileRefList, joker_4705, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 112)) ;
+  extensionSetter_addGroupWithFiles (var_xcodeProject, GALGAS_string ("Resources"), constinArgument_projectName, temp_1, joker_4605, joker_4623, joker_4642, var_swiftFileRefList, joker_4705, var_resourceFileRefList, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 112)) ;
   }
   {
-  categoryModifier_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 124)) ;
+  extensionSetter_placeGroupAsMainGroup (var_xcodeProject, var_groupRef, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 124)) ;
   }
   {
   GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 134)) ;
@@ -1344,10 +1344,10 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   GALGAS__32_stringlist temp_3 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 137)) ;
   temp_3.addAssign_operation (GALGAS_string ("MainMenu.xib"), GALGAS_string ("EBAllocationDebug.xib")  COMMA_SOURCE_FILE ("xcode-project.galgas", 137)) ;
   GALGAS_string joker_5327 ; // Joker input parameter
-  categoryModifier_addAppTarget (var_xcodeProject, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 130)), var_resourceFileRefList, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 136)), temp_3, constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 138)), joker_5327, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 126)) ;
+  extensionSetter_addAppTarget (var_xcodeProject, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 130)), var_resourceFileRefList, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.galgas", 136)), temp_3, constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 138)), joker_5327, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 126)) ;
   }
   GALGAS_string var_sourceDir = constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)).add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 142)) ;
-  categoryMethod_generateAtPath (var_xcodeProject, constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (GALGAS_string (".xcodeproj"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)), var_sourceDir.add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)).add_operation (GALGAS_string (".xcodeproj.txt"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 143)) ;
+  extensionMethod_generateAtPath (var_xcodeProject, constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)).add_operation (GALGAS_string (".xcodeproj"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 144)), var_sourceDir.add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)).add_operation (GALGAS_string (".xcodeproj.txt"), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("xcode-project.galgas", 143)) ;
   GALGAS_stringset temp_4 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.galgas", 152)) ;
   temp_4.addAssign_operation (constinArgument_projectName  COMMA_SOURCE_FILE ("xcode-project.galgas", 152)) ;
   GALGAS_string var_s = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_info_5F_plist (inCompiler, constinArgument_projectName, constinArgument_inXcodeProjectString, GALGAS_string ("1.0.0"), temp_4 COMMA_SOURCE_FILE ("xcode-project.galgas", 148))) ;
@@ -9784,51 +9784,51 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static TC_UniqueArray <categoryMethodSignature_abstractSecondaryProperty_typeInventory> gCategoryMethodTable_abstractSecondaryProperty_typeInventory ;
+static TC_UniqueArray <extensionMethodSignature_abstractSecondaryProperty_typeInventory> gExtensionMethodTable_abstractSecondaryProperty_typeInventory ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
-                                        categoryMethodSignature_abstractSecondaryProperty_typeInventory inMethod) {
-  gCategoryMethodTable_abstractSecondaryProperty_typeInventory.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+void enterExtensionMethod_typeInventory (const int32_t inClassIndex,
+                                         extensionMethodSignature_abstractSecondaryProperty_typeInventory inMethod) {
+  gExtensionMethodTable_abstractSecondaryProperty_typeInventory.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void freeCategoryMethod_abstractSecondaryProperty_typeInventory (void) {
-  gCategoryMethodTable_abstractSecondaryProperty_typeInventory.free () ;
+static void freeExtensionMethod_abstractSecondaryProperty_typeInventory (void) {
+  gExtensionMethodTable_abstractSecondaryProperty_typeInventory.free () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_abstractSecondaryProperty_typeInventory (NULL,
-                                                                    freeCategoryMethod_abstractSecondaryProperty_typeInventory) ;
+                                                                    freeExtensionMethod_abstractSecondaryProperty_typeInventory) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_typeInventory (const cPtr_abstractSecondaryProperty * inObject,
-                                       GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
+void callExtensionMethod_typeInventory (const cPtr_abstractSecondaryProperty * inObject,
+                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
 //--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractSecondaryProperty) ;
     const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
     const int32_t classIndex = info->mSlotID ;
-    categoryMethodSignature_abstractSecondaryProperty_typeInventory f = NULL ;
-    if (classIndex < gCategoryMethodTable_abstractSecondaryProperty_typeInventory.count ()) {
-      f = gCategoryMethodTable_abstractSecondaryProperty_typeInventory (classIndex COMMA_HERE) ;
+    extensionMethodSignature_abstractSecondaryProperty_typeInventory f = NULL ;
+    if (classIndex < gExtensionMethodTable_abstractSecondaryProperty_typeInventory.count ()) {
+      f = gExtensionMethodTable_abstractSecondaryProperty_typeInventory (classIndex COMMA_HERE) ;
     }
     if (NULL == f) {
        const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
        while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gCategoryMethodTable_abstractSecondaryProperty_typeInventory.count ()) {
-           f = gCategoryMethodTable_abstractSecondaryProperty_typeInventory (p->mSlotID COMMA_HERE) ;
+         if (p->mSlotID < gExtensionMethodTable_abstractSecondaryProperty_typeInventory.count ()) {
+           f = gExtensionMethodTable_abstractSecondaryProperty_typeInventory (p->mSlotID COMMA_HERE) ;
          }
          p = p->mSuperclassDescriptor ;
        }
-       gCategoryMethodTable_abstractSecondaryProperty_typeInventory.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+       gExtensionMethodTable_abstractSecondaryProperty_typeInventory.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
     }
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
@@ -9844,60 +9844,60 @@ void callCategoryMethod_typeInventory (const cPtr_abstractSecondaryProperty * in
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static TC_UniqueArray <categoryMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis> gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis ;
+static TC_UniqueArray <extensionMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis> gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_secondaryPropertySemanticAnalysis (const int32_t inClassIndex,
-                                                            categoryMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis inMethod) {
-  gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+void enterExtensionMethod_secondaryPropertySemanticAnalysis (const int32_t inClassIndex,
+                                                             extensionMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis inMethod) {
+  gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void freeCategoryMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (void) {
-  gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.free () ;
+static void freeExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (void) {
+  gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.free () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (NULL,
-                                                                                        freeCategoryMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysis) ;
+                                                                                        freeExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysis) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_secondaryPropertySemanticAnalysis (const cPtr_abstractSecondaryProperty * inObject,
-                                                           const GALGAS_string constin_inOwnerName,
-                                                           const GALGAS_string constin_inRootEntityName,
-                                                           const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                           const GALGAS_semanticContext constin_inSemanticContext,
-                                                           const GALGAS_observablePropertyMap constin_inObservableProperties,
-                                                           GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
-                                                           GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
-                                                           GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
-                                                           GALGAS_customObjectControllerForGeneration & io_ioCustomObjectControllerDeclaration,
-                                                           GALGAS_stringset & io_ioNeededOutletClasses,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
+void callExtensionMethod_secondaryPropertySemanticAnalysis (const cPtr_abstractSecondaryProperty * inObject,
+                                                            const GALGAS_string constin_inOwnerName,
+                                                            const GALGAS_string constin_inRootEntityName,
+                                                            const GALGAS_observablePropertyMap constin_inRootObservableProperties,
+                                                            const GALGAS_semanticContext constin_inSemanticContext,
+                                                            const GALGAS_observablePropertyMap constin_inObservableProperties,
+                                                            GALGAS_transientDefinitionListForGeneration & io_ioTransientDefinitionListForGeneration,
+                                                            GALGAS_arrayControllerForGeneration & io_ioArrayControllerForGeneration,
+                                                            GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
+                                                            GALGAS_customObjectControllerForGeneration & io_ioCustomObjectControllerDeclaration,
+                                                            GALGAS_stringset & io_ioNeededOutletClasses,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
 //--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractSecondaryProperty) ;
     const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
     const int32_t classIndex = info->mSlotID ;
-    categoryMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis f = NULL ;
-    if (classIndex < gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.count ()) {
-      f = gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (classIndex COMMA_HERE) ;
+    extensionMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysis f = NULL ;
+    if (classIndex < gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.count ()) {
+      f = gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (classIndex COMMA_HERE) ;
     }
     if (NULL == f) {
        const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
        while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.count ()) {
-           f = gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (p->mSlotID COMMA_HERE) ;
+         if (p->mSlotID < gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.count ()) {
+           f = gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis (p->mSlotID COMMA_HERE) ;
          }
          p = p->mSuperclassDescriptor ;
        }
-       gCategoryMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+       gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysis.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
     }
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
@@ -9913,10 +9913,10 @@ void callCategoryMethod_secondaryPropertySemanticAnalysis (const cPtr_abstractSe
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
-                                   GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                   C_Compiler * /* inCompiler */
-                                   COMMA_UNUSED_LOCATION_ARGS) {
+void extensionMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
+                                    GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
+                                    C_Compiler * /* inCompiler */
+                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
   cEnumerator_toOneRelationshipList enumerator_3352 (temp_0, kEnumeration_up) ;
   while (enumerator_3352.hasCurrentObject ()) {
@@ -9935,10 +9935,10 @@ void categoryMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_typeInventory (const GALGAS_toManyRelationshipList inObject,
-                                   GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                   C_Compiler * /* inCompiler */
-                                   COMMA_UNUSED_LOCATION_ARGS) {
+void extensionMethod_typeInventory (const GALGAS_toManyRelationshipList inObject,
+                                    GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
+                                    C_Compiler * /* inCompiler */
+                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
   cEnumerator_toManyRelationshipList enumerator_3694 (temp_0, kEnumeration_up) ;
   while (enumerator_3694.hasCurrentObject ()) {
@@ -9957,11 +9957,11 @@ void categoryMethod_typeInventory (const GALGAS_toManyRelationshipList inObject,
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipList inObject,
-                                                const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
-                                                C_Compiler * inCompiler
-                                                COMMA_UNUSED_LOCATION_ARGS) {
+void extensionMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipList inObject,
+                                                 const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                                                 GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
   cEnumerator_toOneRelationshipList enumerator_4343 (temp_0, kEnumeration_up) ;
   while (enumerator_4343.hasCurrentObject ()) {
@@ -10025,11 +10025,11 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipLi
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipList inObject,
-                                                const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                                GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
-                                                C_Compiler * inCompiler
-                                                COMMA_UNUSED_LOCATION_ARGS) {
+void extensionMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipList inObject,
+                                                 const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                                                 GALGAS_observablePropertyMap & ioArgument_ioObservableProperties,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
   cEnumerator_toManyRelationshipList enumerator_5652 (temp_0, kEnumeration_up) ;
   while (enumerator_5652.hasCurrentObject ()) {
@@ -10093,11 +10093,11 @@ void categoryMethod_buildObservablePropertyMap (const GALGAS_toManyRelationshipL
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObject,
-                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                      GALGAS_toOneEntityRelationshipListForGeneration & outArgument_outToOneEntityRelationshipListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
+void extensionMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObject,
+                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                       GALGAS_toOneEntityRelationshipListForGeneration & outArgument_outToOneEntityRelationshipListForGeneration,
+                                       C_Compiler * inCompiler
+                                       COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outToOneEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
   outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 195)) ;
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
@@ -10184,11 +10184,11 @@ void categoryMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObjec
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObject,
-                                      const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                      GALGAS_toManyEntityRelationshipListForGeneration & outArgument_outToManyEntityRelationshipListForGeneration,
-                                      C_Compiler * inCompiler
-                                      COMMA_UNUSED_LOCATION_ARGS) {
+void extensionMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObject,
+                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                       GALGAS_toManyEntityRelationshipListForGeneration & outArgument_outToManyEntityRelationshipListForGeneration,
+                                       C_Compiler * inCompiler
+                                       COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outToManyEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
   outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 250)) ;
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
