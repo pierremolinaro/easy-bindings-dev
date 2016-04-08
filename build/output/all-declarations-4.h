@@ -60,32 +60,32 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                         const class GALGAS_observablePropertyMap constinArgument0,
-                                                                                                                         const class GALGAS_semanticContext constinArgument1,
-                                                                                                                         const class GALGAS_observablePropertyMap constinArgument2,
-                                                                                                                         class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
-                                                                                                                         class GALGAS_typeKind & outArgument4,
-                                                                                                                         class GALGAS_location & outArgument5,
-                                                                                                                         class C_Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                                                                                          const class GALGAS_observablePropertyMap constinArgument0,
+                                                                                                                          const class GALGAS_semanticContext constinArgument1,
+                                                                                                                          const class GALGAS_observablePropertyMap constinArgument2,
+                                                                                                                          class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
+                                                                                                                          class GALGAS_typeKind & outArgument4,
+                                                                                                                          class GALGAS_location & outArgument5,
+                                                                                                                          class C_Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_analyzeExpressionForMultipleBinding (const int32_t inClassIndex,
-                                                              categoryMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding inMethod) ;
+void enterExtensionMethod_analyzeExpressionForMultipleBinding (const int32_t inClassIndex,
+                                                               extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_analyzeExpressionForMultipleBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                             const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                                             const GALGAS_semanticContext constin_inSemanticContext,
-                                                             const GALGAS_observablePropertyMap constin_inCurrentObservablePropertyMap,
-                                                             GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                             GALGAS_typeKind & out_outType,
-                                                             GALGAS_location & out_outErrorLocation,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                              const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
+                                                              const GALGAS_semanticContext constin_inSemanticContext,
+                                                              const GALGAS_observablePropertyMap constin_inCurrentObservablePropertyMap,
+                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
+                                                              GALGAS_typeKind & out_outType,
+                                                              GALGAS_location & out_outErrorLocation,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -342,24 +342,24 @@ class GALGAS_location extensionGetter_location (const class GALGAS_observablePro
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
-                                                                                      const class GALGAS_typeKindList constinArgument0,
-                                                                                      class GALGAS_string & outArgument1,
-                                                                                      class C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
+                                                                                       const class GALGAS_typeKindList constinArgument0,
+                                                                                       class GALGAS_string & outArgument1,
+                                                                                       class C_Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_analyzeDefaultValueType (const int32_t inClassIndex,
-                                                  categoryMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
+void enterExtensionMethod_analyzeDefaultValueType (const int32_t inClassIndex,
+                                                   extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
-                                                 const GALGAS_typeKindList constin_inAttributeActualTypeList,
-                                                 GALGAS_string & out_outSwiftDefaultValueAsString,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
+                                                  const GALGAS_typeKindList constin_inAttributeActualTypeList,
+                                                  GALGAS_string & out_outSwiftDefaultValueAsString,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -367,16 +367,16 @@ void callCategoryMethod_analyzeDefaultValueType (const class cPtr_abstractDefaul
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
-                                               const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                               const class GALGAS_semanticContext constin_inSemanticContext,
-                                               const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
-                                               class GALGAS_typeKind & out_outType,
-                                               class GALGAS_propertyKind & out_outKind,
-                                               class GALGAS_propertyMultiplicity & out_outMultiplicity,
-                                               class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
+                                                const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
+                                                const class GALGAS_semanticContext constin_inSemanticContext,
+                                                const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
+                                                class GALGAS_typeKind & out_outType,
+                                                class GALGAS_propertyKind & out_outKind,
+                                                class GALGAS_propertyMultiplicity & out_outMultiplicity,
+                                                class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -712,22 +712,22 @@ void routine_typeInventory (const class GALGAS_lstring constinArgument0,
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_astDeclaration_typeInventory) (const class cPtr_astDeclaration * inObject,
-                                                                      class GALGAS_unifiedTypeMap & ioArgument0,
-                                                                      class C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_astDeclaration_typeInventory) (const class cPtr_astDeclaration * inObject,
+                                                                       class GALGAS_unifiedTypeMap & ioArgument0,
+                                                                       class C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_typeInventory (const int32_t inClassIndex,
-                                        categoryMethodSignature_astDeclaration_typeInventory inMethod) ;
+void enterExtensionMethod_typeInventory (const int32_t inClassIndex,
+                                         extensionMethodSignature_astDeclaration_typeInventory inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_typeInventory (const class cPtr_astDeclaration * inObject,
-                                       GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_typeInventory (const class cPtr_astDeclaration * inObject,
+                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -748,24 +748,24 @@ void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_astDeclaration_buildInitialSecondaryPropertyListMap) (const class cPtr_astDeclaration * inObject,
-                                                                                             class GALGAS_secondaryDeclarationListWorkingList & ioArgument0,
-                                                                                             class GALGAS_uint & ioArgument1,
-                                                                                             class C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_astDeclaration_buildInitialSecondaryPropertyListMap) (const class cPtr_astDeclaration * inObject,
+                                                                                              class GALGAS_secondaryDeclarationListWorkingList & ioArgument0,
+                                                                                              class GALGAS_uint & ioArgument1,
+                                                                                              class C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildInitialSecondaryPropertyListMap (const int32_t inClassIndex,
-                                                               categoryMethodSignature_astDeclaration_buildInitialSecondaryPropertyListMap inMethod) ;
+void enterExtensionMethod_buildInitialSecondaryPropertyListMap (const int32_t inClassIndex,
+                                                                extensionMethodSignature_astDeclaration_buildInitialSecondaryPropertyListMap inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildInitialSecondaryPropertyListMap (const class cPtr_astDeclaration * inObject,
-                                                              GALGAS_secondaryDeclarationListWorkingList & io_ioSecondaryDeclarationListWorkingList,
-                                                              GALGAS_uint & io_ioSecondaryDeclarationCount,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildInitialSecondaryPropertyListMap (const class cPtr_astDeclaration * inObject,
+                                                               GALGAS_secondaryDeclarationListWorkingList & io_ioSecondaryDeclarationListWorkingList,
+                                                               GALGAS_uint & io_ioSecondaryDeclarationCount,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -773,24 +773,24 @@ void callCategoryMethod_buildInitialSecondaryPropertyListMap (const class cPtr_a
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_astDeclaration_buildObservablePropertyMapsFromStoredProperties) (const class cPtr_astDeclaration * inObject,
-                                                                                                        const class GALGAS_unifiedTypeMap constinArgument0,
-                                                                                                        class GALGAS_semanticContext & ioArgument1,
-                                                                                                        class C_Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_astDeclaration_buildObservablePropertyMapsFromStoredProperties) (const class cPtr_astDeclaration * inObject,
+                                                                                                         const class GALGAS_unifiedTypeMap constinArgument0,
+                                                                                                         class GALGAS_semanticContext & ioArgument1,
+                                                                                                         class C_Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_buildObservablePropertyMapsFromStoredProperties (const int32_t inClassIndex,
-                                                                          categoryMethodSignature_astDeclaration_buildObservablePropertyMapsFromStoredProperties inMethod) ;
+void enterExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const int32_t inClassIndex,
+                                                                           extensionMethodSignature_astDeclaration_buildObservablePropertyMapsFromStoredProperties inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_buildObservablePropertyMapsFromStoredProperties (const class cPtr_astDeclaration * inObject,
-                                                                         const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                                         GALGAS_semanticContext & io_ioSemanticContext,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const class cPtr_astDeclaration * inObject,
+                                                                          const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                                          GALGAS_semanticContext & io_ioSemanticContext,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -798,24 +798,24 @@ void callCategoryMethod_buildObservablePropertyMapsFromStoredProperties (const c
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_astDeclaration_semanticAnalysis) (const class cPtr_astDeclaration * inObject,
-                                                                         const class GALGAS_semanticContext constinArgument0,
-                                                                         class GALGAS_structForGeneration & ioArgument1,
-                                                                         class C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_astDeclaration_semanticAnalysis) (const class cPtr_astDeclaration * inObject,
+                                                                          const class GALGAS_semanticContext constinArgument0,
+                                                                          class GALGAS_structForGeneration & ioArgument1,
+                                                                          class C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_semanticAnalysis (const int32_t inClassIndex,
-                                           categoryMethodSignature_astDeclaration_semanticAnalysis inMethod) ;
+void enterExtensionMethod_semanticAnalysis (const int32_t inClassIndex,
+                                            extensionMethodSignature_astDeclaration_semanticAnalysis inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_semanticAnalysis (const class cPtr_astDeclaration * inObject,
-                                          const GALGAS_semanticContext constin_inSemanticContext,
-                                          GALGAS_structForGeneration & io_ioGeneration,
-                                          C_Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_semanticAnalysis (const class cPtr_astDeclaration * inObject,
+                                           const GALGAS_semanticContext constin_inSemanticContext,
+                                           GALGAS_structForGeneration & io_ioGeneration,
+                                           C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -823,28 +823,28 @@ void callCategoryMethod_semanticAnalysis (const class cPtr_astDeclaration * inOb
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*categoryMethodSignature_astDeclaration_solveSecondaryProperty) (const class cPtr_astDeclaration * inObject,
-                                                                               class GALGAS_semanticContext & ioArgument0,
-                                                                               const class GALGAS_unifiedTypeMap constinArgument1,
-                                                                               const class GALGAS_secondaryPropertyList constinArgument2,
-                                                                               class GALGAS_secondaryPropertyList & outArgument3,
-                                                                               class C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_astDeclaration_solveSecondaryProperty) (const class cPtr_astDeclaration * inObject,
+                                                                                class GALGAS_semanticContext & ioArgument0,
+                                                                                const class GALGAS_unifiedTypeMap constinArgument1,
+                                                                                const class GALGAS_secondaryPropertyList constinArgument2,
+                                                                                class GALGAS_secondaryPropertyList & outArgument3,
+                                                                                class C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterCategoryMethod_solveSecondaryProperty (const int32_t inClassIndex,
-                                                 categoryMethodSignature_astDeclaration_solveSecondaryProperty inMethod) ;
+void enterExtensionMethod_solveSecondaryProperty (const int32_t inClassIndex,
+                                                  extensionMethodSignature_astDeclaration_solveSecondaryProperty inMethod) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callCategoryMethod_solveSecondaryProperty (const class cPtr_astDeclaration * inObject,
-                                                GALGAS_semanticContext & io_ioSemanticContext,
-                                                const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                const GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
-                                                GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_solveSecondaryProperty (const class cPtr_astDeclaration * inObject,
+                                                 GALGAS_semanticContext & io_ioSemanticContext,
+                                                 const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                 const GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
+                                                 GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -852,10 +852,10 @@ void callCategoryMethod_solveSecondaryProperty (const class cPtr_astDeclaration 
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildOutletClassMap (const class GALGAS_outletClassDeclarationList inObject,
-                                         class GALGAS_outletClassMap & out_outOutletClassMap,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void extensionMethod_buildOutletClassMap (const class GALGAS_outletClassDeclarationList inObject,
+                                          class GALGAS_outletClassMap & out_outOutletClassMap,
+                                          class C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -863,11 +863,11 @@ void categoryMethod_buildOutletClassMap (const class GALGAS_outletClassDeclarati
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_buildObservablePropertyMapsFromStoredProperties (const class GALGAS_prefDeclaration inObject,
-                                                                     const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                                     class GALGAS_semanticContext & io_ioSemanticContext,
-                                                                     class C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+void extensionMethod_buildObservablePropertyMapsFromStoredProperties (const class GALGAS_prefDeclaration inObject,
+                                                                      const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                                                      class GALGAS_semanticContext & io_ioSemanticContext,
+                                                                      class C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -875,12 +875,12 @@ void categoryMethod_buildObservablePropertyMapsFromStoredProperties (const class
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObject,
-                                      const class GALGAS_externSwiftFunctionList constin_inExternSwiftFunctionList,
-                                      const class GALGAS_semanticContext constin_inSemanticContext,
-                                      class GALGAS_structForGeneration & io_ioGeneration,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void extensionMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObject,
+                                       const class GALGAS_externSwiftFunctionList constin_inExternSwiftFunctionList,
+                                       const class GALGAS_semanticContext constin_inSemanticContext,
+                                       class GALGAS_structForGeneration & io_ioGeneration,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -888,13 +888,13 @@ void categoryMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObjec
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void categoryMethod_solveSecondaryProperty (const class GALGAS_prefDeclaration inObject,
-                                            class GALGAS_semanticContext & io_ioSemanticContext,
-                                            const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                            const class GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
-                                            class GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
+void extensionMethod_solveSecondaryProperty (const class GALGAS_prefDeclaration inObject,
+                                             class GALGAS_semanticContext & io_ioSemanticContext,
+                                             const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
+                                             const class GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
+                                             class GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

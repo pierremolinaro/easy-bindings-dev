@@ -4356,8 +4356,8 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
       result << " (\n"
         "      [" ;
       GALGAS_uint index_7829_ (0) ;
-      if (callCategoryGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7709.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 198)).isValid ()) {
-        cEnumerator_stringset enumerator_7829 (callCategoryGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7709.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 198)), kEnumeration_up) ;
+      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7709.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 198)).isValid ()) {
+        cEnumerator_stringset enumerator_7829 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7709.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 198)), kEnumeration_up) ;
         while (enumerator_7829.hasCurrentObject ()) {
           result << enumerator_7829.current_key (HERE).stringValue () ;
           if (enumerator_7829.hasNextObject ()) {
@@ -4370,7 +4370,7 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
       result << "],\n"
         "      computeFunction:{\n"
         "        return " ;
-      result << callCategoryGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7709.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 204)).stringValue () ;
+      result << callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7709.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document.swift.galgasTemplate", 204)).stringValue () ;
       result << "\n"
         "      },\n"
         "      file:#file, line:#line\n"
@@ -5026,8 +5026,8 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
       result << " (\n"
         "      [" ;
       GALGAS_uint index_5857_ (0) ;
-      if (callCategoryGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5737.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 155)).isValid ()) {
-        cEnumerator_stringset enumerator_5857 (callCategoryGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5737.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 155)), kEnumeration_up) ;
+      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5737.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 155)).isValid ()) {
+        cEnumerator_stringset enumerator_5857 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5737.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 155)), kEnumeration_up) ;
         while (enumerator_5857.hasCurrentObject ()) {
           result << enumerator_5857.current_key (HERE).stringValue () ;
           if (enumerator_5857.hasNextObject ()) {
@@ -5040,7 +5040,7 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
       result << "],\n"
         "      computeFunction:{\n"
         "        return " ;
-      result << callCategoryGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5737.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 161)).stringValue () ;
+      result << callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_5737.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 161)).stringValue () ;
       result << "\n"
         "      },\n"
         "      file:#file, line:#line\n"
