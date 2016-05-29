@@ -3,16 +3,16 @@
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-4.h"
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Routine 'generateOutletClasses'                                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateOutletClasses (const GALGAS_stringset constinArgument_inNeededOutletClasses,
                                     const GALGAS_string constinArgument_inOutputDirectory,
@@ -33,11 +33,11 @@ void routine_generateOutletClasses (const GALGAS_stringset constinArgument_inNee
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'buildBindingSpecificationMap'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildBindingSpecificationMap (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
                                            const GALGAS_bindingSpecificationListMap constinArgument_inBindingSpecificationListMap,
@@ -82,11 +82,11 @@ void routine_buildBindingSpecificationMap (const GALGAS_unifiedTypeMap constinAr
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                              Routine 'analyzeOutlets'                                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
                              const GALGAS_semanticContext constinArgument_inSemanticContext,
@@ -256,11 +256,11 @@ void routine_analyzeOutlets (const GALGAS_observablePropertyMap constinArgument_
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Routine 'analyzeRegularBinding'                                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_analyzeRegularBinding (const GALGAS_observablePropertyMap constinArgument_inRootObservablePropertyMap,
                                     const GALGAS_semanticContext constinArgument_inSemanticContext,
@@ -370,11 +370,11 @@ void routine_analyzeRegularBinding (const GALGAS_observablePropertyMap constinAr
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                            Routine 'generateTransients'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateTransients (const GALGAS_string constinArgument_inOutputDirectory,
                                  const GALGAS_transientDefinitionListForGeneration constinArgument_inTransientListForGeneration,
@@ -397,11 +397,11 @@ void routine_generateTransients (const GALGAS_string constinArgument_inOutputDir
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Filewrapper 'transientManager'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of 'controllers' directory
 
@@ -541,11 +541,11 @@ const cDirectoryWrapper gWrapperDirectory_0_transientManager (
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                      Filewrapper template 'transientManager transientComputationFunctionFile'                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (C_Compiler * inCompiler,
                                                                                      const GALGAS_string & in_OWNER_5F_NAME,
@@ -602,11 +602,11 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                        Filewrapper 'validationStubExtension'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of 'controllers' directory
 
@@ -746,11 +746,11 @@ const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension (
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                           Filewrapper template 'validationStubExtension actionGeneration'                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (C_Compiler * /* inCompiler */,
                                                                             const GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
@@ -787,11 +787,11 @@ GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (C_Co
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'generateValidationRoutineStubs'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument_inOutputDirectory,
                                              const GALGAS_validationStubRoutineListForGeneration constinArgument_inValidationStubRoutineListForGeneration,
@@ -816,11 +816,11 @@ void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                              Routine 'buildActionMap'                                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildActionMap (const GALGAS_lstringlist constinArgument_inActionDeclarationList,
                              GALGAS_actionMap & outArgument_outActionMap,
@@ -838,11 +838,11 @@ void routine_buildActionMap (const GALGAS_lstringlist constinArgument_inActionDe
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                              Routine 'generateActions'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateActions (const GALGAS_string constinArgument_inOutputDirectory,
                               const GALGAS_actionListForGeneration constinArgument_inActionListForGeneration,
@@ -866,11 +866,11 @@ void routine_generateActions (const GALGAS_string constinArgument_inOutputDirect
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Filewrapper 'actionGenerationTemplate'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of 'controllers' directory
 
@@ -1010,11 +1010,11 @@ const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate (
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                          Filewrapper template 'actionGenerationTemplate actionGeneration'                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (C_Compiler * /* inCompiler */,
                                                                              const GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
@@ -1039,11 +1039,11 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (C_C
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of '' directory
 
@@ -1068,11 +1068,11 @@ const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTempla
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (C_Compiler * inCompiler,
                                                                                                                const GALGAS_string & in_OWNER_5F_NAME,
@@ -1966,11 +1966,11 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (C_Compiler * inCompiler,
                                                                                          const GALGAS_string & in_OWNER_5F_NAME,
@@ -2013,11 +2013,11 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                         Routine 'generateArrayControllers'                                          *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration constinArgument_inArrayControllerListForGeneration,
                                        const GALGAS_string constinArgument_inOutputDirectory,
@@ -2058,11 +2058,11 @@ void routine_generateArrayControllers (const GALGAS_arrayControllerForGeneration
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of '' directory
 
@@ -2087,11 +2087,11 @@ const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplat
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //           Filewrapper template 'selectionControllerGenerationTemplate selectionControllerImplementation'            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (C_Compiler * inCompiler,
                                                                                                            const GALGAS_string & in_OWNER_5F_NAME,
@@ -2464,11 +2464,11 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                       Routine 'generateSelectionControllers'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateSelectionControllers (const GALGAS_selectionControllerForGeneration constinArgument_inArrayControllerListForGeneration,
                                            const GALGAS_string constinArgument_inOutputDirectory,
@@ -2488,11 +2488,11 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                               Filewrapper 'customObjectControllerGenerationTemplate'                                *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of '' directory
 
@@ -2517,11 +2517,11 @@ const cDirectoryWrapper gWrapperDirectory_0_customObjectControllerGenerationTemp
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                   Filewrapper template 'customObjectControllerGenerationTemplate implementation'                    *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (C_Compiler * inCompiler,
                                                                                            const GALGAS_string & in_OWNER_5F_NAME,
@@ -2886,11 +2886,11 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                      Routine 'generateCustomObjectControllers'                                      *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateCustomObjectControllers (const GALGAS_customObjectControllerForGeneration constinArgument_inArrayControllerListForGeneration,
                                               const GALGAS_string constinArgument_inOutputDirectory,
@@ -2910,11 +2910,11 @@ void routine_generateCustomObjectControllers (const GALGAS_customObjectControlle
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                           Once function 'predefinedDates'                                           *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler */
                                                       COMMA_UNUSED_LOCATION_ARGS) {
@@ -2927,14 +2927,14 @@ static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler
 
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function implementation                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static bool gOnceFunctionResultAvailable_predefinedDates = false ;
 static GALGAS_stringset gOnceFunctionResult_predefinedDates ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
               COMMA_LOCATION_ARGS) {
@@ -2945,26 +2945,26 @@ GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
   return gOnceFunctionResult_predefinedDates ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void releaseOnceFunctionResult_predefinedDates (void) {
   gOnceFunctionResult_predefinedDates.drop () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gEpilogueForOnceFunction_predefinedDates (NULL,
                                                              releaseOnceFunctionResult_predefinedDates) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_predefinedDates [1] = {
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_predefinedDates (C_Compiler * inCompiler,
                                                                 const cObjectArray & /* inEffectiveParameterArray */,
@@ -2973,7 +2973,7 @@ static GALGAS_object functionWithGenericHeader_predefinedDates (C_Compiler * inC
   return function_predefinedDates (inCompiler COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDates",
                                                                  functionWithGenericHeader_predefinedDates,
@@ -2981,11 +2981,11 @@ C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDate
                                                                  0,
                                                                  functionArgs_predefinedDates) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                               Routine 'typeInventory'                                               *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
                             const GALGAS_astDeclarationList constinArgument_inDeclarationList,
@@ -3030,11 +3030,11 @@ void routine_typeInventory (const GALGAS_lstring constinArgument_inSourceFile,
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Routine 'semanticAnalysis'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
                                const GALGAS_string constinArgument_inSourceFile,
@@ -3205,11 +3205,11 @@ void routine_semanticAnalysis (const GALGAS_unifiedTypeMap constinArgument_inUni
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                               Routine 'generateCode'                                                *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectString,
                            const GALGAS_structForGeneration constinArgument_inGeneration,
@@ -3271,11 +3271,11 @@ void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectStr
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //                                             Filewrapper 'swift_sources'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- File '/EBAllocationDebug.swift'
 
