@@ -362,6 +362,38 @@ void C_Compiler::semanticErrorWith_K_L_message (const GALGAS_lstring & inKey,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+void C_Compiler::semanticWarningWith_K_L_message (const GALGAS_lstring & inKey,
+                                                  const char * in_K_L_ErrorMessage,
+                                                  const GALGAS_location & inExistingKeyLocation
+                                                  COMMA_LOCATION_ARGS) {
+  const C_String key = inKey.mAttribute_string.stringValue () ;
+//--- Build error message
+  C_String message ;
+  bool perCentFound = false ;
+  const C_String searchErrorMessage (in_K_L_ErrorMessage) ;
+  const int32_t errorMessageLength = searchErrorMessage.length () ;
+  for (int32_t i=0 ; i<errorMessageLength ; i++) {
+    const utf32 c = searchErrorMessage (i COMMA_HERE) ;
+    if (perCentFound) {
+      if (UNICODE_VALUE (c) == 'K') {
+        message << key ;
+      }else if (UNICODE_VALUE (c) == 'L') {
+        message << inExistingKeyLocation.getter_locationString (this COMMA_THERE) ; // §§
+      }
+      perCentFound = false ;
+    }else if (UNICODE_VALUE (c) == '%') {
+      perCentFound = true ;
+    }else{
+      message.appendUnicodeCharacter (c COMMA_HERE) ;
+    }
+  }
+//--- Emit error message
+  const GALGAS_location key_location = inKey.mAttribute_location ;
+  semanticWarningAtLocation (key_location, message COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 #ifdef PRAGMA_MARK_ALLOWED
   #pragma mark GALGAS 2 Warnings
 #endif
@@ -426,53 +458,6 @@ GALGAS_location C_Compiler::here (void) const {
   return GALGAS_location (mStartLocationForHere, mEndLocationForHere, mSourceTextPtr) ;
 }
 
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//   T R A C E                                                                                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static C_TextFileWrite * gTraceFile = NULL ;
-static uint32_t gTraceIndex ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enableTraceWithPath (const C_String & inFilePath) {
-  gTraceIndex = 0 ;
-  const C_String path = inFilePath + ".trace.txt" ;
-  macroMyNew (gTraceFile, C_TextFileWrite (path)) ;
-  if (! gTraceFile->isOpened ()) {
-    printf ("**** Error: cannot create trace file at path: '%s'.\n", path.cString (HERE)) ;
-    macroMyDelete (gTraceFile) ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool traceIsEnabled (void) {
-  return NULL != gTraceFile ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void appendTrace (const char * inType,
-                  const bool inIsBuilt,
-                  const C_String & inStringValue) {
-  if (NULL != gTraceFile) {
-    gTraceIndex ++ ;
-    (*gTraceFile) << cStringWithUnsigned (gTraceIndex)
-                  << ":@" << inType
-                  << " [" << (inIsBuilt ? "built" : "not built")
-                  << ", " << inStringValue << "]\n" ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void closeTrace (void) {
-  macroMyDelete (gTraceFile) ;
-}
 
 //---------------------------------------------------------------------------------------------------------------------*
 
