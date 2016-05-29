@@ -171,6 +171,12 @@ class C_Compiler : public C_SharedObject {
                                                const GALGAS_location & inExistingKeyLocation
                                                COMMA_LOCATION_ARGS) ;
 
+//--- Emit an warning message with an error message that contains %K and %L espace sequences
+  public : void semanticWarningWith_K_L_message (const GALGAS_lstring & inKey,
+                                                 const char * in_K_L_ErrorMessage,
+                                                 const GALGAS_location & inExistingKeyLocation
+                                                 COMMA_LOCATION_ARGS) ;
+
 //--- Cast error
   public : void castError (const C_String & inTargetTypeName,
                            const C_galgas_type_descriptor * inObjectDynamicTypeDescriptor
@@ -219,28 +225,6 @@ class C_Compiler : public C_SharedObject {
                                         const C_String & inFileName,
                                         const C_String & inContents) ;
 } ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//   T R A C E                                                                                                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enableTraceWithPath (const C_String & inSourceFilePath) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool traceIsEnabled (void) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void appendTrace (const char * inType,
-                  const bool inIsBuilt,
-                  const C_String & inStringValue) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void closeTrace (void) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
