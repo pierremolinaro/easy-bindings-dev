@@ -3,7 +3,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-#include "galgas2/predefined-types.h"
+#include "all-predefined-types.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -541,18 +541,18 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_preferencesForGeneration constructor_new (const class GALGAS_simpleStoredPropertyListForGeneration & inOperand0,
-                                                                   const class GALGAS_transientDefinitionListForGeneration & inOperand1,
-                                                                   const class GALGAS_regularBindingsGenerationList & inOperand2,
-                                                                   const class GALGAS_multipleBindingGenerationList & inOperand3,
-                                                                   const class GALGAS_actionBindingListForGeneration & inOperand4,
-                                                                   const class GALGAS_decoratedOutletMap & inOperand5,
-                                                                   const class GALGAS_mainXibDescriptorList & inOperand6,
-                                                                   const class GALGAS_externSwiftFunctionList & inOperand7,
-                                                                   const class GALGAS_storedArrayPropertyListForGeneration & inOperand8,
-                                                                   const class GALGAS_arrayControllerForGeneration & inOperand9,
-                                                                   const class GALGAS_tableViewBindingGenerationList & inOperand10
-                                                                   COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_preferencesForGeneration constructor_new (const class GALGAS_simpleStoredPropertyListForGeneration & inOperand0,
+                                                                         const class GALGAS_transientDefinitionListForGeneration & inOperand1,
+                                                                         const class GALGAS_regularBindingsGenerationList & inOperand2,
+                                                                         const class GALGAS_multipleBindingGenerationList & inOperand3,
+                                                                         const class GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                         const class GALGAS_decoratedOutletMap & inOperand5,
+                                                                         const class GALGAS_mainXibDescriptorList & inOperand6,
+                                                                         const class GALGAS_externSwiftFunctionList & inOperand7,
+                                                                         const class GALGAS_storedArrayPropertyListForGeneration & inOperand8,
+                                                                         const class GALGAS_arrayControllerForGeneration & inOperand9,
+                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand10
+                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,

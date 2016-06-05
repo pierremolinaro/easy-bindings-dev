@@ -3,7 +3,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-#include "galgas2/predefined-types.h"
+#include "all-predefined-types.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -152,13 +152,13 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_semanticContext constructor_new (const class GALGAS_unifiedTypeMap & inOperand0,
-                                                          const class GALGAS_outletClassMap & inOperand1,
-                                                          const class GALGAS_bindingSpecificationMap & inOperand2,
-                                                          const class GALGAS_observablePropertyMap & inOperand3,
-                                                          const class GALGAS_documentObservablePropertyMap & inOperand4,
-                                                          const class GALGAS_entityObservablePropertyMap & inOperand5
-                                                          COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_semanticContext constructor_new (const class GALGAS_unifiedTypeMap & inOperand0,
+                                                                const class GALGAS_outletClassMap & inOperand1,
+                                                                const class GALGAS_bindingSpecificationMap & inOperand2,
+                                                                const class GALGAS_observablePropertyMap & inOperand3,
+                                                                const class GALGAS_documentObservablePropertyMap & inOperand4,
+                                                                const class GALGAS_entityObservablePropertyMap & inOperand5
+                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -259,21 +259,21 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_structForGeneration constructor_new (const class GALGAS_transientDefinitionListForGeneration & inOperand0,
-                                                              const class GALGAS_actionListForGeneration & inOperand1,
-                                                              const class GALGAS_preferencesForGeneration & inOperand2,
-                                                              const class GALGAS_documentListForGeneration & inOperand3,
-                                                              const class GALGAS_entityListForGeneration & inOperand4,
-                                                              const class GALGAS_classListForGeneration & inOperand5,
-                                                              const class GALGAS_enumListForGeneration & inOperand6,
-                                                              const class GALGAS_stringset & inOperand7,
-                                                              const class GALGAS_arrayControllerForGeneration & inOperand8,
-                                                              const class GALGAS_validationStubRoutineListForGeneration & inOperand9,
-                                                              const class GALGAS_selectionControllerForGeneration & inOperand10,
-                                                              const class GALGAS_customObjectControllerForGeneration & inOperand11,
-                                                              const class GALGAS_stringlist & inOperand12,
-                                                              const class GALGAS_stringlist & inOperand13
-                                                              COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_structForGeneration constructor_new (const class GALGAS_transientDefinitionListForGeneration & inOperand0,
+                                                                    const class GALGAS_actionListForGeneration & inOperand1,
+                                                                    const class GALGAS_preferencesForGeneration & inOperand2,
+                                                                    const class GALGAS_documentListForGeneration & inOperand3,
+                                                                    const class GALGAS_entityListForGeneration & inOperand4,
+                                                                    const class GALGAS_classListForGeneration & inOperand5,
+                                                                    const class GALGAS_enumListForGeneration & inOperand6,
+                                                                    const class GALGAS_stringset & inOperand7,
+                                                                    const class GALGAS_arrayControllerForGeneration & inOperand8,
+                                                                    const class GALGAS_validationStubRoutineListForGeneration & inOperand9,
+                                                                    const class GALGAS_selectionControllerForGeneration & inOperand10,
+                                                                    const class GALGAS_customObjectControllerForGeneration & inOperand11,
+                                                                    const class GALGAS_stringlist & inOperand12,
+                                                                    const class GALGAS_stringlist & inOperand13
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
