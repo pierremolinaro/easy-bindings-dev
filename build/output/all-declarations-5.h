@@ -3,7 +3,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-#include "galgas2/predefined-types.h"
+#include "all-predefined-types.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -272,28 +272,28 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_XcodeProjectDescriptor constructor_new (const class GALGAS_uint & inOperand0,
-                                                                 const class GALGAS_string & inOperand1,
-                                                                 const class GALGAS_stringlist & inOperand2,
-                                                                 const class GALGAS_string & inOperand3,
-                                                                 const class GALGAS_XCodeGroupList & inOperand4,
-                                                                 const class GALGAS_XCodeToolTargetList & inOperand5,
-                                                                 const class GALGAS_XCodeAppTargetList & inOperand6,
-                                                                 const class GALGAS__32_stringlist & inOperand7,
-                                                                 const class GALGAS__32_stringlist & inOperand8,
-                                                                 const class GALGAS__32_stringlist & inOperand9,
-                                                                 const class GALGAS__32_stringlist & inOperand10,
-                                                                 const class GALGAS__32_stringlist & inOperand11,
-                                                                 const class GALGAS__32_stringlist & inOperand12,
-                                                                 const class GALGAS_BuildFileList & inOperand13,
-                                                                 const class GALGAS_string & inOperand14,
-                                                                 const class GALGAS_stringlist & inOperand15,
-                                                                 const class GALGAS_string & inOperand16,
-                                                                 const class GALGAS__32_stringlist & inOperand17,
-                                                                 const class GALGAS__32_stringlist & inOperand18,
-                                                                 const class GALGAS__32_stringlist & inOperand19,
-                                                                 const class GALGAS__32_stringlist & inOperand20
-                                                                 COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_XcodeProjectDescriptor constructor_new (const class GALGAS_uint & inOperand0,
+                                                                       const class GALGAS_string & inOperand1,
+                                                                       const class GALGAS_stringlist & inOperand2,
+                                                                       const class GALGAS_string & inOperand3,
+                                                                       const class GALGAS_XCodeGroupList & inOperand4,
+                                                                       const class GALGAS_XCodeToolTargetList & inOperand5,
+                                                                       const class GALGAS_XCodeAppTargetList & inOperand6,
+                                                                       const class GALGAS__32_stringlist & inOperand7,
+                                                                       const class GALGAS__32_stringlist & inOperand8,
+                                                                       const class GALGAS__32_stringlist & inOperand9,
+                                                                       const class GALGAS__32_stringlist & inOperand10,
+                                                                       const class GALGAS__32_stringlist & inOperand11,
+                                                                       const class GALGAS__32_stringlist & inOperand12,
+                                                                       const class GALGAS_BuildFileList & inOperand13,
+                                                                       const class GALGAS_string & inOperand14,
+                                                                       const class GALGAS_stringlist & inOperand15,
+                                                                       const class GALGAS_string & inOperand16,
+                                                                       const class GALGAS__32_stringlist & inOperand17,
+                                                                       const class GALGAS__32_stringlist & inOperand18,
+                                                                       const class GALGAS__32_stringlist & inOperand19,
+                                                                       const class GALGAS__32_stringlist & inOperand20
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -462,9 +462,9 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_andBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                           const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_andBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                                 const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_andBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -552,8 +552,8 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstr
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_booleanMultipleBindingLiteralIntForGeneration constructor_new (const class GALGAS_uint & inOperand0
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_booleanMultipleBindingLiteralIntForGeneration constructor_new (const class GALGAS_uint & inOperand0
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_booleanMultipleBindingLiteralIntForGeneration & inOperand) const ;
@@ -633,10 +633,10 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration : public GALGAS_ab
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_comparisonMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                           const class GALGAS_multipleBindingComparisonAST & inOperand1,
-                                                                                           const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand2
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_comparisonMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                                 const class GALGAS_multipleBindingComparisonAST & inOperand1,
+                                                                                                 const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand2
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_comparisonMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -726,8 +726,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration : public GALGAS
                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_negateBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0
-                                                                                              COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_negateBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0
+                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_negateBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -810,8 +810,8 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_string & inOperand0
-                                                                                                            COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_string & inOperand0
+                                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -891,9 +891,9 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration : public GALGAS_abs
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_orBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                          const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                                                          COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_orBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                                const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_orBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -978,9 +978,9 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static GALGAS_xorBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                           const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_xorBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                                 const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_xorBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
