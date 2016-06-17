@@ -35,7 +35,7 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
 
   //····················································································································
 
-  final func setSignatureObserver (signatureObserver : EBSignatureObserverEvent) {
+  final func setSignatureObserver (_ signatureObserver : EBSignatureObserverEvent) {
     mSignatureObserver = signatureObserver
     mSignatureAtStartUp = signatureObserver.signature ()
   }
@@ -91,7 +91,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 
   //····················································································································
 
-  final func setRootObject (rootObject : EBSignatureObserverProtocol) {
+  final func setRootObject (_ rootObject : EBSignatureObserverProtocol) {
     mRootObject = rootObject
   }
 
@@ -135,7 +135,7 @@ class EBWeakEventSetElement : EBObject {
   init (object : EBWeakEventSet, observer : EBEvent) {
     mObserver = observer
     mObject = object
-    mObserverAddress = unsafeAddressOf (observer).hashValue
+    mObserverAddress = unsafeAddress (of: observer).hashValue
     super.init ()
   }
   
@@ -153,13 +153,13 @@ class EBWeakEventSetElement : EBObject {
 //   EBWeakEventSet
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBWeakEventSet : EBObject, SequenceType {
+class EBWeakEventSet : EBObject, Sequence {
   private var mDictionary = [Int : EBWeakEventSetElement] ()
 
   //····················································································································
   
-  func insert (inObserver : EBEvent) {
-    let address : Int = unsafeAddressOf (inObserver).hashValue
+  func insert (_ inObserver : EBEvent) {
+    let address : Int = unsafeAddress (of: inObserver).hashValue
     if let entry = mDictionary [address] {
       entry.retainObserver ()
     }else{
@@ -169,8 +169,8 @@ class EBWeakEventSet : EBObject, SequenceType {
 
   //····················································································································
   
-  func remove (inObserver : EBEvent) {
-    let address : Int = unsafeAddressOf (inObserver).hashValue
+  func remove (_ inObserver : EBEvent) {
+    let address : Int = unsafeAddress (of: inObserver).hashValue
     if let entry = mDictionary [address] {
       if entry.releaseObserver () == 0 {
         mDictionary [address] = nil
@@ -180,14 +180,14 @@ class EBWeakEventSet : EBObject, SequenceType {
 
   //····················································································································
 
-  func generate () -> IndexingGenerator <[EBEvent]> {
+  func makeIterator () -> IndexingIterator <[EBEvent]> {
     var array = [EBEvent] ()
     for (_, entry) in mDictionary {
       if let observer = entry.mObserver {
         array.append(observer)
       }
     }
-    return array.generate ()
+    return array.makeIterator ()
   }
 
   //····················································································································
@@ -209,7 +209,7 @@ class EBAbstractProperty : EBEvent {
   
   //····················································································································
 
-  final func addEBObserver (inObserver : EBEvent) {
+  final func addEBObserver (_ inObserver : EBEvent) {
     mObservers.insert (inObserver)
     updateObserverExplorer ()
     inObserver.postEvent ()
@@ -217,7 +217,7 @@ class EBAbstractProperty : EBEvent {
  
   //····················································································································
 
-  final func removeEBObserver (inObserver : EBEvent) {
+  final func removeEBObserver (_ inObserver : EBEvent) {
     mObservers.remove (inObserver)
     updateObserverExplorer ()
   }
@@ -243,11 +243,11 @@ class EBAbstractProperty : EBEvent {
   final func updateObserverExplorer () {
     if let observerExplorer = mObserverExplorer {
       observerExplorer.removeAllItems ()
-      observerExplorer.addItemWithTitle (String (mObservers.count))
-      observerExplorer.enabled = mObservers.count > 0
+      observerExplorer.addItem (withTitle: String (mObservers.count))
+      observerExplorer.isEnabled = mObservers.count > 0
       for object : EBEvent in mObservers {
         let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
-        observerExplorer.addItemWithTitle (stringValue)
+        observerExplorer.addItem (withTitle: stringValue)
         let item = observerExplorer.lastItem
         item?.target = object
         item?.action = #selector(EBSimpleController.showExplorerWindowAction(_:))
@@ -268,7 +268,7 @@ class EBObserver : EBAbstractProperty {
   
   //····················································································································
 
-  func setPostEventFunction (function : Optional < () -> Void >) {
+  func setPostEventFunction (_ function : Optional < () -> Void >) {
     mPostEventFunction = function
   }
   
@@ -324,11 +324,11 @@ private let kTableCRC : [UInt32] = [
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension UInt32 {
-  mutating func accumulateByte (byte : UInt8) {
+  mutating func accumulateByte (_ byte : UInt8) {
     let idx = Int ((self ^ UInt32(byte)) & 0xff)
     self = (self >> 8) ^ kTableCRC [idx]
   }
-  mutating func accumulateUInt32 (value : UInt32) {
+  mutating func accumulateUInt32 (_ value : UInt32) {
     self.accumulateByte (UInt8 (value & 0xFF))
     self.accumulateByte (UInt8 ((value >>  8) & 0xFF))
     self.accumulateByte (UInt8 ((value >> 16) & 0xFF))
@@ -357,18 +357,18 @@ func presentErrorWindow (file : String!,
   origin.y += 20.0 ;
   let window = NSWindow.init (
     contentRect:r,
-    styleMask:NSTitledWindowMask | NSClosableWindowMask,
-    backing:NSBackingStoreType.Buffered,
+    styleMask:[.titled, .closable],
+    backing:NSBackingStoreType.buffered,
     defer:true
   )
   window.title = "Outlet Error"
   let contentView : NSView = window.contentView!
   let tfRect = NSInsetRect (contentView.bounds , 10.0, 10.0)
   let tf = NSTextField.init (frame:tfRect)
-  tf.editable = false
-  tf.selectable = true
-  tf.font = NSFont.boldSystemFontOfSize (0.0)
-  tf.textColor = NSColor.redColor ()
+  tf.isEditable = false
+  tf.isSelectable = true
+  tf.font = NSFont.boldSystemFont (ofSize: 0.0)
+  tf.textColor = NSColor.red ()
   tf.stringValue = message
   contentView.addSubview (tf)
   NSBeep () ;
@@ -382,7 +382,7 @@ func presentErrorWindow (file : String!,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension Array {
-  func objectAtIndex (index:Int, file:String, line:Int) -> Element {
+  func objectAtIndex (_ index:Int, file:String, line:Int) -> Element {
     if index < 0 {
       NSLog ("Negative index %d in '%@' line %d", index, file, line)
     }else if index >= count {
@@ -486,16 +486,16 @@ class EBObject : NSObject, EBUserClassNameProtocol {
 
 class EBSimpleClass : EBObject {
 
-  func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  func populateExplorerWindow ( _ y : inout CGFloat, view : NSView) {
   }
 
   func clearObjectExplorer () {
   }
 
-  func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
   }
 
-  func setUpWithDictionary (inDictionary : NSDictionary) {
+  func setUpWithDictionary (_ inDictionary : NSDictionary) {
   }
 }
 
@@ -517,7 +517,7 @@ class EBSimpleController : EBOutletEvent {
   
   //····················································································································
 
-  func showExplorerWindowAction (inSender : AnyObject) {
+  func showExplorerWindowAction (_ inSender : AnyObject) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
@@ -533,8 +533,8 @@ class EBSimpleController : EBOutletEvent {
     let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
     mExplorerWindow = NSWindow (
       contentRect:r,
-      styleMask:NSTitledWindowMask | NSClosableWindowMask,
-      backing:NSBackingStoreType.Buffered,
+      styleMask:[.titled, .closable],
+      backing:NSBackingStoreType.buffered,
       defer:true,
       screen:nil
     )
@@ -562,7 +562,7 @@ class EBSimpleController : EBOutletEvent {
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
-    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
     closeButton?.target = self
     closeButton?.action = #selector(EBSimpleController.deleteSimpleControllerWindowAction(_:))
   //--- Set window title
@@ -589,7 +589,7 @@ class EBSimpleController : EBOutletEvent {
   //····················································································································
 
   final func clearObjectExplorer () {
-    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -612,19 +612,19 @@ let EXPLORER_ROW_WIDTH : CGFloat = FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH + TH
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func firstColumn (y : CGFloat) -> NSRect {
+func firstColumn (_ y : CGFloat) -> NSRect {
   return NSRect (x:0.0, y:y, width:FIRST_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func secondColumn (y : CGFloat) -> NSRect {
+func secondColumn (_ y : CGFloat) -> NSRect {
   return NSRect (x:FIRST_COLUMN_WIDTH, y:y, width:SECOND_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func thirdColumn (y : CGFloat) -> NSRect {
+func thirdColumn (_ y : CGFloat) -> NSRect {
   return NSRect (x:FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH, y:y, width:SECOND_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)
 }
 
@@ -633,7 +633,7 @@ func thirdColumn (y : CGFloat) -> NSRect {
 private let explorerLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L",
                                "M", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-func explorerIndexString (idx : Int) -> String {
+func explorerIndexString (_ idx : Int) -> String {
   var result = String (idx % 10)
   var n = idx / 10
   result += String (n % 10)
@@ -652,28 +652,28 @@ func explorerIndexString (idx : Int) -> String {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func createEntryForPropertyNamed (attributeName : String,
+func createEntryForPropertyNamed (_ attributeName : String,
                                   idx : Int,
-                                  inout y : CGFloat,
+                                  y : inout CGFloat,
                                   view : NSView,
-                                  inout observerExplorer : NSPopUpButton?,
-                                  inout valueExplorer : NSTextField?) {
-  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+                                  observerExplorer : inout NSPopUpButton?,
+                                  valueExplorer : inout NSTextField?) {
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
 //--- Explorer popup button
   observerExplorer = NSPopUpButton (frame:firstColumn (y), pullsDown:true)
   observerExplorer?.font = font
   view.addSubview (observerExplorer!)
 //--- Property textfield
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = true
-  tf.editable = false
+  tf.isEnabled = true
+  tf.isEditable = false
   tf.stringValue = explorerIndexString (idx) + attributeName
   tf.font = font
   view.addSubview (tf)
 //--- Value textfield
   valueExplorer = NSTextField (frame:thirdColumn (y))
-  valueExplorer?.enabled = true
-  valueExplorer?.editable = false
+  valueExplorer?.isEnabled = true
+  valueExplorer?.isEditable = false
   valueExplorer?.font = font
   view.addSubview (valueExplorer!)
 //--- Update rect origin
@@ -684,22 +684,22 @@ func createEntryForPropertyNamed (attributeName : String,
 //    createEntryForOutletNamed
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func createEntryForOutletNamed (name : String,
+func createEntryForOutletNamed (_ name : String,
                                 outlet : NSView,
-                                inout y : CGFloat,
+                                y : inout CGFloat,
                                 view : NSView) {
-  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
 //--- Property textfield
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = true
-  tf.editable = false
+  tf.isEnabled = true
+  tf.isEditable = false
   tf.stringValue = name
   tf.font = font
   view.addSubview (tf)
 //--- Value textfield
   let vtf = NSTextField (frame:thirdColumn (y))
-  vtf.enabled = true
-  vtf.editable = false
+  vtf.isEnabled = true
+  vtf.isEditable = false
   vtf.stringValue = outlet.className
   vtf.font = font
   view.addSubview (vtf)
@@ -711,22 +711,22 @@ func createEntryForOutletNamed (name : String,
 //    createEntryForObjectNamed
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func createEntryForObjectNamed (name : String,
+func createEntryForObjectNamed (_ name : String,
                                 object : EBObject,
-                                inout y : CGFloat,
+                                y : inout CGFloat,
                                 view : NSView) {
-  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
 //--- Property textfield
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = true
-  tf.editable = false
+  tf.isEnabled = true
+  tf.isEditable = false
   tf.stringValue = name
   tf.font = font
   view.addSubview (tf)
 //--- Value textfield
   let vtf = NSTextField (frame:thirdColumn (y))
-  vtf.enabled = true
-  vtf.editable = false
+  vtf.isEnabled = true
+  vtf.isEditable = false
   vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (object.dynamicType)
   vtf.font = font
   view.addSubview (vtf)
@@ -738,15 +738,15 @@ func createEntryForObjectNamed (name : String,
 //    createEntryForToOneRelationshipNamed
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func createEntryForToOneRelationshipNamed (relationshipName : String,
+func createEntryForToOneRelationshipNamed (_ relationshipName : String,
                                            idx : Int,
-                                           inout y : CGFloat,
+                                           y : inout CGFloat,
                                            view : NSView,
-                                           inout valueExplorer : NSButton?) {
-  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+                                           valueExplorer : inout NSButton?) {
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = true
-  tf.editable = false
+  tf.isEnabled = true
+  tf.isEditable = false
   tf.stringValue = explorerIndexString (idx) + relationshipName
   tf.font = font
   view.addSubview (tf)
@@ -760,15 +760,15 @@ func createEntryForToOneRelationshipNamed (relationshipName : String,
 //    createEntryForToManyRelationshipNamed
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func createEntryForToManyRelationshipNamed (relationshipName : String,
+func createEntryForToManyRelationshipNamed (_ relationshipName : String,
                                             idx : Int,
-                                            inout y : CGFloat,
+                                            y : inout CGFloat,
                                             view : NSView,
-                                            inout valueExplorer : NSPopUpButton?) {
-  let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+                                            valueExplorer : inout NSPopUpButton?) {
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
   let tf = NSTextField (frame:secondColumn (y))
-  tf.enabled = true
-  tf.editable = false
+  tf.isEnabled = true
+  tf.isEditable = false
   tf.stringValue = explorerIndexString (idx) + relationshipName
   tf.font = font
   view.addSubview (tf)
@@ -799,7 +799,7 @@ extension NSTextView {
   //····················································································································
 
   func clear () {
-    let str = NSAttributedString (string:"", attributes:nil)
+    let str = AttributedString (string:"", attributes:nil)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
         ts.setAttributedString (str)
@@ -809,10 +809,10 @@ extension NSTextView {
 
   //····················································································································
 
-  func appendAttributedString (inAttributedString : NSAttributedString) {
+  func appendAttributedString (_ inAttributedString : AttributedString) {
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
-        ts.appendAttributedString (inAttributedString)
+        ts.append (inAttributedString)
         displayAndScrollToEndOfText ()
       }
     }
@@ -820,15 +820,15 @@ extension NSTextView {
 
   //····················································································································
 
-  func appendMessageString (inString : String) {
+  func appendMessageString (_ inString : String) {
     let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
-      NSForegroundColorAttributeName : NSColor.blackColor()
+      NSFontAttributeName : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ()),
+      NSForegroundColorAttributeName : NSColor.black()
     ]
-    let str = NSAttributedString (string:inString, attributes:attributes)
+    let str = AttributedString (string:inString, attributes:attributes)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
-        ts.appendAttributedString (str)
+        ts.append (str)
         displayAndScrollToEndOfText ()
       }
     }
@@ -836,15 +836,15 @@ extension NSTextView {
 
   //····················································································································
 
-  func appendMessageString (inString : String, color:NSColor) {
+  func appendMessageString (_ inString : String, color:NSColor) {
     let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ()),
+      NSFontAttributeName : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ()),
       NSForegroundColorAttributeName : color
     ]
-    let str = NSAttributedString (string:inString, attributes:attributes)
+    let str = AttributedString (string:inString, attributes:attributes)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
-        ts.appendAttributedString (str)
+        ts.append (str)
         displayAndScrollToEndOfText ()
       }
     }
@@ -852,20 +852,20 @@ extension NSTextView {
 
   //····················································································································
 
-  func appendErrorString (inString : String) {
-    appendMessageString (inString, color:NSColor.redColor ())
+  func appendErrorString (_ inString : String) {
+    appendMessageString (inString, color:NSColor.red ())
   }
   
   //····················································································································
 
-  func appendWarningString (inString : String) {
-    appendMessageString (inString, color:NSColor.orangeColor ())
+  func appendWarningString (_ inString : String) {
+    appendMessageString (inString, color:NSColor.orange ())
   }
 
   //····················································································································
 
-  func appendSuccessString (inString : String) {
-    appendMessageString (inString, color:NSColor.blueColor ())
+  func appendSuccessString (_ inString : String) {
+    appendMessageString (inString, color:NSColor.blue ())
   }
 }
 
@@ -873,7 +873,7 @@ extension NSTextView {
 //    defaultValidationFunction
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func defaultValidationFunction <T> (currentValue : T, proposedValue : T) -> EBValidationResult <T> {
+func defaultValidationFunction <T> (_ currentValue : T, proposedValue : T) -> EBValidationResult <T> {
   return EBValidationResult.ok (proposedValue)
 }
 
@@ -905,7 +905,7 @@ enum EBPropertyKind {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func &= (inout left:EBPropertyKind, right:EBPropertyKind) {
+func &= ( left:inout EBPropertyKind, right:EBPropertyKind) {
   switch left {
   case .noSelectionKind : break
   case .multipleSelectionKind :
@@ -926,7 +926,7 @@ func &= (inout left:EBPropertyKind, right:EBPropertyKind) {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private func compareIntProperties (left:EBProperty<Int>,
+private func compareIntProperties (_ left:EBProperty<Int>,
                                    right:EBProperty<Int>,
                                    function : (Int, Int) -> Bool) -> EBProperty<Bool> {
   switch left {
@@ -989,7 +989,7 @@ func != (left:EBProperty<Int>, right:EBProperty<Int>) -> EBProperty<Bool> {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private func combineBoolProperties (left:EBProperty<Bool>,
+private func combineBoolProperties (_ left:EBProperty<Bool>,
                                      right:EBProperty<Bool>,
                                      function : (Bool, Bool) -> Bool) -> EBProperty<Bool> {
   switch left {
@@ -1051,9 +1051,9 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 
 @objc(EBReadOnlyEnumPropertyProtocol) protocol EBReadOnlyEnumPropertyProtocol {
 
-  func addEBObserver (inObserver : EBEvent)
+  func addEBObserver (_ inObserver : EBEvent)
 
-  func removeEBObserver (inObserver : EBEvent)
+  func removeEBObserver (_ inObserver : EBEvent)
 
   func count () -> Int
 
@@ -1065,21 +1065,21 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBEnumPropertyProtocol) protocol EBEnumPropertyProtocol : EBReadOnlyEnumPropertyProtocol {
-  func setFromRawValue (rawValue : Int)
+  func setFromRawValue (_ rawValue : Int)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   NSDate operators
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func < (left:NSDate, right:NSDate) -> Bool {
-  return left.compare (right) == .OrderedAscending
+func < (left:Date, right:Date) -> Bool {
+  return left.compare (right as Date) == .orderedAscending
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func > (left:NSDate, right:NSDate) -> Bool {
-  return left.compare (right) == .OrderedDescending
+func > (left:Date, right:Date) -> Bool {
+  return left.compare (right as Date) == .orderedDescending
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

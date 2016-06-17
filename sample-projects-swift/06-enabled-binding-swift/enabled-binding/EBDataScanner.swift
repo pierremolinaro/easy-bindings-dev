@@ -9,14 +9,14 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 struct EBDataScanner {
-  private var mData : NSData
+  private var mData : Data
   private var mReadIndex : Int = 0
   private var mReadOk : Bool = true
   private var mExpectedBytes : Array<UInt8> = []
 
   //····················································································································
 
-  init (data: NSData) {
+  init (data: Data) {
     mData = data
   }
 
@@ -31,21 +31,19 @@ struct EBDataScanner {
   //····················································································································
   // http://stackoverflow.com/questions/24067085/pointers-pointer-arithmetic-and-raw-data-in-swift
 
-  mutating func testAcceptByte (inByte : UInt8) -> Bool {
+  mutating func testAccept (byte : UInt8) -> Bool {
     var result = mReadOk
     if result {
-      if mReadIndex >= mData.length {
+      if mReadIndex >= mData.count {
          NSLog ("Read beyond end of data")
          mReadOk = false
        }else{
-        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        let byte = UnsafePointer<UInt8> (byteAsData).memory
-        result = byte == inByte
+        result = byte == mData [mReadIndex]
         if result {
           mReadIndex += 1
           mExpectedBytes = []
         }else{
-          mExpectedBytes.append (inByte)
+          mExpectedBytes.append (byte)
         }
       }
     }
@@ -56,16 +54,15 @@ struct EBDataScanner {
 
   mutating func testAcceptFromByte (lowerBound: UInt8,
                                     upperBound: UInt8,
-                                    inout value:UInt8) -> Bool {
+                                    value:inout UInt8) -> Bool {
     var result = mReadOk
     if result {
-      if mReadIndex >= mData.length {
+      if mReadIndex >= mData.count {
          NSLog ("Read beyond end of data")
          mReadOk = false
        }else{
-        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        let byte = UnsafePointer<UInt8> (byteAsData).memory
-        result = (byte >= lowerBound) && (byte <= upperBound) ;
+        let byte = mData [mReadIndex]
+        result = (byte >= lowerBound) && (byte <= upperBound)
         if (result) {
           value = byte
           mReadIndex += 1
@@ -82,15 +79,13 @@ struct EBDataScanner {
 
   //····················································································································
 
-  mutating func acceptRequiredByte (inByte : UInt8) {
+  mutating func acceptRequired (byte : UInt8) {
     if mReadOk {
-      if mReadIndex >= mData.length {
+      if mReadIndex >= mData.count {
          NSLog ("Read beyond end of data")
          mReadOk = false
       }else{
-        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        let byte = UnsafePointer<UInt8> (byteAsData).memory
-        if (byte == inByte) {
+        if (byte == mData [mReadIndex]) {
           mReadIndex += 1
           mExpectedBytes = []
         }else{
@@ -98,7 +93,7 @@ struct EBDataScanner {
           for b in mExpectedBytes {
             message += String (format:"0x%02hhx, ", b)
           }
-          NSLog ("invalid current byte (0x%02x): expected bytes:%@0x%02x", byte, message, inByte) ;
+          NSLog ("invalid current byte (0x%02x): expected byte:%@0x%02x", byte, message, mData [mReadIndex]) ;
           mReadOk = false
         }
       }
@@ -110,12 +105,11 @@ struct EBDataScanner {
   mutating func parseByte () -> UInt8 {
     var result : UInt8 = 0
     if mReadOk {
-      if mReadIndex >= mData.length {
+      if mReadIndex >= mData.count {
          NSLog ("Read beyond end of data")
          mReadOk = false
        }else{
-        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        result = UnsafePointer<UInt8> (byteAsData).memory
+        result = mData [mReadIndex]
         mReadIndex += 1
       }
     }
@@ -129,12 +123,11 @@ struct EBDataScanner {
     var shift : UInt = 0
     var loop = true
     while loop && mReadOk {
-      if mReadIndex >= mData.length {
+      if mReadIndex >= mData.count {
          NSLog ("Read beyond end of data")
          mReadOk = false
       }else{
-        let byteAsData = mData.subdataWithRange (NSMakeRange(mReadIndex, sizeof(UInt8))).bytes
-        let byte = UnsafePointer<UInt8> (byteAsData).memory
+        let byte = mData [mReadIndex]
         let w : UInt = UInt (byte) & 0x7F
         result |= (w << shift)
         shift += 7
@@ -151,11 +144,11 @@ struct EBDataScanner {
     var result = NSData ()
     if mReadOk {
       let dataLength : Int = Int (parseAutosizedUnsignedInteger ())
-      if (mReadIndex + dataLength) >= mData.length {
+      if (mReadIndex + dataLength) >= mData.count {
         NSLog ("Read beyond end of data")
         mReadOk = false
       }else{
-        result = mData.subdataWithRange (NSMakeRange (mReadIndex, dataLength))
+        result = mData.subdata (in: mReadIndex ..< mReadIndex + dataLength)
         mReadIndex += dataLength
       }
     }
@@ -166,22 +159,19 @@ struct EBDataScanner {
 
   mutating func parseAutosizedString () -> String {
     var result : String = ""
-    var ptr = UnsafePointer<UInt8> (mData.bytes)
-    ptr += mReadIndex
     var stringLength = 0
     var loop = true
     while loop && mReadOk {
-      if (mReadIndex + stringLength) >= mData.length {
-         mReadOk = false
+      if (mReadIndex + stringLength) >= mData.count {
+        mReadOk = false
       }else{
-        loop = ptr.memory != 0
-        ptr += 1
+        loop = mData [mReadIndex + stringLength] != 0
         stringLength += 1
       }
     }
     if (mReadOk) {
-      let d = mData.subdataWithRange (NSMakeRange (mReadIndex, stringLength - 1))
-      result = NSString (data:d, encoding: NSUTF8StringEncoding) as! String
+      let d = mData.subdata (in: mReadIndex ..< mReadIndex + stringLength)
+      result = NSString (data:d, encoding: String.Encoding.utf8.rawValue) as! String
       mReadIndex += stringLength
     }
     return result

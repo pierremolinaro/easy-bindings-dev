@@ -13,7 +13,7 @@ import Cocoa
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
-    self.setButtonType(.SwitchButton)
+    self.setButtonType (.switchButton)
   }
 
   //···················································································································· 
@@ -21,7 +21,7 @@ import Cocoa
   override init (frame:NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
-    self.setButtonType(.SwitchButton)
+    self.setButtonType (.switchButton)
   }
   
   //···················································································································· 
@@ -32,9 +32,9 @@ import Cocoa
   
   //···················································································································· 
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
     mValueController?.updateModel ()
-    return super.sendAction (inAction, to:to)
+    return super.sendAction (action, to:to)
   }
 
   //···················································································································· 
@@ -45,7 +45,7 @@ import Cocoa
 
   //···················································································································· 
 
-  func bind_value (object:EBReadWriteProperty_Bool, file:String, line:Int) {
+  func bind_value (_ object: EBReadWriteProperty_Bool, file: String, line: Int) {
     mValueController = Controller_EBSwitch_value (object:object, outlet:self, file:file, line:line)
   }
 

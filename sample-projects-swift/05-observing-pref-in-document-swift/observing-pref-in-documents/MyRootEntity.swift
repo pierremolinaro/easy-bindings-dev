@@ -18,7 +18,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_docString (inObserver : EBEvent) {
+  final func addEBObserverOf_docString (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_docString.insert (inObserver)
     switch prop {
@@ -33,7 +33,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_docString (inObserver : EBEvent) {
+  final func removeEBObserverOf_docString (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_docString.remove (inObserver)
     switch prop {
@@ -48,7 +48,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_docString_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_docString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docString {
         managedObject.docString.addEBObserver (observer)
@@ -58,7 +58,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_docString_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_docString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docString {
         managedObject.docString.removeEBObserver (observer)
@@ -104,7 +104,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_transientConcatString_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_transientConcatString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_transientConcatString {
         managedObject.transientConcatString.addEBObserver (observer)
@@ -114,7 +114,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_transientConcatString_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_transientConcatString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_transientConcatString {
         managedObject.transientConcatString.removeEBObserver (observer)
@@ -160,7 +160,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_otherTransientConcatString_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_otherTransientConcatString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_otherTransientConcatString {
         managedObject.otherTransientConcatString.addEBObserver (observer)
@@ -170,7 +170,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_otherTransientConcatString_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_otherTransientConcatString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_otherTransientConcatString {
         managedObject.otherTransientConcatString.removeEBObserver (observer)
@@ -214,10 +214,10 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
           newSet = Set (array)
         }
      //--- Removed object set
-        let removedSet = mSet.subtract (newSet)
+        let removedSet = mSet.subtracting (newSet)
         removeEBObserversOf_docString_fromElementsOfSet (removedSet)
       //--- Added object set
-        let addedSet = newSet.subtract (mSet)
+        let addedSet = newSet.subtracting (mSet)
         addEBObserversOf_docString_toElementsOfSet (addedSet)
       //--- Update object set
         mSet = newSet
@@ -347,7 +347,7 @@ class MyRootEntity : EBManagedObject
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "docString",
@@ -373,27 +373,27 @@ class MyRootEntity : EBManagedObject
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    docString.storeInDictionary (ioDictionary, forKey: "docString")
+    docString.storeIn (dictionary: ioDictionary, forKey: "docString")
   }
 
   //····················································································································
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : [EBManagedObject]) {
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    docString.readFromDictionary (inDictionary, forKey:"docString")
+    docString.readFrom (dictionary: inDictionary, forKey:"docString")
   }
 
   //····················································································································
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : [EBManagedObject]) {
-    super.accessibleObjects (&objects)
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
   }
 
   //····················································································································

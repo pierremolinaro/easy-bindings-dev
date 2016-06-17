@@ -13,7 +13,7 @@ import Cocoa
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
-    self.setButtonType(.SwitchButton)
+    self.setButtonType (.switchButton)
   }
 
   //···················································································································· 
@@ -21,7 +21,7 @@ import Cocoa
   override init (frame:NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
-    self.setButtonType(.SwitchButton)
+    self.setButtonType (.switchButton)
   }
   
   //···················································································································· 
@@ -32,9 +32,9 @@ import Cocoa
   
   //···················································································································· 
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
     mValueController?.updateModel ()
-    return super.sendAction (inAction, to:to)
+    return super.sendAction (action, to:to)
   }
 
   //···················································································································· 
@@ -45,7 +45,7 @@ import Cocoa
 
   //···················································································································· 
 
-  func bind_value (object:EBReadWriteProperty_Bool, file:String, line:Int) {
+  func bind_value (_ object: EBReadWriteProperty_Bool, file: String, line: Int) {
     mValueController = Controller_EBSwitch_value (object:object, outlet:self, file:file, line:line)
   }
 
@@ -104,7 +104,7 @@ import Cocoa
   //···················································································································· 
 
   func updateModel () {
-    mObject.setProp (mOutlet.state == NSOnState)
+    mObject.setProp (value: mOutlet.state == NSOnState)
   }
 }
 
@@ -121,13 +121,13 @@ import Cocoa
   func checkOutlet (columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBSwitch) {
-        presentErrorWindow (file,
+        presentErrorWindow (file: file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBSwitch"
         )
       }
     }else{
-      presentErrorWindow (file,
+      presentErrorWindow (file: file,
         line: line,
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBSwitch)"
       )

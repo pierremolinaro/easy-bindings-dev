@@ -50,12 +50,12 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    myPrefString.readInPreferencesWithKey ("Preferences:myPrefString")
+    myPrefString.readInPreferencesWithKey (inKey:"Preferences:myPrefString")
   //--- Property validation function
   //---
-    NSNotificationCenter.defaultCenter ().addObserver (self,
+    NotificationCenter.default ().addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSApplicationWillTerminateNotification,
+     name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
     )
   //--- Extern functions
@@ -68,7 +68,7 @@ var g_Preferences : Preferences? = nil
   override func awakeFromNib () {
   //--- Check myPrefStringTextField' outlet not nil
     if nil == myPrefStringTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myPrefStringTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
     prefTransientString.readModelFunction = { [weak self] in
@@ -94,7 +94,7 @@ var g_Preferences : Preferences? = nil
   //--- Install property observers for transients
     self.myPrefString.addEBObserver (prefTransientString)
   //--- Install bindings
-    myPrefStringTextField?.bind_value (self.myPrefString, file:#file, line:#line, sendContinously:false)
+    myPrefStringTextField?.bind_value (self.myPrefString, file: #file, line: #line, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
@@ -106,7 +106,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    myPrefString.storeInPreferencesWithKey ("Preferences:myPrefString")
+    myPrefString.storeInPreferencesWithKey (inKey:"Preferences:myPrefString")
   }
 
   //····················································································································
