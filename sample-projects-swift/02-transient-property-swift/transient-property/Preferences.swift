@@ -56,13 +56,13 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    mFirstName.readInPreferencesWithKey ("Preferences:mFirstName")
-    mLastName.readInPreferencesWithKey ("Preferences:mLastName")
+    mFirstName.readInPreferencesWithKey (inKey:"Preferences:mFirstName")
+    mLastName.readInPreferencesWithKey (inKey:"Preferences:mLastName")
   //--- Property validation function
   //---
-    NSNotificationCenter.defaultCenter ().addObserver (self,
+    NotificationCenter.default ().addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSApplicationWillTerminateNotification,
+     name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
     )
   //--- Extern functions
@@ -86,9 +86,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("First Name:", y:&y, col:0, view:view)
     let tf1 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf1.stringValue = "First Name:"
-    tf1.editable = false
+    tf1.isEditable = false
     tf1.drawsBackground = false
-    tf1.bordered = false
+    tf1.isBordered = false
     view.addSubview (tf1)
   //--- Outlet mFirstNameTextField
     mFirstNameTextField = EBTextField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -100,9 +100,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Name: ", y:&y, col:0, view:view)
     let tf2 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf2.stringValue = "Name: "
-    tf2.editable = false
+    tf2.isEditable = false
     tf2.drawsBackground = false
-    tf2.bordered = false
+    tf2.isBordered = false
     view.addSubview (tf2)
   //--- Outlet mLastNameTextField
     mLastNameTextField = EBTextField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -114,9 +114,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Full Name:", y:&y, col:0, view:view)
     let tf3 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf3.stringValue = "Full Name:"
-    tf3.editable = false
+    tf3.isEditable = false
     tf3.drawsBackground = false
-    tf3.bordered = false
+    tf3.isBordered = false
     view.addSubview (tf3)
   //--- Outlet mFullNameTextField
     mFullNameTextField = EBTextObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -128,9 +128,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Uppercase full Name:", y:&y, col:0, view:view)
     let tf4 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf4.stringValue = "Uppercase full Name:"
-    tf4.editable = false
+    tf4.isEditable = false
     tf4.drawsBackground = false
-    tf4.bordered = false
+    tf4.isBordered = false
     view.addSubview (tf4)
   //--- Outlet mUpperCaseFullNameTextField
     mUpperCaseFullNameTextField = EBTextObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -230,8 +230,8 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    mFirstName.storeInPreferencesWithKey ("Preferences:mFirstName")
-    mLastName.storeInPreferencesWithKey ("Preferences:mLastName")
+    mFirstName.storeInPreferencesWithKey (inKey:"Preferences:mFirstName")
+    mLastName.storeInPreferencesWithKey (inKey:"Preferences:mLastName")
   }
 
   //····················································································································

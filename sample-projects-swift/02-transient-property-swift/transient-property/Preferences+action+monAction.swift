@@ -12,10 +12,10 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension Preferences {
-  func monAction (inSender : NSObject) {
+  func monAction (_ sender : NSObject) {
 //--- START OF USER ZONE 2
-   self.mFirstName.setProp ("Amédée")
-   self.mLastName.setProp ("Schmurtz")
+   self.mFirstName.setProp (inValue: "Amédée")
+   self.mLastName.setProp (inValue: "Schmurtz")
 //--- END OF USER ZONE 2
   }
 }

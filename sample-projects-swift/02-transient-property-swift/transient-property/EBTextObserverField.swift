@@ -13,9 +13,9 @@ import Cocoa
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     self.delegate = self
-    self.editable = false
+    self.isEditable = false
     self.drawsBackground = false
-    self.bordered = false
+    self.isBordered = false
     noteObjectAllocation (self)
   }
 
@@ -24,9 +24,9 @@ import Cocoa
   override init (frame:NSRect) {
     super.init (frame:frame)
     self.delegate = self
-    self.editable = false
+    self.isEditable = false
     self.drawsBackground = false
-    self.bordered = false
+    self.isBordered = false
     noteObjectAllocation (self)
   }
   
@@ -44,7 +44,7 @@ import Cocoa
 
   //····················································································································
 
-  func bind_valueObserver (object:EBReadOnlyProperty_String, file:String, line:Int) {
+  func bind_valueObserver (_ object:EBReadOnlyProperty_String, file:String, line:Int) {
     mValueController = Controller_EBTextObserverField_value (object:object, outlet:self, file:file, line:line)
   }
 
@@ -116,7 +116,7 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
 
   //····················································································································
 
-  func checkOutlet (columnName : String, file:String, line:Int) {
+  func checkOutlet (_ columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBTextObserverField) {
         presentErrorWindow (file,

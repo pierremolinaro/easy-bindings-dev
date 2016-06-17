@@ -574,13 +574,13 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
   if (in_DEPENDENCY_5F_LIST.isValid ()) {
     cEnumerator_transientDependencyListForGeneration enumerator_518 (in_DEPENDENCY_5F_LIST, kEnumeration_up) ;
     while (enumerator_518.hasCurrentObject ()) {
+      result << "_ " ;
       result << enumerator_518.current_mFunctionArgumentName (HERE).stringValue () ;
       result << " : " ;
       result << enumerator_518.current_mFunctionArgumentTypeString (HERE).stringValue () ;
       if (enumerator_518.hasNextObject ()) {
         result << ",\n" ;
         result.appendSpacesUntilColumn (columnMarker) ;
-        result << "_ " ;
       }
       index_518_.increment () ;
       enumerator_518.gotoNextObject () ;
@@ -1035,7 +1035,7 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (C_C
   result << " {\n"
     "  func " ;
   result << in_ACTION_5F_NAME.stringValue () ;
-  result << " (inSender : NSObject) {\n" ;
+  result << " (_ sender : NSObject) {\n" ;
   return GALGAS_string (result) ;
 }
 
