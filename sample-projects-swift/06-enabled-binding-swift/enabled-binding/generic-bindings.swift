@@ -16,7 +16,7 @@ extension NSView {
 
   //····················································································································
 
-  func bind_hidden (object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
+  func bind_hidden (_ object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSView_hidden (
       objectArray:object,
       outlet:self,
@@ -87,7 +87,7 @@ extension NSView {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
-      mOutlet.hidden = v
+      mOutlet.isHidden = v
     }
   }
 
@@ -107,7 +107,7 @@ extension NSControl {
 
   //····················································································································
 
-  func bind_enabled (object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
+  func bind_enabled (_ object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSControl_enabled (
       objectArray:object,
       outlet:self,
@@ -144,7 +144,7 @@ extension NSControl {
 
   //····················································································································
 
-  func enableFromValue (inValue : Bool) {
+  func enableFromValue (_ inValue : Bool) {
     gEnabledFromValueBindingDictionary [self] = inValue
   }
 
@@ -165,7 +165,7 @@ extension NSControl {
 extension NSControl {
 
   func updateEnabledState () {
-    self.enabled = (gEnabledBindingValueDictionary [self] ?? true) && (gEnabledFromValueBindingDictionary [self] ?? true)
+    self.isEnabled = (gEnabledBindingValueDictionary [self] ?? true) && (gEnabledFromValueBindingDictionary [self] ?? true)
   }
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EBAllocationDebug">
@@ -34,6 +34,7 @@
                     </connections>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="134" y="-225"/>
         </menu>
         <window title="Allocation Stats" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="EBAllocationStatsWindowLocation" animationBehavior="default" id="13" userLabel="AllocationStats Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
@@ -253,7 +254,7 @@
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="363.5" y="76"/>
+            <point key="canvasLocation" x="313" y="68"/>
         </window>
         <window title="Transient Event Log" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="TransientEventLog" animationBehavior="default" id="215" userLabel="Transient Event Log">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

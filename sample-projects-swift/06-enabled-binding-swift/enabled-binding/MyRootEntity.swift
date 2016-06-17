@@ -18,7 +18,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_docBool (inObserver : EBEvent) {
+  final func addEBObserverOf_docBool (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_docBool.insert (inObserver)
     switch prop {
@@ -33,7 +33,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_docBool (inObserver : EBEvent) {
+  final func removeEBObserverOf_docBool (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_docBool.remove (inObserver)
     switch prop {
@@ -48,7 +48,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_docBool_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_docBool_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docBool {
         managedObject.docBool.addEBObserver (observer)
@@ -58,7 +58,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_docBool_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_docBool_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docBool {
         managedObject.docBool.removeEBObserver (observer)
@@ -102,10 +102,10 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
           newSet = Set (array)
         }
      //--- Removed object set
-        let removedSet = mSet.subtract (newSet)
+        let removedSet = mSet.subtracting (newSet)
         removeEBObserversOf_docBool_fromElementsOfSet (removedSet)
       //--- Added object set
-        let addedSet = newSet.subtract (mSet)
+        let addedSet = newSet.subtracting (mSet)
         addEBObserversOf_docBool_toElementsOfSet (addedSet)
       //--- Update object set
         mSet = newSet
@@ -179,7 +179,7 @@ class MyRootEntity : EBManagedObject
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "docBool",
@@ -205,27 +205,27 @@ class MyRootEntity : EBManagedObject
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    docBool.storeInDictionary (ioDictionary, forKey: "docBool")
+    docBool.storeIn (dictionary: ioDictionary, forKey: "docBool")
   }
 
   //····················································································································
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : [EBManagedObject]) {
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    docBool.readFromDictionary (inDictionary, forKey:"docBool")
+    docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
   }
 
   //····················································································································
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : [EBManagedObject]) {
-    super.accessibleObjects (&objects)
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
   }
 
   //····················································································································

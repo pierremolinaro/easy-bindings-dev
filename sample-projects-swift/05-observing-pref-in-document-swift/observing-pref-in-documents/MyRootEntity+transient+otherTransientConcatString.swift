@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_otherTransientConcatString (g_Preferences_21__2E_myPrefString : String) -> String {
+func compute_MyRootEntity_otherTransientConcatString (_ g_Preferences_21__2E_myPrefString : String) -> String {
 //--- START OF USER ZONE 2
   return g_Preferences_21__2E_myPrefString // ADD YOUR CODE HERE
 //--- END OF USER ZONE 2

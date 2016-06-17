@@ -37,7 +37,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     noteObjectAllocation (self)
     undoManager = theUndoManager
     theUndoManager.disableUndoRegistration ()
-    mRootObject = try! mManagedObjectContext.newInstanceOfEntityNamed (rootEntityClassName ())
+    mRootObject = try! mManagedObjectContext.newInstanceOfEntityNamed (inEntityTypeName: rootEntityClassName ())
     theUndoManager.enableUndoRegistration ()
   }
 
@@ -75,14 +75,13 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  func saveMetadataDictionary (version : Int, inout metadataDictionary : NSMutableDictionary) {
-    metadataDictionary.setObject (NSNumber (integer:version), forKey:EBVersion)
+  func saveMetadataDictionary (version : Int, metadataDictionary : inout NSMutableDictionary) {
+    metadataDictionary.setObject (NSNumber (value:version), forKey:EBVersion)
   }
 
   //····················································································································
 
-  
-  override func dataOfType (typeName: String?) throws -> NSData {
+  override func data (ofType typeName: String) throws -> Data {
   //--- Update document version
     var version = mVersionObserver.propval
     switch mVersionShouldChangeObserver.prop {
@@ -91,18 +90,18 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     case .singleSelection (let shouldChange) :
       if shouldChange {
         version += 1
-        mVersionObserver.setProp (version)
+        mVersionObserver.setProp (value: version)
         mVersionShouldChangeObserver.updateStartUpSignature ()
       }
     }
   //--- Save metadata dictionary
-    saveMetadataDictionary (version, metadataDictionary : &mMetadataDictionary)
+    saveMetadataDictionary (version: version, metadataDictionary : &mMetadataDictionary)
   //--- Add the witdth and the height of main window to metadata dictionary
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
-      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
+      if unwrappedWindowForSheet.styleMask.contains(.resizable) { // Only if window is resizable
         let windowSize = unwrappedWindowForSheet.frame.size ;
-        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.width)), forKey:"EBWindowWidth")
-        mMetadataDictionary.setObject (NSNumber (double: Double (windowSize.height)), forKey:"EBWindowHeight")
+        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.width)), forKey:"EBWindowWidth")
+        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.height)), forKey:"EBWindowHeight")
       }
     }else{ // Document has not been opened in the user interface, use values read from file, if they exist
 /*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;
@@ -119,30 +118,30 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     let fileData = NSMutableData ()
     var trace : String? = nil
   //--- Append signature
-    fileData.writeSignature (&trace)
+    fileData.writeSignature (trace: &trace)
   //--- Write status
-    fileData.writeByte (metadataStatusForSaving (), trace:&trace)
+    fileData.writeByte (inByte: metadataStatusForSaving (), trace:&trace)
   //--- Append metadata dictionary
-    let metaData = try NSPropertyListSerialization.dataWithPropertyList (mMetadataDictionary,
-      format:NSPropertyListFormat.BinaryFormat_v1_0,
+    let metaData = try PropertyListSerialization.data (fromPropertyList: mMetadataDictionary,
+      format:PropertyListSerialization.PropertyListFormat.binaryFormat_v1_0,
       options:0
     )
-    fileData.writeByte (1, trace:&trace)
-    fileData.writeAutosizedData (metaData, trace:&trace)
+    fileData.writeByte (inByte: 1, trace:&trace)
+    fileData.writeAutosizedData (inData: metaData, trace:&trace)
   //--- Append document data
     let documentData = try dataForSavingFromRootObject ()
-    fileData.writeByte (6, trace:&trace)
-    fileData.writeAutosizedData (documentData, trace:&trace)
+    fileData.writeByte (inByte: 6, trace:&trace)
+    fileData.writeAutosizedData (inData: documentData, trace:&trace)
   //--- Append final byte
-    fileData.writeByte (0, trace:&trace)
+    fileData.writeByte (inByte: 0, trace:&trace)
   //---
-    return fileData ;
+    return fileData as Data ;
   }
 
   //····················································································································
 
   func dataForSavingFromRootObject () throws -> NSData {
-    let objectsToSaveArray : [EBManagedObject] = mManagedObjectContext.reachableObjectsFromRootObject (mRootObject!)
+    let objectsToSaveArray : [EBManagedObject] = mManagedObjectContext.reachableObjectsFromRootObject (rootObject: mRootObject!)
   //--- Set savingIndex for each object
     var idx = 0 ;
     for object in objectsToSaveArray {
@@ -158,8 +157,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       object.saveIntoDictionary (d)
       saveDataArray.append (d)
     }
-    return try NSPropertyListSerialization.dataWithPropertyList (saveDataArray,
-      format:NSPropertyListFormat.BinaryFormat_v1_0,
+    return try PropertyListSerialization.data (fromPropertyList: saveDataArray,
+      format:PropertyListSerialization.PropertyListFormat.binaryFormat_v1_0,
       options:0
     )
   }
@@ -168,32 +167,32 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //    READ DOCUMENT FROM FILE
   //····················································································································
 
-  override func readFromData (data: NSData?, ofType typeName: String?) throws {
+  override func read (from data: Data, ofType typeName: String) throws {
     undoManager?.disableUndoRegistration ()
   //---- Define input data scanner
-    var dataScanner = EBDataScanner (data:data!)
+    var dataScanner = EBDataScanner (data:data)
   //--- Check Signature
     for c in kFormatSignature.utf8 {
-      dataScanner.acceptRequiredByte (c)
+      dataScanner.acceptRequired (byte: c)
     }
   //--- Read Status
     mReadMetadataStatus = dataScanner.parseByte ()
   //--- if ok, check byte is 1
-    dataScanner.acceptRequiredByte (1)
+    dataScanner.acceptRequired (byte: 1)
   //--- Read metadata dictionary
     let dictionaryData = dataScanner.parseAutosizedData ()
-    let metadataDictionary = try NSPropertyListSerialization.propertyListWithData (dictionaryData,
-      options:NSPropertyListReadOptions.Immutable,
+    let metadataDictionary = try PropertyListSerialization.propertyList (from: dictionaryData as Data,
+      options:[],
       format:nil
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
   //--- Read version from file
-    mVersionObserver.setProp (readVersionFromMetadataDictionary (metadataDictionary))
+    mVersionObserver.setProp (value: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
   //--- Read data
     let dataFormat = dataScanner.parseByte ()
     let fileData = dataScanner.parseAutosizedData ()
   //--- if ok, check final byte (0)
-    dataScanner.acceptRequiredByte (0)
+    dataScanner.acceptRequired (byte: 0)
   //--- Scanner error ?
     if !dataScanner.ok () {
       let dictionary = [
@@ -201,16 +200,16 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
         "The file has an invalid format" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       throw NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier!,
+        domain:Bundle.main ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
     }
   //--- Analyze read data
     if dataFormat == 0x06 {
-      try readManagedObjectsFromData (fileData)
+      try readManagedObjectsFromData (inData: fileData)
     }else{
-      try raiseInvalidDataFormatArror (dataFormat)
+      try raiseInvalidDataFormatArror (dataFormat: dataFormat)
     }
   //---
     if mRootObject == nil {
@@ -219,7 +218,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
         "Root object cannot be read" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       throw NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier!,
+        domain:Bundle.main ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
@@ -232,8 +231,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   func readVersionFromMetadataDictionary (metadataDictionary : NSDictionary) -> Int {
     var result = 0
-    if let versionNumber = metadataDictionary.objectForKey (EBVersion) as? NSNumber {
-      result = versionNumber.integerValue
+    if let versionNumber = metadataDictionary.object (forKey: EBVersion) as? NSNumber {
+      result = versionNumber.intValue
     }
     return result
   }
@@ -246,7 +245,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       "Unkown data format: \(dataFormat)" :  NSLocalizedRecoverySuggestionErrorKey
     ]
     throw NSError (
-      domain:NSBundle.mainBundle ().bundleIdentifier!,
+      domain:Bundle.main ().bundleIdentifier!,
       code:1,
       userInfo:dictionary
     )
@@ -255,38 +254,38 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   func readManagedObjectsFromData (inData : NSData) throws {
-    let startDate = NSDate ()
-    let v : AnyObject = try NSPropertyListSerialization.propertyListWithData (inData,
-      options:NSPropertyListReadOptions.Immutable,
+    let startDate = Date ()
+    let v : AnyObject = try PropertyListSerialization.propertyList (from: inData as Data,
+      options:[],
       format:nil
     )
     let dictionaryArray : [NSDictionary] = v as! [NSDictionary]
     if kLogReadFileDuration {
-      let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+      let timeTaken = NSDate().timeIntervalSince (startDate)
       NSLog ("Dictionary array: +%g s", timeTaken)
     }
-    let semaphore : dispatch_semaphore_t = dispatch_semaphore_create (0)
+    let semaphore : DispatchSemaphore = DispatchSemaphore (value: 0)
     var progress : EBDocumentReadProgress? = nil
     if dictionaryArray.count > 10000 {
-      progress = EBDocumentReadProgress (title:(lastComponentOfFileName as NSString).stringByDeletingPathExtension,
+      progress = EBDocumentReadProgress (title:(lastComponentOfFileName as NSString).deletingPathExtension,
                                          dataLength:dictionaryArray.count * 2,
                                          semaphore:semaphore)
     }
-    let queue = dispatch_queue_create ("readObjectFromData", DISPATCH_QUEUE_CONCURRENT)
+    let queue = DispatchQueue (label: "readObjectFromData")
     var possibleError : NSError? = nil
-    dispatch_after (DISPATCH_TIME_NOW, queue) {
+    queue.after (when: .now (), execute: {
       do{
         var objectArray = [EBManagedObject] ()
         var progressIdx = 0 ;
         for d in dictionaryArray {
-          let className = d.objectForKey (kEntityKey) as! String
-          let object = try self.mManagedObjectContext.newInstanceOfEntityNamed (className)
+          let className = d.object (forKey: kEntityKey) as! String
+          let object = try self.mManagedObjectContext.newInstanceOfEntityNamed (inEntityTypeName: className)
           objectArray.append (object)
           progressIdx += 1
-          progress?.setProgress (progressIdx)
+          progress?.setProgress (inValue: progressIdx)
         }
         if kLogReadFileDuration {
-          let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+          let timeTaken = NSDate ().timeIntervalSince (startDate)
           NSLog ("Creation of %d objects: +%g s", objectArray.count, timeTaken)
         }
         var idx = 0
@@ -295,10 +294,10 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
           object.setUpWithDictionary (d, managedObjectArray:&objectArray)
           idx += 1
           progressIdx += 1
-          progress?.setProgress (progressIdx)
+          progress?.setProgress (inValue: progressIdx)
         }
         if kLogReadFileDuration {
-          let timeTaken = NSDate().timeIntervalSinceDate (startDate)
+          let timeTaken = NSDate().timeIntervalSince (startDate)
           NSLog ("Read: +%g s", timeTaken)
         }
       //--- Set root object
@@ -306,15 +305,15 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
           self.mManagedObjectContext.removeManagedObject (rootObject)
         }
         self.mRootObject = objectArray [0]
-        dispatch_semaphore_signal (semaphore)
+        semaphore.signal()
       }catch let error as NSError {
         possibleError = error
       }catch _ as AnyObject {
       }
-    }
+    })
     var wait = true
     while wait {
-      dispatch_semaphore_wait (semaphore, DISPATCH_TIME_FOREVER)
+      semaphore.wait()
       if progress != nil {
         wait = progress!.displayAndTestWaiting ()
       }else{
@@ -334,9 +333,9 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   override func showWindows () {
     super.showWindows ()
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
-      if (unwrappedWindowForSheet.styleMask & NSResizableWindowMask) != 0 { // Only if window is resizable
-        let windowWidthNumber : NSNumber? = mMetadataDictionary.objectForKey ("EBWindowWidth") as? NSNumber
-        let windowHeightNumber : NSNumber? = mMetadataDictionary.objectForKey ("EBWindowHeight") as? NSNumber
+      if unwrappedWindowForSheet.styleMask.contains (.resizable) { // Only if window is resizable
+        let windowWidthNumber : NSNumber? = mMetadataDictionary.object (forKey: "EBWindowWidth") as? NSNumber
+        let windowHeightNumber : NSNumber? = mMetadataDictionary.object (forKey: "EBWindowHeight") as? NSNumber
         if (nil != windowWidthNumber) && (nil != windowHeightNumber) {
           let newSize = NSSize (width: CGFloat (windowWidthNumber!.doubleValue), height: CGFloat (windowHeightNumber!.doubleValue))
           var windowFrame : NSRect = unwrappedWindowForSheet.frame
@@ -353,7 +352,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   @IBAction func checkEntityReachability (_: AnyObject!) {
     if let rootObject = mRootObject, window = windowForSheet {
-      mManagedObjectContext.checkEntityReachabilityFromObject (rootObject, windowForSheet:window)
+      mManagedObjectContext.checkEntityReachabilityFromObject (rootObject: rootObject, windowForSheet:window)
     }
   }
 
@@ -377,8 +376,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
     mExplorerWindow = NSWindow (
       contentRect:r,
-      styleMask:NSTitledWindowMask | NSClosableWindowMask,
-      backing:NSBackingStoreType.Buffered,
+      styleMask:[.titled, .closable],
+      backing:.buffered,
       defer:true,
       screen:nil
     )
@@ -393,7 +392,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
-    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
     closeButton?.target = self
     closeButton?.action = #selector(EBManagedDocument.deleteDocumentWindowAction(_:))
   //--- Set window title
@@ -419,7 +418,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   func clearObjectExplorer () {
-    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -436,14 +435,14 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   var mValueExplorer : NSButton? {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
-        updateManagedObjectToOneRelationshipDisplay (mRootObject, button:unwrappedExplorer)
+        updateManagedObjectToOneRelationshipDisplay (object: mRootObject, button:unwrappedExplorer)
       }
     }
   }
 
   //····················································································································
 
-  func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     if let rootObject = mRootObject {
       createEntryForToOneRelationshipNamed (
         "Root",
@@ -459,10 +458,10 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //    windowControllerDidLoadNib
   //····················································································································
 
-  override func windowControllerDidLoadNib (aController: NSWindowController) {
+  override func windowControllerDidLoadNib (_ aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--- Signature obbserver
-    mRootObject?.setSignatureObserver (mSignatureObserver)
+    mRootObject?.setSignatureObserver (observer: mSignatureObserver)
     mSignatureObserver.setRootObject (mRootObject!)
   //--- Version did change observer
     mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)
@@ -509,8 +508,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  override func removeWindowController (inWindowController : NSWindowController) {
-    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { self.removeUserInterface () }
+  override func removeWindowController (_ inWindowController : NSWindowController) {
+    DispatchQueue.main.after (when: .now (), execute: { self.removeUserInterface () })
     super.removeWindowController (inWindowController)
   }
 
@@ -535,7 +534,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   final func incrementVersionNumber () {
-    mVersionObserver.setProp (mVersionObserver.propval + 1)
+    mVersionObserver.setProp (value: mVersionObserver.propval + 1)
   }
 
   //····················································································································
@@ -565,11 +564,11 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension NSMutableData {
-  func writeSignature (inout trace: String?) {
+  func writeSignature (trace: inout String?) {
     trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     for c in kFormatSignature.utf8 {
       var byte : UInt8 = UInt8 (c)
-      appendBytes (&byte, length:1)
+      append (&byte, length:1)
       trace? += String (format:"%02hhX ", byte)
     }
     trace? += "\n"
@@ -578,28 +577,28 @@ extension NSMutableData {
   //····················································································································
 
   func writeAutosizedData (inData: NSData,
-                           inout trace: String?) {
-    writeAutosizedUnsigned (UInt64 (inData.length), trace:&trace)
+                           trace: inout String?) {
+    writeAutosizedUnsigned (inValue: UInt64 (inData.length), trace:&trace)
     trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    appendData (inData)
+    append (inData as Data)
     trace? += "(data, length \(inData.length))\n"
   }
 
   //····················································································································
 
   func writeByte (inByte: UInt8,
-                  inout trace: String?) {
+                  trace: inout String?) {
     trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace? += String (format:"%02hhX ", inByte)
     var byte = inByte
-    appendBytes (&byte, length:1)
+    append (&byte, length:1)
     trace? += "\n"
   }
 
   //····················································································································
 
   func writeAutosizedUnsigned (inValue: UInt64,
-                               inout trace: String?) {
+                               trace: inout String?) {
     trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
     trace? += "U "
     var value = inValue
@@ -610,7 +609,7 @@ extension NSMutableData {
         byte |= 0x80
       }
       trace? += String (format:"%02hhX ", byte)
-      appendBytes (&byte, length:1)
+      append (&byte, length:1)
     }while value != 0
     trace? += "\n"
   }
@@ -626,19 +625,19 @@ private struct EBDocumentReadProgress {
   private var mProgressIndicator : NSProgressIndicator?
   private var mTotal : Double
   private var mCurrentProgress = 0.0
-  private var mSemaphore : dispatch_semaphore_t
-  private var mMutex : dispatch_semaphore_t
+  private var mSemaphore : DispatchSemaphore
+  private var mMutex : DispatchSemaphore
   private var mDisplayCounter = 0
   
   //····················································································································
   //  init
   //····················································································································
 
-  init (title : String, dataLength : Int, semaphore : dispatch_semaphore_t) {
-    mMutex = dispatch_semaphore_create (1)
+  init (title : String, dataLength : Int, semaphore : DispatchSemaphore) {
+    mMutex = DispatchSemaphore (value: 1)
     mTotal = Double (dataLength)
     mSemaphore = semaphore
-    if let visibleFrame = NSScreen.mainScreen ()?.visibleFrame {
+    if let visibleFrame = NSScreen.main ()?.visibleFrame {
       let windowWidth = 400.0
       let windowHeight = 65.0
       let windowRect = NSMakeRect (
@@ -650,11 +649,11 @@ private struct EBDocumentReadProgress {
       let progressWindow = NSWindow (
         contentRect:windowRect,
         styleMask:NSTitledWindowMask,
-        backing:NSBackingStoreType.Buffered,
+        backing:.buffered,
         defer:false
       )
       mProgressWindow = progressWindow
-      progressWindow.excludedFromWindowsMenu = true
+      progressWindow.isExcludedFromWindowsMenu = true
       progressWindow.title = "Progress"
       let contientViewRect : NSRect = progressWindow.contentView!.frame
     //--- Add comment text
@@ -665,11 +664,11 @@ private struct EBDocumentReadProgress {
         height:20.0
       )
       let ts = NSTextField (frame:ts_r)
-      ts.font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize())
+      ts.font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize())
       ts.stringValue = String (format:"Opening %@…", title)
-      ts.bezeled = false
-      ts.bordered = false
-      ts.editable = false
+      ts.isBezeled = false
+      ts.isBordered = false
+      ts.isEditable = false
       ts.drawsBackground = false
       progressWindow.contentView?.addSubview (ts)
     //--- Add progress indicator
@@ -680,13 +679,13 @@ private struct EBDocumentReadProgress {
         height: 20.0
       )
       mProgressIndicator = NSProgressIndicator (frame:ps_r)
-      mProgressIndicator!.indeterminate = true
+      mProgressIndicator!.isIndeterminate = true
       progressWindow.contentView?.addSubview (mProgressIndicator!)
     //---
       mProgressIndicator!.minValue = 0.0
       mProgressIndicator!.maxValue = 1.0
       mProgressIndicator!.doubleValue = 0.0
-      mProgressIndicator!.indeterminate = false
+      mProgressIndicator!.isIndeterminate = false
       mProgressIndicator!.display ()
     //---
       progressWindow.makeKeyAndOrderFront (nil)
@@ -700,10 +699,10 @@ private struct EBDocumentReadProgress {
   mutating func displayAndTestWaiting () -> Bool {
     mProgressIndicator?.doubleValue = mCurrentProgress
     mProgressIndicator?.display ()
-    dispatch_semaphore_wait (mMutex, DISPATCH_TIME_FOREVER)
+    mMutex.wait ()
       mDisplayCounter -= 1
       let stop = mDisplayCounter < 0
-    dispatch_semaphore_signal (mMutex)
+    mMutex.signal()
     return !stop
   }
 
@@ -714,11 +713,11 @@ private struct EBDocumentReadProgress {
   mutating func setProgress (inValue : Int) {
     let currentProgress = Double (inValue) / mTotal
     if (currentProgress - mCurrentProgress) > 0.02 {
-      dispatch_semaphore_wait (mMutex, DISPATCH_TIME_FOREVER)
+      mMutex.wait ()
         mCurrentProgress = currentProgress
         mDisplayCounter += 1
-      dispatch_semaphore_signal (mMutex)
-      dispatch_semaphore_signal (mSemaphore)
+      mMutex.signal ()
+      mSemaphore.signal ()
     }
   }
   

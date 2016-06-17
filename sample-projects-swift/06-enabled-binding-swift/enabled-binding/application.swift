@@ -29,9 +29,9 @@ import Cocoa
 
 private var gPendingOutletEvents = Set <EBOutletEvent> ()
 
-func postOutletEvent (event : EBOutletEvent) {
+func postOutletEvent (_ event : EBOutletEvent) {
   if gPendingOutletEvents.count == 0 {
-    dispatch_after (DISPATCH_TIME_NOW, dispatch_get_main_queue()) { flushOutletEvents () }
+    DispatchQueue.main.after (when: DispatchTime.now()) { flushOutletEvents () }
     if logEvents () {
       appendMessageString ("Post events\n")
     }
@@ -42,7 +42,7 @@ func postOutletEvent (event : EBOutletEvent) {
     if !gPendingOutletEvents.contains (event) {
       appendMessageString (str)
     }else{ // Event already posted
-      appendMessageString (str, color: NSColor.brownColor ())
+      appendMessageString (str, color: NSColor.brown ())
     }
   }
   gPendingOutletEvents.insert (event)
@@ -53,7 +53,7 @@ func postOutletEvent (event : EBOutletEvent) {
 func flushOutletEvents () {
   if gPendingOutletEvents.count > 0 {
     if logEvents () {
-      appendMessageString ("Flush outlet events\n", color: NSColor.blueColor ())
+      appendMessageString ("Flush outlet events\n", color: NSColor.blue ())
     }
     while gPendingOutletEvents.count > 0 {
       let pendingOutletEvents = gPendingOutletEvents
@@ -61,17 +61,17 @@ func flushOutletEvents () {
       for event in pendingOutletEvents {
         if logEvents () {
           let message = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
-          appendMessageString (message, color: NSColor.blueColor ())
+          appendMessageString (message, color: NSColor.blue ())
         }
         event.sendUpdateEvent ()
       }
       if gPendingOutletEvents.count > 0 && logEvents () {
         let message = String (gPendingOutletEvents.count) +  " event(s) posted during flush\n"
-        appendMessageString (message, color: NSColor.redColor ())
+        appendMessageString (message, color: NSColor.red ())
       }
     }
     if logEvents () {
-      appendMessageString ("——————————————————————————————————————\n", color: NSColor.blueColor ())
+      appendMessageString ("——————————————————————————————————————\n", color: NSColor.blue ())
     }
   }
 }
@@ -87,21 +87,21 @@ func logEvents () -> Bool {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func appendToTransientEventLog (message : String) {
+func appendToTransientEventLog (_ message : String) {
   let theApp = NSApp as! EBApplication
   theApp.appendToTransientEventLog (message)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func appendMessageString (message : String) {
+func appendMessageString (_ message : String) {
   let theApp = NSApp as! EBApplication
   theApp.mTransientEventExplorerTextView?.appendMessageString (message)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func appendMessageString (message : String, color:NSColor) {
+func appendMessageString (_ message : String, color:NSColor) {
   let theApp = NSApp as! EBApplication
   theApp.mTransientEventExplorerTextView?.appendMessageString (message, color:color)
 }
@@ -124,7 +124,7 @@ func appendMessageString (message : String, color:NSColor) {
   override func awakeFromNib () {
     let menuItem = NSMenuItem (
       title:"Show Transient Event Log Window",
-      action:#selector(EBApplication.showTransientEventLogWindow(_:)),
+      action:#selector (showTransientEventLogWindow (sender:)),
       keyEquivalent:""
     )
     addItemToDebugMenu (menuItem)
@@ -132,29 +132,29 @@ func appendMessageString (message : String, color:NSColor) {
 
   //····················································································································
  
-  @IBAction func showTransientEventLogWindow (sender : NSObject) {
+  func showTransientEventLogWindow (sender : AnyObject) {
     mTransientEventExplorerTextView?.string = ""
     mTransientEventExplorerWindow?.makeKeyAndOrderFront (sender)
   }
   
   //····················································································································
  
-  @IBAction func clearTransientEventLogWindow (sender : NSObject) {
+  @IBAction func clearTransientEventLogWindow (_ sender : NSObject) {
     mTransientEventExplorerTextView?.string = ""
   }
   
   //····················································································································
 
-  private func appendToTransientEventLog (message : String) {
+  private func appendToTransientEventLog (_ message : String) {
     if logEvents () {
-      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blueColor ())
+      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blue ())
     }
   }
   
   //····················································································································
 
   private func logEvents () -> Bool {
-    return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.visible
+    return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.isVisible
   }
 
   //····················································································································

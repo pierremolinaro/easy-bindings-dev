@@ -49,12 +49,12 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    prefBoolean.readInPreferencesWithKey ("Preferences:prefBoolean")
+    prefBoolean.readInPreferencesWithKey (inKey:"Preferences:prefBoolean")
   //--- Property validation function
   //---
-    NSNotificationCenter.defaultCenter ().addObserver (self,
+    NotificationCenter.default ().addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSApplicationWillTerminateNotification,
+     name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
     )
   //--- Extern functions
@@ -67,12 +67,12 @@ var g_Preferences : Preferences? = nil
   override func awakeFromNib () {
   //--- Check prefBoolCheckBox' outlet not nil
     if nil == prefBoolCheckBox {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'prefBoolCheckBox' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'prefBoolCheckBox' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    prefBoolCheckBox?.bind_value (self.prefBoolean, file:#file, line:#line)
+    prefBoolCheckBox?.bind_value (self.prefBoolean, file: #file, line: #line)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
@@ -84,7 +84,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    prefBoolean.storeInPreferencesWithKey ("Preferences:prefBoolean")
+    prefBoolean.storeInPreferencesWithKey (inKey:"Preferences:prefBoolean")
   }
 
   //····················································································································

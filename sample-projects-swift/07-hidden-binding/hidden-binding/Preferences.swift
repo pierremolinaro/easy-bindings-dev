@@ -52,13 +52,13 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    myHidden1.readInPreferencesWithKey ("Preferences:myHidden1")
-    myHidden2.readInPreferencesWithKey ("Preferences:myHidden2")
+    myHidden1.readInPreferencesWithKey (inKey:"Preferences:myHidden1")
+    myHidden2.readInPreferencesWithKey (inKey:"Preferences:myHidden2")
   //--- Property validation function
   //---
-    NSNotificationCenter.defaultCenter ().addObserver (self,
+    NotificationCenter.default ().addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSApplicationWillTerminateNotification,
+     name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
     )
   //--- Extern functions
@@ -82,9 +82,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Hidden1:", y:&y, col:0, view:view)
     let tf1 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf1.stringValue = "Hidden1:"
-    tf1.editable = false
+    tf1.isEditable = false
     tf1.drawsBackground = false
-    tf1.bordered = false
+    tf1.isBordered = false
     view.addSubview (tf1)
   //--- Outlet myHidden1Switch
     myHidden1Switch = EBSwitch(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -96,9 +96,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Hidden2:", y:&y, col:0, view:view)
     let tf2 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf2.stringValue = "Hidden2:"
-    tf2.editable = false
+    tf2.isEditable = false
     tf2.drawsBackground = false
-    tf2.bordered = false
+    tf2.isBordered = false
     view.addSubview (tf2)
   //--- Outlet myHidden2Switch
     myHidden2Switch = EBSwitch(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -110,9 +110,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Hidden1 | Hidden2 ", y:&y, col:0, view:view)
     let tf3 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf3.stringValue = "Hidden1 | Hidden2 "
-    tf3.editable = false
+    tf3.isEditable = false
     tf3.drawsBackground = false
-    tf3.bordered = false
+    tf3.isBordered = false
     view.addSubview (tf3)
   //--- Outlet mButton
     mButton = EBButton(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -124,28 +124,28 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mButton' outlet not nil
     if nil == mButton {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mButton' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mButton' outlet is nil")
     }
   //--- Check myHidden1Switch' outlet not nil
     if nil == myHidden1Switch {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myHidden1Switch' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myHidden1Switch' outlet is nil")
     }
   //--- Check myHidden2Switch' outlet not nil
     if nil == myHidden2Switch {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myHidden2Switch' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myHidden2Switch' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    myHidden1Switch?.bind_value (self.myHidden1, file:#file, line:#line)
-    myHidden2Switch?.bind_value (self.myHidden2, file:#file, line:#line)
+    myHidden1Switch?.bind_value (self.myHidden1, file: #file, line: #line)
+    myHidden2Switch?.bind_value (self.myHidden2, file: #file, line: #line)
   //--- Install multiple bindings
     mButton?.bind_hidden (
       [self.myHidden1, self.myHidden2],
       computeFunction:{
         return (self.myHidden1.prop || self.myHidden2.prop)
       },
-      file:#file, line:#line
+      file: #file, line: #line
     )
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
@@ -157,8 +157,8 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    myHidden1.storeInPreferencesWithKey ("Preferences:myHidden1")
-    myHidden2.storeInPreferencesWithKey ("Preferences:myHidden2")
+    myHidden1.storeInPreferencesWithKey (inKey:"Preferences:myHidden1")
+    myHidden2.storeInPreferencesWithKey (inKey:"Preferences:myHidden2")
   }
 
   //····················································································································

@@ -49,7 +49,7 @@ import Cocoa
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
   }
 
@@ -79,25 +79,25 @@ import Cocoa
   //    windowControllerDidLoadNib
   //····················································································································
 
-  override func windowControllerDidLoadNib (aController: NSWindowController) {
+  override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
     if nil == docBoolCheckBox {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'docBoolCheckBox' outlet is nil") ;
-    }else if !docBoolCheckBox!.isKindOfClass (EBSwitch) {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'docBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'docBoolCheckBox' outlet is nil") ;
+//    }else if !docBoolCheckBox!.isKindOfClass (EBSwitch) {
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'docBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
     }
     if nil == myButton {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myButton' outlet is nil") ;
-    }else if !myButton!.isKindOfClass (EBButton) {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myButton' outlet is not an instance of 'EBButton'") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'myButton' outlet is nil") ;
+//    }else if !myButton!.isKindOfClass (EBButton) {
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'myButton' outlet is not an instance of 'EBButton'") ;
     }
   //--------------------------- Array controllers
   //--------------------------- Selection controllers
@@ -105,14 +105,14 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    docBoolCheckBox?.bind_value (self.rootObject.docBool, file:#file, line:#line)
+    docBoolCheckBox?.bind_value (self.rootObject.docBool, file: #file, line: #line)
   //--- Install multiple bindings
     myButton?.bind_enabled (
       [g_Preferences!.prefBoolean, self.rootObject.docBool],
       computeFunction:{
         return (!self.rootObject.docBool.prop && g_Preferences!.prefBoolean.prop)
       },
-      file:#file, line:#line
+      file: #file, line: #line
     )
   //--------------------------- Set targets / actions
   //--------------------------- Update display
