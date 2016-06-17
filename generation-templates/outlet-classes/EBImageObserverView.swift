@@ -36,7 +36,7 @@ import Cocoa
 
   private var mImageController : Controller_EBImageView_image?
 
-  func bind_image (object:EBReadOnlyProperty_NSImage, file:String, line:Int) {
+  func bind_image (_ object:EBReadOnlyProperty_NSImage, file:String, line:Int) {
     mImageController = Controller_EBImageView_image (object:object, outlet:self, file:file, line:line)
   }
 

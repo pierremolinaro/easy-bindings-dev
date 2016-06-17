@@ -34,19 +34,20 @@ import Cocoa
   //    NSTextFieldDelegate delegate function
   //····················································································································
 
-  override func controlTextDidChange (inNotification : NSNotification) {
+  override func controlTextDidChange (_ notification : Notification) {
     if mSendContinously {
       if let inputString = currentEditor()?.string {
         // NSLog ("inputString %@", inputString)
-        let numberFormatter = self.formatter as! NSNumberFormatter
-        let number = numberFormatter.numberFromString (inputString)
+        let numberFormatter = self.formatter as! NumberFormatter
+        let number = numberFormatter.number (from: inputString)
         if number == nil {
-          control (
+          _ = control (
             self,
-            didFailToFormatString:inputString, errorDescription:String (format:"The value “%@” is invalid.", inputString)
+            didFailToFormatString: inputString,
+            errorDescription: String (format:"The value “%@” is invalid.", inputString)
           )
-        }else{
-          NSApp.sendAction (self.action, to: self.target, from: self)
+        }else if let unwAction = self.action {
+          NSApp.sendAction (unwAction, to: self.target, from: self)
         }
       }
     }
@@ -56,16 +57,16 @@ import Cocoa
   //    NSTextFieldDelegate delegate function
   //····················································································································
   
-  func control (control: NSControl,
+  func control (_ control: NSControl,
                 didFailToFormatString string: String,
                 errorDescription error: String?) -> Bool {
     let alert = NSAlert ()
     if let window = control.window {
       alert.messageText = error!
       alert.informativeText = "Please provide a valid value."
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+      alert.addButton (withTitle: "Ok")
+      alert.addButton (withTitle: "Discard Change")
+      alert.beginSheetModal (for: window, completionHandler:{(response : NSModalResponse) -> Void in
         if response == NSAlertSecondButtonReturn { // Discard Change
  //         self.integerValue = self.myIntegerValue.0
         }
@@ -81,7 +82,7 @@ import Cocoa
   private var mValueController : Controller_EBDoubleField_value?
   private var mSendContinously : Bool = false
 
-  func bind_value (object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
+  func bind_value (_ object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_EBDoubleField_value (
       object:object,
@@ -124,11 +125,11 @@ import Cocoa
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBDoubleField_value.action(_:))
     if autoFormatter {
-      let formatter = NSNumberFormatter ()
+      let formatter = NumberFormatter ()
       mOutlet.formatter = formatter
     }else if mOutlet.formatter == nil {
       presentErrorWindow (file: file, line:line, errorMessage:"the outlet has no formatter")
-    }else if !(mOutlet.formatter is NSNumberFormatter) {
+    }else if !(mOutlet.formatter is NumberFormatter) {
       presentErrorWindow (file: file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
     mObject.addEBObserver (self)
@@ -162,8 +163,8 @@ import Cocoa
 
   //····················································································································
 
-  func action (sender : EBDoubleField) {
-    mObject.validateAndSetProp (mOutlet.doubleValue, windowForSheet:sender.window)
+  func action (_ sender : EBDoubleField) {
+    _ = mObject.validateAndSetProp (mOutlet.doubleValue, windowForSheet:sender.window)
   }
 
   //····················································································································

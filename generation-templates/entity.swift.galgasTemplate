@@ -79,7 +79,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+  final func addEBObserverOf_%!mTransientName% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_%!mTransientName%.insert (inObserver)
     switch prop {
@@ -94,7 +94,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+  final func removeEBObserverOf_%!mTransientName% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_%!mTransientName%.remove (inObserver)
     switch prop {

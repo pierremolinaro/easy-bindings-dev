@@ -32,10 +32,10 @@ import Cocoa
 
   //····················································································································
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
     mDoubleValueController?.updateModel ()
     mIntValueController?.updateModel ()
-    return super.sendAction (inAction, to:to)
+    return super.sendAction (action, to:to)
   }
 
   //····················································································································
@@ -44,9 +44,9 @@ import Cocoa
 
   private var mDoubleValueController : Controller_EBSlider_doubleValue?
 
-  func bind_doubleValue (object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool) {
+  func bind_doubleValue (_ object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool) {
     mDoubleValueController = Controller_EBSlider_doubleValue (object:object, outlet:self, file:file, line:line)
-    self.continuous = sendContinously
+    self.isContinuous = sendContinously
   }
 
   func unbind_doubleValue () {
@@ -62,7 +62,7 @@ import Cocoa
 
   func bind_intValue (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
     mIntValueController = Controller_EBSlider_intValue (object:object, outlet:self, file:file, line:line)
-    self.continuous = sendContinously
+    self.isContinuous = sendContinously
   }
 
   func unbind_intValue () {
@@ -119,7 +119,7 @@ final class Controller_EBSlider_doubleValue : EBSimpleController {
   //····················································································································
 
   func updateModel () {
-    mObject.validateAndSetProp (mOutlet.doubleValue, windowForSheet:mOutlet.window)
+    _ = mObject.validateAndSetProp (mOutlet.doubleValue, windowForSheet:mOutlet.window)
   }
 
   //····················································································································
@@ -172,7 +172,7 @@ final class Controller_EBSlider_intValue : EBSimpleController {
   //····················································································································
 
   func updateModel () {
-    mObject.validateAndSetProp (Int (round (mOutlet.doubleValue)), windowForSheet:mOutlet.window)
+    _ = mObject.validateAndSetProp (Int (round (mOutlet.doubleValue)), windowForSheet:mOutlet.window)
   }
 
   //····················································································································

@@ -30,7 +30,7 @@ import Cocoa
 
   private var mValueController : Controller_EBTextObserverView_value?
 
-  func bind_valueObserver (object:EBReadOnlyProperty_String, file:String, line:Int) {
+  func bind_valueObserver (_ object:EBReadOnlyProperty_String, file:String, line:Int) {
     mValueController = Controller_EBTextObserverView_value (object:object, outlet:self, file:file, line:line)
   }
 
