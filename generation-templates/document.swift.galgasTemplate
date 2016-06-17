@@ -85,7 +85,7 @@ end
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.addExplorer ("%!mControllerName%", y:&y, view:view)\n%
@@ -122,7 +122,7 @@ end
   //    windowControllerDidLoadNib
   //····················································································································
 
-  override func windowControllerDidLoadNib (aController: NSWindowController) {
+  override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
 %
 
@@ -131,10 +131,10 @@ for () in OUTLET_GENERATION_MAP do
    %      presentErrorWindow (#file,
                               line:#line,
                               errorMessage:"the '%!lkey.string%' outlet is nil") ;\n%
-   %    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName%) {\n%
-   %      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
+   %//    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName%) {\n%
+   %//      presentErrorWindow (#file,
+//                              line:#line,
+//                              errorMessage:"the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
    %    }\n%
 end
 %  //--------------------------- Array controllers

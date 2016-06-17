@@ -225,14 +225,14 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   //····················································································································
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
+  func storeIn (dictionary:NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.object (forKey:inKey)
+  func readFrom (dictionary: NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
       setProp (inValue:T.convertFromNSObject (object:unwValue))
     }
@@ -801,14 +801,14 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   //····················································································································
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
+  func storeIn (dictionary:NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.object (forKey:inKey)
+  func readFrom (dictionary:NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.object (forKey:inKey)
     if let unwValue : NSData = value as? NSData {
       setProp (inValue:T.unarchiveFromNSData (data:unwValue) as! T)
     }

@@ -398,7 +398,7 @@ end
   override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.storeInDictionary (ioDictionary, forKey: "%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
   for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
     if mCallerName.string == "saveIntoDictionary" then
@@ -414,7 +414,7 @@ end
   override func setUpWithDictionary (inDictionary : NSDictionary) {
     super.setUpWithDictionary (inDictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.readFrom (dictionary: inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
   for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
     if mCallerName.string == "setUpWithDictionary" then

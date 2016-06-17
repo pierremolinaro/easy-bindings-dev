@@ -163,6 +163,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					7FBDB1988EF4C628EBA02591 = {
+						LastSwiftMigration = 0800;
+					};
+				};
 			};
 			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "simple-document" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -238,6 +243,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.simple-document";
 				PRODUCT_NAME = "simple-document";
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Default;
 		};

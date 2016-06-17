@@ -147,12 +147,12 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     ud.setObject (NSNumber (integer:mValue.rawValue), forKey:inKey)
   }
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (NSNumber (integer:mValue.rawValue), forKey:inKey)
+  func storeIn (dictionary: NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (NSNumber (integer:mValue.rawValue), forKey:inKey)
   }
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
+  func readFrom (dictionary:NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.objectForKey (inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).integerValue)
     }

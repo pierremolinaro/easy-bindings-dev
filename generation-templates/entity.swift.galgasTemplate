@@ -50,7 +50,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
         managedObject.%!mStoredPropertyName%.addEBObserver (observer)
@@ -60,7 +60,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
         managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
@@ -109,7 +109,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%!mTransientName%_toElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%!mTransientName%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mTransientName% {
         managedObject.%!mTransientName%.addEBObserver (observer)
@@ -119,7 +119,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mTransientName%_fromElementsOfSet (inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%!mTransientName%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mTransientName% {
         managedObject.%!mTransientName%.removeEBObserver (observer)
@@ -167,12 +167,12 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 %
 if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
 %     //--- Removed object set
-        let removedSet = mSet.subtract (newSet)
+        let removedSet = mSet.subtracting (newSet)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (removedSet)\n%
 end
 %      //--- Added object set
-        let addedSet = newSet.subtract (mSet)
+        let addedSet = newSet.subtracting (mSet)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (addedSet)\n%
 end
@@ -327,7 +327,7 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
           updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
         }
       //--- Removed object set
-        let removedObjectSet = oldSet.subtract (mSet)
+        let removedObjectSet = oldSet.subtracting (mSet)
         for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (nil)
           managedObject.%!mOppositeRelationshipName%.owner = nil ;
@@ -338,7 +338,7 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
   end
 end
 %      //--- Added object set
-        let addedObjectSet = mSet.subtract (oldSet)
+        let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
           managedObject.setSignatureObserver (self)
           managedObject.%!mOppositeRelationshipName%.setProp (owner)
@@ -642,7 +642,7 @@ end
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
@@ -697,10 +697,10 @@ end
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.storeInDictionary (ioDictionary, forKey: "%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    storeEntityArrayInDictionary (%!mToManyRelationshipName%.propval, inRelationshipName:"%!mToManyRelationshipName%", ioDictionary:ioDictionary) ;\n%
@@ -716,11 +716,11 @@ end
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : [EBManagedObject]) {
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.readFromDictionary (inDictionary, forKey:"%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.readFrom (dictionary: inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    %!mToManyRelationshipName%.setProp (readEntityArrayFromDictionary (
@@ -773,8 +773,8 @@ end
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : [EBManagedObject]) {
-    super.accessibleObjects (&objects)
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    for managedObject : EBManagedObject in %!mToManyRelationshipName%.propval {
