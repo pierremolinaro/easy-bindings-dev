@@ -8,7 +8,7 @@ import Cocoa
 //   Protocol ValuePropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol ValuePropertyProtocol : Comparable {
+protocol ValuePropertyProtocol : Equatable {
   func ebHashValue () -> UInt32
   func convertToNSObject () -> NSObject
   static func convertFromNSObject (object : NSObject) -> Self
@@ -55,7 +55,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
 
   var mValueExplorer : NSTextField? {
     didSet {
-      updateValueExplorer (prop_cache)
+      updateValueExplorer (possibleValue:prop_cache)
     }
   }
 
@@ -91,7 +91,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
+        updateValueExplorer (possibleValue:prop_cache)
       }
       if prop_cache == nil {
         prop_cache = .noSelection
@@ -128,7 +128,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValueProperty <T> {
-  weak var undoManager : NSUndoManager?
+  weak var undoManager : UndoManager?
 
   //····················································································································
 
@@ -151,7 +151,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = "\(mValue)"
-        undoManager?.registerUndoWithTarget (self, selector:#selector(EBStoredValueProperty.performUndo(_:)), object: oldValue.convertToNSObject ())
+        undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue.convertToNSObject ())
         postEvent ()
         clearSignatureCache ()
       }
@@ -160,8 +160,8 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   //····················································································································
 
-  func performUndo (oldValue : NSNumber) {
-    mValue = T.convertFromNSObject (oldValue)
+  func performUndo (_ oldValue : NSNumber) {
+    mValue = T.convertFromNSObject (object:oldValue)
   }
 
   //····················································································································
@@ -182,7 +182,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
     let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
     case EBValidationResult.ok (let validatedValue) :
-      setProp (validatedValue)
+      setProp (inValue:validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -191,10 +191,10 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
       let alert = NSAlert ()
       alert.messageText = "The value " + String (candidateValue) + " is invalid."
       alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
+      alert.addButton (withTitle:"Ok")
+      alert.addButton (withTitle:"Discard Change")
       if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+        alert.beginSheetModal (for:window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
             self.postEvent ()
           }
@@ -209,32 +209,32 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   //····················································································································
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
+    let ud = UserDefaults.standard ()
+    let value : AnyObject? = ud.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
-      setProp (T.convertFromNSObject (unwValue))
+      setProp (inValue:T.convertFromNSObject (object:unwValue))
     }
   }
 
   //····················································································································
 
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mValue.convertToNSObject (), forKey:inKey)
+    let ud = UserDefaults.standard ()
+    ud.set (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
+  func storeIn (dictionary:NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
+  func readFrom (dictionary: NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
-      setProp (T.convertFromNSObject (unwValue))
+      setProp (inValue:T.convertFromNSObject (object:unwValue))
     }
   }
 
@@ -326,7 +326,7 @@ extension String : ValuePropertyProtocol {
   //····················································································································
 
   func ebHashValue () -> UInt32 {
-    let possibleData = self.dataUsingEncoding (NSUTF8StringEncoding)
+    let possibleData = self.data (using: String.Encoding.utf8)
     if let data = possibleData {
       return data.ebHashValue ()
     }else{
@@ -362,7 +362,7 @@ extension Int : ValuePropertyProtocol {
     var crc : UInt32 = 0
     var ptr = UnsafePointer <UInt8> ([self])
     for _ in 0 ..< sizeof (Int) {
-      crc.accumulateByte (ptr.memory)
+      crc.accumulateByte (ptr.pointee)
       ptr += 1
     }
     return crc
@@ -371,14 +371,14 @@ extension Int : ValuePropertyProtocol {
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return NSNumber (integer: self)
+    return NSNumber (value: self)
   }
 
   //····················································································································
 
   static func convertFromNSObject (object : NSObject) -> Int {
     let number = object as! NSNumber
-    return number.integerValue
+    return number.intValue
   }
 
   //····················································································································
@@ -394,15 +394,15 @@ extension Double : ValuePropertyProtocol {
   //····················································································································
 
   func ebHashValue () -> UInt32 {
-    let nsValue = NSNumber (double:self)
-    let data = NSArchiver.archivedDataWithRootObject (nsValue)
+    let nsValue = NSNumber (value:self)
+    let data = NSArchiver.archivedData (withRootObject:nsValue)
     return data.ebHashValue ()
   }
 
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return NSNumber (double: self)
+    return NSNumber (value: self)
   }
 
   //····················································································································
@@ -432,7 +432,7 @@ extension Bool : ValuePropertyProtocol {
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return NSNumber (bool: self)
+    return NSNumber (value: self)
   }
 
   //····················································································································
@@ -467,20 +467,20 @@ extension NSColor : ClassPropertyProtocol {
   //····················································································································
 
   final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
+    let data = NSArchiver.archivedData (withRootObject:self)
     return data.ebHashValue ()
   }
 
   //····················································································································
 
   func archiveToNSData () -> NSData {
-    return NSArchiver.archivedDataWithRootObject (self)
+    return NSArchiver.archivedData (withRootObject:self)
   }
   
   //····················································································································
 
   static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+    return NSUnarchiver.unarchiveObject (with: data as Data) as! NSObject
   }
 
   //····················································································································
@@ -488,28 +488,28 @@ extension NSColor : ClassPropertyProtocol {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    extension NSDate : ClassPropertyProtocol
+//    extension Date : ValuePropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension NSDate : ClassPropertyProtocol {
+extension Date : ValuePropertyProtocol {
 
   //····················································································································
 
-  final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
+  func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedData (withRootObject: self)
     return data.ebHashValue ()
   }
 
   //····················································································································
 
-  func archiveToNSData () -> NSData {
-    return NSArchiver.archivedDataWithRootObject (self)
+  func convertToNSObject () -> NSObject {
+    return NSArchiver.archivedData (withRootObject: self)
   }
   
   //····················································································································
 
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+  static func convertFromNSObject (object : NSObject) -> Date {
+    return NSUnarchiver.unarchiveObject (with: object as! Data) as! Date
   }
 
   //····················································································································
@@ -525,20 +525,20 @@ extension NSFont : ClassPropertyProtocol {
   //····················································································································
 
   final func ebHashValue () -> UInt32 {
-    let data = NSArchiver.archivedDataWithRootObject (self)
+    let data = NSArchiver.archivedData (withRootObject: self)
     return data.ebHashValue ()
   }
 
   //····················································································································
 
   func archiveToNSData () -> NSData {
-    return NSArchiver.archivedDataWithRootObject (self)
+    return NSArchiver.archivedData (withRootObject: self)
   }
   
   //····················································································································
 
   static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return NSUnarchiver.unarchiveObjectWithData (data) as! NSObject
+    return NSUnarchiver.unarchiveObject (with: data as Data) as! NSObject
   }
 
   //····················································································································
@@ -546,18 +546,18 @@ extension NSFont : ClassPropertyProtocol {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    extension NSData : ClassPropertyProtocol
+//    extension Data : ValuePropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension NSData : ClassPropertyProtocol {
+extension Data : ValuePropertyProtocol {
 
   //····················································································································
 
-  final func ebHashValue () -> UInt32 {
+  func ebHashValue () -> UInt32 {
     var crc : UInt32 = 0
-    var ptr = UnsafePointer <UInt8> (self.bytes)
-    for _ in 0 ..< self.length {
-      crc.accumulateByte (ptr.memory)
+    var ptr = UnsafePointer <UInt8> ((self as NSData).bytes)
+    for _ in 0 ..< self.count {
+      crc.accumulateByte (ptr.pointee)
       ptr += 1
     }
     return crc
@@ -565,14 +565,14 @@ extension NSData : ClassPropertyProtocol {
 
   //····················································································································
 
-  func archiveToNSData () -> NSData {
+  func convertToNSObject () -> NSObject {
     return self
   }
   
   //····················································································································
 
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
-    return data
+  static func convertFromNSObject (object : NSObject) -> Data {
+    return object as! Data
   }
 
   //····················································································································
@@ -631,7 +631,7 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
 
   var mValueExplorer : NSTextField? {
     didSet {
-      updateValueExplorer (prop_cache)
+      updateValueExplorer (possibleValue:prop_cache)
     }
   }
 
@@ -667,7 +667,7 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
     get {
       if let unReadModelFunction = readModelFunction where prop_cache == nil {
         prop_cache = unReadModelFunction ()
-        updateValueExplorer (prop_cache)
+        updateValueExplorer (possibleValue:prop_cache)
       }
       if prop_cache == nil {
         prop_cache = .noSelection
@@ -704,7 +704,7 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClassProperty <T> {
-  weak var undoManager : NSUndoManager?
+  weak var undoManager : UndoManager?
 
   //····················································································································
 
@@ -727,7 +727,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = "\(mValue)"
-        undoManager?.registerUndoWithTarget (self, selector:#selector(EBStoredClassProperty.performUndo(_:)), object: oldValue)
+        undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue)
         postEvent ()
         clearSignatureCache ()
       }
@@ -736,7 +736,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   //····················································································································
 
-  func performUndo (oldValue : NSObject) {
+  func performUndo (_ oldValue : NSObject) {
     mValue = oldValue as! T
   }
 
@@ -758,7 +758,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
     let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
     case EBValidationResult.ok (let validatedValue) :
-      setProp (validatedValue)
+      setProp (inValue:validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -767,10 +767,10 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
       let alert = NSAlert ()
       alert.messageText = "The value " + String (candidateValue) + " is invalid."
       alert.informativeText = informativeText
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
+      alert.addButton (withTitle:"Ok")
+      alert.addButton (withTitle:"Discard Change")
       if let window = inWindow {
-        alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) in
+        alert.beginSheetModal (for:window, completionHandler:{(response : NSModalResponse) in
           if response == NSAlertSecondButtonReturn { // Discard Change
             self.postEvent ()
           }
@@ -785,32 +785,32 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   //····················································································································
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
+    let ud = UserDefaults.standard ()
+    let value : AnyObject? = ud.object (forKey:inKey)
     if let unwValue : NSData = value as? NSData {
-      setProp (T.unarchiveFromNSData (unwValue) as! T)
+      setProp (inValue:T.unarchiveFromNSData (data:unwValue) as! T)
     }
   }
 
   //····················································································································
 
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (mValue.archiveToNSData (), forKey:inKey)
+    let ud = UserDefaults.standard ()
+    ud.set (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
+  func storeIn (dictionary:NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.objectForKey (inKey)
+  func readFrom (dictionary:NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.object (forKey:inKey)
     if let unwValue : NSData = value as? NSData {
-      setProp (T.unarchiveFromNSData (unwValue) as! T)
+      setProp (inValue:T.unarchiveFromNSData (data:unwValue) as! T)
     }
   }
 
@@ -905,35 +905,35 @@ typealias EBTransientProperty_Int = EBTransientValueProperty <Int>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_Int (left : EBReadOnlyProperty_Int, right : EBReadOnlyProperty_Int) -> NSComparisonResult {
+func compare_Int (left : EBReadOnlyProperty_Int, right : EBReadOnlyProperty_Int) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .multipleSelection :
-      return .OrderedSame
+      return .orderedSame
    case .singleSelection (_) :
-      return .OrderedAscending
+      return .orderedAscending
    }
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }
@@ -951,35 +951,35 @@ typealias EBTransientProperty_Bool = EBTransientValueProperty <Bool>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_Bool (left : EBReadOnlyProperty_Bool, right : EBReadOnlyProperty_Bool) -> NSComparisonResult {
+func compare_Bool (left : EBReadOnlyProperty_Bool, right : EBReadOnlyProperty_Bool) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .multipleSelection :
-      return .OrderedSame
+      return .orderedSame
    case .singleSelection (_) :
-      return .OrderedAscending
+      return .orderedAscending
    }
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }
@@ -997,35 +997,35 @@ typealias EBTransientProperty_Double = EBTransientValueProperty <Double>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_Double (left : EBReadOnlyProperty_Double, right : EBReadOnlyProperty_Double) -> NSComparisonResult {
+func compare_Double (left : EBReadOnlyProperty_Double, right : EBReadOnlyProperty_Double) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .multipleSelection :
-      return .OrderedSame
+      return .orderedSame
    case .singleSelection (_) :
-      return .OrderedAscending
+      return .orderedAscending
    }
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }
@@ -1043,35 +1043,35 @@ typealias EBTransientProperty_String = EBTransientValueProperty <String>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_String (left : EBReadOnlyProperty_String, right : EBReadOnlyProperty_String) -> NSComparisonResult {
+func compare_String (left : EBReadOnlyProperty_String, right : EBReadOnlyProperty_String) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .multipleSelection :
-      return .OrderedSame
+      return .orderedSame
    case .singleSelection (_) :
-      return .OrderedAscending
+      return .orderedAscending
    }
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }
@@ -1097,51 +1097,51 @@ typealias EBReadOnlyPropertyArray_NSImage  = EBReadOnlyClassProperty <[NSImage]>
 typealias EBTransientPropertyArray_NSImage = EBTransientClassProperty <[NSImage]>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Property class NSDate
+//   Property Date
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-typealias EBReadOnlyProperty_NSDate  = EBReadOnlyClassProperty <NSDate>
-typealias EBTransientProperty_NSDate = EBTransientClassProperty <NSDate>
-typealias EBReadWriteProperty_NSDate = EBReadWriteClassProperty <NSDate>
-typealias EBPropertyProxy_NSDate     = EBPropertyClassProxy <NSDate>
-typealias EBStoredProperty_NSDate    = EBStoredClassProperty <NSDate>
-
+typealias EBReadOnlyProperty_Date  = EBReadOnlyValueProperty <Date>
+typealias EBReadWriteProperty_Date = EBReadWriteValueProperty <Date>
+typealias EBPropertyProxy_Date     = EBPropertyValueProxy <Date>
+typealias EBStoredProperty_Date    = EBStoredValueProperty <Date>
+typealias EBTransientProperty_Date = EBTransientValueProperty <Date>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_NSDate (left : EBReadOnlyProperty_NSDate, right : EBReadOnlyProperty_NSDate) -> NSComparisonResult {
+func compare_Date (left : EBReadOnlyProperty_Date, right : EBReadOnlyProperty_Date) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .multipleSelection :
-      return .OrderedSame
+      return .orderedSame
    case .singleSelection (_) :
-      return .OrderedAscending
+      return .orderedAscending
    }
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }
 }
+
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Property class NSFont
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

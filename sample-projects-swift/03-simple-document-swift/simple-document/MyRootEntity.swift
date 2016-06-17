@@ -48,7 +48,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_myString_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_myString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myString {
         managedObject.myString.addEBObserver (observer)
@@ -58,7 +58,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_myString_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_myString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myString {
         managedObject.myString.removeEBObserver (observer)
@@ -104,7 +104,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_myColor_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_myColor_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myColor {
         managedObject.myColor.addEBObserver (observer)
@@ -114,7 +114,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_myColor_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_myColor_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myColor {
         managedObject.myColor.removeEBObserver (observer)
@@ -160,7 +160,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_myStringMaj_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_myStringMaj_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringMaj {
         managedObject.myStringMaj.addEBObserver (observer)
@@ -170,7 +170,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_myStringMaj_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_myStringMaj_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringMaj {
         managedObject.myStringMaj.removeEBObserver (observer)
@@ -216,7 +216,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_myStringMin_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_myStringMin_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringMin {
         managedObject.myStringMin.addEBObserver (observer)
@@ -226,7 +226,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_myStringMin_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_myStringMin_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringMin {
         managedObject.myStringMin.removeEBObserver (observer)
@@ -272,7 +272,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserversOf_myStringConcat_toElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func addEBObserversOf_myStringConcat_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringConcat {
         managedObject.myStringConcat.addEBObserver (observer)
@@ -282,7 +282,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserversOf_myStringConcat_fromElementsOfSet (inSet : Set<MyRootEntity>) {
+  final func removeEBObserversOf_myStringConcat_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_myStringConcat {
         managedObject.myStringConcat.removeEBObserver (observer)
@@ -326,11 +326,11 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
           newSet = Set (array)
         }
      //--- Removed object set
-        let removedSet = mSet.subtract (newSet)
+        let removedSet = mSet.subtracting (newSet)
         removeEBObserversOf_myString_fromElementsOfSet (removedSet)
         removeEBObserversOf_myColor_fromElementsOfSet (removedSet)
       //--- Added object set
-        let addedSet = newSet.subtract (mSet)
+        let addedSet = newSet.subtracting (mSet)
         addEBObserversOf_myString_toElementsOfSet (addedSet)
         addEBObserversOf_myColor_toElementsOfSet (addedSet)
       //--- Update object set
@@ -401,7 +401,7 @@ class MyRootEntity : EBManagedObject
 
   var myString = EBStoredProperty_String ("Hello")
 
-  var myColor = EBStoredProperty_NSColor (NSColor.yellowColor ())
+  var myColor = EBStoredProperty_NSColor (NSColor.yellow ())
 
   //····················································································································
   //    Transient properties
@@ -500,7 +500,7 @@ class MyRootEntity : EBManagedObject
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "myString",
@@ -536,29 +536,29 @@ class MyRootEntity : EBManagedObject
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    myString.storeInDictionary (ioDictionary, forKey: "myString")
-    myColor.storeInDictionary (ioDictionary, forKey: "myColor")
+    myString.storeIn (dictionary: ioDictionary, forKey: "myString")
+    myColor.storeIn (dictionary: ioDictionary, forKey: "myColor")
   }
 
   //····················································································································
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : [EBManagedObject]) {
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    myString.readFromDictionary (inDictionary, forKey:"myString")
-    myColor.readFromDictionary (inDictionary, forKey:"myColor")
+    myString.readFrom (dictionary: inDictionary, forKey:"myString")
+    myColor.readFrom (dictionary: inDictionary, forKey:"myColor")
   }
 
   //····················································································································
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : [EBManagedObject]) {
-    super.accessibleObjects (&objects)
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
   }
 
   //····················································································································

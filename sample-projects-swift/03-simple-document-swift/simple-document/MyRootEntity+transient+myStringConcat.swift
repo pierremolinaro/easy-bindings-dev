@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_myStringConcat (self_2E_myStringMaj : String,
+func compute_MyRootEntity_myStringConcat (_ self_2E_myStringMaj : String,
                                           _ self_2E_myStringMin : String) -> String {
 //--- START OF USER ZONE 2
 

@@ -34,13 +34,13 @@ import Cocoa
   //  setup and save
   //····················································································································
 
-  func setUpWithDictionary (inDictionary : NSDictionary,
-                            inout managedObjectArray : [EBManagedObject]) {
+  func setUpWithDictionary (_ inDictionary : NSDictionary,
+                            managedObjectArray : inout [EBManagedObject]) {
   }
 
   //····················································································································
 
-  func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
   }
 
   //····················································································································
@@ -84,14 +84,14 @@ import Cocoa
   //   accessibleObjects
   //····················································································································
 
-  func accessibleObjects (inout objects : Array<EBManagedObject>) {
+  func accessibleObjects (objects : inout Array<EBManagedObject>) {
   }
 
   //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
-  func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
   }
 
   //····················································································································
@@ -103,8 +103,8 @@ import Cocoa
     let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
     mExplorerWindow = NSWindow (
       contentRect:r,
-      styleMask:NSTitledWindowMask | NSClosableWindowMask,
-      backing:NSBackingStoreType.Buffered,
+      styleMask:[.titled, .closable],
+      backing:.buffered,
       defer:true,
       screen:nil
     )
@@ -123,7 +123,7 @@ import Cocoa
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
-    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
     closeButton?.target = self
     closeButton?.action = #selector(EBManagedObject.deleteWindowAction(_:))
   //--- Set window title
@@ -158,7 +158,7 @@ import Cocoa
   //····················································································································
 
   func clearObjectExplorer () {
-    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -176,7 +176,7 @@ import Cocoa
       let indexArray = NSMutableArray ()
       for object : AnyObject in inEntityArray {
         let managedObject = object as! EBManagedObject
-        indexArray.addObject (NSNumber (integer:managedObject.savingIndex))
+        indexArray.add (NSNumber (value:managedObject.savingIndex))
       }
       ioDictionary.setObject (indexArray, forKey:inRelationshipName)
     }
@@ -190,7 +190,7 @@ import Cocoa
                                       inRelationshipName: String,
                                       ioDictionary : NSMutableDictionary) {
     if nil != inObject {
-      ioDictionary.setObject (NSNumber (integer:inObject!.savingIndex), forKey:inRelationshipName)
+      ioDictionary.setObject (NSNumber (value:inObject!.savingIndex), forKey:inRelationshipName)
     }
   }
 
@@ -200,8 +200,8 @@ import Cocoa
 
   final func readEntityFromDictionary (inRelationshipName: String,
                                        inDictionary : NSDictionary,
-                                       inout  managedObjectArray : Array<EBManagedObject>) -> EBManagedObject? {
-    let opValue : Int? = inDictionary.valueForKey (inRelationshipName) as? Int
+                                       managedObjectArray : inout Array<EBManagedObject>) -> EBManagedObject? {
+    let opValue : Int? = inDictionary.value (forKey: inRelationshipName) as? Int
     var result : EBManagedObject? = nil
     if let value = opValue {
       result = managedObjectArray [value]
@@ -215,8 +215,8 @@ import Cocoa
 
   final func readEntityArrayFromDictionary (inRelationshipName: String,
                                             inDictionary : NSDictionary,
-                                            inout managedObjectArray : Array<EBManagedObject>) -> Array<EBManagedObject> {
-    let opIndexArray : Array<Int>? = inDictionary.valueForKey (inRelationshipName) as? Array<Int>
+                                            managedObjectArray : inout Array<EBManagedObject>) -> Array<EBManagedObject> {
+    let opIndexArray : Array<Int>? = inDictionary.value (forKey: inRelationshipName) as? Array<Int>
     var result = Array<EBManagedObject> ()
     if let indexArray = opIndexArray {
       for number : Int in indexArray {
@@ -284,7 +284,7 @@ func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, b
   if let unwrappedObject = inObject {
     stringValue = explorerIndexString (unwrappedObject.mExplorerObjectIndex) + unwrappedObject.className
   }
-  button?.enabled = inObject != nil
+  button?.isEnabled = inObject != nil
   button?.title = stringValue
   button?.toolTip = stringValue
   button?.target = inObject
@@ -303,11 +303,11 @@ func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [EBManagedObj
     title = String (format:"%lu objects", inObjectArray.count)
   }
   popUpButton?.removeAllItems ()
-  popUpButton?.addItemWithTitle (title)
-  popUpButton?.enabled = inObjectArray.count > 0
+  popUpButton?.addItem (withTitle: title)
+  popUpButton?.isEnabled = inObjectArray.count > 0
   for object : EBManagedObject in inObjectArray {
     let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
-    popUpButton?.addItemWithTitle (stringValue)
+    popUpButton?.addItem (withTitle: stringValue)
     let item = popUpButton?.lastItem
     item?.target = object
     item?.action = #selector(EBManagedObject.showObjectWindowFromExplorerButton(_:))

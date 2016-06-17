@@ -1,7 +1,7 @@
 
 entity MyRootEntity {
   property String myString default "Hello" ;
-  property NSColor myColor default yellowColor ;
+  property NSColor myColor default yellow ;
   
   transient String myStringMaj dependsFrom self.myString ;
   transient String myStringMin dependsFrom self.myString ;
