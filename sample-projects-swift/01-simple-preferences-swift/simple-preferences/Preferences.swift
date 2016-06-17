@@ -31,8 +31,8 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   var myString = EBStoredProperty_String ("hello")
-  var mColor = EBStoredProperty_NSColor (NSColor.yellowColor ())
-  var mDate = EBStoredProperty_NSDate (NSDate ())
+  var mColor = EBStoredProperty_NSColor (NSColor.yellow ())
+  var mDate = EBStoredProperty_Date (Date ())
   var mIntegerValue = EBStoredProperty_Int (12)
 
   //····················································································································
@@ -60,16 +60,16 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    myString.readInPreferencesWithKey ("Preferences:myString")
-    mColor.readInPreferencesWithKey ("Preferences:mColor")
-    mDate.readInPreferencesWithKey ("Preferences:mDate")
-    mIntegerValue.readInPreferencesWithKey ("Preferences:mIntegerValue")
+    myString.readInPreferencesWithKey (inKey:"Preferences:myString")
+    mColor.readInPreferencesWithKey (inKey:"Preferences:mColor")
+    mDate.readInPreferencesWithKey (inKey:"Preferences:mDate")
+    mIntegerValue.readInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
   //--- Property validation function
     mIntegerValue.validationFunction = self.validate_mIntegerValue
   //---
-    NSNotificationCenter.defaultCenter ().addObserver (self,
+    NotificationCenter.default ().addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSApplicationWillTerminateNotification,
+     name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
     )
   //--- Extern functions
@@ -93,9 +93,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("String:", y:&y, col:0, view:view)
     let tf1 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf1.stringValue = "String:"
-    tf1.editable = false
+    tf1.isEditable = false
     tf1.drawsBackground = false
-    tf1.bordered = false
+    tf1.isBordered = false
     view.addSubview (tf1)
   //--- Outlet myTextField
     myTextField = EBTextField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -107,9 +107,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("String (send continously): ", y:&y, col:0, view:view)
     let tf2 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf2.stringValue = "String (send continously): "
-    tf2.editable = false
+    tf2.isEditable = false
     tf2.drawsBackground = false
-    tf2.bordered = false
+    tf2.isBordered = false
     view.addSubview (tf2)
   //--- Outlet myOtherTextField
     myOtherTextField = EBTextField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -121,9 +121,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("String observer:", y:&y, col:0, view:view)
     let tf3 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf3.stringValue = "String observer:"
-    tf3.editable = false
+    tf3.isEditable = false
     tf3.drawsBackground = false
-    tf3.bordered = false
+    tf3.isBordered = false
     view.addSubview (tf3)
   //--- Outlet myObserverTextField
     myObserverTextField = EBTextObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -135,9 +135,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Color:", y:&y, col:0, view:view)
     let tf4 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf4.stringValue = "Color:"
-    tf4.editable = false
+    tf4.isEditable = false
     tf4.drawsBackground = false
-    tf4.bordered = false
+    tf4.isBordered = false
     view.addSubview (tf4)
   //--- Outlet mColorWell
     mColorWell = EBColorWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -149,9 +149,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Color (send continously):", y:&y, col:0, view:view)
     let tf5 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf5.stringValue = "Color (send continously):"
-    tf5.editable = false
+    tf5.isEditable = false
     tf5.drawsBackground = false
-    tf5.bordered = false
+    tf5.isBordered = false
     view.addSubview (tf5)
   //--- Outlet mContinousColorWell
     mContinousColorWell = EBColorWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -163,9 +163,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Color Observer:", y:&y, col:0, view:view)
     let tf6 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf6.stringValue = "Color Observer:"
-    tf6.editable = false
+    tf6.isEditable = false
     tf6.drawsBackground = false
-    tf6.bordered = false
+    tf6.isBordered = false
     view.addSubview (tf6)
   //--- Outlet mObserverColorWell
     mObserverColorWell = EBColorObserverWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -177,9 +177,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Date:", y:&y, col:0, view:view)
     let tf7 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf7.stringValue = "Date:"
-    tf7.editable = false
+    tf7.isEditable = false
     tf7.drawsBackground = false
-    tf7.bordered = false
+    tf7.isBordered = false
     view.addSubview (tf7)
   //--- Outlet mDatePicker
     mDatePicker = EBDatePicker(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -191,9 +191,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Even Integer:", y:&y, col:0, view:view)
     let tf8 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf8.stringValue = "Even Integer:"
-    tf8.editable = false
+    tf8.isEditable = false
     tf8.drawsBackground = false
-    tf8.bordered = false
+    tf8.isBordered = false
     view.addSubview (tf8)
   //--- Outlet mIntegerTextField
     mIntegerTextField = EBIntField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -205,9 +205,9 @@ var g_Preferences : Preferences? = nil
   //  createTextFieldForText ("Even Integer Observer:", y:&y, col:0, view:view)
     let tf9 = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * 0.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
     tf9.stringValue = "Even Integer Observer:"
-    tf9.editable = false
+    tf9.isEditable = false
     tf9.drawsBackground = false
-    tf9.bordered = false
+    tf9.isBordered = false
     view.addSubview (tf9)
   //--- Outlet mIntegerObserverTextField
     mIntegerObserverTextField = EBIntObserverField(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
@@ -276,10 +276,10 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    myString.storeInPreferencesWithKey ("Preferences:myString")
-    mColor.storeInPreferencesWithKey ("Preferences:mColor")
-    mDate.storeInPreferencesWithKey ("Preferences:mDate")
-    mIntegerValue.storeInPreferencesWithKey ("Preferences:mIntegerValue")
+    myString.storeInPreferencesWithKey (inKey:"Preferences:myString")
+    mColor.storeInPreferencesWithKey (inKey:"Preferences:mColor")
+    mDate.storeInPreferencesWithKey (inKey:"Preferences:mDate")
+    mIntegerValue.storeInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
   }
 
   //····················································································································

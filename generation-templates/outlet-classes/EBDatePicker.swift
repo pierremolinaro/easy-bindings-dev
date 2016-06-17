@@ -34,7 +34,7 @@ import Cocoa
 
   private var mValueController : Controller_EBDatePicker_date?
 
-  func bind_date (object:EBReadWriteProperty_NSDate, file:String, line:Int) {
+  func bind_date (_ object:EBReadWriteProperty_Date, file:String, line:Int) {
     mValueController = Controller_EBDatePicker_date (object:object, outlet:self, file:file, line:line)
   }
 
@@ -51,12 +51,12 @@ import Cocoa
 @objc(Controller_EBDatePicker_date)
 final class Controller_EBDatePicker_date : EBSimpleController {
 
-  private let mObject : EBReadWriteProperty_NSDate
+  private let mObject : EBReadWriteProperty_Date
   private let mOutlet: EBDatePicker
 
   //···················································································································*
 
-  init (object : EBReadWriteProperty_NSDate, outlet : EBDatePicker, file : String, line : Int) {
+  init (object : EBReadWriteProperty_Date, outlet : EBDatePicker, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
@@ -83,7 +83,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
       mOutlet.stringValue = "No Selection"
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.dateValue = v
+      mOutlet.dateValue = v as Date
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
@@ -93,8 +93,8 @@ final class Controller_EBDatePicker_date : EBSimpleController {
 
   //···················································································································*
 
-  func action (sender : AnyObject!) {
-    mObject.setProp (mOutlet.dateValue)
+  func action (_ sender : AnyObject!) {
+    mObject.setProp (inValue: mOutlet.dateValue)
   }
 
 }

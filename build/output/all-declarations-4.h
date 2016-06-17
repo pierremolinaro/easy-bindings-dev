@@ -1,19 +1,19 @@
 #ifndef all_2D_declarations_2D__34__ENTITIES_DEFINED
 #define all_2D_declarations_2D__34__ENTITIES_DEFINED
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-predefined-types.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-declarations-3.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           Routine 'generateOutletClasses'                                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateOutletClasses (const class GALGAS_stringset constinArgument0,
                                     const class GALGAS_string constinArgument1,
@@ -21,11 +21,11 @@ void routine_generateOutletClasses (const class GALGAS_stringset constinArgument
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       Routine 'buildBindingSpecificationMap'                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_buildBindingSpecificationMap (const class GALGAS_unifiedTypeMap constinArgument0,
                                            const class GALGAS_bindingSpecificationListMap constinArgument1,
@@ -33,11 +33,11 @@ void routine_buildBindingSpecificationMap (const class GALGAS_unifiedTypeMap con
                                            class C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                              Routine 'analyzeOutlets'                                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArgument0,
                              const class GALGAS_semanticContext constinArgument1,
@@ -54,11 +54,11 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //    Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
                                                                                                                           const class GALGAS_observablePropertyMap constinArgument0,
@@ -70,12 +70,12 @@ typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpression
                                                                                                                           class C_Compiler * inCompiler
                                                                                                                           COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_analyzeExpressionForMultipleBinding (const int32_t inClassIndex,
                                                                extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
                                                               const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
@@ -87,11 +87,11 @@ void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_a
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           Routine 'analyzeRegularBinding'                                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_analyzeRegularBinding (const class GALGAS_observablePropertyMap constinArgument0,
                                     const class GALGAS_semanticContext constinArgument1,
@@ -104,11 +104,11 @@ void routine_analyzeRegularBinding (const class GALGAS_observablePropertyMap con
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                               @semanticContext struct                                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_semanticContext : public AC_GALGAS_root {
 //--------------------------------- Public data members
@@ -191,15 +191,15 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
 } ; // End of GALGAS_semanticContext class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                             @structForGeneration struct                                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- Public data members
@@ -322,25 +322,25 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 } ; // End of GALGAS_structForGeneration class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_structForGeneration ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension getter '@observablePropertyAST location' (as function)                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_location extensionGetter_location (const class GALGAS_observablePropertyAST & inObject,
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                      Abstract extension method '@abstractDefaultValue analyzeDefaultValueType'                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
                                                                                        const class GALGAS_typeKindList constinArgument0,
@@ -348,12 +348,12 @@ typedef void (*extensionMethodSignature_abstractDefaultValue_analyzeDefaultValue
                                                                                        class C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_analyzeDefaultValueType (const int32_t inClassIndex,
                                                    extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
                                                   const GALGAS_typeKindList constin_inAttributeActualTypeList,
@@ -361,11 +361,11 @@ void callExtensionMethod_analyzeDefaultValueType (const class cPtr_abstractDefau
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Extension method '@observablePropertyAST analyzeObservableProperty'                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
                                                 const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
@@ -378,11 +378,11 @@ void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePro
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                            Routine 'generateTransients'                                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateTransients (const class GALGAS_string constinArgument0,
                                  const class GALGAS_transientDefinitionListForGeneration constinArgument1,
@@ -390,20 +390,20 @@ void routine_generateTransients (const class GALGAS_string constinArgument0,
                                  class C_Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           Filewrapper 'transientManager'                                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
@@ -412,11 +412,11 @@ extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                      Filewrapper template 'transientManager transientComputationFunctionFile'                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class C_Compiler * inCompiler,
                                                                                      const class GALGAS_string & in_OWNER_5F_NAME,
@@ -426,20 +426,20 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        Filewrapper 'validationStubExtension'                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
@@ -448,11 +448,11 @@ extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Filewrapper template 'validationStubExtension actionGeneration'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C_Compiler * inCompiler,
                                                                             const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
@@ -460,11 +460,11 @@ GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (clas
                                                                             const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
                                                                             COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                      Routine 'generateValidationRoutineStubs'                                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
                                              const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
@@ -472,22 +472,22 @@ void routine_generateValidationRoutineStubs (const class GALGAS_string constinAr
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                              Routine 'buildActionMap'                                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
                              class GALGAS_actionMap & outArgument1,
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                              Routine 'generateActions'                                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateActions (const class GALGAS_string constinArgument0,
                               const class GALGAS_actionListForGeneration constinArgument1,
@@ -495,20 +495,20 @@ void routine_generateActions (const class GALGAS_string constinArgument0,
                               class C_Compiler * inCompiler
                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       Filewrapper 'actionGenerationTemplate'                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
@@ -517,39 +517,39 @@ extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Filewrapper template 'actionGenerationTemplate actionGeneration'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class C_Compiler * inCompiler,
                                                                              const class GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
                                                                              const class GALGAS_string & in_ACTION_5F_NAME
                                                                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
                                                                                                                const class GALGAS_string & in_OWNER_5F_NAME,
@@ -566,11 +566,11 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
                                                                                                                const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
                                                                                                                COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
                                                                                          const class GALGAS_string & in_OWNER_5F_NAME,
@@ -578,22 +578,22 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
                                                                                          const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                 Extension getter '@arrayControllerFilterListForGeneration filterCode' (as function)                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_string extensionGetter_filterCode (const class GALGAS_arrayControllerFilterListForGeneration & inObject,
                                                 const class GALGAS_string & constinArgument0,
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         Routine 'generateArrayControllers'                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateArrayControllers (const class GALGAS_arrayControllerForGeneration constinArgument0,
                                        const class GALGAS_string constinArgument1,
@@ -601,28 +601,28 @@ void routine_generateArrayControllers (const class GALGAS_arrayControllerForGene
                                        class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //           Filewrapper template 'selectionControllerGenerationTemplate selectionControllerImplementation'            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (class C_Compiler * inCompiler,
                                                                                                            const class GALGAS_string & in_OWNER_5F_NAME,
@@ -631,11 +631,11 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
                                                                                                            const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
                                                                                                            COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       Routine 'generateSelectionControllers'                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateSelectionControllers (const class GALGAS_selectionControllerForGeneration constinArgument0,
                                            const class GALGAS_string constinArgument1,
@@ -643,28 +643,28 @@ void routine_generateSelectionControllers (const class GALGAS_selectionControlle
                                            class C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Filewrapper 'customObjectControllerGenerationTemplate'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_customObjectControllerGenerationTemplate ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                   Filewrapper template 'customObjectControllerGenerationTemplate implementation'                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (class C_Compiler * inCompiler,
                                                                                            const class GALGAS_string & in_OWNER_5F_NAME,
@@ -673,11 +673,11 @@ GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_imple
                                                                                            const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
                                                                                            COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                      Routine 'generateCustomObjectControllers'                                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateCustomObjectControllers (const class GALGAS_customObjectControllerForGeneration constinArgument0,
                                               const class GALGAS_string constinArgument1,
@@ -685,20 +685,20 @@ void routine_generateCustomObjectControllers (const class GALGAS_customObjectCon
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                             Function 'predefinedDates'                                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                               Routine 'typeInventory'                                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_typeInventory (const class GALGAS_lstring constinArgument0,
                             const class GALGAS_astDeclarationList constinArgument1,
@@ -706,34 +706,34 @@ void routine_typeInventory (const class GALGAS_lstring constinArgument0,
                             class C_Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                              Abstract extension method '@astDeclaration typeInventory'                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_astDeclaration_typeInventory) (const class cPtr_astDeclaration * inObject,
                                                                        class GALGAS_unifiedTypeMap & ioArgument0,
                                                                        class C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_typeInventory (const int32_t inClassIndex,
                                          extensionMethodSignature_astDeclaration_typeInventory inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_typeInventory (const class cPtr_astDeclaration * inObject,
                                         GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
                                         C_Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                             Routine 'semanticAnalysis'                                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument0,
                                const class GALGAS_string constinArgument1,
@@ -742,11 +742,11 @@ void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Abstract extension method '@astDeclaration buildInitialSecondaryPropertyListMap'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_astDeclaration_buildInitialSecondaryPropertyListMap) (const class cPtr_astDeclaration * inObject,
                                                                                               class GALGAS_secondaryDeclarationListWorkingList & ioArgument0,
@@ -754,12 +754,12 @@ typedef void (*extensionMethodSignature_astDeclaration_buildInitialSecondaryProp
                                                                                               class C_Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildInitialSecondaryPropertyListMap (const int32_t inClassIndex,
                                                                 extensionMethodSignature_astDeclaration_buildInitialSecondaryPropertyListMap inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildInitialSecondaryPropertyListMap (const class cPtr_astDeclaration * inObject,
                                                                GALGAS_secondaryDeclarationListWorkingList & io_ioSecondaryDeclarationListWorkingList,
@@ -767,11 +767,11 @@ void callExtensionMethod_buildInitialSecondaryPropertyListMap (const class cPtr_
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //             Abstract extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_astDeclaration_buildObservablePropertyMapsFromStoredProperties) (const class cPtr_astDeclaration * inObject,
                                                                                                          const class GALGAS_unifiedTypeMap constinArgument0,
@@ -779,12 +779,12 @@ typedef void (*extensionMethodSignature_astDeclaration_buildObservablePropertyMa
                                                                                                          class C_Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const int32_t inClassIndex,
                                                                            extensionMethodSignature_astDeclaration_buildObservablePropertyMapsFromStoredProperties inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const class cPtr_astDeclaration * inObject,
                                                                           const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
@@ -792,11 +792,11 @@ void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const 
                                                                           C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Abstract extension method '@astDeclaration semanticAnalysis'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_astDeclaration_semanticAnalysis) (const class cPtr_astDeclaration * inObject,
                                                                           const class GALGAS_semanticContext constinArgument0,
@@ -804,12 +804,12 @@ typedef void (*extensionMethodSignature_astDeclaration_semanticAnalysis) (const 
                                                                           class C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_semanticAnalysis (const int32_t inClassIndex,
                                             extensionMethodSignature_astDeclaration_semanticAnalysis inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_semanticAnalysis (const class cPtr_astDeclaration * inObject,
                                            const GALGAS_semanticContext constin_inSemanticContext,
@@ -817,11 +817,11 @@ void callExtensionMethod_semanticAnalysis (const class cPtr_astDeclaration * inO
                                            C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Abstract extension method '@astDeclaration solveSecondaryProperty'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_astDeclaration_solveSecondaryProperty) (const class cPtr_astDeclaration * inObject,
                                                                                 class GALGAS_semanticContext & ioArgument0,
@@ -831,12 +831,12 @@ typedef void (*extensionMethodSignature_astDeclaration_solveSecondaryProperty) (
                                                                                 class C_Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_solveSecondaryProperty (const int32_t inClassIndex,
                                                   extensionMethodSignature_astDeclaration_solveSecondaryProperty inMethod) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_solveSecondaryProperty (const class cPtr_astDeclaration * inObject,
                                                  GALGAS_semanticContext & io_ioSemanticContext,
@@ -846,22 +846,22 @@ void callExtensionMethod_solveSecondaryProperty (const class cPtr_astDeclaration
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Extension method '@outletClassDeclarationList buildOutletClassMap'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_buildOutletClassMap (const class GALGAS_outletClassDeclarationList inObject,
                                           class GALGAS_outletClassMap & out_outOutletClassMap,
                                           class C_Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                 Extension method '@prefDeclaration buildObservablePropertyMapsFromStoredProperties'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_buildObservablePropertyMapsFromStoredProperties (const class GALGAS_prefDeclaration inObject,
                                                                       const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
@@ -869,11 +869,11 @@ void extensionMethod_buildObservablePropertyMapsFromStoredProperties (const clas
                                                                       class C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension method '@prefDeclaration semanticAnalysis'                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObject,
                                        const class GALGAS_externSwiftFunctionList constin_inExternSwiftFunctionList,
@@ -882,11 +882,11 @@ void extensionMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObje
                                        class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@prefDeclaration solveSecondaryProperty'                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_solveSecondaryProperty (const class GALGAS_prefDeclaration inObject,
                                              class GALGAS_semanticContext & io_ioSemanticContext,
@@ -896,11 +896,11 @@ void extensionMethod_solveSecondaryProperty (const class GALGAS_prefDeclaration 
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                               Routine 'generateCode'                                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateCode (const class GALGAS_string constinArgument0,
                            const class GALGAS_structForGeneration constinArgument1,
@@ -908,11 +908,11 @@ void routine_generateCode (const class GALGAS_string constinArgument0,
                            class C_Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        Routine 'generateStandardProperties'                                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
                                          const class GALGAS_stringlist constinArgument1,
@@ -921,11 +921,11 @@ void routine_generateStandardProperties (const class GALGAS_string constinArgume
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       Routine 'generateSwiftApplicationFiles'                                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArgument0,
                                             const class GALGAS_bool constinArgument1,
@@ -933,11 +933,11 @@ void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArg
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                             Routine 'generateTestFile'                                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateTestFile (const class GALGAS_string constinArgument0,
                                const class GALGAS_string constinArgument1,
@@ -946,11 +946,11 @@ void routine_generateTestFile (const class GALGAS_string constinArgument0,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           Routine 'generateXcodeProject'                                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void routine_generateXcodeProject (const class GALGAS_string constinArgument0,
                                    const class GALGAS_string constinArgument1,

@@ -70,10 +70,10 @@ end
   //--- Read from preferences
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.readInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
+  %    %!mStoredPropertyName%.readInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
 end
 for () in STORED_ARRAY_LIST do
-  %    %!mStoredPropertyName%.readInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
+  %    %!mStoredPropertyName%.readInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
 end
 %  //--- Property validation function
 %
@@ -83,9 +83,9 @@ for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   end
 end
 %  //---
-    NSNotificationCenter.defaultCenter ().addObserver (self,
+    NotificationCenter.default ().addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSApplicationWillTerminateNotification,
+     name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
     )
   //--- Extern functions
@@ -196,10 +196,10 @@ end
   func applicationWillTerminateAction (_ : NSNotification) {
 %
 for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.storeInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
+  %    %!mStoredPropertyName%.storeInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
 end
 for () in STORED_ARRAY_LIST do
-  %    %!mStoredPropertyName%.storeInPreferencesWithKey ("Preferences:%!mStoredPropertyName%")\n%
+  %    %!mStoredPropertyName%.storeInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
 end
 %  }
 

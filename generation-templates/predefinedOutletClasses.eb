@@ -1,11 +1,11 @@
 property class NSColor (
-  blackColor, blueColor, brownColor, clearColor, controlColor, controlDarkShadowColor, controlHighlightColor,
-  controlLightHighlightColor, controlShadowColor, controlTextColor, cyanColor, darkGrayColor,
-  disabledControlTextColor, grayColor, greenColor, gridColor, headerColor, headerTextColor, highlightColor,
-  keyboardFocusIndicatorColor, knobColor, lightGrayColor, magentaColor, orangeColor, purpleColor, redColor,
-  scrollBarColor, selectedControlColor, selectedControlTextColor, selectedKnobColor, selectedMenuItemColor,
-  selectedMenuItemTextColor, selectedTextBackgroundColor, selectedTextColor, shadowColor, textBackgroundColor,
-  textColor, whiteColor, windowBackgroundColor, windowFrameColor, windowFrameTextColor, yellowColor
+  black, blue, brown, clear, control, controlDarkShadow, controlHighlight,
+  controlLightHighlight, controlShadow, controlText, cyan, darkGray,
+  disabledControlText, gray, green, grid, header, headerText, highlight,
+  keyboardFocusIndicator, knob, lightGray, magenta, orange, purple, red,
+  scrollBar, selectedControl, selectedControlText, selectedKnob, selectedMenuItem,
+  selectedMenuItemText, selectedTextBackground, selectedText, shadow, textBackground,
+  text, white, windowBackground, windowFrame, windowFrameText, yellow
 ) ;
 
 transient property class NSImage ;
@@ -20,7 +20,7 @@ binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 
 
 outletClass EBDatePicker $enabled ;
-binding EBDatePicker $date : property NSDate ;
+binding EBDatePicker $date : property Date ;
 
 outletClass EBDoubleField ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;

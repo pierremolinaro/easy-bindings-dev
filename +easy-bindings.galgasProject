@@ -1,6 +1,6 @@
 project (0:0:1) -> "eb" {
   %makefile-macosx
-  %ElCapitanYosemite
+  %Sierra
   %applicationBundleBase : "fr.irccyn"
 
 #--- Source files

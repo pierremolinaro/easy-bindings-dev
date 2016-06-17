@@ -204,7 +204,7 @@ private proc generateStandardProperties
   for (propertyClass) in inTransientPropertyClassList do
     contents += [filewrapper standard_properties.classProperty !propertyClass !false !true]
   end
-  contents += [filewrapper standard_properties.classProperty !"NSDate"  !true  !false]
+  contents += [filewrapper standard_properties.scalarProperty !"Date"]
   contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
 #--- Generate file
   let fileName = "standard-properties.swift"

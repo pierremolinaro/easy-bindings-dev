@@ -35,7 +35,7 @@ import Cocoa
   private var mValueController : Controller_EBColorWell_color?
   var mSendContinously = false
 
-  func bind_color (object:EBReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
+  func bind_color (_ object:EBReadWriteProperty_NSColor, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_EBColorWell_color (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -66,7 +66,7 @@ import Cocoa
     super.init (objects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBColorWell_color.action(_:))
-    mOutlet.continuous = true
+    mOutlet.isContinuous = true
     mObject.addEBObserver (self)
   }
 
@@ -98,8 +98,8 @@ import Cocoa
 
   //····················································································································
 
-  func action (sender : EBColorWell) {
-    mObject.validateAndSetProp (mOutlet.color, windowForSheet:sender.window)
+  func action (_ sender : EBColorWell) {
+    _ = mObject.validateAndSetProp (candidateValue: mOutlet.color, windowForSheet:sender.window)
   }
 
   //····················································································································

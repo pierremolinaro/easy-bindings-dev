@@ -10,35 +10,35 @@ typealias EBTransientProperty_%!TYPE% = EBTransientValueProperty <%!TYPE%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_%!TYPE% (left : EBReadOnlyProperty_%!TYPE%, right : EBReadOnlyProperty_%!TYPE%) -> NSComparisonResult {
+func compare_%!TYPE% (left : EBReadOnlyProperty_%!TYPE%, right : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .multipleSelection :
-      return .OrderedSame
+      return .orderedSame
    case .singleSelection (_) :
-      return .OrderedAscending
+      return .orderedAscending
    }
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }

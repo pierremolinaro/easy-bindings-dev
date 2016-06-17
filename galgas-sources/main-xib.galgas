@@ -101,9 +101,9 @@ getter @mainXibDescriptorList generateCode -> @string outResult {
           outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
           outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
           outResult += "    tf" + idx + ".stringValue = " + [t utf8Representation] + "\n"
-          outResult += "    tf" + idx + ".editable = false\n"
+          outResult += "    tf" + idx + ".isEditable = false\n"
           outResult += "    tf" + idx + ".drawsBackground = false\n"
-          outResult += "    tf" + idx + ".bordered = false\n"
+          outResult += "    tf" + idx + ".isBordered = false\n"
           outResult += "    view.addSubview (tf" + idx + ")\n"
         case outlet (outletType outletName) :
           outResult += "  //--- Outlet " + outletName + "\n"
