@@ -85,49 +85,49 @@ import Cocoa
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
     if nil == myColorWell {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myColorWell' outlet is nil") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'myColorWell' outlet is nil") ;
 //    }else if !myColorWell!.isKindOfClass (EBColorWell) {
-//      presentErrorWindow (#file,
-//                              line:#line,
-//                              errorMessage:"the 'myColorWell' outlet is not an instance of 'EBColorWell'") ;
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'myColorWell' outlet is not an instance of 'EBColorWell'") ;
     }
     if nil == myTextConcatField {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myTextConcatField' outlet is nil") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'myTextConcatField' outlet is nil") ;
 //    }else if !myTextConcatField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (#file,
-//                              line:#line,
-//                              errorMessage:"the 'myTextConcatField' outlet is not an instance of 'EBTextObserverField'") ;
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'myTextConcatField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == myTextField {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myTextField' outlet is nil") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'myTextField' outlet is nil") ;
 //    }else if !myTextField!.isKindOfClass (EBTextField) {
-//      presentErrorWindow (#file,
-//                              line:#line,
-//                              errorMessage:"the 'myTextField' outlet is not an instance of 'EBTextField'") ;
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'myTextField' outlet is not an instance of 'EBTextField'") ;
     }
     if nil == myTextMajField {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myTextMajField' outlet is nil") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'myTextMajField' outlet is nil") ;
 //    }else if !myTextMajField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (#file,
-//                              line:#line,
-//                              errorMessage:"the 'myTextMajField' outlet is not an instance of 'EBTextObserverField'") ;
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'myTextMajField' outlet is not an instance of 'EBTextObserverField'") ;
     }
     if nil == myTextMinField {
-      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the 'myTextMinField' outlet is nil") ;
+      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the 'myTextMinField' outlet is nil") ;
 //    }else if !myTextMinField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (#file,
-//                              line:#line,
-//                              errorMessage:"the 'myTextMinField' outlet is not an instance of 'EBTextObserverField'") ;
+//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the 'myTextMinField' outlet is not an instance of 'EBTextObserverField'") ;
     }
   //--------------------------- Array controllers
   //--------------------------- Selection controllers
@@ -135,11 +135,11 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    myTextField?.bind_value (self.rootObject.myString, file:#file, line:#line, sendContinously:true)
-    myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj, file:#file, line:#line)
-    myTextMinField?.bind_valueObserver (self.rootObject.myStringMin, file:#file, line:#line)
-    myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat, file:#file, line:#line)
-    myColorWell?.bind_color (self.rootObject.myColor, file:#file, line:#line, sendContinously:false)
+    myTextField?.bind_value (self.rootObject.myString, file: #file, line: #line, sendContinously:true)
+    myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj, file: #file, line: #line)
+    myTextMinField?.bind_valueObserver (self.rootObject.myStringMin, file: #file, line: #line)
+    myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat, file: #file, line: #line)
+    myColorWell?.bind_color (self.rootObject.myColor, file: #file, line: #line, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display

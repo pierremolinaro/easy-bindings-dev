@@ -88,10 +88,10 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
       for tableView in mTableViewArray {
         var first = true
         for (key, ascending) in mSortDescriptorArray {
-          if let column = tableView.tableColumnWithIdentifier (key) {
+          if let column = tableView.tableColumn (withIdentifier: key) {
             tableView.setIndicatorImage (
               first ? NSImage (named:ascending ? "NSAscendingSortIndicator" : "NSDescendingSortIndicator") : nil,
-              inTableColumn:column
+              in:column
             )
             first = false
           }
@@ -143,26 +143,26 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
 
   //····················································································································
 
-  func isOrderedBefore (left : NameEntity, _ right : NameEntity) -> Bool {
-    var order = NSComparisonResult.OrderedSame
+  func isOrderedBefore (left : NameEntity, right : NameEntity) -> Bool {
+    var order = ComparisonResult.orderedSame
     for (column, ascending) in mSortDescriptorArray {
       if column == "name" {
-        order = compare_String (left.name, right:right.name)
+        order = compare_String (left: left.name, right:right.name)
       }else if column == "int" {
-        order = compare_Int (left.aValue, right:right.aValue)
+        order = compare_Int (left: left.aValue, right:right.aValue)
       }
       if !ascending {
         switch order {
-        case .OrderedAscending : order = .OrderedDescending
-        case .OrderedDescending : order = .OrderedAscending
-        case .OrderedSame : break // Exit from switch
+        case .orderedAscending : order = .orderedDescending
+        case .orderedDescending : order = .orderedAscending
+        case .orderedSame : break // Exit from switch
         }
       }
-      if order != .OrderedSame {
+      if order != .orderedSame {
         break // Exit from for
       }
     }
-    return order == .OrderedAscending
+    return order == .orderedAscending
   }
 
   //····················································································································
@@ -176,7 +176,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         case .multipleSelection :
           return .multipleSelection
         case .singleSelection (let modelArray) :
-          let sortedArray = modelArray.sort ({self.isOrderedBefore ($0, $1)})
+          let sortedArray = modelArray.sorted (isOrderedBefore: {self.isOrderedBefore (left: $0, right: $1)})
           return .singleSelection (sortedArray)
         }
       }else{
@@ -189,9 +189,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //    Explorer
   //····················································································································
 
-  final func addExplorer (name : String,
-                          inout y : CGFloat,
-                          view : NSView) {
+  final func addExplorer (name : String, y : inout CGFloat, view : NSView) {
   }
 
   //····················································································································
@@ -213,7 +211,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //--- Bind table views
     mTableViewArray = tableViewArray
     for tableView in tableViewArray {
-      bind_tableView (tableView, file:file, line:line)
+      bind_tableView (tableView: tableView, file:file, line:line)
     }
   }
 
@@ -259,8 +257,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     }
     tableView.allowsEmptySelection = allowsEmptySelection
     tableView.allowsMultipleSelection = allowsMultipleSelection
-    tableView.setDataSource (self)
-    tableView.setDelegate (self)
+    tableView.dataSource = self
+    tableView.delegate = self
   //--- Set table view data source controller
     let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
     sortedArray.addEBObserver (dataSourceTableViewController)
@@ -270,22 +268,16 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     mSelectedSet.addEBObserver (selectionTableViewController)
     mTableViewSelectionControllerArray.append (selectionTableViewController)
   //--- Check 'name' column
-    if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("name") {
+    if let column : NSTableColumn = tableView.tableColumn (withIdentifier: "name") {
       column.sortDescriptorPrototype = nil
     }else{
-      presentErrorWindow (file,
-        line: line,
-        errorMessage:"\"name\" column view unknown"
-      )
+      presentErrorWindow (file: file, line: line, errorMessage:"\"name\" column view unknown")
     }
   //--- Check 'int' column
-    if let column : NSTableColumn = tableView.tableColumnWithIdentifier ("int") {
+    if let column : NSTableColumn = tableView.tableColumn (withIdentifier: "int") {
       column.sortDescriptorPrototype = nil
     }else{
-      presentErrorWindow (file,
-        line: line,
-        errorMessage:"\"int\" column view unknown"
-      )
+      presentErrorWindow (file: file, line: line, errorMessage:"\"int\" column view unknown")
     }
   //--- Set descriptors from first column of table view
     var newSortDescriptorArray = [(String, Bool)] ()
@@ -304,13 +296,13 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     case .singleSelection (let v) :
     //--- Dictionary of object indexes
       var objectDictionary = [NameEntity : Int] ()
-      for (index, object) in v.enumerate () {
+      for (index, object) in v.enumerated () {
         objectDictionary [object] = index
       }
       let indexSet = NSMutableIndexSet ()
       for object in mSelectedSet.mSet {
         if let index = objectDictionary [object] {
-          indexSet.addIndex (index)
+          indexSet.add (index)
         }
       }
       return indexSet
@@ -318,10 +310,10 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   }
 
   //····················································································································
-  //    T A B L E V I E W    D A T A S O U R C E : numberOfRowsInTableView
+  //    T A B L E V I E W    D A T A S O U R C E : numberOfRows (in:)
   //····················································································································
 
-  func numberOfRowsInTableView (_ : NSTableView) -> Int {
+  func numberOfRows (in _ : NSTableView) -> Int {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -337,7 +329,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
   //····················································································································
 
-  func tableViewSelectionDidChange (notication : NSNotification) {
+  func tableViewSelectionDidChange (_ notification : Notification) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -345,7 +337,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let v) :
-      let tableView = notication.object as! EBTableView
+      let tableView = notification.object as! EBTableView
       var newSelectedObjectSet = Set <NameEntity> ()
       for index in tableView.selectedRowIndexes {
         newSelectedObjectSet.insert (v.objectAtIndex (index, file: #file, line: #line))
@@ -358,12 +350,12 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:mouseDownInHeaderOfTableColumn:
   //····················································································································
 
-  func tableView (tableView: NSTableView, mouseDownInHeaderOfTableColumn tableColumn: NSTableColumn) {
+  func tableView (_ tableView: NSTableView, mouseDownInHeaderOf tableColumn: NSTableColumn) {
     var newSortDescriptorArray = [(String, Bool)] ()
     let identifier : String = tableColumn.identifier
     for (column, ascending) in mSortDescriptorArray {
       if identifier == column {
-        newSortDescriptorArray.insert ((column, !ascending), atIndex:0)
+        newSortDescriptorArray.insert ((column, !ascending), at:0)
       }else{
         newSortDescriptorArray.append ((column, !ascending))
       }
@@ -374,8 +366,8 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
   //····················································································································
 
-  func tableView (tableView : NSTableView,
-                  viewForTableColumn inTableColumn: NSTableColumn?,
+  func tableView (_ tableView : NSTableView,
+                  viewFor tableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
     if DEBUG_EVENT {
       print ("\(#function)")
@@ -384,19 +376,19 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
     case .noSelection, .multipleSelection :
       return nil
     case .singleSelection (let v) :
-      let columnIdentifier = inTableColumn!.identifier
-      let result : NSTableCellView = tableView.makeViewWithIdentifier (columnIdentifier, owner:self) as! NSTableCellView
+      let columnIdentifier = tableColumn!.identifier
+      let result : NSTableCellView = tableView.make (withIdentifier: columnIdentifier, owner:self) as! NSTableCellView
       if !reuseTableViewCells () {
         result.identifier = nil // So result cannot be reused, will be freed
       }
-      let object = v.objectAtIndex (inRowIndex, file:#file, line:#line)
+      let object = v.objectAtIndex (inRowIndex, file: #file, line: #line)
       if columnIdentifier == "name" {
         if let cell : EBTextField_TableViewCell = result as? EBTextField_TableViewCell {
           cell.mUnbindFunction = { [weak cell] in
             cell?.mCellOutlet?.unbind_value ()
           }
           cell.mUnbindFunction? ()
-          cell.mCellOutlet?.bind_value (object.name, file:#file, line:#line, sendContinously:false)
+          cell.mCellOutlet?.bind_value (object.name, file: #file, line: #line, sendContinously:false)
         }
       }else if columnIdentifier == "int" {
         if let cell : EBIntField_TableViewCell = result as? EBIntField_TableViewCell {
@@ -404,7 +396,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
             cell?.mCellOutlet?.unbind_value ()
           }
           cell.mUnbindFunction? ()
-          cell.mCellOutlet?.bind_value (object.aValue, file:#file, line:#line, sendContinously:false, autoFormatter:true)
+          cell.mCellOutlet?.bind_value (object.aValue, file: #file, line: #line, sendContinously:false, autoFormatter:true)
         }
       }else{
         NSLog ("Unknown column '\(columnIdentifier)'")
@@ -418,7 +410,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //    add
   //····················································································································
 
-   func add (inSender : NSButton?) {
+   func add (_ sender : AnyObject) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -436,7 +428,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         var newSelectedObjectSet = Set <NameEntity> ()
         newSelectedObjectSet.insert (newObject)
         mSelectedSet.mSet = newSelectedObjectSet
-        model.setProp (array)
+        model.setProp (value: array)
       }
     }
   }
@@ -445,7 +437,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   //    remove
   //····················································································································
 
-  func remove (inSender : NSButton?) {
+  func remove (_ sender : AnyObject) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -463,7 +455,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         //------------- Find the object to be selected after selected object removing
         //--- Dictionary of object sorted indexes
           var sortedObjectDictionary = [NameEntity : Int] ()
-          for (index, object) in sortedArray_prop.enumerate () {
+          for (index, object) in sortedArray_prop.enumerated () {
             sortedObjectDictionary [object] = index
           }
           var indexArrayOfSelectedObjects = [Int] ()
@@ -475,7 +467,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
             }
           }
         //--- Sort
-          indexArrayOfSelectedObjects.sortInPlace { $0 < $1 }
+          indexArrayOfSelectedObjects.sort (isOrderedBefore: { $0 < $1 })
         //--- Find the first index of a non selected object
           var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
           for index in indexArrayOfSelectedObjects {
@@ -492,7 +484,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         //----------------------------------------- Remove selected object
         //--- Dictionary of object absolute indexes
           var objectDictionary = [NameEntity : Int] ()
-          for (index, object) in model_prop.enumerate () {
+          for (index, object) in model_prop.enumerated () {
             objectDictionary [object] = index
           }
         //--- Build selected objects index array
@@ -504,11 +496,11 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
             }
           }
         //--- Sort in reverse order
-          selectedObjectIndexArray.sortInPlace { $1 < $0 }
+          selectedObjectIndexArray.sort (isOrderedBefore: { $1 < $0 })
         //--- Remove objects, in reverse of order of their index
           var newObjectArray = model_prop
           for index in selectedObjectIndexArray {
-            newObjectArray.removeAtIndex (index)
+            newObjectArray.remove (at: index)
           }
         //----------------------------------------- Set new selection
           var newSelectionSet = Set <NameEntity> ()
@@ -517,7 +509,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
           }
           mSelectedSet.mSet = newSelectionSet
         //----------------------------------------- Set new object array
-          model.setProp (newObjectArray)
+          model.setProp (value: newObjectArray)
         }
       }
     }

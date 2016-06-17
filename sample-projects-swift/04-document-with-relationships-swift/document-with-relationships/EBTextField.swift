@@ -41,7 +41,7 @@ import Cocoa
 
   //····················································································································
 
-  func bind_value (object:EBReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (_ object:EBReadWriteProperty_String, file:String, line:Int, sendContinously:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_EBTextField_value (object:object, outlet:self, file:file, line:line, sendContinously:sendContinously)
   }
@@ -55,9 +55,9 @@ import Cocoa
 
   //····················································································································
 
-  override func controlTextDidChange (inNotification : NSNotification) {
+  override func controlTextDidChange (_ inNotification : Notification) {
     if mSendContinously {
-      NSApp.sendAction (self.action, to: self.target, from: self)
+      NSApp.sendAction (self.action!, to: self.target, from: self)
     }
   }
 
@@ -83,7 +83,7 @@ import Cocoa
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBTextField_value.action(_:))
     if mOutlet.formatter != nil {
-      presentErrorWindow (file, line:line, errorMessage:"the EBTextField outlet has a formatter")
+      presentErrorWindow (file: file, line:line, errorMessage:"the EBTextField outlet has a formatter")
     }
     object.addEBObserver (self)
   }
@@ -116,8 +116,8 @@ import Cocoa
 
   //····················································································································
 
-  func action (sender : EBTextField) {
-    mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
+  func action (_ sender : EBTextField) {
+    _ = mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
   }
 }
 
@@ -130,16 +130,16 @@ import Cocoa
 
   //····················································································································
 
-  func checkOutlet (columnName : String, file:String, line:Int) {
+  func checkOutlet (_ columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBTextField) {
-        presentErrorWindow (file,
+        presentErrorWindow (file: file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBTextField"
         )
       }
     }else{
-      presentErrorWindow (file,
+      presentErrorWindow (file: file,
         line: line,
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBTextField)"
       )

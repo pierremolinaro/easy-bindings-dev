@@ -75,7 +75,7 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     if mOutlet.formatter != nil {
-      presentErrorWindow (file, line:line, errorMessage:"the EBTextObserverField outlet has a formatter")
+      presentErrorWindow (file: file, line:line, errorMessage:"the EBTextObserverField outlet has a formatter")
     }
     object.addEBObserver (self)
   }
@@ -119,13 +119,13 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
   func checkOutlet (_ columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBTextObserverField) {
-        presentErrorWindow (file,
+        presentErrorWindow (file: file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBTextObserverField"
         )
       }
     }else{
-      presentErrorWindow (file,
+      presentErrorWindow (file: file,
         line: line,
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBTextObserverField)"
       )

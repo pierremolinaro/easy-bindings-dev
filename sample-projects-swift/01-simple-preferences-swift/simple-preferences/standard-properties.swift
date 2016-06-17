@@ -28,8 +28,8 @@ class EBReadOnlyValueProperty <T> : EBAbstractProperty {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBReadWriteValueProperty <T> : EBReadOnlyValueProperty <T> {
-  func setProp (inValue : T) { } // Abstract method
-  func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
+  func setProp (value : T) { } // Abstract method
+  func validateAndSetProp (_ candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
   } // Abstract method
 }
@@ -102,15 +102,15 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
 
   //····················································································································
   
-  override func setProp (inValue : T) {
+  override func setProp (value : T) {
     if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
+      unWriteModelFunction (value)
     }
   }
 
   //····················································································································
 
-  override func validateAndSetProp (candidateValue : T,
+  override func validateAndSetProp (_ candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = false
     if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
@@ -170,19 +170,19 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   var propval : T { get { return mValue } }
 
-  override func setProp (inValue : T) { mValue = inValue }
+  override func setProp (value : T) { mValue = value }
 
   //····················································································································
  
   var validationFunction : (T, T) -> EBValidationResult <T> = defaultValidationFunction
   
-  override func validateAndSetProp (candidateValue : T,
+  override func validateAndSetProp (_ candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
     let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
     case EBValidationResult.ok (let validatedValue) :
-      setProp (inValue:validatedValue)
+      setProp (value: validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -212,7 +212,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
     let ud = UserDefaults.standard ()
     let value : AnyObject? = ud.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
-      setProp (inValue:T.convertFromNSObject (object:unwValue))
+      setProp (value: T.convertFromNSObject (object:unwValue))
     }
   }
 
@@ -225,16 +225,16 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   //····················································································································
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
+  func storeIn (dictionary:NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.object (forKey:inKey)
+  func readFrom (dictionary: NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
-      setProp (inValue:T.convertFromNSObject (object:unwValue))
+      setProp (value: T.convertFromNSObject (object:unwValue))
     }
   }
 
@@ -604,8 +604,8 @@ class EBReadOnlyClassProperty <T> : EBAbstractProperty {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBReadWriteClassProperty <T> : EBReadOnlyClassProperty <T> {
-  func setProp (inValue : T) { } // Abstract method
-  func validateAndSetProp (candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
+  func setProp (value : T) { } // Abstract method
+  func validateAndSetProp (_ candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
   } // Abstract method
 }
@@ -678,15 +678,15 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
 
   //····················································································································
   
-  override func setProp (inValue : T) {
+  override func setProp (value : T) {
     if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
+      unWriteModelFunction (value)
     }
   }
 
   //····················································································································
 
-  override func validateAndSetProp (candidateValue : T,
+  override func validateAndSetProp (_ candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = false
     if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
@@ -746,19 +746,19 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   var propval : T { get { return mValue } }
 
-  override func setProp (inValue : T) { mValue = inValue }
+  override func setProp (value : T) { mValue = value }
 
   //····················································································································
  
   var validationFunction : (T, T) -> EBValidationResult <T> = defaultValidationFunction
   
-  override func validateAndSetProp (candidateValue : T,
+  override func validateAndSetProp (_ candidateValue : T,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = true
     let validationResult = validationFunction (propval, candidateValue)
     switch validationResult {
     case EBValidationResult.ok (let validatedValue) :
-      setProp (inValue:validatedValue)
+      setProp (value:validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
       NSBeep ()
@@ -788,7 +788,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
     let ud = UserDefaults.standard ()
     let value : AnyObject? = ud.object (forKey:inKey)
     if let unwValue : NSData = value as? NSData {
-      setProp (inValue:T.unarchiveFromNSData (data:unwValue) as! T)
+      setProp (value: T.unarchiveFromNSData (data:unwValue) as! T)
     }
   }
 
@@ -801,16 +801,16 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   //····················································································································
 
-  func storeInDictionary (ioDictionary:NSMutableDictionary, forKey inKey:String) {
-    ioDictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
+  func storeIn (dictionary:NSMutableDictionary, forKey inKey:String) {
+    dictionary.setValue (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
 
-  func readFromDictionary (inDictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = inDictionary.object (forKey:inKey)
+  func readFrom (dictionary:NSDictionary, forKey inKey:String) {
+    let value : AnyObject? = dictionary.object (forKey:inKey)
     if let unwValue : NSData = value as? NSData {
-      setProp (inValue:T.unarchiveFromNSData (data:unwValue) as! T)
+      setProp (value: T.unarchiveFromNSData (data:unwValue) as! T)
     }
   }
 

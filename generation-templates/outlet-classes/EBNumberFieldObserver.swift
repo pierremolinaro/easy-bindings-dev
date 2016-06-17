@@ -71,9 +71,9 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     if mOutlet.formatter == nil {
-      presentErrorWindow (file, line, "the outlet has no formatter")
+      presentErrorWindow (file: file, line, "the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
+      presentErrorWindow (file: file, line, "the formatter should be an NSNumberFormatter")
     }
     mObject.addEBObserver (self)
   }

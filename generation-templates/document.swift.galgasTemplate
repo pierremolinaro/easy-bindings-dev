@@ -88,10 +88,10 @@ end
   override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName%.addExplorer ("%!mControllerName%", y:&y, view:view)\n%
+%    %!mControllerName%.addExplorer (name: "%!mControllerName%", y:&y, view:view)\n%
 end
 for () in SELECTION_CONTROLLER_LIST do
-%    %!mSelectionControllerName%.addExplorer ("%!mSelectionControllerName%", y:&y, view:view)\n%
+%    %!mSelectionControllerName%.addExplorer (name: "%!mSelectionControllerName%", y:&y, view:view)\n%
 end
 %    super.populateExplorerWindow (&y, view:view)
   }
@@ -128,34 +128,34 @@ end
 
 for () in OUTLET_GENERATION_MAP do
    %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (#file,
-                              line:#line,
-                              errorMessage:"the '%!lkey.string%' outlet is nil") ;\n%
+   %      presentErrorWindow (file: #file,
+                              line: #line,
+                              errorMessage: "the '%!lkey.string%' outlet is nil") ;\n%
    %//    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName%) {\n%
-   %//      presentErrorWindow (#file,
-//                              line:#line,
-//                              errorMessage:"the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
+   %//      presentErrorWindow (file: #file,
+//                              line: #line,
+//                              errorMessage: "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
    %    }\n%
 end
 %  //--------------------------- Array controllers
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
-      %!mModelString%,
-      tableViewArray:[%
+      model: %!mModelString%,
+      tableViewArray: [%
       ![TABLE_VALUE_BINDING_GENERATION_LIST outletNameListForController !mControllerName]
       %],
-      file:#file,
-      line:#line
+      file: #file,
+      line: #line
     )\n%
 end
 %  //--------------------------- Selection controllers
 %
 for () in SELECTION_CONTROLLER_LIST do
 %    %!mSelectionControllerName%.bind_selection (
-      %!mBoundControllerName%.%!mBoundControllerPropertyName%,
-      file:#file,
-      line:#line
+      model: %!mBoundControllerName%.%!mBoundControllerPropertyName%,
+      file: #file,
+      line: #line
     )\n%
 end
 %  //--------------------------- Custom object controllers
@@ -188,7 +188,7 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
   for () in mBoundObjectStringList do
     !mValue%, %
   end
-  %file:#file, line:#line%!mBindingOptionsString%)\n%
+  %file: #file, line: #line%!mBindingOptionsString%)\n%
 end
 %  //--- Install multiple bindings
 %
@@ -203,7 +203,7 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %      computeFunction:{\n%
   %        return %![mBoundObjectExpression expressionString]%\n%
   %      },\n%
-  %      file:#file, line:#line\n%
+  %      file: #file, line: #line\n%
   %    )\n%
 end
 %  //--------------------------- Set targets / actions

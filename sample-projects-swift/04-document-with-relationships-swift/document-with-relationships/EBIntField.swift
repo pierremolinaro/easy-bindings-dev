@@ -34,19 +34,19 @@ import Cocoa
   //    NSTextFieldDelegate delegate function
   //····················································································································
 
-  override func controlTextDidChange (inNotification : NSNotification) {
+  override func controlTextDidChange (_ inNotification : Notification) {
     if mSendContinously {
       if let inputString = currentEditor()?.string {
         // NSLog ("inputString %@", inputString)
-        let numberFormatter = self.formatter as! NSNumberFormatter
-        let number = numberFormatter.numberFromString (inputString)
+        let numberFormatter = self.formatter as! NumberFormatter
+        let number = numberFormatter.number (from: inputString)
         if number == nil {
-          control (
+          _ = control (
             self,
             didFailToFormatString:inputString, errorDescription:String (format:"The value “%@” is invalid.", inputString)
           )
         }else{
-          NSApp.sendAction (self.action, to: self.target, from: self)
+          NSApp.sendAction (self.action!, to: self.target, from: self)
         }
       }
     }
@@ -56,16 +56,16 @@ import Cocoa
   //    NSTextFieldDelegate delegate function
   //····················································································································
   
-  func control (control: NSControl,
+  func control (_ control: NSControl,
                 didFailToFormatString string: String,
                 errorDescription error: String?) -> Bool {
     let alert = NSAlert ()
     if let window = control.window {
       alert.messageText = error!
       alert.informativeText = "Please provide a valid value."
-      alert.addButtonWithTitle ("Ok")
-      alert.addButtonWithTitle ("Discard Change")
-      alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
+      alert.addButton (withTitle: "Ok")
+      alert.addButton (withTitle: "Discard Change")
+      alert.beginSheetModal (for: window, completionHandler:{(response : NSModalResponse) -> Void in
         if response == NSAlertSecondButtonReturn { // Discard Change
  //         self.integerValue = self.myIntegerValue.0
         }
@@ -83,7 +83,7 @@ import Cocoa
 
   //····················································································································
 
-  func bind_value (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
+  func bind_value (_ object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {
     mSendContinously = sendContinously
     mValueController = Controller_EBIntField_value (
       object:object,
@@ -132,12 +132,12 @@ final class Controller_EBIntField_value : EBSimpleController {
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBIntField_value.action(_:))
     if autoFormatter {
-      let formatter = NSNumberFormatter ()
+      let formatter = NumberFormatter ()
       mOutlet.formatter = formatter
     }else if mOutlet.formatter == nil {
-      presentErrorWindow (file, line:line, errorMessage:"the outlet has no formatter")
-    }else if !(mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
+      presentErrorWindow (file: file, line:line, errorMessage:"the outlet has no formatter")
+    }else if !(mOutlet.formatter is NumberFormatter) {
+      presentErrorWindow (file: file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
     mObject.addEBObserver (self)
   }
@@ -170,8 +170,8 @@ final class Controller_EBIntField_value : EBSimpleController {
 
   //····················································································································
 
-  func action (sender : EBIntField) {
-    mObject.validateAndSetProp (mOutlet.integerValue, windowForSheet:sender.window)
+  func action (_ sender : EBIntField) {
+    _ = mObject.validateAndSetProp (mOutlet.integerValue, windowForSheet:sender.window)
   }
 
   //····················································································································
@@ -186,16 +186,16 @@ final class Controller_EBIntField_value : EBSimpleController {
 
   //····················································································································
 
-  func checkOutlet (columnName : String, file:String, line:Int) {
+  func checkOutlet (_ columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBIntField) {
-        presentErrorWindow (file,
+        presentErrorWindow (file: file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBIntField"
         )
       }
     }else{
-      presentErrorWindow (file,
+      presentErrorWindow (file: file,
         line: line,
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBIntField)"
       )

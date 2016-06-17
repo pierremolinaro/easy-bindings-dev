@@ -80,8 +80,8 @@ private let DEBUG_EVENT = false
   //---------------- Reload data
     mTableView.reloadData ()
   //---------------- Update table view selection
-    if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {
-      mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
+    if !newTableViewSelectionIndexSet.isEqual (to: mTableView.selectedRowIndexes) {
+      mTableView.selectRowIndexes (newTableViewSelectionIndexSet as IndexSet, byExtendingSelection:false)
     }
   //---------------- Scroll first selected row to visible
     if newTableViewSelectionIndexSet.count > 0 {
@@ -119,8 +119,8 @@ private let DEBUG_EVENT = false
     }
   //---------------- Update table view selection
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
-    if !newTableViewSelectionIndexSet.isEqualToIndexSet (mTableView.selectedRowIndexes) {
-      mTableView.selectRowIndexes (newTableViewSelectionIndexSet, byExtendingSelection:false)
+    if !newTableViewSelectionIndexSet.isEqual (to: mTableView.selectedRowIndexes) {
+      mTableView.selectRowIndexes (newTableViewSelectionIndexSet as IndexSet, byExtendingSelection:false)
     }
   //---------------- Scroll first selected row to visible
     if newTableViewSelectionIndexSet.count > 0 {

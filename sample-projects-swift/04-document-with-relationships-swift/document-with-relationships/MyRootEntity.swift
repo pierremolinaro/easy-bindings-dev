@@ -76,7 +76,7 @@ class ToManyRelationshipReadWrite_MyRootEntity_mNames : ReadOnlyArrayOf_NameEnti
 
   //····················································································································
  
-  func setProp (inValue :  [NameEntity]) { } // Abstract method
+  func setProp (value :  [NameEntity]) { } // Abstract method
   
   //····················································································································
 
@@ -105,12 +105,12 @@ final class ToManyRelationshipProxy_MyRootEntity_mNames : ToManyRelationshipRead
  
    //····················································································································
  
-  override func setProp (inValue :  [NameEntity]) {
+  override func setProp (value : [NameEntity]) {
     switch self.prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let array) :
-      mModel?.setProp (array)
+      mModel?.setProp (value: array)
     }
   }
  
@@ -133,7 +133,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
         case .noSelection, .multipleSelection :
           break ;
         case .singleSelection (let v) :
-          updateManagedObjectToManyRelationshipDisplay (v, popUpButton:unwrappedExplorer)
+          updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
         }
       }
     }
@@ -169,24 +169,24 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.undoManager()?.registerUndoWithTarget (self, selector:#selector(ToManyRelationship_MyRootEntity_mNames.performUndo(_:)), object:oldValue)
+        owner?.undoManager()?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let valueExplorer = mValueExplorer {
-          updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
+          updateManagedObjectToManyRelationshipDisplay (objectArray: mValue, popUpButton: valueExplorer)
         }
       //--- Removed object set
-        let removedObjectSet = oldSet.subtract (mSet)
+        let removedObjectSet = oldSet.subtracting (mSet)
         for managedObject in removedObjectSet {
-          managedObject.setSignatureObserver (nil)
+          managedObject.setSignatureObserver (observer: nil)
           managedObject.mRoot.owner = nil ;
         }
         removeEBObserversOf_aValue_fromElementsOfSet (removedObjectSet)
         removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
       //--- Added object set
-        let addedObjectSet = mSet.subtract (oldSet)
+        let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : NameEntity in addedObjectSet {
-          managedObject.setSignatureObserver (self)
-          managedObject.mRoot.setProp (owner)
+          managedObject.setSignatureObserver (observer: self)
+          managedObject.mRoot.setProp (value: owner)
         }
         addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
         addEBObserversOf_name_toElementsOfSet (addedObjectSet)
@@ -202,30 +202,30 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
     }
   }
 
-  override func setProp (inValue :  [NameEntity]) { mValue = inValue }
+  override func setProp (value :  [NameEntity]) { mValue = value }
 
   var propval : [NameEntity] { get { return mValue ?? [NameEntity] () } }
 
   //····················································································································
 
-  func performUndo (oldValue : [NameEntity]) {
+  func performUndo (_ oldValue : [NameEntity]) {
     mValue = oldValue
   }
 
   //····················································································································
 
-  func remove (object : NameEntity) {
+  func remove (_ object : NameEntity) {
     if mSet.contains (object) {
       var array = mValue
-      let idx = array.indexOf (object)
-      array.removeAtIndex (idx!)
+      let idx = array.index (of: object)
+      array.remove (at: idx!)
       mValue = array
     }
   }
   
   //····················································································································
 
-  func add (object : NameEntity) {
+  func add (_ object : NameEntity) {
     if !mSet.contains (object) {
       var array = mValue
       array.append (object)
@@ -245,7 +245,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
     mSignatureObserver = observer
     for object in mValue {
-      object.setSignatureObserver (self)
+      object.setSignatureObserver (observer: self)
     }
   }
 
@@ -326,7 +326,7 @@ class MyRootEntity : EBManagedObject
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
     createEntryForToManyRelationshipNamed (
       "mNames",
@@ -351,22 +351,22 @@ class MyRootEntity : EBManagedObject
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    storeEntityArrayInDictionary (mNames.propval, inRelationshipName:"mNames", ioDictionary:ioDictionary) ;
+    store (managedObjectArray: mNames.propval, relationshipName:"mNames", intoDictionary: ioDictionary) ;
   }
 
   //····················································································································
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (inDictionary : NSDictionary,
-                                     inout managedObjectArray : [EBManagedObject]) {
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    mNames.setProp (readEntityArrayFromDictionary (
-      "mNames",
-      inDictionary:inDictionary,
-      managedObjectArray:&managedObjectArray
+    mNames.setProp (value: readEntityArrayFromDictionary (
+      inRelationshipName: "mNames",
+      inDictionary: inDictionary,
+      managedObjectArray: &managedObjectArray
     ) as! [NameEntity])
   }
 
@@ -376,15 +376,15 @@ class MyRootEntity : EBManagedObject
 
   override func resetToManyRelationships () {
     super.resetToManyRelationships ()
-    mNames.setProp (Array ())
+    mNames.setProp (value: Array ())
   }
 
   //····················································································································
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (inout objects : [EBManagedObject]) {
-    super.accessibleObjects (&objects)
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
     for managedObject : EBManagedObject in mNames.propval {
       objects.append (managedObject)
     }

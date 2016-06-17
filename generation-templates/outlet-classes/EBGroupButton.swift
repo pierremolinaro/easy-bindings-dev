@@ -97,7 +97,7 @@ import Cocoa
         if let button = v as? EBGroupButton where button.mMasterView == mMasterView {
           let tag = button.tag
           if tagSet.contains (tag) {
-            presentErrorWindow (#file, line:#line, errorMessage:"duplicated tag: " + String (tag))
+            presentErrorWindow (file: #file, line:#line, errorMessage:"duplicated tag: " + String (tag))
           }else{
             tagSet.insert (tag)
           }
@@ -106,7 +106,7 @@ import Cocoa
       var idx = 0
       for tag in tagSet.sort () {
         if tag != idx {
-          presentErrorWindow (#file, line:#line, errorMessage:"missing tag: " + String (tag))
+          presentErrorWindow (file: #file, line:#line, errorMessage:"missing tag: " + String (tag))
         }
         idx += 1
       }

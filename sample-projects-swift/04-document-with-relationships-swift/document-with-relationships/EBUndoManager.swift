@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBUndoManager) class EBUndoManager : NSUndoManager, EBUserClassNameProtocol {
+class EBUndoManager : UndoManager, EBUserClassNameProtocol {
 
   //····················································································································
   //    init
@@ -33,10 +33,10 @@ import Cocoa
   //    registerUndoWithTarget
   //····················································································································
 
-  override func registerUndoWithTarget (target:AnyObject, selector:Selector, object anObject:AnyObject!) {
-    super.registerUndoWithTarget (target, selector:selector, object:anObject)
+  override func registerUndo (withTarget target:AnyObject, selector:Selector, object anObject:AnyObject!) {
+    super.registerUndo (withTarget: target, selector:selector, object:anObject)
     if logEvents () {
-      appendToTransientEventLog ("registerUndoWithTarget (\(undoRegistrationEnabled), target \(target), selector \"\(selector)\", object \"\(anObject)\"\n")
+      appendToTransientEventLog ("registerUndoWithTarget (\(isUndoRegistrationEnabled), target \(target), selector \"\(selector)\", object \"\(anObject)\"\n")
     }
   }
 

@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_countItemMessage (self_2E_rootObject_2E_mNames_2E_count : Int) -> String {
+func compute_PMDocument_countItemMessage (_ self_2E_rootObject_2E_mNames_2E_count : Int) -> String {
 //--- START OF USER ZONE 2
   var result = "No Item"
   if self_2E_rootObject_2E_mNames_2E_count == 1 {

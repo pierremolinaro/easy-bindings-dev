@@ -165,32 +165,32 @@ import Cocoa
   }
 
   //····················································································································
-  //   storeEntityArrayInDictionary
+  //   store (managedObjectArray:relationshipName:intoDictionary)
   //····················································································································
 
-  final func storeEntityArrayInDictionary (inEntityArray : NSArray,
-                                           inRelationshipName: String,
-                                           ioDictionary : NSMutableDictionary) {
+  final func store (managedObjectArray : NSArray,
+                    relationshipName: String,
+                    intoDictionary : NSMutableDictionary) {
 
-    if inEntityArray.count > 0 {
+    if managedObjectArray.count > 0 {
       let indexArray = NSMutableArray ()
-      for object : AnyObject in inEntityArray {
+      for object : AnyObject in managedObjectArray {
         let managedObject = object as! EBManagedObject
         indexArray.add (NSNumber (value:managedObject.savingIndex))
       }
-      ioDictionary.setObject (indexArray, forKey:inRelationshipName)
+      intoDictionary.setObject (indexArray, forKey:relationshipName)
     }
   }
 
   //····················································································································
-  //   storeEntityInDictionary
+  //   store (managedObject:relationshipName:intoDictionary)
   //····················································································································
 
-  final func storeEntityInDictionary (inObject : EBManagedObject?,
-                                      inRelationshipName: String,
-                                      ioDictionary : NSMutableDictionary) {
-    if nil != inObject {
-      ioDictionary.setObject (NSNumber (value:inObject!.savingIndex), forKey:inRelationshipName)
+  final func store (managedObject : EBManagedObject?,
+                    relationshipName: String,
+                    intoDictionary : NSMutableDictionary) {
+    if let unwObject = managedObject {
+      intoDictionary.setObject (NSNumber (value:unwObject.savingIndex), forKey:relationshipName)
     }
   }
 
@@ -279,15 +279,15 @@ import Cocoa
 //   updateManagedObjectToOneRelationshipDisplay
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, button : NSButton?) {
+func updateManagedObjectToOneRelationshipDisplay (object : EBManagedObject?, button : NSButton?) {
   var stringValue = "nil"
-  if let unwrappedObject = inObject {
+  if let unwrappedObject = object {
     stringValue = explorerIndexString (unwrappedObject.mExplorerObjectIndex) + unwrappedObject.className
   }
-  button?.isEnabled = inObject != nil
+  button?.isEnabled = object != nil
   button?.title = stringValue
   button?.toolTip = stringValue
-  button?.target = inObject
+  button?.target = object
   button?.action = #selector(EBManagedObject.showObjectWindowFromExplorerButton(_:))
 }
 
@@ -295,17 +295,17 @@ func updateManagedObjectToOneRelationshipDisplay (inObject : EBManagedObject?, b
 //   updateManagedObjectToManyRelationshipDisplay
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func updateManagedObjectToManyRelationshipDisplay (inObjectArray : [EBManagedObject], popUpButton : NSPopUpButton?) {
+func updateManagedObjectToManyRelationshipDisplay (objectArray : [EBManagedObject], popUpButton : NSPopUpButton?) {
   var title = "No Object" ;
-  if inObjectArray.count == 1 {
+  if objectArray.count == 1 {
     title = "1 Object" ;
-  }else if inObjectArray.count > 1 {
-    title = String (format:"%lu objects", inObjectArray.count)
+  }else if objectArray.count > 1 {
+    title = String (format:"%lu objects", objectArray.count)
   }
   popUpButton?.removeAllItems ()
   popUpButton?.addItem (withTitle: title)
-  popUpButton?.isEnabled = inObjectArray.count > 0
-  for object : EBManagedObject in inObjectArray {
+  popUpButton?.isEnabled = objectArray.count > 0
+  for object : EBManagedObject in objectArray {
     let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
     popUpButton?.addItem (withTitle: stringValue)
     let item = popUpButton?.lastItem

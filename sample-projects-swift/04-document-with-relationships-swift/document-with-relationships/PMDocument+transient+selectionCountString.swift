@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_selectionCountString (self_2E_selController_2E_sortedArray_2E_count : Int) -> String {
+func compute_PMDocument_selectionCountString (_ self_2E_selController_2E_sortedArray_2E_count : Int) -> String {
 //--- START OF USER ZONE 2
   if self_2E_selController_2E_sortedArray_2E_count == 0 {
     return "No value"

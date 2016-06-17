@@ -33,10 +33,10 @@ class EBManagedObjectContext : EBObject {
   //    insertManagedObject
   //····················································································································
   
-  func insertManagedObject (object : EBManagedObject) {
+  func insertManagedObject (_ object : EBManagedObject) {
     if !mManagedObjectSet.contains(object) {
       mManagedObjectSet.insert (object)
-      mUndoManager?.registerUndoWithTarget(self, selector: #selector(EBManagedObjectContext.removeManagedObject(_:)), object: object)
+      mUndoManager?.registerUndo (withTarget: self, selector: #selector(removeManagedObject(_:)), object: object)
     }
   }
 
@@ -44,12 +44,12 @@ class EBManagedObjectContext : EBObject {
   //    removeManagedObject
   //····················································································································
   
-  func removeManagedObject (object : EBManagedObject) {
+  func removeManagedObject (_ object : EBManagedObject) {
     if mManagedObjectSet.contains(object) {
       object.resetToManyRelationships ()
       object.resetToOneRelationships ()
       mManagedObjectSet.remove (object)
-      mUndoManager?.registerUndoWithTarget(self, selector: #selector(EBManagedObjectContext.insertManagedObject(_:)), object: object)
+      mUndoManager?.registerUndo (withTarget: self, selector: #selector(insertManagedObject(_:)), object: object)
     }
   }
 
@@ -75,38 +75,24 @@ class EBManagedObjectContext : EBObject {
 
   func checkEntityReachabilityFromObject (rootObject : EBManagedObject, windowForSheet : NSWindow) {
   //--- Build and show Panel
-    let panelRect = NSRect (
-      x:0.0,
-      y:0.0,
-      width:295.0,
-      height:107.0
-    )
-    let panel = NSPanel (contentRect:panelRect,
-      styleMask:NSTitledWindowMask,
-      backing:NSBackingStoreType.Buffered,
-      defer:false
-    )
-    let textRect = NSRect (
-     x:17.0,
-     y:45.0,
-     width:261.0,
-     height:17.0
-    )
+    let panelRect = NSRect (x:0.0, y:0.0, width:295.0, height:107.0)
+    let panel = NSPanel (contentRect: panelRect, styleMask: [.titled], backing: .buffered, defer: false)
+    let textRect = NSRect (x:17.0, y:45.0, width:261.0, height:17.0)
     let tf = NSTextField (frame:textRect)
     tf.stringValue = "Checking Document Relationships..."
-    tf.bezeled = false
-    tf.bordered = false
+    tf.isBezeled = false
+    tf.isBordered = false
     tf.drawsBackground = false
-    tf.editable = false
-    tf.font = NSFont.boldSystemFontOfSize (0.0)
+    tf.isEditable = false
+    tf.font = NSFont.boldSystemFont (ofSize: 0.0)
     panel.contentView?.addSubview (tf)
   //--- Sheet during search
     windowForSheet.beginSheet(panel, completionHandler:nil)
-    let reachableObjects : Array<EBManagedObject> = reachableObjectsFromRootObject (rootObject)
+    let reachableObjects : Array<EBManagedObject> = reachableObjectsFromRootObject (rootObject: rootObject)
     windowForSheet.endSheet(panel)
   //--- 
-    let unreachableObjectSet = mManagedObjectSet.subtract (reachableObjects)
-    let unregisteredObjectSet = Set <EBManagedObject> (reachableObjects).subtract (mManagedObjectSet)
+    let unreachableObjectSet = mManagedObjectSet.subtracting (reachableObjects)
+    let unregisteredObjectSet = Set <EBManagedObject> (reachableObjects).subtracting (mManagedObjectSet)
   //---
     if (unreachableObjectSet.count + unregisteredObjectSet.count) == 0 { // Ok
       let alert = NSAlert ()
@@ -114,9 +100,7 @@ class EBManagedObjectContext : EBObject {
       alert.informativeText = String (format:"%lu managed object%@.",
         mManagedObjectSet.count, (mManagedObjectSet.count > 1) ? "s" : ""
       )
-      alert.beginSheetModalForWindow (windowForSheet,
-        completionHandler:nil
-      )
+      alert.beginSheetModal (for: windowForSheet, completionHandler:nil)
     }else{ // Error
       let alert = NSAlert ()
       alert.messageText = "Object Graph Error"
@@ -128,13 +112,13 @@ class EBManagedObjectContext : EBObject {
         unregisteredObjectSet.count,
         (unregisteredObjectSet.count > 1) ? "s" : ""
       )
-      alert.addButtonWithTitle ("Ignore Error")
-      alert.addButtonWithTitle ("Perform Correction")
-      alert.beginSheetModalForWindow (windowForSheet,
+      alert.addButton (withTitle: "Ignore Error")
+      alert.addButton (withTitle: "Perform Correction")
+      alert.beginSheetModal (for: windowForSheet,
         completionHandler: {(response : Int) in
           if response == 1001 { // Perform correction
-            self.mManagedObjectSet.subtractInPlace (unreachableObjectSet)
-            self.mManagedObjectSet.unionInPlace (unregisteredObjectSet)
+            self.mManagedObjectSet.subtract (unreachableObjectSet)
+            self.mManagedObjectSet.formUnion (unregisteredObjectSet)
           }
         }
       )
@@ -159,7 +143,7 @@ class EBManagedObjectContext : EBObject {
       let objectToExplore : EBManagedObject = objectsToExploreArray.last!
       objectsToExploreArray.removeLast ()
       var accessible = Array<EBManagedObject> ()
-      objectToExplore.accessibleObjects (&accessible)
+      objectToExplore.accessibleObjects (objects: &accessible)
       for object : AnyObject in accessible {
         let managedObject = object as! EBManagedObject
         if !reachableObjectSet.contains (managedObject) {
@@ -191,7 +175,7 @@ class EBManagedObjectContext : EBObject {
         NSLocalizedRecoverySuggestionErrorKey : "Cannot create object of \(inEntityTypeName) class",
       ]
       throw NSError (
-        domain:NSBundle.mainBundle ().bundleIdentifier!,
+        domain:Bundle.main ().bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
