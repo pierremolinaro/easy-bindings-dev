@@ -24,9 +24,9 @@ import Cocoa
   
   //····················································································································
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
-    mSelectedTagController?.updateModel (self)
-    return super.sendAction (inAction, to:to)
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
+    mSelectedTagController?.updateModel (sender: self)
+    return super.sendAction (action, to:to)
   }
 
   //····················································································································
@@ -41,7 +41,7 @@ import Cocoa
 
   private var mSelectedTagController : Controller_EBPopUpButton_selectedTag?
 
-  func bind_selectedTag (object:EBReadWriteProperty_Int, file:String, line:Int) {
+  func bind_selectedTag (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
     mSelectedTagController = Controller_EBPopUpButton_selectedTag (object:object, outlet:self, file:file, line:line)
   }
 
@@ -86,7 +86,7 @@ final class Controller_EBPopUpButton_selectedTag : EBSimpleController {
       mOutlet.enableFromValue (false)
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      let result = mOutlet.selectItemWithTag (v)
+      let result = mOutlet.selectItem (withTag: v)
       if !result {
         presentErrorWindow (file: #file, line:#line, errorMessage:"no item with tag: " + String (v))
       }
@@ -99,7 +99,7 @@ final class Controller_EBPopUpButton_selectedTag : EBSimpleController {
   //····················································································································
 
   func updateModel (sender : EBPopUpButton) {
-    mObject.validateAndSetProp (mOutlet.selectedTag (), windowForSheet:sender.window)
+    _ = mObject.validateAndSetProp (mOutlet.selectedTag (), windowForSheet:sender.window)
   }
 
   //····················································································································

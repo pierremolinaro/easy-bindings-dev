@@ -29,7 +29,7 @@ import Cocoa
 
   private var mValueController : Controller_EBTextView_value?
 
-  func bind_value (object:EBReadWriteProperty_String, file:String, line:Int) {
+  func bind_value (_ object:EBReadWriteProperty_String, file:String, line:Int) {
     mValueController = Controller_EBTextView_value (object:object, outlet:self, file:file, line:line)
   }
 
@@ -72,9 +72,9 @@ import Cocoa
 
   //····················································································································
 
-  func textDidChange (notification: NSNotification) {
+  func textDidChange (_ notification: Notification) {
     let str = mOutlet.string ?? ""
-    mObject.validateAndSetProp (str, windowForSheet:mOutlet.window)
+    _ = mObject.validateAndSetProp (str, windowForSheet:mOutlet.window)
   }
 
   //····················································································································
@@ -83,10 +83,10 @@ import Cocoa
     switch mObject.prop {
     case .noSelection, .multipleSelection :
       mOutlet.string = ""
-      mOutlet.editable = false
+      mOutlet.isEditable = false
     case .singleSelection (let propertyValue) :
       mOutlet.string = propertyValue
-      mOutlet.editable = true
+      mOutlet.isEditable = true
     }
   }
 

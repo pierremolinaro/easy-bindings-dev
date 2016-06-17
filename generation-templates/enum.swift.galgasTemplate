@@ -46,35 +46,35 @@ class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : EBAbstractProperty, EBReadOnlyEnumP
 
   //····················································································································
 
-  func compare (other : EBReadOnlyProperty_%!ENUM_TYPE_NAME%) -> NSComparisonResult {
+  func compare (other : EBReadOnlyProperty_%!ENUM_TYPE_NAME%) -> ComparisonResult {
     switch prop {
     case .noSelection :
       switch other.prop {
       case .noSelection :
-        return .OrderedSame
+        return .orderedSame
       default:
-        return .OrderedAscending
+        return .orderedAscending
       }
     case .multipleSelection :
       switch other.prop {
       case .noSelection :
-        return .OrderedDescending
+        return .orderedDescending
       case .multipleSelection :
-        return .OrderedSame
+        return .orderedSame
      case .singleSelection (_) :
-        return .OrderedAscending
+        return .orderedAscending
      }
    case .singleSelection (let currentValue) :
       switch other.prop {
       case .noSelection, .multipleSelection :
-        return .OrderedDescending
+        return .orderedDescending
       case .singleSelection (let otherValue) :
         if currentValue.rawValue < otherValue.rawValue {
-          return .OrderedAscending
+          return .orderedAscending
         }else if currentValue.rawValue > otherValue.rawValue {
-          return .OrderedDescending
+          return .orderedDescending
         }else{
-          return .OrderedSame
+          return .orderedSame
         }
       }
     }
@@ -88,7 +88,7 @@ class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : EBAbstractProperty, EBReadOnlyEnumP
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%, EBEnumPropertyProtocol {
-  weak var undoManager : NSUndoManager?
+  weak var undoManager : UndoManager?
 
   var mValueExplorer : NSTextField? {
     didSet {
@@ -105,14 +105,14 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
-        undoManager?.registerUndoWithTarget (self, selector:#selector(EBStoredProperty_%!ENUM_TYPE_NAME%.performUndo(_:)), object:NSNumber (integer:oldValue.rawValue))
+        undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:NSNumber (integer:oldValue.rawValue))
         postEvent ()
         clearSignatureCache ()
       }
     }
   }
 
-  func performUndo (oldValue : NSNumber) {
+  func performUndo (_ oldValue : NSNumber) {
     if let v = %!ENUM_TYPE_NAME% (rawValue:oldValue.integerValue) {
       mValue = v
     }
@@ -122,7 +122,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   var propval : %!ENUM_TYPE_NAME% { get { return mValue } }
 
-  func setProp (inValue : %!ENUM_TYPE_NAME%) { mValue = inValue }
+  func setProp (value: %!ENUM_TYPE_NAME%) { mValue = value }
 
   override func rawValue () -> Int {
     return mValue.rawValue
@@ -135,16 +135,16 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
   }
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
+    let ud = UserDefaults.standard ()
+    let value : AnyObject? = ud.object (forKey: inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).integerValue)
     }
   }
   
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    ud.setObject (NSNumber (integer:mValue.rawValue), forKey:inKey)
+    let ud = UserDefaults.standard ()
+    ud.set (NSNumber (value: mValue.rawValue), forKey:inKey)
   }
 
   func storeIn (dictionary: NSMutableDictionary, forKey inKey:String) {

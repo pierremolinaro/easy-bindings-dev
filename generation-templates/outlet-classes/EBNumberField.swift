@@ -40,7 +40,7 @@ import Cocoa
   //    NSTextFieldDelegate delegate function                                                                          *
   //···················································································································*
 
-  override func controlTextDidChange (inNotification : NSNotification) {
+  override func controlTextDidChange (inNotification : Notification) {
     if mSendContinously {
       if let inputString = currentEditor()?.string {
         // NSLog ("inputString %@", inputString)

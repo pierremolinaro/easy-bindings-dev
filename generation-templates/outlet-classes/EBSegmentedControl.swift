@@ -41,10 +41,10 @@ import Cocoa
 
   //···················································································································*
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
     selectViewFromSelectedSegmentIndex ()
     mValueController?.updateModel (self)
-    return super.sendAction (inAction, to:to)
+    return super.sendAction (action, to:to)
   }
 
   //···················································································································*
@@ -113,7 +113,7 @@ import Cocoa
 
   private var mValueController : Controller_EBSegmentedControl_selectedIndex?
 
-  func bind_selectedIndex (object:EBReadWriteProperty_Int, file:String, line:Int) {
+  func bind_selectedIndex (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
     mValueController = Controller_EBSegmentedControl_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 

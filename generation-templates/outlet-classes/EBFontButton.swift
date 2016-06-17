@@ -25,9 +25,9 @@ import Cocoa
   
   //····················································································································
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
     showFontManager ()
-    return super.sendAction (inAction, to:to)
+    return super.sendAction (action, to:to)
   }
 
   //····················································································································
@@ -35,7 +35,7 @@ import Cocoa
   func showFontManager () {
     if let font = mFont {
       self.window?.makeFirstResponder (self)
-      let fontManager = NSFontManager.sharedFontManager ()
+      let fontManager = NSFontManager.shared ()
       fontManager.delegate = self
       fontManager.setSelectedFont (font, isMultiple:false)
       fontManager.orderFrontFontPanel (self)
@@ -44,9 +44,9 @@ import Cocoa
 
   //····················································································································
 
-  override func changeFont (sender : AnyObject?) {
+  override func changeFont (_ sender : AnyObject?) {
     if let valueController = mValueController, fontManager = sender as! NSFontManager? {
-      let newFont = fontManager.convertFont (mFont!)
+      let newFont = fontManager.convert (mFont!)
       valueController.mObject.setProp (value: newFont)
     }
   }
@@ -71,7 +71,7 @@ import Cocoa
 
   private var mValueController : Controller_EBFontButton_fontValue?
 
-  func bind_fontValue (object:EBReadWriteProperty_NSFont, file:String, line:Int) {
+  func bind_fontValue (_ object:EBReadWriteProperty_NSFont, file:String, line:Int) {
     mValueController = Controller_EBFontButton_fontValue (object:object, outlet:self, file:file, line:line)
   }
 
@@ -118,7 +118,7 @@ import Cocoa
       mOutlet.title = ""
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.mySetFont (v)
+      mOutlet.mySetFont (font: v)
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.title = ""

@@ -18,7 +18,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   private var mObserversOf_%!mStoredPropertyName% = EBWeakEventSet ()
 
-  final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+  final func addEBObserverOf_%!mStoredPropertyName% (_ inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -30,7 +30,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+  final func removeEBObserverOf_%!mStoredPropertyName% (_ inObserver : EBEvent) {
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -42,7 +42,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
+  final func addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (_ inSet : Set<%!CLASS_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
         managedObject.%!mStoredPropertyName%.addEBObserver (observer)
@@ -50,7 +50,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     }
   }
 
-  final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (inSet : Set<%!CLASS_NAME%>) {
+  final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (_ inSet : Set<%!CLASS_NAME%>) {
     for managedObject in inSet {
       for observer in mObserversOf_%!mStoredPropertyName% {
         managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
@@ -67,7 +67,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   private var mObserversOf_%!mTransientName% = EBWeakEventSet ()
 
-  final func addEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+  final func addEBObserverOf_%!mTransientName% (_ inObserver : EBEvent) {
     mObserversOf_%!mTransientName%.insert (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -79,7 +79,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     }
   }
 
-  final func removeEBObserverOf_%!mTransientName% (inObserver : EBEvent) {
+  final func removeEBObserverOf_%!mTransientName% (_ inObserver : EBEvent) {
     mObserversOf_%!mTransientName%.remove (inObserver)
     switch prop {
     case .noSelection, .multipleSelection :
@@ -188,13 +188,13 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
-    let value : AnyObject? = ud.objectForKey (inKey)
+    let ud = UserDefaults.standard ()
+    let value : AnyObject? = ud.object (forKey: inKey)
     if let unwValue : AnyObject = value {
       if let array : [NSDictionary] = unwValue as? [NSDictionary] {
         for dict in array {
           let object = %!CLASS_NAME% ()
-          object.setUpWithDictionary (dict)
+          object.setUp (withDictionary: dict)
           mValue.append (object)
         }
       }
@@ -204,14 +204,14 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = NSUserDefaults.standardUserDefaults ()
+    let ud = UserDefaults.standard ()
     var array = [NSDictionary] ()
     for object in mValue {
       let dict = NSMutableDictionary ()
-      object.saveIntoDictionary (dict)
+      object.saveInto (dictionary: dict)
       array.append (dict)
     }
-    ud.setObject (array, forKey:inKey)
+    ud.set (array, forKey:inKey)
   }
 
   //····················································································································
@@ -227,13 +227,13 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
        //   owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
        // }
       //--- Removed object set
-        let removedSet = oldSet.subtract (mSet)
+        let removedSet = oldSet.subtracting (mSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (removedSet)\n%
 end
 %      //--- Added object set
-        let addedSet = mSet.subtract (oldSet)
+        let addedSet = mSet.subtracting (oldSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (addedSet)\n%
@@ -257,7 +257,7 @@ end
 
   //····················································································································
 
-  func setProp (inValue :  [%!CLASS_NAME%]) { mValue = inValue }
+  func setProp (value:  [%!CLASS_NAME%]) { mValue = value }
 
   //····················································································································
 
@@ -364,7 +364,7 @@ end
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (inout y : CGFloat, view : NSView) {
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
     super.populateExplorerWindow (&y, view:view)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
@@ -395,10 +395,10 @@ end
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (ioDictionary : NSMutableDictionary) {
-    super.saveIntoDictionary (ioDictionary)
+  override func saveInto (dictionary : NSMutableDictionary) {
+    super.saveInto (dictionary: dictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.storeIn (dictionary: dictionary, forKey: "%!mStoredPropertyName%")\n%
 end
   for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
     if mCallerName.string == "saveIntoDictionary" then
@@ -411,10 +411,10 @@ end
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (inDictionary : NSDictionary) {
-    super.setUpWithDictionary (inDictionary)
+  override func setUp (withDictionary dictionary : NSDictionary) {
+    super.setUp (withDictionary: dictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.readFrom (dictionary: inDictionary, forKey:"%!mStoredPropertyName%")\n%
+%    %!mStoredPropertyName%.readFrom (dictionary: dictionary, forKey:"%!mStoredPropertyName%")\n%
 end
   for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
     if mCallerName.string == "setUpWithDictionary" then
@@ -439,8 +439,8 @@ typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 /* class EBReadWriteProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
-  func setProp (inValue : %!CLASS_NAME%) { } // Abstract method
-  func validateAndSetProp (candidateValue : %!CLASS_NAME%, windowForSheet inWindow:NSWindow?) -> Bool {
+  func setProp (value: %!CLASS_NAME%) { } // Abstract method
+  func validateAndSetProp (_ candidateValue : %!CLASS_NAME%, windowForSheet inWindow:NSWindow?) -> Bool {
     return false
   } // Abstract method
 } */
@@ -495,15 +495,15 @@ typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_
 
   //····················································································································
   
-  override func setProp (inValue : %!CLASS_NAME%) {
+  override func setProp (value: %!CLASS_NAME%) {
     if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (inValue)
+      unWriteModelFunction (value)
     }
   }
 
   //····················································································································
 
-  override func validateAndSetProp (candidateValue : %!CLASS_NAME%,
+  override func validateAndSetProp (_ candidateValue : %!CLASS_NAME%,
                                     windowForSheet inWindow:NSWindow?) -> Bool {
     var result = false
     if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
@@ -554,7 +554,7 @@ typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_
 
   var propval : %!CLASS_NAME% { get { return mValue } }
 
-  override func setProp (inValue : %!CLASS_NAME%) { mValue = inValue }
+  override func setProp (value: %!CLASS_NAME%) { mValue = value }
 
   //····················································································································
 

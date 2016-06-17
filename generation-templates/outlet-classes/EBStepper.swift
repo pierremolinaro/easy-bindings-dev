@@ -32,9 +32,9 @@ import Cocoa
 
   //····················································································································
 
-  override func sendAction (inAction : Selector, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
     mIntValueController?.updateModel ()
-    return super.sendAction (inAction, to:to)
+    return super.sendAction (action, to:to)
   }
 
   //····················································································································
@@ -43,9 +43,9 @@ import Cocoa
 
   private var mIntValueController : Controller_EBStepper_value?
 
-  func bind_value (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
+  func bind_value (_ object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {
     mIntValueController = Controller_EBStepper_value (object:object, outlet:self, file:file, line:line)
-    self.continuous = sendContinously
+    self.isContinuous = sendContinously
   }
 
   func unbind_value () {
@@ -102,7 +102,7 @@ final class Controller_EBStepper_value : EBSimpleController {
   //····················································································································
 
   func updateModel () {
-    mObject.validateAndSetProp (Int (round (mOutlet.doubleValue)), windowForSheet:mOutlet.window)
+    _ = mObject.validateAndSetProp (Int (round (mOutlet.doubleValue)), windowForSheet:mOutlet.window)
   }
 
   //····················································································································

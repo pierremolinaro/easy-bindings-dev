@@ -44,7 +44,7 @@ import Cocoa
 
   private var mValueController : Controller_EBNumberField_readOnlyValue?
 
-  func bind_valueObserver (object:EBReadOnlyProperty_Int, file:String, line:Int) {
+  func bind_valueObserver (_ object:EBReadOnlyProperty_Int, file:String, line:Int) {
     mValueController = Controller_EBNumberField_readOnlyValue (object:object, outlet:self, file:file, line:line)
   }
 
