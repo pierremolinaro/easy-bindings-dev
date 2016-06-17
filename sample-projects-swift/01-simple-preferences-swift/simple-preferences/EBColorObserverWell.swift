@@ -15,7 +15,7 @@ import Cocoa
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
-    self.enabled = false
+    self.isEnabled = false
   }
 
   //···················································································································*
@@ -23,7 +23,7 @@ import Cocoa
   override init (frame:NSRect) {
     super.init (frame:frame)
     noteObjectAllocation (self)
-    self.enabled = false
+    self.isEnabled = false
   }
   
   //···················································································································*
@@ -38,7 +38,7 @@ import Cocoa
 
   private var mValueController : Controller_EBColorObserverWell_color?
 
-  func bind_colorObserver (object:EBReadOnlyProperty_NSColor, file:String, line:Int) {
+  func bind_colorObserver (_ object:EBReadOnlyProperty_NSColor, file:String, line:Int) {
     mValueController = Controller_EBColorObserverWell_color (object:object, outlet:self, file:file, line:line)
   }
 
@@ -79,7 +79,7 @@ final class Controller_EBColorObserverWell_color : EBSimpleController {
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection, .multipleSelection :
-      mOutlet.color = NSColor.whiteColor ()
+      mOutlet.color = NSColor.white ()
     case .singleSelection (let v) :
       mOutlet.color = v
     }

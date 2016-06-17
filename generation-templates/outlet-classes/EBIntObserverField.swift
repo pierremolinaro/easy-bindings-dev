@@ -14,9 +14,9 @@ import Cocoa
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
-    self.editable = false
+    self.isEditable = false
     self.drawsBackground = false
-    self.bordered = false
+    self.isBordered = false
     noteObjectAllocation (self)
   }
 
@@ -24,9 +24,9 @@ import Cocoa
 
   override init (frame:NSRect) {
     super.init (frame:frame)
-    self.editable = false
+    self.isEditable = false
     self.drawsBackground = false
-    self.bordered = false
+    self.isBordered = false
     noteObjectAllocation (self)
   }
   
@@ -44,7 +44,7 @@ import Cocoa
 
   //···················································································································*
 
-  func bind_valueObserver (object:EBReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
+  func bind_valueObserver (_ object:EBReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
     mValueController = Controller_EBIntObserverField_readOnlyValue (
       object:object,
       outlet:self,
@@ -82,11 +82,11 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
     if autoFormatter {
-      let formatter = NSNumberFormatter ()
+      let formatter = NumberFormatter ()
       mOutlet.formatter = formatter
     }else if mOutlet.formatter == nil {
       presentErrorWindow (file, line:line, errorMessage:"the outlet has no formatter")
-    }else if !(mOutlet.formatter is NSNumberFormatter) {
+    }else if !(mOutlet.formatter is NumberFormatter) {
       presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
     mObject.addEBObserver (self)
@@ -128,7 +128,7 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 
   //····················································································································
 
-  func checkOutlet (columnName : String, file:String, line:Int) {
+  func checkOutlet (_ columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBIntObserverField) {
         presentErrorWindow (file,

@@ -233,7 +233,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
     case dateType :
       found = true
       if [predefinedDates () hasKey !mValue.string] then
-        outSwiftDefaultValueAsString = "NSDate ()"
+        outSwiftDefaultValueAsString = "Date ()"
       else
         error mValue : "unknown predefined date"  
       end

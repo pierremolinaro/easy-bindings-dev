@@ -24,14 +24,14 @@ if COMPARABLE then
 %
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_%!CLASS_NAME% (left : EBReadOnlyProperty_%!CLASS_NAME%, right : EBReadOnlyProperty_%!CLASS_NAME%) -> NSComparisonResult {
+func compare_%!CLASS_NAME% (left : EBReadOnlyProperty_%!CLASS_NAME%, right : EBReadOnlyProperty_%!CLASS_NAME%) -> ComparisonResult {
   switch left.prop {
   case .noSelection :
     switch right.prop {
     case .noSelection :
-      return .OrderedSame
+      return .orderedSame
     default:
-      return .OrderedAscending
+      return .orderedAscending
     }
   case .multipleSelection :
     switch right.prop {
@@ -45,14 +45,14 @@ func compare_%!CLASS_NAME% (left : EBReadOnlyProperty_%!CLASS_NAME%, right : EBR
  case .singleSelection (let currentValue) :
     switch right.prop {
     case .noSelection, .multipleSelection :
-      return .OrderedDescending
+      return .orderedDescending
     case .singleSelection (let otherValue) :
       if currentValue < otherValue {
-        return .OrderedAscending
+        return .orderedAscending
       }else if currentValue > otherValue {
-        return .OrderedDescending
+        return .orderedDescending
       }else{
-        return .OrderedSame
+        return .orderedSame
       }
     }
   }
