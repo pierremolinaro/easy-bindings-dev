@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_canRemoveString (self_2E_nameController_2E_selectedArray_2E_count : Int) -> String {
+func compute_PMDocument_canRemoveString (_ self_2E_nameController_2E_selectedArray_2E_count : Int) -> String {
 //--- START OF USER ZONE 2
   return String (format:"Can remove: %@", self_2E_nameController_2E_selectedArray_2E_count > 0 ? "yes" : "no")
 //--- END OF USER ZONE 2

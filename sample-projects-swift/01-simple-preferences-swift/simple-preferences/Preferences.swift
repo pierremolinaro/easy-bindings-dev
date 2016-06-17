@@ -219,52 +219,52 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mColorWell' outlet not nil
     if nil == mColorWell {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mColorWell' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mColorWell' outlet is nil")
     }
   //--- Check mContinousColorWell' outlet not nil
     if nil == mContinousColorWell {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mContinousColorWell' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mContinousColorWell' outlet is nil")
     }
   //--- Check mDatePicker' outlet not nil
     if nil == mDatePicker {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mDatePicker' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mDatePicker' outlet is nil")
     }
   //--- Check mIntegerObserverTextField' outlet not nil
     if nil == mIntegerObserverTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mIntegerObserverTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mIntegerObserverTextField' outlet is nil")
     }
   //--- Check mIntegerTextField' outlet not nil
     if nil == mIntegerTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mIntegerTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mIntegerTextField' outlet is nil")
     }
   //--- Check mObserverColorWell' outlet not nil
     if nil == mObserverColorWell {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mObserverColorWell' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mObserverColorWell' outlet is nil")
     }
   //--- Check myObserverTextField' outlet not nil
     if nil == myObserverTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myObserverTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myObserverTextField' outlet is nil")
     }
   //--- Check myOtherTextField' outlet not nil
     if nil == myOtherTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myOtherTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myOtherTextField' outlet is nil")
     }
   //--- Check myTextField' outlet not nil
     if nil == myTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myTextField' outlet is nil")
     }
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    myTextField?.bind_value (self.myString, file:#file, line:#line, sendContinously:false)
-    myOtherTextField?.bind_value (self.myString, file:#file, line:#line, sendContinously:true)
-    myObserverTextField?.bind_valueObserver (self.myString, file:#file, line:#line)
-    mContinousColorWell?.bind_color (self.mColor, file:#file, line:#line, sendContinously:true)
-    mColorWell?.bind_color (self.mColor, file:#file, line:#line, sendContinously:false)
-    mObserverColorWell?.bind_colorObserver (self.mColor, file:#file, line:#line)
-    mDatePicker?.bind_date (self.mDate, file:#file, line:#line)
-    mIntegerTextField?.bind_value (self.mIntegerValue, file:#file, line:#line, sendContinously:true, autoFormatter:true)
-    mIntegerObserverTextField?.bind_valueObserver (self.mIntegerValue, file:#file, line:#line, autoFormatter:true)
+    myTextField?.bind_value (self.myString, file: #file, line: #line, sendContinously:false)
+    myOtherTextField?.bind_value (self.myString, file: #file, line: #line, sendContinously:true)
+    myObserverTextField?.bind_valueObserver (self.myString, file: #file, line: #line)
+    mContinousColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:true)
+    mColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:false)
+    mObserverColorWell?.bind_colorObserver (self.mColor, file: #file, line: #line)
+    mDatePicker?.bind_date (self.mDate, file: #file, line: #line)
+    mIntegerTextField?.bind_value (self.mIntegerValue, file: #file, line: #line, sendContinously:true, autoFormatter:true)
+    mIntegerObserverTextField?.bind_valueObserver (self.mIntegerValue, file: #file, line: #line, autoFormatter:true)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions

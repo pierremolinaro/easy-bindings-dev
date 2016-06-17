@@ -133,6 +133,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					F4C10BF22AA353E27879133C = {
+						LastSwiftMigration = 0800;
+					};
+				};
 			};
 			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "transient-property" */;
 			compatibilityVersion = "Xcode 2.4";
@@ -195,6 +200,7 @@
 				INFOPLIST_FILE = "transient-property/Info.plist";
 				PRODUCT_NAME = "transient-property";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Default;
 		};

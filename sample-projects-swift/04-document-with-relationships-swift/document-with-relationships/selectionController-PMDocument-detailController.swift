@@ -25,8 +25,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
 
   func bind_selection (model : ReadOnlyArrayOf_NameEntity, file:String, line:Int) {
     mModel = model
-    bind_property_aValue (model)
-    bind_property_name (model)
+    bind_property_aValue (model: model)
+    bind_property_name (model: model)
   }
 
   //····················································································································
@@ -38,11 +38,11 @@ final class SelectionController_PMDocument_detailController : EBObject {
 
   //····················································································································
 
-  final func addExplorer (name : String, inout y : CGFloat, view : NSView) {
-    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+  final func addExplorer (name : String, y : inout CGFloat, view : NSView) {
+    let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
     let tf = NSTextField (frame:secondColumn (y))
-    tf.enabled = true
-    tf.editable = false
+    tf.isEnabled = true
+    tf.isEditable = false
     tf.stringValue = name
     tf.font = font
     view.addSubview (tf)
@@ -61,13 +61,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
   func buildExplorerWindow () {
   //-------------------------------------------------- Create Window
     let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
-    mExplorerWindow = NSWindow (
-      contentRect:r,
-      styleMask:NSTitledWindowMask | NSClosableWindowMask,
-      backing:NSBackingStoreType.Buffered,
-      defer:true,
-      screen:nil
-    )
+    mExplorerWindow = NSWindow (contentRect: r, styleMask: [.titled, .closable], backing: .buffered, defer: true, screen: nil)
   //-------------------------------------------------- Adding properties
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
@@ -94,7 +88,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
-    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (.closeButton)
     closeButton?.target = self
     closeButton?.action = #selector(SelectionController_PMDocument_detailController.deleteSelectionControllerWindowAction(_:))
   //--- Set window title
@@ -132,7 +126,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //····················································································································
 
   func clearObjectExplorer () {
-    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (.closeButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -142,7 +136,6 @@ final class SelectionController_PMDocument_detailController : EBObject {
 
   private final func bind_property_aValue (model : ReadOnlyArrayOf_NameEntity) {
     model.addEBObserverOf_aValue (aValue)
-//    model.addEBObserver (aValue)
     aValue.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -184,7 +177,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
           break
         case .singleSelection (let v) :
           for object in v {
-            object.aValue.setProp (inValue)
+            object.aValue.setProp (value: inValue)
           }
         }
       }
@@ -213,7 +206,6 @@ final class SelectionController_PMDocument_detailController : EBObject {
 
   private final func bind_property_name (model : ReadOnlyArrayOf_NameEntity) {
     model.addEBObserverOf_name (name)
-//    model.addEBObserver (name)
     name.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
@@ -255,7 +247,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
           break
         case .singleSelection (let v) :
           for object in v {
-            object.name.setProp (inValue)
+            object.name.setProp (value: inValue)
           }
         }
       }

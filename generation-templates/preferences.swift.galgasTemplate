@@ -117,7 +117,7 @@ end
 for () in OUTLET_MAP do
    %  //--- Check %!lkey.string%' outlet not nil\n%
    %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (#file, line:#line, errorMessage:"the '%!lkey.string%' outlet is nil")\n%
+   %      presentErrorWindow (file: #file, line: #line, errorMessage: "the '%!lkey.string%' outlet is nil")\n%
    %    }\n%
 end
 %  //--- Install compute functions for transients
@@ -145,7 +145,7 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
   for () in mBoundObjectStringList do
     !mValue%, %
   end
-  %file:#file, line:#line%!mBindingOptionsString%)\n%
+  %file: #file, line: #line%!mBindingOptionsString%)\n%
 end
 %  //--- Install multiple bindings
 %
@@ -160,19 +160,19 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %      computeFunction:{\n%
   %        return %![mBoundObjectExpression expressionString]%\n%
   %      },\n%
-  %      file:#file, line:#line\n%
+  %      file: #file, line: #line\n%
   %    )\n%
 end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName%.bind_modelAndView (
-      %!mModelString%,
-      tableViewArray:[%
+      model: %!mModelString%,
+      tableViewArray: [%
       ![TABLE_VALUE_BINDING_GENERATION_LIST outletNameListForController !mControllerName]
       %],
-      file:#file,
-      line:#line
+      file: #file,
+      line: #line
     )\n%
 end
 %  //--------------------------- Set targets / actions

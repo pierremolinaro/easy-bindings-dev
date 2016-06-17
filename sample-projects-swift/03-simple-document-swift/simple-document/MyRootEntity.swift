@@ -18,7 +18,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_myString (inObserver : EBEvent) {
+  final func addEBObserverOf_myString (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_myString.insert (inObserver)
     switch prop {
@@ -33,7 +33,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_myString (inObserver : EBEvent) {
+  final func removeEBObserverOf_myString (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_myString.remove (inObserver)
     switch prop {
@@ -74,7 +74,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_myColor (inObserver : EBEvent) {
+  final func addEBObserverOf_myColor (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_myColor.insert (inObserver)
     switch prop {
@@ -89,7 +89,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_myColor (inObserver : EBEvent) {
+  final func removeEBObserverOf_myColor (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_myColor.remove (inObserver)
     switch prop {

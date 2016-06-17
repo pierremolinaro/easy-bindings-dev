@@ -90,7 +90,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     case .singleSelection (let shouldChange) :
       if shouldChange {
         version += 1
-        mVersionObserver.setProp (inValue: version)
+        mVersionObserver.setProp (value: version)
         mVersionShouldChangeObserver.updateStartUpSignature ()
       }
     }
@@ -187,7 +187,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
   //--- Read version from file
-    mVersionObserver.setProp (inValue: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
+    mVersionObserver.setProp (value: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
   //--- Read data
     let dataFormat = dataScanner.parseByte ()
     let fileData = dataScanner.parseAutosizedData ()
@@ -435,7 +435,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   var mValueExplorer : NSButton? {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
-        updateManagedObjectToOneRelationshipDisplay (inObject: mRootObject, button:unwrappedExplorer)
+        updateManagedObjectToOneRelationshipDisplay (object: mRootObject, button:unwrappedExplorer)
       }
     }
   }
@@ -534,7 +534,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   final func incrementVersionNumber () {
-    mVersionObserver.setProp (inValue: mVersionObserver.propval + 1)
+    mVersionObserver.setProp (value: mVersionObserver.propval + 1)
   }
 
   //····················································································································

@@ -29,7 +29,7 @@ end%
     mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mType isEntityType] then
-%    bind_property_%!lkey.string% (model)\n%
+%    bind_property_%!lkey.string% (model: model)\n%
 end
 end%  }
 
@@ -42,11 +42,11 @@ end%  }
 
   //····················································································································
 
-  final func addExplorer (name : String, inout y : CGFloat, view : NSView) {
-    let font = NSFont.boldSystemFontOfSize (NSFont.smallSystemFontSize ())
+  final func addExplorer (name : String, y : inout CGFloat, view : NSView) {
+    let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
     let tf = NSTextField (frame:secondColumn (y))
-    tf.enabled = true
-    tf.editable = false
+    tf.isEnabled = true
+    tf.isEditable = false
     tf.stringValue = name
     tf.font = font
     view.addSubview (tf)
@@ -65,13 +65,7 @@ end%  }
   func buildExplorerWindow () {
   //-------------------------------------------------- Create Window
     let r = NSRect (x:20.0, y:20.0, width:10.0, height:10.0)
-    mExplorerWindow = NSWindow (
-      contentRect:r,
-      styleMask:NSTitledWindowMask | NSClosableWindowMask,
-      backing:NSBackingStoreType.Buffered,
-      defer:true,
-      screen:nil
-    )
+    mExplorerWindow = NSWindow (contentRect: r, styleMask: [.titled, .closable], backing: .buffered, defer: true, screen: nil)
   //-------------------------------------------------- Adding properties
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
@@ -94,7 +88,7 @@ end
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
-    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (.closeButton)
     closeButton?.target = self
     closeButton?.action = #selector(SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME%.deleteSelectionControllerWindowAction(_:))
   //--- Set window title
@@ -132,7 +126,7 @@ end
   //····················································································································
 
   func clearObjectExplorer () {
-    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.CloseButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (.closeButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -143,7 +137,6 @@ if not [mType isEntityType] then
 %  //···················································································································*\n\n% 
 %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
 %    model.addEBObserverOf_%!lkey.string% (%!lkey.string%)\n%
-%//    model.addEBObserver (%!lkey.string%)\n%
 %    %!lkey.string%.readModelFunction = {\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
@@ -185,7 +178,7 @@ if not [mType isEntityType] then
 %          break\n%
 %        case .singleSelection (let v) :\n%
 %          for object in v {\n%
-%            object.%!lkey.string%.setProp (inValue)\n%
+%            object.%!lkey.string%.setProp (value: inValue)\n%
 %          }\n%
 %        }\n%
 %      }\n%

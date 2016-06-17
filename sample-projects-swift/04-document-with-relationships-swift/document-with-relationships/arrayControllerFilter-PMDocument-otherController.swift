@@ -10,7 +10,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func arrayControllerFilter_PMDocument_otherController (aValue : Int) -> Bool {
+func arrayControllerFilter_PMDocument_otherController (_ aValue: Int) -> Bool {
 
 //--- START OF USER ZONE 2
   return (aValue & 1) == 0

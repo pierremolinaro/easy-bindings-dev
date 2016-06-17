@@ -66,7 +66,7 @@ private func installDebugMenu () {
                                       owner:debugObject,
                                       topLevelObjects:&debugObject.mTopLevelObjects)
     if !ok {
-      presentErrorWindow (#file, line: #line, errorMessage: "Cannot load 'EBAllocationDebug' nib file") ;
+      presentErrorWindow (file: #file, line: #line, errorMessage: "Cannot load 'EBAllocationDebug' nib file") ;
     }
   }
 }

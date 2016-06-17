@@ -104,7 +104,7 @@ import Cocoa
   //···················································································································· 
 
   func updateModel () {
-    mObject.setProp (mOutlet.state == NSOnState)
+    mObject.setProp (value: mOutlet.state == NSOnState)
   }
 }
 
@@ -121,13 +121,13 @@ import Cocoa
   func checkOutlet (columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBSwitch) {
-        presentErrorWindow (file,
+        presentErrorWindow (file: file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBSwitch"
         )
       }
     }else{
-      presentErrorWindow (file,
+      presentErrorWindow (file: file,
         line: line,
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBSwitch)"
       )

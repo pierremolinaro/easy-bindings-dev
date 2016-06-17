@@ -148,23 +148,23 @@ var g_Preferences : Preferences? = nil
     window?.contentView = view
   //--- Check mFirstNameTextField' outlet not nil
     if nil == mFirstNameTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mFirstNameTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mFirstNameTextField' outlet is nil")
     }
   //--- Check mFullNameTextField' outlet not nil
     if nil == mFullNameTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mFullNameTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mFullNameTextField' outlet is nil")
     }
   //--- Check mLastNameTextField' outlet not nil
     if nil == mLastNameTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mLastNameTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mLastNameTextField' outlet is nil")
     }
   //--- Check mUpperCaseFullNameTextField' outlet not nil
     if nil == mUpperCaseFullNameTextField {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'mUpperCaseFullNameTextField' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
   //--- Check myButton' outlet not nil
     if nil == myButton {
-      presentErrorWindow (#file, line:#line, errorMessage:"the 'myButton' outlet is nil")
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myButton' outlet is nil")
     }
   //--- Install compute functions for transients
     mFullName.readModelFunction = { [weak self] in
@@ -213,10 +213,10 @@ var g_Preferences : Preferences? = nil
     self.mLastName.addEBObserver (mFullName)
     self.mFullName.addEBObserver (mUpperCaseFullName)
   //--- Install bindings
-    mLastNameTextField?.bind_value (self.mLastName, file:#file, line:#line, sendContinously:true)
-    mFirstNameTextField?.bind_value (self.mFirstName, file:#file, line:#line, sendContinously:false)
-    mFullNameTextField?.bind_valueObserver (self.mFullName, file:#file, line:#line)
-    mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName, file:#file, line:#line)
+    mLastNameTextField?.bind_value (self.mLastName, file: #file, line: #line, sendContinously:true)
+    mFirstNameTextField?.bind_value (self.mFirstName, file: #file, line: #line, sendContinously:false)
+    mFullNameTextField?.bind_valueObserver (self.mFullName, file: #file, line: #line)
+    mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName, file: #file, line: #line)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions

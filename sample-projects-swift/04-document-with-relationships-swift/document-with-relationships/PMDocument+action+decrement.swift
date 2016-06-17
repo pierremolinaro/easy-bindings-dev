@@ -12,10 +12,10 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension PMDocument {
-  func decrement (inSender : NSObject) {
+  func decrement (_ sender : NSObject) {
 //--- START OF USER ZONE 2
     for object in rootObject.mNames.propval {
-      object.aValue.setProp (object.aValue.propval - 1)
+      object.aValue.setProp (value: object.aValue.propval - 1)
     }
 //--- END OF USER ZONE 2
   }

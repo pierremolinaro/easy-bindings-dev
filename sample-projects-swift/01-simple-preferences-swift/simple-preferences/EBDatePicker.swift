@@ -94,7 +94,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
   //···················································································································*
 
   func action (_ sender : AnyObject!) {
-    mObject.setProp (inValue: mOutlet.dateValue)
+    mObject.setProp (value: mOutlet.dateValue)
   }
 
 }

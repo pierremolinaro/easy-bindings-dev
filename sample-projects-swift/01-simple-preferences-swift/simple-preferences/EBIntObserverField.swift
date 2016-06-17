@@ -85,9 +85,9 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
       let formatter = NumberFormatter ()
       mOutlet.formatter = formatter
     }else if mOutlet.formatter == nil {
-      presentErrorWindow (file, line:line, errorMessage:"the outlet has no formatter")
+      presentErrorWindow (file: file, line:line, errorMessage:"the outlet has no formatter")
     }else if !(mOutlet.formatter is NumberFormatter) {
-      presentErrorWindow (file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
+      presentErrorWindow (file: file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")
     }
     mObject.addEBObserver (self)
   }
@@ -131,13 +131,13 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
   func checkOutlet (_ columnName : String, file:String, line:Int) {
     if let cellOutlet : NSObject = mCellOutlet {
       if !(cellOutlet is EBIntObserverField) {
-        presentErrorWindow (file,
+        presentErrorWindow (file: file,
           line: line,
           errorMessage:"\"\(columnName)\" column view is not an instance of EBIntObserverField"
         )
       }
     }else{
-      presentErrorWindow (file,
+      presentErrorWindow (file: file,
         line: line,
         errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBIntObserverField)"
       )

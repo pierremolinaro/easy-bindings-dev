@@ -20,7 +20,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+  final func addEBObserverOf_%!mStoredPropertyName% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
@@ -35,7 +35,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mStoredPropertyName% (inObserver : EBEvent) {
+  final func removeEBObserverOf_%!mStoredPropertyName% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
@@ -228,7 +228,7 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : Re
 
   //····················································································································
  
-  func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) { } // Abstract method
+  func setProp (value :  [%![mRelationshipType swiftTypeName]%]) { } // Abstract method
   
   //····················································································································
 
@@ -257,12 +257,12 @@ final class ToManyRelationshipProxy_%!ENTITY_NAME%_%!mToManyRelationshipName% : 
  
    //····················································································································
  
-  override func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) {
+  override func setProp (value : [%![mRelationshipType swiftTypeName]%]) {
     switch self.prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let array) :
-      mModel?.setProp (array)
+      mModel?.setProp (value: array)
     }
   }
  
@@ -285,7 +285,7 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
         case .noSelection, .multipleSelection :
           break ;
         case .singleSelection (let v) :
-          updateManagedObjectToManyRelationshipDisplay (v, popUpButton:unwrappedExplorer)
+          updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
         }
       }
     }
@@ -321,15 +321,15 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.undoManager()?.registerUndoWithTarget (self, selector:#selector(ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName%.performUndo(_:)), object:oldValue)
+        owner?.undoManager()?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let valueExplorer = mValueExplorer {
-          updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:valueExplorer)
+          updateManagedObjectToManyRelationshipDisplay (objectArray: mValue, popUpButton: valueExplorer)
         }
       //--- Removed object set
         let removedObjectSet = oldSet.subtracting (mSet)
         for managedObject in removedObjectSet {
-          managedObject.setSignatureObserver (nil)
+          managedObject.setSignatureObserver (observer: nil)
           managedObject.%!mOppositeRelationshipName%.owner = nil ;
         }
 %for () in mDestinationEntityObservablePropertyMap do
@@ -340,8 +340,8 @@ end
 %      //--- Added object set
         let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
-          managedObject.setSignatureObserver (self)
-          managedObject.%!mOppositeRelationshipName%.setProp (owner)
+          managedObject.setSignatureObserver (observer: self)
+          managedObject.%!mOppositeRelationshipName%.setProp (value: owner)
         }
 %for () in mDestinationEntityObservablePropertyMap do
   if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
@@ -360,30 +360,30 @@ end
     }
   }
 
-  override func setProp (inValue :  [%![mRelationshipType swiftTypeName]%]) { mValue = inValue }
+  override func setProp (value :  [%![mRelationshipType swiftTypeName]%]) { mValue = value }
 
   var propval : [%![mRelationshipType swiftTypeName]%] { get { return mValue ?? [%![mRelationshipType swiftTypeName]%] () } }
 
   //····················································································································
 
-  func performUndo (oldValue : [%![mRelationshipType swiftTypeName]%]) {
+  func performUndo (_ oldValue : [%![mRelationshipType swiftTypeName]%]) {
     mValue = oldValue
   }
 
   //····················································································································
 
-  func remove (object : %![mRelationshipType swiftTypeName]%) {
+  func remove (_ object : %![mRelationshipType swiftTypeName]%) {
     if mSet.contains (object) {
       var array = mValue
-      let idx = array.indexOf (object)
-      array.removeAtIndex (idx!)
+      let idx = array.index (of: object)
+      array.remove (at: idx!)
       mValue = array
     }
   }
   
   //····················································································································
 
-  func add (object : %![mRelationshipType swiftTypeName]%) {
+  func add (_ object : %![mRelationshipType swiftTypeName]%) {
     if !mSet.contains (object) {
       var array = mValue
       array.append (object)
@@ -403,7 +403,7 @@ end
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
     mSignatureObserver = observer
     for object in mValue {
-      object.setSignatureObserver (self)
+      object.setSignatureObserver (observer: self)
     }
   }
 
@@ -458,7 +458,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
         case .noSelection, .multipleSelection :
           break ;
         case .singleSelection (let v) :
-          updateManagedObjectToOneRelationshipDisplay (v, button:unwrappedExplorer)
+          updateManagedObjectToOneRelationshipDisplay (object: v, button:unwrappedExplorer)
         }
       }
     }
@@ -467,7 +467,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
   weak var owner : %!ENTITY_NAME%? {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
-        updateManagedObjectToOneRelationshipDisplay (propval, button:unwrappedExplorer)
+        updateManagedObjectToOneRelationshipDisplay (object: propval, button:unwrappedExplorer)
       }
     }
   }
@@ -476,10 +476,10 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
     didSet {
       if let unwrappedOwner = owner where oldValue !== mValue {
       //--- Register old value in undo manager
-        unwrappedOwner.undoManager()?.registerUndoWithTarget (self, selector:#selector(ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName%.performUndo(_:)), object:oldValue)
+        unwrappedOwner.undoManager()?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = mValueExplorer {
-          updateManagedObjectToOneRelationshipDisplay (mValue, button:unwrappedExplorer)
+          updateManagedObjectToOneRelationshipDisplay (object: mValue, button:unwrappedExplorer)
         }
 %    if [mInverseRelationMultiplicity isCollection] then
 %      //--- Reset old opposite relation ship
@@ -510,13 +510,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
 
   //····················································································································
 
-  func performUndo (oldValue : %![mRelationshipType swiftTypeName]%?) {
+  func performUndo (_ oldValue : %![mRelationshipType swiftTypeName]%?) {
     mValue = oldValue
   }
 
   //····················································································································
 
-  func remove (object : %![mRelationshipType swiftTypeName]%) {
+  func remove (_ object : %![mRelationshipType swiftTypeName]%) {
     if mValue === object {
       mValue = nil
     }
@@ -524,7 +524,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
   
   //····················································································································
 
-  func add (object : %![mRelationshipType swiftTypeName]%) {
+  func add (_ object : %![mRelationshipType swiftTypeName]%) {
     mValue = object
   }
 
@@ -634,7 +634,7 @@ end
 %  //--- register properties for handling signature
 %
 for () in SIGNATURE_SET do
-  %    %!key%.setSignatureObserver (self)\n%
+  %    %!key%.setSignatureObserver (observer: self)\n%
 end
 %  }
 
@@ -703,11 +703,11 @@ end
 %    %!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    storeEntityArrayInDictionary (%!mToManyRelationshipName%.propval, inRelationshipName:"%!mToManyRelationshipName%", ioDictionary:ioDictionary) ;\n%
+%    store (managedObjectArray: %!mToManyRelationshipName%.propval, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mInverseRelationMultiplicity isSingle] then
-%    storeEntityInDictionary (%!mToOneRelationshipName%.propval, inRelationshipName:"%!mToOneRelationshipName%", ioDictionary:ioDictionary) ;\n%
+%    store (managedObject: %!mToOneRelationshipName%.propval, relationshipName:"%!mToOneRelationshipName%", intoDictionary: ioDictionary) ;\n%
 end
 end
 %  }
@@ -723,10 +723,10 @@ end
 %    %!mStoredPropertyName%.readFrom (dictionary: inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    %!mToManyRelationshipName%.setProp (readEntityArrayFromDictionary (
-      "%!mToManyRelationshipName%",
-      inDictionary:inDictionary,
-      managedObjectArray:&managedObjectArray
+%    %!mToManyRelationshipName%.setProp (value: readEntityArrayFromDictionary (
+      inRelationshipName: "%!mToManyRelationshipName%",
+      inDictionary: inDictionary,
+      managedObjectArray: &managedObjectArray
     ) as! [%![mRelationshipType swiftTypeName]%])\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
@@ -749,7 +749,7 @@ end
     super.resetToManyRelationships ()
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    %!mToManyRelationshipName%.setProp (Array ())\n%
+%    %!mToManyRelationshipName%.setProp (value: Array ())\n%
 end
 %  }
 
@@ -764,7 +764,7 @@ if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
     super.resetToOneRelationships ()
 %
 for () in TO_ONE_RELATIONSHIP_LIST do
-%    %!mToOneRelationshipName%.setProp (nil)\n%
+%    %!mToOneRelationshipName%.setProp (value: nil)\n%
 end
 %  }
 
