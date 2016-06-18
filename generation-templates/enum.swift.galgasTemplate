@@ -105,7 +105,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     didSet {
       if mValue != oldValue {
         mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
-        undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:NSNumber (integer:oldValue.rawValue))
+        undoManager?.registerUndo (withTarget: self, selector: #selector(performUndo(_:)), object:NSNumber (value: oldValue.rawValue))
         postEvent ()
         clearSignatureCache ()
       }
@@ -113,7 +113,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
   }
 
   func performUndo (_ oldValue : NSNumber) {
-    if let v = %!ENUM_TYPE_NAME% (rawValue:oldValue.integerValue) {
+    if let v = %!ENUM_TYPE_NAME% (rawValue:oldValue.intValue) {
       mValue = v
     }
   }
@@ -128,7 +128,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     return mValue.rawValue
   }
 
-  func setFromRawValue (rawValue : Int) {
+  func setFromRawValue (_ rawValue : Int) {
     if let v = %!ENUM_TYPE_NAME% (rawValue:rawValue) {
       mValue = v
     }
@@ -138,7 +138,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
     let ud = UserDefaults.standard ()
     let value : AnyObject? = ud.object (forKey: inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setFromRawValue ((unwValue as! NSNumber).integerValue)
+      setFromRawValue ((unwValue as! NSNumber).intValue)
     }
   }
   
@@ -148,13 +148,13 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
   }
 
   func storeIn (dictionary: NSMutableDictionary, forKey inKey:String) {
-    dictionary.setValue (NSNumber (integer:mValue.rawValue), forKey:inKey)
+    dictionary.setValue (NSNumber (value: mValue.rawValue), forKey:inKey)
   }
 
   func readFrom (dictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = dictionary.objectForKey (inKey)
+    let value : AnyObject? = dictionary.object (forKey: inKey)
     if let unwValue : AnyObject = value where unwValue is NSNumber {
-      setFromRawValue ((unwValue as! NSNumber).integerValue)
+      setFromRawValue ((unwValue as! NSNumber).intValue)
     }
   }
 
