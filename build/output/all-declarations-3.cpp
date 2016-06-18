@@ -571,7 +571,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "    didSet {\n"
     "      if mValue != oldValue {\n"
     "        mValueExplorer\?.stringValue = mValue.descriptionForExplorer ()\n"
-    "        undoManager\?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:NSNumber (integer:oldValue.rawValue))\n"
+    "        undoManager\?.registerUndo (withTarget: self, selector: #selector(performUndo(_:)), object:NSNumber (value: oldValue.rawValue))\n"
     "        postEvent ()\n"
     "        clearSignatureCache ()\n"
     "      }\n"
@@ -581,7 +581,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "  func performUndo (_ oldValue : NSNumber) {\n"
     "    if let v = " ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " (rawValue:oldValue.integerValue) {\n"
+  result << " (rawValue:oldValue.intValue) {\n"
     "      mValue = v\n"
     "    }\n"
     "  }\n"
@@ -602,7 +602,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "    return mValue.rawValue\n"
     "  }\n"
     "\n"
-    "  func setFromRawValue (rawValue : Int) {\n"
+    "  func setFromRawValue (_ rawValue : Int) {\n"
     "    if let v = " ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << " (rawValue:rawValue) {\n"
@@ -614,7 +614,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "    let ud = UserDefaults.standard ()\n"
     "    let value : AnyObject\? = ud.object (forKey: inKey)\n"
     "    if let unwValue : AnyObject = value where unwValue is NSNumber {\n"
-    "      setFromRawValue ((unwValue as! NSNumber).integerValue)\n"
+    "      setFromRawValue ((unwValue as! NSNumber).intValue)\n"
     "    }\n"
     "  }\n"
     "  \n"
@@ -624,13 +624,13 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "  }\n"
     "\n"
     "  func storeIn (dictionary: NSMutableDictionary, forKey inKey:String) {\n"
-    "    dictionary.setValue (NSNumber (integer:mValue.rawValue), forKey:inKey)\n"
+    "    dictionary.setValue (NSNumber (value: mValue.rawValue), forKey:inKey)\n"
     "  }\n"
     "\n"
     "  func readFrom (dictionary:NSDictionary, forKey inKey:String) {\n"
-    "    let value : AnyObject\? = dictionary.objectForKey (inKey)\n"
+    "    let value : AnyObject\? = dictionary.object (forKey: inKey)\n"
     "    if let unwValue : AnyObject = value where unwValue is NSNumber {\n"
-    "      setFromRawValue ((unwValue as! NSNumber).integerValue)\n"
+    "      setFromRawValue ((unwValue as! NSNumber).intValue)\n"
     "    }\n"
     "  }\n"
     "\n"
@@ -7336,7 +7336,7 @@ const char * gWrapperFileContent_16_outletClassGeneration = "//\xE2""\x80""\x94"
   "\n"
   "  private var mIntValueController : Controller_EBSlider_intValue\?\n"
   "\n"
-  "  func bind_intValue (object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {\n"
+  "  func bind_intValue (_ object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {\n"
   "    mIntValueController = Controller_EBSlider_intValue (object:object, outlet:self, file:file, line:line)\n"
   "    self.isContinuous = sendContinously\n"
   "  }\n"
@@ -7461,7 +7461,7 @@ const cRegularFileWrapper gWrapperFile_16_outletClassGeneration (
   "EBSlider.swift",
   "swift",
   true, // Text file
-  7267, // Text length
+  7269, // Text length
   gWrapperFileContent_16_outletClassGeneration
 ) ;
 
