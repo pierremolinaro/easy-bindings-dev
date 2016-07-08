@@ -123,7 +123,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     fileData.writeByte (inByte: metadataStatusForSaving (), trace:&trace)
   //--- Append metadata dictionary
     let metaData = try PropertyListSerialization.data (fromPropertyList: mMetadataDictionary,
-      format:PropertyListSerialization.PropertyListFormat.binaryFormat_v1_0,
+      format:PropertyListSerialization.PropertyListFormat.binary,
       options:0
     )
     fileData.writeByte (inByte: 1, trace:&trace)
@@ -158,7 +158,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       saveDataArray.append (d)
     }
     return try PropertyListSerialization.data (fromPropertyList: saveDataArray,
-      format:PropertyListSerialization.PropertyListFormat.binaryFormat_v1_0,
+      format:PropertyListSerialization.PropertyListFormat.binary,
       options:0
     )
   }
@@ -200,7 +200,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
         "The file has an invalid format" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       throw NSError (
-        domain:Bundle.main ().bundleIdentifier!,
+        domain:Bundle.main.bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
@@ -218,7 +218,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
         "Root object cannot be read" :  NSLocalizedRecoverySuggestionErrorKey
       ]
       throw NSError (
-        domain:Bundle.main ().bundleIdentifier!,
+        domain:Bundle.main.bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )
@@ -245,7 +245,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       "Unkown data format: \(dataFormat)" :  NSLocalizedRecoverySuggestionErrorKey
     ]
     throw NSError (
-      domain:Bundle.main ().bundleIdentifier!,
+      domain:Bundle.main.bundleIdentifier!,
       code:1,
       userInfo:dictionary
     )

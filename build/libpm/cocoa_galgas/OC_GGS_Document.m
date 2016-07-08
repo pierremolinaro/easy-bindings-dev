@@ -2,11 +2,11 @@
 //                                                                                                                     *
 //  This file is part of libpm library                                                                                 *
 //                                                                                                                     *
-//  Copyright (C) 2003, ..., 2014 Pierre Molinaro.                                                                     *
+//  Copyright (C) 2003, ..., 2016 Pierre Molinaro.                                                                     *
 //                                                                                                                     *
 //  e-mail : pierre.molinaro@irccyn.ec-nantes.fr                                                                       *
 //                                                                                                                     *
-//  IRCCyN, Institut de Recherche en Communications et Cybernétique de Nantes, ECN, École Centrale de Nantes (France)  *
+//  IRCCyN, Institut de Recherche en Communications et Cybern�tique de Nantes, ECN, �cole Centrale de Nantes (France)  *
 //                                                                                                                     *
 //  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
 //  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
@@ -900,7 +900,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//  S A V I N G    H F S    T Y P E    A N D    C R E A T O R    C O D E S     *
+//  S A V I N G    H F S    T Y P E    A N D    C R E A T O R    C O D E S                                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1036,18 +1036,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-- (IBAction) actionBuildSelected: (id) inUnusedSender {
-  #ifdef DEBUG_MESSAGES
-    NSLog (@"%s", __PRETTY_FUNCTION__) ;
-  #endif
-  if (nil == mBuildTask) {
-    OC_GGS_TextDisplayDescriptor * tdd = [mSourceDisplayArrayControllerHigh.selectedObjects objectAtIndex:0] ;
-    [self compileFileAtPath:tdd.sourceURL.path] ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 - (IBAction) actionBuildFirst: (id) inUnusedSender {
   #ifdef DEBUG_MESSAGES
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
@@ -1093,7 +1081,7 @@
     nil
   ] ;
   NSAttributedString * attributedString = [[NSAttributedString alloc]
-    initWithString:[NSString stringWithFormat:@"Compiling %@…\n", inFilePath.lastPathComponent]
+    initWithString:[NSString stringWithFormat:@"Compiling %@���\n", inFilePath.lastPathComponent]
     attributes:defaultDictionary
   ] ;
   [mOutputTextView.textStorage setAttributedString:attributedString] ;

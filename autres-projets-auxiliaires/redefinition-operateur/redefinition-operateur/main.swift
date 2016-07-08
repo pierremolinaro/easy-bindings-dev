@@ -21,9 +21,9 @@ func + (op1 : PMLength, op2 : PMLength) -> PMLength {
 
 import Foundation
 
-println ("Native op")
+print ("Native op")
 
-Int64 r = 0
+var r : Int64 = 0
 
 for i in 0..<1_000_000 {
 

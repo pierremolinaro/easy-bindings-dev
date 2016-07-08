@@ -188,7 +188,7 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     let value : AnyObject? = ud.object (forKey: inKey)
     if let unwValue : AnyObject = value {
       if let array : [NSDictionary] = unwValue as? [NSDictionary] {
@@ -204,7 +204,7 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     var array = [NSDictionary] ()
     for object in mValue {
       let dict = NSMutableDictionary ()

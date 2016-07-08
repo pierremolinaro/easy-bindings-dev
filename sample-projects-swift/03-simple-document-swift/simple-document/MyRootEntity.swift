@@ -130,7 +130,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_myStringMaj (inObserver : EBEvent) {
+  final func addEBObserverOf_myStringMaj (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_myStringMaj.insert (inObserver)
     switch prop {
@@ -145,7 +145,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_myStringMaj (inObserver : EBEvent) {
+  final func removeEBObserverOf_myStringMaj (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_myStringMaj.remove (inObserver)
     switch prop {
@@ -186,7 +186,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_myStringMin (inObserver : EBEvent) {
+  final func addEBObserverOf_myStringMin (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_myStringMin.insert (inObserver)
     switch prop {
@@ -201,7 +201,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_myStringMin (inObserver : EBEvent) {
+  final func removeEBObserverOf_myStringMin (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_myStringMin.remove (inObserver)
     switch prop {
@@ -242,7 +242,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_myStringConcat (inObserver : EBEvent) {
+  final func addEBObserverOf_myStringConcat (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_myStringConcat.insert (inObserver)
     switch prop {
@@ -257,7 +257,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_myStringConcat (inObserver : EBEvent) {
+  final func removeEBObserverOf_myStringConcat (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_myStringConcat.remove (inObserver)
     switch prop {
