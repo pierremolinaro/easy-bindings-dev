@@ -67,7 +67,7 @@ var g_Preferences : Preferences? = nil
   //--- Property validation function
     mIntegerValue.validationFunction = self.validate_mIntegerValue
   //---
-    NotificationCenter.default ().addObserver (self,
+    NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil

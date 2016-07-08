@@ -175,7 +175,7 @@ class EBManagedObjectContext : EBObject {
         NSLocalizedRecoverySuggestionErrorKey : "Cannot create object of \(inEntityTypeName) class",
       ]
       throw NSError (
-        domain:Bundle.main ().bundleIdentifier!,
+        domain:Bundle.main.bundleIdentifier!,
         code:1,
         userInfo:dictionary
       )

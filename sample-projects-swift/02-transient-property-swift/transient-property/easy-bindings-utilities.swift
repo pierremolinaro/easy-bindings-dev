@@ -492,10 +492,10 @@ class EBSimpleClass : EBObject {
   func clearObjectExplorer () {
   }
 
-  func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
+  func saveInto (dictionary : NSMutableDictionary) {
   }
 
-  func setUpWithDictionary (_ inDictionary : NSDictionary) {
+  func setUp (withDictionary dictionary : NSDictionary) {
   }
 }
 

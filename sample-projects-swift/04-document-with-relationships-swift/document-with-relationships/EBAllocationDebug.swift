@@ -13,14 +13,14 @@ private let prefsReuseTableViewCells                      = "EBAllocationDebug:r
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private var gEnableObjectAllocationDebug = UserDefaults.standard ().bool (forKey: prefsEnableObjectAllocationDebugString)
+private var gEnableObjectAllocationDebug = UserDefaults.standard.bool (forKey: prefsEnableObjectAllocationDebugString)
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func reuseTableViewCells () -> Bool {
   var result = !gEnableObjectAllocationDebug
   if !result {
-    result = UserDefaults.standard ().bool (forKey: prefsReuseTableViewCells)
+    result = UserDefaults.standard.bool (forKey: prefsReuseTableViewCells)
   }
   return result
 }
@@ -61,7 +61,7 @@ private func installDebugMenu () {
   if nil == gDebugObject {
     let debugObject = EBAllocationDebug ()
     gDebugObject = debugObject
-    let mainBundle = Bundle.main ()
+    let mainBundle = Bundle.main
     let ok = mainBundle.loadNibNamed ("EBAllocationDebug",
                                       owner:debugObject,
                                       topLevelObjects:&debugObject.mTopLevelObjects)
@@ -155,7 +155,7 @@ private var gDebugObject : EBAllocationDebug? = nil
    override init () {
     super.init ()
     assert (gDebugObject == nil, "EBAllocationDebug already exists", file:#file, line:#line)
-    let nc = NotificationCenter.default ()
+    let nc = NotificationCenter.default
     nc.addObserver (self,
       selector:#selector(EBAllocationDebug.applicationWillTerminateAction(_:)),
       name:NSNotification.Name.NSApplicationWillTerminate,
@@ -190,7 +190,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   override func awakeFromNib () {
   // NSLog (@"%s %p %p", __PRETTY_FUNCTION__, self, mDebugMenu) ;
   //--- Allocation Window visibility
-    let df = UserDefaults.standard ()
+    let df = UserDefaults.standard
     mAllocationStatsWindowVisibleAtLaunch = df.bool (forKey: prefsEnableObjectAllocationStatsWindowVisible)
     mDisplayFilter = df.integer (forKey: prefsEnableObjectAllocationStatsDisplayFilter)
   //--- Enable / disable object allocation debug
@@ -252,7 +252,7 @@ private var gDebugObject : EBAllocationDebug? = nil
         userInfo: nil,
         repeats: true
       )
-      RunLoop.current().add (mRefreshTimer!, forMode:RunLoopMode.defaultRunLoopMode)
+      RunLoop.current.add (mRefreshTimer!, forMode:RunLoopMode.defaultRunLoopMode)
       mRefreshDisplay = true
       displayAllocation ()
     }
@@ -308,7 +308,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //····················································································································
   
   func applicationWillTerminateAction (_: Notification) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     ud.set (mAllocationStatsWindowVisibleAtLaunch,
       forKey:prefsEnableObjectAllocationStatsWindowVisible
     )

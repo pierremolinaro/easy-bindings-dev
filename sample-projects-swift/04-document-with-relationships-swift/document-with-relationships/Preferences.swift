@@ -49,7 +49,7 @@ var g_Preferences : Preferences? = nil
   //--- Read from preferences
   //--- Property validation function
   //---
-    NotificationCenter.default ().addObserver (self,
+    NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil

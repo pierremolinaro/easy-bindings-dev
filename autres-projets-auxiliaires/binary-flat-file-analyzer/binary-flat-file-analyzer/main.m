@@ -14,14 +14,15 @@
 #import "PMLoadedObjectDatabase.h"
 
 //---------------------------------------------------------------------------*
+// propertyListWithData:options:format:error:
 
 static void dumpData (NSData * inFileData) {
   printf ("------------------------------ File Data (%lu bytes)\n", inFileData.length) ;
   NSArray * dataArray = [NSPropertyListSerialization
-    propertyListFromData:inFileData
-    mutabilityOption:NSPropertyListImmutable 
+    propertyListWithData:inFileData
+    options:NSPropertyListImmutable
     format:NULL
-    errorDescription:NULL  
+    error:NULL  
   ] ;
   NSData * data = [NSPropertyListSerialization
     dataWithPropertyList:dataArray

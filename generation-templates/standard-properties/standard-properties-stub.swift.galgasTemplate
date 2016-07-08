@@ -209,7 +209,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   //····················································································································
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     let value : AnyObject? = ud.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
       setProp (value: T.convertFromNSObject (object:unwValue))
@@ -219,7 +219,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   //····················································································································
 
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     ud.set (mValue.convertToNSObject (), forKey:inKey)
   }
 
@@ -361,7 +361,7 @@ extension Int : ValuePropertyProtocol {
   func ebHashValue () -> UInt32 {
     var crc : UInt32 = 0
     var ptr = UnsafePointer <UInt8> ([self])
-    for _ in 0 ..< sizeof (Int) {
+    for _ in 0 ..< sizeof (Int.self) {
       crc.accumulateByte (ptr.pointee)
       ptr += 1
     }
@@ -785,7 +785,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   //····················································································································
 
   func readInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     let value : AnyObject? = ud.object (forKey:inKey)
     if let unwValue : NSData = value as? NSData {
       setProp (value: T.unarchiveFromNSData (data:unwValue) as! T)
@@ -795,7 +795,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   //····················································································································
 
   func storeInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard ()
+    let ud = UserDefaults.standard
     ud.set (mValue.archiveToNSData (), forKey:inKey)
   }
 

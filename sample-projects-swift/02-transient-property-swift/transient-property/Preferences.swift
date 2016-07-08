@@ -60,7 +60,7 @@ var g_Preferences : Preferences? = nil
     mLastName.readInPreferencesWithKey (inKey:"Preferences:mLastName")
   //--- Property validation function
   //---
-    NotificationCenter.default ().addObserver (self,
+    NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil

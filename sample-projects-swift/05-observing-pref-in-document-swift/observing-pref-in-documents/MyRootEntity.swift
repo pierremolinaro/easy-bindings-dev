@@ -74,7 +74,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_transientConcatString (inObserver : EBEvent) {
+  final func addEBObserverOf_transientConcatString (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_transientConcatString.insert (inObserver)
     switch prop {
@@ -89,7 +89,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_transientConcatString (inObserver : EBEvent) {
+  final func removeEBObserverOf_transientConcatString (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_transientConcatString.remove (inObserver)
     switch prop {
@@ -130,7 +130,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func addEBObserverOf_otherTransientConcatString (inObserver : EBEvent) {
+  final func addEBObserverOf_otherTransientConcatString (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     mObserversOf_otherTransientConcatString.insert (inObserver)
     switch prop {
@@ -145,7 +145,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
   //····················································································································
 
-  final func removeEBObserverOf_otherTransientConcatString (inObserver : EBEvent) {
+  final func removeEBObserverOf_otherTransientConcatString (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     mObserversOf_otherTransientConcatString.remove (inObserver)
     switch prop {

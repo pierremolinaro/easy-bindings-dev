@@ -12,13 +12,13 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func compute_MyRootEntity_transientConcatString (_ self_2E_docString : String,
-                                                 _ g_Preferences_21__2E_myPrefString : String,
-                                                 _ g_Preferences_21__2E_prefTransientString : String) -> String {
+                                                 _ g_5F_Preferences_21__2E_myPrefString : String,
+                                                 _ g_5F_Preferences_21__2E_prefTransientString : String) -> String {
 //--- START OF USER ZONE 2
   return String (format:"Doc '%@' Prefs '%@' Pref Transient '%@'",
     self_2E_docString,
-    g_Preferences_21__2E_myPrefString,
-    g_Preferences_21__2E_prefTransientString
+    g_5F_Preferences_21__2E_myPrefString,
+    g_5F_Preferences_21__2E_prefTransientString
   )
 //--- END OF USER ZONE 2
 }

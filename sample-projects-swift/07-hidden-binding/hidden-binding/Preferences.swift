@@ -56,7 +56,7 @@ var g_Preferences : Preferences? = nil
     myHidden2.readInPreferencesWithKey (inKey:"Preferences:myHidden2")
   //--- Property validation function
   //---
-    NotificationCenter.default ().addObserver (self,
+    NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil

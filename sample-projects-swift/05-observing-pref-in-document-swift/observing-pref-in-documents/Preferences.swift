@@ -53,7 +53,7 @@ var g_Preferences : Preferences? = nil
     myPrefString.readInPreferencesWithKey (inKey:"Preferences:myPrefString")
   //--- Property validation function
   //---
-    NotificationCenter.default ().addObserver (self,
+    NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil

@@ -83,7 +83,7 @@ for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   end
 end
 %  //---
-    NotificationCenter.default ().addObserver (self,
+    NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
      name:NSNotification.Name.NSApplicationWillTerminate,
      object:nil
