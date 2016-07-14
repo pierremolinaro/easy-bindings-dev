@@ -6,7 +6,7 @@
 //                                                                                                                     *
 //  e-mail : pierre.molinaro@irccyn.ec-nantes.fr                                                                       *
 //                                                                                                                     *
-//  IRCCyN, Institut de Recherche en Communications et Cybern�tique de Nantes, ECN, �cole Centrale de Nantes (France)  *
+//  IRCCyN, Institut de Recherche en Communications et Cybernétique de Nantes, ECN, ecole Centrale de Nantes (France)  *
 //                                                                                                                     *
 //  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
 //  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
@@ -1081,7 +1081,7 @@
     nil
   ] ;
   NSAttributedString * attributedString = [[NSAttributedString alloc]
-    initWithString:[NSString stringWithFormat:@"Compiling %@���\n", inFilePath.lastPathComponent]
+    initWithString:[NSString stringWithFormat:@"Compiling %@…\n", inFilePath.lastPathComponent]
     attributes:defaultDictionary
   ] ;
   [mOutputTextView.textStorage setAttributedString:attributedString] ;
