@@ -1827,9 +1827,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "    if DEBUG_EVENT {\n"
         "      print (\"\\(#function)\")\n"
         "    }\n"
-        "    if let model = mModel,\n"
-        "           owner = model.owner,\n"
-        "           managedObjectContext = owner.managedObjectContext () {\n"
+        "    if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {\n"
         "      switch model.prop {\n"
         "      case .noSelection, .multipleSelection :\n"
         "        break\n"
@@ -1860,9 +1858,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
         "    if DEBUG_EVENT {\n"
         "      print (\"\\(#function)\")\n"
         "    }\n"
-        "    if let model = mModel,\n"
-        "           owner = model.owner,\n"
-        "           managedObjectContext = owner.managedObjectContext () {\n"
+        "    if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {\n"
         "      switch model.prop {\n"
         "      case .noSelection, .multipleSelection :\n"
         "        break\n"
@@ -4611,7 +4607,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  @IBAction func checkEntityReachability (_: AnyObject!) {\n"
-  "    if let rootObject = mRootObject, window = windowForSheet {\n"
+  "    if let rootObject = mRootObject, let window = windowForSheet {\n"
   "      mManagedObjectContext.checkEntityReachabilityFromObject (rootObject: rootObject, windowForSheet:window)\n"
   "    }\n"
   "  }\n"
@@ -4999,7 +4995,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  30298, // Text length
+  30302, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 

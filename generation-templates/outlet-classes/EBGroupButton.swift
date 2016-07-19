@@ -55,7 +55,7 @@ import Cocoa
     //--- Set other other buttons of group to Off state
       let views : [NSView] = masterView.superview!.subviews
       for v in views {
-        if let button = v as? EBGroupButton where button.mMasterView == mMasterView {
+        if let button = v as? EBGroupButton, button.mMasterView == mMasterView {
           button.state = NSOffState
         }
       }
@@ -94,7 +94,7 @@ import Cocoa
       var tagSet = Set<Int> ()
       let views : [NSView] = masterView.superview!.subviews
       for v in views {
-        if let button = v as? EBGroupButton where button.mMasterView == mMasterView {
+        if let button = v as? EBGroupButton, button.mMasterView == mMasterView {
           let tag = button.tag
           if tagSet.contains (tag) {
             presentErrorWindow (file: #file, line:#line, errorMessage:"duplicated tag: " + String (tag))

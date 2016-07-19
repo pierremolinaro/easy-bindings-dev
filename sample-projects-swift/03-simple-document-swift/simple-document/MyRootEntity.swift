@@ -316,7 +316,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   override var prop : EBProperty < [MyRootEntity] > {
     get {
-      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <MyRootEntity>
         switch prop_cache! {

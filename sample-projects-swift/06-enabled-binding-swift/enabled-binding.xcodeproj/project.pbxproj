@@ -133,6 +133,11 @@
 				CLASSPREFIX = PM;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0800;
+				TargetAttributes = {
+					CF86CC9C159725BF00F6B52D = {
+						LastSwiftMigration = 0800;
+					};
+				};
 			};
 			buildConfigurationList = CF86CC97159725BE00F6B52D /* Build configuration list for PBXProject "enabled-binding" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -267,6 +272,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.irccyn.molinaro.enabledBinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -280,6 +286,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.irccyn.molinaro.enabledBinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
