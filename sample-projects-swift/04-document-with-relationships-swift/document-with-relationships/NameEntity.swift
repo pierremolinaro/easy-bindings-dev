@@ -148,7 +148,7 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   override var prop : EBProperty < [NameEntity] > {
     get {
-      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <NameEntity>
         switch prop_cache! {
@@ -228,7 +228,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
  
   weak private var mValue : MyRootEntity? {
     didSet {
-      if let unwrappedOwner = owner where oldValue !== mValue {
+      if let unwrappedOwner = owner, oldValue !== mValue {
       //--- Register old value in undo manager
         unwrappedOwner.undoManager()?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer

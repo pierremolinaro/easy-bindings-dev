@@ -144,7 +144,7 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   override var prop : EBProperty < [%!CLASS_NAME%] > {
     get {
-      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
       }
       if prop_cache == nil {
@@ -483,7 +483,7 @@ typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_
 
   override var prop : EBProperty <%!CLASS_NAME%> {
     get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+      if let unReadModelFunction = readModelFunction, prop_cache == nil {
         prop_cache = unReadModelFunction ()
       }
       if prop_cache == nil {

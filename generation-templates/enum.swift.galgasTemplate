@@ -137,7 +137,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
   func readInPreferencesWithKey (inKey : String) {
     let ud = UserDefaults.standard
     let value : AnyObject? = ud.object (forKey: inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
+    if let unwValue : AnyObject = value, unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).intValue)
     }
   }
@@ -153,7 +153,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   func readFrom (dictionary:NSDictionary, forKey inKey:String) {
     let value : AnyObject? = dictionary.object (forKey: inKey)
-    if let unwValue : AnyObject = value where unwValue is NSNumber {
+    if let unwValue : AnyObject = value, unwValue is NSNumber {
       setFromRawValue ((unwValue as! NSNumber).intValue)
     }
   }

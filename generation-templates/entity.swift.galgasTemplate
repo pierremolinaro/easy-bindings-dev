@@ -155,7 +155,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   override var prop : EBProperty < [%!ENTITY_NAME%] > {
     get {
-      if let unwrappedComputeFunction = readModelFunction where prop_cache == nil {
+      if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <%!ENTITY_NAME%>
         switch prop_cache! {
@@ -474,7 +474,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
  
   weak private var mValue : %![mRelationshipType swiftTypeName]%? {
     didSet {
-      if let unwrappedOwner = owner where oldValue !== mValue {
+      if let unwrappedOwner = owner, oldValue !== mValue {
       //--- Register old value in undo manager
         unwrappedOwner.undoManager()?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer

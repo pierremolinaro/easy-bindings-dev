@@ -62,7 +62,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
   //····················································································································
 
   private func updateValueExplorer (possibleValue : EBProperty <T>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
+    if let valueExplorer = mValueExplorer, let unwProp = possibleValue {
       switch unwProp {
       case .noSelection :
         valueExplorer.stringValue = "No selection"
@@ -89,7 +89,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
 
   override var prop : EBProperty <T> {
     get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+      if let unReadModelFunction = readModelFunction, prop_cache == nil {
         prop_cache = unReadModelFunction ()
         updateValueExplorer (possibleValue:prop_cache)
       }
@@ -294,7 +294,7 @@ class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> {
 
   override var prop : EBProperty <T> {
     get {
-      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction, mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {
@@ -638,7 +638,7 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
   //····················································································································
 
   private func updateValueExplorer (possibleValue : EBProperty <T>?) {
-    if let valueExplorer = mValueExplorer, unwProp = possibleValue {
+    if let valueExplorer = mValueExplorer, let unwProp = possibleValue {
       switch unwProp {
       case .noSelection :
         valueExplorer.stringValue = "No selection"
@@ -665,7 +665,7 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
 
   override var prop : EBProperty <T> {
     get {
-      if let unReadModelFunction = readModelFunction where prop_cache == nil {
+      if let unReadModelFunction = readModelFunction, prop_cache == nil {
         prop_cache = unReadModelFunction ()
         updateValueExplorer (possibleValue:prop_cache)
       }
@@ -870,7 +870,7 @@ class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
 
   override var prop : EBProperty <T> {
     get {
-      if let unwrappedComputeFunction = readModelFunction where mValueCache == nil {
+      if let unwrappedComputeFunction = readModelFunction, mValueCache == nil {
         mValueCache = unwrappedComputeFunction ()
       }
       if mValueCache == nil {

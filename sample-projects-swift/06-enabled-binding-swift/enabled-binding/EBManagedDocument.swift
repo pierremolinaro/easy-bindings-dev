@@ -351,7 +351,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   @IBAction func checkEntityReachability (_: AnyObject!) {
-    if let rootObject = mRootObject, window = windowForSheet {
+    if let rootObject = mRootObject, let window = windowForSheet {
       mManagedObjectContext.checkEntityReachabilityFromObject (rootObject: rootObject, windowForSheet:window)
     }
   }

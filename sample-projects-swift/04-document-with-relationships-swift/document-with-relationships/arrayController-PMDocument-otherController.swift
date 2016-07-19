@@ -432,9 +432,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let model = mModel,
-           owner = model.owner,
-           managedObjectContext = owner.managedObjectContext () {
+    if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
@@ -459,9 +457,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let model = mModel,
-           owner = model.owner,
-           managedObjectContext = owner.managedObjectContext () {
+    if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {
       switch model.prop {
       case .noSelection, .multipleSelection :
         break
