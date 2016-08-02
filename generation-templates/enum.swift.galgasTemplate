@@ -17,7 +17,7 @@ end
     switch self {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
-   %      case %!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
+   %      case .%!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
 end
 %    }
   }

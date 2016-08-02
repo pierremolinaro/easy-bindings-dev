@@ -444,7 +444,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   if (in_CONSTANT_5F_ORDERED_5F_LIST.isValid ()) {
     cEnumerator_lstringlist enumerator_683 (in_CONSTANT_5F_ORDERED_5F_LIST, kEnumeration_up) ;
     while (enumerator_683.hasCurrentObject ()) {
-      result << "      case " ;
+      result << "      case ." ;
       result << enumerator_683.current_mValue (HERE).mAttribute_string.stringValue () ;
       result << " : return \"" ;
       result << enumerator_683.current_mValue (HERE).mAttribute_string.stringValue () ;
