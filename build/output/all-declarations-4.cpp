@@ -4564,7 +4564,6 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "        semaphore.signal()\n"
   "      }catch let error as NSError {\n"
   "        possibleError = error\n"
-  "      }catch _ as AnyObject {\n"
   "      }\n"
   "    })\n"
   "    var wait = true\n"
@@ -4995,7 +4994,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  30320, // Text length
+  30290, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 

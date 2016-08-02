@@ -308,7 +308,6 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
         semaphore.signal()
       }catch let error as NSError {
         possibleError = error
-      }catch _ as AnyObject {
       }
     })
     var wait = true
