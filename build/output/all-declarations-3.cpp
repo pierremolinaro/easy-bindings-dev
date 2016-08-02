@@ -5376,7 +5376,7 @@ const char * gWrapperFileContent_1_outletClassGeneration = "//\xE2""\x80""\x94""
   "  override func sendUpdateEvent () {\n"
   "    switch mObject.prop {\n"
   "    case .noSelection, .multipleSelection :\n"
-  "      mOutlet.color = NSColor.white ()\n"
+  "      mOutlet.color = NSColor.white\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.color = v\n"
   "    }\n"
@@ -5391,7 +5391,7 @@ const cRegularFileWrapper gWrapperFile_1_outletClassGeneration (
   "EBColorObserverWell.swift",
   "swift",
   true, // Text file
-  3812, // Text length
+  3809, // Text length
   gWrapperFileContent_1_outletClassGeneration
 ) ;
 

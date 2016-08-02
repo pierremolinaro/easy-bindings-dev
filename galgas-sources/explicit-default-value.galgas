@@ -267,7 +267,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       switch defaultValues
       case string (@stringset values) :
         if [values hasKey !mValue.string] then
-          outSwiftDefaultValueAsString = propertyClassTypeName + "." + mValue + " ()"
+          outSwiftDefaultValueAsString = propertyClassTypeName + "." + mValue # + " ()"
         else
           error mValue : "invalid default value" : outSwiftDefaultValueAsString
         end
@@ -300,7 +300,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
  
 override method @listAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList unused inAttributeActualTypeList
-  !@string outSwiftDefaultValueAsString {
+  !@string outSwiftDefaultValueAsString
+{
   outSwiftDefaultValueAsString = ""
   @bool found = false
 #  foreach inAttributeActualTypeList while not found do

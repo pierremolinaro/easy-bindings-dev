@@ -31,7 +31,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   var myString = EBStoredProperty_String ("hello")
-  var mColor = EBStoredProperty_NSColor (NSColor.yellow ())
+  var mColor = EBStoredProperty_NSColor (NSColor.yellow)
   var mDate = EBStoredProperty_Date (Date ())
   var mIntegerValue = EBStoredProperty_Int (12)
 
