@@ -233,7 +233,7 @@ private var gDebugObject : EBAllocationDebug? = nil
     let columns = mStatsTableView!.tableColumns as NSArray
     if columns.count > 0 {
       let firstColumn = columns [0] as! NSTableColumn
-      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [SortDescriptor]
+      mStatsTableView!.sortDescriptors = NSArray (object:firstColumn.sortDescriptorPrototype!) as! [NSSortDescriptor]
     }
     pmInstallDebugMenu ()
   }
@@ -393,7 +393,7 @@ private var gDebugObject : EBAllocationDebug? = nil
       mAllocatedObjectCount = liveObjectCount
       mTotalAllocatedObjectCount = totalObjectCount
     //---
-      let sortDescriptors : [SortDescriptor]! = mStatsTableView?.sortDescriptors
+      let sortDescriptors : [NSSortDescriptor]! = mStatsTableView?.sortDescriptors
       mAllocationStatsDataSource.sort (using: sortDescriptors)
       mStatsTableView?.dataSource = self
       mStatsTableView?.reloadData ()
@@ -422,7 +422,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //····················································································································
 
   func tableView (_ tableView: NSTableView,
-                 sortDescriptorsDidChange oldDescriptors: [SortDescriptor]) {
+                 sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
     let sortDescriptors = mStatsTableView?.sortDescriptors
     mAllocationStatsDataSource.sort (using: sortDescriptors!)
     mStatsTableView?.reloadData ()

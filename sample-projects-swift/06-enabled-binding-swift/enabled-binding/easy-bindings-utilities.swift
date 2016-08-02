@@ -368,7 +368,7 @@ func presentErrorWindow (file : String!,
   tf.isEditable = false
   tf.isSelectable = true
   tf.font = NSFont.boldSystemFont (ofSize: 0.0)
-  tf.textColor = NSColor.red ()
+  tf.textColor = NSColor.red
   tf.stringValue = message
   contentView.addSubview (tf)
   NSBeep () ;
@@ -799,7 +799,7 @@ extension NSTextView {
   //····················································································································
 
   func clear () {
-    let str = AttributedString (string:"", attributes:nil)
+    let str = NSAttributedString (string:"", attributes:nil)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
         ts.setAttributedString (str)
@@ -809,7 +809,7 @@ extension NSTextView {
 
   //····················································································································
 
-  func appendAttributedString (_ inAttributedString : AttributedString) {
+  func appendAttributedString (_ inAttributedString : NSAttributedString) {
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
         ts.append (inAttributedString)
@@ -823,9 +823,9 @@ extension NSTextView {
   func appendMessageString (_ inString : String) {
     let attributes : [String : NSObject] = [
       NSFontAttributeName : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ()),
-      NSForegroundColorAttributeName : NSColor.black()
+      NSForegroundColorAttributeName : NSColor.black
     ]
-    let str = AttributedString (string:inString, attributes:attributes)
+    let str = NSAttributedString (string:inString, attributes:attributes)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
         ts.append (str)
@@ -841,7 +841,7 @@ extension NSTextView {
       NSFontAttributeName : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ()),
       NSForegroundColorAttributeName : color
     ]
-    let str = AttributedString (string:inString, attributes:attributes)
+    let str = NSAttributedString (string:inString, attributes:attributes)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
         ts.append (str)
@@ -853,19 +853,19 @@ extension NSTextView {
   //····················································································································
 
   func appendErrorString (_ inString : String) {
-    appendMessageString (inString, color:NSColor.red ())
+    appendMessageString (inString, color:NSColor.red)
   }
   
   //····················································································································
 
   func appendWarningString (_ inString : String) {
-    appendMessageString (inString, color:NSColor.orange ())
+    appendMessageString (inString, color:NSColor.orange)
   }
 
   //····················································································································
 
   func appendSuccessString (_ inString : String) {
-    appendMessageString (inString, color:NSColor.blue ())
+    appendMessageString (inString, color:NSColor.blue)
   }
 }
 
@@ -1072,15 +1072,15 @@ prefix func ! (operand:EBProperty<Bool>) -> EBProperty<Bool> {
 //   NSDate operators
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func < (left:Date, right:Date) -> Bool {
-  return left.compare (right as Date) == .orderedAscending
-}
+//func < (left:Date, right:Date) -> Bool {
+//  return left.compare (right as Date) == .orderedAscending
+//}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func > (left:Date, right:Date) -> Bool {
-  return left.compare (right as Date) == .orderedDescending
-}
+//func > (left:Date, right:Date) -> Bool {
+//  return left.compare (right as Date) == .orderedDescending
+//}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    ReadOnlyAbstractArrayProperty

@@ -193,7 +193,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
           if isMultiple {
             return .multipleSelection
           }else{
-            let sortedFilteredArray = filteredArray.sorted (isOrderedBefore: {self.isOrderedBefore (left: $0, right: $1)})
+            let sortedFilteredArray = filteredArray.sorted (by: {self.isOrderedBefore (left: $0, right: $1)})
             return .singleSelection (sortedFilteredArray)
           }
         }
@@ -481,7 +481,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
             }
           }
         //--- Sort
-          indexArrayOfSelectedObjects.sort (isOrderedBefore: { $0 < $1 })
+          indexArrayOfSelectedObjects.sort (by: { $0 < $1 })
         //--- Find the first index of a non selected object
           var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
           for index in indexArrayOfSelectedObjects {
@@ -510,7 +510,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
             }
           }
         //--- Sort in reverse order
-          selectedObjectIndexArray.sort (isOrderedBefore: { $1 < $0 })
+          selectedObjectIndexArray.sort (by: { $1 < $0 })
         //--- Remove objects, in reverse of order of their index
           var newObjectArray = model_prop
           for index in selectedObjectIndexArray {
