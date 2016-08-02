@@ -176,7 +176,7 @@ final class ArrayController_PMDocument_selController : EBObject, EBTableViewDele
         case .multipleSelection :
           return .multipleSelection
         case .singleSelection (let modelArray) :
-          let sortedArray = modelArray.sorted (isOrderedBefore: {self.isOrderedBefore (left: $0, right: $1)})
+          let sortedArray = modelArray.sorted (by: {self.isOrderedBefore (left: $0, right: $1)})
           return .singleSelection (sortedArray)
         }
       }else{

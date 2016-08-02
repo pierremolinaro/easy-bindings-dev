@@ -273,7 +273,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     }
     let queue = DispatchQueue (label: "readObjectFromData")
     var possibleError : NSError? = nil
-    queue.after (when: .now (), execute: {
+    queue.asyncAfter (deadline: .now (), execute: {
       do{
         var objectArray = [EBManagedObject] ()
         var progressIdx = 0 ;
@@ -509,7 +509,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   override func removeWindowController (_ inWindowController : NSWindowController) {
-    DispatchQueue.main.after (when: .now (), execute: { self.removeUserInterface () })
+    DispatchQueue.main.asyncAfter (deadline: .now (), execute: { self.removeUserInterface () })
     super.removeWindowController (inWindowController)
   }
 
