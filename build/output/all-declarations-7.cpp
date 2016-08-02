@@ -6040,20 +6040,20 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
         break ;
       case GALGAS_typeKind::kEnum_propertyClassType:
         {
-          const cEnumAssociatedValues_typeKind_propertyClassType * extractPtr_9934 = (const cEnumAssociatedValues_typeKind_propertyClassType *) (enumerator_8297.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_propertyClassTypeName = extractPtr_9934->mAssociatedValue0 ;
-          const GALGAS_propertyClassDefaultValues extractedValue_defaultValues = extractPtr_9934->mAssociatedValue1 ;
+          const cEnumAssociatedValues_typeKind_propertyClassType * extractPtr_9936 = (const cEnumAssociatedValues_typeKind_propertyClassType *) (enumerator_8297.current_mType (HERE).unsafePointer ()) ;
+          const GALGAS_string extractedValue_propertyClassTypeName = extractPtr_9936->mAssociatedValue0 ;
+          const GALGAS_propertyClassDefaultValues extractedValue_defaultValues = extractPtr_9936->mAssociatedValue1 ;
           var_found_8251 = GALGAS_bool (true) ;
           switch (extractedValue_defaultValues.enumValue ()) {
           case GALGAS_propertyClassDefaultValues::kNotBuilt:
             break ;
           case GALGAS_propertyClassDefaultValues::kEnum_string:
             {
-              const cEnumAssociatedValues_propertyClassDefaultValues_string * extractPtr_9924 = (const cEnumAssociatedValues_propertyClassDefaultValues_string *) (extractedValue_defaultValues.unsafePointer ()) ;
-              const GALGAS_stringset extractedValue_values = extractPtr_9924->mAssociatedValue0 ;
+              const cEnumAssociatedValues_propertyClassDefaultValues_string * extractPtr_9926 = (const cEnumAssociatedValues_propertyClassDefaultValues_string *) (extractedValue_defaultValues.unsafePointer ()) ;
+              const GALGAS_stringset extractedValue_values = extractPtr_9926->mAssociatedValue0 ;
               const enumGalgasBool test_3 = extractedValue_values.getter_hasKey (object->mAttribute_mValue.mAttribute_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)).boolEnum () ;
               if (kBoolTrue == test_3) {
-                outArgument_outSwiftDefaultValueAsString = extractedValue_propertyClassTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (object->mAttribute_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 270)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)) ;
+                outArgument_outSwiftDefaultValueAsString = extractedValue_propertyClassTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)).add_operation (object->mAttribute_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 270)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)) ;
               }else if (kBoolFalse == test_3) {
                 inCompiler->emitSemanticError (object->mAttribute_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 272)), GALGAS_string ("invalid default value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 272)) ;
                 outArgument_outSwiftDefaultValueAsString.drop () ; // Release error dropped variable
@@ -6101,10 +6101,10 @@ static void extensionMethod_listAsDefaultValue_analyzeDefaultValueType (const cP
   const cPtr_listAsDefaultValue * object = (const cPtr_listAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_listAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_10958 = GALGAS_bool (false) ;
-  const enumGalgasBool test_0 = var_found_10958.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 366)).boolEnum () ;
+  GALGAS_bool var_found_10960 = GALGAS_bool (false) ;
+  const enumGalgasBool test_0 = var_found_10960.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 367)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (object->mAttribute_mStartLocation, GALGAS_string ("invalid initialization value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 367)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mStartLocation, GALGAS_string ("invalid initialization value")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 368)) ;
   }
 }
 

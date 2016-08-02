@@ -31,7 +31,7 @@ private var gPendingOutletEvents = Set <EBOutletEvent> ()
 
 func postOutletEvent (_ event : EBOutletEvent) {
   if gPendingOutletEvents.count == 0 {
-    DispatchQueue.main.after (when: DispatchTime.now()) { flushOutletEvents () }
+    DispatchQueue.main.asyncAfter (deadline: DispatchTime.now()) { flushOutletEvents () }
     if logEvents () {
       appendMessageString ("Post events\n")
     }
@@ -42,7 +42,7 @@ func postOutletEvent (_ event : EBOutletEvent) {
     if !gPendingOutletEvents.contains (event) {
       appendMessageString (str)
     }else{ // Event already posted
-      appendMessageString (str, color: NSColor.brown ())
+      appendMessageString (str, color: NSColor.brown)
     }
   }
   gPendingOutletEvents.insert (event)
@@ -53,7 +53,7 @@ func postOutletEvent (_ event : EBOutletEvent) {
 func flushOutletEvents () {
   if gPendingOutletEvents.count > 0 {
     if logEvents () {
-      appendMessageString ("Flush outlet events\n", color: NSColor.blue ())
+      appendMessageString ("Flush outlet events\n", color: NSColor.blue)
     }
     while gPendingOutletEvents.count > 0 {
       let pendingOutletEvents = gPendingOutletEvents
@@ -61,17 +61,17 @@ func flushOutletEvents () {
       for event in pendingOutletEvents {
         if logEvents () {
           let message = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
-          appendMessageString (message, color: NSColor.blue ())
+          appendMessageString (message, color: NSColor.blue)
         }
         event.sendUpdateEvent ()
       }
       if gPendingOutletEvents.count > 0 && logEvents () {
         let message = String (gPendingOutletEvents.count) +  " event(s) posted during flush\n"
-        appendMessageString (message, color: NSColor.red ())
+        appendMessageString (message, color: NSColor.red)
       }
     }
     if logEvents () {
-      appendMessageString ("——————————————————————————————————————\n", color: NSColor.blue ())
+      appendMessageString ("——————————————————————————————————————\n", color: NSColor.blue)
     }
   }
 }
@@ -147,7 +147,7 @@ func appendMessageString (_ message : String, color:NSColor) {
 
   private func appendToTransientEventLog (_ message : String) {
     if logEvents () {
-      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blue ())
+      mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blue)
     }
   }
   

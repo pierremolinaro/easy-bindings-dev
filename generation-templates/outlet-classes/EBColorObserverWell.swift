@@ -79,7 +79,7 @@ final class Controller_EBColorObserverWell_color : EBSimpleController {
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection, .multipleSelection :
-      mOutlet.color = NSColor.white ()
+      mOutlet.color = NSColor.white
     case .singleSelection (let v) :
       mOutlet.color = v
     }
