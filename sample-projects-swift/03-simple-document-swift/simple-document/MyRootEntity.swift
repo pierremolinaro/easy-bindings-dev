@@ -401,7 +401,7 @@ class MyRootEntity : EBManagedObject
 
   var myString = EBStoredProperty_String ("Hello")
 
-  var myColor = EBStoredProperty_NSColor (NSColor.yellow ())
+  var myColor = EBStoredProperty_NSColor (NSColor.yellow)
 
   //····················································································································
   //    Transient properties
