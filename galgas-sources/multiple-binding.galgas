@@ -447,7 +447,7 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
 #......................................................................................................................*
 
 abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
+  -> @stringset
 
 #......................................................................................................................*
 
@@ -508,7 +508,7 @@ override getter @comparisonMultipleBindingExpressionForGeneration observedModelS
 #......................................................................................................................*
 
 abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressionString
-  -> @string outExpressionString
+  -> @string
 
 #......................................................................................................................*
 

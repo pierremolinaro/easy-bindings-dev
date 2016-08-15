@@ -1701,16 +1701,17 @@ bool C_Lexique_easyBindings_5F_lexique::parseLexicalToken (void) {
 //                         E N T E R    T O K E N                                                                      *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void C_Lexique_easyBindings_5F_lexique::enterToken (const cTokenFor_easyBindings_5F_lexique & inToken) {
+void C_Lexique_easyBindings_5F_lexique::enterToken (cTokenFor_easyBindings_5F_lexique & ioToken) {
   cTokenFor_easyBindings_5F_lexique * ptr = NULL ;
   macroMyNew (ptr, cTokenFor_easyBindings_5F_lexique ()) ;
-  ptr->mTokenCode = inToken.mTokenCode ;
+  ptr->mTokenCode = ioToken.mTokenCode ;
   ptr->mStartLocation = mTokenStartLocation ;
   ptr->mEndLocation = mTokenEndLocation ;
-  ptr->mTemplateStringBeforeToken = inToken.mTemplateStringBeforeToken ;
-  ptr->mLexicalAttribute_floatValue = inToken.mLexicalAttribute_floatValue ;
-  ptr->mLexicalAttribute_tokenString = inToken.mLexicalAttribute_tokenString ;
-  ptr->mLexicalAttribute_uint_33__32_value = inToken.mLexicalAttribute_uint_33__32_value ;
+  ptr->mTemplateStringBeforeToken = ioToken.mTemplateStringBeforeToken ;
+  ioToken.mTemplateStringBeforeToken = "" ;
+  ptr->mLexicalAttribute_floatValue = ioToken.mLexicalAttribute_floatValue ;
+  ptr->mLexicalAttribute_tokenString = ioToken.mLexicalAttribute_tokenString ;
+  ptr->mLexicalAttribute_uint_33__32_value = ioToken.mLexicalAttribute_uint_33__32_value ;
   enterTokenFromPointer (ptr) ;
 }
 
@@ -2046,8 +2047,6 @@ C_String C_Lexique_easyBindings_5F_lexique::styleNameForIndex (const uint32_t in
   return result ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-
 
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2212,7 +2211,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("property-class.galgas", 34)) ;
     const enumGalgasBool test_1 = var_stringDefaultValues_1432.getter_hasKey (var_defaultValue_1502.mAttribute_string COMMA_SOURCE_FILE ("property-class.galgas", 35)).boolEnum () ;
     if (kBoolTrue == test_1) {
-      inCompiler->emitSemanticError (var_defaultValue_1502.getter_location (SOURCE_FILE ("property-class.galgas", 36)), GALGAS_string ("value already defined")  COMMA_SOURCE_FILE ("property-class.galgas", 36)) ;
+      TC_Array <C_FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (var_defaultValue_1502.getter_location (SOURCE_FILE ("property-class.galgas", 36)), GALGAS_string ("value already defined"), fixItArray2  COMMA_SOURCE_FILE ("property-class.galgas", 36)) ;
     }
     var_stringDefaultValues_1432.addAssign_operation (var_defaultValue_1502.mAttribute_string  COMMA_SOURCE_FILE ("property-class.galgas", 38)) ;
     switch (select_easyBindings_5F_syntax_1 (inCompiler)) {
@@ -2999,7 +2999,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_tableValue) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
       const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_tableValueBinding_1838.objectCompare (GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 49)))).boolEnum () ;
       if (kBoolTrue == test_1) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)), GALGAS_string ("duplicated $tableValue binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)) ;
+        TC_Array <C_FixItDescription> fixItArray2 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)), GALGAS_string ("duplicated $tableValue binding"), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 50)) ;
       }
       GALGAS_lstring var_controllerName_2341 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 52)) ;
@@ -3007,9 +3008,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     } break ;
     case 3: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_run) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 55)) ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_1908.objectCompare (GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 56)))).boolEnum () ;
-      if (kBoolTrue == test_2) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)), GALGAS_string ("duplicated $run binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)) ;
+      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_1908.objectCompare (GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 56)))).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        TC_Array <C_FixItDescription> fixItArray4 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)), GALGAS_string ("duplicated $run binding"), fixItArray4  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)) ;
       }
       GALGAS_lstring var_runTargetName_2575 ;
       switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
@@ -3031,9 +3033,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     } break ;
     case 4: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_enabled) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 71)) ;
-      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_1974.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 72)))).boolEnum () ;
-      if (kBoolTrue == test_3) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 73)), GALGAS_string ("duplicated $enabled binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 73)) ;
+      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_1974.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 72)))).boolEnum () ;
+      if (kBoolTrue == test_5) {
+        TC_Array <C_FixItDescription> fixItArray6 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 73)), GALGAS_string ("duplicated $enabled binding"), fixItArray6  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 73)) ;
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3116 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_3116, inCompiler) ;
@@ -3041,9 +3044,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     } break ;
     case 5: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_hidden) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 79)) ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_2045.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 80)))).boolEnum () ;
-      if (kBoolTrue == test_4) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)), GALGAS_string ("duplicated $hidden binding")  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)) ;
+      const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_2045.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 80)))).boolEnum () ;
+      if (kBoolTrue == test_7) {
+        TC_Array <C_FixItDescription> fixItArray8 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)), GALGAS_string ("duplicated $hidden binding"), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 81)) ;
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3451 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_3451, inCompiler) ;
@@ -3053,8 +3057,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
       GALGAS_lstring var_bindingName_3603 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_bindingName) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 87)) ;
       GALGAS_observablePropertyList var_observablePropertyList_3656 = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 88)) ;
-      bool repeatFlag_5 = true ;
-      while (repeatFlag_5) {
+      bool repeatFlag_9 = true ;
+      while (repeatFlag_9) {
         GALGAS_observablePropertyAST var_observableProperty_3751 ;
         nt_observable_5F_property_ (var_observableProperty_3751, inCompiler) ;
         var_observablePropertyList_3656.addAssign_operation (var_observableProperty_3751  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 91)) ;
@@ -3063,7 +3067,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
           inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 93)) ;
         } break ;
         default:
-          repeatFlag_5 = false ;
+          repeatFlag_9 = false ;
           break ;
         }
       }
@@ -4046,7 +4050,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_run) COMMA_SOURCE_FILE ("array-controller.galgas", 139)) ;
       const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_4806.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_1) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 141)), GALGAS_string ("duplicated $run binding")  COMMA_SOURCE_FILE ("array-controller.galgas", 141)) ;
+        TC_Array <C_FixItDescription> fixItArray2 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 141)), GALGAS_string ("duplicated $run binding"), fixItArray2  COMMA_SOURCE_FILE ("array-controller.galgas", 141)) ;
       }
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_self) COMMA_SOURCE_FILE ("array-controller.galgas", 143)) ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2E_) COMMA_SOURCE_FILE ("array-controller.galgas", 144)) ;
@@ -4055,9 +4060,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
     } break ;
     case 3: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_enabled) COMMA_SOURCE_FILE ("array-controller.galgas", 148)) ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_4854.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 149)))).boolEnum () ;
-      if (kBoolTrue == test_2) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 150)), GALGAS_string ("duplicated $enabled binding")  COMMA_SOURCE_FILE ("array-controller.galgas", 150)) ;
+      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_4854.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 149)))).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        TC_Array <C_FixItDescription> fixItArray4 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 150)), GALGAS_string ("duplicated $enabled binding"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 150)) ;
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_5478 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_5478, inCompiler) ;
@@ -4065,9 +4071,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
     } break ;
     case 4: {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_hidden) COMMA_SOURCE_FILE ("array-controller.galgas", 156)) ;
-      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_4925.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 157)))).boolEnum () ;
-      if (kBoolTrue == test_3) {
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 158)), GALGAS_string ("duplicated $hidden binding")  COMMA_SOURCE_FILE ("array-controller.galgas", 158)) ;
+      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_4925.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 157)))).boolEnum () ;
+      if (kBoolTrue == test_5) {
+        TC_Array <C_FixItDescription> fixItArray6 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 158)), GALGAS_string ("duplicated $hidden binding"), fixItArray6  COMMA_SOURCE_FILE ("array-controller.galgas", 158)) ;
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_5813 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_5813, inCompiler) ;
@@ -4077,8 +4084,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
       GALGAS_lstring var_bindingName_5965 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken_bindingName) COMMA_SOURCE_FILE ("array-controller.galgas", 164)) ;
       GALGAS_observablePropertyList var_observablePropertyList_6018 = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 165)) ;
-      bool repeatFlag_4 = true ;
-      while (repeatFlag_4) {
+      bool repeatFlag_7 = true ;
+      while (repeatFlag_7) {
         GALGAS_observablePropertyAST var_observableProperty_6113 ;
         nt_observable_5F_property_ (var_observableProperty_6113, inCompiler) ;
         var_observablePropertyList_6018.addAssign_operation (var_observableProperty_6113  COMMA_SOURCE_FILE ("array-controller.galgas", 168)) ;
@@ -4087,7 +4094,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
           inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("array-controller.galgas", 170)) ;
         } break ;
         default:
-          repeatFlag_4 = false ;
+          repeatFlag_7 = false ;
           break ;
         }
       }
@@ -4321,12 +4328,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_easyBindings_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("xcode-project.galgas", 14)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_xcodeProjectString_662.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
   if (kBoolTrue == test_0) {
-    inCompiler->emitSemanticError (var_xcodeProjectString_662.getter_location (SOURCE_FILE ("xcode-project.galgas", 16)), GALGAS_string ("string should not be empty")  COMMA_SOURCE_FILE ("xcode-project.galgas", 16)) ;
+    TC_Array <C_FixItDescription> fixItArray1 ;
+    inCompiler->emitSemanticError (var_xcodeProjectString_662.getter_location (SOURCE_FILE ("xcode-project.galgas", 16)), GALGAS_string ("string should not be empty"), fixItArray1  COMMA_SOURCE_FILE ("xcode-project.galgas", 16)) ;
   }else if (kBoolFalse == test_0) {
-    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, ioArgument_ioXcodeProjectString.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_1) {
-      inCompiler->emitSemanticError (var_xcodeProjectString_662.getter_location (SOURCE_FILE ("xcode-project.galgas", 18)), GALGAS_string ("Xcode project already defined")  COMMA_SOURCE_FILE ("xcode-project.galgas", 18)) ;
-    }else if (kBoolFalse == test_1) {
+    const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, ioArgument_ioXcodeProjectString.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_2) {
+      TC_Array <C_FixItDescription> fixItArray3 ;
+      inCompiler->emitSemanticError (var_xcodeProjectString_662.getter_location (SOURCE_FILE ("xcode-project.galgas", 18)), GALGAS_string ("Xcode project already defined"), fixItArray3  COMMA_SOURCE_FILE ("xcode-project.galgas", 18)) ;
+    }else if (kBoolFalse == test_2) {
       ioArgument_ioXcodeProjectString = var_xcodeProjectString_662 ;
     }
   }
@@ -10526,264 +10535,6 @@ GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::extractObject (
       result = *p ;
     }else{
       inCompiler->castError ("simpleStoredPropertyList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement_classObservablePropertyMap::cMapElement_classObservablePropertyMap (const GALGAS_lstring & inKey,
-                                                                                const GALGAS_observablePropertyMap & in_mObservablePropertyMap
-                                                                                COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mAttribute_mObservablePropertyMap (in_mObservablePropertyMap) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-bool cMapElement_classObservablePropertyMap::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mObservablePropertyMap.isValid () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement * cMapElement_classObservablePropertyMap::copy (void) {
-  cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_classObservablePropertyMap (mAttribute_lkey, mAttribute_mObservablePropertyMap COMMA_HERE)) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cMapElement_classObservablePropertyMap::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mObservablePropertyMap" ":" ;
-  mAttribute_mObservablePropertyMap.description (ioString, inIndentation) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cMapElement_classObservablePropertyMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_classObservablePropertyMap * operand = (cMapElement_classObservablePropertyMap *) inOperand ;
-  typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
-  if (kOperandEqual == result) {
-    result = mAttribute_mObservablePropertyMap.objectCompare (operand->mAttribute_mObservablePropertyMap) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap::GALGAS_classObservablePropertyMap (void) :
-AC_GALGAS_map () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap::GALGAS_classObservablePropertyMap (const GALGAS_classObservablePropertyMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap & GALGAS_classObservablePropertyMap::operator = (const GALGAS_classObservablePropertyMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap GALGAS_classObservablePropertyMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_classObservablePropertyMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap GALGAS_classObservablePropertyMap::constructor_mapWithMapToOverride (const GALGAS_classObservablePropertyMap & inMapToOverride
-                                                                                                       COMMA_LOCATION_ARGS) {
-  GALGAS_classObservablePropertyMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap GALGAS_classObservablePropertyMap::getter_overriddenMap (C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_classObservablePropertyMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_classObservablePropertyMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                                             const GALGAS_observablePropertyMap & inArgument0,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
-  cMapElement_classObservablePropertyMap * p = NULL ;
-  macroMyNew (p, cMapElement_classObservablePropertyMap (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@classObservablePropertyMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_classObservablePropertyMap::setter_insertKey (GALGAS_lstring inKey,
-                                                          GALGAS_observablePropertyMap inArgument0,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_classObservablePropertyMap * p = NULL ;
-  macroMyNew (p, cMapElement_classObservablePropertyMap (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' document is already declared in %L" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const char * kSearchErrorMessage_classObservablePropertyMap_searchKey = "there is no '%K' document" ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_classObservablePropertyMap::method_searchKey (GALGAS_lstring inKey,
-                                                          GALGAS_observablePropertyMap & outArgument0,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const {
-  const cMapElement_classObservablePropertyMap * p = (const cMapElement_classObservablePropertyMap *) performSearch (inKey,
-                                                                                                                       inCompiler,
-                                                                                                                       kSearchErrorMessage_classObservablePropertyMap_searchKey
-                                                                                                                       COMMA_THERE) ;
-  if (NULL == p) {
-    outArgument0.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_classObservablePropertyMap) ;
-    outArgument0 = p->mAttribute_mObservablePropertyMap ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap GALGAS_classObservablePropertyMap::getter_mObservablePropertyMapForKey (const GALGAS_string & inKey,
-                                                                                                     C_Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_classObservablePropertyMap * p = (const cMapElement_classObservablePropertyMap *) attributes ;
-  GALGAS_observablePropertyMap result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_classObservablePropertyMap) ;
-    result = p->mAttribute_mObservablePropertyMap ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void GALGAS_classObservablePropertyMap::setter_setMObservablePropertyMapForKey (GALGAS_observablePropertyMap inAttributeValue,
-                                                                                GALGAS_string inKey,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  cMapElement_classObservablePropertyMap * p = (cMapElement_classObservablePropertyMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_classObservablePropertyMap) ;
-    p->mAttribute_mObservablePropertyMap = inAttributeValue ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cMapElement_classObservablePropertyMap * GALGAS_classObservablePropertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                                               const GALGAS_string & inKey
-                                                                                                               COMMA_LOCATION_ARGS) {
-  cMapElement_classObservablePropertyMap * result = (cMapElement_classObservablePropertyMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_classObservablePropertyMap) ;
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-cEnumerator_classObservablePropertyMap::cEnumerator_classObservablePropertyMap (const GALGAS_classObservablePropertyMap & inEnumeratedObject,
-                                                                                const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator () {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap_2D_element cEnumerator_classObservablePropertyMap::current (LOCATION_ARGS) const {
-  const cMapElement_classObservablePropertyMap * p = (const cMapElement_classObservablePropertyMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_classObservablePropertyMap) ;
-  return GALGAS_classObservablePropertyMap_2D_element (p->mAttribute_lkey, p->mAttribute_mObservablePropertyMap) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring cEnumerator_classObservablePropertyMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mAttribute_lkey ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_observablePropertyMap cEnumerator_classObservablePropertyMap::current_mObservablePropertyMap (LOCATION_ARGS) const {
-  const cMapElement_classObservablePropertyMap * p = (const cMapElement_classObservablePropertyMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_classObservablePropertyMap) ;
-  return p->mAttribute_mObservablePropertyMap ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          @classObservablePropertyMap type                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_classObservablePropertyMap ("classObservablePropertyMap",
-                                                   NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_classObservablePropertyMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_classObservablePropertyMap ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_classObservablePropertyMap::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_classObservablePropertyMap (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_classObservablePropertyMap GALGAS_classObservablePropertyMap::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_classObservablePropertyMap result ;
-  const GALGAS_classObservablePropertyMap * p = (const GALGAS_classObservablePropertyMap *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_classObservablePropertyMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("classObservablePropertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
