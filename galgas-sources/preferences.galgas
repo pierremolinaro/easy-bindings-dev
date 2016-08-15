@@ -92,16 +92,6 @@ method @prefDeclaration solveSecondaryProperty
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC TYPES                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-map @prefsObservablePropertyMap {
-  @observablePropertyMap mObservablePropertyMap
-  insert insertKey error message "the '%K' prefs is already declared in %L"
-  search searchKey error message "there is no '%K' prefs"
-}
-
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

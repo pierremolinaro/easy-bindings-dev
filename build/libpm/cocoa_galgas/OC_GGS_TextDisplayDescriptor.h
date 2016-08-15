@@ -79,6 +79,9 @@
 
 - (void) actionInsertTextMacro: (NSMenuItem *) inSender ;
 
+//--- Fix it action
+- (void) replaceRange: (NSRange) inRange withString: (NSString *) inReplacement ;
+
 @end
 
 //---------------------------------------------------------------------------------------------------------------------*

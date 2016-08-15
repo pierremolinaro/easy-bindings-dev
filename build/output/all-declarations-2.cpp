@@ -2380,32 +2380,27 @@ GALGAS_unifiedTypeMap GALGAS_unifiedTypeMap::constructor_emptyMap (LOCATION_ARGS
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-//  Map automaton states                                                       *
+//  Map automaton states                                                                                               *
 //---------------------------------------------------------------------------------------------------------------------*
 
 
 //---------------------------------------------------------------------------------------------------------------------*
-//  Map automaton state names                                                  *
+//  Map automaton state names                                                                                          *
 //---------------------------------------------------------------------------------------------------------------------*
 
 
 //---------------------------------------------------------------------------------------------------------------------*
-//  Map automaton actions                                                    *
+//  Map automaton actions                                                                                              *
 //---------------------------------------------------------------------------------------------------------------------*
 
 
 //---------------------------------------------------------------------------------------------------------------------*
-//  Map automaton action names                                                 *
+//  Map automaton transitions                                                                                          *
 //---------------------------------------------------------------------------------------------------------------------*
 
 
 //---------------------------------------------------------------------------------------------------------------------*
-//  Map automaton transitions                                                  *
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//  Map automaton final state issues                                           *
+//  Map automaton final state issues                                                                                   *
 //---------------------------------------------------------------------------------------------------------------------*
 
 
@@ -11002,14 +10997,14 @@ void cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (C_Compiler * 
         C_String message ;
         message << "the '" << filePath << "' file exists, but cannot be read" ;
         const GALGAS_location errorLocation (inFilePath.getter_location (THERE)) ;
-        inCompiler->semanticErrorAtLocation (errorLocation, message COMMA_THERE) ;
+        inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <C_FixItDescription> () COMMA_THERE) ;
       }
       macroDetachSharedObject (scanner) ;
     }else{
       C_String message ;
       message << "the '" << filePath << "' file does not exist" ;
       const GALGAS_location errorLocation (inFilePath.getter_location (THERE)) ;
-      inCompiler->semanticErrorAtLocation (errorLocation, message COMMA_THERE) ;
+      inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <C_FixItDescription> () COMMA_THERE) ;
     }
   }
 }

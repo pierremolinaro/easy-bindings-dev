@@ -103,16 +103,6 @@ override method @classDeclaration typeInventory
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC TYPES                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-map @classObservablePropertyMap {
-  @observablePropertyMap mObservablePropertyMap
-  insert insertKey error message "the '%K' document is already declared in %L"
-  search searchKey error message "there is no '%K' document"
-}
-
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
