@@ -36,7 +36,7 @@ import Cocoa
   
   //···················································································································*
 
-  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : Any?) -> Bool {
     selectViewFromSelectedSegmentIndex ()
     mValueController?.updateModel (self)
     return super.sendAction (action, to:to)

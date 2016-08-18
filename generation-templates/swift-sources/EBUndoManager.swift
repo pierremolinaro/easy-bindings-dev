@@ -33,7 +33,7 @@ class EBUndoManager : UndoManager, EBUserClassNameProtocol {
   //    registerUndoWithTarget
   //····················································································································
 
-  override func registerUndo (withTarget target:AnyObject, selector:Selector, object anObject:AnyObject!) {
+  override func registerUndo (withTarget target:Any, selector:Selector, object anObject:Any!) {
     super.registerUndo (withTarget: target, selector:selector, object:anObject)
     if logEvents () {
       appendToTransientEventLog ("registerUndoWithTarget (\(isUndoRegistrationEnabled), target \(target), selector \"\(selector)\", object \"\(anObject)\"\n")

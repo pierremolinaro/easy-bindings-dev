@@ -32,7 +32,7 @@ import Cocoa
 
   //····················································································································
 
-  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : Any?) -> Bool {
     mIntValueController?.updateModel ()
     return super.sendAction (action, to:to)
   }

@@ -25,7 +25,7 @@ import Cocoa
   
   //····················································································································
 
-  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : Any?) -> Bool {
     showFontManager ()
     return super.sendAction (action, to:to)
   }
@@ -44,7 +44,7 @@ import Cocoa
 
   //····················································································································
 
-  override func changeFont (_ sender : AnyObject?) {
+  override func changeFont (_ sender : Any?) {
     if let valueController = mValueController, let fontManager = sender as! NSFontManager? {
       let newFont = fontManager.convert (mFont!)
       valueController.mObject.setProp (value: newFont)

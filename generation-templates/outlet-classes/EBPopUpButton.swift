@@ -24,7 +24,7 @@ import Cocoa
   
   //····················································································································
 
-  override func sendAction (_ action : Selector?, to : AnyObject?) -> Bool {
+  override func sendAction (_ action : Selector?, to : Any?) -> Bool {
     mSelectedTagController?.updateModel (sender: self)
     return super.sendAction (action, to:to)
   }

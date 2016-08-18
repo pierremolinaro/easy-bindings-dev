@@ -464,7 +464,7 @@ case storedArrayModel :
   //    add
   //····················································································································
 
-   func add (_ sender : AnyObject) {
+   func add (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -489,7 +489,7 @@ case storedArrayModel :
   //    remove
   //····················································································································
 
-  func remove (_ sender : AnyObject) {
+  func remove (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -570,7 +570,7 @@ case relationshipModel :
   //    add
   //····················································································································
 
-   func add (_ sender : AnyObject) {
+   func add (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -595,7 +595,7 @@ case relationshipModel :
   //    remove
   //····················································································································
 
-  func remove (_ sender : AnyObject) {
+  func remove (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
