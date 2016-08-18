@@ -189,8 +189,8 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   func readInPreferencesWithKey (inKey : String) {
     let ud = UserDefaults.standard
-    let value : AnyObject? = ud.object (forKey: inKey)
-    if let unwValue : AnyObject = value {
+    let value : Any? = ud.object (forKey: inKey)
+    if let unwValue : Any = value {
       if let array : [NSDictionary] = unwValue as? [NSDictionary] {
         for dict in array {
           let object = %!CLASS_NAME% ()
