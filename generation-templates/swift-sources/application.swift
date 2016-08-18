@@ -145,7 +145,7 @@ func appendMessageString (_ message : String, color:NSColor) {
   
   //····················································································································
 
-  private func appendToTransientEventLog (_ message : String) {
+  fileprivate func appendToTransientEventLog (_ message : String) {
     if logEvents () {
       mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blue)
     }
@@ -153,7 +153,7 @@ func appendMessageString (_ message : String, color:NSColor) {
   
   //····················································································································
 
-  private func logEvents () -> Bool {
+  fileprivate func logEvents () -> Bool {
     return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.isVisible
   }
 
