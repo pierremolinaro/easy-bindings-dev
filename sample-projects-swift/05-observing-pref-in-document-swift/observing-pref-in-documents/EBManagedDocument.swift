@@ -76,7 +76,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   func saveMetadataDictionary (version : Int, metadataDictionary : inout NSMutableDictionary) {
-    metadataDictionary.setObject (NSNumber (value:version), forKey:EBVersion)
+    metadataDictionary.setObject (NSNumber (value:version), forKey:EBVersion  as NSCopying)
   }
 
   //····················································································································
@@ -100,8 +100,8 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface
       if unwrappedWindowForSheet.styleMask.contains(.resizable) { // Only if window is resizable
         let windowSize = unwrappedWindowForSheet.frame.size ;
-        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.width)), forKey:"EBWindowWidth")
-        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.height)), forKey:"EBWindowHeight")
+        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.width)), forKey:"EBWindowWidth" as NSCopying)
+        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.height)), forKey:"EBWindowHeight" as NSCopying)
       }
     }else{ // Document has not been opened in the user interface, use values read from file, if they exist
 /*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;
@@ -115,7 +115,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       }*/
     }
   //---
-    let fileData = NSMutableData ()
+    var fileData = Data ()
     var trace : String? = nil
   //--- Append signature
     fileData.writeSignature (trace: &trace)
@@ -140,7 +140,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  func dataForSavingFromRootObject () throws -> NSData {
+  func dataForSavingFromRootObject () throws -> Data {
     let objectsToSaveArray : [EBManagedObject] = mManagedObjectContext.reachableObjectsFromRootObject (rootObject: mRootObject!)
   //--- Set savingIndex for each object
     var idx = 0 ;
@@ -231,7 +231,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   func readVersionFromMetadataDictionary (metadataDictionary : NSDictionary) -> Int {
     var result = 0
-    if let versionNumber = metadataDictionary.object (forKey: EBVersion) as? NSNumber {
+    if let versionNumber = metadataDictionary.object (forKey: EBVersion as NSCopying) as? NSNumber {
       result = versionNumber.intValue
     }
     return result
@@ -253,9 +253,9 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  func readManagedObjectsFromData (inData : NSData) throws {
+  func readManagedObjectsFromData (inData : Data) throws {
     let startDate = Date ()
-    let v : AnyObject = try PropertyListSerialization.propertyList (from: inData as Data,
+    let v : Any = try PropertyListSerialization.propertyList (from: inData as Data,
       options:[],
       format:nil
     )
@@ -349,7 +349,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //   C H E C K    E N T I T Y   R E A C H A B I L I T Y
   //····················································································································
 
-  @IBAction func checkEntityReachability (_: AnyObject!) {
+  @IBAction func checkEntityReachability (_: AnyObject) {
     if let rootObject = mRootObject, let window = windowForSheet {
       mManagedObjectContext.checkEntityReachabilityFromObject (rootObject: rootObject, windowForSheet:window)
     }
@@ -359,7 +359,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //   showObjectExplorerWindow:
   //····················································································································
 
-  @IBAction func showObjectExplorerWindow (_: AnyObject!) {
+  @IBAction func showObjectExplorerWindow (_: AnyObject) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
@@ -408,7 +408,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //   deleteDocumentWindowAction
   //····················································································································
 
-  func deleteDocumentWindowAction (_ : AnyObject) {
+  func deleteDocumentWindowAction (_ : Any) {
     clearObjectExplorer ()
   }
 
@@ -559,15 +559,16 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//     NSMutableData extension
+//     Data extension
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension NSMutableData {
-  func writeSignature (trace: inout String?) {
-    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+extension Data {
+
+  mutating func writeSignature (trace: inout String?) {
+    trace? += String (format:"%03lu %03lu ", count / 1000, count % 1000)
     for c in kFormatSignature.utf8 {
-      var byte : UInt8 = UInt8 (c)
-      append (&byte, length:1)
+      let byte : UInt8 = UInt8 (c)
+      self.append (byte)
       trace? += String (format:"%02hhX ", byte)
     }
     trace? += "\n"
@@ -575,30 +576,30 @@ extension NSMutableData {
 
   //····················································································································
 
-  func writeAutosizedData (inData: NSData,
-                           trace: inout String?) {
-    writeAutosizedUnsigned (inValue: UInt64 (inData.length), trace:&trace)
-    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
-    append (inData as Data)
-    trace? += "(data, length \(inData.length))\n"
+  mutating func writeAutosizedData (inData: Data,
+                                    trace: inout String?) {
+    writeAutosizedUnsigned (inValue: UInt64 (inData.count), trace:&trace)
+    trace? += String (format:"%03lu %03lu ", count / 1000, count % 1000)
+    append (inData)
+    trace? += "(data, count \(inData.count))\n"
   }
 
   //····················································································································
 
-  func writeByte (inByte: UInt8,
-                  trace: inout String?) {
-    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+  mutating func writeByte (inByte: UInt8,
+                           trace: inout String?) {
+    trace? += String (format:"%03lu %03lu ", count / 1000, count % 1000)
     trace? += String (format:"%02hhX ", inByte)
     var byte = inByte
-    append (&byte, length:1)
+    append (&byte, count:1)
     trace? += "\n"
   }
 
   //····················································································································
 
-  func writeAutosizedUnsigned (inValue: UInt64,
-                               trace: inout String?) {
-    trace? += String (format:"%03lu %03lu ", length / 1000, length % 1000)
+  mutating func writeAutosizedUnsigned (inValue: UInt64,
+                                        trace: inout String?) {
+    trace? += String (format:"%03lu %03lu ", count / 1000, count % 1000)
     trace? += "U "
     var value = inValue
     repeat{
@@ -608,7 +609,7 @@ extension NSMutableData {
         byte |= 0x80
       }
       trace? += String (format:"%02hhX ", byte)
-      append (&byte, length:1)
+      append (byte)
     }while value != 0
     trace? += "\n"
   }

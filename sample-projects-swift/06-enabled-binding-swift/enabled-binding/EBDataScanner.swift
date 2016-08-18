@@ -140,8 +140,8 @@ struct EBDataScanner {
 
   //····················································································································
 
-  mutating func parseAutosizedData () -> NSData {
-    var result = NSData ()
+  mutating func parseAutosizedData () -> Data {
+    var result = Data ()
     if mReadOk {
       let dataLength : Int = Int (parseAutosizedUnsignedInteger ())
       if (mReadIndex + dataLength) >= mData.count {

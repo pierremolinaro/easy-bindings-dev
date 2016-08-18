@@ -16,7 +16,7 @@ extension NSView {
 
   //····················································································································
 
-  func bind_hidden (_ object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
+  func bind_hidden (_ object:[EBAbstractProperty], computeFunction: @escaping () -> EBProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSView_hidden (
       objectArray:object,
       outlet:self,
@@ -47,13 +47,13 @@ extension NSView {
 
   var mObjectArray : [EBAbstractProperty]
   var mOutlet : NSView
-  var mComputeFunction : Optional <() -> EBProperty <Bool> >
+  var mComputeFunction : Optional < () -> EBProperty <Bool> >
 
   //····················································································································
 
   init (objectArray : [EBAbstractProperty],
         outlet : NSView,
-        computeFunction: () -> EBProperty <Bool>,
+        computeFunction:@escaping () -> EBProperty <Bool>,
         file : String,
         line : Int) {
     mObjectArray = objectArray
@@ -107,7 +107,7 @@ extension NSControl {
 
   //····················································································································
 
-  func bind_enabled (_ object:[EBAbstractProperty], computeFunction: () -> EBProperty <Bool>, file:String, line:Int) {
+  func bind_enabled (_ object:[EBAbstractProperty], computeFunction: @escaping () -> EBProperty <Bool>, file:String, line:Int) {
     let controller = Controller_NSControl_enabled (
       objectArray:object,
       outlet:self,
@@ -181,7 +181,7 @@ extension NSControl {
 
   //····················································································································
 
-  init (objectArray : [EBAbstractProperty], outlet : NSControl, computeFunction: () -> EBProperty <Bool>, file : String, line : Int) {
+  init (objectArray : [EBAbstractProperty], outlet : NSControl, computeFunction: @escaping () -> EBProperty <Bool>, file : String, line : Int) {
     mObjectArray = objectArray
     mOutlet = outlet
     mComputeFunction = computeFunction
