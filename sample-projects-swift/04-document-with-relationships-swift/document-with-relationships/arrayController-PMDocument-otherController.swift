@@ -428,7 +428,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
   //    add
   //····················································································································
 
-   func add (_ sender : AnyObject) {
+   func add (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -453,7 +453,7 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
   //    remove
   //····················································································································
 
-  func remove (_ sender : AnyObject) {
+  func remove (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }

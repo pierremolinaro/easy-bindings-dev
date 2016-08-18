@@ -356,13 +356,13 @@ end
 
   override var prop : EBProperty < [%![mRelationshipType swiftTypeName]%] > {
     get {
-      return .singleSelection (mValue ?? [%![mRelationshipType swiftTypeName]%] ())
+      return .singleSelection (mValue)
     }
   }
 
   override func setProp (value :  [%![mRelationshipType swiftTypeName]%]) { mValue = value }
 
-  var propval : [%![mRelationshipType swiftTypeName]%] { get { return mValue ?? [%![mRelationshipType swiftTypeName]%] () } }
+  var propval : [%![mRelationshipType swiftTypeName]%] { get { return mValue } }
 
   //····················································································································
 
@@ -703,7 +703,7 @@ end
 %    %!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    store (managedObjectArray: %!mToManyRelationshipName%.propval, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
+%    store (managedObjectArray: %!mToManyRelationshipName%.propval as NSArray, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mInverseRelationMultiplicity isSingle] then

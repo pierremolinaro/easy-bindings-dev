@@ -198,13 +198,13 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
 
   override var prop : EBProperty < [NameEntity] > {
     get {
-      return .singleSelection (mValue ?? [NameEntity] ())
+      return .singleSelection (mValue)
     }
   }
 
   override func setProp (value :  [NameEntity]) { mValue = value }
 
-  var propval : [NameEntity] { get { return mValue ?? [NameEntity] () } }
+  var propval : [NameEntity] { get { return mValue } }
 
   //····················································································································
 
@@ -353,7 +353,7 @@ class MyRootEntity : EBManagedObject
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    store (managedObjectArray: mNames.propval, relationshipName:"mNames", intoDictionary: ioDictionary) ;
+    store (managedObjectArray: mNames.propval as NSArray, relationshipName:"mNames", intoDictionary: ioDictionary) ;
   }
 
   //····················································································································

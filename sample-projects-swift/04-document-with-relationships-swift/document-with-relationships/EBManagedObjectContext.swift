@@ -144,7 +144,7 @@ class EBManagedObjectContext : EBObject {
       objectsToExploreArray.removeLast ()
       var accessible = Array<EBManagedObject> ()
       objectToExplore.accessibleObjects (objects: &accessible)
-      for object : AnyObject in accessible {
+      for object : Any in accessible {
         let managedObject = object as! EBManagedObject
         if !reachableObjectSet.contains (managedObject) {
           reachableObjectSet.insert (managedObject)
@@ -170,9 +170,9 @@ class EBManagedObjectContext : EBObject {
     }else if inEntityTypeName == "NameEntity" {
       result = NameEntity (managedObjectContext:self)
     }else{
-       let dictionary : [NSObject : AnyObject] = [
-        NSLocalizedDescriptionKey : "Cannot read document",
-        NSLocalizedRecoverySuggestionErrorKey : "Cannot create object of \(inEntityTypeName) class",
+       let dictionary : [NSObject : Any] = [
+        NSLocalizedDescriptionKey as NSObject : "Cannot read document",
+        NSLocalizedRecoverySuggestionErrorKey as NSObject : "Cannot create object of \(inEntityTypeName) class",
       ]
       throw NSError (
         domain:Bundle.main.bundleIdentifier!,
