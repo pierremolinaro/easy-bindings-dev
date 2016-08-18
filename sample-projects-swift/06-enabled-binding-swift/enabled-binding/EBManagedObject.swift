@@ -141,7 +141,7 @@ import Cocoa
   //   showObjectWindowFromExplorerButton
   //····················································································································
 
-  func showObjectWindowFromExplorerButton (_: AnyObject) {
+  func showObjectWindowFromExplorerButton (_: Any) {
     showExplorerWindow ()
   }
   
@@ -149,7 +149,7 @@ import Cocoa
   //   deleteWindowAction
   //····················································································································
 
-  func deleteWindowAction (_: AnyObject) {
+  func deleteWindowAction (_: Any) {
     clearObjectExplorer ()
   }
 
@@ -174,11 +174,11 @@ import Cocoa
 
     if managedObjectArray.count > 0 {
       let indexArray = NSMutableArray ()
-      for object : AnyObject in managedObjectArray {
+      for object : Any in managedObjectArray {
         let managedObject = object as! EBManagedObject
         indexArray.add (NSNumber (value:managedObject.savingIndex))
       }
-      intoDictionary.setObject (indexArray, forKey:relationshipName)
+      intoDictionary.setObject (indexArray, forKey:relationshipName as NSCopying)
     }
   }
 
@@ -190,7 +190,7 @@ import Cocoa
                     relationshipName: String,
                     intoDictionary : NSMutableDictionary) {
     if let unwObject = managedObject {
-      intoDictionary.setObject (NSNumber (value:unwObject.savingIndex), forKey:relationshipName)
+      intoDictionary.setObject (NSNumber (value:unwObject.savingIndex), forKey:relationshipName as NSCopying)
     }
   }
 

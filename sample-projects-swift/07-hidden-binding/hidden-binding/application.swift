@@ -132,20 +132,20 @@ func appendMessageString (_ message : String, color:NSColor) {
 
   //····················································································································
  
-  func showTransientEventLogWindow (sender : AnyObject) {
+  func showTransientEventLogWindow (sender : Any) {
     mTransientEventExplorerTextView?.string = ""
     mTransientEventExplorerWindow?.makeKeyAndOrderFront (sender)
   }
   
   //····················································································································
  
-  @IBAction func clearTransientEventLogWindow (_ sender : NSObject) {
+  @IBAction func clearTransientEventLogWindow (_ sender : AnyObject) {
     mTransientEventExplorerTextView?.string = ""
   }
   
   //····················································································································
 
-  private func appendToTransientEventLog (_ message : String) {
+  fileprivate func appendToTransientEventLog (_ message : String) {
     if logEvents () {
       mTransientEventExplorerTextView?.appendMessageString (message, color:NSColor.blue)
     }
@@ -153,7 +153,7 @@ func appendMessageString (_ message : String, color:NSColor) {
   
   //····················································································································
 
-  private func logEvents () -> Bool {
+  fileprivate func logEvents () -> Bool {
     return (mTransientEventExplorerWindow == nil) ? false : mTransientEventExplorerWindow!.isVisible
   }
 
