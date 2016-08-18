@@ -120,7 +120,7 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBWeakEventSetElement : EBObject {
-  private weak var mObserver : EBEvent? = nil {
+  fileprivate weak var mObserver : EBEvent? = nil {
     didSet {
       if mObserver == nil, let object = mObject {
         object.mDictionary [mObserverAddress] = nil
@@ -135,7 +135,7 @@ class EBWeakEventSetElement : EBObject {
   init (object : EBWeakEventSet, observer : EBEvent) {
     mObserver = observer
     mObject = object
-    mObserverAddress = unsafeAddress (of: observer).hashValue
+    mObserverAddress = Unmanaged.passUnretained (observer).toOpaque ().hashValue
     super.init ()
   }
   
@@ -154,12 +154,12 @@ class EBWeakEventSetElement : EBObject {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBWeakEventSet : EBObject, Sequence {
-  private var mDictionary = [Int : EBWeakEventSetElement] ()
+  fileprivate var mDictionary = [Int : EBWeakEventSetElement] ()
 
   //····················································································································
   
   func insert (_ inObserver : EBEvent) {
-    let address : Int = unsafeAddress (of: inObserver).hashValue
+    let address : Int = Unmanaged.passUnretained (inObserver).toOpaque ().hashValue
     if let entry = mDictionary [address] {
       entry.retainObserver ()
     }else{
@@ -170,7 +170,7 @@ class EBWeakEventSet : EBObject, Sequence {
   //····················································································································
   
   func remove (_ inObserver : EBEvent) {
-    let address : Int = unsafeAddress (of: inObserver).hashValue
+    let address : Int = Unmanaged.passUnretained (inObserver).toOpaque ().hashValue
     if let entry = mDictionary [address] {
       if entry.releaseObserver () == 0 {
         mDictionary [address] = nil
@@ -727,7 +727,7 @@ func createEntryForObjectNamed (_ name : String,
   let vtf = NSTextField (frame:thirdColumn (y))
   vtf.isEnabled = true
   vtf.isEditable = false
-  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (object.dynamicType)
+  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (describing: type(of: object))
   vtf.font = font
   view.addSubview (vtf)
 //--- Update rect origin

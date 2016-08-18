@@ -32,7 +32,7 @@ func reuseTableViewCells () -> Bool {
 func noteObjectAllocation (_ inObject : EBUserClassNameProtocol) {
   if gEnableObjectAllocationDebug {
     installDebugMenu ()
-    let className = String (inObject.dynamicType)
+    let className = String (describing:type(of: inObject))
     gDebugObject?.pmNoteObjectAllocation (className)
   }
 }
@@ -41,7 +41,7 @@ func noteObjectAllocation (_ inObject : EBUserClassNameProtocol) {
 
 func noteObjectDeallocation (_ inObject : EBUserClassNameProtocol) {
   if gEnableObjectAllocationDebug {
-    let className = String (inObject.dynamicType)
+    let className = String (describing: type(of: inObject))
     gDebugObject?.pmNoteObjectDeallocation (className)
   }
 }
@@ -108,13 +108,13 @@ private var gDebugObject : EBAllocationDebug? = nil
   @IBOutlet var mReuseTableViewCellsButton : NSButton?
 
 
-  private var mTopLevelObjects = NSArray ()
+  fileprivate var mTopLevelObjects = NSArray ()
 
   private var mDebugMenuInstalled = false
 
   private var mAllocationStatsWindowVisibleAtLaunch : Bool = true {
     didSet {
-      mAllocationStatsWindowVisibleAtLaunchCheckbox?.state = Int (mAllocationStatsWindowVisibleAtLaunch)
+      mAllocationStatsWindowVisibleAtLaunchCheckbox?.state = mAllocationStatsWindowVisibleAtLaunch ? 1 : 0
     }
   }
 
@@ -220,7 +220,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //--- will call windowDidBecomeKey: and windowWillClose:
     mAllocationStatsWindow?.delegate = self
   //--- Allocation stats window visibility at Launch
-    mAllocationStatsWindowVisibleAtLaunchCheckbox?.state = Int (mAllocationStatsWindowVisibleAtLaunch)
+    mAllocationStatsWindowVisibleAtLaunchCheckbox?.state = mAllocationStatsWindowVisibleAtLaunch ? 1 : 0
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.target = self
     mAllocationStatsWindowVisibleAtLaunchCheckbox?.action = #selector(EBAllocationDebug.setAllocationStatsWindowVisibleAtLaunchAction(_:))
     if mAllocationStatsWindowVisibleAtLaunch {
@@ -333,7 +333,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    pmNoteObjectAllocation:
   //····················································································································
   
-  private func pmNoteObjectAllocation (_ inObjectClassName : String) {
+  fileprivate func pmNoteObjectAllocation (_ inObjectClassName : String) {
   //NSLog (@"objectClassName %@", inObjectClassName) ;
     let currentLiveCount = mLiveObjectCountByClass [inObjectClassName] ?? 0
     mLiveObjectCountByClass [inObjectClassName] = currentLiveCount + 1
@@ -347,7 +347,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    pmNoteObjectDeallocation
   //····················································································································
   
-  private func pmNoteObjectDeallocation (_ inObjectClassName : String) {
+  fileprivate func pmNoteObjectDeallocation (_ inObjectClassName : String) {
   // NSLog (@"DEALLOC objectClassName %@", inObjectClassName) ;
     let currentCount = mLiveObjectCountByClass [inObjectClassName] ?? 0
     if currentCount > 1 {
@@ -406,7 +406,7 @@ private var gDebugObject : EBAllocationDebug? = nil
 
   func tableView (_ aTableView : NSTableView,
                   objectValueFor objectValueForTableColumn: NSTableColumn?,
-                  row:Int) -> AnyObject? {
+                  row:Int) -> Any? {
     let theRecord : EBAllocationItemDisplay = mAllocationStatsDataSource [row] as! EBAllocationItemDisplay
     return theRecord.value (forKey: objectValueForTableColumn!.identifier as String)
   }
