@@ -189,7 +189,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
     case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
-      alert.messageText = "The value " + String (candidateValue) + " is invalid."
+      alert.messageText = "The value " + String (describing: candidateValue) + " is invalid."
       alert.informativeText = informativeText
       alert.addButton (withTitle:"Ok")
       alert.addButton (withTitle:"Discard Change")
@@ -210,7 +210,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   func readInPreferencesWithKey (inKey : String) {
     let ud = UserDefaults.standard
-    let value : AnyObject? = ud.object (forKey:inKey)
+    let value : Any? = ud.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
       setProp (value: T.convertFromNSObject (object:unwValue))
     }
@@ -232,7 +232,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   //····················································································································
 
   func readFrom (dictionary: NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = dictionary.object (forKey:inKey)
+    let value : Any? = dictionary.object (forKey:inKey)
     if let unwValue : NSObject = value as? NSObject {
       setProp (value: T.convertFromNSObject (object:unwValue))
     }
@@ -337,7 +337,7 @@ extension String : ValuePropertyProtocol {
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return self
+    return self as NSObject
   }
 
   //····················································································································
@@ -360,10 +360,11 @@ extension Int : ValuePropertyProtocol {
 
   func ebHashValue () -> UInt32 {
     var crc : UInt32 = 0
-    var ptr = UnsafePointer <UInt8> ([self])
-    for _ in 0 ..< sizeof (Int.self) {
-      crc.accumulateByte (ptr.pointee)
-      ptr += 1
+    var v = UInt (self)
+    for _ in 0 ..< MemoryLayout<Int>.size {
+      let byte = UInt8 (v & 255)
+      crc.accumulateByte (byte)
+      v >>= 8
     }
     return crc
   }
@@ -473,13 +474,13 @@ extension NSColor : ClassPropertyProtocol {
 
   //····················································································································
 
-  func archiveToNSData () -> NSData {
+  func archiveToNSData () -> Data {
     return NSArchiver.archivedData (withRootObject:self)
   }
   
   //····················································································································
 
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
+  static func unarchiveFromNSData (data : Data) -> NSObject {
     return NSUnarchiver.unarchiveObject (with: data as Data) as! NSObject
   }
 
@@ -503,7 +504,7 @@ extension Date : ValuePropertyProtocol {
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return NSArchiver.archivedData (withRootObject: self)
+    return NSArchiver.archivedData (withRootObject: self) as NSObject
   }
   
   //····················································································································
@@ -531,13 +532,13 @@ extension NSFont : ClassPropertyProtocol {
 
   //····················································································································
 
-  func archiveToNSData () -> NSData {
+  func archiveToNSData () -> Data {
     return NSArchiver.archivedData (withRootObject: self)
   }
   
   //····················································································································
 
-  static func unarchiveFromNSData (data : NSData) -> NSObject {
+  static func unarchiveFromNSData (data : Data) -> NSObject {
     return NSUnarchiver.unarchiveObject (with: data as Data) as! NSObject
   }
 
@@ -555,10 +556,8 @@ extension Data : ValuePropertyProtocol {
 
   func ebHashValue () -> UInt32 {
     var crc : UInt32 = 0
-    var ptr = UnsafePointer <UInt8> ((self as NSData).bytes)
-    for _ in 0 ..< self.count {
-      crc.accumulateByte (ptr.pointee)
-      ptr += 1
+    for i in 0 ..< self.count {
+      crc.accumulateByte (self [i])
     }
     return crc
   }
@@ -566,7 +565,7 @@ extension Data : ValuePropertyProtocol {
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return self
+    return self as NSObject
   }
   
   //····················································································································
@@ -585,8 +584,8 @@ extension Data : ValuePropertyProtocol {
 
 protocol ClassPropertyProtocol : class, Equatable {
   func ebHashValue () -> UInt32
-  func archiveToNSData () -> NSData
-  static func unarchiveFromNSData (data : NSData) -> NSObject
+  func archiveToNSData () -> Data
+  static func unarchiveFromNSData (data : Data) -> NSObject
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -765,7 +764,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
     case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
-      alert.messageText = "The value " + String (candidateValue) + " is invalid."
+      alert.messageText = "The value " + String (describing: candidateValue) + " is invalid."
       alert.informativeText = informativeText
       alert.addButton (withTitle:"Ok")
       alert.addButton (withTitle:"Discard Change")
@@ -786,8 +785,8 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   func readInPreferencesWithKey (inKey : String) {
     let ud = UserDefaults.standard
-    let value : AnyObject? = ud.object (forKey:inKey)
-    if let unwValue : NSData = value as? NSData {
+    let value : Any? = ud.object (forKey:inKey)
+    if let unwValue : Data = value as? Data {
       setProp (value: T.unarchiveFromNSData (data:unwValue) as! T)
     }
   }
@@ -808,8 +807,8 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   //····················································································································
 
   func readFrom (dictionary:NSDictionary, forKey inKey:String) {
-    let value : AnyObject? = dictionary.object (forKey:inKey)
-    if let unwValue : NSData = value as? NSData {
+    let value : Any? = dictionary.object (forKey:inKey)
+    if let unwValue : Data = value as? Data {
       setProp (value: T.unarchiveFromNSData (data:unwValue) as! T)
     }
   }
