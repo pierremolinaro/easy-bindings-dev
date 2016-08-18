@@ -251,7 +251,7 @@ end
 
   override var prop : EBProperty < [%!CLASS_NAME%] > {
     get {
-      return .singleSelection (mValue ?? [%!CLASS_NAME%] ())
+      return .singleSelection (mValue)
     }
   }
 
@@ -261,7 +261,7 @@ end
 
   //····················································································································
 
-  var propval : [%!CLASS_NAME%] { get { return mValue ?? [%!CLASS_NAME%] () } }
+  var propval : [%!CLASS_NAME%] { get { return mValue } }
 
   //····················································································································
 
