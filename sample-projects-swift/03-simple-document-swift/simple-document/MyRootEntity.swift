@@ -358,41 +358,40 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_myString) protocol MyRootEntity_myString {
+protocol MyRootEntity_myString : class {
   var myString : EBStoredProperty_String { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_myColor) protocol MyRootEntity_myColor {
+protocol MyRootEntity_myColor : class {
   var myColor : EBStoredProperty_NSColor { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_myStringMaj) protocol MyRootEntity_myStringMaj {
+protocol MyRootEntity_myStringMaj : class {
   var myStringMaj : EBTransientProperty_String { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_myStringMin) protocol MyRootEntity_myStringMin {
+protocol MyRootEntity_myStringMin : class {
   var myStringMin : EBTransientProperty_String { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_myStringConcat) protocol MyRootEntity_myStringConcat {
+protocol MyRootEntity_myStringConcat : class {
   var myStringConcat : EBTransientProperty_String { get }
-} */
+}
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class MyRootEntity : EBManagedObject
-// , MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat
+class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat
 {
 
   //····················································································································
