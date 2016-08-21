@@ -351,7 +351,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = "[" + [relationshipType swiftTypeName]
-       + " /* _" + propertyName + " */]"
+       + "_" + propertyName + "]"
   case selfProperty (@lstring propertyName) :
     [inObservablePropertyMap searchKey
       !propertyName
@@ -424,7 +424,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     end
     outSwiftTypeStringForTransientFunctionArgument = "[" + [propertyType swiftTypeName]
-       + " /* _" + elementPropertyName + " */]"
+       + "_" + elementPropertyName + "]"
   case prefsProperty (@lstring propertyName) :
     [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName

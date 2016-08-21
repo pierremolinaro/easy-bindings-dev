@@ -190,15 +190,15 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(NameEntity_name) protocol NameEntity_name {
+protocol NameEntity_name : class {
   var name : EBStoredProperty_String { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(NameEntity_aValue) protocol NameEntity_aValue {
+protocol NameEntity_aValue : class {
   var aValue : EBStoredProperty_Int { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    To one relationship: mRoot
@@ -281,8 +281,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 //    Entity: NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class NameEntity : EBManagedObject
-// , NameEntity_name, NameEntity_aValue
+class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
 {
 
   //····················································································································
