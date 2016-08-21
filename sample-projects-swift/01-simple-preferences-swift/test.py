@@ -71,7 +71,7 @@ def setUpPreferencesWindow (application) :
 
 def checkTextFieldValue (textField, expectedValue, line):
   if textField.AXValue != expectedValue :
-    print '*** Check error at line ' + str (line) + ' ***'
+    print ("*** Check error at line " + str (line) + " ***")
     sys.exit (1)
 
 #------------------------------------------------------------------------------*
@@ -133,7 +133,7 @@ colorRows = colorPicker.rowsR ()
 time.sleep(.5)
 
 if not colorRows [selectedRowIndex].AXSelected:
-    print '*** Erreur 13 ***'
+    print ('*** Erreur 13 ***')
     sys.exit (1)
 
 #--- END OF USER ZONE 2
