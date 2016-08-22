@@ -289,7 +289,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    setAllocationStatsWindowVisibleAtLaunchAction:
   //····················································································································
   
-  func setAllocationStatsWindowVisibleAtLaunchAction (_: AnyObject!) {
+  func setAllocationStatsWindowVisibleAtLaunchAction (_: Any!) {
     mAllocationStatsWindowVisibleAtLaunch = mAllocationStatsWindowVisibleAtLaunchCheckbox?.state != 0
   }
 
@@ -297,7 +297,7 @@ private var gDebugObject : EBAllocationDebug? = nil
   //    setDisplayFilerAction:
   //····················································································································
   
-  func setDisplayFilerAction (_: AnyObject!) {
+  func setDisplayFilerAction (_: Any!) {
     if let displayFilterPopUpButton = mDisplayFilterPopUpButton {
       mDisplayFilter = displayFilterPopUpButton.indexOfSelectedItem
     }

@@ -517,7 +517,7 @@ class EBSimpleController : EBOutletEvent {
   
   //····················································································································
 
-  func showExplorerWindowAction (_ inSender : AnyObject) {
+  func showExplorerWindowAction (_ inSender : Any) {
     if mExplorerWindow == nil {
       createAndPopulateObjectExplorerWindow ()
     }
@@ -580,7 +580,7 @@ class EBSimpleController : EBOutletEvent {
   //   deleteSimpleControllerWindowAction
   //····················································································································
 
-  final func deleteSimpleControllerWindowAction (_: AnyObject) {
+  final func deleteSimpleControllerWindowAction (_: Any) {
     clearObjectExplorer ()
   }
 

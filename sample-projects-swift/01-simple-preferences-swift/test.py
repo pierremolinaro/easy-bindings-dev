@@ -71,7 +71,7 @@ def setUpPreferencesWindow (application) :
 
 def checkTextFieldValue (textField, expectedValue, line):
   if textField.AXValue != expectedValue :
-    print ("*** Check error at line " + str (line) + " ***")
+    print '*** Check error at line ' + str (line) + ' ***'
     sys.exit (1)
 
 #------------------------------------------------------------------------------*

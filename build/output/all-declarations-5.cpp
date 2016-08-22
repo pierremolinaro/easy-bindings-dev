@@ -2060,7 +2060,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (C_Compiler *
     "                </menuItem>\n"
     "            </items>\n"
     "        </menu>\n"
-    "        <window title=\"" ;
+    "        <window identifier=\"PrefWindow\" title=\"" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << "\" allowsToolTipsWhenApplicationIsInactive=\"NO\" autorecalculatesKeyViewLoop=\"NO\" releasedWhenClosed=\"NO\" animationBehavior=\"default\" id=\"371\">\n"
     "            <windowStyleMask key=\"styleMask\" titled=\"YES\"/>\n"

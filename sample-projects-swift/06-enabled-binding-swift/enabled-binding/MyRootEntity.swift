@@ -132,17 +132,16 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_docBool) protocol MyRootEntity_docBool {
+protocol MyRootEntity_docBool : class {
   var docBool : EBStoredProperty_Bool { get }
-} */
+}
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class MyRootEntity : EBManagedObject
-// , MyRootEntity_docBool
+class MyRootEntity : EBManagedObject, MyRootEntity_docBool
 {
 
   //····················································································································
