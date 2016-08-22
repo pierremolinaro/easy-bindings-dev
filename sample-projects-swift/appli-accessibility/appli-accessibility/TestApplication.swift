@@ -11,6 +11,22 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+func randomString () -> String {
+  let characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+                    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+                    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  var result = ""
+  for _ in 0 ..< 16 {
+    let idx = UInt (arc4random ()) % UInt (characters.count)
+    result += characters [Int (idx)]
+  }
+  return result
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
 class TestApplication {
 
   private var mApplication : NSRunningApplication
@@ -20,17 +36,16 @@ class TestApplication {
 
   init (bundlePath : String, testLog: TestLog) throws {
     mLog = testLog
-  //--- Launch
     let bundleUrl = URL (fileURLWithPath: bundlePath)
     let workspace = NSWorkspace.shared ()
-    mLog.append ("*** Launching")
+    mLog.append ("*** Launching \(bundleUrl.lastPathComponent)")
     mApplication = try workspace.launchApplication (at:bundleUrl, configuration:[:])
     while !mApplication.isFinishedLaunching {
       mLog.append (".")
       usleep (1000)
       RunLoop.main.run (mode: RunLoopMode.defaultRunLoopMode, before: Date ())
     }
-    mLog.append (" Launching finished\n")
+    mLog.append (" ok\n")
   }
   
   //····················································································································
@@ -145,7 +160,7 @@ class TestApplication {
       usleep (1000)
       RunLoop.main.run (mode: RunLoopMode.defaultRunLoopMode, before: Date ())
     }
-    mLog.append (" Terminated\n")
+    mLog.append (" ok\n")
   }
 
   //····················································································································
