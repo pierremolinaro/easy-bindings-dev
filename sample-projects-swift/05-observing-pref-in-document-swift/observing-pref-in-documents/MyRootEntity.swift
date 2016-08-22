@@ -244,29 +244,28 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_docString) protocol MyRootEntity_docString {
+protocol MyRootEntity_docString : class {
   var docString : EBStoredProperty_String { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_transientConcatString) protocol MyRootEntity_transientConcatString {
+protocol MyRootEntity_transientConcatString : class {
   var transientConcatString : EBTransientProperty_String { get }
-} */
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-/* @objc(MyRootEntity_otherTransientConcatString) protocol MyRootEntity_otherTransientConcatString {
+protocol MyRootEntity_otherTransientConcatString : class {
   var otherTransientConcatString : EBTransientProperty_String { get }
-} */
+}
 
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class MyRootEntity : EBManagedObject
-// , MyRootEntity_docString, MyRootEntity_transientConcatString, MyRootEntity_otherTransientConcatString
+class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_transientConcatString, MyRootEntity_otherTransientConcatString
 {
 
   //····················································································································

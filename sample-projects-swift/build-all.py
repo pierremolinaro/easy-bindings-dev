@@ -38,10 +38,10 @@ for d in os.listdir (scriptDir) :
     buildProcess.wait ()
     if buildProcess.returncode != 0 :
       sys.exit (buildProcess.returncode)
-    testCommand = scriptDir + "/" + d + "/test.py"
-    buildProcess = subprocess.Popen ([testCommand])
-    buildProcess.wait ()
-    if buildProcess.returncode != 0 :
-      sys.exit (buildProcess.returncode)
+#     testCommand = scriptDir + "/" + d + "/test.py"
+#     buildProcess = subprocess.Popen ([testCommand])
+#     buildProcess.wait ()
+#     if buildProcess.returncode != 0 :
+#       sys.exit (buildProcess.returncode)
 
 #------------------------------------------------------------------------------*
