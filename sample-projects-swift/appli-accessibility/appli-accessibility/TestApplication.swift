@@ -27,6 +27,21 @@ func randomString () -> String {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+func randomColor () -> CGColor {
+  let red   : CGFloat = CGFloat (UInt (arc4random ()) % 100) / 100.0
+  let green : CGFloat = CGFloat (UInt (arc4random ()) % 100) / 100.0
+  let blue  : CGFloat = CGFloat (UInt (arc4random ()) % 100) / 100.0
+  let alpha : CGFloat = CGFloat (UInt (arc4random ()) % 100) / 100.0
+  // print ("red \(red), green \(green), blue \(blue), alpha \(alpha)")
+  let color = CGColor (red: red, green: green, blue: blue, alpha: alpha)
+//  print ("color \(color)")
+//  let c = color.converted (to: CGColorSpace (name: CGColorSpace.sRGB)!, intent: .defaultIntent, options:nil)!
+//  print ("c \(c)")
+  return color
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
 class TestApplication {
 
   private var mApplication : NSRunningApplication
@@ -116,7 +131,7 @@ class TestApplication {
   //····················································································································
 
   func setTextFieldValue (window : AXUIElement, identifier : String, value : String) throws {
-    mLog.append ("*** Getting \(identifier) text field value\n")
+    mLog.append ("*** Setting \(identifier) text field value\n")
     var result : CFTypeRef?
     var resultCode = AXUIElementCopyAttributeValue (window, "AXChildren" as CFString, &result)
     // print ("resultCode \(resultCode), result \(result)")
@@ -133,6 +148,71 @@ class TestApplication {
             throw NSError (domain: "AXUIElementSetAttributeValue returns \(resultCode)", code: 0, userInfo: nil)
           }
           resultCode = AXUIElementPerformAction (textField, kAXConfirmAction as CFString)
+          if resultCode != .success {
+            throw NSError (domain: "AXUIElementPerformAction returns \(resultCode)", code: 0, userInfo: nil)
+          }
+        }
+      }
+    }else{
+      mLog.append ("  result is not an instance of NSArray\n")
+      throw NSError (domain: "result is not an instance of NSArray", code: 0, userInfo: nil)
+    }
+  }
+
+  //····················································································································
+
+  func colorWellValue (window : AXUIElement, identifier : String) throws -> CGColor {
+    mLog.append ("*** Getting \(identifier) color well value\n")
+    var result : CFTypeRef?
+    var resultCode = AXUIElementCopyAttributeValue (window, "AXChildren" as CFString, &result)
+    // print ("resultCode \(resultCode), result \(result)")
+    if resultCode != .success {
+      mLog.append ("  AXUIElementCopyAttributeValue returns \(resultCode)\n")
+      throw NSError (domain: "AXUIElementCopyAttributeValue returns \(resultCode)", code: 0, userInfo: nil)
+    }else if let array = result as! NSArray? {
+      for item in array {
+        let colorWell = item as! AXUIElement
+        resultCode = AXUIElementCopyAttributeValue (colorWell, "AXIdentifier" as CFString, &result)
+        if let accessibilityName = result as? String, accessibilityName == identifier {
+          resultCode = AXUIElementCopyAttributeValue (colorWell, "AXValue" as CFString, &result)
+          // print ("result \(result)")
+          if let s = result {
+            return s as! CGColor
+          }else{
+            throw NSError (domain: "AXUIElementCopyAttributeValue AXValue does not return an NSColor", code: 0, userInfo: nil)
+          }
+        }
+      }
+      throw NSError (domain: "Cannot find the '\(identifier)' text field", code: 0, userInfo: nil)
+    }else{
+      mLog.append ("  result is not an instance of NSArray\n")
+      throw NSError (domain: "result is not an instance of NSArray", code: 0, userInfo: nil)
+    }
+  }
+
+  //····················································································································
+
+  func setColorWellValue (window : AXUIElement, identifier : String, value : CGColor) throws {
+    mLog.append ("*** Setting \(identifier) color well value\n")
+    var result : CFTypeRef?
+    var resultCode : AXError = AXUIElementCopyAttributeValue (window, "AXChildren" as CFString, &result)
+    // print ("resultCode \(resultCode), result \(result)")
+    if resultCode != .success {
+      mLog.append ("  AXUIElementCopyAttributeValue returns \(resultCode)\n")
+      throw NSError (domain: "AXUIElementCopyAttributeValue returns \(resultCode)", code: 0, userInfo: nil)
+    }else if let array = result as! NSArray? {
+      for item in array {
+        let colorWell = item as! AXUIElement
+        resultCode = AXUIElementCopyAttributeValue (colorWell, "AXIdentifier" as CFString, &result)
+        if let accessibilityName = result as? String, accessibilityName == identifier {
+//          var nameArray : CFArray?
+//          resultCode = AXUIElementCopyAttributeNames (colorWell, &nameArray)
+//          print ("nameArray \(nameArray)")
+          resultCode = AXUIElementSetAttributeValue (colorWell, "AXValue" as CFString, value)
+          if resultCode != .success {
+            throw NSError (domain: "AXUIElementSetAttributeValue", code: Int (resultCode.rawValue), userInfo: nil)
+          }
+          resultCode = AXUIElementPerformAction (colorWell, kAXConfirmAction as CFString)
           if resultCode != .success {
             throw NSError (domain: "AXUIElementPerformAction returns \(resultCode)", code: 0, userInfo: nil)
           }

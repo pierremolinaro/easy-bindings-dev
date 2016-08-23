@@ -54,8 +54,8 @@ def setUpPreferencesWindow (application) :
   myObserverTextField = window.findFirst (AXIdentifier='myObserverTextField')
   global mColorWell
   mColorWell = window.findFirst (AXIdentifier='mColorWell')
-  global mContinousColorWell
-  mContinousColorWell = window.findFirst (AXIdentifier='mContinousColorWell')
+  global mContinuousColorWell
+  mContinuousColorWell = window.findFirst (AXIdentifier='mContinuousColorWell')
   global mObserverColorWell
   mObserverColorWell = window.findFirst (AXIdentifier='mObserverColorWell')
   global mDatePicker

@@ -5,7 +5,7 @@ mainxib {
   {"String (send continously): ", EBTextField myOtherTextField},
   {"String observer:", EBTextObserverField myObserverTextField},
   {"Color:", EBColorWell mColorWell},
-  {"Color (send continously):", EBColorWell mContinousColorWell},
+  {"Color (send continously):", EBColorWell mContinuousColorWell},
   {"Color Observer:", EBColorObserverWell mObserverColorWell},
   {"Date:", EBDatePicker mDatePicker},
   {"Even Integer:", EBIntField mIntegerTextField},
@@ -21,7 +21,7 @@ prefs {
   outlet EBTextObserverField myObserverTextField $valueObserver self.myString ;
 #--- Color
   property NSColor mColor default yellow ;
-  outlet EBColorWell mContinousColorWell $color self.mColor {sendContinously : yes} ;
+  outlet EBColorWell mContinuousColorWell $color self.mColor {sendContinously : yes} ;
   outlet EBColorWell mColorWell $color self.mColor {sendContinously : no} ;
   outlet EBColorObserverWell mObserverColorWell $colorObserver self.mColor ;
 #--- Date
