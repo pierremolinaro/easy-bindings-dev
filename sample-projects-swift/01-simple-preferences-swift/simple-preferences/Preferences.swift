@@ -17,7 +17,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   @IBOutlet var mColorWell : EBColorWell? = nil
-  @IBOutlet var mContinousColorWell : EBColorWell? = nil
+  @IBOutlet var mContinuousColorWell : EBColorWell? = nil
   @IBOutlet var mDatePicker : EBDatePicker? = nil
   @IBOutlet var mIntegerObserverTextField : EBIntObserverField? = nil
   @IBOutlet var mIntegerTextField : EBIntField? = nil
@@ -153,10 +153,10 @@ var g_Preferences : Preferences? = nil
     tf5.drawsBackground = false
     tf5.isBordered = false
     view.addSubview (tf5)
-  //--- Outlet mContinousColorWell
-    mContinousColorWell = EBColorWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
-    mContinousColorWell?.setAccessibilityIdentifier ("mContinousColorWell")
-    view.addSubview (mContinousColorWell!)
+  //--- Outlet mContinuousColorWell
+    mContinuousColorWell = EBColorWell(frame:NSRect (x:10.0 + OUTLET_WIDTH * 1.0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))
+    mContinuousColorWell?.setAccessibilityIdentifier ("mContinuousColorWell")
+    view.addSubview (mContinuousColorWell!)
     y -= OUTLET_HEIGHT / 2.0
     y -= OUTLET_HEIGHT
   //--- Text Color Observer:
@@ -221,9 +221,9 @@ var g_Preferences : Preferences? = nil
     if nil == mColorWell {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mColorWell' outlet is nil")
     }
-  //--- Check mContinousColorWell' outlet not nil
-    if nil == mContinousColorWell {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mContinousColorWell' outlet is nil")
+  //--- Check mContinuousColorWell' outlet not nil
+    if nil == mContinuousColorWell {
+      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mContinuousColorWell' outlet is nil")
     }
   //--- Check mDatePicker' outlet not nil
     if nil == mDatePicker {
@@ -259,7 +259,7 @@ var g_Preferences : Preferences? = nil
     myTextField?.bind_value (self.myString, file: #file, line: #line, sendContinously:false)
     myOtherTextField?.bind_value (self.myString, file: #file, line: #line, sendContinously:true)
     myObserverTextField?.bind_valueObserver (self.myString, file: #file, line: #line)
-    mContinousColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:true)
+    mContinuousColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:true)
     mColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:false)
     mObserverColorWell?.bind_colorObserver (self.mColor, file: #file, line: #line)
     mDatePicker?.bind_date (self.mDate, file: #file, line: #line)
