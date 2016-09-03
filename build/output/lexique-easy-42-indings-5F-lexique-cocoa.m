@@ -3,7 +3,7 @@
 
 //--- END OF USER ZONE 1
 
-#import "lexique-easyBindings_lexique-cocoa.h"
+#import "lexique-easy-42-indings-5F-lexique-cocoa.h"
 #import "PMDebug.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
