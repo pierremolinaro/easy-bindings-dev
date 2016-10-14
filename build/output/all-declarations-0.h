@@ -43,8 +43,6 @@ class cTokenFor_easyBindings_5F_lexique : public cToken {
 class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
 //--- Constructors
   public : C_Lexique_easyBindings_5F_lexique (C_Compiler * inCallerCompiler,
-                       const C_String & inDependencyFileExtension,
-                       const C_String & inDependencyFilePath,
                        const C_String & inSourceFileName
                        COMMA_LOCATION_ARGS) ;
 
@@ -850,8 +848,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleB
 
 class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mLeftBinding ;
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mRightBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
 
 //--- Constructor
   public : cPtr_andBooleanMultipleBindingExpressionAST (const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mLeftBinding,
@@ -1166,9 +1164,9 @@ class GALGAS_arrayControllerAttributListAST : public AC_GALGAS_list {
   public : GALGAS_arrayControllerAttributListAST (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_arrayControllerAttributListAST (cSharedList * inSharedListPtr) ;
+  public : GALGAS_arrayControllerAttributListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mAttributeName,
                                                   const class GALGAS_abstractDefaultValue & in_mAttributeValue
@@ -1303,9 +1301,9 @@ class GALGAS_arrayControllerBoundColumnListAST : public AC_GALGAS_list {
   public : GALGAS_arrayControllerBoundColumnListAST (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_arrayControllerBoundColumnListAST (cSharedList * inSharedListPtr) ;
+  public : GALGAS_arrayControllerBoundColumnListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mColumnName,
                                                   const class GALGAS_lstring & in_mColumnOutletTypeName,
@@ -1465,11 +1463,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoun
 
 class cPtr_arrayControllerDeclaration : public cPtr_abstractSecondaryProperty {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mControllerName ;
-  public : GALGAS_arrayControllerModel mAttribute_mArrayControllerModel ;
-  public : GALGAS_lstringlist mAttribute_mFilterProperties ;
-  public : GALGAS_arrayControllerBoundColumnListAST mAttribute_mArrayControllerBoundColumnListAST ;
-  public : GALGAS_arrayControllerAttributListAST mAttribute_mArrayControllerAttributListAST ;
+  public : GALGAS_lstring mProperty_mControllerName ;
+  public : GALGAS_arrayControllerModel mProperty_mArrayControllerModel ;
+  public : GALGAS_lstringlist mProperty_mFilterProperties ;
+  public : GALGAS_arrayControllerBoundColumnListAST mProperty_mArrayControllerBoundColumnListAST ;
+  public : GALGAS_arrayControllerAttributListAST mProperty_mArrayControllerAttributListAST ;
 
 //--- Constructor
   public : cPtr_arrayControllerDeclaration (const GALGAS_lstring & in_mControllerName,
@@ -1561,7 +1559,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boolAsDefaultValue 
 
 class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
-  public : GALGAS_lbool mAttribute_mValue ;
+  public : GALGAS_lbool mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_boolAsDefaultValue (const GALGAS_lbool & in_mValue
@@ -1638,7 +1636,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclaration ;
 
 class cPtr_astDeclaration : public acPtr_class {
 //--- Attributes
-  public : GALGAS_bool mAttribute_mUserDefined ;
+  public : GALGAS_bool mProperty_mUserDefined ;
 
 //--- Constructor
   public : cPtr_astDeclaration (const GALGAS_bool & in_mUserDefined
@@ -1738,9 +1736,9 @@ class GALGAS_externSwiftDelegateList : public AC_GALGAS_list {
   public : GALGAS_externSwiftDelegateList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_externSwiftDelegateList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_externSwiftDelegateList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mExternSwiftDelegateName
                                                   COMMA_LOCATION_ARGS) ;
@@ -1861,9 +1859,9 @@ class GALGAS_externSwiftFunctionList : public AC_GALGAS_list {
   public : GALGAS_externSwiftFunctionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_externSwiftFunctionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_externSwiftFunctionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mExternSwiftFunctionName,
                                                   const class GALGAS_lstring & in_mCallerName
@@ -1998,9 +1996,9 @@ class GALGAS_secondaryPropertyList : public AC_GALGAS_list {
   public : GALGAS_secondaryPropertyList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_secondaryPropertyList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_secondaryPropertyList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_abstractSecondaryProperty & in_mSecondaryProperty
                                                   COMMA_LOCATION_ARGS) ;
@@ -2121,9 +2119,9 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
   public : GALGAS_simpleStoredPropertyList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_simpleStoredPropertyList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_simpleStoredPropertyList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mPropertyTypeName,
                                                   const class GALGAS_lstring & in_mPropertyName,
@@ -2283,12 +2281,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 class cPtr_classDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mClassName ;
-  public : GALGAS_simpleStoredPropertyList mAttribute_mSimpleStoredAttributeList ;
-  public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
-  public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
-  public : GALGAS_externSwiftDelegateList mAttribute_mExternSwiftDelegateList ;
-  public : GALGAS_lstringlist mAttribute_mActionDeclarationList ;
+  public : GALGAS_lstring mProperty_mClassName ;
+  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
+  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
+  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
 
 //--- Constructor
   public : cPtr_classDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -2473,9 +2471,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingComp
 
 class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mLeftBinding ;
-  public : GALGAS_multipleBindingComparisonAST mAttribute_mOperator ;
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mRightBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
+  public : GALGAS_multipleBindingComparisonAST mProperty_mOperator ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
 
 //--- Constructor
   public : cPtr_comparisonMultipleBindingExpressionAST (const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mLeftBinding,
@@ -2569,9 +2567,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_customObjectControl
 
 class cPtr_customObjectControllerDeclaration : public cPtr_abstractSecondaryProperty {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mCustomObjectControllerName ;
-  public : GALGAS_lstring mAttribute_mClassNameForSwift ;
-  public : GALGAS_lstring mAttribute_mPropertyEntityName ;
+  public : GALGAS_lstring mProperty_mCustomObjectControllerName ;
+  public : GALGAS_lstring mProperty_mClassNameForSwift ;
+  public : GALGAS_lstring mProperty_mPropertyEntityName ;
 
 //--- Constructor
   public : cPtr_customObjectControllerDeclaration (const GALGAS_lstring & in_mCustomObjectControllerName,
@@ -2678,9 +2676,9 @@ class GALGAS_outletDeclarationList : public AC_GALGAS_list {
   public : GALGAS_outletDeclarationList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_outletDeclarationList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_outletDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mOutletTypeName,
                                                   const class GALGAS_lstring & in_mOutletName,
@@ -2882,12 +2880,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationLi
 
 class cPtr_documentDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mDocumentName ;
-  public : GALGAS_lstring mAttribute_mRootEntityName ;
-  public : GALGAS_outletDeclarationList mAttribute_mOutletDeclarationList ;
-  public : GALGAS_simpleStoredPropertyList mAttribute_mSimpleStoredAttributeList ;
-  public : GALGAS_lstringlist mAttribute_mActionDeclarationList ;
-  public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
+  public : GALGAS_lstring mProperty_mDocumentName ;
+  public : GALGAS_lstring mProperty_mRootEntityName ;
+  public : GALGAS_outletDeclarationList mProperty_mOutletDeclarationList ;
+  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
+  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
 
 //--- Constructor
   public : cPtr_documentDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -2982,7 +2980,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_doubleAsDefaultValu
 
 class cPtr_doubleAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
-  public : GALGAS_ldouble mAttribute_mValue ;
+  public : GALGAS_ldouble mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_doubleAsDefaultValue (const GALGAS_ldouble & in_mValue
@@ -3091,9 +3089,9 @@ class GALGAS_toManyRelationshipList : public AC_GALGAS_list {
   public : GALGAS_toManyRelationshipList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_toManyRelationshipList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_toManyRelationshipList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mDestinationEntityName,
                                                   const class GALGAS_lstring & in_mToManyRelationshipName,
@@ -3242,9 +3240,9 @@ class GALGAS_toOneRelationshipList : public AC_GALGAS_list {
   public : GALGAS_toOneRelationshipList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_toOneRelationshipList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_toOneRelationshipList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mDestinationEntityName,
                                                   const class GALGAS_lstring & in_mToOneRelationshipName,
@@ -3404,14 +3402,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipLi
 
 class cPtr_entityDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mEntityName ;
-  public : GALGAS_lstring mAttribute_mSuperEntityName ;
-  public : GALGAS_simpleStoredPropertyList mAttribute_mSimpleStoredAttributeList ;
-  public : GALGAS_toOneRelationshipList mAttribute_mToOneRelationshipList ;
-  public : GALGAS_toManyRelationshipList mAttribute_mToManyRelationshipList ;
-  public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
-  public : GALGAS_stringset mAttribute_mSignatureList ;
-  public : GALGAS_lstringlist mAttribute_mActionDeclarationList ;
+  public : GALGAS_lstring mProperty_mEntityName ;
+  public : GALGAS_lstring mProperty_mSuperEntityName ;
+  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+  public : GALGAS_toOneRelationshipList mProperty_mToOneRelationshipList ;
+  public : GALGAS_toManyRelationshipList mProperty_mToManyRelationshipList ;
+  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
+  public : GALGAS_stringset mProperty_mSignatureList ;
+  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
 
 //--- Constructor
   public : cPtr_entityDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -3514,8 +3512,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumDeclaration ;
 
 class cPtr_enumDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mEnumTypeName ;
-  public : GALGAS_lstringlist mAttribute_mEnumConstantNameList ;
+  public : GALGAS_lstring mProperty_mEnumTypeName ;
+  public : GALGAS_lstringlist mProperty_mEnumConstantNameList ;
 
 //--- Constructor
   public : cPtr_enumDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -3602,7 +3600,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_identifierAsDefault
 
 class cPtr_identifierAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mValue ;
+  public : GALGAS_lstring mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_identifierAsDefaultValue (const GALGAS_lstring & in_mValue
@@ -3686,7 +3684,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultVal
 
 class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mValue ;
+  public : GALGAS_luint mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_integerAsDefaultValue (const GALGAS_luint & in_mValue
@@ -3776,9 +3774,9 @@ class GALGAS_defaultValueList : public AC_GALGAS_list {
   public : GALGAS_defaultValueList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_defaultValueList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_defaultValueList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_abstractDefaultValue & in_mDefaultValue
                                                   COMMA_LOCATION_ARGS) ;
@@ -3896,8 +3894,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_defaultValueList ;
 
 class cPtr_listAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
-  public : GALGAS_location mAttribute_mStartLocation ;
-  public : GALGAS_defaultValueList mAttribute_mDefaultValueList ;
+  public : GALGAS_location mProperty_mStartLocation ;
+  public : GALGAS_defaultValueList mProperty_mDefaultValueList ;
 
 //--- Constructor
   public : cPtr_listAsDefaultValue (const GALGAS_location & in_mStartLocation,
@@ -3983,7 +3981,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleB
 
 class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mValue ;
+  public : GALGAS_luint mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_literalIntMultipleBindingExpressionAST (const GALGAS_luint & in_mValue
@@ -4064,7 +4062,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 
 class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mBinding ;
 
 //--- Constructor
   public : cPtr_negateBooleanMultipleBindingExpressionAST (const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mBinding
@@ -4581,7 +4579,7 @@ class cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty : 
 
 class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_observablePropertyAST mAttribute_mProperty ;
+  public : GALGAS_observablePropertyAST mProperty_mProperty ;
 
 //--- Constructor
   public : cPtr_observablePropertyInMultipleBindingExpressionAST (const GALGAS_observablePropertyAST & in_mProperty
@@ -4665,8 +4663,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBi
 
 class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mLeftBinding ;
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mRightBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
 
 //--- Constructor
   public : cPtr_orBooleanMultipleBindingExpressionAST (const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mLeftBinding,
@@ -4845,8 +4843,8 @@ class cEnumAssociatedValues_propertyClassDefaultValues_string : public cEnumAsso
 
 class cPtr_propertyClassDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mClassPropertyName ;
-  public : GALGAS_propertyClassDefaultValues mAttribute_mDefaultValues ;
+  public : GALGAS_lstring mProperty_mClassPropertyName ;
+  public : GALGAS_propertyClassDefaultValues mProperty_mDefaultValues ;
 
 //--- Constructor
   public : cPtr_propertyClassDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -4939,9 +4937,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 
 class cPtr_selectionControllerDeclaration : public cPtr_abstractSecondaryProperty {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mSelectionControllerName ;
-  public : GALGAS_lstring mAttribute_mModelControllerName ;
-  public : GALGAS_lstring mAttribute_mModelControllerPropertyName ;
+  public : GALGAS_lstring mProperty_mSelectionControllerName ;
+  public : GALGAS_lstring mProperty_mModelControllerName ;
+  public : GALGAS_lstring mProperty_mModelControllerPropertyName ;
 
 //--- Constructor
   public : cPtr_selectionControllerDeclaration (const GALGAS_lstring & in_mSelectionControllerName,
@@ -5029,7 +5027,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringAsDefaultValu
 
 class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mValue ;
+  public : GALGAS_lstring mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_stringAsDefaultValue (const GALGAS_lstring & in_mValue
@@ -5125,9 +5123,9 @@ class GALGAS_observablePropertyList : public AC_GALGAS_list {
   public : GALGAS_observablePropertyList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_observablePropertyList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_observablePropertyList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_observablePropertyAST & in_mObservableProperty
                                                   COMMA_LOCATION_ARGS) ;
@@ -5245,10 +5243,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyL
 
 class cPtr_transientAST : public cPtr_abstractSecondaryProperty {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTransientTypeName ;
-  public : GALGAS_bool mAttribute_mIsArray ;
-  public : GALGAS_lstring mAttribute_mTransientName ;
-  public : GALGAS_observablePropertyList mAttribute_mDependencyList ;
+  public : GALGAS_lstring mProperty_mTransientTypeName ;
+  public : GALGAS_bool mProperty_mIsArray ;
+  public : GALGAS_lstring mProperty_mTransientName ;
+  public : GALGAS_observablePropertyList mProperty_mDependencyList ;
 
 //--- Constructor
   public : cPtr_transientAST (const GALGAS_lstring & in_mTransientTypeName,
@@ -5339,7 +5337,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyCl
 
 class cPtr_transientPropertyClassDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mClassPropertyName ;
+  public : GALGAS_lstring mProperty_mClassPropertyName ;
 
 //--- Constructor
   public : cPtr_transientPropertyClassDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -5424,8 +5422,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleB
 
 class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 //--- Attributes
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mLeftBinding ;
-  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mAttribute_mRightBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
+  public : GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
 
 //--- Constructor
   public : cPtr_xorBooleanMultipleBindingExpressionAST (const GALGAS_abstractBooleanMultipleBindingExpressionAST & in_mLeftBinding,
@@ -6319,9 +6317,9 @@ class GALGAS_astDeclarationList : public AC_GALGAS_list {
   public : GALGAS_astDeclarationList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_astDeclarationList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_astDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_astDeclaration & in_mDeclaration
                                                   COMMA_LOCATION_ARGS) ;
@@ -6442,9 +6440,9 @@ class GALGAS_bindingOptionList : public AC_GALGAS_list {
   public : GALGAS_bindingOptionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_bindingOptionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_bindingOptionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mOptionName,
                                                   const class GALGAS_abstractDefaultValue & in_mOptionValue
@@ -6579,9 +6577,9 @@ class GALGAS_controllerBindingOptionList : public AC_GALGAS_list {
   public : GALGAS_controllerBindingOptionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_controllerBindingOptionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_controllerBindingOptionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mOptionName,
                                                   const class GALGAS_lstring & in_mOptionTypeName
@@ -6716,9 +6714,9 @@ class GALGAS_mainXibDescriptorList : public AC_GALGAS_list {
   public : GALGAS_mainXibDescriptorList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_mainXibDescriptorList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_mainXibDescriptorList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_mainXibLineDescriptorList & in_mLine
                                                   COMMA_LOCATION_ARGS) ;
@@ -6839,9 +6837,9 @@ class GALGAS_mainXibLineDescriptorList : public AC_GALGAS_list {
   public : GALGAS_mainXibLineDescriptorList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_mainXibLineDescriptorList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_mainXibLineDescriptorList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_mainXibElement & in_mElement
                                                   COMMA_LOCATION_ARGS) ;
@@ -6962,9 +6960,9 @@ class GALGAS_outletClassBindingSpecificationModelList : public AC_GALGAS_list {
   public : GALGAS_outletClassBindingSpecificationModelList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_outletClassBindingSpecificationModelList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_outletClassBindingSpecificationModelList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mModelTypeName,
                                                   const class GALGAS_bool & in_mModelShouldBeWritableProperty
@@ -7099,9 +7097,9 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
   public : GALGAS_outletClassDeclarationList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_outletClassDeclarationList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_outletClassDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_bool & in_mUserDefined,
                                                   const class GALGAS_lstring & in_mOutletClassName,
@@ -7278,9 +7276,9 @@ class GALGAS_regularBindingList : public AC_GALGAS_list {
   public : GALGAS_regularBindingList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_regularBindingList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_regularBindingList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mBindingName,
                                                   const class GALGAS_observablePropertyList & in_mObservablePropertyList,
@@ -7429,9 +7427,9 @@ class GALGAS_storedArrayPropertyList : public AC_GALGAS_list {
   public : GALGAS_storedArrayPropertyList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_storedArrayPropertyList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_storedArrayPropertyList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mElementClassName,
                                                   const class GALGAS_lstring & in_mStoredArrayPropertyName
@@ -7634,9 +7632,9 @@ class GALGAS_arrayControllerForGeneration : public AC_GALGAS_list {
   public : GALGAS_arrayControllerForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_arrayControllerForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_arrayControllerForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mOwnerName,
                                                   const class GALGAS_string & in_mControllerName,
@@ -7894,15 +7892,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerForG
 
 class GALGAS_prefDeclaration : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_outletDeclarationList mAttribute_mOutletDeclarationList ;
-  public : GALGAS_simpleStoredPropertyList mAttribute_mSimpleStoredAttributeList ;
-  public : GALGAS_lstringlist mAttribute_mActionDeclarationList ;
-  public : GALGAS_secondaryPropertyList mAttribute_mSecondaryPropertyList ;
-  public : GALGAS_mainXibDescriptorList mAttribute_mMainXibDescriptorList ;
-  public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
-  public : GALGAS_storedArrayPropertyList mAttribute_mStoredArrayList ;
-  public : GALGAS_arrayControllerForGeneration mAttribute_mArrayControllerForGeneration ;
-  public : GALGAS_stringset mAttribute_mSignatureList ;
+  public : GALGAS_outletDeclarationList mProperty_mOutletDeclarationList ;
+  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
+  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
+  public : GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
+  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+  public : GALGAS_storedArrayPropertyList mProperty_mStoredArrayList ;
+  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
+  public : GALGAS_stringset mProperty_mSignatureList ;
 
 
 //--------------------------------- Accessors
@@ -8000,11 +7998,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefDeclaration ;
 
 class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_astDeclarationList mAttribute_mDeclarationList ;
-  public : GALGAS_outletClassDeclarationList mAttribute_mOutletClassDeclarationList ;
-  public : GALGAS_bindingSpecificationListMap mAttribute_mBindingSpecificationListMap ;
-  public : GALGAS_prefDeclaration mAttribute_mPreferences ;
-  public : GALGAS_lstring mAttribute_mXcodeProject ;
+  public : GALGAS_astDeclarationList mProperty_mDeclarationList ;
+  public : GALGAS_outletClassDeclarationList mProperty_mOutletClassDeclarationList ;
+  public : GALGAS_bindingSpecificationListMap mProperty_mBindingSpecificationListMap ;
+  public : GALGAS_prefDeclaration mProperty_mPreferences ;
+  public : GALGAS_lstring mProperty_mXcodeProject ;
 
 
 //--------------------------------- Accessors
@@ -8086,10 +8084,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationStruc
 
 class GALGAS_columnBindingAST : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mRunActionName ;
-  public : GALGAS_multipleBindingDescriptor mAttribute_mEnabledBindingDescriptor ;
-  public : GALGAS_multipleBindingDescriptor mAttribute_mHiddenBindingDescriptor ;
-  public : GALGAS_regularBindingList mAttribute_mRegularBindingList ;
+  public : GALGAS_lstring mProperty_mRunActionName ;
+  public : GALGAS_multipleBindingDescriptor mProperty_mEnabledBindingDescriptor ;
+  public : GALGAS_multipleBindingDescriptor mProperty_mHiddenBindingDescriptor ;
+  public : GALGAS_regularBindingList mProperty_mRegularBindingList ;
 
 
 //--------------------------------- Accessors
@@ -8164,7 +8162,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_columnBindingAST ;
 
 class GALGAS_astDeclarationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_astDeclaration mAttribute_mDeclaration ;
+  public : GALGAS_astDeclaration mProperty_mDeclaration ;
 
 
 //--------------------------------- Accessors
@@ -8227,11 +8225,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationList_
 
 class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_bool mAttribute_mUserDefined ;
-  public : GALGAS_lstring mAttribute_mOutletClassName ;
-  public : GALGAS_bool mAttribute_mHasRunAction ;
-  public : GALGAS_bool mAttribute_mHasEnabled ;
-  public : GALGAS_bool mAttribute_mHandlesTableValueBinding ;
+  public : GALGAS_bool mProperty_mUserDefined ;
+  public : GALGAS_lstring mProperty_mOutletClassName ;
+  public : GALGAS_bool mProperty_mHasRunAction ;
+  public : GALGAS_bool mProperty_mHasEnabled ;
+  public : GALGAS_bool mProperty_mHandlesTableValueBinding ;
 
 
 //--------------------------------- Accessors
@@ -8313,7 +8311,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassDeclarat
 
 class GALGAS_secondaryPropertyList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_abstractSecondaryProperty mAttribute_mSecondaryProperty ;
+  public : GALGAS_abstractSecondaryProperty mProperty_mSecondaryProperty ;
 
 
 //--------------------------------- Accessors
@@ -8739,8 +8737,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_unifiedTypeMap ;
 
 class cMapElement_unifiedTypeMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_typeKind mAttribute_mTypeKind ;
-  public : GALGAS_actionMap mAttribute_mActionMap ;
+  public : GALGAS_typeKind mProperty_mTypeKind ;
+  public : GALGAS_actionMap mProperty_mActionMap ;
 
 //--- Constructor
   public : cMapElement_unifiedTypeMap (const GALGAS_lstring & inKey,
@@ -8813,9 +8811,9 @@ class GALGAS_customObjectControllerForGeneration : public AC_GALGAS_list {
   public : GALGAS_customObjectControllerForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_customObjectControllerForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_customObjectControllerForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mOwnerName,
                                                   const class GALGAS_string & in_mCustomObjectControllerName,
@@ -8992,9 +8990,9 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
   public : GALGAS_selectionControllerForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_selectionControllerForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_selectionControllerForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mOwnerName,
                                                   const class GALGAS_string & in_mSelectionControllerName,
@@ -9185,9 +9183,9 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
   public : GALGAS_transientDefinitionListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_transientDefinitionListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_transientDefinitionListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mOwnerName,
                                                   const class GALGAS_string & in_mTransientName,
@@ -9607,11 +9605,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyM
 
 class cMapElement_observablePropertyMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_typeKind mAttribute_mType ;
-  public : GALGAS_propertyKind mAttribute_mKind ;
-  public : GALGAS_propertyMultiplicity mAttribute_mMultiplicity ;
-  public : GALGAS_string mAttribute_mInverseRelationshipName ;
-  public : GALGAS_actionMap mAttribute_mActionMap ;
+  public : GALGAS_typeKind mProperty_mType ;
+  public : GALGAS_propertyKind mProperty_mKind ;
+  public : GALGAS_propertyMultiplicity mProperty_mMultiplicity ;
+  public : GALGAS_string mProperty_mInverseRelationshipName ;
+  public : GALGAS_actionMap mProperty_mActionMap ;
 
 //--- Constructor
   public : cMapElement_observablePropertyMap (const GALGAS_lstring & inKey,
@@ -10098,12 +10096,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap ;
 
 class GALGAS_semanticContext : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_unifiedTypeMap mAttribute_mUnifiedTypeMap ;
-  public : GALGAS_outletClassMap mAttribute_mOutletClassMap ;
-  public : GALGAS_bindingSpecificationMap mAttribute_mBindingSpecificationMap ;
-  public : GALGAS_observablePropertyMap mAttribute_mPreferencesObservablePropertyMap ;
-  public : GALGAS_documentObservablePropertyMap mAttribute_mDocumentObservablePropertyMap ;
-  public : GALGAS_entityObservablePropertyMap mAttribute_mEntityObservablePropertyMap ;
+  public : GALGAS_unifiedTypeMap mProperty_mUnifiedTypeMap ;
+  public : GALGAS_outletClassMap mProperty_mOutletClassMap ;
+  public : GALGAS_bindingSpecificationMap mProperty_mBindingSpecificationMap ;
+  public : GALGAS_observablePropertyMap mProperty_mPreferencesObservablePropertyMap ;
+  public : GALGAS_documentObservablePropertyMap mProperty_mDocumentObservablePropertyMap ;
+  public : GALGAS_entityObservablePropertyMap mProperty_mEntityObservablePropertyMap ;
 
 
 //--------------------------------- Accessors
@@ -10189,7 +10187,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 
 class GALGAS_externSwiftDelegateList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mExternSwiftDelegateName ;
+  public : GALGAS_lstring mProperty_mExternSwiftDelegateName ;
 
 
 //--------------------------------- Accessors
@@ -10255,8 +10253,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegate
 
 class GALGAS_externSwiftFunctionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mExternSwiftFunctionName ;
-  public : GALGAS_lstring mAttribute_mCallerName ;
+  public : GALGAS_lstring mProperty_mExternSwiftFunctionName ;
+  public : GALGAS_lstring mProperty_mCallerName ;
 
 
 //--------------------------------- Accessors
@@ -10435,7 +10433,7 @@ class cMapElement_externFunctionMap : public cMapElement {
 
 class GALGAS_externFunctionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
+  public : GALGAS_lstring mProperty_lkey ;
 
 
 //--------------------------------- Accessors
@@ -10618,7 +10616,7 @@ class cMapElement_enumConstantMap : public cMapElement {
 
 class GALGAS_enumConstantMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
+  public : GALGAS_lstring mProperty_lkey ;
 
 
 //--------------------------------- Accessors
@@ -10687,9 +10685,9 @@ class GALGAS_enumListForGeneration : public AC_GALGAS_list {
   public : GALGAS_enumListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_enumListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_enumListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mEnumName,
                                                   const class GALGAS_lstringlist & in_mEnumConstantList
@@ -10821,8 +10819,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumListForGenerati
 
 class GALGAS_enumListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mEnumName ;
-  public : GALGAS_lstringlist mAttribute_mEnumConstantList ;
+  public : GALGAS_string mProperty_mEnumName ;
+  public : GALGAS_lstringlist mProperty_mEnumConstantList ;
 
 
 //--------------------------------- Accessors
@@ -10892,10 +10890,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumListForGenerati
 
 class GALGAS_toOneRelationshipList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mDestinationEntityName ;
-  public : GALGAS_lstring mAttribute_mToOneRelationshipName ;
-  public : GALGAS_lstring mAttribute_mInverseRelationshipName ;
-  public : GALGAS_propertyMultiplicity mAttribute_mInverseRelationMultiplicity ;
+  public : GALGAS_lstring mProperty_mDestinationEntityName ;
+  public : GALGAS_lstring mProperty_mToOneRelationshipName ;
+  public : GALGAS_lstring mProperty_mInverseRelationshipName ;
+  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
 
 
 //--------------------------------- Accessors
@@ -10970,9 +10968,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipLi
 
 class GALGAS_toManyRelationshipList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mDestinationEntityName ;
-  public : GALGAS_lstring mAttribute_mToManyRelationshipName ;
-  public : GALGAS_lstring mAttribute_mInverseRelationshipName ;
+  public : GALGAS_lstring mProperty_mDestinationEntityName ;
+  public : GALGAS_lstring mProperty_mToManyRelationshipName ;
+  public : GALGAS_lstring mProperty_mInverseRelationshipName ;
 
 
 //--------------------------------- Accessors
@@ -11283,9 +11281,9 @@ class GALGAS_toOneEntityRelationshipListForGeneration : public AC_GALGAS_list {
   public : GALGAS_toOneEntityRelationshipListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_toOneEntityRelationshipListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_toOneEntityRelationshipListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mToOneRelationshipName,
                                                   const class GALGAS_typeKind & in_mRelationshipType,
@@ -11459,7 +11457,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneEntityRelation
 
 class cMapElement_entityObservablePropertyMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_observablePropertyMap mAttribute_mObservablePropertyMap ;
+  public : GALGAS_observablePropertyMap mProperty_mObservablePropertyMap ;
 
 //--- Constructor
   public : cMapElement_entityObservablePropertyMap (const GALGAS_lstring & inKey,
@@ -11502,9 +11500,9 @@ class GALGAS_toManyEntityRelationshipListForGeneration : public AC_GALGAS_list {
   public : GALGAS_toManyEntityRelationshipListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_toManyEntityRelationshipListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_toManyEntityRelationshipListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mToManyRelationshipName,
                                                   const class GALGAS_typeKind & in_mRelationshipType,
@@ -11664,11 +11662,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyEntityRelatio
 
 class GALGAS_toOneEntityRelationshipListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mToOneRelationshipName ;
-  public : GALGAS_typeKind mAttribute_mRelationshipType ;
-  public : GALGAS_string mAttribute_mOppositeRelationshipName ;
-  public : GALGAS_propertyMultiplicity mAttribute_mInverseRelationMultiplicity ;
-  public : GALGAS_observablePropertyMap mAttribute_mDestinationEntityObservablePropertyMap ;
+  public : GALGAS_string mProperty_mToOneRelationshipName ;
+  public : GALGAS_typeKind mProperty_mRelationshipType ;
+  public : GALGAS_string mProperty_mOppositeRelationshipName ;
+  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
+  public : GALGAS_observablePropertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
 
 //--------------------------------- Accessors
@@ -11747,12 +11745,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneEntityRelation
 
 class GALGAS_observablePropertyMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_typeKind mAttribute_mType ;
-  public : GALGAS_propertyKind mAttribute_mKind ;
-  public : GALGAS_propertyMultiplicity mAttribute_mMultiplicity ;
-  public : GALGAS_string mAttribute_mInverseRelationshipName ;
-  public : GALGAS_actionMap mAttribute_mActionMap ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_typeKind mProperty_mType ;
+  public : GALGAS_propertyKind mProperty_mKind ;
+  public : GALGAS_propertyMultiplicity mProperty_mMultiplicity ;
+  public : GALGAS_string mProperty_mInverseRelationshipName ;
+  public : GALGAS_actionMap mProperty_mActionMap ;
 
 
 //--------------------------------- Accessors
@@ -11835,10 +11833,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyM
 
 class GALGAS_toManyEntityRelationshipListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mToManyRelationshipName ;
-  public : GALGAS_typeKind mAttribute_mRelationshipType ;
-  public : GALGAS_string mAttribute_mOppositeRelationshipName ;
-  public : GALGAS_observablePropertyMap mAttribute_mDestinationEntityObservablePropertyMap ;
+  public : GALGAS_string mProperty_mToManyRelationshipName ;
+  public : GALGAS_typeKind mProperty_mRelationshipType ;
+  public : GALGAS_string mProperty_mOppositeRelationshipName ;
+  public : GALGAS_observablePropertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
 
 //--------------------------------- Accessors
@@ -11913,10 +11911,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyEntityRelatio
 
 class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mPropertyTypeName ;
-  public : GALGAS_lstring mAttribute_mPropertyName ;
-  public : GALGAS_abstractDefaultValue mAttribute_mDefaultValue ;
-  public : GALGAS_bool mAttribute_mNeedsValidation ;
+  public : GALGAS_lstring mProperty_mPropertyTypeName ;
+  public : GALGAS_lstring mProperty_mPropertyName ;
+  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
+  public : GALGAS_bool mProperty_mNeedsValidation ;
 
 
 //--------------------------------- Accessors
@@ -11994,9 +11992,9 @@ class GALGAS_classListForGeneration : public AC_GALGAS_list {
   public : GALGAS_classListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_classListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_classListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mClassName,
                                                   const class GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
@@ -12173,9 +12171,9 @@ class GALGAS_simpleStoredPropertyListForGeneration : public AC_GALGAS_list {
   public : GALGAS_simpleStoredPropertyListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_simpleStoredPropertyListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_simpleStoredPropertyListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_typeKind & in_mType,
                                                   const class GALGAS_string & in_mStoredPropertyName,
@@ -12335,11 +12333,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 class GALGAS_classListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mClassName ;
-  public : GALGAS_simpleStoredPropertyListForGeneration mAttribute_mSimpleStoredPropertyListForGeneration ;
-  public : GALGAS_transientDefinitionListForGeneration mAttribute_mTransientListForGeneration ;
-  public : GALGAS_externSwiftFunctionList mAttribute_mExternSwiftFunctionList ;
-  public : GALGAS_externSwiftDelegateList mAttribute_mExternSwiftDelegateList ;
+  public : GALGAS_string mProperty_mClassName ;
+  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
+  public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientListForGeneration ;
+  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
 
 
 //--------------------------------- Accessors
@@ -12421,10 +12419,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classListForGenerat
 
 class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_typeKind mAttribute_mType ;
-  public : GALGAS_string mAttribute_mStoredPropertyName ;
-  public : GALGAS_string mAttribute_mDefaultValueInSwift ;
-  public : GALGAS_bool mAttribute_mNeedsValidation ;
+  public : GALGAS_typeKind mProperty_mType ;
+  public : GALGAS_string mProperty_mStoredPropertyName ;
+  public : GALGAS_string mProperty_mDefaultValueInSwift ;
+  public : GALGAS_bool mProperty_mNeedsValidation ;
 
 
 //--------------------------------- Accessors
@@ -12502,9 +12500,9 @@ class GALGAS_transientDependencyListForGeneration : public AC_GALGAS_list {
   public : GALGAS_transientDependencyListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_transientDependencyListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_transientDependencyListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_observablePropertyAST & in_mDependency,
                                                   const class GALGAS_string & in_mFunctionArgumentName,
@@ -12650,11 +12648,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependency
 
 class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mOwnerName ;
-  public : GALGAS_string mAttribute_mTransientName ;
-  public : GALGAS_bool mAttribute_mIsArray ;
-  public : GALGAS_typeKind mAttribute_mTransientType ;
-  public : GALGAS_transientDependencyListForGeneration mAttribute_mDependencyList ;
+  public : GALGAS_string mProperty_mOwnerName ;
+  public : GALGAS_string mProperty_mTransientName ;
+  public : GALGAS_bool mProperty_mIsArray ;
+  public : GALGAS_typeKind mProperty_mTransientType ;
+  public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
 
 
 //--------------------------------- Accessors
@@ -12733,8 +12731,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDefinition
 
 class GALGAS_entityObservablePropertyMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_observablePropertyMap mAttribute_mObservablePropertyMap ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_observablePropertyMap mProperty_mObservablePropertyMap ;
 
 
 //--------------------------------- Accessors
@@ -12807,9 +12805,9 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
   public : GALGAS_entityListForGeneration (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_entityListForGeneration (cSharedList * inSharedListPtr) ;
+  public : GALGAS_entityListForGeneration (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mEntityName,
                                                   const class GALGAS_string & in_mSuperEntityName,
@@ -13011,13 +13009,13 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGenera
 
 class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mEntityName ;
-  public : GALGAS_string mAttribute_mSuperEntityName ;
-  public : GALGAS_simpleStoredPropertyListForGeneration mAttribute_mSimpleStoredPropertyListForGeneration ;
-  public : GALGAS_transientDefinitionListForGeneration mAttribute_mDecoratedTransientListForGeneration ;
-  public : GALGAS_toOneEntityRelationshipListForGeneration mAttribute_mToOneEntityRelationshipList ;
-  public : GALGAS_toManyEntityRelationshipListForGeneration mAttribute_mToManyEntityRelationshipList ;
-  public : GALGAS_stringset mAttribute_mSignatureSet ;
+  public : GALGAS_string mProperty_mEntityName ;
+  public : GALGAS_string mProperty_mSuperEntityName ;
+  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
+  public : GALGAS_transientDefinitionListForGeneration mProperty_mDecoratedTransientListForGeneration ;
+  public : GALGAS_toOneEntityRelationshipListForGeneration mProperty_mToOneEntityRelationshipList ;
+  public : GALGAS_toManyEntityRelationshipListForGeneration mProperty_mToManyEntityRelationshipList ;
+  public : GALGAS_stringset mProperty_mSignatureSet ;
 
 
 //--------------------------------- Accessors

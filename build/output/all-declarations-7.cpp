@@ -36,7 +36,7 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
   temp_2.addAssign_operation (GALGAS_string ("EBAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 146)) ;
   GALGAS_stringlist var_xibFiles_4678 = temp_2 ;
   GALGAS_filewrapper var_fw_4712 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_4774 (var_swiftFiles_4395, kEnumeration_up) ;
+  cEnumerator_stringlist enumerator_4774 (var_swiftFiles_4395, kENUMERATION_UP) ;
   while (enumerator_4774.hasCurrentObject ()) {
     GALGAS_string var_contents_4794 = var_fw_4712.getter_textFileContentsAtPath (enumerator_4774.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 149)) ;
     GALGAS_string var_fileName_4855 = enumerator_4774.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 150)) ;
@@ -46,7 +46,7 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
     }
     enumerator_4774.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_5031 (var_xibFiles_4678, kEnumeration_up) ;
+  cEnumerator_stringlist enumerator_5031 (var_xibFiles_4678, kENUMERATION_UP) ;
   while (enumerator_5031.hasCurrentObject ()) {
     GALGAS_string var_contents_5051 = var_fw_4712.getter_textFileContentsAtPath (enumerator_5031.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 159)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 159)) ;
     GALGAS_string var_fileName_5110 = enumerator_5031.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 160)) ;
@@ -1212,12 +1212,12 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
   var_contents_6101.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool") COMMA_SOURCE_FILE ("code-generation.galgas", 197))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 197)) ;
   var_contents_6101.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double") COMMA_SOURCE_FILE ("code-generation.galgas", 198))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 198)) ;
   var_contents_6101.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("String") COMMA_SOURCE_FILE ("code-generation.galgas", 199))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 199)) ;
-  cEnumerator_stringlist enumerator_6540 (constinArgument_inPropertyClassList, kEnumeration_up) ;
+  cEnumerator_stringlist enumerator_6540 (constinArgument_inPropertyClassList, kENUMERATION_UP) ;
   while (enumerator_6540.hasCurrentObject ()) {
     var_contents_6101.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_6540.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 202))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 202)) ;
     enumerator_6540.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_6696 (constinArgument_inTransientPropertyClassList, kEnumeration_up) ;
+  cEnumerator_stringlist enumerator_6696 (constinArgument_inTransientPropertyClassList, kENUMERATION_UP) ;
   while (enumerator_6696.hasCurrentObject ()) {
     var_contents_6101.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_6696.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 205))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 205)) ;
     enumerator_6696.gotoNextObject () ;
@@ -2134,7 +2134,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (C_Compiler
     " <array>\n" ;
   GALGAS_uint index_1014_ (0) ;
   if (in_HANDLED_5F_EXTENSION_5F_SET.isValid ()) {
-    cEnumerator_stringset enumerator_1014 (in_HANDLED_5F_EXTENSION_5F_SET, kEnumeration_up) ;
+    cEnumerator_stringset enumerator_1014 (in_HANDLED_5F_EXTENSION_5F_SET, kENUMERATION_UP) ;
     while (enumerator_1014.hasCurrentObject ()) {
       result << "  <dict>\n"
         "   <key>CFBundleTypeIconFile</key>\n"
@@ -2297,7 +2297,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "  /*------------------------------------------------------------------ PBXBuildFile */\n" ;
   GALGAS_uint index_210_ (0) ;
   if (in_BUILD_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator_BuildFileList enumerator_210 (in_BUILD_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator_BuildFileList enumerator_210 (in_BUILD_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_210.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_210.current_mBuildReference (HERE).stringValue () ;
@@ -2318,7 +2318,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   result << "  /*------------------------------------------------------------------ PBXFileReference */\n" ;
   GALGAS_uint index_500_ (0) ;
   if (in_CPP_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_500 (in_CPP_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_500 (in_CPP_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_500.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_500.current_mValue_30_ (HERE).stringValue () ;
@@ -2343,7 +2343,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_832_ (0) ;
   if (in_M_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_832 (in_M_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_832 (in_M_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_832.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_832.current_mValue_30_ (HERE).stringValue () ;
@@ -2368,7 +2368,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_1163_ (0) ;
   if (in_MM_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_1163 (in_MM_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_1163 (in_MM_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1163.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_1163.current_mValue_30_ (HERE).stringValue () ;
@@ -2393,7 +2393,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_1502_ (0) ;
   if (in_SWIFT_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_1502 (in_SWIFT_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_1502 (in_SWIFT_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1502.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_1502.current_mValue_30_ (HERE).stringValue () ;
@@ -2418,7 +2418,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_1837_ (0) ;
   if (in_HEADER_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_1837 (in_HEADER_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_1837 (in_HEADER_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1837.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_1837.current_mValue_30_ (HERE).stringValue () ;
@@ -2443,7 +2443,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_2173_ (0) ;
   if (in_FRAMEWORK_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_2173 (in_FRAMEWORK_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_2173 (in_FRAMEWORK_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_2173.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_2173.current_mValue_30_ (HERE).stringValue () ;
@@ -2467,7 +2467,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_2483_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_2483 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_2483 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_2483.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_2483.current_mProductFileReference (HERE).stringValue () ;
@@ -2487,7 +2487,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_2777_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_2777 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_2777 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_2777.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_2777.current_mProductFileReference (HERE).stringValue () ;
@@ -2507,7 +2507,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_3071_ (0) ;
   if (in_PLIST_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3071 (in_PLIST_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_3071 (in_PLIST_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3071.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_3071.current_mValue_30_ (HERE).stringValue () ;
@@ -2530,7 +2530,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_3380_ (0) ;
   if (in_XIB_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3380 (in_XIB_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_3380 (in_XIB_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3380.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_3380.current_mValue_30_ (HERE).stringValue () ;
@@ -2553,7 +2553,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_3691_ (0) ;
   if (in_TIFF_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3691 (in_TIFF_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_3691 (in_TIFF_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3691.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_3691.current_mValue_30_ (HERE).stringValue () ;
@@ -2575,7 +2575,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_3975_ (0) ;
   if (in_ICNS_5F_FILE_5F_LIST.isValid ()) {
-    cEnumerator__32_stringlist enumerator_3975 (in_ICNS_5F_FILE_5F_LIST, kEnumeration_up) ;
+    cEnumerator__32_stringlist enumerator_3975 (in_ICNS_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3975.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_3975.current_mValue_30_ (HERE).stringValue () ;
@@ -2599,7 +2599,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "\n" ;
   GALGAS_uint index_4363_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_4363 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_4363 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_4363.hasCurrentObject ()) {
       const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_4363.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_0) {
@@ -2611,7 +2611,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
           "    files = (\n" ;
         GALGAS_uint index_4597_ (0) ;
         if (enumerator_4363.current_mFrameworksFileRefList (HERE).isValid ()) {
-          cEnumerator_stringlist enumerator_4597 (enumerator_4363.current_mFrameworksFileRefList (HERE), kEnumeration_up) ;
+          cEnumerator_stringlist enumerator_4597 (enumerator_4363.current_mFrameworksFileRefList (HERE), kENUMERATION_UP) ;
           while (enumerator_4597.hasCurrentObject ()) {
             result << "      " ;
             result << enumerator_4597.current_mValue (HERE).stringValue () ;
@@ -2632,7 +2632,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_4753_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_4753 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_4753 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_4753.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_4753.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
@@ -2642,7 +2642,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "    files = (\n" ;
       GALGAS_uint index_4931_ (0) ;
       if (enumerator_4753.current_mFrameworksFileRefList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_4931 (enumerator_4753.current_mFrameworksFileRefList (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_4931 (enumerator_4753.current_mFrameworksFileRefList (HERE), kENUMERATION_UP) ;
         while (enumerator_4931.hasCurrentObject ()) {
           result << "      " ;
           result << enumerator_4931.current_mValue (HERE).stringValue () ;
@@ -2662,7 +2662,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   result << "  /*------------------------------------------------------------------ PBXGroup section */\n" ;
   GALGAS_uint index_5156_ (0) ;
   if (in_GROUPS.isValid ()) {
-    cEnumerator_XCodeGroupList enumerator_5156 (in_GROUPS, kEnumeration_up) ;
+    cEnumerator_XCodeGroupList enumerator_5156 (in_GROUPS, kENUMERATION_UP) ;
     while (enumerator_5156.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_5156.current_mGroupReference (HERE).stringValue () ;
@@ -2673,7 +2673,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "    children = (\n" ;
       GALGAS_uint index_5277_ (0) ;
       if (enumerator_5156.current_mChildrenRefs (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_5277 (enumerator_5156.current_mChildrenRefs (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_5277 (enumerator_5156.current_mChildrenRefs (HERE), kENUMERATION_UP) ;
         while (enumerator_5277.hasCurrentObject ()) {
           result << "      " ;
           result << enumerator_5277.current_mValue (HERE).stringValue () ;
@@ -2703,7 +2703,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "    children = (\n" ;
   GALGAS_uint index_5583_ (0) ;
   if (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS.isValid ()) {
-    cEnumerator_stringlist enumerator_5583 (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS, kEnumeration_up) ;
+    cEnumerator_stringlist enumerator_5583 (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS, kENUMERATION_UP) ;
     while (enumerator_5583.hasCurrentObject ()) {
       result << "      " ;
       result << enumerator_5583.current_mValue (HERE).stringValue () ;
@@ -2719,7 +2719,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "  /*------------------------------------------------------------------ PBXNativeTarget */\n" ;
   GALGAS_uint index_5774_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_5774 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_5774 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_5774.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_5774.current_mTargetRef (HERE).stringValue () ;
@@ -2765,7 +2765,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_6410_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_6410 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_6410 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_6410.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_6410.current_mTargetRef (HERE).stringValue () ;
@@ -2792,7 +2792,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "    dependencies = (\n" ;
       GALGAS_uint index_6784_ (0) ;
       if (enumerator_6410.current_mDependentTargets (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_6784 (enumerator_6410.current_mDependentTargets (HERE), kEnumeration_up) ;
+        cEnumerator__32_stringlist enumerator_6784 (enumerator_6410.current_mDependentTargets (HERE), kENUMERATION_UP) ;
         while (enumerator_6784.hasCurrentObject ()) {
           result << "      " ;
           result << enumerator_6784.current_mValue_30_ (HERE).stringValue () ;
@@ -2841,7 +2841,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "   targets = (\n" ;
   GALGAS_uint index_7633_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_7633 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_7633 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_7633.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_7633.current_mTargetRef (HERE).stringValue () ;
@@ -2852,7 +2852,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_7690_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_7690 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_7690 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_7690.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_7690.current_mTargetRef (HERE).stringValue () ;
@@ -2868,7 +2868,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "\n" ;
   GALGAS_uint index_7860_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_7860 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_7860 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_7860.hasCurrentObject ()) {
       result << "  " ;
       result << enumerator_7860.current_mResourceBuildRef (HERE).stringValue () ;
@@ -2878,7 +2878,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "    files = (\n" ;
       GALGAS_uint index_8037_ (0) ;
       if (enumerator_7860.current_mResourceFileBuildRefs (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_8037 (enumerator_7860.current_mResourceFileBuildRefs (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_8037 (enumerator_7860.current_mResourceFileBuildRefs (HERE), kENUMERATION_UP) ;
         while (enumerator_8037.hasCurrentObject ()) {
           result << "      " ;
           result << enumerator_8037.current_mValue (HERE).stringValue () ;
@@ -2898,7 +2898,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   result << "  /*------------------------------------------------------------------ PBXSourcesBuildPhase */\n" ;
   GALGAS_uint index_8264_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_8264 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_8264 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_8264.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_8264.current_mBuildPhaseRef (HERE).stringValue () ;
@@ -2908,7 +2908,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "      files = (\n" ;
       GALGAS_uint index_8425_ (0) ;
       if (enumerator_8264.current_mBuildPhaseRefList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_8425 (enumerator_8264.current_mBuildPhaseRefList (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_8425 (enumerator_8264.current_mBuildPhaseRefList (HERE), kENUMERATION_UP) ;
         while (enumerator_8425.hasCurrentObject ()) {
           result << "        " ;
           result << enumerator_8425.current_mValue (HERE).stringValue () ;
@@ -2926,7 +2926,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_8549_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_8549 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_8549 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_8549.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_8549.current_mBuildPhaseRef (HERE).stringValue () ;
@@ -2936,7 +2936,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "      files = (\n" ;
       GALGAS_uint index_8710_ (0) ;
       if (enumerator_8549.current_mBuildPhaseRefList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_8710 (enumerator_8549.current_mBuildPhaseRefList (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_8710 (enumerator_8549.current_mBuildPhaseRefList (HERE), kENUMERATION_UP) ;
         while (enumerator_8710.hasCurrentObject ()) {
           result << "        " ;
           result << enumerator_8710.current_mValue (HERE).stringValue () ;
@@ -2958,11 +2958,11 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     " \n" ;
   GALGAS_uint index_8935_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_8935 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_8935 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_8935.hasCurrentObject ()) {
       GALGAS_uint index_8968_ (0) ;
       if (enumerator_8935.current_mDependentTargets (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_8968 (enumerator_8935.current_mDependentTargets (HERE), kEnumeration_up) ;
+        cEnumerator__32_stringlist enumerator_8968 (enumerator_8935.current_mDependentTargets (HERE), kENUMERATION_UP) ;
         while (enumerator_8968.hasCurrentObject ()) {
           result << "  " ;
           result << enumerator_8968.current_mValue_30_ (HERE).stringValue () ;
@@ -2991,7 +2991,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "      buildSettings = {\n" ;
   GALGAS_uint index_9439_ (0) ;
   if (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST.isValid ()) {
-    cEnumerator_stringlist enumerator_9439 (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST, kEnumeration_up) ;
+    cEnumerator_stringlist enumerator_9439 (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_9439.hasCurrentObject ()) {
       result << "      " ;
       result << enumerator_9439.current_mValue (HERE).stringValue () ;
@@ -3006,7 +3006,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "\n" ;
   GALGAS_uint index_9531_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_9531 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_9531 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_9531.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_9531.current_mBuildConfigurationRef (HERE).stringValue () ;
@@ -3015,7 +3015,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "      buildSettings = {\n" ;
       GALGAS_uint index_9693_ (0) ;
       if (enumerator_9531.current_mBuildConfigurationSettingList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_9693 (enumerator_9531.current_mBuildConfigurationSettingList (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_9693 (enumerator_9531.current_mBuildConfigurationSettingList (HERE), kENUMERATION_UP) ;
         while (enumerator_9693.hasCurrentObject ()) {
           result << "      " ;
           result << enumerator_9693.current_mValue (HERE).stringValue () ;
@@ -3037,7 +3037,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_9866_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_9866 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_9866 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_9866.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_9866.current_mBuildConfigurationRef (HERE).stringValue () ;
@@ -3046,7 +3046,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "      buildSettings = {\n" ;
       GALGAS_uint index_10028_ (0) ;
       if (enumerator_9866.current_mBuildConfigurationSettingList (HERE).isValid ()) {
-        cEnumerator_stringlist enumerator_10028 (enumerator_9866.current_mBuildConfigurationSettingList (HERE), kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_10028 (enumerator_9866.current_mBuildConfigurationSettingList (HERE), kENUMERATION_UP) ;
         while (enumerator_10028.hasCurrentObject ()) {
           result << "      " ;
           result << enumerator_10028.current_mValue (HERE).stringValue () ;
@@ -3086,7 +3086,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
     "\n" ;
   GALGAS_uint index_10687_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeToolTargetList enumerator_10687 (in_TOOL_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeToolTargetList enumerator_10687 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_10687.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_10687.current_mBuildConfigurationListRef (HERE).stringValue () ;
@@ -3107,7 +3107,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   }
   GALGAS_uint index_10987_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
-    cEnumerator_XCodeAppTargetList enumerator_10987 (in_APP_5F_TARGET_5F_LIST, kEnumeration_up) ;
+    cEnumerator_XCodeAppTargetList enumerator_10987 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_10987.hasCurrentObject ()) {
       result << "    " ;
       result << enumerator_10987.current_mBuildConfigurationListRef (HERE).stringValue () ;
@@ -3155,9 +3155,9 @@ void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdent
   const enumGalgasBool test_1 = test_0.boolEnum () ;
   if (kBoolTrue == test_1) {
     GALGAS_stringlist var_outlet_5F_identifier_5F_list_5577 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 136)) ;
-    cEnumerator_mainXibDescriptorList enumerator_5620 (constinArgument_inMainXibDescriptorList, kEnumeration_up) ;
+    cEnumerator_mainXibDescriptorList enumerator_5620 (constinArgument_inMainXibDescriptorList, kENUMERATION_UP) ;
     while (enumerator_5620.hasCurrentObject ()) {
-      cEnumerator_mainXibLineDescriptorList enumerator_5645 (enumerator_5620.current_mLine (HERE), kEnumeration_up) ;
+      cEnumerator_mainXibLineDescriptorList enumerator_5645 (enumerator_5620.current_mLine (HERE), kENUMERATION_UP) ;
       while (enumerator_5645.hasCurrentObject ()) {
         switch (enumerator_5645.current_mElement (HERE).enumValue ()) {
         case GALGAS_mainXibElement::kNotBuilt:
@@ -3170,7 +3170,7 @@ void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdent
           {
             const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_5788 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_5645.current_mElement (HERE).unsafePointer ()) ;
             const GALGAS_lstring extractedValue_outletName = extractPtr_5788->mAssociatedValue1 ;
-            var_outlet_5F_identifier_5F_list_5577.addAssign_operation (extractedValue_outletName.mAttribute_string  COMMA_SOURCE_FILE ("main-xib.galgas", 142)) ;
+            var_outlet_5F_identifier_5F_list_5577.addAssign_operation (extractedValue_outletName.mProperty_string  COMMA_SOURCE_FILE ("main-xib.galgas", 142)) ;
           }
           break ;
         }
@@ -3290,7 +3290,7 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (C_Compiler * /* inCompil
   result << "')[0]\n" ;
   GALGAS_uint index_1779_ (0) ;
   if (in_OUTLET_5F_IDENTIFIER_5F_LIST.isValid ()) {
-    cEnumerator_stringlist enumerator_1779 (in_OUTLET_5F_IDENTIFIER_5F_LIST, kEnumeration_up) ;
+    cEnumerator_stringlist enumerator_1779 (in_OUTLET_5F_IDENTIFIER_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1779.hasCurrentObject ()) {
       result << "  global " ;
       result << enumerator_1779.current_mValue (HERE).stringValue () ;
@@ -3412,10 +3412,10 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile, GALGAS_bool (true), var_declarationStruct_553, var_endOfSourceFile_970  COMMA_SOURCE_FILE ("program.galgas", 17)) ;
   GALGAS_unifiedTypeMap var_unifiedTypeMap_1127 ;
   {
-  routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct_553.mAttribute_mDeclarationList, var_unifiedTypeMap_1127, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
+  routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct_553.mProperty_mDeclarationList, var_unifiedTypeMap_1127, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
   }
   GALGAS_lstringlist var_unsolvedProxyList_1223 = var_unifiedTypeMap_1127.getter_unsolvedProxyList (SOURCE_FILE ("program.galgas", 24)) ;
-  cEnumerator_lstringlist enumerator_1291 (var_unsolvedProxyList_1223, kEnumeration_up) ;
+  cEnumerator_lstringlist enumerator_1291 (var_unsolvedProxyList_1223, kENUMERATION_UP) ;
   while (enumerator_1291.hasCurrentObject ()) {
     TC_Array <C_FixItDescription> fixItArray0 ;
     inCompiler->emitSemanticError (enumerator_1291.current_mValue (HERE).getter_location (SOURCE_FILE ("program.galgas", 26)), GALGAS_string ("type ").add_operation (enumerator_1291.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26)), fixItArray0  COMMA_SOURCE_FILE ("program.galgas", 26)) ;
@@ -3429,7 +3429,7 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
     const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, var_unsortedTypeNames_1592.getter_length (SOURCE_FILE ("program.galgas", 34)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_2) {
       GALGAS_string var_s_1653 = GALGAS_string ("cannot sort types ; the following types are involved in circular dependence:") ;
-      cEnumerator_lstringlist enumerator_1769 (var_unsortedTypeNames_1592, kEnumeration_up) ;
+      cEnumerator_lstringlist enumerator_1769 (var_unsortedTypeNames_1592, kENUMERATION_UP) ;
       while (enumerator_1769.hasCurrentObject ()) {
         var_s_1653.plusAssign_operation(GALGAS_string ("\n"
           "-- ").add_operation (enumerator_1769.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 37)), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 37)) ;
@@ -3440,12 +3440,12 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
     }else if (kBoolFalse == test_2) {
       GALGAS_structForGeneration var_generation_2002 ;
       {
-      routine_semanticAnalysis (var_unifiedTypeMap_1127, constinArgument_inSourceFile.mAttribute_string, var_declarationStruct_553, var_generation_2002, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 41)) ;
+      routine_semanticAnalysis (var_unifiedTypeMap_1127, constinArgument_inSourceFile.mProperty_string, var_declarationStruct_553, var_generation_2002, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 41)) ;
       }
       const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 47)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_4) {
         {
-        routine_generateCode (var_declarationStruct_553.mAttribute_mXcodeProject.mAttribute_string, var_generation_2002, constinArgument_inSourceFile.mAttribute_string, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 48)) ;
+        routine_generateCode (var_declarationStruct_553.mProperty_mXcodeProject.mProperty_string, var_generation_2002, constinArgument_inSourceFile.mProperty_string, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 48)) ;
         }
       }
     }
@@ -3478,7 +3478,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
   }else{
   //--- Common lexique object
     C_Compiler * commonLexique = NULL ;
-    macroMyNew (commonLexique, C_Compiler (NULL, "", "" COMMA_HERE)) ;
+    macroMyNew (commonLexique, C_Compiler (NULL COMMA_HERE)) ;
     try{
       routine_before (commonLexique COMMA_HERE) ;
       cLexiqueIntrospection::handleGetKeywordListOption (commonLexique) ;

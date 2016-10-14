@@ -154,27 +154,27 @@ void callExtensionMethod_solveSecondaryProperty (const class cPtr_astDeclaration
 
 class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_uint mAttribute_mSequenceNumber ;
-  public : GALGAS_string mAttribute_mMainGroupReference ;
-  public : GALGAS_stringlist mAttribute_mMainGroupChildrenRefs ;
-  public : GALGAS_string mAttribute_mProjectObjectReference ;
-  public : GALGAS_XCodeGroupList mAttribute_mGroupList ;
-  public : GALGAS_XCodeToolTargetList mAttribute_mToolTargetList ;
-  public : GALGAS_XCodeAppTargetList mAttribute_mAppTargetList ;
-  public : GALGAS__32_stringlist mAttribute_mCppFileList ;
-  public : GALGAS__32_stringlist mAttribute_m_5F_M_5F_FileList ;
-  public : GALGAS__32_stringlist mAttribute_m_5F_MM_5F_FileList ;
-  public : GALGAS__32_stringlist mAttribute_m_5F_SwiftFileList ;
-  public : GALGAS__32_stringlist mAttribute_mFrameworkFileList ;
-  public : GALGAS__32_stringlist mAttribute_mHeaderFileList ;
-  public : GALGAS_BuildFileList mAttribute_mBuildFileList ;
-  public : GALGAS_string mAttribute_mDefaultConfigurationRef ;
-  public : GALGAS_stringlist mAttribute_mDefaultConfigurationSettingList ;
-  public : GALGAS_string mAttribute_mProjectBuildConfigurationRef ;
-  public : GALGAS__32_stringlist mAttribute_mInfoPlistFileList ;
-  public : GALGAS__32_stringlist mAttribute_mXIB_5F_fileList ;
-  public : GALGAS__32_stringlist mAttribute_mTIFF_5F_fileList ;
-  public : GALGAS__32_stringlist mAttribute_mICNS_5F_fileList ;
+  public : GALGAS_uint mProperty_mSequenceNumber ;
+  public : GALGAS_string mProperty_mMainGroupReference ;
+  public : GALGAS_stringlist mProperty_mMainGroupChildrenRefs ;
+  public : GALGAS_string mProperty_mProjectObjectReference ;
+  public : GALGAS_XCodeGroupList mProperty_mGroupList ;
+  public : GALGAS_XCodeToolTargetList mProperty_mToolTargetList ;
+  public : GALGAS_XCodeAppTargetList mProperty_mAppTargetList ;
+  public : GALGAS__32_stringlist mProperty_mCppFileList ;
+  public : GALGAS__32_stringlist mProperty_m_5F_M_5F_FileList ;
+  public : GALGAS__32_stringlist mProperty_m_5F_MM_5F_FileList ;
+  public : GALGAS__32_stringlist mProperty_m_5F_SwiftFileList ;
+  public : GALGAS__32_stringlist mProperty_mFrameworkFileList ;
+  public : GALGAS__32_stringlist mProperty_mHeaderFileList ;
+  public : GALGAS_BuildFileList mProperty_mBuildFileList ;
+  public : GALGAS_string mProperty_mDefaultConfigurationRef ;
+  public : GALGAS_stringlist mProperty_mDefaultConfigurationSettingList ;
+  public : GALGAS_string mProperty_mProjectBuildConfigurationRef ;
+  public : GALGAS__32_stringlist mProperty_mInfoPlistFileList ;
+  public : GALGAS__32_stringlist mProperty_mXIB_5F_fileList ;
+  public : GALGAS__32_stringlist mProperty_mTIFF_5F_fileList ;
+  public : GALGAS__32_stringlist mProperty_mICNS_5F_fileList ;
 
 
 //--------------------------------- Accessors
@@ -771,5 +771,52 @@ void routine_generateClasses (const class GALGAS_classListForGeneration constinA
                               class GALGAS_stringset & ioArgument2,
                               class C_Compiler * inCompiler
                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Filewrapper 'entityGenerationTemplate'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                     Filewrapper template 'entityGenerationTemplate entityImplementationInSwift'                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                        const class GALGAS_string & in_ENTITY_5F_NAME,
+                                                                                        const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                        const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                        const class GALGAS_toOneEntityRelationshipListForGeneration & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
+                                                                                        const class GALGAS_toManyEntityRelationshipListForGeneration & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
+                                                                                        const class GALGAS_stringset & in_SIGNATURE_5F_SET
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                        Filewrapper template 'entityGenerationTemplate managedObjectContext'                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext (class C_Compiler * inCompiler,
+                                                                                 const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 #endif
