@@ -88,7 +88,7 @@ import Cocoa
 
 @objc(Controller_EBFontButton_fontValue) class Controller_EBFontButton_fontValue : EBSimpleController {
 
-  private let mObject : EBReadWriteProperty_NSFont
+  fileprivate let mObject : EBReadWriteProperty_NSFont
   private let mOutlet : EBFontButton
 
   //····················································································································
