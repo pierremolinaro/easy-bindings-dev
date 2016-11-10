@@ -119,10 +119,6 @@ func appendMessageString (_ message : String, color:NSColor) {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBApplication) class EBApplication : NSApplication {
-//  private var mLevel = 0
-//  private var mTriggerOutletDisplaySet = Set <EBOutletEvent> ()
- 
-  //····················································································································
 
   @IBOutlet var mTransientEventExplorerWindow : NSWindow?
   @IBOutlet var mTransientEventExplorerTextView : NSTextView?

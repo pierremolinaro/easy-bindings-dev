@@ -51,7 +51,7 @@ end%  }
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if [mType isEntityType] then
     if [mMultiplicity isCollection] then # To Many
-      %  var %!lkey.string% = ToManyRelationshipProxy_%!ENTITY_TYPE_NAME%_%!lkey.string% () \n%
+      %  // var %!lkey.string% = ToManyRelationshipProxy_%!ENTITY_TYPE_NAME%_%!lkey.string% () \n%
     else
       %  // var %!lkey.string% = ToOneRelationshipProxy_%!ENTITY_TYPE_NAME%_%!lkey.string% () \n%
     end

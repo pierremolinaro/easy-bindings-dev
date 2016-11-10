@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		02A44259755D38E6D163E820 /* EBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D7FBDEA1AFC51C7C6AD26 /* EBButton.swift */; settings = {ATTRIBUTES = (); }; };
 		1EAE257E44AA9D5BADE97BAF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F062936A96D3C8BD1F8F2FF3 /* MainMenu.xib */; settings = {ATTRIBUTES = (); }; };
-		210194C475687BE6106A3B84 /* Preferences+transient+mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99908345F7439F8FFABDFFC4 /* Preferences+transient+mFullName.swift */; settings = {ATTRIBUTES = (); }; };
+		210194C475687BE6106A3B84 /* Preferences-transient-mFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99908345F7439F8FFABDFFC4 /* Preferences-transient-mFullName.swift */; settings = {ATTRIBUTES = (); }; };
 		22BCC25A6F606EB525FFDC56 /* EBTextObserverField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124A10E0DB5E4B97FC2AF39 /* EBTextObserverField.swift */; settings = {ATTRIBUTES = (); }; };
 		3463D06DE0CA9A15B6153677 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* application.swift */; settings = {ATTRIBUTES = (); }; };
 		4005F8DA13F42943881C655F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748049E45D87B8C7D8B9AACD /* Preferences.swift */; settings = {ATTRIBUTES = (); }; };
@@ -20,7 +20,7 @@
 		9DD601BBE69F351039152189 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* easy-bindings-utilities.swift */; settings = {ATTRIBUTES = (); }; };
 		F495B6AB9DCF8D3B5C6E0B01 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA475530D9583C34FD356EF5 /* main.swift */; settings = {ATTRIBUTES = (); }; };
 		F766FA44E1ED0FF613F563BD /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD5072BB1864CDEE4D3D6E /* standard-properties.swift */; settings = {ATTRIBUTES = (); }; };
-		F8ED5D21A44B0E5886680CB9 /* Preferences+transient+mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8850243BE8079A5C74D079 /* Preferences+transient+mUpperCaseFullName.swift */; settings = {ATTRIBUTES = (); }; };
+		F8ED5D21A44B0E5886680CB9 /* Preferences-transient-mUpperCaseFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8850243BE8079A5C74D079 /* Preferences-transient-mUpperCaseFullName.swift */; settings = {ATTRIBUTES = (); }; };
 		FB98AB9159F51FD0297E236D /* EBAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEA167A5A36DEDD4BEA2543 /* EBAllocationDebug.xib */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
@@ -28,15 +28,15 @@
 		2E2D7FBDEA1AFC51C7C6AD26 /* EBButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBButton.swift; sourceTree = "<group>"; };
 		748049E45D87B8C7D8B9AACD /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		7A37563370DED05F5A3BF3EC /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
-		8E8850243BE8079A5C74D079 /* Preferences+transient+mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+transient+mUpperCaseFullName.swift"; sourceTree = "<group>"; };
-		99908345F7439F8FFABDFFC4 /* Preferences+transient+mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+transient+mFullName.swift"; sourceTree = "<group>"; };
+		8E8850243BE8079A5C74D079 /* Preferences-transient-mUpperCaseFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences-transient-mUpperCaseFullName.swift"; sourceTree = "<group>"; };
+		99908345F7439F8FFABDFFC4 /* Preferences-transient-mFullName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences-transient-mFullName.swift"; sourceTree = "<group>"; };
 		AA0EFB9E19094440C317E21B /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		BBCE2345D7772B0674A318D5 /* EBAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBAllocationDebug.swift; sourceTree = "<group>"; };
 		C124A10E0DB5E4B97FC2AF39 /* EBTextObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextObserverField.swift; sourceTree = "<group>"; };
 		C9B086079795C442636B55FB /* Preferences+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+action+monAction.swift"; sourceTree = "<group>"; };
 		CDCD5072BB1864CDEE4D3D6E /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CEEA167A5A36DEDD4BEA2543 /* EBAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xib; path = EBAllocationDebug.xib; sourceTree = "<group>"; };
-		CFA7BF901D14272F00AF1086 /* transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF09B4F71DD4B4A400D0203F /* transient-property.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "transient-property.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9CAA6E02C990B0A82652DCA /* EBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextField.swift; sourceTree = "<group>"; };
 		E0327AD868D138F2B4FDD6F0 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		EA6328A42E0EB13D585E4C22 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			children = (
 				A2F3E71D9181A67B7542122C /* Sources */,
 				0B7C298AB50293ADFECB7B18 /* Resources */,
-				CFA7BF911D14272F00AF1086 /* Products */,
+				CF09B4F81DD4B4A400D0203F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,8 +83,8 @@
 				C124A10E0DB5E4B97FC2AF39 /* EBTextObserverField.swift */,
 				F062936A96D3C8BD1F8F2FF3 /* MainMenu.xib */,
 				C9B086079795C442636B55FB /* Preferences+action+monAction.swift */,
-				99908345F7439F8FFABDFFC4 /* Preferences+transient+mFullName.swift */,
-				8E8850243BE8079A5C74D079 /* Preferences+transient+mUpperCaseFullName.swift */,
+				99908345F7439F8FFABDFFC4 /* Preferences-transient-mFullName.swift */,
+				8E8850243BE8079A5C74D079 /* Preferences-transient-mUpperCaseFullName.swift */,
 				748049E45D87B8C7D8B9AACD /* Preferences.swift */,
 				7A37563370DED05F5A3BF3EC /* application.swift */,
 				E0327AD868D138F2B4FDD6F0 /* easy-bindings-utilities.swift */,
@@ -96,10 +96,10 @@
 			path = "transient-property";
 			sourceTree = "<group>";
 		};
-		CFA7BF911D14272F00AF1086 /* Products */ = {
+		CF09B4F81DD4B4A400D0203F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CFA7BF901D14272F00AF1086 /* transient-property.app */,
+				CF09B4F71DD4B4A400D0203F /* transient-property.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,7 +122,7 @@
 			name = "transient-property";
 			productInstallPath = "$(HOME)/bin";
 			productName = "transient-property";
-			productReference = CFA7BF901D14272F00AF1086 /* transient-property.app */;
+			productReference = CF09B4F71DD4B4A400D0203F /* transient-property.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -132,22 +132,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					F4C10BF22AA353E27879133C = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
 			buildConfigurationList = 9D4C2F636F067F89CC14862C /* Build configuration list for PBXProject "transient-property" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
 			);
 			mainGroup = 4B5CE2FE28308FD9F2A7BAF3;
-			productRefGroup = CFA7BF911D14272F00AF1086 /* Products */;
+			productRefGroup = CF09B4F81DD4B4A400D0203F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -178,8 +178,8 @@
 				6FE97759AA27A0C99BFF6710 /* EBTextField.swift in Sources */,
 				22BCC25A6F606EB525FFDC56 /* EBTextObserverField.swift in Sources */,
 				5568161A8CDF4AD2299F6D23 /* Preferences+action+monAction.swift in Sources */,
-				210194C475687BE6106A3B84 /* Preferences+transient+mFullName.swift in Sources */,
-				F8ED5D21A44B0E5886680CB9 /* Preferences+transient+mUpperCaseFullName.swift in Sources */,
+				210194C475687BE6106A3B84 /* Preferences-transient-mFullName.swift in Sources */,
+				F8ED5D21A44B0E5886680CB9 /* Preferences-transient-mUpperCaseFullName.swift in Sources */,
 				4005F8DA13F42943881C655F /* Preferences.swift in Sources */,
 				3463D06DE0CA9A15B6153677 /* application.swift in Sources */,
 				9DD601BBE69F351039152189 /* easy-bindings-utilities.swift in Sources */,
@@ -198,8 +198,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "transient-property/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.transient-property";
 				PRODUCT_NAME = "transient-property";
-				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Default;
@@ -208,11 +208,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_THREADSAFE_STATICS = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
@@ -234,6 +240,7 @@
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -243,7 +250,7 @@
 				HEADER_SEARCH_PATHS = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx;
 			};
 			name = Default;
 		};
