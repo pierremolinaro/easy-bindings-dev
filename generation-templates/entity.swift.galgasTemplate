@@ -238,7 +238,7 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : Re
 //    %!"To many relationship proxy: " + mToManyRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ToManyRelationshipProxy_%!ENTITY_NAME%_%!mToManyRelationshipName% : ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% {
+/* final class ToManyRelationshipProxy_%!ENTITY_NAME%_%!mToManyRelationshipName% : ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% {
   private var mModel : ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%?
 
   //····················································································································
@@ -269,6 +269,7 @@ final class ToManyRelationshipProxy_%!ENTITY_NAME%_%!mToManyRelationshipName% : 
   //····················································································································
 
 }
+*/
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"To many relationship: " + mToManyRelationshipName%

@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		02A44259755D38E6D163E820 /* NameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D7FBDEA1AFC51C7C6AD26 /* NameEntity.swift */; settings = {ATTRIBUTES = (); }; };
 		210194C475687BE6106A3B84 /* PMDocument+action+decrement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99908345F7439F8FFABDFFC4 /* PMDocument+action+decrement.swift */; settings = {ATTRIBUTES = (); }; };
-		3463D06DE0CA9A15B6153677 /* PMDocument+transient+countItemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* PMDocument+transient+countItemMessage.swift */; settings = {ATTRIBUTES = (); }; };
+		3463D06DE0CA9A15B6153677 /* PMDocument-transient-countItemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* PMDocument-transient-countItemMessage.swift */; settings = {ATTRIBUTES = (); }; };
 		3AFB633E50CDF1B20DE6F466 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB90CE0268229151C9BDE11 /* application.swift */; settings = {ATTRIBUTES = (); }; };
-		4005F8DA13F42943881C655F /* PMDocument+transient+canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748049E45D87B8C7D8B9AACD /* PMDocument+transient+canRemoveString.swift */; settings = {ATTRIBUTES = (); }; };
+		4005F8DA13F42943881C655F /* PMDocument-transient-canRemoveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748049E45D87B8C7D8B9AACD /* PMDocument-transient-canRemoveString.swift */; settings = {ATTRIBUTES = (); }; };
 		4163B3523AFE57C2E008BC8C /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDB1988EF4C628EBA02591 /* generic-bindings.swift */; settings = {ATTRIBUTES = (); }; };
 		4608232E07D3AA3D998E5135 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7929B125F8597834FA83A4 /* main.swift */; settings = {ATTRIBUTES = (); }; };
 		5A880FAF6FB5E6087EB1B2DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCE2345D7772B0674A318D5 /* MainMenu.xib */; settings = {ATTRIBUTES = (); }; };
 		6A60928B05A7E228A89C3799 /* arrayControllerFilter-PMDocument-otherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754BA1C09B3695E0CB6CDE7F /* arrayControllerFilter-PMDocument-otherController.swift */; settings = {ATTRIBUTES = (); }; };
 		8E4C41F2747BFA2F1B5F87DB /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568125ED6C3F678819B6E058 /* standard-properties.swift */; settings = {ATTRIBUTES = (); }; };
-		8F07F89DDBEBC2AC9128303F /* PMDocument+transient+selectionCountString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EFB9E19094440C317E21B /* PMDocument+transient+selectionCountString.swift */; settings = {ATTRIBUTES = (); }; };
-		9DD601BBE69F351039152189 /* PMDocument+transient+evenValueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* PMDocument+transient+evenValueString.swift */; settings = {ATTRIBUTES = (); }; };
+		8F07F89DDBEBC2AC9128303F /* PMDocument-transient-selectionCountString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EFB9E19094440C317E21B /* PMDocument-transient-selectionCountString.swift */; settings = {ATTRIBUTES = (); }; };
+		9DD601BBE69F351039152189 /* PMDocument-transient-evenValueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* PMDocument-transient-evenValueString.swift */; settings = {ATTRIBUTES = (); }; };
 		A126B2F4B2374F342BE9ED44 /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A295F8076B1C5722A46AA2 /* easy-bindings-utilities.swift */; settings = {ATTRIBUTES = (); }; };
 		CBF4CAAED33C36B1B5FC2CB1 /* selectionController-PMDocument-detailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00B1249BBE3554A4FDF6FB /* selectionController-PMDocument-detailController.swift */; settings = {ATTRIBUTES = (); }; };
 		CF71F9AF1B3EA6AA00FB5049 /* EBAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9A81B3EA6AA00FB5049 /* EBAllocationDebug.swift */; };
@@ -39,7 +39,7 @@
 		CFC7AEC51BF220F40076C604 /* EBIntObserverField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AEC31BF220F40076C604 /* EBIntObserverField.swift */; };
 		CFC7AEC61BF220F40076C604 /* EBTextObserverField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AEC41BF220F40076C604 /* EBTextObserverField.swift */; };
 		E76FC522773286A895BC8436 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AD8176D665453CFB2E55F0 /* Preferences.swift */; settings = {ATTRIBUTES = (); }; };
-		F495B6AB9DCF8D3B5C6E0B01 /* PMDocument+transient+total.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA475530D9583C34FD356EF5 /* PMDocument+transient+total.swift */; settings = {ATTRIBUTES = (); }; };
+		F495B6AB9DCF8D3B5C6E0B01 /* PMDocument-transient-total.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA475530D9583C34FD356EF5 /* PMDocument-transient-total.swift */; settings = {ATTRIBUTES = (); }; };
 		F766FA44E1ED0FF613F563BD /* PMDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCD5072BB1864CDEE4D3D6E /* PMDocument.swift */; settings = {ATTRIBUTES = (); }; };
 		F8ED5D21A44B0E5886680CB9 /* PMDocument+action+increment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8850243BE8079A5C74D079 /* PMDocument+action+increment.swift */; settings = {ATTRIBUTES = (); }; };
 		FB98AB9159F51FD0297E236D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA167A5A36DEDD4BEA2543 /* MyRootEntity.swift */; settings = {ATTRIBUTES = (); }; };
@@ -52,14 +52,14 @@
 		5C00B1249BBE3554A4FDF6FB /* selectionController-PMDocument-detailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "selectionController-PMDocument-detailController.swift"; sourceTree = "<group>"; };
 		6AB90CE0268229151C9BDE11 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		6E7929B125F8597834FA83A4 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		748049E45D87B8C7D8B9AACD /* PMDocument+transient+canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+canRemoveString.swift"; sourceTree = "<group>"; };
+		748049E45D87B8C7D8B9AACD /* PMDocument-transient-canRemoveString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument-transient-canRemoveString.swift"; sourceTree = "<group>"; };
 		754BA1C09B3695E0CB6CDE7F /* arrayControllerFilter-PMDocument-otherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "arrayControllerFilter-PMDocument-otherController.swift"; sourceTree = "<group>"; };
-		7A37563370DED05F5A3BF3EC /* PMDocument+transient+countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+countItemMessage.swift"; sourceTree = "<group>"; };
+		7A37563370DED05F5A3BF3EC /* PMDocument-transient-countItemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument-transient-countItemMessage.swift"; sourceTree = "<group>"; };
 		7FBDB1988EF4C628EBA02591 /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		80A295F8076B1C5722A46AA2 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		8E8850243BE8079A5C74D079 /* PMDocument+action+increment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+increment.swift"; sourceTree = "<group>"; };
 		99908345F7439F8FFABDFFC4 /* PMDocument+action+decrement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+decrement.swift"; sourceTree = "<group>"; };
-		AA0EFB9E19094440C317E21B /* PMDocument+transient+selectionCountString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+selectionCountString.swift"; sourceTree = "<group>"; };
+		AA0EFB9E19094440C317E21B /* PMDocument-transient-selectionCountString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument-transient-selectionCountString.swift"; sourceTree = "<group>"; };
 		BBCE2345D7772B0674A318D5 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		CDCD5072BB1864CDEE4D3D6E /* PMDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDocument.swift; sourceTree = "<group>"; };
 		CEEA167A5A36DEDD4BEA2543 /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
@@ -81,9 +81,9 @@
 		CF8E79E61B3E9D01000E28CC /* EBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextField.swift; sourceTree = "<group>"; };
 		CFC7AEC31BF220F40076C604 /* EBIntObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBIntObserverField.swift; sourceTree = "<group>"; };
 		CFC7AEC41BF220F40076C604 /* EBTextObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextObserverField.swift; sourceTree = "<group>"; };
-		E0327AD868D138F2B4FDD6F0 /* PMDocument+transient+evenValueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+evenValueString.swift"; sourceTree = "<group>"; };
+		E0327AD868D138F2B4FDD6F0 /* PMDocument-transient-evenValueString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument-transient-evenValueString.swift"; sourceTree = "<group>"; };
 		EC990F19C78C75BD1E06F215 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FA475530D9583C34FD356EF5 /* PMDocument+transient+total.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+transient+total.swift"; sourceTree = "<group>"; };
+		FA475530D9583C34FD356EF5 /* PMDocument-transient-total.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument-transient-total.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,11 +146,11 @@
 				CF8611011AC85D81005D4CE5 /* PMDocument.xib */,
 				99908345F7439F8FFABDFFC4 /* PMDocument+action+decrement.swift */,
 				8E8850243BE8079A5C74D079 /* PMDocument+action+increment.swift */,
-				748049E45D87B8C7D8B9AACD /* PMDocument+transient+canRemoveString.swift */,
-				7A37563370DED05F5A3BF3EC /* PMDocument+transient+countItemMessage.swift */,
-				E0327AD868D138F2B4FDD6F0 /* PMDocument+transient+evenValueString.swift */,
-				AA0EFB9E19094440C317E21B /* PMDocument+transient+selectionCountString.swift */,
-				FA475530D9583C34FD356EF5 /* PMDocument+transient+total.swift */,
+				748049E45D87B8C7D8B9AACD /* PMDocument-transient-canRemoveString.swift */,
+				7A37563370DED05F5A3BF3EC /* PMDocument-transient-countItemMessage.swift */,
+				E0327AD868D138F2B4FDD6F0 /* PMDocument-transient-evenValueString.swift */,
+				AA0EFB9E19094440C317E21B /* PMDocument-transient-selectionCountString.swift */,
+				FA475530D9583C34FD356EF5 /* PMDocument-transient-total.swift */,
 				19AD8176D665453CFB2E55F0 /* Preferences.swift */,
 				5C00B1249BBE3554A4FDF6FB /* selectionController-PMDocument-detailController.swift */,
 				568125ED6C3F678819B6E058 /* standard-properties.swift */,
@@ -242,17 +242,17 @@
 				210194C475687BE6106A3B84 /* PMDocument+action+decrement.swift in Sources */,
 				F8ED5D21A44B0E5886680CB9 /* PMDocument+action+increment.swift in Sources */,
 				CF71F9B51B3EA6AA00FB5049 /* EBUndoManager.swift in Sources */,
-				4005F8DA13F42943881C655F /* PMDocument+transient+canRemoveString.swift in Sources */,
+				4005F8DA13F42943881C655F /* PMDocument-transient-canRemoveString.swift in Sources */,
 				CF71F9B21B3EA6AA00FB5049 /* EBManagedDocument.swift in Sources */,
 				CF71F9B41B3EA6AA00FB5049 /* EBManagedObjectContext.swift in Sources */,
 				CF8E79EB1B3E9D01000E28CC /* EBTableView.swift in Sources */,
-				3463D06DE0CA9A15B6153677 /* PMDocument+transient+countItemMessage.swift in Sources */,
-				9DD601BBE69F351039152189 /* PMDocument+transient+evenValueString.swift in Sources */,
+				3463D06DE0CA9A15B6153677 /* PMDocument-transient-countItemMessage.swift in Sources */,
+				9DD601BBE69F351039152189 /* PMDocument-transient-evenValueString.swift in Sources */,
 				CF8610FF1AC85BF7005D4CE5 /* arrayController-PMDocument-otherController.swift in Sources */,
 				CF8611001AC85BF7005D4CE5 /* arrayController-PMDocument-selController.swift in Sources */,
 				CF71F9B11B3EA6AA00FB5049 /* EBDataScanner.swift in Sources */,
-				8F07F89DDBEBC2AC9128303F /* PMDocument+transient+selectionCountString.swift in Sources */,
-				F495B6AB9DCF8D3B5C6E0B01 /* PMDocument+transient+total.swift in Sources */,
+				8F07F89DDBEBC2AC9128303F /* PMDocument-transient-selectionCountString.swift in Sources */,
+				F495B6AB9DCF8D3B5C6E0B01 /* PMDocument-transient-total.swift in Sources */,
 				F766FA44E1ED0FF613F563BD /* PMDocument.swift in Sources */,
 				CFC7AEC51BF220F40076C604 /* EBIntObserverField.swift in Sources */,
 				CF8610FE1AC85BF7005D4CE5 /* arrayController-PMDocument-nameController.swift in Sources */,

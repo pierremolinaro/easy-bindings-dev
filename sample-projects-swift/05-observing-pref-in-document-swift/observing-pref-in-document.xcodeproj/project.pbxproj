@@ -24,10 +24,10 @@
 		CFA9571F1AC8631B00CA6D6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570B1AC8631B00CA6D6D /* main.swift */; };
 		CFA957201AC8631B00CA6D6D /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */; };
 		CFA957211AC8631B00CA6D6D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570D1AC8631B00CA6D6D /* MyRootEntity.swift */; };
-		CFA957221AC8631B00CA6D6D /* MyRootEntity+transient+otherTransientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570E1AC8631B00CA6D6D /* MyRootEntity+transient+otherTransientConcatString.swift */; };
-		CFA957231AC8631B00CA6D6D /* MyRootEntity+transient+transientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570F1AC8631B00CA6D6D /* MyRootEntity+transient+transientConcatString.swift */; };
+		CFA957221AC8631B00CA6D6D /* MyRootEntity-transient-otherTransientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570E1AC8631B00CA6D6D /* MyRootEntity-transient-otherTransientConcatString.swift */; };
+		CFA957231AC8631B00CA6D6D /* MyRootEntity-transient-transientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570F1AC8631B00CA6D6D /* MyRootEntity-transient-transientConcatString.swift */; };
 		CFA9572D1AC8631B00CA6D6D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957191AC8631B00CA6D6D /* Preferences.swift */; };
-		CFA9572E1AC8631B00CA6D6D /* Preferences+transient+prefTransientString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9571A1AC8631B00CA6D6D /* Preferences+transient+prefTransientString.swift */; };
+		CFA9572E1AC8631B00CA6D6D /* Preferences-transient-prefTransientString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9571A1AC8631B00CA6D6D /* Preferences-transient-prefTransientString.swift */; };
 		CFA9572F1AC8631B00CA6D6D /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */; };
 		CFA957311AC8642C00CA6D6D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA957301AC8642C00CA6D6D /* MyDocument.xib */; };
 		CFA957331AC8644A00CA6D6D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA957321AC8644A00CA6D6D /* MainMenu.xib */; };
@@ -56,10 +56,10 @@
 		CFA9570B1AC8631B00CA6D6D /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDocument.swift; sourceTree = "<group>"; };
 		CFA9570D1AC8631B00CA6D6D /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
-		CFA9570E1AC8631B00CA6D6D /* MyRootEntity+transient+otherTransientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+otherTransientConcatString.swift"; sourceTree = "<group>"; };
-		CFA9570F1AC8631B00CA6D6D /* MyRootEntity+transient+transientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity+transient+transientConcatString.swift"; sourceTree = "<group>"; };
+		CFA9570E1AC8631B00CA6D6D /* MyRootEntity-transient-otherTransientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity-transient-otherTransientConcatString.swift"; sourceTree = "<group>"; };
+		CFA9570F1AC8631B00CA6D6D /* MyRootEntity-transient-transientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity-transient-transientConcatString.swift"; sourceTree = "<group>"; };
 		CFA957191AC8631B00CA6D6D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		CFA9571A1AC8631B00CA6D6D /* Preferences+transient+prefTransientString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences+transient+prefTransientString.swift"; sourceTree = "<group>"; };
+		CFA9571A1AC8631B00CA6D6D /* Preferences-transient-prefTransientString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preferences-transient-prefTransientString.swift"; sourceTree = "<group>"; };
 		CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		CFA957301AC8642C00CA6D6D /* MyDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDocument.xib; sourceTree = "<group>"; };
 		CFA957321AC8644A00CA6D6D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -138,10 +138,10 @@
 				CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */,
 				CFA957301AC8642C00CA6D6D /* MyDocument.xib */,
 				CFA9570D1AC8631B00CA6D6D /* MyRootEntity.swift */,
-				CFA9570E1AC8631B00CA6D6D /* MyRootEntity+transient+otherTransientConcatString.swift */,
-				CFA9570F1AC8631B00CA6D6D /* MyRootEntity+transient+transientConcatString.swift */,
+				CFA9570E1AC8631B00CA6D6D /* MyRootEntity-transient-otherTransientConcatString.swift */,
+				CFA9570F1AC8631B00CA6D6D /* MyRootEntity-transient-transientConcatString.swift */,
 				CFA957191AC8631B00CA6D6D /* Preferences.swift */,
-				CFA9571A1AC8631B00CA6D6D /* Preferences+transient+prefTransientString.swift */,
+				CFA9571A1AC8631B00CA6D6D /* Preferences-transient-prefTransientString.swift */,
 				CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */,
 			);
 			name = "observing-pref-in-document";
@@ -221,7 +221,7 @@
 				CFA957211AC8631B00CA6D6D /* MyRootEntity.swift in Sources */,
 				CF71F9BF1B3EA6EE00FB5049 /* EBDataScanner.swift in Sources */,
 				CF71F9C21B3EA6EE00FB5049 /* EBManagedObjectContext.swift in Sources */,
-				CFA957231AC8631B00CA6D6D /* MyRootEntity+transient+transientConcatString.swift in Sources */,
+				CFA957231AC8631B00CA6D6D /* MyRootEntity-transient-transientConcatString.swift in Sources */,
 				CFA9572F1AC8631B00CA6D6D /* standard-properties.swift in Sources */,
 				CF71F9C01B3EA6EE00FB5049 /* EBManagedDocument.swift in Sources */,
 				CFA9571D1AC8631B00CA6D6D /* easy-bindings-utilities.swift in Sources */,
@@ -234,9 +234,9 @@
 				CFA9572D1AC8631B00CA6D6D /* Preferences.swift in Sources */,
 				CF71F9C11B3EA6EE00FB5049 /* EBManagedObject.swift in Sources */,
 				CFA9571C1AC8631B00CA6D6D /* application.swift in Sources */,
-				CFA9572E1AC8631B00CA6D6D /* Preferences+transient+prefTransientString.swift in Sources */,
+				CFA9572E1AC8631B00CA6D6D /* Preferences-transient-prefTransientString.swift in Sources */,
 				CFA957201AC8631B00CA6D6D /* MyDocument.swift in Sources */,
-				CFA957221AC8631B00CA6D6D /* MyRootEntity+transient+otherTransientConcatString.swift in Sources */,
+				CFA957221AC8631B00CA6D6D /* MyRootEntity-transient-otherTransientConcatString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

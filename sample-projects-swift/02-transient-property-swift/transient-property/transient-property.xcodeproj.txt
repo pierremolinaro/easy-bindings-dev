@@ -49,13 +49,13 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  210194C475687BE6106A3B84 /* Preferences+transient+mFullName.swift */ = {
+  210194C475687BE6106A3B84 /* Preferences-transient-mFullName.swift */ = {
     isa = PBXBuildFile;
     fileRef = 99908345F7439F8FFABDFFC4 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F8ED5D21A44B0E5886680CB9 /* Preferences+transient+mUpperCaseFullName.swift */ = {
+  F8ED5D21A44B0E5886680CB9 /* Preferences-transient-mUpperCaseFullName.swift */ = {
     isa = PBXBuildFile;
     fileRef = 8E8850243BE8079A5C74D079 ;
     settings = {ATTRIBUTES = (); };
@@ -149,21 +149,21 @@
     sourceTree = "<group>";
   };
 
-  99908345F7439F8FFABDFFC4 /* Preferences+transient+mFullName.swift */ = {
+  99908345F7439F8FFABDFFC4 /* Preferences-transient-mFullName.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
-    name = "Preferences+transient+mFullName.swift";
-    path = "Preferences+transient+mFullName.swift";
+    name = "Preferences-transient-mFullName.swift";
+    path = "Preferences-transient-mFullName.swift";
     sourceTree = "<group>";
   };
 
-  8E8850243BE8079A5C74D079 /* Preferences+transient+mUpperCaseFullName.swift */ = {
+  8E8850243BE8079A5C74D079 /* Preferences-transient-mUpperCaseFullName.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
-    name = "Preferences+transient+mUpperCaseFullName.swift";
-    path = "Preferences+transient+mUpperCaseFullName.swift";
+    name = "Preferences-transient-mUpperCaseFullName.swift";
+    path = "Preferences-transient-mUpperCaseFullName.swift";
     sourceTree = "<group>";
   };
 
