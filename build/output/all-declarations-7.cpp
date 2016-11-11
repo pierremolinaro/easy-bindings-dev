@@ -459,7 +459,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_stub (C_Compiler * /* i
     "\n"
     "  func ebHashValue () -> UInt32 {\n"
     "    var crc : UInt32 = 0\n"
-    "    var v = UInt (self)\n"
+    "    var v = UInt (bitPattern:self) // So that negative value is handled\n"
     "    for _ in 0 ..< MemoryLayout<Int>.size {\n"
     "      let byte = UInt8 (v & 255)\n"
     "      crc.accumulateByte (byte)\n"
