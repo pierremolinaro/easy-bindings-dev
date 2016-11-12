@@ -6636,7 +6636,7 @@ const char * gWrapperFileContent_2_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "      }\n"
   "    }\n"
   "    if (mReadOk) {\n"
-  "      let d = mData.subdata (in: mReadIndex ..< mReadIndex + stringLength)\n"
+  "      let d = mData.subdata (in: mReadIndex ..< mReadIndex + stringLength - 1)\n"
   "      result = NSString (data:d, encoding: String.Encoding.utf8.rawValue) as! String\n"
   "      mReadIndex += stringLength\n"
   "    }\n"
@@ -6659,7 +6659,7 @@ const cRegularFileWrapper gWrapperFile_2_swift_5F_sources (
   "EBDataScanner.swift",
   "swift",
   true, // Text file
-  6077, // Text length
+  6081, // Text length
   gWrapperFileContent_2_swift_5F_sources
 ) ;
 
