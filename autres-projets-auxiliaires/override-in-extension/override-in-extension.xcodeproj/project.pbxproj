@@ -253,6 +253,7 @@
 				CF392D2B1D69D53400950C4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
