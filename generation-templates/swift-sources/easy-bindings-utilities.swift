@@ -19,6 +19,7 @@ import Cocoa
 
 class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObserverProtocol {
 
+  private weak var mUndoManager : EBUndoManager?
   private weak var mSignatureObserver : EBSignatureObserverEvent?
   private var mSignatureAtStartUp : UInt32 = 0
 
@@ -35,7 +36,8 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
 
   //····················································································································
 
-  final func setSignatureObserver (_ signatureObserver : EBSignatureObserverEvent) {
+  final func setSignatureObserverAndUndoManager (_ signatureObserver : EBSignatureObserverEvent, _ undoManager : EBUndoManager?) {
+    mUndoManager = undoManager
     mSignatureObserver = signatureObserver
     mSignatureAtStartUp = signatureObserver.signature ()
   }
@@ -62,6 +64,24 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
   //····················································································································
 
   func clearSignatureCache () {
+    postEvent ()
+  }
+
+  //····················································································································
+  // clearStartUpSignature
+  //····················································································································
+  
+  func clearStartUpSignature () {
+    mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
+    mSignatureAtStartUp = 0
+    postEvent ()
+  }
+
+  //····················································································································
+
+  func performUndo (_ oldValue : NSNumber) {
+    mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
+    mSignatureAtStartUp = oldValue.uint32Value
     postEvent ()
   }
 
