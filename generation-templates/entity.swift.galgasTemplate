@@ -639,6 +639,18 @@ end
 %  }
 
   //····················································································································
+
+  deinit {
+  //--- Remove observers
+%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  for () in mDependencyList do
+    %    %![mDependency generateRemoveObserverCall]% (%!mTransientName%)\n%
+  end
+end
+%  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -647,7 +659,7 @@ end
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%!mStoredPropertyName%",\n%
-  %      idx:%!mStoredPropertyName%.mExplorerObjectIndex,\n%
+  %      idx:%!mStoredPropertyName%.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&%!mStoredPropertyName%.mObserverExplorer,\n%
@@ -657,7 +669,7 @@ end
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    createEntryForToManyRelationshipNamed (\n%
   %      "%!mToManyRelationshipName%",\n%
-  %      idx:%!mToManyRelationshipName%.mExplorerObjectIndex,\n%
+  %      idx:%!mToManyRelationshipName%.mEasyBindingsObjectIndex,\n%
   %      y: &y,\n%
   %      view: view,\n%
   %      valueExplorer:&%!mToManyRelationshipName%.mValueExplorer\n%
@@ -666,7 +678,7 @@ end
 for () in TO_ONE_RELATIONSHIP_LIST do
   %    createEntryForToOneRelationshipNamed (\n%
   %      "%!mToOneRelationshipName%",\n%
-  %      idx:%!mToOneRelationshipName%.mExplorerObjectIndex,\n%
+  %      idx:%!mToOneRelationshipName%.mEasyBindingsObjectIndex,\n%
   %      y: &y,\n%
   %      view: view,\n%
   %      valueExplorer:&%!mToOneRelationshipName%.mValueExplorer\n%

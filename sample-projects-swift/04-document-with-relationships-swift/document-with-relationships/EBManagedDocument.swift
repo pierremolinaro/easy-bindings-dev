@@ -445,7 +445,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     if let rootObject = mRootObject {
       createEntryForToOneRelationshipNamed (
         "Root",
-        idx:rootObject.mExplorerObjectIndex,
+        idx:rootObject.mEasyBindingsObjectIndex,
         y: &y,
         view: view,
         valueExplorer:&mValueExplorer

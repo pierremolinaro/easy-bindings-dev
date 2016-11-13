@@ -16,15 +16,15 @@ class CustomObjectController_%!OWNER_NAME%_%!CUSTOM_OBJECT_CONTROLLER_NAME% : EB
 
   var mSelectedObject : %!ENTITY_TYPE_NAME%? {
     didSet {
-      if mSelectedObject != oldValue {\n%
+      if mSelectedObject !== oldValue {\n%
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
     %      //--- Property %!lkey.string%\n%
     %        oldValue?.%!lkey.string%.removeEBObserver (mObjectObserver)\n%
+    %        oldValue?.%!lkey.string%.removeEBObserver (self.%!lkey.string%)\n%
     %        mSelectedObject?.%!lkey.string%.addEBObserver (mObjectObserver)\n%
-    %        oldValue?.%!lkey.string%.removeEBObserver (%!lkey.string%)\n%
-    %        mSelectedObject?.%!lkey.string%.addEBObserver (%!lkey.string%)\n%
-    %        %!lkey.string%.postEvent ()\n%
+    %        mSelectedObject?.%!lkey.string%.addEBObserver (self.%!lkey.string%)\n%
+    %        self.%!lkey.string%.postEvent ()\n%
   else
     %      //--- Relationship %!lkey.string%\n%
   end
@@ -44,7 +44,7 @@ end
 end%  }
   
   //····················································································································
-  //   TOMANY RELATIONSHIPS
+  //   RELATIONSHIPS
   //····················································································································
 
 %
@@ -94,7 +94,7 @@ end
     view.addSubview (tf)
     let valueExplorer = NSButton (frame:thirdColumn (y))
     valueExplorer.font = font
-    valueExplorer.title = explorerIndexString (mExplorerObjectIndex) + className
+    valueExplorer.title = explorerIndexString (mEasyBindingsObjectIndex) + className
     valueExplorer.target = self
     valueExplorer.action = #selector(CustomObjectController_%!OWNER_NAME%_%!CUSTOM_OBJECT_CONTROLLER_NAME%.showObjectWindowFromExplorerButton(_:))
     view.addSubview (valueExplorer)
@@ -115,7 +115,7 @@ end
 if (not [mType isEntityType]) & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
-  %      idx:%!lkey.string%.mExplorerObjectIndex,\n%
+  %      idx:%!lkey.string%.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&%!lkey.string%.mObserverExplorer,\n%
@@ -134,7 +134,7 @@ end
     closeButton?.target = self
     closeButton?.action = #selector(CustomObjectController_%!OWNER_NAME%_%!CUSTOM_OBJECT_CONTROLLER_NAME%.deleteSelectionControllerWindowAction(_:))
   //--- Set window title
-    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
+    let windowTitle = explorerIndexString (mEasyBindingsObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)

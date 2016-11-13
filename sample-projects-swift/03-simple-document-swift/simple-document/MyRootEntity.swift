@@ -496,6 +496,16 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
   }
 
   //····················································································································
+
+  deinit {
+  //--- Remove observers
+    myString.removeEBObserver (myStringMaj)
+    myString.removeEBObserver (myStringMin)
+    myStringMaj.removeEBObserver (myStringConcat)
+    myStringMin.removeEBObserver (myStringConcat)
+  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -503,7 +513,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "myString",
-      idx:myString.mExplorerObjectIndex,
+      idx:myString.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&myString.mObserverExplorer,
@@ -511,7 +521,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
     )
     createEntryForPropertyNamed (
       "myColor",
-      idx:myColor.mExplorerObjectIndex,
+      idx:myColor.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&myColor.mObserverExplorer,

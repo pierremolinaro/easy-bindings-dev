@@ -175,6 +175,12 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
   }
 
   //····················································································································
+
+  deinit {
+  //--- Remove observers
+  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -182,7 +188,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "docBool",
-      idx:docBool.mExplorerObjectIndex,
+      idx:docBool.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&docBool.mObserverExplorer,

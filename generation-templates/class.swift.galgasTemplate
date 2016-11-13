@@ -368,7 +368,7 @@ end
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%!mStoredPropertyName%",\n%
-  %      idx:%!mStoredPropertyName%.mExplorerObjectIndex,\n%
+  %      idx:%!mStoredPropertyName%.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&%!mStoredPropertyName%.mObserverExplorer,\n%

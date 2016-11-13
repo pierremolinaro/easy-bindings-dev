@@ -40,7 +40,7 @@ fileprivate func postOutletEvent (_ event : EBOutletEvent) {
   }
   
   if logEvents () {
-    let str = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
+    let str = "  " +  explorerIndexString (event.mEasyBindingsObjectIndex) + event.className + "\n"
     if !gPendingOutletEvents.contains (event) {
       appendMessageString (str)
     }else{ // Event already posted
@@ -68,7 +68,7 @@ func flushOutletEvents () {
       }
       for event in pendingOutletEvents {
         if logEvents () {
-          let message = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
+          let message = "  " +  explorerIndexString (event.mEasyBindingsObjectIndex) + event.className + "\n"
           appendMessageString (message, color: NSColor.blue)
         }
         event.sendUpdateEvent ()
