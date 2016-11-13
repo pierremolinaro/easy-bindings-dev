@@ -27,7 +27,7 @@ binding EBDoubleField $value : property Double {sendContinously : Bool, autoForm
 
 
 outletClass EBDoubleObserverField ;
-binding EBDoubleObserverField $valueObserver : transient Double ;
+binding EBDoubleObserverField $valueObserver : transient Double {autoFormatter:Bool} ;
 
 
 outletClass EBIntField ;
@@ -35,7 +35,7 @@ binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:
 
 
 outletClass EBIntObserverField ;
-binding EBIntObserverField $valueObserver : transient Int ;
+binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
 outletClass EBFontButton $enabled ;

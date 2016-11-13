@@ -101,7 +101,7 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
     }
-    mOutlet.updateEnabledState()
+    mOutlet.updateEnabledState ()
   }
 
   //····················································································································

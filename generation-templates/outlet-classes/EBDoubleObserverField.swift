@@ -37,12 +37,13 @@ import Cocoa
   private var mValueController : Controller_EBDoubleObserverField_valueObserver?
   private var mSendContinously : Bool = false
 
-  func bind_valueObserver (_ object:EBReadOnlyProperty_Double, file:String, line:Int) {
+  func bind_valueObserver (_ object:EBReadOnlyProperty_Double, file:String, line:Int, autoFormatter:Bool) {
     mValueController = Controller_EBDoubleObserverField_valueObserver (
       object:object,
       outlet:self,
       file:file,
-      line:line
+      line:line,
+      autoFormatter: autoFormatter
     )
   }
 
@@ -69,11 +70,15 @@ import Cocoa
   init (object : EBReadOnlyProperty_Double,
         outlet : EBDoubleObserverField,
         file : String,
-        line : Int) {
+        line : Int,
+        autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    if mOutlet.formatter == nil {
+    if autoFormatter {
+      let formatter = NumberFormatter ()
+      mOutlet.formatter = formatter
+    }else if mOutlet.formatter == nil {
       presentErrorWindow (file: file, line: line, errorMessage: "the outlet has no formatter")
     }else if !(mOutlet.formatter is NumberFormatter) {
       presentErrorWindow (file: file, line: line, errorMessage: "the formatter should be an NSNumberFormatter")
