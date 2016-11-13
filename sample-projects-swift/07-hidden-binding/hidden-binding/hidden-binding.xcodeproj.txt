@@ -357,8 +357,9 @@
       GCC_WARN_UNUSED_VARIABLE = YES ;
       HEADER_SEARCH_PATHS = () ;
       MACOSX_DEPLOYMENT_TARGET = 10.10 ;
-      SDKROOT = macosx10.11 ;
+      SDKROOT = macosx10.12 ;
       COPY_PHASE_STRIP = NO ;
+      SWIFT_VERSION = 3.0.1 ;
       LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks" ;
     };
     name = Default;

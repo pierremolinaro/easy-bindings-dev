@@ -73,7 +73,7 @@ proc generateActions
       !mClassName
       !mActionName
     ]
-    let fileName = mClassName + "+action+" + mActionName + ".swift"
+    let fileName = "action-" + mClassName + "-" + mActionName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !startPath:inOutputDirectory

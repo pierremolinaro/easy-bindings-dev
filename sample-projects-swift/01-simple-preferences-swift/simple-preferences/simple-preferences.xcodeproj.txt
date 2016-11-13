@@ -67,43 +67,43 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  3463D06DE0CA9A15B6153677 /* Preferences+validation+mIntegerValue.swift */ = {
+  3463D06DE0CA9A15B6153677 /* Preferences.swift */ = {
     isa = PBXBuildFile;
     fileRef = 7A37563370DED05F5A3BF3EC ;
     settings = {ATTRIBUTES = (); };
   };
 
-  9DD601BBE69F351039152189 /* Preferences.swift */ = {
+  9DD601BBE69F351039152189 /* application.swift */ = {
     isa = PBXBuildFile;
     fileRef = E0327AD868D138F2B4FDD6F0 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  8F07F89DDBEBC2AC9128303F /* application.swift */ = {
+  8F07F89DDBEBC2AC9128303F /* easy-bindings-utilities.swift */ = {
     isa = PBXBuildFile;
     fileRef = AA0EFB9E19094440C317E21B ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F495B6AB9DCF8D3B5C6E0B01 /* easy-bindings-utilities.swift */ = {
+  F495B6AB9DCF8D3B5C6E0B01 /* generic-bindings.swift */ = {
     isa = PBXBuildFile;
     fileRef = FA475530D9583C34FD356EF5 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F766FA44E1ED0FF613F563BD /* generic-bindings.swift */ = {
+  F766FA44E1ED0FF613F563BD /* main.swift */ = {
     isa = PBXBuildFile;
     fileRef = CDCD5072BB1864CDEE4D3D6E ;
     settings = {ATTRIBUTES = (); };
   };
 
-  EA6328A42E0EB13D585E4C22 /* main.swift */ = {
+  EA6328A42E0EB13D585E4C22 /* standard-properties.swift */ = {
     isa = PBXBuildFile;
     fileRef = 0B7C298AB50293ADFECB7B18 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  93E200C36F7CD9DFD0E5DEAA /* standard-properties.swift */ = {
+  93E200C36F7CD9DFD0E5DEAA /* validation-Preferences-mIntegerValue.swift */ = {
     isa = PBXBuildFile;
     fileRef = 7964F8DDDEB95FC584CD965D ;
     settings = {ATTRIBUTES = (); };
@@ -188,16 +188,7 @@
     sourceTree = "<group>";
   };
 
-  7A37563370DED05F5A3BF3EC /* Preferences+validation+mIntegerValue.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "Preferences+validation+mIntegerValue.swift";
-    path = "Preferences+validation+mIntegerValue.swift";
-    sourceTree = "<group>";
-  };
-
-  E0327AD868D138F2B4FDD6F0 /* Preferences.swift */ = {
+  7A37563370DED05F5A3BF3EC /* Preferences.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -206,7 +197,7 @@
     sourceTree = "<group>";
   };
 
-  AA0EFB9E19094440C317E21B /* application.swift */ = {
+  E0327AD868D138F2B4FDD6F0 /* application.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -215,7 +206,7 @@
     sourceTree = "<group>";
   };
 
-  FA475530D9583C34FD356EF5 /* easy-bindings-utilities.swift */ = {
+  AA0EFB9E19094440C317E21B /* easy-bindings-utilities.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -224,7 +215,7 @@
     sourceTree = "<group>";
   };
 
-  CDCD5072BB1864CDEE4D3D6E /* generic-bindings.swift */ = {
+  FA475530D9583C34FD356EF5 /* generic-bindings.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -233,7 +224,7 @@
     sourceTree = "<group>";
   };
 
-  0B7C298AB50293ADFECB7B18 /* main.swift */ = {
+  CDCD5072BB1864CDEE4D3D6E /* main.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -242,12 +233,21 @@
     sourceTree = "<group>";
   };
 
-  7964F8DDDEB95FC584CD965D /* standard-properties.swift */ = {
+  0B7C298AB50293ADFECB7B18 /* standard-properties.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "standard-properties.swift";
     path = "standard-properties.swift";
+    sourceTree = "<group>";
+  };
+
+  7964F8DDDEB95FC584CD965D /* validation-Preferences-mIntegerValue.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "validation-Preferences-mIntegerValue.swift";
+    path = "validation-Preferences-mIntegerValue.swift";
     sourceTree = "<group>";
   };
 
@@ -459,8 +459,9 @@
       GCC_WARN_UNUSED_VARIABLE = YES ;
       HEADER_SEARCH_PATHS = () ;
       MACOSX_DEPLOYMENT_TARGET = 10.10 ;
-      SDKROOT = macosx10.11 ;
+      SDKROOT = macosx10.12 ;
       COPY_PHASE_STRIP = NO ;
+      SWIFT_VERSION = 3.0.1 ;
       LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks" ;
     };
     name = Default;

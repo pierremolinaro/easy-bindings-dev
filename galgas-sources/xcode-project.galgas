@@ -50,7 +50,7 @@ private proc generateXcodeProjectInternal
 {
   var xcodeProject = @XcodeProjectDescriptor.default
 #--- Default build configuration
-  let SDK = "macosx10.11"
+  let SDK = "macosx10.12"
   let DEPLOYMENT = "10.10"
   [!?xcodeProject addSettingsToDefaultConfiguration !settingList:{
     !"ALWAYS_SEARCH_USER_PATHS = NO",
@@ -89,6 +89,7 @@ private proc generateXcodeProjectInternal
     !"MACOSX_DEPLOYMENT_TARGET = " + DEPLOYMENT,
     !"SDKROOT = " + SDK,
     !"COPY_PHASE_STRIP = NO",
+    !"SWIFT_VERSION = 3.0.1",
     !"LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\""
   }]
 #--- Add "Hand coded sources (App)" group

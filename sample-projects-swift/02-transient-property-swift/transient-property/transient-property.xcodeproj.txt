@@ -43,55 +43,55 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  5568161A8CDF4AD2299F6D23 /* Preferences+action+monAction.swift */ = {
+  5568161A8CDF4AD2299F6D23 /* Preferences.swift */ = {
     isa = PBXBuildFile;
     fileRef = C9B086079795C442636B55FB ;
     settings = {ATTRIBUTES = (); };
   };
 
-  210194C475687BE6106A3B84 /* Preferences-transient-mFullName.swift */ = {
+  210194C475687BE6106A3B84 /* action-Preferences-monAction.swift */ = {
     isa = PBXBuildFile;
     fileRef = 99908345F7439F8FFABDFFC4 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F8ED5D21A44B0E5886680CB9 /* Preferences-transient-mUpperCaseFullName.swift */ = {
+  F8ED5D21A44B0E5886680CB9 /* application.swift */ = {
     isa = PBXBuildFile;
     fileRef = 8E8850243BE8079A5C74D079 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  4005F8DA13F42943881C655F /* Preferences.swift */ = {
+  4005F8DA13F42943881C655F /* easy-bindings-utilities.swift */ = {
     isa = PBXBuildFile;
     fileRef = 748049E45D87B8C7D8B9AACD ;
     settings = {ATTRIBUTES = (); };
   };
 
-  3463D06DE0CA9A15B6153677 /* application.swift */ = {
+  3463D06DE0CA9A15B6153677 /* generic-bindings.swift */ = {
     isa = PBXBuildFile;
     fileRef = 7A37563370DED05F5A3BF3EC ;
     settings = {ATTRIBUTES = (); };
   };
 
-  9DD601BBE69F351039152189 /* easy-bindings-utilities.swift */ = {
+  9DD601BBE69F351039152189 /* main.swift */ = {
     isa = PBXBuildFile;
     fileRef = E0327AD868D138F2B4FDD6F0 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  8F07F89DDBEBC2AC9128303F /* generic-bindings.swift */ = {
+  8F07F89DDBEBC2AC9128303F /* standard-properties.swift */ = {
     isa = PBXBuildFile;
     fileRef = AA0EFB9E19094440C317E21B ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F495B6AB9DCF8D3B5C6E0B01 /* main.swift */ = {
+  F495B6AB9DCF8D3B5C6E0B01 /* transient-Preferences-mFullName.swift */ = {
     isa = PBXBuildFile;
     fileRef = FA475530D9583C34FD356EF5 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  F766FA44E1ED0FF613F563BD /* standard-properties.swift */ = {
+  F766FA44E1ED0FF613F563BD /* transient-Preferences-mUpperCaseFullName.swift */ = {
     isa = PBXBuildFile;
     fileRef = CDCD5072BB1864CDEE4D3D6E ;
     settings = {ATTRIBUTES = (); };
@@ -140,34 +140,7 @@
     sourceTree = "<group>";
   };
 
-  C9B086079795C442636B55FB /* Preferences+action+monAction.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "Preferences+action+monAction.swift";
-    path = "Preferences+action+monAction.swift";
-    sourceTree = "<group>";
-  };
-
-  99908345F7439F8FFABDFFC4 /* Preferences-transient-mFullName.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "Preferences-transient-mFullName.swift";
-    path = "Preferences-transient-mFullName.swift";
-    sourceTree = "<group>";
-  };
-
-  8E8850243BE8079A5C74D079 /* Preferences-transient-mUpperCaseFullName.swift */ = {
-    isa = PBXFileReference;
-    fileEncoding = 4;
-    lastKnownFileType = sourcecode.swift;
-    name = "Preferences-transient-mUpperCaseFullName.swift";
-    path = "Preferences-transient-mUpperCaseFullName.swift";
-    sourceTree = "<group>";
-  };
-
-  748049E45D87B8C7D8B9AACD /* Preferences.swift */ = {
+  C9B086079795C442636B55FB /* Preferences.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -176,7 +149,16 @@
     sourceTree = "<group>";
   };
 
-  7A37563370DED05F5A3BF3EC /* application.swift */ = {
+  99908345F7439F8FFABDFFC4 /* action-Preferences-monAction.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "action-Preferences-monAction.swift";
+    path = "action-Preferences-monAction.swift";
+    sourceTree = "<group>";
+  };
+
+  8E8850243BE8079A5C74D079 /* application.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -185,7 +167,7 @@
     sourceTree = "<group>";
   };
 
-  E0327AD868D138F2B4FDD6F0 /* easy-bindings-utilities.swift */ = {
+  748049E45D87B8C7D8B9AACD /* easy-bindings-utilities.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -194,7 +176,7 @@
     sourceTree = "<group>";
   };
 
-  AA0EFB9E19094440C317E21B /* generic-bindings.swift */ = {
+  7A37563370DED05F5A3BF3EC /* generic-bindings.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -203,7 +185,7 @@
     sourceTree = "<group>";
   };
 
-  FA475530D9583C34FD356EF5 /* main.swift */ = {
+  E0327AD868D138F2B4FDD6F0 /* main.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
@@ -212,12 +194,30 @@
     sourceTree = "<group>";
   };
 
-  CDCD5072BB1864CDEE4D3D6E /* standard-properties.swift */ = {
+  AA0EFB9E19094440C317E21B /* standard-properties.swift */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.swift;
     name = "standard-properties.swift";
     path = "standard-properties.swift";
+    sourceTree = "<group>";
+  };
+
+  FA475530D9583C34FD356EF5 /* transient-Preferences-mFullName.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "transient-Preferences-mFullName.swift";
+    path = "transient-Preferences-mFullName.swift";
+    sourceTree = "<group>";
+  };
+
+  CDCD5072BB1864CDEE4D3D6E /* transient-Preferences-mUpperCaseFullName.swift */ = {
+    isa = PBXFileReference;
+    fileEncoding = 4;
+    lastKnownFileType = sourcecode.swift;
+    name = "transient-Preferences-mUpperCaseFullName.swift";
+    path = "transient-Preferences-mUpperCaseFullName.swift";
     sourceTree = "<group>";
   };
 
@@ -425,8 +425,9 @@
       GCC_WARN_UNUSED_VARIABLE = YES ;
       HEADER_SEARCH_PATHS = () ;
       MACOSX_DEPLOYMENT_TARGET = 10.10 ;
-      SDKROOT = macosx10.11 ;
+      SDKROOT = macosx10.12 ;
       COPY_PHASE_STRIP = NO ;
+      SWIFT_VERSION = 3.0.1 ;
       LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks" ;
     };
     name = Default;
