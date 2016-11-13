@@ -26,12 +26,16 @@ outletClass EBDoubleField ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 
 
+outletClass EBDoubleObserverField ;
+binding EBDoubleObserverField $valueObserver : transient Double ;
+
+
 outletClass EBIntField ;
 binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
 outletClass EBIntObserverField ;
-binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
+binding EBIntObserverField $valueObserver : transient Int ;
 
 
 outletClass EBFontButton $enabled ;

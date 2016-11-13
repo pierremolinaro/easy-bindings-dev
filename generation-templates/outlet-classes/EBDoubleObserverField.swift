@@ -6,16 +6,13 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBTextObserverField) class EBTextObserverField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
+@objc(EBDoubleObserverField) class EBDoubleObserverField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 
   required init? (coder: NSCoder) {
     super.init (coder:coder)
-    self.delegate = self
     self.isEditable = false
-    self.drawsBackground = false
-    self.isBordered = false
     noteObjectAllocation (self)
   }
 
@@ -23,10 +20,7 @@ import Cocoa
 
   override init (frame:NSRect) {
     super.init (frame:frame)
-    self.delegate = self
     self.isEditable = false
-    self.drawsBackground = false
-    self.isBordered = false
     noteObjectAllocation (self)
   }
   
@@ -37,18 +31,20 @@ import Cocoa
   }
 
   //····················································································································
-  //  valueObserver binding
+  //  $valueObserver binding
   //····················································································································
 
-  private var mValueController : Controller_EBTextObserverField_value?
+  private var mValueController : Controller_EBDoubleObserverField_valueObserver?
+  private var mSendContinously : Bool = false
 
-  //····················································································································
-
-  func bind_valueObserver (_ object:EBReadOnlyProperty_String, file:String, line:Int) {
-    mValueController = Controller_EBTextObserverField_value (object:object, outlet:self, file:file, line:line)
+  func bind_valueObserver (_ object:EBReadOnlyProperty_Double, file:String, line:Int) {
+    mValueController = Controller_EBDoubleObserverField_valueObserver (
+      object:object,
+      outlet:self,
+      file:file,
+      line:line
+    )
   }
-
-  //····················································································································
 
   func unbind_valueObserver () {
     mValueController?.unregister ()
@@ -56,33 +52,40 @@ import Cocoa
   }
 
   //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller Controller_EBTextObserverField_value
+//   Controller_EBDoubleObserverField_valueObserver
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBTextObserverField_value)
-final class Controller_EBTextObserverField_value : EBSimpleController {
+@objc(Controller_EBDoubleObserverField_valueObserver) final class Controller_EBDoubleObserverField_valueObserver : EBSimpleController {
 
-  private var mOutlet : EBTextObserverField
-  private var mObject : EBReadOnlyProperty_String
+  private let mObject : EBReadOnlyProperty_Double
+  private let mOutlet : EBDoubleObserverField
 
   //····················································································································
 
-  init (object:EBReadOnlyProperty_String, outlet : EBTextObserverField, file : String, line : Int) {
+  init (object : EBReadOnlyProperty_Double,
+        outlet : EBDoubleObserverField,
+        file : String,
+        line : Int) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    if mOutlet.formatter != nil {
-      presentErrorWindow (file: file, line:line, errorMessage:"the EBTextObserverField outlet has a formatter")
+    if mOutlet.formatter == nil {
+      presentErrorWindow (file: file, line: line, errorMessage: "the outlet has no formatter")
+    }else if !(mOutlet.formatter is NumberFormatter) {
+      presentErrorWindow (file: file, line: line, errorMessage: "the formatter should be an NSNumberFormatter")
     }
-    object.addEBObserver (self)
+    mObject.addEBObserver (self)
   }
 
   //····················································································································
   
   func unregister () {
+    mOutlet.target = nil
+    mOutlet.action = nil
     mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
@@ -94,9 +97,9 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
     case .noSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "No Selection"
-    case .singleSelection (let v):
+    case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
-      mOutlet.stringValue = v
+      mOutlet.doubleValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
       mOutlet.stringValue = "Multiple Selection"
@@ -105,35 +108,6 @@ final class Controller_EBTextObserverField_value : EBSimpleController {
   }
 
   //····················································································································
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBTextObserverField_TableViewCell
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc(EBTextObserverField_TableViewCell) class EBTextObserverField_TableViewCell : EBTableCellView {
-  @IBOutlet var mCellOutlet : EBTextObserverField?
-
-  //····················································································································
-
-  func checkOutlet (_ columnName : String, file:String, line:Int) {
-    if let cellOutlet : NSObject = mCellOutlet {
-      if !(cellOutlet is EBTextObserverField) {
-        presentErrorWindow (file: file,
-          line: line,
-          errorMessage:"\"\(columnName)\" column view is not an instance of EBTextObserverField"
-        )
-      }
-    }else{
-      presentErrorWindow (file: file,
-        line: line,
-        errorMessage:"\"\(columnName)\" column view mCellOutlet is nil (should be an instance of EBTextObserverField)"
-      )
-    }
-  }
-
-  //····················································································································
-
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
