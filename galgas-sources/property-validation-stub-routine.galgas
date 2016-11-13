@@ -34,10 +34,10 @@ proc generateValidationRoutineStubs
       !mModelName
       !mModelTypeName
     ]
-    let fileName = mObjectTypeName + "+validation+" + mModelName + ".swift"
+    let fileName = "validation-" + mObjectTypeName + "-" + mModelName + ".swift"
     ioGeneratedFileSet += !fileName
-  let defaultUserZone2 =
-        "    var result : EBValidationResult<" + mModelTypeName + ">\n"
+    let defaultUserZone2 =
+        "    var result : EBValidationResult <" + mModelTypeName + ">\n"
       + "    let validates = false // Add your validation condition here\n"
       + "    if validates {\n"
       + "      result = .ok (proposedValue)\n"

@@ -326,7 +326,7 @@ proc generateTransients
       !mDependencyList
       !mTransientType 
     ]
-    let fileName = mOwnerName + "-transient-" + mTransientName + ".swift"
+    let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !startPath:inOutputDirectory

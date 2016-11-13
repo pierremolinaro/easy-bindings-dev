@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02A44259755D38E6D163E820 /* MyRootEntity-transient-myStringConcat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D7FBDEA1AFC51C7C6AD26 /* MyRootEntity-transient-myStringConcat.swift */; settings = {ATTRIBUTES = (); }; };
+		02A44259755D38E6D163E820 /* transient-MyRootEntity-myStringConcat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D7FBDEA1AFC51C7C6AD26 /* transient-MyRootEntity-myStringConcat.swift */; settings = {ATTRIBUTES = (); }; };
 		1EAE257E44AA9D5BADE97BAF /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */; settings = {ATTRIBUTES = (); }; };
-		22BCC25A6F606EB525FFDC56 /* MyRootEntity-transient-myStringMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124A10E0DB5E4B97FC2AF39 /* MyRootEntity-transient-myStringMin.swift */; settings = {ATTRIBUTES = (); }; };
+		22BCC25A6F606EB525FFDC56 /* transient-MyRootEntity-myStringMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124A10E0DB5E4B97FC2AF39 /* transient-MyRootEntity-myStringMin.swift */; settings = {ATTRIBUTES = (); }; };
 		30BD3DCAEFC96F40275BDC0A /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED88F18ECEE47145A72C0 /* easy-bindings-utilities.swift */; settings = {ATTRIBUTES = (); }; };
-		3463D06DE0CA9A15B6153677 /* PMDocument+action+autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* PMDocument+action+autreAction.swift */; settings = {ATTRIBUTES = (); }; };
+		3463D06DE0CA9A15B6153677 /* action-PMDocument-autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* action-PMDocument-autreAction.swift */; settings = {ATTRIBUTES = (); }; };
 		3AFB633E50CDF1B20DE6F466 /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB90CE0268229151C9BDE11 /* standard-properties.swift */; settings = {ATTRIBUTES = (); }; };
 		4DFA42CADDBD0694A4E9BDC8 /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DFAECDC212708F721B788 /* generic-bindings.swift */; settings = {ATTRIBUTES = (); }; };
 		5A880FAF6FB5E6087EB1B2DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCE2345D7772B0674A318D5 /* MainMenu.xib */; settings = {ATTRIBUTES = (); }; };
-		6FE97759AA27A0C99BFF6710 /* MyRootEntity-transient-myStringMaj.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAA6E02C990B0A82652DCA /* MyRootEntity-transient-myStringMaj.swift */; settings = {ATTRIBUTES = (); }; };
+		6FE97759AA27A0C99BFF6710 /* transient-MyRootEntity-myStringMaj.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAA6E02C990B0A82652DCA /* transient-MyRootEntity-myStringMaj.swift */; settings = {ATTRIBUTES = (); }; };
 		8F07F89DDBEBC2AC9128303F /* PMDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EFB9E19094440C317E21B /* PMDocument.swift */; settings = {ATTRIBUTES = (); }; };
-		9DD601BBE69F351039152189 /* PMDocument+action+monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* PMDocument+action+monAction.swift */; settings = {ATTRIBUTES = (); }; };
+		9DD601BBE69F351039152189 /* action-PMDocument-monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* action-PMDocument-monAction.swift */; settings = {ATTRIBUTES = (); }; };
 		B79421734881B53E1E1B18B6 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56D3D6FA748AB6D9AF3FD7 /* application.swift */; settings = {ATTRIBUTES = (); }; };
 		CF3B47731AC80DF000DA3409 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3B47721AC80DF000DA3409 /* PMDocument.xib */; };
 		CF71F9A11B3EA66700FB5049 /* EBAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F99A1B3EA66700FB5049 /* EBAllocationDebug.swift */; };
@@ -36,16 +36,16 @@
 
 /* Begin PBXFileReference section */
 		19AD8176D665453CFB2E55F0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		2E2D7FBDEA1AFC51C7C6AD26 /* MyRootEntity-transient-myStringConcat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity-transient-myStringConcat.swift"; sourceTree = "<group>"; };
+		2E2D7FBDEA1AFC51C7C6AD26 /* transient-MyRootEntity-myStringConcat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "transient-MyRootEntity-myStringConcat.swift"; sourceTree = "<group>"; };
 		6A60928B05A7E228A89C3799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6AB90CE0268229151C9BDE11 /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "standard-properties.swift"; sourceTree = "<group>"; };
 		7260AE62E3B1396831A8398F /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		778DFAECDC212708F721B788 /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
-		7A37563370DED05F5A3BF3EC /* PMDocument+action+autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+autreAction.swift"; sourceTree = "<group>"; };
+		7A37563370DED05F5A3BF3EC /* action-PMDocument-autreAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "action-PMDocument-autreAction.swift"; sourceTree = "<group>"; };
 		A9DED88F18ECEE47145A72C0 /* easy-bindings-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "easy-bindings-utilities.swift"; sourceTree = "<group>"; };
 		AA0EFB9E19094440C317E21B /* PMDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMDocument.swift; sourceTree = "<group>"; };
 		BBCE2345D7772B0674A318D5 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		C124A10E0DB5E4B97FC2AF39 /* MyRootEntity-transient-myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity-transient-myStringMin.swift"; sourceTree = "<group>"; };
+		C124A10E0DB5E4B97FC2AF39 /* transient-MyRootEntity-myStringMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "transient-MyRootEntity-myStringMin.swift"; sourceTree = "<group>"; };
 		CE56D3D6FA748AB6D9AF3FD7 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CF3B47701AC80D3800DA3409 /* simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3B47721AC80DF000DA3409 /* PMDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDocument.xib; sourceTree = "<group>"; };
@@ -59,8 +59,8 @@
 		CF8E79DA1B3E9B11000E28CC /* EBColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBColorWell.swift; sourceTree = "<group>"; };
 		CF8E79DC1B3E9B11000E28CC /* EBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextField.swift; sourceTree = "<group>"; };
 		CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextObserverField.swift; sourceTree = "<group>"; };
-		D9CAA6E02C990B0A82652DCA /* MyRootEntity-transient-myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyRootEntity-transient-myStringMaj.swift"; sourceTree = "<group>"; };
-		E0327AD868D138F2B4FDD6F0 /* PMDocument+action+monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PMDocument+action+monAction.swift"; sourceTree = "<group>"; };
+		D9CAA6E02C990B0A82652DCA /* transient-MyRootEntity-myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "transient-MyRootEntity-myStringMaj.swift"; sourceTree = "<group>"; };
+		E0327AD868D138F2B4FDD6F0 /* action-PMDocument-monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "action-PMDocument-monAction.swift"; sourceTree = "<group>"; };
 		F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +96,8 @@
 		A2F3E71D9181A67B7542122C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				7A37563370DED05F5A3BF3EC /* action-PMDocument-autreAction.swift */,
+				E0327AD868D138F2B4FDD6F0 /* action-PMDocument-monAction.swift */,
 				CE56D3D6FA748AB6D9AF3FD7 /* application.swift */,
 				A9DED88F18ECEE47145A72C0 /* easy-bindings-utilities.swift */,
 				CF71F99A1B3EA66700FB5049 /* EBAllocationDebug.swift */,
@@ -112,15 +114,13 @@
 				19AD8176D665453CFB2E55F0 /* main.swift */,
 				BBCE2345D7772B0674A318D5 /* MainMenu.xib */,
 				F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */,
-				2E2D7FBDEA1AFC51C7C6AD26 /* MyRootEntity-transient-myStringConcat.swift */,
-				D9CAA6E02C990B0A82652DCA /* MyRootEntity-transient-myStringMaj.swift */,
-				C124A10E0DB5E4B97FC2AF39 /* MyRootEntity-transient-myStringMin.swift */,
 				AA0EFB9E19094440C317E21B /* PMDocument.swift */,
 				CF3B47721AC80DF000DA3409 /* PMDocument.xib */,
-				7A37563370DED05F5A3BF3EC /* PMDocument+action+autreAction.swift */,
-				E0327AD868D138F2B4FDD6F0 /* PMDocument+action+monAction.swift */,
 				7260AE62E3B1396831A8398F /* Preferences.swift */,
 				6AB90CE0268229151C9BDE11 /* standard-properties.swift */,
+				2E2D7FBDEA1AFC51C7C6AD26 /* transient-MyRootEntity-myStringConcat.swift */,
+				D9CAA6E02C990B0A82652DCA /* transient-MyRootEntity-myStringMaj.swift */,
+				C124A10E0DB5E4B97FC2AF39 /* transient-MyRootEntity-myStringMin.swift */,
 			);
 			name = Sources;
 			path = "simple-document";
@@ -204,14 +204,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02A44259755D38E6D163E820 /* MyRootEntity-transient-myStringConcat.swift in Sources */,
-				6FE97759AA27A0C99BFF6710 /* MyRootEntity-transient-myStringMaj.swift in Sources */,
-				22BCC25A6F606EB525FFDC56 /* MyRootEntity-transient-myStringMin.swift in Sources */,
+				02A44259755D38E6D163E820 /* transient-MyRootEntity-myStringConcat.swift in Sources */,
+				6FE97759AA27A0C99BFF6710 /* transient-MyRootEntity-myStringMaj.swift in Sources */,
+				22BCC25A6F606EB525FFDC56 /* transient-MyRootEntity-myStringMin.swift in Sources */,
 				CF8E79E01B3E9B11000E28CC /* EBTextField.swift in Sources */,
 				CFC7AEC21BF220D20076C604 /* EBTextObserverField.swift in Sources */,
 				1EAE257E44AA9D5BADE97BAF /* MyRootEntity.swift in Sources */,
-				3463D06DE0CA9A15B6153677 /* PMDocument+action+autreAction.swift in Sources */,
-				9DD601BBE69F351039152189 /* PMDocument+action+monAction.swift in Sources */,
+				3463D06DE0CA9A15B6153677 /* action-PMDocument-autreAction.swift in Sources */,
+				9DD601BBE69F351039152189 /* action-PMDocument-monAction.swift in Sources */,
 				CF71F9A51B3EA66700FB5049 /* EBManagedObject.swift in Sources */,
 				CF8E79DE1B3E9B11000E28CC /* EBColorWell.swift in Sources */,
 				CF71F9A61B3EA66700FB5049 /* EBManagedObjectContext.swift in Sources */,
