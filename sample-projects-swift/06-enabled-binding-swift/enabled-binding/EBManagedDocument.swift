@@ -83,14 +83,14 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   override func data (ofType typeName: String) throws -> Data {
   //--- Update document version
-    var version = mVersionObserver.propval
+    var version = mVersion.propval
     switch mVersionShouldChangeObserver.prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let shouldChange) :
       if shouldChange {
         version += 1
-        mVersionObserver.setProp (value: version)
+        mVersion.setProp (value: version)
         mVersionShouldChangeObserver.updateStartUpSignature ()
       }
     }
@@ -187,7 +187,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
   //--- Read version from file
-    mVersionObserver.setProp (value: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
+    mVersion.setProp (value: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
   //--- Read data
     let dataFormat = dataScanner.parseByte ()
     let fileData = dataScanner.parseAutosizedData ()
@@ -463,7 +463,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     mRootObject?.setSignatureObserver (observer: mSignatureObserver)
     mSignatureObserver.setRootObject (mRootObject!)
   //--- Version did change observer
-    mVersionShouldChangeObserver.setSignatureObserver (mSignatureObserver)
+    mVersionShouldChangeObserver.setSignatureObserverAndUndoManager (mSignatureObserver, self.mManagedObjectContext.undoManager())
     mSignatureObserver.addEBObserver (mVersionShouldChangeObserver)
   //--- Add Debug menu items ?
     if !gDebugMenuItemsAdded {
@@ -525,21 +525,21 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   }
 
   //····················································································································
-  //    Version observer
+  //    Version
   //····················································································································
 
-  private var mVersionObserver = EBStoredProperty_Int (0)
+  private var mVersion = EBStoredProperty_Int (0) // No undo manager
 
   //····················································································································
 
   final func incrementVersionNumber () {
-    mVersionObserver.setProp (value: mVersionObserver.propval + 1)
+    mVersion.setProp (value: mVersion.propval + 1)
   }
 
   //····················································································································
 
   final func versionObserver () -> EBStoredProperty_Int {
-    return mVersionObserver
+    return mVersion
   }
 
   //····················································································································
@@ -552,6 +552,33 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   final func versionShouldChangeObserver () -> EBVersionShouldChangeObserver {
     return mVersionShouldChangeObserver
+  }
+
+  //····················································································································
+  //    Reset version and signature
+  //····················································································································
+
+  func resetVersionAndSignature () {
+    let undoManager = self.mManagedObjectContext.undoManager ()
+    undoManager?.registerUndo (
+      withTarget: self,
+      selector: #selector (performUndoVersionNumber(_:)),
+      object: NSNumber (value: mVersion.propval)
+    )
+    mVersion.setProp (value: 0)
+    mVersionShouldChangeObserver.clearStartUpSignature ()
+  }
+  
+  //····················································································································
+
+  func performUndoVersionNumber (_ oldValue : NSNumber) {
+    let undoManager = self.mManagedObjectContext.undoManager()
+    undoManager?.registerUndo (
+      withTarget: self,
+      selector: #selector (performUndoVersionNumber(_:)),
+      object: NSNumber (value: mVersion.propval)
+    )
+    mVersion.setProp (value: oldValue.intValue)
   }
 
   //····················································································································
@@ -727,6 +754,128 @@ private struct EBDocumentReadProgress {
 
   func orderOut () {
     mProgressWindow?.orderOut (nil)
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBVersionShouldChangeObserver
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObserverProtocol {
+
+  private weak var mUndoManager : EBUndoManager?
+  private weak var mSignatureObserver : EBSignatureObserverEvent?
+  private var mSignatureAtStartUp : UInt32 = 0
+
+  override init () {
+    super.init ()
+    self.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        return .singleSelection (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func setSignatureObserverAndUndoManager (_ signatureObserver : EBSignatureObserverEvent, _ undoManager : EBUndoManager?) {
+    mUndoManager = undoManager
+    mSignatureObserver = signatureObserver
+    mSignatureAtStartUp = signatureObserver.signature ()
+  }
+
+  //····················································································································
+
+  final func updateStartUpSignature () {
+    if let signatureObserver = mSignatureObserver {
+      mSignatureAtStartUp = signatureObserver.signature ()
+      postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  func signature () -> UInt32 {
+    if let signatureObserver = mSignatureObserver {
+      return signatureObserver.signature ()
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+
+  func clearSignatureCache () {
+    postEvent ()
+  }
+
+  //····················································································································
+  // clearStartUpSignature
+  //····················································································································
+  
+  func clearStartUpSignature () {
+    mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
+    mSignatureAtStartUp = 0
+    postEvent ()
+  }
+
+  //····················································································································
+
+  func performUndo (_ oldValue : NSNumber) {
+    mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
+    mSignatureAtStartUp = oldValue.uint32Value
+    postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBSignatureObserverEvent
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverProtocol {
+
+  private weak var mRootObject : EBSignatureObserverProtocol?
+
+  override init () {
+    super.init ()
+    self.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        return .singleSelection (Int (unwSelf.signature ()))
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func setRootObject (_ rootObject : EBSignatureObserverProtocol) {
+    mRootObject = rootObject
+  }
+
+  //····················································································································
+
+  func signature () -> UInt32 {
+    if let rootObject = mRootObject {
+      return rootObject.signature ()
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+
+  func clearSignatureCache () {
+    postEvent ()
   }
 
   //····················································································································

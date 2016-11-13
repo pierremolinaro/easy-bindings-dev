@@ -360,7 +360,7 @@ extension Int : ValuePropertyProtocol {
 
   func ebHashValue () -> UInt32 {
     var crc : UInt32 = 0
-    var v = UInt (self)
+    var v = UInt (bitPattern:self) // So that negative value is handled
     for _ in 0 ..< MemoryLayout<Int>.size {
       let byte = UInt8 (v & 255)
       crc.accumulateByte (byte)

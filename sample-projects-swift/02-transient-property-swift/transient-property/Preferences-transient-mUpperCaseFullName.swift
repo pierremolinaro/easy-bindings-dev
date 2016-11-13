@@ -10,9 +10,9 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_Preferences_mUpperCaseFullName (_ self_2E_mFullName : String) -> String {
+func compute_Preferences_mUpperCaseFullName (_ self_2E_mFullName_0 : String) -> String {
 //--- START OF USER ZONE 2
-  return self_2E_mFullName.uppercased ()
+  return self_2E_mFullName_0.uppercased ()
 //--- END OF USER ZONE 2
 }
 
