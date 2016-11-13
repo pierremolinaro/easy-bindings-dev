@@ -37,19 +37,20 @@ import Cocoa
   }
 
   //···················································································································*
-  //  valueObserver binding                                                                                            *
+  //  $valueObserver binding                                                                                            *
   //···················································································································*
 
   private var mValueController : Controller_EBIntObserverField_readOnlyValue?
 
   //···················································································································*
 
-  func bind_valueObserver (_ object:EBReadOnlyProperty_Int, file:String, line:Int) {
+  func bind_valueObserver (_ object:EBReadOnlyProperty_Int, file:String, line:Int, autoFormatter:Bool) {
     mValueController = Controller_EBIntObserverField_readOnlyValue (
       object:object,
       outlet:self,
       file:file,
-      line:line
+      line:line,
+      autoFormatter:autoFormatter
     )
   }
 
@@ -76,11 +77,14 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 
   //···················································································································*
 
-  init (object :EBReadOnlyProperty_Int, outlet : EBIntObserverField, file : String, line : Int) {
+  init (object: EBReadOnlyProperty_Int, outlet: EBIntObserverField, file: String, line: Int, autoFormatter: Bool) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
-    if mOutlet.formatter == nil {
+    if autoFormatter {
+      let formatter = NumberFormatter ()
+      mOutlet.formatter = formatter
+    }else if mOutlet.formatter == nil {
       presentErrorWindow (file: file, line:line, errorMessage:"the outlet has no formatter")
     }else if !(mOutlet.formatter is NumberFormatter) {
       presentErrorWindow (file: file, line:line, errorMessage:"the formatter should be an NSNumberFormatter")

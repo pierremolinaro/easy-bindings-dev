@@ -37,7 +37,7 @@ import Cocoa
   }
 
   //···················································································································*
-  //  valueObserver binding                                                                                            *
+  //  $valueObserver binding                                                                                            *
   //···················································································································*
 
   private var mValueController : Controller_EBIntObserverField_readOnlyValue?
@@ -77,7 +77,7 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
 
   //···················································································································*
 
-  init (object :EBReadOnlyProperty_Int, outlet : EBIntObserverField, file : String, line : Int, autoFormatter:Bool) {
+  init (object: EBReadOnlyProperty_Int, outlet: EBIntObserverField, file: String, line: Int, autoFormatter: Bool) {
     mObject = object
     mOutlet = outlet
     super.init (objects:[object], outlet:outlet)
