@@ -323,6 +323,12 @@ class MyRootEntity : EBManagedObject
   }
 
   //····················································································································
+
+  deinit {
+  //--- Remove observers
+  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -330,7 +336,7 @@ class MyRootEntity : EBManagedObject
     super.populateExplorerWindow (&y, view:view)
     createEntryForToManyRelationshipNamed (
       "mNames",
-      idx:mNames.mExplorerObjectIndex,
+      idx:mNames.mEasyBindingsObjectIndex,
       y: &y,
       view: view,
       valueExplorer:&mNames.mValueExplorer

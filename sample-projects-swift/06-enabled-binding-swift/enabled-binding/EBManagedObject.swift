@@ -127,7 +127,7 @@ import Cocoa
     closeButton?.target = self
     closeButton?.action = #selector(EBManagedObject.deleteWindowAction(_:))
   //--- Set window title
-    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
+    let windowTitle = explorerIndexString (mEasyBindingsObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
@@ -282,7 +282,7 @@ import Cocoa
 func updateManagedObjectToOneRelationshipDisplay (object : EBManagedObject?, button : NSButton?) {
   var stringValue = "nil"
   if let unwrappedObject = object {
-    stringValue = explorerIndexString (unwrappedObject.mExplorerObjectIndex) + unwrappedObject.className
+    stringValue = explorerIndexString (unwrappedObject.mEasyBindingsObjectIndex) + unwrappedObject.className
   }
   button?.isEnabled = object != nil
   button?.title = stringValue
@@ -306,7 +306,7 @@ func updateManagedObjectToManyRelationshipDisplay (objectArray : [EBManagedObjec
   popUpButton?.addItem (withTitle: title)
   popUpButton?.isEnabled = objectArray.count > 0
   for object : EBManagedObject in objectArray {
-    let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
+    let stringValue = explorerIndexString (object.mEasyBindingsObjectIndex) + object.className
     popUpButton?.addItem (withTitle: stringValue)
     let item = popUpButton?.lastItem
     item?.target = object

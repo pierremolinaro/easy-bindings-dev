@@ -48,7 +48,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
     view.addSubview (tf)
     let valueExplorer = NSButton (frame:thirdColumn (y))
     valueExplorer.font = font
-    valueExplorer.title = explorerIndexString (mExplorerObjectIndex) + className
+    valueExplorer.title = explorerIndexString (mEasyBindingsObjectIndex) + className
     valueExplorer.target = self
     valueExplorer.action = #selector(SelectionController_PMDocument_detailController.showObjectWindowFromExplorerButton(_:))
     view.addSubview (valueExplorer)
@@ -67,7 +67,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
     var y : CGFloat = 0.0
     createEntryForPropertyNamed (
       "aValue",
-      idx:aValue.mExplorerObjectIndex,
+      idx:aValue.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&aValue.mObserverExplorer,
@@ -75,7 +75,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
     )
     createEntryForPropertyNamed (
       "name",
-      idx:name.mExplorerObjectIndex,
+      idx:name.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&name.mObserverExplorer,
@@ -92,7 +92,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
     closeButton?.target = self
     closeButton?.action = #selector(SelectionController_PMDocument_detailController.deleteSelectionControllerWindowAction(_:))
   //--- Set window title
-    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
+    let windowTitle = explorerIndexString (mEasyBindingsObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)

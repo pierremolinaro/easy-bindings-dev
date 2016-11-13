@@ -320,6 +320,12 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
   }
 
   //····················································································································
+
+  deinit {
+  //--- Remove observers
+  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -327,7 +333,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "name",
-      idx:name.mExplorerObjectIndex,
+      idx:name.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&name.mObserverExplorer,
@@ -335,7 +341,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
     )
     createEntryForPropertyNamed (
       "aValue",
-      idx:aValue.mExplorerObjectIndex,
+      idx:aValue.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
       observerExplorer:&aValue.mObserverExplorer,
@@ -343,7 +349,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
     )
     createEntryForToOneRelationshipNamed (
       "mRoot",
-      idx:mRoot.mExplorerObjectIndex,
+      idx:mRoot.mEasyBindingsObjectIndex,
       y: &y,
       view: view,
       valueExplorer:&mRoot.mValueExplorer
