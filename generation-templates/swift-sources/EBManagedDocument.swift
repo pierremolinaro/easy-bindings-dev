@@ -761,3 +761,125 @@ private struct EBDocumentReadProgress {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBVersionShouldChangeObserver
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObserverProtocol {
+
+  private weak var mUndoManager : EBUndoManager?
+  private weak var mSignatureObserver : EBSignatureObserverEvent?
+  private var mSignatureAtStartUp : UInt32 = 0
+
+  override init () {
+    super.init ()
+    self.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        return .singleSelection (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func setSignatureObserverAndUndoManager (_ signatureObserver : EBSignatureObserverEvent, _ undoManager : EBUndoManager?) {
+    mUndoManager = undoManager
+    mSignatureObserver = signatureObserver
+    mSignatureAtStartUp = signatureObserver.signature ()
+  }
+
+  //····················································································································
+
+  final func updateStartUpSignature () {
+    if let signatureObserver = mSignatureObserver {
+      mSignatureAtStartUp = signatureObserver.signature ()
+      postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  func signature () -> UInt32 {
+    if let signatureObserver = mSignatureObserver {
+      return signatureObserver.signature ()
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+
+  func clearSignatureCache () {
+    postEvent ()
+  }
+
+  //····················································································································
+  // clearStartUpSignature
+  //····················································································································
+  
+  func clearStartUpSignature () {
+    mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
+    mSignatureAtStartUp = 0
+    postEvent ()
+  }
+
+  //····················································································································
+
+  func performUndo (_ oldValue : NSNumber) {
+    mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
+    mSignatureAtStartUp = oldValue.uint32Value
+    postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  EBSignatureObserverEvent
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverProtocol {
+
+  private weak var mRootObject : EBSignatureObserverProtocol?
+
+  override init () {
+    super.init ()
+    self.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        return .singleSelection (Int (unwSelf.signature ()))
+      }else{
+        return .noSelection
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func setRootObject (_ rootObject : EBSignatureObserverProtocol) {
+    mRootObject = rootObject
+  }
+
+  //····················································································································
+
+  func signature () -> UInt32 {
+    if let rootObject = mRootObject {
+      return rootObject.signature ()
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+
+  func clearSignatureCache () {
+    postEvent ()
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

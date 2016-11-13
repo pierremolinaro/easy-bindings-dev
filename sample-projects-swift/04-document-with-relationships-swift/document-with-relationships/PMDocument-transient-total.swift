@@ -10,10 +10,10 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_total (_ self_2E_rootObject_2E_mNames : [NameEntity_aValue]) -> Int {
+func compute_PMDocument_total (_ self_2E_rootObject_2E_mNames_0 : [NameEntity_aValue]) -> Int {
 //--- START OF USER ZONE 2
   var total = 0
-  for object in self_2E_rootObject_2E_mNames {
+  for object in self_2E_rootObject_2E_mNames_0 {
     total += object.aValue.propval
   }
   return total

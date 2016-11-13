@@ -10,11 +10,11 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_myStringConcat (_ self_2E_myStringMaj : String,
-                                          _ self_2E_myStringMin : String) -> String {
+func compute_MyRootEntity_myStringConcat (_ self_2E_myStringMaj_0 : String,
+                                          _ self_2E_myStringMin_1 : String) -> String {
 //--- START OF USER ZONE 2
 
-  return self_2E_myStringMaj + " " + self_2E_myStringMin
+  return self_2E_myStringMaj_0 + " " + self_2E_myStringMin_1
 
 //--- END OF USER ZONE 2
 }

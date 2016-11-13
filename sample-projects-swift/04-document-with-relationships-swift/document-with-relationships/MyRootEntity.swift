@@ -86,7 +86,7 @@ class ToManyRelationshipReadWrite_MyRootEntity_mNames : ReadOnlyArrayOf_NameEnti
 //    To many relationship proxy: mNames
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ToManyRelationshipProxy_MyRootEntity_mNames : ToManyRelationshipReadWrite_MyRootEntity_mNames {
+/* final class ToManyRelationshipProxy_MyRootEntity_mNames : ToManyRelationshipReadWrite_MyRootEntity_mNames {
   private var mModel : ToManyRelationshipReadWrite_MyRootEntity_mNames?
 
   //····················································································································
@@ -117,6 +117,7 @@ final class ToManyRelationshipProxy_MyRootEntity_mNames : ToManyRelationshipRead
   //····················································································································
 
 }
+*/
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    To many relationship: mNames

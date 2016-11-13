@@ -132,7 +132,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
   end
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}
-  for () in mDependencyList do
+  for () in mDependencyList do (idx)
     [mObservableProperty analyzeObservableProperty
       !inRootObservableProperties
       !inSemanticContext
@@ -147,7 +147,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
     end
     dependencies +=
       !mObservableProperty
-      ![[mObservableProperty modelString !"self"] nameRepresentation]
+      ![[mObservableProperty modelString !"self"] nameRepresentation] + "_" + idx
       !swiftTypeStringForTransientFunctionArgument
   end
 #--- Code generation

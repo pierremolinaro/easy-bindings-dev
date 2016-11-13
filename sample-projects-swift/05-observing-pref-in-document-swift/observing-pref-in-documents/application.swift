@@ -17,6 +17,8 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBOutletEvent) class EBOutletEvent : EBEvent {
+  fileprivate var mEventIsPosted = false
+  
   override func postEvent () {
     postOutletEvent (self)
   }
@@ -27,9 +29,9 @@ import Cocoa
 //    O U T L E T    E V E N T S
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private var gPendingOutletEvents = Set <EBOutletEvent> ()
+fileprivate var gPendingOutletEvents = [EBOutletEvent] ()
 
-func postOutletEvent (_ event : EBOutletEvent) {
+fileprivate func postOutletEvent (_ event : EBOutletEvent) {
   if gPendingOutletEvents.count == 0 {
     DispatchQueue.main.asyncAfter (deadline: DispatchTime.now()) { flushOutletEvents () }
     if logEvents () {
@@ -45,7 +47,10 @@ func postOutletEvent (_ event : EBOutletEvent) {
       appendMessageString (str, color: NSColor.brown)
     }
   }
-  gPendingOutletEvents.insert (event)
+  if !event.mEventIsPosted {
+    event.mEventIsPosted = true
+    gPendingOutletEvents.append (event)
+  }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -58,6 +63,9 @@ func flushOutletEvents () {
     while gPendingOutletEvents.count > 0 {
       let pendingOutletEvents = gPendingOutletEvents
       gPendingOutletEvents.removeAll ()
+      for event in pendingOutletEvents {
+        event.mEventIsPosted = false
+      }
       for event in pendingOutletEvents {
         if logEvents () {
           let message = "  " +  explorerIndexString (event.mExplorerObjectIndex) + event.className + "\n"
@@ -111,10 +119,6 @@ func appendMessageString (_ message : String, color:NSColor) {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBApplication) class EBApplication : NSApplication {
-  private var mLevel = 0
-  private var mTriggerOutletDisplaySet = Set <EBOutletEvent> ()
- 
-  //····················································································································
 
   @IBOutlet var mTransientEventExplorerWindow : NSWindow?
   @IBOutlet var mTransientEventExplorerTextView : NSTextView?

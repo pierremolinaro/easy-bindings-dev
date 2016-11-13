@@ -10,10 +10,10 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_myStringMaj (_ self_2E_myString : String) -> String {
+func compute_MyRootEntity_myStringMaj (_ self_2E_myString_0 : String) -> String {
 //--- START OF USER ZONE 2
 
-  return self_2E_myString.uppercased ()
+  return self_2E_myString_0.uppercased ()
 
 //--- END OF USER ZONE 2
 }

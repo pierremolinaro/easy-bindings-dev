@@ -10,10 +10,10 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_Preferences_mFullName (_ self_2E_mFirstName : String,
-                                    _ self_2E_mLastName : String) -> String {
+func compute_Preferences_mFullName (_ self_2E_mFirstName_0 : String,
+                                    _ self_2E_mLastName_1 : String) -> String {
 //--- START OF USER ZONE 2
-  return self_2E_mFirstName + " " + self_2E_mLastName
+  return self_2E_mFirstName_0 + " " + self_2E_mLastName_1
 
 //--- END OF USER ZONE 2
 }
