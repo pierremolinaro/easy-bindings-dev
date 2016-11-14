@@ -253,7 +253,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 
   var prop : EBProperty <MyRootEntity?> { get { return .singleSelection (mValue) } }
 
-  func setProp (value : MyRootEntity?) { mValue = value }
+  func setProp (_ value : MyRootEntity?) { mValue = value }
 
   //····················································································································
 
@@ -397,7 +397,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
 
   override func resetToOneRelationships () {
     super.resetToOneRelationships ()
-    mRoot.setProp (value: nil)
+    mRoot.setProp (nil)
   }
 
   //····················································································································

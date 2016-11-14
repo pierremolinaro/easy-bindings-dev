@@ -178,7 +178,7 @@ if not [mType isEntityType] then
 %          break\n%
 %        case .singleSelection (let v) :\n%
 %          for object in v {\n%
-%            object.%!lkey.string%.setProp (value: inValue)\n%
+%            object.%!lkey.string%.setProp (inValue)\n%
 %          }\n%
 %        }\n%
 %      }\n%

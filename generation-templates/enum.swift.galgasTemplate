@@ -122,7 +122,7 @@ class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%,
 
   var propval : %!ENUM_TYPE_NAME% { get { return mValue } }
 
-  func setProp (value: %!ENUM_TYPE_NAME%) { mValue = value }
+  func setProp (_ value: %!ENUM_TYPE_NAME%) { mValue = value }
 
   override func rawValue () -> Int {
     return mValue.rawValue

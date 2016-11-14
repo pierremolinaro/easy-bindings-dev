@@ -426,7 +426,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
         var newSelectedObjectSet = Set <NameEntity> ()
         newSelectedObjectSet.insert (newObject)
         mSelectedSet.mSet = newSelectedObjectSet
-        model.setProp (value: array)
+        model.setProp (array)
       }
     }
   }
@@ -505,7 +505,7 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
           }
           mSelectedSet.mSet = newSelectionSet
         //----------------------------------------- Set new object array
-          model.setProp (value: newObjectArray)
+          model.setProp (newObjectArray)
         }
       }
     }

@@ -177,7 +177,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
           break
         case .singleSelection (let v) :
           for object in v {
-            object.aValue.setProp (value: inValue)
+            object.aValue.setProp (inValue)
           }
         }
       }
@@ -247,7 +247,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
           break
         case .singleSelection (let v) :
           for object in v {
-            object.name.setProp (value: inValue)
+            object.name.setProp (inValue)
           }
         }
       }

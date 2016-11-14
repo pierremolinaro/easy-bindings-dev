@@ -76,7 +76,7 @@ class ToManyRelationshipReadWrite_MyRootEntity_mNames : ReadOnlyArrayOf_NameEnti
 
   //····················································································································
  
-  func setProp (value :  [NameEntity]) { } // Abstract method
+  func setProp (_ value :  [NameEntity]) { } // Abstract method
   
   //····················································································································
 
@@ -105,12 +105,12 @@ class ToManyRelationshipReadWrite_MyRootEntity_mNames : ReadOnlyArrayOf_NameEnti
  
    //····················································································································
  
-  override func setProp (value : [NameEntity]) {
+  override func setProp (_ value : [NameEntity]) {
     switch self.prop {
     case .noSelection, .multipleSelection :
       break
     case .singleSelection (let array) :
-      mModel?.setProp (value: array)
+      mModel?.setProp (array)
     }
   }
  
@@ -187,7 +187,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
         let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : NameEntity in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
-          managedObject.mRoot.setProp (value: owner)
+          managedObject.mRoot.setProp (owner)
         }
         addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
         addEBObserversOf_name_toElementsOfSet (addedObjectSet)
@@ -203,7 +203,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
     }
   }
 
-  override func setProp (value :  [NameEntity]) { mValue = value }
+  override func setProp (_ value :  [NameEntity]) { mValue = value }
 
   var propval : [NameEntity] { get { return mValue } }
 
@@ -369,7 +369,7 @@ class MyRootEntity : EBManagedObject
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    mNames.setProp (value: readEntityArrayFromDictionary (
+    mNames.setProp (readEntityArrayFromDictionary (
       inRelationshipName: "mNames",
       inDictionary: inDictionary,
       managedObjectArray: &managedObjectArray
@@ -382,7 +382,7 @@ class MyRootEntity : EBManagedObject
 
   override func resetToManyRelationships () {
     super.resetToManyRelationships ()
-    mNames.setProp (value: Array ())
+    mNames.setProp (Array ())
   }
 
   //····················································································································

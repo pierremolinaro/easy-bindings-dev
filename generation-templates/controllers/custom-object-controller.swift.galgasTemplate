@@ -187,7 +187,7 @@ end
     %    }\n%
     if [mKind isStored] then
       %    %!lkey.string%.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
-      %      self?.mSelectedObject?.%!lkey.string%.setProp (value: inValue)\n%
+      %      self?.mSelectedObject?.%!lkey.string%.setProp (inValue)\n%
       %    }\n%
       %    %!lkey.string%.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
       %      self?.mSelectedObject?.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet) ?? false\n%

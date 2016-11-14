@@ -47,7 +47,7 @@ import Cocoa
   override func changeFont (_ sender : Any?) {
     if let valueController = mValueController, let fontManager = sender as! NSFontManager? {
       let newFont = fontManager.convert (mFont!)
-      valueController.mObject.setProp (value: newFont)
+      valueController.mObject.setProp (newFont)
     }
   }
 

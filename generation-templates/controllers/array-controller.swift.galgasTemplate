@@ -480,7 +480,7 @@ case storedArrayModel :
         var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
         newSelectedObjectSet.insert (newObject)
         mSelectedSet.mSet = newSelectedObjectSet
-        model.setProp (value: array)
+        model.setProp (array)
       }
     }
   }
@@ -558,7 +558,7 @@ case storedArrayModel :
           }
           mSelectedSet.mSet = newSelectionSet
         //----------------------------------------- Set new object array
-          model.setProp (value: newObjectArray)
+          model.setProp (newObjectArray)
         }
       }
     }
@@ -586,7 +586,7 @@ case relationshipModel :
         var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
         newSelectedObjectSet.insert (newObject)
         mSelectedSet.mSet = newSelectedObjectSet
-        model.setProp (value: array)
+        model.setProp (array)
       }
     }
   }
@@ -665,7 +665,7 @@ case relationshipModel :
           }
           mSelectedSet.mSet = newSelectionSet
         //----------------------------------------- Set new object array
-          model.setProp (value: newObjectArray)
+          model.setProp (newObjectArray)
         }
       }
     }
