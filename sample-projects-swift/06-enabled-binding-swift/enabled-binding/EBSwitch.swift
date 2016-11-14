@@ -104,7 +104,7 @@ import Cocoa
   //···················································································································· 
 
   func updateModel () {
-    mObject.setProp (value: mOutlet.state == NSOnState)
+    mObject.setProp (mOutlet.state == NSOnState)
   }
 }
 

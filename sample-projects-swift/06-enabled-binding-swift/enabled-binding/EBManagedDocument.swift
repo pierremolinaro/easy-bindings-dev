@@ -90,7 +90,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     case .singleSelection (let shouldChange) :
       if shouldChange {
         version += 1
-        mVersion.setProp (value: version)
+        mVersion.setProp (version)
         mVersionShouldChangeObserver.updateStartUpSignature ()
       }
     }
@@ -187,7 +187,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
   //--- Read version from file
-    mVersion.setProp (value: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
+    mVersion.setProp (readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
   //--- Read data
     let dataFormat = dataScanner.parseByte ()
     let fileData = dataScanner.parseAutosizedData ()
@@ -533,7 +533,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   final func incrementVersionNumber () {
-    mVersion.setProp (value: mVersion.propval + 1)
+    mVersion.setProp (mVersion.propval + 1)
   }
 
   //····················································································································
@@ -565,7 +565,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       selector: #selector (performUndoVersionNumber(_:)),
       object: NSNumber (value: mVersion.propval)
     )
-    mVersion.setProp (value: 0)
+    mVersion.setProp (0)
     mVersionShouldChangeObserver.clearStartUpSignature ()
   }
   
@@ -578,7 +578,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       selector: #selector (performUndoVersionNumber(_:)),
       object: NSNumber (value: mVersion.propval)
     )
-    mVersion.setProp (value: oldValue.intValue)
+    mVersion.setProp (oldValue.intValue)
   }
 
   //····················································································································
