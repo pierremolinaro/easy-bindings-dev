@@ -209,9 +209,9 @@ var g_Preferences : Preferences? = nil
       }
     }
   //--- Install property observers for transients
-    self.mFirstName.addEBObserver (mFullName)
-    self.mLastName.addEBObserver (mFullName)
-    self.mFullName.addEBObserver (mUpperCaseFullName)
+    mFirstName.addEBObserver (mFullName)
+    mLastName.addEBObserver (mFullName)
+    mFullName.addEBObserver (mUpperCaseFullName)
   //--- Install bindings
     mLastNameTextField?.bind_value (self.mLastName, file: #file, line: #line, sendContinously:true)
     mFirstNameTextField?.bind_value (self.mFirstName, file: #file, line: #line, sendContinously:false)

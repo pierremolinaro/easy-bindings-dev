@@ -444,12 +444,12 @@ class EBSimpleClass : EBObject {
 
 class EBSimpleController : EBOutletEvent {
   private let mPrivateObjects : [EBAbstractProperty]
-  private let mPrivateOutlet : NSView
+  private let mPrivateOutlet : NSObject
   private var mExplorerWindow : NSWindow?
   
   //····················································································································
 
-  init (objects : [EBAbstractProperty], outlet : NSView) {
+  init (objects : [EBAbstractProperty], outlet : NSObject) {
     mPrivateObjects = objects
     mPrivateOutlet = outlet
   }
@@ -488,12 +488,7 @@ class EBSimpleController : EBOutletEvent {
         view:view
       )
     }
-    createEntryForOutletNamed (
-     "Outlet",
-      outlet:mPrivateOutlet,
-      y:&y,
-      view:view
-    )
+    createEntryForOutletNamed ("Outlet", outlet: mPrivateOutlet, y: &y, view: view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
     let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
@@ -624,7 +619,7 @@ func createEntryForPropertyNamed (_ attributeName : String,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func createEntryForOutletNamed (_ name : String,
-                                outlet : NSView,
+                                outlet : NSObject,
                                 y : inout CGFloat,
                                 view : NSView) {
   let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())

@@ -400,9 +400,22 @@ method @observablePropertyAST analyzeObservableProperty
     case stringType, boolType, dateType, doubleType, integerType, fontType :
       error propertyName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case classType (*) :
-      error propertyName : "a property cannot accept 'all'" : outType
+      error propertyName : "an enum property cannot accept 'all'" : outType
+    case classType (@string className) :
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        ![className nowhere]
+        ?let @observablePropertyMap entityObservablePropertyMap
+      ]
+      [entityObservablePropertyMap searchKey
+        !elementPropertyName
+        ?outType
+        ?outKind
+        ?outMultiplicity
+        ?2*
+      ]
+      if outMultiplicity == .collection then
+        error elementPropertyName : "the observed property cannot be a collection"
+      end
     case propertyClassType (**) :
       error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyClassType (*) :
