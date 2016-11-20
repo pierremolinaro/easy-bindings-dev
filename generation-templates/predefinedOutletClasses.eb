@@ -54,6 +54,9 @@ outletClass EBImageObserverView $enabled ;
 binding EBImageObserverView $image : transient NSImage ;
 
 
+outletClass EBMenu ;
+
+
 outletClass EBMenuItem ;
 
 
