@@ -59,8 +59,9 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
   //····················································································································
 
   final func removeEBObserversOf_name_fromElementsOfSet (_ inSet : Set<NameEntity>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_name {
+    for observer in mObserversOf_name {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.name.removeEBObserver (observer)
       }
     }
@@ -115,8 +116,9 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
   //····················································································································
 
   final func removeEBObserversOf_aValue_fromElementsOfSet (_ inSet : Set<NameEntity>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_aValue {
+    for observer in mObserversOf_aValue {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.aValue.removeEBObserver (observer)
       }
     }
