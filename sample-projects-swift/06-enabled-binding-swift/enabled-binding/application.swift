@@ -41,7 +41,7 @@ fileprivate func postOutletEvent (_ event : EBOutletEvent) {
   
   if logEvents () {
     let str = "  " +  explorerIndexString (event.mEasyBindingsObjectIndex) + event.className + "\n"
-    if !gPendingOutletEvents.contains (event) {
+    if !event.mEventIsPosted {
       appendMessageString (str)
     }else{ // Event already posted
       appendMessageString (str, color: NSColor.brown)

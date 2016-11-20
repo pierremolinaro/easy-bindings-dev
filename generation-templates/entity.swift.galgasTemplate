@@ -61,8 +61,9 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_%!mStoredPropertyName% {
+    for observer in mObserversOf_%!mStoredPropertyName% {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.%!mStoredPropertyName%.removeEBObserver (observer)
       }
     }

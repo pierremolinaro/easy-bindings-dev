@@ -59,8 +59,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   //····················································································································
 
   final func removeEBObserversOf_docBool_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_docBool {
+    for observer in mObserversOf_docBool {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.docBool.removeEBObserver (observer)
       }
     }

@@ -59,8 +59,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   //····················································································································
 
   final func removeEBObserversOf_myString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_myString {
+    for observer in mObserversOf_myString {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.myString.removeEBObserver (observer)
       }
     }
@@ -115,8 +116,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   //····················································································································
 
   final func removeEBObserversOf_myColor_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_myColor {
+    for observer in mObserversOf_myColor {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.myColor.removeEBObserver (observer)
       }
     }
