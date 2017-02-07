@@ -3171,7 +3171,7 @@ void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdent
           {
             const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_5788 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_5645.current_mElement (HERE).unsafePointer ()) ;
             const GALGAS_lstring extractedValue_outletName = extractPtr_5788->mAssociatedValue1 ;
-            var_outlet_5F_identifier_5F_list_5577.addAssign_operation (extractedValue_outletName.mProperty_string  COMMA_SOURCE_FILE ("main-xib.galgas", 142)) ;
+            var_outlet_5F_identifier_5F_list_5577.addAssign_operation (extractedValue_outletName.getter_string (HERE)  COMMA_SOURCE_FILE ("main-xib.galgas", 142)) ;
           }
           break ;
         }
@@ -3413,7 +3413,7 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile, GALGAS_bool (true), var_declarationStruct_553, var_endOfSourceFile_970  COMMA_SOURCE_FILE ("program.galgas", 17)) ;
   GALGAS_unifiedTypeMap var_unifiedTypeMap_1127 ;
   {
-  routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct_553.mProperty_mDeclarationList, var_unifiedTypeMap_1127, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
+  routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct_553.getter_mDeclarationList (HERE), var_unifiedTypeMap_1127, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
   }
   GALGAS_lstringlist var_unsolvedProxyList_1223 = var_unifiedTypeMap_1127.getter_unsolvedProxyList (SOURCE_FILE ("program.galgas", 24)) ;
   cEnumerator_lstringlist enumerator_1291 (var_unsolvedProxyList_1223, kENUMERATION_UP) ;
@@ -3441,12 +3441,12 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
     }else if (kBoolFalse == test_2) {
       GALGAS_structForGeneration var_generation_2002 ;
       {
-      routine_semanticAnalysis (var_unifiedTypeMap_1127, constinArgument_inSourceFile.mProperty_string, var_declarationStruct_553, var_generation_2002, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 41)) ;
+      routine_semanticAnalysis (var_unifiedTypeMap_1127, constinArgument_inSourceFile.getter_string (HERE), var_declarationStruct_553, var_generation_2002, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 41)) ;
       }
       const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 47)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_4) {
         {
-        routine_generateCode (var_declarationStruct_553.mProperty_mXcodeProject.mProperty_string, var_generation_2002, constinArgument_inSourceFile.mProperty_string, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 48)) ;
+        routine_generateCode (var_declarationStruct_553.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_2002, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 48)) ;
         }
       }
     }
