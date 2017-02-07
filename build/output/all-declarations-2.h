@@ -16,9 +16,8 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_actionMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -219,10 +218,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionListForGenera
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_actionListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mClassName ;
-  public : GALGAS_string mProperty_mActionName ;
 
+  public : GALGAS_string mProperty_mActionName ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -884,12 +883,14 @@ class GALGAS_string callExtensionGetter_expressionString (const class cPtr_abstr
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_arrayControllerBoundColumnListAST_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mColumnName ;
-  public : GALGAS_lstring mProperty_mColumnOutletTypeName ;
-  public : GALGAS_columnBindingAST mProperty_mColumnBindingAST ;
-  public : GALGAS_lstring mProperty_mSortPropertyName ;
 
+  public : GALGAS_lstring mProperty_mColumnOutletTypeName ;
+
+  public : GALGAS_columnBindingAST mProperty_mColumnBindingAST ;
+
+  public : GALGAS_lstring mProperty_mSortPropertyName ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -962,10 +963,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoun
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_arrayControllerAttributListAST_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mAttributeName ;
-  public : GALGAS_abstractDefaultValue mProperty_mAttributeValue ;
 
+  public : GALGAS_abstractDefaultValue mProperty_mAttributeValue ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1030,10 +1031,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerAttr
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mFilterPropertyName ;
-  public : GALGAS_typeKind mProperty_mFilterPropertyType ;
 
+  public : GALGAS_typeKind mProperty_mFilterPropertyType ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1098,12 +1099,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerFilt
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mColumnName ;
-  public : GALGAS_string mProperty_mColumnOutletTypeName ;
-  public : GALGAS_string mProperty_mRunAction ;
-  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
 
+  public : GALGAS_string mProperty_mColumnOutletTypeName ;
+
+  public : GALGAS_string mProperty_mRunAction ;
+
+  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1179,11 +1182,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoun
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mColumnName ;
-  public : GALGAS_typeKind mProperty_mSortPropertyType ;
-  public : GALGAS_string mProperty_mObservablePropertyForSorting ;
 
+  public : GALGAS_typeKind mProperty_mSortPropertyType ;
+
+  public : GALGAS_string mProperty_mObservablePropertyForSorting ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1263,9 +1267,8 @@ class GALGAS_string extensionGetter_filterCode (const class GALGAS_arrayControll
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_defaultValueList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1326,9 +1329,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_defaultValueList_2D
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_typeKindList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_typeKind mProperty_mType ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1526,10 +1528,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_secondaryDeclaratio
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_secondaryDeclarationListWorkingList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_astDeclaration mProperty_mDeclaration ;
-  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
 
+  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1788,12 +1790,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XCodeGroupList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_XCodeGroupList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mGroupReference ;
-  public : GALGAS_string mProperty_mGroupName ;
-  public : GALGAS_string mProperty_mGroupPath ;
-  public : GALGAS_stringlist mProperty_mChildrenRefs ;
 
+  public : GALGAS_string mProperty_mGroupName ;
+
+  public : GALGAS_string mProperty_mGroupPath ;
+
+  public : GALGAS_stringlist mProperty_mChildrenRefs ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2132,19 +2136,28 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XCodeToolTargetList
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_XCodeToolTargetList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mTargetRef ;
-  public : GALGAS_string mProperty_mTargetName ;
-  public : GALGAS_string mProperty_mProductFileReference ;
-  public : GALGAS_string mProperty_mProductFileName ;
-  public : GALGAS_stringlist mProperty_mBuildPhaseRefList ;
-  public : GALGAS_string mProperty_mBuildPhaseRef ;
-  public : GALGAS_string mProperty_mBuildConfigurationListRef ;
-  public : GALGAS_stringlist mProperty_mBuildConfigurationSettingList ;
-  public : GALGAS_string mProperty_mBuildConfigurationRef ;
-  public : GALGAS_stringlist mProperty_mFrameworksFileRefList ;
-  public : GALGAS_string mProperty_mFrameworkBuildPhaseRef ;
 
+  public : GALGAS_string mProperty_mTargetName ;
+
+  public : GALGAS_string mProperty_mProductFileReference ;
+
+  public : GALGAS_string mProperty_mProductFileName ;
+
+  public : GALGAS_stringlist mProperty_mBuildPhaseRefList ;
+
+  public : GALGAS_string mProperty_mBuildPhaseRef ;
+
+  public : GALGAS_string mProperty_mBuildConfigurationListRef ;
+
+  public : GALGAS_stringlist mProperty_mBuildConfigurationSettingList ;
+
+  public : GALGAS_string mProperty_mBuildConfigurationRef ;
+
+  public : GALGAS_stringlist mProperty_mFrameworksFileRefList ;
+
+  public : GALGAS_string mProperty_mFrameworkBuildPhaseRef ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2567,23 +2580,36 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XCodeAppTargetList 
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_XCodeAppTargetList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mTargetRef ;
-  public : GALGAS_string mProperty_mTargetName ;
-  public : GALGAS_string mProperty_mProductFileReference ;
-  public : GALGAS_string mProperty_mProductFileName ;
-  public : GALGAS_stringlist mProperty_mBuildPhaseRefList ;
-  public : GALGAS_string mProperty_mBuildPhaseRef ;
-  public : GALGAS_string mProperty_mBuildConfigurationListRef ;
-  public : GALGAS_stringlist mProperty_mBuildConfigurationSettingList ;
-  public : GALGAS_string mProperty_mBuildConfigurationRef ;
-  public : GALGAS_stringlist mProperty_mFrameworksFileRefList ;
-  public : GALGAS_string mProperty_mFrameworkBuildPhaseRef ;
-  public : GALGAS__32_stringlist mProperty_mDependentTargets ;
-  public : GALGAS_string mProperty_mResourceBuildRef ;
-  public : GALGAS_stringlist mProperty_mResourceFileBuildRefs ;
-  public : GALGAS_string mProperty_mInfoPListFile ;
 
+  public : GALGAS_string mProperty_mTargetName ;
+
+  public : GALGAS_string mProperty_mProductFileReference ;
+
+  public : GALGAS_string mProperty_mProductFileName ;
+
+  public : GALGAS_stringlist mProperty_mBuildPhaseRefList ;
+
+  public : GALGAS_string mProperty_mBuildPhaseRef ;
+
+  public : GALGAS_string mProperty_mBuildConfigurationListRef ;
+
+  public : GALGAS_stringlist mProperty_mBuildConfigurationSettingList ;
+
+  public : GALGAS_string mProperty_mBuildConfigurationRef ;
+
+  public : GALGAS_stringlist mProperty_mFrameworksFileRefList ;
+
+  public : GALGAS_string mProperty_mFrameworkBuildPhaseRef ;
+
+  public : GALGAS__32_stringlist mProperty_mDependentTargets ;
+
+  public : GALGAS_string mProperty_mResourceBuildRef ;
+
+  public : GALGAS_stringlist mProperty_mResourceFileBuildRefs ;
+
+  public : GALGAS_string mProperty_mInfoPListFile ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2854,11 +2880,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_BuildFileList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_BuildFileList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mFileReference ;
-  public : GALGAS_string mProperty_mFileName ;
-  public : GALGAS_string mProperty_mBuildReference ;
 
+  public : GALGAS_string mProperty_mFileName ;
+
+  public : GALGAS_string mProperty_mBuildReference ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2930,9 +2957,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_BuildFileList_2D_el
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_mainXibLineDescriptorList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_mainXibElement mProperty_mElement ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3003,10 +3029,10 @@ class GALGAS_string extensionGetter_generateCode (const class GALGAS_mainXibDesc
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_bindingSpecificationListMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_key ;
-  public : GALGAS_outletClassBindingSpecificationList mProperty_mList ;
 
+  public : GALGAS_outletClassBindingSpecificationList mProperty_mList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;

@@ -825,7 +825,7 @@ void GALGAS_documentObservablePropertyMap::setter_setMObservablePropertyMapForKe
                                                                                    GALGAS_string inKey,
                                                                                    C_Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_documentObservablePropertyMap * p = (cMapElement_documentObservablePropertyMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_documentObservablePropertyMap) ;
@@ -838,7 +838,7 @@ void GALGAS_documentObservablePropertyMap::setter_setMObservablePropertyMapForKe
 cMapElement_documentObservablePropertyMap * GALGAS_documentObservablePropertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                      const GALGAS_string & inKey
                                                                                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_documentObservablePropertyMap * result = (cMapElement_documentObservablePropertyMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_documentObservablePropertyMap * result = (cMapElement_documentObservablePropertyMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_documentObservablePropertyMap) ;
   return result ;
 }
@@ -1982,7 +1982,7 @@ void GALGAS_decoratedOutletMap::setter_setMOutletTypeNameForKey (GALGAS_string i
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_decoratedOutletMap * p = (cMapElement_decoratedOutletMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_decoratedOutletMap) ;
@@ -1995,7 +1995,7 @@ void GALGAS_decoratedOutletMap::setter_setMOutletTypeNameForKey (GALGAS_string i
 cMapElement_decoratedOutletMap * GALGAS_decoratedOutletMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                const GALGAS_string & inKey
                                                                                                COMMA_LOCATION_ARGS) {
-  cMapElement_decoratedOutletMap * result = (cMapElement_decoratedOutletMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_decoratedOutletMap * result = (cMapElement_decoratedOutletMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_decoratedOutletMap) ;
   return result ;
 }
@@ -7397,7 +7397,7 @@ void GALGAS_outletClassMap::setter_setMHandlesRunActionForKey (GALGAS_bool inAtt
                                                                GALGAS_string inKey,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
@@ -7411,7 +7411,7 @@ void GALGAS_outletClassMap::setter_setMHandlesTableValueBindingForKey (GALGAS_bo
                                                                        GALGAS_string inKey,
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
@@ -7425,7 +7425,7 @@ void GALGAS_outletClassMap::setter_setMHandleEnabledBindingForKey (GALGAS_bool i
                                                                    GALGAS_string inKey,
                                                                    C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
@@ -7439,7 +7439,7 @@ void GALGAS_outletClassMap::setter_setMUserDefinedForKey (GALGAS_bool inAttribut
                                                           GALGAS_string inKey,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
@@ -7452,7 +7452,7 @@ void GALGAS_outletClassMap::setter_setMUserDefinedForKey (GALGAS_bool inAttribut
 cMapElement_outletClassMap * GALGAS_outletClassMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                        const GALGAS_string & inKey
                                                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_outletClassMap * result = (cMapElement_outletClassMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_outletClassMap * result = (cMapElement_outletClassMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_outletClassMap) ;
   return result ;
 }
@@ -9069,7 +9069,7 @@ void GALGAS_bindingSpecificationMap::setter_setMBindingMapForKey (GALGAS_outletB
                                                                   GALGAS_string inKey,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_bindingSpecificationMap * p = (cMapElement_bindingSpecificationMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_bindingSpecificationMap) ;
@@ -9082,7 +9082,7 @@ void GALGAS_bindingSpecificationMap::setter_setMBindingMapForKey (GALGAS_outletB
 cMapElement_bindingSpecificationMap * GALGAS_bindingSpecificationMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                          const GALGAS_string & inKey
                                                                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_bindingSpecificationMap * result = (cMapElement_bindingSpecificationMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_bindingSpecificationMap * result = (cMapElement_bindingSpecificationMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_bindingSpecificationMap) ;
   return result ;
 }
@@ -9356,7 +9356,7 @@ void GALGAS_outletBindingSpecificationMap::setter_setMOutletBindingSpecification
                                                                                                  GALGAS_string inKey,
                                                                                                  C_Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_outletBindingSpecificationMap * p = (cMapElement_outletBindingSpecificationMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletBindingSpecificationMap) ;
@@ -9370,7 +9370,7 @@ void GALGAS_outletBindingSpecificationMap::setter_setMControllerBindingOptionLis
                                                                                          GALGAS_string inKey,
                                                                                          C_Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_outletBindingSpecificationMap * p = (cMapElement_outletBindingSpecificationMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletBindingSpecificationMap) ;
@@ -9383,7 +9383,7 @@ void GALGAS_outletBindingSpecificationMap::setter_setMControllerBindingOptionLis
 cMapElement_outletBindingSpecificationMap * GALGAS_outletBindingSpecificationMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                      const GALGAS_string & inKey
                                                                                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_outletBindingSpecificationMap * result = (cMapElement_outletBindingSpecificationMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_outletBindingSpecificationMap * result = (cMapElement_outletBindingSpecificationMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_outletBindingSpecificationMap) ;
   return result ;
 }
@@ -10725,13 +10725,13 @@ typeComparisonResult GALGAS_abstractDefaultValue::objectCompare (const GALGAS_ab
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_abstractDefaultValue::GALGAS_abstractDefaultValue (void) :
-AC_GALGAS_class () {
+AC_GALGAS_class (false) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_abstractDefaultValue::GALGAS_abstractDefaultValue (const cPtr_abstractDefaultValue * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr) {
+AC_GALGAS_class (inSourcePtr, false) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractDefaultValue) ;
 }
 
@@ -12992,10 +12992,10 @@ void extensionMethod_simpleStoredPropertySemanticAnalysis (const GALGAS_simpleSt
     }
     GALGAS_string var_swiftDefaultValueAsString_5290 ;
     callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_4415.current_mDefaultValue (HERE).ptr (), var_typeList_4549, var_swiftDefaultValueAsString_5290, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 142)) ;
-    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (var_type_4500, enumerator_4415.current_mPropertyName (HERE).mProperty_string, var_swiftDefaultValueAsString_5290, enumerator_4415.current_mNeedsValidation (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 144)) ;
+    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (var_type_4500, enumerator_4415.current_mPropertyName (HERE).getter_string (HERE), var_swiftDefaultValueAsString_5290, enumerator_4415.current_mNeedsValidation (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 144)) ;
     const enumGalgasBool test_7 = enumerator_4415.current_mNeedsValidation (HERE).boolEnum () ;
     if (kBoolTrue == test_7) {
-      ioArgument_ioValidationStubRoutineListForGeneration.addAssign_operation (constinArgument_inSwiftClassName, enumerator_4415.current_mPropertyName (HERE).mProperty_string, extensionGetter_swiftTypeName (var_type_4500, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 153))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 150)) ;
+      ioArgument_ioValidationStubRoutineListForGeneration.addAssign_operation (constinArgument_inSwiftClassName, enumerator_4415.current_mPropertyName (HERE).getter_string (HERE), extensionGetter_swiftTypeName (var_type_4500, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 153))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 150)) ;
     }
     enumerator_4415.gotoNextObject () ;
   }
@@ -13172,7 +13172,7 @@ void extensionMethod_storedArrayPropertySemanticAnalysis (const GALGAS_storedArr
       }
       break ;
     }
-    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (enumerator_4018.current_mElementClassName (HERE).mProperty_string, enumerator_4018.current_mStoredArrayPropertyName (HERE).mProperty_string  COMMA_SOURCE_FILE ("stored-array-property.galgas", 114)) ;
+    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (enumerator_4018.current_mElementClassName (HERE).getter_string (HERE), enumerator_4018.current_mStoredArrayPropertyName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("stored-array-property.galgas", 114)) ;
     enumerator_4018.gotoNextObject () ;
   }
 }

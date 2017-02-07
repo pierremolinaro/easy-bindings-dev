@@ -158,6 +158,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
 
 //--- Indexing keys
 
+//--- Unicode test functions
+
 //--- Indexing directory
   protected : virtual C_String indexingDirectory (void) const ;
 
@@ -7891,17 +7893,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerForG
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_prefDeclaration : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_outletDeclarationList mProperty_mOutletDeclarationList ;
-  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
-  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
-  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
-  public : GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
-  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
-  public : GALGAS_storedArrayPropertyList mProperty_mStoredArrayList ;
-  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
-  public : GALGAS_stringset mProperty_mSignatureList ;
 
+  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+
+  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
+
+  public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
+
+  public : GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
+
+  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+
+  public : GALGAS_storedArrayPropertyList mProperty_mStoredArrayList ;
+
+  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
+
+  public : GALGAS_stringset mProperty_mSignatureList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -7997,13 +8006,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefDeclaration ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_astDeclarationList mProperty_mDeclarationList ;
-  public : GALGAS_outletClassDeclarationList mProperty_mOutletClassDeclarationList ;
-  public : GALGAS_bindingSpecificationListMap mProperty_mBindingSpecificationListMap ;
-  public : GALGAS_prefDeclaration mProperty_mPreferences ;
-  public : GALGAS_lstring mProperty_mXcodeProject ;
 
+  public : GALGAS_outletClassDeclarationList mProperty_mOutletClassDeclarationList ;
+
+  public : GALGAS_bindingSpecificationListMap mProperty_mBindingSpecificationListMap ;
+
+  public : GALGAS_prefDeclaration mProperty_mPreferences ;
+
+  public : GALGAS_lstring mProperty_mXcodeProject ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8083,12 +8095,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationStruc
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_columnBindingAST : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mRunActionName ;
-  public : GALGAS_multipleBindingDescriptor mProperty_mEnabledBindingDescriptor ;
-  public : GALGAS_multipleBindingDescriptor mProperty_mHiddenBindingDescriptor ;
-  public : GALGAS_regularBindingList mProperty_mRegularBindingList ;
 
+  public : GALGAS_multipleBindingDescriptor mProperty_mEnabledBindingDescriptor ;
+
+  public : GALGAS_multipleBindingDescriptor mProperty_mHiddenBindingDescriptor ;
+
+  public : GALGAS_regularBindingList mProperty_mRegularBindingList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8161,9 +8175,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_columnBindingAST ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_astDeclarationList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_astDeclaration mProperty_mDeclaration ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8224,13 +8237,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationList_
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_bool mProperty_mUserDefined ;
-  public : GALGAS_lstring mProperty_mOutletClassName ;
-  public : GALGAS_bool mProperty_mHasRunAction ;
-  public : GALGAS_bool mProperty_mHasEnabled ;
-  public : GALGAS_bool mProperty_mHandlesTableValueBinding ;
 
+  public : GALGAS_lstring mProperty_mOutletClassName ;
+
+  public : GALGAS_bool mProperty_mHasRunAction ;
+
+  public : GALGAS_bool mProperty_mHasEnabled ;
+
+  public : GALGAS_bool mProperty_mHandlesTableValueBinding ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8310,9 +8326,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassDeclarat
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_secondaryPropertyList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_abstractSecondaryProperty mProperty_mSecondaryProperty ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10095,14 +10110,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_semanticContext : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_unifiedTypeMap mProperty_mUnifiedTypeMap ;
-  public : GALGAS_outletClassMap mProperty_mOutletClassMap ;
-  public : GALGAS_bindingSpecificationMap mProperty_mBindingSpecificationMap ;
-  public : GALGAS_observablePropertyMap mProperty_mPreferencesObservablePropertyMap ;
-  public : GALGAS_documentObservablePropertyMap mProperty_mDocumentObservablePropertyMap ;
-  public : GALGAS_entityObservablePropertyMap mProperty_mEntityObservablePropertyMap ;
 
+  public : GALGAS_outletClassMap mProperty_mOutletClassMap ;
+
+  public : GALGAS_bindingSpecificationMap mProperty_mBindingSpecificationMap ;
+
+  public : GALGAS_observablePropertyMap mProperty_mPreferencesObservablePropertyMap ;
+
+  public : GALGAS_documentObservablePropertyMap mProperty_mDocumentObservablePropertyMap ;
+
+  public : GALGAS_entityObservablePropertyMap mProperty_mEntityObservablePropertyMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10186,9 +10205,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_externSwiftDelegateList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mExternSwiftDelegateName ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10252,10 +10270,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegate
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_externSwiftFunctionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mExternSwiftFunctionName ;
-  public : GALGAS_lstring mProperty_mCallerName ;
 
+  public : GALGAS_lstring mProperty_mCallerName ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10432,9 +10450,8 @@ class cMapElement_externFunctionMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_externFunctionMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10615,9 +10632,8 @@ class cMapElement_enumConstantMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_enumConstantMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10818,10 +10834,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumListForGenerati
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_enumListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mEnumName ;
-  public : GALGAS_lstringlist mProperty_mEnumConstantList ;
 
+  public : GALGAS_lstringlist mProperty_mEnumConstantList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10889,12 +10905,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumListForGenerati
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_toOneRelationshipList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mDestinationEntityName ;
-  public : GALGAS_lstring mProperty_mToOneRelationshipName ;
-  public : GALGAS_lstring mProperty_mInverseRelationshipName ;
-  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
 
+  public : GALGAS_lstring mProperty_mToOneRelationshipName ;
+
+  public : GALGAS_lstring mProperty_mInverseRelationshipName ;
+
+  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -10967,11 +10985,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipLi
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_toManyRelationshipList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mDestinationEntityName ;
-  public : GALGAS_lstring mProperty_mToManyRelationshipName ;
-  public : GALGAS_lstring mProperty_mInverseRelationshipName ;
 
+  public : GALGAS_lstring mProperty_mToManyRelationshipName ;
+
+  public : GALGAS_lstring mProperty_mInverseRelationshipName ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -11666,13 +11685,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyEntityRelatio
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_toOneEntityRelationshipListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mToOneRelationshipName ;
-  public : GALGAS_typeKind mProperty_mRelationshipType ;
-  public : GALGAS_string mProperty_mOppositeRelationshipName ;
-  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
-  public : GALGAS_observablePropertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
+  public : GALGAS_typeKind mProperty_mRelationshipType ;
+
+  public : GALGAS_string mProperty_mOppositeRelationshipName ;
+
+  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
+
+  public : GALGAS_observablePropertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -11749,14 +11771,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneEntityRelation
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_observablePropertyMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_typeKind mProperty_mType ;
-  public : GALGAS_propertyKind mProperty_mKind ;
-  public : GALGAS_propertyMultiplicity mProperty_mMultiplicity ;
-  public : GALGAS_string mProperty_mInverseRelationshipName ;
-  public : GALGAS_actionMap mProperty_mActionMap ;
 
+  public : GALGAS_typeKind mProperty_mType ;
+
+  public : GALGAS_propertyKind mProperty_mKind ;
+
+  public : GALGAS_propertyMultiplicity mProperty_mMultiplicity ;
+
+  public : GALGAS_string mProperty_mInverseRelationshipName ;
+
+  public : GALGAS_actionMap mProperty_mActionMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -11837,12 +11863,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyM
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_toManyEntityRelationshipListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mToManyRelationshipName ;
-  public : GALGAS_typeKind mProperty_mRelationshipType ;
-  public : GALGAS_string mProperty_mOppositeRelationshipName ;
-  public : GALGAS_observablePropertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
+  public : GALGAS_typeKind mProperty_mRelationshipType ;
+
+  public : GALGAS_string mProperty_mOppositeRelationshipName ;
+
+  public : GALGAS_observablePropertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -11915,12 +11943,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyEntityRelatio
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mPropertyTypeName ;
-  public : GALGAS_lstring mProperty_mPropertyName ;
-  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
-  public : GALGAS_bool mProperty_mNeedsValidation ;
 
+  public : GALGAS_lstring mProperty_mPropertyName ;
+
+  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
+
+  public : GALGAS_bool mProperty_mNeedsValidation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -12337,13 +12367,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_classListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mClassName ;
-  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
-  public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientListForGeneration ;
-  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
-  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
 
+  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
+
+  public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientListForGeneration ;
+
+  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+
+  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -12423,12 +12456,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classListForGenerat
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_typeKind mProperty_mType ;
-  public : GALGAS_string mProperty_mStoredPropertyName ;
-  public : GALGAS_string mProperty_mDefaultValueInSwift ;
-  public : GALGAS_bool mProperty_mNeedsValidation ;
 
+  public : GALGAS_string mProperty_mStoredPropertyName ;
+
+  public : GALGAS_string mProperty_mDefaultValueInSwift ;
+
+  public : GALGAS_bool mProperty_mNeedsValidation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -12652,13 +12687,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependency
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mOwnerName ;
-  public : GALGAS_string mProperty_mTransientName ;
-  public : GALGAS_bool mProperty_mIsArray ;
-  public : GALGAS_typeKind mProperty_mTransientType ;
-  public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
 
+  public : GALGAS_string mProperty_mTransientName ;
+
+  public : GALGAS_bool mProperty_mIsArray ;
+
+  public : GALGAS_typeKind mProperty_mTransientType ;
+
+  public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -12735,10 +12773,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDefinition
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_entityObservablePropertyMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_observablePropertyMap mProperty_mObservablePropertyMap ;
 
+  public : GALGAS_observablePropertyMap mProperty_mObservablePropertyMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -13013,15 +13051,20 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGenera
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mEntityName ;
-  public : GALGAS_string mProperty_mSuperEntityName ;
-  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
-  public : GALGAS_transientDefinitionListForGeneration mProperty_mDecoratedTransientListForGeneration ;
-  public : GALGAS_toOneEntityRelationshipListForGeneration mProperty_mToOneEntityRelationshipList ;
-  public : GALGAS_toManyEntityRelationshipListForGeneration mProperty_mToManyEntityRelationshipList ;
-  public : GALGAS_stringset mProperty_mSignatureSet ;
 
+  public : GALGAS_string mProperty_mSuperEntityName ;
+
+  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
+
+  public : GALGAS_transientDefinitionListForGeneration mProperty_mDecoratedTransientListForGeneration ;
+
+  public : GALGAS_toOneEntityRelationshipListForGeneration mProperty_mToOneEntityRelationshipList ;
+
+  public : GALGAS_toManyEntityRelationshipListForGeneration mProperty_mToManyEntityRelationshipList ;
+
+  public : GALGAS_stringset mProperty_mSignatureSet ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;

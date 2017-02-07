@@ -107,19 +107,28 @@ void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
-  public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientDefinitionListForGeneration ;
-  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
-  public : GALGAS_multipleBindingGenerationList mProperty_mMultipleBindingGenerationList ;
-  public : GALGAS_actionBindingListForGeneration mProperty_mActionBindingListForGeneration ;
-  public : GALGAS_decoratedOutletMap mProperty_mOutletMap ;
-  public : GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
-  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
-  public : GALGAS_storedArrayPropertyListForGeneration mProperty_mStoredArrayPropertyListForGeneration ;
-  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
-  public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
 
+  public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientDefinitionListForGeneration ;
+
+  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+
+  public : GALGAS_multipleBindingGenerationList mProperty_mMultipleBindingGenerationList ;
+
+  public : GALGAS_actionBindingListForGeneration mProperty_mActionBindingListForGeneration ;
+
+  public : GALGAS_decoratedOutletMap mProperty_mOutletMap ;
+
+  public : GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
+
+  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+
+  public : GALGAS_storedArrayPropertyListForGeneration mProperty_mStoredArrayPropertyListForGeneration ;
+
+  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
+
+  public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -223,22 +232,34 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGener
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_structForGeneration : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientListForGeneration ;
-  public : GALGAS_actionListForGeneration mProperty_mActionListForGeneration ;
-  public : GALGAS_preferencesForGeneration mProperty_mPreferencesForGeneration ;
-  public : GALGAS_documentListForGeneration mProperty_mDocumentListForGeneration ;
-  public : GALGAS_entityListForGeneration mProperty_mEntityListForGeneration ;
-  public : GALGAS_classListForGeneration mProperty_mClassListForGeneration ;
-  public : GALGAS_enumListForGeneration mProperty_mEnumListForGeneration ;
-  public : GALGAS_stringset mProperty_mNeededOutletClasses ;
-  public : GALGAS_arrayControllerForGeneration mProperty_mAllArrayControllerForGeneration ;
-  public : GALGAS_validationStubRoutineListForGeneration mProperty_mValidationStubRoutineListForGeneration ;
-  public : GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
-  public : GALGAS_customObjectControllerForGeneration mProperty_mCustomObjectControllerListForGeneration ;
-  public : GALGAS_stringlist mProperty_mPropertyClassList ;
-  public : GALGAS_stringlist mProperty_mTransientPropertyClassList ;
 
+  public : GALGAS_actionListForGeneration mProperty_mActionListForGeneration ;
+
+  public : GALGAS_preferencesForGeneration mProperty_mPreferencesForGeneration ;
+
+  public : GALGAS_documentListForGeneration mProperty_mDocumentListForGeneration ;
+
+  public : GALGAS_entityListForGeneration mProperty_mEntityListForGeneration ;
+
+  public : GALGAS_classListForGeneration mProperty_mClassListForGeneration ;
+
+  public : GALGAS_enumListForGeneration mProperty_mEnumListForGeneration ;
+
+  public : GALGAS_stringset mProperty_mNeededOutletClasses ;
+
+  public : GALGAS_arrayControllerForGeneration mProperty_mAllArrayControllerForGeneration ;
+
+  public : GALGAS_validationStubRoutineListForGeneration mProperty_mValidationStubRoutineListForGeneration ;
+
+  public : GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
+
+  public : GALGAS_customObjectControllerForGeneration mProperty_mCustomObjectControllerListForGeneration ;
+
+  public : GALGAS_stringlist mProperty_mPropertyClassList ;
+
+  public : GALGAS_stringlist mProperty_mTransientPropertyClassList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
