@@ -171,7 +171,11 @@ struct EBDataScanner {
     }
     if (mReadOk) {
       let d = mData.subdata (in: mReadIndex ..< mReadIndex + stringLength - 1)
-      result = NSString (data:d, encoding: String.Encoding.utf8.rawValue) as! String
+      if let r = String (data:d, encoding:String.Encoding.utf8) {
+        result = r
+      }else{
+        mReadOk = false
+      }
       mReadIndex += stringLength
     }
     return result

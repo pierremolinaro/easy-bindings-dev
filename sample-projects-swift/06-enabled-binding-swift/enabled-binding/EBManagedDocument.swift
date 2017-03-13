@@ -152,7 +152,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     var saveDataArray : [NSDictionary] = []
     for object in objectsToSaveArray {
       let d : NSMutableDictionary = [
-        kEntityKey : (object.className as NSString).pathExtension
+        kEntityKey : object.className.pathExtension
       ]
       object.saveIntoDictionary (d)
       saveDataArray.append (d)
@@ -267,7 +267,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     let semaphore : DispatchSemaphore = DispatchSemaphore (value: 0)
     var progress : EBDocumentReadProgress? = nil
     if dictionaryArray.count > 10000 {
-      progress = EBDocumentReadProgress (title:(lastComponentOfFileName as NSString).deletingPathExtension,
+      progress = EBDocumentReadProgress (title:lastComponentOfFileName.deletingPathExtension,
                                          dataLength:dictionaryArray.count * 2,
                                          semaphore:semaphore)
     }
