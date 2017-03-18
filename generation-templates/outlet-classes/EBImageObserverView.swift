@@ -48,6 +48,24 @@ import Cocoa
   }
 
   //····················································································································
+  //  tooltip binding
+  //····················································································································
+
+  private var mTooltipController : Controller_EBImageView_tooltip?
+
+  func bind_tooltip (_ object:EBReadOnlyProperty_String, file:String, line:Int) {
+    mTooltipController = Controller_EBImageView_tooltip (object:object, outlet:self, file:file, line:line)
+  }
+
+  //····················································································································
+
+  func unbind_tooltip () {
+    mTooltipController?.unregister ()
+    mTooltipController = nil
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -87,6 +105,52 @@ import Cocoa
       mOutlet.enableFromValue (false)
     case .singleSelection (let propertyValue) :
       mOutlet.image = propertyValue
+      mOutlet.enableFromValue (true)
+    }
+    mOutlet.updateEnabledState ()
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller Controller_EBImageView_tooltip
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+@objc(Controller_EBImageView_tooltip) final class Controller_EBImageView_tooltip : EBSimpleController {
+
+  private let mOutlet : EBImageObserverView
+  private let mObject : EBReadOnlyProperty_String
+
+  //····················································································································
+
+  init (object:EBReadOnlyProperty_String, outlet : EBImageObserverView, file : String, line : Int) {
+    mObject = object
+    mOutlet = outlet
+    super.init (objects:[object], outlet:outlet)
+    object.addEBObserver (self)
+  }
+
+  //····················································································································
+  
+  func unregister () {
+    mObject.removeEBObserver (self)
+    mOutlet.removeFromEnabledFromValueDictionary ()
+  }
+
+  //····················································································································
+
+  override func sendUpdateEvent () {
+    switch mObject.prop {
+    case .noSelection :
+      mOutlet.toolTip = nil
+      mOutlet.enableFromValue (false)
+    case .multipleSelection :
+      mOutlet.toolTip = nil
+      mOutlet.enableFromValue (false)
+    case .singleSelection (let propertyValue) :
+      mOutlet.toolTip = propertyValue
       mOutlet.enableFromValue (true)
     }
     mOutlet.updateEnabledState ()

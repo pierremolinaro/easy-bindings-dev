@@ -52,6 +52,7 @@ binding EBGroupButton $selectedIndex : property Int ;
 
 outletClass EBImageObserverView $enabled ;
 binding EBImageObserverView $image : transient NSImage ;
+binding EBImageObserverView $tooltip : transient String ;
 
 
 outletClass EBMenu ;

@@ -9162,6 +9162,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "outletClass EBImageObserverView $enabled ;\n"
     "binding EBImageObserverView $image : transient NSImage ;\n"
+    "binding EBImageObserverView $tooltip : transient String ;\n"
     "\n"
     "\n"
     "outletClass EBMenu ;\n"
