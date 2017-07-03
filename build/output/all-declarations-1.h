@@ -11,6 +11,314 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//                                            @entityListForGeneration list                                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_entityListForGeneration : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_entityListForGeneration (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_entityListForGeneration (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_string & in_mEntityName,
+                                                  const class GALGAS_string & in_mSuperEntityName,
+                                                  const class GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
+                                                  const class GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
+                                                  const class GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
+                                                  const class GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
+                                                  const class GALGAS_stringset & in_mSignatureSet
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_entityListForGeneration extractObject (const GALGAS_object & inObject,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_entityListForGeneration constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_entityListForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
+                                                                                  const class GALGAS_string & inOperand1,
+                                                                                  const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
+                                                                                  const class GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                                                  const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
+                                                                                  const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
+                                                                                  const class GALGAS_stringset & inOperand6
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_entityListForGeneration inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
+                                                      const class GALGAS_string & inOperand1,
+                                                      const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
+                                                      const class GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                      const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
+                                                      const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
+                                                      const class GALGAS_stringset & inOperand6
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_entityListForGeneration add_operation (const GALGAS_entityListForGeneration & inOperand,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
+                                                       class GALGAS_string constinArgument1,
+                                                       class GALGAS_simpleStoredPropertyListForGeneration constinArgument2,
+                                                       class GALGAS_transientDefinitionListForGeneration constinArgument3,
+                                                       class GALGAS_toOneEntityRelationshipListForGeneration constinArgument4,
+                                                       class GALGAS_toManyEntityRelationshipListForGeneration constinArgument5,
+                                                       class GALGAS_stringset constinArgument6,
+                                                       class GALGAS_uint constinArgument7,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
+                                                  class GALGAS_string & outArgument1,
+                                                  class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
+                                                  class GALGAS_transientDefinitionListForGeneration & outArgument3,
+                                                  class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
+                                                  class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                                  class GALGAS_stringset & outArgument6,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
+                                                 class GALGAS_string & outArgument1,
+                                                 class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
+                                                 class GALGAS_transientDefinitionListForGeneration & outArgument3,
+                                                 class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
+                                                 class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                                 class GALGAS_stringset & outArgument6,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
+                                                       class GALGAS_string & outArgument1,
+                                                       class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
+                                                       class GALGAS_transientDefinitionListForGeneration & outArgument3,
+                                                       class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
+                                                       class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                                       class GALGAS_stringset & outArgument6,
+                                                       class GALGAS_uint constinArgument7,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
+                                               class GALGAS_string & outArgument1,
+                                               class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
+                                               class GALGAS_transientDefinitionListForGeneration & outArgument3,
+                                               class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
+                                               class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                               class GALGAS_stringset & outArgument6,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
+                                              class GALGAS_string & outArgument1,
+                                              class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
+                                              class GALGAS_transientDefinitionListForGeneration & outArgument3,
+                                              class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
+                                              class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
+                                              class GALGAS_stringset & outArgument6,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mDecoratedTransientListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                  C_Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSetAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGeneration getter_mSimpleStoredPropertyListForGenerationAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                     C_Compiler * inCompiler
+                                                                                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyEntityRelationshipListForGeneration getter_mToManyEntityRelationshipListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                                C_Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toOneEntityRelationshipListForGeneration getter_mToOneEntityRelationshipListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                              C_Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_entityListForGeneration ;
+ 
+} ; // End of GALGAS_entityListForGeneration class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                                                            *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_entityListForGeneration : public cGenericAbstractEnumerator {
+  public : cEnumerator_entityListForGeneration (const GALGAS_entityListForGeneration & inEnumeratedObject,
+                                                const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_string current_mEntityName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mSuperEntityName (LOCATION_ARGS) const ;
+  public : class GALGAS_simpleStoredPropertyListForGeneration current_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
+  public : class GALGAS_transientDefinitionListForGeneration current_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
+  public : class GALGAS_toOneEntityRelationshipListForGeneration current_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
+  public : class GALGAS_toManyEntityRelationshipListForGeneration current_mToManyEntityRelationshipList (LOCATION_ARGS) const ;
+  public : class GALGAS_stringset current_mSignatureSet (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_entityListForGeneration_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGeneration ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                     @entityListForGeneration_2D_element struct                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_string mProperty_mEntityName ;
+
+  public : GALGAS_string mProperty_mSuperEntityName ;
+
+  public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
+
+  public : GALGAS_transientDefinitionListForGeneration mProperty_mDecoratedTransientListForGeneration ;
+
+  public : GALGAS_toOneEntityRelationshipListForGeneration mProperty_mToOneEntityRelationshipList ;
+
+  public : GALGAS_toManyEntityRelationshipListForGeneration mProperty_mToManyEntityRelationshipList ;
+
+  public : GALGAS_stringset mProperty_mSignatureSet ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_entityListForGeneration_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_entityListForGeneration_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_entityListForGeneration_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_entityListForGeneration_2D_element (const GALGAS_string & in_mEntityName,
+                                                      const GALGAS_string & in_mSuperEntityName,
+                                                      const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
+                                                      const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
+                                                      const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
+                                                      const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
+                                                      const GALGAS_stringset & in_mSignatureSet) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_entityListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_entityListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
+                                                                                   const class GALGAS_string & inOperand1,
+                                                                                   const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
+                                                                                   const class GALGAS_transientDefinitionListForGeneration & inOperand3,
+                                                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
+                                                                                   const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
+                                                                                   const class GALGAS_stringset & inOperand6
+                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_entityListForGeneration_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGeneration getter_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyEntityRelationshipListForGeneration getter_mToManyEntityRelationshipList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toOneEntityRelationshipListForGeneration getter_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_entityListForGeneration_2D_element class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGeneration_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                      @outletDeclarationList_2D_element struct                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -4627,642 +4935,5 @@ class GALGAS_string extensionGetter_outletNameListForController (const class GAL
                                                                  const class GALGAS_string & constinArgument0,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @observablePropertyList_2D_element struct                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_observablePropertyList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_observablePropertyAST mProperty_mObservableProperty ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_observablePropertyList_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_observablePropertyList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_observablePropertyList_2D_element (const GALGAS_observablePropertyAST & in_mObservableProperty) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_observablePropertyList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_observablePropertyList_2D_element constructor_new (const class GALGAS_observablePropertyAST & inOperand0
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_observablePropertyList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST getter_mObservableProperty (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_observablePropertyList_2D_element class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               @transientDependencyListForGeneration_2D_element struct                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_observablePropertyAST mProperty_mDependency ;
-
-  public : GALGAS_string mProperty_mFunctionArgumentName ;
-
-  public : GALGAS_string mProperty_mFunctionArgumentTypeString ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_transientDependencyListForGeneration_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_transientDependencyListForGeneration_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_transientDependencyListForGeneration_2D_element (const GALGAS_observablePropertyAST & in_mDependency,
-                                                                   const GALGAS_string & in_mFunctionArgumentName,
-                                                                   const GALGAS_string & in_mFunctionArgumentTypeString) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_transientDependencyListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_transientDependencyListForGeneration_2D_element constructor_new (const class GALGAS_observablePropertyAST & inOperand0,
-                                                                                                const class GALGAS_string & inOperand1,
-                                                                                                const class GALGAS_string & inOperand2
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_transientDependencyListForGeneration_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST getter_mDependency (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mFunctionArgumentName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mFunctionArgumentTypeString (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_transientDependencyListForGeneration_2D_element class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Extension getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
-                                                                  const class GALGAS_string & constinArgument0,
-                                                                  const class GALGAS_string & constinArgument1,
-                                                                  class C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Extension getter '@observablePropertyAST modelString' (as function)                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string extensionGetter_modelString (const class GALGAS_observablePropertyAST & inObject,
-                                                 const class GALGAS_string & constinArgument0,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Extension getter '@transientDependencyListForGeneration needs_unwSelf' (as function)                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_transientDependencyListForGeneration & inObject,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        Extension getter '@observablePropertyAST needs_unwSelf' (as function)                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_observablePropertyAST & inObject,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Extension method '@simpleStoredPropertyList typeInventory'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void extensionMethod_typeInventory (const class GALGAS_simpleStoredPropertyList inObject,
-                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Extension method '@simpleStoredPropertyList buildObservablePropertyMap'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void extensionMethod_buildObservablePropertyMap (const class GALGAS_simpleStoredPropertyList inObject,
-                                                 const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                                 @typeKindList list                                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_typeKindList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_typeKindList (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_typeKindList (const capCollectionElementArray & inSharedArray) ;
-
-//--------------------------------- Element constructor
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_typeKind & in_mType
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_typeKindList extractObject (const GALGAS_object & inObject,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_typeKindList constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKindList constructor_listWithValue (const class GALGAS_typeKind & inOperand0
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_typeKindList inOperand,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_typeKind & inOperand0
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_typeKindList add_operation (const GALGAS_typeKindList & inOperand,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_typeKind constinArgument0,
-                                                       class GALGAS_uint constinArgument1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_typeKind & outArgument0,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_typeKind & outArgument0,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_typeKind & outArgument0,
-                                                       class GALGAS_uint constinArgument1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_typeKind & outArgument0,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_typeKind & outArgument0,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mTypeAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKindList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKindList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                             C_Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKindList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_typeKindList ;
- 
-} ; // End of GALGAS_typeKindList class
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cEnumerator_typeKindList : public cGenericAbstractEnumerator {
-  public : cEnumerator_typeKindList (const GALGAS_typeKindList & inEnumeratedObject,
-                                     const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_typeKind current_mType (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_typeKindList_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKindList ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                  Extension method '@simpleStoredPropertyList simpleStoredPropertySemanticAnalysis'                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void extensionMethod_simpleStoredPropertySemanticAnalysis (const class GALGAS_simpleStoredPropertyList inObject,
-                                                           const class GALGAS_string constin_inSwiftClassName,
-                                                           const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                           class GALGAS_validationStubRoutineListForGeneration & io_ioValidationStubRoutineListForGeneration,
-                                                           class GALGAS_simpleStoredPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                                           class C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Extension getter '@typeKind swiftTypeName' (as function)                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_string extensionGetter_swiftTypeName (const class GALGAS_typeKind & inObject,
-                                                   class C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    @validationStubRoutineListForGeneration list                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_validationStubRoutineListForGeneration : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_validationStubRoutineListForGeneration (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_validationStubRoutineListForGeneration (const capCollectionElementArray & inSharedArray) ;
-
-//--------------------------------- Element constructor
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_string & in_mObjectTypeName,
-                                                  const class GALGAS_string & in_mModelName,
-                                                  const class GALGAS_string & in_mModelTypeName
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_validationStubRoutineListForGeneration extractObject (const GALGAS_object & inObject,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_validationStubRoutineListForGeneration constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static class GALGAS_validationStubRoutineListForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
-                                                                                                 const class GALGAS_string & inOperand1,
-                                                                                                 const class GALGAS_string & inOperand2
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_validationStubRoutineListForGeneration inOperand,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
-                                                      const class GALGAS_string & inOperand1,
-                                                      const class GALGAS_string & inOperand2
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_validationStubRoutineListForGeneration add_operation (const GALGAS_validationStubRoutineListForGeneration & inOperand,
-                                                                                         C_Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
-                                                       class GALGAS_string constinArgument1,
-                                                       class GALGAS_string constinArgument2,
-                                                       class GALGAS_uint constinArgument3,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
-                                                  class GALGAS_string & outArgument1,
-                                                  class GALGAS_string & outArgument2,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
-                                                 class GALGAS_string & outArgument1,
-                                                 class GALGAS_string & outArgument2,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
-                                                       class GALGAS_string & outArgument1,
-                                                       class GALGAS_string & outArgument2,
-                                                       class GALGAS_uint constinArgument3,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
-                                               class GALGAS_string & outArgument1,
-                                               class GALGAS_string & outArgument2,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
-                                              class GALGAS_string & outArgument1,
-                                              class GALGAS_string & outArgument2,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObjectTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                         C_Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                                         C_Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_validationStubRoutineListForGeneration ;
- 
-} ; // End of GALGAS_validationStubRoutineListForGeneration class
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cEnumerator_validationStubRoutineListForGeneration : public cGenericAbstractEnumerator {
-  public : cEnumerator_validationStubRoutineListForGeneration (const GALGAS_validationStubRoutineListForGeneration & inEnumeratedObject,
-                                                               const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_string current_mObjectTypeName (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mModelName (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mModelTypeName (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_validationStubRoutineListForGeneration_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_validationStubRoutineListForGeneration ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Abstract extension method '@abstractDefaultValue analyzeDefaultValueType'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
-                                                                                       const class GALGAS_typeKindList constinArgument0,
-                                                                                       class GALGAS_string & outArgument1,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_analyzeDefaultValueType (const int32_t inClassIndex,
-                                                   extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
-                                                  const GALGAS_typeKindList constin_inAttributeActualTypeList,
-                                                  GALGAS_string & out_outSwiftDefaultValueAsString,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Extension method '@storedArrayPropertyList typeInventory'                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void extensionMethod_typeInventory (const class GALGAS_storedArrayPropertyList inObject,
-                                    class GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
-                                    class C_Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Extension method '@storedArrayPropertyList buildObservablePropertyMap'                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void extensionMethod_buildObservablePropertyMap (const class GALGAS_storedArrayPropertyList inObject,
-                                                 const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                 class GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Extension method '@storedArrayPropertyList storedArrayPropertySemanticAnalysis'                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void extensionMethod_storedArrayPropertySemanticAnalysis (const class GALGAS_storedArrayPropertyList inObject,
-                                                          const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
-                                                          class GALGAS_storedArrayPropertyListForGeneration & out_outSimpleStoredPropertyListForGeneration,
-                                                          class C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              @validationStubRoutineListForGeneration_2D_element struct                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_validationStubRoutineListForGeneration_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_string mProperty_mObjectTypeName ;
-
-  public : GALGAS_string mProperty_mModelName ;
-
-  public : GALGAS_string mProperty_mModelTypeName ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_validationStubRoutineListForGeneration_2D_element constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_validationStubRoutineListForGeneration_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_validationStubRoutineListForGeneration_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_validationStubRoutineListForGeneration_2D_element (const GALGAS_string & in_mObjectTypeName,
-                                                                     const GALGAS_string & in_mModelName,
-                                                                     const GALGAS_string & in_mModelTypeName) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_validationStubRoutineListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_validationStubRoutineListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                                                  const class GALGAS_string & inOperand1,
-                                                                                                  const class GALGAS_string & inOperand2
-                                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_validationStubRoutineListForGeneration_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelTypeName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObjectTypeName (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_validationStubRoutineListForGeneration_2D_element class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_validationStubRoutineListForGeneration_2D_element ;
 
 #endif
