@@ -34,8 +34,8 @@
 
 class C_Compiler ;
 class GALGAS_bool ;
-class GALGAS_stringset ;
 class GALGAS_string ;
+class GALGAS_stringset ;
 class GALGAS_location ;
 class GALGAS_uint ;
 class GALGAS_application ;
@@ -152,134 +152,6 @@ class GALGAS_bool : public AC_GALGAS_root {
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bool ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                                   @stringset type                                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_stringset : public AC_GALGAS_root {
-//--------------------------------- Private data members
-  private : class cSharedStringsetRoot * mSharedRoot ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return mSharedRoot != NULL ; }
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_stringset (void) ;
-
-//--------------------------------- Destructor (virtual in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_stringset (void) ;
-
-//--------------------------------- In debug mode : check method
-  protected : void checkStringset (LOCATION_ARGS) const ;
-
-//--------------------------------- Insulate
-  protected : void insulate (LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_stringset extractObject (const GALGAS_object & inObject,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_stringset constructor_emptySet (LOCATION_ARGS) ;
-
-  public : static class GALGAS_stringset constructor_setWithLStringList (const class GALGAS_lstringlist & inOperand0
-                                                                         COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_stringset constructor_setWithString (const class GALGAS_string & inOperand0
-                                                                    COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_stringset constructor_setWithStringList (const class GALGAS_stringlist & inOperand0
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Handle copy
-  public : GALGAS_stringset (const GALGAS_stringset & inSource) ;
-  public : GALGAS_stringset & operator = (const GALGAS_stringset & inSource) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_stringset inOperand,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- & operator
-  public : VIRTUAL_IN_DEBUG GALGAS_stringset operator_and (const GALGAS_stringset & inOperand
-                                                           COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- | operator
-  public : VIRTUAL_IN_DEBUG GALGAS_stringset operator_or (const GALGAS_stringset & inOperand
-                                                          COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- - operator
-  public : VIRTUAL_IN_DEBUG GALGAS_stringset substract_operation (const GALGAS_stringset & inOperand,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_stringset & inOperand) const ;
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_removeKey (class GALGAS_string inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_anyString (C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_count (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_hasKey (const class GALGAS_string & constinOperand0
-                                                             COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_stringList (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Enumeration helper methods
-  protected : VIRTUAL_IN_DEBUG void populateEnumerationArray (capCollectionElementArray & inEnumerationArray) const ;
-
-//--------------------------------- Friend
-
-  friend class cEnumerator_stringset ;
- 
-} ; // End of GALGAS_stringset class
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cEnumerator_stringset : public cGenericAbstractEnumerator {
-  public : cEnumerator_stringset (const GALGAS_stringset & inEnumeratedObject,
-                                  const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_string current_key (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_string current (LOCATION_ARGS) const ;
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringset ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -688,6 +560,134 @@ class GALGAS_string : public AC_GALGAS_root
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_string ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                                   @stringset type                                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_stringset : public AC_GALGAS_root {
+//--------------------------------- Private data members
+  private : class cSharedStringsetRoot * mSharedRoot ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return mSharedRoot != NULL ; }
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_stringset (void) ;
+
+//--------------------------------- Destructor (virtual in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_stringset (void) ;
+
+//--------------------------------- In debug mode : check method
+  protected : void checkStringset (LOCATION_ARGS) const ;
+
+//--------------------------------- Insulate
+  protected : void insulate (LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_stringset extractObject (const GALGAS_object & inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_stringset constructor_emptySet (LOCATION_ARGS) ;
+
+  public : static class GALGAS_stringset constructor_setWithLStringList (const class GALGAS_lstringlist & inOperand0
+                                                                         COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_stringset constructor_setWithString (const class GALGAS_string & inOperand0
+                                                                    COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_stringset constructor_setWithStringList (const class GALGAS_stringlist & inOperand0
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Handle copy
+  public : GALGAS_stringset (const GALGAS_stringset & inSource) ;
+  public : GALGAS_stringset & operator = (const GALGAS_stringset & inSource) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_stringset inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- & operator
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset operator_and (const GALGAS_stringset & inOperand
+                                                           COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- | operator
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset operator_or (const GALGAS_stringset & inOperand
+                                                          COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- - operator
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset substract_operation (const GALGAS_stringset & inOperand,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_stringset & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_removeKey (class GALGAS_string inArgument0
+                                                   COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_anyString (C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_count (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_hasKey (const class GALGAS_string & constinOperand0
+                                                             COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_stringList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Enumeration helper methods
+  protected : VIRTUAL_IN_DEBUG void populateEnumerationArray (capCollectionElementArray & inEnumerationArray) const ;
+
+//--------------------------------- Friend
+
+  friend class cEnumerator_stringset ;
+ 
+} ; // End of GALGAS_stringset class
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Enumerator declaration                                                                                            *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cEnumerator_stringset : public cGenericAbstractEnumerator {
+  public : cEnumerator_stringset (const GALGAS_stringset & inEnumeratedObject,
+                                  const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_string current_key (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_string current (LOCATION_ARGS) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringset ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
