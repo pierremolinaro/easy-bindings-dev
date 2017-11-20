@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__36__ENTITIES_DEFINED
-#define all_2D_declarations_2D__36__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -432,4 +431,3 @@ void routine_generateXcodeProject (const class GALGAS_string constinArgument0,
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
-#endif

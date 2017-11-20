@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__34__ENTITIES_DEFINED
-#define all_2D_declarations_2D__34__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -912,4 +911,3 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
                                                                                  const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
                                                                                  COMMA_LOCATION_ARGS) ;
 
-#endif

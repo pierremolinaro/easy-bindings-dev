@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__37__ENTITIES_DEFINED
-#define all_2D_declarations_2D__37__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -149,4 +148,3 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (class C_Compiler * inCom
                                                         const class GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
                                                         COMMA_LOCATION_ARGS) ;
 
-#endif

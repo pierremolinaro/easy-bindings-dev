@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__30__ENTITIES_DEFINED
-#define all_2D_declarations_2D__30__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -12837,4 +12836,3 @@ class GALGAS_entityObservablePropertyMap_2D_element : public AC_GALGAS_root {
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ;
 
-#endif
