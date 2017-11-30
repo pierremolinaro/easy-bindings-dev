@@ -168,8 +168,7 @@ AC_OutputStream & operator << (AC_OutputStream & inStream,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_string : public AC_GALGAS_root
- {
+class GALGAS_string : public AC_GALGAS_root {
 //--------------------------------- Private data members
   private : bool mIsValid ;
   private : C_String mString ;
@@ -827,6 +826,8 @@ class GALGAS_uint : public AC_GALGAS_root {
 
   public : static class GALGAS_uint constructor_max (LOCATION_ARGS) ;
 
+  public : static class GALGAS_uint constructor_random (LOCATION_ARGS) ;
+
   public : static class GALGAS_uint constructor_valueWithMask (const class GALGAS_uint & inOperand0,
                                                                const class GALGAS_uint & inOperand1,
                                                                class C_Compiler * inCompiler
@@ -935,6 +936,9 @@ class GALGAS_uint : public AC_GALGAS_root {
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
+  public : static void class_method_setRandomSeed (class GALGAS_uint constinArgument0
+                                                   COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_alphaString (LOCATION_ARGS) const ;
