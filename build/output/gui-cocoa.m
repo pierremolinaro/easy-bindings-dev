@@ -5,7 +5,8 @@
 
 #import "OC_Token.h"
 #import "F_CocoaWrapperForGalgas.h"
-#import "lexique-easy-42-indings-5F-lexique-cocoa.m"
+#import "OC_GGS_CommandLineOption.h"
+#import "lexique-easy-42-indings-5F-lexique-cocoa.h"
 
 #ifdef USER_DEFAULT_COLORS_DEFINED
   #import "user_default_colors.h"
@@ -36,7 +37,7 @@ NSArray * nibsAndClasses (void) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#import "option-easy-42-indings-5F-options-cocoa.m"
+#import "option-easy-42-indings-5F-options-cocoa.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -163,6 +164,12 @@ NSArray * tokenizers (void) {
     [OC_Tokenizer_easyBindings_lexique new],
     nil
   ] ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+NSString * buildRunOption (void) {
+  return @"" ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
