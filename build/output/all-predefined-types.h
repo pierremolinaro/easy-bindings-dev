@@ -961,6 +961,11 @@ class GALGAS_uint : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexString (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexStringSeparatedBy (const class GALGAS_char & constinOperand0,
+                                                                             const class GALGAS_uint & constinOperand1,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isInRange (const class GALGAS_range & constinOperand0
                                                                 COMMA_LOCATION_ARGS) const ;
 
@@ -1274,6 +1279,11 @@ class GALGAS_bigint : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_fitsInUInt_36__34_ (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexString (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexStringSeparatedBy (const class GALGAS_char & constinOperand0,
+                                                                             const class GALGAS_uint & constinOperand1,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isZero (LOCATION_ARGS) const ;
 
@@ -2481,6 +2491,11 @@ class GALGAS_sint : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexString (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexStringSeparatedBy (const class GALGAS_char & constinOperand0,
+                                                                             const class GALGAS_uint & constinOperand1,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_sint_36__34_ getter_sint_36__34_ (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_string (LOCATION_ARGS) const ;
@@ -2671,6 +2686,11 @@ class GALGAS_sint_36__34_ : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_double getter_double (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexString (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexStringSeparatedBy (const class GALGAS_char & constinOperand0,
+                                                                             const class GALGAS_uint & constinOperand1,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_sint getter_sint (C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const ;
@@ -3005,6 +3025,11 @@ class GALGAS_uint_36__34_ : public AC_GALGAS_root
   public : VIRTUAL_IN_DEBUG class GALGAS_double getter_double (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexString (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_hexStringSeparatedBy (const class GALGAS_char & constinOperand0,
+                                                                             const class GALGAS_uint & constinOperand1,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_sint getter_sint (C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const ;

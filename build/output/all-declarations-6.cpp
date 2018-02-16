@@ -3213,6 +3213,8 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
   case GALGAS_arrayControllerModelKind::kNotBuilt :
     break ;
   case GALGAS_arrayControllerModelKind::kEnum_transientModel :
+    {
+    }
     break ;
   case GALGAS_arrayControllerModelKind::kEnum_storedArrayModel :
     {
