@@ -1,18 +1,18 @@
 #pragma once
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 #include "all-predefined-types.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 #include "all-declarations-4.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                             Routine 'generateEntities'                                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void routine_generateEntities (const class GALGAS_entityListForGeneration constinArgument0,
                                const class GALGAS_string constinArgument1,
@@ -20,20 +20,20 @@ void routine_generateEntities (const class GALGAS_entityListForGeneration consti
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                      Filewrapper 'documentGenerationTemplate'                                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_documentGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_documentGenerationTemplate ;
@@ -42,11 +42,11 @@ extern const cDirectoryWrapper gWrapperDirectory_3_documentGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_documentGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_5_documentGenerationTemplate ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                      Filewrapper template 'documentGenerationTemplate documentImplementation'                       *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
                                                                                      const class GALGAS_string & in_DOCUMENT_5F_NAME,
@@ -63,11 +63,11 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
                                                                                      const class GALGAS_customObjectControllerForGeneration & in_CUSTOM_5F_OBJECT_5F_CONTROLLER_5F_LIST
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                             Routine 'generateDocuments'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void routine_generateDocuments (const class GALGAS_documentListForGeneration constinArgument0,
                                 const class GALGAS_string constinArgument1,
@@ -75,11 +75,11 @@ void routine_generateDocuments (const class GALGAS_documentListForGeneration con
                                 class C_Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                             Filewrapper 'swift_sources'                                             *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const char * gWrapperFileContent_0_swift_5F_sources ;
 extern const char * gWrapperFileContent_1_swift_5F_sources ;
@@ -92,10 +92,10 @@ extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cRegularFileWrapper gWrapperFile_0_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_1_swift_5F_sources ;
@@ -108,24 +108,24 @@ extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_swift_5F_sources ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                        Filewrapper 'prefsGenerationTemplate'                                        *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_prefsGenerationTemplate ;
@@ -134,11 +134,11 @@ extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                             Filewrapper template 'prefsGenerationTemplate preferences'                              *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_Compiler * inCompiler,
                                                                        const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
@@ -154,11 +154,11 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
                                                                        const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST
                                                                        COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                            Routine 'generatePreferences'                                            *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void routine_generatePreferences (const class GALGAS_preferencesForGeneration constinArgument0,
                                   const class GALGAS_string constinArgument1,
@@ -166,11 +166,11 @@ void routine_generatePreferences (const class GALGAS_preferencesForGeneration co
                                   class C_Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                         Filewrapper 'outletClassGeneration'                                         *
 //                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const char * gWrapperFileContent_0_outletClassGeneration ;
 extern const char * gWrapperFileContent_1_outletClassGeneration ;
@@ -200,10 +200,10 @@ extern const char * gWrapperFileContent_24_outletClassGeneration ;
 extern const char * gWrapperFileContent_25_outletClassGeneration ;
 extern const char * gWrapperFileContent_26_outletClassGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cRegularFileWrapper gWrapperFile_0_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_1_outletClassGeneration ;
@@ -233,7 +233,7 @@ extern const cRegularFileWrapper gWrapperFile_24_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_25_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_26_outletClassGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_outletClassGeneration ;
 
