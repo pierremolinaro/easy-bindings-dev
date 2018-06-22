@@ -171,7 +171,7 @@ if not [mType isEntityType] then
 %        return .noSelection\n%
 %      }\n%
 %    }\n%
-if [mKind isStored] then
+if not [mKind isTransient] then
 %    %!lkey.string%.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%

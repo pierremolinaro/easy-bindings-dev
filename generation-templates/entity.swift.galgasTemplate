@@ -592,7 +592,7 @@ end
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   if mNeedsValidation then
-%    %!mStoredPropertyName%.setValidationFunction (self.validate_%!mStoredPropertyName%)\n%
+%    self.%!mStoredPropertyName%.setValidationFunction (self.validate_%!mStoredPropertyName%)\n%
   end
 end
 %  //--- Install compute functions for transients
@@ -622,7 +622,7 @@ end
 %  //--- Install undoers for properties
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    %!mStoredPropertyName%.undoManager = undoManager ()\n%
+  %    self.%!mStoredPropertyName%.undoManager = undoManager ()\n%
 end
 %  //--- Install owner for relationships
 %
@@ -660,11 +660,11 @@ end
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%!mStoredPropertyName%",\n%
-  %      idx:%!mStoredPropertyName%.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%!mStoredPropertyName%.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&%!mStoredPropertyName%.mObserverExplorer,\n%
-  %      valueExplorer:&%!mStoredPropertyName%.mValueExplorer\n%
+  %      observerExplorer:&self.%!mStoredPropertyName%.mObserverExplorer,\n%
+  %      valueExplorer:&self.%!mStoredPropertyName%.mValueExplorer\n%
   %    )\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
@@ -692,8 +692,8 @@ end%  }
 
   override func clearObjectExplorer () {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.mObserverExplorer = nil\n%
-%    %!mStoredPropertyName%.mValueExplorer = nil\n%
+%    self.%!mStoredPropertyName%.mObserverExplorer = nil\n%
+%    self.%!mStoredPropertyName%.mValueExplorer = nil\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
 %    %!mToOneRelationshipName%.mObserverExplorer = nil\n%
@@ -713,7 +713,7 @@ end
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
+%    self.%!mStoredPropertyName%.storeIn (dictionary: ioDictionary, forKey: "%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    store (managedObjectArray: %!mToManyRelationshipName%.propval as NSArray, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
@@ -733,7 +733,7 @@ end
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.readFrom (dictionary: inDictionary, forKey:"%!mStoredPropertyName%")\n%
+%    self.%!mStoredPropertyName%.readFrom (dictionary: inDictionary, forKey:"%!mStoredPropertyName%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
 %    %!mToManyRelationshipName%.setProp (readEntityArrayFromDictionary (
