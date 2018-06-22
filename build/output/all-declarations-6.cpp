@@ -4083,7 +4083,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "        return .noSelection\n"
           "      }\n"
           "    }\n" ;
-        const enumGalgasBool test_4 = enumerator_6429.current_mKind (HERE).getter_isStored (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 174)).boolEnum () ;
+        const enumGalgasBool test_4 = enumerator_6429.current_mKind (HERE).getter_isTransient (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 174)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 174)).boolEnum () ;
         if (kBoolTrue == test_4) {
           result << "    " ;
           result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
@@ -4144,36 +4144,36 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  func unbind_selection () {\n" ;
-  GALGAS_uint index_9414_ (0) ;
+  GALGAS_uint index_9421_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_9414 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_9414.hasCurrentObject ()) {
-      const enumGalgasBool test_5 = enumerator_9414.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 216)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 216)).boolEnum () ;
+    cEnumerator_observablePropertyMap enumerator_9421 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_9421.hasCurrentObject ()) {
+      const enumGalgasBool test_5 = enumerator_9421.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 216)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 216)).boolEnum () ;
       if (kBoolTrue == test_5) {
         result << "  //--- " ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "\n"
           "    " ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ".readModelFunction = nil \n"
           "    " ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ".writeModelFunction = nil \n"
           "    " ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ".validateAndWriteModelFunction = nil \n"
           "    mModel\?.removeEBObserverOf_" ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (" ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ")\n"
           "//    mModel\?.removeEBObserver (" ;
-        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9421.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ")\n" ;
       }else if (kBoolFalse == test_5) {
       }
-      index_9414_.increment () ;
-      enumerator_9414.gotoNextObject () ;
+      index_9421_.increment () ;
+      enumerator_9421.gotoNextObject () ;
     }
   }
   result << "    mModel = nil    \n"
