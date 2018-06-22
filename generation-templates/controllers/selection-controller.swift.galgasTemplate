@@ -171,6 +171,7 @@ if not [mType isEntityType] then
 %        return .noSelection\n%
 %      }\n%
 %    }\n%
+if [mKind isStored] then
 %    %!lkey.string%.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
@@ -201,6 +202,7 @@ if not [mType isEntityType] then
 %        return false\n%
 %      }\n%
 %    }\n%
+end
 %  }\n\n%
 end
 end%

@@ -87,10 +87,10 @@ final class Controller_EBStepper_value : EBSimpleController {
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
-      mOutlet.stringValue = "No selection"
+      mOutlet.stringValue = "—"
       mOutlet.enableFromValue (false)
     case .multipleSelection :
-      mOutlet.stringValue = "Multiple selection"
+      mOutlet.stringValue = "—"
       mOutlet.enableFromValue (false)
     case .singleSelection (let propertyValue) :
       mOutlet.doubleValue = Double (propertyValue)
