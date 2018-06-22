@@ -4082,50 +4082,54 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
           "      }else{\n"
           "        return .noSelection\n"
           "      }\n"
-          "    }\n"
-          "    " ;
-        result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
-        result << ".writeModelFunction = { (inValue : " ;
-        result << extensionGetter_swiftTypeName (enumerator_6429.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 174)).stringValue () ;
-        result << ") in\n"
-          "      if let model = self.mModel {\n"
-          "        switch model.prop {\n"
-          "        case .noSelection, .multipleSelection :\n"
-          "          break\n"
-          "        case .singleSelection (let v) :\n"
-          "          for object in v {\n"
-          "            object." ;
-        result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
-        result << ".setProp (inValue)\n"
-          "          }\n"
-          "        }\n"
-          "      }\n"
-          "    }\n"
-          "    " ;
-        result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
-        result << ".validateAndWriteModelFunction = { (candidateValue : " ;
-        result << extensionGetter_swiftTypeName (enumerator_6429.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 186)).stringValue () ;
-        result << ", windowForSheet : NSWindow\?) in\n"
-          "      if let model = self.mModel {\n"
-          "        switch model.prop {\n"
-          "        case .noSelection, .multipleSelection :\n"
-          "          return false\n"
-          "        case .singleSelection (let v) :\n"
-          "          for object in v {\n"
-          "            let result = object." ;
-        result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
-        result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
-          "            if !result {\n"
-          "              return false\n"
-          "            }\n"
-          "          }\n"
-          "          return true\n"
-          "        }\n"
-          "      }else{\n"
-          "        return false\n"
-          "      }\n"
-          "    }\n"
-          "  }\n"
+          "    }\n" ;
+        const enumGalgasBool test_4 = enumerator_6429.current_mKind (HERE).getter_isStored (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 174)).boolEnum () ;
+        if (kBoolTrue == test_4) {
+          result << "    " ;
+          result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << ".writeModelFunction = { (inValue : " ;
+          result << extensionGetter_swiftTypeName (enumerator_6429.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 175)).stringValue () ;
+          result << ") in\n"
+            "      if let model = self.mModel {\n"
+            "        switch model.prop {\n"
+            "        case .noSelection, .multipleSelection :\n"
+            "          break\n"
+            "        case .singleSelection (let v) :\n"
+            "          for object in v {\n"
+            "            object." ;
+          result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << ".setProp (inValue)\n"
+            "          }\n"
+            "        }\n"
+            "      }\n"
+            "    }\n"
+            "    " ;
+          result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << ".validateAndWriteModelFunction = { (candidateValue : " ;
+          result << extensionGetter_swiftTypeName (enumerator_6429.current_mType (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.swift.galgasTemplate", 187)).stringValue () ;
+          result << ", windowForSheet : NSWindow\?) in\n"
+            "      if let model = self.mModel {\n"
+            "        switch model.prop {\n"
+            "        case .noSelection, .multipleSelection :\n"
+            "          return false\n"
+            "        case .singleSelection (let v) :\n"
+            "          for object in v {\n"
+            "            let result = object." ;
+          result << enumerator_6429.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << ".validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
+            "            if !result {\n"
+            "              return false\n"
+            "            }\n"
+            "          }\n"
+            "          return true\n"
+            "        }\n"
+            "      }else{\n"
+            "        return false\n"
+            "      }\n"
+            "    }\n" ;
+        }else if (kBoolFalse == test_4) {
+        }
+        result << "  }\n"
           "\n" ;
       }else if (kBoolFalse == test_3) {
       }
@@ -4140,36 +4144,36 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  func unbind_selection () {\n" ;
-  GALGAS_uint index_9385_ (0) ;
+  GALGAS_uint index_9414_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_observablePropertyMap enumerator_9385 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_9385.hasCurrentObject ()) {
-      const enumGalgasBool test_4 = enumerator_9385.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 214)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 214)).boolEnum () ;
-      if (kBoolTrue == test_4) {
+    cEnumerator_observablePropertyMap enumerator_9414 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_9414.hasCurrentObject ()) {
+      const enumGalgasBool test_5 = enumerator_9414.current_mType (HERE).getter_isEntityType (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 216)).operator_not (SOURCE_FILE ("selection-controller.swift.galgasTemplate", 216)).boolEnum () ;
+      if (kBoolTrue == test_5) {
         result << "  //--- " ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "\n"
           "    " ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ".readModelFunction = nil \n"
           "    " ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ".writeModelFunction = nil \n"
           "    " ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ".validateAndWriteModelFunction = nil \n"
           "    mModel\?.removeEBObserverOf_" ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (" ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ")\n"
           "//    mModel\?.removeEBObserver (" ;
-        result << enumerator_9385.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_9414.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ")\n" ;
-      }else if (kBoolFalse == test_4) {
+      }else if (kBoolFalse == test_5) {
       }
-      index_9385_.increment () ;
-      enumerator_9385.gotoNextObject () ;
+      index_9414_.increment () ;
+      enumerator_9414.gotoNextObject () ;
     }
   }
   result << "    mModel = nil    \n"

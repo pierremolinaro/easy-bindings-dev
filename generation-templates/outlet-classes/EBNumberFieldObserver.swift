@@ -91,13 +91,13 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
+      mOutlet.stringValue = "—"
     case .singleSelection (let v):
       mOutlet.enableFromValue (true)
       mOutlet.integerValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
+      mOutlet.stringValue = "—"
     }
     mOutlet.updateEnabledState()
   }

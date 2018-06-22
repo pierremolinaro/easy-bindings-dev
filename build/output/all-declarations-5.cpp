@@ -1943,13 +1943,13 @@ const char * gWrapperFileContent_2_outletClassGeneration = "//\xE2""\x80""\x94""
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.color = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState()\n"
   "  }\n"
@@ -1969,7 +1969,7 @@ const cRegularFileWrapper gWrapperFile_2_outletClassGeneration (
   "EBColorWell.swift",
   "swift",
   true, // Text file
-  4255, // Text length
+  4227, // Text length
   gWrapperFileContent_2_outletClassGeneration
 ) ;
 
@@ -2057,13 +2057,13 @@ const char * gWrapperFileContent_3_outletClassGeneration = "//\xE2""\x80""\x94""
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.dateValue = v as Date\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState()\n"
   "  }\n"
@@ -2082,7 +2082,7 @@ const cRegularFileWrapper gWrapperFile_3_outletClassGeneration (
   "EBDatePicker.swift",
   "swift",
   true, // Text file
-  4019, // Text length
+  3991, // Text length
   gWrapperFileContent_3_outletClassGeneration
 ) ;
 
@@ -2240,13 +2240,13 @@ const char * gWrapperFileContent_4_outletClassGeneration = "//\xE2""\x80""\x94""
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.doubleValue = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState ()\n"
   "  }\n"
@@ -2266,7 +2266,7 @@ const cRegularFileWrapper gWrapperFile_4_outletClassGeneration (
   "EBDoubleField.swift",
   "swift",
   true, // Text file
-  6764, // Text length
+  6736, // Text length
   gWrapperFileContent_4_outletClassGeneration
 ) ;
 
@@ -2375,13 +2375,13 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//\xE2""\x80""\x94""
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.doubleValue = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState ()\n"
   "  }\n"
@@ -2395,7 +2395,7 @@ const cRegularFileWrapper gWrapperFile_5_outletClassGeneration (
   "EBDoubleObserverField.swift",
   "swift",
   true, // Text file
-  4597, // Text length
+  4569, // Text length
   gWrapperFileContent_5_outletClassGeneration
 ) ;
 
@@ -3099,13 +3099,13 @@ const char * gWrapperFileContent_9_outletClassGeneration = "//\xE2""\x80""\x94""
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.integerValue = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState ()\n"
   "  }\n"
@@ -3153,7 +3153,7 @@ const cRegularFileWrapper gWrapperFile_9_outletClassGeneration (
   "EBIntField.swift",
   "swift",
   true, // Text file
-  8218, // Text length
+  8190, // Text length
   gWrapperFileContent_9_outletClassGeneration
 ) ;
 
@@ -3198,7 +3198,7 @@ const char * gWrapperFileContent_10_outletClassGeneration = "//\xE2""\x80""\x94"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
-  "  //  $valueObserver binding                                                                                            *\n"
+  "  //  $valueObserver binding                                                                                           *\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
   "\n"
   "  private var mValueController : Controller_EBIntObserverField_readOnlyValue\?\n"
@@ -3266,13 +3266,13 @@ const char * gWrapperFileContent_10_outletClassGeneration = "//\xE2""\x80""\x94"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v) :\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.integerValue = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState()\n"
   "  }\n"
@@ -3315,7 +3315,7 @@ const cRegularFileWrapper gWrapperFile_10_outletClassGeneration (
   "EBIntObserverField.swift",
   "swift",
   true, // Text file
-  6303, // Text length
+  6274, // Text length
   gWrapperFileContent_10_outletClassGeneration
 ) ;
 
@@ -3584,13 +3584,13 @@ const char * gWrapperFileContent_14_outletClassGeneration = "//\xE2""\x80""\x94"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v):\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.integerValue = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState()\n"
   "  }\n"
@@ -3604,7 +3604,7 @@ const cRegularFileWrapper gWrapperFile_14_outletClassGeneration (
   "EBNumberFieldObserver.swift",
   "swift",
   true, // Text file
-  4621, // Text length
+  4593, // Text length
   gWrapperFileContent_14_outletClassGeneration
 ) ;
 
@@ -4068,10 +4068,10 @@ const char * gWrapperFileContent_18_outletClassGeneration = "//\xE2""\x80""\x94"
   "  override func sendUpdateEvent () {\n"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
-  "      mOutlet.stringValue = \"No selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .multipleSelection :\n"
-  "      mOutlet.stringValue = \"Multiple selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .singleSelection (let propertyValue) :\n"
   "      mOutlet.doubleValue = propertyValue\n"
@@ -4121,10 +4121,10 @@ const char * gWrapperFileContent_18_outletClassGeneration = "//\xE2""\x80""\x94"
   "  override func sendUpdateEvent () {\n"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
-  "      mOutlet.stringValue = \"No selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .multipleSelection :\n"
-  "      mOutlet.stringValue = \"Multiple selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .singleSelection (let propertyValue) :\n"
   "      mOutlet.doubleValue = Double (propertyValue)\n"
@@ -4149,7 +4149,7 @@ const cRegularFileWrapper gWrapperFile_18_outletClassGeneration (
   "EBSlider.swift",
   "swift",
   true, // Text file
-  7263, // Text length
+  7207, // Text length
   gWrapperFileContent_18_outletClassGeneration
 ) ;
 
@@ -4244,10 +4244,10 @@ const char * gWrapperFileContent_19_outletClassGeneration = "//\xE2""\x80""\x94"
   "  override func sendUpdateEvent () {\n"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
-  "      mOutlet.stringValue = \"No selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .multipleSelection :\n"
-  "      mOutlet.stringValue = \"Multiple selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .singleSelection (let propertyValue) :\n"
   "      mOutlet.doubleValue = Double (propertyValue)\n"
@@ -4272,7 +4272,7 @@ const cRegularFileWrapper gWrapperFile_19_outletClassGeneration (
   "EBStepper.swift",
   "swift",
   true, // Text file
-  4482, // Text length
+  4454, // Text length
   gWrapperFileContent_19_outletClassGeneration
 ) ;
 
@@ -4679,10 +4679,10 @@ const char * gWrapperFileContent_22_outletClassGeneration = "//\xE2""\x80""\x94"
   "  override func sendUpdateEvent () {\n"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
-  "      mOutlet.stringValue = \"No selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .multipleSelection :\n"
-  "      mOutlet.stringValue = \"Multiple selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      mOutlet.enableFromValue (false)\n"
   "    case .singleSelection (let propertyValue) :\n"
   "      mOutlet.stringValue = propertyValue\n"
@@ -4733,7 +4733,7 @@ const cRegularFileWrapper gWrapperFile_22_outletClassGeneration (
   "EBTextField.swift",
   "swift",
   true, // Text file
-  6273, // Text length
+  6245, // Text length
   gWrapperFileContent_22_outletClassGeneration
 ) ;
 
@@ -4834,13 +4834,13 @@ const char * gWrapperFileContent_23_outletClassGeneration = "//\xE2""\x80""\x94"
   "    switch mObject.prop {\n"
   "    case .noSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"No Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    case .singleSelection (let v):\n"
   "      mOutlet.enableFromValue (true)\n"
   "      mOutlet.stringValue = v\n"
   "    case .multipleSelection :\n"
   "      mOutlet.enableFromValue (false)\n"
-  "      mOutlet.stringValue = \"Multiple Selection\"\n"
+  "      mOutlet.stringValue = \"\xE2""\x80""\x94""\"\n"
   "    }\n"
   "    mOutlet.updateEnabledState ()\n"
   "  }\n"
@@ -4883,7 +4883,7 @@ const cRegularFileWrapper gWrapperFile_23_outletClassGeneration (
   "EBTextObserverField.swift",
   "swift",
   true, // Text file
-  5701, // Text length
+  5673, // Text length
   gWrapperFileContent_23_outletClassGeneration
 ) ;
 
