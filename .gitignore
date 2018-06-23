@@ -11,6 +11,8 @@ build/**
 **/build/**
 *.o
 *.dep
+makefile-macosx/eb
+makefile-macosx/eb-debug
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
