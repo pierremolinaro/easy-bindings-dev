@@ -80,13 +80,13 @@ final class Controller_EBDatePicker_date : EBSimpleController {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
+      mOutlet.stringValue = "—"
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
       mOutlet.dateValue = v as Date
     case .multipleSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
+      mOutlet.stringValue = "—"
     }
     mOutlet.updateEnabledState()
   }

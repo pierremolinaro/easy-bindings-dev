@@ -65,9 +65,9 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
     if let valueExplorer = mValueExplorer, let unwProp = possibleValue {
       switch unwProp {
       case .noSelection :
-        valueExplorer.stringValue = "No selection"
+        valueExplorer.stringValue = "—"
       case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
+        valueExplorer.stringValue = "—"
       case .singleSelection (let value) :
         valueExplorer.stringValue = "\(value)"
       }
@@ -640,9 +640,9 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
     if let valueExplorer = mValueExplorer, let unwProp = possibleValue {
       switch unwProp {
       case .noSelection :
-        valueExplorer.stringValue = "No selection"
+        valueExplorer.stringValue = "—"
       case .multipleSelection :
-        valueExplorer.stringValue = "Multiple selection"
+        valueExplorer.stringValue = "—"
       case .singleSelection (let value) :
         valueExplorer.stringValue = "\(value)"
       }

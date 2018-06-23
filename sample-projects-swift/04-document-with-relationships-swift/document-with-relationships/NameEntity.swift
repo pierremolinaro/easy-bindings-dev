@@ -314,8 +314,8 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    name.undoManager = undoManager ()
-    aValue.undoManager = undoManager ()
+    self.name.undoManager = undoManager ()
+    self.aValue.undoManager = undoManager ()
   //--- Install owner for relationships
     mRoot.owner = self
   //--- register properties for handling signature
@@ -335,19 +335,19 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "name",
-      idx:name.mEasyBindingsObjectIndex,
+      idx:self.name.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&name.mObserverExplorer,
-      valueExplorer:&name.mValueExplorer
+      observerExplorer:&self.name.mObserverExplorer,
+      valueExplorer:&self.name.mValueExplorer
     )
     createEntryForPropertyNamed (
       "aValue",
-      idx:aValue.mEasyBindingsObjectIndex,
+      idx:self.aValue.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&aValue.mObserverExplorer,
-      valueExplorer:&aValue.mValueExplorer
+      observerExplorer:&self.aValue.mObserverExplorer,
+      valueExplorer:&self.aValue.mValueExplorer
     )
     createEntryForToOneRelationshipNamed (
       "mRoot",
@@ -363,10 +363,10 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
   //····················································································································
 
   override func clearObjectExplorer () {
-    name.mObserverExplorer = nil
-    name.mValueExplorer = nil
-    aValue.mObserverExplorer = nil
-    aValue.mValueExplorer = nil
+    self.name.mObserverExplorer = nil
+    self.name.mValueExplorer = nil
+    self.aValue.mObserverExplorer = nil
+    self.aValue.mValueExplorer = nil
     mRoot.mObserverExplorer = nil
     mRoot.mValueExplorer = nil
     super.clearObjectExplorer ()
@@ -378,8 +378,8 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    name.storeIn (dictionary: ioDictionary, forKey: "name")
-    aValue.storeIn (dictionary: ioDictionary, forKey: "aValue")
+    self.name.storeIn (dictionary: ioDictionary, forKey: "name")
+    self.aValue.storeIn (dictionary: ioDictionary, forKey: "aValue")
   }
 
   //····················································································································
@@ -389,8 +389,8 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    name.readFrom (dictionary: inDictionary, forKey:"name")
-    aValue.readFrom (dictionary: inDictionary, forKey:"aValue")
+    self.name.readFrom (dictionary: inDictionary, forKey:"name")
+    self.aValue.readFrom (dictionary: inDictionary, forKey:"aValue")
   }
 
   //····················································································································

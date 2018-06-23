@@ -491,8 +491,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
     myStringMaj.addEBObserver (myStringConcat)
     myStringMin.addEBObserver (myStringConcat)
   //--- Install undoers for properties
-    myString.undoManager = undoManager ()
-    myColor.undoManager = undoManager ()
+    self.myString.undoManager = undoManager ()
+    self.myColor.undoManager = undoManager ()
   //--- Install owner for relationships
   //--- register properties for handling signature
   }
@@ -515,19 +515,19 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "myString",
-      idx:myString.mEasyBindingsObjectIndex,
+      idx:self.myString.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&myString.mObserverExplorer,
-      valueExplorer:&myString.mValueExplorer
+      observerExplorer:&self.myString.mObserverExplorer,
+      valueExplorer:&self.myString.mValueExplorer
     )
     createEntryForPropertyNamed (
       "myColor",
-      idx:myColor.mEasyBindingsObjectIndex,
+      idx:self.myColor.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&myColor.mObserverExplorer,
-      valueExplorer:&myColor.mValueExplorer
+      observerExplorer:&self.myColor.mObserverExplorer,
+      valueExplorer:&self.myColor.mValueExplorer
     )
   }
 
@@ -536,10 +536,10 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
   //····················································································································
 
   override func clearObjectExplorer () {
-    myString.mObserverExplorer = nil
-    myString.mValueExplorer = nil
-    myColor.mObserverExplorer = nil
-    myColor.mValueExplorer = nil
+    self.myString.mObserverExplorer = nil
+    self.myString.mValueExplorer = nil
+    self.myColor.mObserverExplorer = nil
+    self.myColor.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -549,8 +549,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    myString.storeIn (dictionary: ioDictionary, forKey: "myString")
-    myColor.storeIn (dictionary: ioDictionary, forKey: "myColor")
+    self.myString.storeIn (dictionary: ioDictionary, forKey: "myString")
+    self.myColor.storeIn (dictionary: ioDictionary, forKey: "myColor")
   }
 
   //····················································································································
@@ -560,8 +560,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    myString.readFrom (dictionary: inDictionary, forKey:"myString")
-    myColor.readFrom (dictionary: inDictionary, forKey:"myColor")
+    self.myString.readFrom (dictionary: inDictionary, forKey:"myString")
+    self.myColor.readFrom (dictionary: inDictionary, forKey:"myColor")
   }
 
   //····················································································································

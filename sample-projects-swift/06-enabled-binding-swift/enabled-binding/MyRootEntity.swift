@@ -170,7 +170,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    docBool.undoManager = undoManager ()
+    self.docBool.undoManager = undoManager ()
   //--- Install owner for relationships
   //--- register properties for handling signature
   }
@@ -189,11 +189,11 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "docBool",
-      idx:docBool.mEasyBindingsObjectIndex,
+      idx:self.docBool.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&docBool.mObserverExplorer,
-      valueExplorer:&docBool.mValueExplorer
+      observerExplorer:&self.docBool.mObserverExplorer,
+      valueExplorer:&self.docBool.mValueExplorer
     )
   }
 
@@ -202,8 +202,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
   //····················································································································
 
   override func clearObjectExplorer () {
-    docBool.mObserverExplorer = nil
-    docBool.mValueExplorer = nil
+    self.docBool.mObserverExplorer = nil
+    self.docBool.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -213,7 +213,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    docBool.storeIn (dictionary: ioDictionary, forKey: "docBool")
+    self.docBool.storeIn (dictionary: ioDictionary, forKey: "docBool")
   }
 
   //····················································································································
@@ -223,7 +223,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
+    self.docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
   }
 
   //····················································································································

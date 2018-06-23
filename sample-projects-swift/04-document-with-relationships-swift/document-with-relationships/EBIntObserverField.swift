@@ -37,7 +37,7 @@ import Cocoa
   }
 
   //···················································································································*
-  //  $valueObserver binding                                                                                            *
+  //  $valueObserver binding                                                                                           *
   //···················································································································*
 
   private var mValueController : Controller_EBIntObserverField_readOnlyValue?
@@ -105,13 +105,13 @@ final class Controller_EBIntObserverField_readOnlyValue : EBSimpleController {
     switch mObject.prop {
     case .noSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "No Selection"
+      mOutlet.stringValue = "—"
     case .singleSelection (let v) :
       mOutlet.enableFromValue (true)
       mOutlet.integerValue = v
     case .multipleSelection :
       mOutlet.enableFromValue (false)
-      mOutlet.stringValue = "Multiple Selection"
+      mOutlet.stringValue = "—"
     }
     mOutlet.updateEnabledState()
   }
