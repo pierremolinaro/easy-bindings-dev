@@ -318,7 +318,7 @@ end
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   if mNeedsValidation then
-%    %!mStoredPropertyName%.setValidationFunction (self.validate_%!mStoredPropertyName%)\n%
+%    self.%!mStoredPropertyName%.setValidationFunction (self.validate_%!mStoredPropertyName%)\n%
   end
 end
 %  //--- Install compute functions for transients
@@ -369,11 +369,11 @@ end
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%!mStoredPropertyName%",\n%
-  %      idx:%!mStoredPropertyName%.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%!mStoredPropertyName%.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&%!mStoredPropertyName%.mObserverExplorer,\n%
-  %      valueExplorer:&%!mStoredPropertyName%.mValueExplorer\n%
+  %      observerExplorer:&self.%!mStoredPropertyName%.mObserverExplorer,\n%
+  %      valueExplorer:&self.%!mStoredPropertyName%.mValueExplorer\n%
   %    )\n%
 end
 %  }
@@ -384,8 +384,8 @@ end
 
   override func clearObjectExplorer () {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.mObserverExplorer = nil\n%
-%    %!mStoredPropertyName%.mValueExplorer = nil\n%
+%    self.%!mStoredPropertyName%.mObserverExplorer = nil\n%
+%    self.%!mStoredPropertyName%.mValueExplorer = nil\n%
 end
 %    super.clearObjectExplorer ()
   }
@@ -397,7 +397,7 @@ end
   override func saveInto (dictionary : NSMutableDictionary) {
     super.saveInto (dictionary: dictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.storeIn (dictionary: dictionary, forKey: "%!mStoredPropertyName%")\n%
+%    self.%!mStoredPropertyName%.storeIn (dictionary: dictionary, forKey: "%!mStoredPropertyName%")\n%
 end
   for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
     if mCallerName.string == "saveIntoDictionary" then
@@ -413,7 +413,7 @@ end
   override func setUp (withDictionary dictionary : NSDictionary) {
     super.setUp (withDictionary: dictionary)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    %!mStoredPropertyName%.readFrom (dictionary: dictionary, forKey:"%!mStoredPropertyName%")\n%
+%    self.%!mStoredPropertyName%.readFrom (dictionary: dictionary, forKey:"%!mStoredPropertyName%")\n%
 end
   for () in EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION do
     if mCallerName.string == "setUpWithDictionary" then

@@ -18,16 +18,16 @@ void routine_generateOutletClasses (const GALGAS_stringset constinArgument_inNee
                                     GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_filewrapper var_w_3884 = GALGAS_filewrapper (gWrapperDirectory_0_outletClassGeneration) ;
-  cEnumerator_stringset enumerator_3957 (constinArgument_inNeededOutletClasses, kENUMERATION_UP) ;
-  while (enumerator_3957.hasCurrentObject ()) {
-    GALGAS_string var_s_3970 = var_w_3884.getter_textFileContentsAtPath (GALGAS_string ("/").add_operation (enumerator_3957.current (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 105)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 105)) ;
-    GALGAS_string var_fileName_4038 = enumerator_3957.current (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 106)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_4038  COMMA_SOURCE_FILE ("outlet-class.galgas", 107)) ;
+  GALGAS_filewrapper var_w_3904 = GALGAS_filewrapper (gWrapperDirectory_0_outletClassGeneration) ;
+  cEnumerator_stringset enumerator_3977 (constinArgument_inNeededOutletClasses, kENUMERATION_UP) ;
+  while (enumerator_3977.hasCurrentObject ()) {
+    GALGAS_string var_s_3990 = var_w_3904.getter_textFileContentsAtPath (GALGAS_string ("/").add_operation (enumerator_3977.current (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 107)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 107)) ;
+    GALGAS_string var_fileName_4058 = enumerator_3977.current (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 108)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_4058  COMMA_SOURCE_FILE ("outlet-class.galgas", 109)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_4038, var_s_3970, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 108)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_4058, var_s_3990, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 110)) ;
     }
-    enumerator_3957.gotoNextObject () ;
+    enumerator_3977.gotoNextObject () ;
   }
 }
 

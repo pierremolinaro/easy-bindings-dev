@@ -22,7 +22,9 @@ syntax extension easyBindings_syntax {
     ?let @bool inIsUserDefined
     ?!@outletClassDeclarationList ioOutletClassDeclarationList
   {
-    $outletClass$
+    $extern$
+    $outlet$
+    $class$
     $Identifier$ ?let @lstring outletClassName
     @bool hasRunAction = false
     @bool hasEnabled = false

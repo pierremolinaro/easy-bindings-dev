@@ -7568,14 +7568,14 @@ void extensionMethod_buildOutletClassMap (const GALGAS_outletClassDeclarationLis
                                           C_Compiler * inCompiler
                                           COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outOutletClassMap.drop () ; // Release 'out' argument
-  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 74)) ;
+  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 76)) ;
   const GALGAS_outletClassDeclarationList temp_0 = inObject ;
-  cEnumerator_outletClassDeclarationList enumerator_2972 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_2972.hasCurrentObject ()) {
+  cEnumerator_outletClassDeclarationList enumerator_2992 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_2992.hasCurrentObject ()) {
     {
-    outArgument_outOutletClassMap.setter_insertKey (enumerator_2972.current_mOutletClassName (HERE), enumerator_2972.current_mHasRunAction (HERE), enumerator_2972.current_mHandlesTableValueBinding (HERE), enumerator_2972.current_mHasEnabled (HERE), enumerator_2972.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 76)) ;
+    outArgument_outOutletClassMap.setter_insertKey (enumerator_2992.current_mOutletClassName (HERE), enumerator_2992.current_mHasRunAction (HERE), enumerator_2992.current_mHandlesTableValueBinding (HERE), enumerator_2992.current_mHasEnabled (HERE), enumerator_2992.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 78)) ;
     }
-    enumerator_2972.gotoNextObject () ;
+    enumerator_2992.gotoNextObject () ;
   }
 }
 
