@@ -115,11 +115,11 @@ end
 if (not [mType isEntityType]) & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
-  %      idx:%!lkey.string%.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%!lkey.string%.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&%!lkey.string%.mObserverExplorer,\n%
-  %      valueExplorer:&%!lkey.string%.mValueExplorer\n%
+  %      observerExplorer:&self.%!lkey.string%.mObserverExplorer,\n%
+  %      valueExplorer:&self.%!lkey.string%.mValueExplorer\n%
   %    )\n%
 end
 end
@@ -186,10 +186,10 @@ end
     %      }\n%
     %    }\n%
     if [mKind isStored] then
-      %    %!lkey.string%.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
+      %    self.%!lkey.string%.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
       %      self?.mSelectedObject?.%!lkey.string%.setProp (inValue)\n%
       %    }\n%
-      %    %!lkey.string%.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+      %    self.%!lkey.string%.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
       %      self?.mSelectedObject?.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet) ?? false\n%
       %    }\n%
     end
