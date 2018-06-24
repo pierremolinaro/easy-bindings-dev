@@ -8,6 +8,7 @@ struct @structForGeneration {
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
   @classListForGeneration mClassListForGeneration
+  @atomicClassListForGeneration mAtomicClassListForGeneration
   @enumListForGeneration mEnumListForGeneration
   @stringset mNeededOutletClasses
   @arrayControllerForGeneration mAllArrayControllerForGeneration
@@ -53,6 +54,11 @@ proc generateCode
   )
   generateClasses (
     !inGeneration.mClassListForGeneration
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+  generateAtomicClasses (
+    !inGeneration.mAtomicClassListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
@@ -116,7 +122,7 @@ proc generateCode
   )
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 filewrapper swift_sources in "../generation-templates/swift-sources" {
   "xib", "swift"
@@ -124,7 +130,7 @@ filewrapper swift_sources in "../generation-templates/swift-sources" {
 }{
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private proc generateSwiftApplicationFiles
   ?let @string inOutputDirectory
@@ -167,7 +173,7 @@ private proc generateSwiftApplicationFiles
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 filewrapper standard_properties in "../generation-templates/standard-properties" {
 }{
@@ -183,7 +189,7 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
     ?@bool TRANSIENT
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private proc generateStandardProperties
   ?let @string inOutputDirectory

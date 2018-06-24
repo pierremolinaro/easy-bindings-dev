@@ -12,7 +12,7 @@ class @transientPropertyClassDeclaration : @astDeclaration {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <class_declaration>
     ?let @bool inIsUserDefined
@@ -29,7 +29,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -58,7 +58,7 @@ override method @transientPropertyClassDeclaration buildObservablePropertyMapsFr
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @transientPropertyClassDeclaration buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
@@ -66,7 +66,7 @@ override method @transientPropertyClassDeclaration buildInitialSecondaryProperty
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @transientPropertyClassDeclaration solveSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
@@ -77,7 +77,7 @@ override method @transientPropertyClassDeclaration solveSecondaryProperty
   outUnsolvedProperties = {}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @transientPropertyClassDeclaration semanticAnalysis
   ?let @semanticContext unused inSemanticContext

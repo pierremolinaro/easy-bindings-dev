@@ -2,15 +2,16 @@
 #   AST                                                                                                                *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-enum @propertyClassDefaultValues {
-  case string (@stringset values)
+list @atomicClassPropertyList {
+  @lstring mTypeName
+  @lstring mPropertyName
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#·······················································································································
 
-class @propertyClassDeclaration : @astDeclaration {
-  @lstring mClassPropertyName
-  @propertyClassDefaultValues mDefaultValues
+class @atomicClassDeclaration : @astDeclaration {
+  @lstring mClassName
+  @atomicClassPropertyList mPropertyList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -25,26 +26,25 @@ syntax extension easyBindings_syntax {
     ?let @bool inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST
   {
-    $property$
+    $atomic$
     $class$
-    $Identifier$ ?let @lstring classPropertyName
-    @stringset stringDefaultValues = {}
-    $($
+    $Identifier$ ?let @lstring entityName
+    ${$
+    @atomicClassPropertyList propertyList = {}
+    @simpleStoredPropertyList simpleStoredAttributeList = {}
+    @stringset signatureList = {}
     repeat
-      $identifier$ ?let @lstring defaultValue
-      if [stringDefaultValues hasKey !defaultValue.string] then
-        error defaultValue : "value already defined"
-      end
-      stringDefaultValues += !defaultValue.string
     while
-      $,$
+      $Identifier$ ?var @lstring propertyTypeName
+      $identifier$ ?var @lstring propertyName
+      $;$
+      propertyList += !propertyTypeName !propertyName
     end
-    $)$
-    $;$
-    ioDeclarationAST.mDeclarationList += !@propertyClassDeclaration.new {
+    $}$
+    ioDeclarationAST.mDeclarationList += !@atomicClassDeclaration.new {
       !inIsUserDefined
-      !classPropertyName
-      !.string {!values:stringDefaultValues}
+      !entityName
+      !propertyList
     }
   }
 
@@ -56,14 +56,15 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY                                                                                                     *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @propertyClassDeclaration typeInventory
+override method @atomicClassDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
-  [!?ioUnifiedTypeMap insertKey
-    !mClassPropertyName
-    !.propertyClassType {!classPropertyName:mClassPropertyName.string !defaultValues:mDefaultValues}
-    !{}
-  ]
+  @unifiedTypeMapProxyList proxyList = {}
+  for (typeName *) in mPropertyList do
+    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !typeName ?let proxy]
+    proxyList += !proxy
+  end
+  [!?ioUnifiedTypeMap insertKey !mClassName !.atomicClassType {!className:mClassName.string !typeProxyList:proxyList} !{}]
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -71,7 +72,7 @@ override method @propertyClassDeclaration typeInventory
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 # Only get current entity observable properties, do not collect in super entities
-override method @propertyClassDeclaration buildObservablePropertyMapsFromStoredProperties
+override method @atomicClassDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?!@semanticContext unused ioSemanticContext
 {
@@ -79,7 +80,7 @@ override method @propertyClassDeclaration buildObservablePropertyMapsFromStoredP
 
 #·······················································································································
 
-override method @propertyClassDeclaration buildInitialSecondaryPropertyListMap
+override method @atomicClassDeclaration buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
   ?!@uint unused ioSecondaryDeclarationCount
 {
@@ -87,22 +88,84 @@ override method @propertyClassDeclaration buildInitialSecondaryPropertyListMap
 
 #·······················································································································
 
-override method @propertyClassDeclaration solveSecondaryProperty
-  ?!@semanticContext unused ioSemanticContext
+override method @atomicClassDeclaration solveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @secondaryPropertyList unused inPropertiesToSolve
+  ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
   outUnsolvedProperties = {}
+  [ioSemanticContext.mEntityObservablePropertyMap searchKey
+    !mClassName
+    ?@observablePropertyMap observablePropertyMap
+  ]
+  for (property) in inPropertiesToSolve do
+    [property tryToSolveSecondaryProperty
+      !?ioSemanticContext
+      !{} # No root entity
+      !?observablePropertyMap
+      !?outUnsolvedProperties
+    ]
+  end
+  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
+    !observablePropertyMap
+    !mClassName.string
+  ]
 }
 
 #·······················································································································
 
-override method @propertyClassDeclaration semanticAnalysis
+override method @atomicClassDeclaration semanticAnalysis
   ?let @semanticContext unused inSemanticContext
   ?!@structForGeneration ioGeneration
 {
-  ioGeneration.mPropertyClassList += !mClassPropertyName.string
+#--- Generation
+  ioGeneration.mAtomicClassListForGeneration +=
+    !mClassName.string
+    !mPropertyList
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @atomicClassListForGeneration {
+  @string mClassName
+  @atomicClassPropertyList mPropertyList
+}
+
+#·······················································································································
+
+private filewrapper atomicClassGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template classImplementationInSwift "atomic-class.swift.galgasTemplate"
+    ?@string CLASS_NAME
+    ?@atomicClassPropertyList PROPERTY_LIST_FOR_GENERATION
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateAtomicClasses
+  ?let @atomicClassListForGeneration inClassListForGeneration
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  for () in inClassListForGeneration do
+    let s = [filewrapper atomicClassGenerationTemplate.classImplementationInSwift
+      !mClassName
+      !mPropertyList
+    ]
+    let fileName = mClassName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFile
+      !inOutputDirectory
+      !fileName
+      !s
+    ]
+  end
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

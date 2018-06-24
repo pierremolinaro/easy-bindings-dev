@@ -14,7 +14,7 @@ class @selectionControllerDeclaration : @abstractSecondaryProperty {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <array_controller_declaration>
     ?!@secondaryPropertyList ioSecondaryPropertyList
@@ -33,7 +33,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -46,7 +46,7 @@ override method @selectionControllerDeclaration typeInventory
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
@@ -80,6 +80,8 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case classType (*) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
+    case atomicClassType (* *) :
+      error mModelControllerName : "the array controller model should be an entity" : entityName
     case propertyClassType (**) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case transientPropertyClassType (*) :
@@ -102,7 +104,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @selectionControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
@@ -132,6 +134,8 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   case enumType (* *) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case classType (*) :
+    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+  case atomicClassType (* *) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case propertyClassType (**) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
@@ -168,7 +172,7 @@ list @selectionControllerForGeneration {
   @observablePropertyMap mSelectionObservablePropertyMap
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper selectionControllerGenerationTemplate in "../generation-templates/controllers" {
 }{

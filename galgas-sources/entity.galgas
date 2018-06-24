@@ -19,7 +19,7 @@ class @entityDeclaration : @astDeclaration {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <entity_declaration>
     ?let @bool inIsUserDefined
@@ -67,7 +67,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -137,7 +137,7 @@ override method @entityDeclaration buildObservablePropertyMapsFromStoredProperti
   ]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @entityDeclaration buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
@@ -147,7 +147,7 @@ override method @entityDeclaration buildInitialSecondaryPropertyListMap
   ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @entityDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
@@ -174,7 +174,7 @@ override method @entityDeclaration solveSecondaryProperty
   ]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @entityDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
@@ -244,7 +244,7 @@ list @entityListForGeneration {
   @stringset mSignatureSet
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper entityGenerationTemplate in "../generation-templates" {
 }{

@@ -15,7 +15,7 @@ class @transientAST : @abstractSecondaryProperty {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <transient_declaration>
     ?!@secondaryPropertyList ioSecondaryPropertyList
@@ -47,7 +47,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -98,7 +98,7 @@ override method @transientAST tryToSolveSecondaryProperty
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @transientAST secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
@@ -124,6 +124,8 @@ override method @transientAST secondaryPropertySemanticAnalysis
   case entityType (*) :
     error mTransientName: "an entity cannot be used as simple property type" : typeList
   case classType (*) :
+    typeList = {!type}
+  case atomicClassType (* *) :
     typeList = {!type}
   case transientPropertyClassType (*) :
     typeList = {!type}
@@ -171,7 +173,7 @@ list @transientDefinitionListForGeneration {
   @transientDependencyListForGeneration mDependencyList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @transientDependencyListForGeneration {
   @observablePropertyAST mDependency
@@ -179,7 +181,7 @@ list @transientDependencyListForGeneration {
   @string mFunctionArgumentTypeString
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @transientDependencyListForGeneration transientComputeFunctionCall
   ?let @string inOwnerName
@@ -229,7 +231,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult += ident + "}\n"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @transientDependencyListForGeneration needs_unwSelf
   -> @bool outResult
@@ -275,7 +277,7 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   switch self
@@ -342,7 +344,7 @@ proc generateTransients
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper transientManager in "../generation-templates" {
 }{

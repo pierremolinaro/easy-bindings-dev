@@ -4,10 +4,7 @@
 
 class @classDeclaration : @astDeclaration {
   @lstring mClassName
-#  @lstring mSuperClassName
   @simpleStoredPropertyList mSimpleStoredAttributeList
-#  @toOneRelationshipList mToOneRelationshipList
-#  @toManyRelationshipList mToManyRelationshipList
   @secondaryPropertyList mSecondaryPropertyList
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
@@ -20,7 +17,7 @@ class @classDeclaration : @astDeclaration {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <class_declaration>
     ?let @bool inIsUserDefined
@@ -58,7 +55,7 @@ syntax extension easyBindings_syntax {
     while
       <extern_swift_delegate> !?externSwiftDelegateList
     while
-     <action_declaration> !?actionDeclarationList
+      <action_declaration> !?actionDeclarationList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@classDeclaration.new {
@@ -75,7 +72,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -133,7 +130,7 @@ override method @classDeclaration buildObservablePropertyMapsFromStoredPropertie
   ]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @classDeclaration buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
@@ -143,7 +140,7 @@ override method @classDeclaration buildInitialSecondaryPropertyListMap
   ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @classDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
@@ -170,13 +167,13 @@ override method @classDeclaration solveSecondaryProperty
   ]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 func %once externSwiftFunctionCallerSet -> @stringset outResult {
   outResult = {!"setUpWithDictionary", !"init", !"saveIntoDictionary"}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @classDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
@@ -249,7 +246,7 @@ list @classListForGeneration {
   @externSwiftDelegateList mExternSwiftDelegateList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper classGenerationTemplate in "../generation-templates" {
 }{

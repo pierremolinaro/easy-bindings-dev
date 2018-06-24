@@ -7,14 +7,14 @@ list @controllerBindingOptionList {
   @lstring mOptionTypeName
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @outletClassBindingSpecificationModelList {
   @lstring mModelTypeName
   @bool mModelShouldBeWritableProperty
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @outletClassBindingSpecificationList {
   @bool mIsUserDefined
@@ -23,7 +23,7 @@ list @outletClassBindingSpecificationList {
   @controllerBindingOptionList mBindingOptionList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 listmap @bindingSpecificationListMap (@outletClassBindingSpecificationList)
 
@@ -33,7 +33,7 @@ listmap @bindingSpecificationListMap (@outletClassBindingSpecificationList)
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <binding_specification>
     ?let @bool inIsUserDefined
@@ -87,7 +87,7 @@ syntax extension easyBindings_syntax {
       !bindingOptionList
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -101,21 +101,21 @@ map @bindingSpecificationMap {
   search searchKey error message "there is no '%K' binding"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @outletBindingSpecificationModelList {
   @typeKind mModelType
   @bool mModelShouldBeWritableProperty
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @controllerBindingOptionDecoratedList {
   @typeKind mOptionType
   @lstring mOptionName
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 map @outletBindingSpecificationMap {
   @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
@@ -124,7 +124,7 @@ map @outletBindingSpecificationMap {
   search searchKey error message "there is no '%K' binding"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 proc buildBindingSpecificationMap
   ?let @unifiedTypeMap inUnifiedTypeMap

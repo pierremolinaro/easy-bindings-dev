@@ -18,6 +18,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "all",
   "array",
   "arrayController",
+  "atomic",
   "binding",
   "calledBy",
   "class",

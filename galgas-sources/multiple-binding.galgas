@@ -7,7 +7,7 @@ enum @multipleBindingDescriptor {
   case binding (@abstractBooleanMultipleBindingExpressionAST expression)
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 enum @multipleBindingComparisonAST {
   case equal
@@ -18,24 +18,24 @@ enum @multipleBindingComparisonAST {
   case greaterOrEqual
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract class @abstractBooleanMultipleBindingExpressionAST {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @luint mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mBinding
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mLeftBinding
@@ -43,7 +43,7 @@ class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingE
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @andBooleanMultipleBindingExpressionAST,
        @orBooleanMultipleBindingExpressionAST,
@@ -52,7 +52,7 @@ class @andBooleanMultipleBindingExpressionAST,
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @observablePropertyAST mProperty
@@ -64,7 +64,7 @@ class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultip
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingExpression> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -78,7 +78,7 @@ syntax extension easyBindings_syntax {
     end
   }
   
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingComparison> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -92,7 +92,7 @@ syntax extension easyBindings_syntax {
     end
   }
   
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingTerm> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -110,7 +110,7 @@ syntax extension easyBindings_syntax {
     end
   }
   
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingOperand> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -119,7 +119,7 @@ syntax extension easyBindings_syntax {
     outBinding = @observablePropertyInMultipleBindingExpressionAST.new { !observablePropertyAST}
   }
   
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingOperand> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -129,7 +129,7 @@ syntax extension easyBindings_syntax {
     outBinding = @negateBooleanMultipleBindingExpressionAST. new { !binding}
   }
   
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingOperand> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -139,7 +139,7 @@ syntax extension easyBindings_syntax {
     $)$
   }
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <booleanMultipleBindingOperand> 
     !@abstractBooleanMultipleBindingExpressionAST outBinding
@@ -148,7 +148,7 @@ syntax extension easyBindings_syntax {
     outBinding = @literalIntMultipleBindingExpressionAST.new {!value}
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -162,30 +162,30 @@ list @multipleBindingGenerationList {
   @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @string mObservedModel
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @uint mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mBinding
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @orBooleanMultipleBindingExpressionForGeneration,
       @xorBooleanMultipleBindingExpressionForGeneration,
@@ -194,7 +194,7 @@ class @orBooleanMultipleBindingExpressionForGeneration,
   @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
@@ -214,7 +214,7 @@ abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionFo
   !@typeKind outType
   !@location outErrorLocation
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap unused inRootObservablePropertyMap
@@ -229,7 +229,7 @@ override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMult
   outErrorLocation = mValue.location
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -258,6 +258,8 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "an entity cannot be observed"
   case classType (*) :
     error [mProperty location] : "a class cannot be observed"
+  case atomicClassType (* *) :
+    error [mProperty location] : "an atomic class cannot be observed"
   case transientPropertyClassType (*) :
     error [mProperty location] : "a class cannot be observed"
   case propertyClassType (**) : # Ok
@@ -268,7 +270,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   outErrorLocation = [mProperty location]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -292,7 +294,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForM
   outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration.new {!expression}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -329,7 +331,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
   outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -366,7 +368,7 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
   outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -403,7 +405,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
   outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -444,12 +446,12 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
   }
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -457,7 +459,7 @@ override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
   outObservedModelSet = {}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -465,7 +467,7 @@ override getter @observablePropertyAsBooleanMultipleBindingExpressionForGenerati
   outObservedModelSet = {!mObservedModel}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -473,7 +475,7 @@ override getter @negateBooleanMultipleBindingExpressionForGeneration observedMod
   outObservedModelSet = [mBinding observedModelSet]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -481,7 +483,7 @@ override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSe
   outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -489,7 +491,7 @@ override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelS
   outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -497,7 +499,7 @@ override getter @andBooleanMultipleBindingExpressionForGeneration observedModelS
   outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @comparisonMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
@@ -505,54 +507,54 @@ override getter @comparisonMultipleBindingExpressionForGeneration observedModelS
   outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = "EBProperty.singleSelection (" + [mValue string] + ")"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = mObservedModel + ".prop"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @negateBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = "!" + [mBinding expressionString]
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @orBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = "(" + [mLeftBinding expressionString] +  " || " + [mRightBinding expressionString] + ")"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @xorBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = "(" + [mLeftBinding expressionString] +  " ^ " + [mRightBinding expressionString] + ")"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @andBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
   outExpressionString = "(" + [mLeftBinding expressionString] +  " && " + [mRightBinding expressionString] + ")"
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override getter @comparisonMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {

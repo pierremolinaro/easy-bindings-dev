@@ -14,7 +14,7 @@ class @customObjectControllerDeclaration : @abstractSecondaryProperty {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <array_controller_declaration>
     ?!@secondaryPropertyList ioSecondaryPropertyList
@@ -33,7 +33,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -46,7 +46,7 @@ override method @customObjectControllerDeclaration typeInventory
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
   ?!@semanticContext ioSemanticContext
@@ -70,6 +70,8 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case classType (*) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
+    case atomicClassType (* *) :
+      error mPropertyEntityName : "the controller model should be an entity" : entityName
     case propertyClassType (**) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case transientPropertyClassType (*) :
@@ -91,7 +93,7 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @customObjectControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
@@ -131,7 +133,7 @@ list @customObjectControllerForGeneration {
   @observablePropertyMap mSelectionObservablePropertyMap
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper customObjectControllerGenerationTemplate in "../generation-templates/controllers" {
 }{

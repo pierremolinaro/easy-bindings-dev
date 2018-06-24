@@ -9,7 +9,7 @@ list @arrayControllerBoundColumnListAST {
   @lstring mSortPropertyName
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 struct @columnBindingAST {
   @lstring mRunActionName # Empty string if no run binding
@@ -18,14 +18,14 @@ struct @columnBindingAST {
   @regularBindingList mRegularBindingList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @arrayControllerAttributListAST {
   @lstring mAttributeName
   @abstractDefaultValue mAttributeValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 enum @arrayControllerModel {
   case rootToManyRelationship (@lstring rootRelationshipName)
@@ -33,7 +33,7 @@ enum @arrayControllerModel {
   case controllerArray (@lstring controllerName @lstring propertyName)
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @arrayControllerDeclaration : @abstractSecondaryProperty {
   @lstring mControllerName
@@ -49,7 +49,7 @@ class @arrayControllerDeclaration : @abstractSecondaryProperty {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <array_controller_declaration>
     ?!@secondaryPropertyList ioSecondaryPropertyList
@@ -127,7 +127,7 @@ syntax extension easyBindings_syntax {
     }
   }
 
-#......................................................................................................................*
+#·······················································································································
 
   rule <column_bindings> !@columnBindingAST outColumnBindingAST {
     @lstring runActionDescriptor = ["" nowhere]
@@ -184,7 +184,7 @@ syntax extension easyBindings_syntax {
     }
   }
   
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -197,7 +197,7 @@ override method @arrayControllerDeclaration typeInventory
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @arrayControllerDeclaration tryToSolveSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
@@ -285,7 +285,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
@@ -353,6 +353,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case transientPropertyClassType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName
+    case atomicClassType (* *) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (@string kClassTypeName) :
       entityName = kClassTypeName
     case entityType (*) :
@@ -381,6 +383,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName
+    case atomicClassType (* *) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
     case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case transientPropertyClassType (*) :
@@ -408,6 +412,8 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (*) :
+      error errorLocation : "the model should be a tomany relationship" : entityName
+    case atomicClassType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName
@@ -522,7 +528,7 @@ list @arrayControllerForGeneration {
   @2stringlist mAttributeListForGeneration
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
@@ -535,7 +541,7 @@ getter @arrayControllerModel modelString -> @string outResult {
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @arrayControllerModel modelTypeName
   ?let @string inRootEntityName
@@ -557,7 +563,7 @@ getter @arrayControllerModel modelTypeName
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @arrayControllerModel modelTypeName2
   ?let @string inRootEntityName
@@ -594,14 +600,14 @@ getter @arrayControllerModel modelTypeName2
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @arrayControllerFilterListForGeneration {
   @string mFilterPropertyName
   @typeKind mFilterPropertyType
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @arrayControllerBoundColumnListForGeneration {
   @string mColumnName
@@ -610,7 +616,7 @@ list @arrayControllerBoundColumnListForGeneration {
   @regularBindingsGenerationList mRegularBindingsGenerationList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @arrayControllerSortedColumnListForGeneration {
   @string mColumnName
@@ -618,7 +624,7 @@ list @arrayControllerSortedColumnListForGeneration {
   @string mObservablePropertyForSorting
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
   var filterProperties = self
@@ -652,7 +658,7 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
   outResult += blockEnd
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper collectionControllerGenerationTemplate in "../generation-templates/controllers" {
 }{

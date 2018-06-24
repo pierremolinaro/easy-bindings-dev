@@ -13,7 +13,7 @@ list @storedArrayPropertyList {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <stored_array_declaration>
     ?!@storedArrayPropertyList ioStoredArrayList
@@ -25,7 +25,7 @@ syntax extension easyBindings_syntax {
     ioStoredArrayList += !elementClassName !storedArrayPropertyName
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -71,6 +71,8 @@ method @storedArrayPropertyList buildObservablePropertyMap
       error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
     case classType (*) :
       typeList = {!type}
+    case atomicClassType (* *) :
+      typeList = {!type}
     end
   #--- Enter in property map
     [!?ioObservableProperties insertKey
@@ -84,7 +86,7 @@ method @storedArrayPropertyList buildObservablePropertyMap
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
   ?let @unifiedTypeMap inUnifiedTypeMap
@@ -104,6 +106,8 @@ method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
     case entityType (*) :
       error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
     case classType (*) :
+      typeList = {!type}
+    case atomicClassType (* *) :
       typeList = {!type}
     case propertyClassType (**) :
       error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList

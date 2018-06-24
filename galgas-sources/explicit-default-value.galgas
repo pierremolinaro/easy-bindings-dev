@@ -5,43 +5,43 @@
 abstract class @abstractDefaultValue {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @boolAsDefaultValue : @abstractDefaultValue {
   @lbool mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @doubleAsDefaultValue : @abstractDefaultValue {
   @ldouble mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @integerAsDefaultValue : @abstractDefaultValue {
   @luint mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @stringAsDefaultValue : @abstractDefaultValue {
   @lstring mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @identifierAsDefaultValue : @abstractDefaultValue {
   @lstring mValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @defaultValueList {
   @abstractDefaultValue mDefaultValue
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 class @listAsDefaultValue : @abstractDefaultValue {
   @location mStartLocation
@@ -54,7 +54,7 @@ class @listAsDefaultValue : @abstractDefaultValue {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
    rule <explicit_value> !@abstractDefaultValue outDefaultValue {
     select
@@ -90,7 +90,7 @@ syntax extension easyBindings_syntax {
     end
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -102,7 +102,7 @@ abstract method @abstractDefaultValue analyzeDefaultValueType
   ?let @typeKindList inAttributeActualTypeList
   !@string outSwiftDefaultValueAsString
 
-#......................................................................................................................*
+#·······················································································································
   
 override method @boolAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
@@ -119,6 +119,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case propertyClassType (* *) :
     case classType (*) :
+    case atomicClassType (* *) :
     case enumType (* *) :
     case transientPropertyClassType (*) :
     end
@@ -129,7 +130,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
   
 override method @integerAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
@@ -149,6 +150,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case atomicClassType (* *) :
     case propertyClassType (**) :
     case transientPropertyClassType (*) :
     end
@@ -159,7 +161,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
   
 override method @doubleAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
@@ -176,6 +178,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case atomicClassType (* *) :
     case propertyClassType (**) :
     case transientPropertyClassType (*) :
     end
@@ -186,7 +189,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
   
 override method @stringAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
@@ -203,6 +206,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case entityType (*) :
     case enumType (* *) :
     case classType (*) :
+    case atomicClassType (* *) :
     case propertyClassType (**) :
     case transientPropertyClassType (*) :
     end
@@ -213,14 +217,14 @@ override method @stringAsDefaultValue analyzeDefaultValueType
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 func %once predefinedDates -> @stringset outResult {
   outResult = @stringset. emptySet
   outResult += !"date"
 }
 
-#......................................................................................................................*
+#·······················································································································
   
 override method @identifierAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
@@ -248,6 +252,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       end
     case entityType (*) :
       error mValue : "invalid entity type"  
+    case atomicClassType (* *) :
+      error mValue : "invalid class type"  
     case classType (*) :
       error mValue : "invalid class type"  
     case boolType :
@@ -280,23 +286,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
   end
 }
 
-#......................................................................................................................*
-
-#func %once predefinedFonts -> @stringset outResult {
-#  outResult = @stringset. emptySet
-#  outResult += !"boldSystemFontOfSize"
-#  outResult += !"controlContentFontOfSize"
-#  outResult += !"labelFontOfSize"
-#  outResult += !"menuFontOfSize"
-#  outResult += !"menuBarFontOfSize"
-#  outResult += !"messageFontOfSize"
-#  outResult += !"paletteFontOfSize"
-#  outResult += !"systemFontOfSize"
-#  outResult += !"titleBarFontOfSize"
-#  outResult += !"toolTipsFontOfSize"
-#}
-
-#......................................................................................................................*
+#·······················································································································
  
 override method @listAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList unused inAttributeActualTypeList

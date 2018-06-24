@@ -15,7 +15,7 @@ list @simpleStoredPropertyList {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <simple_stored_declaration>
     ?!@simpleStoredPropertyList ioAttributeList
@@ -51,7 +51,7 @@ syntax extension easyBindings_syntax {
       !needsValidation
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -91,6 +91,8 @@ method @simpleStoredPropertyList buildObservablePropertyMap
       typeList = {!type}
     case classType (*) :
       error mPropertyName: "a class cannot be used as simple property type" : typeList
+    case atomicClassType (* *) :
+      error mPropertyName: "an atomic class cannot be used as simple property type" : typeList
     case propertyClassType (**) :
       typeList = {!type}
     case transientPropertyClassType (*) :
@@ -110,7 +112,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
   end
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
   ?let @string inSwiftClassName
@@ -131,6 +133,8 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
       typeList = {!type}
     case classType (*) :
       error mPropertyName: "a class cannot be used as simple property type" : typeList
+    case atomicClassType (* *) :
+      error mPropertyName: "an atomic class cannot be used as simple property type" : typeList
     case propertyClassType (**) :
       typeList = {!type}
     case transientPropertyClassType (*) :

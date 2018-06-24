@@ -6,26 +6,26 @@ abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract method @astDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
 
-#......................................................................................................................*
+#·······················································································································
 
 list @secondaryDeclarationListWorkingList {
   @astDeclaration mDeclaration
   @secondaryPropertyList mSecondaryPropertyList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract method @astDeclaration buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
   ?!@uint ioSecondaryDeclarationCount
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract method @astDeclaration solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
@@ -33,7 +33,7 @@ abstract method @astDeclaration solveSecondaryProperty
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 
-#......................................................................................................................*
+#·······················································································································
 
 abstract method @abstractSecondaryProperty tryToSolveSecondaryProperty
   ?!@semanticContext ioSemanticContext
@@ -41,7 +41,7 @@ abstract method @abstractSecondaryProperty tryToSolveSecondaryProperty
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
 
-#......................................................................................................................*
+#·······················································································································
 
 struct @semanticContext {
   @unifiedTypeMap mUnifiedTypeMap

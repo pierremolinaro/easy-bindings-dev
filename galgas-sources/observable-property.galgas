@@ -18,7 +18,7 @@ enum @observablePropertyAST {
   case versionShouldChangeProperty (@location location)
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 list @observablePropertyList {
   @observablePropertyAST mObservableProperty
@@ -148,7 +148,7 @@ getter @observablePropertyAST modelString ?let @string inSelf -> @string outResu
   end  
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   switch self
@@ -181,7 +181,7 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   end  
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @observablePropertyAST isPropertyDefined
   ?let @semanticContext inSemanticContext
@@ -219,7 +219,7 @@ getter @observablePropertyAST isPropertyDefined
   end  
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 getter @observablePropertyAST location -> @location outResult {
   switch self
@@ -330,6 +330,8 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'" : outType
     case classType (*) :
       error relationshipName : "a property cannot accept 'all'" : outType
+    case atomicClassType (* *) :
+      error relationshipName : "a property cannot accept 'all'" : outType
     case propertyClassType (**) :
       error relationshipName : "a property cannot accept 'all'" : outType
     case transientPropertyClassType (*) :
@@ -401,6 +403,8 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
       error propertyName : "an enum property cannot accept 'all'" : outType
+    case atomicClassType (* *) :
+      error propertyName : "an atomic class type cannot accept 'all'" : outType
     case classType (@string className) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![className nowhere]
@@ -480,6 +484,8 @@ method @observablePropertyAST analyzeObservableProperty
       case stringType, boolType, dateType, doubleType, integerType, fontType :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case classType (*) :
+        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
+      case atomicClassType (* *) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case propertyClassType (**) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

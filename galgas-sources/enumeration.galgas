@@ -13,7 +13,7 @@ class @enumDeclaration : @astDeclaration {
 
 syntax extension easyBindings_syntax {
 
-  #....................................................................................................................*
+  #·····················································································································
   
   rule <enum_declaration>
     ?let @bool inIsUserDefined
@@ -32,7 +32,7 @@ syntax extension easyBindings_syntax {
     ioDeclarationAST.mDeclarationList += !@enumDeclaration. new { !inIsUserDefined !enumName !enumConstants}
   }
 
-  #....................................................................................................................*
+  #·····················································································································
 
 }
 
@@ -73,7 +73,7 @@ override method @enumDeclaration buildObservablePropertyMapsFromStoredProperties
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @enumDeclaration buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
@@ -81,7 +81,7 @@ override method @enumDeclaration buildInitialSecondaryPropertyListMap
 {
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @enumDeclaration solveSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
@@ -92,7 +92,7 @@ override method @enumDeclaration solveSecondaryProperty
   outUnsolvedProperties = {}
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 override method @enumDeclaration semanticAnalysis
   ?let @semanticContext unused inSemanticContext
@@ -112,7 +112,7 @@ list @enumListForGeneration {
   @lstringlist mEnumConstantList
 }
 
-#......................................................................................................................*
+#·······················································································································
 
 private filewrapper enumGenerationTemplate in "../generation-templates" {
 }{
