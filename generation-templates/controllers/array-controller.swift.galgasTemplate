@@ -459,7 +459,25 @@ end
 %switch MODEL_KIND
 case transientModel :
 case storedArrayModel :
-% 
+% //····················································································································
+  //    select
+  //····················································································································
+
+  func select (object inObject: %!ELEMENT_TYPE_NAME%) {
+    if let model = mModel {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        break
+      case .singleSelection (let objectArray) :
+        if objectArray.contains (inObject) {
+          var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
+          newSelectedObjectSet.insert (inObject)
+          mSelectedSet.mSet = newSelectedObjectSet
+        }
+      }
+    }
+  }
+ 
   //····················································································································
   //    add
   //····················································································································
@@ -565,7 +583,25 @@ case storedArrayModel :
   }
 %
 case relationshipModel :
-% 
+%  //····················································································································
+  //    select
+  //····················································································································
+
+  func select (object inObject: %!ELEMENT_TYPE_NAME%) {
+    if let model = mModel {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        break
+      case .singleSelection (let objectArray) :
+        if objectArray.contains (inObject) {
+          var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
+          newSelectedObjectSet.insert (inObject)
+          mSelectedSet.mSet = newSelectedObjectSet
+        }
+      }
+    }
+  }
+
   //····················································································································
   //    add
   //····················································································································
