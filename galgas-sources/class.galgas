@@ -25,13 +25,6 @@ syntax extension easyBindings_syntax {
   {
     $class$
     $Identifier$ ?let @lstring entityName
-#    @lstring superClassName
-#    select
-#      superClassName = ["" nowhere]
-#    or
-#      $:$
-#      $Identifier$ ? superClassName
-#    end
     ${$
     @secondaryPropertyList secondaryPropertyList = {}
     @simpleStoredPropertyList simpleStoredAttributeList = {}
@@ -46,10 +39,6 @@ syntax extension easyBindings_syntax {
       <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
     while
       <transient_declaration> !?secondaryPropertyList
-#    while
-#      <toMany_relationship> !?toManyRelationshipList
-#    while
-#      <toOne_relationship> !?toOneRelationshipList
     while
       <extern_swift_func> !?externSwiftFunctionList
     while
@@ -61,10 +50,7 @@ syntax extension easyBindings_syntax {
     ioDeclarationAST.mDeclarationList += !@classDeclaration.new {
       !inIsUserDefined
       !entityName
-#      !superClassName
       !simpleStoredAttributeList
-#      !toOneRelationshipList
-#      !toManyRelationshipList
       !secondaryPropertyList
       !externSwiftFunctionList
       !externSwiftDelegateList
@@ -91,12 +77,7 @@ override method @classDeclaration typeInventory
   for (act) in mActionDeclarationList do
     [!?actionMap insertKey !act]
   end
-#  [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
-#  [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
   [!?ioUnifiedTypeMap insertKey !mClassName !.classType {!className:mClassName.string} !actionMap]
-#  if mSuperClassName.string != "" then
-#    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperClassName ?*]
-#  end
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -114,15 +95,6 @@ override method @classDeclaration buildObservablePropertyMapsFromStoredPropertie
     !inUnifiedTypeMap
     !?observablePropertyMap
   ]
-#--- Analyze relationships
-#  [mToOneRelationshipList buildObservablePropertyMap
-#    !inUnifiedTypeMap
-#    !?observablePropertyMap
-#  ]
-#  [mToManyRelationshipList buildObservablePropertyMap
-#    !inUnifiedTypeMap
-#    !?observablePropertyMap
-#  ]
 #--- Enter in semantics context  
   [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
     !mClassName
@@ -193,6 +165,7 @@ override method @classDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mClassName.string
@@ -201,6 +174,7 @@ override method @classDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
+#      !?copyTransientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
       !?* # No custom object controller
@@ -208,6 +182,7 @@ override method @classDeclaration semanticAnalysis
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+#  ioGeneration.mCopyTransientListForGeneration += copyTransientDefinitionListForGeneration
 #--- Check extern declarations
   for () in mExternSwiftFunctionList do
     if not [externSwiftFunctionCallerSet () hasKey !mCallerName.string] then

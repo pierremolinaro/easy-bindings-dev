@@ -3,6 +3,7 @@
 
 struct @structForGeneration {
   @transientDefinitionListForGeneration mTransientListForGeneration
+#  @copyTransientDefinitionListForGeneration mCopyTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
   @preferencesForGeneration mPreferencesForGeneration
   @documentListForGeneration mDocumentListForGeneration

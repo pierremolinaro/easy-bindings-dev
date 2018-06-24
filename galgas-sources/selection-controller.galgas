@@ -113,6 +113,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration

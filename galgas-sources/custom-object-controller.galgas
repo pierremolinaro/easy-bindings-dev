@@ -102,6 +102,7 @@ override method @customObjectControllerDeclaration secondaryPropertySemanticAnal
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap unused inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration ioCustomObjectControllerDeclaration

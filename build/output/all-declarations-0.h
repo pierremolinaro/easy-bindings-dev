@@ -81,6 +81,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_class,
    kToken_classForSwift,
    kToken_column,
+   kToken_copy,
    kToken_customObjectController,
    kToken_default,
    kToken_dependsFrom,
@@ -170,7 +171,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 69 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 70 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -455,41 +456,41 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i18_ (GALGAS_simpleStoredPropertyList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i18_ (GALGAS_secondaryPropertyList & ioArgument0,
+                                                                              C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i19_ (GALGAS_simpleStoredPropertyList & ioArgument0,
                                                                                      GALGAS_stringset & ioArgument1,
                                                                                      C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_stored_5F_array_5F_declaration_i19_ (GALGAS_storedArrayPropertyList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_stored_5F_array_5F_declaration_i20_ (GALGAS_storedArrayPropertyList & ioArgument0,
                                                                                     C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_stored_5F_array_5F_declaration_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_stored_5F_array_5F_declaration_i20_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i20_ (GALGAS_lstringlist & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i21_ (GALGAS_lstringlist & ioArgument0,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i20_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i21_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i22_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i22_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i22_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i23_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i22_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i23_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i23_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i24_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i23_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
-                                                                                   C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i24_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i25_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                    C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -506,50 +507,55 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i27_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i28_ (GALGAS_bindingOptionList & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i28_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                                                   C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i28_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i29_ (GALGAS_bindingOptionList & outArgument0,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i28_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i29_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i29_ (GALGAS_secondaryPropertyList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i30_ (GALGAS_secondaryPropertyList & ioArgument0,
                                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i29_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i30_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i30_ (GALGAS_columnBindingAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i31_ (GALGAS_columnBindingAST & outArgument0,
                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i30_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i31_ (GALGAS_secondaryPropertyList & ioArgument0,
-                                                                                        C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i31_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i31_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i32_ (GALGAS_secondaryPropertyList & ioArgument0,
                                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i32_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i33_ (GALGAS_abstractDefaultValue & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i33_ (GALGAS_secondaryPropertyList & ioArgument0,
+                                                                                        C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_array_5F_controller_5F_declaration_i33_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i34_ (GALGAS_abstractDefaultValue & outArgument0,
                                                                        C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i33_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i34_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i34_ (GALGAS_lstring & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i35_ (GALGAS_lstring & ioArgument0,
                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i34_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i35_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i35_ (GALGAS_mainXibDescriptorList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i36_ (GALGAS_mainXibDescriptorList & ioArgument0,
                                                                  C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i35_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i36_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i36_ (GALGAS_mainXibLineDescriptorList & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i37_ (GALGAS_mainXibLineDescriptorList & outArgument0,
                                                                          C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i36_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i37_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
 
 
@@ -653,6 +659,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_48 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_49 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -5320,7 +5328,8 @@ class GALGAS_transientAST : public GALGAS_abstractSecondaryProperty {
   public : static class GALGAS_transientAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                              const class GALGAS_bool & inOperand1,
                                                              const class GALGAS_lstring & inOperand2,
-                                                             const class GALGAS_observablePropertyList & inOperand3
+                                                             const class GALGAS_observablePropertyList & inOperand3,
+                                                             const class GALGAS_bool & inOperand4
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5335,6 +5344,8 @@ class GALGAS_transientAST : public GALGAS_abstractSecondaryProperty {
   public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyList getter_mDependencyList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsArray (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsCopy (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTransientName (LOCATION_ARGS) const ;
 
@@ -5486,12 +5497,14 @@ class cPtr_transientAST : public cPtr_abstractSecondaryProperty {
   public : GALGAS_bool mProperty_mIsArray ;
   public : GALGAS_lstring mProperty_mTransientName ;
   public : GALGAS_observablePropertyList mProperty_mDependencyList ;
+  public : GALGAS_bool mProperty_mIsCopy ;
 
 //--- Constructor
   public : cPtr_transientAST (const GALGAS_lstring & in_mTransientTypeName,
                               const GALGAS_bool & in_mIsArray,
                               const GALGAS_lstring & in_mTransientName,
-                              const GALGAS_observablePropertyList & in_mDependencyList
+                              const GALGAS_observablePropertyList & in_mDependencyList,
+                              const GALGAS_bool & in_mIsCopy
                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5502,6 +5515,7 @@ class cPtr_transientAST : public cPtr_abstractSecondaryProperty {
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsArray (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTransientName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_observablePropertyList getter_mDependencyList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsCopy (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -6544,6 +6558,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_48 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_49 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -9457,7 +9473,8 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_string & in_mTransientName,
                                                   const class GALGAS_bool & in_mIsArray,
                                                   const class GALGAS_typeKind & in_mTransientType,
-                                                  const class GALGAS_transientDependencyListForGeneration & in_mDependencyList
+                                                  const class GALGAS_transientDependencyListForGeneration & in_mDependencyList,
+                                                  const class GALGAS_bool & in_mIsCopy
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -9477,7 +9494,8 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                                                                const class GALGAS_string & inOperand1,
                                                                                                const class GALGAS_bool & inOperand2,
                                                                                                const class GALGAS_typeKind & inOperand3,
-                                                                                               const class GALGAS_transientDependencyListForGeneration & inOperand4
+                                                                                               const class GALGAS_transientDependencyListForGeneration & inOperand4,
+                                                                                               const class GALGAS_bool & inOperand5
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -9490,7 +9508,8 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_string & inOperand1,
                                                       const class GALGAS_bool & inOperand2,
                                                       const class GALGAS_typeKind & inOperand3,
-                                                      const class GALGAS_transientDependencyListForGeneration & inOperand4
+                                                      const class GALGAS_transientDependencyListForGeneration & inOperand4,
+                                                      const class GALGAS_bool & inOperand5
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_transientDefinitionListForGeneration add_operation (const GALGAS_transientDefinitionListForGeneration & inOperand,
@@ -9504,7 +9523,8 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                        class GALGAS_bool constinArgument2,
                                                        class GALGAS_typeKind constinArgument3,
                                                        class GALGAS_transientDependencyListForGeneration constinArgument4,
-                                                       class GALGAS_uint constinArgument5,
+                                                       class GALGAS_bool constinArgument5,
+                                                       class GALGAS_uint constinArgument6,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -9513,6 +9533,7 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                   class GALGAS_bool & outArgument2,
                                                   class GALGAS_typeKind & outArgument3,
                                                   class GALGAS_transientDependencyListForGeneration & outArgument4,
+                                                  class GALGAS_bool & outArgument5,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -9521,6 +9542,7 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                  class GALGAS_bool & outArgument2,
                                                  class GALGAS_typeKind & outArgument3,
                                                  class GALGAS_transientDependencyListForGeneration & outArgument4,
+                                                 class GALGAS_bool & outArgument5,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -9529,7 +9551,8 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                        class GALGAS_bool & outArgument2,
                                                        class GALGAS_typeKind & outArgument3,
                                                        class GALGAS_transientDependencyListForGeneration & outArgument4,
-                                                       class GALGAS_uint constinArgument5,
+                                                       class GALGAS_bool & outArgument5,
+                                                       class GALGAS_uint constinArgument6,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -9540,6 +9563,7 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                                class GALGAS_bool & outArgument2,
                                                class GALGAS_typeKind & outArgument3,
                                                class GALGAS_transientDependencyListForGeneration & outArgument4,
+                                               class GALGAS_bool & outArgument5,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -9548,6 +9572,7 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
                                               class GALGAS_bool & outArgument2,
                                               class GALGAS_typeKind & outArgument3,
                                               class GALGAS_transientDependencyListForGeneration & outArgument4,
+                                              class GALGAS_bool & outArgument5,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -9561,6 +9586,10 @@ class GALGAS_transientDefinitionListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsArrayAtIndex (const class GALGAS_uint & constinOperand0,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsCopyAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                           C_Compiler * inCompiler
@@ -9609,6 +9638,7 @@ class cEnumerator_transientDefinitionListForGeneration : public cGenericAbstract
   public : class GALGAS_bool current_mIsArray (LOCATION_ARGS) const ;
   public : class GALGAS_typeKind current_mTransientType (LOCATION_ARGS) const ;
   public : class GALGAS_transientDependencyListForGeneration current_mDependencyList (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mIsCopy (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_transientDefinitionListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -13090,6 +13120,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
 
   public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
 
+  public : GALGAS_bool mProperty_mIsCopy ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -13105,7 +13137,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
                                                                    const GALGAS_string & in_mTransientName,
                                                                    const GALGAS_bool & in_mIsArray,
                                                                    const GALGAS_typeKind & in_mTransientType,
-                                                                   const GALGAS_transientDependencyListForGeneration & in_mDependencyList) ;
+                                                                   const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
+                                                                   const GALGAS_bool & in_mIsCopy) ;
 
 //-- Start of generic part --*
 
@@ -13122,7 +13155,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
                                                                                                 const class GALGAS_string & inOperand1,
                                                                                                 const class GALGAS_bool & inOperand2,
                                                                                                 const class GALGAS_typeKind & inOperand3,
-                                                                                                const class GALGAS_transientDependencyListForGeneration & inOperand4
+                                                                                                const class GALGAS_transientDependencyListForGeneration & inOperand4,
+                                                                                                const class GALGAS_bool & inOperand5
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -13140,6 +13174,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsArray (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsCopy (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
 

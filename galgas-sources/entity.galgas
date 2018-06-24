@@ -194,6 +194,7 @@ override method @entityDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mEntityName.string
@@ -202,6 +203,7 @@ override method @entityDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
+#      !?copyTransientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
       !?* # No custom object controller
@@ -209,6 +211,7 @@ override method @entityDeclaration semanticAnalysis
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+#  ioGeneration.mCopyTransientListForGeneration += copyTransientDefinitionListForGeneration
 #--- Analyze toOne relationships
   [mToOneRelationshipList semanticAnalysis
     !inSemanticContext

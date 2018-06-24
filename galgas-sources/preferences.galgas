@@ -145,6 +145,7 @@ method @prefDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
   @arrayControllerForGeneration arrayControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
@@ -154,6 +155,7 @@ method @prefDeclaration semanticAnalysis
       !inSemanticContext
       !inSemanticContext.mPreferencesObservablePropertyMap
       !?transientDefinitionListForGeneration
+#      !?copyTransientDefinitionListForGeneration
       !?arrayControllerListForGeneration
       !?* # No selection controller
       !?* # No Custom Object Controller

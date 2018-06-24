@@ -294,6 +294,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration

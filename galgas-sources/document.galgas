@@ -173,6 +173,7 @@ override method @documentDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
   @customObjectControllerForGeneration customObjectControllerListForGeneration = {}
@@ -184,6 +185,7 @@ override method @documentDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
+#      !?copyTransientDefinitionListForGeneration
       !?documentArrayControllerListForGeneration
       !?selectionControllerListForGeneration
       !?customObjectControllerListForGeneration
@@ -191,6 +193,7 @@ override method @documentDeclaration semanticAnalysis
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+#  ioGeneration.mCopyTransientListForGeneration += copyTransientDefinitionListForGeneration
   ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
   ioGeneration.mCustomObjectControllerListForGeneration += customObjectControllerListForGeneration
