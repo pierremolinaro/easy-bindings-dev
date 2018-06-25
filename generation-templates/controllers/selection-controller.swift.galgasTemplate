@@ -17,9 +17,13 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
   //····················································································································
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
-%  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
-end
+  if not [mType isEntityType] then
+    if [mKind isTransient] then
+      %  var %!lkey.string% = EBTransientProperty_%![mType swiftTypeName]% () \n%
+    else
+      %  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
+    end
+  end
 end%
   //····················································································································
   //   BIND SELECTION
@@ -28,9 +32,9 @@ end%
   func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
     mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
-%    bind_property_%!lkey.string% (model: model)\n%
-end
+  if not [mType isEntityType] then
+    %    bind_property_%!lkey.string% (model: model)\n%
+  end
 end%  }
 
   //····················································································································
@@ -70,7 +74,7 @@ end%  }
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
+if not [mType isEntityType] & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
   %      idx:self.%!lkey.string%.mEasyBindingsObjectIndex,\n%
@@ -213,14 +217,16 @@ end%
 
   func unbind_selection () {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
-%  //--- %!lkey.string%\n%
-%    self.%!lkey.string%.readModelFunction = nil \n%
-%    self.%!lkey.string%.writeModelFunction = nil \n%
-%    self.%!lkey.string%.validateAndWriteModelFunction = nil \n%
-%    mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%)\n%
-%//    mModel?.removeEBObserver (self.%!lkey.string%)\n%
-end
+  if not [mType isEntityType] then
+    %  //--- %!lkey.string%\n%
+    %    self.%!lkey.string%.readModelFunction = nil \n%
+    if not [mKind isTransient] then
+      %    self.%!lkey.string%.writeModelFunction = nil \n%
+      %    self.%!lkey.string%.validateAndWriteModelFunction = nil \n%
+     end
+    %    mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%)\n%
+    %//    mModel?.removeEBObserver (self.%!lkey.string%)\n%
+  end
 end%    mModel = nil    
   }
 
