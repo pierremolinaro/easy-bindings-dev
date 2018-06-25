@@ -80,8 +80,6 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case classType (*) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
-    case atomicClassType (* *) :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
     case propertyClassType (**) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case transientPropertyClassType (*) :
@@ -135,8 +133,6 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   case enumType (* *) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case classType (*) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case atomicClassType (* *) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case propertyClassType (**) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName

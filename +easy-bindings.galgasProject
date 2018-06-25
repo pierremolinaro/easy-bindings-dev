@@ -22,7 +22,6 @@ project (0:0:1) -> "eb" {
   "galgas-sources/enumeration.galgas"
   "galgas-sources/relationships.galgas"
   "galgas-sources/class.galgas"
-  "galgas-sources/atomic-class.galgas"
   "galgas-sources/entity.galgas"
   "galgas-sources/document.galgas"
   "galgas-sources/preferences.galgas"

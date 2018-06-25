@@ -70,8 +70,6 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case classType (*) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
-    case atomicClassType (* *) :
-      error mPropertyEntityName : "the controller model should be an entity" : entityName
     case propertyClassType (**) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case transientPropertyClassType (*) :

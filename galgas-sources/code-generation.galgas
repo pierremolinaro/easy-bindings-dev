@@ -3,13 +3,11 @@
 
 struct @structForGeneration {
   @transientDefinitionListForGeneration mTransientListForGeneration
-#  @copyTransientDefinitionListForGeneration mCopyTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
   @preferencesForGeneration mPreferencesForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
   @classListForGeneration mClassListForGeneration
-  @atomicClassListForGeneration mAtomicClassListForGeneration
   @enumListForGeneration mEnumListForGeneration
   @stringset mNeededOutletClasses
   @arrayControllerForGeneration mAllArrayControllerForGeneration
@@ -55,11 +53,6 @@ proc generateCode
   )
   generateClasses (
     !inGeneration.mClassListForGeneration
-    !fileOutputDirectory
-    !?generatedFileSet
-  )
-  generateAtomicClasses (
-    !inGeneration.mAtomicClassListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )

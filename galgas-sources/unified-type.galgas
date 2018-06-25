@@ -12,7 +12,6 @@ enum @typeKind {
   case enumType (@string enumTypeName @enumConstantMap constantMap)
   case entityType (@string entityName)
   case classType (@string className)
-  case atomicClassType (@string className  @unifiedTypeMapProxyList typeProxyList)
   case propertyClassType (@string classPropertyName @propertyClassDefaultValues defaultValues)
   case transientPropertyClassType (@string classPropertyName)
 }
@@ -28,8 +27,6 @@ getter @typeKind isComparable -> @bool outResult {
   case enumType (* *) :
     outResult = false
   case entityType (*) :
-    outResult = false
-  case atomicClassType (* *) :
     outResult = false
   case classType (*) :
     outResult = false
@@ -48,12 +45,6 @@ shared map @unifiedTypeMap {
   search searchKey error message "the '%K' type is not declared"
   @typeKind mTypeKind
   @actionMap mActionMap
-}
-
-#·······················································································································
-
-list @unifiedTypeMapProxyList {
-  @unifiedTypeMap-proxy mType
 }
 
 #·······················································································································
@@ -142,7 +133,6 @@ getter @typeKind swiftTypeName -> @string outResult {
   case fontType : outResult = "NSFont"
   case entityType (@string entityName) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
-  case atomicClassType (@string classTypeName *) : outResult = classTypeName
   case classType (@string classTypeName) : outResult = classTypeName
   case propertyClassType (@string classTypeName *) : outResult = classTypeName
   case transientPropertyClassType (@string classTypeName) : outResult = classTypeName

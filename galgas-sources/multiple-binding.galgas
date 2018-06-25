@@ -258,8 +258,6 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "an entity cannot be observed"
   case classType (*) :
     error [mProperty location] : "a class cannot be observed"
-  case atomicClassType (* *) :
-    error [mProperty location] : "an atomic class cannot be observed"
   case transientPropertyClassType (*) :
     error [mProperty location] : "a class cannot be observed"
   case propertyClassType (**) : # Ok

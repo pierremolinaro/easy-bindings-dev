@@ -131,8 +131,6 @@ method @toOneRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
     case classType (*) :
       error mDestinationEntityName: "a class type cannot be used as entitytype"
-    case atomicClassType (* *) :
-      error mDestinationEntityName: "an atomic class type cannot be used as entitytype"
     case propertyClassType (**) :
       error mDestinationEntityName: "a property class type cannot be used as entitytype"
     case transientPropertyClassType (*) :
@@ -168,8 +166,6 @@ method @toManyRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
     case classType (*) :
       error mDestinationEntityName: "a class type cannot be used as entitytype"
-    case atomicClassType (* *) :
-      error mDestinationEntityName: "an atomic class type cannot be used as entitytype"
     case propertyClassType (**) :
       error mDestinationEntityName: "a property class type cannot be used as entitytype"
     case transientPropertyClassType (*) :
@@ -226,8 +222,6 @@ method @toOneRelationshipList semanticAnalysis
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case classType (*) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case atomicClassType (* *) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case propertyClassType (**) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case transientPropertyClassType (*) :
@@ -280,8 +274,6 @@ method @toManyRelationshipList semanticAnalysis
      case enumType (* *) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case classType (*) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case atomicClassType (* *) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
      case propertyClassType (**) :
        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
