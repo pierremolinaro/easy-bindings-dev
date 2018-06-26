@@ -61,6 +61,10 @@ extern outlet class EBMenu ;
 extern outlet class EBMenuItem ;
 
 
+extern outlet class EBCheckedMenuItem ;
+binding EBCheckedMenuItem $checked : property Bool ;
+
+
 extern outlet class EBProgressIndicator ;
 
 
