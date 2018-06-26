@@ -67,19 +67,19 @@ final class SelectionController_PMDocument_detailController : EBObject {
     var y : CGFloat = 0.0
     createEntryForPropertyNamed (
       "aValue",
-      idx:aValue.mEasyBindingsObjectIndex,
+      idx:self.aValue.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&aValue.mObserverExplorer,
-      valueExplorer:&aValue.mValueExplorer
+      observerExplorer:&self.aValue.mObserverExplorer,
+      valueExplorer:&self.aValue.mValueExplorer
     )
     createEntryForPropertyNamed (
       "name",
-      idx:name.mEasyBindingsObjectIndex,
+      idx:self.name.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&name.mObserverExplorer,
-      valueExplorer:&name.mValueExplorer
+      observerExplorer:&self.name.mObserverExplorer,
+      valueExplorer:&self.name.mValueExplorer
     )
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
@@ -135,8 +135,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //···················································································································*
 
   private final func bind_property_aValue (model : ReadOnlyArrayOf_NameEntity) {
-    model.addEBObserverOf_aValue (aValue)
-    aValue.readModelFunction = {
+    model.addEBObserverOf_aValue (self.aValue)
+    self.aValue.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
         case .noSelection :
@@ -170,7 +170,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
         return .noSelection
       }
     }
-    aValue.writeModelFunction = { (inValue : Int) in
+    self.aValue.writeModelFunction = { (inValue : Int) in
       if let model = self.mModel {
         switch model.prop {
         case .noSelection, .multipleSelection :
@@ -182,7 +182,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
         }
       }
     }
-    aValue.validateAndWriteModelFunction = { (candidateValue : Int, windowForSheet : NSWindow?) in
+    self.aValue.validateAndWriteModelFunction = { (candidateValue : Int, windowForSheet : NSWindow?) in
       if let model = self.mModel {
         switch model.prop {
         case .noSelection, .multipleSelection :
@@ -205,8 +205,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //···················································································································*
 
   private final func bind_property_name (model : ReadOnlyArrayOf_NameEntity) {
-    model.addEBObserverOf_name (name)
-    name.readModelFunction = {
+    model.addEBObserverOf_name (self.name)
+    self.name.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
         case .noSelection :
@@ -240,7 +240,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
         return .noSelection
       }
     }
-    name.writeModelFunction = { (inValue : String) in
+    self.name.writeModelFunction = { (inValue : String) in
       if let model = self.mModel {
         switch model.prop {
         case .noSelection, .multipleSelection :
@@ -252,7 +252,7 @@ final class SelectionController_PMDocument_detailController : EBObject {
         }
       }
     }
-    name.validateAndWriteModelFunction = { (candidateValue : String, windowForSheet : NSWindow?) in
+    self.name.validateAndWriteModelFunction = { (candidateValue : String, windowForSheet : NSWindow?) in
       if let model = self.mModel {
         switch model.prop {
         case .noSelection, .multipleSelection :
@@ -280,17 +280,17 @@ final class SelectionController_PMDocument_detailController : EBObject {
 
   func unbind_selection () {
   //--- aValue
-    aValue.readModelFunction = nil 
-    aValue.writeModelFunction = nil 
-    aValue.validateAndWriteModelFunction = nil 
-    mModel?.removeEBObserverOf_aValue (aValue)
-//    mModel?.removeEBObserver (aValue)
+    self.aValue.readModelFunction = nil 
+    self.aValue.writeModelFunction = nil 
+    self.aValue.validateAndWriteModelFunction = nil 
+    mModel?.removeEBObserverOf_aValue (self.aValue)
+//    mModel?.removeEBObserver (self.aValue)
   //--- name
-    name.readModelFunction = nil 
-    name.writeModelFunction = nil 
-    name.validateAndWriteModelFunction = nil 
-    mModel?.removeEBObserverOf_name (name)
-//    mModel?.removeEBObserver (name)
+    self.name.readModelFunction = nil 
+    self.name.writeModelFunction = nil 
+    self.name.validateAndWriteModelFunction = nil 
+    mModel?.removeEBObserverOf_name (self.name)
+//    mModel?.removeEBObserver (self.name)
     mModel = nil    
   }
 

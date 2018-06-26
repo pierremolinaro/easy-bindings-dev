@@ -59,18 +59,17 @@ final class Controller_EBDatePicker_date : EBSimpleController {
   init (object : EBReadWriteProperty_Date, outlet : EBDatePicker, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init (objects:[object], outlet:outlet)
+    super.init (observedObjects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBDatePicker_date.action(_:))
-    mObject.addEBObserver (self)
   }
 
   //···················································································································*
   
-  func unregister () {
+  override func unregister () {
+    super.unregister ()
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

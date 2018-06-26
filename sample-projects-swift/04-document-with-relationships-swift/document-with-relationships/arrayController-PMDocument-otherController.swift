@@ -423,7 +423,25 @@ final class ArrayController_PMDocument_otherController : EBObject, EBTableViewDe
     }
   }
  
- 
+  //····················································································································
+  //    select
+  //····················································································································
+
+  func select (object inObject: NameEntity) {
+    if let model = mModel {
+      switch model.prop {
+      case .noSelection, .multipleSelection :
+        break
+      case .singleSelection (let objectArray) :
+        if objectArray.contains (inObject) {
+          var newSelectedObjectSet = Set <NameEntity> ()
+          newSelectedObjectSet.insert (inObject)
+          mSelectedSet.mSet = newSelectedObjectSet
+        }
+      }
+    }
+  }
+
   //····················································································································
   //    add
   //····················································································································

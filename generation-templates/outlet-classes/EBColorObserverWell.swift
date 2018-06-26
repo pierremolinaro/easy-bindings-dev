@@ -64,14 +64,7 @@ final class Controller_EBColorObserverWell_color : EBSimpleController {
   init (object : EBReadOnlyProperty_NSColor, outlet : EBColorObserverWell, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init (objects:[object], outlet:outlet)
-    mObject.addEBObserver (self)
-  }
-
-  //···················································································································*
-  
-  func unregister () {
-    mObject.removeEBObserver (self)
+    super.init (observedObjects:[object], outlet:outlet)
   }
 
   //···················································································································*

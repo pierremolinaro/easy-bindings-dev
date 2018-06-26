@@ -139,16 +139,15 @@ final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
   init (object : EBReadWriteProperty_Int, outlet : EBSegmentedControl, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init (objects:[object], outlet:outlet)
-    mObject.addEBObserver (self)
+    super.init (observedObjects:[object], outlet:outlet)
   }
 
   //···················································································································*
   
-  func unregister () {
+  override func unregister () {
+    super.unregister ()
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 

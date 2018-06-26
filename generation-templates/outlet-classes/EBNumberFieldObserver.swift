@@ -69,19 +69,18 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
   init (object : EBReadOnlyProperty_Int, outlet : EBNumberFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init (objects:[object], outlet:outlet)
+    super.init (observedObjects:[object], outlet:outlet)
     if mOutlet.formatter == nil {
       presentErrorWindow (file: file, line, "the outlet has no formatter")
     }else if !(mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file: file, line, "the formatter should be an NSNumberFormatter")
     }
-    mObject.addEBObserver (self)
   }
 
   //···················································································································*
   
-  func unregister () {
-    mObject.removeEBObserver (self)
+  override func unregister () {
+    super.unregister ()
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
