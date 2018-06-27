@@ -160,7 +160,12 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
+      if logEvents () {
+        appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\\n")
     }
   }
 
@@ -432,132 +437,6 @@ end
 
 typealias EBReadOnlyProperty_%!CLASS_NAME% = EBReadOnlyClassProperty <%!CLASS_NAME%>
 typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_NAME%>
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadWriteProperty_%!CLASS_NAME% (abstract class)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-/* class EBReadWriteProperty_%!CLASS_NAME% : EBReadOnlyProperty_%!CLASS_NAME% {
-  func setProp (_ value: %!CLASS_NAME%) { } // Abstract method
-  func validateAndSetProp (_ candidateValue : %!CLASS_NAME%, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
-} */
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBPropertyProxy_%!CLASS_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-/* class EBPropertyProxy_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
-  var readModelFunction : Optional < () -> EBProperty <%!CLASS_NAME%> >
-  var writeModelFunction : Optional < (%!CLASS_NAME%) -> Void >
-  var validateAndWriteModelFunction : Optional < (%!CLASS_NAME%, NSWindow?) -> Bool >
-  
-  private var prop_cache : EBProperty <%!CLASS_NAME%>?
-
-  //····················································································································
-
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = "%!EXPLORER_ACCESS%"
-    }
-  }
-
-  //····················································································································
-
-  override func postEvent() {
-    if prop_cache != nil {
-      prop_cache = nil
-      super.postEvent()
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <%!CLASS_NAME%> {
-    get {
-      if let unReadModelFunction = readModelFunction, prop_cache == nil {
-        prop_cache = unReadModelFunction ()
-      }
-      if prop_cache == nil {
-        prop_cache = .noSelection
-      }
-      return prop_cache!
-    }
-  }
-
-  //····················································································································
-  
-  override func setProp (_ value: %!CLASS_NAME%) {
-    if let unWriteModelFunction = writeModelFunction {
-      unWriteModelFunction (value)
-    }
-  }
-
-  //····················································································································
-
-  override func validateAndSetProp (_ candidateValue : %!CLASS_NAME%,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
-    var result = false
-    if let unwValidateAndWriteModelFunction = validateAndWriteModelFunction {
-      result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
-    }
-    return result
-  }
-  
-  //····················································································································
-  
-} */
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBStoredProperty_%!CLASS_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-/* final class EBStoredProperty_%!CLASS_NAME% : EBReadWriteProperty_%!CLASS_NAME% {
-
-  //····················································································································
-
-  init (_ inValue : %!CLASS_NAME%) {
-    mValue = inValue
-    super.init ()
-  }
-
-  //····················································································································
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = "%!EXPLORER_ACCESS%"
-    }
-  }
-
-  //····················································································································
-
-  private var mValue : %!CLASS_NAME% {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = "%!EXPLORER_ACCESS%"
-        postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  override var prop : EBProperty <%!CLASS_NAME%> { get { return .singleSelection (mValue) } }
-
-  var propval : %!CLASS_NAME% { get { return mValue } }
-
-  override func setProp (_ value: %!CLASS_NAME%) { mValue = value }
-
-  //····················································································································
-
-} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

@@ -225,9 +225,9 @@ end%
       %    self.%!lkey.string%.validateAndWriteModelFunction = nil \n%
      end
     %    mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%)\n%
-    %//    mModel?.removeEBObserver (self.%!lkey.string%)\n%
   end
-end%    mModel = nil    
+end%  //---
+    mModel = nil    
   }
 
   //····················································································································

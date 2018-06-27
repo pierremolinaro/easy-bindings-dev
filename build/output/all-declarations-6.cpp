@@ -4226,9 +4226,6 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
         result << enumerator_9631.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (self." ;
         result << enumerator_9631.current_lkey (HERE).getter_string (HERE).stringValue () ;
-        result << ")\n"
-          "//    mModel\?.removeEBObserver (self." ;
-        result << enumerator_9631.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << ")\n" ;
       }else if (kBoolFalse == test_6) {
       }
