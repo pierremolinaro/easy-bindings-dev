@@ -672,6 +672,18 @@ end
   %      valueExplorer:&self.%!mStoredPropertyName%.mValueExplorer\n%
   %    )\n%
 end
+%    createEntryForTitle ("Properties", y:&y, view:view)\n%
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    createEntryForPropertyNamed (\n%
+  %      "%!mTransientName%",\n%
+  %      idx:self.%!mTransientName%.mEasyBindingsObjectIndex,\n%
+  %      y:&y,\n%
+  %      view:view,\n%
+  %      observerExplorer:&self.%!mTransientName%.mObserverExplorer,\n%
+  %      valueExplorer:&self.%!mTransientName%.mValueExplorer\n%
+  %    )\n%
+end
+%    createEntryForTitle ("Transients", y:&y, view:view)\n%
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    createEntryForToManyRelationshipNamed (\n%
   %      "%!mToManyRelationshipName%",\n%
@@ -681,6 +693,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   %      valueExplorer:&%!mToManyRelationshipName%.mValueExplorer\n%
   %    )\n%
 end
+%    createEntryForTitle ("ToMany Relationships", y:&y, view:view)\n%
 for () in TO_ONE_RELATIONSHIP_LIST do
   %    createEntryForToOneRelationshipNamed (\n%
   %      "%!mToOneRelationshipName%",\n%
@@ -689,7 +702,8 @@ for () in TO_ONE_RELATIONSHIP_LIST do
   %      view: view,\n%
   %      valueExplorer:&%!mToOneRelationshipName%.mValueExplorer\n%
   %    )\n%
-end%  }
+end%    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
+  }
 
   //····················································································································
   //    clearObjectExplorer
