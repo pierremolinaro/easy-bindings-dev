@@ -182,7 +182,12 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
+      if logEvents () {
+        appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 
@@ -349,6 +354,9 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
       observerExplorer:&self.aValue.mObserverExplorer,
       valueExplorer:&self.aValue.mValueExplorer
     )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
     createEntryForToOneRelationshipNamed (
       "mRoot",
       idx:mRoot.mEasyBindingsObjectIndex,
@@ -356,6 +364,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
       view: view,
       valueExplorer:&mRoot.mValueExplorer
     )
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
   }
 
   //····················································································································

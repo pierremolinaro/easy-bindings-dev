@@ -284,13 +284,12 @@ final class SelectionController_PMDocument_detailController : EBObject {
     self.aValue.writeModelFunction = nil 
     self.aValue.validateAndWriteModelFunction = nil 
     mModel?.removeEBObserverOf_aValue (self.aValue)
-//    mModel?.removeEBObserver (self.aValue)
   //--- name
     self.name.readModelFunction = nil 
     self.name.writeModelFunction = nil 
     self.name.validateAndWriteModelFunction = nil 
     mModel?.removeEBObserverOf_name (self.name)
-//    mModel?.removeEBObserver (self.name)
+  //---
     mModel = nil    
   }
 

@@ -81,7 +81,12 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
+      if logEvents () {
+        appendMessageString ("Proxy \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("Proxy \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 
@@ -152,6 +157,9 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
       if mValue != oldValue {
         mValueExplorer?.stringValue = "\(mValue)"
         undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue.convertToNSObject ())
+        if logEvents () {
+          appendMessageString ("Property \(explorerIndexString (self.mEasyBindingsObjectIndex)) did change value to \(mValue)\n")
+        }
         postEvent ()
         clearSignatureCache ()
       }
@@ -292,6 +300,14 @@ class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> {
 
   //····················································································································
 
+  var mValueExplorer : NSTextField? {
+    didSet {
+      mValueExplorer?.stringValue = "\(mValueCache)"
+    }
+  }
+
+  //····················································································································
+
   override var prop : EBProperty <T> {
     get {
       if let unwrappedComputeFunction = readModelFunction, mValueCache == nil {
@@ -309,7 +325,12 @@ class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> {
   override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
+      if logEvents () {
+        appendMessageString ("Transient \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("Transient \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 
@@ -656,7 +677,12 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
+      if logEvents () {
+        appendMessageString ("Proxy \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("Proxy \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 
@@ -727,6 +753,9 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
       if mValue != oldValue {
         mValueExplorer?.stringValue = "\(mValue)"
         undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue)
+        if logEvents () {
+          appendMessageString ("Property \(explorerIndexString (self.mEasyBindingsObjectIndex)) did change value to \(mValue)\n")
+        }
         postEvent ()
         clearSignatureCache ()
       }
@@ -867,6 +896,14 @@ class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
 
   //····················································································································
 
+  var mValueExplorer : NSTextField? {
+    didSet {
+      mValueExplorer?.stringValue = "\(mValueCache)"
+    }
+  }
+
+  //····················································································································
+
   override var prop : EBProperty <T> {
     get {
       if let unwrappedComputeFunction = readModelFunction, mValueCache == nil {
@@ -884,7 +921,12 @@ class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
   override func postEvent () {
     if mValueCache != nil {
       mValueCache = nil
+      if logEvents () {
+        appendMessageString ("Transient \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("Transient  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 

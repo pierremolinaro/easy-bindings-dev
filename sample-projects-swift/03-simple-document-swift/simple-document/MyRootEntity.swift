@@ -350,7 +350,12 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
+      if logEvents () {
+        appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 
@@ -529,6 +534,34 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
       observerExplorer:&self.myColor.mObserverExplorer,
       valueExplorer:&self.myColor.mValueExplorer
     )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForPropertyNamed (
+      "myStringMaj",
+      idx:self.myStringMaj.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myStringMaj.mObserverExplorer,
+      valueExplorer:&self.myStringMaj.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "myStringMin",
+      idx:self.myStringMin.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myStringMin.mObserverExplorer,
+      valueExplorer:&self.myStringMin.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "myStringConcat",
+      idx:self.myStringConcat.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myStringConcat.mObserverExplorer,
+      valueExplorer:&self.myStringConcat.mValueExplorer
+    )
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
   }
 
   //····················································································································
