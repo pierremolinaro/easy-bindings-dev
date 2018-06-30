@@ -5,6 +5,116 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    Entity: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
+
+  //····················································································································
+  //    Properties
+  //····················································································································
+
+  var docBool = EBStoredProperty_Bool (true)
+  //····················································································································
+  //    Transient properties
+  //····················································································································
+
+
+  //····················································································································
+  //    Relationships
+  //····················································································································
+
+
+  //····················································································································
+  //    init
+  //····················································································································
+
+  override init (managedObjectContext : EBManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install undoers for properties
+    self.docBool.undoManager = undoManager ()
+  //--- Install owner for relationships
+  //--- register properties for handling signature
+  }
+
+  //····················································································································
+
+  deinit {
+  //--- Remove observers
+  }
+
+  //····················································································································
+  //    populateExplorerWindow
+  //····················································································································
+
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+    super.populateExplorerWindow (&y, view:view)
+    createEntryForPropertyNamed (
+      "docBool",
+      idx:self.docBool.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.docBool.mObserverExplorer,
+      valueExplorer:&self.docBool.mValueExplorer
+    )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
+  }
+
+  //····················································································································
+  //    clearObjectExplorer
+  //····················································································································
+
+  override func clearObjectExplorer () {
+    self.docBool.mObserverExplorer = nil
+    self.docBool.mValueExplorer = nil
+    super.clearObjectExplorer ()
+  }
+
+  //····················································································································
+  //    saveIntoDictionary
+  //····················································································································
+
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+    self.docBool.storeIn (dictionary: ioDictionary, forKey: "docBool")
+  }
+
+  //····················································································································
+  //    setUpWithDictionary
+  //····················································································································
+
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
+    self.docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
+    super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
+
+  //····················································································································
+  //   accessibleObjects
+  //····················································································································
+
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -146,118 +256,6 @@ protocol MyRootEntity_docBool : class {
   var docBool : EBStoredProperty_Bool { get }
 }
 
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    Entity: MyRootEntity
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class MyRootEntity : EBManagedObject, MyRootEntity_docBool
-{
-
-  //····················································································································
-  //    Properties
-  //····················································································································
-
-  var docBool = EBStoredProperty_Bool (true)
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Relationships
-  //····················································································································
-
-
-  //····················································································································
-  //    init
-  //····················································································································
-
-  override init (managedObjectContext : EBManagedObjectContext) {
-    super.init (managedObjectContext:managedObjectContext)
-  //--- Install compute functions for transients
-  //--- Install property observers for transients
-  //--- Install undoers for properties
-    self.docBool.undoManager = undoManager ()
-  //--- Install owner for relationships
-  //--- register properties for handling signature
-  }
-
-  //····················································································································
-
-  deinit {
-  //--- Remove observers
-  }
-
-  //····················································································································
-  //    populateExplorerWindow
-  //····················································································································
-
-  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
-    super.populateExplorerWindow (&y, view:view)
-    createEntryForPropertyNamed (
-      "docBool",
-      idx:self.docBool.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.docBool.mObserverExplorer,
-      valueExplorer:&self.docBool.mValueExplorer
-    )
-    createEntryForTitle ("Properties", y:&y, view:view)
-    createEntryForTitle ("Transients", y:&y, view:view)
-    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
-    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
-  }
-
-  //····················································································································
-  //    clearObjectExplorer
-  //····················································································································
-
-  override func clearObjectExplorer () {
-    self.docBool.mObserverExplorer = nil
-    self.docBool.mValueExplorer = nil
-    super.clearObjectExplorer ()
-  }
-
-  //····················································································································
-  //    saveIntoDictionary
-  //····················································································································
-
-  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
-    super.saveIntoDictionary (ioDictionary)
-    self.docBool.storeIn (dictionary: ioDictionary, forKey: "docBool")
-  }
-
-  //····················································································································
-  //    setUpWithDictionary
-  //····················································································································
-
-  override func setUpWithDictionary (_ inDictionary : NSDictionary,
-                                     managedObjectArray : inout [EBManagedObject]) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    self.docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
-  }
-
-  //····················································································································
-  //   cascadeObjectRemoving
-  //····················································································································
-
-  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
-    super.cascadeObjectRemoving (&ioObjectsToRemove)
-  }
-
-  //····················································································································
-  //   accessibleObjects
-  //····················································································································
-
-  override func accessibleObjects (objects : inout [EBManagedObject]) {
-    super.accessibleObjects (objects: &objects)
-  }
-
-  //····················································································································
-
-}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

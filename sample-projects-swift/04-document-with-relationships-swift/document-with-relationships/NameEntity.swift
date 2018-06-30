@@ -5,6 +5,154 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    Entity: NameEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
+
+  //····················································································································
+  //    Properties
+  //····················································································································
+
+  var name = EBStoredProperty_String ("Name")
+  var aValue = EBStoredProperty_Int (100)
+  //····················································································································
+  //    Transient properties
+  //····················································································································
+
+
+  //····················································································································
+  //    Relationships
+  //····················································································································
+
+  var mRoot = ToOneRelationship_NameEntity_mRoot ()
+
+  //····················································································································
+  //    init
+  //····················································································································
+
+  override init (managedObjectContext : EBManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
+  //--- Install compute functions for transients
+  //--- Install property observers for transients
+  //--- Install undoers for properties
+    self.name.undoManager = undoManager ()
+    self.aValue.undoManager = undoManager ()
+  //--- Install owner for relationships
+    mRoot.owner = self
+  //--- register properties for handling signature
+  }
+
+  //····················································································································
+
+  deinit {
+  //--- Remove observers
+  }
+
+  //····················································································································
+  //    populateExplorerWindow
+  //····················································································································
+
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+    super.populateExplorerWindow (&y, view:view)
+    createEntryForPropertyNamed (
+      "name",
+      idx:self.name.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.name.mObserverExplorer,
+      valueExplorer:&self.name.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "aValue",
+      idx:self.aValue.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.aValue.mObserverExplorer,
+      valueExplorer:&self.aValue.mValueExplorer
+    )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
+    createEntryForToOneRelationshipNamed (
+      "mRoot",
+      idx:mRoot.mEasyBindingsObjectIndex,
+      y: &y,
+      view: view,
+      valueExplorer:&mRoot.mValueExplorer
+    )
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
+  }
+
+  //····················································································································
+  //    clearObjectExplorer
+  //····················································································································
+
+  override func clearObjectExplorer () {
+    self.name.mObserverExplorer = nil
+    self.name.mValueExplorer = nil
+    self.aValue.mObserverExplorer = nil
+    self.aValue.mValueExplorer = nil
+    mRoot.mObserverExplorer = nil
+    mRoot.mValueExplorer = nil
+    super.clearObjectExplorer ()
+  }
+
+  //····················································································································
+  //    saveIntoDictionary
+  //····················································································································
+
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+    self.name.storeIn (dictionary: ioDictionary, forKey: "name")
+    self.aValue.storeIn (dictionary: ioDictionary, forKey: "aValue")
+  }
+
+  //····················································································································
+  //    setUpWithDictionary
+  //····················································································································
+
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
+    self.name.readFrom (dictionary: inDictionary, forKey:"name")
+    self.aValue.readFrom (dictionary: inDictionary, forKey:"aValue")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
+    self.mRoot.setProp (nil) // Set relationship to nil
+    super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
+
+  //····················································································································
+  //   resetToOneRelationships
+  //····················································································································
+
+  override func resetToOneRelationships () {
+    super.resetToOneRelationships ()
+    mRoot.setProp (nil)
+  }
+
+  //····················································································································
+  //   accessibleObjects
+  //····················································································································
+
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
+    if let object = mRoot.propval {
+      objects.append (object)
+    }
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    ReadOnlyArrayOf_NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -285,157 +433,6 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   func add (_ object : MyRootEntity) {
     mValue = object
   }
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    Entity: NameEntity
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
-{
-
-  //····················································································································
-  //    Properties
-  //····················································································································
-
-  var name = EBStoredProperty_String ("Name")
-
-  var aValue = EBStoredProperty_Int (100)
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Relationships
-  //····················································································································
-
-  var mRoot = ToOneRelationship_NameEntity_mRoot ()
-
-  //····················································································································
-  //    init
-  //····················································································································
-
-  override init (managedObjectContext : EBManagedObjectContext) {
-    super.init (managedObjectContext:managedObjectContext)
-  //--- Install compute functions for transients
-  //--- Install property observers for transients
-  //--- Install undoers for properties
-    self.name.undoManager = undoManager ()
-    self.aValue.undoManager = undoManager ()
-  //--- Install owner for relationships
-    mRoot.owner = self
-  //--- register properties for handling signature
-  }
-
-  //····················································································································
-
-  deinit {
-  //--- Remove observers
-  }
-
-  //····················································································································
-  //    populateExplorerWindow
-  //····················································································································
-
-  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
-    super.populateExplorerWindow (&y, view:view)
-    createEntryForPropertyNamed (
-      "name",
-      idx:self.name.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.name.mObserverExplorer,
-      valueExplorer:&self.name.mValueExplorer
-    )
-    createEntryForPropertyNamed (
-      "aValue",
-      idx:self.aValue.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.aValue.mObserverExplorer,
-      valueExplorer:&self.aValue.mValueExplorer
-    )
-    createEntryForTitle ("Properties", y:&y, view:view)
-    createEntryForTitle ("Transients", y:&y, view:view)
-    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
-    createEntryForToOneRelationshipNamed (
-      "mRoot",
-      idx:mRoot.mEasyBindingsObjectIndex,
-      y: &y,
-      view: view,
-      valueExplorer:&mRoot.mValueExplorer
-    )
-    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
-  }
-
-  //····················································································································
-  //    clearObjectExplorer
-  //····················································································································
-
-  override func clearObjectExplorer () {
-    self.name.mObserverExplorer = nil
-    self.name.mValueExplorer = nil
-    self.aValue.mObserverExplorer = nil
-    self.aValue.mValueExplorer = nil
-    mRoot.mObserverExplorer = nil
-    mRoot.mValueExplorer = nil
-    super.clearObjectExplorer ()
-  }
-
-  //····················································································································
-  //    saveIntoDictionary
-  //····················································································································
-
-  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
-    super.saveIntoDictionary (ioDictionary)
-    self.name.storeIn (dictionary: ioDictionary, forKey: "name")
-    self.aValue.storeIn (dictionary: ioDictionary, forKey: "aValue")
-  }
-
-  //····················································································································
-  //    setUpWithDictionary
-  //····················································································································
-
-  override func setUpWithDictionary (_ inDictionary : NSDictionary,
-                                     managedObjectArray : inout [EBManagedObject]) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    self.name.readFrom (dictionary: inDictionary, forKey:"name")
-    self.aValue.readFrom (dictionary: inDictionary, forKey:"aValue")
-  }
-
-  //····················································································································
-  //   cascadeObjectRemoving
-  //····················································································································
-
-  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
-    self.mRoot.setProp (nil) // Set relationship to nil
-    super.cascadeObjectRemoving (&ioObjectsToRemove)
-  }
-
-  //····················································································································
-  //   resetToOneRelationships
-  //····················································································································
-
-  override func resetToOneRelationships () {
-    super.resetToOneRelationships ()
-    mRoot.setProp (nil)
-  }
-
-  //····················································································································
-  //   accessibleObjects
-  //····················································································································
-
-  override func accessibleObjects (objects : inout [EBManagedObject]) {
-    super.accessibleObjects (objects: &objects)
-    if let object = mRoot.propval {
-      objects.append (object)
-    }
-  }
-
-  //····················································································································
 
 }
 

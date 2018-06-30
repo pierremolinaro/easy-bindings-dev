@@ -5,6 +5,226 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    Entity: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat {
+
+  //····················································································································
+  //    Properties
+  //····················································································································
+
+  var myString = EBStoredProperty_String ("Hello")
+  var myColor = EBStoredProperty_NSColor (NSColor.yellow)
+  //····················································································································
+  //    Transient properties
+  //····················································································································
+
+  var myStringMaj = EBTransientProperty_String ()
+  var myStringMin = EBTransientProperty_String ()
+  var myStringConcat = EBTransientProperty_String ()
+
+  //····················································································································
+  //    Relationships
+  //····················································································································
+
+
+  //····················································································································
+  //    init
+  //····················································································································
+
+  override init (managedObjectContext : EBManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
+  //--- Install compute functions for transients
+    myStringMaj.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        let kind = unwSelf.myString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
+          return .noSelection
+        case .multipleSelectionKind :
+          return .multipleSelection
+        case .singleSelectionKind :
+          switch (unwSelf.myString.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_MyRootEntity_myStringMaj (v0))
+          default :
+            return .noSelection
+          }
+        }
+      }else{
+        return .noSelection
+      }
+    }
+    myStringMin.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        let kind = unwSelf.myString.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
+          return .noSelection
+        case .multipleSelectionKind :
+          return .multipleSelection
+        case .singleSelectionKind :
+          switch (unwSelf.myString.prop) {
+          case (.singleSelection (let v0)) :
+            return .singleSelection (compute_MyRootEntity_myStringMin (v0))
+          default :
+            return .noSelection
+          }
+        }
+      }else{
+        return .noSelection
+      }
+    }
+    myStringConcat.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        var kind = unwSelf.myStringMaj.prop.kind ()
+        kind &= unwSelf.myStringMin.prop.kind ()
+        switch kind {
+        case .noSelectionKind :
+          return .noSelection
+        case .multipleSelectionKind :
+          return .multipleSelection
+        case .singleSelectionKind :
+          switch (unwSelf.myStringMaj.prop, unwSelf.myStringMin.prop) {
+          case (.singleSelection (let v0), .singleSelection (let v1)) :
+            return .singleSelection (compute_MyRootEntity_myStringConcat (v0, v1))
+          default :
+            return .noSelection
+          }
+        }
+      }else{
+        return .noSelection
+      }
+    }
+  //--- Install property observers for transients
+    myString.addEBObserver (myStringMaj)
+    myString.addEBObserver (myStringMin)
+    myStringMaj.addEBObserver (myStringConcat)
+    myStringMin.addEBObserver (myStringConcat)
+  //--- Install undoers for properties
+    self.myString.undoManager = undoManager ()
+    self.myColor.undoManager = undoManager ()
+  //--- Install owner for relationships
+  //--- register properties for handling signature
+  }
+
+  //····················································································································
+
+  deinit {
+  //--- Remove observers
+    myString.removeEBObserver (myStringMaj)
+    myString.removeEBObserver (myStringMin)
+    myStringMaj.removeEBObserver (myStringConcat)
+    myStringMin.removeEBObserver (myStringConcat)
+  }
+
+  //····················································································································
+  //    populateExplorerWindow
+  //····················································································································
+
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+    super.populateExplorerWindow (&y, view:view)
+    createEntryForPropertyNamed (
+      "myString",
+      idx:self.myString.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myString.mObserverExplorer,
+      valueExplorer:&self.myString.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "myColor",
+      idx:self.myColor.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myColor.mObserverExplorer,
+      valueExplorer:&self.myColor.mValueExplorer
+    )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForPropertyNamed (
+      "myStringMaj",
+      idx:self.myStringMaj.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myStringMaj.mObserverExplorer,
+      valueExplorer:&self.myStringMaj.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "myStringMin",
+      idx:self.myStringMin.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myStringMin.mObserverExplorer,
+      valueExplorer:&self.myStringMin.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "myStringConcat",
+      idx:self.myStringConcat.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.myStringConcat.mObserverExplorer,
+      valueExplorer:&self.myStringConcat.mValueExplorer
+    )
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
+  }
+
+  //····················································································································
+  //    clearObjectExplorer
+  //····················································································································
+
+  override func clearObjectExplorer () {
+    self.myString.mObserverExplorer = nil
+    self.myString.mValueExplorer = nil
+    self.myColor.mObserverExplorer = nil
+    self.myColor.mValueExplorer = nil
+    super.clearObjectExplorer ()
+  }
+
+  //····················································································································
+  //    saveIntoDictionary
+  //····················································································································
+
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+    self.myString.storeIn (dictionary: ioDictionary, forKey: "myString")
+    self.myColor.storeIn (dictionary: ioDictionary, forKey: "myColor")
+  }
+
+  //····················································································································
+  //    setUpWithDictionary
+  //····················································································································
+
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
+    self.myString.readFrom (dictionary: inDictionary, forKey:"myString")
+    self.myColor.readFrom (dictionary: inDictionary, forKey:"myColor")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
+    super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
+
+  //····················································································································
+  //   accessibleObjects
+  //····················································································································
+
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -403,229 +623,6 @@ protocol MyRootEntity_myStringConcat : class {
   var myStringConcat : EBTransientProperty_String { get }
 }
 
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    Entity: MyRootEntity
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColor, MyRootEntity_myStringMaj, MyRootEntity_myStringMin, MyRootEntity_myStringConcat
-{
-
-  //····················································································································
-  //    Properties
-  //····················································································································
-
-  var myString = EBStoredProperty_String ("Hello")
-
-  var myColor = EBStoredProperty_NSColor (NSColor.yellow)
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-  var myStringMaj = EBTransientProperty_String ()
-  var myStringMin = EBTransientProperty_String ()
-  var myStringConcat = EBTransientProperty_String ()
-
-  //····················································································································
-  //    Relationships
-  //····················································································································
-
-
-  //····················································································································
-  //    init
-  //····················································································································
-
-  override init (managedObjectContext : EBManagedObjectContext) {
-    super.init (managedObjectContext:managedObjectContext)
-  //--- Install compute functions for transients
-    myStringMaj.readModelFunction = { [weak self] in
-      if let unwSelf = self {
-        let kind = unwSelf.myString.prop.kind ()
-        switch kind {
-        case .noSelectionKind :
-          return .noSelection
-        case .multipleSelectionKind :
-          return .multipleSelection
-        case .singleSelectionKind :
-          switch (unwSelf.myString.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_MyRootEntity_myStringMaj (v0))
-          default :
-            return .noSelection
-          }
-        }
-      }else{
-        return .noSelection
-      }
-    }
-    myStringMin.readModelFunction = { [weak self] in
-      if let unwSelf = self {
-        let kind = unwSelf.myString.prop.kind ()
-        switch kind {
-        case .noSelectionKind :
-          return .noSelection
-        case .multipleSelectionKind :
-          return .multipleSelection
-        case .singleSelectionKind :
-          switch (unwSelf.myString.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_MyRootEntity_myStringMin (v0))
-          default :
-            return .noSelection
-          }
-        }
-      }else{
-        return .noSelection
-      }
-    }
-    myStringConcat.readModelFunction = { [weak self] in
-      if let unwSelf = self {
-        var kind = unwSelf.myStringMaj.prop.kind ()
-        kind &= unwSelf.myStringMin.prop.kind ()
-        switch kind {
-        case .noSelectionKind :
-          return .noSelection
-        case .multipleSelectionKind :
-          return .multipleSelection
-        case .singleSelectionKind :
-          switch (unwSelf.myStringMaj.prop, unwSelf.myStringMin.prop) {
-          case (.singleSelection (let v0), .singleSelection (let v1)) :
-            return .singleSelection (compute_MyRootEntity_myStringConcat (v0, v1))
-          default :
-            return .noSelection
-          }
-        }
-      }else{
-        return .noSelection
-      }
-    }
-  //--- Install property observers for transients
-    myString.addEBObserver (myStringMaj)
-    myString.addEBObserver (myStringMin)
-    myStringMaj.addEBObserver (myStringConcat)
-    myStringMin.addEBObserver (myStringConcat)
-  //--- Install undoers for properties
-    self.myString.undoManager = undoManager ()
-    self.myColor.undoManager = undoManager ()
-  //--- Install owner for relationships
-  //--- register properties for handling signature
-  }
-
-  //····················································································································
-
-  deinit {
-  //--- Remove observers
-    myString.removeEBObserver (myStringMaj)
-    myString.removeEBObserver (myStringMin)
-    myStringMaj.removeEBObserver (myStringConcat)
-    myStringMin.removeEBObserver (myStringConcat)
-  }
-
-  //····················································································································
-  //    populateExplorerWindow
-  //····················································································································
-
-  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
-    super.populateExplorerWindow (&y, view:view)
-    createEntryForPropertyNamed (
-      "myString",
-      idx:self.myString.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.myString.mObserverExplorer,
-      valueExplorer:&self.myString.mValueExplorer
-    )
-    createEntryForPropertyNamed (
-      "myColor",
-      idx:self.myColor.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.myColor.mObserverExplorer,
-      valueExplorer:&self.myColor.mValueExplorer
-    )
-    createEntryForTitle ("Properties", y:&y, view:view)
-    createEntryForPropertyNamed (
-      "myStringMaj",
-      idx:self.myStringMaj.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.myStringMaj.mObserverExplorer,
-      valueExplorer:&self.myStringMaj.mValueExplorer
-    )
-    createEntryForPropertyNamed (
-      "myStringMin",
-      idx:self.myStringMin.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.myStringMin.mObserverExplorer,
-      valueExplorer:&self.myStringMin.mValueExplorer
-    )
-    createEntryForPropertyNamed (
-      "myStringConcat",
-      idx:self.myStringConcat.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.myStringConcat.mObserverExplorer,
-      valueExplorer:&self.myStringConcat.mValueExplorer
-    )
-    createEntryForTitle ("Transients", y:&y, view:view)
-    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
-    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
-  }
-
-  //····················································································································
-  //    clearObjectExplorer
-  //····················································································································
-
-  override func clearObjectExplorer () {
-    self.myString.mObserverExplorer = nil
-    self.myString.mValueExplorer = nil
-    self.myColor.mObserverExplorer = nil
-    self.myColor.mValueExplorer = nil
-    super.clearObjectExplorer ()
-  }
-
-  //····················································································································
-  //    saveIntoDictionary
-  //····················································································································
-
-  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
-    super.saveIntoDictionary (ioDictionary)
-    self.myString.storeIn (dictionary: ioDictionary, forKey: "myString")
-    self.myColor.storeIn (dictionary: ioDictionary, forKey: "myColor")
-  }
-
-  //····················································································································
-  //    setUpWithDictionary
-  //····················································································································
-
-  override func setUpWithDictionary (_ inDictionary : NSDictionary,
-                                     managedObjectArray : inout [EBManagedObject]) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    self.myString.readFrom (dictionary: inDictionary, forKey:"myString")
-    self.myColor.readFrom (dictionary: inDictionary, forKey:"myColor")
-  }
-
-  //····················································································································
-  //   cascadeObjectRemoving
-  //····················································································································
-
-  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
-    super.cascadeObjectRemoving (&ioObjectsToRemove)
-  }
-
-  //····················································································································
-  //   accessibleObjects
-  //····················································································································
-
-  override func accessibleObjects (objects : inout [EBManagedObject]) {
-    super.accessibleObjects (objects: &objects)
-  }
-
-  //····················································································································
-
-}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
