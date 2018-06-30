@@ -347,8 +347,11 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
         let removedObjectSet = oldSet.subtracting (mSet)
         for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (observer: nil)
-          managedObject.%!mOppositeRelationshipName%.owner = nil ;
-        }
+% if mOppositeRelationshipName != "" then
+%          managedObject.%!mOppositeRelationshipName%.owner = nil ;
+%
+end
+%        }
 %for () in mDestinationEntityObservablePropertyMap do
   if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
     %        removeEBObserversOf_%!lkey.string%_fromElementsOfSet (removedObjectSet)\n%
@@ -358,8 +361,11 @@ end
         let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
-          managedObject.%!mOppositeRelationshipName%.setProp (owner)
-        }
+% if mOppositeRelationshipName != "" then
+%          managedObject.%!mOppositeRelationshipName%.setProp (owner)
+%
+end
+%        }
 %for () in mDestinationEntityObservablePropertyMap do
   if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
     %        addEBObserversOf_%!lkey.string%_toElementsOfSet (addedObjectSet)\n%

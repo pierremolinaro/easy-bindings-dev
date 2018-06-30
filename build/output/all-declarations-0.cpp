@@ -2362,39 +2362,39 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declara
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i6_ (GALGAS_toManyRelationshipList & ioArgument_ioToManyRelationshipList,
                                                                                              GALGAS_stringset & ioArgument_ioSignatureList,
                                                                                              C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 34)) ;
-  GALGAS_bool var_usedForSignature_1540 = GALGAS_bool (false) ;
-  GALGAS_bool var_cascading_1568 = GALGAS_bool (false) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 31)) ;
+  GALGAS_bool var_usedForSignature_1530 = GALGAS_bool (false) ;
+  GALGAS_bool var_cascading_1558 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_3 (inCompiler)) {
     case 2: {
-      GALGAS_lstring var_attributeName_1635 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("relationships.galgas", 39)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_1635.getter_string (HERE).objectCompare (GALGAS_string ("signature"))).boolEnum () ;
+      GALGAS_lstring var_attributeName_1625 = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("relationships.galgas", 36)) ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_1625.getter_string (HERE).objectCompare (GALGAS_string ("signature"))).boolEnum () ;
       if (kBoolTrue == test_1) {
-        const enumGalgasBool test_2 = var_usedForSignature_1540.boolEnum () ;
+        const enumGalgasBool test_2 = var_usedForSignature_1530.boolEnum () ;
         if (kBoolTrue == test_2) {
           TC_Array <C_FixItDescription> fixItArray3 ;
           fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-          inCompiler->emitSemanticError (var_attributeName_1635.getter_location (SOURCE_FILE ("relationships.galgas", 42)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 42)) ;
+          inCompiler->emitSemanticError (var_attributeName_1625.getter_location (SOURCE_FILE ("relationships.galgas", 39)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 39)) ;
         }
-        var_usedForSignature_1540 = GALGAS_bool (true) ;
+        var_usedForSignature_1530 = GALGAS_bool (true) ;
       }else if (kBoolFalse == test_1) {
-        const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_attributeName_1635.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
+        const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_attributeName_1625.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
         if (kBoolTrue == test_4) {
-          const enumGalgasBool test_5 = var_cascading_1568.boolEnum () ;
+          const enumGalgasBool test_5 = var_cascading_1558.boolEnum () ;
           if (kBoolTrue == test_5) {
             TC_Array <C_FixItDescription> fixItArray6 ;
             fixItArray6.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-            inCompiler->emitSemanticError (var_attributeName_1635.getter_location (SOURCE_FILE ("relationships.galgas", 47)), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 47)) ;
+            inCompiler->emitSemanticError (var_attributeName_1625.getter_location (SOURCE_FILE ("relationships.galgas", 44)), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 44)) ;
           }
-          var_cascading_1568 = GALGAS_bool (true) ;
+          var_cascading_1558 = GALGAS_bool (true) ;
         }else if (kBoolFalse == test_4) {
           TC_Array <C_FixItDescription> fixItArray7 ;
           appendFixItActions (fixItArray7, kFixItReplace, GALGAS_string ("@signature")) ;
           appendFixItActions (fixItArray7, kFixItReplace, GALGAS_string ("@cascading")) ;
-          inCompiler->emitSemanticError (var_attributeName_1635.getter_location (SOURCE_FILE ("relationships.galgas", 51)), GALGAS_string ("unknow attribute"), fixItArray7  COMMA_SOURCE_FILE ("relationships.galgas", 51)) ;
+          inCompiler->emitSemanticError (var_attributeName_1625.getter_location (SOURCE_FILE ("relationships.galgas", 48)), GALGAS_string ("unknow attribute"), fixItArray7  COMMA_SOURCE_FILE ("relationships.galgas", 48)) ;
         }
       }
     } break ;
@@ -2403,43 +2403,61 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
       break ;
     }
   }
-  GALGAS_lstring var_destinationEntityName_2205 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 54)) ;
-  GALGAS_lstring var_relationshipName_2253 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 55)) ;
-  const enumGalgasBool test_8 = var_usedForSignature_1540.boolEnum () ;
+  GALGAS_lstring var_destinationEntityName_2186 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 51)) ;
+  GALGAS_lstring var_relationshipName_2225 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 52)) ;
+  const enumGalgasBool test_8 = var_usedForSignature_1530.boolEnum () ;
   if (kBoolTrue == test_8) {
-    ioArgument_ioSignatureList.addAssign_operation (var_relationshipName_2253.getter_string (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 57)) ;
+    ioArgument_ioSignatureList.addAssign_operation (var_relationshipName_2225.getter_string (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 54)) ;
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 59)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 60)) ;
-  GALGAS_lstring var_inserseRelationshipName_2421 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 61)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 62)) ;
-  ioArgument_ioToManyRelationshipList.addAssign_operation (var_destinationEntityName_2205, var_relationshipName_2253, var_inserseRelationshipName_2421, var_cascading_1568  COMMA_SOURCE_FILE ("relationships.galgas", 63)) ;
+  GALGAS_lstring var_inserseRelationshipName_2349 ;
+  switch (select_easyBindings_5F_syntax_4 (inCompiler)) {
+  case 1: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 58)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 59)) ;
+    var_inserseRelationshipName_2349 = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 60)) ;
+  } break ;
+  case 2: {
+    var_inserseRelationshipName_2349 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), var_relationshipName_2225.getter_location (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 62)) ;
+  } break ;
+  default:
+    break ;
+  }
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 64)) ;
+  ioArgument_ioToManyRelationshipList.addAssign_operation (var_destinationEntityName_2186, var_relationshipName_2225, var_inserseRelationshipName_2349, var_cascading_1558  COMMA_SOURCE_FILE ("relationships.galgas", 65)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i6_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 34)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 31)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_3 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("relationships.galgas", 39)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("relationships.galgas", 36)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 54)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 55)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 59)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 60)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 61)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 62)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 51)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 52)) ;
+  switch (select_easyBindings_5F_syntax_4 (inCompiler)) {
+  case 1: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 58)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 59)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 60)) ;
+  } break ;
+  case 2: {
+  } break ;
+  default:
+    break ;
+  }
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 64)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -2448,26 +2466,26 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i7_ (GALGAS_toOneRelationshipList & ioArgument_ioToOneRelationshipList,
                                                                                             C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 75)) ;
-  GALGAS_bool var_cascading_2809 = GALGAS_bool (false) ;
+  GALGAS_bool var_cascading_2901 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_4 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
     case 2: {
-      GALGAS_lstring var_attributeName_2876 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_attributeName_2968 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("relationships.galgas", 79)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_2876.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_2968.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
       if (kBoolTrue == test_1) {
-        const enumGalgasBool test_2 = var_cascading_2809.boolEnum () ;
+        const enumGalgasBool test_2 = var_cascading_2901.boolEnum () ;
         if (kBoolTrue == test_2) {
           TC_Array <C_FixItDescription> fixItArray3 ;
           fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-          inCompiler->emitSemanticError (var_attributeName_2876.getter_location (SOURCE_FILE ("relationships.galgas", 87)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 87)) ;
+          inCompiler->emitSemanticError (var_attributeName_2968.getter_location (SOURCE_FILE ("relationships.galgas", 82)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 82)) ;
         }
-        var_cascading_2809 = GALGAS_bool (true) ;
+        var_cascading_2901 = GALGAS_bool (true) ;
       }else if (kBoolFalse == test_1) {
         TC_Array <C_FixItDescription> fixItArray4 ;
         appendFixItActions (fixItArray4, kFixItReplace, GALGAS_string ("@cascading")) ;
-        inCompiler->emitSemanticError (var_attributeName_2876.getter_location (SOURCE_FILE ("relationships.galgas", 91)), GALGAS_string ("unknow attribute"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 91)) ;
+        inCompiler->emitSemanticError (var_attributeName_2968.getter_location (SOURCE_FILE ("relationships.galgas", 86)), GALGAS_string ("unknow attribute"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 86)) ;
       }
     } break ;
     default:
@@ -2475,28 +2493,28 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
       break ;
     }
   }
-  GALGAS_lstring var_destinationEntityName_3452 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 94)) ;
-  GALGAS_lstring var_relationshipName_3500 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 95)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 96)) ;
-  GALGAS_propertyMultiplicity var_inverseRelationMultiplicity_3568 ;
-  switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
+  GALGAS_lstring var_destinationEntityName_3340 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 89)) ;
+  GALGAS_lstring var_relationshipName_3388 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 90)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 91)) ;
+  GALGAS_propertyMultiplicity var_inverseRelationMultiplicity_3456 ;
+  switch (select_easyBindings_5F_syntax_6 (inCompiler)) {
   case 1: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 99)) ;
-    var_inverseRelationMultiplicity_3568 = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 100)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 94)) ;
+    var_inverseRelationMultiplicity_3456 = GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 95)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 102)) ;
-    var_inverseRelationMultiplicity_3568 = GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 103)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 97)) ;
+    var_inverseRelationMultiplicity_3456 = GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 98)) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_lstring var_inverseRelationshipName_3770 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 105)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 106)) ;
-  ioArgument_ioToOneRelationshipList.addAssign_operation (var_destinationEntityName_3452, var_relationshipName_3500, var_inverseRelationshipName_3770, var_inverseRelationMultiplicity_3568, var_cascading_2809  COMMA_SOURCE_FILE ("relationships.galgas", 107)) ;
+  GALGAS_lstring var_inverseRelationshipName_3658 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 100)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 101)) ;
+  ioArgument_ioToOneRelationshipList.addAssign_operation (var_destinationEntityName_3340, var_relationshipName_3388, var_inverseRelationshipName_3658, var_inverseRelationMultiplicity_3456, var_cascading_2901  COMMA_SOURCE_FILE ("relationships.galgas", 102)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2505,7 +2523,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 75)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_4 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("relationships.galgas", 79)) ;
     } break ;
@@ -2514,21 +2532,21 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 94)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 95)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 96)) ;
-  switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("relationships.galgas", 89)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 90)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("relationships.galgas", 91)) ;
+  switch (select_easyBindings_5F_syntax_6 (inCompiler)) {
   case 1: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 99)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("relationships.galgas", 94)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 102)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("relationships.galgas", 97)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 105)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 106)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("relationships.galgas", 100)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("relationships.galgas", 101)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -2551,7 +2569,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
   GALGAS_lstringlist var_actionDeclarationList_1787 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("class.galgas", 36)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_6 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_7 (inCompiler)) {
     case 2: {
       nt_simple_5F_stored_5F_declaration_ (var_simpleStoredAttributeList_1483, var_signatureList_1627, inCompiler) ;
     } break ;
@@ -2584,7 +2602,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("class.galgas", 28)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_6 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_7 (inCompiler)) {
     case 2: {
       nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
     } break ;
@@ -2618,7 +2636,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   GALGAS_lstring var_entityName_1419 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.galgas", 29)) ;
   GALGAS_lstring var_superEntityName_1448 ;
-  switch (select_easyBindings_5F_syntax_7 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_8 (inCompiler)) {
   case 1: {
     var_superEntityName_1448 = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.galgas", 32)) ;
   } break ;
@@ -2639,7 +2657,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   GALGAS_lstringlist var_actionDeclarationList_1864 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("entity.galgas", 43)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_8 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_9 (inCompiler)) {
     case 2: {
       nt_simple_5F_stored_5F_declaration_ (var_simpleStoredAttributeList_1676, var_signatureList_1820, inCompiler) ;
     } break ;
@@ -2669,7 +2687,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i9_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("entity.galgas", 28)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.galgas", 29)) ;
-  switch (select_easyBindings_5F_syntax_7 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_8 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -2682,7 +2700,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("entity.galgas", 37)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_8 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_9 (inCompiler)) {
     case 2: {
       nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
     } break ;
@@ -2727,7 +2745,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   GALGAS_stringset var_signatureList_1697 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("document.galgas", 36)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_9 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
     case 2: {
       nt_simple_5F_stored_5F_declaration_ (var_simpleStoredPropertyList_1663, var_signatureList_1697, inCompiler) ;
     } break ;
@@ -2762,7 +2780,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document.galgas", 30)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_9 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
     case 2: {
       nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
     } break ;
@@ -2797,7 +2815,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   GALGAS_stringset var_signatureList_1511 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 31)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
     case 2: {
       nt_action_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mActionDeclarationList, inCompiler) ;
     } break ;
@@ -2835,7 +2853,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 30)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
     case 2: {
       nt_action_5F_declaration_parse (inCompiler) ;
     } break ;
@@ -2881,7 +2899,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   GALGAS_bool var_handlesTableViewBinding_1364 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 34)) ;
       var_handlesTableViewBinding_1364 = GALGAS_bool (true) ;
@@ -2912,7 +2930,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 28)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 34)) ;
     } break ;
@@ -2946,7 +2964,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     GALGAS_bool var_modelShouldBeWritableProperty_2153 ;
-    switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("binding-specification.galgas", 50)) ;
       var_modelShouldBeWritableProperty_2153 = GALGAS_bool (true) ;
@@ -2959,7 +2977,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
       break ;
     }
     GALGAS_lstring var_modelTypeName_2344 ;
-    switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
     case 1: {
       var_modelTypeName_2344 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("binding-specification.galgas", 58)) ;
@@ -2972,7 +2990,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
       break ;
     }
     var_outletClassBindingSpecificationModelList_2095.addAssign_operation (var_modelTypeName_2344, var_modelShouldBeWritableProperty_2153  COMMA_SOURCE_FILE ("binding-specification.galgas", 63)) ;
-    switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("binding-specification.galgas", 65)) ;
     } break ;
@@ -2982,7 +3000,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
     }
   }
   GALGAS_controllerBindingOptionList var_bindingOptionList_2648 = GALGAS_controllerBindingOptionList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 67)) ;
-  switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -2995,7 +3013,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
       GALGAS_lstring var_optionType_2798 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("binding-specification.galgas", 74)) ;
       var_bindingOptionList_2648.addAssign_operation (var_optionName_2740, var_optionType_2798  COMMA_SOURCE_FILE ("binding-specification.galgas", 75)) ;
-      switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("binding-specification.galgas", 77)) ;
       } break ;
@@ -3022,7 +3040,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("binding-specification.galgas", 45)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("binding-specification.galgas", 50)) ;
     } break ;
@@ -3032,7 +3050,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("binding-specification.galgas", 58)) ;
     } break ;
@@ -3042,7 +3060,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("binding-specification.galgas", 65)) ;
     } break ;
@@ -3051,7 +3069,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
       break ;
     }
   }
-  switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3061,7 +3079,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_spec
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("binding-specification.galgas", 72)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("binding-specification.galgas", 73)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("binding-specification.galgas", 74)) ;
-      switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("binding-specification.galgas", 77)) ;
       } break ;
@@ -3095,7 +3113,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
   GALGAS_regularBindingList var_regularBindingList_2127 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 45)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
       const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_tableValueBinding_1838.objectCompare (GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 49)))).boolEnum () ;
@@ -3115,7 +3133,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
         inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)), GALGAS_string ("duplicated $run binding"), fixItArray4  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)) ;
       }
       GALGAS_lstring var_runTargetName_2575 ;
-      switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("outlet-declaration.galgas", 61)) ;
         var_runTargetName_2575 = GALGAS_lstring::constructor_new (GALGAS_string ("self"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 62))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 62)) ;
@@ -3163,7 +3181,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
         GALGAS_observablePropertyAST var_observableProperty_3751 ;
         nt_observable_5F_property_ (var_observableProperty_3751, inCompiler) ;
         var_observablePropertyList_3656.addAssign_operation (var_observableProperty_3751  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 91)) ;
-        switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-declaration.galgas", 93)) ;
         } break ;
@@ -3193,14 +3211,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.galgas", 40)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.galgas", 52)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-declaration.galgas", 55)) ;
-      switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("outlet-declaration.galgas", 61)) ;
       } break ;
@@ -3226,7 +3244,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         nt_observable_5F_property_parse (inCompiler) ;
-        switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-declaration.galgas", 93)) ;
         } break ;
@@ -3251,19 +3269,19 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i15_ (GALGAS_observablePropertyAST & outArgument_outObservablePropertyAST,
                                                                                               C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outObservablePropertyAST.drop () ; // Release 'out' argument
-  switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("observable-property.galgas", 37)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 38)) ;
     GALGAS_lstring var_propertyName_2007 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 39)) ;
-    switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_rootProperty (var_propertyName_2007  COMMA_SOURCE_FILE ("observable-property.galgas", 41)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 43)) ;
-      switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
       case 1: {
         GALGAS_lstring var_optionName_2173 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 45)) ;
@@ -3289,13 +3307,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 58)) ;
     GALGAS_lstring var_propertyName_2624 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 59)) ;
-    switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_selfProperty (var_propertyName_2624  COMMA_SOURCE_FILE ("observable-property.galgas", 61)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 63)) ;
-      switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.galgas", 65)) ;
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 66)) ;
@@ -3321,7 +3339,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 76)) ;
     GALGAS_lstring var_propertyName_3210 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 77)) ;
-    switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_prefsProperty (var_propertyName_3210  COMMA_SOURCE_FILE ("observable-property.galgas", 79)) ;
     } break ;
@@ -3341,7 +3359,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 87)) ;
     GALGAS_lstring var_propertyName_3577 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 88)) ;
-    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_controllerProperty (var_controllerName_3530, var_propertyName_3577  COMMA_SOURCE_FILE ("observable-property.galgas", 90)) ;
     } break ;
@@ -3375,17 +3393,17 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i15_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("observable-property.galgas", 37)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 38)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 39)) ;
-    switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 43)) ;
-      switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 45)) ;
       } break ;
@@ -3406,12 +3424,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("observable-property.galgas", 57)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 58)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 59)) ;
-    switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 63)) ;
-      switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.galgas", 65)) ;
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 66)) ;
@@ -3432,7 +3450,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("observable-property.galgas", 75)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 76)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 77)) ;
-    switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
@@ -3447,7 +3465,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 86)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 87)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 88)) ;
-    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
@@ -3479,7 +3497,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
                                                                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.galgas", 24)) ;
   GALGAS_bool var_isArray_1197 ;
-  switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
   case 1: {
     var_isArray_1197 = GALGAS_bool (false) ;
   } break ;
@@ -3501,7 +3519,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
     GALGAS_observablePropertyAST var_observablePropertyAST_1529 ;
     nt_observable_5F_property_ (var_observablePropertyAST_1529, inCompiler) ;
     var_dependanceList_1435.addAssign_operation (var_observablePropertyAST_1529  COMMA_SOURCE_FILE ("transient-property.galgas", 38)) ;
-    switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.galgas", 40)) ;
     } break ;
@@ -3518,7 +3536,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i16_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.galgas", 24)) ;
-  switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3533,7 +3551,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     nt_observable_5F_property_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.galgas", 40)) ;
     } break ;
@@ -3553,7 +3571,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_copy COMMA_SOURCE_FILE ("transient-property.galgas", 57)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.galgas", 58)) ;
   GALGAS_bool var_isArray_2026 ;
-  switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
   case 1: {
     var_isArray_2026 = GALGAS_bool (false) ;
   } break ;
@@ -3582,7 +3600,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i17_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_copy COMMA_SOURCE_FILE ("transient-property.galgas", 57)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.galgas", 58)) ;
-  switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3609,7 +3627,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   GALGAS_bool var_needsValidation_1239 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
     case 2: {
       GALGAS_lstring var_attributeName_1306 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.galgas", 29)) ;
@@ -3666,7 +3684,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.galgas", 24)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.galgas", 29)) ;
     } break ;
@@ -3734,7 +3752,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   nt_booleanMultipleBindingComparison_ (outArgument_outBinding, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 75)) ;
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_3354 ;
@@ -3754,7 +3772,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   nt_booleanMultipleBindingComparison_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 75)) ;
       nt_booleanMultipleBindingComparison_parse (inCompiler) ;
@@ -3773,7 +3791,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
                                                                                                         C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   nt_booleanMultipleBindingTerm_ (outArgument_outBinding, inCompiler) ;
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3791,7 +3809,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i22_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3812,7 +3830,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   nt_booleanMultipleBindingOperand_ (outArgument_outBinding, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 103)) ;
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_4332 ;
@@ -3838,7 +3856,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   nt_booleanMultipleBindingOperand_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 103)) ;
       nt_booleanMultipleBindingOperand_parse (inCompiler) ;
@@ -3933,7 +3951,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
                                                                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBindingOptions.drop () ; // Release 'out' argument
   outArgument_outBindingOptions = GALGAS_bindingOptionList::constructor_emptyList (SOURCE_FILE ("regular-binding.galgas", 20)) ;
-  switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3946,7 +3964,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
       GALGAS_abstractDefaultValue var_optionValue_1293 ;
       nt_explicit_5F_value_ (var_optionValue_1293, inCompiler) ;
       outArgument_outBindingOptions.addAssign_operation (var_optionName_1217, var_optionValue_1293  COMMA_SOURCE_FILE ("regular-binding.galgas", 28)) ;
-      switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("regular-binding.galgas", 30)) ;
       } break ;
@@ -3965,7 +3983,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i28_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3975,7 +3993,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("regular-binding.galgas", 25)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("regular-binding.galgas", 26)) ;
       nt_explicit_5F_value_parse (inCompiler) ;
-      switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("regular-binding.galgas", 30)) ;
       } break ;
@@ -4009,7 +4027,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
     GALGAS_abstractDefaultValue var_attributeValue_2803 ;
     nt_explicit_5F_value_ (var_attributeValue_2803, inCompiler) ;
     var_arrayControllerAttributListAST_2657.addAssign_operation (var_attributeName_2728, var_attributeValue_2803  COMMA_SOURCE_FILE ("array-controller.galgas", 65)) ;
-    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("array-controller.galgas", 67)) ;
     } break ;
@@ -4020,7 +4038,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("array-controller.galgas", 69)) ;
   GALGAS_arrayControllerModel var_arrayControllerModel_2970 ;
-  switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.galgas", 73)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
@@ -4047,7 +4065,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
     break ;
   }
   GALGAS_lstringlist var_filterProperties_3579 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 88)) ;
-  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -4057,7 +4075,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
       GALGAS_lstring var_filterProperty_3680 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.galgas", 93)) ;
       var_filterProperties_3579.addAssign_operation (var_filterProperty_3680  COMMA_SOURCE_FILE ("array-controller.galgas", 94)) ;
-      switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("array-controller.galgas", 96)) ;
       } break ;
@@ -4074,13 +4092,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   GALGAS_arrayControllerBoundColumnListAST var_arrayControllerBoundColumnListAST_3847 = GALGAS_arrayControllerBoundColumnListAST::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 100)) ;
   bool repeatFlag_2 = true ;
   while (repeatFlag_2) {
-    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("array-controller.galgas", 103)) ;
       GALGAS_lstring var_columnName_3927 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("array-controller.galgas", 104)) ;
       GALGAS_lstring var_sortPropertyName_3959 ;
-      switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
       case 1: {
         var_sortPropertyName_3959 = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("array-controller.galgas", 107)) ;
       } break ;
@@ -4118,7 +4136,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.galgas", 62)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("array-controller.galgas", 63)) ;
     nt_explicit_5F_value_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("array-controller.galgas", 67)) ;
     } break ;
@@ -4128,7 +4146,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("array-controller.galgas", 69)) ;
-  switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.galgas", 73)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
@@ -4147,7 +4165,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   default:
     break ;
   }
-  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -4155,7 +4173,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.galgas", 93)) ;
-      switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("array-controller.galgas", 96)) ;
       } break ;
@@ -4171,11 +4189,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("array-controller.galgas", 99)) ;
   bool repeatFlag_2 = true ;
   while (repeatFlag_2) {
-    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("array-controller.galgas", 103)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("array-controller.galgas", 104)) ;
-      switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
@@ -4208,7 +4226,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
   GALGAS_regularBindingList var_regularBindingList_5007 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("array-controller.galgas", 136)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("array-controller.galgas", 139)) ;
       const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_4806.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
@@ -4252,7 +4270,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
         GALGAS_observablePropertyAST var_observableProperty_6113 ;
         nt_observable_5F_property_ (var_observableProperty_6113, inCompiler) ;
         var_observablePropertyList_6018.addAssign_operation (var_observableProperty_6113  COMMA_SOURCE_FILE ("array-controller.galgas", 168)) ;
-        switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("array-controller.galgas", 170)) ;
         } break ;
@@ -4278,7 +4296,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindings_i30_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("array-controller.galgas", 139)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("array-controller.galgas", 143)) ;
@@ -4298,7 +4316,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         nt_observable_5F_property_parse (inCompiler) ;
-        switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("array-controller.galgas", 170)) ;
         } break ;
@@ -4382,7 +4400,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_array_5F_contro
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i33_ (GALGAS_abstractDefaultValue & outArgument_outDefaultValue,
                                                                                          C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outDefaultValue.drop () ; // Release 'out' argument
-  switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 61)) ;
     outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (true), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62)) ;
@@ -4420,7 +4438,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
       GALGAS_abstractDefaultValue var_defaultValue_3269 ;
       nt_explicit_5F_value_ (var_defaultValue_3269, inCompiler) ;
       var_defaultValueList_3186.addAssign_operation (var_defaultValue_3269  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 84)) ;
-      switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 86)) ;
       } break ;
@@ -4440,7 +4458,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i33_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 61)) ;
   } break ;
@@ -4464,7 +4482,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
       nt_explicit_5F_value_parse (inCompiler) ;
-      switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 86)) ;
       } break ;
@@ -4521,7 +4539,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i35
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
     case 1: {
       GALGAS_lstring var_outletType_1533 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
@@ -4548,7 +4566,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i35
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
     } break ;
@@ -4567,7 +4585,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i35
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
@@ -4583,7 +4601,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i35
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
     } break ;
@@ -4604,7 +4622,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
   outArgument_outLineDescription = GALGAS_mainXibLineDescriptorList::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 62)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
     case 1: {
       GALGAS_lstring var_outletType_2277 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
@@ -4620,7 +4638,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 74)) ;
     } break ;
@@ -4636,7 +4654,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i36_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.galgas", 66)) ;
@@ -4647,7 +4665,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 74)) ;
     } break ;
@@ -9055,13 +9073,13 @@ void extensionMethod_typeInventory (const GALGAS_toOneRelationshipList inObject,
                                     C_Compiler * /* inCompiler */
                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_4541 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_4541.hasCurrentObject ()) {
+  cEnumerator_toOneRelationshipList enumerator_4429 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_4429.hasCurrentObject ()) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_4644 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_4541.current_mDestinationEntityName (HERE), joker_4644 COMMA_SOURCE_FILE ("relationships.galgas", 127)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_4532 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_4429.current_mDestinationEntityName (HERE), joker_4532 COMMA_SOURCE_FILE ("relationships.galgas", 122)) ;
     }
-    enumerator_4541.gotoNextObject () ;
+    enumerator_4429.gotoNextObject () ;
   }
 }
 
@@ -9077,13 +9095,13 @@ void extensionMethod_typeInventory (const GALGAS_toManyRelationshipList inObject
                                     C_Compiler * /* inCompiler */
                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_4883 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_4883.hasCurrentObject ()) {
+  cEnumerator_toManyRelationshipList enumerator_4771 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_4771.hasCurrentObject ()) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_4986 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_4883.current_mDestinationEntityName (HERE), joker_4986 COMMA_SOURCE_FILE ("relationships.galgas", 141)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_4874 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_4771.current_mDestinationEntityName (HERE), joker_4874 COMMA_SOURCE_FILE ("relationships.galgas", 136)) ;
     }
-    enumerator_4883.gotoNextObject () ;
+    enumerator_4771.gotoNextObject () ;
   }
 }
 
@@ -9100,12 +9118,12 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipL
                                                  C_Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_5532 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_5532.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_5622 ;
-    GALGAS_actionMap var_actionMap_5637 ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5532.current_mDestinationEntityName (HERE), var_type_5622, var_actionMap_5637, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 159)) ;
-    switch (var_type_5622.enumValue ()) {
+  cEnumerator_toOneRelationshipList enumerator_5420 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_5420.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_5510 ;
+    GALGAS_actionMap var_actionMap_5525 ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5420.current_mDestinationEntityName (HERE), var_type_5510, var_actionMap_5525, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 154)) ;
+    switch (var_type_5510.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -9116,31 +9134,31 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipL
     case GALGAS_typeKind::kEnum_fontType:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_5532.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 163)), GALGAS_string ("a simple type cannot be used as entitytype"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 163)) ;
+        inCompiler->emitSemanticError (enumerator_5420.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 158)), GALGAS_string ("a simple type cannot be used as entitytype"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 158)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_5532.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 165)), GALGAS_string ("an enumeration type cannot be used as entitytype"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 165)) ;
+        inCompiler->emitSemanticError (enumerator_5420.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 160)), GALGAS_string ("an enumeration type cannot be used as entitytype"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 160)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_5532.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 167)), GALGAS_string ("a class type cannot be used as entitytype"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 167)) ;
+        inCompiler->emitSemanticError (enumerator_5420.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 162)), GALGAS_string ("a class type cannot be used as entitytype"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 162)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_propertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_5532.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 169)), GALGAS_string ("a property class type cannot be used as entitytype"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 169)) ;
+        inCompiler->emitSemanticError (enumerator_5420.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 164)), GALGAS_string ("a property class type cannot be used as entitytype"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 164)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_5532.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 171)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 171)) ;
+        inCompiler->emitSemanticError (enumerator_5420.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 166)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 166)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -9149,9 +9167,9 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipL
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (enumerator_5532.current_mToOneRelationshipName (HERE), var_type_5622, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 178)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 179)), enumerator_5532.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_5637, enumerator_5532.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 175)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_5420.current_mToOneRelationshipName (HERE), var_type_5510, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 173)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 174)), enumerator_5420.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_5525, enumerator_5420.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 170)) ;
     }
-    enumerator_5532.gotoNextObject () ;
+    enumerator_5420.gotoNextObject () ;
   }
 }
 
@@ -9168,12 +9186,12 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toManyRelationship
                                                  C_Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_6859 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_6859.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_6949 ;
-    GALGAS_actionMap var_actionMap_6964 ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_6859.current_mDestinationEntityName (HERE), var_type_6949, var_actionMap_6964, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 195)) ;
-    switch (var_type_6949.enumValue ()) {
+  cEnumerator_toManyRelationshipList enumerator_6747 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_6747.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_6837 ;
+    GALGAS_actionMap var_actionMap_6852 ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_6747.current_mDestinationEntityName (HERE), var_type_6837, var_actionMap_6852, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 190)) ;
+    switch (var_type_6837.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -9184,31 +9202,31 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toManyRelationship
     case GALGAS_typeKind::kEnum_fontType:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_6859.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 199)), GALGAS_string ("a simple type cannot be used as entitytype"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 199)) ;
+        inCompiler->emitSemanticError (enumerator_6747.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 194)), GALGAS_string ("a simple type cannot be used as entitytype"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 194)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_6859.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 201)), GALGAS_string ("an enumeration type cannot be used as entitytype"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 201)) ;
+        inCompiler->emitSemanticError (enumerator_6747.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 196)), GALGAS_string ("an enumeration type cannot be used as entitytype"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 196)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_6859.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 203)), GALGAS_string ("a class type cannot be used as entitytype"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 203)) ;
+        inCompiler->emitSemanticError (enumerator_6747.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 198)), GALGAS_string ("a class type cannot be used as entitytype"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 198)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_propertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_6859.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 205)), GALGAS_string ("a property class type cannot be used as entitytype"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 205)) ;
+        inCompiler->emitSemanticError (enumerator_6747.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 200)), GALGAS_string ("a property class type cannot be used as entitytype"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 200)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_6859.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 207)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 207)) ;
+        inCompiler->emitSemanticError (enumerator_6747.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 202)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 202)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -9217,9 +9235,9 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toManyRelationship
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (enumerator_6859.current_mToManyRelationshipName (HERE), var_type_6949, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 214)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 215)), enumerator_6859.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_6964, enumerator_6859.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 211)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_6747.current_mToManyRelationshipName (HERE), var_type_6837, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("relationships.galgas", 209)), GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 210)), enumerator_6747.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_6852, enumerator_6747.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 206)) ;
     }
-    enumerator_6859.gotoNextObject () ;
+    enumerator_6747.gotoNextObject () ;
   }
 }
 
@@ -9236,24 +9254,24 @@ void extensionMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObje
                                        C_Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outToOneEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 231)) ;
+  outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 226)) ;
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_8514 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_8514.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_8600 ;
-    GALGAS_actionMap joker_8602 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_8514.current_mDestinationEntityName (HERE), var_type_8600, joker_8602, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 233)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_8765 ;
-    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_8514.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_8765, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 234)) ;
-    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_8514.current_mToOneRelationshipName (HERE).getter_string (HERE), var_type_8600, enumerator_8514.current_mInverseRelationshipName (HERE).getter_string (HERE), enumerator_8514.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap_8765, enumerator_8514.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 238)) ;
-    GALGAS_typeKind var_oppositeType_9185 ;
-    GALGAS_propertyKind var_oppositeKind_9224 ;
-    GALGAS_propertyMultiplicity var_oppositeMultiplicity_9279 ;
-    GALGAS_string var_oppositeOfOpposite_9318 ;
-    GALGAS_actionMap joker_9327_2 ; // Joker input parameter
-    GALGAS_bool joker_9327_1 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap_8765.method_searchForInverseRelationship (enumerator_8514.current_mInverseRelationshipName (HERE), var_oppositeType_9185, var_oppositeKind_9224, var_oppositeMultiplicity_9279, var_oppositeOfOpposite_9318, joker_9327_2, joker_9327_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 246)) ;
-    switch (var_oppositeType_9185.enumValue ()) {
+  cEnumerator_toOneRelationshipList enumerator_8402 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_8402.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_8488 ;
+    GALGAS_actionMap joker_8490 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_8402.current_mDestinationEntityName (HERE), var_type_8488, joker_8490, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 228)) ;
+    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_8653 ;
+    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_8402.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_8653, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 229)) ;
+    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_8402.current_mToOneRelationshipName (HERE).getter_string (HERE), var_type_8488, enumerator_8402.current_mInverseRelationshipName (HERE).getter_string (HERE), enumerator_8402.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap_8653, enumerator_8402.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 233)) ;
+    GALGAS_typeKind var_oppositeType_9073 ;
+    GALGAS_propertyKind var_oppositeKind_9112 ;
+    GALGAS_propertyMultiplicity var_oppositeMultiplicity_9167 ;
+    GALGAS_string var_oppositeOfOpposite_9206 ;
+    GALGAS_actionMap joker_9215_2 ; // Joker input parameter
+    GALGAS_bool joker_9215_1 ; // Joker input parameter
+    var_destinationEntityObservablePropertyMap_8653.method_searchForInverseRelationship (enumerator_8402.current_mInverseRelationshipName (HERE), var_oppositeType_9073, var_oppositeKind_9112, var_oppositeMultiplicity_9167, var_oppositeOfOpposite_9206, joker_9215_2, joker_9215_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 241)) ;
+    switch (var_oppositeType_9073.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -9264,31 +9282,31 @@ void extensionMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObje
     case GALGAS_typeKind::kEnum_fontType:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 257)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 257)) ;
+        inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 252)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 252)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 259)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 259)) ;
+        inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 254)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 254)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 261)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 261)) ;
+        inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 256)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 256)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_propertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 263)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 263)) ;
+        inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 258)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 258)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 265)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 265)) ;
+        inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 260)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 260)) ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
@@ -9296,22 +9314,22 @@ void extensionMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObje
       }
       break ;
     }
-    const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_oppositeKind_9224.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 268)))).boolEnum () ;
+    const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_oppositeKind_9112.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 263)))).boolEnum () ;
     if (kBoolTrue == test_6) {
       TC_Array <C_FixItDescription> fixItArray7 ;
-      inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 269)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray7  COMMA_SOURCE_FILE ("relationships.galgas", 269)) ;
+      inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 264)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray7  COMMA_SOURCE_FILE ("relationships.galgas", 264)) ;
     }
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, enumerator_8514.current_mInverseRelationMultiplicity (HERE).objectCompare (var_oppositeMultiplicity_9279)).boolEnum () ;
+    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, enumerator_8402.current_mInverseRelationMultiplicity (HERE).objectCompare (var_oppositeMultiplicity_9167)).boolEnum () ;
     if (kBoolTrue == test_8) {
       TC_Array <C_FixItDescription> fixItArray9 ;
-      inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 272)), GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)"), fixItArray9  COMMA_SOURCE_FILE ("relationships.galgas", 272)) ;
+      inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 267)), GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)"), fixItArray9  COMMA_SOURCE_FILE ("relationships.galgas", 267)) ;
     }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_9318.objectCompare (enumerator_8514.current_mToOneRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
+    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_9206.objectCompare (enumerator_8402.current_mToOneRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_10) {
       TC_Array <C_FixItDescription> fixItArray11 ;
-      inCompiler->emitSemanticError (enumerator_8514.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 275)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8514.current_mToOneRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 275)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 275)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 276)), fixItArray11  COMMA_SOURCE_FILE ("relationships.galgas", 275)) ;
+      inCompiler->emitSemanticError (enumerator_8402.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 270)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8402.current_mToOneRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 270)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 270)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 271)), fixItArray11  COMMA_SOURCE_FILE ("relationships.galgas", 270)) ;
     }
-    enumerator_8514.gotoNextObject () ;
+    enumerator_8402.gotoNextObject () ;
   }
 }
 
@@ -9328,82 +9346,85 @@ void extensionMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObj
                                        C_Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outToManyEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 287)) ;
+  outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 282)) ;
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_10988 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_10988.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_11074 ;
-    GALGAS_actionMap joker_11076 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_10988.current_mDestinationEntityName (HERE), var_type_11074, joker_11076, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 289)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_11239 ;
-    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_10988.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_11239, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 290)) ;
-    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_10988.current_mToManyRelationshipName (HERE).getter_string (HERE), var_type_11074, enumerator_10988.current_mInverseRelationshipName (HERE).getter_string (HERE), var_destinationEntityObservablePropertyMap_11239, enumerator_10988.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 294)) ;
-    GALGAS_typeKind var_oppositeType_11625 ;
-    GALGAS_propertyKind var_oppositeKind_11664 ;
-    GALGAS_propertyMultiplicity var_oppositeMultiplicity_11719 ;
-    GALGAS_string var_oppositeOfOpposite_11758 ;
-    GALGAS_actionMap joker_11767_2 ; // Joker input parameter
-    GALGAS_bool joker_11767_1 ; // Joker input parameter
-    var_destinationEntityObservablePropertyMap_11239.method_searchForInverseRelationship (enumerator_10988.current_mInverseRelationshipName (HERE), var_oppositeType_11625, var_oppositeKind_11664, var_oppositeMultiplicity_11719, var_oppositeOfOpposite_11758, joker_11767_2, joker_11767_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 301)) ;
-    switch (var_oppositeType_11625.enumValue ()) {
-    case GALGAS_typeKind::kNotBuilt:
-      break ;
-    case GALGAS_typeKind::kEnum_boolType:
-    case GALGAS_typeKind::kEnum_integerType:
-    case GALGAS_typeKind::kEnum_stringType:
-    case GALGAS_typeKind::kEnum_dateType:
-    case GALGAS_typeKind::kEnum_doubleType:
-    case GALGAS_typeKind::kEnum_fontType:
-      {
-        TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 311)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 311)) ;
+  cEnumerator_toManyRelationshipList enumerator_10876 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_10876.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_10962 ;
+    GALGAS_actionMap joker_10964 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_10876.current_mDestinationEntityName (HERE), var_type_10962, joker_10964, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 284)) ;
+    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_11127 ;
+    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_10876.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_11127, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 285)) ;
+    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_10876.current_mToManyRelationshipName (HERE).getter_string (HERE), var_type_10962, enumerator_10876.current_mInverseRelationshipName (HERE).getter_string (HERE), var_destinationEntityObservablePropertyMap_11127, enumerator_10876.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 289)) ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, enumerator_10876.current_mInverseRelationshipName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      GALGAS_typeKind var_oppositeType_11569 ;
+      GALGAS_propertyKind var_oppositeKind_11610 ;
+      GALGAS_propertyMultiplicity var_oppositeMultiplicity_11667 ;
+      GALGAS_string var_oppositeOfOpposite_11708 ;
+      GALGAS_actionMap joker_11719_2 ; // Joker input parameter
+      GALGAS_bool joker_11719_1 ; // Joker input parameter
+      var_destinationEntityObservablePropertyMap_11127.method_searchForInverseRelationship (enumerator_10876.current_mInverseRelationshipName (HERE), var_oppositeType_11569, var_oppositeKind_11610, var_oppositeMultiplicity_11667, var_oppositeOfOpposite_11708, joker_11719_2, joker_11719_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 297)) ;
+      switch (var_oppositeType_11569.enumValue ()) {
+      case GALGAS_typeKind::kNotBuilt:
+        break ;
+      case GALGAS_typeKind::kEnum_boolType:
+      case GALGAS_typeKind::kEnum_integerType:
+      case GALGAS_typeKind::kEnum_stringType:
+      case GALGAS_typeKind::kEnum_dateType:
+      case GALGAS_typeKind::kEnum_doubleType:
+      case GALGAS_typeKind::kEnum_fontType:
+        {
+          TC_Array <C_FixItDescription> fixItArray2 ;
+          inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 307)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 307)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_enumType:
+        {
+          TC_Array <C_FixItDescription> fixItArray3 ;
+          inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 309)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 309)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_classType:
+        {
+          TC_Array <C_FixItDescription> fixItArray4 ;
+          inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 311)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 311)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_propertyClassType:
+        {
+          TC_Array <C_FixItDescription> fixItArray5 ;
+          inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 313)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 313)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_transientPropertyClassType:
+        {
+          TC_Array <C_FixItDescription> fixItArray6 ;
+          inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 315)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 315)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_entityType:
+        {
+        }
+        break ;
       }
-      break ;
-    case GALGAS_typeKind::kEnum_enumType:
-      {
-        TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 313)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 313)) ;
+      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, var_oppositeKind_11610.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 318)))).boolEnum () ;
+      if (kBoolTrue == test_7) {
+        TC_Array <C_FixItDescription> fixItArray8 ;
+        inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 319)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray8  COMMA_SOURCE_FILE ("relationships.galgas", 319)) ;
       }
-      break ;
-    case GALGAS_typeKind::kEnum_classType:
-      {
-        TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 315)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 315)) ;
+      const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_oppositeMultiplicity_11667.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 321)))).boolEnum () ;
+      if (kBoolTrue == test_9) {
+        TC_Array <C_FixItDescription> fixItArray10 ;
+        inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 322)), GALGAS_string ("the inverse relationship should be toOne"), fixItArray10  COMMA_SOURCE_FILE ("relationships.galgas", 322)) ;
       }
-      break ;
-    case GALGAS_typeKind::kEnum_propertyClassType:
-      {
-        TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 317)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 317)) ;
+      const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_11708.objectCompare (enumerator_10876.current_mToManyRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
+      if (kBoolTrue == test_11) {
+        TC_Array <C_FixItDescription> fixItArray12 ;
+        inCompiler->emitSemanticError (enumerator_10876.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 325)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_10876.current_mToManyRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 325)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 325)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 326)), fixItArray12  COMMA_SOURCE_FILE ("relationships.galgas", 325)) ;
       }
-      break ;
-    case GALGAS_typeKind::kEnum_transientPropertyClassType:
-      {
-        TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 319)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray5  COMMA_SOURCE_FILE ("relationships.galgas", 319)) ;
-      }
-      break ;
-    case GALGAS_typeKind::kEnum_entityType:
-      {
-      }
-      break ;
     }
-    const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_oppositeKind_11664.objectCompare (GALGAS_propertyKind::constructor_transient (SOURCE_FILE ("relationships.galgas", 322)))).boolEnum () ;
-    if (kBoolTrue == test_6) {
-      TC_Array <C_FixItDescription> fixItArray7 ;
-      inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 323)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray7  COMMA_SOURCE_FILE ("relationships.galgas", 323)) ;
-    }
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_oppositeMultiplicity_11719.objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 325)))).boolEnum () ;
-    if (kBoolTrue == test_8) {
-      TC_Array <C_FixItDescription> fixItArray9 ;
-      inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 326)), GALGAS_string ("the inverse relationship should be toOne"), fixItArray9  COMMA_SOURCE_FILE ("relationships.galgas", 326)) ;
-    }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_11758.objectCompare (enumerator_10988.current_mToManyRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      TC_Array <C_FixItDescription> fixItArray11 ;
-      inCompiler->emitSemanticError (enumerator_10988.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 329)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_10988.current_mToManyRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 330)), fixItArray11  COMMA_SOURCE_FILE ("relationships.galgas", 329)) ;
-    }
-    enumerator_10988.gotoNextObject () ;
+    enumerator_10876.gotoNextObject () ;
   }
 }
 

@@ -27,10 +27,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <toMany_relationship>
-    ?!@toManyRelationshipList ioToManyRelationshipList
-    ?!@stringset ioSignatureList
-  {
+  rule <toMany_relationship> ?!@toManyRelationshipList ioToManyRelationshipList ?!@stringset ioSignatureList {
     $toMany$
     @bool usedForSignature = false
     @bool cascading = false
@@ -51,14 +48,19 @@ syntax extension easyBindings_syntax {
         error attributeName : "unknow attribute" fixit { replace "@signature" replace "@cascading" }
       end
     end
-    $Identifier$ ?let @lstring destinationEntityName
-    $identifier$ ?let @lstring relationshipName
+    $Identifier$ ?let destinationEntityName
+    $identifier$ ?let relationshipName
     if usedForSignature then
       ioSignatureList += !relationshipName.string
     end
-    $inverse$
-    $toOne$
-    $identifier$ ?let @lstring inserseRelationshipName
+    @lstring inserseRelationshipName
+    select
+      $inverse$
+      $toOne$
+      $identifier$ ?inserseRelationshipName
+    or
+      inserseRelationshipName = .new {!"" !relationshipName.location}
+    end
     $;$
     ioToManyRelationshipList +=
       !destinationEntityName
@@ -69,19 +71,12 @@ syntax extension easyBindings_syntax {
   
   #·····················································································································
 
-   rule <toOne_relationship>
-    ?!@toOneRelationshipList ioToOneRelationshipList
-  {
+   rule <toOne_relationship> ?!@toOneRelationshipList ioToOneRelationshipList {
     $toOne$
     @bool cascading = false
     repeat
     while
       $@attribute$ ?let attributeName
-#      if attributeName.string == "signature" then
-#        if usedForSignature then
-#          error attributeName : "duplicated attribute" fixit { remove }
-#        end
-#        usedForSignature = true
       if attributeName.string == "cascading" then
         if cascading then
           error attributeName : "duplicated attribute" fixit { remove }
@@ -298,36 +293,38 @@ method @toManyRelationshipList semanticAnalysis
       !destinationEntityObservablePropertyMap
       !mCascading
   #--- Check inverse relationship
-    [destinationEntityObservablePropertyMap searchForInverseRelationship
-       !mInverseRelationshipName
-       ?let @typeKind oppositeType
-       ?let @propertyKind oppositeKind
-       ?let @propertyMultiplicity oppositeMultiplicity
-       ?let @string oppositeOfOpposite
-       ?2*
-     ]
-     switch oppositeType
-     case boolType, integerType, stringType, dateType, doubleType, fontType :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case enumType (* *) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case classType (*) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case propertyClassType (**) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case transientPropertyClassType (*) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case entityType (*) : # Ok
-     end
-     if oppositeKind == .transient then
-       error mInverseRelationshipName : "this relationship is transient, should be stored"
-     end
-     if oppositeMultiplicity != .single then
-       error mInverseRelationshipName : "the inverse relationship should be toOne"
-     end
-     if oppositeOfOpposite != mToManyRelationshipName.string then
-       error mInverseRelationshipName : "inverse relationship does not name '"
-         + mToManyRelationshipName + "' as opposite"
+    if mInverseRelationshipName.string != "" then
+      [destinationEntityObservablePropertyMap searchForInverseRelationship
+         !mInverseRelationshipName
+         ?let @typeKind oppositeType
+         ?let @propertyKind oppositeKind
+         ?let @propertyMultiplicity oppositeMultiplicity
+         ?let @string oppositeOfOpposite
+         ?2*
+       ]
+       switch oppositeType
+       case boolType, integerType, stringType, dateType, doubleType, fontType :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case enumType (* *) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case classType (*) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case propertyClassType (**) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case transientPropertyClassType (*) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case entityType (*) : # Ok
+       end
+       if oppositeKind == .transient then
+         error mInverseRelationshipName : "this relationship is transient, should be stored"
+       end
+       if oppositeMultiplicity != .single then
+         error mInverseRelationshipName : "the inverse relationship should be toOne"
+       end
+       if oppositeOfOpposite != mToManyRelationshipName.string then
+         error mInverseRelationshipName : "inverse relationship does not name '"
+           + mToManyRelationshipName + "' as opposite"
+       end
      end
   end
 }
