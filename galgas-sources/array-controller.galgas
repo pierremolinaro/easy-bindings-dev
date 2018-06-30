@@ -216,6 +216,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         ?let kind
         ?let multiplicity
         ?2*
+        ?let cascading
       ]
       @actionMap controllerActions = {}
       if kind == .stored then
@@ -229,6 +230,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         !multiplicity
         !""
         !controllerActions
+        !cascading
       ]
     end
   case rootToManyRelationship (@lstring relationshipName) :
@@ -240,6 +242,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         ?let kind
         ?let multiplicity
         ?2*
+        ?let cascading
       ]
       @actionMap controllerActions = {}
       if kind == .stored then
@@ -253,6 +256,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         !multiplicity
         !""
         !controllerActions
+        !cascading
       ]
     end
   case controllerArray (@lstring controllerName @lstring unused propertyName) :
@@ -264,6 +268,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         ?let kind
         ?let multiplicity
         ?2*
+        ?let cascading
       ]
       @actionMap controllerActions = {}
       if kind == .stored then
@@ -277,6 +282,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         !multiplicity
         !""
         !controllerActions
+        !cascading
       ]
     end
   end
@@ -338,6 +344,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?let @propertyMultiplicity multiplicity
       ?*
       ?actionMap
+      ?*
     ]
     modelKind = if [kind isStored] then .storedArrayModel else .transientModel end
   #------------------------------------------------------------ Check bound model is a collection
@@ -369,6 +376,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?let @propertyMultiplicity multiplicity
       ?*
       ?actionMap
+      ?*
     ]
   #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
@@ -398,6 +406,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?kind
       ?2*
       ?actionMap
+      ?*
     ]
     if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
       error errorLocation : "'sortedArray' or 'selectedArray' are required here"
@@ -448,7 +457,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       [boundModelObservablePropertyMap searchKey
         !mSortPropertyName
         ?let sortPropertyType
-        ?4*
+        ?5*
       ]
       if not [sortPropertyType isComparable] then
         error mSortPropertyName : "this property is not comparable"
@@ -475,7 +484,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?let @propertyKind unused columnKind
       ?let @propertyMultiplicity filterMultiplicity
       ?let @string unused inverseRelationshipName # "" if not a relationship
-      ?*
+      ?2*
     ]
     if filterMultiplicity == .collection then
       error filterPropertyName : "the filter property should not be a collection"
@@ -552,7 +561,7 @@ getter @arrayControllerModel modelTypeName
     [inObservablePropertyMap searchKey
       !controllerName
       ?let modelType
-      ?4*
+      ?5*
     ]
     outResult = "TransientArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   end
@@ -571,7 +580,7 @@ getter @arrayControllerModel modelTypeName2
       !storedProprtyName
       ?let modelType
       ?let @propertyKind kind
-      ?3*
+      ?4*
     ]
     switch kind
     case stored :
@@ -589,7 +598,7 @@ getter @arrayControllerModel modelTypeName2
     [inObservablePropertyMap searchKey
       !controllerName
       ?let modelType
-      ?4*
+      ?5*
     ]
     outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
   end

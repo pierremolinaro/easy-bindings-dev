@@ -161,12 +161,16 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
         }
      //--- Removed object set
         let removedSet = mSet.subtracting (newSet)
+      //--- Remove observers of stored properties
         removeEBObserversOf_name_fromElementsOfSet (removedSet)
         removeEBObserversOf_aValue_fromElementsOfSet (removedSet)
+      //--- Remove observers of transient properties
       //--- Added object set
         let addedSet = newSet.subtracting (mSet)
+       //--- Add observers of stored properties
         addEBObserversOf_name_toElementsOfSet (addedSet)
         addEBObserversOf_aValue_toElementsOfSet (addedSet)
+       //--- Add observers of transient properties
       //--- Update object set
         mSet = newSet
       }
@@ -400,6 +404,14 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     self.name.readFrom (dictionary: inDictionary, forKey:"name")
     self.aValue.readFrom (dictionary: inDictionary, forKey:"aValue")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving () {
+    super.cascadeObjectRemoving ()
   }
 
   //····················································································································

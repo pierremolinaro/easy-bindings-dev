@@ -85,6 +85,7 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
       !.single
       !"" # No inverse relationship
       !{} # No action
+      !false
     ]
   else
     ioUnsolvedProperties += !self

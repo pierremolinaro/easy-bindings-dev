@@ -193,7 +193,7 @@ proc analyzeOutlets
           ?let unused type
           ?let @propertyKind kind
           ?let multiplicity
-          ?2*
+          ?3*
         ]
         if kind != .arrayController then
           error controllerName : "the bound model should be an array controller"
@@ -222,6 +222,7 @@ proc analyzeOutlets
           !target
           ?4*
           ?let @actionMap controllerActionMap
+          ?*
         ]
         [controllerActionMap searchKey !action]
         outTargetActionList +=

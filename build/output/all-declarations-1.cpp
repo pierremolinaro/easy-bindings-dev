@@ -8,6 +8,264 @@
 #include "all-declarations-1.h"
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_entityObservablePropertyMap::cMapElement_entityObservablePropertyMap (const GALGAS_lstring & inKey,
+                                                                                  const GALGAS_observablePropertyMap & in_mObservablePropertyMap
+                                                                                  COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mObservablePropertyMap (in_mObservablePropertyMap) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cMapElement_entityObservablePropertyMap::isValid (void) const {
+  return mProperty_lkey.isValid () && mProperty_mObservablePropertyMap.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement * cMapElement_entityObservablePropertyMap::copy (void) {
+  cMapElement * result = NULL ;
+  macroMyNew (result, cMapElement_entityObservablePropertyMap (mProperty_lkey, mProperty_mObservablePropertyMap COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cMapElement_entityObservablePropertyMap::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mObservablePropertyMap" ":" ;
+  mProperty_mObservablePropertyMap.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cMapElement_entityObservablePropertyMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_entityObservablePropertyMap * operand = (cMapElement_entityObservablePropertyMap *) inOperand ;
+  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mObservablePropertyMap.objectCompare (operand->mProperty_mObservablePropertyMap) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap::GALGAS_entityObservablePropertyMap (void) :
+AC_GALGAS_map () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap::GALGAS_entityObservablePropertyMap (const GALGAS_entityObservablePropertyMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap & GALGAS_entityObservablePropertyMap::operator = (const GALGAS_entityObservablePropertyMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap GALGAS_entityObservablePropertyMap::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_entityObservablePropertyMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap GALGAS_entityObservablePropertyMap::constructor_mapWithMapToOverride (const GALGAS_entityObservablePropertyMap & inMapToOverride
+                                                                                                         COMMA_LOCATION_ARGS) {
+  GALGAS_entityObservablePropertyMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap GALGAS_entityObservablePropertyMap::getter_overriddenMap (C_Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const {
+  GALGAS_entityObservablePropertyMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_entityObservablePropertyMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                                              const GALGAS_observablePropertyMap & inArgument0,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cMapElement_entityObservablePropertyMap * p = NULL ;
+  macroMyNew (p, cMapElement_entityObservablePropertyMap (inKey, inArgument0 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@entityObservablePropertyMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_entityObservablePropertyMap::setter_insertKey (GALGAS_lstring inKey,
+                                                           GALGAS_observablePropertyMap inArgument0,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
+  cMapElement_entityObservablePropertyMap * p = NULL ;
+  macroMyNew (p, cMapElement_entityObservablePropertyMap (inKey, inArgument0 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' document is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const char * kSearchErrorMessage_entityObservablePropertyMap_searchKey = "there is no '%K' document" ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_entityObservablePropertyMap::method_searchKey (GALGAS_lstring inKey,
+                                                           GALGAS_observablePropertyMap & outArgument0,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const {
+  const cMapElement_entityObservablePropertyMap * p = (const cMapElement_entityObservablePropertyMap *) performSearch (inKey,
+                                                                                                                       inCompiler,
+                                                                                                                       kSearchErrorMessage_entityObservablePropertyMap_searchKey
+                                                                                                                       COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_entityObservablePropertyMap) ;
+    outArgument0 = p->mProperty_mObservablePropertyMap ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_entityObservablePropertyMap::getter_mObservablePropertyMapForKey (const GALGAS_string & inKey,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_entityObservablePropertyMap * p = (const cMapElement_entityObservablePropertyMap *) attributes ;
+  GALGAS_observablePropertyMap result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_entityObservablePropertyMap) ;
+    result = p->mProperty_mObservablePropertyMap ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_entityObservablePropertyMap::setter_setMObservablePropertyMapForKey (GALGAS_observablePropertyMap inAttributeValue,
+                                                                                 GALGAS_string inKey,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_entityObservablePropertyMap * p = (cMapElement_entityObservablePropertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_entityObservablePropertyMap) ;
+    p->mProperty_mObservablePropertyMap = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_entityObservablePropertyMap * GALGAS_entityObservablePropertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                                                 const GALGAS_string & inKey
+                                                                                                                 COMMA_LOCATION_ARGS) {
+  cMapElement_entityObservablePropertyMap * result = (cMapElement_entityObservablePropertyMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_entityObservablePropertyMap) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_entityObservablePropertyMap::cEnumerator_entityObservablePropertyMap (const GALGAS_entityObservablePropertyMap & inEnumeratedObject,
+                                                                                  const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap_2D_element cEnumerator_entityObservablePropertyMap::current (LOCATION_ARGS) const {
+  const cMapElement_entityObservablePropertyMap * p = (const cMapElement_entityObservablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_entityObservablePropertyMap) ;
+  return GALGAS_entityObservablePropertyMap_2D_element (p->mProperty_lkey, p->mProperty_mObservablePropertyMap) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cEnumerator_entityObservablePropertyMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap cEnumerator_entityObservablePropertyMap::current_mObservablePropertyMap (LOCATION_ARGS) const {
+  const cMapElement_entityObservablePropertyMap * p = (const cMapElement_entityObservablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_entityObservablePropertyMap) ;
+  return p->mProperty_mObservablePropertyMap ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                          @entityObservablePropertyMap type                                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_entityObservablePropertyMap ("entityObservablePropertyMap",
+                                                    NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_entityObservablePropertyMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityObservablePropertyMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_entityObservablePropertyMap::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_entityObservablePropertyMap (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityObservablePropertyMap GALGAS_entityObservablePropertyMap::extractObject (const GALGAS_object & inObject,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_entityObservablePropertyMap result ;
+  const GALGAS_entityObservablePropertyMap * p = (const GALGAS_entityObservablePropertyMap *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_entityObservablePropertyMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("entityObservablePropertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                Class for element of '@entityListForGeneration' list                                 *
 //                                                                                                                     *

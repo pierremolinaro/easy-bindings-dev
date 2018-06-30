@@ -46,6 +46,7 @@ class EBManagedObjectContext : EBObject {
   
   func removeManagedObject (_ object : EBManagedObject) {
     if mManagedObjectSet.contains(object) {
+      object.cascadeObjectRemoving ()
       object.resetToManyRelationships ()
       object.resetToOneRelationships ()
       mManagedObjectSet.remove (object)

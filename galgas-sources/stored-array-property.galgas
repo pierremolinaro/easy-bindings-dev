@@ -80,6 +80,7 @@ method @storedArrayPropertyList buildObservablePropertyMap
       !.collection
       !""
       !actionMap
+      !false
     ]
   end
 }

@@ -122,6 +122,7 @@ override method @transientAST tryToSolveSecondaryProperty
       !if mIsArray then .collection else .single end
       !""
       !actionMap
+      !false
     ]
   else
     ioUnsolvedProperties += !self

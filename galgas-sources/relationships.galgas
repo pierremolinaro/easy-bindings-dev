@@ -7,6 +7,7 @@ list @toOneRelationshipList {
   @lstring mToOneRelationshipName
   @lstring mInverseRelationshipName
   @propertyMultiplicity mInverseRelationMultiplicity
+  @bool mCascading
 }
 
 #·······················································································································
@@ -15,6 +16,7 @@ list @toManyRelationshipList {
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
   @lstring mInverseRelationshipName
+  @bool mCascading
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -36,6 +38,13 @@ syntax extension easyBindings_syntax {
       $signature$
       usedForSignature = true
     end
+    @bool cascade
+    select
+      cascade = false
+    or
+      $cascade$
+      cascade = true
+    end
     $toMany$
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
@@ -50,6 +59,7 @@ syntax extension easyBindings_syntax {
       !destinationEntityName
       !relationshipName
       !inserseRelationshipName
+      !cascade
   }
   
   #·····················································································································
@@ -58,6 +68,13 @@ syntax extension easyBindings_syntax {
     ?!@toOneRelationshipList ioToOneRelationshipList
   {
     $toOne$
+    @bool cascade
+    select
+      cascade = false
+    or
+      $cascade$
+      cascade = true
+    end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
     $inverse$
@@ -76,6 +93,7 @@ syntax extension easyBindings_syntax {
       !relationshipName
       !inverseRelationshipName
       !inverseRelationMultiplicity
+      !cascade
   }
   
   #·····················································································································
@@ -145,6 +163,7 @@ method @toOneRelationshipList buildObservablePropertyMap
       !.single
       !mInverseRelationshipName.string
       !actionMap
+      !mCascading
     ]
   end
 }
@@ -180,6 +199,7 @@ method @toManyRelationshipList buildObservablePropertyMap
       !.collection
       !mInverseRelationshipName.string
       !actionMap
+      !mCascading
     ]
   end
 }
@@ -205,6 +225,7 @@ method @toOneRelationshipList semanticAnalysis
       !mInverseRelationshipName.string
       !mInverseRelationMultiplicity
       !destinationEntityObservablePropertyMap
+      !mCascading
   #--- Check inverse relationship
     [destinationEntityObservablePropertyMap searchForInverseRelationship
        !mInverseRelationshipName
@@ -212,7 +233,7 @@ method @toOneRelationshipList semanticAnalysis
        ?let @propertyKind oppositeKind
        ?let @propertyMultiplicity oppositeMultiplicity
        ?let @string oppositeOfOpposite
-       ?*
+       ?2*
      ]
    #--- Check opposite type
      switch oppositeType
@@ -259,6 +280,7 @@ method @toManyRelationshipList semanticAnalysis
       !type
       !mInverseRelationshipName.string
       !destinationEntityObservablePropertyMap
+      !mCascading
   #--- Check inverse relationship
     [destinationEntityObservablePropertyMap searchForInverseRelationship
        !mInverseRelationshipName
@@ -266,7 +288,7 @@ method @toManyRelationshipList semanticAnalysis
        ?let @propertyKind oppositeKind
        ?let @propertyMultiplicity oppositeMultiplicity
        ?let @string oppositeOfOpposite
-       ?*
+       ?2*
      ]
      switch oppositeType
      case boolType, integerType, stringType, dateType, doubleType, fontType :
@@ -304,6 +326,7 @@ list @toOneEntityRelationshipListForGeneration {
   @string mOppositeRelationshipName
   @propertyMultiplicity mInverseRelationMultiplicity
   @observablePropertyMap mDestinationEntityObservablePropertyMap
+  @bool mCascading
 }
 
 #·······················································································································
@@ -313,6 +336,7 @@ list @toManyEntityRelationshipListForGeneration {
   @typeKind mRelationshipType
   @string mOppositeRelationshipName
   @observablePropertyMap mDestinationEntityObservablePropertyMap
+  @bool mCascading
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

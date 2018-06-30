@@ -203,7 +203,6 @@ override method @entityDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
-#      !?copyTransientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
       !?* # No custom object controller

@@ -287,7 +287,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?outType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -296,7 +296,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?outType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     if outMultiplicity == .single then
       error optionName : "a property cannot accept any option"
@@ -318,7 +318,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?let relationshipType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     if outMultiplicity == .single then
       error relationshipName : "a property cannot accept 'all'"
@@ -344,7 +344,7 @@ method @observablePropertyAST analyzeObservableProperty
         ?outType
         ?outKind
         ?outMultiplicity
-        ?2*
+        ?3*
       ]
       if outMultiplicity == .collection then
         error propertyName : "the observed property cannot be a collection"
@@ -358,7 +358,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?outType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     if [outMultiplicity isCollection] then
       outSwiftTypeStringForTransientFunctionArgument = "[" + [outType swiftTypeName] + "]"
@@ -371,7 +371,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?outType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     if outMultiplicity == .single then
       error optionName : "a property cannot accept any option"
@@ -391,7 +391,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?let propertyType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     if outMultiplicity == .single then
       error propertyName : "a property cannot accept 'all'"
@@ -411,7 +411,7 @@ method @observablePropertyAST analyzeObservableProperty
         ?outType
         ?outKind
         ?outMultiplicity
-        ?2*
+        ?3*
       ]
       if outMultiplicity == .collection then
         error elementPropertyName : "the observed property cannot be a collection"
@@ -430,7 +430,7 @@ method @observablePropertyAST analyzeObservableProperty
         ?outType
         ?outKind
         ?outMultiplicity
-        ?2*
+        ?3*
       ]
       if outMultiplicity == .collection then
         error elementPropertyName : "the observed property cannot be a collection"
@@ -444,7 +444,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?outType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -453,7 +453,7 @@ method @observablePropertyAST analyzeObservableProperty
       ?outType
       ?outKind
       ?outMultiplicity
-      ?2*
+      ?3*
     ]
     if outMultiplicity == .single then
       error optionName : "a single property cannot accept any option"
@@ -472,7 +472,7 @@ method @observablePropertyAST analyzeObservableProperty
       !controllerName
       ?let @typeKind type
       ?let @propertyKind propertyKind
-      ?3*
+      ?4*
     ]
     switch propertyKind
     case selectionController :
@@ -497,7 +497,7 @@ method @observablePropertyAST analyzeObservableProperty
           ?outType
           ?outKind
           ?outMultiplicity
-          ?2*
+          ?3*
         ]
       end
     case arrayController :
@@ -515,10 +515,7 @@ method @observablePropertyAST analyzeObservableProperty
     end
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    [inObservablePropertyMap searchKey
-      !controllerName
-      ?5*
-    ]
+    [inObservablePropertyMap searchKey !controllerName ?6*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outMultiplicity = .single
       outKind = .transient

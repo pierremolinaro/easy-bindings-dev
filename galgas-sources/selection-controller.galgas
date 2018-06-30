@@ -61,7 +61,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       ?let type
       ?let kind
       ?let multiplicity
-      ?2*
+      ?3*
     ]
   #--- Check kind
     if kind != .arrayController then
@@ -95,6 +95,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       !.single
       !"" # No inverse relationship
       !{} # No action
+      !false
     ]
   
   else
@@ -111,7 +112,6 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
-#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
@@ -123,7 +123,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     ?let type
     ?let unused kind
     ?let unused multiplicity
-    ?2*
+    ?3*
   ]
 #--- Check type
   @string selectionEntityName

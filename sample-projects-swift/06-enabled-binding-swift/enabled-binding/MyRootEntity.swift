@@ -104,10 +104,14 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         }
      //--- Removed object set
         let removedSet = mSet.subtracting (newSet)
+      //--- Remove observers of stored properties
         removeEBObserversOf_docBool_fromElementsOfSet (removedSet)
+      //--- Remove observers of transient properties
       //--- Added object set
         let addedSet = newSet.subtracting (mSet)
+       //--- Add observers of stored properties
         addEBObserversOf_docBool_toElementsOfSet (addedSet)
+       //--- Add observers of transient properties
       //--- Update object set
         mSet = newSet
       }
@@ -233,6 +237,14 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     self.docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving () {
+    super.cascadeObjectRemoving ()
   }
 
   //····················································································································

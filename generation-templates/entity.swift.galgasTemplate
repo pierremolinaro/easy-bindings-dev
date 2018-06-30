@@ -782,6 +782,29 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 end
 %  }
 
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving () {
+    super.cascadeObjectRemoving ()
+%
+for () in TO_MANY_RELATIONSHIP_LIST do
+  if mCascading then
+    %    self.managedObjectContext ()?.removeManagedObjects (self.%!mToManyRelationshipName%.propval) // Cascade removing from moc\n%
+  else
+    %    self.%!mToManyRelationshipName%.setProp (Array ()) // Set relationships to nil\n%
+  end
+end
+for () in TO_ONE_RELATIONSHIP_LIST do
+  if mCascading then
+    %    self.managedObjectContext ()?.removeManagedObject (self.%!mToOneRelationshipName%) // Cascade removing from moc\n%
+  else
+    %    self.%!mToOneRelationshipName%.setProp (nil) // Set relationship to nil\n%
+  end
+end
+%  }
+
 %if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
 %  //····················································································································
   //   resetToManyRelationships

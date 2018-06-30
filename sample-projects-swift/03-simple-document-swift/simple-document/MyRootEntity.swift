@@ -329,12 +329,22 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         }
      //--- Removed object set
         let removedSet = mSet.subtracting (newSet)
+      //--- Remove observers of stored properties
         removeEBObserversOf_myString_fromElementsOfSet (removedSet)
         removeEBObserversOf_myColor_fromElementsOfSet (removedSet)
+      //--- Remove observers of transient properties
+        removeEBObserversOf_myStringMaj_fromElementsOfSet (removedSet)
+        removeEBObserversOf_myStringMin_fromElementsOfSet (removedSet)
+        removeEBObserversOf_myStringConcat_fromElementsOfSet (removedSet)
       //--- Added object set
         let addedSet = newSet.subtracting (mSet)
+       //--- Add observers of stored properties
         addEBObserversOf_myString_toElementsOfSet (addedSet)
         addEBObserversOf_myColor_toElementsOfSet (addedSet)
+       //--- Add observers of transient properties
+        addEBObserversOf_myStringMaj_toElementsOfSet (addedSet)
+        addEBObserversOf_myStringMin_toElementsOfSet (addedSet)
+        addEBObserversOf_myStringConcat_toElementsOfSet (addedSet)
       //--- Update object set
         mSet = newSet
       }
@@ -595,6 +605,14 @@ class MyRootEntity : EBManagedObject, MyRootEntity_myString, MyRootEntity_myColo
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
     self.myString.readFrom (dictionary: inDictionary, forKey:"myString")
     self.myColor.readFrom (dictionary: inDictionary, forKey:"myColor")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving () {
+    super.cascadeObjectRemoving ()
   }
 
   //····················································································································
