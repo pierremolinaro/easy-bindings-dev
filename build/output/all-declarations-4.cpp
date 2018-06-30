@@ -12454,7 +12454,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
         result << ".propval\n"
           "      self." ;
         result << enumerator_30924.current_mToManyRelationshipName (HERE).stringValue () ;
-        result << ".setprop (Array ())\n"
+        result << ".setProp (Array ())\n"
           "      self.managedObjectContext ()\?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n"
           "    }\n" ;
       }else if (kBoolFalse == test_9) {

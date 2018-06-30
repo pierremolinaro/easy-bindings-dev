@@ -243,8 +243,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool
   //   cascadeObjectRemoving
   //····················································································································
 
-  override func cascadeObjectRemoving () {
-    super.cascadeObjectRemoving ()
+  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
+    super.cascadeObjectRemoving (&ioObjectsToRemove)
   }
 
   //····················································································································

@@ -792,7 +792,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   if mCascading then
     %    do{\n%
     %      let objects = self.%!mToManyRelationshipName%.propval\n%
-    %      self.%!mToManyRelationshipName%.setprop (Array ())\n%
+    %      self.%!mToManyRelationshipName%.setProp (Array ())\n%
     %      self.managedObjectContext ()?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
