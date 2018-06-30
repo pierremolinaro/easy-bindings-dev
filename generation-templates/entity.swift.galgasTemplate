@@ -786,24 +786,28 @@ end
   //   cascadeObjectRemoving
   //····················································································································
 
-  override func cascadeObjectRemoving () {
-    super.cascadeObjectRemoving ()
+  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
   if mCascading then
-    %    self.managedObjectContext ()?.removeManagedObjects (self.%!mToManyRelationshipName%.propval) // Cascade removing from moc\n%
+    %    do{\n%
+    %      let objects = self.%!mToManyRelationshipName%.propval\n%
+    %      self.%!mToManyRelationshipName%.setprop (Array ())\n%
+    %      self.managedObjectContext ()?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
+    %    }\n%
   else
     %    self.%!mToManyRelationshipName%.setProp (Array ()) // Set relationships to nil\n%
   end
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if mCascading then
-    %    self.managedObjectContext ()?.removeManagedObject (self.%!mToOneRelationshipName%) // Cascade removing from moc\n%
+    %    self.managedObjectContext ()?.internalRemoveManagedObject (self.%!mToOneRelationshipName%, &ioObjectsToRemove) // Cascade removing from moc\n%
   else
     %    self.%!mToOneRelationshipName%.setProp (nil) // Set relationship to nil\n%
   end
 end
-%  }
+%    super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
 
 %if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
 %  //····················································································································
