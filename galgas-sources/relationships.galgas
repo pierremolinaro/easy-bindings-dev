@@ -31,21 +31,26 @@ syntax extension easyBindings_syntax {
     ?!@toManyRelationshipList ioToManyRelationshipList
     ?!@stringset ioSignatureList
   {
-    @bool usedForSignature
-    select
-      usedForSignature = false
-    or
-      $signature$
-      usedForSignature = true
-    end
-    @bool cascade
-    select
-      cascade = false
-    or
-      $cascade$
-      cascade = true
-    end
     $toMany$
+    @bool usedForSignature = false
+    @bool cascading = false
+    repeat
+    while
+      $@attribute$ ?let attributeName
+      if attributeName.string == "signature" then
+        if usedForSignature then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        usedForSignature = true
+      elsif attributeName.string == "cascading" then
+        if cascading then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        cascading = true
+      else
+        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@cascading" }
+      end
+    end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
     if usedForSignature then
@@ -59,7 +64,7 @@ syntax extension easyBindings_syntax {
       !destinationEntityName
       !relationshipName
       !inserseRelationshipName
-      !cascade
+      !cascading
   }
   
   #·····················································································································
@@ -68,12 +73,23 @@ syntax extension easyBindings_syntax {
     ?!@toOneRelationshipList ioToOneRelationshipList
   {
     $toOne$
-    @bool cascade
-    select
-      cascade = false
-    or
-      $cascade$
-      cascade = true
+    @bool cascading = false
+    repeat
+    while
+      $@attribute$ ?let attributeName
+#      if attributeName.string == "signature" then
+#        if usedForSignature then
+#          error attributeName : "duplicated attribute" fixit { remove }
+#        end
+#        usedForSignature = true
+      if attributeName.string == "cascading" then
+        if cascading then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        cascading = true
+      else
+        error attributeName : "unknow attribute" fixit { replace "@cascading" } # replace "@signature" }
+      end
     end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
@@ -93,7 +109,7 @@ syntax extension easyBindings_syntax {
       !relationshipName
       !inverseRelationshipName
       !inverseRelationMultiplicity
-      !cascade
+      !cascading
   }
   
   #·····················································································································

@@ -84,7 +84,7 @@
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [43] = {
+static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [41] = {
   {"no", easyBindings_lexique_1_no},
   {"to", easyBindings_lexique_1_to},
   {"all", easyBindings_lexique_1_all},
@@ -107,7 +107,6 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"struct", easyBindings_lexique_1_struct},
   {"toMany", easyBindings_lexique_1_toMany},
   {"binding", easyBindings_lexique_1_binding},
-  {"cascade", easyBindings_lexique_1_cascade},
   {"default", easyBindings_lexique_1_default},
   {"include", easyBindings_lexique_1_include},
   {"inverse", easyBindings_lexique_1_inverse},
@@ -118,7 +117,6 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"property", easyBindings_lexique_1_property},
   {"signature", easyBindings_lexique_1_signature},
   {"transient", easyBindings_lexique_1_transient},
-  {"validates", easyBindings_lexique_1_validates},
   {"externFunc", easyBindings_lexique_1_externFunc},
   {"dependsFrom", easyBindings_lexique_1_dependsFrom},
   {"xcodeproject", easyBindings_lexique_1_xcodeproject},
@@ -131,7 +129,7 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
 } ;
 
 static NSInteger search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (NSString * inSearchedString) {
-  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 43) ;
+  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 41) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -193,6 +191,20 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       }while (mLoop && scanningOk) ;
       mLoop = YES ;
       mTokenCode = easyBindings_lexique_1_Identifier ;
+    }else if (scanningOk && ([self testForInputChar:64])) {
+      if (scanningOk && ([self testForCharWithFunction:isUnicodeLetter] || [self testForInputFromChar:48 toChar:57])) {
+        do {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
+          if (scanningOk && ([self testForCharWithFunction:isUnicodeLetter] || [self testForInputFromChar:48 toChar:57] || [self testForInputChar:46])) {
+          }else{
+            mLoop = NO ;
+          }
+        }while (mLoop && scanningOk) ;
+        mLoop = YES ;
+      }else{
+        scanningOk = NO ;
+      }
+      mTokenCode = easyBindings_lexique_1__40_attribute ;
     }else if (scanningOk && ([self testForInputChar:36])) {
       do {
         if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
@@ -312,7 +324,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 70 ;
+  return 69 ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -322,7 +334,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (NSUInteger) styleCount {
-  return 11 ;
+  return 12 ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -342,21 +354,21 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [71] = {0,
+  static const NSUInteger kTerminalSymbolStyles [70] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
-    4 /* easyBindings_lexique_1_bindingName */,
-    6 /* easyBindings_lexique_1_literal_5F_integer */,
-    7 /* easyBindings_lexique_1_literal_5F_double */,
-    8 /* easyBindings_lexique_1_literal_5F_string */,
-    10 /* easyBindings_lexique_1_comment */,
+    4 /* easyBindings_lexique_1__40_attribute */,
+    5 /* easyBindings_lexique_1_bindingName */,
+    7 /* easyBindings_lexique_1_literal_5F_integer */,
+    8 /* easyBindings_lexique_1_literal_5F_double */,
+    9 /* easyBindings_lexique_1_literal_5F_string */,
+    11 /* easyBindings_lexique_1_comment */,
     1 /* easyBindings_lexique_1_action */,
     1 /* easyBindings_lexique_1_all */,
     1 /* easyBindings_lexique_1_array */,
     1 /* easyBindings_lexique_1_arrayController */,
     1 /* easyBindings_lexique_1_binding */,
     1 /* easyBindings_lexique_1_calledBy */,
-    1 /* easyBindings_lexique_1_cascade */,
     1 /* easyBindings_lexique_1_class */,
     1 /* easyBindings_lexique_1_classForSwift */,
     1 /* easyBindings_lexique_1_column */,
@@ -388,31 +400,30 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     1 /* easyBindings_lexique_1_toMany */,
     1 /* easyBindings_lexique_1_toOne */,
     1 /* easyBindings_lexique_1_transient */,
-    1 /* easyBindings_lexique_1_validates */,
     1 /* easyBindings_lexique_1_version */,
     1 /* easyBindings_lexique_1_versionShouldChange */,
     1 /* easyBindings_lexique_1_xcodeproject */,
     1 /* easyBindings_lexique_1_yes */,
-    5 /* easyBindings_lexique_1_enabled */,
-    5 /* easyBindings_lexique_1_hidden */,
-    5 /* easyBindings_lexique_1_tableValue */,
-    5 /* easyBindings_lexique_1_run */,
-    9 /* easyBindings_lexique_1__3A_ */,
-    9 /* easyBindings_lexique_1__2C_ */,
-    9 /* easyBindings_lexique_1__3B_ */,
-    9 /* easyBindings_lexique_1__21_ */,
-    9 /* easyBindings_lexique_1__5B_ */,
-    9 /* easyBindings_lexique_1__5D_ */,
-    9 /* easyBindings_lexique_1__7B_ */,
-    9 /* easyBindings_lexique_1__7D_ */,
-    9 /* easyBindings_lexique_1__28_ */,
-    9 /* easyBindings_lexique_1__29_ */,
-    9 /* easyBindings_lexique_1__2E_ */,
-    9 /* easyBindings_lexique_1__7C_ */,
-    9 /* easyBindings_lexique_1__26_ */,
-    9 /* easyBindings_lexique_1__3C_ */,
-    9 /* easyBindings_lexique_1__3E_ */,
-    9 /* easyBindings_lexique_1__5E_ */
+    6 /* easyBindings_lexique_1_enabled */,
+    6 /* easyBindings_lexique_1_hidden */,
+    6 /* easyBindings_lexique_1_tableValue */,
+    6 /* easyBindings_lexique_1_run */,
+    10 /* easyBindings_lexique_1__3A_ */,
+    10 /* easyBindings_lexique_1__2C_ */,
+    10 /* easyBindings_lexique_1__3B_ */,
+    10 /* easyBindings_lexique_1__21_ */,
+    10 /* easyBindings_lexique_1__5B_ */,
+    10 /* easyBindings_lexique_1__5D_ */,
+    10 /* easyBindings_lexique_1__7B_ */,
+    10 /* easyBindings_lexique_1__7D_ */,
+    10 /* easyBindings_lexique_1__28_ */,
+    10 /* easyBindings_lexique_1__29_ */,
+    10 /* easyBindings_lexique_1__2E_ */,
+    10 /* easyBindings_lexique_1__7C_ */,
+    10 /* easyBindings_lexique_1__26_ */,
+    10 /* easyBindings_lexique_1__3C_ */,
+    10 /* easyBindings_lexique_1__3E_ */,
+    10 /* easyBindings_lexique_1__5E_ */
   } ;
   return kTerminalSymbolStyles [inTerminal] ;
 }
@@ -424,9 +435,10 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [71] = {NO,
+  static const BOOL kTerminalAtomicSelection [70] = {NO,
     YES /* easyBindings_lexique_1_identifier */,
     YES /* easyBindings_lexique_1_Identifier */,
+    YES /* easyBindings_lexique_1__40_attribute */,
     YES /* easyBindings_lexique_1_bindingName */,
     YES /* easyBindings_lexique_1_literal_5F_integer */,
     YES /* easyBindings_lexique_1_literal_5F_double */,
@@ -438,7 +450,6 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_arrayController */,
     YES /* easyBindings_lexique_1_binding */,
     YES /* easyBindings_lexique_1_calledBy */,
-    YES /* easyBindings_lexique_1_cascade */,
     YES /* easyBindings_lexique_1_class */,
     YES /* easyBindings_lexique_1_classForSwift */,
     YES /* easyBindings_lexique_1_column */,
@@ -470,7 +481,6 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_toMany */,
     YES /* easyBindings_lexique_1_toOne */,
     YES /* easyBindings_lexique_1_transient */,
-    YES /* easyBindings_lexique_1_validates */,
     YES /* easyBindings_lexique_1_version */,
     YES /* easyBindings_lexique_1_versionShouldChange */,
     YES /* easyBindings_lexique_1_xcodeproject */,
@@ -507,12 +517,13 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 
 - (NSString *) styleNameForStyleIndex: (NSInteger) inIndex {
   NSString * result = nil ;
-  if ((inIndex >= 0) && (inIndex < 11)) {
-    NSString * kStyleArray [11] = {
+  if ((inIndex >= 0) && (inIndex < 12)) {
+    NSString * kStyleArray [12] = {
       @"Default Style",
       @"Keywords",
       @"identifiers",
       @"Identifiers",
+      @"Attributes",
       @"Binding Names",
       @"Reserved binding names",
       @"Integer Constants",
@@ -534,12 +545,13 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 
 - (NSString *) styleIdentifierForStyleIndex: (NSInteger) inIndex {
   NSString * result = nil ;
-  if ((inIndex >= 0) && (inIndex < 11)) {
-    NSString * kStyleArray [11] = {
+  if ((inIndex >= 0) && (inIndex < 12)) {
+    NSString * kStyleArray [12] = {
       @"easyBindings_lexique",
       @"easyBindings_lexique-keywordsStyle",
       @"easyBindings_lexique-idfStyle",
       @"easyBindings_lexique-IdfStyle",
+      @"easyBindings_lexique-attributeStyle",
       @"easyBindings_lexique-bindingNameStyle",
       @"easyBindings_lexique-reservedBindingNameStyle",
       @"easyBindings_lexique-integerStyle",

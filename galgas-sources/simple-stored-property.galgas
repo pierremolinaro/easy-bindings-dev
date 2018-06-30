@@ -21,20 +21,25 @@ syntax extension easyBindings_syntax {
     ?!@simpleStoredPropertyList ioAttributeList
     ?!@stringset ioSignatureList
   {
-    @bool usedForSignature
-    select
-      usedForSignature = false
-    or
-      $signature$
-      usedForSignature = true
-    end
     $property$
-    @bool needsValidation
-    select
-      needsValidation = false
-    or
-      $validates$
-      needsValidation = true
+    @bool usedForSignature = false
+    @bool needsValidation = false
+    repeat
+    while
+      $@attribute$ ?let attributeName
+      if attributeName.string == "signature" then
+        if needsValidation then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        usedForSignature = true
+      elsif attributeName.string == "validation" then
+        if needsValidation then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        needsValidation = true
+      else
+        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@validation" }
+      end
     end
     $Identifier$ ?var @lstring attributeTypeName
     $identifier$ ?var @lstring attributeName

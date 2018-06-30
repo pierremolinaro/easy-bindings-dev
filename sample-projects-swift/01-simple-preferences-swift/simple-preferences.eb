@@ -28,7 +28,7 @@ prefs {
   property Date mDate default date ;
   outlet EBDatePicker mDatePicker $date self.mDate  ;
 #--- Number
-  property validates Int mIntegerValue default 12 ;
+  property @validation Int mIntegerValue default 12 ;
   outlet EBIntField mIntegerTextField
     $value self.mIntegerValue {sendContinously : yes, autoFormatter:yes}
   ;

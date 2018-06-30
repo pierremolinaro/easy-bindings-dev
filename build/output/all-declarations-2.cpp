@@ -2135,13 +2135,13 @@ void extensionMethod_typeInventory (const GALGAS_simpleStoredPropertyList inObje
                                     C_Compiler * /* inCompiler */
                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_simpleStoredPropertyList temp_0 = inObject ;
-  cEnumerator_simpleStoredPropertyList enumerator_2409 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_2409.hasCurrentObject ()) {
+  cEnumerator_simpleStoredPropertyList enumerator_2806 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_2806.hasCurrentObject ()) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_2507 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_2409.current_mPropertyTypeName (HERE), joker_2507 COMMA_SOURCE_FILE ("simple-stored-property.galgas", 66)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_2904 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_2806.current_mPropertyTypeName (HERE), joker_2904 COMMA_SOURCE_FILE ("simple-stored-property.galgas", 71)) ;
     }
-    enumerator_2409.gotoNextObject () ;
+    enumerator_2806.gotoNextObject () ;
   }
 }
 
@@ -2158,13 +2158,13 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_simpleStoredProper
                                                  C_Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_simpleStoredPropertyList temp_0 = inObject ;
-  cEnumerator_simpleStoredPropertyList enumerator_3056 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_3056.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_3141 ;
-    GALGAS_actionMap var_actionMap_3156 ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_3056.current_mPropertyTypeName (HERE), var_type_3141, var_actionMap_3156, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 84)) ;
-    GALGAS_typeKindList var_typeList_3202 ;
-    switch (var_type_3141.enumValue ()) {
+  cEnumerator_simpleStoredPropertyList enumerator_3453 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_3453.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_3538 ;
+    GALGAS_actionMap var_actionMap_3553 ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_3453.current_mPropertyTypeName (HERE), var_type_3538, var_actionMap_3553, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 89)) ;
+    GALGAS_typeKindList var_typeList_3599 ;
+    switch (var_type_3538.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -2174,51 +2174,51 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_simpleStoredProper
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
       {
-        GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 89)) ;
-        temp_1.addAssign_operation (var_type_3141  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 89)) ;
-        var_typeList_3202 = temp_1 ;
+        GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 94)) ;
+        temp_1.addAssign_operation (var_type_3538  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 94)) ;
+        var_typeList_3599 = temp_1 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_typeKindList temp_2 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 91)) ;
-        temp_2.addAssign_operation (var_type_3141  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 91)) ;
-        var_typeList_3202 = temp_2 ;
+        GALGAS_typeKindList temp_2 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 96)) ;
+        temp_2.addAssign_operation (var_type_3538  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 96)) ;
+        var_typeList_3599 = temp_2 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_3056.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 93)), GALGAS_string ("a class cannot be used as simple property type"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 93)) ;
-        var_typeList_3202.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_3453.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 98)), GALGAS_string ("a class cannot be used as simple property type"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 98)) ;
+        var_typeList_3599.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_propertyClassType:
       {
-        GALGAS_typeKindList temp_4 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 95)) ;
-        temp_4.addAssign_operation (var_type_3141  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 95)) ;
-        var_typeList_3202 = temp_4 ;
+        GALGAS_typeKindList temp_4 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 100)) ;
+        temp_4.addAssign_operation (var_type_3538  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 100)) ;
+        var_typeList_3599 = temp_4 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyClassType:
       {
-        GALGAS_typeKindList temp_5 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 97)) ;
-        temp_5.addAssign_operation (var_type_3141  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 97)) ;
-        var_typeList_3202 = temp_5 ;
+        GALGAS_typeKindList temp_5 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 102)) ;
+        temp_5.addAssign_operation (var_type_3538  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 102)) ;
+        var_typeList_3599 = temp_5 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
         TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (enumerator_3056.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 99)), GALGAS_string ("an entity cannot be used as simple property type"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 99)) ;
-        var_typeList_3202.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_3453.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 104)), GALGAS_string ("an entity cannot be used as simple property type"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 104)) ;
+        var_typeList_3599.drop () ; // Release error dropped variable
       }
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (enumerator_3056.current_mPropertyName (HERE), var_type_3141, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("simple-stored-property.galgas", 105)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("simple-stored-property.galgas", 106)), GALGAS_string::makeEmptyString (), var_actionMap_3156, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 102)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_3453.current_mPropertyName (HERE), var_type_3538, GALGAS_propertyKind::constructor_stored (SOURCE_FILE ("simple-stored-property.galgas", 110)), GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("simple-stored-property.galgas", 111)), GALGAS_string::makeEmptyString (), var_actionMap_3553, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 107)) ;
     }
-    enumerator_3056.gotoNextObject () ;
+    enumerator_3453.gotoNextObject () ;
   }
 }
 
@@ -2237,15 +2237,15 @@ void extensionMethod_simpleStoredPropertySemanticAnalysis (const GALGAS_simpleSt
                                                            C_Compiler * inCompiler
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSimpleStoredPropertyListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outSimpleStoredPropertyListForGeneration = GALGAS_simpleStoredPropertyListForGeneration::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 122)) ;
+  outArgument_outSimpleStoredPropertyListForGeneration = GALGAS_simpleStoredPropertyListForGeneration::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 127)) ;
   const GALGAS_simpleStoredPropertyList temp_0 = inObject ;
-  cEnumerator_simpleStoredPropertyList enumerator_4428 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_4428.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_4513 ;
-    GALGAS_actionMap joker_4515 ; // Joker input parameter
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4428.current_mPropertyTypeName (HERE), var_type_4513, joker_4515, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 125)) ;
-    GALGAS_typeKindList var_typeList_4562 ;
-    switch (var_type_4513.enumValue ()) {
+  cEnumerator_simpleStoredPropertyList enumerator_4825 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_4825.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_4910 ;
+    GALGAS_actionMap joker_4912 ; // Joker input parameter
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4825.current_mPropertyTypeName (HERE), var_type_4910, joker_4912, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 130)) ;
+    GALGAS_typeKindList var_typeList_4959 ;
+    switch (var_type_4910.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -2255,55 +2255,55 @@ void extensionMethod_simpleStoredPropertySemanticAnalysis (const GALGAS_simpleSt
     case GALGAS_typeKind::kEnum_doubleType:
     case GALGAS_typeKind::kEnum_fontType:
       {
-        GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 130)) ;
-        temp_1.addAssign_operation (var_type_4513  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 130)) ;
-        var_typeList_4562 = temp_1 ;
+        GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 135)) ;
+        temp_1.addAssign_operation (var_type_4910  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 135)) ;
+        var_typeList_4959 = temp_1 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
-        GALGAS_typeKindList temp_2 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 132)) ;
-        temp_2.addAssign_operation (var_type_4513  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 132)) ;
-        var_typeList_4562 = temp_2 ;
+        GALGAS_typeKindList temp_2 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 137)) ;
+        temp_2.addAssign_operation (var_type_4910  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 137)) ;
+        var_typeList_4959 = temp_2 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_4428.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 134)), GALGAS_string ("a class cannot be used as simple property type"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 134)) ;
-        var_typeList_4562.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4825.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 139)), GALGAS_string ("a class cannot be used as simple property type"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 139)) ;
+        var_typeList_4959.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_propertyClassType:
       {
-        GALGAS_typeKindList temp_4 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 136)) ;
-        temp_4.addAssign_operation (var_type_4513  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 136)) ;
-        var_typeList_4562 = temp_4 ;
+        GALGAS_typeKindList temp_4 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 141)) ;
+        temp_4.addAssign_operation (var_type_4910  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 141)) ;
+        var_typeList_4959 = temp_4 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyClassType:
       {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_4428.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 138)), GALGAS_string ("a transient property class cannot be used as simple property type"), fixItArray5  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 138)) ;
-        var_typeList_4562.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4825.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 143)), GALGAS_string ("a transient property class cannot be used as simple property type"), fixItArray5  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 143)) ;
+        var_typeList_4959.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
         TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (enumerator_4428.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 140)), GALGAS_string ("an entity cannot be used as simple property type"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 140)) ;
-        var_typeList_4562.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4825.current_mPropertyName (HERE).getter_location (SOURCE_FILE ("simple-stored-property.galgas", 145)), GALGAS_string ("an entity cannot be used as simple property type"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 145)) ;
+        var_typeList_4959.drop () ; // Release error dropped variable
       }
       break ;
     }
-    GALGAS_string var_swiftDefaultValueAsString_5303 ;
-    callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_4428.current_mDefaultValue (HERE).ptr (), var_typeList_4562, var_swiftDefaultValueAsString_5303, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 143)) ;
-    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (var_type_4513, enumerator_4428.current_mPropertyName (HERE).getter_string (HERE), var_swiftDefaultValueAsString_5303, enumerator_4428.current_mNeedsValidation (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 145)) ;
-    const enumGalgasBool test_7 = enumerator_4428.current_mNeedsValidation (HERE).boolEnum () ;
+    GALGAS_string var_swiftDefaultValueAsString_5700 ;
+    callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_4825.current_mDefaultValue (HERE).ptr (), var_typeList_4959, var_swiftDefaultValueAsString_5700, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 148)) ;
+    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (var_type_4910, enumerator_4825.current_mPropertyName (HERE).getter_string (HERE), var_swiftDefaultValueAsString_5700, enumerator_4825.current_mNeedsValidation (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 150)) ;
+    const enumGalgasBool test_7 = enumerator_4825.current_mNeedsValidation (HERE).boolEnum () ;
     if (kBoolTrue == test_7) {
-      ioArgument_ioValidationStubRoutineListForGeneration.addAssign_operation (constinArgument_inSwiftClassName, enumerator_4428.current_mPropertyName (HERE).getter_string (HERE), extensionGetter_swiftTypeName (var_type_4513, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 154))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 151)) ;
+      ioArgument_ioValidationStubRoutineListForGeneration.addAssign_operation (constinArgument_inSwiftClassName, enumerator_4825.current_mPropertyName (HERE).getter_string (HERE), extensionGetter_swiftTypeName (var_type_4910, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 159))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 156)) ;
     }
-    enumerator_4428.gotoNextObject () ;
+    enumerator_4825.gotoNextObject () ;
   }
 }
 

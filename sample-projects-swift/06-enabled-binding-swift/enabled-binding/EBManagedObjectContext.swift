@@ -47,10 +47,26 @@ class EBManagedObjectContext : EBObject {
   func removeManagedObject (_ object : EBManagedObject) {
     if mManagedObjectSet.contains(object) {
       object.cascadeObjectRemoving ()
-      object.resetToManyRelationships ()
-      object.resetToOneRelationships ()
+ //     object.resetToManyRelationships ()
+//      object.resetToOneRelationships ()
       mManagedObjectSet.remove (object)
       mUndoManager?.registerUndo (withTarget: self, selector: #selector(insertManagedObject(_:)), object: object)
+    }
+  }
+
+  //····················································································································
+  //    removeManagedObjects
+  //····················································································································
+  
+  func removeManagedObjects (_ inObjectArray : [EBManagedObject]) {
+    for object in inObjectArray {
+    if mManagedObjectSet.contains(object) {
+        object.cascadeObjectRemoving ()
+   //     object.resetToManyRelationships ()
+  //      object.resetToOneRelationships ()
+        mManagedObjectSet.remove (object)
+        mUndoManager?.registerUndo (withTarget: self, selector: #selector(insertManagedObject(_:)), object: object)
+      }
     }
   }
 

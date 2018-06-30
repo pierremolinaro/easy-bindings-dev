@@ -59,8 +59,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   //····················································································································
 
   final func removeEBObserversOf_docString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
-    for managedObject in inSet {
-      for observer in mObserversOf_docString {
+    for observer in mObserversOf_docString {
+      observer.postEvent ()
+      for managedObject in inSet {
         managedObject.docString.removeEBObserver (observer)
       }
     }
@@ -215,10 +216,18 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         }
      //--- Removed object set
         let removedSet = mSet.subtracting (newSet)
+      //--- Remove observers of stored properties
         removeEBObserversOf_docString_fromElementsOfSet (removedSet)
+      //--- Remove observers of transient properties
+        removeEBObserversOf_transientConcatString_fromElementsOfSet (removedSet)
+        removeEBObserversOf_otherTransientConcatString_fromElementsOfSet (removedSet)
       //--- Added object set
         let addedSet = newSet.subtracting (mSet)
+       //--- Add observers of stored properties
         addEBObserversOf_docString_toElementsOfSet (addedSet)
+       //--- Add observers of transient properties
+        addEBObserversOf_transientConcatString_toElementsOfSet (addedSet)
+        addEBObserversOf_otherTransientConcatString_toElementsOfSet (addedSet)
       //--- Update object set
         mSet = newSet
       }
@@ -234,7 +243,12 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
   override func postEvent () {
     if prop_cache != nil {
       prop_cache = nil
+      if logEvents () {
+        appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+      }
       super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 
@@ -337,9 +351,19 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_trans
     g_Preferences?.prefTransientString.addEBObserver (transientConcatString)
     g_Preferences?.myPrefString.addEBObserver (otherTransientConcatString)
   //--- Install undoers for properties
-    docString.undoManager = undoManager ()
+    self.docString.undoManager = undoManager ()
   //--- Install owner for relationships
   //--- register properties for handling signature
+  }
+
+  //····················································································································
+
+  deinit {
+  //--- Remove observers
+    docString.removeEBObserver (transientConcatString)
+    g_Preferences?.myPrefString.removeEBObserver (transientConcatString)
+    g_Preferences?.prefTransientString.removeEBObserver (transientConcatString)
+    g_Preferences?.myPrefString.removeEBObserver (otherTransientConcatString)
   }
 
   //····················································································································
@@ -350,12 +374,32 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_trans
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "docString",
-      idx:docString.mExplorerObjectIndex,
+      idx:self.docString.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&docString.mObserverExplorer,
-      valueExplorer:&docString.mValueExplorer
+      observerExplorer:&self.docString.mObserverExplorer,
+      valueExplorer:&self.docString.mValueExplorer
     )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForPropertyNamed (
+      "transientConcatString",
+      idx:self.transientConcatString.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.transientConcatString.mObserverExplorer,
+      valueExplorer:&self.transientConcatString.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "otherTransientConcatString",
+      idx:self.otherTransientConcatString.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.otherTransientConcatString.mObserverExplorer,
+      valueExplorer:&self.otherTransientConcatString.mValueExplorer
+    )
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
   }
 
   //····················································································································
@@ -363,8 +407,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_trans
   //····················································································································
 
   override func clearObjectExplorer () {
-    docString.mObserverExplorer = nil
-    docString.mValueExplorer = nil
+    self.docString.mObserverExplorer = nil
+    self.docString.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -374,7 +418,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_trans
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    docString.storeIn (dictionary: ioDictionary, forKey: "docString")
+    self.docString.storeIn (dictionary: ioDictionary, forKey: "docString")
   }
 
   //····················································································································
@@ -384,7 +428,15 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_trans
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    docString.readFrom (dictionary: inDictionary, forKey:"docString")
+    self.docString.readFrom (dictionary: inDictionary, forKey:"docString")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving () {
+    super.cascadeObjectRemoving ()
   }
 
   //····················································································································

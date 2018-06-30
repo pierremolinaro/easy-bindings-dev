@@ -20,7 +20,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "arrayController",
   "binding",
   "calledBy",
-  "cascade",
   "class",
   "classForSwift",
   "column",
@@ -52,7 +51,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "toMany",
   "toOne",
   "transient",
-  "validates",
   "version",
   "versionShouldChange",
   "xcodeproject",
@@ -75,6 +73,29 @@ rule 'A'->'Z' {
   send $Identifier$
 }
 
+  #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+  #! Attributes
+  #—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+  
+  style attributeStyle -> "Attributes"
+  
+  $@attribute$ ! tokenString  style attributeStyle error message "an attribute @..."
+  
+  message attributeError : "in an attribute name, a letter, a digit or a dot should follow the '@' character"
+  
+  rule '@' {
+    select
+    case isUnicodeLetter | '0'->'9' :
+      repeat
+        enterCharacterIntoString (!?tokenString !*)
+      while isUnicodeLetter | '0'->'9' | '.' :
+      end
+    default
+      error attributeError
+    end
+    send $@attribute$ 
+  }
+  
 #----------------------------------------------------------------------------*
 #   Binding name                                                             *
 #----------------------------------------------------------------------------*

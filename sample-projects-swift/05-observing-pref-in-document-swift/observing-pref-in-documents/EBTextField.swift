@@ -79,21 +79,20 @@ import Cocoa
   init (object:EBReadWriteProperty_String, outlet : EBTextField, file : String, line : Int, sendContinously : Bool) {
     mObject = object
     mOutlet = outlet
-    super.init (objects:[object], outlet:outlet)
+    super.init (observedObjects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBTextField_value.action(_:))
     if mOutlet.formatter != nil {
       presentErrorWindow (file: file, line:line, errorMessage:"the EBTextField outlet has a formatter")
     }
-    object.addEBObserver (self)
   }
 
   //····················································································································
   
-  func unregister () {
+  override func unregister () {
+    super.unregister ()
     mOutlet.target = nil
     mOutlet.action = nil
-    mObject.removeEBObserver (self)
     mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
@@ -102,10 +101,10 @@ import Cocoa
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .noSelection :
-      mOutlet.stringValue = "No selection"
+      mOutlet.stringValue = "—"
       mOutlet.enableFromValue (false)
     case .multipleSelection :
-      mOutlet.stringValue = "Multiple selection"
+      mOutlet.stringValue = "—"
       mOutlet.enableFromValue (false)
     case .singleSelection (let propertyValue) :
       mOutlet.stringValue = propertyValue

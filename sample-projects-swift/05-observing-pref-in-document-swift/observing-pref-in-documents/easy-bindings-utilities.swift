@@ -5,6 +5,46 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  String path utilities
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension String {
+
+  //····················································································································
+  
+  var lastPathComponent : String {
+    get {
+      return (self as NSString).lastPathComponent
+    }
+  }
+
+  //····················································································································
+  
+  var deletingPathExtension : String {
+    get {
+      return (self as NSString).deletingPathExtension
+    }
+  }
+
+  //····················································································································
+  
+  var pathExtension : String {
+    get {
+      return (self as NSString).pathExtension
+    }
+  }
+
+  //····················································································································
+
+  func appendingPathComponent (_ path : String) -> String {
+    return (self as NSString).appendingPathComponent (path)
+  }
+  
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBSignatureObserverProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -18,33 +58,43 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBWeakEventSetElement : EBObject {
+
   fileprivate weak var mObserver : EBEvent? = nil {
     didSet {
       if mObserver == nil, let object = mObject {
-        object.mDictionary [mObserverAddress] = nil
+        object.mDictionary [mObserverObjectIndex] = nil
       }
     }
   }
 
   private weak var mObject : EBWeakEventSet? = nil
-  private var mObserverAddress : Int
+  private var mObserverObjectIndex : Int
   private var mObserverRetainCount = 1
+
+  //····················································································································
   
   init (object : EBWeakEventSet, observer : EBEvent) {
     mObserver = observer
     mObject = object
-    mObserverAddress = Unmanaged.passUnretained (observer).toOpaque ().hashValue
+    mObserverObjectIndex = observer.mEasyBindingsObjectIndex
     super.init ()
   }
+
+  //····················································································································
   
   final func retainObserver () {
     mObserverRetainCount += 1
   }
+
+  //····················································································································
   
   final func releaseObserver () -> Int {
     mObserverRetainCount -= 1
     return mObserverRetainCount
   }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -57,7 +107,7 @@ class EBWeakEventSet : EBObject, Sequence {
   //····················································································································
   
   func insert (_ inObserver : EBEvent) {
-    let address : Int = Unmanaged.passUnretained (inObserver).toOpaque ().hashValue
+    let address : Int = inObserver.mEasyBindingsObjectIndex
     if let entry = mDictionary [address] {
       entry.retainObserver ()
     }else{
@@ -68,7 +118,7 @@ class EBWeakEventSet : EBObject, Sequence {
   //····················································································································
   
   func remove (_ inObserver : EBEvent) {
-    let address : Int = Unmanaged.passUnretained (inObserver).toOpaque ().hashValue
+    let address : Int = inObserver.mEasyBindingsObjectIndex
     if let entry = mDictionary [address] {
       if entry.releaseObserver () == 0 {
         mDictionary [address] = nil
@@ -90,11 +140,14 @@ class EBWeakEventSet : EBObject, Sequence {
 
   //····················································································································
   
-  var count : Swift.Int {
+  var count : Int {
     get {
       return mDictionary.count
     }
   }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -144,7 +197,7 @@ class EBAbstractProperty : EBEvent {
       observerExplorer.addItem (withTitle: String (mObservers.count))
       observerExplorer.isEnabled = mObservers.count > 0
       for object : EBEvent in mObservers {
-        let stringValue = explorerIndexString (object.mExplorerObjectIndex) + object.className
+        let stringValue = explorerIndexString (object.mEasyBindingsObjectIndex) + object.className
         observerExplorer.addItem (withTitle: stringValue)
         let item = observerExplorer.lastItem
         item?.target = object
@@ -180,6 +233,7 @@ class EBObserver : EBAbstractProperty {
   //····················································································································
 
 }
+
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   CRC computations for signature
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -222,16 +276,25 @@ private let kTableCRC : [UInt32] = [
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension UInt32 {
+
+  //····················································································································
+
   mutating func accumulateByte (_ byte : UInt8) {
     let idx = Int ((self ^ UInt32(byte)) & 0xff)
     self = (self >> 8) ^ kTableCRC [idx]
   }
+
+  //····················································································································
+
   mutating func accumulateUInt32 (_ value : UInt32) {
     self.accumulateByte (UInt8 (value & 0xFF))
     self.accumulateByte (UInt8 ((value >>  8) & 0xFF))
     self.accumulateByte (UInt8 ((value >> 16) & 0xFF))
     self.accumulateByte (UInt8 (value >> 24))
   }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -359,23 +422,30 @@ class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
 //    EBObject class
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-private var gExplorerObjectIndex = 0
+private var gEasyBindingsObjectIndex = 0
 
 //······················································································································
 
 class EBObject : NSObject, EBUserClassNameProtocol {
-  let mExplorerObjectIndex : Int
+  let mEasyBindingsObjectIndex : Int
+
+  //····················································································································
 
   override init () {
-    mExplorerObjectIndex = gExplorerObjectIndex
-    gExplorerObjectIndex += 1
+    mEasyBindingsObjectIndex = gEasyBindingsObjectIndex
+    gEasyBindingsObjectIndex += 1
     super.init ()
     noteObjectAllocation (self)
   }
+
+  //····················································································································
   
   deinit {
     noteObjectDeallocation (self)
   }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -384,17 +454,28 @@ class EBObject : NSObject, EBUserClassNameProtocol {
 
 class EBSimpleClass : EBObject {
 
+  //····················································································································
+
   func populateExplorerWindow ( _ y : inout CGFloat, view : NSView) {
   }
+
+  //····················································································································
 
   func clearObjectExplorer () {
   }
 
+  //····················································································································
+
   func saveInto (dictionary : NSMutableDictionary) {
   }
 
+  //····················································································································
+
   func setUp (withDictionary dictionary : NSDictionary) {
   }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -402,17 +483,29 @@ class EBSimpleClass : EBObject {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBSimpleController : EBOutletEvent {
-  private let mPrivateObjects : [EBAbstractProperty]
-  private let mPrivateOutlet : NSView
+  private let mPrivateObservedObjects : [EBAbstractProperty]
+  private let mPrivateOutlet : NSObject
   private var mExplorerWindow : NSWindow?
   
   //····················································································································
 
-  init (objects : [EBAbstractProperty], outlet : NSView) {
-    mPrivateObjects = objects
+  init (observedObjects : [EBAbstractProperty], outlet : NSObject) {
+    mPrivateObservedObjects = observedObjects
     mPrivateOutlet = outlet
+    super.init ()
+    for object in observedObjects {
+      object.addEBObserver (self)
+    }
   }
   
+  //····················································································································
+  
+  func unregister () {
+    for object in mPrivateObservedObjects {
+      object.removeEBObserver (self)
+    }
+  }
+
   //····················································································································
 
   func showExplorerWindowAction (_ inSender : Any) {
@@ -439,7 +532,7 @@ class EBSimpleController : EBOutletEvent {
   //-------------------------------------------------- Adding properties
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
-    for object in mPrivateObjects {
+    for object in mPrivateObservedObjects {
       createEntryForObjectNamed (
         "object",
         object:object,
@@ -447,12 +540,7 @@ class EBSimpleController : EBOutletEvent {
         view:view
       )
     }
-    createEntryForOutletNamed (
-     "Outlet",
-      outlet:mPrivateOutlet,
-      y:&y,
-      view:view
-    )
+    createEntryForOutletNamed ("Outlet", outlet: mPrivateOutlet, y: &y, view: view)
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
     let viewFrame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
@@ -464,7 +552,7 @@ class EBSimpleController : EBOutletEvent {
     closeButton?.target = self
     closeButton?.action = #selector(EBSimpleController.deleteSimpleControllerWindowAction(_:))
   //--- Set window title
-    let windowTitle = explorerIndexString (mExplorerObjectIndex) + className
+    let windowTitle = explorerIndexString (mEasyBindingsObjectIndex) + className
     mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)
@@ -502,11 +590,17 @@ class EBSimpleController : EBOutletEvent {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 let EXPLORER_ROW_HEIGHT : CGFloat = 20.0
-private let FIRST_COLUMN_WIDTH : CGFloat = 40.0
-private let SECOND_COLUMN_WIDTH : CGFloat = 300.0
-private let THIRD_COLUMN_WIDTH : CGFloat = 220.0
+private let FIRST_COLUMN_WIDTH  : CGFloat = 60.0
+private let SECOND_COLUMN_WIDTH : CGFloat = 400.0
+private let THIRD_COLUMN_WIDTH  : CGFloat = 300.0
 
 let EXPLORER_ROW_WIDTH : CGFloat = FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH + THIRD_COLUMN_WIDTH
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+func titleColumn (_ y : CGFloat) -> NSRect {
+  return NSRect (x:0.0, y:y, width:EXPLORER_ROW_WIDTH, height:EXPLORER_ROW_HEIGHT)
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -579,11 +673,31 @@ func createEntryForPropertyNamed (_ attributeName : String,
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+func createEntryForTitle (_ title : String,
+                          y : inout CGFloat,
+                          view : NSView) {
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
+//--- Title textfield
+  let tf = NSTextField (frame:titleColumn (y))
+  tf.isEnabled = true
+  tf.isEditable = false
+  tf.stringValue = title
+  tf.font = font
+  tf.backgroundColor = NSColor.lightGray
+  tf.drawsBackground = true
+  tf.isBordered = false
+  view.addSubview (tf)
+//--- Update rect origin
+  y += EXPLORER_ROW_HEIGHT
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    createEntryForOutletNamed
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func createEntryForOutletNamed (_ name : String,
-                                outlet : NSView,
+                                outlet : NSObject,
                                 y : inout CGFloat,
                                 view : NSView) {
   let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
@@ -625,7 +739,7 @@ func createEntryForObjectNamed (_ name : String,
   let vtf = NSTextField (frame:thirdColumn (y))
   vtf.isEnabled = true
   vtf.isEditable = false
-  vtf.stringValue = explorerIndexString (object.mExplorerObjectIndex) + String (describing: type(of: object))
+  vtf.stringValue = explorerIndexString (object.mEasyBindingsObjectIndex) + String (describing: type(of: object))
   vtf.font = font
   view.addSubview (vtf)
 //--- Update rect origin

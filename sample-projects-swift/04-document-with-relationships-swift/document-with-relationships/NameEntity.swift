@@ -412,6 +412,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue
 
   override func cascadeObjectRemoving () {
     super.cascadeObjectRemoving ()
+    self.mRoot.setProp (nil) // Set relationship to nil
   }
 
   //····················································································································

@@ -66,6 +66,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   public : enum {kToken_,
    kToken_identifier,
    kToken_Identifier,
+   kToken__40_attribute,
    kToken_bindingName,
    kToken_literal_5F_integer,
    kToken_literal_5F_double,
@@ -77,7 +78,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_arrayController,
    kToken_binding,
    kToken_calledBy,
-   kToken_cascade,
    kToken_class,
    kToken_classForSwift,
    kToken_column,
@@ -109,7 +109,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_toMany,
    kToken_toOne,
    kToken_transient,
-   kToken_validates,
    kToken_version,
    kToken_versionShouldChange,
    kToken_xcodeproject,
@@ -171,7 +170,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 70 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 69 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -653,10 +652,6 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_48 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_49 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected : virtual int32_t select_easyBindings_5F_syntax_51 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -6353,10 +6348,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_48 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_49 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_51 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -90,7 +90,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     case .singleSelection (let shouldChange) :
       if shouldChange {
         version += 1
-        mVersion.setProp (value: version)
+        mVersion.setProp (version)
         mVersionShouldChangeObserver.updateStartUpSignature ()
       }
     }
@@ -152,7 +152,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     var saveDataArray : [NSDictionary] = []
     for object in objectsToSaveArray {
       let d : NSMutableDictionary = [
-        kEntityKey : (object.className as NSString).pathExtension
+        kEntityKey : object.className.pathExtension
       ]
       object.saveIntoDictionary (d)
       saveDataArray.append (d)
@@ -187,7 +187,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     ) as! NSDictionary
     mMetadataDictionary = metadataDictionary.mutableCopy () as! NSMutableDictionary
   //--- Read version from file
-    mVersion.setProp (value: readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
+    mVersion.setProp (readVersionFromMetadataDictionary (metadataDictionary: metadataDictionary))
   //--- Read data
     let dataFormat = dataScanner.parseByte ()
     let fileData = dataScanner.parseAutosizedData ()
@@ -267,7 +267,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     let semaphore : DispatchSemaphore = DispatchSemaphore (value: 0)
     var progress : EBDocumentReadProgress? = nil
     if dictionaryArray.count > 10000 {
-      progress = EBDocumentReadProgress (title:(lastComponentOfFileName as NSString).deletingPathExtension,
+      progress = EBDocumentReadProgress (title:lastComponentOfFileName.deletingPathExtension,
                                          dataLength:dictionaryArray.count * 2,
                                          semaphore:semaphore)
     }
@@ -445,7 +445,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     if let rootObject = mRootObject {
       createEntryForToOneRelationshipNamed (
         "Root",
-        idx:rootObject.mExplorerObjectIndex,
+        idx:rootObject.mEasyBindingsObjectIndex,
         y: &y,
         view: view,
         valueExplorer:&mValueExplorer
@@ -533,7 +533,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   final func incrementVersionNumber () {
-    mVersion.setProp (value: mVersion.propval + 1)
+    mVersion.setProp (mVersion.propval + 1)
   }
 
   //····················································································································
@@ -565,7 +565,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       selector: #selector (performUndoVersionNumber(_:)),
       object: NSNumber (value: mVersion.propval)
     )
-    mVersion.setProp (value: 0)
+    mVersion.setProp (0)
     mVersionShouldChangeObserver.clearStartUpSignature ()
   }
   
@@ -578,7 +578,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       selector: #selector (performUndoVersionNumber(_:)),
       object: NSNumber (value: mVersion.propval)
     )
-    mVersion.setProp (value: oldValue.intValue)
+    mVersion.setProp (oldValue.intValue)
   }
 
   //····················································································································

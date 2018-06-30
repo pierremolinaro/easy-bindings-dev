@@ -391,6 +391,7 @@ class MyRootEntity : EBManagedObject
 
   override func cascadeObjectRemoving () {
     super.cascadeObjectRemoving ()
+    self.mNames.setProp (Array ()) // Set relationships to nil
   }
 
   //····················································································································
