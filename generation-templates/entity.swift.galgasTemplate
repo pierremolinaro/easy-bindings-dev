@@ -17,8 +17,49 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 end
 % {
 
-  //····················································································································
-  //    Properties
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %//····················································································································\n%
+  %//   Accessing %!mStoredPropertyName% stored property\n%
+  %//····················································································································\n\n%
+  %  var %!mStoredPropertyName%_value : %![mType swiftTypeName]% {\n%
+  %    get {\n%
+  %      return self.%!mStoredPropertyName%.propval\n%
+  %    }\n%
+  %    set {\n%
+  %      self.%!mStoredPropertyName%.setProp (newValue)\n%
+  %    }\n%
+  %  }\n\n%
+  %  var %!mStoredPropertyName%_prop : EBProperty <%![mType swiftTypeName]%> {\n%
+  %    get {\n%
+  %      return self.%!mStoredPropertyName%.prop\n%
+  %    }\n%
+  %  }\n%
+  if mNeedsValidation then
+    %  func %!mStoredPropertyName%_validateAndSetProp (_ inCandidateValue : %![mType swiftTypeName]%, windowForSheet inWindow:NSWindow?) -> Bool {\n%
+    %    return self.%!mStoredPropertyName%.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)\n%
+    %  }\n%
+  end
+  %\n%
+end
+
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %//····················································································································\n%
+  %//   Accessing %!mTransientName% transient property\n%
+  %//····················································································································\n\n%
+  % // var %!mTransientName%_value : %![mTransientType swiftTypeName]% {\n%
+  % //   get {\n%
+  % //     return self.%!mTransientName%.propval\n%
+  % //   }\n%
+  %//  }\n\n%
+  %  var %!mTransientName%_prop : EBProperty <%![mTransientType swiftTypeName]%> {\n%
+  %    get {\n%
+  %      return self.%!mTransientName%.prop\n%
+  %    }\n%
+  %  }\n\n%
+end
+%  //····················································································································
+  //    Stored Properties
   //····················································································································
 
 %
