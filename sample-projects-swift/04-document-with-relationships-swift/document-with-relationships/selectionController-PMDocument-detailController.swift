@@ -16,8 +16,20 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //   SELECTION OBSERVABLE PROPERTIES
   //····················································································································
 
-  var aValue_property = EBPropertyProxy_Int () 
-  var name_property = EBPropertyProxy_String () 
+  var aValue_property = EBPropertyProxy_Int ()
+
+  var aValue_property_selection : EBSelection <Int> {
+    get {
+      return self.aValue_property.prop
+    }
+  }
+  var name_property = EBPropertyProxy_String ()
+
+  var name_property_selection : EBSelection <String> {
+    get {
+      return self.name_property.prop
+    }
+  }
 
   //····················································································································
   //   BIND SELECTION
