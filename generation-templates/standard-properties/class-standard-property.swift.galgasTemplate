@@ -26,27 +26,27 @@ if COMPARABLE then
 
 func compare_%!CLASS_NAME% (left : EBReadOnlyProperty_%!CLASS_NAME%, right : EBReadOnlyProperty_%!CLASS_NAME%) -> ComparisonResult {
   switch left.prop {
-  case .noSelection :
+  case .empty :
     switch right.prop {
-    case .noSelection :
+    case .empty :
       return .orderedSame
     default:
       return .orderedAscending
     }
-  case .multipleSelection :
+  case .multiple :
     switch right.prop {
-    case .noSelection :
+    case .empty :
       return .OrderedDescending
-    case .multipleSelection :
+    case .multiple :
       return .OrderedSame
-   case .singleSelection (_) :
+   case .single (_) :
       return .OrderedAscending
    }
- case .singleSelection (let currentValue) :
+ case .single (let currentValue) :
     switch right.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       return .orderedDescending
-    case .singleSelection (let otherValue) :
+    case .single (let otherValue) :
       if currentValue < otherValue {
         return .orderedAscending
       }else if currentValue > otherValue {

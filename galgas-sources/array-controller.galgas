@@ -635,22 +635,22 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
   [!?filterProperties popFirst ?let firstFilterProperty ?*]
   @string indent = "            "
   outResult  = indent + "switch object." +firstFilterProperty + ".prop {\n"
-  outResult += indent + "case .noSelection :\n"
-  outResult += indent + "  return .noSelection\n"
-  outResult += indent + "case .multipleSelection :\n"
+  outResult += indent + "case .empty :\n"
+  outResult += indent + "  return .empty\n"
+  outResult += indent + "case .multiple :\n"
   outResult += indent + "  isMultiple = true\n"
-  outResult += indent + "case .singleSelection (let v1) :\n"
+  outResult += indent + "case .single (let v1) :\n"
   @uint idx = 2
   @string args = ""
   @string blockEnd = indent + "}\n"
   for () in filterProperties do
     indent += "  "
     outResult += indent + "switch object." + mFilterPropertyName + ".prop {\n"
-    outResult += indent + "case .noSelection :\n"
-    outResult += indent + "  return .noSelection\n"
-    outResult += indent + "case .multipleSelection :\n"
+    outResult += indent + "case .empty :\n"
+    outResult += indent + "  return .empty\n"
+    outResult += indent + "case .multiple :\n"
     outResult += indent + "  isMultiple = true\n"
-    outResult += indent + "case .singleSelection (let v" + idx + ") :\n"
+    outResult += indent + "case .single (let v" + idx + ") :\n"
     blockEnd = indent + "}\n" + blockEnd
     args += ", v" + idx
     idx ++

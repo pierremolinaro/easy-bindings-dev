@@ -44,9 +44,9 @@ final class SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractPrope
     set {
       var newSelectedSet = newValue
       switch mSortedArray.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break ;
-      case .singleSelection (let sortedArray) :
+      case .single (let sortedArray) :
         if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
           newSelectedSet = Set (arrayLiteral: sortedArray [0])
         }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
@@ -127,18 +127,18 @@ end
   private final func setSelectedArrayComputeFunction () {
     selectedArray.readModelFunction = {
       switch self.sortedArray.prop {
-      case .noSelection :
-        return .noSelection
-      case .multipleSelection :
-        return .multipleSelection
-      case .singleSelection (let v) :
+      case .empty :
+        return .empty
+      case .multiple :
+        return .multiple
+      case .single (let v) :
         var result = [%!ELEMENT_TYPE_NAME%] ()
         for object in v {
           if self.mSelectedSet.mSet.contains (object) {
             result.append (object)
           }
         }
-        return .singleSelection (result)
+        return .single (result)
       }
     }
   }
@@ -183,17 +183,17 @@ end
     sortedArray.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let modelArray) :
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let modelArray) :
 %if [FILTER_PROPERTIES length] == 0 then
   if [SORTED_COLUMNS length] == 0 then
-    %          return .singleSelection (modelArray)\n%
+    %          return .single (modelArray)\n%
   else
     %          let sortedArray = modelArray.sorted (by: {self.isOrderedBefore (left: $0, right: $1)})\n%
-    %          return .singleSelection (sortedArray)\n%
+    %          return .single (sortedArray)\n%
   end
 else
   %          var filteredArray = [%!ELEMENT_TYPE_NAME%] ()\n%
@@ -202,19 +202,19 @@ else
   ![FILTER_PROPERTIES filterCode !"arrayControllerFilter_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME]
   %          }\n%
   %          if isMultiple {\n%
-  %            return .multipleSelection\n%
+  %            return .multiple\n%
   %          }else{\n%
   if [SORTED_COLUMNS length] == 0 then
-    %            return .singleSelection (filteredArray)\n%
+    %            return .single (filteredArray)\n%
   else
     %            let sortedFilteredArray = filteredArray.sorted (by: {self.isOrderedBefore (left: $0, right: $1)})\n%
-    %            return .singleSelection (sortedFilteredArray)\n%
+    %            return .single (sortedFilteredArray)\n%
   end
   %          }\n%
 end
 %        }
       }else{
-        return .noSelection
+        return .empty
       }
     }
   }
@@ -326,9 +326,9 @@ end
 
   func selectedObjectIndexSet () -> NSIndexSet {
     switch sortedArray.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
        return NSIndexSet ()
-    case .singleSelection (let v) :
+    case .single (let v) :
     //--- Dictionary of object indexes
       var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
       for (index, object) in v.enumerated () {
@@ -353,9 +353,9 @@ end
       print ("\(#function)")
     }
     switch sortedArray.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       return 0
-    case .singleSelection (let v) :
+    case .single (let v) :
       return v.count
     }
   }
@@ -369,9 +369,9 @@ end
       print ("\(#function)")
     }
     switch sortedArray.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       let tableView = notification.object as! EBTableView
       var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
       for index in tableView.selectedRowIndexes {
@@ -408,9 +408,9 @@ end
       print ("\(#function)")
     }
     switch sortedArray.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       return nil
-    case .singleSelection (let v) :
+    case .single (let v) :
       let columnIdentifier = tableColumn!.identifier
       let result : NSTableCellView = tableView.make (withIdentifier: columnIdentifier, owner:self) as! NSTableCellView
       if !reuseTableViewCells () {
@@ -466,9 +466,9 @@ case storedArrayModel :
   func select (object inObject: %!ELEMENT_TYPE_NAME%) {
     if let model = mModel {
       switch model.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break
-      case .singleSelection (let objectArray) :
+      case .single (let objectArray) :
         if objectArray.contains (inObject) {
           var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
           newSelectedObjectSet.insert (inObject)
@@ -488,9 +488,9 @@ case storedArrayModel :
     }
     if let model = mModel {
       switch model.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break
-      case .singleSelection (let v) :
+      case .single (let v) :
         let newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% ()
         var array = v
         array.append (newObject)
@@ -513,13 +513,13 @@ case storedArrayModel :
     }
     if let model = mModel {
       switch model.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break
-      case .singleSelection (let model_prop) :
+      case .single (let model_prop) :
         switch sortedArray.prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break
-        case .singleSelection (let sortedArray_prop) :
+        case .single (let sortedArray_prop) :
         //------------- Find the object to be selected after selected object removing
         //--- Dictionary of object sorted indexes
           var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
@@ -590,9 +590,9 @@ case relationshipModel :
   func select (object inObject: %!ELEMENT_TYPE_NAME%) {
     if let model = mModel {
       switch model.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break
-      case .singleSelection (let objectArray) :
+      case .single (let objectArray) :
         if objectArray.contains (inObject) {
           var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
           newSelectedObjectSet.insert (inObject)
@@ -612,9 +612,9 @@ case relationshipModel :
     }
     if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {
       switch model.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break
-      case .singleSelection (let v) :
+      case .single (let v) :
         let newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (managedObjectContext:managedObjectContext)
         var array = v
         array.append (newObject)
@@ -637,13 +637,13 @@ case relationshipModel :
     }
     if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {
       switch model.prop {
-      case .noSelection, .multipleSelection :
+      case .empty, .multiple :
         break
-      case .singleSelection (let model_prop) :
+      case .single (let model_prop) :
         switch sortedArray.prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break
-        case .singleSelection (let sortedArray_prop) :
+        case .single (let sortedArray_prop) :
         //------------- Find the object to be selected after selected object removing
         //--- Dictionary of object sorted indexes
           var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()

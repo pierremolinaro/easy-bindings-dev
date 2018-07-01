@@ -144,44 +144,44 @@ if not [mType isEntityType] then
 %    self.%!lkey.string%.readModelFunction = {\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
-%        case .noSelection :\n%
-%          return .noSelection\n%
-%        case .multipleSelection :\n%
-%          return .multipleSelection\n%
-%        case .singleSelection (let v) :\n%
+%        case .empty :\n%
+%          return .empty\n%
+%        case .multiple :\n%
+%          return .multiple\n%
+%        case .single (let v) :\n%
 %          var s = Set<%![mType swiftTypeName]%> ()\n%
 %          var isMultipleSelection = false\n%
 %          for object in v {\n%
 %            switch object.%!lkey.string%.prop {\n%
-%            case .noSelection :\n%
-%              return .noSelection\n%
-%            case .multipleSelection :\n%
+%            case .empty :\n%
+%              return .empty\n%
+%            case .multiple :\n%
 %              isMultipleSelection = true\n%
-%            case .singleSelection (let vProp) :\n%
+%            case .single (let vProp) :\n%
 %              s.insert (vProp)\n%
 %            }\n%
 %          }\n%
 %          if isMultipleSelection {\n%
-%            return .multipleSelection\n%
+%            return .multiple\n%
 %          }else if s.count == 0 {\n%
-%            return .noSelection\n%
+%            return .empty\n%
 %          }else if s.count == 1 {\n%
-%            return .singleSelection (s.first!)\n%
+%            return .single (s.first!)\n%
 %          }else{\n%
-%            return .multipleSelection\n%
+%            return .multiple\n%
 %          }\n%
 %        }\n%
 %      }else{\n%
-%        return .noSelection\n%
+%        return .empty\n%
 %      }\n%
 %    }\n%
 if not [mKind isTransient] then
 %    self.%!lkey.string%.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
-%        case .noSelection, .multipleSelection :\n%
+%        case .empty, .multiple :\n%
 %          break\n%
-%        case .singleSelection (let v) :\n%
+%        case .single (let v) :\n%
 %          for object in v {\n%
 %            object.%!lkey.string%.setProp (inValue)\n%
 %          }\n%
@@ -191,9 +191,9 @@ if not [mKind isTransient] then
 %    self.%!lkey.string%.validateAndWriteModelFunction = { (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
-%        case .noSelection, .multipleSelection :\n%
+%        case .empty, .multiple :\n%
 %          return false\n%
-%        case .singleSelection (let v) :\n%
+%        case .single (let v) :\n%
 %          for object in v {\n%
 %            let result = object.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
 %            if !result {\n%

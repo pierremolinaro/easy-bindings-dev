@@ -151,14 +151,14 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
 
   override func sendUpdateEvent () {
     switch mObject.prop {
-    case .noSelection :
+    case .empty :
       mOutlet.enableFromValue (false)
-    case .singleSelection (let v) :
+    case .single (let v) :
       mOutlet.enableFromValue (true)
       if v == mOutlet.tag {
         mOutlet.selectViewFromSelectedSegmentIndex ()
       }
-    case .multipleSelection :
+    case .multiple :
       mOutlet.enableFromValue (false)
     }
     mOutlet.updateEnabledState ()

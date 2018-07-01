@@ -182,7 +182,7 @@ end
     %      if let model = self?.mSelectedObject {\n%
     %        return model.%!lkey.string%.prop\n%
     %      }else{\n%
-    %        return .noSelection\n%
+    %        return .empty\n%
     %      }\n%
     %    }\n%
     if [mKind isStored] then

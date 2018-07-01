@@ -12,27 +12,27 @@ typealias EBTransientProperty_%!TYPE% = EBTransientValueProperty <%!TYPE%>
 
 func compare_%!TYPE% (left : EBReadOnlyProperty_%!TYPE%, right : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   switch left.prop {
-  case .noSelection :
+  case .empty :
     switch right.prop {
-    case .noSelection :
+    case .empty :
       return .orderedSame
     default:
       return .orderedAscending
     }
-  case .multipleSelection :
+  case .multiple :
     switch right.prop {
-    case .noSelection :
+    case .empty :
       return .orderedDescending
-    case .multipleSelection :
+    case .multiple :
       return .orderedSame
-   case .singleSelection (_) :
+   case .single (_) :
       return .orderedAscending
    }
- case .singleSelection (let currentValue) :
+ case .single (let currentValue) :
     switch right.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       return .orderedDescending
-    case .singleSelection (let otherValue) :
+    case .single (let otherValue) :
       if currentValue < otherValue {
         return .orderedAscending
       }else if currentValue > otherValue {

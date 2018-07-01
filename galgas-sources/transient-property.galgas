@@ -236,9 +236,9 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   end
   outResult += ident + "switch kind {\n"
   outResult += ident + "case .noSelectionKind :\n"
-  outResult += ident + "  return .noSelection\n"
+  outResult += ident + "  return .empty\n"
   outResult += ident + "case .multipleSelectionKind :\n"
-  outResult += ident + "  return .multipleSelection\n"
+  outResult += ident + "  return .multiple\n"
   outResult += ident + "case .singleSelectionKind :\n"
   outResult += ident + "  switch ("
   for () in self
@@ -248,14 +248,14 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult += ") {\n"
   outResult += ident + "  case ("
   for () in self
-  do (idx) outResult += ".singleSelection (let v" + idx + ")"
+  do (idx) outResult += ".single (let v" + idx + ")"
   between outResult += ", "
   end
   outResult += ") :\n"
   if inIsCopy then
-    outResult += ident + "    return .singleSelection (v0)\n"
+    outResult += ident + "    return .single (v0)\n"
   else
-    outResult += ident + "    return .singleSelection (compute_" + inOwnerName + "_" + inTransientName + " ("
+    outResult += ident + "    return .single (compute_" + inOwnerName + "_" + inTransientName + " ("
     for () in self
     do (idx) outResult += "v" + idx
     between outResult += ", "
@@ -263,7 +263,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
     outResult += "))\n"
   end
   outResult += ident + "  default :\n"
-  outResult += ident + "    return .noSelection\n"
+  outResult += ident + "    return .empty\n"
   outResult += ident + "  }\n"
   outResult += ident + "}\n"
 }

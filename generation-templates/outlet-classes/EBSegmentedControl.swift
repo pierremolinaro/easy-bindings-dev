@@ -155,12 +155,12 @@ final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
 
   override func sendUpdateEvent () {
     switch mObject.prop {
-    case .noSelection :
+    case .empty :
       mOutlet.enableFromValue (false)
-    case .singleSelection (let v) :
+    case .single (let v) :
       mOutlet.enableFromValue (true)
       mOutlet.selectedSegment = v
-    case .multipleSelection :
+    case .multiple :
       mOutlet.enableFromValue (false)
     }
     mOutlet.updateEnabledState()

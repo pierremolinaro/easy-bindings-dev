@@ -19,9 +19,9 @@ end
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %//····················································································································\n%
-  %//   Accessing %!mStoredPropertyName% stored property\n%
-  %//····················································································································\n\n%
+  %  //····················································································································\n%
+  %  //   Accessing %!mStoredPropertyName% stored property\n%
+  %  //····················································································································\n\n%
   %  var %!mStoredPropertyName%_value : %![mType swiftTypeName]% {\n%
   %    get {\n%
   %      return self.%!mStoredPropertyName%.propval\n%
@@ -30,7 +30,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      self.%!mStoredPropertyName%.setProp (newValue)\n%
   %    }\n%
   %  }\n\n%
-  %  var %!mStoredPropertyName%_prop : EBProperty <%![mType swiftTypeName]%> {\n%
+  %  var %!mStoredPropertyName%_prop : EBSelection <%![mType swiftTypeName]%> {\n%
   %    get {\n%
   %      return self.%!mStoredPropertyName%.prop\n%
   %    }\n%
@@ -44,15 +44,10 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %//····················································································································\n%
-  %//   Accessing %!mTransientName% transient property\n%
-  %//····················································································································\n\n%
-  % // var %!mTransientName%_value : %![mTransientType swiftTypeName]% {\n%
-  % //   get {\n%
-  % //     return self.%!mTransientName%.propval\n%
-  % //   }\n%
-  %//  }\n\n%
-  %  var %!mTransientName%_prop : EBProperty <%![mTransientType swiftTypeName]%> {\n%
+  %  //····················································································································\n%
+  %  //   Accessing %!mTransientName% transient property\n%
+  %  //····················································································································\n\n%
+  %  var %!mTransientName%_prop : EBSelection <%![mTransientType swiftTypeName]%> {\n%
   %    get {\n%
   %      return self.%!mTransientName%.prop\n%
   %    }\n%
@@ -114,7 +109,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     %      if let unwSelf = self {\n%
     ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName !mIsCopy]
     %      }else{\n%
-    %        return .noSelection\n%
+    %        return .empty\n%
     %      }\n%
     %    }\n%
   else
@@ -394,9 +389,9 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     self.addEBObserver (inObserver)
     mObserversOf_%!mStoredPropertyName%.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
         managedObject.%!mStoredPropertyName%.addEBObserver (inObserver)
       }
@@ -409,9 +404,9 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     self.removeEBObserver (inObserver)
     mObserversOf_%!mStoredPropertyName%.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
         managedObject.%!mStoredPropertyName%.removeEBObserver (inObserver)
       }
@@ -454,9 +449,9 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     self.addEBObserver (inObserver)
     mObserversOf_%!mTransientName%.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
         managedObject.%!mTransientName%.addEBObserver (inObserver)
       }
@@ -469,9 +464,9 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     self.removeEBObserver (inObserver)
     mObserversOf_%!mTransientName%.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
         managedObject.%!mTransientName%.removeEBObserver (inObserver)
       }
@@ -510,9 +505,9 @@ end
 
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
-  var readModelFunction : Optional<() -> EBProperty < [%!ENTITY_NAME%] > >
+  var readModelFunction : Optional<() -> EBSelection < [%!ENTITY_NAME%] > >
 
-  private var prop_cache : EBProperty < [%!ENTITY_NAME%] >? 
+  private var prop_cache : EBSelection < [%!ENTITY_NAME%] >? 
 
   //····················································································································
 
@@ -524,15 +519,15 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   private var mSet = Set <%!ENTITY_NAME%> ()
 
-  override var prop : EBProperty < [%!ENTITY_NAME%] > {
+  override var prop : EBSelection < [%!ENTITY_NAME%] > {
     get {
       if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <%!ENTITY_NAME%>
         switch prop_cache! {
-        case .multipleSelection, .noSelection :
+        case .multiple, .empty :
           newSet = Set <%!ENTITY_NAME%> ()
-        case .singleSelection (let array) :
+        case .single (let array) :
           newSet = Set (array)
         }
 %
@@ -562,7 +557,7 @@ end
         mSet = newSet
       }
       if prop_cache == nil {
-        prop_cache = .noSelection
+        prop_cache = .empty
       }
       return prop_cache!
     }
@@ -632,9 +627,9 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
     didSet {
       if let unwrappedExplorer = mValueExplorer {
         switch prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break ;
-        case .singleSelection (let v) :
+        case .single (let v) :
           updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
         }
       }
@@ -648,15 +643,15 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
     count.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
+          return .single (v.count)
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
   }
@@ -710,9 +705,9 @@ end
     }
   }
 
-  override var prop : EBProperty < [%![mRelationshipType swiftTypeName]%] > {
+  override var prop : EBSelection < [%![mRelationshipType swiftTypeName]%] > {
     get {
-      return .singleSelection (mValue)
+      return .single (mValue)
     }
   }
 
@@ -811,9 +806,9 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
     didSet {
       if let unwrappedExplorer = mValueExplorer {
         switch prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break ;
-        case .singleSelection (let v) :
+        case .single (let v) :
           updateManagedObjectToOneRelationshipDisplay (object: v, button:unwrappedExplorer)
         }
       }
@@ -860,7 +855,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
 
   var propval : %![mRelationshipType swiftTypeName]%? { get { return mValue } }
 
-  var prop : EBProperty <%![mRelationshipType swiftTypeName]%?> { get { return .singleSelection (mValue) } }
+  var prop : EBSelection <%![mRelationshipType swiftTypeName]%?> { get { return .single (mValue) } }
 
   func setProp (_ value : %![mRelationshipType swiftTypeName]%?) { mValue = value }
 

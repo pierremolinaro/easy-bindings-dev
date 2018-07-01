@@ -127,7 +127,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      if let unwSelf = self {\n%
   ![mDependencyList transientComputeFunctionCall !preferencesName () !mTransientName !mIsCopy]
   %      }else{\n%
-  %        return .noSelection\n%
+  %        return .empty\n%
   %      }\n%
   %    }\n%
 end
