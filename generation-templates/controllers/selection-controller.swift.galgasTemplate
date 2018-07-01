@@ -19,9 +19,9 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
     if [mKind isTransient] then
-      %  var %!lkey.string% = EBTransientProperty_%![mType swiftTypeName]% () \n%
+      %  var %!lkey.string%_property = EBTransientProperty_%![mType swiftTypeName]% () \n%
     else
-      %  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
+      %  var %!lkey.string%_property = EBPropertyProxy_%![mType swiftTypeName]% () \n%
     end
   end
 end%
@@ -77,11 +77,11 @@ end%  }
 if not [mType isEntityType] & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
-  %      idx:self.%!lkey.string%.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%!lkey.string%_property.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&self.%!lkey.string%.mObserverExplorer,\n%
-  %      valueExplorer:&self.%!lkey.string%.mValueExplorer\n%
+  %      observerExplorer:&self.%!lkey.string%_property.mObserverExplorer,\n%
+  %      valueExplorer:&self.%!lkey.string%_property.mValueExplorer\n%
   %    )\n%
 end
 end
@@ -140,8 +140,8 @@ end
 if not [mType isEntityType] then
 %  //···················································································································*\n\n% 
 %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
-%    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%)\n%
-%    self.%!lkey.string%.readModelFunction = {\n%
+%    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+%    self.%!lkey.string%_property.readModelFunction = {\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty :\n%
@@ -152,7 +152,7 @@ if not [mType isEntityType] then
 %          var s = Set<%![mType swiftTypeName]%> ()\n%
 %          var isMultipleSelection = false\n%
 %          for object in v {\n%
-%            switch object.%!lkey.string%.prop {\n%
+%            switch object.%!lkey.string%_property_selection {\n%
 %            case .empty :\n%
 %              return .empty\n%
 %            case .multiple :\n%
@@ -176,26 +176,26 @@ if not [mType isEntityType] then
 %      }\n%
 %    }\n%
 if not [mKind isTransient] then
-%    self.%!lkey.string%.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
+%    self.%!lkey.string%_property.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty, .multiple :\n%
 %          break\n%
 %        case .single (let v) :\n%
 %          for object in v {\n%
-%            object.%!lkey.string%.setProp (inValue)\n%
+%            object.%!lkey.string%_property.setProp (inValue)\n%
 %          }\n%
 %        }\n%
 %      }\n%
 %    }\n%
-%    self.%!lkey.string%.validateAndWriteModelFunction = { (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+%    self.%!lkey.string%_property.validateAndWriteModelFunction = { (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty, .multiple :\n%
 %          return false\n%
 %        case .single (let v) :\n%
 %          for object in v {\n%
-%            let result = object.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
+%            let result = object.%!lkey.string%_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
 %            if !result {\n%
 %              return false\n%
 %            }\n%
@@ -219,12 +219,12 @@ end%
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
     %  //--- %!lkey.string%\n%
-    %    self.%!lkey.string%.readModelFunction = nil \n%
+    %    self.%!lkey.string%_property.readModelFunction = nil \n%
     if not [mKind isTransient] then
-      %    self.%!lkey.string%.writeModelFunction = nil \n%
-      %    self.%!lkey.string%.validateAndWriteModelFunction = nil \n%
+      %    self.%!lkey.string%_property.writeModelFunction = nil \n%
+      %    self.%!lkey.string%_property.validateAndWriteModelFunction = nil \n%
      end
-    %    mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%)\n%
+    %    self.mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
   end
 end%  //---
     mModel = nil    

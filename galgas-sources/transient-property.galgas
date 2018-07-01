@@ -179,7 +179,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
     end
     dependencies +=
       !mObservableProperty
-      ![[mObservableProperty modelString !"self"] nameRepresentation] + "_" + idx
+      ![[mObservableProperty modelStringForSelf !"self"] nameRepresentation] + "_" + idx
       !swiftTypeStringForTransientFunctionArgument
   end
 #--- Code generation
@@ -225,13 +225,13 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult = ""
   if [self length] == 1 then
     [self first ?let @observablePropertyAST first ?* ?*]
-    outResult += ident + "let kind = " + [first modelString !"unwSelf"] + ".prop.kind ()\n"
+    outResult += ident + "let kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
   else
     var dependencies = self
     [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
-    outResult += ident + "var kind = " + [first modelString !"unwSelf"] + ".prop.kind ()\n"
+    outResult += ident + "var kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
     for () in dependencies do
-      outResult += ident + "kind &= " + [mDependency modelString !"unwSelf"] + ".prop.kind ()\n"
+      outResult += ident + "kind &= " + [mDependency modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
     end
   end
   outResult += ident + "switch kind {\n"
@@ -242,7 +242,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult += ident + "case .singleSelectionKind :\n"
   outResult += ident + "  switch ("
   for () in self
-  do outResult += [mDependency modelString !"unwSelf"] + ".prop"
+  do outResult += [mDependency modelStringForSelf !"unwSelf"] + ".prop"
   between outResult += ", "
   end
   outResult += ") {\n"
@@ -286,25 +286,25 @@ getter @transientDependencyListForGeneration needs_unwSelf
 getter @observablePropertyAST generateAddObserverCall -> @string outResult {
   switch self
   case controllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = controllerName.string + "." + propertyName + ".addEBObserver"
+    outResult = "self." + controllerName.string + "." + propertyName + "_property.addEBObserver"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".addEBObserver"
+    outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.addEBObserver"
   case selfProperty (@lstring masterName) :
-    outResult = masterName.string + ".addEBObserver"
+    outResult = "self." + masterName.string + "_property.addEBObserver"
   case selfPropertyWithOption (@lstring masterName *) :
-    outResult = masterName.string + ".addEBObserver"
+    outResult = "self." + masterName.string + "_property.addEBObserver"
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
-    outResult = masterName.string + ".addEBObserverOf_" + elementPropertyName
+    outResult = "self." + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
   case prefsProperty (@lstring propertyName) :
-    outResult = "g_" + preferencesName () + "?."  + propertyName + ".addEBObserver"
+    outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.addEBObserver"
   case prefsPropertyWithOption (@lstring propertyName *) :
-    outResult = "g_" + preferencesName () + "?."  + propertyName + ".addEBObserver"
+    outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.addEBObserver"
   case rootProperty (@lstring masterName) :
-    outResult = "rootObject." + masterName + ".addEBObserver"
+    outResult = "self.rootObject." + masterName + "_property.addEBObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
-    outResult = "rootObject." + masterName + "." + optionName + ".addEBObserver"
+    outResult = "self.rootObject." + masterName + "_property." + optionName + ".addEBObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    outResult = "self.rootObject." + relationshipName + ".addEBObserverOf_" + propertyName
+    outResult = "self.rootObject." + relationshipName + "_property.addEBObserverOf_" + propertyName
   case signatureProperty (*) :
     outResult = "<< ligne 243 >>"
   case versionProperty (*) :
@@ -319,25 +319,25 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
 getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   switch self
   case controllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = controllerName.string + "." + propertyName + ".removeEBObserver"
+    outResult = "self." + controllerName.string + "." + propertyName + "_property.removeEBObserver"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = controllerName.string + "." + propertyName + "." + secondaryPropertyName + ".removeEBObserver"
+    outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.removeEBObserver"
   case selfProperty (@lstring masterName) :
-    outResult = masterName.string + ".removeEBObserver"
+    outResult = "self." + masterName.string + "_property.removeEBObserver"
   case selfPropertyWithOption (@lstring masterName *) :
-    outResult = masterName.string + ".removeEBObserver"
+    outResult = "self." + masterName.string + "_property.removeEBObserver"
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
-    outResult = masterName.string + ".removeEBObserverOf_" + elementPropertyName
+    outResult = "self." + masterName.string + "_property.removeEBObserverOf_" + elementPropertyName
   case prefsProperty (@lstring propertyName) :
-    outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeEBObserver"
+    outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.removeEBObserver"
   case prefsPropertyWithOption (@lstring propertyName *) :
-    outResult = "g_" + preferencesName () + "?."  + propertyName + ".removeEBObserver"
+    outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.removeEBObserver"
   case rootProperty (@lstring masterName) :
-    outResult = "rootObject." + masterName + ".removeEBObserver"
+    outResult = "self.rootObject." + masterName + "_property.removeEBObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
-    outResult = "rootObject." + masterName + "." + optionName + ".removeEBObserver"
+    outResult = "self.rootObject." + masterName + "." + optionName + ".removeEBObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    outResult = "self.rootObject." + relationshipName + ".removeEBObserverOf_" + propertyName
+    outResult = "self.rootObject." + relationshipName + "_property.removeEBObserverOf_" + propertyName
   case signatureProperty (*) :
     outResult = "<< ligne 270 >>"
   case versionProperty (*) :

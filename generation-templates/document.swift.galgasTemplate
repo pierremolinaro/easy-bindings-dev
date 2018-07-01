@@ -22,8 +22,8 @@ end
   //····················································································································
 
 %
-for () in SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  var %!mStoredPropertyName% = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+%  var %!mStoredPropertyName%_property = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 
 
@@ -36,7 +36,7 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if not mIsArray then
-    %  var %!mTransientName% = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+    %  var %!mTransientName%_property = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
   end
 end
 
@@ -49,7 +49,7 @@ end
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if mIsArray then
-    %  var %!mTransientName% = TransientArrayOf_%![mTransientType swiftTypeName]% ()\n%
+    %  var %!mTransientName%_property = TransientArrayOf_%![mTransientType swiftTypeName]% ()\n%
   end
 end
 
@@ -140,7 +140,7 @@ end
 %  //--------------------------- Array controllers
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName%.bind_modelAndView (
+%    self.%!mControllerName%.bind_modelAndView (
       model: %!mModelString%,
       tableViewArray: [%
       ![TABLE_VALUE_BINDING_GENERATION_LIST outletNameListForController !mControllerName]
@@ -153,7 +153,7 @@ end
 %
 for () in SELECTION_CONTROLLER_LIST do
 %    %!mSelectionControllerName%.bind_selection (
-      model: %!mBoundControllerName%.%!mBoundControllerPropertyName%,
+      model: %!mBoundControllerName%.%!mBoundControllerPropertyName%_property,
       file: #file,
       line: #line
     )\n%
@@ -166,7 +166,7 @@ end
 %  //--- Transient compute functions
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.readModelFunction = { [weak self] in\n%
+  %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
   %      if let unwSelf = self {\n%
   ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName !mIsCopy]
   %      }else{\n%
@@ -178,7 +178,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (%!mTransientName%)\n%
+%    %![mDependency generateAddObserverCall]% (self.%!mTransientName%_property)\n%
 end
 end
 %  //--- Install regular bindings
@@ -234,7 +234,7 @@ end
 %  //--- Uninstall compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    %!mTransientName%.readModelFunction = nil\n%
+  %    self.%!mTransientName%_property.readModelFunction = nil\n%
 end
 %  //--------------------------- Unbind array controllers
 %
@@ -250,7 +250,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (%!mTransientName%)\n%
+%    %![mDependency generateRemoveObserverCall]% (self.%!mTransientName%_property)\n%
 end
 end
 %  //--------------------------- Remove targets / actions

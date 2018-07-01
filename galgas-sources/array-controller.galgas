@@ -537,11 +537,11 @@ list @arrayControllerForGeneration {
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
   case selfCollection (@lstring storedPropertyName) :
-    outResult = "self." + storedPropertyName
+    outResult = "self." + storedPropertyName + "_property"
   case rootToManyRelationship (@lstring rootRelationshipName) :
-    outResult = "rootObject." + rootRelationshipName
+    outResult = "self.rootObject." + rootRelationshipName + "_property"
   case controllerArray (@lstring controllerName @lstring propertyName) :
-    outResult = controllerName.string + "." + propertyName
+    outResult = "self." + controllerName.string + "." + propertyName + "_property"
   end
 }
 

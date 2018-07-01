@@ -20,11 +20,11 @@ class CustomObjectController_%!OWNER_NAME%_%!CUSTOM_OBJECT_CONTROLLER_NAME% : EB
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
     %      //--- Property %!lkey.string%\n%
-    %        oldValue?.%!lkey.string%.removeEBObserver (mObjectObserver)\n%
-    %        oldValue?.%!lkey.string%.removeEBObserver (self.%!lkey.string%)\n%
-    %        mSelectedObject?.%!lkey.string%.addEBObserver (mObjectObserver)\n%
-    %        mSelectedObject?.%!lkey.string%.addEBObserver (self.%!lkey.string%)\n%
-    %        self.%!lkey.string%.postEvent ()\n%
+    %        oldValue?.%!lkey.string%_property.removeEBObserver (mObjectObserver)\n%
+    %        oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
+    %        mSelectedObject?.%!lkey.string%_property.addEBObserver (mObjectObserver)\n%
+    %        mSelectedObject?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
+    %        self.%!lkey.string%_property.postEvent ()\n%
   else
     %      //--- Relationship %!lkey.string%\n%
   end
@@ -66,11 +66,11 @@ end
 for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mType isEntityType] then
     if not [mKind isTransient] then
-      %  var %!lkey.string% = EBPropertyProxy_%![mType swiftTypeName]% () \n%
+      %  var %!lkey.string%_property = EBPropertyProxy_%![mType swiftTypeName]% () \n%
     elsif [mMultiplicity isCollection] then
-      %  var %!lkey.string% = EBTransientPropertyArray_%![mType swiftTypeName]% () \n%
+      %  var %!lkey.string%_property = EBTransientPropertyArray_%![mType swiftTypeName]% () \n%
     else
-      %  var %!lkey.string% = EBTransientProperty_%![mType swiftTypeName]% () \n%
+      %  var %!lkey.string%_property = EBTransientProperty_%![mType swiftTypeName]% () \n%
     end
   end
 end
@@ -115,11 +115,11 @@ end
 if (not [mType isEntityType]) & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
-  %      idx:self.%!lkey.string%.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%!lkey.string%_property.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&self.%!lkey.string%.mObserverExplorer,\n%
-  %      valueExplorer:&self.%!lkey.string%.mValueExplorer\n%
+  %      observerExplorer:&self.%!lkey.string%_property.mObserverExplorer,\n%
+  %      valueExplorer:&self.%!lkey.string%_property.mValueExplorer\n%
   %    )\n%
 end
 end
@@ -178,19 +178,19 @@ end
   if not [mType isEntityType] then
     %  //···················································································································*\n\n% 
     %  private final func bind_property_%!lkey.string% () {\n%
-    %    %!lkey.string%.readModelFunction = { [weak self] in\n%
+    %    self.%!lkey.string%_property.readModelFunction = { [weak self] in\n%
     %      if let model = self?.mSelectedObject {\n%
-    %        return model.%!lkey.string%.prop\n%
+    %        return model.%!lkey.string%_property_selection\n%
     %      }else{\n%
     %        return .empty\n%
     %      }\n%
     %    }\n%
     if [mKind isStored] then
-      %    self.%!lkey.string%.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
-      %      self?.mSelectedObject?.%!lkey.string%.setProp (inValue)\n%
+      %    self.%!lkey.string%_property.writeModelFunction = { [weak self] (inValue : %![mType swiftTypeName]%) in\n%
+      %      self?.mSelectedObject?.%!lkey.string% = inValue\n%
       %    }\n%
-      %    self.%!lkey.string%.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-      %      self?.mSelectedObject?.%!lkey.string%.validateAndSetProp (candidateValue, windowForSheet:windowForSheet) ?? false\n%
+      %    self.%!lkey.string%_property.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+      %      self?.mSelectedObject?.%!lkey.string%_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet) ?? false\n%
       %    }\n%
     end
     %  }\n\n%

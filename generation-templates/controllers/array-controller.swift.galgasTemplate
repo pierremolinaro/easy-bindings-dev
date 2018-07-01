@@ -9,62 +9,6 @@ import Cocoa
 private let DEBUG_EVENT = false
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"SelectedSet_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-final class SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty {
-  private let mAllowsEmptySelection : Bool
-  private let mAllowsMultipleSelection : Bool
-  private let mSortedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%
-
-  //····················································································································
-
-  init (allowsEmptySelection : Bool,
-        allowsMultipleSelection : Bool,
-        sortedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%) {
-    mAllowsMultipleSelection = allowsMultipleSelection
-    mAllowsEmptySelection = allowsEmptySelection
-    mSortedArray = sortedArray
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mPrivateSet = Set<%!ELEMENT_TYPE_NAME%> () {
-    didSet {
-      if mPrivateSet != oldValue {
-        postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  var mSet : Set<%!ELEMENT_TYPE_NAME%> {
-    set {
-      var newSelectedSet = newValue
-      switch mSortedArray.prop {
-      case .empty, .multiple :
-        break ;
-      case .single (let sortedArray) :
-        if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
-          newSelectedSet = Set (arrayLiteral: sortedArray [0])
-        }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
-          newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)
-        }
-      }
-      mPrivateSet = newSelectedSet
-    }
-    get {
-      return mPrivateSet
-    }
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"ArrayController_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -72,9 +16,9 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, E
 
   private var mModel : %!MODEL_TYPE_NAME_2%? = nil
 
-  let sortedArray = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+  let sortedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
-  let selectedArray = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+  let selectedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
   private let mSelectedSet : SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME%
 
@@ -84,7 +28,7 @@ final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, E
 
   private var mSortDescriptorArray = [(String, Bool)] () { // Key, ascending
     didSet {
-      sortedArray.postEvent ()
+      self.sortedArray_property.postEvent ()
       for tableView in mTableViewArray {
         var first = true
         for (key, ascending) in mSortDescriptorArray {
@@ -113,7 +57,7 @@ end
     mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
       allowsEmptySelection:allowsEmptySelection,
       allowsMultipleSelection:allowsMultipleSelection,
-      sortedArray:sortedArray
+      sortedArray:self.sortedArray_property
     )
     super.init ()
   //--- Set selected array compute function
@@ -125,8 +69,8 @@ end
   //····················································································································
 
   private final func setSelectedArrayComputeFunction () {
-    selectedArray.readModelFunction = {
-      switch self.sortedArray.prop {
+    self.selectedArray_property.readModelFunction = {
+      switch self.sortedArray_property.prop {
       case .empty :
         return .empty
       case .multiple :
@@ -155,7 +99,7 @@ for () in SORTED_COLUMNS
   %      %
   do
   %if column == "%!mColumnName%" {\n%
-  %        order = compare_%![mSortPropertyType swiftTypeName]% (left: left.%!mObservablePropertyForSorting%, right:right.%!mObservablePropertyForSorting%)\n%
+  %        order = compare_%![mSortPropertyType swiftTypeName]% (left: left.%!mObservablePropertyForSorting%_property, right:right.%!mObservablePropertyForSorting%_property)\n%
   between
   %      }else %
   after
@@ -180,7 +124,7 @@ end
 %  //····················································································································
 
   private final func setFilterAndSortFunction () {
-    sortedArray.readModelFunction = {
+    self.sortedArray_property.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
         case .empty :
@@ -236,13 +180,13 @@ end
     }
   //--- Add observers
     mModel = model
-    model.addEBObserver (sortedArray)
-    sortedArray.addEBObserver (mSelectedSet)
-    mSelectedSet.addEBObserver (selectedArray)
+    model.addEBObserver (self.sortedArray_property)
+    self.sortedArray_property.addEBObserver (mSelectedSet)
+    mSelectedSet.addEBObserver (self.selectedArray_property)
   //--- Add observed properties (for filtering and sorting)
 %
 for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
-  %    model.addEBObserverOf_%!key% (sortedArray)\n%
+  %    model.addEBObserverOf_%!key% (self.sortedArray_property)\n%
 end
 %  //--- Bind table views
     mTableViewArray = tableViewArray
@@ -259,24 +203,24 @@ end
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    mModel?.removeEBObserver (sortedArray)
-    sortedArray.removeEBObserver (mSelectedSet)
-    mSelectedSet.removeEBObserver (selectedArray)
+    mModel?.removeEBObserver (self.sortedArray_property)
+    self.sortedArray_property.removeEBObserver (mSelectedSet)
+    mSelectedSet.removeEBObserver (self.selectedArray_property)
   //--- Remove observed properties (for filtering and sorting)
 %
 for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
-  %    mModel?.removeEBObserverOf_%!key% (sortedArray)\n%
+  %    mModel?.removeEBObserverOf_%!key% (self.sortedArray_property)\n%
 end
 %    for tvc in mTableViewDataSourceControllerArray {
-      sortedArray.removeEBObserver (tvc)
+      self.sortedArray_property.removeEBObserver (tvc)
     }
     for tvc in mTableViewSelectionControllerArray {
       mSelectedSet.removeEBObserver (tvc)
     }
   //---
     mTableViewArray = [EBTableView] ()
-    selectedArray.readModelFunction = nil
-    sortedArray.readModelFunction = nil
+    self.selectedArray_property.readModelFunction = nil
+    self.sortedArray_property.readModelFunction = nil
     mSelectedSet.mSet = Set ()
     mTableViewDataSourceControllerArray = []
     mTableViewSelectionControllerArray = []
@@ -299,7 +243,7 @@ end
     tableView.delegate = self
   //--- Set table view data source controller
     let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
-    sortedArray.addEBObserver (dataSourceTableViewController)
+    self.sortedArray_property.addEBObserver (dataSourceTableViewController)
     mTableViewDataSourceControllerArray.append (dataSourceTableViewController)
   //--- Set table view selection controller
     let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)
@@ -325,7 +269,7 @@ end
  //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
-    switch sortedArray.prop {
+    switch self.sortedArray_property.prop {
     case .empty, .multiple :
        return NSIndexSet ()
     case .single (let v) :
@@ -352,7 +296,7 @@ end
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    switch sortedArray.prop {
+    switch self.sortedArray_property.prop {
     case .empty, .multiple :
       return 0
     case .single (let v) :
@@ -368,7 +312,7 @@ end
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    switch sortedArray.prop {
+    switch self.sortedArray_property.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -407,7 +351,7 @@ end
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    switch sortedArray.prop {
+    switch self.sortedArray_property.prop {
     case .empty, .multiple :
       return nil
     case .single (let v) :
@@ -516,7 +460,7 @@ case storedArrayModel :
       case .empty, .multiple :
         break
       case .single (let model_prop) :
-        switch sortedArray.prop {
+        switch self.sortedArray_property.prop {
         case .empty, .multiple :
           break
         case .single (let sortedArray_prop) :
@@ -640,7 +584,7 @@ case relationshipModel :
       case .empty, .multiple :
         break
       case .single (let model_prop) :
-        switch sortedArray.prop {
+        switch self.sortedArray_property.prop {
         case .empty, .multiple :
           break
         case .single (let sortedArray_prop) :
@@ -707,6 +651,62 @@ case relationshipModel :
     }
   }
 %end%
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"SelectedSet_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+final class SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBAbstractProperty {
+  private let mAllowsEmptySelection : Bool
+  private let mAllowsMultipleSelection : Bool
+  private let mSortedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%
+
+  //····················································································································
+
+  init (allowsEmptySelection : Bool,
+        allowsMultipleSelection : Bool,
+        sortedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%) {
+    mAllowsMultipleSelection = allowsMultipleSelection
+    mAllowsEmptySelection = allowsEmptySelection
+    mSortedArray = sortedArray
+    super.init ()
+  }
+
+  //····················································································································
+
+  private var mPrivateSet = Set<%!ELEMENT_TYPE_NAME%> () {
+    didSet {
+      if mPrivateSet != oldValue {
+        postEvent ()
+      }
+    }
+  }
+
+  //····················································································································
+
+  var mSet : Set<%!ELEMENT_TYPE_NAME%> {
+    set {
+      var newSelectedSet = newValue
+      switch mSortedArray.prop {
+      case .empty, .multiple :
+        break ;
+      case .single (let sortedArray) :
+        if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
+          newSelectedSet = Set (arrayLiteral: sortedArray [0])
+        }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
+          newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)
+        }
+      }
+      mPrivateSet = newSelectedSet
+    }
+    get {
+      return mPrivateSet
+    }
+  }
+
   //····················································································································
 
 }

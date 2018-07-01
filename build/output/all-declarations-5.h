@@ -51,7 +51,7 @@ extern const cDirectoryWrapper gWrapperDirectory_5_documentGenerationTemplate ;
 GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
                                                                                      const class GALGAS_string & in_DOCUMENT_5F_NAME,
                                                                                      const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
-                                                                                     const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                     const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                      const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                      const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
                                                                                      const class GALGAS_arrayControllerForGeneration & in_ARRAY_5F_CONTROLLER_5F_LIST,
@@ -141,7 +141,7 @@ extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_Compiler * inCompiler,
-                                                                       const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                       const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                        const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                        const class GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
                                                                        const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,

@@ -72,14 +72,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyL
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                         Extension getter '@observablePropertyAST modelString' (as function)                         *
+//                     Extension getter '@observablePropertyAST modelStringForSelf' (as function)                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_string extensionGetter_modelString (const class GALGAS_observablePropertyAST & inObject,
-                                                 const class GALGAS_string & constinArgument0,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+class GALGAS_string extensionGetter_modelStringForSelf (const class GALGAS_observablePropertyAST & inObject,
+                                                        const class GALGAS_string & constinArgument0,
+                                                        class C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

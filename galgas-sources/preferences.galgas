@@ -224,7 +224,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
   template preferences "preferences.swift.galgasTemplate"
-    ?@simpleStoredPropertyListForGeneration SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
+    ?@simpleStoredPropertyListForGeneration SIMPLE_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 

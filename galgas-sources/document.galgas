@@ -262,7 +262,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
   template documentImplementation "document.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
-    ?@simpleStoredPropertyListForGeneration SIMPLE_SIMPLE_PROPERTY_LIST_FOR_GENERATION
+    ?@simpleStoredPropertyListForGeneration SIMPLE_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST

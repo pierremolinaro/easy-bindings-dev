@@ -117,34 +117,34 @@ syntax extension easyBindings_syntax {
 #  SEMANTICS                                                                                                           *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-getter @observablePropertyAST modelString ?let @string inSelf -> @string outResult {
+getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string outResult {
   switch self
   case rootProperty (@lstring propertyName) :
-    outResult = inSelf + ".rootObject." + propertyName
+    outResult = inSelf + ".rootObject." + propertyName + "_property"
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = inSelf + ".rootObject." + propertyName + "." + optionName
+    outResult = inSelf + ".rootObject." + propertyName + "_property" + "." + optionName + "_property"
   case rootPropertyRelationship (@lstring relationshipName *) :
-    outResult = inSelf + ".rootObject." + relationshipName
+    outResult = inSelf + ".rootObject." + relationshipName + "_property"
   case selfProperty (@lstring propertyName) :
-    outResult = inSelf + "." + propertyName
+    outResult = inSelf + "." + propertyName + "_property"
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = inSelf + "." + propertyName + "." + optionName
+    outResult = inSelf + "." + propertyName + "_property" + "." + optionName + "_property"
   case selfPropertyArray (@lstring propertyName @lstring unused elementPropertyName) :
-    outResult = inSelf + "." + propertyName # + ".all." + elementPropertyName
+    outResult = inSelf + "." + propertyName + "_property"
   case prefsProperty (@lstring propertyName) :
-    outResult = "g_" + preferencesName () + "!." + propertyName
+    outResult = "g_" + preferencesName () + "!." + propertyName + "_property"
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = "g_" + preferencesName () + "!." + propertyName + "." + optionName
+    outResult = "g_" + preferencesName () + "!." + propertyName + "_property" + "." + optionName + "_property"
   case controllerProperty (@lstring controllerName @lstring propertyName) :
-    outResult = inSelf + "." + controllerName + "." + propertyName
+    outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    outResult = inSelf + "." + controllerName + "." + propertyName + "." + secondaryPropertyName
+    outResult = inSelf + "." + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property"
   case signatureProperty (*) :
-    outResult = "self.signatureObserver ()"
+    outResult = "self.signatureObserver_property"
   case versionProperty (*) :
-    outResult = "self.versionObserver ()"
+    outResult = "self.versionObserver_property"
   case versionShouldChangeProperty (*) :
-    outResult = "self.versionShouldChangeObserver ()"
+    outResult = "self.versionShouldChangeObserver_property"
   end  
 }
 

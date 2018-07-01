@@ -263,7 +263,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   case propertyClassType (**) : # Ok
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
-    ![mProperty modelString !"self"]
+    ![mProperty modelStringForSelf !"self"]
   }
   outErrorLocation = [mProperty location]
 }

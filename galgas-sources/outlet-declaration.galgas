@@ -306,7 +306,7 @@ proc analyzeRegularBinding
     var @outletBindingModelList boundModelTypeList = {}
     var @stringlist boundModelStringListForGeneration = {}
     for () in mObservablePropertyList do
-      boundModelStringListForGeneration += ![mObservableProperty modelString !inSelfSwiftName]
+      boundModelStringListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName]
       [mObservableProperty analyzeObservableProperty
         !inRootObservablePropertyMap
         !inSemanticContext
