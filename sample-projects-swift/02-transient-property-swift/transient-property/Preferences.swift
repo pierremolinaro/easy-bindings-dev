@@ -21,13 +21,70 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mLastNameTextField : EBTextField? = nil
   @IBOutlet var mUpperCaseFullNameTextField : EBTextObserverField? = nil
   @IBOutlet var myButton : EBButton? = nil
- 
+  //····················································································································
+  //   Accessing mFirstName stored property
+  //····················································································································
+
+  var mFirstName : String {
+    get {
+      return self.mFirstName_property.propval
+    }
+    set {
+      self.mFirstName_property.setProp (newValue)
+    }
+  }
+
+  var mFirstName_property_selection : EBSelection <String> {
+    get {
+      return self.mFirstName_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing mLastName stored property
+  //····················································································································
+
+  var mLastName : String {
+    get {
+      return self.mLastName_property.propval
+    }
+    set {
+      self.mLastName_property.setProp (newValue)
+    }
+  }
+
+  var mLastName_property_selection : EBSelection <String> {
+    get {
+      return self.mLastName_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing mFullName transient property
+  //····················································································································
+
+  var mFullName_property_selection : EBSelection <String> {
+    get {
+      return self.mFullName_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing mUpperCaseFullName transient property
+  //····················································································································
+
+  var mUpperCaseFullName_property_selection : EBSelection <String> {
+    get {
+      return self.mUpperCaseFullName_property.prop
+    }
+  }
+
   //····················································································································
   //    Simple Stored Properties
   //····················································································································
 
-  var mFirstName = EBStoredProperty_String ("Amédée")
-  var mLastName = EBStoredProperty_String ("Schmurtz")
+  var mFirstName_property = EBStoredProperty_String ("Amédée")
+  var mLastName_property = EBStoredProperty_String ("Schmurtz")
 
   //····················································································································
   //    Stored Array Properties
@@ -38,8 +95,8 @@ var g_Preferences : Preferences? = nil
   //    Transient properties
   //····················································································································
 
-  var mFullName = EBTransientProperty_String ()
-  var mUpperCaseFullName = EBTransientProperty_String ()
+  var mFullName_property = EBTransientProperty_String ()
+  var mUpperCaseFullName_property = EBTransientProperty_String ()
 
 
   //····················································································································
@@ -56,8 +113,8 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    mFirstName.readInPreferencesWithKey (inKey:"Preferences:mFirstName")
-    mLastName.readInPreferencesWithKey (inKey:"Preferences:mLastName")
+    self.mFirstName_property.readInPreferencesWithKey (inKey:"Preferences:mFirstName")
+    self.mLastName_property.readInPreferencesWithKey (inKey:"Preferences:mLastName")
   //--- Property validation function
   //---
     NotificationCenter.default.addObserver (self,
@@ -167,61 +224,61 @@ var g_Preferences : Preferences? = nil
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myButton' outlet is nil")
     }
   //--- Install compute functions for transients
-    mFullName.readModelFunction = { [weak self] in
+    self.mFullName_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        var kind = unwSelf.mFirstName.prop.kind ()
-        kind &= unwSelf.mLastName.prop.kind ()
+        var kind = unwSelf.mFirstName_property_selection.kind ()
+        kind &= unwSelf.mLastName_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.mFirstName.prop, unwSelf.mLastName.prop) {
-          case (.singleSelection (let v0), .singleSelection (let v1)) :
-            return .singleSelection (compute_Preferences_mFullName (v0, v1))
+          switch (unwSelf.mFirstName_property.prop, unwSelf.mLastName_property.prop) {
+          case (.single (let v0), .single (let v1)) :
+            return .single (compute_Preferences_mFullName (v0, v1))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    mUpperCaseFullName.readModelFunction = { [weak self] in
+    self.mUpperCaseFullName_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.mFullName.prop.kind ()
+        let kind = unwSelf.mFullName_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.mFullName.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_Preferences_mUpperCaseFullName (v0))
+          switch (unwSelf.mFullName_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_Preferences_mUpperCaseFullName (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
   //--- Install property observers for transients
-    mFirstName.addEBObserver (mFullName)
-    mLastName.addEBObserver (mFullName)
-    mFullName.addEBObserver (mUpperCaseFullName)
+    self.mFirstName_property.addEBObserver (self.mFullName_property)
+    self.mLastName_property.addEBObserver (self.mFullName_property)
+    self.mFullName_property.addEBObserver (self.mUpperCaseFullName_property)
   //--- Install bindings
-    mLastNameTextField?.bind_value (self.mLastName, file: #file, line: #line, sendContinously:true)
-    mFirstNameTextField?.bind_value (self.mFirstName, file: #file, line: #line, sendContinously:false)
-    mFullNameTextField?.bind_valueObserver (self.mFullName, file: #file, line: #line)
-    mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName, file: #file, line: #line)
+    mLastNameTextField?.bind_value (self.mLastName_property, file: #file, line: #line, sendContinously:true)
+    mFirstNameTextField?.bind_value (self.mFirstName_property, file: #file, line: #line, sendContinously:false)
+    mFullNameTextField?.bind_valueObserver (self.mFullName_property, file: #file, line: #line)
+    mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName_property, file: #file, line: #line)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
-    myButton?.target = self
-    myButton?.action = #selector (Preferences.monAction (_:))
+    self.myButton?.target = self
+    self.myButton?.action = #selector (Preferences.monAction (_:))
   //--- Extern functions
   }
   
@@ -230,8 +287,8 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    mFirstName.storeInPreferencesWithKey (inKey:"Preferences:mFirstName")
-    mLastName.storeInPreferencesWithKey (inKey:"Preferences:mLastName")
+    self.mFirstName_property.storeInPreferencesWithKey (inKey:"Preferences:mFirstName")
+    self.mLastName_property.storeInPreferencesWithKey (inKey:"Preferences:mLastName")
   }
 
   //····················································································································

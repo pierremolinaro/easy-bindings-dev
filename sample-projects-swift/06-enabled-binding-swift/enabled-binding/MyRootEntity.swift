@@ -8,13 +8,34 @@ import Cocoa
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
+class MyRootEntity : EBManagedObject,
+  MyRootEntity_docBool {
 
   //····················································································································
-  //    Properties
+  //   Accessing docBool stored property
   //····················································································································
 
-  var docBool = EBStoredProperty_Bool (true)
+  var docBool : Bool {
+    get {
+      return self.docBool_property.propval
+    }
+    set {
+      self.docBool_property.setProp (newValue)
+    }
+  }
+
+  var docBool_property_selection : EBSelection <Bool> {
+    get {
+      return self.docBool_property.prop
+    }
+  }
+
+  //····················································································································
+  //    Stored Properties
+  //····················································································································
+
+  var docBool_property = EBStoredProperty_Bool (true)
+
   //····················································································································
   //    Transient properties
   //····················································································································
@@ -34,7 +55,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    self.docBool.undoManager = undoManager ()
+    self.docBool_property.undoManager = undoManager ()
   //--- Install owner for relationships
   //--- register properties for handling signature
   }
@@ -53,11 +74,11 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "docBool",
-      idx:self.docBool.mEasyBindingsObjectIndex,
+      idx:self.docBool_property.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&self.docBool.mObserverExplorer,
-      valueExplorer:&self.docBool.mValueExplorer
+      observerExplorer:&self.docBool_property.mObserverExplorer,
+      valueExplorer:&self.docBool_property.mValueExplorer
     )
     createEntryForTitle ("Properties", y:&y, view:view)
     createEntryForTitle ("Transients", y:&y, view:view)
@@ -70,8 +91,8 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
   //····················································································································
 
   override func clearObjectExplorer () {
-    self.docBool.mObserverExplorer = nil
-    self.docBool.mValueExplorer = nil
+    self.docBool_property.mObserverExplorer = nil
+    self.docBool_property.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -81,7 +102,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    self.docBool.storeIn (dictionary: ioDictionary, forKey: "docBool")
+    self.docBool_property.storeIn (dictionary: ioDictionary, forKey: "docBool")
   }
 
   //····················································································································
@@ -91,7 +112,7 @@ class MyRootEntity : EBManagedObject, MyRootEntity_docBool {
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    self.docBool.readFrom (dictionary: inDictionary, forKey:"docBool")
+    self.docBool_property.readFrom (dictionary: inDictionary, forKey:"docBool")
   }
 
   //····················································································································
@@ -132,11 +153,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.addEBObserver (inObserver)
     mObserversOf_docBool.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.docBool.addEBObserver (inObserver)
+        managedObject.docBool_property.addEBObserver (inObserver)
       }
     }
   }
@@ -147,11 +168,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.removeEBObserver (inObserver)
     mObserversOf_docBool.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.docBool.removeEBObserver (inObserver)
+        managedObject.docBool_property.removeEBObserver (inObserver)
       }
     }
   }
@@ -161,7 +182,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   final func addEBObserversOf_docBool_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docBool {
-        managedObject.docBool.addEBObserver (observer)
+        managedObject.docBool_property.addEBObserver (observer)
       }
     }
   }
@@ -172,7 +193,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     for observer in mObserversOf_docBool {
       observer.postEvent ()
       for managedObject in inSet {
-        managedObject.docBool.removeEBObserver (observer)
+        managedObject.docBool_property.removeEBObserver (observer)
       }
     }
   }
@@ -187,9 +208,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
+  var readModelFunction : Optional<() -> EBSelection < [MyRootEntity] > >
 
-  private var prop_cache : EBProperty < [MyRootEntity] >? 
+  private var prop_cache : EBSelection < [MyRootEntity] >? 
 
   //····················································································································
 
@@ -201,15 +222,15 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   private var mSet = Set <MyRootEntity> ()
 
-  override var prop : EBProperty < [MyRootEntity] > {
+  override var prop : EBSelection < [MyRootEntity] > {
     get {
       if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <MyRootEntity>
         switch prop_cache! {
-        case .multipleSelection, .noSelection :
+        case .multiple, .empty :
           newSet = Set <MyRootEntity> ()
-        case .singleSelection (let array) :
+        case .single (let array) :
           newSet = Set (array)
         }
      //--- Removed object set
@@ -226,7 +247,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         mSet = newSet
       }
       if prop_cache == nil {
-        prop_cache = .noSelection
+        prop_cache = .empty
       }
       return prop_cache!
     }
@@ -253,7 +274,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_docBool : class {
-  var docBool : EBStoredProperty_Bool { get }
+  var docBool : Bool { get }
 }
 
 

@@ -17,12 +17,30 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   @IBOutlet var prefBoolCheckBox : EBSwitch? = nil
- 
+  //····················································································································
+  //   Accessing prefBoolean stored property
+  //····················································································································
+
+  var prefBoolean : Bool {
+    get {
+      return self.prefBoolean_property.propval
+    }
+    set {
+      self.prefBoolean_property.setProp (newValue)
+    }
+  }
+
+  var prefBoolean_property_selection : EBSelection <Bool> {
+    get {
+      return self.prefBoolean_property.prop
+    }
+  }
+
   //····················································································································
   //    Simple Stored Properties
   //····················································································································
 
-  var prefBoolean = EBStoredProperty_Bool (true)
+  var prefBoolean_property = EBStoredProperty_Bool (true)
 
   //····················································································································
   //    Stored Array Properties
@@ -49,7 +67,7 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    prefBoolean.readInPreferencesWithKey (inKey:"Preferences:prefBoolean")
+    self.prefBoolean_property.readInPreferencesWithKey (inKey:"Preferences:prefBoolean")
   //--- Property validation function
   //---
     NotificationCenter.default.addObserver (self,
@@ -72,7 +90,7 @@ var g_Preferences : Preferences? = nil
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    prefBoolCheckBox?.bind_value (self.prefBoolean, file: #file, line: #line)
+    prefBoolCheckBox?.bind_value (self.prefBoolean_property, file: #file, line: #line)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
@@ -84,7 +102,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    prefBoolean.storeInPreferencesWithKey (inKey:"Preferences:prefBoolean")
+    self.prefBoolean_property.storeInPreferencesWithKey (inKey:"Preferences:prefBoolean")
   }
 
   //····················································································································

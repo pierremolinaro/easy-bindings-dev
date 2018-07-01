@@ -105,12 +105,12 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    docBoolCheckBox?.bind_value (self.rootObject.docBool, file: #file, line: #line)
+    docBoolCheckBox?.bind_value (self.rootObject.docBool_property, file: #file, line: #line)
   //--- Install multiple bindings
     myButton?.bind_enabled (
-      [g_Preferences!.prefBoolean, self.rootObject.docBool],
+      [g_Preferences!.prefBoolean_property, self.rootObject.docBool_property],
       computeFunction:{
-        return (!self.rootObject.docBool.prop && g_Preferences!.prefBoolean.prop)
+        return (!self.rootObject.docBool_property.prop && g_Preferences!.prefBoolean_property.prop)
       },
       file: #file, line: #line
     )

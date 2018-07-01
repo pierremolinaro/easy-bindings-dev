@@ -125,10 +125,10 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    docStringTextField?.bind_value (self.rootObject.docString, file: #file, line: #line, sendContinously:true)
-    prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString, file: #file, line: #line)
-    prefTransientStringTextField?.bind_valueObserver (g_Preferences!.prefTransientString, file: #file, line: #line)
-    transientConcatStringTextField?.bind_valueObserver (self.rootObject.transientConcatString, file: #file, line: #line)
+    docStringTextField?.bind_value (self.rootObject.docString_property, file: #file, line: #line, sendContinously:true)
+    prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString_property, file: #file, line: #line)
+    prefTransientStringTextField?.bind_valueObserver (g_Preferences!.prefTransientString_property, file: #file, line: #line)
+    transientConcatStringTextField?.bind_valueObserver (self.rootObject.transientConcatString_property, file: #file, line: #line)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display

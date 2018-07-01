@@ -16,8 +16,8 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //   SELECTION OBSERVABLE PROPERTIES
   //····················································································································
 
-  var aValue = EBPropertyProxy_Int () 
-  var name = EBPropertyProxy_String () 
+  var aValue_property = EBPropertyProxy_Int () 
+  var name_property = EBPropertyProxy_String () 
 
   //····················································································································
   //   BIND SELECTION
@@ -67,19 +67,19 @@ final class SelectionController_PMDocument_detailController : EBObject {
     var y : CGFloat = 0.0
     createEntryForPropertyNamed (
       "aValue",
-      idx:self.aValue.mEasyBindingsObjectIndex,
+      idx:self.aValue_property.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&self.aValue.mObserverExplorer,
-      valueExplorer:&self.aValue.mValueExplorer
+      observerExplorer:&self.aValue_property.mObserverExplorer,
+      valueExplorer:&self.aValue_property.mValueExplorer
     )
     createEntryForPropertyNamed (
       "name",
-      idx:self.name.mEasyBindingsObjectIndex,
+      idx:self.name_property.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&self.name.mObserverExplorer,
-      valueExplorer:&self.name.mValueExplorer
+      observerExplorer:&self.name_property.mObserverExplorer,
+      valueExplorer:&self.name_property.mValueExplorer
     )
   //-------------------------------------------------- Finish Window construction
   //--- Resize View
@@ -135,61 +135,61 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //···················································································································*
 
   private final func bind_property_aValue (model : ReadOnlyArrayOf_NameEntity) {
-    model.addEBObserverOf_aValue (self.aValue)
-    self.aValue.readModelFunction = {
+    model.addEBObserverOf_aValue (self.aValue_property)
+    self.aValue_property.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
           var s = Set<Int> ()
           var isMultipleSelection = false
           for object in v {
-            switch object.aValue.prop {
-            case .noSelection :
-              return .noSelection
-            case .multipleSelection :
+            switch object.aValue_property_selection {
+            case .empty :
+              return .empty
+            case .multiple :
               isMultipleSelection = true
-            case .singleSelection (let vProp) :
+            case .single (let vProp) :
               s.insert (vProp)
             }
           }
           if isMultipleSelection {
-            return .multipleSelection
+            return .multiple
           }else if s.count == 0 {
-            return .noSelection
+            return .empty
           }else if s.count == 1 {
-            return .singleSelection (s.first!)
+            return .single (s.first!)
           }else{
-            return .multipleSelection
+            return .multiple
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    self.aValue.writeModelFunction = { (inValue : Int) in
+    self.aValue_property.writeModelFunction = { (inValue : Int) in
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break
-        case .singleSelection (let v) :
+        case .single (let v) :
           for object in v {
-            object.aValue.setProp (inValue)
+            object.aValue_property.setProp (inValue)
           }
         }
       }
     }
-    self.aValue.validateAndWriteModelFunction = { (candidateValue : Int, windowForSheet : NSWindow?) in
+    self.aValue_property.validateAndWriteModelFunction = { (candidateValue : Int, windowForSheet : NSWindow?) in
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           return false
-        case .singleSelection (let v) :
+        case .single (let v) :
           for object in v {
-            let result = object.aValue.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
+            let result = object.aValue_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
             if !result {
               return false
             }
@@ -205,61 +205,61 @@ final class SelectionController_PMDocument_detailController : EBObject {
   //···················································································································*
 
   private final func bind_property_name (model : ReadOnlyArrayOf_NameEntity) {
-    model.addEBObserverOf_name (self.name)
-    self.name.readModelFunction = {
+    model.addEBObserverOf_name (self.name_property)
+    self.name_property.readModelFunction = {
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
           var s = Set<String> ()
           var isMultipleSelection = false
           for object in v {
-            switch object.name.prop {
-            case .noSelection :
-              return .noSelection
-            case .multipleSelection :
+            switch object.name_property_selection {
+            case .empty :
+              return .empty
+            case .multiple :
               isMultipleSelection = true
-            case .singleSelection (let vProp) :
+            case .single (let vProp) :
               s.insert (vProp)
             }
           }
           if isMultipleSelection {
-            return .multipleSelection
+            return .multiple
           }else if s.count == 0 {
-            return .noSelection
+            return .empty
           }else if s.count == 1 {
-            return .singleSelection (s.first!)
+            return .single (s.first!)
           }else{
-            return .multipleSelection
+            return .multiple
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    self.name.writeModelFunction = { (inValue : String) in
+    self.name_property.writeModelFunction = { (inValue : String) in
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break
-        case .singleSelection (let v) :
+        case .single (let v) :
           for object in v {
-            object.name.setProp (inValue)
+            object.name_property.setProp (inValue)
           }
         }
       }
     }
-    self.name.validateAndWriteModelFunction = { (candidateValue : String, windowForSheet : NSWindow?) in
+    self.name_property.validateAndWriteModelFunction = { (candidateValue : String, windowForSheet : NSWindow?) in
       if let model = self.mModel {
         switch model.prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           return false
-        case .singleSelection (let v) :
+        case .single (let v) :
           for object in v {
-            let result = object.name.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
+            let result = object.name_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)
             if !result {
               return false
             }
@@ -280,15 +280,15 @@ final class SelectionController_PMDocument_detailController : EBObject {
 
   func unbind_selection () {
   //--- aValue
-    self.aValue.readModelFunction = nil 
-    self.aValue.writeModelFunction = nil 
-    self.aValue.validateAndWriteModelFunction = nil 
-    mModel?.removeEBObserverOf_aValue (self.aValue)
+    self.aValue_property.readModelFunction = nil 
+    self.aValue_property.writeModelFunction = nil 
+    self.aValue_property.validateAndWriteModelFunction = nil 
+    self.mModel?.removeEBObserverOf_aValue (self.aValue_property)
   //--- name
-    self.name.readModelFunction = nil 
-    self.name.writeModelFunction = nil 
-    self.name.validateAndWriteModelFunction = nil 
-    mModel?.removeEBObserverOf_name (self.name)
+    self.name_property.readModelFunction = nil 
+    self.name_property.writeModelFunction = nil 
+    self.name_property.validateAndWriteModelFunction = nil 
+    self.mModel?.removeEBObserverOf_name (self.name_property)
   //---
     mModel = nil    
   }

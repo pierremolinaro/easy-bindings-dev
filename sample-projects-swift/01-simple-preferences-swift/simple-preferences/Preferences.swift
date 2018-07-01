@@ -25,15 +25,93 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var myObserverTextField : EBTextObserverField? = nil
   @IBOutlet var myOtherTextField : EBTextField? = nil
   @IBOutlet var myTextField : EBTextField? = nil
- 
+  //····················································································································
+  //   Accessing myString stored property
+  //····················································································································
+
+  var myString : String {
+    get {
+      return self.myString_property.propval
+    }
+    set {
+      self.myString_property.setProp (newValue)
+    }
+  }
+
+  var myString_property_selection : EBSelection <String> {
+    get {
+      return self.myString_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing mColor stored property
+  //····················································································································
+
+  var mColor : NSColor {
+    get {
+      return self.mColor_property.propval
+    }
+    set {
+      self.mColor_property.setProp (newValue)
+    }
+  }
+
+  var mColor_property_selection : EBSelection <NSColor> {
+    get {
+      return self.mColor_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing mDate stored property
+  //····················································································································
+
+  var mDate : Date {
+    get {
+      return self.mDate_property.propval
+    }
+    set {
+      self.mDate_property.setProp (newValue)
+    }
+  }
+
+  var mDate_property_selection : EBSelection <Date> {
+    get {
+      return self.mDate_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing mIntegerValue stored property
+  //····················································································································
+
+  var mIntegerValue : Int {
+    get {
+      return self.mIntegerValue_property.propval
+    }
+    set {
+      self.mIntegerValue_property.setProp (newValue)
+    }
+  }
+
+  var mIntegerValue_property_selection : EBSelection <Int> {
+    get {
+      return self.mIntegerValue_property.prop
+    }
+  }
+  func mIntegerValue_validateAndSetProp (_ inCandidateValue : Int, windowForSheet inWindow:NSWindow?) -> Bool {
+    return self.mIntegerValue_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)
+  }
+
   //····················································································································
   //    Simple Stored Properties
   //····················································································································
 
-  var myString = EBStoredProperty_String ("hello")
-  var mColor = EBStoredProperty_NSColor (NSColor.yellow)
-  var mDate = EBStoredProperty_Date (Date ())
-  var mIntegerValue = EBStoredProperty_Int (12)
+  var myString_property = EBStoredProperty_String ("hello")
+  var mColor_property = EBStoredProperty_NSColor (NSColor.yellow)
+  var mDate_property = EBStoredProperty_Date (Date ())
+  var mIntegerValue_property = EBStoredProperty_Int (12)
 
   //····················································································································
   //    Stored Array Properties
@@ -60,12 +138,12 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    myString.readInPreferencesWithKey (inKey:"Preferences:myString")
-    mColor.readInPreferencesWithKey (inKey:"Preferences:mColor")
-    mDate.readInPreferencesWithKey (inKey:"Preferences:mDate")
-    mIntegerValue.readInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
+    self.myString_property.readInPreferencesWithKey (inKey:"Preferences:myString")
+    self.mColor_property.readInPreferencesWithKey (inKey:"Preferences:mColor")
+    self.mDate_property.readInPreferencesWithKey (inKey:"Preferences:mDate")
+    self.mIntegerValue_property.readInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
   //--- Property validation function
-    mIntegerValue.validationFunction = self.validate_mIntegerValue
+    self.mIntegerValue_property.validationFunction = self.validate_mIntegerValue
   //---
     NotificationCenter.default.addObserver (self,
      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
@@ -256,15 +334,15 @@ var g_Preferences : Preferences? = nil
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    myTextField?.bind_value (self.myString, file: #file, line: #line, sendContinously:false)
-    myOtherTextField?.bind_value (self.myString, file: #file, line: #line, sendContinously:true)
-    myObserverTextField?.bind_valueObserver (self.myString, file: #file, line: #line)
-    mContinuousColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:true)
-    mColorWell?.bind_color (self.mColor, file: #file, line: #line, sendContinously:false)
-    mObserverColorWell?.bind_colorObserver (self.mColor, file: #file, line: #line)
-    mDatePicker?.bind_date (self.mDate, file: #file, line: #line)
-    mIntegerTextField?.bind_value (self.mIntegerValue, file: #file, line: #line, sendContinously:true, autoFormatter:true)
-    mIntegerObserverTextField?.bind_valueObserver (self.mIntegerValue, file: #file, line: #line, autoFormatter:true)
+    myTextField?.bind_value (self.myString_property, file: #file, line: #line, sendContinously:false)
+    myOtherTextField?.bind_value (self.myString_property, file: #file, line: #line, sendContinously:true)
+    myObserverTextField?.bind_valueObserver (self.myString_property, file: #file, line: #line)
+    mContinuousColorWell?.bind_color (self.mColor_property, file: #file, line: #line, sendContinously:true)
+    mColorWell?.bind_color (self.mColor_property, file: #file, line: #line, sendContinously:false)
+    mObserverColorWell?.bind_colorObserver (self.mColor_property, file: #file, line: #line)
+    mDatePicker?.bind_date (self.mDate_property, file: #file, line: #line)
+    mIntegerTextField?.bind_value (self.mIntegerValue_property, file: #file, line: #line, sendContinously:true, autoFormatter:true)
+    mIntegerObserverTextField?.bind_valueObserver (self.mIntegerValue_property, file: #file, line: #line, autoFormatter:true)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
@@ -276,10 +354,10 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    myString.storeInPreferencesWithKey (inKey:"Preferences:myString")
-    mColor.storeInPreferencesWithKey (inKey:"Preferences:mColor")
-    mDate.storeInPreferencesWithKey (inKey:"Preferences:mDate")
-    mIntegerValue.storeInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
+    self.myString_property.storeInPreferencesWithKey (inKey:"Preferences:myString")
+    self.mColor_property.storeInPreferencesWithKey (inKey:"Preferences:mColor")
+    self.mDate_property.storeInPreferencesWithKey (inKey:"Preferences:mDate")
+    self.mIntegerValue_property.storeInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
   }
 
   //····················································································································

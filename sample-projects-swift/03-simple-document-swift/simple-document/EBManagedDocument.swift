@@ -85,9 +85,9 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //--- Update document version
     var version = mVersion.propval
     switch mVersionShouldChangeObserver.prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let shouldChange) :
+    case .single (let shouldChange) :
       if shouldChange {
         version += 1
         mVersion.setProp (version)
@@ -520,8 +520,10 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  final func signatureObserver () -> EBSignatureObserverEvent {
-    return mSignatureObserver
+  var signatureObserver_property : EBSignatureObserverEvent {
+    get {
+      return mSignatureObserver
+    }
   }
 
   //····················································································································
@@ -538,8 +540,10 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  final func versionObserver () -> EBStoredProperty_Int {
-    return mVersion
+  var versionObserver_property : EBStoredProperty_Int {
+    get {
+      return mVersion
+    }
   }
 
   //····················································································································
@@ -550,8 +554,10 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
 
   //····················································································································
 
-  final func versionShouldChangeObserver () -> EBVersionShouldChangeObserver {
-    return mVersionShouldChangeObserver
+  var versionShouldChangeObserver_property : EBVersionShouldChangeObserver {
+    get {
+      return mVersionShouldChangeObserver
+    }
   }
 
   //····················································································································
@@ -774,9 +780,9 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
     super.init ()
     self.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        return .singleSelection (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
+        return .single (unwSelf.mSignatureAtStartUp != unwSelf.signature ())
       }else{
-        return .noSelection
+        return .empty
       }
     }
   }
@@ -849,9 +855,9 @@ class EBSignatureObserverEvent : EBTransientProperty_Int, EBSignatureObserverPro
     super.init ()
     self.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        return .singleSelection (Int (unwSelf.signature ()))
+        return .single (Int (unwSelf.signature ()))
       }else{
-        return .noSelection
+        return .empty
       }
     }
   }

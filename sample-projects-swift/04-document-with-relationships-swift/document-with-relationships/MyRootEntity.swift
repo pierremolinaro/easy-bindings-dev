@@ -11,8 +11,19 @@ import Cocoa
 class MyRootEntity : EBManagedObject {
 
   //····················································································································
-  //    Properties
+  //   Accessing mNames toMany relationship
   //····················································································································
+
+  var mNames_property_selection : EBSelection < [NameEntity] > {
+    get {
+      return self.mNames_property.prop
+    }
+  }
+
+  //····················································································································
+  //    Stored Properties
+  //····················································································································
+
 
   //····················································································································
   //    Transient properties
@@ -23,7 +34,7 @@ class MyRootEntity : EBManagedObject {
   //    Relationships
   //····················································································································
 
-  var mNames = ToManyRelationship_MyRootEntity_mNames ()
+  var mNames_property = ToManyRelationship_MyRootEntity_mNames ()
 
   //····················································································································
   //    init
@@ -35,7 +46,7 @@ class MyRootEntity : EBManagedObject {
   //--- Install property observers for transients
   //--- Install undoers for properties
   //--- Install owner for relationships
-    mNames.owner = self
+    self.mNames_property.owner = self
   //--- register properties for handling signature
   }
 
@@ -55,10 +66,10 @@ class MyRootEntity : EBManagedObject {
     createEntryForTitle ("Transients", y:&y, view:view)
     createEntryForToManyRelationshipNamed (
       "mNames",
-      idx:mNames.mEasyBindingsObjectIndex,
+      idx:mNames_property.mEasyBindingsObjectIndex,
       y: &y,
       view: view,
-      valueExplorer:&mNames.mValueExplorer
+      valueExplorer:&mNames_property.mValueExplorer
     )
     createEntryForTitle ("ToMany Relationships", y:&y, view:view)
     createEntryForTitle ("ToOne Relationships", y:&y, view:view)
@@ -69,8 +80,7 @@ class MyRootEntity : EBManagedObject {
   //····················································································································
 
   override func clearObjectExplorer () {
-    // mNames.mObserverExplorer = nil
-    mNames.mValueExplorer = nil
+    self.mNames_property.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -80,7 +90,7 @@ class MyRootEntity : EBManagedObject {
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    store (managedObjectArray: mNames.propval as NSArray, relationshipName:"mNames", intoDictionary: ioDictionary) ;
+    store (managedObjectArray: mNames_property.propval as NSArray, relationshipName:"mNames", intoDictionary: ioDictionary) ;
   }
 
   //····················································································································
@@ -90,7 +100,7 @@ class MyRootEntity : EBManagedObject {
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    mNames.setProp (readEntityArrayFromDictionary (
+    self.mNames_property.setProp (readEntityArrayFromDictionary (
       inRelationshipName: "mNames",
       inDictionary: inDictionary,
       managedObjectArray: &managedObjectArray
@@ -102,7 +112,7 @@ class MyRootEntity : EBManagedObject {
   //····················································································································
 
   override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
-    self.mNames.setProp (Array ()) // Set relationships to nil
+    self.mNames_property.setProp ([]) // Set relationships to nil
     super.cascadeObjectRemoving (&ioObjectsToRemove)
   }
 
@@ -112,7 +122,7 @@ class MyRootEntity : EBManagedObject {
 
   override func resetToManyRelationships () {
     super.resetToManyRelationships ()
-    mNames.setProp (Array ())
+    self.mNames_property.setProp ([])
   }
 
   //····················································································································
@@ -121,7 +131,7 @@ class MyRootEntity : EBManagedObject {
 
   override func accessibleObjects (objects : inout [EBManagedObject]) {
     super.accessibleObjects (objects: &objects)
-    for managedObject : EBManagedObject in mNames.propval {
+    for managedObject : EBManagedObject in self.mNames_property.propval {
       objects.append (managedObject)
     }
   }
@@ -146,9 +156,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
+  var readModelFunction : Optional<() -> EBSelection < [MyRootEntity] > >
 
-  private var prop_cache : EBProperty < [MyRootEntity] >? 
+  private var prop_cache : EBSelection < [MyRootEntity] >? 
 
   //····················································································································
 
@@ -160,22 +170,22 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   private var mSet = Set <MyRootEntity> ()
 
-  override var prop : EBProperty < [MyRootEntity] > {
+  override var prop : EBSelection < [MyRootEntity] > {
     get {
       if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <MyRootEntity>
         switch prop_cache! {
-        case .multipleSelection, .noSelection :
+        case .multiple, .empty :
           newSet = Set <MyRootEntity> ()
-        case .singleSelection (let array) :
+        case .single (let array) :
           newSet = Set (array)
         }
       //--- Update object set
         mSet = newSet
       }
       if prop_cache == nil {
-        prop_cache = .noSelection
+        prop_cache = .empty
       }
       return prop_cache!
     }
@@ -225,9 +235,9 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
         switch prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break ;
-        case .singleSelection (let v) :
+        case .single (let v) :
           updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
         }
       }
@@ -238,18 +248,18 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
 
   override init () {
     super.init ()
-    count.readModelFunction = { [weak self] in
+    self.count_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
-        case .noSelection :
-          return .noSelection
-        case .multipleSelection :
-          return .multipleSelection
-        case .singleSelection (let v) :
-          return .singleSelection (v.count)
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
+          return .single (v.count)
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
   }
@@ -273,7 +283,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
         let removedObjectSet = oldSet.subtracting (mSet)
         for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (observer: nil)
-          managedObject.mRoot.owner = nil ;
+          managedObject.mRoot_property.owner = nil ;
         }
         removeEBObserversOf_aValue_fromElementsOfSet (removedObjectSet)
         removeEBObserversOf_name_fromElementsOfSet (removedObjectSet)
@@ -281,7 +291,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
         let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : NameEntity in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
-          managedObject.mRoot.setProp (owner)
+          managedObject.mRoot_property.setProp (owner)
         }
         addEBObserversOf_aValue_toElementsOfSet (addedObjectSet)
         addEBObserversOf_name_toElementsOfSet (addedObjectSet)
@@ -291,9 +301,9 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
     }
   }
 
-  override var prop : EBProperty < [NameEntity] > {
+  override var prop : EBSelection < [NameEntity] > {
     get {
-      return .singleSelection (mValue)
+      return .single (mValue)
     }
   }
 

@@ -634,7 +634,7 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
   var filterProperties = self
   [!?filterProperties popFirst ?let firstFilterProperty ?*]
   @string indent = "            "
-  outResult  = indent + "switch object." +firstFilterProperty + ".prop {\n"
+  outResult  = indent + "switch object." + firstFilterProperty + "_property_selection {\n"
   outResult += indent + "case .empty :\n"
   outResult += indent + "  return .empty\n"
   outResult += indent + "case .multiple :\n"
@@ -645,7 +645,7 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
   @string blockEnd = indent + "}\n"
   for () in filterProperties do
     indent += "  "
-    outResult += indent + "switch object." + mFilterPropertyName + ".prop {\n"
+    outResult += indent + "switch object." + mFilterPropertyName + "_property_selection {\n"
     outResult += indent + "case .empty :\n"
     outResult += indent + "  return .empty\n"
     outResult += indent + "case .multiple :\n"

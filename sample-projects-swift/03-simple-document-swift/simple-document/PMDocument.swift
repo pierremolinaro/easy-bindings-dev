@@ -135,11 +135,11 @@ import Cocoa
   //--- Transient compute functions
   //--- Install property observers for transients
   //--- Install regular bindings
-    myTextField?.bind_value (self.rootObject.myString, file: #file, line: #line, sendContinously:true)
-    myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj, file: #file, line: #line)
-    myTextMinField?.bind_valueObserver (self.rootObject.myStringMin, file: #file, line: #line)
-    myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat, file: #file, line: #line)
-    myColorWell?.bind_color (self.rootObject.myColor, file: #file, line: #line, sendContinously:false)
+    myTextField?.bind_value (self.rootObject.myString_property, file: #file, line: #line, sendContinously:true)
+    myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj_property, file: #file, line: #line)
+    myTextMinField?.bind_valueObserver (self.rootObject.myStringMin_property, file: #file, line: #line)
+    myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat_property, file: #file, line: #line)
+    myColorWell?.bind_color (self.rootObject.myColor_property, file: #file, line: #line, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display

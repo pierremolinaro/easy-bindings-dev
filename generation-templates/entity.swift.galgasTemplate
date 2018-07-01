@@ -52,6 +52,11 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      return self.%!mTransientName%_property.prop\n%
   %    }\n%
   %  }\n\n%
+  %  var %!mTransientName% : EBSelection <%![mTransientType swiftTypeName]%> {\n%
+  %    get {\n%
+  %      return %!mTransientName%_property_selection\n%
+  %    }\n%
+  %  }\n\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n%
@@ -115,7 +120,7 @@ end
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if [mDependencyList needs_unwSelf] then
-    %    %!mTransientName%_property.readModelFunction = { [weak self] in\n%
+    %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
     %      if let unwSelf = self {\n%
     ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName !mIsCopy]
     %      }else{\n%
@@ -123,7 +128,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     %      }\n%
     %    }\n%
   else
-    %    %!mTransientName%_property.readModelFunction = {\n%
+    %    self.%!mTransientName%_property.readModelFunction = {\n%
     ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName !mIsCopy]
     %    }\n%
   end
@@ -296,14 +301,14 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %      self.managedObjectContext ()?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
-    %    self.%!mToManyRelationshipName%_property.setProp (Array ()) // Set relationships to nil\n%
+    %    self.%!mToManyRelationshipName%_property.setProp ([]) // Set relationships to nil\n%
   end
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if mCascading then
     %    self.managedObjectContext ()?.internalRemoveManagedObject (self.%!mToOneRelationshipName%_property, &ioObjectsToRemove) // Cascade removing from moc\n%
   else
-    %    self.%!mToOneRelationshipName%.setProp (nil) // Set relationship to nil\n%
+    %    self.%!mToOneRelationshipName%_property.setProp (nil) // Set relationship to nil\n%
   end
 end
 %    super.cascadeObjectRemoving (&ioObjectsToRemove)
@@ -604,7 +609,8 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol %!ENTITY_NAME%_%!mTransientName% : class {
-  var %!mTransientName%_property_selection : EBSelection < %![mTransientType swiftTypeName]% > { get }
+//  var %!mTransientName%_property_selection : EBSelection < %![mTransientType swiftTypeName]% > { get }
+  var %!mTransientName% : EBSelection < %![mTransientType swiftTypeName]% > { get }
 }
 
 %
@@ -685,7 +691,7 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
         for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (observer: nil)
 % if mOppositeRelationshipName != "" then
-%          managedObject.%!mOppositeRelationshipName%.owner = nil ;
+%          managedObject.%!mOppositeRelationshipName%_property.owner = nil ;
 %
 end
 %        }
@@ -699,7 +705,7 @@ end
         for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
 % if mOppositeRelationshipName != "" then
-%          managedObject.%!mOppositeRelationshipName%.setProp (owner)
+%          managedObject.%!mOppositeRelationshipName%_property.setProp (owner)
 %
 end
 %        }
@@ -844,11 +850,11 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
 %    if [mInverseRelationMultiplicity isCollection] then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          unwrappedOldValue.%!mOppositeRelationshipName%.remove (unwrappedOwner)
+          unwrappedOldValue.%!mOppositeRelationshipName%_property.remove (unwrappedOwner)
         }
       //--- Set new opposite relation ship
         if let unwrappedValue = mValue {
-          unwrappedValue.%!mOppositeRelationshipName%.add (unwrappedOwner)
+          unwrappedValue.%!mOppositeRelationshipName%_property.add (unwrappedOwner)
         }
 %    else
 %     //--- Reset old opposite relation ship

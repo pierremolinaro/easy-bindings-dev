@@ -19,13 +19,50 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mButton : EBButton? = nil
   @IBOutlet var myHidden1Switch : EBSwitch? = nil
   @IBOutlet var myHidden2Switch : EBSwitch? = nil
- 
+  //····················································································································
+  //   Accessing myHidden1 stored property
+  //····················································································································
+
+  var myHidden1 : Bool {
+    get {
+      return self.myHidden1_property.propval
+    }
+    set {
+      self.myHidden1_property.setProp (newValue)
+    }
+  }
+
+  var myHidden1_property_selection : EBSelection <Bool> {
+    get {
+      return self.myHidden1_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing myHidden2 stored property
+  //····················································································································
+
+  var myHidden2 : Bool {
+    get {
+      return self.myHidden2_property.propval
+    }
+    set {
+      self.myHidden2_property.setProp (newValue)
+    }
+  }
+
+  var myHidden2_property_selection : EBSelection <Bool> {
+    get {
+      return self.myHidden2_property.prop
+    }
+  }
+
   //····················································································································
   //    Simple Stored Properties
   //····················································································································
 
-  var myHidden1 = EBStoredProperty_Bool (false)
-  var myHidden2 = EBStoredProperty_Bool (false)
+  var myHidden1_property = EBStoredProperty_Bool (false)
+  var myHidden2_property = EBStoredProperty_Bool (false)
 
   //····················································································································
   //    Stored Array Properties
@@ -52,8 +89,8 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    myHidden1.readInPreferencesWithKey (inKey:"Preferences:myHidden1")
-    myHidden2.readInPreferencesWithKey (inKey:"Preferences:myHidden2")
+    self.myHidden1_property.readInPreferencesWithKey (inKey:"Preferences:myHidden1")
+    self.myHidden2_property.readInPreferencesWithKey (inKey:"Preferences:myHidden2")
   //--- Property validation function
   //---
     NotificationCenter.default.addObserver (self,
@@ -137,13 +174,13 @@ var g_Preferences : Preferences? = nil
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install bindings
-    myHidden1Switch?.bind_value (self.myHidden1, file: #file, line: #line)
-    myHidden2Switch?.bind_value (self.myHidden2, file: #file, line: #line)
+    myHidden1Switch?.bind_value (self.myHidden1_property, file: #file, line: #line)
+    myHidden2Switch?.bind_value (self.myHidden2_property, file: #file, line: #line)
   //--- Install multiple bindings
-    mButton?.bind_hidden (
-      [self.myHidden1, self.myHidden2],
+    self.mButton?.bind_hidden (
+      [self.myHidden1_property, self.myHidden2_property],
       computeFunction:{
-        return (self.myHidden1.prop || self.myHidden2.prop)
+        return (self.myHidden1_property.prop || self.myHidden2_property.prop)
       },
       file: #file, line: #line
     )
@@ -157,8 +194,8 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    myHidden1.storeInPreferencesWithKey (inKey:"Preferences:myHidden1")
-    myHidden2.storeInPreferencesWithKey (inKey:"Preferences:myHidden2")
+    self.myHidden1_property.storeInPreferencesWithKey (inKey:"Preferences:myHidden1")
+    self.myHidden2_property.storeInPreferencesWithKey (inKey:"Preferences:myHidden2")
   }
 
   //····················································································································

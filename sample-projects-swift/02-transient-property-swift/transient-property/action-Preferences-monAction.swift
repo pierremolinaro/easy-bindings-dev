@@ -14,8 +14,8 @@ import Cocoa
 extension Preferences {
   func monAction (_ sender : NSObject) {
 //--- START OF USER ZONE 2
-   self.mFirstName.setProp ("Amédée")
-   self.mLastName.setProp ("Schmurtz")
+   self.mFirstName = "Amédée"
+   self.mLastName = "Schmurtz"
 //--- END OF USER ZONE 2
   }
 }

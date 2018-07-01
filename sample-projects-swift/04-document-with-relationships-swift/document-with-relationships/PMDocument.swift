@@ -37,11 +37,11 @@ import Cocoa
   //    Transient properties
   //····················································································································
 
-  var selectionCountString = EBTransientProperty_String ()
-  var evenValueString = EBTransientProperty_String ()
-  var canRemoveString = EBTransientProperty_String ()
-  var countItemMessage = EBTransientProperty_String ()
-  var total = EBTransientProperty_Int ()
+  var selectionCountString_property = EBTransientProperty_String ()
+  var evenValueString_property = EBTransientProperty_String ()
+  var canRemoveString_property = EBTransientProperty_String ()
+  var countItemMessage_property = EBTransientProperty_String ()
+  var total_property = EBTransientProperty_Int ()
 
   //····················································································································
   //    Transient arraies
@@ -243,166 +243,166 @@ import Cocoa
 //                              errorMessage: "the 'valueDetailTextField' outlet is not an instance of 'EBIntField'") ;
     }
   //--------------------------- Array controllers
-    nameController.bind_modelAndView (
-      model: rootObject.mNames,
+    self.nameController.bind_modelAndView (
+      model: self.rootObject.mNames_property,
       tableViewArray: [mNamesTableView!],
       file: #file,
       line: #line
     )
-    otherController.bind_modelAndView (
-      model: rootObject.mNames,
+    self.otherController.bind_modelAndView (
+      model: self.rootObject.mNames_property,
       tableViewArray: [mOtherTableView!],
       file: #file,
       line: #line
     )
-    selController.bind_modelAndView (
-      model: nameController.selectedArray,
+    self.selController.bind_modelAndView (
+      model: self.nameController.selectedArray_property,
       tableViewArray: [mSelectionTableView!],
       file: #file,
       line: #line
     )
   //--------------------------- Selection controllers
     detailController.bind_selection (
-      model: nameController.selectedArray,
+      model: nameController.selectedArray_property,
       file: #file,
       line: #line
     )
   //--------------------------- Custom object controllers
   //--- Transient compute functions
-    selectionCountString.readModelFunction = { [weak self] in
+    self.selectionCountString_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.selController.sortedArray.count.prop.kind ()
+        let kind = unwSelf.selController.sortedArray_property.count_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.selController.sortedArray.count.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_PMDocument_selectionCountString (v0))
+          switch (unwSelf.selController.sortedArray_property.count_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_PMDocument_selectionCountString (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    evenValueString.readModelFunction = { [weak self] in
+    self.evenValueString_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.otherController.sortedArray.count.prop.kind ()
+        let kind = unwSelf.otherController.sortedArray_property.count_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.otherController.sortedArray.count.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_PMDocument_evenValueString (v0))
+          switch (unwSelf.otherController.sortedArray_property.count_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_PMDocument_evenValueString (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    canRemoveString.readModelFunction = { [weak self] in
+    self.canRemoveString_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.nameController.selectedArray.count.prop.kind ()
+        let kind = unwSelf.nameController.selectedArray_property.count_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.nameController.selectedArray.count.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_PMDocument_canRemoveString (v0))
+          switch (unwSelf.nameController.selectedArray_property.count_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_PMDocument_canRemoveString (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    countItemMessage.readModelFunction = { [weak self] in
+    self.countItemMessage_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.rootObject.mNames.count.prop.kind ()
+        let kind = unwSelf.rootObject.mNames_property.count_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.rootObject.mNames.count.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_PMDocument_countItemMessage (v0))
+          switch (unwSelf.rootObject.mNames_property.count_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_PMDocument_countItemMessage (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
-    total.readModelFunction = { [weak self] in
+    self.total_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.rootObject.mNames.prop.kind ()
+        let kind = unwSelf.rootObject.mNames_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.rootObject.mNames.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_PMDocument_total (v0))
+          switch (unwSelf.rootObject.mNames_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_PMDocument_total (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
   //--- Install property observers for transients
-    selController.sortedArray.count.addEBObserver (selectionCountString)
-    otherController.sortedArray.count.addEBObserver (evenValueString)
-    nameController.selectedArray.count.addEBObserver (canRemoveString)
-    rootObject.mNames.count.addEBObserver (countItemMessage)
-    self.rootObject.mNames.addEBObserverOf_aValue (total)
+    self.selController.sortedArray_property.count_property.addEBObserver (self.selectionCountString_property)
+    self.otherController.sortedArray_property.count_property.addEBObserver (self.evenValueString_property)
+    self.nameController.selectedArray_property.count_property.addEBObserver (self.canRemoveString_property)
+    self.rootObject.mNames_property.count_property.addEBObserver (self.countItemMessage_property)
+    self.rootObject.mNames_property.addEBObserverOf_aValue (self.total_property)
   //--- Install regular bindings
-    mSelectionCountTextField?.bind_valueObserver (self.selectionCountString, file: #file, line: #line)
-    evenValueTextField?.bind_valueObserver (self.evenValueString, file: #file, line: #line)
-    canRemoveTextField?.bind_valueObserver (self.canRemoveString, file: #file, line: #line)
-    countItemTextField?.bind_valueObserver (self.rootObject.mNames.count, file: #file, line: #line, autoFormatter:false)
-    countItemMessageTextField?.bind_valueObserver (self.countItemMessage, file: #file, line: #line)
-    totalTextField?.bind_valueObserver (self.total, file: #file, line: #line, autoFormatter:false)
-    nameDetailTextField?.bind_value (self.detailController.name, file: #file, line: #line, sendContinously:true)
-    valueDetailTextField?.bind_value (self.detailController.aValue, file: #file, line: #line, sendContinously:true, autoFormatter:false)
+    mSelectionCountTextField?.bind_valueObserver (self.selectionCountString_property, file: #file, line: #line)
+    evenValueTextField?.bind_valueObserver (self.evenValueString_property, file: #file, line: #line)
+    canRemoveTextField?.bind_valueObserver (self.canRemoveString_property, file: #file, line: #line)
+    countItemTextField?.bind_valueObserver (self.rootObject.mNames_property.count_property, file: #file, line: #line, autoFormatter:false)
+    countItemMessageTextField?.bind_valueObserver (self.countItemMessage_property, file: #file, line: #line)
+    totalTextField?.bind_valueObserver (self.total_property, file: #file, line: #line, autoFormatter:false)
+    nameDetailTextField?.bind_value (self.detailController.name_property, file: #file, line: #line, sendContinously:true)
+    valueDetailTextField?.bind_value (self.detailController.aValue_property, file: #file, line: #line, sendContinously:true, autoFormatter:false)
   //--- Install multiple bindings
     removePathButton?.bind_enabled (
-      [self.nameController.selectedArray.count],
+      [self.nameController.selectedArray_property.count_property],
       computeFunction:{
-        return (self.nameController.selectedArray.count.prop > EBProperty.singleSelection (0))
+        return (self.nameController.selectedArray_property.count_property.prop > EBSelection.single (0))
       },
       file: #file, line: #line
     )
     incrementButton?.bind_enabled (
-      [self.rootObject.mNames.count],
+      [self.rootObject.mNames_property.count_property],
       computeFunction:{
-        return (self.rootObject.mNames.count.prop > EBProperty.singleSelection (0))
+        return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
       },
       file: #file, line: #line
     )
     decrementButton?.bind_enabled (
-      [self.rootObject.mNames.count],
+      [self.rootObject.mNames_property.count_property],
       computeFunction:{
-        return (self.rootObject.mNames.count.prop > EBProperty.singleSelection (0))
+        return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
       },
       file: #file, line: #line
     )
@@ -439,11 +439,11 @@ import Cocoa
     incrementButton?.unbind_enabled ()
     decrementButton?.unbind_enabled ()
   //--- Uninstall compute functions for transients
-    selectionCountString.readModelFunction = nil
-    evenValueString.readModelFunction = nil
-    canRemoveString.readModelFunction = nil
-    countItemMessage.readModelFunction = nil
-    total.readModelFunction = nil
+    self.selectionCountString_property.readModelFunction = nil
+    self.evenValueString_property.readModelFunction = nil
+    self.canRemoveString_property.readModelFunction = nil
+    self.countItemMessage_property.readModelFunction = nil
+    self.total_property.readModelFunction = nil
   //--------------------------- Unbind array controllers
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()
@@ -451,11 +451,11 @@ import Cocoa
   //--------------------------- Unbind selection controllers
     detailController.unbind_selection ()
   //--- Uninstall property observers for transients
-    selController.sortedArray.count.removeEBObserver (selectionCountString)
-    otherController.sortedArray.count.removeEBObserver (evenValueString)
-    nameController.selectedArray.count.removeEBObserver (canRemoveString)
-    rootObject.mNames.count.removeEBObserver (countItemMessage)
-    self.rootObject.mNames.removeEBObserverOf_aValue (total)
+    self.selController.sortedArray_property.count_property.removeEBObserver (self.selectionCountString_property)
+    self.otherController.sortedArray_property.count_property.removeEBObserver (self.evenValueString_property)
+    self.nameController.selectedArray_property.count_property.removeEBObserver (self.canRemoveString_property)
+    self.rootObject.mNames_property.count_property.removeEBObserver (self.countItemMessage_property)
+    self.rootObject.mNames_property.removeEBObserverOf_aValue (self.total_property)
   //--------------------------- Remove targets / actions
     addPathButton?.target = nil
     removePathButton?.target = nil

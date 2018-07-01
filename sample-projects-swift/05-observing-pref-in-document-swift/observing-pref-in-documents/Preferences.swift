@@ -17,12 +17,40 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   @IBOutlet var myPrefStringTextField : EBTextField? = nil
- 
+  //····················································································································
+  //   Accessing myPrefString stored property
+  //····················································································································
+
+  var myPrefString : String {
+    get {
+      return self.myPrefString_property.propval
+    }
+    set {
+      self.myPrefString_property.setProp (newValue)
+    }
+  }
+
+  var myPrefString_property_selection : EBSelection <String> {
+    get {
+      return self.myPrefString_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing prefTransientString transient property
+  //····················································································································
+
+  var prefTransientString_property_selection : EBSelection <String> {
+    get {
+      return self.prefTransientString_property.prop
+    }
+  }
+
   //····················································································································
   //    Simple Stored Properties
   //····················································································································
 
-  var myPrefString = EBStoredProperty_String ("pref string")
+  var myPrefString_property = EBStoredProperty_String ("pref string")
 
   //····················································································································
   //    Stored Array Properties
@@ -33,7 +61,7 @@ var g_Preferences : Preferences? = nil
   //    Transient properties
   //····················································································································
 
-  var prefTransientString = EBTransientProperty_String ()
+  var prefTransientString_property = EBTransientProperty_String ()
 
 
   //····················································································································
@@ -50,7 +78,7 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    myPrefString.readInPreferencesWithKey (inKey:"Preferences:myPrefString")
+    self.myPrefString_property.readInPreferencesWithKey (inKey:"Preferences:myPrefString")
   //--- Property validation function
   //---
     NotificationCenter.default.addObserver (self,
@@ -71,30 +99,30 @@ var g_Preferences : Preferences? = nil
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myPrefStringTextField' outlet is nil")
     }
   //--- Install compute functions for transients
-    prefTransientString.readModelFunction = { [weak self] in
+    self.prefTransientString_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
-        let kind = unwSelf.myPrefString.prop.kind ()
+        let kind = unwSelf.myPrefString_property_selection.kind ()
         switch kind {
         case .noSelectionKind :
-          return .noSelection
+          return .empty
         case .multipleSelectionKind :
-          return .multipleSelection
+          return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.myPrefString.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_Preferences_prefTransientString (v0))
+          switch (unwSelf.myPrefString_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_Preferences_prefTransientString (v0))
           default :
-            return .noSelection
+            return .empty
           }
         }
       }else{
-        return .noSelection
+        return .empty
       }
     }
   //--- Install property observers for transients
-    myPrefString.addEBObserver (prefTransientString)
+    self.myPrefString_property.addEBObserver (self.prefTransientString_property)
   //--- Install bindings
-    myPrefStringTextField?.bind_value (self.myPrefString, file: #file, line: #line, sendContinously:false)
+    myPrefStringTextField?.bind_value (self.myPrefString_property, file: #file, line: #line, sendContinously:false)
   //--- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
@@ -106,7 +134,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-    myPrefString.storeInPreferencesWithKey (inKey:"Preferences:myPrefString")
+    self.myPrefString_property.storeInPreferencesWithKey (inKey:"Preferences:myPrefString")
   }
 
   //····················································································································

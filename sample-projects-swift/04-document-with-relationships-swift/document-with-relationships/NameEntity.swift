@@ -8,14 +8,55 @@ import Cocoa
 //    Entity: NameEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
+class NameEntity : EBManagedObject,
+  NameEntity_name,
+  NameEntity_aValue {
 
   //····················································································································
-  //    Properties
+  //   Accessing name stored property
   //····················································································································
 
-  var name = EBStoredProperty_String ("Name")
-  var aValue = EBStoredProperty_Int (100)
+  var name : String {
+    get {
+      return self.name_property.propval
+    }
+    set {
+      self.name_property.setProp (newValue)
+    }
+  }
+
+  var name_property_selection : EBSelection <String> {
+    get {
+      return self.name_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing aValue stored property
+  //····················································································································
+
+  var aValue : Int {
+    get {
+      return self.aValue_property.propval
+    }
+    set {
+      self.aValue_property.setProp (newValue)
+    }
+  }
+
+  var aValue_property_selection : EBSelection <Int> {
+    get {
+      return self.aValue_property.prop
+    }
+  }
+
+  //····················································································································
+  //    Stored Properties
+  //····················································································································
+
+  var name_property = EBStoredProperty_String ("Name")
+  var aValue_property = EBStoredProperty_Int (100)
+
   //····················································································································
   //    Transient properties
   //····················································································································
@@ -25,7 +66,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
   //    Relationships
   //····················································································································
 
-  var mRoot = ToOneRelationship_NameEntity_mRoot ()
+  var mRoot_property = ToOneRelationship_NameEntity_mRoot ()
 
   //····················································································································
   //    init
@@ -36,10 +77,10 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
   //--- Install compute functions for transients
   //--- Install property observers for transients
   //--- Install undoers for properties
-    self.name.undoManager = undoManager ()
-    self.aValue.undoManager = undoManager ()
+    self.name_property.undoManager = undoManager ()
+    self.aValue_property.undoManager = undoManager ()
   //--- Install owner for relationships
-    mRoot.owner = self
+    self.mRoot_property.owner = self
   //--- register properties for handling signature
   }
 
@@ -57,29 +98,29 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
     super.populateExplorerWindow (&y, view:view)
     createEntryForPropertyNamed (
       "name",
-      idx:self.name.mEasyBindingsObjectIndex,
+      idx:self.name_property.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&self.name.mObserverExplorer,
-      valueExplorer:&self.name.mValueExplorer
+      observerExplorer:&self.name_property.mObserverExplorer,
+      valueExplorer:&self.name_property.mValueExplorer
     )
     createEntryForPropertyNamed (
       "aValue",
-      idx:self.aValue.mEasyBindingsObjectIndex,
+      idx:self.aValue_property.mEasyBindingsObjectIndex,
       y:&y,
       view:view,
-      observerExplorer:&self.aValue.mObserverExplorer,
-      valueExplorer:&self.aValue.mValueExplorer
+      observerExplorer:&self.aValue_property.mObserverExplorer,
+      valueExplorer:&self.aValue_property.mValueExplorer
     )
     createEntryForTitle ("Properties", y:&y, view:view)
     createEntryForTitle ("Transients", y:&y, view:view)
     createEntryForTitle ("ToMany Relationships", y:&y, view:view)
     createEntryForToOneRelationshipNamed (
       "mRoot",
-      idx:mRoot.mEasyBindingsObjectIndex,
+      idx:self.mRoot_property.mEasyBindingsObjectIndex,
       y: &y,
       view: view,
-      valueExplorer:&mRoot.mValueExplorer
+      valueExplorer:&self.mRoot_property.mValueExplorer
     )
     createEntryForTitle ("ToOne Relationships", y:&y, view:view)
   }
@@ -89,12 +130,12 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
   //····················································································································
 
   override func clearObjectExplorer () {
-    self.name.mObserverExplorer = nil
-    self.name.mValueExplorer = nil
-    self.aValue.mObserverExplorer = nil
-    self.aValue.mValueExplorer = nil
-    mRoot.mObserverExplorer = nil
-    mRoot.mValueExplorer = nil
+    self.name_property.mObserverExplorer = nil
+    self.name_property.mValueExplorer = nil
+    self.aValue_property.mObserverExplorer = nil
+    self.aValue_property.mValueExplorer = nil
+    self.mRoot_property.mObserverExplorer = nil
+    self.mRoot_property.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -104,8 +145,8 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    self.name.storeIn (dictionary: ioDictionary, forKey: "name")
-    self.aValue.storeIn (dictionary: ioDictionary, forKey: "aValue")
+    self.name_property.storeIn (dictionary: ioDictionary, forKey: "name")
+    self.aValue_property.storeIn (dictionary: ioDictionary, forKey: "aValue")
   }
 
   //····················································································································
@@ -115,8 +156,8 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    self.name.readFrom (dictionary: inDictionary, forKey:"name")
-    self.aValue.readFrom (dictionary: inDictionary, forKey:"aValue")
+    self.name_property.readFrom (dictionary: inDictionary, forKey:"name")
+    self.aValue_property.readFrom (dictionary: inDictionary, forKey:"aValue")
   }
 
   //····················································································································
@@ -124,7 +165,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
   //····················································································································
 
   override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
-    self.mRoot.setProp (nil) // Set relationship to nil
+    self.mRoot_property.setProp (nil) // Set relationship to nil
     super.cascadeObjectRemoving (&ioObjectsToRemove)
   }
 
@@ -134,7 +175,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
 
   override func resetToOneRelationships () {
     super.resetToOneRelationships ()
-    mRoot.setProp (nil)
+    self.mRoot_property.setProp (nil)
   }
 
   //····················································································································
@@ -143,7 +184,7 @@ class NameEntity : EBManagedObject, NameEntity_name, NameEntity_aValue {
 
   override func accessibleObjects (objects : inout [EBManagedObject]) {
     super.accessibleObjects (objects: &objects)
-    if let object = mRoot.propval {
+    if let object = self.mRoot_property.propval {
       objects.append (object)
     }
   }
@@ -170,11 +211,11 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
     self.addEBObserver (inObserver)
     mObserversOf_name.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.name.addEBObserver (inObserver)
+        managedObject.name_property.addEBObserver (inObserver)
       }
     }
   }
@@ -185,11 +226,11 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
     self.removeEBObserver (inObserver)
     mObserversOf_name.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.name.removeEBObserver (inObserver)
+        managedObject.name_property.removeEBObserver (inObserver)
       }
     }
   }
@@ -199,7 +240,7 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
   final func addEBObserversOf_name_toElementsOfSet (_ inSet : Set<NameEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_name {
-        managedObject.name.addEBObserver (observer)
+        managedObject.name_property.addEBObserver (observer)
       }
     }
   }
@@ -210,7 +251,7 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
     for observer in mObserversOf_name {
       observer.postEvent ()
       for managedObject in inSet {
-        managedObject.name.removeEBObserver (observer)
+        managedObject.name_property.removeEBObserver (observer)
       }
     }
   }
@@ -227,11 +268,11 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
     self.addEBObserver (inObserver)
     mObserversOf_aValue.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.aValue.addEBObserver (inObserver)
+        managedObject.aValue_property.addEBObserver (inObserver)
       }
     }
   }
@@ -242,11 +283,11 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
     self.removeEBObserver (inObserver)
     mObserversOf_aValue.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.aValue.removeEBObserver (inObserver)
+        managedObject.aValue_property.removeEBObserver (inObserver)
       }
     }
   }
@@ -256,7 +297,7 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
   final func addEBObserversOf_aValue_toElementsOfSet (_ inSet : Set<NameEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_aValue {
-        managedObject.aValue.addEBObserver (observer)
+        managedObject.aValue_property.addEBObserver (observer)
       }
     }
   }
@@ -267,7 +308,7 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
     for observer in mObserversOf_aValue {
       observer.postEvent ()
       for managedObject in inSet {
-        managedObject.aValue.removeEBObserver (observer)
+        managedObject.aValue_property.removeEBObserver (observer)
       }
     }
   }
@@ -282,9 +323,9 @@ class ReadOnlyArrayOf_NameEntity : ReadOnlyAbstractArrayProperty <NameEntity> {
 
 class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
-  var readModelFunction : Optional<() -> EBProperty < [NameEntity] > >
+  var readModelFunction : Optional<() -> EBSelection < [NameEntity] > >
 
-  private var prop_cache : EBProperty < [NameEntity] >? 
+  private var prop_cache : EBSelection < [NameEntity] >? 
 
   //····················································································································
 
@@ -296,15 +337,15 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
   private var mSet = Set <NameEntity> ()
 
-  override var prop : EBProperty < [NameEntity] > {
+  override var prop : EBSelection < [NameEntity] > {
     get {
       if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <NameEntity>
         switch prop_cache! {
-        case .multipleSelection, .noSelection :
+        case .multiple, .empty :
           newSet = Set <NameEntity> ()
-        case .singleSelection (let array) :
+        case .single (let array) :
           newSet = Set (array)
         }
      //--- Removed object set
@@ -323,7 +364,7 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
         mSet = newSet
       }
       if prop_cache == nil {
-        prop_cache = .noSelection
+        prop_cache = .empty
       }
       return prop_cache!
     }
@@ -350,13 +391,13 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol NameEntity_name : class {
-  var name : EBStoredProperty_String { get }
+  var name : String { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol NameEntity_aValue : class {
-  var aValue : EBStoredProperty_Int { get }
+  var aValue : Int { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -368,9 +409,9 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
         switch prop {
-        case .noSelection, .multipleSelection :
+        case .empty, .multiple :
           break ;
-        case .singleSelection (let v) :
+        case .single (let v) :
           updateManagedObjectToOneRelationshipDisplay (object: v, button:unwrappedExplorer)
         }
       }
@@ -396,11 +437,11 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
         }
       //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          unwrappedOldValue.mNames.remove (unwrappedOwner)
+          unwrappedOldValue.mNames_property.remove (unwrappedOwner)
         }
       //--- Set new opposite relation ship
         if let unwrappedValue = mValue {
-          unwrappedValue.mNames.add (unwrappedOwner)
+          unwrappedValue.mNames_property.add (unwrappedOwner)
         }
       //--- Notify observers
         postEvent ()
@@ -410,7 +451,7 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
 
   var propval : MyRootEntity? { get { return mValue } }
 
-  var prop : EBProperty <MyRootEntity?> { get { return .singleSelection (mValue) } }
+  var prop : EBSelection <MyRootEntity?> { get { return .single (mValue) } }
 
   func setProp (_ value : MyRootEntity?) { mValue = value }
 

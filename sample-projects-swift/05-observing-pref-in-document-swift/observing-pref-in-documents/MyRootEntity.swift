@@ -5,6 +5,235 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    Entity: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class MyRootEntity : EBManagedObject,
+  MyRootEntity_docString,
+  MyRootEntity_transientConcatString,
+  MyRootEntity_otherTransientConcatString {
+
+  //····················································································································
+  //   Accessing docString stored property
+  //····················································································································
+
+  var docString : String {
+    get {
+      return self.docString_property.propval
+    }
+    set {
+      self.docString_property.setProp (newValue)
+    }
+  }
+
+  var docString_property_selection : EBSelection <String> {
+    get {
+      return self.docString_property.prop
+    }
+  }
+
+  //····················································································································
+  //   Accessing transientConcatString transient property
+  //····················································································································
+
+  var transientConcatString_property_selection : EBSelection <String> {
+    get {
+      return self.transientConcatString_property.prop
+    }
+  }
+
+  var transientConcatString : EBSelection <String> {
+    get {
+      return transientConcatString_property_selection
+    }
+  }
+
+  //····················································································································
+  //   Accessing otherTransientConcatString transient property
+  //····················································································································
+
+  var otherTransientConcatString_property_selection : EBSelection <String> {
+    get {
+      return self.otherTransientConcatString_property.prop
+    }
+  }
+
+  var otherTransientConcatString : EBSelection <String> {
+    get {
+      return otherTransientConcatString_property_selection
+    }
+  }
+
+  //····················································································································
+  //    Stored Properties
+  //····················································································································
+
+  var docString_property = EBStoredProperty_String ("doc string")
+
+  //····················································································································
+  //    Transient properties
+  //····················································································································
+
+  var transientConcatString_property = EBTransientProperty_String ()
+  var otherTransientConcatString_property = EBTransientProperty_String ()
+
+  //····················································································································
+  //    Relationships
+  //····················································································································
+
+
+  //····················································································································
+  //    init
+  //····················································································································
+
+  override init (managedObjectContext : EBManagedObjectContext) {
+    super.init (managedObjectContext:managedObjectContext)
+  //--- Install compute functions for transients
+    self.transientConcatString_property.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        var kind = unwSelf.docString_property_selection.kind ()
+        kind &= g_Preferences!.myPrefString_property_selection.kind ()
+        kind &= g_Preferences!.prefTransientString_property_selection.kind ()
+        switch kind {
+        case .noSelectionKind :
+          return .empty
+        case .multipleSelectionKind :
+          return .multiple
+        case .singleSelectionKind :
+          switch (unwSelf.docString_property.prop, g_Preferences!.myPrefString_property.prop, g_Preferences!.prefTransientString_property.prop) {
+          case (.single (let v0), .single (let v1), .single (let v2)) :
+            return .single (compute_MyRootEntity_transientConcatString (v0, v1, v2))
+          default :
+            return .empty
+          }
+        }
+      }else{
+        return .empty
+      }
+    }
+    self.otherTransientConcatString_property.readModelFunction = {
+        let kind = g_Preferences!.myPrefString_property_selection.kind ()
+        switch kind {
+        case .noSelectionKind :
+          return .empty
+        case .multipleSelectionKind :
+          return .multiple
+        case .singleSelectionKind :
+          switch (g_Preferences!.myPrefString_property.prop) {
+          case (.single (let v0)) :
+            return .single (compute_MyRootEntity_otherTransientConcatString (v0))
+          default :
+            return .empty
+          }
+        }
+    }
+  //--- Install property observers for transients
+    self.docString_property.addEBObserver (self.transientConcatString_property)
+    g_Preferences?.myPrefString_property.addEBObserver (self.transientConcatString_property)
+    g_Preferences?.prefTransientString_property.addEBObserver (self.transientConcatString_property)
+    g_Preferences?.myPrefString_property.addEBObserver (self.otherTransientConcatString_property)
+  //--- Install undoers for properties
+    self.docString_property.undoManager = undoManager ()
+  //--- Install owner for relationships
+  //--- register properties for handling signature
+  }
+
+  //····················································································································
+
+  deinit {
+  //--- Remove observers
+    self.docString_property.removeEBObserver (self.transientConcatString_property)
+    g_Preferences?.myPrefString_property.removeEBObserver (self.transientConcatString_property)
+    g_Preferences?.prefTransientString_property.removeEBObserver (self.transientConcatString_property)
+    g_Preferences?.myPrefString_property.removeEBObserver (self.otherTransientConcatString_property)
+  }
+
+  //····················································································································
+  //    populateExplorerWindow
+  //····················································································································
+
+  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+    super.populateExplorerWindow (&y, view:view)
+    createEntryForPropertyNamed (
+      "docString",
+      idx:self.docString_property.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.docString_property.mObserverExplorer,
+      valueExplorer:&self.docString_property.mValueExplorer
+    )
+    createEntryForTitle ("Properties", y:&y, view:view)
+    createEntryForPropertyNamed (
+      "transientConcatString",
+      idx:self.transientConcatString_property.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.transientConcatString_property.mObserverExplorer,
+      valueExplorer:&self.transientConcatString_property.mValueExplorer
+    )
+    createEntryForPropertyNamed (
+      "otherTransientConcatString",
+      idx:self.otherTransientConcatString_property.mEasyBindingsObjectIndex,
+      y:&y,
+      view:view,
+      observerExplorer:&self.otherTransientConcatString_property.mObserverExplorer,
+      valueExplorer:&self.otherTransientConcatString_property.mValueExplorer
+    )
+    createEntryForTitle ("Transients", y:&y, view:view)
+    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
+    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
+  }
+
+  //····················································································································
+  //    clearObjectExplorer
+  //····················································································································
+
+  override func clearObjectExplorer () {
+    self.docString_property.mObserverExplorer = nil
+    self.docString_property.mValueExplorer = nil
+    super.clearObjectExplorer ()
+  }
+
+  //····················································································································
+  //    saveIntoDictionary
+  //····················································································································
+
+  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
+    super.saveIntoDictionary (ioDictionary)
+    self.docString_property.storeIn (dictionary: ioDictionary, forKey: "docString")
+  }
+
+  //····················································································································
+  //    setUpWithDictionary
+  //····················································································································
+
+  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+                                     managedObjectArray : inout [EBManagedObject]) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
+    self.docString_property.readFrom (dictionary: inDictionary, forKey:"docString")
+  }
+
+  //····················································································································
+  //   cascadeObjectRemoving
+  //····················································································································
+
+  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
+    super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
+
+  //····················································································································
+  //   accessibleObjects
+  //····················································································································
+
+  override func accessibleObjects (objects : inout [EBManagedObject]) {
+    super.accessibleObjects (objects: &objects)
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    ReadOnlyArrayOf_MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -22,11 +251,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.addEBObserver (inObserver)
     mObserversOf_docString.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.docString.addEBObserver (inObserver)
+        managedObject.docString_property.addEBObserver (inObserver)
       }
     }
   }
@@ -37,11 +266,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.removeEBObserver (inObserver)
     mObserversOf_docString.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.docString.removeEBObserver (inObserver)
+        managedObject.docString_property.removeEBObserver (inObserver)
       }
     }
   }
@@ -51,7 +280,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   final func addEBObserversOf_docString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_docString {
-        managedObject.docString.addEBObserver (observer)
+        managedObject.docString_property.addEBObserver (observer)
       }
     }
   }
@@ -62,7 +291,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     for observer in mObserversOf_docString {
       observer.postEvent ()
       for managedObject in inSet {
-        managedObject.docString.removeEBObserver (observer)
+        managedObject.docString_property.removeEBObserver (observer)
       }
     }
   }
@@ -79,11 +308,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.addEBObserver (inObserver)
     mObserversOf_transientConcatString.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.transientConcatString.addEBObserver (inObserver)
+        managedObject.transientConcatString_property.addEBObserver (inObserver)
       }
     }
   }
@@ -94,11 +323,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.removeEBObserver (inObserver)
     mObserversOf_transientConcatString.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.transientConcatString.removeEBObserver (inObserver)
+        managedObject.transientConcatString_property.removeEBObserver (inObserver)
       }
     }
   }
@@ -108,7 +337,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   final func addEBObserversOf_transientConcatString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_transientConcatString {
-        managedObject.transientConcatString.addEBObserver (observer)
+        managedObject.transientConcatString_property.addEBObserver (observer)
       }
     }
   }
@@ -118,7 +347,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   final func removeEBObserversOf_transientConcatString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_transientConcatString {
-        managedObject.transientConcatString.removeEBObserver (observer)
+        managedObject.transientConcatString_property.removeEBObserver (observer)
       }
     }
   }
@@ -135,11 +364,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.addEBObserver (inObserver)
     mObserversOf_otherTransientConcatString.insert (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.otherTransientConcatString.addEBObserver (inObserver)
+        managedObject.otherTransientConcatString_property.addEBObserver (inObserver)
       }
     }
   }
@@ -150,11 +379,11 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
     self.removeEBObserver (inObserver)
     mObserversOf_otherTransientConcatString.remove (inObserver)
     switch prop {
-    case .noSelection, .multipleSelection :
+    case .empty, .multiple :
       break
-    case .singleSelection (let v) :
+    case .single (let v) :
       for managedObject in v {
-        managedObject.otherTransientConcatString.removeEBObserver (inObserver)
+        managedObject.otherTransientConcatString_property.removeEBObserver (inObserver)
       }
     }
   }
@@ -164,7 +393,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   final func addEBObserversOf_otherTransientConcatString_toElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_otherTransientConcatString {
-        managedObject.otherTransientConcatString.addEBObserver (observer)
+        managedObject.otherTransientConcatString_property.addEBObserver (observer)
       }
     }
   }
@@ -174,7 +403,7 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
   final func removeEBObserversOf_otherTransientConcatString_fromElementsOfSet (_ inSet : Set<MyRootEntity>) {
     for managedObject in inSet {
       for observer in mObserversOf_otherTransientConcatString {
-        managedObject.otherTransientConcatString.removeEBObserver (observer)
+        managedObject.otherTransientConcatString_property.removeEBObserver (observer)
       }
     }
   }
@@ -189,9 +418,9 @@ class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity
 
 class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
-  var readModelFunction : Optional<() -> EBProperty < [MyRootEntity] > >
+  var readModelFunction : Optional<() -> EBSelection < [MyRootEntity] > >
 
-  private var prop_cache : EBProperty < [MyRootEntity] >? 
+  private var prop_cache : EBSelection < [MyRootEntity] >? 
 
   //····················································································································
 
@@ -203,15 +432,15 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   private var mSet = Set <MyRootEntity> ()
 
-  override var prop : EBProperty < [MyRootEntity] > {
+  override var prop : EBSelection < [MyRootEntity] > {
     get {
       if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
         prop_cache = unwrappedComputeFunction ()
         let newSet : Set <MyRootEntity>
         switch prop_cache! {
-        case .multipleSelection, .noSelection :
+        case .multiple, .empty :
           newSet = Set <MyRootEntity> ()
-        case .singleSelection (let array) :
+        case .single (let array) :
           newSet = Set (array)
         }
      //--- Removed object set
@@ -232,7 +461,7 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
         mSet = newSet
       }
       if prop_cache == nil {
-        prop_cache = .noSelection
+        prop_cache = .empty
       }
       return prop_cache!
     }
@@ -259,197 +488,23 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_docString : class {
-  var docString : EBStoredProperty_String { get }
+  var docString : String { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_transientConcatString : class {
-  var transientConcatString : EBTransientProperty_String { get }
+//  var transientConcatString_property_selection : EBSelection < String > { get }
+  var transientConcatString : EBSelection < String > { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_otherTransientConcatString : class {
-  var otherTransientConcatString : EBTransientProperty_String { get }
+//  var otherTransientConcatString_property_selection : EBSelection < String > { get }
+  var otherTransientConcatString : EBSelection < String > { get }
 }
 
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    Entity: MyRootEntity
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class MyRootEntity : EBManagedObject, MyRootEntity_docString, MyRootEntity_transientConcatString, MyRootEntity_otherTransientConcatString
-{
-
-  //····················································································································
-  //    Properties
-  //····················································································································
-
-  var docString = EBStoredProperty_String ("doc string")
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-  var transientConcatString = EBTransientProperty_String ()
-  var otherTransientConcatString = EBTransientProperty_String ()
-
-  //····················································································································
-  //    Relationships
-  //····················································································································
-
-
-  //····················································································································
-  //    init
-  //····················································································································
-
-  override init (managedObjectContext : EBManagedObjectContext) {
-    super.init (managedObjectContext:managedObjectContext)
-  //--- Install compute functions for transients
-    transientConcatString.readModelFunction = { [weak self] in
-      if let unwSelf = self {
-        var kind = unwSelf.docString.prop.kind ()
-        kind &= g_Preferences!.myPrefString.prop.kind ()
-        kind &= g_Preferences!.prefTransientString.prop.kind ()
-        switch kind {
-        case .noSelectionKind :
-          return .noSelection
-        case .multipleSelectionKind :
-          return .multipleSelection
-        case .singleSelectionKind :
-          switch (unwSelf.docString.prop, g_Preferences!.myPrefString.prop, g_Preferences!.prefTransientString.prop) {
-          case (.singleSelection (let v0), .singleSelection (let v1), .singleSelection (let v2)) :
-            return .singleSelection (compute_MyRootEntity_transientConcatString (v0, v1, v2))
-          default :
-            return .noSelection
-          }
-        }
-      }else{
-        return .noSelection
-      }
-    }
-    otherTransientConcatString.readModelFunction = {
-        let kind = g_Preferences!.myPrefString.prop.kind ()
-        switch kind {
-        case .noSelectionKind :
-          return .noSelection
-        case .multipleSelectionKind :
-          return .multipleSelection
-        case .singleSelectionKind :
-          switch (g_Preferences!.myPrefString.prop) {
-          case (.singleSelection (let v0)) :
-            return .singleSelection (compute_MyRootEntity_otherTransientConcatString (v0))
-          default :
-            return .noSelection
-          }
-        }
-    }
-  //--- Install property observers for transients
-    docString.addEBObserver (transientConcatString)
-    g_Preferences?.myPrefString.addEBObserver (transientConcatString)
-    g_Preferences?.prefTransientString.addEBObserver (transientConcatString)
-    g_Preferences?.myPrefString.addEBObserver (otherTransientConcatString)
-  //--- Install undoers for properties
-    self.docString.undoManager = undoManager ()
-  //--- Install owner for relationships
-  //--- register properties for handling signature
-  }
-
-  //····················································································································
-
-  deinit {
-  //--- Remove observers
-    docString.removeEBObserver (transientConcatString)
-    g_Preferences?.myPrefString.removeEBObserver (transientConcatString)
-    g_Preferences?.prefTransientString.removeEBObserver (transientConcatString)
-    g_Preferences?.myPrefString.removeEBObserver (otherTransientConcatString)
-  }
-
-  //····················································································································
-  //    populateExplorerWindow
-  //····················································································································
-
-  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
-    super.populateExplorerWindow (&y, view:view)
-    createEntryForPropertyNamed (
-      "docString",
-      idx:self.docString.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.docString.mObserverExplorer,
-      valueExplorer:&self.docString.mValueExplorer
-    )
-    createEntryForTitle ("Properties", y:&y, view:view)
-    createEntryForPropertyNamed (
-      "transientConcatString",
-      idx:self.transientConcatString.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.transientConcatString.mObserverExplorer,
-      valueExplorer:&self.transientConcatString.mValueExplorer
-    )
-    createEntryForPropertyNamed (
-      "otherTransientConcatString",
-      idx:self.otherTransientConcatString.mEasyBindingsObjectIndex,
-      y:&y,
-      view:view,
-      observerExplorer:&self.otherTransientConcatString.mObserverExplorer,
-      valueExplorer:&self.otherTransientConcatString.mValueExplorer
-    )
-    createEntryForTitle ("Transients", y:&y, view:view)
-    createEntryForTitle ("ToMany Relationships", y:&y, view:view)
-    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
-  }
-
-  //····················································································································
-  //    clearObjectExplorer
-  //····················································································································
-
-  override func clearObjectExplorer () {
-    self.docString.mObserverExplorer = nil
-    self.docString.mValueExplorer = nil
-    super.clearObjectExplorer ()
-  }
-
-  //····················································································································
-  //    saveIntoDictionary
-  //····················································································································
-
-  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
-    super.saveIntoDictionary (ioDictionary)
-    self.docString.storeIn (dictionary: ioDictionary, forKey: "docString")
-  }
-
-  //····················································································································
-  //    setUpWithDictionary
-  //····················································································································
-
-  override func setUpWithDictionary (_ inDictionary : NSDictionary,
-                                     managedObjectArray : inout [EBManagedObject]) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-    self.docString.readFrom (dictionary: inDictionary, forKey:"docString")
-  }
-
-  //····················································································································
-  //   cascadeObjectRemoving
-  //····················································································································
-
-  override func cascadeObjectRemoving () {
-    super.cascadeObjectRemoving ()
-  }
-
-  //····················································································································
-  //   accessibleObjects
-  //····················································································································
-
-  override func accessibleObjects (objects : inout [EBManagedObject]) {
-    super.accessibleObjects (objects: &objects)
-  }
-
-  //····················································································································
-
-}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
