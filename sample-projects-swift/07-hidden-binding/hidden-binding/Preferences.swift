@@ -19,6 +19,7 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mButton : EBButton? = nil
   @IBOutlet var myHidden1Switch : EBSwitch? = nil
   @IBOutlet var myHidden2Switch : EBSwitch? = nil
+
   //····················································································································
   //   Accessing myHidden1 stored property
   //····················································································································
@@ -159,36 +160,46 @@ var g_Preferences : Preferences? = nil
   //--- Set pref window content view
     window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * 2.0, height:OUTLET_HEIGHT * (1.5 * 3.0 + 0.5)))
     window?.contentView = view
-  //--- Check mButton' outlet not nil
+  //--------------------------- Check mButton' outlet not nil
     if nil == mButton {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mButton' outlet is nil")
     }
-  //--- Check myHidden1Switch' outlet not nil
+  //--------------------------- Check myHidden1Switch' outlet not nil
     if nil == myHidden1Switch {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myHidden1Switch' outlet is nil")
     }
-  //--- Check myHidden2Switch' outlet not nil
+  //--------------------------- Check myHidden2Switch' outlet not nil
     if nil == myHidden2Switch {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myHidden2Switch' outlet is nil")
     }
-  //--- Install compute functions for transients
-  //--- Install property observers for transients
-  //--- Install bindings
+  //--------------------------- Install compute functions for transients
+  //--------------------------- Install property observers for transients
+  //--------------------------- Install bindings
     myHidden1Switch?.bind_value (self.myHidden1_property, file: #file, line: #line)
     myHidden2Switch?.bind_value (self.myHidden2_property, file: #file, line: #line)
-  //--- Install multiple bindings
-    self.mButton?.bind_hidden (
-      [self.myHidden1_property, self.myHidden2_property],
-      computeFunction:{
-        return (self.myHidden1_property.prop || self.myHidden2_property.prop)
-      },
-      file: #file, line: #line
-    )
+  //--------------------------- Install multiple bindings
+    do{
+      let controller = MultipleBindingController_hidden (
+        computeFunction:{
+          return (self.myHidden1_property.prop || self.myHidden2_property.prop)
+        },
+        outlet:self.mButton
+      )
+      self.myHidden1_property.addEBObserver (controller)
+      self.myHidden2_property.addEBObserver (controller)
+      mController_mButton_hidden = controller
+    }
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
-  //--- Extern functions
+  //--------------------------- Extern functions
   }
-  
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+  fileprivate var mController_mButton_hidden : MultipleBindingController_hidden?
+
   //····················································································································
   //    applicationWillTerminateAction
   //····················································································································

@@ -1194,7 +1194,7 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mOutletName,
                                                   const class GALGAS_string & in_mBindingName,
-                                                  const class GALGAS_stringlist & in_mBoundObjectStringList,
+                                                  const class GALGAS_boundObjectList & in_mBoundObjectList,
                                                   const class GALGAS_string & in_mBindingOptionsString
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -1213,7 +1213,7 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
 
   public : static class GALGAS_regularBindingsGenerationList constructor_listWithValue (const class GALGAS_string & inOperand0,
                                                                                         const class GALGAS_string & inOperand1,
-                                                                                        const class GALGAS_stringlist & inOperand2,
+                                                                                        const class GALGAS_boundObjectList & inOperand2,
                                                                                         const class GALGAS_string & inOperand3
                                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -1225,7 +1225,7 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
                                                       const class GALGAS_string & inOperand1,
-                                                      const class GALGAS_stringlist & inOperand2,
+                                                      const class GALGAS_boundObjectList & inOperand2,
                                                       const class GALGAS_string & inOperand3
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
@@ -1237,7 +1237,7 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
-                                                       class GALGAS_stringlist constinArgument2,
+                                                       class GALGAS_boundObjectList constinArgument2,
                                                        class GALGAS_string constinArgument3,
                                                        class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
@@ -1245,21 +1245,21 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
 
   public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
                                                   class GALGAS_string & outArgument1,
-                                                  class GALGAS_stringlist & outArgument2,
+                                                  class GALGAS_boundObjectList & outArgument2,
                                                   class GALGAS_string & outArgument3,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
                                                  class GALGAS_string & outArgument1,
-                                                 class GALGAS_stringlist & outArgument2,
+                                                 class GALGAS_boundObjectList & outArgument2,
                                                  class GALGAS_string & outArgument3,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
                                                        class GALGAS_string & outArgument1,
-                                                       class GALGAS_stringlist & outArgument2,
+                                                       class GALGAS_boundObjectList & outArgument2,
                                                        class GALGAS_string & outArgument3,
                                                        class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
@@ -1269,14 +1269,14 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
                                                class GALGAS_string & outArgument1,
-                                               class GALGAS_stringlist & outArgument2,
+                                               class GALGAS_boundObjectList & outArgument2,
                                                class GALGAS_string & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
                                               class GALGAS_string & outArgument1,
-                                              class GALGAS_stringlist & outArgument2,
+                                              class GALGAS_boundObjectList & outArgument2,
                                               class GALGAS_string & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
@@ -1292,9 +1292,9 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
                                                                                      C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_mBoundObjectStringListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_boundObjectList getter_mBoundObjectListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                            C_Compiler * inCompiler
@@ -1332,7 +1332,7 @@ class cEnumerator_regularBindingsGenerationList : public cGenericAbstractEnumera
 //--- Current element access
   public : class GALGAS_string current_mOutletName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mBindingName (LOCATION_ARGS) const ;
-  public : class GALGAS_stringlist current_mBoundObjectStringList (LOCATION_ARGS) const ;
+  public : class GALGAS_boundObjectList current_mBoundObjectList (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mBindingOptionsString (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_regularBindingsGenerationList_2D_element current (LOCATION_ARGS) const ;
@@ -1898,6 +1898,157 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListFo
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                                @boundObjectList list                                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_boundObjectList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_boundObjectList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_boundObjectList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_string & in_mBoundObjectString,
+                                                  const class GALGAS_typeKind & in_mType,
+                                                  const class GALGAS_propertyKind & in_mKind
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_boundObjectList extractObject (const GALGAS_object & inObject,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_boundObjectList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_boundObjectList constructor_listWithValue (const class GALGAS_string & inOperand0,
+                                                                          const class GALGAS_typeKind & inOperand1,
+                                                                          const class GALGAS_propertyKind & inOperand2
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_boundObjectList inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
+                                                      const class GALGAS_typeKind & inOperand1,
+                                                      const class GALGAS_propertyKind & inOperand2
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_boundObjectList add_operation (const GALGAS_boundObjectList & inOperand,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
+                                                       class GALGAS_typeKind constinArgument1,
+                                                       class GALGAS_propertyKind constinArgument2,
+                                                       class GALGAS_uint constinArgument3,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
+                                                  class GALGAS_typeKind & outArgument1,
+                                                  class GALGAS_propertyKind & outArgument2,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
+                                                 class GALGAS_typeKind & outArgument1,
+                                                 class GALGAS_propertyKind & outArgument2,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
+                                                       class GALGAS_typeKind & outArgument1,
+                                                       class GALGAS_propertyKind & outArgument2,
+                                                       class GALGAS_uint constinArgument3,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
+                                               class GALGAS_typeKind & outArgument1,
+                                               class GALGAS_propertyKind & outArgument2,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
+                                              class GALGAS_typeKind & outArgument1,
+                                              class GALGAS_propertyKind & outArgument2,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mBoundObjectStringAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKindAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mTypeAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_boundObjectList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_boundObjectList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_boundObjectList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_boundObjectList ;
+ 
+} ; // End of GALGAS_boundObjectList class
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enumerator declaration                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumerator_boundObjectList : public cGenericAbstractEnumerator {
+  public : cEnumerator_boundObjectList (const GALGAS_boundObjectList & inEnumeratedObject,
+                                        const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_string current_mBoundObjectString (LOCATION_ARGS) const ;
+  public : class GALGAS_typeKind current_mType (LOCATION_ARGS) const ;
+  public : class GALGAS_propertyKind current_mKind (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_boundObjectList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                  @regularBindingsGenerationList_2D_element struct                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1908,7 +2059,7 @@ class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_string mProperty_mBindingName ;
 
-  public : GALGAS_stringlist mProperty_mBoundObjectStringList ;
+  public : GALGAS_boundObjectList mProperty_mBoundObjectList ;
 
   public : GALGAS_string mProperty_mBindingOptionsString ;
 
@@ -1928,7 +2079,7 @@ class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public : GALGAS_regularBindingsGenerationList_2D_element (const GALGAS_string & in_mOutletName,
                                                             const GALGAS_string & in_mBindingName,
-                                                            const GALGAS_stringlist & in_mBoundObjectStringList,
+                                                            const GALGAS_boundObjectList & in_mBoundObjectList,
                                                             const GALGAS_string & in_mBindingOptionsString) ;
 
 //-- Start of generic part --*
@@ -1944,7 +2095,7 @@ class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_regularBindingsGenerationList_2D_element constructor_new (const class GALGAS_string & inOperand0,
                                                                                          const class GALGAS_string & inOperand1,
-                                                                                         const class GALGAS_stringlist & inOperand2,
+                                                                                         const class GALGAS_boundObjectList & inOperand2,
                                                                                          const class GALGAS_string & inOperand3
                                                                                          COMMA_LOCATION_ARGS) ;
 
@@ -1964,7 +2115,7 @@ class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mBindingOptionsString (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_mBoundObjectStringList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_boundObjectList getter_mBoundObjectList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
 
@@ -5005,4 +5156,78 @@ class GALGAS_string extensionGetter_outletNameListForController (const class GAL
                                                                  const class GALGAS_string & constinArgument0,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                         @boundObjectList_2D_element struct                                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_boundObjectList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_string mProperty_mBoundObjectString ;
+
+  public : GALGAS_typeKind mProperty_mType ;
+
+  public : GALGAS_propertyKind mProperty_mKind ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_boundObjectList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : VIRTUAL_IN_DEBUG ~ GALGAS_boundObjectList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_boundObjectList_2D_element (const GALGAS_string & in_mBoundObjectString,
+                                              const GALGAS_typeKind & in_mType,
+                                              const GALGAS_propertyKind & in_mKind) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_boundObjectList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_boundObjectList_2D_element constructor_new (const class GALGAS_string & inOperand0,
+                                                                           const class GALGAS_typeKind & inOperand1,
+                                                                           const class GALGAS_propertyKind & inOperand2
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_boundObjectList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mBoundObjectString (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKind (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_boundObjectList_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList_2D_element ;
 

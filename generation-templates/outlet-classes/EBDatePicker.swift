@@ -70,7 +70,6 @@ final class Controller_EBDatePicker_date : EBSimpleController {
     super.unregister ()
     mOutlet.target = nil
     mOutlet.action = nil
-    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //···················································································································*
@@ -78,16 +77,15 @@ final class Controller_EBDatePicker_date : EBSimpleController {
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .empty :
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
       mOutlet.stringValue = "—"
     case .single (let v) :
-      mOutlet.enableFromValue (true)
+      mOutlet.enableFromValueBinding (true)
       mOutlet.dateValue = v as Date
     case .multiple :
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
       mOutlet.stringValue = "—"
     }
-    mOutlet.updateEnabledState()
   }
 
   //···················································································································*

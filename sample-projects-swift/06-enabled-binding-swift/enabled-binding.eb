@@ -13,7 +13,9 @@ prefs {
 
 document MyDocument root MyRootEntity {
   outlet EBSwitch docBoolCheckBox $value root.docBool ;
-  outlet EBButton myButton $enabled ! root.docBool & prefs.prefBoolean ;
+  outlet EBButton myButton
+    $enabled ! root.docBool & prefs.prefBoolean
+  ;
 }
 
 #--------------------------------------------------------------*

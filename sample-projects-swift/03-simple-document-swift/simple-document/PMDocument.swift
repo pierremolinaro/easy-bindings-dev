@@ -132,15 +132,15 @@ import Cocoa
   //--------------------------- Array controllers
   //--------------------------- Selection controllers
   //--------------------------- Custom object controllers
-  //--- Transient compute functions
-  //--- Install property observers for transients
-  //--- Install regular bindings
+  //--------------------------- Transient compute functions
+  //--------------------------- Install property observers for transients
+  //--------------------------- Install regular bindings
     myTextField?.bind_value (self.rootObject.myString_property, file: #file, line: #line, sendContinously:true)
     myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj_property, file: #file, line: #line)
     myTextMinField?.bind_valueObserver (self.rootObject.myStringMin_property, file: #file, line: #line)
     myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat_property, file: #file, line: #line)
     myColorWell?.bind_color (self.rootObject.myColor_property, file: #file, line: #line, sendContinously:false)
-  //--- Install multiple bindings
+  //--------------------------- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -152,19 +152,30 @@ import Cocoa
   //····················································································································
 
   override func removeUserInterface () {
-  //--- Unbind regular bindings
+  //--------------------------- Unbind regular bindings
     myTextField?.unbind_value ()
     myTextMajField?.unbind_valueObserver ()
     myTextMinField?.unbind_valueObserver ()
     myTextConcatField?.unbind_valueObserver ()
     myColorWell?.unbind_color ()
-  //--- Unbind multiple bindings
-  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind multiple bindings
+  //--------------------------- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
   //--------------------------- Unbind selection controllers
-  //--- Uninstall property observers for transients
+  //--------------------------- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
+  //--------------------------- Clean up outlets
+    self.myColorWell?.ebCleanUp ()
+    self.myTextConcatField?.ebCleanUp ()
+    self.myTextField?.ebCleanUp ()
+    self.myTextMajField?.ebCleanUp ()
+    self.myTextMinField?.ebCleanUp ()
   }
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
 
   //····················································································································
 

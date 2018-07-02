@@ -163,7 +163,7 @@ end
 for () in CUSTOM_OBJECT_CONTROLLER_LIST do
 %    %!mCustomObjectControllerName%.setModel (self.rootObject)\n%
 end
-%  //--- Transient compute functions
+%  //--------------------------- Transient compute functions
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
@@ -174,37 +174,37 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      }\n%
   %    }\n%
 end
-%  //--- Install property observers for transients
+%  //--------------------------- Install property observers for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
 %    %![mDependency generateAddObserverCall]% (self.%!mTransientName%_property)\n%
 end
 end
-%  //--- Install regular bindings
+%  //--------------------------- Install regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectStringList do
-    !mValue%, %
+  for () in mBoundObjectList do
+    !mBoundObjectString%, %
   end
   %file: #file, line: #line%!mBindingOptionsString%)\n%
 end
-%  //--- Install multiple bindings
+%  //--------------------------- Install multiple bindings
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %    %!mOutletName%?.bind_%!mBindingName% (\n%
-  %      [%
-  for () in [mBoundObjectExpression observedModelSet]
-  do !key%%
-  between %, %  
+  %    do{\n%
+  %      let controller = MultipleBindingController_%!mBindingName% (\n%
+  %        computeFunction:{\n%
+  %          return %![mBoundObjectExpression expressionString]%\n%
+  %        },\n%
+  %        outlet:self.%!mOutletName%\n%
+  %      )\n%
+  for () in [mBoundObjectExpression observedModelSet] do
+  %      %!key%.addEBObserver (controller)\n%
   end
-  %],\n%
-  %      computeFunction:{\n%
-  %        return %![mBoundObjectExpression expressionString]%\n%
-  %      },\n%
-  %      file: #file, line: #line\n%
-  %    )\n%
+  %      mController_%!mOutletName%_%!mBindingName% = controller\n%
+  %    }\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -221,17 +221,20 @@ end
   //····················································································································
 
   override func removeUserInterface () {
-  //--- Unbind regular bindings
+  //--------------------------- Unbind regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
-%  //--- Unbind multiple bindings
+%  //--------------------------- Unbind multiple bindings
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
+  for () in [mBoundObjectExpression observedModelSet] do
+  %    %!key%.removeEBObserver (mController_%!mOutletName%_%!mBindingName%!)\n%
+  end
+  %    mController_%!mOutletName%_%!mBindingName% = nil\n%
 end
-%  //--- Uninstall compute functions for transients
+%  //--------------------------- Uninstall compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    self.%!mTransientName%_property.readModelFunction = nil\n%
@@ -246,7 +249,7 @@ end
 for () in SELECTION_CONTROLLER_LIST do
 %    %!mSelectionControllerName%.unbind_selection ()\n%
 end
-%  //--- Uninstall property observers for transients
+%  //--------------------------- Uninstall property observers for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 for () in mDependencyList do
@@ -257,8 +260,20 @@ end
 %for () in TARGET_ACTION_LIST do
 %    %!mOutletName%?.target = nil\n%
 end
+%  //--------------------------- Clean up outlets
+%for () in OUTLET_GENERATION_MAP do
+   %    self.%!lkey.string%?.ebCleanUp ()\n%
+end
 %  }
 
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+%for () in MULTIPLE_BINDING_GENERATION_LIST do
+  %  fileprivate var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
+end
+%
   //····················································································································
 
 }

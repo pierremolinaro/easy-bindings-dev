@@ -144,7 +144,6 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
   
   override func unregister () {
     super.unregister ()
-    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //···················································································································*
@@ -152,16 +151,15 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .empty :
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     case .single (let v) :
-      mOutlet.enableFromValue (true)
+      mOutlet.enableFromValueBinding (true)
       if v == mOutlet.tag {
         mOutlet.selectViewFromSelectedSegmentIndex ()
       }
     case .multiple :
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     }
-    mOutlet.updateEnabledState ()
   }
 
   //···················································································································*

@@ -21,6 +21,7 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var mLastNameTextField : EBTextField? = nil
   @IBOutlet var mUpperCaseFullNameTextField : EBTextObserverField? = nil
   @IBOutlet var myButton : EBButton? = nil
+
   //····················································································································
   //   Accessing mFirstName stored property
   //····················································································································
@@ -203,27 +204,27 @@ var g_Preferences : Preferences? = nil
   //--- Set pref window content view
     window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * 2.0, height:OUTLET_HEIGHT * (1.5 * 5.0 + 0.5)))
     window?.contentView = view
-  //--- Check mFirstNameTextField' outlet not nil
+  //--------------------------- Check mFirstNameTextField' outlet not nil
     if nil == mFirstNameTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mFirstNameTextField' outlet is nil")
     }
-  //--- Check mFullNameTextField' outlet not nil
+  //--------------------------- Check mFullNameTextField' outlet not nil
     if nil == mFullNameTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mFullNameTextField' outlet is nil")
     }
-  //--- Check mLastNameTextField' outlet not nil
+  //--------------------------- Check mLastNameTextField' outlet not nil
     if nil == mLastNameTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mLastNameTextField' outlet is nil")
     }
-  //--- Check mUpperCaseFullNameTextField' outlet not nil
+  //--------------------------- Check mUpperCaseFullNameTextField' outlet not nil
     if nil == mUpperCaseFullNameTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mUpperCaseFullNameTextField' outlet is nil")
     }
-  //--- Check myButton' outlet not nil
+  //--------------------------- Check myButton' outlet not nil
     if nil == myButton {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myButton' outlet is nil")
     }
-  //--- Install compute functions for transients
+  //--------------------------- Install compute functions for transients
     self.mFullName_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         var kind = unwSelf.mFirstName_property_selection.kind ()
@@ -265,23 +266,28 @@ var g_Preferences : Preferences? = nil
         return .empty
       }
     }
-  //--- Install property observers for transients
+  //--------------------------- Install property observers for transients
     self.mFirstName_property.addEBObserver (self.mFullName_property)
     self.mLastName_property.addEBObserver (self.mFullName_property)
     self.mFullName_property.addEBObserver (self.mUpperCaseFullName_property)
-  //--- Install bindings
+  //--------------------------- Install bindings
     mLastNameTextField?.bind_value (self.mLastName_property, file: #file, line: #line, sendContinously:true)
     mFirstNameTextField?.bind_value (self.mFirstName_property, file: #file, line: #line, sendContinously:false)
     mFullNameTextField?.bind_valueObserver (self.mFullName_property, file: #file, line: #line)
     mUpperCaseFullNameTextField?.bind_valueObserver (self.mUpperCaseFullName_property, file: #file, line: #line)
-  //--- Install multiple bindings
+  //--------------------------- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
     self.myButton?.target = self
     self.myButton?.action = #selector (Preferences.monAction (_:))
-  //--- Extern functions
+  //--------------------------- Extern functions
   }
-  
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+
   //····················································································································
   //    applicationWillTerminateAction
   //····················································································································

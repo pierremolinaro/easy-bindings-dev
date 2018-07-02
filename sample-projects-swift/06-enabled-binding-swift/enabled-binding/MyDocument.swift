@@ -102,18 +102,22 @@ import Cocoa
   //--------------------------- Array controllers
   //--------------------------- Selection controllers
   //--------------------------- Custom object controllers
-  //--- Transient compute functions
-  //--- Install property observers for transients
-  //--- Install regular bindings
+  //--------------------------- Transient compute functions
+  //--------------------------- Install property observers for transients
+  //--------------------------- Install regular bindings
     docBoolCheckBox?.bind_value (self.rootObject.docBool_property, file: #file, line: #line)
-  //--- Install multiple bindings
-    myButton?.bind_enabled (
-      [g_Preferences!.prefBoolean_property, self.rootObject.docBool_property],
-      computeFunction:{
-        return (!self.rootObject.docBool_property.prop && g_Preferences!.prefBoolean_property.prop)
-      },
-      file: #file, line: #line
-    )
+  //--------------------------- Install multiple bindings
+    do{
+      let controller = MultipleBindingController_enabled (
+        computeFunction:{
+          return (!self.rootObject.docBool_property.prop && g_Preferences!.prefBoolean_property.prop)
+        },
+        outlet:self.myButton
+      )
+      g_Preferences!.prefBoolean_property.addEBObserver (controller)
+      self.rootObject.docBool_property.addEBObserver (controller)
+      mController_myButton_enabled = controller
+    }
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -125,16 +129,27 @@ import Cocoa
   //····················································································································
 
   override func removeUserInterface () {
-  //--- Unbind regular bindings
+  //--------------------------- Unbind regular bindings
     docBoolCheckBox?.unbind_value ()
-  //--- Unbind multiple bindings
-    myButton?.unbind_enabled ()
-  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind multiple bindings
+    g_Preferences!.prefBoolean_property.removeEBObserver (mController_myButton_enabled!)
+    self.rootObject.docBool_property.removeEBObserver (mController_myButton_enabled!)
+    mController_myButton_enabled = nil
+  //--------------------------- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
   //--------------------------- Unbind selection controllers
-  //--- Uninstall property observers for transients
+  //--------------------------- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
+  //--------------------------- Clean up outlets
+    self.docBoolCheckBox?.ebCleanUp ()
+    self.myButton?.ebCleanUp ()
   }
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+  fileprivate var mController_myButton_enabled : MultipleBindingController_enabled?
 
   //····················································································································
 

@@ -304,9 +304,8 @@ proc analyzeRegularBinding
   for () in inRegularBindingList do
   #--- Analyze model
     var @outletBindingModelList boundModelTypeList = {}
-    var @stringlist boundModelStringListForGeneration = {}
+    var @boundObjectList boundModelListForGeneration = {}
     for () in mObservablePropertyList do
-      boundModelStringListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName]
       [mObservableProperty analyzeObservableProperty
         !inRootObservablePropertyMap
         !inSemanticContext
@@ -316,6 +315,7 @@ proc analyzeRegularBinding
         ?@propertyMultiplicity multiplicity
         ?let @string unused swiftTypeStringForTransientFunctionArgument
       ]
+      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] !type !kind
       if multiplicity != .single then
         error [mObservableProperty location]:"a collection cannot be bound"
       end
@@ -373,7 +373,7 @@ proc analyzeRegularBinding
     ioRegularBindingsGenerationList +=
       !inOutletName
       !mBindingName.string
-      !boundModelStringListForGeneration
+      !boundModelListForGeneration
       !bindingOptionString
   end
 }
@@ -382,10 +382,19 @@ proc analyzeRegularBinding
 #   GENERATION TYPES                                                                                                   *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+list @boundObjectList {
+  @string mBoundObjectString
+  @typeKind mType
+  @propertyKind mKind
+}
+
+#·······················································································································
+
+
 list @regularBindingsGenerationList {
   @string mOutletName
   @string mBindingName
-  @stringlist mBoundObjectStringList
+  @boundObjectList mBoundObjectList
   @string mBindingOptionsString
 }
 

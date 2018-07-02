@@ -17,6 +17,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   @IBOutlet var prefBoolCheckBox : EBSwitch? = nil
+
   //····················································································································
   //   Accessing prefBoolean stored property
   //····················································································································
@@ -83,20 +84,25 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   override func awakeFromNib () {
-  //--- Check prefBoolCheckBox' outlet not nil
+  //--------------------------- Check prefBoolCheckBox' outlet not nil
     if nil == prefBoolCheckBox {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'prefBoolCheckBox' outlet is nil")
     }
-  //--- Install compute functions for transients
-  //--- Install property observers for transients
-  //--- Install bindings
+  //--------------------------- Install compute functions for transients
+  //--------------------------- Install property observers for transients
+  //--------------------------- Install bindings
     prefBoolCheckBox?.bind_value (self.prefBoolean_property, file: #file, line: #line)
-  //--- Install multiple bindings
+  //--------------------------- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
-  //--- Extern functions
+  //--------------------------- Extern functions
   }
-  
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+
   //····················································································································
   //    applicationWillTerminateAction
   //····················································································································

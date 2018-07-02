@@ -20,7 +20,8 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 for () in OUTLET_MAP do
 %  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
-
+%
+%
 for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   %  //····················································································································\n%
   %  //   Accessing %!mStoredPropertyName% stored property\n%
@@ -160,12 +161,12 @@ end
 %
 ![MAIN_XIB_DESCRIPTOR_LIST generateCode]
 for () in OUTLET_MAP do
-   %  //--- Check %!lkey.string%' outlet not nil\n%
+   %  //--------------------------- Check %!lkey.string%' outlet not nil\n%
    %    if nil == %!lkey.string% {\n%
    %      presentErrorWindow (file: #file, line: #line, errorMessage: "the '%!lkey.string%' outlet is nil")\n%
    %    }\n%
 end
-%  //--- Install compute functions for transients
+%  //--------------------------- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
@@ -176,37 +177,37 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      }\n%
   %    }\n%
 end
-%  //--- Install property observers for transients
+%  //--------------------------- Install property observers for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   for () in mDependencyList do
     %    %![mDependency generateAddObserverCall]% (self.%!mTransientName%_property)\n%
   end
 end
-%  //--- Install bindings
+%  //--------------------------- Install bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectStringList do
-    !mValue%, %
+  for () in mBoundObjectList do
+    !mBoundObjectString%, %
   end
   %file: #file, line: #line%!mBindingOptionsString%)\n%
 end
-%  //--- Install multiple bindings
+%  //--------------------------- Install multiple bindings
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %    self.%!mOutletName%?.bind_%!mBindingName% (\n%
-  %      [%
-  for () in [mBoundObjectExpression observedModelSet]
-  do !key%%
-  between %, %  
+  %    do{\n%
+  %      let controller = MultipleBindingController_%!mBindingName% (\n%
+  %        computeFunction:{\n%
+  %          return %![mBoundObjectExpression expressionString]%\n%
+  %        },\n%
+  %        outlet:self.%!mOutletName%\n%
+  %      )\n%
+  for () in [mBoundObjectExpression observedModelSet] do
+  %      %!key%.addEBObserver (controller)\n%
   end
-  %],\n%
-  %      computeFunction:{\n%
-  %        return %![mBoundObjectExpression expressionString]%\n%
-  %      },\n%
-  %      file: #file, line: #line\n%
-  %    )\n%
+  %      mController_%!mOutletName%_%!mBindingName% = controller\n%
+  %    }\n%
 end
 %  //--------------------------- Array controller
 %
@@ -225,7 +226,7 @@ end
 %    self.%!mOutletName%?.target = %!mTargetName%\n%
 %    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
-%  //--- Extern functions
+%  //--------------------------- Extern functions
 %
   for () in EXTERN_SWIFT_FUNCTION_LIST do
     if mCallerName.string == "awakeFromNib" then
@@ -233,7 +234,15 @@ end
     end
   end
 %  }
-  
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+%for () in MULTIPLE_BINDING_GENERATION_LIST do
+  %  fileprivate var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
+end
+%
   //····················································································································
   //    applicationWillTerminateAction
   //····················································································································

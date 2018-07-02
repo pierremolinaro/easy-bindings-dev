@@ -268,7 +268,7 @@ import Cocoa
       line: #line
     )
   //--------------------------- Custom object controllers
-  //--- Transient compute functions
+  //--------------------------- Transient compute functions
     self.selectionCountString_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         let kind = unwSelf.selController.sortedArray_property.count_property_selection.kind ()
@@ -369,13 +369,13 @@ import Cocoa
         return .empty
       }
     }
-  //--- Install property observers for transients
+  //--------------------------- Install property observers for transients
     self.selController.sortedArray_property.count_property.addEBObserver (self.selectionCountString_property)
     self.otherController.sortedArray_property.count_property.addEBObserver (self.evenValueString_property)
     self.nameController.selectedArray_property.count_property.addEBObserver (self.canRemoveString_property)
     self.rootObject.mNames_property.count_property.addEBObserver (self.countItemMessage_property)
     self.rootObject.mNames_property.addEBObserverOf_aValue (self.total_property)
-  //--- Install regular bindings
+  //--------------------------- Install regular bindings
     mSelectionCountTextField?.bind_valueObserver (self.selectionCountString_property, file: #file, line: #line)
     evenValueTextField?.bind_valueObserver (self.evenValueString_property, file: #file, line: #line)
     canRemoveTextField?.bind_valueObserver (self.canRemoveString_property, file: #file, line: #line)
@@ -384,28 +384,37 @@ import Cocoa
     totalTextField?.bind_valueObserver (self.total_property, file: #file, line: #line, autoFormatter:false)
     nameDetailTextField?.bind_value (self.detailController.name_property, file: #file, line: #line, sendContinously:true)
     valueDetailTextField?.bind_value (self.detailController.aValue_property, file: #file, line: #line, sendContinously:true, autoFormatter:false)
-  //--- Install multiple bindings
-    removePathButton?.bind_enabled (
-      [self.nameController.selectedArray_property.count_property],
-      computeFunction:{
-        return (self.nameController.selectedArray_property.count_property.prop > EBSelection.single (0))
-      },
-      file: #file, line: #line
-    )
-    incrementButton?.bind_enabled (
-      [self.rootObject.mNames_property.count_property],
-      computeFunction:{
-        return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
-      },
-      file: #file, line: #line
-    )
-    decrementButton?.bind_enabled (
-      [self.rootObject.mNames_property.count_property],
-      computeFunction:{
-        return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
-      },
-      file: #file, line: #line
-    )
+  //--------------------------- Install multiple bindings
+    do{
+      let controller = MultipleBindingController_enabled (
+        computeFunction:{
+          return (self.nameController.selectedArray_property.count_property.prop > EBSelection.single (0))
+        },
+        outlet:self.removePathButton
+      )
+      self.nameController.selectedArray_property.count_property.addEBObserver (controller)
+      mController_removePathButton_enabled = controller
+    }
+    do{
+      let controller = MultipleBindingController_enabled (
+        computeFunction:{
+          return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
+        },
+        outlet:self.incrementButton
+      )
+      self.rootObject.mNames_property.count_property.addEBObserver (controller)
+      mController_incrementButton_enabled = controller
+    }
+    do{
+      let controller = MultipleBindingController_enabled (
+        computeFunction:{
+          return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
+        },
+        outlet:self.decrementButton
+      )
+      self.rootObject.mNames_property.count_property.addEBObserver (controller)
+      mController_decrementButton_enabled = controller
+    }
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = #selector (ArrayController_PMDocument_nameController.add (_:))
@@ -425,7 +434,7 @@ import Cocoa
   //····················································································································
 
   override func removeUserInterface () {
-  //--- Unbind regular bindings
+  //--------------------------- Unbind regular bindings
     mSelectionCountTextField?.unbind_valueObserver ()
     evenValueTextField?.unbind_valueObserver ()
     canRemoveTextField?.unbind_valueObserver ()
@@ -434,11 +443,14 @@ import Cocoa
     totalTextField?.unbind_valueObserver ()
     nameDetailTextField?.unbind_value ()
     valueDetailTextField?.unbind_value ()
-  //--- Unbind multiple bindings
-    removePathButton?.unbind_enabled ()
-    incrementButton?.unbind_enabled ()
-    decrementButton?.unbind_enabled ()
-  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind multiple bindings
+    self.nameController.selectedArray_property.count_property.removeEBObserver (mController_removePathButton_enabled!)
+    mController_removePathButton_enabled = nil
+    self.rootObject.mNames_property.count_property.removeEBObserver (mController_incrementButton_enabled!)
+    mController_incrementButton_enabled = nil
+    self.rootObject.mNames_property.count_property.removeEBObserver (mController_decrementButton_enabled!)
+    mController_decrementButton_enabled = nil
+  //--------------------------- Uninstall compute functions for transients
     self.selectionCountString_property.readModelFunction = nil
     self.evenValueString_property.readModelFunction = nil
     self.canRemoveString_property.readModelFunction = nil
@@ -450,7 +462,7 @@ import Cocoa
     selController.unbind_modelAndView ()
   //--------------------------- Unbind selection controllers
     detailController.unbind_selection ()
-  //--- Uninstall property observers for transients
+  //--------------------------- Uninstall property observers for transients
     self.selController.sortedArray_property.count_property.removeEBObserver (self.selectionCountString_property)
     self.otherController.sortedArray_property.count_property.removeEBObserver (self.evenValueString_property)
     self.nameController.selectedArray_property.count_property.removeEBObserver (self.canRemoveString_property)
@@ -461,7 +473,31 @@ import Cocoa
     removePathButton?.target = nil
     incrementButton?.target = nil
     decrementButton?.target = nil
+  //--------------------------- Clean up outlets
+    self.addPathButton?.ebCleanUp ()
+    self.canRemoveTextField?.ebCleanUp ()
+    self.countItemMessageTextField?.ebCleanUp ()
+    self.countItemTextField?.ebCleanUp ()
+    self.decrementButton?.ebCleanUp ()
+    self.evenValueTextField?.ebCleanUp ()
+    self.incrementButton?.ebCleanUp ()
+    self.mNamesTableView?.ebCleanUp ()
+    self.mOtherTableView?.ebCleanUp ()
+    self.mSelectionCountTextField?.ebCleanUp ()
+    self.mSelectionTableView?.ebCleanUp ()
+    self.nameDetailTextField?.ebCleanUp ()
+    self.removePathButton?.ebCleanUp ()
+    self.totalTextField?.ebCleanUp ()
+    self.valueDetailTextField?.ebCleanUp ()
   }
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+  fileprivate var mController_removePathButton_enabled : MultipleBindingController_enabled?
+  fileprivate var mController_incrementButton_enabled : MultipleBindingController_enabled?
+  fileprivate var mController_decrementButton_enabled : MultipleBindingController_enabled?
 
   //····················································································································
 

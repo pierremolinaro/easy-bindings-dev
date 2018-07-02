@@ -143,27 +143,17 @@ final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
   }
 
   //···················································································································*
-  
-  override func unregister () {
-    super.unregister ()
-    mOutlet.target = nil
-    mOutlet.action = nil
-    mOutlet.removeFromEnabledFromValueDictionary ()
-  }
-
-  //···················································································································*
 
   override func sendUpdateEvent () {
     switch mObject.prop {
     case .empty :
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     case .single (let v) :
-      mOutlet.enableFromValue (true)
+      mOutlet.enableFromValueBinding (true)
       mOutlet.selectedSegment = v
     case .multiple :
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     }
-    mOutlet.updateEnabledState()
   }
 
   //···················································································································*

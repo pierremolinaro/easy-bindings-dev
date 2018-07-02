@@ -382,8 +382,8 @@ for () in BOUND_COLUMNS
     end
     for () in mRegularBindingsGenerationList do
     %          cell.mCellOutlet?.bind_%!mBindingName% (%
-      for () in mBoundObjectStringList do
-        !mValue%, %
+      for () in mBoundObjectList do
+        !mBoundObjectString%, %
       end
       %file: #file, line: #line%!mBindingOptionsString%)\n%
     end

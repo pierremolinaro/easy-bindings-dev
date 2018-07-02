@@ -25,6 +25,7 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var myObserverTextField : EBTextObserverField? = nil
   @IBOutlet var myOtherTextField : EBTextField? = nil
   @IBOutlet var myTextField : EBTextField? = nil
+
   //····················································································································
   //   Accessing myString stored property
   //····················································································································
@@ -295,45 +296,45 @@ var g_Preferences : Preferences? = nil
   //--- Set pref window content view
     window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * 2.0, height:OUTLET_HEIGHT * (1.5 * 9.0 + 0.5)))
     window?.contentView = view
-  //--- Check mColorWell' outlet not nil
+  //--------------------------- Check mColorWell' outlet not nil
     if nil == mColorWell {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mColorWell' outlet is nil")
     }
-  //--- Check mContinuousColorWell' outlet not nil
+  //--------------------------- Check mContinuousColorWell' outlet not nil
     if nil == mContinuousColorWell {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mContinuousColorWell' outlet is nil")
     }
-  //--- Check mDatePicker' outlet not nil
+  //--------------------------- Check mDatePicker' outlet not nil
     if nil == mDatePicker {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mDatePicker' outlet is nil")
     }
-  //--- Check mIntegerObserverTextField' outlet not nil
+  //--------------------------- Check mIntegerObserverTextField' outlet not nil
     if nil == mIntegerObserverTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mIntegerObserverTextField' outlet is nil")
     }
-  //--- Check mIntegerTextField' outlet not nil
+  //--------------------------- Check mIntegerTextField' outlet not nil
     if nil == mIntegerTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mIntegerTextField' outlet is nil")
     }
-  //--- Check mObserverColorWell' outlet not nil
+  //--------------------------- Check mObserverColorWell' outlet not nil
     if nil == mObserverColorWell {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mObserverColorWell' outlet is nil")
     }
-  //--- Check myObserverTextField' outlet not nil
+  //--------------------------- Check myObserverTextField' outlet not nil
     if nil == myObserverTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myObserverTextField' outlet is nil")
     }
-  //--- Check myOtherTextField' outlet not nil
+  //--------------------------- Check myOtherTextField' outlet not nil
     if nil == myOtherTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myOtherTextField' outlet is nil")
     }
-  //--- Check myTextField' outlet not nil
+  //--------------------------- Check myTextField' outlet not nil
     if nil == myTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myTextField' outlet is nil")
     }
-  //--- Install compute functions for transients
-  //--- Install property observers for transients
-  //--- Install bindings
+  //--------------------------- Install compute functions for transients
+  //--------------------------- Install property observers for transients
+  //--------------------------- Install bindings
     myTextField?.bind_value (self.myString_property, file: #file, line: #line, sendContinously:false)
     myOtherTextField?.bind_value (self.myString_property, file: #file, line: #line, sendContinously:true)
     myObserverTextField?.bind_valueObserver (self.myString_property, file: #file, line: #line)
@@ -343,12 +344,17 @@ var g_Preferences : Preferences? = nil
     mDatePicker?.bind_date (self.mDate_property, file: #file, line: #line)
     mIntegerTextField?.bind_value (self.mIntegerValue_property, file: #file, line: #line, sendContinously:true, autoFormatter:true)
     mIntegerObserverTextField?.bind_valueObserver (self.mIntegerValue_property, file: #file, line: #line, autoFormatter:true)
-  //--- Install multiple bindings
+  //--------------------------- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
-  //--- Extern functions
+  //--------------------------- Extern functions
   }
-  
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+
   //····················································································································
   //    applicationWillTerminateAction
   //····················································································································

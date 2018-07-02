@@ -11,6 +11,1092 @@
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+typeComparisonResult cPtr_entityDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_entityDeclaration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mUserDefined.objectCompare (p->mProperty_mUserDefined) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mEntityName.objectCompare (p->mProperty_mEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSuperEntityName.objectCompare (p->mProperty_mSuperEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSimpleStoredAttributeList.objectCompare (p->mProperty_mSimpleStoredAttributeList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mToOneRelationshipList.objectCompare (p->mProperty_mToOneRelationshipList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mToManyRelationshipList.objectCompare (p->mProperty_mToManyRelationshipList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSecondaryPropertyList.objectCompare (p->mProperty_mSecondaryPropertyList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSignatureList.objectCompare (p->mProperty_mSignatureList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mActionDeclarationList.objectCompare (p->mProperty_mActionDeclarationList) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_entityDeclaration::objectCompare (const GALGAS_entityDeclaration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityDeclaration::GALGAS_entityDeclaration (void) :
+GALGAS_astDeclaration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityDeclaration GALGAS_entityDeclaration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_entityDeclaration::constructor_new (GALGAS_bool::constructor_default (HERE),
+                                                    GALGAS_lstring::constructor_default (HERE),
+                                                    GALGAS_lstring::constructor_default (HERE),
+                                                    GALGAS_simpleStoredPropertyList::constructor_emptyList (HERE),
+                                                    GALGAS_toOneRelationshipList::constructor_emptyList (HERE),
+                                                    GALGAS_toManyRelationshipList::constructor_emptyList (HERE),
+                                                    GALGAS_secondaryPropertyList::constructor_emptyList (HERE),
+                                                    GALGAS_stringset::constructor_emptySet (HERE),
+                                                    GALGAS_lstringlist::constructor_emptyList (HERE)
+                                                    COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityDeclaration::GALGAS_entityDeclaration (const cPtr_entityDeclaration * inSourcePtr) :
+GALGAS_astDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_entityDeclaration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityDeclaration GALGAS_entityDeclaration::constructor_new (const GALGAS_bool & inAttribute_mUserDefined,
+                                                                    const GALGAS_lstring & inAttribute_mEntityName,
+                                                                    const GALGAS_lstring & inAttribute_mSuperEntityName,
+                                                                    const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredAttributeList,
+                                                                    const GALGAS_toOneRelationshipList & inAttribute_mToOneRelationshipList,
+                                                                    const GALGAS_toManyRelationshipList & inAttribute_mToManyRelationshipList,
+                                                                    const GALGAS_secondaryPropertyList & inAttribute_mSecondaryPropertyList,
+                                                                    const GALGAS_stringset & inAttribute_mSignatureList,
+                                                                    const GALGAS_lstringlist & inAttribute_mActionDeclarationList
+                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_entityDeclaration result ;
+  if (inAttribute_mUserDefined.isValid () && inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mToOneRelationshipList.isValid () && inAttribute_mToManyRelationshipList.isValid () && inAttribute_mSecondaryPropertyList.isValid () && inAttribute_mSignatureList.isValid () && inAttribute_mActionDeclarationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_entityDeclaration (inAttribute_mUserDefined, inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mSimpleStoredAttributeList, inAttribute_mToOneRelationshipList, inAttribute_mToManyRelationshipList, inAttribute_mSecondaryPropertyList, inAttribute_mSignatureList, inAttribute_mActionDeclarationList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_entityDeclaration::getter_mEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_entityDeclaration::getter_mEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_entityDeclaration::getter_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mSuperEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_entityDeclaration::getter_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSuperEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_simpleStoredPropertyList GALGAS_entityDeclaration::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_simpleStoredPropertyList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mSimpleStoredAttributeList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_simpleStoredPropertyList cPtr_entityDeclaration::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSimpleStoredAttributeList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toOneRelationshipList GALGAS_entityDeclaration::getter_mToOneRelationshipList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_toOneRelationshipList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mToOneRelationshipList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toOneRelationshipList cPtr_entityDeclaration::getter_mToOneRelationshipList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mToOneRelationshipList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyRelationshipList GALGAS_entityDeclaration::getter_mToManyRelationshipList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_toManyRelationshipList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mToManyRelationshipList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyRelationshipList cPtr_entityDeclaration::getter_mToManyRelationshipList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mToManyRelationshipList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_secondaryPropertyList GALGAS_entityDeclaration::getter_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_secondaryPropertyList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mSecondaryPropertyList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_secondaryPropertyList cPtr_entityDeclaration::getter_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSecondaryPropertyList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringset GALGAS_entityDeclaration::getter_mSignatureList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_stringset result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mSignatureList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringset cPtr_entityDeclaration::getter_mSignatureList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSignatureList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist GALGAS_entityDeclaration::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstringlist result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mActionDeclarationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist cPtr_entityDeclaration::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mActionDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                     Pointer class for @entityDeclaration class                                      *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_entityDeclaration::cPtr_entityDeclaration (const GALGAS_bool & in_mUserDefined,
+                                                const GALGAS_lstring & in_mEntityName,
+                                                const GALGAS_lstring & in_mSuperEntityName,
+                                                const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
+                                                const GALGAS_toOneRelationshipList & in_mToOneRelationshipList,
+                                                const GALGAS_toManyRelationshipList & in_mToManyRelationshipList,
+                                                const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
+                                                const GALGAS_stringset & in_mSignatureList,
+                                                const GALGAS_lstringlist & in_mActionDeclarationList
+                                                COMMA_LOCATION_ARGS) :
+cPtr_astDeclaration (in_mUserDefined COMMA_THERE),
+mProperty_mEntityName (in_mEntityName),
+mProperty_mSuperEntityName (in_mSuperEntityName),
+mProperty_mSimpleStoredAttributeList (in_mSimpleStoredAttributeList),
+mProperty_mToOneRelationshipList (in_mToOneRelationshipList),
+mProperty_mToManyRelationshipList (in_mToManyRelationshipList),
+mProperty_mSecondaryPropertyList (in_mSecondaryPropertyList),
+mProperty_mSignatureList (in_mSignatureList),
+mProperty_mActionDeclarationList (in_mActionDeclarationList) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_entityDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityDeclaration ;
+}
+
+void cPtr_entityDeclaration::description (C_String & ioString,
+                                          const int32_t inIndentation) const {
+  ioString << "[@entityDeclaration:" ;
+  mProperty_mUserDefined.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSuperEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSimpleStoredAttributeList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mToOneRelationshipList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mToManyRelationshipList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSecondaryPropertyList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSignatureList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_entityDeclaration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_entityDeclaration (mProperty_mUserDefined, mProperty_mEntityName, mProperty_mSuperEntityName, mProperty_mSimpleStoredAttributeList, mProperty_mToOneRelationshipList, mProperty_mToManyRelationshipList, mProperty_mSecondaryPropertyList, mProperty_mSignatureList, mProperty_mActionDeclarationList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                               @entityDeclaration type                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_entityDeclaration ("entityDeclaration",
+                                          & kTypeDescriptor_GALGAS_astDeclaration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_entityDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityDeclaration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_entityDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_entityDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityDeclaration GALGAS_entityDeclaration::extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_entityDeclaration result ;
+  const GALGAS_entityDeclaration * p = (const GALGAS_entityDeclaration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_entityDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("entityDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cPtr_documentDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_documentDeclaration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mUserDefined.objectCompare (p->mProperty_mUserDefined) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mDocumentName.objectCompare (p->mProperty_mDocumentName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRootEntityName.objectCompare (p->mProperty_mRootEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOutletDeclarationList.objectCompare (p->mProperty_mOutletDeclarationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSimpleStoredAttributeList.objectCompare (p->mProperty_mSimpleStoredAttributeList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mActionDeclarationList.objectCompare (p->mProperty_mActionDeclarationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSecondaryPropertyList.objectCompare (p->mProperty_mSecondaryPropertyList) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_documentDeclaration::objectCompare (const GALGAS_documentDeclaration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclaration::GALGAS_documentDeclaration (void) :
+GALGAS_astDeclaration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclaration GALGAS_documentDeclaration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_documentDeclaration::constructor_new (GALGAS_bool::constructor_default (HERE),
+                                                      GALGAS_lstring::constructor_default (HERE),
+                                                      GALGAS_lstring::constructor_default (HERE),
+                                                      GALGAS_outletDeclarationList::constructor_emptyList (HERE),
+                                                      GALGAS_simpleStoredPropertyList::constructor_emptyList (HERE),
+                                                      GALGAS_lstringlist::constructor_emptyList (HERE),
+                                                      GALGAS_secondaryPropertyList::constructor_emptyList (HERE)
+                                                      COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclaration::GALGAS_documentDeclaration (const cPtr_documentDeclaration * inSourcePtr) :
+GALGAS_astDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_documentDeclaration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclaration GALGAS_documentDeclaration::constructor_new (const GALGAS_bool & inAttribute_mUserDefined,
+                                                                        const GALGAS_lstring & inAttribute_mDocumentName,
+                                                                        const GALGAS_lstring & inAttribute_mRootEntityName,
+                                                                        const GALGAS_outletDeclarationList & inAttribute_mOutletDeclarationList,
+                                                                        const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredAttributeList,
+                                                                        const GALGAS_lstringlist & inAttribute_mActionDeclarationList,
+                                                                        const GALGAS_secondaryPropertyList & inAttribute_mSecondaryPropertyList
+                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_documentDeclaration result ;
+  if (inAttribute_mUserDefined.isValid () && inAttribute_mDocumentName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mOutletDeclarationList.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mSecondaryPropertyList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_documentDeclaration (inAttribute_mUserDefined, inAttribute_mDocumentName, inAttribute_mRootEntityName, inAttribute_mOutletDeclarationList, inAttribute_mSimpleStoredAttributeList, inAttribute_mActionDeclarationList, inAttribute_mSecondaryPropertyList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_documentDeclaration::getter_mDocumentName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclaration) ;
+    result = p->mProperty_mDocumentName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_documentDeclaration::getter_mDocumentName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mDocumentName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_documentDeclaration::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclaration) ;
+    result = p->mProperty_mRootEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_documentDeclaration::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRootEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_outletDeclarationList GALGAS_documentDeclaration::getter_mOutletDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_outletDeclarationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclaration) ;
+    result = p->mProperty_mOutletDeclarationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_outletDeclarationList cPtr_documentDeclaration::getter_mOutletDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_simpleStoredPropertyList GALGAS_documentDeclaration::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_simpleStoredPropertyList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclaration) ;
+    result = p->mProperty_mSimpleStoredAttributeList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_simpleStoredPropertyList cPtr_documentDeclaration::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSimpleStoredAttributeList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist GALGAS_documentDeclaration::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstringlist result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclaration) ;
+    result = p->mProperty_mActionDeclarationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist cPtr_documentDeclaration::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mActionDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_secondaryPropertyList GALGAS_documentDeclaration::getter_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_secondaryPropertyList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclaration * p = (const cPtr_documentDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclaration) ;
+    result = p->mProperty_mSecondaryPropertyList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_secondaryPropertyList cPtr_documentDeclaration::getter_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSecondaryPropertyList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                    Pointer class for @documentDeclaration class                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_documentDeclaration::cPtr_documentDeclaration (const GALGAS_bool & in_mUserDefined,
+                                                    const GALGAS_lstring & in_mDocumentName,
+                                                    const GALGAS_lstring & in_mRootEntityName,
+                                                    const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
+                                                    const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
+                                                    const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                    const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList
+                                                    COMMA_LOCATION_ARGS) :
+cPtr_astDeclaration (in_mUserDefined COMMA_THERE),
+mProperty_mDocumentName (in_mDocumentName),
+mProperty_mRootEntityName (in_mRootEntityName),
+mProperty_mOutletDeclarationList (in_mOutletDeclarationList),
+mProperty_mSimpleStoredAttributeList (in_mSimpleStoredAttributeList),
+mProperty_mActionDeclarationList (in_mActionDeclarationList),
+mProperty_mSecondaryPropertyList (in_mSecondaryPropertyList) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_documentDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentDeclaration ;
+}
+
+void cPtr_documentDeclaration::description (C_String & ioString,
+                                            const int32_t inIndentation) const {
+  ioString << "[@documentDeclaration:" ;
+  mProperty_mUserDefined.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mDocumentName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOutletDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSimpleStoredAttributeList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSecondaryPropertyList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_documentDeclaration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_documentDeclaration (mProperty_mUserDefined, mProperty_mDocumentName, mProperty_mRootEntityName, mProperty_mOutletDeclarationList, mProperty_mSimpleStoredAttributeList, mProperty_mActionDeclarationList, mProperty_mSecondaryPropertyList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                              @documentDeclaration type                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_documentDeclaration ("documentDeclaration",
+                                            & kTypeDescriptor_GALGAS_astDeclaration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_documentDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentDeclaration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_documentDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_documentDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclaration GALGAS_documentDeclaration::extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_documentDeclaration result ;
+  const GALGAS_documentDeclaration * p = (const GALGAS_documentDeclaration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_documentDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("documentDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                  Extension method '@prefDeclaration typeInventory'                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void extensionMethod_typeInventory (const GALGAS_prefDeclaration inObject,
+                                    GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
+                                    C_Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  extensionMethod_typeInventory (inObject.mProperty_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 65)) ;
+  cEnumerator_secondaryPropertyList enumerator_2985 (inObject.mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
+  while (enumerator_2985.hasCurrentObject ()) {
+    callExtensionMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_2985.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 67)) ;
+    enumerator_2985.gotoNextObject () ;
+  }
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                             Extension method '@prefDeclaration solveSecondaryProperty'                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void extensionMethod_solveSecondaryProperty (const GALGAS_prefDeclaration /* inObject */,
+                                             GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                             const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
+                                             const GALGAS_secondaryPropertyList constinArgument_inPropertiesToSolve,
+                                             GALGAS_secondaryPropertyList & outArgument_outUnsolvedProperties,
+                                             C_Compiler * inCompiler
+                                             COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outUnsolvedProperties.drop () ; // Release 'out' argument
+  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 81)) ;
+  GALGAS_observablePropertyMap var_preferencesObservablePropertyMap_3475 = ioArgument_ioSemanticContext.getter_mPreferencesObservablePropertyMap (HERE) ;
+  cEnumerator_secondaryPropertyList enumerator_3569 (constinArgument_inPropertiesToSolve, kENUMERATION_UP) ;
+  while (enumerator_3569.hasCurrentObject ()) {
+    callExtensionMethod_tryToSolveSecondaryProperty ((const cPtr_abstractSecondaryProperty *) enumerator_3569.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioSemanticContext, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 86)), var_preferencesObservablePropertyMap_3475, outArgument_outUnsolvedProperties, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 84)) ;
+    enumerator_3569.gotoNextObject () ;
+  }
+  ioArgument_ioSemanticContext.mProperty_mPreferencesObservablePropertyMap = var_preferencesObservablePropertyMap_3475 ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                 Extension method '@prefDeclaration buildObservablePropertyMapsFromStoredProperties'                 *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void extensionMethod_buildObservablePropertyMapsFromStoredProperties (const GALGAS_prefDeclaration inObject,
+                                                                      const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
+                                                                      GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  extensionMethod_buildObservablePropertyMap (inObject.mProperty_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, ioArgument_ioSemanticContext.mProperty_mPreferencesObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 103)) ;
+  extensionMethod_buildObservablePropertyMap (inObject.mProperty_mStoredArrayList, constinArgument_inUnifiedTypeMap, ioArgument_ioSemanticContext.mProperty_mPreferencesObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 108)) ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                Extension method '@prefDeclaration semanticAnalysis'                                 *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void extensionMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
+                                       const GALGAS_externSwiftFunctionList constinArgument_inExternSwiftFunctionList,
+                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                       GALGAS_structForGeneration & ioArgument_ioGeneration,
+                                       C_Compiler * inCompiler
+                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 122)) ;
+  temp_0.addAssign_operation (GALGAS_string ("awakeFromNib")  COMMA_SOURCE_FILE ("preferences.galgas", 122)) ;
+  temp_0.addAssign_operation (GALGAS_string ("init")  COMMA_SOURCE_FILE ("preferences.galgas", 122)) ;
+  GALGAS_stringset var_availableCallers_5076 = temp_0 ;
+  GALGAS_externFunctionMap var_externFunctionMap_5144 = GALGAS_externFunctionMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 123)) ;
+  cEnumerator_externSwiftFunctionList enumerator_5187 (constinArgument_inExternSwiftFunctionList, kENUMERATION_UP) ;
+  while (enumerator_5187.hasCurrentObject ()) {
+    {
+    var_externFunctionMap_5144.setter_insertKey (enumerator_5187.current_mExternSwiftFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 125)) ;
+    }
+    const enumGalgasBool test_1 = var_availableCallers_5076.getter_hasKey (enumerator_5187.current_mCallerName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 126)).operator_not (SOURCE_FILE ("preferences.galgas", 126)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      GALGAS_string var_s_5326 = GALGAS_string ("invalid caller; available callers:") ;
+      cEnumerator_stringset enumerator_5401 (var_availableCallers_5076, kENUMERATION_UP) ;
+      while (enumerator_5401.hasCurrentObject ()) {
+        var_s_5326.plusAssign_operation(GALGAS_string ("\n"
+          "  - ").add_operation (enumerator_5401.current_key (HERE), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 129)), inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 129)) ;
+        enumerator_5401.gotoNextObject () ;
+      }
+      TC_Array <C_FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (enumerator_5187.current_mCallerName (HERE).getter_location (SOURCE_FILE ("preferences.galgas", 131)), var_s_5326, fixItArray2  COMMA_SOURCE_FILE ("preferences.galgas", 131)) ;
+    }
+    enumerator_5187.gotoNextObject () ;
+  }
+  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration_5797 ;
+  extensionMethod_simpleStoredPropertySemanticAnalysis (inObject.mProperty_mSimpleStoredAttributeList, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 136)), constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE), ioArgument_ioGeneration.mProperty_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration_5797, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 135)) ;
+  GALGAS_storedArrayPropertyListForGeneration var_storedArrayPropertyListForGeneration_6017 ;
+  extensionMethod_storedArrayPropertySemanticAnalysis (inObject.mProperty_mStoredArrayList, constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE), var_storedArrayPropertyListForGeneration_6017, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 142)) ;
+  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration_6122 = GALGAS_transientDefinitionListForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 147)) ;
+  GALGAS_arrayControllerForGeneration var_arrayControllerListForGeneration_6283 = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 149)) ;
+  cEnumerator_secondaryPropertyList enumerator_6327 (inObject.mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
+  while (enumerator_6327.hasCurrentObject ()) {
+    GALGAS_selectionControllerForGeneration joker_6688 = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 160)) ;
+    GALGAS_customObjectControllerForGeneration joker_6724 = GALGAS_customObjectControllerForGeneration::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 161)) ;
+    callExtensionMethod_secondaryPropertySemanticAnalysis ((const cPtr_abstractSecondaryProperty *) enumerator_6327.current_mSecondaryProperty (HERE).ptr (), function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 152)), GALGAS_string::makeEmptyString (), GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 154)), constinArgument_inSemanticContext, constinArgument_inSemanticContext.getter_mPreferencesObservablePropertyMap (HERE), var_transientDefinitionListForGeneration_6122, var_arrayControllerListForGeneration_6283, joker_6688, joker_6724, ioArgument_ioGeneration.mProperty_mNeededOutletClasses, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 151)) ;
+    enumerator_6327.gotoNextObject () ;
+  }
+  ioArgument_ioGeneration.mProperty_mTransientListForGeneration.plusAssign_operation(var_transientDefinitionListForGeneration_6122, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 165)) ;
+  ioArgument_ioGeneration.mProperty_mAllArrayControllerForGeneration.plusAssign_operation(var_arrayControllerListForGeneration_6283, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 166)) ;
+  GALGAS_actionMap var_actionMap_7066 ;
+  {
+  routine_buildActionMap (inObject.mProperty_mActionDeclarationList, var_actionMap_7066, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 168)) ;
+  }
+  cEnumerator_actionMap enumerator_7089 (var_actionMap_7066, kENUMERATION_UP) ;
+  while (enumerator_7089.hasCurrentObject ()) {
+    ioArgument_ioGeneration.mProperty_mActionListForGeneration.addAssign_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 171)), enumerator_7089.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("preferences.galgas", 170)) ;
+    enumerator_7089.gotoNextObject () ;
+  }
+  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList_7502 ;
+  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList_7572 ;
+  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration_7644 ;
+  GALGAS_decoratedOutletMap var_outletMap_7683 ;
+  GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList_7755 ;
+  {
+  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 176)), constinArgument_inSemanticContext, inObject.mProperty_mOutletDeclarationList, constinArgument_inSemanticContext.getter_mPreferencesObservablePropertyMap (HERE), var_actionMap_7066, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 181)), ioArgument_ioGeneration, var_regularBindingsGenerationList_7502, var_multipleBindingGenerationList_7572, var_actionBindingListForGeneration_7644, var_outletMap_7683, var_tableViewBindingGenerationList_7755, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 175)) ;
+  }
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mSimpleStoredPropertyListForGeneration = var_simpleStoredPropertyListForGeneration_5797 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTransientDefinitionListForGeneration = var_transientDefinitionListForGeneration_6122 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mRegularBindingsGenerationList = var_regularBindingsGenerationList_7502 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mActionBindingListForGeneration = var_actionBindingListForGeneration_7644 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mMultipleBindingGenerationList = var_multipleBindingGenerationList_7572 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mOutletMap = var_outletMap_7683 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mMainXibDescriptorList = inObject.mProperty_mMainXibDescriptorList ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mExternSwiftFunctionList = constinArgument_inExternSwiftFunctionList ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mStoredArrayPropertyListForGeneration = var_storedArrayPropertyListForGeneration_6017 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mArrayControllerForGeneration = var_arrayControllerListForGeneration_6283 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTableViewBindingGenerationList = var_tableViewBindingGenerationList_7755 ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_preferencesForGeneration::GALGAS_preferencesForGeneration (void) :
+mProperty_mSimpleStoredPropertyListForGeneration (),
+mProperty_mTransientDefinitionListForGeneration (),
+mProperty_mRegularBindingsGenerationList (),
+mProperty_mMultipleBindingGenerationList (),
+mProperty_mActionBindingListForGeneration (),
+mProperty_mOutletMap (),
+mProperty_mMainXibDescriptorList (),
+mProperty_mExternSwiftFunctionList (),
+mProperty_mStoredArrayPropertyListForGeneration (),
+mProperty_mArrayControllerForGeneration (),
+mProperty_mTableViewBindingGenerationList () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_preferencesForGeneration::~ GALGAS_preferencesForGeneration (void) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_preferencesForGeneration::GALGAS_preferencesForGeneration (const GALGAS_simpleStoredPropertyListForGeneration & inOperand0,
+                                                                  const GALGAS_transientDefinitionListForGeneration & inOperand1,
+                                                                  const GALGAS_regularBindingsGenerationList & inOperand2,
+                                                                  const GALGAS_multipleBindingGenerationList & inOperand3,
+                                                                  const GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                  const GALGAS_decoratedOutletMap & inOperand5,
+                                                                  const GALGAS_mainXibDescriptorList & inOperand6,
+                                                                  const GALGAS_externSwiftFunctionList & inOperand7,
+                                                                  const GALGAS_storedArrayPropertyListForGeneration & inOperand8,
+                                                                  const GALGAS_arrayControllerForGeneration & inOperand9,
+                                                                  const GALGAS_tableViewBindingGenerationList & inOperand10) :
+mProperty_mSimpleStoredPropertyListForGeneration (inOperand0),
+mProperty_mTransientDefinitionListForGeneration (inOperand1),
+mProperty_mRegularBindingsGenerationList (inOperand2),
+mProperty_mMultipleBindingGenerationList (inOperand3),
+mProperty_mActionBindingListForGeneration (inOperand4),
+mProperty_mOutletMap (inOperand5),
+mProperty_mMainXibDescriptorList (inOperand6),
+mProperty_mExternSwiftFunctionList (inOperand7),
+mProperty_mStoredArrayPropertyListForGeneration (inOperand8),
+mProperty_mArrayControllerForGeneration (inOperand9),
+mProperty_mTableViewBindingGenerationList (inOperand10) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_preferencesForGeneration (GALGAS_simpleStoredPropertyListForGeneration::constructor_emptyList (HERE),
+                                          GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
+                                          GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE),
+                                          GALGAS_multipleBindingGenerationList::constructor_emptyList (HERE),
+                                          GALGAS_actionBindingListForGeneration::constructor_emptyList (HERE),
+                                          GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
+                                          GALGAS_mainXibDescriptorList::constructor_emptyList (HERE),
+                                          GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
+                                          GALGAS_storedArrayPropertyListForGeneration::constructor_emptyList (HERE),
+                                          GALGAS_arrayControllerForGeneration::constructor_emptyList (HERE),
+                                          GALGAS_tableViewBindingGenerationList::constructor_emptyList (HERE)) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_new (const GALGAS_simpleStoredPropertyListForGeneration & inOperand0,
+                                                                                  const GALGAS_transientDefinitionListForGeneration & inOperand1,
+                                                                                  const GALGAS_regularBindingsGenerationList & inOperand2,
+                                                                                  const GALGAS_multipleBindingGenerationList & inOperand3,
+                                                                                  const GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                                  const GALGAS_decoratedOutletMap & inOperand5,
+                                                                                  const GALGAS_mainXibDescriptorList & inOperand6,
+                                                                                  const GALGAS_externSwiftFunctionList & inOperand7,
+                                                                                  const GALGAS_storedArrayPropertyListForGeneration & inOperand8,
+                                                                                  const GALGAS_arrayControllerForGeneration & inOperand9,
+                                                                                  const GALGAS_tableViewBindingGenerationList & inOperand10 
+                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_preferencesForGeneration result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
+    result = GALGAS_preferencesForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_preferencesForGeneration::objectCompare (const GALGAS_preferencesForGeneration & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mSimpleStoredPropertyListForGeneration.objectCompare (inOperand.mProperty_mSimpleStoredPropertyListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mTransientDefinitionListForGeneration.objectCompare (inOperand.mProperty_mTransientDefinitionListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mRegularBindingsGenerationList.objectCompare (inOperand.mProperty_mRegularBindingsGenerationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mMultipleBindingGenerationList.objectCompare (inOperand.mProperty_mMultipleBindingGenerationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mActionBindingListForGeneration.objectCompare (inOperand.mProperty_mActionBindingListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mOutletMap.objectCompare (inOperand.mProperty_mOutletMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mMainXibDescriptorList.objectCompare (inOperand.mProperty_mMainXibDescriptorList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mExternSwiftFunctionList.objectCompare (inOperand.mProperty_mExternSwiftFunctionList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mStoredArrayPropertyListForGeneration.objectCompare (inOperand.mProperty_mStoredArrayPropertyListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mArrayControllerForGeneration.objectCompare (inOperand.mProperty_mArrayControllerForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mTableViewBindingGenerationList.objectCompare (inOperand.mProperty_mTableViewBindingGenerationList) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool GALGAS_preferencesForGeneration::isValid (void) const {
+  return mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mTransientDefinitionListForGeneration.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_mMultipleBindingGenerationList.isValid () && mProperty_mActionBindingListForGeneration.isValid () && mProperty_mOutletMap.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mStoredArrayPropertyListForGeneration.isValid () && mProperty_mArrayControllerForGeneration.isValid () && mProperty_mTableViewBindingGenerationList.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_preferencesForGeneration::drop (void) {
+  mProperty_mSimpleStoredPropertyListForGeneration.drop () ;
+  mProperty_mTransientDefinitionListForGeneration.drop () ;
+  mProperty_mRegularBindingsGenerationList.drop () ;
+  mProperty_mMultipleBindingGenerationList.drop () ;
+  mProperty_mActionBindingListForGeneration.drop () ;
+  mProperty_mOutletMap.drop () ;
+  mProperty_mMainXibDescriptorList.drop () ;
+  mProperty_mExternSwiftFunctionList.drop () ;
+  mProperty_mStoredArrayPropertyListForGeneration.drop () ;
+  mProperty_mArrayControllerForGeneration.drop () ;
+  mProperty_mTableViewBindingGenerationList.drop () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_preferencesForGeneration::description (C_String & ioString,
+                                                   const int32_t inIndentation) const {
+  ioString << "<struct @preferencesForGeneration:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mProperty_mSimpleStoredPropertyListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mTransientDefinitionListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mActionBindingListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mOutletMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mExternSwiftFunctionList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mStoredArrayPropertyListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mArrayControllerForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_simpleStoredPropertyListForGeneration GALGAS_preferencesForGeneration::getter_mSimpleStoredPropertyListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSimpleStoredPropertyListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_transientDefinitionListForGeneration GALGAS_preferencesForGeneration::getter_mTransientDefinitionListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mTransientDefinitionListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_regularBindingsGenerationList GALGAS_preferencesForGeneration::getter_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRegularBindingsGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_multipleBindingGenerationList GALGAS_preferencesForGeneration::getter_mMultipleBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mMultipleBindingGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_actionBindingListForGeneration GALGAS_preferencesForGeneration::getter_mActionBindingListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mActionBindingListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_decoratedOutletMap GALGAS_preferencesForGeneration::getter_mOutletMap (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_mainXibDescriptorList GALGAS_preferencesForGeneration::getter_mMainXibDescriptorList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mMainXibDescriptorList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_externSwiftFunctionList GALGAS_preferencesForGeneration::getter_mExternSwiftFunctionList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mExternSwiftFunctionList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_storedArrayPropertyListForGeneration GALGAS_preferencesForGeneration::getter_mStoredArrayPropertyListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mStoredArrayPropertyListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration GALGAS_preferencesForGeneration::getter_mArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_tableViewBindingGenerationList GALGAS_preferencesForGeneration::getter_mTableViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mTableViewBindingGenerationList ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           @preferencesForGeneration type                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_preferencesForGeneration ("preferencesForGeneration",
+                                                 NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_preferencesForGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_preferencesForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_preferencesForGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_preferencesForGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_preferencesForGeneration result ;
+  const GALGAS_preferencesForGeneration * p = (const GALGAS_preferencesForGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_preferencesForGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("preferencesForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 typeComparisonResult cPtr_transientAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_transientAST * p = (const cPtr_transientAST *) inOperandPtr ;
