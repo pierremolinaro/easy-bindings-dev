@@ -359,7 +359,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case classType (@string kClassTypeName) :
       entityName = kClassTypeName
@@ -392,7 +392,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case entityType (@string kEntityName) :
       entityName = kEntityName
@@ -421,7 +421,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName
     case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName
     case entityType (@string kEntityName) :
       entityName = kEntityName

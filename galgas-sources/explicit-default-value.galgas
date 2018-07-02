@@ -120,7 +120,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case propertyClassType (* *) :
     case classType (*) :
     case enumType (* *) :
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
     end
   end
   if not found then
@@ -150,7 +150,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case enumType (* *) :
     case classType (*) :
     case propertyClassType (**) :
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
     end
   end
   if not found then
@@ -177,7 +177,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case enumType (* *) :
     case classType (*) :
     case propertyClassType (**) :
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
     end
   end
   if not found then
@@ -204,7 +204,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case enumType (* *) :
     case classType (*) :
     case propertyClassType (**) :
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
     end
   end
   if not found then
@@ -260,7 +260,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid string type"  
     case fontType :
       error mValue : "invalid font type"  
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error mValue : "invalid image type"  
     case propertyClassType (@string propertyClassTypeName @propertyClassDefaultValues defaultValues) :
       found = true

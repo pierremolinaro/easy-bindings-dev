@@ -388,7 +388,7 @@ void routine_generateCode (const class GALGAS_string constinArgument0,
 
 void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
                                          const class GALGAS_stringlist constinArgument1,
-                                         const class GALGAS_stringlist constinArgument2,
+                                         const class GALGAS_transientExternTypeList constinArgument2,
                                          class GALGAS_stringset & ioArgument3,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;

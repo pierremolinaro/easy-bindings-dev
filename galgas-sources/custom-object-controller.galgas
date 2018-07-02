@@ -72,7 +72,7 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case propertyClassType (**) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case entityType (kEntityName) :
       entityName = kEntityName

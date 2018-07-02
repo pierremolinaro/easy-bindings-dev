@@ -1,6 +1,13 @@
 #   SEMANTIC TYPES                                                                                                     *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+list @transientExternTypeList {
+  @string mTypeName
+  @bool mIsClass
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 struct @structForGeneration {
   @transientDefinitionListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
@@ -15,7 +22,7 @@ struct @structForGeneration {
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
   @stringlist mPropertyClassList
-  @stringlist mTransientPropertyClassList
+  @transientExternTypeList mTransientPropertyTypeList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -99,7 +106,7 @@ proc generateCode
   generateStandardProperties (
     !fileOutputDirectory
     !inGeneration.mPropertyClassList
-    !inGeneration.mTransientPropertyClassList
+    !inGeneration.mTransientPropertyTypeList
     !?generatedFileSet
   )
   generateXcodeProject (
@@ -176,6 +183,7 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
 
   template scalarProperty "scalar-standard-property.swift.galgasTemplate"
     ?@string TYPE
+    ?@bool TRANSIENT
 
   template classProperty "class-standard-property.swift.galgasTemplate"
     ?@string CLASS_NAME
@@ -188,23 +196,27 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
 private proc generateStandardProperties
   ?let @string inOutputDirectory
   ?let @stringlist inPropertyClassList
-  ?let @stringlist inTransientPropertyClassList
+  ?let @transientExternTypeList inTransientPropertyExternTypeList
   ?!@stringset ioGeneratedFileSet
 {
   var contents = [filewrapper standard_properties.stub]
 #--- Add scalar property types
-  contents += [filewrapper standard_properties.scalarProperty !"Int"   ]
-  contents += [filewrapper standard_properties.scalarProperty !"Bool"  ]
-  contents += [filewrapper standard_properties.scalarProperty !"Double"]
-  contents += [filewrapper standard_properties.scalarProperty !"String"]
+  contents += [filewrapper standard_properties.scalarProperty !"Int"    !false]
+  contents += [filewrapper standard_properties.scalarProperty !"Bool"   !false]
+  contents += [filewrapper standard_properties.scalarProperty !"Double" !false]
+  contents += [filewrapper standard_properties.scalarProperty !"String" !false]
 #--- Add class property types
   for (propertyClass) in inPropertyClassList do
     contents += [filewrapper standard_properties.classProperty !propertyClass !false !false]
   end
-  for (propertyClass) in inTransientPropertyClassList do
-    contents += [filewrapper standard_properties.classProperty !propertyClass !false !true]
+  for (propertyType isClass) in inTransientPropertyExternTypeList do
+    if isClass then
+      contents += [filewrapper standard_properties.classProperty !propertyType !false !true]
+    else
+      contents += [filewrapper standard_properties.scalarProperty !propertyType !true]
+    end
   end
-  contents += [filewrapper standard_properties.scalarProperty !"Date"]
+  contents += [filewrapper standard_properties.scalarProperty !"Date" !false]
   contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
 #--- Generate file
   let fileName = "standard-properties.swift"

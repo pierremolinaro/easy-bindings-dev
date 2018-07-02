@@ -332,7 +332,7 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'" : outType
     case propertyClassType (**) :
       error relationshipName : "a property cannot accept 'all'" : outType
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -418,7 +418,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     case propertyClassType (**) :
       error propertyName : "a property cannot accept 'all'" : outType
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -483,7 +483,7 @@ method @observablePropertyAST analyzeObservableProperty
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case propertyClassType (**) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case transientPropertyClassType (*) :
+      case transientPropertyExternType (*) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case enumType (* *) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

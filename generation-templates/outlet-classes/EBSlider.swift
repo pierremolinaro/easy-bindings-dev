@@ -141,13 +141,13 @@ final class Controller_EBSlider_intValue : EBSimpleController {
     switch mObject.prop {
     case .empty :
       mOutlet.stringValue = "—"
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     case .multiple :
       mOutlet.stringValue = "—"
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     case .single (let propertyValue) :
       mOutlet.doubleValue = Double (propertyValue)
-      mOutlet.enableFromValue (true)
+      mOutlet.enableFromValueBinding (true)
     }
   }
 

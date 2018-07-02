@@ -96,6 +96,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_inverse,
    kToken_mainxib,
    kToken_no,
+   kToken_one,
    kToken_outlet,
    kToken_prefs,
    kToken_property,
@@ -170,7 +171,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 69 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 70 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -654,6 +655,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_49 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_51 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -5320,22 +5323,22 @@ class cPtr_transientAST : public cPtr_abstractSecondaryProperty {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @transientPropertyClassDeclaration class                                       *
+//                                       @transientPropertyTypeDeclaration class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_transientPropertyClassDeclaration : public GALGAS_astDeclaration {
+class GALGAS_transientPropertyTypeDeclaration : public GALGAS_astDeclaration {
 //--- Constructor
-  public : GALGAS_transientPropertyClassDeclaration (void) ;
+  public : GALGAS_transientPropertyTypeDeclaration (void) ;
 
 //--------------------------------- Default GALGAS constructor
-  public : static GALGAS_transientPropertyClassDeclaration constructor_default (LOCATION_ARGS) ;
+  public : static GALGAS_transientPropertyTypeDeclaration constructor_default (LOCATION_ARGS) ;
 
 //---
-  public : inline const class cPtr_transientPropertyClassDeclaration * ptr (void) const { return (const cPtr_transientPropertyClassDeclaration *) mObjectPtr ; }
+  public : inline const class cPtr_transientPropertyTypeDeclaration * ptr (void) const { return (const cPtr_transientPropertyTypeDeclaration *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_transientPropertyClassDeclaration (const cPtr_transientPropertyClassDeclaration * inSourcePtr) ;
+  public : GALGAS_transientPropertyTypeDeclaration (const cPtr_transientPropertyTypeDeclaration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -5343,17 +5346,18 @@ class GALGAS_transientPropertyClassDeclaration : public GALGAS_astDeclaration {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_transientPropertyClassDeclaration extractObject (const GALGAS_object & inObject,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_transientPropertyTypeDeclaration extractObject (const GALGAS_object & inObject,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_transientPropertyClassDeclaration constructor_new (const class GALGAS_bool & inOperand0,
-                                                                                  const class GALGAS_lstring & inOperand1
-                                                                                  COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_transientPropertyTypeDeclaration constructor_new (const class GALGAS_bool & inOperand0,
+                                                                                 const class GALGAS_lstring & inOperand1,
+                                                                                 const class GALGAS_bool & inOperand2
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_transientPropertyClassDeclaration & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_transientPropertyTypeDeclaration & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5361,39 +5365,44 @@ class GALGAS_transientPropertyClassDeclaration : public GALGAS_astDeclaration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mClassPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsClass (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_transientPropertyClassDeclaration class
+} ; // End of GALGAS_transientPropertyTypeDeclaration class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyClassDeclaration ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyTypeDeclaration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                             Pointer class for @transientPropertyClassDeclaration class                              *
+//                              Pointer class for @transientPropertyTypeDeclaration class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cPtr_transientPropertyClassDeclaration : public cPtr_astDeclaration {
+class cPtr_transientPropertyTypeDeclaration : public cPtr_astDeclaration {
 //--- Attributes
-  public : GALGAS_lstring mProperty_mClassPropertyName ;
+  public : GALGAS_lstring mProperty_mPropertyTypeName ;
+  public : GALGAS_bool mProperty_mIsClass ;
 
 //--- Constructor
-  public : cPtr_transientPropertyClassDeclaration (const GALGAS_bool & in_mUserDefined,
-                                                   const GALGAS_lstring & in_mClassPropertyName
-                                                   COMMA_LOCATION_ARGS) ;
+  public : cPtr_transientPropertyTypeDeclaration (const GALGAS_bool & in_mUserDefined,
+                                                  const GALGAS_lstring & in_mPropertyTypeName,
+                                                  const GALGAS_bool & in_mIsClass
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mClassPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsClass (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -6352,6 +6361,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_49 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_51 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8474,7 +8485,7 @@ class GALGAS_typeKind : public AC_GALGAS_root {
     kEnum_entityType,
     kEnum_classType,
     kEnum_propertyClassType,
-    kEnum_transientPropertyClassType
+    kEnum_transientPropertyExternType
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -8527,8 +8538,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
 
   public : static class GALGAS_typeKind constructor_stringType (LOCATION_ARGS) ;
 
-  public : static class GALGAS_typeKind constructor_transientPropertyClassType (const class GALGAS_string & inOperand0
-                                                                                COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_typeKind constructor_transientPropertyExternType (const class GALGAS_string & inOperand0
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -8557,9 +8568,9 @@ class GALGAS_typeKind : public AC_GALGAS_root {
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_transientPropertyClassType (class GALGAS_string & outArgument0,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void method_transientPropertyExternType (class GALGAS_string & outArgument0,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
@@ -8584,7 +8595,7 @@ class GALGAS_typeKind : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isStringType (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientPropertyClassType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientPropertyExternType (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -11319,18 +11330,18 @@ class cEnumAssociatedValues_typeKind_propertyClassType : public cEnumAssociatedV
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_typeKind_transientPropertyClassType : public cEnumAssociatedValues {
+class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumAssociatedValues {
   public : const GALGAS_string mAssociatedValue0 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_typeKind_transientPropertyClassType (const GALGAS_string & inAssociatedValue0
-                                                                      COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_typeKind_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
+                                                                       COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_typeKind_transientPropertyClassType (void) {}
+  public : virtual ~ cEnumAssociatedValues_typeKind_transientPropertyExternType (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

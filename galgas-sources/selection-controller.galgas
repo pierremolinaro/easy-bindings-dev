@@ -82,7 +82,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case propertyClassType (**) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
-    case transientPropertyClassType (*) :
+    case transientPropertyExternType (*) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case entityType (kEntityName) :
       entityName = kEntityName
@@ -138,7 +138,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   case entityType (kEntityName) :
     selectionEntityName = kEntityName
-  case transientPropertyClassType (*) :
+  case transientPropertyExternType (*) :
     error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
   end
 #--- Find root entity observable properties
