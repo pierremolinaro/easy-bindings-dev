@@ -235,7 +235,7 @@ var g_Preferences : Preferences? = nil
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.mFirstName_property.prop, unwSelf.mLastName_property.prop) {
+          switch (unwSelf.mFirstName_property_selection, unwSelf.mLastName_property_selection) {
           case (.single (let v0), .single (let v1)) :
             return .single (compute_Preferences_mFullName (v0, v1))
           default :
@@ -255,7 +255,7 @@ var g_Preferences : Preferences? = nil
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.mFullName_property.prop) {
+          switch (unwSelf.mFullName_property_selection) {
           case (.single (let v0)) :
             return .single (compute_Preferences_mUpperCaseFullName (v0))
           default :

@@ -83,7 +83,7 @@ syntax extension easyBindings_syntax {
         end
         cascading = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@cascading" } # replace "@signature" }
+        error attributeName : "unknow attribute" fixit { replace "@cascading" }
       end
     end
     $Identifier$ ?let @lstring destinationEntityName

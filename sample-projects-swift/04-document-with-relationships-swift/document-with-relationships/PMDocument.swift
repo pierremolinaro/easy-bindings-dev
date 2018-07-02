@@ -278,7 +278,7 @@ import Cocoa
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.selController.sortedArray_property.count_property.prop) {
+          switch (unwSelf.selController.sortedArray_property.count_property_selection) {
           case (.single (let v0)) :
             return .single (compute_PMDocument_selectionCountString (v0))
           default :
@@ -298,7 +298,7 @@ import Cocoa
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.otherController.sortedArray_property.count_property.prop) {
+          switch (unwSelf.otherController.sortedArray_property.count_property_selection) {
           case (.single (let v0)) :
             return .single (compute_PMDocument_evenValueString (v0))
           default :
@@ -318,7 +318,7 @@ import Cocoa
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.nameController.selectedArray_property.count_property.prop) {
+          switch (unwSelf.nameController.selectedArray_property.count_property_selection) {
           case (.single (let v0)) :
             return .single (compute_PMDocument_canRemoveString (v0))
           default :
@@ -338,7 +338,7 @@ import Cocoa
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.rootObject.mNames_property.count_property.prop) {
+          switch (unwSelf.rootObject.mNames_property.count_property_selection) {
           case (.single (let v0)) :
             return .single (compute_PMDocument_countItemMessage (v0))
           default :
@@ -358,7 +358,7 @@ import Cocoa
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.rootObject.mNames_property.prop) {
+          switch (unwSelf.rootObject.mNames_property_selection) {
           case (.single (let v0)) :
             return .single (compute_PMDocument_total (v0))
           default :

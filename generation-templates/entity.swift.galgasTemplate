@@ -609,7 +609,6 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol %!ENTITY_NAME%_%!mTransientName% : class {
-//  var %!mTransientName%_property_selection : EBSelection < %![mTransientType swiftTypeName]% > { get }
   var %!mTransientName% : EBSelection < %![mTransientType swiftTypeName]% > { get }
 }
 
@@ -817,6 +816,10 @@ for () in TO_ONE_RELATIONSHIP_LIST do
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstractProperty {
+  //····················································································································
+  //   Value explorer
+  //····················································································································
+
   var mValueExplorer : NSButton? {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
@@ -862,7 +865,19 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
       //--- Set new opposite relation ship
         %!mToOneRelationshipName%?.%!mOppositeRelationshipName% = self
 %    end
-%      //--- Notify observers
+%      //--- Remove property observers of old object
+%    for () in mDestinationEntityObservablePropertyMap do
+       if not [mType isEntityType] then
+       %        oldValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
+       end
+     end
+%      //--- Add property observers to new object
+%    for () in mDestinationEntityObservablePropertyMap do
+       if not [mType isEntityType] then
+       %        mValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
+       end
+     end
+%       //--- Notify observers
         postEvent ()
       }
     }
@@ -894,9 +909,49 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
     mValue = object
   }
 
+%
+for () in mDestinationEntityObservablePropertyMap do
+  if not [mType isEntityType] then
+  %  //····················································································································\n%
+  %  //   Observable property: %!lkey.string%\n%
+  %  //····················································································································\n\n%
+  %  private var mObserversOf_%!lkey.string% = EBWeakEventSet ()\n\n%
+  %  //····················································································································\n\n%
+  %  var %!lkey.string%_property_selection : EBSelection <%![mType swiftTypeName]%?> {\n%
+  %    get {\n%
+  %      if let model = self.propval {\n%
+  %        switch (model.%!lkey.string%_property_selection) {\n%
+  %        case .empty :\n%
+  %          return .empty\n%
+  %        case .multiple :\n%
+  %          return .multiple\n%
+  %        case .single (let v) :\n%
+  %          return .single (v)\n%
+  %        }\n%
+  %      }else{\n%
+  %        return .single (nil)\n%
+  %      }\n%
+  %    }\n%
+  %  }\n\n%
+  %  //····················································································································\n\n%
+  %  final func addEBObserverOf_%!lkey.string% (_ inObserver : EBEvent) {\n%
+  %    mObserversOf_%!lkey.string%.insert (inObserver)\n%
+  %    if let object = self.propval {\n%
+  %      object.%!lkey.string%_property.addEBObserver (inObserver)\n%
+  %    }\n%
+  %  }\n\n%
+  %  //····················································································································\n\n%
+  %  final func removeEBObserverOf_%!lkey.string% (_ inObserver : EBEvent) {\n%
+  %    mObserversOf_%!lkey.string%.remove (inObserver)\n%
+  %    if let object = self.propval {\n%
+  %      object.%!lkey.string%_property.removeEBObserver (inObserver)\n%
+  %    }\n%
+  %  }\n\n%
+end
+end
+%  //····················································································································
+
 }
 %
 end
 %
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-

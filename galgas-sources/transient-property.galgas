@@ -242,7 +242,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult += ident + "case .singleSelectionKind :\n"
   outResult += ident + "  switch ("
   for () in self
-  do outResult += [mDependency modelStringForSelf !"unwSelf"] + ".prop"
+  do outResult += [mDependency modelStringForSelf !"unwSelf"] + "_selection"
   between outResult += ", "
   end
   outResult += ") {\n"
@@ -295,6 +295,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = "self." + masterName.string + "_property.addEBObserver"
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
     outResult = "self." + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
+  case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
+    outResult = "self." + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.addEBObserver"
   case prefsPropertyWithOption (@lstring propertyName *) :
@@ -327,6 +329,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   case selfPropertyWithOption (@lstring masterName *) :
     outResult = "self." + masterName.string + "_property.removeEBObserver"
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
+    outResult = "self." + masterName.string + "_property.removeEBObserverOf_" + elementPropertyName
+  case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
     outResult = "self." + masterName.string + "_property.removeEBObserverOf_" + elementPropertyName
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.removeEBObserver"

@@ -137,7 +137,7 @@ class MyRootEntity : EBManagedObject,
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.myString_property.prop) {
+          switch (unwSelf.myString_property_selection) {
           case (.single (let v0)) :
             return .single (compute_MyRootEntity_myStringMaj (v0))
           default :
@@ -157,7 +157,7 @@ class MyRootEntity : EBManagedObject,
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.myString_property.prop) {
+          switch (unwSelf.myString_property_selection) {
           case (.single (let v0)) :
             return .single (compute_MyRootEntity_myStringMin (v0))
           default :
@@ -178,7 +178,7 @@ class MyRootEntity : EBManagedObject,
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.myStringMaj_property.prop, unwSelf.myStringMin_property.prop) {
+          switch (unwSelf.myStringMaj_property_selection, unwSelf.myStringMin_property_selection) {
           case (.single (let v0), .single (let v1)) :
             return .single (compute_MyRootEntity_myStringConcat (v0, v1))
           default :
@@ -700,21 +700,18 @@ protocol MyRootEntity_myColor : class {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_myStringMaj : class {
-//  var myStringMaj_property_selection : EBSelection < String > { get }
   var myStringMaj : EBSelection < String > { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_myStringMin : class {
-//  var myStringMin_property_selection : EBSelection < String > { get }
   var myStringMin : EBSelection < String > { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_myStringConcat : class {
-//  var myStringConcat_property_selection : EBSelection < String > { get }
   var myStringConcat : EBSelection < String > { get }
 }
 

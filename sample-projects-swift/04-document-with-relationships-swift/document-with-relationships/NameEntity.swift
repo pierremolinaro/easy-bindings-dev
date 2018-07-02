@@ -405,6 +405,10 @@ protocol NameEntity_aValue : class {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
+  //····················································································································
+  //   Value explorer
+  //····················································································································
+
   var mValueExplorer : NSButton? {
     didSet {
       if let unwrappedExplorer = mValueExplorer {
@@ -474,6 +478,8 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   func add (_ object : MyRootEntity) {
     mValue = object
   }
+
+  //····················································································································
 
 }
 
