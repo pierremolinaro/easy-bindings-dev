@@ -938,11 +938,13 @@ class EBTransientClassProperty <T> : EBReadOnlyClassProperty <T> {
       mValueCache = nil
       mValueExplorer?.stringValue = "nil"
       if logEvents () {
-        appendMessageString ("Transient \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
+        let className = String (describing:type(of: self))
+        appendMessageString ("Transient \(className) \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\n")
       }
       super.postEvent ()
     }else if logEvents () {
-      appendMessageString ("Transient  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
+      let className = String (describing:type(of: self))
+      appendMessageString ("Transient \(className) \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\n")
     }
   }
 

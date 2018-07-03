@@ -874,7 +874,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
 %      //--- Add property observers to new object
 %    for () in mDestinationEntityObservablePropertyMap do
        if not [mType isEntityType] then
-       %        mValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
+       %        mValue?.%!lkey.string%_property.addEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
      end
 %       //--- Notify observers
