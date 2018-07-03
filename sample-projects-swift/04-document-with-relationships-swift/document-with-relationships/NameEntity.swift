@@ -447,7 +447,9 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
         if let unwrappedValue = mValue {
           unwrappedValue.mNames_property.add (unwrappedOwner)
         }
-      //--- Notify observers
+      //--- Remove property observers of old object
+      //--- Add property observers to new object
+       //--- Notify observers
         postEvent ()
       }
     }
@@ -482,6 +484,4 @@ final class ToOneRelationship_NameEntity_mRoot : EBAbstractProperty {
   //····················································································································
 
 }
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

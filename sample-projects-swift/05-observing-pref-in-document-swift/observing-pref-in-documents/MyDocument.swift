@@ -122,14 +122,14 @@ import Cocoa
   //--------------------------- Array controllers
   //--------------------------- Selection controllers
   //--------------------------- Custom object controllers
-  //--- Transient compute functions
-  //--- Install property observers for transients
-  //--- Install regular bindings
+  //--------------------------- Transient compute functions
+  //--------------------------- Install property observers for transients
+  //--------------------------- Install regular bindings
     docStringTextField?.bind_value (self.rootObject.docString_property, file: #file, line: #line, sendContinously:true)
     prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString_property, file: #file, line: #line)
     prefTransientStringTextField?.bind_valueObserver (g_Preferences!.prefTransientString_property, file: #file, line: #line)
     transientConcatStringTextField?.bind_valueObserver (self.rootObject.transientConcatString_property, file: #file, line: #line)
-  //--- Install multiple bindings
+  //--------------------------- Install multiple bindings
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -141,18 +141,28 @@ import Cocoa
   //····················································································································
 
   override func removeUserInterface () {
-  //--- Unbind regular bindings
+  //--------------------------- Unbind regular bindings
     docStringTextField?.unbind_value ()
     prefStringTextField?.unbind_valueObserver ()
     prefTransientStringTextField?.unbind_valueObserver ()
     transientConcatStringTextField?.unbind_valueObserver ()
-  //--- Unbind multiple bindings
-  //--- Uninstall compute functions for transients
+  //--------------------------- Unbind multiple bindings
+  //--------------------------- Uninstall compute functions for transients
   //--------------------------- Unbind array controllers
   //--------------------------- Unbind selection controllers
-  //--- Uninstall property observers for transients
+  //--------------------------- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
+  //--------------------------- Clean up outlets
+    self.docStringTextField?.ebCleanUp ()
+    self.prefStringTextField?.ebCleanUp ()
+    self.prefTransientStringTextField?.ebCleanUp ()
+    self.transientConcatStringTextField?.ebCleanUp ()
   }
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
 
   //····················································································································
 

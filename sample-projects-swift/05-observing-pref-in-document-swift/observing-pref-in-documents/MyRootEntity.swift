@@ -100,7 +100,7 @@ class MyRootEntity : EBManagedObject,
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.docString_property.prop, g_Preferences!.myPrefString_property.prop, g_Preferences!.prefTransientString_property.prop) {
+          switch (unwSelf.docString_property_selection, g_Preferences!.myPrefString_property_selection, g_Preferences!.prefTransientString_property_selection) {
           case (.single (let v0), .single (let v1), .single (let v2)) :
             return .single (compute_MyRootEntity_transientConcatString (v0, v1, v2))
           default :
@@ -119,7 +119,7 @@ class MyRootEntity : EBManagedObject,
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (g_Preferences!.myPrefString_property.prop) {
+          switch (g_Preferences!.myPrefString_property_selection) {
           case (.single (let v0)) :
             return .single (compute_MyRootEntity_otherTransientConcatString (v0))
           default :
@@ -494,17 +494,13 @@ protocol MyRootEntity_docString : class {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_transientConcatString : class {
-//  var transientConcatString_property_selection : EBSelection < String > { get }
   var transientConcatString : EBSelection < String > { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_otherTransientConcatString : class {
-//  var otherTransientConcatString_property_selection : EBSelection < String > { get }
   var otherTransientConcatString : EBSelection < String > { get }
 }
 
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

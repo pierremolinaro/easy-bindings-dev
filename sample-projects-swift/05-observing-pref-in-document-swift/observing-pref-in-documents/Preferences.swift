@@ -17,6 +17,7 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   @IBOutlet var myPrefStringTextField : EBTextField? = nil
+
   //····················································································································
   //   Accessing myPrefString stored property
   //····················································································································
@@ -94,11 +95,11 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   override func awakeFromNib () {
-  //--- Check myPrefStringTextField' outlet not nil
+  //--------------------------- Check myPrefStringTextField' outlet not nil
     if nil == myPrefStringTextField {
       presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myPrefStringTextField' outlet is nil")
     }
-  //--- Install compute functions for transients
+  //--------------------------- Install compute functions for transients
     self.prefTransientString_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         let kind = unwSelf.myPrefString_property_selection.kind ()
@@ -108,7 +109,7 @@ var g_Preferences : Preferences? = nil
         case .multipleSelectionKind :
           return .multiple
         case .singleSelectionKind :
-          switch (unwSelf.myPrefString_property.prop) {
+          switch (unwSelf.myPrefString_property_selection) {
           case (.single (let v0)) :
             return .single (compute_Preferences_prefTransientString (v0))
           default :
@@ -119,16 +120,21 @@ var g_Preferences : Preferences? = nil
         return .empty
       }
     }
-  //--- Install property observers for transients
+  //--------------------------- Install property observers for transients
     self.myPrefString_property.addEBObserver (self.prefTransientString_property)
-  //--- Install bindings
+  //--------------------------- Install bindings
     myPrefStringTextField?.bind_value (self.myPrefString_property, file: #file, line: #line, sendContinously:false)
-  //--- Install multiple bindings
+  //--------------------------- Install multiple bindings
   //--------------------------- Array controller
   //--------------------------- Set targets / actions
-  //--- Extern functions
+  //--------------------------- Extern functions
   }
-  
+
+  //····················································································································
+  //    Multiple bindings controller
+  //····················································································································
+
+
   //····················································································································
   //    applicationWillTerminateAction
   //····················································································································

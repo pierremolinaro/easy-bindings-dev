@@ -138,7 +138,6 @@ override method @transientAST secondaryPropertySemanticAnalysis
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
-#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
@@ -164,7 +163,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
   end
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}
-  for () in mDependencyList do (idx)
+  for () in mDependencyList do # (idx)
     [mObservableProperty analyzeObservableProperty
       !inRootObservableProperties
       !inSemanticContext
@@ -179,7 +178,8 @@ override method @transientAST secondaryPropertySemanticAnalysis
     end
     dependencies +=
       !mObservableProperty
-      ![[mObservableProperty modelStringForSelf !"self"] nameRepresentation] + "_" + idx
+    #  ![[mObservableProperty modelStringForSelf !"self"] stringByReplacingStringByString !"." !"_"] + "_" + idx
+      ![mObservableProperty modelStringFunctionArgument] # + "_" + idx
       !swiftTypeStringForTransientFunctionArgument
   end
 #--- Code generation

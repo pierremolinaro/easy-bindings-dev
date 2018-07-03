@@ -156,6 +156,41 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   end  
 }
 
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
+  switch self
+  case rootProperty (@lstring propertyName) :
+    outResult = "self_rootObject_" + propertyName 
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = "self_rootObject_" + propertyName + "_" + optionName
+  case rootPropertyRelationship (@lstring relationshipName @lstring elementPropertyName) :
+    outResult = "self_rootObject_" + relationshipName + "_" + elementPropertyName
+  case selfProperty (@lstring propertyName) :
+    outResult = "self_" + propertyName
+  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = "self_" + propertyName + "_" + optionName
+  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) :
+    outResult = "self_" + propertyName + "_" + elementPropertyName
+  case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
+    outResult = "self_" + propertyName + "_" + elementPropertyName
+  case prefsProperty (@lstring propertyName) :
+    outResult = "prefs_" + propertyName
+  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+    outResult = "prefs_" + propertyName + "_" + optionName
+  case controllerProperty (@lstring controllerName @lstring propertyName) :
+    outResult = "self_" + controllerName + "_" + propertyName
+  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    outResult = "self_" + controllerName + "_" + propertyName + "_" + secondaryPropertyName
+  case signatureProperty (*) :
+    outResult = "self_signatureObserver"
+  case versionProperty (*) :
+    outResult = "self_versionObserver"
+  case versionShouldChangeProperty (*) :
+    outResult = "self_versionShouldChangeObserver"
+  end  
+}
+
 #·······················································································································
 
 getter @observablePropertyAST needs_unwSelf -> @bool outResult {

@@ -93,7 +93,6 @@ import Cocoa
     super.unregister ()
     mOutlet.target = nil
     mOutlet.action = nil
-    mOutlet.removeFromEnabledFromValueDictionary ()
   }
 
   //····················································································································
@@ -102,15 +101,14 @@ import Cocoa
     switch mObject.prop {
     case .empty :
       mOutlet.stringValue = "—"
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     case .multiple :
       mOutlet.stringValue = "—"
-      mOutlet.enableFromValue (false)
+      mOutlet.enableFromValueBinding (false)
     case .single (let propertyValue) :
       mOutlet.stringValue = propertyValue
-      mOutlet.enableFromValue (true)
+      mOutlet.enableFromValueBinding (true)
     }
-    mOutlet.updateEnabledState ()
   }
 
   //····················································································································
