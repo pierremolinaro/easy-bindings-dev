@@ -133,6 +133,10 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken__26_,
    kToken__3C_,
    kToken__3E_,
+   kToken__3C__3D_,
+   kToken__3E__3D_,
+   kToken__21__3D_,
+   kToken__3D__3D_,
    kToken__5E_} ;
 
 //--- Key words table 'lowerCaseKeyWordList'
@@ -171,7 +175,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 70 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 74 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;

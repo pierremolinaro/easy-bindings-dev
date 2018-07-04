@@ -275,6 +275,18 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3C_ = "the '<' 
 //--- Syntax error message for terminal '$>$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3E_ = "the '>' delimitor" ;
 
+//--- Syntax error message for terminal '$<=$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3C__3D_ = "the '<=' delimitor" ;
+
+//--- Syntax error message for terminal '$>=$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3E__3D_ = "the '>=' delimitor" ;
+
+//--- Syntax error message for terminal '$!=$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__21__3D_ = "the '!=' delimitor" ;
+
+//--- Syntax error message for terminal '$==$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3D__3D_ = "the '==' delimitor" ;
+
 //--- Syntax error message for terminal '$^$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5E_ = "the '^' delimitor" ;
 
@@ -284,8 +296,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5E_ = "the '^' 
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 71)) {
-    static const char * syntaxErrorMessageArray [71] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 75)) {
+    static const char * syntaxErrorMessageArray [75] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
@@ -355,6 +367,10 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique__26_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__3C_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__3E_,
+        gSyntaxErrorMessage_easyBindings_5F_lexique__3C__3D_,
+        gSyntaxErrorMessage_easyBindings_5F_lexique__3E__3D_,
+        gSyntaxErrorMessage_easyBindings_5F_lexique__21__3D_,
+        gSyntaxErrorMessage_easyBindings_5F_lexique__3D__3D_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__5E_
     } ;
     result = syntaxErrorMessageArray [inTerminalIndex] ;
@@ -369,6 +385,13 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
 //--- Unicode string for '$_21_$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique__21_ [] = {
   TO_UNICODE ('!'),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$_21__3D_$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__21__3D_ [] = {
+  TO_UNICODE ('!'),
+  TO_UNICODE ('='),
   TO_UNICODE (0)
 } ;
 
@@ -420,9 +443,30 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__3C_ [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$_3C__3D_$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__3C__3D_ [] = {
+  TO_UNICODE ('<'),
+  TO_UNICODE ('='),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$_3D__3D_$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__3D__3D_ [] = {
+  TO_UNICODE ('='),
+  TO_UNICODE ('='),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$_3E_$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique__3E_ [] = {
   TO_UNICODE ('>'),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$_3E__3D_$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__3E__3D_ [] = {
+  TO_UNICODE ('>'),
+  TO_UNICODE ('='),
   TO_UNICODE (0)
 } ;
 
@@ -1042,7 +1086,7 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__7D_ [] = {
 //             Key words table 'delimitorsList'                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 16 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 20 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_delimitorsList [ktable_size_easyBindings_5F_lexique_delimitorsList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21_, 1, C_Lexique_easyBindings_5F_lexique::kToken__21_),
@@ -1060,7 +1104,11 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_de
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5E_, 1, C_Lexique_easyBindings_5F_lexique::kToken__5E_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7B_, 1, C_Lexique_easyBindings_5F_lexique::kToken__7B_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7C_, 1, C_Lexique_easyBindings_5F_lexique::kToken__7C_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7D_, 1, C_Lexique_easyBindings_5F_lexique::kToken__7D_)
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7D_, 1, C_Lexique_easyBindings_5F_lexique::kToken__7D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21__3D_, 2, C_Lexique_easyBindings_5F_lexique::kToken__21__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3C__3D_, 2, C_Lexique_easyBindings_5F_lexique::kToken__3C__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3D__3D_, 2, C_Lexique_easyBindings_5F_lexique::kToken__3D__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3E__3D_, 2, C_Lexique_easyBindings_5F_lexique::kToken__3E__3D_)
 } ;
 
 int16_t C_Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const C_String & inSearchedString) {
@@ -1515,6 +1563,26 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString (">") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
+    case kToken__3C__3D_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("<=") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken__3E__3D_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString (">=") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken__21__3D_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("!=") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken__3D__3D_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("==") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
     case kToken__5E_:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("^") ;
@@ -1663,6 +1731,18 @@ bool C_Lexique_easyBindings_5F_lexique::parseLexicalToken (void) {
         }else{
           lexicalError (gLexicalMessage_easyBindings_5F_lexique_incorrectStringEnd COMMA_LINE_AND_SOURCE_FILE) ;
         }
+      }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3E__3D_, 2, true)) {
+        token.mTokenCode = kToken__3E__3D_ ;
+        enterToken (token) ;
+      }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3D__3D_, 2, true)) {
+        token.mTokenCode = kToken__3D__3D_ ;
+        enterToken (token) ;
+      }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3C__3D_, 2, true)) {
+        token.mTokenCode = kToken__3C__3D_ ;
+        enterToken (token) ;
+      }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__21__3D_, 2, true)) {
+        token.mTokenCode = kToken__21__3D_ ;
+        enterToken (token) ;
       }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7D_, 1, true)) {
         token.mTokenCode = kToken__7D_ ;
         enterToken (token) ;
@@ -1892,6 +1972,10 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("&") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("<") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string (">") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("<=") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string (">=") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("!=") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("==") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("^") COMMA_THERE) ;
   return result ;
 }
@@ -1927,6 +2011,10 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("{") ;
     ioList.appendObject ("|") ;
     ioList.appendObject ("}") ;
+    ioList.appendObject ("!=") ;
+    ioList.appendObject ("<=") ;
+    ioList.appendObject ("==") ;
+    ioList.appendObject (">=") ;
     ioList.sortArrayUsingCompareMethod() ;
   }
   if (inIdentifier == "easyBindings_lexique:lowerCaseKeyWordList") {
@@ -1996,7 +2084,7 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [71] = {0,
+  static const uint32_t kTerminalSymbolStyles [75] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -2066,6 +2154,10 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     10 /* easyBindings_lexique_1__26_ */,
     10 /* easyBindings_lexique_1__3C_ */,
     10 /* easyBindings_lexique_1__3E_ */,
+    10 /* easyBindings_lexique_1__3C__3D_ */,
+    10 /* easyBindings_lexique_1__3E__3D_ */,
+    10 /* easyBindings_lexique_1__21__3D_ */,
+    10 /* easyBindings_lexique_1__3D__3D_ */,
     10 /* easyBindings_lexique_1__5E_ */
   } ;
   return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
@@ -3849,10 +3941,40 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 89)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_3815 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_3815, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_greater (SOURCE_FILE ("multiple-binding.galgas", 91)), var_rightBinding_3815  COMMA_SOURCE_FILE ("multiple-binding.galgas", 91)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 87)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_3809 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_3809, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_greater (SOURCE_FILE ("multiple-binding.galgas", 89)), var_rightBinding_3809  COMMA_SOURCE_FILE ("multiple-binding.galgas", 89)) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 91)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_3981 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_3981, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_greaterOrEqual (SOURCE_FILE ("multiple-binding.galgas", 93)), var_rightBinding_3981  COMMA_SOURCE_FILE ("multiple-binding.galgas", 93)) ;
+  } break ;
+  case 4: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 95)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4160 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4160, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_lowerOrEqual (SOURCE_FILE ("multiple-binding.galgas", 97)), var_rightBinding_4160  COMMA_SOURCE_FILE ("multiple-binding.galgas", 97)) ;
+  } break ;
+  case 5: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 99)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4336 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4336, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_lower (SOURCE_FILE ("multiple-binding.galgas", 101)), var_rightBinding_4336  COMMA_SOURCE_FILE ("multiple-binding.galgas", 101)) ;
+  } break ;
+  case 6: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 103)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4506 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4506, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_equal (SOURCE_FILE ("multiple-binding.galgas", 105)), var_rightBinding_4506  COMMA_SOURCE_FILE ("multiple-binding.galgas", 105)) ;
+  } break ;
+  case 7: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 107)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4676 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4676, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::constructor_notEqual (SOURCE_FILE ("multiple-binding.galgas", 109)), var_rightBinding_4676  COMMA_SOURCE_FILE ("multiple-binding.galgas", 109)) ;
   } break ;
   default:
     break ;
@@ -3867,7 +3989,27 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 89)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 87)) ;
+    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 91)) ;
+    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
+  } break ;
+  case 4: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 95)) ;
+    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
+  } break ;
+  case 5: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 99)) ;
+    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
+  } break ;
+  case 6: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 103)) ;
+    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
+  } break ;
+  case 7: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 107)) ;
     nt_booleanMultipleBindingTerm_parse (inCompiler) ;
   } break ;
   default:
@@ -3886,16 +4028,16 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 103)) ;
-      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_4332 ;
-      nt_booleanMultipleBindingOperand_ (var_binding_4332, inCompiler) ;
-      outArgument_outBinding = GALGAS_orBooleanMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, var_binding_4332  COMMA_SOURCE_FILE ("multiple-binding.galgas", 105)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 121)) ;
+      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5194 ;
+      nt_booleanMultipleBindingOperand_ (var_binding_5194, inCompiler) ;
+      outArgument_outBinding = GALGAS_orBooleanMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, var_binding_5194  COMMA_SOURCE_FILE ("multiple-binding.galgas", 123)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 107)) ;
-      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_4535 ;
-      nt_booleanMultipleBindingOperand_ (var_binding_4535, inCompiler) ;
-      outArgument_outBinding = GALGAS_xorBooleanMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, var_binding_4535  COMMA_SOURCE_FILE ("multiple-binding.galgas", 109)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 125)) ;
+      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5397 ;
+      nt_booleanMultipleBindingOperand_ (var_binding_5397, inCompiler) ;
+      outArgument_outBinding = GALGAS_xorBooleanMultipleBindingExpressionAST::constructor_new (outArgument_outBinding, var_binding_5397  COMMA_SOURCE_FILE ("multiple-binding.galgas", 127)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -3912,11 +4054,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 103)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 121)) ;
       nt_booleanMultipleBindingOperand_parse (inCompiler) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 107)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 125)) ;
       nt_booleanMultipleBindingOperand_parse (inCompiler) ;
     } break ;
     default:
@@ -3932,9 +4074,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
-  GALGAS_observablePropertyAST var_observablePropertyAST_4943 ;
-  nt_observable_5F_property_ (var_observablePropertyAST_4943, inCompiler) ;
-  outArgument_outBinding = GALGAS_observablePropertyInMultipleBindingExpressionAST::constructor_new (var_observablePropertyAST_4943  COMMA_SOURCE_FILE ("multiple-binding.galgas", 119)) ;
+  GALGAS_observablePropertyAST var_observablePropertyAST_5805 ;
+  nt_observable_5F_property_ (var_observablePropertyAST_5805, inCompiler) ;
+  outArgument_outBinding = GALGAS_observablePropertyInMultipleBindingExpressionAST::constructor_new (var_observablePropertyAST_5805  COMMA_SOURCE_FILE ("multiple-binding.galgas", 137)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3949,16 +4091,16 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i25_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 127)) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5378 ;
-  nt_booleanMultipleBindingOperand_ (var_binding_5378, inCompiler) ;
-  outArgument_outBinding = GALGAS_negateBooleanMultipleBindingExpressionAST::constructor_new (var_binding_5378  COMMA_SOURCE_FILE ("multiple-binding.galgas", 129)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 145)) ;
+  GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_6240 ;
+  nt_booleanMultipleBindingOperand_ (var_binding_6240, inCompiler) ;
+  outArgument_outBinding = GALGAS_negateBooleanMultipleBindingExpressionAST::constructor_new (var_binding_6240  COMMA_SOURCE_FILE ("multiple-binding.galgas", 147)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i25_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 127)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 145)) ;
   nt_booleanMultipleBindingOperand_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
@@ -3968,17 +4110,17 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i26_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 137)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 155)) ;
   nt_booleanMultipleBindingExpression_ (outArgument_outBinding, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 139)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 157)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i26_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 137)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 155)) ;
   nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 139)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 157)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -3987,15 +4129,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i27_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
-  GALGAS_luint var_value_6025 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.galgas", 147)) ;
-  outArgument_outBinding = GALGAS_literalIntMultipleBindingExpressionAST::constructor_new (var_value_6025  COMMA_SOURCE_FILE ("multiple-binding.galgas", 148)) ;
+  GALGAS_luint var_value_6887 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.galgas", 165)) ;
+  outArgument_outBinding = GALGAS_literalIntMultipleBindingExpressionAST::constructor_new (var_value_6887  COMMA_SOURCE_FILE ("multiple-binding.galgas", 166)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i27_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.galgas", 147)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.galgas", 165)) ;
   inCompiler->resetTemplateString () ;
 }
 

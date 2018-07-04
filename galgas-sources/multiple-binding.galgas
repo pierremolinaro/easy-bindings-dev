@@ -80,15 +80,33 @@ syntax extension easyBindings_syntax {
   
   #·····················································································································
   
-  rule <booleanMultipleBindingComparison> 
-    !@abstractBooleanMultipleBindingExpressionAST outBinding
-  {
+  rule <booleanMultipleBindingComparison>  !@abstractBooleanMultipleBindingExpressionAST outBinding {
     <booleanMultipleBindingTerm> ?outBinding
     select
     or
       $>$
       <booleanMultipleBindingTerm> ?let rightBinding
       outBinding = @comparisonMultipleBindingExpressionAST.new {!outBinding !.greater !rightBinding}
+    or
+      $>=$
+      <booleanMultipleBindingTerm> ?let rightBinding
+      outBinding = @comparisonMultipleBindingExpressionAST.new {!outBinding !.greaterOrEqual !rightBinding}
+    or
+      $<=$
+      <booleanMultipleBindingTerm> ?let rightBinding
+      outBinding = @comparisonMultipleBindingExpressionAST.new {!outBinding !.lowerOrEqual !rightBinding}
+    or
+      $<$
+      <booleanMultipleBindingTerm> ?let rightBinding
+      outBinding = @comparisonMultipleBindingExpressionAST.new {!outBinding !.lower !rightBinding}
+    or
+      $==$
+      <booleanMultipleBindingTerm> ?let rightBinding
+      outBinding = @comparisonMultipleBindingExpressionAST.new {!outBinding !.equal !rightBinding}
+    or
+      $!=$
+      <booleanMultipleBindingTerm> ?let rightBinding
+      outBinding = @comparisonMultipleBindingExpressionAST.new {!outBinding !.notEqual !rightBinding}
     end
   }
   
