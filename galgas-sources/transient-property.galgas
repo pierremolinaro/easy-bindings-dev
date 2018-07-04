@@ -7,7 +7,6 @@ class @transientAST : @abstractSecondaryProperty {
   @bool mIsArray
   @lstring mTransientName
   @observablePropertyList mDependencyList
-  @bool mIsCopy
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -45,40 +44,8 @@ syntax extension easyBindings_syntax {
       !isArray
       !transientName
       !dependanceList
-      !false
     }
   }
-
-  #·····················································································································
-
-  rule <transient_declaration>
-    ?!@secondaryPropertyList ioSecondaryPropertyList
-  {
-    $copy$
-    $transient$
-    @bool isArray
-    select
-      isArray = false
-    or
-      $array$
-      isArray = true
-    end
-    $Identifier$ ?var @lstring transientTypeName
-    $identifier$ ?let @lstring transientName
-    $:$
-    @observablePropertyList dependanceList = {}
-    <observable_property> ?let @observablePropertyAST observablePropertyAST
-    dependanceList += !observablePropertyAST
-    $;$
-    ioSecondaryPropertyList += !@transientAST.new {
-      !transientTypeName
-      !isArray
-      !transientName
-      !dependanceList
-      !true
-    }
-  }
-
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -189,7 +156,6 @@ override method @transientAST secondaryPropertySemanticAnalysis
     !mIsArray
     !type
     !dependencies
-    !mIsCopy
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -202,7 +168,6 @@ list @transientDefinitionListForGeneration {
   @bool mIsArray
   @typeKind mTransientType
   @transientDependencyListForGeneration mDependencyList
-  @bool mIsCopy
 }
 
 #·······················································································································
@@ -218,7 +183,6 @@ list @transientDependencyListForGeneration {
 getter @transientDependencyListForGeneration transientComputeFunctionCall
   ?let @string inOwnerName
   ?let @string inTransientName
-  ?let @bool inIsCopy
   -> @string outResult
 {
   @string ident = "        "
@@ -252,16 +216,12 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   between outResult += ", "
   end
   outResult += ") :\n"
-  if inIsCopy then
-    outResult += ident + "    return .single (v0)\n"
-  else
-    outResult += ident + "    return .single (compute_" + inOwnerName + "_" + inTransientName + " ("
-    for () in self
-    do (idx) outResult += "v" + idx
-    between outResult += ", "
-    end
-    outResult += "))\n"
+  outResult += ident + "    return .single (compute_" + inOwnerName + "_" + inTransientName + " ("
+  for () in self
+  do (idx) outResult += "v" + idx
+  between outResult += ", "
   end
+  outResult += "))\n"
   outResult += ident + "  default :\n"
   outResult += ident + "    return .empty\n"
   outResult += ident + "  }\n"
@@ -362,28 +322,26 @@ proc generateTransients
 {
 #--------------------------- Generate transient routines
   for () in inTransientListForGeneration do
-    if not mIsCopy then
-      let s = [filewrapper transientManager.transientComputationFunctionFile
-        !mOwnerName
-        !mTransientName
-        !mIsArray
-        !mDependencyList
-        !mTransientType 
-      ]
-      let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
-      ioGeneratedFileSet += !fileName
-      [@string generateFileWithPattern
-        !startPath:inOutputDirectory
-        !fileName:fileName
-        !lineComment:"//"
-        !header:""
-        !defaultUserZone1:"\n\n" # Defaut user zone1
-        !generatedZone2:s
-        !defaultUserZone2:"\n" # Defaut user zone2
-        !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
-        !makeExecutable:false
-      ]
-    end
+    let s = [filewrapper transientManager.transientComputationFunctionFile
+      !mOwnerName
+      !mTransientName
+      !mIsArray
+      !mDependencyList
+      !mTransientType 
+    ]
+    let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFileWithPattern
+      !startPath:inOutputDirectory
+      !fileName:fileName
+      !lineComment:"//"
+      !header:""
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"\n" # Defaut user zone2
+      !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
+      !makeExecutable:false
+    ]
   end
 }
 

@@ -171,7 +171,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
   %      if let unwSelf = self {\n%
-  ![mDependencyList transientComputeFunctionCall !preferencesName () !mTransientName !mIsCopy]
+  ![mDependencyList transientComputeFunctionCall !preferencesName () !mTransientName]
   %      }else{\n%
   %        return .empty\n%
   %      }\n%

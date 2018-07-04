@@ -97,14 +97,14 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if [mDependencyList needs_unwSelf] then
     %    %!mTransientName%_property.readModelFunction = { [weak self] in\n%
     %      if let unwSelf = self {\n%
-    ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName !mIsCopy]
+    ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName]
     %      }else{\n%
     %        return .empty\n%
     %      }\n%
     %    }\n%
   else
     %    %!mTransientName%_property.readModelFunction = {\n%
-    ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName !mIsCopy]
+    ![mDependencyList transientComputeFunctionCall !CLASS_NAME !mTransientName]
     %    }\n%
   end
 end
