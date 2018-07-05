@@ -10927,6 +10927,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "transient property class NSImage ;\n"
     "\n"
     "extern outlet class EBButton $run $enabled $hidden ;\n"
+    "binding EBButton $title : transient String ;\n"
     "\n"
     "extern outlet class EBColorObserverWell $enabled $hidden ;\n"
     "binding EBColorObserverWell $colorObserver : transient NSColor ;\n"

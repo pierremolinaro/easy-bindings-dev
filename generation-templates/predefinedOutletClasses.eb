@@ -11,6 +11,7 @@ property class NSColor (
 transient property class NSImage ;
 
 extern outlet class EBButton $run $enabled $hidden ;
+binding EBButton $title : transient String ;
 
 extern outlet class EBColorObserverWell $enabled $hidden ;
 binding EBColorObserverWell $colorObserver : transient NSColor ;
