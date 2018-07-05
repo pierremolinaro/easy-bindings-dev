@@ -5,7 +5,7 @@
 list @toOneRelationshipList {
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
-  @lstring mInverseRelationshipName
+  @lstring mInverseRelationshipName # Empty string if not inverse relation ship
   @propertyMultiplicity mInverseRelationMultiplicity
   @bool mCascading
 }
@@ -88,16 +88,22 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
-    $inverse$
     @propertyMultiplicity inverseRelationMultiplicity
+    @lstring inverseRelationshipName
     select
-      $toOne$
       inverseRelationMultiplicity = .single
+      inverseRelationshipName = ["" here]
     or
-      $toMany$
-      inverseRelationMultiplicity = .collection
-    end
-    $identifier$ ?let @lstring inverseRelationshipName
+      $inverse$
+      select
+        $toOne$
+        inverseRelationMultiplicity = .single
+      or
+        $toMany$
+        inverseRelationMultiplicity = .collection
+      end
+      $identifier$ ?inverseRelationshipName
+      end
     $;$
     ioToOneRelationshipList +=
       !destinationEntityName
@@ -238,37 +244,39 @@ method @toOneRelationshipList semanticAnalysis
       !destinationEntityObservablePropertyMap
       !mCascading
   #--- Check inverse relationship
-    [destinationEntityObservablePropertyMap searchForInverseRelationship
-       !mInverseRelationshipName
-       ?let @typeKind oppositeType
-       ?let @propertyKind oppositeKind
-       ?let @propertyMultiplicity oppositeMultiplicity
-       ?let @string oppositeOfOpposite
-       ?2*
-     ]
-   #--- Check opposite type
-     switch oppositeType
-     case boolType, integerType, stringType, dateType, doubleType, fontType :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case enumType (* *) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case classType (*) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case propertyClassType (**) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case transientPropertyExternType (*) :
-       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-     case entityType (*) : # Ok
-     end
-     if oppositeKind == .transient then
-       error mInverseRelationshipName : "this relationship is transient, should be stored"
-     end
-     if mInverseRelationMultiplicity != oppositeMultiplicity then
-       error mInverseRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
-     end
-     if oppositeOfOpposite != mToOneRelationshipName.string then
-       error mInverseRelationshipName : "inverse relationship does not name '"
-         + mToOneRelationshipName + "' as opposite"
+    if mInverseRelationshipName.string != "" then
+      [destinationEntityObservablePropertyMap searchForInverseRelationship
+         !mInverseRelationshipName
+         ?let @typeKind oppositeType
+         ?let @propertyKind oppositeKind
+         ?let @propertyMultiplicity oppositeMultiplicity
+         ?let @string oppositeOfOpposite
+         ?2*
+       ]
+     #--- Check opposite type
+       switch oppositeType
+       case boolType, integerType, stringType, dateType, doubleType, fontType :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case enumType (* *) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case classType (*) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case propertyClassType (**) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case transientPropertyExternType (*) :
+         error mInverseRelationshipName: "the opposite type cannot be used as entity type"
+       case entityType (*) : # Ok
+       end
+       if oppositeKind == .transient then
+         error mInverseRelationshipName : "this relationship is transient, should be stored"
+       end
+       if mInverseRelationMultiplicity != oppositeMultiplicity then
+         error mInverseRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
+       end
+       if oppositeOfOpposite != mToOneRelationshipName.string then
+         error mInverseRelationshipName : "inverse relationship does not name '"
+           + mToOneRelationshipName + "' as opposite"
+       end
      end
   end
 }

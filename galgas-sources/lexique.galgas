@@ -37,6 +37,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "inverse",
   "mainxib",
   "no",
+  "none",
   "one",
   "outlet",
   "prefs",

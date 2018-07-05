@@ -102,6 +102,8 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   %  var %!mToOneRelationshipName%_property = ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% ()\n%
+  %  var %!mToOneRelationshipName%_none_selection : EBSelection <Bool> { return .single (self.%!mToOneRelationshipName%_property.propval == nil) }\n%
+
 end
 %
   //····················································································································
@@ -278,11 +280,12 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mInverseRelationMultiplicity isSingle] then
-%    self.%!mToOneRelationshipName%_property.prop = readEntityFromDictionary (
-        "%!mToOneRelationshipName%",
-        inDictionary:inDictionary,
-        managedObjectArray:&managedObjectArray
-      ) as? %![mRelationshipType swiftTypeName]%\n%
+%    self.%!mToOneRelationshipName%_property.setProp (readEntityFromDictionary (
+        inRelationshipName: "%!mToOneRelationshipName%",
+        inDictionary: inDictionary,
+        managedObjectArray: &managedObjectArray
+      ) as? %![mRelationshipType swiftTypeName]%
+    )\n%
   end
 end
 %  }
@@ -306,7 +309,10 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if mCascading then
-    %    self.managedObjectContext ()?.internalRemoveManagedObject (self.%!mToOneRelationshipName%_property, &ioObjectsToRemove) // Cascade removing from moc\n%
+    %    if let object = self.%!mToOneRelationshipName%_property.propval {\n%
+    %      self.%!mToOneRelationshipName%_property.setProp (nil)\n%
+    %      self.managedObjectContext ()?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
+    %    }\n%
   else
     %    self.%!mToOneRelationshipName%_property.setProp (nil) // Set relationship to nil\n%
   end
@@ -850,7 +856,8 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
         if let unwrappedExplorer = mValueExplorer {
           updateManagedObjectToOneRelationshipDisplay (object: mValue, button:unwrappedExplorer)
         }
-%    if [mInverseRelationMultiplicity isCollection] then
+%   if mOppositeRelationshipName != "" then
+      if [mInverseRelationMultiplicity isCollection] then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
           unwrappedOldValue.%!mOppositeRelationshipName%_property.remove (unwrappedOwner)
@@ -859,12 +866,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
         if let unwrappedValue = mValue {
           unwrappedValue.%!mOppositeRelationshipName%_property.add (unwrappedOwner)
         }
-%    else
+%      else
 %     //--- Reset old opposite relation ship
         oldValue?.%!mOppositeRelationshipName% = nil
       //--- Set new opposite relation ship
         %!mToOneRelationshipName%?.%!mOppositeRelationshipName% = self
-%    end
+%      end
+     end
 %      //--- Remove property observers of old object
 %    for () in mDestinationEntityObservablePropertyMap do
        if not [mType isEntityType] then
