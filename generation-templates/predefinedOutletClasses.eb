@@ -10,43 +10,43 @@ property class NSColor (
 
 transient property class NSImage ;
 
-extern outlet class EBButton $run $enabled ;
+extern outlet class EBButton $run $enabled $hidden ;
 
-extern outlet class EBColorObserverWell $enabled ;
+extern outlet class EBColorObserverWell $enabled $hidden ;
 binding EBColorObserverWell $colorObserver : transient NSColor ;
 
-extern outlet class EBColorWell $enabled ;
+extern outlet class EBColorWell $enabled $hidden ;
 binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 
 
-extern outlet class EBDatePicker $enabled ;
+extern outlet class EBDatePicker $enabled $hidden ;
 binding EBDatePicker $date : property Date ;
 
-extern outlet class EBDoubleField ;
+extern outlet class EBDoubleField $hidden ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-extern outlet class EBDoubleObserverField ;
+extern outlet class EBDoubleObserverField $hidden ;
 binding EBDoubleObserverField $valueObserver : transient Double {autoFormatter:Bool} ;
 
 
-extern outlet class EBIntField ;
+extern outlet class EBIntField $hidden ;
 binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-extern outlet class EBIntObserverField ;
+extern outlet class EBIntObserverField $hidden ;
 binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
-extern outlet class EBFontButton $enabled ;
+extern outlet class EBFontButton $enabled $hidden ;
 binding EBFontButton $fontValue : property NSFont ;
 
 
-extern outlet class EBPopUpButton $enabled ;
+extern outlet class EBPopUpButton $enabled $hidden ;
 binding EBPopUpButton $selectedTag : property Int ;
 
 
-extern outlet class EBGroupButton $enabled ;
+extern outlet class EBGroupButton $enabled $hidden ;
 binding EBGroupButton $selectedIndex : property Int ;
 
 
