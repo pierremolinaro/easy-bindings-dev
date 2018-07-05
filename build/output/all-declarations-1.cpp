@@ -8064,26 +8064,28 @@ cMapElement_outletClassMap::cMapElement_outletClassMap (const GALGAS_lstring & i
                                                         const GALGAS_bool & in_mHandlesRunAction,
                                                         const GALGAS_bool & in_mHandlesTableValueBinding,
                                                         const GALGAS_bool & in_mHandleEnabledBinding,
+                                                        const GALGAS_bool & in_mHandleHiddenBinding,
                                                         const GALGAS_bool & in_mUserDefined
                                                         COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
 mProperty_mHandlesRunAction (in_mHandlesRunAction),
 mProperty_mHandlesTableValueBinding (in_mHandlesTableValueBinding),
 mProperty_mHandleEnabledBinding (in_mHandleEnabledBinding),
+mProperty_mHandleHiddenBinding (in_mHandleHiddenBinding),
 mProperty_mUserDefined (in_mUserDefined) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool cMapElement_outletClassMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mUserDefined.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mUserDefined.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cMapElement * cMapElement_outletClassMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_outletClassMap (mProperty_lkey, mProperty_mHandlesRunAction, mProperty_mHandlesTableValueBinding, mProperty_mHandleEnabledBinding, mProperty_mUserDefined COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_outletClassMap (mProperty_lkey, mProperty_mHandlesRunAction, mProperty_mHandlesTableValueBinding, mProperty_mHandleEnabledBinding, mProperty_mHandleHiddenBinding, mProperty_mUserDefined COMMA_HERE)) ;
   return result ;
 }
 
@@ -8104,6 +8106,10 @@ void cMapElement_outletClassMap::description (C_String & ioString, const int32_t
   mProperty_mHandleEnabledBinding.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mHandleHiddenBinding" ":" ;
+  mProperty_mHandleHiddenBinding.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mUserDefined" ":" ;
   mProperty_mUserDefined.description (ioString, inIndentation) ;
 }
@@ -8121,6 +8127,9 @@ typeComparisonResult cMapElement_outletClassMap::compare (const cCollectionEleme
   }
   if (kOperandEqual == result) {
     result = mProperty_mHandleEnabledBinding.objectCompare (operand->mProperty_mHandleEnabledBinding) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mHandleHiddenBinding.objectCompare (operand->mProperty_mHandleHiddenBinding) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mUserDefined.objectCompare (operand->mProperty_mUserDefined) ;
@@ -8180,10 +8189,11 @@ void GALGAS_outletClassMap::addAssign_operation (const GALGAS_lstring & inKey,
                                                  const GALGAS_bool & inArgument1,
                                                  const GALGAS_bool & inArgument2,
                                                  const GALGAS_bool & inArgument3,
+                                                 const GALGAS_bool & inArgument4,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   cMapElement_outletClassMap * p = NULL ;
-  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -8199,10 +8209,11 @@ void GALGAS_outletClassMap::setter_insertKey (GALGAS_lstring inKey,
                                               GALGAS_bool inArgument1,
                                               GALGAS_bool inArgument2,
                                               GALGAS_bool inArgument3,
+                                              GALGAS_bool inArgument4,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) {
   cMapElement_outletClassMap * p = NULL ;
-  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -8222,6 +8233,7 @@ void GALGAS_outletClassMap::method_searchKey (GALGAS_lstring inKey,
                                               GALGAS_bool & outArgument1,
                                               GALGAS_bool & outArgument2,
                                               GALGAS_bool & outArgument3,
+                                              GALGAS_bool & outArgument4,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const {
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) performSearch (inKey,
@@ -8233,12 +8245,14 @@ void GALGAS_outletClassMap::method_searchKey (GALGAS_lstring inKey,
     outArgument1.drop () ;
     outArgument2.drop () ;
     outArgument3.drop () ;
+    outArgument4.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
     outArgument0 = p->mProperty_mHandlesRunAction ;
     outArgument1 = p->mProperty_mHandlesTableValueBinding ;
     outArgument2 = p->mProperty_mHandleEnabledBinding ;
-    outArgument3 = p->mProperty_mUserDefined ;
+    outArgument3 = p->mProperty_mHandleHiddenBinding ;
+    outArgument4 = p->mProperty_mUserDefined ;
   }
 }
 
@@ -8283,6 +8297,21 @@ GALGAS_bool GALGAS_outletClassMap::getter_mHandleEnabledBindingForKey (const GAL
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_outletClassMap) ;
     result = p->mProperty_mHandleEnabledBinding ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_outletClassMap::getter_mHandleHiddenBindingForKey (const GALGAS_string & inKey,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) attributes ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_outletClassMap) ;
+    result = p->mProperty_mHandleHiddenBinding ;
   }
   return result ;
 }
@@ -8346,6 +8375,20 @@ void GALGAS_outletClassMap::setter_setMHandleEnabledBindingForKey (GALGAS_bool i
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+void GALGAS_outletClassMap::setter_setMHandleHiddenBindingForKey (GALGAS_bool inAttributeValue,
+                                                                  GALGAS_string inKey,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_outletClassMap * p = (cMapElement_outletClassMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_outletClassMap) ;
+    p->mProperty_mHandleHiddenBinding = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 void GALGAS_outletClassMap::setter_setMUserDefinedForKey (GALGAS_bool inAttributeValue,
                                                           GALGAS_string inKey,
                                                           C_Compiler * inCompiler
@@ -8381,7 +8424,7 @@ cGenericAbstractEnumerator (inOrder) {
 GALGAS_outletClassMap_2D_element cEnumerator_outletClassMap::current (LOCATION_ARGS) const {
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_outletClassMap) ;
-  return GALGAS_outletClassMap_2D_element (p->mProperty_lkey, p->mProperty_mHandlesRunAction, p->mProperty_mHandlesTableValueBinding, p->mProperty_mHandleEnabledBinding, p->mProperty_mUserDefined) ;
+  return GALGAS_outletClassMap_2D_element (p->mProperty_lkey, p->mProperty_mHandlesRunAction, p->mProperty_mHandlesTableValueBinding, p->mProperty_mHandleEnabledBinding, p->mProperty_mHandleHiddenBinding, p->mProperty_mUserDefined) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8414,6 +8457,14 @@ GALGAS_bool cEnumerator_outletClassMap::current_mHandleEnabledBinding (LOCATION_
   const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_outletClassMap) ;
   return p->mProperty_mHandleEnabledBinding ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cEnumerator_outletClassMap::current_mHandleHiddenBinding (LOCATION_ARGS) const {
+  const cMapElement_outletClassMap * p = (const cMapElement_outletClassMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_outletClassMap) ;
+  return p->mProperty_mHandleHiddenBinding ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8480,14 +8531,14 @@ void extensionMethod_buildOutletClassMap (const GALGAS_outletClassDeclarationLis
                                           C_Compiler * inCompiler
                                           COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outOutletClassMap.drop () ; // Release 'out' argument
-  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 76)) ;
+  outArgument_outOutletClassMap = GALGAS_outletClassMap::constructor_emptyMap (SOURCE_FILE ("outlet-class.galgas", 83)) ;
   const GALGAS_outletClassDeclarationList temp_0 = inObject ;
-  cEnumerator_outletClassDeclarationList enumerator_2992 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_2992.hasCurrentObject ()) {
+  cEnumerator_outletClassDeclarationList enumerator_3133 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_3133.hasCurrentObject ()) {
     {
-    outArgument_outOutletClassMap.setter_insertKey (enumerator_2992.current_mOutletClassName (HERE), enumerator_2992.current_mHasRunAction (HERE), enumerator_2992.current_mHandlesTableValueBinding (HERE), enumerator_2992.current_mHasEnabled (HERE), enumerator_2992.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 78)) ;
+    outArgument_outOutletClassMap.setter_insertKey (enumerator_3133.current_mOutletClassName (HERE), enumerator_3133.current_mHasRunAction (HERE), enumerator_3133.current_mHandlesTableValueBinding (HERE), enumerator_3133.current_mHasEnabled (HERE), enumerator_3133.current_mHasHidden (HERE), enumerator_3133.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 85)) ;
     }
-    enumerator_2992.gotoNextObject () ;
+    enumerator_3133.gotoNextObject () ;
   }
 }
 

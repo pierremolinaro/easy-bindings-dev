@@ -50,7 +50,7 @@ extern outlet class EBGroupButton $enabled ;
 binding EBGroupButton $selectedIndex : property Int ;
 
 
-extern outlet class EBImageObserverView $enabled ;
+extern outlet class EBImageObserverView $enabled $hidden ;
 binding EBImageObserverView $image : transient NSImage ;
 binding EBImageObserverView $tooltip : transient String ;
 
@@ -65,41 +65,41 @@ extern outlet class EBCheckedMenuItem ;
 binding EBCheckedMenuItem $checked : property Bool ;
 
 
-extern outlet class EBProgressIndicator ;
+extern outlet class EBProgressIndicator $hidden ;
 
 
-extern outlet class EBSegmentedControl $enabled ;
+extern outlet class EBSegmentedControl $enabled $hidden ;
 binding EBSegmentedControl $selectedIndex : property Int ;
 
 
-extern outlet class EBSlider $enabled ;
+extern outlet class EBSlider $enabled $hidden ;
 binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;
 binding EBSlider $intValue : property Int {sendContinously:Bool} ;
 
 
-extern outlet class EBStepper $enabled ;
+extern outlet class EBStepper $enabled $hidden ;
 binding EBStepper $value : property Int {sendContinously:Bool} ;
 
 
-extern outlet class EBSwitch $enabled ;
+extern outlet class EBSwitch $enabled $hidden ;
 binding EBSwitch $value : property Bool ;
 
 
-extern outlet class EBTableView $enabled $tableValue ;
+extern outlet class EBTableView $enabled $tableValue $hidden ;
 
 
-extern outlet class EBTextField $enabled ;
+extern outlet class EBTextField $enabled $hidden ;
 binding EBTextField $value : property String {sendContinously : Bool} ;
 
-extern outlet class EBTextObserverField ;
+extern outlet class EBTextObserverField $hidden ;
 binding EBTextObserverField $valueObserver : transient String ;
 
 
-extern outlet class EBTextObserverView ;
+extern outlet class EBTextObserverView $hidden ;
 binding EBTextObserverView $valueObserver : transient String ;
 
 
-extern outlet class EBTextView ;
+extern outlet class EBTextView $hidden ;
 binding EBTextView $value : property String ;
 
 extern outlet class EBWindow ;

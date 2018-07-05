@@ -3530,6 +3530,7 @@ class cMapElement_outletClassMap : public cMapElement {
   public : GALGAS_bool mProperty_mHandlesRunAction ;
   public : GALGAS_bool mProperty_mHandlesTableValueBinding ;
   public : GALGAS_bool mProperty_mHandleEnabledBinding ;
+  public : GALGAS_bool mProperty_mHandleHiddenBinding ;
   public : GALGAS_bool mProperty_mUserDefined ;
 
 //--- Constructor
@@ -3537,6 +3538,7 @@ class cMapElement_outletClassMap : public cMapElement {
                                        const GALGAS_bool & in_mHandlesRunAction,
                                        const GALGAS_bool & in_mHandlesTableValueBinding,
                                        const GALGAS_bool & in_mHandleEnabledBinding,
+                                       const GALGAS_bool & in_mHandleHiddenBinding,
                                        const GALGAS_bool & in_mUserDefined
                                        COMMA_LOCATION_ARGS) ;
 
@@ -3569,6 +3571,8 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_bool mProperty_mHandleEnabledBinding ;
 
+  public : GALGAS_bool mProperty_mHandleHiddenBinding ;
+
   public : GALGAS_bool mProperty_mUserDefined ;
 
 //--------------------------------- Accessors
@@ -3589,6 +3593,7 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
                                              const GALGAS_bool & in_mHandlesRunAction,
                                              const GALGAS_bool & in_mHandlesTableValueBinding,
                                              const GALGAS_bool & in_mHandleEnabledBinding,
+                                             const GALGAS_bool & in_mHandleHiddenBinding,
                                              const GALGAS_bool & in_mUserDefined) ;
 
 //-- Start of generic part --*
@@ -3606,7 +3611,8 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
                                                                           const class GALGAS_bool & inOperand1,
                                                                           const class GALGAS_bool & inOperand2,
                                                                           const class GALGAS_bool & inOperand3,
-                                                                          const class GALGAS_bool & inOperand4
+                                                                          const class GALGAS_bool & inOperand4,
+                                                                          const class GALGAS_bool & inOperand5
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -3624,6 +3630,8 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleEnabledBinding (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleHiddenBinding (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesRunAction (LOCATION_ARGS) const ;
 

@@ -7214,7 +7214,8 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                   const class GALGAS_lstring & in_mOutletClassName,
                                                   const class GALGAS_bool & in_mHasRunAction,
                                                   const class GALGAS_bool & in_mHasEnabled,
-                                                  const class GALGAS_bool & in_mHandlesTableValueBinding
+                                                  const class GALGAS_bool & in_mHandlesTableValueBinding,
+                                                  const class GALGAS_bool & in_mHasHidden
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -7234,7 +7235,8 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                                                      const class GALGAS_lstring & inOperand1,
                                                                                      const class GALGAS_bool & inOperand2,
                                                                                      const class GALGAS_bool & inOperand3,
-                                                                                     const class GALGAS_bool & inOperand4
+                                                                                     const class GALGAS_bool & inOperand4,
+                                                                                     const class GALGAS_bool & inOperand5
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -7247,7 +7249,8 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                       const class GALGAS_lstring & inOperand1,
                                                       const class GALGAS_bool & inOperand2,
                                                       const class GALGAS_bool & inOperand3,
-                                                      const class GALGAS_bool & inOperand4
+                                                      const class GALGAS_bool & inOperand4,
+                                                      const class GALGAS_bool & inOperand5
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_outletClassDeclarationList add_operation (const GALGAS_outletClassDeclarationList & inOperand,
@@ -7261,7 +7264,8 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                        class GALGAS_bool constinArgument2,
                                                        class GALGAS_bool constinArgument3,
                                                        class GALGAS_bool constinArgument4,
-                                                       class GALGAS_uint constinArgument5,
+                                                       class GALGAS_bool constinArgument5,
+                                                       class GALGAS_uint constinArgument6,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -7270,6 +7274,7 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                   class GALGAS_bool & outArgument2,
                                                   class GALGAS_bool & outArgument3,
                                                   class GALGAS_bool & outArgument4,
+                                                  class GALGAS_bool & outArgument5,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -7278,6 +7283,7 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                  class GALGAS_bool & outArgument2,
                                                  class GALGAS_bool & outArgument3,
                                                  class GALGAS_bool & outArgument4,
+                                                 class GALGAS_bool & outArgument5,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -7286,7 +7292,8 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                        class GALGAS_bool & outArgument2,
                                                        class GALGAS_bool & outArgument3,
                                                        class GALGAS_bool & outArgument4,
-                                                       class GALGAS_uint constinArgument5,
+                                                       class GALGAS_bool & outArgument5,
+                                                       class GALGAS_uint constinArgument6,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -7297,6 +7304,7 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                                class GALGAS_bool & outArgument2,
                                                class GALGAS_bool & outArgument3,
                                                class GALGAS_bool & outArgument4,
+                                               class GALGAS_bool & outArgument5,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -7305,6 +7313,7 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
                                               class GALGAS_bool & outArgument2,
                                               class GALGAS_bool & outArgument3,
                                               class GALGAS_bool & outArgument4,
+                                              class GALGAS_bool & outArgument5,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -7318,6 +7327,10 @@ class GALGAS_outletClassDeclarationList : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasEnabledAtIndex (const class GALGAS_uint & constinOperand0,
                                                                          C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasHiddenAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasRunActionAtIndex (const class GALGAS_uint & constinOperand0,
                                                                            C_Compiler * inCompiler
@@ -7366,6 +7379,7 @@ class cEnumerator_outletClassDeclarationList : public cGenericAbstractEnumerator
   public : class GALGAS_bool current_mHasRunAction (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHasEnabled (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mHasHidden (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletClassDeclarationList_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -8355,6 +8369,8 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_bool mProperty_mHandlesTableValueBinding ;
 
+  public : GALGAS_bool mProperty_mHasHidden ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -8373,7 +8389,8 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
                                                          const GALGAS_lstring & in_mOutletClassName,
                                                          const GALGAS_bool & in_mHasRunAction,
                                                          const GALGAS_bool & in_mHasEnabled,
-                                                         const GALGAS_bool & in_mHandlesTableValueBinding) ;
+                                                         const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                         const GALGAS_bool & in_mHasHidden) ;
 
 //-- Start of generic part --*
 
@@ -8390,7 +8407,8 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
                                                                                       const class GALGAS_lstring & inOperand1,
                                                                                       const class GALGAS_bool & inOperand2,
                                                                                       const class GALGAS_bool & inOperand3,
-                                                                                      const class GALGAS_bool & inOperand4
+                                                                                      const class GALGAS_bool & inOperand4,
+                                                                                      const class GALGAS_bool & inOperand5
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -8408,6 +8426,8 @@ class GALGAS_outletClassDeclarationList_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBinding (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasEnabled (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasHidden (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasRunAction (LOCATION_ARGS) const ;
 
@@ -10127,6 +10147,7 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                       const class GALGAS_bool & inOperand2,
                                                       const class GALGAS_bool & inOperand3,
                                                       const class GALGAS_bool & inOperand4,
+                                                      const class GALGAS_bool & inOperand5,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -10136,6 +10157,7 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                    class GALGAS_bool constinArgument2,
                                                    class GALGAS_bool constinArgument3,
                                                    class GALGAS_bool constinArgument4,
+                                                   class GALGAS_bool constinArgument5,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -10143,6 +10165,11 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                                         class GALGAS_string constinArgument1,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMHandleHiddenBindingForKey (class GALGAS_bool constinArgument0,
+                                                                       class GALGAS_string constinArgument1,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMHandlesRunActionForKey (class GALGAS_bool constinArgument0,
                                                                     class GALGAS_string constinArgument1,
@@ -10166,6 +10193,7 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
                                                    class GALGAS_bool & outArgument2,
                                                    class GALGAS_bool & outArgument3,
                                                    class GALGAS_bool & outArgument4,
+                                                   class GALGAS_bool & outArgument5,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
@@ -10175,6 +10203,10 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleEnabledBindingForKey (const class GALGAS_string & constinOperand0,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleHiddenBindingForKey (const class GALGAS_string & constinOperand0,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesRunActionForKey (const class GALGAS_string & constinOperand0,
                                                                               C_Compiler * inCompiler
@@ -10217,6 +10249,7 @@ class cEnumerator_outletClassMap : public cGenericAbstractEnumerator {
   public : class GALGAS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mUserDefined (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_outletClassMap_2D_element current (LOCATION_ARGS) const ;

@@ -176,6 +176,7 @@ proc analyzeOutlets
       ?let @bool handlesRunAction
       ?let @bool handlesTableViewBinding
       ?let @bool handlesEnabledBinding
+      ?let @bool handlesHiddenBinding
       ?let @bool outletClassIsUserDefined
     ]
     if not outletClassIsUserDefined then
@@ -269,6 +270,9 @@ proc analyzeOutlets
       ]
       if not [type isBoolType] then
         error errorLocation : "expression is not boolean"
+      end
+      if not handlesHiddenBinding then
+        error errorLocation : "cet outlet n'accepte pas le binding $hidden"
       end
       outMultipleBindingGenerationList +=
         !outlet_mOutletName.string

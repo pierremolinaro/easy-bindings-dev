@@ -7250,7 +7250,8 @@ mProperty_mUserDefined (),
 mProperty_mOutletClassName (),
 mProperty_mHasRunAction (),
 mProperty_mHasEnabled (),
-mProperty_mHandlesTableValueBinding () {
+mProperty_mHandlesTableValueBinding (),
+mProperty_mHasHidden () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7264,12 +7265,14 @@ GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_
                                                                                             const GALGAS_lstring & inOperand1,
                                                                                             const GALGAS_bool & inOperand2,
                                                                                             const GALGAS_bool & inOperand3,
-                                                                                            const GALGAS_bool & inOperand4) :
+                                                                                            const GALGAS_bool & inOperand4,
+                                                                                            const GALGAS_bool & inOperand5) :
 mProperty_mUserDefined (inOperand0),
 mProperty_mOutletClassName (inOperand1),
 mProperty_mHasRunAction (inOperand2),
 mProperty_mHasEnabled (inOperand3),
-mProperty_mHandlesTableValueBinding (inOperand4) {
+mProperty_mHandlesTableValueBinding (inOperand4),
+mProperty_mHasHidden (inOperand5) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7277,6 +7280,7 @@ mProperty_mHandlesTableValueBinding (inOperand4) {
 GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassDeclarationList_2D_element (GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_lstring::constructor_default (HERE),
+                                                       GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE)) ;
@@ -7288,11 +7292,12 @@ GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2
                                                                                                             const GALGAS_lstring & inOperand1,
                                                                                                             const GALGAS_bool & inOperand2,
                                                                                                             const GALGAS_bool & inOperand3,
-                                                                                                            const GALGAS_bool & inOperand4 
+                                                                                                            const GALGAS_bool & inOperand4,
+                                                                                                            const GALGAS_bool & inOperand5 
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
   }
   return result ;
 }
@@ -7316,13 +7321,16 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
   if (result == kOperandEqual) {
     result = mProperty_mHandlesTableValueBinding.objectCompare (inOperand.mProperty_mHandlesTableValueBinding) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mHasHidden.objectCompare (inOperand.mProperty_mHasHidden) ;
+  }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mProperty_mUserDefined.isValid () && mProperty_mOutletClassName.isValid () && mProperty_mHasRunAction.isValid () && mProperty_mHasEnabled.isValid () && mProperty_mHandlesTableValueBinding.isValid () ;
+  return mProperty_mUserDefined.isValid () && mProperty_mOutletClassName.isValid () && mProperty_mHasRunAction.isValid () && mProperty_mHasEnabled.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHasHidden.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7333,6 +7341,7 @@ void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
   mProperty_mHasRunAction.drop () ;
   mProperty_mHasEnabled.drop () ;
   mProperty_mHandlesTableValueBinding.drop () ;
+  mProperty_mHasHidden.drop () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7352,6 +7361,8 @@ void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioStr
     mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mHasHidden.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -7384,6 +7395,12 @@ GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHasEnabled (UN
 
 GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHandlesTableValueBinding (UNUSED_LOCATION_ARGS) const {
   return mProperty_mHandlesTableValueBinding ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHasHidden (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mHasHidden ;
 }
 
 
@@ -7438,6 +7455,7 @@ mProperty_lkey (),
 mProperty_mHandlesRunAction (),
 mProperty_mHandlesTableValueBinding (),
 mProperty_mHandleEnabledBinding (),
+mProperty_mHandleHiddenBinding (),
 mProperty_mUserDefined () {
 }
 
@@ -7452,18 +7470,21 @@ GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS
                                                                     const GALGAS_bool & inOperand1,
                                                                     const GALGAS_bool & inOperand2,
                                                                     const GALGAS_bool & inOperand3,
-                                                                    const GALGAS_bool & inOperand4) :
+                                                                    const GALGAS_bool & inOperand4,
+                                                                    const GALGAS_bool & inOperand5) :
 mProperty_lkey (inOperand0),
 mProperty_mHandlesRunAction (inOperand1),
 mProperty_mHandlesTableValueBinding (inOperand2),
 mProperty_mHandleEnabledBinding (inOperand3),
-mProperty_mUserDefined (inOperand4) {
+mProperty_mHandleHiddenBinding (inOperand4),
+mProperty_mUserDefined (inOperand5) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                           GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
@@ -7476,11 +7497,12 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_n
                                                                                     const GALGAS_bool & inOperand1,
                                                                                     const GALGAS_bool & inOperand2,
                                                                                     const GALGAS_bool & inOperand3,
-                                                                                    const GALGAS_bool & inOperand4 
+                                                                                    const GALGAS_bool & inOperand4,
+                                                                                    const GALGAS_bool & inOperand5 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
   }
   return result ;
 }
@@ -7502,6 +7524,9 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
     result = mProperty_mHandleEnabledBinding.objectCompare (inOperand.mProperty_mHandleEnabledBinding) ;
   }
   if (result == kOperandEqual) {
+    result = mProperty_mHandleHiddenBinding.objectCompare (inOperand.mProperty_mHandleHiddenBinding) ;
+  }
+  if (result == kOperandEqual) {
     result = mProperty_mUserDefined.objectCompare (inOperand.mProperty_mUserDefined) ;
   }
   return result ;
@@ -7510,7 +7535,7 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mUserDefined.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mUserDefined.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7520,6 +7545,7 @@ void GALGAS_outletClassMap_2D_element::drop (void) {
   mProperty_mHandlesRunAction.drop () ;
   mProperty_mHandlesTableValueBinding.drop () ;
   mProperty_mHandleEnabledBinding.drop () ;
+  mProperty_mHandleHiddenBinding.drop () ;
   mProperty_mUserDefined.drop () ;
 }
 
@@ -7538,6 +7564,8 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
     mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHandleEnabledBinding.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mHandleHiddenBinding.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mUserDefined.description (ioString, inIndentation+1) ;
   }
@@ -7566,6 +7594,12 @@ GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandlesTableValueBinding (
 
 GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandleEnabledBinding (UNUSED_LOCATION_ARGS) const {
   return mProperty_mHandleEnabledBinding ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandleHiddenBinding (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mHandleHiddenBinding ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10932,7 +10966,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding EBGroupButton $selectedIndex : property Int ;\n"
     "\n"
     "\n"
-    "extern outlet class EBImageObserverView $enabled ;\n"
+    "extern outlet class EBImageObserverView $enabled $hidden ;\n"
     "binding EBImageObserverView $image : transient NSImage ;\n"
     "binding EBImageObserverView $tooltip : transient String ;\n"
     "\n"
@@ -10947,41 +10981,41 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding EBCheckedMenuItem $checked : property Bool ;\n"
     "\n"
     "\n"
-    "extern outlet class EBProgressIndicator ;\n"
+    "extern outlet class EBProgressIndicator $hidden ;\n"
     "\n"
     "\n"
-    "extern outlet class EBSegmentedControl $enabled ;\n"
+    "extern outlet class EBSegmentedControl $enabled $hidden ;\n"
     "binding EBSegmentedControl $selectedIndex : property Int ;\n"
     "\n"
     "\n"
-    "extern outlet class EBSlider $enabled ;\n"
+    "extern outlet class EBSlider $enabled $hidden ;\n"
     "binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;\n"
     "binding EBSlider $intValue : property Int {sendContinously:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBStepper $enabled ;\n"
+    "extern outlet class EBStepper $enabled $hidden ;\n"
     "binding EBStepper $value : property Int {sendContinously:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBSwitch $enabled ;\n"
+    "extern outlet class EBSwitch $enabled $hidden ;\n"
     "binding EBSwitch $value : property Bool ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTableView $enabled $tableValue ;\n"
+    "extern outlet class EBTableView $enabled $tableValue $hidden ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTextField $enabled ;\n"
+    "extern outlet class EBTextField $enabled $hidden ;\n"
     "binding EBTextField $value : property String {sendContinously : Bool} ;\n"
     "\n"
-    "extern outlet class EBTextObserverField ;\n"
+    "extern outlet class EBTextObserverField $hidden ;\n"
     "binding EBTextObserverField $valueObserver : transient String ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTextObserverView ;\n"
+    "extern outlet class EBTextObserverView $hidden ;\n"
     "binding EBTextObserverView $valueObserver : transient String ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTextView ;\n"
+    "extern outlet class EBTextView $hidden ;\n"
     "binding EBTextView $value : property String ;\n"
     "\n"
     "extern outlet class EBWindow ;\n" ;

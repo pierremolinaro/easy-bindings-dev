@@ -3043,63 +3043,71 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i12_ (const GALGAS_bool constinArgument_inIsUserDefined,
                                                                                                       GALGAS_outletClassDeclarationList & ioArgument_ioOutletClassDeclarationList,
                                                                                                       C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.galgas", 25)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.galgas", 26)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.galgas", 27)) ;
-  GALGAS_lstring var_outletClassName_1270 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 28)) ;
-  GALGAS_bool var_hasRunAction_1293 = GALGAS_bool (false) ;
-  GALGAS_bool var_hasEnabled_1322 = GALGAS_bool (false) ;
-  GALGAS_bool var_handlesTableViewBinding_1364 = GALGAS_bool (false) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.galgas", 26)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.galgas", 27)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.galgas", 28)) ;
+  GALGAS_lstring var_outletClassName_1289 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 29)) ;
+  GALGAS_bool var_hasRunAction_1312 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasEnabled_1341 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasHidden_1369 = GALGAS_bool (false) ;
+  GALGAS_bool var_handlesTableViewBinding_1411 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 34)) ;
-      var_handlesTableViewBinding_1364 = GALGAS_bool (true) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 36)) ;
+      var_handlesTableViewBinding_1411 = GALGAS_bool (true) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.galgas", 37)) ;
-      var_hasRunAction_1293 = GALGAS_bool (true) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.galgas", 39)) ;
+      var_hasRunAction_1312 = GALGAS_bool (true) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.galgas", 40)) ;
-      var_hasEnabled_1322 = GALGAS_bool (true) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.galgas", 42)) ;
+      var_hasEnabled_1341 = GALGAS_bool (true) ;
+    } break ;
+    case 5: {
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-class.galgas", 45)) ;
+      var_hasHidden_1369 = GALGAS_bool (true) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.galgas", 43)) ;
-  ioArgument_ioOutletClassDeclarationList.addAssign_operation (constinArgument_inIsUserDefined, var_outletClassName_1270, var_hasRunAction_1293, var_hasEnabled_1322, var_handlesTableViewBinding_1364  COMMA_SOURCE_FILE ("outlet-class.galgas", 44)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.galgas", 48)) ;
+  ioArgument_ioOutletClassDeclarationList.addAssign_operation (constinArgument_inIsUserDefined, var_outletClassName_1289, var_hasRunAction_1312, var_hasEnabled_1341, var_handlesTableViewBinding_1411, var_hasHidden_1369  COMMA_SOURCE_FILE ("outlet-class.galgas", 49)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i12_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.galgas", 25)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.galgas", 26)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.galgas", 27)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 28)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.galgas", 26)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.galgas", 27)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.galgas", 28)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 29)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 34)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 36)) ;
     } break ;
     case 3: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.galgas", 37)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.galgas", 39)) ;
     } break ;
     case 4: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.galgas", 40)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.galgas", 42)) ;
+    } break ;
+    case 5: {
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-class.galgas", 45)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.galgas", 43)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.galgas", 48)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -5221,7 +5229,8 @@ class cCollectionElement_outletClassDeclarationList : public cCollectionElement 
                                                           const GALGAS_lstring & in_mOutletClassName,
                                                           const GALGAS_bool & in_mHasRunAction,
                                                           const GALGAS_bool & in_mHasEnabled,
-                                                          const GALGAS_bool & in_mHandlesTableValueBinding
+                                                          const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                          const GALGAS_bool & in_mHasHidden
                                                           COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -5243,10 +5252,11 @@ cCollectionElement_outletClassDeclarationList::cCollectionElement_outletClassDec
                                                                                               const GALGAS_lstring & in_mOutletClassName,
                                                                                               const GALGAS_bool & in_mHasRunAction,
                                                                                               const GALGAS_bool & in_mHasEnabled,
-                                                                                              const GALGAS_bool & in_mHandlesTableValueBinding
+                                                                                              const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                                                              const GALGAS_bool & in_mHasHidden
                                                                                               COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mUserDefined, in_mOutletClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding) {
+mObject (in_mUserDefined, in_mOutletClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding, in_mHasHidden) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5259,7 +5269,7 @@ bool cCollectionElement_outletClassDeclarationList::isValid (void) const {
 
 cCollectionElement * cCollectionElement_outletClassDeclarationList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_outletClassDeclarationList (mObject.mProperty_mUserDefined, mObject.mProperty_mOutletClassName, mObject.mProperty_mHasRunAction, mObject.mProperty_mHasEnabled, mObject.mProperty_mHandlesTableValueBinding COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_outletClassDeclarationList (mObject.mProperty_mUserDefined, mObject.mProperty_mOutletClassName, mObject.mProperty_mHasRunAction, mObject.mProperty_mHasEnabled, mObject.mProperty_mHandlesTableValueBinding, mObject.mProperty_mHasHidden COMMA_HERE)) ;
   return result ;
 }
 
@@ -5286,6 +5296,10 @@ void cCollectionElement_outletClassDeclarationList::description (C_String & ioSt
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mHandlesTableValueBinding" ":" ;
   mObject.mProperty_mHandlesTableValueBinding.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mHasHidden" ":" ;
+  mObject.mProperty_mHasHidden.description (ioString, inIndentation) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5320,13 +5334,14 @@ GALGAS_outletClassDeclarationList GALGAS_outletClassDeclarationList::constructor
                                                                                                 const GALGAS_lstring & inOperand1,
                                                                                                 const GALGAS_bool & inOperand2,
                                                                                                 const GALGAS_bool & inOperand3,
-                                                                                                const GALGAS_bool & inOperand4
+                                                                                                const GALGAS_bool & inOperand4,
+                                                                                                const GALGAS_bool & inOperand5
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_outletClassDeclarationList result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     result = GALGAS_outletClassDeclarationList (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_outletClassDeclarationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE) ;
+    GALGAS_outletClassDeclarationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -5339,14 +5354,16 @@ void GALGAS_outletClassDeclarationList::makeAttributesFromObjects (capCollection
                                                                    const GALGAS_lstring & in_mOutletClassName,
                                                                    const GALGAS_bool & in_mHasRunAction,
                                                                    const GALGAS_bool & in_mHasEnabled,
-                                                                   const GALGAS_bool & in_mHandlesTableValueBinding
+                                                                   const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                                   const GALGAS_bool & in_mHasHidden
                                                                    COMMA_LOCATION_ARGS) {
   cCollectionElement_outletClassDeclarationList * p = NULL ;
   macroMyNew (p, cCollectionElement_outletClassDeclarationList (in_mUserDefined,
                                                                 in_mOutletClassName,
                                                                 in_mHasRunAction,
                                                                 in_mHasEnabled,
-                                                                in_mHandlesTableValueBinding COMMA_THERE)) ;
+                                                                in_mHandlesTableValueBinding,
+                                                                in_mHasHidden COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -5357,11 +5374,12 @@ void GALGAS_outletClassDeclarationList::addAssign_operation (const GALGAS_bool &
                                                              const GALGAS_lstring & inOperand1,
                                                              const GALGAS_bool & inOperand2,
                                                              const GALGAS_bool & inOperand3,
-                                                             const GALGAS_bool & inOperand4
+                                                             const GALGAS_bool & inOperand4,
+                                                             const GALGAS_bool & inOperand5
                                                              COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_outletClassDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_outletClassDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -5376,12 +5394,13 @@ void GALGAS_outletClassDeclarationList::setter_insertAtIndex (const GALGAS_bool 
                                                               const GALGAS_bool inOperand2,
                                                               const GALGAS_bool inOperand3,
                                                               const GALGAS_bool inOperand4,
+                                                              const GALGAS_bool inOperand5,
                                                               const GALGAS_uint inInsertionIndex,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_outletClassDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_outletClassDeclarationList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -5396,6 +5415,7 @@ void GALGAS_outletClassDeclarationList::setter_removeAtIndex (GALGAS_bool & outO
                                                               GALGAS_bool & outOperand2,
                                                               GALGAS_bool & outOperand3,
                                                               GALGAS_bool & outOperand4,
+                                                              GALGAS_bool & outOperand5,
                                                               const GALGAS_uint inRemoveIndex,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) {
@@ -5409,6 +5429,7 @@ void GALGAS_outletClassDeclarationList::setter_removeAtIndex (GALGAS_bool & outO
       outOperand2.drop () ;
       outOperand3.drop () ;
       outOperand4.drop () ;
+      outOperand5.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
       outOperand0 = p->mObject.mProperty_mUserDefined ;
@@ -5416,6 +5437,7 @@ void GALGAS_outletClassDeclarationList::setter_removeAtIndex (GALGAS_bool & outO
       outOperand2 = p->mObject.mProperty_mHasRunAction ;
       outOperand3 = p->mObject.mProperty_mHasEnabled ;
       outOperand4 = p->mObject.mProperty_mHandlesTableValueBinding ;
+      outOperand5 = p->mObject.mProperty_mHasHidden ;
     }
   }
 }
@@ -5427,6 +5449,7 @@ void GALGAS_outletClassDeclarationList::setter_popFirst (GALGAS_bool & outOperan
                                                          GALGAS_bool & outOperand2,
                                                          GALGAS_bool & outOperand3,
                                                          GALGAS_bool & outOperand4,
+                                                         GALGAS_bool & outOperand5,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -5438,6 +5461,7 @@ void GALGAS_outletClassDeclarationList::setter_popFirst (GALGAS_bool & outOperan
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
     outOperand0 = p->mObject.mProperty_mUserDefined ;
@@ -5445,6 +5469,7 @@ void GALGAS_outletClassDeclarationList::setter_popFirst (GALGAS_bool & outOperan
     outOperand2 = p->mObject.mProperty_mHasRunAction ;
     outOperand3 = p->mObject.mProperty_mHasEnabled ;
     outOperand4 = p->mObject.mProperty_mHandlesTableValueBinding ;
+    outOperand5 = p->mObject.mProperty_mHasHidden ;
   }
 }
 
@@ -5455,6 +5480,7 @@ void GALGAS_outletClassDeclarationList::setter_popLast (GALGAS_bool & outOperand
                                                         GALGAS_bool & outOperand2,
                                                         GALGAS_bool & outOperand3,
                                                         GALGAS_bool & outOperand4,
+                                                        GALGAS_bool & outOperand5,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -5466,6 +5492,7 @@ void GALGAS_outletClassDeclarationList::setter_popLast (GALGAS_bool & outOperand
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
     outOperand0 = p->mObject.mProperty_mUserDefined ;
@@ -5473,6 +5500,7 @@ void GALGAS_outletClassDeclarationList::setter_popLast (GALGAS_bool & outOperand
     outOperand2 = p->mObject.mProperty_mHasRunAction ;
     outOperand3 = p->mObject.mProperty_mHasEnabled ;
     outOperand4 = p->mObject.mProperty_mHandlesTableValueBinding ;
+    outOperand5 = p->mObject.mProperty_mHasHidden ;
   }
 }
 
@@ -5483,6 +5511,7 @@ void GALGAS_outletClassDeclarationList::method_first (GALGAS_bool & outOperand0,
                                                       GALGAS_bool & outOperand2,
                                                       GALGAS_bool & outOperand3,
                                                       GALGAS_bool & outOperand4,
+                                                      GALGAS_bool & outOperand5,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -5494,6 +5523,7 @@ void GALGAS_outletClassDeclarationList::method_first (GALGAS_bool & outOperand0,
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
     outOperand0 = p->mObject.mProperty_mUserDefined ;
@@ -5501,6 +5531,7 @@ void GALGAS_outletClassDeclarationList::method_first (GALGAS_bool & outOperand0,
     outOperand2 = p->mObject.mProperty_mHasRunAction ;
     outOperand3 = p->mObject.mProperty_mHasEnabled ;
     outOperand4 = p->mObject.mProperty_mHandlesTableValueBinding ;
+    outOperand5 = p->mObject.mProperty_mHasHidden ;
   }
 }
 
@@ -5511,6 +5542,7 @@ void GALGAS_outletClassDeclarationList::method_last (GALGAS_bool & outOperand0,
                                                      GALGAS_bool & outOperand2,
                                                      GALGAS_bool & outOperand3,
                                                      GALGAS_bool & outOperand4,
+                                                     GALGAS_bool & outOperand5,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -5522,6 +5554,7 @@ void GALGAS_outletClassDeclarationList::method_last (GALGAS_bool & outOperand0,
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
+    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
     outOperand0 = p->mObject.mProperty_mUserDefined ;
@@ -5529,6 +5562,7 @@ void GALGAS_outletClassDeclarationList::method_last (GALGAS_bool & outOperand0,
     outOperand2 = p->mObject.mProperty_mHasRunAction ;
     outOperand3 = p->mObject.mProperty_mHasEnabled ;
     outOperand4 = p->mObject.mProperty_mHandlesTableValueBinding ;
+    outOperand5 = p->mObject.mProperty_mHasHidden ;
   }
 }
 
@@ -5658,6 +5692,21 @@ GALGAS_bool GALGAS_outletClassDeclarationList::getter_mHandlesTableValueBindingA
   return result ;
 }
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_outletClassDeclarationList::getter_mHasHiddenAtIndex (const GALGAS_uint & inIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletClassDeclarationList * p = (cCollectionElement_outletClassDeclarationList *) attributes.ptr () ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
+    result = p->mObject.mProperty_mHasHidden ;
+  }
+  return result ;
+}
+
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5715,6 +5764,14 @@ GALGAS_bool cEnumerator_outletClassDeclarationList::current_mHandlesTableValueBi
   const cCollectionElement_outletClassDeclarationList * p = (const cCollectionElement_outletClassDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
   return p->mObject.mProperty_mHandlesTableValueBinding ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cEnumerator_outletClassDeclarationList::current_mHasHidden (LOCATION_ARGS) const {
+  const cCollectionElement_outletClassDeclarationList * p = (const cCollectionElement_outletClassDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletClassDeclarationList) ;
+  return p->mObject.mProperty_mHasHidden ;
 }
 
 
