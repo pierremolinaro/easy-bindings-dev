@@ -12,14 +12,14 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func compute_PMDocument_countItemMessage (
-       _ self_rootObject_mNames_count : Int
+       _ root_mNames_count : Int
 ) -> String {
 //--- START OF USER ZONE 2
   var result = "No Item"
-  if self_rootObject_mNames_count == 1 {
+  if root_mNames_count == 1 {
     result = "1 Item"
-  }else if self_rootObject_mNames_count > 1 {
-    result = String (format:"%ld Items", self_rootObject_mNames_count)
+  }else if root_mNames_count > 1 {
+    result = String (format:"%ld Items", root_mNames_count)
   }
   return result
 //--- END OF USER ZONE 2

@@ -102,7 +102,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   %  var %!mToOneRelationshipName%_property = ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% ()\n%
-  %  var %!mToOneRelationshipName%_none_selection : EBSelection <Bool> { return .single (self.%!mToOneRelationshipName%_property.propval == nil) }\n%
+  %  var %!mToOneRelationshipName%_property_selection : EBSelection <Bool> { return .single (self.%!mToOneRelationshipName%_property.propval == nil) }\n%
 
 end
 %

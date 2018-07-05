@@ -67,7 +67,7 @@ class NameEntity : EBManagedObject,
   //····················································································································
 
   var mRoot_property = ToOneRelationship_NameEntity_mRoot ()
-  var mRoot_none_selection : EBSelection <Bool> { return .single (self.mRoot_property.propval == nil) }
+  var mRoot_property_selection : EBSelection <Bool> { return .single (self.mRoot_property.propval == nil) }
 
   //····················································································································
   //    init

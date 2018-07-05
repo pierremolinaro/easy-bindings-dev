@@ -181,7 +181,7 @@ var g_Preferences : Preferences? = nil
     do{
       let controller = MultipleBindingController_hidden (
         computeFunction:{
-          return (self.myHidden1_property.prop || self.myHidden2_property.prop)
+          return (self.myHidden1_property_selection || self.myHidden2_property_selection)
         },
         outlet:self.mButton
       )

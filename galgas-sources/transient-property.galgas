@@ -265,6 +265,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = "g_" + preferencesName () + "?."  + propertyName + "_property.addEBObserver"
   case rootProperty (@lstring masterName) :
     outResult = "self.rootObject." + masterName + "_property.addEBObserver"
+  case rootPropertyNone (@lstring masterName) :
+    outResult = "self.rootObject." + masterName + "_property.addEBObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
     outResult = "self.rootObject." + masterName + "_property." + optionName + "_property.addEBObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
@@ -304,6 +306,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = "self.rootObject." + masterName + "_property.removeEBObserver"
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
     outResult = "self.rootObject." + masterName + "_property." + optionName + "_property.removeEBObserver"
+  case rootPropertyNone (@lstring masterName) :
+    outResult = "self.rootObject." + masterName + "_property.removeEBObserver"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
     outResult = "self.rootObject." + relationshipName + "_property.removeEBObserverOf_" + propertyName
   case signatureProperty (*) :

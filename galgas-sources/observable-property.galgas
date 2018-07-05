@@ -6,6 +6,7 @@ enum @observablePropertyAST {
   case rootProperty (@lstring propertyName)
   case rootPropertyWithOption (@lstring propertyName @lstring optionName)
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName)
+  case rootPropertyNone (@lstring relationshipName)
   case selfProperty (@lstring propertyName)
   case selfPropertyWithOption (@lstring propertyName @lstring optionName)
   case selfPropertyArray (@lstring propertyName @lstring elementPropertyName)
@@ -53,6 +54,9 @@ syntax extension easyBindings_syntax {
           outObservablePropertyAST = .rootPropertyRelationship {
             !relationshipName:propertyName !propertyName:observablePropertyName
           }
+        or
+          $none$
+          outObservablePropertyAST = .rootPropertyNone {!relationshipName:propertyName}
         end
       end
     or
@@ -131,6 +135,8 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   switch self
   case rootProperty (@lstring propertyName) :
     outResult = inSelf + ".rootObject." + propertyName + "_property"
+  case rootPropertyNone (@lstring propertyName) :
+    outResult = inSelf + ".rootObject." + propertyName + "_property"
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
     outResult = inSelf + ".rootObject." + propertyName + "_property" + "." + optionName + "_property"
   case rootPropertyRelationship (@lstring relationshipName *) :
@@ -144,7 +150,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case selfPropertyObject (@lstring propertyName @lstring unused elementPropertyName) :
     outResult = inSelf + "." + propertyName + "_property." + elementPropertyName + "_property"
   case selfPropertyNone (@lstring propertyName) :
-    outResult = inSelf + "." + propertyName + "_none"
+    outResult = inSelf + "." + propertyName + "_property"
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "!." + propertyName + "_property"
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -167,11 +173,13 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
 getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
   switch self
   case rootProperty (@lstring propertyName) :
-    outResult = "self_rootObject_" + propertyName 
+    outResult = "root_" + propertyName 
+  case rootPropertyNone (@lstring propertyName) :
+    outResult = "root_" + propertyName + "_none"
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = "self_rootObject_" + propertyName + "_" + optionName
+    outResult = "root_" + propertyName + "_" + optionName
   case rootPropertyRelationship (@lstring relationshipName @lstring elementPropertyName) :
-    outResult = "self_rootObject_" + relationshipName + "_" + elementPropertyName
+    outResult = "root_" + relationshipName + "_" + elementPropertyName
   case selfProperty (@lstring propertyName) :
     outResult = "self_" + propertyName
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -204,6 +212,8 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
 getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   switch self
   case rootProperty (*) :
+    outResult = true
+  case rootPropertyNone (*) :
     outResult = true
   case rootPropertyWithOption (* *) :
     outResult = true
@@ -247,6 +257,8 @@ getter @observablePropertyAST isPropertyDefined
   switch self
   case rootProperty (@lstring propertyName) :
     outResult = [inRootObservableProperties hasKey !propertyName.string]
+  case rootPropertyNone (@lstring propertyName) :
+    outResult = [inRootObservableProperties hasKey !propertyName.string]
   case rootPropertyWithOption (@lstring propertyName @lstring unused optionName) :
     outResult = [inRootObservableProperties hasKey !propertyName.string]
   case rootPropertyRelationship (@lstring relationshipName *) :
@@ -283,6 +295,8 @@ getter @observablePropertyAST isPropertyDefined
 getter @observablePropertyAST location -> @location outResult {
   switch self
   case rootProperty (@lstring propertyName) :
+    outResult = propertyName.location
+  case rootPropertyNone (@lstring propertyName) :
     outResult = propertyName.location
   case rootPropertyWithOption (* @lstring optionName) :
     outResult = optionName.location
@@ -353,6 +367,60 @@ method @observablePropertyAST analyzeObservableProperty
       ?3*
     ]
     outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+  case rootPropertyNone (@lstring propertyName) :
+    [inRootObservablePropertyMap searchKey
+      !propertyName
+      ?let propertyType
+      ?outKind
+      ?outMultiplicity
+      ?3*
+    ]
+    if outMultiplicity == .collection then
+      error propertyName : "an array property cannot accept 'one'"
+    end
+    switch propertyType
+    case stringType, boolType, dateType, doubleType, integerType, fontType :
+      error propertyName : "a property cannot accept 'one'" : outType
+    case enumType (* *) :
+      error propertyName : "an enum property cannot accept 'one'" : outType
+    case classType (@string className) :
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        ![className nowhere]
+        ?*
+      ]
+       outType = .boolType
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        ![className nowhere]
+        ?*
+      ]
+       outType = .boolType
+    case propertyClassType (**) :
+      error propertyName : "a property cannot accept 'all'" : outType
+    case transientPropertyExternType (*) :
+      error propertyName : "a property cannot accept 'all'" : outType
+    case entityType (@string entityName) :
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        ![entityName nowhere]
+        ?*
+      ]
+      if outMultiplicity == .collection then
+        error propertyName : "the observed property cannot be a collection"
+      end
+      outType = .boolType
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+#    [inRootObservablePropertyMap searchKey
+#      !propertyName
+#      ?2*
+#      ?outMultiplicity
+#      ?3*
+#    ]
+#    if outMultiplicity == .collection then
+#      error propertyName : "this porty cannot be a collection"
+#    end
+#    outKind = .transient
+#    outType = .boolType
+#    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inRootObservablePropertyMap searchKey
       !propertyName

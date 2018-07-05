@@ -415,7 +415,7 @@ import Cocoa
     do{
       let controller = MultipleBindingController_enabled (
         computeFunction:{
-          return (self.nameController.selectedArray_property.count_property.prop > EBSelection.single (0))
+          return (self.nameController.selectedArray_property.count_property_selection > EBSelection.single (0))
         },
         outlet:self.removePathButton
       )
@@ -425,7 +425,7 @@ import Cocoa
     do{
       let controller = MultipleBindingController_enabled (
         computeFunction:{
-          return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
+          return (self.rootObject.mNames_property.count_property_selection > EBSelection.single (0))
         },
         outlet:self.incrementButton
       )
@@ -435,7 +435,7 @@ import Cocoa
     do{
       let controller = MultipleBindingController_enabled (
         computeFunction:{
-          return (self.rootObject.mNames_property.count_property.prop > EBSelection.single (0))
+          return (self.rootObject.mNames_property.count_property_selection > EBSelection.single (0))
         },
         outlet:self.decrementButton
       )

@@ -2348,32 +2348,3 @@ class GALGAS_secondaryDeclarationListWorkingList_2D_element : public AC_GALGAS_r
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_secondaryDeclarationListWorkingList_2D_element ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                 Abstract extension method '@abstractSecondaryProperty tryToSolveSecondaryProperty'                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty) (const class cPtr_abstractSecondaryProperty * inObject,
-                                                                                                class GALGAS_semanticContext & ioArgument0,
-                                                                                                const class GALGAS_observablePropertyMap constinArgument1,
-                                                                                                class GALGAS_observablePropertyMap & ioArgument2,
-                                                                                                class GALGAS_secondaryPropertyList & ioArgument3,
-                                                                                                class C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_tryToSolveSecondaryProperty (const int32_t inClassIndex,
-                                                       extensionMethodSignature_abstractSecondaryProperty_tryToSolveSecondaryProperty inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_tryToSolveSecondaryProperty (const class cPtr_abstractSecondaryProperty * inObject,
-                                                      GALGAS_semanticContext & io_ioSemanticContext,
-                                                      const GALGAS_observablePropertyMap constin_inRootObservableProperties,
-                                                      GALGAS_observablePropertyMap & io_ioObservableProperties,
-                                                      GALGAS_secondaryPropertyList & io_ioUnsolvedProperties,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-

@@ -12,11 +12,11 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func compute_PMDocument_total (
-       _ self_rootObject_mNames_aValue : [NameEntity_aValue]
+       _ root_mNames_aValue : [NameEntity_aValue]
 ) -> Int {
 //--- START OF USER ZONE 2
   var total = 0
-  for object in self_rootObject_mNames_aValue {
+  for object in root_mNames_aValue {
     total += object.aValue
   }
   return total

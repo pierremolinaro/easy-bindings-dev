@@ -137,7 +137,7 @@ import Cocoa
     do{
       let controller = MultipleBindingController_enabled (
         computeFunction:{
-          return (!self.rootObject.docBool_property.prop && g_Preferences!.prefBoolean_property.prop)
+          return (!self.rootObject.docBool_property_selection && g_Preferences!.prefBoolean_property_selection)
         },
         outlet:self.myButton
       )

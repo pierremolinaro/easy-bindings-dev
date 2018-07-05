@@ -4192,6 +4192,7 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_rootProperty,
     kEnum_rootPropertyWithOption,
     kEnum_rootPropertyRelationship,
+    kEnum_rootPropertyNone,
     kEnum_selfProperty,
     kEnum_selfPropertyWithOption,
     kEnum_selfPropertyArray,
@@ -4248,6 +4249,9 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 
   public : static class GALGAS_observablePropertyAST constructor_rootProperty (const class GALGAS_lstring & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_observablePropertyAST constructor_rootPropertyNone (const class GALGAS_lstring & inOperand0
+                                                                                   COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_observablePropertyAST constructor_rootPropertyRelationship (const class GALGAS_lstring & inOperand0,
                                                                                            const class GALGAS_lstring & inOperand1
@@ -4317,6 +4321,10 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_rootPropertyNone (class GALGAS_lstring & outArgument0,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG void method_rootPropertyRelationship (class GALGAS_lstring & outArgument0,
                                                                   class GALGAS_lstring & outArgument1,
                                                                   C_Compiler * inCompiler
@@ -4374,6 +4382,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefsPropertyWithOption (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyNone (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyRelationship (LOCATION_ARGS) const ;
 
@@ -4460,6 +4470,22 @@ class cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship : pub
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_observablePropertyAST_rootPropertyNone : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_observablePropertyAST_rootPropertyNone (const GALGAS_lstring & inAssociatedValue0
+                                                                         COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_rootPropertyNone (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
