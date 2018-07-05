@@ -42,6 +42,7 @@ import Cocoa
   var canRemoveString_property = EBTransientProperty_String ()
   var countItemMessage_property = EBTransientProperty_String ()
   var total_property = EBTransientProperty_Int ()
+  var documentFilePath_property = EBTransientProperty_String ()
 
   //····················································································································
   //    Transient arraies
@@ -66,6 +67,31 @@ import Cocoa
   //    Custom object Controllers
   //····················································································································
 
+
+  //····················································································································
+  //    Document file path
+  //····················································································································
+  // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
+
+  override var fileModificationDate : Date? {
+    get {
+      return super.fileModificationDate
+    }
+    set{
+      super.fileModificationDate = newValue
+      self.documentFilePath_property.postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  func computeTransient_documentFilePath () -> String {
+    var documentFilePath = ""
+    if let url = self.fileURL {
+      documentFilePath = url.path
+    }
+    return documentFilePath
+  }
 
   //····················································································································
   //    populateExplorerWindow
@@ -369,6 +395,7 @@ import Cocoa
         return .empty
       }
     }
+    self.documentFilePath_property.readModelFunction = { return .single (self.computeTransient_documentFilePath ()) }
   //--------------------------- Install property observers for transients
     self.selController.sortedArray_property.count_property.addEBObserver (self.selectionCountString_property)
     self.otherController.sortedArray_property.count_property.addEBObserver (self.evenValueString_property)
@@ -456,6 +483,7 @@ import Cocoa
     self.canRemoveString_property.readModelFunction = nil
     self.countItemMessage_property.readModelFunction = nil
     self.total_property.readModelFunction = nil
+    self.documentFilePath_property.readModelFunction = nil
   //--------------------------- Unbind array controllers
     nameController.unbind_modelAndView ()
     otherController.unbind_modelAndView ()

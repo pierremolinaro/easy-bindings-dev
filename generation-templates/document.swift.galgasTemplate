@@ -82,6 +82,31 @@ for () in CUSTOM_OBJECT_CONTROLLER_LIST do
 end
 %
   //····················································································································
+  //    Document file path
+  //····················································································································
+  // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
+
+  override var fileModificationDate : Date? {
+    get {
+      return super.fileModificationDate
+    }
+    set{
+      super.fileModificationDate = newValue
+      self.documentFilePath_property.postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  func computeTransient_documentFilePath () -> String {
+    var documentFilePath = ""
+    if let url = self.fileURL {
+      documentFilePath = url.path
+    }
+    return documentFilePath
+  }
+
+  //····················································································································
   //    populateExplorerWindow
   //····················································································································
 
@@ -166,13 +191,17 @@ end
 %  //--------------------------- Transient compute functions
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
-  %      if let unwSelf = self {\n%
-  ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName]
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
+  if [mDependencyList length] == 0 then
+    %    self.%!mTransientName%_property.readModelFunction = { return .single (self.computeTransient_%!mTransientName% ()) }\n%
+  else
+    %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
+    %      if let unwSelf = self {\n%
+    ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName]
+    %      }else{\n%
+    %        return .empty\n%
+    %      }\n%
+    %    }\n%
+  end
 end
 %  //--------------------------- Install property observers for transients
 %

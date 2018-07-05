@@ -322,26 +322,28 @@ proc generateTransients
 {
 #--------------------------- Generate transient routines
   for () in inTransientListForGeneration do
-    let s = [filewrapper transientManager.transientComputationFunctionFile
-      !mOwnerName
-      !mTransientName
-      !mIsArray
-      !mDependencyList
-      !mTransientType 
-    ]
-    let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
-      !startPath:inOutputDirectory
-      !fileName:fileName
-      !lineComment:"//"
-      !header:""
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"\n" # Defaut user zone2
-      !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
-      !makeExecutable:false
-    ]
+    if [mDependencyList length] > 0 then
+      let s = [filewrapper transientManager.transientComputationFunctionFile
+        !mOwnerName
+        !mTransientName
+        !mIsArray
+        !mDependencyList
+        !mTransientType 
+      ]
+      let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
+      ioGeneratedFileSet += !fileName
+      [@string generateFileWithPattern
+        !startPath:inOutputDirectory
+        !fileName:fileName
+        !lineComment:"//"
+        !header:""
+        !defaultUserZone1:"\n\n" # Defaut user zone1
+        !generatedZone2:s
+        !defaultUserZone2:"\n" # Defaut user zone2
+        !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
+        !makeExecutable:false
+      ]
+    end
   end
 }
 

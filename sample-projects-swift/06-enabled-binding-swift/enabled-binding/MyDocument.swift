@@ -24,6 +24,7 @@ import Cocoa
   //    Transient properties
   //····················································································································
 
+  var documentFilePath_property = EBTransientProperty_String ()
 
   //····················································································································
   //    Transient arraies
@@ -44,6 +45,31 @@ import Cocoa
   //    Custom object Controllers
   //····················································································································
 
+
+  //····················································································································
+  //    Document file path
+  //····················································································································
+  // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
+
+  override var fileModificationDate : Date? {
+    get {
+      return super.fileModificationDate
+    }
+    set{
+      super.fileModificationDate = newValue
+      self.documentFilePath_property.postEvent ()
+    }
+  }
+
+  //····················································································································
+
+  func computeTransient_documentFilePath () -> String {
+    var documentFilePath = ""
+    if let url = self.fileURL {
+      documentFilePath = url.path
+    }
+    return documentFilePath
+  }
 
   //····················································································································
   //    populateExplorerWindow
@@ -103,6 +129,7 @@ import Cocoa
   //--------------------------- Selection controllers
   //--------------------------- Custom object controllers
   //--------------------------- Transient compute functions
+    self.documentFilePath_property.readModelFunction = { return .single (self.computeTransient_documentFilePath ()) }
   //--------------------------- Install property observers for transients
   //--------------------------- Install regular bindings
     docBoolCheckBox?.bind_value (self.rootObject.docBool_property, file: #file, line: #line)
@@ -136,6 +163,7 @@ import Cocoa
     self.rootObject.docBool_property.removeEBObserver (mController_myButton_enabled!)
     mController_myButton_enabled = nil
   //--------------------------- Uninstall compute functions for transients
+    self.documentFilePath_property.readModelFunction = nil
   //--------------------------- Unbind array controllers
   //--------------------------- Unbind selection controllers
   //--------------------------- Uninstall property observers for transients

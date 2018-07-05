@@ -47,6 +47,14 @@ syntax extension easyBindings_syntax {
       <array_controller_declaration> !?secondaryPropertyList
     end
     $}$
+  #--- Add documentFilePath transient property
+    secondaryPropertyList += !@transientAST.new {
+      !["String" here]
+      !false
+      !["documentFilePath" here]
+      !{}
+    }
+  #---
     ioDeclarationAST.mDeclarationList += !@documentDeclaration.new {
       !inIsUserDefined
       !documentName

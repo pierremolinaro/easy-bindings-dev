@@ -2879,7 +2879,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document.galgas", 49)) ;
-  ioArgument_ioDeclarationAST.mProperty_mDeclarationList.addAssign_operation (GALGAS_documentDeclaration::constructor_new (constinArgument_inIsUserDefined, var_documentName_1350, var_rootEntityName_1407, var_outletDeclarationList_1518, var_simpleStoredPropertyList_1663, var_actionDeclarationList_1603, var_secondaryPropertyList_1464  COMMA_SOURCE_FILE ("document.galgas", 50))  COMMA_SOURCE_FILE ("document.galgas", 50)) ;
+  var_secondaryPropertyList_1464.addAssign_operation (GALGAS_transientAST::constructor_new (GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 52)), GALGAS_bool (false), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 54)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 55))  COMMA_SOURCE_FILE ("document.galgas", 51))  COMMA_SOURCE_FILE ("document.galgas", 51)) ;
+  ioArgument_ioDeclarationAST.mProperty_mDeclarationList.addAssign_operation (GALGAS_documentDeclaration::constructor_new (constinArgument_inIsUserDefined, var_documentName_1350, var_rootEntityName_1407, var_outletDeclarationList_1518, var_simpleStoredPropertyList_1663, var_actionDeclarationList_1603, var_secondaryPropertyList_1464  COMMA_SOURCE_FILE ("document.galgas", 58))  COMMA_SOURCE_FILE ("document.galgas", 58)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
