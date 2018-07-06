@@ -23,7 +23,7 @@
 		CFA9574C1AC8678900CA6D6D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA957391AC8678900CA6D6D /* MainMenu.xib */; };
 		CFA9574D1AC8678900CA6D6D /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573A1AC8678900CA6D6D /* MyDocument.swift */; };
 		CFA9574E1AC8678900CA6D6D /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA9573B1AC8678900CA6D6D /* MyDocument.xib */; };
-		CFA9574F1AC8678900CA6D6D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */; };
+		CFA9574F1AC8678900CA6D6D /* entity-MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9573C1AC8678900CA6D6D /* entity-MyRootEntity.swift */; };
 		CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957461AC8678900CA6D6D /* Preferences.swift */; };
 		CFA9575A1AC8678900CA6D6D /* standard-properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957471AC8678900CA6D6D /* standard-properties.swift */; };
 /* End PBXBuildFile section */
@@ -46,7 +46,7 @@
 		CFA957391AC8678900CA6D6D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = "enabled-binding/MainMenu.xib"; sourceTree = "<group>"; };
 		CFA9573A1AC8678900CA6D6D /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyDocument.swift; path = "enabled-binding/MyDocument.swift"; sourceTree = "<group>"; };
 		CFA9573B1AC8678900CA6D6D /* MyDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyDocument.xib; path = "enabled-binding/MyDocument.xib"; sourceTree = "<group>"; };
-		CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRootEntity.swift; path = "enabled-binding/MyRootEntity.swift"; sourceTree = "<group>"; };
+		CFA9573C1AC8678900CA6D6D /* entity-MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "entity-MyRootEntity.swift"; path = "enabled-binding/entity-MyRootEntity.swift"; sourceTree = "<group>"; };
 		CFA957461AC8678900CA6D6D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = "enabled-binding/Preferences.swift"; sourceTree = "<group>"; };
 		CFA957471AC8678900CA6D6D /* standard-properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "standard-properties.swift"; path = "enabled-binding/standard-properties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +97,7 @@
 				CFA957391AC8678900CA6D6D /* MainMenu.xib */,
 				CFA9573A1AC8678900CA6D6D /* MyDocument.swift */,
 				CFA9573B1AC8678900CA6D6D /* MyDocument.xib */,
-				CFA9573C1AC8678900CA6D6D /* MyRootEntity.swift */,
+				CFA9573C1AC8678900CA6D6D /* entity-MyRootEntity.swift */,
 				CFA957461AC8678900CA6D6D /* Preferences.swift */,
 				CFA957471AC8678900CA6D6D /* standard-properties.swift */,
 			);
@@ -174,7 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFA9574F1AC8678900CA6D6D /* MyRootEntity.swift in Sources */,
+				CFA9574F1AC8678900CA6D6D /* entity-MyRootEntity.swift in Sources */,
 				CF8E79F51B3E9F2D000E28CC /* EBSwitch.swift in Sources */,
 				CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */,
 				CF71F9D01B3EA72400FB5049 /* EBManagedObjectContext.swift in Sources */,

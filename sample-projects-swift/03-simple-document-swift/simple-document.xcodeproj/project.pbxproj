@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		02A44259755D38E6D163E820 /* transient-MyRootEntity-myStringConcat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D7FBDEA1AFC51C7C6AD26 /* transient-MyRootEntity-myStringConcat.swift */; settings = {ATTRIBUTES = (); }; };
-		1EAE257E44AA9D5BADE97BAF /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */; settings = {ATTRIBUTES = (); }; };
 		22BCC25A6F606EB525FFDC56 /* transient-MyRootEntity-myStringMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124A10E0DB5E4B97FC2AF39 /* transient-MyRootEntity-myStringMin.swift */; settings = {ATTRIBUTES = (); }; };
 		30BD3DCAEFC96F40275BDC0A /* easy-bindings-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED88F18ECEE47145A72C0 /* easy-bindings-utilities.swift */; settings = {ATTRIBUTES = (); }; };
 		3463D06DE0CA9A15B6153677 /* action-PMDocument-autreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37563370DED05F5A3BF3EC /* action-PMDocument-autreAction.swift */; settings = {ATTRIBUTES = (); }; };
@@ -20,6 +19,7 @@
 		9DD601BBE69F351039152189 /* action-PMDocument-monAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0327AD868D138F2B4FDD6F0 /* action-PMDocument-monAction.swift */; settings = {ATTRIBUTES = (); }; };
 		B79421734881B53E1E1B18B6 /* application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56D3D6FA748AB6D9AF3FD7 /* application.swift */; settings = {ATTRIBUTES = (); }; };
 		CF3B47731AC80DF000DA3409 /* PMDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3B47721AC80DF000DA3409 /* PMDocument.xib */; };
+		CF4BBCCE20EFE80100C7C2A9 /* entity-MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4BBCCD20EFE80100C7C2A9 /* entity-MyRootEntity.swift */; };
 		CF71F9A11B3EA66700FB5049 /* EBAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F99A1B3EA66700FB5049 /* EBAllocationDebug.swift */; };
 		CF71F9A21B3EA66700FB5049 /* EBAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF71F99B1B3EA66700FB5049 /* EBAllocationDebug.xib */; };
 		CF71F9A31B3EA66700FB5049 /* EBDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F99C1B3EA66700FB5049 /* EBDataScanner.swift */; };
@@ -49,6 +49,7 @@
 		CE56D3D6FA748AB6D9AF3FD7 /* application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = application.swift; sourceTree = "<group>"; };
 		CF3B47701AC80D3800DA3409 /* simple-document.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-document.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3B47721AC80DF000DA3409 /* PMDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDocument.xib; sourceTree = "<group>"; };
+		CF4BBCCD20EFE80100C7C2A9 /* entity-MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "entity-MyRootEntity.swift"; sourceTree = "<group>"; };
 		CF71F99A1B3EA66700FB5049 /* EBAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBAllocationDebug.swift; sourceTree = "<group>"; };
 		CF71F99B1B3EA66700FB5049 /* EBAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EBAllocationDebug.xib; sourceTree = "<group>"; };
 		CF71F99C1B3EA66700FB5049 /* EBDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDataScanner.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTextObserverField.swift; sourceTree = "<group>"; };
 		D9CAA6E02C990B0A82652DCA /* transient-MyRootEntity-myStringMaj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "transient-MyRootEntity-myStringMaj.swift"; sourceTree = "<group>"; };
 		E0327AD868D138F2B4FDD6F0 /* action-PMDocument-monAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "action-PMDocument-monAction.swift"; sourceTree = "<group>"; };
-		F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +110,10 @@
 				CF8E79DC1B3E9B11000E28CC /* EBTextField.swift */,
 				CFC7AEC11BF220D20076C604 /* EBTextObserverField.swift */,
 				CF71F9A01B3EA66700FB5049 /* EBUndoManager.swift */,
+				CF4BBCCD20EFE80100C7C2A9 /* entity-MyRootEntity.swift */,
 				778DFAECDC212708F721B788 /* generic-bindings.swift */,
 				19AD8176D665453CFB2E55F0 /* main.swift */,
 				BBCE2345D7772B0674A318D5 /* MainMenu.xib */,
-				F062936A96D3C8BD1F8F2FF3 /* MyRootEntity.swift */,
 				AA0EFB9E19094440C317E21B /* PMDocument.swift */,
 				CF3B47721AC80DF000DA3409 /* PMDocument.xib */,
 				7260AE62E3B1396831A8398F /* Preferences.swift */,
@@ -209,13 +209,13 @@
 				22BCC25A6F606EB525FFDC56 /* transient-MyRootEntity-myStringMin.swift in Sources */,
 				CF8E79E01B3E9B11000E28CC /* EBTextField.swift in Sources */,
 				CFC7AEC21BF220D20076C604 /* EBTextObserverField.swift in Sources */,
-				1EAE257E44AA9D5BADE97BAF /* MyRootEntity.swift in Sources */,
 				3463D06DE0CA9A15B6153677 /* action-PMDocument-autreAction.swift in Sources */,
 				9DD601BBE69F351039152189 /* action-PMDocument-monAction.swift in Sources */,
 				CF71F9A51B3EA66700FB5049 /* EBManagedObject.swift in Sources */,
 				CF8E79DE1B3E9B11000E28CC /* EBColorWell.swift in Sources */,
 				CF71F9A61B3EA66700FB5049 /* EBManagedObjectContext.swift in Sources */,
 				CF71F9A41B3EA66700FB5049 /* EBManagedDocument.swift in Sources */,
+				CF4BBCCE20EFE80100C7C2A9 /* entity-MyRootEntity.swift in Sources */,
 				8F07F89DDBEBC2AC9128303F /* PMDocument.swift in Sources */,
 				E875A2E075A1A4A6E1B9770F /* Preferences.swift in Sources */,
 				B79421734881B53E1E1B18B6 /* application.swift in Sources */,

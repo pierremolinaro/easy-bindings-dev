@@ -281,7 +281,7 @@ proc generateEntities
       !mToManyEntityRelationshipList
       !mSignatureSet
     ]
-    let fileName = mEntityName + ".swift"
+    let fileName = "entity-" + mEntityName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory

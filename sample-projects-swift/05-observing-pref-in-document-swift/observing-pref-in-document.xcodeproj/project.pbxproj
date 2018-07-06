@@ -23,7 +23,7 @@
 		CFA9571E1AC8631B00CA6D6D /* generic-bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570A1AC8631B00CA6D6D /* generic-bindings.swift */; };
 		CFA9571F1AC8631B00CA6D6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570B1AC8631B00CA6D6D /* main.swift */; };
 		CFA957201AC8631B00CA6D6D /* MyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */; };
-		CFA957211AC8631B00CA6D6D /* MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570D1AC8631B00CA6D6D /* MyRootEntity.swift */; };
+		CFA957211AC8631B00CA6D6D /* entity-MyRootEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570D1AC8631B00CA6D6D /* entity-MyRootEntity.swift */; };
 		CFA957221AC8631B00CA6D6D /* transient-MyRootEntity-otherTransientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570E1AC8631B00CA6D6D /* transient-MyRootEntity-otherTransientConcatString.swift */; };
 		CFA957231AC8631B00CA6D6D /* transient-MyRootEntity-transientConcatString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9570F1AC8631B00CA6D6D /* transient-MyRootEntity-transientConcatString.swift */; };
 		CFA9572D1AC8631B00CA6D6D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA957191AC8631B00CA6D6D /* Preferences.swift */; };
@@ -55,7 +55,7 @@
 		CFA9570A1AC8631B00CA6D6D /* generic-bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "generic-bindings.swift"; sourceTree = "<group>"; };
 		CFA9570B1AC8631B00CA6D6D /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDocument.swift; sourceTree = "<group>"; };
-		CFA9570D1AC8631B00CA6D6D /* MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRootEntity.swift; sourceTree = "<group>"; };
+		CFA9570D1AC8631B00CA6D6D /* entity-MyRootEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "entity-MyRootEntity.swift"; sourceTree = "<group>"; };
 		CFA9570E1AC8631B00CA6D6D /* transient-MyRootEntity-otherTransientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "transient-MyRootEntity-otherTransientConcatString.swift"; sourceTree = "<group>"; };
 		CFA9570F1AC8631B00CA6D6D /* transient-MyRootEntity-transientConcatString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "transient-MyRootEntity-transientConcatString.swift"; sourceTree = "<group>"; };
 		CFA957191AC8631B00CA6D6D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				CFA957321AC8644A00CA6D6D /* MainMenu.xib */,
 				CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */,
 				CFA957301AC8642C00CA6D6D /* MyDocument.xib */,
-				CFA9570D1AC8631B00CA6D6D /* MyRootEntity.swift */,
+				CFA9570D1AC8631B00CA6D6D /* entity-MyRootEntity.swift */,
 				CFA957191AC8631B00CA6D6D /* Preferences.swift */,
 				CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */,
 				CFA9570E1AC8631B00CA6D6D /* transient-MyRootEntity-otherTransientConcatString.swift */,
@@ -218,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFA957211AC8631B00CA6D6D /* MyRootEntity.swift in Sources */,
+				CFA957211AC8631B00CA6D6D /* entity-MyRootEntity.swift in Sources */,
 				CF71F9BF1B3EA6EE00FB5049 /* EBDataScanner.swift in Sources */,
 				CF71F9C21B3EA6EE00FB5049 /* EBManagedObjectContext.swift in Sources */,
 				CFA957231AC8631B00CA6D6D /* transient-MyRootEntity-transientConcatString.swift in Sources */,
