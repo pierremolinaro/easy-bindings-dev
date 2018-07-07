@@ -11914,6 +11914,11 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   result << " = EBTransientValueProperty <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
+    "typealias EBReadWriteProperty_" ;
+  result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
+  result << " = EBReadWriteValueProperty <" ;
+  result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">\n"
     "typealias EBStoredProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << " = EBStoredValueProperty <" ;

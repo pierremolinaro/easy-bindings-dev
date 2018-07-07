@@ -3778,35 +3778,33 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_array COMMA_SOURCE_FILE ("transient-property.galgas", 28)) ;
-    TC_Array <C_FixItDescription> fixItArray0 ;
-    inCompiler->emitSemanticWarning (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 29)), GALGAS_string ("Transient Array !"), fixItArray0  COMMA_SOURCE_FILE ("transient-property.galgas", 29)) ;
     var_isArray_1181 = GALGAS_bool (true) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_lstring var_transientTypeName_1355 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientTypeName_1356 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.galgas", 32)) ;
-  GALGAS_lstring var_transientName_1400 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientName_1401 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.galgas", 33)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("transient-property.galgas", 34)) ;
-  GALGAS_observablePropertyList var_dependanceList_1461 = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 35)) ;
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    GALGAS_observablePropertyAST var_observablePropertyAST_1555 ;
-    nt_observable_5F_property_ (var_observablePropertyAST_1555, inCompiler) ;
-    var_dependanceList_1461.addAssign_operation (var_observablePropertyAST_1555  COMMA_SOURCE_FILE ("transient-property.galgas", 38)) ;
+  GALGAS_observablePropertyList var_dependanceList_1462 = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 35)) ;
+  bool repeatFlag_0 = true ;
+  while (repeatFlag_0) {
+    GALGAS_observablePropertyAST var_observablePropertyAST_1556 ;
+    nt_observable_5F_property_ (var_observablePropertyAST_1556, inCompiler) ;
+    var_dependanceList_1462.addAssign_operation (var_observablePropertyAST_1556  COMMA_SOURCE_FILE ("transient-property.galgas", 38)) ;
     switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.galgas", 40)) ;
     } break ;
     default:
-      repeatFlag_1 = false ;
+      repeatFlag_0 = false ;
       break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.galgas", 42)) ;
-  ioArgument_ioSecondaryPropertyList.addAssign_operation (GALGAS_transientAST::constructor_new (var_transientTypeName_1355, var_isArray_1181, var_transientName_1400, var_dependanceList_1461  COMMA_SOURCE_FILE ("transient-property.galgas", 43))  COMMA_SOURCE_FILE ("transient-property.galgas", 43)) ;
+  ioArgument_ioSecondaryPropertyList.addAssign_operation (GALGAS_transientAST::constructor_new (var_transientTypeName_1356, var_isArray_1181, var_transientName_1401, var_dependanceList_1462  COMMA_SOURCE_FILE ("transient-property.galgas", 43))  COMMA_SOURCE_FILE ("transient-property.galgas", 43)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3934,8 +3932,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stored_5F_array
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("stored-array-property.galgas", 22)) ;
   GALGAS_lstring var_storedArrayPropertyName_1192 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("stored-array-property.galgas", 23)) ;
-  TC_Array <C_FixItDescription> fixItArray0 ;
-  inCompiler->emitSemanticWarning (var_storedArrayPropertyName_1192.getter_location (SOURCE_FILE ("stored-array-property.galgas", 24)), GALGAS_string ("Stored Array !"), fixItArray0  COMMA_SOURCE_FILE ("stored-array-property.galgas", 24)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("stored-array-property.galgas", 25)) ;
   ioArgument_ioStoredArrayList.addAssign_operation (var_elementClassName_1137, var_storedArrayPropertyName_1192  COMMA_SOURCE_FILE ("stored-array-property.galgas", 26)) ;
 }

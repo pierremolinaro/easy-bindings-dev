@@ -63,6 +63,7 @@ end
 
 typealias EBReadOnlyProperty_%!ENUM_TYPE_NAME% = EBReadOnlyValueProperty <%!ENUM_TYPE_NAME%>
 typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientValueProperty <%!ENUM_TYPE_NAME%>
+typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBReadWriteValueProperty <%!ENUM_TYPE_NAME%>
 typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBStoredValueProperty <%!ENUM_TYPE_NAME%>
 typealias EBPropertyProxy_%!ENUM_TYPE_NAME% = EBPropertyValueProxy <%!ENUM_TYPE_NAME%>
 

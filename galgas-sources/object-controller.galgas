@@ -47,7 +47,7 @@ override method @objectControllerDeclaration typeInventory
 #·······················································································································
 
 override method @objectControllerDeclaration tryToSolveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContext unused ioSemanticContext
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
@@ -56,7 +56,7 @@ override method @objectControllerDeclaration tryToSolveSecondaryProperty
     [ioObservableProperties searchKey
       !mToOneRelationshipName
       ?let @typeKind kind
-      ?let @propertyKind propertyKind
+      ?*
       ?let @propertyMultiplicity multiplicity
       ?3*
     ]
@@ -123,9 +123,7 @@ override method @objectControllerDeclaration secondaryPropertySemanticAnalysis
   [inObservableProperties searchKey
     !mToOneRelationshipName
     ?let @typeKind kind
-    ?let @propertyKind propertyKind
-    ?let @propertyMultiplicity multiplicity
-    ?3*
+    ?5*
   ]
   [kind entityType ?entityName:let entityTypeName]
   [inSemanticContext.mEntityObservablePropertyMap searchKey

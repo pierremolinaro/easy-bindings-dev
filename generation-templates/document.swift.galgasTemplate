@@ -37,6 +37,9 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   if not mIsArray then
     %  var %!mTransientName%_property = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
+    %  var %!mTransientName%_property_selection : EBSelection <%![mTransientType swiftTypeName]%> {\n%
+    %    return self.%!mTransientName%_property.prop\n%
+    %  }\n\n%
   end
 end
 

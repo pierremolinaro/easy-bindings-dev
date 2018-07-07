@@ -21,7 +21,7 @@ syntax extension easyBindings_syntax {
     $array$
     $Identifier$ ?var @lstring elementClassName
     $identifier$ ?var @lstring storedArrayPropertyName
-    warning storedArrayPropertyName : "Stored Array !"
+#    warning storedArrayPropertyName : "Stored Array !"
     $;$
     ioStoredArrayList += !elementClassName !storedArrayPropertyName
   }
