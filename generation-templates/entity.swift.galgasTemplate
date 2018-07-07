@@ -52,9 +52,17 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      return self.%!mTransientName%_property.prop\n%
   %    }\n%
   %  }\n\n%
-  %  var %!mTransientName% : EBSelection <%![mTransientType swiftTypeName]%> {\n%
-  %    get {\n%
-  %      return %!mTransientName%_property_selection\n%
+  %//  var %!mTransientName% : EBSelection <%![mTransientType swiftTypeName]%> {\n%
+  %//    get {\n%
+  %//      return %!mTransientName%_property_selection\n%
+  %//    }\n%
+  %//  }\n\n%
+  %  var %!mTransientName% : %![mTransientType swiftTypeName]%? {\n%
+  %    switch %!mTransientName%_property_selection {\n%
+  %    case .empty, .multiple :\n%
+  %      return nil\n%
+  %    case .single (let v) :\n%
+  %      return v\n%
   %    }\n%
   %  }\n\n%
 end
@@ -615,7 +623,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol %!ENTITY_NAME%_%!mTransientName% : class {
-  var %!mTransientName% : EBSelection < %![mTransientType swiftTypeName]% > { get }
+  var %!mTransientName% : %![mTransientType swiftTypeName]%? { get }
 }
 
 %
