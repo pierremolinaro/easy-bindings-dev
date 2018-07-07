@@ -137,7 +137,7 @@ proc generateEnums
         !mEnumName
         !mEnumConstantList
       ]
-      let fileName = mEnumName + ".swift"
+      let fileName = "entity-" + mEnumName + ".swift"
       ioGeneratedFileSet += !fileName
       [@string generateFile
         !inOutputDirectory

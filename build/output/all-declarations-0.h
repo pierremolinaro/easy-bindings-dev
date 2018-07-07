@@ -657,6 +657,10 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_51 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_52 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_53 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -3052,7 +3056,8 @@ class GALGAS_entityDeclaration : public GALGAS_astDeclaration {
                                                                   const class GALGAS_toManyRelationshipList & inOperand5,
                                                                   const class GALGAS_secondaryPropertyList & inOperand6,
                                                                   const class GALGAS_stringset & inOperand7,
-                                                                  const class GALGAS_lstringlist & inOperand8
+                                                                  const class GALGAS_lstringlist & inOperand8,
+                                                                  const class GALGAS_lstringlist & inOperand9
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3067,6 +3072,8 @@ class GALGAS_entityDeclaration : public GALGAS_astDeclaration {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_secondaryPropertyList getter_mSecondaryPropertyList (LOCATION_ARGS) const ;
 
@@ -3451,6 +3458,7 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
   public : GALGAS_secondaryPropertyList mProperty_mSecondaryPropertyList ;
   public : GALGAS_stringset mProperty_mSignatureList ;
   public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
+  public : GALGAS_lstringlist mProperty_mObsoleteEntityNames ;
 
 //--- Constructor
   public : cPtr_entityDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -3461,7 +3469,8 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
                                    const GALGAS_toManyRelationshipList & in_mToManyRelationshipList,
                                    const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                    const GALGAS_stringset & in_mSignatureList,
-                                   const GALGAS_lstringlist & in_mActionDeclarationList
+                                   const GALGAS_lstringlist & in_mActionDeclarationList,
+                                   const GALGAS_lstringlist & in_mObsoleteEntityNames
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3476,6 +3485,7 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
   public : VIRTUAL_IN_DEBUG GALGAS_secondaryPropertyList getter_mSecondaryPropertyList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -6438,6 +6448,10 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_50 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_51 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_52 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_53 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

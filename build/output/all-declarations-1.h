@@ -100,7 +100,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
                                                   const class GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
-                                                  const class GALGAS_stringset & in_mSignatureSet
+                                                  const class GALGAS_stringset & in_mSignatureSet,
+                                                  const class GALGAS_lstringlist & in_mObsoleteEntityNames
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -122,7 +123,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                                                   const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
                                                                                   const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                  const class GALGAS_stringset & inOperand6
+                                                                                  const class GALGAS_stringset & inOperand6,
+                                                                                  const class GALGAS_lstringlist & inOperand7
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -137,7 +139,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                       const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
                                                       const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                      const class GALGAS_stringset & inOperand6
+                                                      const class GALGAS_stringset & inOperand6,
+                                                      const class GALGAS_lstringlist & inOperand7
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_entityListForGeneration add_operation (const GALGAS_entityListForGeneration & inOperand,
@@ -153,7 +156,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                        class GALGAS_toOneEntityRelationshipListForGeneration constinArgument4,
                                                        class GALGAS_toManyEntityRelationshipListForGeneration constinArgument5,
                                                        class GALGAS_stringset constinArgument6,
-                                                       class GALGAS_uint constinArgument7,
+                                                       class GALGAS_lstringlist constinArgument7,
+                                                       class GALGAS_uint constinArgument8,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -164,6 +168,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                   class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                   class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
                                                   class GALGAS_stringset & outArgument6,
+                                                  class GALGAS_lstringlist & outArgument7,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -174,6 +179,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                  class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                  class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
                                                  class GALGAS_stringset & outArgument6,
+                                                 class GALGAS_lstringlist & outArgument7,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -184,7 +190,8 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                        class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                        class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
                                                        class GALGAS_stringset & outArgument6,
-                                                       class GALGAS_uint constinArgument7,
+                                                       class GALGAS_lstringlist & outArgument7,
+                                                       class GALGAS_uint constinArgument8,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -197,6 +204,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                                class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                                class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
                                                class GALGAS_stringset & outArgument6,
+                                               class GALGAS_lstringlist & outArgument7,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -207,6 +215,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
                                               class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
                                               class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
                                               class GALGAS_stringset & outArgument6,
+                                              class GALGAS_lstringlist & outArgument7,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -220,6 +229,10 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNamesAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSetAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                 C_Compiler * inCompiler
@@ -278,6 +291,7 @@ class cEnumerator_entityListForGeneration : public cGenericAbstractEnumerator {
   public : class GALGAS_toOneEntityRelationshipListForGeneration current_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
   public : class GALGAS_toManyEntityRelationshipListForGeneration current_mToManyEntityRelationshipList (LOCATION_ARGS) const ;
   public : class GALGAS_stringset current_mSignatureSet (LOCATION_ARGS) const ;
+  public : class GALGAS_lstringlist current_mObsoleteEntityNames (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_entityListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -308,6 +322,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_stringset mProperty_mSignatureSet ;
 
+  public : GALGAS_lstringlist mProperty_mObsoleteEntityNames ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -328,7 +344,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
                                                       const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                       const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
                                                       const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
-                                                      const GALGAS_stringset & in_mSignatureSet) ;
+                                                      const GALGAS_stringset & in_mSignatureSet,
+                                                      const GALGAS_lstringlist & in_mObsoleteEntityNames) ;
 
 //-- Start of generic part --*
 
@@ -347,7 +364,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
                                                                                    const class GALGAS_transientDefinitionListForGeneration & inOperand3,
                                                                                    const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
                                                                                    const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                   const class GALGAS_stringset & inOperand6
+                                                                                   const class GALGAS_stringset & inOperand6,
+                                                                                   const class GALGAS_lstringlist & inOperand7
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -365,6 +383,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
 
@@ -5164,78 +5184,4 @@ class GALGAS_string extensionGetter_outletNameListForController (const class GAL
                                                                  const class GALGAS_string & constinArgument0,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                         @boundObjectList_2D_element struct                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_boundObjectList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_string mProperty_mBoundObjectString ;
-
-  public : GALGAS_typeKind mProperty_mType ;
-
-  public : GALGAS_propertyKind mProperty_mKind ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_boundObjectList_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_boundObjectList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_boundObjectList_2D_element (const GALGAS_string & in_mBoundObjectString,
-                                              const GALGAS_typeKind & in_mType,
-                                              const GALGAS_propertyKind & in_mKind) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_boundObjectList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_boundObjectList_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                           const class GALGAS_typeKind & inOperand1,
-                                                                           const class GALGAS_propertyKind & inOperand2
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_boundObjectList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mBoundObjectString (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKind (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_boundObjectList_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList_2D_element ;
 

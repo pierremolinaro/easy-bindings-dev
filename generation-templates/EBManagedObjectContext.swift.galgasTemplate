@@ -197,6 +197,10 @@ before
 do
   %if inEntityTypeName == "%!mEntityName%" {\n%
   %      result = %!mEntityName% (managedObjectContext:self)\n%
+  for () in mObsoleteEntityNames do
+    %    }else if inEntityTypeName == "%![mValue string]%" {\n%
+    %      result = %!mEntityName% (managedObjectContext:self)\n%  
+  end
 between
   %    }else %
 after

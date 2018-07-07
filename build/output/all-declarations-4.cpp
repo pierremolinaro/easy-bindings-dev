@@ -1383,6 +1383,9 @@ typeComparisonResult cPtr_entityDeclaration::dynamicObjectCompare (const acPtr_c
   if (kOperandEqual == result) {
     result = mProperty_mActionDeclarationList.objectCompare (p->mProperty_mActionDeclarationList) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mObsoleteEntityNames.objectCompare (p->mProperty_mObsoleteEntityNames) ;
+  }
   return result ;
 }
 
@@ -1422,6 +1425,7 @@ GALGAS_entityDeclaration GALGAS_entityDeclaration::constructor_default (LOCATION
                                                     GALGAS_toManyRelationshipList::constructor_emptyList (HERE),
                                                     GALGAS_secondaryPropertyList::constructor_emptyList (HERE),
                                                     GALGAS_stringset::constructor_emptySet (HERE),
+                                                    GALGAS_lstringlist::constructor_emptyList (HERE),
                                                     GALGAS_lstringlist::constructor_emptyList (HERE)
                                                     COMMA_THERE) ;
 }
@@ -1443,11 +1447,12 @@ GALGAS_entityDeclaration GALGAS_entityDeclaration::constructor_new (const GALGAS
                                                                     const GALGAS_toManyRelationshipList & inAttribute_mToManyRelationshipList,
                                                                     const GALGAS_secondaryPropertyList & inAttribute_mSecondaryPropertyList,
                                                                     const GALGAS_stringset & inAttribute_mSignatureList,
-                                                                    const GALGAS_lstringlist & inAttribute_mActionDeclarationList
+                                                                    const GALGAS_lstringlist & inAttribute_mActionDeclarationList,
+                                                                    const GALGAS_lstringlist & inAttribute_mObsoleteEntityNames
                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_entityDeclaration result ;
-  if (inAttribute_mUserDefined.isValid () && inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mToOneRelationshipList.isValid () && inAttribute_mToManyRelationshipList.isValid () && inAttribute_mSecondaryPropertyList.isValid () && inAttribute_mSignatureList.isValid () && inAttribute_mActionDeclarationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_entityDeclaration (inAttribute_mUserDefined, inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mSimpleStoredAttributeList, inAttribute_mToOneRelationshipList, inAttribute_mToManyRelationshipList, inAttribute_mSecondaryPropertyList, inAttribute_mSignatureList, inAttribute_mActionDeclarationList COMMA_THERE)) ;
+  if (inAttribute_mUserDefined.isValid () && inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mToOneRelationshipList.isValid () && inAttribute_mToManyRelationshipList.isValid () && inAttribute_mSecondaryPropertyList.isValid () && inAttribute_mSignatureList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mObsoleteEntityNames.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_entityDeclaration (inAttribute_mUserDefined, inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mSimpleStoredAttributeList, inAttribute_mToOneRelationshipList, inAttribute_mToManyRelationshipList, inAttribute_mSecondaryPropertyList, inAttribute_mSignatureList, inAttribute_mActionDeclarationList, inAttribute_mObsoleteEntityNames COMMA_THERE)) ;
   }
   return result ;
 }
@@ -1597,6 +1602,24 @@ GALGAS_lstringlist cPtr_entityDeclaration::getter_mActionDeclarationList (UNUSED
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist GALGAS_entityDeclaration::getter_mObsoleteEntityNames (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstringlist result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityDeclaration * p = (const cPtr_entityDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityDeclaration) ;
+    result = p->mProperty_mObsoleteEntityNames ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist cPtr_entityDeclaration::getter_mObsoleteEntityNames (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mObsoleteEntityNames ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                     Pointer class for @entityDeclaration class                                      *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1608,7 +1631,8 @@ cPtr_entityDeclaration::cPtr_entityDeclaration (const GALGAS_bool & in_mUserDefi
                                                 const GALGAS_toManyRelationshipList & in_mToManyRelationshipList,
                                                 const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                                 const GALGAS_stringset & in_mSignatureList,
-                                                const GALGAS_lstringlist & in_mActionDeclarationList
+                                                const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                const GALGAS_lstringlist & in_mObsoleteEntityNames
                                                 COMMA_LOCATION_ARGS) :
 cPtr_astDeclaration (in_mUserDefined COMMA_THERE),
 mProperty_mEntityName (in_mEntityName),
@@ -1618,7 +1642,8 @@ mProperty_mToOneRelationshipList (in_mToOneRelationshipList),
 mProperty_mToManyRelationshipList (in_mToManyRelationshipList),
 mProperty_mSecondaryPropertyList (in_mSecondaryPropertyList),
 mProperty_mSignatureList (in_mSignatureList),
-mProperty_mActionDeclarationList (in_mActionDeclarationList) {
+mProperty_mActionDeclarationList (in_mActionDeclarationList),
+mProperty_mObsoleteEntityNames (in_mObsoleteEntityNames) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1647,6 +1672,8 @@ void cPtr_entityDeclaration::description (C_String & ioString,
   mProperty_mSignatureList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mObsoleteEntityNames.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -1654,7 +1681,7 @@ void cPtr_entityDeclaration::description (C_String & ioString,
 
 acPtr_class * cPtr_entityDeclaration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_entityDeclaration (mProperty_mUserDefined, mProperty_mEntityName, mProperty_mSuperEntityName, mProperty_mSimpleStoredAttributeList, mProperty_mToOneRelationshipList, mProperty_mToManyRelationshipList, mProperty_mSecondaryPropertyList, mProperty_mSignatureList, mProperty_mActionDeclarationList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_entityDeclaration (mProperty_mUserDefined, mProperty_mEntityName, mProperty_mSuperEntityName, mProperty_mSimpleStoredAttributeList, mProperty_mToOneRelationshipList, mProperty_mToManyRelationshipList, mProperty_mSecondaryPropertyList, mProperty_mSignatureList, mProperty_mActionDeclarationList, mProperty_mObsoleteEntityNames COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -11921,7 +11948,7 @@ void routine_generateEnums (const GALGAS_enumListForGeneration constinArgument_i
     const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5796.current_mEnumConstantList (HERE).getter_length (SOURCE_FILE ("enumeration.galgas", 135)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_string var_s_5894 = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, enumerator_5796.current_mEnumName (HERE), enumerator_5796.current_mEnumConstantList (HERE) COMMA_SOURCE_FILE ("enumeration.galgas", 136))) ;
-      GALGAS_string var_fileName_6027 = enumerator_5796.current_mEnumName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 140)) ;
+      GALGAS_string var_fileName_6027 = GALGAS_string ("entity-").add_operation (enumerator_5796.current_mEnumName (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 140)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 140)) ;
       ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6027  COMMA_SOURCE_FILE ("enumeration.galgas", 141)) ;
       {
       GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6027, var_s_5894, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 142)) ;

@@ -43,30 +43,30 @@ static void extensionMethod_entityDeclaration_typeInventory (const cPtr_astDecla
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  extensionMethod_typeInventory (object->mProperty_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 81)) ;
-  cEnumerator_secondaryPropertyList enumerator_3242 (object->mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
-  while (enumerator_3242.hasCurrentObject ()) {
-    callExtensionMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_3242.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 83)) ;
-    enumerator_3242.gotoNextObject () ;
+  extensionMethod_typeInventory (object->mProperty_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 95)) ;
+  cEnumerator_secondaryPropertyList enumerator_3533 (object->mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
+  while (enumerator_3533.hasCurrentObject ()) {
+    callExtensionMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_3533.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 97)) ;
+    enumerator_3533.gotoNextObject () ;
   }
-  GALGAS_actionMap var_actionMap_3329 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 87)) ;
-  cEnumerator_lstringlist enumerator_3372 (object->mProperty_mActionDeclarationList, kENUMERATION_UP) ;
-  while (enumerator_3372.hasCurrentObject ()) {
+  GALGAS_actionMap var_actionMap_3620 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 101)) ;
+  cEnumerator_lstringlist enumerator_3663 (object->mProperty_mActionDeclarationList, kENUMERATION_UP) ;
+  while (enumerator_3663.hasCurrentObject ()) {
     {
-    var_actionMap_3329.setter_insertKey (enumerator_3372.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 89)) ;
+    var_actionMap_3620.setter_insertKey (enumerator_3663.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 103)) ;
     }
-    enumerator_3372.gotoNextObject () ;
+    enumerator_3663.gotoNextObject () ;
   }
-  extensionMethod_typeInventory (object->mProperty_mToOneRelationshipList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 91)) ;
-  extensionMethod_typeInventory (object->mProperty_mToManyRelationshipList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 92)) ;
+  extensionMethod_typeInventory (object->mProperty_mToOneRelationshipList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 105)) ;
+  extensionMethod_typeInventory (object->mProperty_mToManyRelationshipList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 106)) ;
   {
-  ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mProperty_mEntityName, GALGAS_typeKind::constructor_entityType (object->mProperty_mEntityName.getter_string (HERE)  COMMA_SOURCE_FILE ("entity.galgas", 93)), var_actionMap_3329, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 93)) ;
+  ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mProperty_mEntityName, GALGAS_typeKind::constructor_entityType (object->mProperty_mEntityName.getter_string (HERE)  COMMA_SOURCE_FILE ("entity.galgas", 107)), var_actionMap_3620, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 107)) ;
   }
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, object->mProperty_mSuperEntityName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
   if (kBoolTrue == test_0) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3754 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, object->mProperty_mSuperEntityName, joker_3754 COMMA_SOURCE_FILE ("entity.galgas", 95)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_4045 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, object->mProperty_mSuperEntityName, joker_4045 COMMA_SOURCE_FILE ("entity.galgas", 109)) ;
     }
   }
 }
@@ -95,12 +95,12 @@ static void extensionMethod_entityDeclaration_buildObservablePropertyMapsFromSto
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap_5012 = GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 118)) ;
-  extensionMethod_buildObservablePropertyMap (object->mProperty_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap_5012, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 120)) ;
-  extensionMethod_buildObservablePropertyMap (object->mProperty_mToOneRelationshipList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap_5012, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 125)) ;
-  extensionMethod_buildObservablePropertyMap (object->mProperty_mToManyRelationshipList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap_5012, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 129)) ;
+  GALGAS_observablePropertyMap var_observablePropertyMap_5303 = GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 132)) ;
+  extensionMethod_buildObservablePropertyMap (object->mProperty_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap_5303, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 134)) ;
+  extensionMethod_buildObservablePropertyMap (object->mProperty_mToOneRelationshipList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap_5303, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 139)) ;
+  extensionMethod_buildObservablePropertyMap (object->mProperty_mToManyRelationshipList, constinArgument_inUnifiedTypeMap, var_observablePropertyMap_5303, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 143)) ;
   {
-  ioArgument_ioSemanticContext.mProperty_mEntityObservablePropertyMap.setter_insertKey (object->mProperty_mEntityName, var_observablePropertyMap_5012, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 134)) ;
+  ioArgument_ioSemanticContext.mProperty_mEntityObservablePropertyMap.setter_insertKey (object->mProperty_mEntityName, var_observablePropertyMap_5303, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 148)) ;
   }
 }
 
@@ -128,9 +128,9 @@ static void extensionMethod_entityDeclaration_buildInitialSecondaryPropertyListM
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  ioArgument_ioSecondaryDeclarationCount = ioArgument_ioSecondaryDeclarationCount.add_operation (object->mProperty_mSecondaryPropertyList.getter_length (SOURCE_FILE ("entity.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 146)) ;
+  ioArgument_ioSecondaryDeclarationCount = ioArgument_ioSecondaryDeclarationCount.add_operation (object->mProperty_mSecondaryPropertyList.getter_length (SOURCE_FILE ("entity.galgas", 160)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 160)) ;
   const GALGAS_entityDeclaration temp_0 = object ;
-  ioArgument_ioSecondaryDeclarationListWorkingList.addAssign_operation (temp_0, object->mProperty_mSecondaryPropertyList  COMMA_SOURCE_FILE ("entity.galgas", 147)) ;
+  ioArgument_ioSecondaryDeclarationListWorkingList.addAssign_operation (temp_0, object->mProperty_mSecondaryPropertyList  COMMA_SOURCE_FILE ("entity.galgas", 161)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -159,16 +159,16 @@ static void extensionMethod_entityDeclaration_solveSecondaryProperty (const cPtr
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 158)) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap_6560 ;
-  ioArgument_ioSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (object->mProperty_mEntityName, var_observablePropertyMap_6560, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 159)) ;
-  cEnumerator_secondaryPropertyList enumerator_6604 (constinArgument_inPropertiesToSolve, kENUMERATION_UP) ;
-  while (enumerator_6604.hasCurrentObject ()) {
-    callExtensionMethod_tryToSolveSecondaryProperty ((const cPtr_abstractSecondaryProperty *) enumerator_6604.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioSemanticContext, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 166)), var_observablePropertyMap_6560, outArgument_outUnsolvedProperties, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 164)) ;
-    enumerator_6604.gotoNextObject () ;
+  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 172)) ;
+  GALGAS_observablePropertyMap var_observablePropertyMap_6851 ;
+  ioArgument_ioSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (object->mProperty_mEntityName, var_observablePropertyMap_6851, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 173)) ;
+  cEnumerator_secondaryPropertyList enumerator_6895 (constinArgument_inPropertiesToSolve, kENUMERATION_UP) ;
+  while (enumerator_6895.hasCurrentObject ()) {
+    callExtensionMethod_tryToSolveSecondaryProperty ((const cPtr_abstractSecondaryProperty *) enumerator_6895.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioSemanticContext, GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 180)), var_observablePropertyMap_6851, outArgument_outUnsolvedProperties, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 178)) ;
+    enumerator_6895.gotoNextObject () ;
   }
   {
-  ioArgument_ioSemanticContext.mProperty_mEntityObservablePropertyMap.setter_setMObservablePropertyMapForKey (var_observablePropertyMap_6560, object->mProperty_mEntityName.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 171)) ;
+  ioArgument_ioSemanticContext.mProperty_mEntityObservablePropertyMap.setter_setMObservablePropertyMapForKey (var_observablePropertyMap_6851, object->mProperty_mEntityName.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 185)) ;
   }
 }
 
@@ -196,25 +196,25 @@ static void extensionMethod_entityDeclaration_semanticAnalysis (const cPtr_astDe
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_entityDeclaration * object = (const cPtr_entityDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_entityDeclaration) ;
-  GALGAS_observablePropertyMap var_observablePropertyMap_7303 ;
-  constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (object->mProperty_mEntityName, var_observablePropertyMap_7303, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 183)) ;
-  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration_7677 ;
-  extensionMethod_simpleStoredPropertySemanticAnalysis (object->mProperty_mSimpleStoredAttributeList, object->mProperty_mEntityName.getter_string (HERE), constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE), ioArgument_ioGeneration.mProperty_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration_7677, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 189)) ;
-  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration_7782 = GALGAS_transientDefinitionListForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 196)) ;
-  cEnumerator_secondaryPropertyList enumerator_7917 (object->mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
-  while (enumerator_7917.hasCurrentObject ()) {
-    GALGAS_arrayControllerForGeneration joker_8157 = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 206)) ;
-    GALGAS_selectionControllerForGeneration joker_8189 = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 207)) ;
-    GALGAS_customObjectControllerForGeneration joker_8225 = GALGAS_customObjectControllerForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 208)) ;
-    callExtensionMethod_secondaryPropertySemanticAnalysis ((const cPtr_abstractSecondaryProperty *) enumerator_7917.current_mSecondaryProperty (HERE).ptr (), object->mProperty_mEntityName.getter_string (HERE), GALGAS_string::makeEmptyString (), GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 202)), constinArgument_inSemanticContext, var_observablePropertyMap_7303, var_transientDefinitionListForGeneration_7782, joker_8157, joker_8189, joker_8225, ioArgument_ioGeneration.mProperty_mNeededOutletClasses, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 199)) ;
-    enumerator_7917.gotoNextObject () ;
+  GALGAS_observablePropertyMap var_observablePropertyMap_7594 ;
+  constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (object->mProperty_mEntityName, var_observablePropertyMap_7594, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 197)) ;
+  GALGAS_simpleStoredPropertyListForGeneration var_simpleStoredPropertyListForGeneration_7968 ;
+  extensionMethod_simpleStoredPropertySemanticAnalysis (object->mProperty_mSimpleStoredAttributeList, object->mProperty_mEntityName.getter_string (HERE), constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE), ioArgument_ioGeneration.mProperty_mValidationStubRoutineListForGeneration, var_simpleStoredPropertyListForGeneration_7968, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 203)) ;
+  GALGAS_transientDefinitionListForGeneration var_transientDefinitionListForGeneration_8073 = GALGAS_transientDefinitionListForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 210)) ;
+  cEnumerator_secondaryPropertyList enumerator_8208 (object->mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
+  while (enumerator_8208.hasCurrentObject ()) {
+    GALGAS_arrayControllerForGeneration joker_8448 = GALGAS_arrayControllerForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 220)) ;
+    GALGAS_selectionControllerForGeneration joker_8480 = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 221)) ;
+    GALGAS_customObjectControllerForGeneration joker_8516 = GALGAS_customObjectControllerForGeneration::constructor_emptyList (SOURCE_FILE ("entity.galgas", 222)) ;
+    callExtensionMethod_secondaryPropertySemanticAnalysis ((const cPtr_abstractSecondaryProperty *) enumerator_8208.current_mSecondaryProperty (HERE).ptr (), object->mProperty_mEntityName.getter_string (HERE), GALGAS_string::makeEmptyString (), GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 216)), constinArgument_inSemanticContext, var_observablePropertyMap_7594, var_transientDefinitionListForGeneration_8073, joker_8448, joker_8480, joker_8516, ioArgument_ioGeneration.mProperty_mNeededOutletClasses, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 213)) ;
+    enumerator_8208.gotoNextObject () ;
   }
-  ioArgument_ioGeneration.mProperty_mTransientListForGeneration.plusAssign_operation(var_transientDefinitionListForGeneration_7782, inCompiler  COMMA_SOURCE_FILE ("entity.galgas", 212)) ;
-  GALGAS_toOneEntityRelationshipListForGeneration var_toOneEntityRelationshipListForGeneration_8676 ;
-  extensionMethod_semanticAnalysis (object->mProperty_mToOneRelationshipList, constinArgument_inSemanticContext, var_toOneEntityRelationshipListForGeneration_8676, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 215)) ;
-  GALGAS_toManyEntityRelationshipListForGeneration var_toManyEntityRelationshipListForGeneration_8875 ;
-  extensionMethod_semanticAnalysis (object->mProperty_mToManyRelationshipList, constinArgument_inSemanticContext, var_toManyEntityRelationshipListForGeneration_8875, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 220)) ;
-  ioArgument_ioGeneration.mProperty_mEntityListForGeneration.addAssign_operation (object->mProperty_mEntityName.getter_string (HERE), object->mProperty_mSuperEntityName.getter_string (HERE), var_simpleStoredPropertyListForGeneration_7677, var_transientDefinitionListForGeneration_7782, var_toOneEntityRelationshipListForGeneration_8676, var_toManyEntityRelationshipListForGeneration_8875, object->mProperty_mSignatureList  COMMA_SOURCE_FILE ("entity.galgas", 225)) ;
+  ioArgument_ioGeneration.mProperty_mTransientListForGeneration.plusAssign_operation(var_transientDefinitionListForGeneration_8073, inCompiler  COMMA_SOURCE_FILE ("entity.galgas", 226)) ;
+  GALGAS_toOneEntityRelationshipListForGeneration var_toOneEntityRelationshipListForGeneration_8967 ;
+  extensionMethod_semanticAnalysis (object->mProperty_mToOneRelationshipList, constinArgument_inSemanticContext, var_toOneEntityRelationshipListForGeneration_8967, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 229)) ;
+  GALGAS_toManyEntityRelationshipListForGeneration var_toManyEntityRelationshipListForGeneration_9166 ;
+  extensionMethod_semanticAnalysis (object->mProperty_mToManyRelationshipList, constinArgument_inSemanticContext, var_toManyEntityRelationshipListForGeneration_9166, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 234)) ;
+  ioArgument_ioGeneration.mProperty_mEntityListForGeneration.addAssign_operation (object->mProperty_mEntityName.getter_string (HERE), object->mProperty_mSuperEntityName.getter_string (HERE), var_simpleStoredPropertyListForGeneration_7968, var_transientDefinitionListForGeneration_8073, var_toOneEntityRelationshipListForGeneration_8967, var_toManyEntityRelationshipListForGeneration_9166, object->mProperty_mSignatureList, object->mProperty_mObsoleteEntityNames  COMMA_SOURCE_FILE ("entity.galgas", 239)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2332,6 +2332,20 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
         "      result = " ;
       result << enumerator_9216.current_mEntityName (HERE).stringValue () ;
       result << " (managedObjectContext:self)\n" ;
+      GALGAS_uint index_9364_ (0) ;
+      if (enumerator_9216.current_mObsoleteEntityNames (HERE).isValid ()) {
+        cEnumerator_lstringlist enumerator_9364 (enumerator_9216.current_mObsoleteEntityNames (HERE), kENUMERATION_UP) ;
+        while (enumerator_9364.hasCurrentObject ()) {
+          result << "    }else if inEntityTypeName == \"" ;
+          result << enumerator_9364.current_mValue (HERE).getter_string (SOURCE_FILE ("EBManagedObjectContext.swift.galgasTemplate", 201)).stringValue () ;
+          result << "\" {\n"
+            "      result = " ;
+          result << enumerator_9216.current_mEntityName (HERE).stringValue () ;
+          result << " (managedObjectContext:self)\n" ;
+          index_9364_.increment () ;
+          enumerator_9364.gotoNextObject () ;
+        }
+      }
       if (enumerator_9216.hasNextObject ()) {
         result << "    }else " ;
       }
@@ -2495,23 +2509,23 @@ void routine_generateEntities (const GALGAS_entityListForGeneration constinArgum
                                GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_entityListForGeneration enumerator_11285 (constinArgument_inEntityListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_11285.hasCurrentObject ()) {
-    GALGAS_string var_s_11298 = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_11285.current_mEntityName (HERE), enumerator_11285.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11285.current_mDecoratedTransientListForGeneration (HERE), enumerator_11285.current_mToOneEntityRelationshipList (HERE), enumerator_11285.current_mToManyEntityRelationshipList (HERE), enumerator_11285.current_mSignatureSet (HERE) COMMA_SOURCE_FILE ("entity.galgas", 276))) ;
-    GALGAS_string var_fileName_11592 = GALGAS_string ("entity-").add_operation (enumerator_11285.current_mEntityName (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 284)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 284)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11592  COMMA_SOURCE_FILE ("entity.galgas", 285)) ;
+  cEnumerator_entityListForGeneration enumerator_11638 (constinArgument_inEntityListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_11638.hasCurrentObject ()) {
+    GALGAS_string var_s_11651 = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (inCompiler, enumerator_11638.current_mEntityName (HERE), enumerator_11638.current_mSimpleStoredPropertyListForGeneration (HERE), enumerator_11638.current_mDecoratedTransientListForGeneration (HERE), enumerator_11638.current_mToOneEntityRelationshipList (HERE), enumerator_11638.current_mToManyEntityRelationshipList (HERE), enumerator_11638.current_mSignatureSet (HERE) COMMA_SOURCE_FILE ("entity.galgas", 292))) ;
+    GALGAS_string var_fileName_11945 = GALGAS_string ("entity-").add_operation (enumerator_11638.current_mEntityName (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 300)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 300)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11945  COMMA_SOURCE_FILE ("entity.galgas", 301)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11592, var_s_11298, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 286)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11945, var_s_11651, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 302)) ;
     }
-    enumerator_11285.gotoNextObject () ;
+    enumerator_11638.gotoNextObject () ;
   }
-  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.getter_length (SOURCE_FILE ("entity.galgas", 293)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.getter_length (SOURCE_FILE ("entity.galgas", 309)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_string var_fileName_11827 = GALGAS_string ("EBManagedObjectContext.swift") ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11827  COMMA_SOURCE_FILE ("entity.galgas", 295)) ;
-    GALGAS_string var_s_11906 = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_managedObjectContext (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 296))) ;
+    GALGAS_string var_fileName_12180 = GALGAS_string ("EBManagedObjectContext.swift") ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_12180  COMMA_SOURCE_FILE ("entity.galgas", 311)) ;
+    GALGAS_string var_s_12259 = GALGAS_string (filewrapperTemplate_entityGenerationTemplate_managedObjectContext (inCompiler, constinArgument_inEntityListForGeneration COMMA_SOURCE_FILE ("entity.galgas", 312))) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11827, var_s_11906, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 299)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12180, var_s_12259, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 315)) ;
     }
   }
 }
