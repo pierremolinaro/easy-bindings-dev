@@ -165,7 +165,6 @@ override method @classDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mClassName.string
@@ -174,15 +173,14 @@ override method @classDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
-#      !?copyTransientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
       !?* # No custom object controller
+      !?* # No object controller
       !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#  ioGeneration.mCopyTransientListForGeneration += copyTransientDefinitionListForGeneration
 #--- Check extern declarations
   for () in mExternSwiftFunctionList do
     if not [externSwiftFunctionCallerSet () hasKey !mCallerName.string] then

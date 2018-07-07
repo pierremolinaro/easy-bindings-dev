@@ -6,12 +6,14 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum %!ENUM_TYPE_NAME% : Int {
+enum %!ENUM_TYPE_NAME% : Int, ValuePropertyProtocol {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%
 end
 %
+
+  //····················································································································
 
   func descriptionForExplorer () -> String {
     switch self {
@@ -22,6 +24,8 @@ end
 %    }
   }
 
+  //····················································································································
+
   func enumfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME% {
     var result = self
     let v : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME% (rawValue:rawValue) ;
@@ -30,213 +34,36 @@ end
     }
     return result
   }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"EBReadOnlyProperty_" + ENUM_TYPE_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBReadOnlyProperty_%!ENUM_TYPE_NAME% : EBAbstractProperty, EBReadOnlyEnumPropertyProtocol {
-
-  var prop : EBSelection <%!ENUM_TYPE_NAME%> { get { return .empty } } // Abstract method
-
-  func rawValue () -> Int { return %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%.rawValue }  // Abstract method
-
-  func count () -> Int { return %![[CONSTANT_ORDERED_LIST length] string]% }
 
   //····················································································································
-
-  func compare (other : EBReadOnlyProperty_%!ENUM_TYPE_NAME%) -> ComparisonResult {
-    switch prop {
-    case .empty :
-      switch other.prop {
-      case .empty :
-        return .orderedSame
-      default:
-        return .orderedAscending
-      }
-    case .multiple :
-      switch other.prop {
-      case .empty :
-        return .orderedDescending
-      case .multiple :
-        return .orderedSame
-     case .single (_) :
-        return .orderedAscending
-     }
-   case .single (let currentValue) :
-      switch other.prop {
-      case .empty, .multiple :
-        return .orderedDescending
-      case .single (let otherValue) :
-        if currentValue.rawValue < otherValue.rawValue {
-          return .orderedAscending
-        }else if currentValue.rawValue > otherValue.rawValue {
-          return .orderedDescending
-        }else{
-          return .orderedSame
-        }
-      }
-    }
-  }
-
-  //····················································································································
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"EBStoredProperty_" + ENUM_TYPE_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBStoredProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME%, EBEnumPropertyProtocol {
-  weak var undoManager : UndoManager?
-
-  var mValueExplorer : NSTextField? {
-    didSet {
-      mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
-    }
-  }
-
-  init (_ inValue : %!ENUM_TYPE_NAME%) {
-    mValue = inValue
-    super.init ()
-  }
-
-  private var mValue : %!ENUM_TYPE_NAME% {
-    didSet {
-      if mValue != oldValue {
-        mValueExplorer?.stringValue = mValue.descriptionForExplorer ()
-        undoManager?.registerUndo (withTarget: self, selector: #selector(performUndo(_:)), object:NSNumber (value: oldValue.rawValue))
-        postEvent ()
-        clearSignatureCache ()
-      }
-    }
-  }
-
-  func performUndo (_ oldValue : NSNumber) {
-    if let v = %!ENUM_TYPE_NAME% (rawValue:oldValue.intValue) {
-      mValue = v
-    }
-  }
-
-  override var prop : EBSelection <%!ENUM_TYPE_NAME%> { get { return .single (mValue) } }
-
-  var propval : %!ENUM_TYPE_NAME% { get { return mValue } }
-
-  func setProp (_ value: %!ENUM_TYPE_NAME%) { mValue = value }
-
-  override func rawValue () -> Int {
-    return mValue.rawValue
-  }
-
-  func setFromRawValue (_ rawValue : Int) {
-    if let v = %!ENUM_TYPE_NAME% (rawValue:rawValue) {
-      mValue = v
-    }
-  }
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard
-    let value : Any? = ud.object (forKey: inKey)
-    if let unwValue : Any = value, unwValue is NSNumber {
-      setFromRawValue ((unwValue as! NSNumber).intValue)
-    }
-  }
-  
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard
-    ud.set (NSNumber (value: mValue.rawValue), forKey:inKey)
-  }
-
-  func storeIn (dictionary: NSMutableDictionary, forKey inKey:String) {
-    dictionary.setValue (NSNumber (value: mValue.rawValue), forKey:inKey)
-  }
-
-  func readFrom (dictionary:NSDictionary, forKey inKey:String) {
-    let value : Any? = dictionary.object (forKey: inKey)
-    if let unwValue : Any = value, unwValue is NSNumber {
-      setFromRawValue ((unwValue as! NSNumber).intValue)
-    }
-  }
-
-  //····················································································································
- 
-  var validationFunction : (%!ENUM_TYPE_NAME%, %!ENUM_TYPE_NAME%) -> EBValidationResult <%!ENUM_TYPE_NAME%> = defaultValidationFunction
-  
-  func validate (proposedValue : %!ENUM_TYPE_NAME%) -> EBValidationResult <%!ENUM_TYPE_NAME%> {
-    return validationFunction (propval, proposedValue)
-  }
-
-  //····················································································································
-  //    SIGNATURE
+  //  ValuePropertyProtocol
   //····················································································································
 
-  final private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil
-  final private var mSignatureCache : UInt32? = nil
-
-  //····················································································································
-
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol) {
-    mSignatureObserver = observer
+  func ebHashValue () -> UInt32 {
+    return UInt32 (self.rawValue)
   }
 
-  //····················································································································
+  func convertToNSObject () -> NSObject {
+    return NSNumber (value: self.rawValue)
+  }
 
-  final private func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
+  static func convertFromNSObject (object : NSObject) -> %!ENUM_TYPE_NAME% {
+    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
+    if let number = object as? NSNumber, let v = %!ENUM_TYPE_NAME% (rawValue: number.intValue) {
+      result = v
     }
+    return result
   }
 
-  //····················································································································
-
-  final func signature () -> UInt32 {
-    let computedSignature : UInt32
-    if let s = mSignatureCache {
-      computedSignature = s
-    }else{
-      computedSignature = mValue.rawValue.ebHashValue ()
-      mSignatureCache = computedSignature
-    }
-    return computedSignature
-  }
-  
   //····················································································································
 
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"EBTransientProperty_" + ENUM_TYPE_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBTransientProperty_%!ENUM_TYPE_NAME% : EBReadOnlyProperty_%!ENUM_TYPE_NAME% {
-  private var mValueCache : EBSelection <%!ENUM_TYPE_NAME%>?
-
-  var computeFunction : Optional<() -> EBSelection <%!ENUM_TYPE_NAME%> >
-  
-  override init () {
-    super.init ()
-  }
-
-  override var prop : EBSelection <%!ENUM_TYPE_NAME%> {
-    get {
-      if mValueCache == nil {
-        if let unwrappedComputeFunction = computeFunction {
-          mValueCache = unwrappedComputeFunction ()
-        }else{
-          mValueCache = .empty
-        }
-      }
-      return mValueCache!
-    }
-  }
-
-  override func postEvent () {
-    if mValueCache != nil {
-      mValueCache = nil
-      super.postEvent ()
-    }
-  }
-}
+typealias EBReadOnlyProperty_%!ENUM_TYPE_NAME% = EBReadOnlyValueProperty <%!ENUM_TYPE_NAME%>
+typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientValueProperty <%!ENUM_TYPE_NAME%>
+typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBStoredValueProperty <%!ENUM_TYPE_NAME%>
+typealias EBPropertyProxy_%!ENUM_TYPE_NAME% = EBPropertyValueProxy <%!ENUM_TYPE_NAME%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

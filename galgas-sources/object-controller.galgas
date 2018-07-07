@@ -2,10 +2,9 @@
 #   AST                                                                                                                *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class @selectionControllerDeclaration : @abstractSecondaryProperty {
-  @lstring mSelectionControllerName
-  @lstring mModelControllerName
-  @lstring mModelControllerPropertyName
+class @objectControllerDeclaration : @abstractSecondaryProperty {
+  @lstring mObjectControllerName
+  @lstring mToOneRelationshipName
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -16,18 +15,19 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <controller_declaration> ?!@secondaryPropertyList ioSecondaryPropertyList {
-    $selectionController$
-    $identifier$ ?let @lstring selectionControllerName
+  rule <controller_declaration>
+    ?!@secondaryPropertyList ioSecondaryPropertyList
+  {
+    $objectController$
+    $identifier$ ?let @lstring objectControllerName
     $:$
-    $identifier$ ?let @lstring modelControllerName
+    $self$
     $.$
-    $identifier$ ?let @lstring propertyName
+    $identifier$ ?let @lstring toOneRelationshipName
     $;$
-    ioSecondaryPropertyList += !@selectionControllerDeclaration.new {
-      !selectionControllerName
-      !modelControllerName
-      !propertyName
+    ioSecondaryPropertyList += !@objectControllerDeclaration.new {
+      !objectControllerName
+      !toOneRelationshipName
     }
   }
 
@@ -39,63 +39,66 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                                                                                                  *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-override method @selectionControllerDeclaration typeInventory
+override method @objectControllerDeclaration typeInventory
   ?!@unifiedTypeMap unused ioUnifiedTypeMap
 {
 }
 
 #·······················································································································
 
-override method @selectionControllerDeclaration tryToSolveSecondaryProperty
-  ?!@semanticContext unused ioSemanticContext
+override method @objectControllerDeclaration tryToSolveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
 {
-  if [ioObservableProperties hasKey !mModelControllerName.string] then
-  #--- Get model controller
+  if [ioObservableProperties hasKey !mToOneRelationshipName.string] then
     [ioObservableProperties searchKey
-      !mModelControllerName
-      ?let type
-      ?let kind
-      ?let multiplicity
+      !mToOneRelationshipName
+      ?let @typeKind kind
+      ?let @propertyKind propertyKind
+      ?let @propertyMultiplicity multiplicity
       ?3*
     ]
-  #--- Check kind
-    if kind != .arrayController then
-      error mModelControllerName : "the model should be an array controller"
+    if multiplicity != .single then
+      error mToOneRelationshipName : "this property is not a relationship"
     end
-  #--- Check multiplicity
-    if multiplicity != .collection then
-      error mModelControllerName : "the model should be an array controller"
-    end
-  #--- Check type
-    @string entityName
-    switch type
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
-    case enumType (* *) :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
-    case classType (*) :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
-    case propertyClassType (**) :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
-    case transientPropertyExternType (*) :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
-    case entityType (kEntityName) :
-      entityName = kEntityName
-    end
-  #--- Store selection controller
-    [!?ioObservableProperties insertKey
-      !mSelectionControllerName
-      !type
-      !.selectionController
-      !.single
-      !"" # No inverse relationship
-      !{} # No action
-      !false
-    ]
-  
+#    if [ioSemanticContext.mUnifiedTypeMap hasKey !mToOneRelationshipName.string] then
+#    #--- Get model controller
+#      [ioSemanticContext.mUnifiedTypeMap searchKey
+#        !mToOneRelationshipName
+#        ?let kind
+#        ?* # Action map
+#      ]
+    #--- Check type
+      @string entityName
+      switch kind
+      case stringType, boolType, dateType, doubleType, integerType, fontType :
+        error mToOneRelationshipName : "the controller model should be an entity" : entityName
+      case enumType (* *) :
+        error mToOneRelationshipName : "the controller model should be an entity" : entityName
+      case classType (*) :
+        error mToOneRelationshipName : "the controller model should be an entity" : entityName
+      case propertyClassType (**) :
+        error mToOneRelationshipName : "the controller model should be an entity" : entityName
+      case transientPropertyExternType (*) :
+        error mToOneRelationshipName : "the controller model should be an entity" : entityName
+      case entityType (kEntityName) :
+        entityName = kEntityName
+      end
+    #--- Store selection controller
+      [!?ioObservableProperties insertKey
+        !mObjectControllerName
+        !kind
+        !.selectionController
+        !.single
+        !"" # No inverse relationship
+        !{} # No action
+        !false
+      ]
+#    else
+#      ioUnsolvedProperties += !self
+#    end
   else
     ioUnsolvedProperties += !self
   end
@@ -103,7 +106,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
 
 #·······················································································································
 
-override method @selectionControllerDeclaration secondaryPropertySemanticAnalysis
+override method @objectControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
   ?let @string unused inRootEntityName
   ?let @observablePropertyMap unused inRootObservableProperties
@@ -111,72 +114,55 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
-  ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
+  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
-  ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
+  ?!@objectControllerForGeneration ioObjectControllerDeclaration
   ?!@stringset unused ioNeededOutletClasses
 {
-#--- Get model controller
+#--- Find controller observable properties
   [inObservableProperties searchKey
-    !mModelControllerName
-    ?let type
-    ?let unused kind
-    ?let unused multiplicity
+    !mToOneRelationshipName
+    ?let @typeKind kind
+    ?let @propertyKind propertyKind
+    ?let @propertyMultiplicity multiplicity
     ?3*
   ]
-#--- Check type
-  @string selectionEntityName
-  switch type
-  case stringType, boolType, dateType, doubleType, integerType, fontType :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case enumType (* *) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case classType (*) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case propertyClassType (**) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case entityType (kEntityName) :
-    selectionEntityName = kEntityName
-  case transientPropertyExternType (*) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  end
-#--- Find root entity observable properties
+  [kind entityType ?entityName:let entityTypeName]
   [inSemanticContext.mEntityObservablePropertyMap searchKey
-    !.new {!selectionEntityName !mSelectionControllerName.location}
-    ?let @observablePropertyMap selectionObservablePropertyMap
+    ![entityTypeName nowhere]
+    ?let @observablePropertyMap objectControllerObservablePropertyMap
   ]
 #--- Generation
-  ioSelectionControllerForGeneration +=
+  ioObjectControllerDeclaration +=
     !inOwnerName
-    !mSelectionControllerName.string
-    !mModelControllerName.string
-    !mModelControllerPropertyName.string
-    !selectionEntityName
-    !selectionObservablePropertyMap
+    !mObjectControllerName.string
+    !mToOneRelationshipName.string
+    !entityTypeName
+    !objectControllerObservablePropertyMap
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   GENERATION TYPES                                                                                                   *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-list @selectionControllerForGeneration {
+list @objectControllerForGeneration {
   @string mOwnerName # document name, prefs name, ...
-  @string mSelectionControllerName
-  @string mBoundControllerName
-  @string mBoundControllerPropertyName
-  @string mSelectionTypeName
+  @string mObjectControllerName
+  @string mRelationshipName
+  @string mEntityTypeName
   @observablePropertyMap mSelectionObservablePropertyMap
 }
 
 #·······················································································································
 
-private filewrapper selectionControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper objectControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
-  template selectionControllerImplementation "selection-controller.swift.galgasTemplate"
+  template implementation "object-controller.swift.galgasTemplate"
+    ?@string OBJECT_CONTROLLER_NAME
     ?@string OWNER_NAME
-    ?@string SELECTION_CONTROLLER_NAME
-    ?@string ELEMENT_TYPE_NAME
+    ?@string TO_ONE_RELATIONSHIP_NAME
+    ?@string ENTITY_TYPE_NAME
     ?@observablePropertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
 }
 
@@ -184,19 +170,20 @@ private filewrapper selectionControllerGenerationTemplate in "../generation-temp
 #   GENERATION                                                                                                         *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-proc generateSelectionControllers
-  ?let @selectionControllerForGeneration inArrayControllerListForGeneration
+proc generateObjectControllers
+  ?let @objectControllerForGeneration inObjectControllerListForGeneration
   ?let @string inOutputDirectory
   ?!@stringset ioGeneratedFileSet
 {
-  for () in inArrayControllerListForGeneration do
-    let s = [filewrapper selectionControllerGenerationTemplate.selectionControllerImplementation
+  for () in inObjectControllerListForGeneration do
+    let s = [filewrapper objectControllerGenerationTemplate.implementation
+      !mObjectControllerName
       !mOwnerName
-      !mSelectionControllerName
-      !mSelectionTypeName
+      !mRelationshipName
+      !mEntityTypeName
       !mSelectionObservablePropertyMap
     ]
-    let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+    let fileName = "objectController-" + mOwnerName + "-" +  mObjectControllerName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory

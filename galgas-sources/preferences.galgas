@@ -45,7 +45,7 @@ syntax extension easyBindings_syntax {
     while
       <stored_array_declaration>  !?ioDeclarationAST.mPreferences.mStoredArrayList
     while
-      <array_controller_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
+      <controller_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -155,10 +155,10 @@ method @prefDeclaration semanticAnalysis
       !inSemanticContext
       !inSemanticContext.mPreferencesObservablePropertyMap
       !?transientDefinitionListForGeneration
-#      !?copyTransientDefinitionListForGeneration
       !?arrayControllerListForGeneration
       !?* # No selection controller
       !?* # No Custom Object Controller
+      !?* # No Object Controller
       !?ioGeneration.mNeededOutletClasses
     ]
   end

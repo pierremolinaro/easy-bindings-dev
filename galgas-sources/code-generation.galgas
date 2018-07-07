@@ -22,6 +22,7 @@ struct @structForGeneration {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
+  @objectControllerForGeneration mObjectControllerListForGeneration
   @stringlist mPropertyClassList
   @transientExternTypeList mTransientPropertyTypeList
 }
@@ -86,6 +87,11 @@ proc generateCode
   )
   generateSelectionControllers (
     !inGeneration.mSelectionControllerListForGeneration
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+  generateObjectControllers (
+    !inGeneration.mObjectControllerListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )

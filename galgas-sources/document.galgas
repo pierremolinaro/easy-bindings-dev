@@ -44,7 +44,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <array_controller_declaration> !?secondaryPropertyList
+      <controller_declaration> !?secondaryPropertyList
     end
     $}$
   #--- Add documentFilePath transient property
@@ -181,10 +181,10 @@ override method @documentDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
   @customObjectControllerForGeneration customObjectControllerListForGeneration = {}
+  @objectControllerForGeneration objectControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mDocumentName.string
@@ -193,18 +193,18 @@ override method @documentDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
-#      !?copyTransientDefinitionListForGeneration
       !?documentArrayControllerListForGeneration
       !?selectionControllerListForGeneration
       !?customObjectControllerListForGeneration
+      !?objectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#  ioGeneration.mCopyTransientListForGeneration += copyTransientDefinitionListForGeneration
   ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
   ioGeneration.mCustomObjectControllerListForGeneration += customObjectControllerListForGeneration
+  ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do

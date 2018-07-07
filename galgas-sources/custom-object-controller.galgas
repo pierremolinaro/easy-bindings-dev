@@ -16,7 +16,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <array_controller_declaration>
+  rule <controller_declaration>
     ?!@secondaryPropertyList ioSecondaryPropertyList
   {
     $customObjectController$
@@ -101,10 +101,10 @@ override method @customObjectControllerDeclaration secondaryPropertySemanticAnal
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap unused inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
-#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration ioCustomObjectControllerDeclaration
+  ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
   ?!@stringset unused ioNeededOutletClasses
 {
 #--- Find entity observable properties

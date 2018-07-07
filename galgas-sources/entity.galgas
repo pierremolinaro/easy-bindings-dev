@@ -65,6 +65,8 @@ syntax extension easyBindings_syntax {
       <toOne_relationship> !?toOneRelationshipList
     while
       <action_declaration> !?actionDeclarationList
+    while
+      <controller_declaration> !?secondaryPropertyList
     end
     $}$
     ioDeclarationAST.mDeclarationList += !@entityDeclaration.new {
@@ -208,7 +210,7 @@ override method @entityDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-#  @copyTransientDefinitionListForGeneration copyTransientDefinitionListForGeneration = {}
+  @objectControllerForGeneration objectControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !mEntityName.string
@@ -220,11 +222,12 @@ override method @entityDeclaration semanticAnalysis
       !?* # no array controller
       !?* # No selection controller
       !?* # No custom object controller
+      !?objectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#  ioGeneration.mCopyTransientListForGeneration += copyTransientDefinitionListForGeneration
+  ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
 #--- Analyze toOne relationships
   [mToOneRelationshipList semanticAnalysis
     !inSemanticContext

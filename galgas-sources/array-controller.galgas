@@ -51,7 +51,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <array_controller_declaration>
+  rule <controller_declaration>
     ?!@secondaryPropertyList ioSecondaryPropertyList
   {
     $arrayController$
@@ -300,10 +300,10 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
-#  ?!@copyTransientDefinitionListForGeneration unused ioCopyTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
+  ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
   ?!@stringset ioNeededOutletClasses
 {
 #------------------------------------------------------------ Check array controller attributes
