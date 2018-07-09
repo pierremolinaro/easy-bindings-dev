@@ -52,11 +52,6 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      return self.%!mTransientName%_property.prop\n%
   %    }\n%
   %  }\n\n%
-  %//  var %!mTransientName% : EBSelection <%![mTransientType swiftTypeName]%> {\n%
-  %//    get {\n%
-  %//      return %!mTransientName%_property_selection\n%
-  %//    }\n%
-  %//  }\n\n%
   %  var %!mTransientName% : %![mTransientType swiftTypeName]%? {\n%
   %    switch %!mTransientName%_property_selection {\n%
   %    case .empty, .multiple :\n%
@@ -686,7 +681,7 @@ ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatu
 
   //····················································································································
 
-  private var mSet = Set<%![mRelationshipType swiftTypeName]%> ()
+  private var mSet = Set <%![mRelationshipType swiftTypeName]%> ()
   private var mValue = [%![mRelationshipType swiftTypeName]%] () {
     didSet {
       postEvent ()
@@ -733,15 +728,11 @@ end
     }
   }
 
-  override var prop : EBSelection < [%![mRelationshipType swiftTypeName]%] > {
-    get {
-      return .single (mValue)
-    }
-  }
+  override var prop : EBSelection < [%![mRelationshipType swiftTypeName]%] > { return .single (mValue) }
 
-  override func setProp (_ value :  [%![mRelationshipType swiftTypeName]%]) { mValue = value }
+  override func setProp (_ inValue : [%![mRelationshipType swiftTypeName]%]) { mValue = inValue }
 
-  var propval : [%![mRelationshipType swiftTypeName]%] { get { return mValue } }
+  var propval : [%![mRelationshipType swiftTypeName]%] { return mValue }
 
   //····················································································································
 
@@ -825,7 +816,8 @@ end
 end
 
 for () in TO_ONE_RELATIONSHIP_LIST do
-%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"To one relationship: " + mToOneRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
