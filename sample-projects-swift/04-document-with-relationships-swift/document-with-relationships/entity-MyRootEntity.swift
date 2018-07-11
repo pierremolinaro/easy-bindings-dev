@@ -266,7 +266,7 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
 
   //····················································································································
 
-  private var mSet = Set<NameEntity> ()
+  private var mSet = Set <NameEntity> ()
   private var mValue = [NameEntity] () {
     didSet {
       postEvent ()
@@ -301,15 +301,11 @@ ToManyRelationshipReadWrite_MyRootEntity_mNames, EBSignatureObserverProtocol {
     }
   }
 
-  override var prop : EBSelection < [NameEntity] > {
-    get {
-      return .single (mValue)
-    }
-  }
+  override var prop : EBSelection < [NameEntity] > { return .single (mValue) }
 
-  override func setProp (_ value :  [NameEntity]) { mValue = value }
+  override func setProp (_ inValue : [NameEntity]) { mValue = inValue }
 
-  var propval : [NameEntity] { get { return mValue } }
+  var propval : [NameEntity] { return mValue }
 
   //····················································································································
 

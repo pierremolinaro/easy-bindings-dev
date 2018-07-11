@@ -63,9 +63,12 @@ class MyRootEntity : EBManagedObject,
     }
   }
 
-  var myStringMaj : EBSelection <String> {
-    get {
-      return myStringMaj_property_selection
+  var myStringMaj : String? {
+    switch myStringMaj_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
     }
   }
 
@@ -79,9 +82,12 @@ class MyRootEntity : EBManagedObject,
     }
   }
 
-  var myStringMin : EBSelection <String> {
-    get {
-      return myStringMin_property_selection
+  var myStringMin : String? {
+    switch myStringMin_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
     }
   }
 
@@ -95,9 +101,12 @@ class MyRootEntity : EBManagedObject,
     }
   }
 
-  var myStringConcat : EBSelection <String> {
-    get {
-      return myStringConcat_property_selection
+  var myStringConcat : String? {
+    switch myStringConcat_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
     }
   }
 
@@ -700,19 +709,19 @@ protocol MyRootEntity_myColor : class {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_myStringMaj : class {
-  var myStringMaj : EBSelection < String > { get }
+  var myStringMaj : String? { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_myStringMin : class {
-  var myStringMin : EBSelection < String > { get }
+  var myStringMin : String? { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 protocol MyRootEntity_myStringConcat : class {
-  var myStringConcat : EBSelection < String > { get }
+  var myStringConcat : String? { get }
 }
 
 

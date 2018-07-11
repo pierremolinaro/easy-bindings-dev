@@ -28,6 +28,10 @@ import Cocoa
   //····················································································································
 
   var documentFilePath_property = EBTransientProperty_String ()
+  var documentFilePath_property_selection : EBSelection <String> {
+    return self.documentFilePath_property.prop
+  }
+
 
   //····················································································································
   //    Transient arraies

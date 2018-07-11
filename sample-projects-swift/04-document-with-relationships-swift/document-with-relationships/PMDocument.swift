@@ -38,11 +38,35 @@ import Cocoa
   //····················································································································
 
   var selectionCountString_property = EBTransientProperty_String ()
+  var selectionCountString_property_selection : EBSelection <String> {
+    return self.selectionCountString_property.prop
+  }
+
   var evenValueString_property = EBTransientProperty_String ()
+  var evenValueString_property_selection : EBSelection <String> {
+    return self.evenValueString_property.prop
+  }
+
   var canRemoveString_property = EBTransientProperty_String ()
+  var canRemoveString_property_selection : EBSelection <String> {
+    return self.canRemoveString_property.prop
+  }
+
   var countItemMessage_property = EBTransientProperty_String ()
+  var countItemMessage_property_selection : EBSelection <String> {
+    return self.countItemMessage_property.prop
+  }
+
   var total_property = EBTransientProperty_Int ()
+  var total_property_selection : EBSelection <Int> {
+    return self.total_property.prop
+  }
+
   var documentFilePath_property = EBTransientProperty_String ()
+  var documentFilePath_property_selection : EBSelection <String> {
+    return self.documentFilePath_property.prop
+  }
+
 
   //····················································································································
   //    Transient arraies

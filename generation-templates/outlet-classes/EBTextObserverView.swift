@@ -15,7 +15,7 @@ import Cocoa
   required init? (coder: NSCoder) {
     super.init (coder:coder)
     noteObjectAllocation (self)
-    self.editable = false
+    self.isEditable = false
   }
 
   //····················································································································
@@ -60,12 +60,12 @@ import Cocoa
     mObject = object
     mOutlet = outlet
     super.init (observedObjects:[object], outlet:outlet)
-//    object.addEBObserver (self)
+    self.eventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································
 
-  override func sendUpdateEvent () {
+  private func updateOutlet () {
     switch mObject.prop {
     case .empty, .multiple :
       mOutlet.string = ""

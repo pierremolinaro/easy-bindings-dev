@@ -138,17 +138,12 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
     mObject = object
     mOutlet = outlet
     super.init (observedObjects:[object], outlet:outlet)
-  }
-
-  //···················································································································*
-  
-  override func unregister () {
-    super.unregister ()
+    self.eventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //···················································································································*
 
-  override func sendUpdateEvent () {
+  private func updateOutlet () {
     switch mObject.prop {
     case .empty :
       mOutlet.enableFromValueBinding (false)

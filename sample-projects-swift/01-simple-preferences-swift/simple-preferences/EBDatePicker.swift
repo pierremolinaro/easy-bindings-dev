@@ -62,6 +62,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
     super.init (observedObjects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBDatePicker_date.action(_:))
+    self.eventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //···················································································································*
@@ -74,7 +75,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
 
   //···················································································································*
 
-  override func sendUpdateEvent () {
+  private func updateOutlet () {
     switch mObject.prop {
     case .empty :
       mOutlet.enableFromValueBinding (false)
