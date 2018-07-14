@@ -11153,6 +11153,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "  text, white, windowBackground, windowFrame, windowFrameText, yellow\n"
     ") ;\n"
     "\n"
+    "transient property class CALayer ;\n"
+    "\n"
     "transient property class NSImage ;\n"
     "\n"
     "extern outlet class EBButton $run $enabled $hidden ;\n"
