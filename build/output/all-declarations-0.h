@@ -90,6 +90,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_extern,
    kToken_externDelegate,
    kToken_externFunc,
+   kToken_graphic,
    kToken_filter,
    kToken_include,
    kToken_inverse,
@@ -176,7 +177,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 75 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 76 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -666,6 +667,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_52 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_53 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_54 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -3063,7 +3066,8 @@ class GALGAS_entityDeclaration : public GALGAS_astDeclaration {
                                                                   const class GALGAS_secondaryPropertyList & inOperand6,
                                                                   const class GALGAS_stringset & inOperand7,
                                                                   const class GALGAS_lstringlist & inOperand8,
-                                                                  const class GALGAS_lstringlist & inOperand9
+                                                                  const class GALGAS_lstringlist & inOperand9,
+                                                                  const class GALGAS_bool & inOperand10
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3078,6 +3082,8 @@ class GALGAS_entityDeclaration : public GALGAS_astDeclaration {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
 
@@ -3465,6 +3471,7 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
   public : GALGAS_stringset mProperty_mSignatureList ;
   public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
   public : GALGAS_lstringlist mProperty_mObsoleteEntityNames ;
+  public : GALGAS_bool mProperty_mIsGraphicEntity ;
 
 //--- Constructor
   public : cPtr_entityDeclaration (const GALGAS_bool & in_mUserDefined,
@@ -3476,7 +3483,8 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
                                    const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                    const GALGAS_stringset & in_mSignatureList,
                                    const GALGAS_lstringlist & in_mActionDeclarationList,
-                                   const GALGAS_lstringlist & in_mObsoleteEntityNames
+                                   const GALGAS_lstringlist & in_mObsoleteEntityNames,
+                                   const GALGAS_bool & in_mIsGraphicEntity
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3492,6 +3500,7 @@ class cPtr_entityDeclaration : public cPtr_astDeclaration {
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -6548,6 +6557,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_52 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_53 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_54 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

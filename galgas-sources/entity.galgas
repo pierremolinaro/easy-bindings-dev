@@ -12,6 +12,7 @@ class @entityDeclaration : @astDeclaration {
   @stringset mSignatureList
   @lstringlist mActionDeclarationList
   @lstringlist mObsoleteEntityNames
+  @bool mIsGraphicEntity
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -22,10 +23,14 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <entity_declaration>
-    ?let @bool inIsUserDefined
-    ?!@astDeclarationStruct ioDeclarationAST
-  {
+  rule <entity_declaration> ?let @bool inIsUserDefined ?!@astDeclarationStruct ioDeclarationAST {
+    @bool graphicEntity
+    select
+      graphicEntity = false
+    or
+      $graphic$
+      graphicEntity = true
+    end
     $entity$
     @lstringlist obsoleteEntityNames = {}
     select
@@ -80,6 +85,7 @@ syntax extension easyBindings_syntax {
       !signatureList
       !actionDeclarationList
       !obsoleteEntityNames
+      !graphicEntity
     }
   }
 
@@ -228,6 +234,26 @@ override method @entityDeclaration semanticAnalysis
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
+#--- Check requireds transients are implemented
+  @stringset transientsDeclaredInSuperEntity = {}
+  if mIsGraphicEntity then
+    transientsDeclaredInSuperEntity += !"selectionLayer"
+    if [observablePropertyMap hasKey !"selectionLayer"] then
+      [observablePropertyMap searchKey
+        !["selectionLayer" here]
+        ?let @typeKind type
+        ?let @propertyKind kind
+        ?4*
+      ]
+      if kind != .transient then
+        error [observablePropertyMap locationForKey !"selectionLayer"] : "the 'selectionLayer' property should be a transient"
+      elsif [type swiftTypeName] != "CALayer" then
+        error [observablePropertyMap locationForKey !"selectionLayer"] : "the 'selectionLayer' transient type should be 'CaLayer'"
+      end
+    else
+      error mEntityName : "a graphic entity should declare the 'selectionLayer' transient, with 'CaLayer' type"
+    end
+  end
 #--- Analyze toOne relationships
   [mToOneRelationshipList semanticAnalysis
     !inSemanticContext
@@ -248,6 +274,8 @@ override method @entityDeclaration semanticAnalysis
     !toManyEntityRelationshipListForGeneration
     !mSignatureList
     !mObsoleteEntityNames
+    !mIsGraphicEntity
+    !transientsDeclaredInSuperEntity
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -263,6 +291,8 @@ list @entityListForGeneration {
   @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
   @stringset mSignatureSet
   @lstringlist mObsoleteEntityNames
+  @bool mIsGraphicEntity
+  @stringset mTransientsDeclaredInSuperEntity
 }
 
 #·······················································································································
@@ -277,6 +307,8 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
     ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
     ?@stringset SIGNATURE_SET
+    ?@bool IS_GRAPHIC_ENTITY
+    ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneration ENTITY_LIST
@@ -299,6 +331,8 @@ proc generateEntities
       !mToOneEntityRelationshipList
       !mToManyEntityRelationshipList
       !mSignatureSet
+      !mIsGraphicEntity
+      !mTransientsDeclaredInSuperEntity
     ]
     let fileName = "entity-" + mEntityName + ".swift"
     ioGeneratedFileSet += !fileName

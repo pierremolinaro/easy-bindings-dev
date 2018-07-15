@@ -444,7 +444,8 @@ void routine_generateStandardProperties (const class GALGAS_string constinArgume
 
 void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArgument0,
                                             const class GALGAS_bool constinArgument1,
-                                            class GALGAS_stringset & ioArgument2,
+                                            const class GALGAS_bool constinArgument2,
+                                            class GALGAS_stringset & ioArgument3,
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 

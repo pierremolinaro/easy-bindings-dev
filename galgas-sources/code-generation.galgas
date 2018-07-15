@@ -100,9 +100,14 @@ proc generateCode
     !fileOutputDirectory
     !?generatedFileSet
   )
+  var hasGraphicEntities = false
+  for entity in inGeneration.mEntityListForGeneration while not hasGraphicEntities do
+    hasGraphicEntities = entity.mIsGraphicEntity
+  end
   generateSwiftApplicationFiles (
     !fileOutputDirectory
     ![inGeneration.mEntityListForGeneration length] > 0
+    !hasGraphicEntities
     !?generatedFileSet
   )
   generateValidationRoutineStubs (
@@ -143,6 +148,7 @@ filewrapper swift_sources in "../generation-templates/swift-sources" {
 private proc generateSwiftApplicationFiles
   ?let @string inOutputDirectory
   ?let @bool inHasEntities
+  ?let @bool inHasGraphicEntities
   ?!@stringset ioGeneratedFileSet
 {
   @stringlist swiftFiles = {
@@ -156,6 +162,9 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBManagedObject"
     swiftFiles += !"EBUndoManager"
     swiftFiles += !"EBDataScanner"
+  end
+  if inHasGraphicEntities then
+    swiftFiles += !"graphic-classes-and-utilities"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
   var fw = [filewrapper swift_sources]

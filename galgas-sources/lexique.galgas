@@ -32,6 +32,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "extern",
   "externDelegate",
   "externFunc",
+  "graphic",
   "filter",
   "include",
   "inverse",

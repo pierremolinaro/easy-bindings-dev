@@ -8,7 +8,12 @@ import Cocoa
 //    %!"Entity: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class %!ENTITY_NAME% : EBManagedObject%
+class %!ENTITY_NAME% : %
+if IS_GRAPHIC_ENTITY then
+  %EBGraphicManagedObject%
+else
+  %EBManagedObject%
+end
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %,\n  %!ENTITY_NAME%_%!mStoredPropertyName
 end
@@ -87,7 +92,9 @@ end
 %
 
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  if mIsArray then
+  if [TRANSIENTS_DECLARED_IN_SUPER_ENTITY hasKey !mTransientName] then
+    %  // %!mTransientName%_property is declared in super entity\n%
+  elsif mIsArray then
     %  var %!mTransientName%_property = EBTransientPropertyArray_%![mTransientType swiftTypeName]% ()\n%
   else
     %  var %!mTransientName%_property = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%

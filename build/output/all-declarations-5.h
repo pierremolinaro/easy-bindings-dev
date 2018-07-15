@@ -54,7 +54,9 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
                                                                                         const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                         const class GALGAS_toOneEntityRelationshipListForGeneration & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                         const class GALGAS_toManyEntityRelationshipListForGeneration & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
-                                                                                        const class GALGAS_stringset & in_SIGNATURE_5F_SET
+                                                                                        const class GALGAS_stringset & in_SIGNATURE_5F_SET,
+                                                                                        const class GALGAS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
+                                                                                        const class GALGAS_stringset & in_TRANSIENTS_5F_DECLARED_5F_IN_5F_SUPER_5F_ENTITY
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -150,6 +152,7 @@ extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
+extern const char * gWrapperFileContent_10_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -166,6 +169,7 @@ extern const cRegularFileWrapper gWrapperFile_6_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_10_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
