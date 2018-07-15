@@ -165,6 +165,7 @@ private proc generateSwiftApplicationFiles
   end
   if inHasGraphicEntities then
     swiftFiles += !"graphic-classes-and-utilities"
+    swiftFiles += !"EBView"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
   var fw = [filewrapper swift_sources]

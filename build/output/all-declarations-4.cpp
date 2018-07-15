@@ -3910,6 +3910,217 @@ GALGAS_customObjectControllerDeclaration GALGAS_customObjectControllerDeclaratio
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+typeComparisonResult cPtr_graphicArrayControllerDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_graphicArrayControllerDeclaration * p = (const cPtr_graphicArrayControllerDeclaration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_graphicArrayControllerDeclaration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mGraphicArrayControllerName.objectCompare (p->mProperty_mGraphicArrayControllerName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOutletName.objectCompare (p->mProperty_mOutletName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRootToManyRelationshipName.objectCompare (p->mProperty_mRootToManyRelationshipName) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_graphicArrayControllerDeclaration::objectCompare (const GALGAS_graphicArrayControllerDeclaration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_graphicArrayControllerDeclaration::GALGAS_graphicArrayControllerDeclaration (void) :
+GALGAS_abstractSecondaryProperty () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_graphicArrayControllerDeclaration GALGAS_graphicArrayControllerDeclaration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_graphicArrayControllerDeclaration::constructor_new (GALGAS_lstring::constructor_default (HERE),
+                                                                    GALGAS_lstring::constructor_default (HERE),
+                                                                    GALGAS_lstring::constructor_default (HERE)
+                                                                    COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_graphicArrayControllerDeclaration::GALGAS_graphicArrayControllerDeclaration (const cPtr_graphicArrayControllerDeclaration * inSourcePtr) :
+GALGAS_abstractSecondaryProperty (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_graphicArrayControllerDeclaration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_graphicArrayControllerDeclaration GALGAS_graphicArrayControllerDeclaration::constructor_new (const GALGAS_lstring & inAttribute_mGraphicArrayControllerName,
+                                                                                                    const GALGAS_lstring & inAttribute_mOutletName,
+                                                                                                    const GALGAS_lstring & inAttribute_mRootToManyRelationshipName
+                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_graphicArrayControllerDeclaration result ;
+  if (inAttribute_mGraphicArrayControllerName.isValid () && inAttribute_mOutletName.isValid () && inAttribute_mRootToManyRelationshipName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_graphicArrayControllerDeclaration (inAttribute_mGraphicArrayControllerName, inAttribute_mOutletName, inAttribute_mRootToManyRelationshipName COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_graphicArrayControllerDeclaration::getter_mGraphicArrayControllerName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_graphicArrayControllerDeclaration * p = (const cPtr_graphicArrayControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_graphicArrayControllerDeclaration) ;
+    result = p->mProperty_mGraphicArrayControllerName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_graphicArrayControllerDeclaration::getter_mGraphicArrayControllerName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mGraphicArrayControllerName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_graphicArrayControllerDeclaration::getter_mOutletName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_graphicArrayControllerDeclaration * p = (const cPtr_graphicArrayControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_graphicArrayControllerDeclaration) ;
+    result = p->mProperty_mOutletName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_graphicArrayControllerDeclaration::getter_mOutletName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_graphicArrayControllerDeclaration::getter_mRootToManyRelationshipName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_graphicArrayControllerDeclaration * p = (const cPtr_graphicArrayControllerDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_graphicArrayControllerDeclaration) ;
+    result = p->mProperty_mRootToManyRelationshipName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_graphicArrayControllerDeclaration::getter_mRootToManyRelationshipName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRootToManyRelationshipName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                             Pointer class for @graphicArrayControllerDeclaration class                              *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_graphicArrayControllerDeclaration::cPtr_graphicArrayControllerDeclaration (const GALGAS_lstring & in_mGraphicArrayControllerName,
+                                                                                const GALGAS_lstring & in_mOutletName,
+                                                                                const GALGAS_lstring & in_mRootToManyRelationshipName
+                                                                                COMMA_LOCATION_ARGS) :
+cPtr_abstractSecondaryProperty (THERE),
+mProperty_mGraphicArrayControllerName (in_mGraphicArrayControllerName),
+mProperty_mOutletName (in_mOutletName),
+mProperty_mRootToManyRelationshipName (in_mRootToManyRelationshipName) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_graphicArrayControllerDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_graphicArrayControllerDeclaration ;
+}
+
+void cPtr_graphicArrayControllerDeclaration::description (C_String & ioString,
+                                                          const int32_t inIndentation) const {
+  ioString << "[@graphicArrayControllerDeclaration:" ;
+  mProperty_mGraphicArrayControllerName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOutletName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRootToManyRelationshipName.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_graphicArrayControllerDeclaration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_graphicArrayControllerDeclaration (mProperty_mGraphicArrayControllerName, mProperty_mOutletName, mProperty_mRootToManyRelationshipName COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                       @graphicArrayControllerDeclaration type                                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_graphicArrayControllerDeclaration ("graphicArrayControllerDeclaration",
+                                                          & kTypeDescriptor_GALGAS_abstractSecondaryProperty) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_graphicArrayControllerDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_graphicArrayControllerDeclaration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_graphicArrayControllerDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_graphicArrayControllerDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_graphicArrayControllerDeclaration GALGAS_graphicArrayControllerDeclaration::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_graphicArrayControllerDeclaration result ;
+  const GALGAS_graphicArrayControllerDeclaration * p = (const GALGAS_graphicArrayControllerDeclaration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_graphicArrayControllerDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("graphicArrayControllerDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 typeComparisonResult cPtr_boolAsDefaultValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_boolAsDefaultValue * p = (const cPtr_boolAsDefaultValue *) inOperandPtr ;

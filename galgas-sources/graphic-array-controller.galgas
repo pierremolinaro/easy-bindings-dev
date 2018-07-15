@@ -1,0 +1,177 @@
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   AST                                                                                                                *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class @graphicArrayControllerDeclaration : @abstractSecondaryProperty {
+  @lstring mGraphicArrayControllerName
+  @lstring mOutletName
+  @lstring mRootToManyRelationshipName
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SYNTAX                                                                                                             *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <controller_declaration>
+    ?!@secondaryPropertyList ioSecondaryPropertyList
+  {
+    $graphic$
+    $arrayController$
+    $identifier$ ?let @lstring graphicArrayControllerName
+    $outlet$
+    $identifier$ ?let @lstring outletName
+    $:$
+    $root$
+    $.$
+    $Identifier$ ?let @lstring toManyRelationshipName
+    $;$
+    ioSecondaryPropertyList += !@graphicArrayControllerDeclaration.new {
+      !graphicArrayControllerName
+      !outletName
+      !toManyRelationshipName
+    }
+  }
+
+  #·····················································································································
+
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   SEMANTIC ANALYSIS                                                                                                  *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+override method @graphicArrayControllerDeclaration typeInventory
+  ?!@unifiedTypeMap unused ioUnifiedTypeMap
+{
+}
+
+#·······················································································································
+
+override method @graphicArrayControllerDeclaration tryToSolveSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
+{
+  if [ioSemanticContext.mUnifiedTypeMap hasKey !mRootToManyRelationshipName.string] then
+  #--- Get model controller
+    [ioSemanticContext.mUnifiedTypeMap searchKey
+      !mRootToManyRelationshipName
+      ?let kind
+      ?* # Action map
+    ]
+  #--- Check type
+    @string entityName
+    switch kind
+    case stringType, boolType, dateType, doubleType, integerType, fontType :
+      error mRootToManyRelationshipName : "the controller model should be an entity" : entityName
+    case enumType (* *) :
+      error mRootToManyRelationshipName : "the controller model should be an entity" : entityName
+    case classType (*) :
+      error mRootToManyRelationshipName : "the controller model should be an entity" : entityName
+    case propertyClassType (**) :
+      error mRootToManyRelationshipName : "the controller model should be an entity" : entityName
+    case transientPropertyExternType (*) :
+      error mRootToManyRelationshipName : "the controller model should be an entity" : entityName
+    case entityType (kEntityName) :
+      entityName = kEntityName
+    end
+  #--- Store selection controller
+    [!?ioObservableProperties insertKey
+      !mGraphicArrayControllerName
+      !kind
+      !.selectionController
+      !.single
+      !"" # No inverse relationship
+      !{} # No action
+      !false
+    ]
+  else
+    ioUnsolvedProperties += !self
+  end
+}
+
+#·······················································································································
+
+override method @graphicArrayControllerDeclaration secondaryPropertySemanticAnalysis
+  ?let @string inOwnerName
+  ?let @string unused inRootEntityName
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap unused inObservableProperties
+  ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
+  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
+  ?!@customObjectControllerForGeneration ioCustomObjectControllerDeclaration
+  ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
+  ?!@stringset unused ioNeededOutletClasses
+{
+#--- Find entity observable properties
+  [inSemanticContext.mEntityObservablePropertyMap searchKey
+    !mRootToManyRelationshipName
+    ?let @observablePropertyMap selectionObservablePropertyMap
+  ]
+#--- Generation
+  ioCustomObjectControllerDeclaration +=
+    !inOwnerName
+    !mGraphicArrayControllerName.string
+    !mOutletName.string
+    !mRootToManyRelationshipName.string
+    !selectionObservablePropertyMap
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION TYPES                                                                                                   *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+list @graphicArrayControllerForGeneration {
+  @string mOwnerName # document name, prefs name, ...
+  @string mGraphicArrayControllerName
+  @string mOutletName
+  @string mEntityTypeName
+  @observablePropertyMap mSelectionObservablePropertyMap
+}
+
+#·······················································································································
+
+private filewrapper graphicArrayControllerGenerationTemplate in "../generation-templates/controllers" {
+}{
+}{
+  template implementation "custom-object-controller.swift.galgasTemplate"
+    ?@string OWNER_NAME
+    ?@string CUSTOM_OBJECT_CONTROLLER_NAME
+    ?@string ENTITY_TYPE_NAME
+    ?@observablePropertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#   GENERATION                                                                                                         *
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+proc generateGraphicArrayControllers
+  ?let @graphicArrayControllerForGeneration inArrayControllerListForGeneration
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  for () in inArrayControllerListForGeneration do
+    let s = [filewrapper graphicArrayControllerGenerationTemplate.implementation
+      !mOwnerName
+      !mGraphicArrayControllerName
+      !mEntityTypeName
+      !mSelectionObservablePropertyMap
+    ]
+    let fileName = "customObjectController-" + mOwnerName + "-" +  mGraphicArrayControllerName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFile
+      !inOutputDirectory
+      !fileName
+      !s
+    ]
+  end
+}
+
+#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
