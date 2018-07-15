@@ -51,50 +51,6 @@ void routine_analyzeRegularBinding (const class GALGAS_observablePropertyMap con
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Filewrapper 'graphicControllerGenerationTemplate'                                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_graphicControllerGenerationTemplate ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                      Filewrapper template 'graphicControllerGenerationTemplate implementation'                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string filewrapperTemplate_graphicControllerGenerationTemplate_implementation (class C_Compiler * inCompiler,
-                                                                                      const class GALGAS_string & in_CONTROLLER_5F_NAME,
-                                                                                      const class GALGAS_string & in_OUTLET_5F_NAME,
-                                                                                      const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                      const class GALGAS_string & in_OWNER_5F_TYPE_5F_NAME,
-                                                                                      const class GALGAS_string & in_TOMANY_5F_RELATIONSHIP_5F_NAME,
-                                                                                      const class GALGAS_string & in_TOMANY_5F_RELATIONSHIP_5F_ENTITY_5F_NAME
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        Routine 'generateGraphicControllers'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateGraphicControllers (const class GALGAS_graphicArrayControllerGenerationList constinArgument0,
-                                         const class GALGAS_string constinArgument1,
-                                         class GALGAS_stringset & ioArgument2,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                            Routine 'generateTransients'                                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -266,6 +222,7 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
                                                                                                                const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
                                                                                                                const class GALGAS_arrayControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
                                                                                                                const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                               const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC,
                                                                                                                const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING,
                                                                                                                const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
                                                                                                                COMMA_LOCATION_ARGS) ;
@@ -488,8 +445,7 @@ void routine_generateStandardProperties (const class GALGAS_string constinArgume
 
 void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArgument0,
                                             const class GALGAS_bool constinArgument1,
-                                            const class GALGAS_bool constinArgument2,
-                                            class GALGAS_stringset & ioArgument3,
+                                            class GALGAS_stringset & ioArgument2,
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 

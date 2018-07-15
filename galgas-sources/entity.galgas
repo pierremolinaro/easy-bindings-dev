@@ -112,7 +112,7 @@ override method @entityDeclaration typeInventory
   end
   [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
   [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
-  [!?ioUnifiedTypeMap insertKey !mEntityName !.entityType {!entityName:mEntityName.string} !actionMap]
+  [!?ioUnifiedTypeMap insertKey !mEntityName !.entityType {!entityName:mEntityName.string !isGraphic:mIsGraphicEntity} !actionMap]
   if mSuperEntityName.string != "" then
     [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperEntityName ?*]
   end

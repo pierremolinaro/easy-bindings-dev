@@ -96,28 +96,32 @@ syntax extension easyBindings_syntax {
         $,$
       end
     end
-    ${$
     @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
-    repeat
-    while
-      $column$
-      $literal_string$ ?let columnName
-      @lstring sortPropertyName
-      select
-        sortPropertyName = ["" nowhere]
-      or
-        $sort$
-        $identifier$ ?sortPropertyName
+    select
+      $;$
+    or
+      ${$
+      repeat
+      while
+        $column$
+        $literal_string$ ?let columnName
+        @lstring sortPropertyName
+        select
+          sortPropertyName = ["" nowhere]
+        or
+          $sort$
+          $identifier$ ?sortPropertyName
+        end
+        $Identifier$ ?let columnOutletTypeName
+        <column_bindings> ?let @columnBindingAST columnBindingAST
+        arrayControllerBoundColumnListAST +=
+          !columnName
+          !columnOutletTypeName
+          !columnBindingAST
+          !sortPropertyName
       end
-      $Identifier$ ?let columnOutletTypeName
-      <column_bindings> ?let @columnBindingAST columnBindingAST
-      arrayControllerBoundColumnListAST +=
-        !columnName
-        !columnOutletTypeName
-        !columnBindingAST
-        !sortPropertyName
+      $}$
     end
-    $}$
     ioSecondaryPropertyList += !@arrayControllerDeclaration.new {
       !controllerName
       !arrayControllerModel
@@ -333,6 +337,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @location errorLocation
   @arrayControllerModelKind modelKind
   @string entityName
+  @bool entityTypeIsGraphic
   @actionMap actionMap
   switch mArrayControllerModel
   case selfCollection (@lstring storedPropertyName) :
@@ -354,17 +359,18 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
     case boolType, dateType, doubleType, integerType, stringType, fontType :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case propertyClassType (**) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case transientPropertyExternType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case classType (@string kClassTypeName) :
       entityName = kClassTypeName
-    case entityType (*) :
-      error errorLocation : "the model should be a stored class array" : entityName
+      entityTypeIsGraphic = false
+    case entityType (2*) :
+      error errorLocation : "the model should be a stored class array" : entityName, entityTypeIsGraphic
     end
   case rootToManyRelationship (@lstring relationshipName) :
     errorLocation = relationshipName.location
@@ -385,17 +391,18 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
     case boolType, dateType, doubleType, integerType, stringType, fontType :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case classType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case propertyClassType (**) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case transientPropertyExternType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
-    case entityType (@string kEntityName) :
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
+    case entityType (@string kEntityName @bool isGraphic) :
       entityName = kEntityName
+      entityTypeIsGraphic = isGraphic
     end
   case controllerArray (@lstring controllerName @lstring propertyName) :
     errorLocation = propertyName.location
@@ -414,17 +421,18 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
     case boolType, dateType, doubleType, integerType, stringType, fontType :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case classType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case propertyClassType (**) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case transientPropertyExternType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName
-    case entityType (@string kEntityName) :
+      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
+    case entityType (@string kEntityName @bool isGraphic) :
       entityName = kEntityName
+      entityTypeIsGraphic = isGraphic
     end
   end
 #------------------------------------------------------------ Check colum bound models
@@ -490,11 +498,11 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error filterPropertyName : "the filter property should not be a collection"
     end
     arrayControllerFilterListForGeneration += !filterPropertyName.string !filterType
-  end%for
+  end
 #---
   ioArrayControllerForGeneration +=
     !inOwnerName
-    !mControllerName.string
+    !mControllerName
     !arrayControllerFilterListForGeneration
     ![mArrayControllerModel modelString]
     !arrayControllerBoundColumnListForGeneration
@@ -503,6 +511,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ![mArrayControllerModel modelTypeName2 !inRootEntityName !inObservableProperties]
     !modelKind
     ![modelType swiftTypeName]
+    !entityTypeIsGraphic
     !attributeListForGeneration
 }
 
@@ -520,7 +529,7 @@ enum @arrayControllerModelKind {
 
 list @arrayControllerForGeneration {
   @string mOwnerName # document name, prefs name, ...
-  @string mControllerName
+  @lstring mControllerName
   @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
   @string mModelString
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
@@ -529,6 +538,7 @@ list @arrayControllerForGeneration {
   @string mModelTypeName2
   @arrayControllerModelKind mModelKind
   @string mElementTypeName
+  @bool mElementTypeIsGraphic
   @2stringlist mAttributeListForGeneration
 }
 
@@ -678,6 +688,7 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@arrayControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
+    ?@bool ELEMENT_TYPE_IS_GRAPHIC
     ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
     ?@2stringlist ATTRIBUTE_VALUES
 
@@ -716,6 +727,7 @@ proc generateArrayControllers
       !mArrayControllerBoundColumnListForGeneration
       !mArrayControllerSortedColumnListForGeneration
       !mElementTypeName
+      !mElementTypeIsGraphic
       !observedProperties
       !mAttributeListForGeneration
     ]

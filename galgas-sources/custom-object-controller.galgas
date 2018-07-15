@@ -74,7 +74,7 @@ override method @customObjectControllerDeclaration tryToSolveSecondaryProperty
       error mPropertyEntityName : "the controller model should be an entity" : entityName
     case transientPropertyExternType (*) :
       error mPropertyEntityName : "the controller model should be an entity" : entityName
-    case entityType (kEntityName) :
+    case entityType (kEntityName *) :
       entityName = kEntityName
     end
   #--- Store selection controller

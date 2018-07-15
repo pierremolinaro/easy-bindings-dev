@@ -102,7 +102,7 @@ end
 
 %
 for () in ARRAY_CONTROLLER_LIST do
-%  private var %!mControllerName% = ArrayController_%!mOwnerName%_%!mControllerName% ()\n%
+%  private var %!mControllerName.string% = ArrayController_%!mOwnerName%_%!mControllerName.string% ()\n%
 end
 %
 
@@ -212,11 +212,13 @@ end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    self.%!mControllerName%.bind_modelAndView (
+%    self.%!mControllerName.string%.bind_modelAndView (
       model: %!mModelString%,
       tableViewArray: [%
-      ![TABLE_VALUE_BINDING_GENERATION_LIST outletNameListForController !mControllerName]
+      ![TABLE_VALUE_BINDING_GENERATION_LIST tableViewNameListForController !mControllerName]
       %],
+      ebView: %![EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST ebViewNameListForController !mControllerName]%,
+      managedObjectContext: nil,
       file: #file,
       line: #line
     )\n%

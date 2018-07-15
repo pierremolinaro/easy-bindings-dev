@@ -170,7 +170,7 @@ method @toOneRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "a property class type cannot be used as entitytype"
     case transientPropertyExternType (*) :
       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-    case entityType (*) : # Ok
+    case entityType (2*) : # Ok
     end
   #--- Enter in property map
     [!?ioObservableProperties insertKey
@@ -206,7 +206,7 @@ method @toManyRelationshipList buildObservablePropertyMap
       error mDestinationEntityName: "a property class type cannot be used as entitytype"
     case transientPropertyExternType (*) :
       error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-    case entityType (*) : # Ok
+    case entityType (2*) : # Ok
     end
   #--- Enter in property map
     [!?ioObservableProperties insertKey
@@ -265,7 +265,7 @@ method @toOneRelationshipList semanticAnalysis
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
        case transientPropertyExternType (*) :
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-       case entityType (*) : # Ok
+       case entityType (2*) : # Ok
        end
        if oppositeKind == .transient then
          error mInverseRelationshipName : "this relationship is transient, should be stored"
@@ -321,7 +321,7 @@ method @toManyRelationshipList semanticAnalysis
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
        case transientPropertyExternType (*) :
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-       case entityType (*) : # Ok
+       case entityType (2*) : # Ok
        end
        if oppositeKind == .transient then
          error mInverseRelationshipName : "this relationship is transient, should be stored"

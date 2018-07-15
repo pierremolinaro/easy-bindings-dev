@@ -10,7 +10,7 @@ enum @typeKind {
   case dateType
   case fontType
   case enumType (@string enumTypeName @enumConstantMap constantMap)
-  case entityType (@string entityName)
+  case entityType (@string entityName @bool isGraphic)
   case classType (@string className)
   case propertyClassType (@string classPropertyName @propertyClassDefaultValues defaultValues)
   case transientPropertyExternType (@string externTypeName)
@@ -26,7 +26,7 @@ getter @typeKind isComparable -> @bool outResult {
     outResult = false
   case enumType (* *) :
     outResult = false
-  case entityType (*) :
+  case entityType (* *) :
     outResult = false
   case classType (*) :
     outResult = false
@@ -132,7 +132,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case dateType : outResult = "Date"
   case doubleType : outResult = "Double"
   case fontType : outResult = "NSFont"
-  case entityType (@string entityName) : outResult = entityName
+  case entityType (@string entityName *) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName
   case propertyClassType (@string classTypeName *) : outResult = classTypeName

@@ -2182,9 +2182,9 @@ void extensionMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
   GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration_7555 ;
   GALGAS_decoratedOutletMap var_outletMap_7594 ;
   GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList_7666 ;
-  GALGAS_graphicArrayControllerGenerationList var_graphicArrayControllerGenerationList_7750 ;
+  GALGAS_ebViewGraphicControllerBindingGenerationList var_ebViewGraphicControllerBindingGenerationList_7766 ;
   {
-  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 175)), GALGAS_string::makeEmptyString (), constinArgument_inSemanticContext, inObject.mProperty_mOutletDeclarationList, constinArgument_inSemanticContext.getter_mPreferencesObservablePropertyMap (HERE), var_actionMap_6952, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 181)), ioArgument_ioGeneration, var_regularBindingsGenerationList_7413, var_multipleBindingGenerationList_7483, var_actionBindingListForGeneration_7555, var_outletMap_7594, var_tableViewBindingGenerationList_7666, var_graphicArrayControllerGenerationList_7750, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 174)) ;
+  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 175)), GALGAS_string::makeEmptyString (), constinArgument_inSemanticContext, inObject.mProperty_mOutletDeclarationList, constinArgument_inSemanticContext.getter_mPreferencesObservablePropertyMap (HERE), var_actionMap_6952, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 181)), ioArgument_ioGeneration, var_regularBindingsGenerationList_7413, var_multipleBindingGenerationList_7483, var_actionBindingListForGeneration_7555, var_outletMap_7594, var_tableViewBindingGenerationList_7666, var_ebViewGraphicControllerBindingGenerationList_7766, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 174)) ;
   }
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mSimpleStoredPropertyListForGeneration = var_simpleStoredPropertyListForGeneration_5791 ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTransientDefinitionListForGeneration = var_transientDefinitionListForGeneration_6116 ;
@@ -2197,7 +2197,7 @@ void extensionMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mStoredArrayPropertyListForGeneration = var_storedArrayPropertyListForGeneration_6011 ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mArrayControllerForGeneration = var_arrayControllerListForGeneration_6186 ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTableViewBindingGenerationList = var_tableViewBindingGenerationList_7666 ;
-  ioArgument_ioGeneration.mProperty_mGraphicArrayControllerGenerationList.plusAssign_operation(var_graphicArrayControllerGenerationList_7750, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 202)) ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mEBViewBindingGenerationList = var_ebViewGraphicControllerBindingGenerationList_7766 ;
 }
 
 
@@ -2214,7 +2214,8 @@ mProperty_mMainXibDescriptorList (),
 mProperty_mExternSwiftFunctionList (),
 mProperty_mStoredArrayPropertyListForGeneration (),
 mProperty_mArrayControllerForGeneration (),
-mProperty_mTableViewBindingGenerationList () {
+mProperty_mTableViewBindingGenerationList (),
+mProperty_mEBViewBindingGenerationList () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2234,7 +2235,8 @@ GALGAS_preferencesForGeneration::GALGAS_preferencesForGeneration (const GALGAS_s
                                                                   const GALGAS_externSwiftFunctionList & inOperand7,
                                                                   const GALGAS_storedArrayPropertyListForGeneration & inOperand8,
                                                                   const GALGAS_arrayControllerForGeneration & inOperand9,
-                                                                  const GALGAS_tableViewBindingGenerationList & inOperand10) :
+                                                                  const GALGAS_tableViewBindingGenerationList & inOperand10,
+                                                                  const GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand11) :
 mProperty_mSimpleStoredPropertyListForGeneration (inOperand0),
 mProperty_mTransientDefinitionListForGeneration (inOperand1),
 mProperty_mRegularBindingsGenerationList (inOperand2),
@@ -2245,7 +2247,8 @@ mProperty_mMainXibDescriptorList (inOperand6),
 mProperty_mExternSwiftFunctionList (inOperand7),
 mProperty_mStoredArrayPropertyListForGeneration (inOperand8),
 mProperty_mArrayControllerForGeneration (inOperand9),
-mProperty_mTableViewBindingGenerationList (inOperand10) {
+mProperty_mTableViewBindingGenerationList (inOperand10),
+mProperty_mEBViewBindingGenerationList (inOperand11) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2261,7 +2264,8 @@ GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_def
                                           GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
                                           GALGAS_storedArrayPropertyListForGeneration::constructor_emptyList (HERE),
                                           GALGAS_arrayControllerForGeneration::constructor_emptyList (HERE),
-                                          GALGAS_tableViewBindingGenerationList::constructor_emptyList (HERE)) ;
+                                          GALGAS_tableViewBindingGenerationList::constructor_emptyList (HERE),
+                                          GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (HERE)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2276,11 +2280,12 @@ GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_new
                                                                                   const GALGAS_externSwiftFunctionList & inOperand7,
                                                                                   const GALGAS_storedArrayPropertyListForGeneration & inOperand8,
                                                                                   const GALGAS_arrayControllerForGeneration & inOperand9,
-                                                                                  const GALGAS_tableViewBindingGenerationList & inOperand10 
+                                                                                  const GALGAS_tableViewBindingGenerationList & inOperand10,
+                                                                                  const GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand11 
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_preferencesForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
-    result = GALGAS_preferencesForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid ()) {
+    result = GALGAS_preferencesForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11) ;
   }
   return result ;
 }
@@ -2322,13 +2327,16 @@ typeComparisonResult GALGAS_preferencesForGeneration::objectCompare (const GALGA
   if (result == kOperandEqual) {
     result = mProperty_mTableViewBindingGenerationList.objectCompare (inOperand.mProperty_mTableViewBindingGenerationList) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mEBViewBindingGenerationList.objectCompare (inOperand.mProperty_mEBViewBindingGenerationList) ;
+  }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_preferencesForGeneration::isValid (void) const {
-  return mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mTransientDefinitionListForGeneration.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_mMultipleBindingGenerationList.isValid () && mProperty_mActionBindingListForGeneration.isValid () && mProperty_mOutletMap.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mStoredArrayPropertyListForGeneration.isValid () && mProperty_mArrayControllerForGeneration.isValid () && mProperty_mTableViewBindingGenerationList.isValid () ;
+  return mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mTransientDefinitionListForGeneration.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_mMultipleBindingGenerationList.isValid () && mProperty_mActionBindingListForGeneration.isValid () && mProperty_mOutletMap.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mStoredArrayPropertyListForGeneration.isValid () && mProperty_mArrayControllerForGeneration.isValid () && mProperty_mTableViewBindingGenerationList.isValid () && mProperty_mEBViewBindingGenerationList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2345,6 +2353,7 @@ void GALGAS_preferencesForGeneration::drop (void) {
   mProperty_mStoredArrayPropertyListForGeneration.drop () ;
   mProperty_mArrayControllerForGeneration.drop () ;
   mProperty_mTableViewBindingGenerationList.drop () ;
+  mProperty_mEBViewBindingGenerationList.drop () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2376,6 +2385,8 @@ void GALGAS_preferencesForGeneration::description (C_String & ioString,
     mProperty_mArrayControllerForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mEBViewBindingGenerationList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -2444,6 +2455,12 @@ GALGAS_arrayControllerForGeneration GALGAS_preferencesForGeneration::getter_mArr
 
 GALGAS_tableViewBindingGenerationList GALGAS_preferencesForGeneration::getter_mTableViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mTableViewBindingGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_ebViewGraphicControllerBindingGenerationList GALGAS_preferencesForGeneration::getter_mEBViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mEBViewBindingGenerationList ;
 }
 
 
@@ -4860,8 +4877,7 @@ mProperty_mSelectionControllerListForGeneration (),
 mProperty_mCustomObjectControllerListForGeneration (),
 mProperty_mObjectControllerListForGeneration (),
 mProperty_mPropertyClassList (),
-mProperty_mTransientPropertyTypeList (),
-mProperty_mGraphicArrayControllerGenerationList () {
+mProperty_mTransientPropertyTypeList () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4885,8 +4901,7 @@ GALGAS_structForGeneration::GALGAS_structForGeneration (const GALGAS_transientDe
                                                         const GALGAS_customObjectControllerForGeneration & inOperand11,
                                                         const GALGAS_objectControllerForGeneration & inOperand12,
                                                         const GALGAS_stringlist & inOperand13,
-                                                        const GALGAS_transientExternTypeList & inOperand14,
-                                                        const GALGAS_graphicArrayControllerGenerationList & inOperand15) :
+                                                        const GALGAS_transientExternTypeList & inOperand14) :
 mProperty_mTransientListForGeneration (inOperand0),
 mProperty_mActionListForGeneration (inOperand1),
 mProperty_mPreferencesForGeneration (inOperand2),
@@ -4901,8 +4916,7 @@ mProperty_mSelectionControllerListForGeneration (inOperand10),
 mProperty_mCustomObjectControllerListForGeneration (inOperand11),
 mProperty_mObjectControllerListForGeneration (inOperand12),
 mProperty_mPropertyClassList (inOperand13),
-mProperty_mTransientPropertyTypeList (inOperand14),
-mProperty_mGraphicArrayControllerGenerationList (inOperand15) {
+mProperty_mTransientPropertyTypeList (inOperand14) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4922,8 +4936,7 @@ GALGAS_structForGeneration GALGAS_structForGeneration::constructor_default (UNUS
                                      GALGAS_customObjectControllerForGeneration::constructor_emptyList (HERE),
                                      GALGAS_objectControllerForGeneration::constructor_emptyList (HERE),
                                      GALGAS_stringlist::constructor_emptyList (HERE),
-                                     GALGAS_transientExternTypeList::constructor_emptyList (HERE),
-                                     GALGAS_graphicArrayControllerGenerationList::constructor_emptyList (HERE)) ;
+                                     GALGAS_transientExternTypeList::constructor_emptyList (HERE)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4942,12 +4955,11 @@ GALGAS_structForGeneration GALGAS_structForGeneration::constructor_new (const GA
                                                                         const GALGAS_customObjectControllerForGeneration & inOperand11,
                                                                         const GALGAS_objectControllerForGeneration & inOperand12,
                                                                         const GALGAS_stringlist & inOperand13,
-                                                                        const GALGAS_transientExternTypeList & inOperand14,
-                                                                        const GALGAS_graphicArrayControllerGenerationList & inOperand15 
+                                                                        const GALGAS_transientExternTypeList & inOperand14 
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_structForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid () && inOperand13.isValid () && inOperand14.isValid () && inOperand15.isValid ()) {
-    result = GALGAS_structForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12, inOperand13, inOperand14, inOperand15) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid () && inOperand13.isValid () && inOperand14.isValid ()) {
+    result = GALGAS_structForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12, inOperand13, inOperand14) ;
   }
   return result ;
 }
@@ -5001,16 +5013,13 @@ typeComparisonResult GALGAS_structForGeneration::objectCompare (const GALGAS_str
   if (result == kOperandEqual) {
     result = mProperty_mTransientPropertyTypeList.objectCompare (inOperand.mProperty_mTransientPropertyTypeList) ;
   }
-  if (result == kOperandEqual) {
-    result = mProperty_mGraphicArrayControllerGenerationList.objectCompare (inOperand.mProperty_mGraphicArrayControllerGenerationList) ;
-  }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_structForGeneration::isValid (void) const {
-  return mProperty_mTransientListForGeneration.isValid () && mProperty_mActionListForGeneration.isValid () && mProperty_mPreferencesForGeneration.isValid () && mProperty_mDocumentListForGeneration.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mClassListForGeneration.isValid () && mProperty_mEnumListForGeneration.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mAllArrayControllerForGeneration.isValid () && mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mCustomObjectControllerListForGeneration.isValid () && mProperty_mObjectControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () && mProperty_mGraphicArrayControllerGenerationList.isValid () ;
+  return mProperty_mTransientListForGeneration.isValid () && mProperty_mActionListForGeneration.isValid () && mProperty_mPreferencesForGeneration.isValid () && mProperty_mDocumentListForGeneration.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mClassListForGeneration.isValid () && mProperty_mEnumListForGeneration.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mAllArrayControllerForGeneration.isValid () && mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mCustomObjectControllerListForGeneration.isValid () && mProperty_mObjectControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5031,7 +5040,6 @@ void GALGAS_structForGeneration::drop (void) {
   mProperty_mObjectControllerListForGeneration.drop () ;
   mProperty_mPropertyClassList.drop () ;
   mProperty_mTransientPropertyTypeList.drop () ;
-  mProperty_mGraphicArrayControllerGenerationList.drop () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5071,8 +5079,6 @@ void GALGAS_structForGeneration::description (C_String & ioString,
     mProperty_mPropertyClassList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mTransientPropertyTypeList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mGraphicArrayControllerGenerationList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -5165,12 +5171,6 @@ GALGAS_stringlist GALGAS_structForGeneration::getter_mPropertyClassList (UNUSED_
 
 GALGAS_transientExternTypeList GALGAS_structForGeneration::getter_mTransientPropertyTypeList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mTransientPropertyTypeList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_graphicArrayControllerGenerationList GALGAS_structForGeneration::getter_mGraphicArrayControllerGenerationList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mGraphicArrayControllerGenerationList ;
 }
 
 
@@ -7526,6 +7526,7 @@ mProperty_mOutletClassName (),
 mProperty_mHasRunAction (),
 mProperty_mHasEnabled (),
 mProperty_mHandlesTableValueBinding (),
+mProperty_mHandlesGraphicControllerBinding (),
 mProperty_mHasHidden () {
 }
 
@@ -7541,13 +7542,15 @@ GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_
                                                                                             const GALGAS_bool & inOperand2,
                                                                                             const GALGAS_bool & inOperand3,
                                                                                             const GALGAS_bool & inOperand4,
-                                                                                            const GALGAS_bool & inOperand5) :
+                                                                                            const GALGAS_bool & inOperand5,
+                                                                                            const GALGAS_bool & inOperand6) :
 mProperty_mUserDefined (inOperand0),
 mProperty_mOutletClassName (inOperand1),
 mProperty_mHasRunAction (inOperand2),
 mProperty_mHasEnabled (inOperand3),
 mProperty_mHandlesTableValueBinding (inOperand4),
-mProperty_mHasHidden (inOperand5) {
+mProperty_mHandlesGraphicControllerBinding (inOperand5),
+mProperty_mHasHidden (inOperand6) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7555,6 +7558,7 @@ mProperty_mHasHidden (inOperand5) {
 GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassDeclarationList_2D_element (GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_lstring::constructor_default (HERE),
+                                                       GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
@@ -7568,11 +7572,12 @@ GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2
                                                                                                             const GALGAS_bool & inOperand2,
                                                                                                             const GALGAS_bool & inOperand3,
                                                                                                             const GALGAS_bool & inOperand4,
-                                                                                                            const GALGAS_bool & inOperand5 
+                                                                                                            const GALGAS_bool & inOperand5,
+                                                                                                            const GALGAS_bool & inOperand6 
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -7597,6 +7602,9 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
     result = mProperty_mHandlesTableValueBinding.objectCompare (inOperand.mProperty_mHandlesTableValueBinding) ;
   }
   if (result == kOperandEqual) {
+    result = mProperty_mHandlesGraphicControllerBinding.objectCompare (inOperand.mProperty_mHandlesGraphicControllerBinding) ;
+  }
+  if (result == kOperandEqual) {
     result = mProperty_mHasHidden.objectCompare (inOperand.mProperty_mHasHidden) ;
   }
   return result ;
@@ -7605,7 +7613,7 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mProperty_mUserDefined.isValid () && mProperty_mOutletClassName.isValid () && mProperty_mHasRunAction.isValid () && mProperty_mHasEnabled.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHasHidden.isValid () ;
+  return mProperty_mUserDefined.isValid () && mProperty_mOutletClassName.isValid () && mProperty_mHasRunAction.isValid () && mProperty_mHasEnabled.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandlesGraphicControllerBinding.isValid () && mProperty_mHasHidden.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7616,6 +7624,7 @@ void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
   mProperty_mHasRunAction.drop () ;
   mProperty_mHasEnabled.drop () ;
   mProperty_mHandlesTableValueBinding.drop () ;
+  mProperty_mHandlesGraphicControllerBinding.drop () ;
   mProperty_mHasHidden.drop () ;
 }
 
@@ -7636,6 +7645,8 @@ void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioStr
     mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHasHidden.description (ioString, inIndentation+1) ;
   }
@@ -7670,6 +7681,12 @@ GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHasEnabled (UN
 
 GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHandlesTableValueBinding (UNUSED_LOCATION_ARGS) const {
   return mProperty_mHandlesTableValueBinding ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mHandlesGraphicControllerBinding (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mHandlesGraphicControllerBinding ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7731,6 +7748,7 @@ mProperty_mHandlesRunAction (),
 mProperty_mHandlesTableValueBinding (),
 mProperty_mHandleEnabledBinding (),
 mProperty_mHandleHiddenBinding (),
+mProperty_mHandleGraphicControllerBinding (),
 mProperty_mUserDefined () {
 }
 
@@ -7746,19 +7764,22 @@ GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS
                                                                     const GALGAS_bool & inOperand2,
                                                                     const GALGAS_bool & inOperand3,
                                                                     const GALGAS_bool & inOperand4,
-                                                                    const GALGAS_bool & inOperand5) :
+                                                                    const GALGAS_bool & inOperand5,
+                                                                    const GALGAS_bool & inOperand6) :
 mProperty_lkey (inOperand0),
 mProperty_mHandlesRunAction (inOperand1),
 mProperty_mHandlesTableValueBinding (inOperand2),
 mProperty_mHandleEnabledBinding (inOperand3),
 mProperty_mHandleHiddenBinding (inOperand4),
-mProperty_mUserDefined (inOperand5) {
+mProperty_mHandleGraphicControllerBinding (inOperand5),
+mProperty_mUserDefined (inOperand6) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                           GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
@@ -7773,11 +7794,12 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_n
                                                                                     const GALGAS_bool & inOperand2,
                                                                                     const GALGAS_bool & inOperand3,
                                                                                     const GALGAS_bool & inOperand4,
-                                                                                    const GALGAS_bool & inOperand5 
+                                                                                    const GALGAS_bool & inOperand5,
+                                                                                    const GALGAS_bool & inOperand6 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -7802,6 +7824,9 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
     result = mProperty_mHandleHiddenBinding.objectCompare (inOperand.mProperty_mHandleHiddenBinding) ;
   }
   if (result == kOperandEqual) {
+    result = mProperty_mHandleGraphicControllerBinding.objectCompare (inOperand.mProperty_mHandleGraphicControllerBinding) ;
+  }
+  if (result == kOperandEqual) {
     result = mProperty_mUserDefined.objectCompare (inOperand.mProperty_mUserDefined) ;
   }
   return result ;
@@ -7810,7 +7835,7 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mUserDefined.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7821,6 +7846,7 @@ void GALGAS_outletClassMap_2D_element::drop (void) {
   mProperty_mHandlesTableValueBinding.drop () ;
   mProperty_mHandleEnabledBinding.drop () ;
   mProperty_mHandleHiddenBinding.drop () ;
+  mProperty_mHandleGraphicControllerBinding.drop () ;
   mProperty_mUserDefined.drop () ;
 }
 
@@ -7841,6 +7867,8 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
     mProperty_mHandleEnabledBinding.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHandleHiddenBinding.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mHandleGraphicControllerBinding.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mUserDefined.description (ioString, inIndentation+1) ;
   }
@@ -7875,6 +7903,12 @@ GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandleEnabledBinding (UNUS
 
 GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandleHiddenBinding (UNUSED_LOCATION_ARGS) const {
   return mProperty_mHandleHiddenBinding ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_outletClassMap_2D_element::getter_mHandleGraphicControllerBinding (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mHandleGraphicControllerBinding ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10147,6 +10181,296 @@ GALGAS_arrayControllerAttributListAST_2D_element GALGAS_arrayControllerAttributL
       result = *p ;
     }else{
       inCompiler->castError ("arrayControllerAttributListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration_2D_element::GALGAS_arrayControllerForGeneration_2D_element (void) :
+mProperty_mOwnerName (),
+mProperty_mControllerName (),
+mProperty_mArrayControllerFilterListForGeneration (),
+mProperty_mModelString (),
+mProperty_mArrayControllerBoundColumnListForGeneration (),
+mProperty_mArrayControllerSortedColumnListForGeneration (),
+mProperty_mModelTypeName (),
+mProperty_mModelTypeName_32_ (),
+mProperty_mModelKind (),
+mProperty_mElementTypeName (),
+mProperty_mElementTypeIsGraphic (),
+mProperty_mAttributeListForGeneration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration_2D_element::~ GALGAS_arrayControllerForGeneration_2D_element (void) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration_2D_element::GALGAS_arrayControllerForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                                const GALGAS_lstring & inOperand1,
+                                                                                                const GALGAS_arrayControllerFilterListForGeneration & inOperand2,
+                                                                                                const GALGAS_string & inOperand3,
+                                                                                                const GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
+                                                                                                const GALGAS_arrayControllerSortedColumnListForGeneration & inOperand5,
+                                                                                                const GALGAS_string & inOperand6,
+                                                                                                const GALGAS_string & inOperand7,
+                                                                                                const GALGAS_arrayControllerModelKind & inOperand8,
+                                                                                                const GALGAS_string & inOperand9,
+                                                                                                const GALGAS_bool & inOperand10,
+                                                                                                const GALGAS__32_stringlist & inOperand11) :
+mProperty_mOwnerName (inOperand0),
+mProperty_mControllerName (inOperand1),
+mProperty_mArrayControllerFilterListForGeneration (inOperand2),
+mProperty_mModelString (inOperand3),
+mProperty_mArrayControllerBoundColumnListForGeneration (inOperand4),
+mProperty_mArrayControllerSortedColumnListForGeneration (inOperand5),
+mProperty_mModelTypeName (inOperand6),
+mProperty_mModelTypeName_32_ (inOperand7),
+mProperty_mModelKind (inOperand8),
+mProperty_mElementTypeName (inOperand9),
+mProperty_mElementTypeIsGraphic (inOperand10),
+mProperty_mAttributeListForGeneration (inOperand11) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration_2D_element GALGAS_arrayControllerForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
+                                                                                                                const GALGAS_lstring & inOperand1,
+                                                                                                                const GALGAS_arrayControllerFilterListForGeneration & inOperand2,
+                                                                                                                const GALGAS_string & inOperand3,
+                                                                                                                const GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
+                                                                                                                const GALGAS_arrayControllerSortedColumnListForGeneration & inOperand5,
+                                                                                                                const GALGAS_string & inOperand6,
+                                                                                                                const GALGAS_string & inOperand7,
+                                                                                                                const GALGAS_arrayControllerModelKind & inOperand8,
+                                                                                                                const GALGAS_string & inOperand9,
+                                                                                                                const GALGAS_bool & inOperand10,
+                                                                                                                const GALGAS__32_stringlist & inOperand11 
+                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_arrayControllerForGeneration_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid ()) {
+    result = GALGAS_arrayControllerForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_arrayControllerForGeneration_2D_element::objectCompare (const GALGAS_arrayControllerForGeneration_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mOwnerName.objectCompare (inOperand.mProperty_mOwnerName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mControllerName.objectCompare (inOperand.mProperty_mControllerName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mArrayControllerFilterListForGeneration.objectCompare (inOperand.mProperty_mArrayControllerFilterListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mModelString.objectCompare (inOperand.mProperty_mModelString) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mArrayControllerBoundColumnListForGeneration.objectCompare (inOperand.mProperty_mArrayControllerBoundColumnListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mArrayControllerSortedColumnListForGeneration.objectCompare (inOperand.mProperty_mArrayControllerSortedColumnListForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mModelTypeName.objectCompare (inOperand.mProperty_mModelTypeName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mModelTypeName_32_.objectCompare (inOperand.mProperty_mModelTypeName_32_) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mModelKind.objectCompare (inOperand.mProperty_mModelKind) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mElementTypeName.objectCompare (inOperand.mProperty_mElementTypeName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mElementTypeIsGraphic.objectCompare (inOperand.mProperty_mElementTypeIsGraphic) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mAttributeListForGeneration.objectCompare (inOperand.mProperty_mAttributeListForGeneration) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool GALGAS_arrayControllerForGeneration_2D_element::isValid (void) const {
+  return mProperty_mOwnerName.isValid () && mProperty_mControllerName.isValid () && mProperty_mArrayControllerFilterListForGeneration.isValid () && mProperty_mModelString.isValid () && mProperty_mArrayControllerBoundColumnListForGeneration.isValid () && mProperty_mArrayControllerSortedColumnListForGeneration.isValid () && mProperty_mModelTypeName.isValid () && mProperty_mModelTypeName_32_.isValid () && mProperty_mModelKind.isValid () && mProperty_mElementTypeName.isValid () && mProperty_mElementTypeIsGraphic.isValid () && mProperty_mAttributeListForGeneration.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_arrayControllerForGeneration_2D_element::drop (void) {
+  mProperty_mOwnerName.drop () ;
+  mProperty_mControllerName.drop () ;
+  mProperty_mArrayControllerFilterListForGeneration.drop () ;
+  mProperty_mModelString.drop () ;
+  mProperty_mArrayControllerBoundColumnListForGeneration.drop () ;
+  mProperty_mArrayControllerSortedColumnListForGeneration.drop () ;
+  mProperty_mModelTypeName.drop () ;
+  mProperty_mModelTypeName_32_.drop () ;
+  mProperty_mModelKind.drop () ;
+  mProperty_mElementTypeName.drop () ;
+  mProperty_mElementTypeIsGraphic.drop () ;
+  mProperty_mAttributeListForGeneration.drop () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_arrayControllerForGeneration_2D_element::description (C_String & ioString,
+                                                                  const int32_t inIndentation) const {
+  ioString << "<struct @arrayControllerForGeneration-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mProperty_mOwnerName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mControllerName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mArrayControllerFilterListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mModelString.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mArrayControllerBoundColumnListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mArrayControllerSortedColumnListForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mModelTypeName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mModelTypeName_32_.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mModelKind.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mElementTypeName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mElementTypeIsGraphic.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mAttributeListForGeneration.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_arrayControllerForGeneration_2D_element::getter_mOwnerName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOwnerName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_arrayControllerForGeneration_2D_element::getter_mControllerName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mControllerName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerFilterListForGeneration GALGAS_arrayControllerForGeneration_2D_element::getter_mArrayControllerFilterListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerFilterListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_arrayControllerForGeneration_2D_element::getter_mModelString (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mModelString ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerBoundColumnListForGeneration GALGAS_arrayControllerForGeneration_2D_element::getter_mArrayControllerBoundColumnListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerBoundColumnListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerSortedColumnListForGeneration GALGAS_arrayControllerForGeneration_2D_element::getter_mArrayControllerSortedColumnListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerSortedColumnListForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_arrayControllerForGeneration_2D_element::getter_mModelTypeName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mModelTypeName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_arrayControllerForGeneration_2D_element::getter_mModelTypeName_32_ (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mModelTypeName_32_ ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerModelKind GALGAS_arrayControllerForGeneration_2D_element::getter_mModelKind (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mModelKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_arrayControllerForGeneration_2D_element::getter_mElementTypeName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mElementTypeName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_arrayControllerForGeneration_2D_element::getter_mElementTypeIsGraphic (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mElementTypeIsGraphic ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS__32_stringlist GALGAS_arrayControllerForGeneration_2D_element::getter_mAttributeListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mAttributeListForGeneration ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                     @arrayControllerForGeneration-element type                                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_arrayControllerForGeneration_2D_element ("arrayControllerForGeneration-element",
+                                                                NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_arrayControllerForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_arrayControllerForGeneration_2D_element ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_arrayControllerForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_arrayControllerForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration_2D_element GALGAS_arrayControllerForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                              C_Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_arrayControllerForGeneration_2D_element result ;
+  const GALGAS_arrayControllerForGeneration_2D_element * p = (const GALGAS_arrayControllerForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_arrayControllerForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("arrayControllerForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

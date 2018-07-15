@@ -121,7 +121,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
     typeList = {!type}
   case enumType (* *) : # Ok
     typeList = {!type}
-  case entityType (*) :
+  case entityType (* *) :
     error mTransientName: "an entity cannot be used as simple property type" : typeList
   case classType (*) :
     typeList = {!type}

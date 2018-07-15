@@ -8,6 +8,7 @@ list @outletClassDeclarationList {
   @bool mHasRunAction
   @bool mHasEnabled
   @bool mHandlesTableValueBinding
+  @bool mHandlesGraphicControllerBinding
   @bool mHasHidden
 }
 
@@ -31,6 +32,7 @@ syntax extension easyBindings_syntax {
     @bool hasEnabled = false
     @bool hasHidden = false
     @bool handlesTableViewBinding = false
+    @bool handlesGraphicControllerBinding = false
     repeat
     while
       $tableValue$
@@ -44,6 +46,9 @@ syntax extension easyBindings_syntax {
     while
       $hidden$
       hasHidden = true
+    while
+      $graphicController$
+      handlesGraphicControllerBinding = true
     end
     $;$
     ioOutletClassDeclarationList +=
@@ -52,6 +57,7 @@ syntax extension easyBindings_syntax {
       !hasRunAction
       !hasEnabled
       !handlesTableViewBinding
+      !handlesGraphicControllerBinding
       !hasHidden
   }
 
@@ -68,6 +74,7 @@ map @outletClassMap {
   @bool mHandlesTableValueBinding
   @bool mHandleEnabledBinding
   @bool mHandleHiddenBinding
+  @bool mHandleGraphicControllerBinding
   @bool mUserDefined
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
@@ -88,6 +95,7 @@ method @outletClassDeclarationList buildOutletClassMap
       !mHandlesTableValueBinding
       !mHasEnabled
       !mHasHidden
+      !mHandlesGraphicControllerBinding
       !mUserDefined
     ]
   end

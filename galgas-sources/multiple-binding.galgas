@@ -272,7 +272,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   switch outType
   case stringType, boolType, dateType, doubleType, integerType, fontType : # Ok
   case enumType (* *) : # Ok
-  case entityType (*) :
+  case entityType (* *) :
     error [mProperty location] : "an entity cannot be observed"
   case classType (*) :
     error [mProperty location] : "a class cannot be observed"

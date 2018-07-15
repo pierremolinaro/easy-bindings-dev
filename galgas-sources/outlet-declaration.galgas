@@ -18,7 +18,7 @@ enum @tableValueBinding {
 
 enum @graphicController {
   case none
-  case defined (@lstring controller @lstring rootToManyRelationship)
+  case defined (@lstring controller)
 }
 
 #·······················································································································
@@ -109,13 +109,11 @@ syntax extension easyBindings_syntax {
   #--- Graphic controller binding
     while
       $graphicController$
-      $identifier$ ?let @lstring graphicControllerName
-      $:$
-      $root$
+      $self$
       $.$
-      $identifier$ ?let @lstring toManyRelationshipName
+      $identifier$ ?let @lstring graphicControllerName
       if [graphicController isNone] then
-        graphicController = .defined {!controller:graphicControllerName !rootToManyRelationship:toManyRelationshipName}
+        graphicController = .defined {!controller:graphicControllerName}
       else
         error graphicControllerName : "binding already defined" ;
       end   
@@ -156,11 +154,18 @@ list @tableViewBindingGenerationList {
 
 #·······················································································································
 
-getter @tableViewBindingGenerationList outletNameListForController ?let @string inControllerName -> @string outResult {
+list @ebViewGraphicControllerBindingGenerationList {
+  @string mEBViewOutletName
+  @string mArrayControllerControllerName
+}
+
+#·······················································································································
+
+getter @tableViewBindingGenerationList tableViewNameListForController ?let @lstring inControllerName -> @string outResult {
   outResult = ""
   @bool first = true
   for (outlet controller) in self do
-    if controller == inControllerName then
+    if controller == inControllerName.string then
       if first then
         first = false
       else
@@ -173,9 +178,28 @@ getter @tableViewBindingGenerationList outletNameListForController ?let @string 
 
 #·······················································································································
 
+getter @ebViewGraphicControllerBindingGenerationList ebViewNameListForController ?let @lstring inControllerName -> @string {
+  @stringlist outletList = {}
+  for (outlet controller) in self do
+    if controller == inControllerName.string then
+      outletList += !outlet
+    end
+  end
+  if [outletList length] == 0 then
+    result = "nil"
+  elsif [outletList length] == 1 then
+    [outletList first ?result]
+  else
+    result = "<<error>>"
+    error inControllerName : "this controller has several views bound with $graphicController binding"
+  end
+}
+
+#·······················································································································
+
 proc analyzeOutlets
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @string inRootEntityName
+  ?let @string unused inRootEntityName
   ?let @semanticContext inSemanticContext
   ?let @outletDeclarationList inOutletDeclarationList
   ?let @observablePropertyMap inObservablePropertyMap
@@ -187,14 +211,14 @@ proc analyzeOutlets
   !@actionBindingListForGeneration outTargetActionList
   !@decoratedOutletMap outletMap
   !@tableViewBindingGenerationList outTableViewBindingGenerationList
-  !@graphicArrayControllerGenerationList outGraphicArrayControllerGenerationList
+  !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList
 {
   outRegularBindingsGenerationList = {}
   outTargetActionList = {}
   outMultipleBindingGenerationList = {}
   outletMap = {}
   outTableViewBindingGenerationList = {}
-  outGraphicArrayControllerGenerationList = {}
+  outEBViewGraphicControllerBindingGenerationList = {}
   for () outlet_ in inOutletDeclarationList do
     [!?outletMap insertKey !outlet_mOutletName !outlet_mOutletTypeName.string]
     [inSemanticContext.mOutletClassMap searchKey
@@ -203,6 +227,7 @@ proc analyzeOutlets
       ?let @bool handlesTableViewBinding
       ?let @bool handlesEnabledBinding
       ?let @bool handlesHiddenBinding
+      ?let @bool handleGraphicControllerBinding
       ?let @bool outletClassIsUserDefined
     ]
     if not outletClassIsUserDefined then
@@ -211,30 +236,25 @@ proc analyzeOutlets
   #--- $graphicController
     switch outlet_mGraphicController
     case none :
-    case defined (@lstring controller @lstring rootToManyRelationship) :
-      [inRootObservablePropertyMap searchKey
-        !rootToManyRelationship
-        ?let @typeKind type
-        ?* # let @propertyKind mKind
-        ?let @propertyMultiplicity multiplicity
-        ?3*
-      ]
-      @string relationshipEntityName
-      if not [type isEntityType] then
-        error rootToManyRelationship : "This property should be a toMany relationship" : relationshipEntityName
-      elsif multiplicity != .collection then
-        error rootToManyRelationship : "This property should be a toMany relationship" : relationshipEntityName
+    case defined (@lstring controllerName) :
+      if not handleGraphicControllerBinding then
+        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
       else
-        [type entityType ?entityName:relationshipEntityName]
+        [inObservablePropertyMap searchKey
+          !controllerName
+          ?let unused type
+          ?let @propertyKind kind
+          ?let multiplicity
+          ?3*
+        ]
+        if kind != .arrayController then
+          error controllerName : "the bound model should be an array controller"
+        end
+        if multiplicity != .collection then
+          error controllerName : "the controller is not bound to a collection"
+        end
+        outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
-    #---
-      outGraphicArrayControllerGenerationList +=
-        !controller.string
-        !outlet_mOutletName.string
-        !inReceiverSwiftTypeName
-        !inRootEntityName
-        !rootToManyRelationship.string
-        !relationshipEntityName
     end
   #--- $tableView
     switch outlet_mTableValueBindingDescriptor
@@ -457,17 +477,6 @@ list @regularBindingsGenerationList {
 
 #·······················································································································
 
-list @graphicArrayControllerGenerationList {
-  @string mControllerName
-  @string mOutletName
-  @string mOwnerName
-  @string mOwnerTypeName
-  @string mToManyRelationshipName
-  @string mToManyRelationshipEntityName
-}
-
-#·······················································································································
-
 list @actionBindingListForGeneration {
   @string mOutletName
   @string mTargetName
@@ -481,46 +490,6 @@ map @decoratedOutletMap {
   @string mOutletTypeName
   insert insertKey error message "the '%K' outlet is already declared"
   search searchKey error message "the '%K' outlet is not declared"
-}
-
-#----------------------------------------------------------------------------------------------------------------------*
-#   GRAPHIC CONTROLLER GENERATION
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-private filewrapper graphicControllerGenerationTemplate in "../generation-templates/controllers" {
-}{
-}{
-  template implementation "graphic-controller.swift.galgasTemplate"
-    ?@string CONTROLLER_NAME
-    ?@string OUTLET_NAME
-    ?@string OWNER_NAME
-    ?@string OWNER_TYPE_NAME
-    ?@string TOMANY_RELATIONSHIP_NAME
-    ?@string TOMANY_RELATIONSHIP_ENTITY_NAME
-}
-
-#·······················································································································
-
-proc generateGraphicControllers
-  ?let @graphicArrayControllerGenerationList inGraphicControllerListForGeneration
-  ?let @string inOutputDirectory
-  ?!@stringset unused ioGeneratedFileSet
-{
-  for () in inGraphicControllerListForGeneration do
-    let s = [filewrapper graphicControllerGenerationTemplate.implementation
-      !mControllerName
-      !mOutletName
-      !mOwnerName
-      !mOwnerTypeName
-      !mToManyRelationshipName
-      !mToManyRelationshipEntityName
-    ]
-    [@string generateFile
-      !inOutputDirectory
-      !"graphicController-" + mOwnerName + "-" +  mOutletName + ".swift"
-      !s
-    ]
-  end
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

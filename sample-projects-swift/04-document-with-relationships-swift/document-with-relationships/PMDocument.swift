@@ -296,18 +296,24 @@ import Cocoa
     self.nameController.bind_modelAndView (
       model: self.rootObject.mNames_property,
       tableViewArray: [mNamesTableView!],
+      ebView: nil,
+      managedObjectContext: self.managedObjectContext (),
       file: #file,
       line: #line
     )
     self.otherController.bind_modelAndView (
       model: self.rootObject.mNames_property,
       tableViewArray: [mOtherTableView!],
+      ebView: nil,
+      managedObjectContext: self.managedObjectContext (),
       file: #file,
       line: #line
     )
     self.selController.bind_modelAndView (
       model: self.nameController.selectedArray_property,
       tableViewArray: [mSelectionTableView!],
+      ebView: nil,
+      managedObjectContext: self.managedObjectContext (),
       file: #file,
       line: #line
     )
@@ -466,7 +472,6 @@ import Cocoa
       self.rootObject.mNames_property.count_property.addEBObserver (controller)
       mController_decrementButton_enabled = controller
     }
- //--------------------------- Graphic controllers
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = #selector (ArrayController_PMDocument_nameController.add (_:))
@@ -543,11 +548,6 @@ import Cocoa
     self.totalTextField?.ebCleanUp ()
     self.valueDetailTextField?.ebCleanUp ()
   }
-
-  //····················································································································
-  //    Graphic controllers
-  //····················································································································
-
 
   //····················································································································
   //    Multiple bindings controllers

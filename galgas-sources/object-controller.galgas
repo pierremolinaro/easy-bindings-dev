@@ -83,7 +83,7 @@ override method @objectControllerDeclaration tryToSolveSecondaryProperty
         error mToOneRelationshipName : "the controller model should be an entity" : entityName
       case transientPropertyExternType (*) :
         error mToOneRelationshipName : "the controller model should be an entity" : entityName
-      case entityType (kEntityName) :
+      case entityType (kEntityName *) :
         entityName = kEntityName
       end
     #--- Store selection controller
@@ -125,7 +125,7 @@ override method @objectControllerDeclaration secondaryPropertySemanticAnalysis
     ?let @typeKind kind
     ?5*
   ]
-  [kind entityType ?entityName:let entityTypeName]
+  [kind entityType ?entityName:let entityTypeName ?1*]
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     ![entityTypeName nowhere]
     ?let @observablePropertyMap objectControllerObservablePropertyMap

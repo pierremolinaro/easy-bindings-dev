@@ -68,7 +68,7 @@ method @storedArrayPropertyList buildObservablePropertyMap
       error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
     case enumType (* *) :
       error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
-    case entityType (*) :
+    case entityType (2*) :
       error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
     case classType (*) :
       typeList = {!type}
@@ -103,7 +103,7 @@ method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
     case enumType (* *) :
       error mStoredArrayPropertyName: "ae enumeration cannot be used as array element type" : typeList
-    case entityType (*) :
+    case entityType (2*) :
       error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
     case classType (*) :
       typeList = {!type}

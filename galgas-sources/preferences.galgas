@@ -185,7 +185,7 @@ method @prefDeclaration semanticAnalysis
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
-    ?let @graphicArrayControllerGenerationList graphicArrayControllerGenerationList
+    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 #--- Code generation
   ioGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
@@ -199,7 +199,7 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mStoredArrayPropertyListForGeneration = storedArrayPropertyListForGeneration
   ioGeneration.mPreferencesForGeneration.mArrayControllerForGeneration = arrayControllerListForGeneration
   ioGeneration.mPreferencesForGeneration.mTableViewBindingGenerationList = tableViewBindingGenerationList
-  ioGeneration.mGraphicArrayControllerGenerationList += graphicArrayControllerGenerationList
+  ioGeneration.mPreferencesForGeneration.mEBViewBindingGenerationList = ebViewGraphicControllerBindingGenerationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -218,6 +218,7 @@ struct @preferencesForGeneration {
   @storedArrayPropertyListForGeneration mStoredArrayPropertyListForGeneration
   @arrayControllerForGeneration mArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
+  @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
 }
 
 #·······················································································································
@@ -237,6 +238,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@storedArrayPropertyListForGeneration STORED_ARRAY_LIST
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
+    ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -260,6 +262,7 @@ proc generatePreferences
     !inPreferenceListForGeneration.mStoredArrayPropertyListForGeneration
     !inPreferenceListForGeneration.mArrayControllerForGeneration
     !inPreferenceListForGeneration.mTableViewBindingGenerationList
+    !inPreferenceListForGeneration.mEBViewBindingGenerationList
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName

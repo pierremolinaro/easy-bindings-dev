@@ -77,7 +77,7 @@ void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArg
                              class GALGAS_actionBindingListForGeneration & outArgument10,
                              class GALGAS_decoratedOutletMap & outArgument11,
                              class GALGAS_tableViewBindingGenerationList & outArgument12,
-                             class GALGAS_graphicArrayControllerGenerationList & outArgument13,
+                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument13,
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 
@@ -122,6 +122,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
 
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -146,7 +148,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                             const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                             const GALGAS_storedArrayPropertyListForGeneration & in_mStoredArrayPropertyListForGeneration,
                                             const GALGAS_arrayControllerForGeneration & in_mArrayControllerForGeneration,
-                                            const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList) ;
+                                            const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                            const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList) ;
 
 //-- Start of generic part --*
 
@@ -169,7 +172,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                          const class GALGAS_externSwiftFunctionList & inOperand7,
                                                                          const class GALGAS_storedArrayPropertyListForGeneration & inOperand8,
                                                                          const class GALGAS_arrayControllerForGeneration & inOperand9,
-                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand10
+                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand10,
+                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand11
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -187,6 +191,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_mActionBindingListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
 
@@ -255,8 +261,6 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_transientExternTypeList mProperty_mTransientPropertyTypeList ;
 
-  public : GALGAS_graphicArrayControllerGenerationList mProperty_mGraphicArrayControllerGenerationList ;
-
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -285,8 +289,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_customObjectControllerForGeneration & in_mCustomObjectControllerListForGeneration,
                                        const GALGAS_objectControllerForGeneration & in_mObjectControllerListForGeneration,
                                        const GALGAS_stringlist & in_mPropertyClassList,
-                                       const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList,
-                                       const GALGAS_graphicArrayControllerGenerationList & in_mGraphicArrayControllerGenerationList) ;
+                                       const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList) ;
 
 //-- Start of generic part --*
 
@@ -313,8 +316,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                                     const class GALGAS_customObjectControllerForGeneration & inOperand11,
                                                                     const class GALGAS_objectControllerForGeneration & inOperand12,
                                                                     const class GALGAS_stringlist & inOperand13,
-                                                                    const class GALGAS_transientExternTypeList & inOperand14,
-                                                                    const class GALGAS_graphicArrayControllerGenerationList & inOperand15
+                                                                    const class GALGAS_transientExternTypeList & inOperand14
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -342,8 +344,6 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_mEntityListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_enumListForGeneration getter_mEnumListForGeneration (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_graphicArrayControllerGenerationList getter_mGraphicArrayControllerGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mNeededOutletClasses (LOCATION_ARGS) const ;
 

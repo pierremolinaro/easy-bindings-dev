@@ -149,7 +149,6 @@ import Cocoa
       self.rootObject.docBool_property.addEBObserver (controller)
       mController_myButton_enabled = controller
     }
- //--------------------------- Graphic controllers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -177,11 +176,6 @@ import Cocoa
     self.docBoolCheckBox?.ebCleanUp ()
     self.myButton?.ebCleanUp ()
   }
-
-  //····················································································································
-  //    Graphic controllers
-  //····················································································································
-
 
   //····················································································································
   //    Multiple bindings controllers

@@ -398,7 +398,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName) :
+    case entityType (@string entityName *) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
         ?*
@@ -465,7 +465,7 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName) :
+    case entityType (@string entityName *) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
         ?let @observablePropertyMap entityObservablePropertyMap
@@ -551,7 +551,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName) :
+    case entityType (@string entityName *) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
         ?let @observablePropertyMap entityObservablePropertyMap
@@ -604,7 +604,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName) :
+    case entityType (@string entityName *) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
         ?let @observablePropertyMap entityObservablePropertyMap
@@ -647,7 +647,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName) :
+    case entityType (@string entityName *) :
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         ![entityName nowhere]
         ?*
@@ -707,7 +707,7 @@ method @observablePropertyAST analyzeObservableProperty
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case enumType (* *) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case entityType (entityName) :
+      case entityType (entityName *) :
         [inSemanticContext.mEntityObservablePropertyMap searchKey
           !.new {!entityName !controllerName.location}
           ?let @observablePropertyMap observablePropertyMap
