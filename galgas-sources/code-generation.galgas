@@ -25,6 +25,7 @@ struct @structForGeneration {
   @objectControllerForGeneration mObjectControllerListForGeneration
   @stringlist mPropertyClassList
   @transientExternTypeList mTransientPropertyTypeList
+  @graphicArrayControllerGenerationList mGraphicArrayControllerGenerationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -97,6 +98,11 @@ proc generateCode
   )
   generateCustomObjectControllers (
     !inGeneration.mCustomObjectControllerListForGeneration
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+  generateGraphicControllers (
+    !inGeneration.mGraphicArrayControllerGenerationList
     !fileOutputDirectory
     !?generatedFileSet
   )

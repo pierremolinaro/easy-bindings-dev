@@ -65,17 +65,19 @@ void extensionMethod_semanticAnalysis (const class GALGAS_prefDeclaration inObje
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void routine_analyzeOutlets (const class GALGAS_observablePropertyMap constinArgument0,
-                             const class GALGAS_semanticContext constinArgument1,
-                             const class GALGAS_outletDeclarationList constinArgument2,
-                             const class GALGAS_observablePropertyMap constinArgument3,
-                             const class GALGAS_actionMap constinArgument4,
-                             const class GALGAS_string constinArgument5,
-                             class GALGAS_structForGeneration & ioArgument6,
-                             class GALGAS_regularBindingsGenerationList & outArgument7,
-                             class GALGAS_multipleBindingGenerationList & outArgument8,
-                             class GALGAS_actionBindingListForGeneration & outArgument9,
-                             class GALGAS_decoratedOutletMap & outArgument10,
-                             class GALGAS_tableViewBindingGenerationList & outArgument11,
+                             const class GALGAS_string constinArgument1,
+                             const class GALGAS_semanticContext constinArgument2,
+                             const class GALGAS_outletDeclarationList constinArgument3,
+                             const class GALGAS_observablePropertyMap constinArgument4,
+                             const class GALGAS_actionMap constinArgument5,
+                             const class GALGAS_string constinArgument6,
+                             class GALGAS_structForGeneration & ioArgument7,
+                             class GALGAS_regularBindingsGenerationList & outArgument8,
+                             class GALGAS_multipleBindingGenerationList & outArgument9,
+                             class GALGAS_actionBindingListForGeneration & outArgument10,
+                             class GALGAS_decoratedOutletMap & outArgument11,
+                             class GALGAS_tableViewBindingGenerationList & outArgument12,
+                             class GALGAS_graphicArrayControllerGenerationList & outArgument13,
                              class C_Compiler * inCompiler
                              COMMA_LOCATION_ARGS) ;
 
@@ -253,6 +255,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_transientExternTypeList mProperty_mTransientPropertyTypeList ;
 
+  public : GALGAS_graphicArrayControllerGenerationList mProperty_mGraphicArrayControllerGenerationList ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -281,7 +285,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_customObjectControllerForGeneration & in_mCustomObjectControllerListForGeneration,
                                        const GALGAS_objectControllerForGeneration & in_mObjectControllerListForGeneration,
                                        const GALGAS_stringlist & in_mPropertyClassList,
-                                       const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList) ;
+                                       const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList,
+                                       const GALGAS_graphicArrayControllerGenerationList & in_mGraphicArrayControllerGenerationList) ;
 
 //-- Start of generic part --*
 
@@ -308,7 +313,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                                     const class GALGAS_customObjectControllerForGeneration & inOperand11,
                                                                     const class GALGAS_objectControllerForGeneration & inOperand12,
                                                                     const class GALGAS_stringlist & inOperand13,
-                                                                    const class GALGAS_transientExternTypeList & inOperand14
+                                                                    const class GALGAS_transientExternTypeList & inOperand14,
+                                                                    const class GALGAS_graphicArrayControllerGenerationList & inOperand15
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -336,6 +342,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_mEntityListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_enumListForGeneration getter_mEnumListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_graphicArrayControllerGenerationList getter_mGraphicArrayControllerGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mNeededOutletClasses (LOCATION_ARGS) const ;
 

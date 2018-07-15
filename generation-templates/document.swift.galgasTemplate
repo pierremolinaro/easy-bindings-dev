@@ -238,6 +238,14 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %      mController_%!mOutletName%_%!mBindingName% = controller\n%
   %    }\n%
 end
+% //--------------------------- Graphic controllers
+%for () in GRAPHIC_ARRAY_CONTROLLER_LIST do
+  %    self.mGraphicController_%!mOutletName% = Controller_%!mOwnerName%_%!mOutletName% (\n%
+  %      view: self.%!mOutletName%,\n%
+  %      model: self.rootObject.%!mToManyRelationshipName%_property,\n%
+  %      managedObjectContext: self.managedObjectContext ()\n%
+  %    )\n%
+end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
 %    %!mOutletName%?.target = %!mTargetName%\n%
@@ -299,11 +307,19 @@ end
 %  }
 
   //····················································································································
-  //    Multiple bindings controller
+  //    Graphic controllers
+  //····················································································································
+
+%for () in GRAPHIC_ARRAY_CONTROLLER_LIST do
+  %  private var mGraphicController_%!mOutletName% : Controller_%!mOwnerName%_%!mOutletName%? = nil\n%
+end
+%
+  //····················································································································
+  //    Multiple bindings controllers
   //····················································································································
 
 %for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %  fileprivate var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
+  %  private var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
 end
 %
   //····················································································································

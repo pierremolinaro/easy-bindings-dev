@@ -172,6 +172,7 @@ import Cocoa
     myTextConcatField?.bind_valueObserver (self.rootObject.myStringConcat_property, file: #file, line: #line)
     myColorWell?.bind_color (self.rootObject.myColor_property, file: #file, line: #line, sendContinously:false)
   //--------------------------- Install multiple bindings
+ //--------------------------- Graphic controllers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -205,7 +206,12 @@ import Cocoa
   }
 
   //····················································································································
-  //    Multiple bindings controller
+  //    Graphic controllers
+  //····················································································································
+
+
+  //····················································································································
+  //    Multiple bindings controllers
   //····················································································································
 
 

@@ -108,6 +108,7 @@ style reservedBindingNameStyle -> "Reserved binding names"
 
 list reservedBindingNameKeyWordList style reservedBindingNameStyle error message "the '$%K' keyword"{
   "enabled",
+  "graphicController",
   "hidden",
   "tableValue",
   "run"

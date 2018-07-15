@@ -173,6 +173,7 @@ method @prefDeclaration semanticAnalysis
 #--- Analyze outlets and bindings
   analyzeOutlets (
     !{} # No root entity
+    !"" # No root entity
     !inSemanticContext
     !mOutletDeclarationList
     !inSemanticContext.mPreferencesObservablePropertyMap
@@ -184,6 +185,7 @@ method @prefDeclaration semanticAnalysis
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @graphicArrayControllerGenerationList graphicArrayControllerGenerationList
   )
 #--- Code generation
   ioGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
@@ -197,6 +199,7 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mStoredArrayPropertyListForGeneration = storedArrayPropertyListForGeneration
   ioGeneration.mPreferencesForGeneration.mArrayControllerForGeneration = arrayControllerListForGeneration
   ioGeneration.mPreferencesForGeneration.mTableViewBindingGenerationList = tableViewBindingGenerationList
+  ioGeneration.mGraphicArrayControllerGenerationList += graphicArrayControllerGenerationList
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

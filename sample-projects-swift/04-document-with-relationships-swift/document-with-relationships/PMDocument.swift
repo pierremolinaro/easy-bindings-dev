@@ -466,6 +466,7 @@ import Cocoa
       self.rootObject.mNames_property.count_property.addEBObserver (controller)
       mController_decrementButton_enabled = controller
     }
+ //--------------------------- Graphic controllers
   //--------------------------- Set targets / actions
     addPathButton?.target = nameController
     addPathButton?.action = #selector (ArrayController_PMDocument_nameController.add (_:))
@@ -544,12 +545,17 @@ import Cocoa
   }
 
   //····················································································································
-  //    Multiple bindings controller
+  //    Graphic controllers
   //····················································································································
 
-  fileprivate var mController_removePathButton_enabled : MultipleBindingController_enabled?
-  fileprivate var mController_incrementButton_enabled : MultipleBindingController_enabled?
-  fileprivate var mController_decrementButton_enabled : MultipleBindingController_enabled?
+
+  //····················································································································
+  //    Multiple bindings controllers
+  //····················································································································
+
+  private var mController_removePathButton_enabled : MultipleBindingController_enabled? = nil
+  private var mController_incrementButton_enabled : MultipleBindingController_enabled? = nil
+  private var mController_decrementButton_enabled : MultipleBindingController_enabled? = nil
 
   //····················································································································
 

@@ -121,7 +121,8 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
                                                                                      const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
                                                                                      const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
                                                                                      const class GALGAS_selectionControllerForGeneration & in_SELECTION_5F_CONTROLLER_5F_LIST,
-                                                                                     const class GALGAS_customObjectControllerForGeneration & in_CUSTOM_5F_OBJECT_5F_CONTROLLER_5F_LIST
+                                                                                     const class GALGAS_customObjectControllerForGeneration & in_CUSTOM_5F_OBJECT_5F_CONTROLLER_5F_LIST,
+                                                                                     const class GALGAS_graphicArrayControllerGenerationList & in_GRAPHIC_5F_ARRAY_5F_CONTROLLER_5F_LIST
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

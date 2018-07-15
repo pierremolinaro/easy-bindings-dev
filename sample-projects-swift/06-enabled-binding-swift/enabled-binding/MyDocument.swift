@@ -149,6 +149,7 @@ import Cocoa
       self.rootObject.docBool_property.addEBObserver (controller)
       mController_myButton_enabled = controller
     }
+ //--------------------------- Graphic controllers
   //--------------------------- Set targets / actions
   //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -178,10 +179,15 @@ import Cocoa
   }
 
   //····················································································································
-  //    Multiple bindings controller
+  //    Graphic controllers
   //····················································································································
 
-  fileprivate var mController_myButton_enabled : MultipleBindingController_enabled?
+
+  //····················································································································
+  //    Multiple bindings controllers
+  //····················································································································
+
+  private var mController_myButton_enabled : MultipleBindingController_enabled? = nil
 
   //····················································································································
 
