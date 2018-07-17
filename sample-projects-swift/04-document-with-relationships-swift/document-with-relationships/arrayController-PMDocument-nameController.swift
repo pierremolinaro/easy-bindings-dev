@@ -67,6 +67,14 @@ final class ArrayController_PMDocument_nameController : EBObject, EBTableViewDel
   }
 
   //····················································································································
+  //   SET SELECTION
+  //····················································································································
+
+  func setSelection (_ inObjects : [NameEntity]) {
+    mSelectedSet.mSet = Set (inObjects)
+  }
+
+  //····················································································································
 
   private final func setSelectedArrayComputeFunction () {
     self.selectedArray_property.readModelFunction = {
