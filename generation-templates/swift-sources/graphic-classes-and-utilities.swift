@@ -5,6 +5,10 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+// http://www.knowstack.com/swift-3-1-calayer/
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBGraphicManagedObject
 //  dynamic before func is required in order to make functions overriden in extensions
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -39,17 +43,21 @@ extension CALayer {
   //····················································································································
 
   func findLayer (at inPoint : CGPoint) -> CALayer? {
-    for layer in (self.sublayers ?? []).reversed () {
-      let possibleResult = layer.findLayer (at: inPoint)
-      if let result = possibleResult {
-        if (result.name == nil) && (self.name != nil) {
-          return self
-        }else{
-          return result
+    if self.isOpaque && self.frame.contains (inPoint) {
+      return self
+    }else{
+      for layer in (self.sublayers ?? []).reversed () {
+        let possibleResult = layer.findLayer (at: inPoint)
+        if let result = possibleResult {
+          if (result.name == nil) && (self.name != nil) {
+            return self
+          }else{
+            return result
+          }
         }
       }
+      return nil
     }
-    return nil
   }
 
   //····················································································································
