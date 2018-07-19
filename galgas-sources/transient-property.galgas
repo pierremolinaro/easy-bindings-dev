@@ -7,6 +7,7 @@ class @transientAST : @abstractSecondaryProperty {
   @bool mIsArray
   @lstring mTransientName
   @observablePropertyList mDependencyList
+  @lstring mExternFunctionName
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -17,9 +18,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <transient_declaration>
-    ?!@secondaryPropertyList ioSecondaryPropertyList
-  {
+  rule <transient_declaration> ?!@secondaryPropertyList ioSecondaryPropertyList {
     $transient$
     @bool isArray
     select
@@ -31,6 +30,13 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ ?var @lstring transientTypeName
     $identifier$ ?let @lstring transientName
+    @lstring externFunctionName
+    select
+      externFunctionName = ["" here] # Generate stub
+    or
+      $externFunc$
+      $identifier$ ?externFunctionName    
+    end
     $dependsFrom$
     @observablePropertyList dependanceList = {}
     repeat
@@ -45,6 +51,7 @@ syntax extension easyBindings_syntax {
       !isArray
       !transientName
       !dependanceList
+      !externFunctionName
     }
   }
 }
@@ -158,6 +165,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
     !mIsArray
     !type
     !dependencies
+    !mExternFunctionName.string
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -170,6 +178,7 @@ list @transientDefinitionListForGeneration {
   @bool mIsArray
   @typeKind mTransientType
   @transientDependencyListForGeneration mDependencyList
+  @string mExternFunctionName
 }
 
 #·······················································································································
@@ -185,12 +194,13 @@ list @transientDependencyListForGeneration {
 getter @transientDependencyListForGeneration transientComputeFunctionCall
   ?let @string inOwnerName
   ?let @string inTransientName
+  ?let @string inExternFunctionName
   -> @string outResult
 {
   @string ident = "        "
   outResult = ""
   if [self length] == 1 then
-    [self first ?let @observablePropertyAST first ?* ?*]
+    [self first ?let @observablePropertyAST first ?2*]
     outResult += ident + "let kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
   else
     var dependencies = self
@@ -218,7 +228,13 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   between outResult += ", "
   end
   outResult += ") :\n"
-  outResult += ident + "    return .single (compute_" + inOwnerName + "_" + inTransientName + " ("
+  outResult += ident + "    return .single ("
+  if inExternFunctionName == "" then
+    outResult += "transient_" + inOwnerName + "_" + inTransientName
+  else
+    outResult += "transient_" + inExternFunctionName
+  end
+  outResult += " ("
   for () in self
   do (idx) outResult += "v" + idx
   between outResult += ", "
@@ -236,7 +252,7 @@ getter @transientDependencyListForGeneration needs_unwSelf
   -> @bool outResult
 {
   outResult = false
-  for (dep * *) in self while not outResult do
+  for (dep 2*) in self while not outResult do
     outResult = [dep needs_unwSelf]
   end
 }
@@ -332,7 +348,7 @@ proc generateTransients
 {
 #--------------------------- Generate transient routines
   for () in inTransientListForGeneration do
-    if [mDependencyList length] > 0 then
+    if ([mDependencyList length] > 0) & (mExternFunctionName == "") then
       let s = [filewrapper transientManager.transientComputationFunctionFile
         !mOwnerName
         !mTransientName

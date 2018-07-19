@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_evenValueString (
+func transient_PMDocument_evenValueString (
        _ self_otherController_sortedArray_count : Int
 ) -> String {
 //--- START OF USER ZONE 2

@@ -148,7 +148,7 @@ class MyRootEntity : EBManagedObject,
         case .singleSelectionKind :
           switch (unwSelf.myString_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_MyRootEntity_myStringMaj (v0))
+            return .single (transient_MyRootEntity_myStringMaj (v0))
           default :
             return .empty
           }
@@ -168,7 +168,7 @@ class MyRootEntity : EBManagedObject,
         case .singleSelectionKind :
           switch (unwSelf.myString_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_MyRootEntity_myStringMin (v0))
+            return .single (transient_MyRootEntity_myStringMin (v0))
           default :
             return .empty
           }
@@ -189,7 +189,7 @@ class MyRootEntity : EBManagedObject,
         case .singleSelectionKind :
           switch (unwSelf.myStringMaj_property_selection, unwSelf.myStringMin_property_selection) {
           case (.single (let v0), .single (let v1)) :
-            return .single (compute_MyRootEntity_myStringConcat (v0, v1))
+            return .single (transient_MyRootEntity_myStringConcat (v0, v1))
           default :
             return .empty
           }

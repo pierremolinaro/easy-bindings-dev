@@ -201,7 +201,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   else
     %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
     %      if let unwSelf = self {\n%
-    ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName]
+    ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName !mExternFunctionName]
     %      }else{\n%
     %        return .empty\n%
     %      }\n%

@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_selectionCountString (
+func transient_PMDocument_selectionCountString (
        _ self_selController_sortedArray_count : Int
 ) -> String {
 //--- START OF USER ZONE 2

@@ -641,6 +641,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependency
 class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
                                                                   const class GALGAS_string & constinArgument0,
                                                                   const class GALGAS_string & constinArgument1,
+                                                                  const class GALGAS_string & constinArgument2,
                                                                   class C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 

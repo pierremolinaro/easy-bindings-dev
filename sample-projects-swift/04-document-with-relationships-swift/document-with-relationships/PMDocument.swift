@@ -336,7 +336,7 @@ import Cocoa
         case .singleSelectionKind :
           switch (unwSelf.selController.sortedArray_property.count_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_PMDocument_selectionCountString (v0))
+            return .single (transient_PMDocument_selectionCountString (v0))
           default :
             return .empty
           }
@@ -356,7 +356,7 @@ import Cocoa
         case .singleSelectionKind :
           switch (unwSelf.otherController.sortedArray_property.count_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_PMDocument_evenValueString (v0))
+            return .single (transient_PMDocument_evenValueString (v0))
           default :
             return .empty
           }
@@ -376,7 +376,7 @@ import Cocoa
         case .singleSelectionKind :
           switch (unwSelf.nameController.selectedArray_property.count_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_PMDocument_canRemoveString (v0))
+            return .single (transient_PMDocument_canRemoveString (v0))
           default :
             return .empty
           }
@@ -396,7 +396,7 @@ import Cocoa
         case .singleSelectionKind :
           switch (unwSelf.rootObject.mNames_property.count_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_PMDocument_countItemMessage (v0))
+            return .single (transient_PMDocument_countItemMessage (v0))
           default :
             return .empty
           }
@@ -416,7 +416,7 @@ import Cocoa
         case .singleSelectionKind :
           switch (unwSelf.rootObject.mNames_property_selection) {
           case (.single (let v0)) :
-            return .single (compute_PMDocument_total (v0))
+            return .single (transient_PMDocument_total (v0))
           default :
             return .empty
           }

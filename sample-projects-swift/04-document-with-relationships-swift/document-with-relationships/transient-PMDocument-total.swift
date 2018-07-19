@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_total (
+func transient_PMDocument_total (
        _ root_mNames_aValue : [NameEntity_aValue]
 ) -> Int {
 //--- START OF USER ZONE 2

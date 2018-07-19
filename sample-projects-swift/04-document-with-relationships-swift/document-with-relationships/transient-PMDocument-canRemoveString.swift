@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_canRemoveString (
+func transient_PMDocument_canRemoveString (
        _ self_nameController_selectedArray_count : Int
 ) -> String {
 //--- START OF USER ZONE 2

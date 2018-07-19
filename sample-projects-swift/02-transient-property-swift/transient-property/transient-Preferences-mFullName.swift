@@ -11,8 +11,8 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_Preferences_mFullName (
-       _ self_mFirstName : String,  
+func transient_Preferences_mFullName (
+       _ self_mFirstName : String,    
        _ self_mLastName : String
 ) -> String {
 //--- START OF USER ZONE 2

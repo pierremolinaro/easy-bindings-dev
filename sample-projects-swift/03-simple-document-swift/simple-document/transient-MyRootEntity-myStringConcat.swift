@@ -11,8 +11,8 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_myStringConcat (
-       _ self_myStringMaj : String,       
+func transient_MyRootEntity_myStringConcat (
+       _ self_myStringMaj : String,         
        _ self_myStringMin : String
 ) -> String {
 //--- START OF USER ZONE 2

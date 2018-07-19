@@ -53,6 +53,7 @@ syntax extension easyBindings_syntax {
       !false
       !["documentFilePath" here]
       !{}
+      !["" here]
     }
   #---
     ioDeclarationAST.mDeclarationList += !@documentDeclaration.new {

@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_PMDocument_countItemMessage (
+func transient_PMDocument_countItemMessage (
        _ root_mNames_count : Int
 ) -> String {
 //--- START OF USER ZONE 2

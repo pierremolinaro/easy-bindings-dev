@@ -177,6 +177,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
 
   public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
 
+  public : GALGAS_string mProperty_mExternFunctionName ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -192,7 +194,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
                                                                    const GALGAS_string & in_mTransientName,
                                                                    const GALGAS_bool & in_mIsArray,
                                                                    const GALGAS_typeKind & in_mTransientType,
-                                                                   const GALGAS_transientDependencyListForGeneration & in_mDependencyList) ;
+                                                                   const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
+                                                                   const GALGAS_string & in_mExternFunctionName) ;
 
 //-- Start of generic part --*
 
@@ -209,7 +212,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
                                                                                                 const class GALGAS_string & inOperand1,
                                                                                                 const class GALGAS_bool & inOperand2,
                                                                                                 const class GALGAS_typeKind & inOperand3,
-                                                                                                const class GALGAS_transientDependencyListForGeneration & inOperand4
+                                                                                                const class GALGAS_transientDependencyListForGeneration & inOperand4,
+                                                                                                const class GALGAS_string & inOperand5
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -225,6 +229,8 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsArray (LOCATION_ARGS) const ;
 

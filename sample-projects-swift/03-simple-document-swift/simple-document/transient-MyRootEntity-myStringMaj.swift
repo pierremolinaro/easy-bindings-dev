@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_myStringMaj (
+func transient_MyRootEntity_myStringMaj (
        _ self_myString : String
 ) -> String {
 //--- START OF USER ZONE 2
