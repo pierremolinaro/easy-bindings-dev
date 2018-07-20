@@ -10,50 +10,56 @@ property class NSColor (
 
 transient property class CALayer ;
 
+transient property struct CGFloat ;
+
 transient property class NSImage ;
 
-extern outlet class EBButton $run $enabled $hidden ;
+extern outlet class NSView $hidden ;
+
+extern outlet class NSControl : NSView $enabled ;
+
+extern outlet class EBButton : NSControl $run ;
 binding EBButton $title : transient String ;
 
-extern outlet class EBColorObserverWell $enabled $hidden ;
+extern outlet class EBColorObserverWell : NSControl ;
 binding EBColorObserverWell $colorObserver : transient NSColor ;
 
-extern outlet class EBColorWell $enabled $hidden ;
+extern outlet class EBColorWell : NSControl ;
 binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 
 
-extern outlet class EBDatePicker $enabled $hidden ;
+extern outlet class EBDatePicker : NSControl ;
 binding EBDatePicker $date : property Date ;
 
-extern outlet class EBDoubleField $hidden ;
+extern outlet class EBDoubleField : NSView ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-extern outlet class EBDoubleObserverField $hidden ;
+extern outlet class EBDoubleObserverField : NSView ;
 binding EBDoubleObserverField $valueObserver : transient Double {autoFormatter:Bool} ;
 
 
-extern outlet class EBIntField $hidden ;
+extern outlet class EBIntField : NSControl ;
 binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-extern outlet class EBIntObserverField $hidden ;
+extern outlet class EBIntObserverField : NSView ;
 binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
-extern outlet class EBFontButton $enabled $hidden ;
+extern outlet class EBFontButton : NSControl ;
 binding EBFontButton $fontValue : property NSFont ;
 
 
-extern outlet class EBPopUpButton $enabled $hidden ;
+extern outlet class EBPopUpButton : NSControl ;
 binding EBPopUpButton $selectedTag : property Int ;
 
 
-extern outlet class EBGroupButton $enabled $hidden ;
+extern outlet class EBGroupButton : NSControl ;
 binding EBGroupButton $selectedIndex : property Int ;
 
 
-extern outlet class EBImageObserverView $enabled $hidden ;
+extern outlet class EBImageObserverView : NSView ;
 binding EBImageObserverView $image : transient NSImage ;
 binding EBImageObserverView $tooltip : transient String ;
 
@@ -68,41 +74,41 @@ extern outlet class EBCheckedMenuItem ;
 binding EBCheckedMenuItem $checked : property Bool ;
 
 
-extern outlet class EBProgressIndicator $hidden ;
+extern outlet class EBProgressIndicator : NSView ;
 
 
-extern outlet class EBSegmentedControl $enabled $hidden ;
+extern outlet class EBSegmentedControl : NSControl ;
 binding EBSegmentedControl $selectedIndex : property Int ;
 
 
-extern outlet class EBSlider $enabled $hidden ;
+extern outlet class EBSlider : NSControl ;
 binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;
 binding EBSlider $intValue : property Int {sendContinously:Bool} ;
 
 
-extern outlet class EBStepper $enabled $hidden ;
+extern outlet class EBStepper : NSControl ;
 binding EBStepper $value : property Int {sendContinously:Bool} ;
 
 
-extern outlet class EBSwitch $enabled $hidden ;
+extern outlet class EBSwitch : NSControl ;
 binding EBSwitch $value : property Bool ;
 
 
-extern outlet class EBTableView $enabled $tableValue $hidden ;
+extern outlet class EBTableView : NSControl $tableValue ;
 
 
-extern outlet class EBTextField $enabled $hidden ;
+extern outlet class EBTextField : NSControl ;
 binding EBTextField $value : property String {sendContinously : Bool} ;
 
-extern outlet class EBTextObserverField $hidden ;
+extern outlet class EBTextObserverField : NSView ;
 binding EBTextObserverField $valueObserver : transient String ;
 
 
-extern outlet class EBTextObserverView $hidden ;
+extern outlet class EBTextObserverView : NSView ;
 binding EBTextObserverView $valueObserver : transient String ;
 
 
-extern outlet class EBTextView $hidden ;
+extern outlet class EBTextView : NSControl ;
 binding EBTextView $value : property String ;
 
 extern outlet class EBWindow ;

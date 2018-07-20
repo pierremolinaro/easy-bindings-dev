@@ -5,6 +5,7 @@
 list @outletClassDeclarationList {
   @bool mUserDefined
   @lstring mOutletClassName
+  @lstring mSuperClassName
   @bool mHasRunAction
   @bool mHasEnabled
   @bool mHandlesTableValueBinding
@@ -20,14 +21,18 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <outlet_class_declaration>
-    ?let @bool inIsUserDefined
-    ?!@outletClassDeclarationList ioOutletClassDeclarationList
-  {
+  rule <outlet_class_declaration> ?let @bool inIsUserDefined ?!@outletClassDeclarationList ioOutletClassDeclarationList {
     $extern$
     $outlet$
     $class$
     $Identifier$ ?let @lstring outletClassName
+    @lstring superClassName
+    select
+      superClassName = ["" here]
+    or
+      $:$
+      $Identifier$ ?superClassName
+    end
     @bool hasRunAction = false
     @bool hasEnabled = false
     @bool hasHidden = false
@@ -54,6 +59,7 @@ syntax extension easyBindings_syntax {
     ioOutletClassDeclarationList +=
       !inIsUserDefined
       !outletClassName
+      !superClassName
       !hasRunAction
       !hasEnabled
       !handlesTableViewBinding
@@ -84,20 +90,91 @@ map @outletClassMap {
 #  SEMANTICS                                                                                                           *
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-method @outletClassDeclarationList buildOutletClassMap
-  !@outletClassMap outOutletClassMap
-{
+method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutletClassMap {
   outOutletClassMap = {}
+#--- First, enter classes without any superclass
+  @outletClassDeclarationList remainingList = {}
   for () in self do
-    [!?outOutletClassMap insertKey
-      !mOutletClassName
-      !mHasRunAction
-      !mHandlesTableValueBinding
-      !mHasEnabled
-      !mHasHidden
-      !mHandlesGraphicControllerBinding
-      !mUserDefined
-    ]
+    if mSuperClassName.string == "" then
+      [!?outOutletClassMap insertKey
+        !mOutletClassName
+        !mHasRunAction
+        !mHandlesTableValueBinding
+        !mHasEnabled
+        !mHasHidden
+        !mHandlesGraphicControllerBinding
+        !mUserDefined
+      ]
+    else
+      remainingList +=
+        !mUserDefined
+        !mOutletClassName
+        !mSuperClassName
+        !mHasRunAction
+        !mHasEnabled
+        !mHandlesTableValueBinding
+        !mHandlesGraphicControllerBinding
+        !mHasHidden
+    end
+  end
+#--- Then, enter classes that have their superclass defined
+  var continue = true
+  loop ([remainingList length] + 1) while ([remainingList length] > 0) & continue do
+    let currentList = remainingList
+    remainingList = {}
+    continue = false
+    for () in currentList do
+      if [outOutletClassMap hasKey !mSuperClassName.string] then
+        [outOutletClassMap searchKey
+          !mSuperClassName
+          ?let hasRunAction
+          ?let handlesTableValueBinding
+          ?let hasEnabled
+          ?let hasHidden
+          ?let handlesGraphicControllerBinding
+          ?*
+        ]  
+        if mHasRunAction & hasRunAction then
+          error mOutletClassName : "$run binding already defined in superclass"
+        end
+        if mHandlesTableValueBinding & handlesTableValueBinding then
+          error mOutletClassName : "$tableview binding already defined in superclass"
+        end
+        if mHasEnabled & hasEnabled then
+          error mOutletClassName : "$enabled binding already defined in superclass"
+        end
+        if mHasHidden & hasHidden then
+          error mOutletClassName : "$hidden binding already defined in superclass"
+        end
+        if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
+          error mOutletClassName : "$graphicControler binding already defined in superclass"
+        end
+        [!?outOutletClassMap insertKey
+          !mOutletClassName
+          !mHasRunAction | hasRunAction
+          !mHandlesTableValueBinding | handlesTableValueBinding
+          !mHasEnabled | hasEnabled
+          !mHasHidden | hasHidden
+          !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
+          !mUserDefined
+        ]
+      else
+        continue = true
+        remainingList +=
+          !mUserDefined
+          !mOutletClassName
+          !mSuperClassName
+          !mHasRunAction
+          !mHasEnabled
+          !mHandlesTableValueBinding
+          !mHandlesGraphicControllerBinding
+          !mHasHidden
+      end
+    end
+  end
+#--- Remaining classes have their superclass undefined, or there is a circularity in inheritance graph
+  for () in remainingList do
+    error mSuperClassName : "undefined outlet class"
   end
 }
 

@@ -7550,6 +7550,7 @@ GALGAS_documentObservablePropertyMap_2D_element GALGAS_documentObservablePropert
 GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (void) :
 mProperty_mUserDefined (),
 mProperty_mOutletClassName (),
+mProperty_mSuperClassName (),
 mProperty_mHasRunAction (),
 mProperty_mHasEnabled (),
 mProperty_mHandlesTableValueBinding (),
@@ -7566,24 +7567,27 @@ GALGAS_outletClassDeclarationList_2D_element::~ GALGAS_outletClassDeclarationLis
 
 GALGAS_outletClassDeclarationList_2D_element::GALGAS_outletClassDeclarationList_2D_element (const GALGAS_bool & inOperand0,
                                                                                             const GALGAS_lstring & inOperand1,
-                                                                                            const GALGAS_bool & inOperand2,
+                                                                                            const GALGAS_lstring & inOperand2,
                                                                                             const GALGAS_bool & inOperand3,
                                                                                             const GALGAS_bool & inOperand4,
                                                                                             const GALGAS_bool & inOperand5,
-                                                                                            const GALGAS_bool & inOperand6) :
+                                                                                            const GALGAS_bool & inOperand6,
+                                                                                            const GALGAS_bool & inOperand7) :
 mProperty_mUserDefined (inOperand0),
 mProperty_mOutletClassName (inOperand1),
-mProperty_mHasRunAction (inOperand2),
-mProperty_mHasEnabled (inOperand3),
-mProperty_mHandlesTableValueBinding (inOperand4),
-mProperty_mHandlesGraphicControllerBinding (inOperand5),
-mProperty_mHasHidden (inOperand6) {
+mProperty_mSuperClassName (inOperand2),
+mProperty_mHasRunAction (inOperand3),
+mProperty_mHasEnabled (inOperand4),
+mProperty_mHandlesTableValueBinding (inOperand5),
+mProperty_mHandlesGraphicControllerBinding (inOperand6),
+mProperty_mHasHidden (inOperand7) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassDeclarationList_2D_element (GALGAS_bool::constructor_default (HERE),
+                                                       GALGAS_lstring::constructor_default (HERE),
                                                        GALGAS_lstring::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
                                                        GALGAS_bool::constructor_default (HERE),
@@ -7596,15 +7600,16 @@ GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2
 
 GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2D_element::constructor_new (const GALGAS_bool & inOperand0,
                                                                                                             const GALGAS_lstring & inOperand1,
-                                                                                                            const GALGAS_bool & inOperand2,
+                                                                                                            const GALGAS_lstring & inOperand2,
                                                                                                             const GALGAS_bool & inOperand3,
                                                                                                             const GALGAS_bool & inOperand4,
                                                                                                             const GALGAS_bool & inOperand5,
-                                                                                                            const GALGAS_bool & inOperand6 
+                                                                                                            const GALGAS_bool & inOperand6,
+                                                                                                            const GALGAS_bool & inOperand7 
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
-    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
+    result = GALGAS_outletClassDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7) ;
   }
   return result ;
 }
@@ -7618,6 +7623,9 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
   }
   if (result == kOperandEqual) {
     result = mProperty_mOutletClassName.objectCompare (inOperand.mProperty_mOutletClassName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mSuperClassName.objectCompare (inOperand.mProperty_mSuperClassName) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mHasRunAction.objectCompare (inOperand.mProperty_mHasRunAction) ;
@@ -7640,7 +7648,7 @@ typeComparisonResult GALGAS_outletClassDeclarationList_2D_element::objectCompare
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
-  return mProperty_mUserDefined.isValid () && mProperty_mOutletClassName.isValid () && mProperty_mHasRunAction.isValid () && mProperty_mHasEnabled.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandlesGraphicControllerBinding.isValid () && mProperty_mHasHidden.isValid () ;
+  return mProperty_mUserDefined.isValid () && mProperty_mOutletClassName.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHasRunAction.isValid () && mProperty_mHasEnabled.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandlesGraphicControllerBinding.isValid () && mProperty_mHasHidden.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7648,6 +7656,7 @@ bool GALGAS_outletClassDeclarationList_2D_element::isValid (void) const {
 void GALGAS_outletClassDeclarationList_2D_element::drop (void) {
   mProperty_mUserDefined.drop () ;
   mProperty_mOutletClassName.drop () ;
+  mProperty_mSuperClassName.drop () ;
   mProperty_mHasRunAction.drop () ;
   mProperty_mHasEnabled.drop () ;
   mProperty_mHandlesTableValueBinding.drop () ;
@@ -7666,6 +7675,8 @@ void GALGAS_outletClassDeclarationList_2D_element::description (C_String & ioStr
     mProperty_mUserDefined.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mOutletClassName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -7690,6 +7701,12 @@ GALGAS_bool GALGAS_outletClassDeclarationList_2D_element::getter_mUserDefined (U
 
 GALGAS_lstring GALGAS_outletClassDeclarationList_2D_element::getter_mOutletClassName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mOutletClassName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_outletClassDeclarationList_2D_element::getter_mSuperClassName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSuperClassName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -11568,50 +11585,56 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "transient property class CALayer ;\n"
     "\n"
+    "transient property struct CGFloat ;\n"
+    "\n"
     "transient property class NSImage ;\n"
     "\n"
-    "extern outlet class EBButton $run $enabled $hidden ;\n"
+    "extern outlet class NSView $hidden ;\n"
+    "\n"
+    "extern outlet class NSControl : NSView $enabled ;\n"
+    "\n"
+    "extern outlet class EBButton : NSControl $run ;\n"
     "binding EBButton $title : transient String ;\n"
     "\n"
-    "extern outlet class EBColorObserverWell $enabled $hidden ;\n"
+    "extern outlet class EBColorObserverWell : NSControl ;\n"
     "binding EBColorObserverWell $colorObserver : transient NSColor ;\n"
     "\n"
-    "extern outlet class EBColorWell $enabled $hidden ;\n"
+    "extern outlet class EBColorWell : NSControl ;\n"
     "binding EBColorWell $color : property NSColor {sendContinously : Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBDatePicker $enabled $hidden ;\n"
+    "extern outlet class EBDatePicker : NSControl ;\n"
     "binding EBDatePicker $date : property Date ;\n"
     "\n"
-    "extern outlet class EBDoubleField $hidden ;\n"
+    "extern outlet class EBDoubleField : NSView ;\n"
     "binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBDoubleObserverField $hidden ;\n"
+    "extern outlet class EBDoubleObserverField : NSView ;\n"
     "binding EBDoubleObserverField $valueObserver : transient Double {autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBIntField $hidden ;\n"
+    "extern outlet class EBIntField : NSControl ;\n"
     "binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBIntObserverField $hidden ;\n"
+    "extern outlet class EBIntObserverField : NSView ;\n"
     "binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBFontButton $enabled $hidden ;\n"
+    "extern outlet class EBFontButton : NSControl ;\n"
     "binding EBFontButton $fontValue : property NSFont ;\n"
     "\n"
     "\n"
-    "extern outlet class EBPopUpButton $enabled $hidden ;\n"
+    "extern outlet class EBPopUpButton : NSControl ;\n"
     "binding EBPopUpButton $selectedTag : property Int ;\n"
     "\n"
     "\n"
-    "extern outlet class EBGroupButton $enabled $hidden ;\n"
+    "extern outlet class EBGroupButton : NSControl ;\n"
     "binding EBGroupButton $selectedIndex : property Int ;\n"
     "\n"
     "\n"
-    "extern outlet class EBImageObserverView $enabled $hidden ;\n"
+    "extern outlet class EBImageObserverView : NSView ;\n"
     "binding EBImageObserverView $image : transient NSImage ;\n"
     "binding EBImageObserverView $tooltip : transient String ;\n"
     "\n"
@@ -11626,41 +11649,41 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding EBCheckedMenuItem $checked : property Bool ;\n"
     "\n"
     "\n"
-    "extern outlet class EBProgressIndicator $hidden ;\n"
+    "extern outlet class EBProgressIndicator : NSView ;\n"
     "\n"
     "\n"
-    "extern outlet class EBSegmentedControl $enabled $hidden ;\n"
+    "extern outlet class EBSegmentedControl : NSControl ;\n"
     "binding EBSegmentedControl $selectedIndex : property Int ;\n"
     "\n"
     "\n"
-    "extern outlet class EBSlider $enabled $hidden ;\n"
+    "extern outlet class EBSlider : NSControl ;\n"
     "binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;\n"
     "binding EBSlider $intValue : property Int {sendContinously:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBStepper $enabled $hidden ;\n"
+    "extern outlet class EBStepper : NSControl ;\n"
     "binding EBStepper $value : property Int {sendContinously:Bool} ;\n"
     "\n"
     "\n"
-    "extern outlet class EBSwitch $enabled $hidden ;\n"
+    "extern outlet class EBSwitch : NSControl ;\n"
     "binding EBSwitch $value : property Bool ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTableView $enabled $tableValue $hidden ;\n"
+    "extern outlet class EBTableView : NSControl $tableValue ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTextField $enabled $hidden ;\n"
+    "extern outlet class EBTextField : NSControl ;\n"
     "binding EBTextField $value : property String {sendContinously : Bool} ;\n"
     "\n"
-    "extern outlet class EBTextObserverField $hidden ;\n"
+    "extern outlet class EBTextObserverField : NSView ;\n"
     "binding EBTextObserverField $valueObserver : transient String ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTextObserverView $hidden ;\n"
+    "extern outlet class EBTextObserverView : NSView ;\n"
     "binding EBTextObserverView $valueObserver : transient String ;\n"
     "\n"
     "\n"
-    "extern outlet class EBTextView $hidden ;\n"
+    "extern outlet class EBTextView : NSControl ;\n"
     "binding EBTextView $value : property String ;\n"
     "\n"
     "extern outlet class EBWindow ;\n" ;

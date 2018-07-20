@@ -1156,6 +1156,12 @@ typealias EBReadOnlyPropertyArray_CALayer  = EBReadOnlyClassProperty <[CALayer]>
 typealias EBTransientPropertyArray_CALayer = EBTransientClassProperty <[CALayer]>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Property CGFloat
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_CGFloat  = EBReadOnlyValueProperty <CGFloat>
+typealias EBTransientProperty_CGFloat = EBTransientValueProperty <CGFloat>
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Transient property class NSImage
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
