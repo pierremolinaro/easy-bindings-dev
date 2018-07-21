@@ -223,6 +223,7 @@ proc analyzeOutlets
     [!?outletMap insertKey !outlet_mOutletName !outlet_mOutletTypeName.string]
     [inSemanticContext.mOutletClassMap searchKey
       !outlet_mOutletTypeName
+      ?*
       ?let @bool handlesRunAction
       ?let @bool handlesTableViewBinding
       ?let @bool handlesEnabledBinding
@@ -400,15 +401,27 @@ proc analyzeRegularBinding
       boundModelTypeList += !type !kind ![mObservableProperty location]
     end
   #--- Analyze outlet binding
-    [inSemanticContext.mBindingSpecificationMap searchKey
-      !inOutletTypeName # outlet_mOutletTypeName
-      ?let @outletBindingSpecificationMap bindingMap
-    ]
-    [bindingMap searchKey
-      !mBindingName
-      ?let @outletBindingSpecificationModelList outletBindingSpecificationModelList
-      ?let @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList
-    ]
+    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var outletTypeName = inOutletTypeName
+    var found = false
+    loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & not found do
+      [inSemanticContext.mBindingSpecificationMap searchKey
+        !inOutletTypeName
+        ?let superOutletClassName
+        ?let @outletBindingSpecificationMap bindingMap
+      ]
+      if [bindingMap hasKey !mBindingName.string] then
+        found = true
+        [bindingMap searchKey
+          !mBindingName
+          ?outletBindingSpecificationModelList
+          ?controllerBindingOptionDecoratedList
+        ]
+      else
+        outletTypeName = superOutletClassName
+      end
+    end
     if [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
       error mBindingName : [[outletBindingSpecificationModelList length] string] + " model(s) required for this binding"
     else

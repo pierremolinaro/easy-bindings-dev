@@ -67,6 +67,7 @@ proc semanticAnalysis
 #--- Build binding specification map
   buildBindingSpecificationMap (
     !inUnifiedTypeMap
+    !outletClassMap
     !inAstDeclarationStruct.mBindingSpecificationListMap
     ?let @bindingSpecificationMap bindingSpecificationMap
   )

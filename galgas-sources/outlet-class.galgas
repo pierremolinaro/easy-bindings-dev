@@ -76,6 +76,7 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 map @outletClassMap {
+  @lstring mSuperClassName
   @bool mHandlesRunAction
   @bool mHandlesTableValueBinding
   @bool mHandleEnabledBinding
@@ -98,6 +99,7 @@ method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutle
     if mSuperClassName.string == "" then
       [!?outOutletClassMap insertKey
         !mOutletClassName
+        !["" nowhere] # No super class
         !mHasRunAction
         !mHandlesTableValueBinding
         !mHasEnabled
@@ -127,6 +129,7 @@ method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutle
       if [outOutletClassMap hasKey !mSuperClassName.string] then
         [outOutletClassMap searchKey
           !mSuperClassName
+          ?*
           ?let hasRunAction
           ?let handlesTableValueBinding
           ?let hasEnabled
@@ -151,6 +154,7 @@ method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutle
         end
         [!?outOutletClassMap insertKey
           !mOutletClassName
+          !mSuperClassName
           !mHasRunAction | hasRunAction
           !mHandlesTableValueBinding | handlesTableValueBinding
           !mHasEnabled | hasEnabled

@@ -29,7 +29,7 @@ list @astDeclarationList {
 struct @astDeclarationStruct {
   @astDeclarationList mDeclarationList
   @outletClassDeclarationList mOutletClassDeclarationList
-  @bindingSpecificationListMap mBindingSpecificationListMap
+  @outletClassBindingSpecificationList mBindingSpecificationListMap
   @prefDeclaration mPreferences
   @lstring mXcodeProject
 }

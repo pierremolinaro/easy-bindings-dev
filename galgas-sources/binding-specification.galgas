@@ -18,15 +18,12 @@ list @outletClassBindingSpecificationModelList {
 #·······················································································································
 
 list @outletClassBindingSpecificationList {
+  @lstring mOutletClassName
   @bool mIsUserDefined
   @lstring mBindingName
   @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
   @controllerBindingOptionList mBindingOptionList
 }
-
-#·······················································································································
-
-listmap @bindingSpecificationListMap (@outletClassBindingSpecificationList)
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 #   SYNTAX                                                                                                             *
@@ -38,7 +35,7 @@ syntax extension easyBindings_syntax {
   
   rule <binding_specification>
     ?let @bool inIsUserDefined
-    ?!@bindingSpecificationListMap ioControllerTemplateList
+    ?!@outletClassBindingSpecificationList ioControllerTemplateList
   {
     $binding$
     $Identifier$ ?let @lstring outletClassName
@@ -81,7 +78,7 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioControllerTemplateList +=
-      !outletClassName.string
+      !outletClassName
       !inIsUserDefined
       !bindingName
       !outletClassBindingSpecificationModelList
@@ -97,9 +94,11 @@ syntax extension easyBindings_syntax {
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 map @bindingSpecificationMap {
+  @lstring mOutletSuperClassName
   @outletBindingSpecificationMap mBindingMap
   insert insertKey error message "the '%K' binding is already declared in %L"
   search searchKey error message "there is no '%K' binding"
+  remove removeKey error message "there is no '%K' binding"
 }
 
 #·······················································································································
@@ -129,33 +128,37 @@ map @outletBindingSpecificationMap {
 
 proc buildBindingSpecificationMap
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?let @bindingSpecificationListMap inBindingSpecificationListMap
+  ?let @outletClassMap inOutletClassMap
+  ?let @outletClassBindingSpecificationList inBindingSpecificationListMap
   !@bindingSpecificationMap outBindingSpecificationMap
 {
   outBindingSpecificationMap = {}
-  for (key bindingList) in inBindingSpecificationListMap do
-    @outletBindingSpecificationMap outletBindingSpecificationMap = {}
-    for () in bindingList do
-      @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-      for () in mOutletClassBindingSpecificationModelList do
-        [inUnifiedTypeMap searchKey !mModelTypeName ?let @typeKind type ?*]
-        outletBindingSpecificationModelList += !type !mModelShouldBeWritableProperty
-      end
-      @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
-      for () in mBindingOptionList do
-        [inUnifiedTypeMap searchKey !mOptionTypeName ?let @typeKind type ?*]
-        controllerBindingOptionDecoratedList += !type !mOptionName
-      end
-      [!?outletBindingSpecificationMap insertKey
-        !mBindingName
-        !outletBindingSpecificationModelList
-        !controllerBindingOptionDecoratedList
-      ]
+  for () in inBindingSpecificationListMap do
+    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    for () in mOutletClassBindingSpecificationModelList do
+      [inUnifiedTypeMap searchKey !mModelTypeName ?let @typeKind type ?*]
+      outletBindingSpecificationModelList += !type !mModelShouldBeWritableProperty
     end
-    [!?outBindingSpecificationMap insertKey
-      ![key nowhere]
-      !outletBindingSpecificationMap
+    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    for () in mBindingOptionList do
+      [inUnifiedTypeMap searchKey !mOptionTypeName ?let @typeKind type ?*]
+      controllerBindingOptionDecoratedList += !type !mOptionName
+    end
+  #--- Insert in binding map
+    @outletBindingSpecificationMap bindingMap
+    @lstring outletSuperClassName
+    if [outBindingSpecificationMap hasKey !mOutletClassName.string] then
+      [!?outBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
+    else
+      bindingMap = {}
+      [inOutletClassMap searchKey !mOutletClassName ?outletSuperClassName ?6*]
+    end
+    [!?bindingMap insertKey
+      !mBindingName
+      !outletBindingSpecificationModelList
+      !controllerBindingOptionDecoratedList
     ]
+    [!?outBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
   end
 }
 

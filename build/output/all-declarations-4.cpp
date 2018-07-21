@@ -116,117 +116,6 @@ GALGAS_astDeclaration GALGAS_astDeclaration::extractObject (const GALGAS_object 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bindingSpecificationListMap::GALGAS_bindingSpecificationListMap (void) :
-AC_GALGAS_listmap () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bindingSpecificationListMap GALGAS_bindingSpecificationListMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_bindingSpecificationListMap result ;
-  result.makeNewEmptyListMap (THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_bindingSpecificationListMap::addAssign_operation (const GALGAS_string & inKey,
-                                                              const GALGAS_bool & inOperand0,
-                                                              const GALGAS_lstring & inOperand1,
-                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                              const GALGAS_controllerBindingOptionList & inOperand3
-                                                              COMMA_LOCATION_ARGS) {
-  if (isValid () && inKey.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    capCollectionElement attributes ;
-    GALGAS_outletClassBindingSpecificationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE) ;
-    addObjectInListMap (inKey.stringValue (), attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_outletClassBindingSpecificationList GALGAS_bindingSpecificationListMap::getter_listForKey (const GALGAS_string & inKey
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
-  return GALGAS_outletClassBindingSpecificationList (listForKey (inKey)) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_bindingSpecificationListMap::cEnumerator_bindingSpecificationListMap (const GALGAS_bindingSpecificationListMap & inEnumeratedObject,
-                                                                                  const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bindingSpecificationListMap_2D_element cEnumerator_bindingSpecificationListMap::current (LOCATION_ARGS) const {
-  const cListMapElement * p = (const cListMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cListMapElement) ;
-  return GALGAS_bindingSpecificationListMap_2D_element (p->mKey, p->mSharedListMapList) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cEnumerator_bindingSpecificationListMap::current_key (LOCATION_ARGS) const {
-  const cListMapElement * p = (const cListMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cListMapElement) ;
-  return GALGAS_string (p->mKey) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_outletClassBindingSpecificationList cEnumerator_bindingSpecificationListMap::current_mList (LOCATION_ARGS) const {
-  const cListMapElement * p = (const cListMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cListMapElement) ;
-  return GALGAS_outletClassBindingSpecificationList (p->mSharedListMapList) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                          @bindingSpecificationListMap type                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bindingSpecificationListMap ("bindingSpecificationListMap",
-                                                    NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_bindingSpecificationListMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bindingSpecificationListMap ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_bindingSpecificationListMap::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bindingSpecificationListMap (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bindingSpecificationListMap GALGAS_bindingSpecificationListMap::extractObject (const GALGAS_object & inObject,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_bindingSpecificationListMap result ;
-  const GALGAS_bindingSpecificationListMap * p = (const GALGAS_bindingSpecificationListMap *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bindingSpecificationListMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bindingSpecificationListMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 GALGAS_prefDeclaration::GALGAS_prefDeclaration (void) :
 mProperty_mOutletDeclarationList (),
 mProperty_mSimpleStoredAttributeList (),
@@ -7788,6 +7677,7 @@ GALGAS_outletClassDeclarationList_2D_element GALGAS_outletClassDeclarationList_2
 
 GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (void) :
 mProperty_lkey (),
+mProperty_mSuperClassName (),
 mProperty_mHandlesRunAction (),
 mProperty_mHandlesTableValueBinding (),
 mProperty_mHandleEnabledBinding (),
@@ -7804,25 +7694,28 @@ GALGAS_outletClassMap_2D_element::~ GALGAS_outletClassMap_2D_element (void) {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassMap_2D_element::GALGAS_outletClassMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                    const GALGAS_bool & inOperand1,
+                                                                    const GALGAS_lstring & inOperand1,
                                                                     const GALGAS_bool & inOperand2,
                                                                     const GALGAS_bool & inOperand3,
                                                                     const GALGAS_bool & inOperand4,
                                                                     const GALGAS_bool & inOperand5,
-                                                                    const GALGAS_bool & inOperand6) :
+                                                                    const GALGAS_bool & inOperand6,
+                                                                    const GALGAS_bool & inOperand7) :
 mProperty_lkey (inOperand0),
-mProperty_mHandlesRunAction (inOperand1),
-mProperty_mHandlesTableValueBinding (inOperand2),
-mProperty_mHandleEnabledBinding (inOperand3),
-mProperty_mHandleHiddenBinding (inOperand4),
-mProperty_mHandleGraphicControllerBinding (inOperand5),
-mProperty_mUserDefined (inOperand6) {
+mProperty_mSuperClassName (inOperand1),
+mProperty_mHandlesRunAction (inOperand2),
+mProperty_mHandlesTableValueBinding (inOperand3),
+mProperty_mHandleEnabledBinding (inOperand4),
+mProperty_mHandleHiddenBinding (inOperand5),
+mProperty_mHandleGraphicControllerBinding (inOperand6),
+mProperty_mUserDefined (inOperand7) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                           GALGAS_lstring::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
                                            GALGAS_bool::constructor_default (HERE),
@@ -7834,16 +7727,17 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_d
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_bool & inOperand1,
+                                                                                    const GALGAS_lstring & inOperand1,
                                                                                     const GALGAS_bool & inOperand2,
                                                                                     const GALGAS_bool & inOperand3,
                                                                                     const GALGAS_bool & inOperand4,
                                                                                     const GALGAS_bool & inOperand5,
-                                                                                    const GALGAS_bool & inOperand6 
+                                                                                    const GALGAS_bool & inOperand6,
+                                                                                    const GALGAS_bool & inOperand7 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
+    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7) ;
   }
   return result ;
 }
@@ -7854,6 +7748,9 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
    typeComparisonResult result = kOperandEqual ;
   if (result == kOperandEqual) {
     result = mProperty_lkey.objectCompare (inOperand.mProperty_lkey) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mSuperClassName.objectCompare (inOperand.mProperty_mSuperClassName) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mHandlesRunAction.objectCompare (inOperand.mProperty_mHandlesRunAction) ;
@@ -7879,13 +7776,14 @@ typeComparisonResult GALGAS_outletClassMap_2D_element::objectCompare (const GALG
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassMap_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void GALGAS_outletClassMap_2D_element::drop (void) {
   mProperty_lkey.drop () ;
+  mProperty_mSuperClassName.drop () ;
   mProperty_mHandlesRunAction.drop () ;
   mProperty_mHandlesTableValueBinding.drop () ;
   mProperty_mHandleEnabledBinding.drop () ;
@@ -7903,6 +7801,8 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
     ioString << " not built" ;
   }else{
     mProperty_lkey.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mHandlesRunAction.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -7923,6 +7823,12 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
 
 GALGAS_lstring GALGAS_outletClassMap_2D_element::getter_lkey (UNUSED_LOCATION_ARGS) const {
   return mProperty_lkey ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_outletClassMap_2D_element::getter_mSuperClassName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSuperClassName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8283,6 +8189,7 @@ GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBin
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassBindingSpecificationList_2D_element::GALGAS_outletClassBindingSpecificationList_2D_element (void) :
+mProperty_mOutletClassName (),
 mProperty_mIsUserDefined (),
 mProperty_mBindingName (),
 mProperty_mOutletClassBindingSpecificationModelList (),
@@ -8296,20 +8203,23 @@ GALGAS_outletClassBindingSpecificationList_2D_element::~ GALGAS_outletClassBindi
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_outletClassBindingSpecificationList_2D_element::GALGAS_outletClassBindingSpecificationList_2D_element (const GALGAS_bool & inOperand0,
-                                                                                                              const GALGAS_lstring & inOperand1,
-                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                                                              const GALGAS_controllerBindingOptionList & inOperand3) :
-mProperty_mIsUserDefined (inOperand0),
-mProperty_mBindingName (inOperand1),
-mProperty_mOutletClassBindingSpecificationModelList (inOperand2),
-mProperty_mBindingOptionList (inOperand3) {
+GALGAS_outletClassBindingSpecificationList_2D_element::GALGAS_outletClassBindingSpecificationList_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                                              const GALGAS_bool & inOperand1,
+                                                                                                              const GALGAS_lstring & inOperand2,
+                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand3,
+                                                                                                              const GALGAS_controllerBindingOptionList & inOperand4) :
+mProperty_mOutletClassName (inOperand0),
+mProperty_mIsUserDefined (inOperand1),
+mProperty_mBindingName (inOperand2),
+mProperty_mOutletClassBindingSpecificationModelList (inOperand3),
+mProperty_mBindingOptionList (inOperand4) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_outletClassBindingSpecificationList_2D_element (GALGAS_bool::constructor_default (HERE),
+  return GALGAS_outletClassBindingSpecificationList_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                                                GALGAS_bool::constructor_default (HERE),
                                                                 GALGAS_lstring::constructor_default (HERE),
                                                                 GALGAS_outletClassBindingSpecificationModelList::constructor_emptyList (HERE),
                                                                 GALGAS_controllerBindingOptionList::constructor_emptyList (HERE)) ;
@@ -8317,14 +8227,15 @@ GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_bool & inOperand0,
-                                                                                                                              const GALGAS_lstring & inOperand1,
-                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                                                                              const GALGAS_controllerBindingOptionList & inOperand3 
+GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                                              const GALGAS_bool & inOperand1,
+                                                                                                                              const GALGAS_lstring & inOperand2,
+                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand3,
+                                                                                                                              const GALGAS_controllerBindingOptionList & inOperand4 
                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassBindingSpecificationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_outletClassBindingSpecificationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_outletClassBindingSpecificationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
   }
   return result ;
 }
@@ -8333,6 +8244,9 @@ GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingS
 
 typeComparisonResult GALGAS_outletClassBindingSpecificationList_2D_element::objectCompare (const GALGAS_outletClassBindingSpecificationList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mOutletClassName.objectCompare (inOperand.mProperty_mOutletClassName) ;
+  }
   if (result == kOperandEqual) {
     result = mProperty_mIsUserDefined.objectCompare (inOperand.mProperty_mIsUserDefined) ;
   }
@@ -8351,12 +8265,13 @@ typeComparisonResult GALGAS_outletClassBindingSpecificationList_2D_element::obje
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_outletClassBindingSpecificationList_2D_element::isValid (void) const {
-  return mProperty_mIsUserDefined.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
+  return mProperty_mOutletClassName.isValid () && mProperty_mIsUserDefined.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void GALGAS_outletClassBindingSpecificationList_2D_element::drop (void) {
+  mProperty_mOutletClassName.drop () ;
   mProperty_mIsUserDefined.drop () ;
   mProperty_mBindingName.drop () ;
   mProperty_mOutletClassBindingSpecificationModelList.drop () ;
@@ -8371,6 +8286,8 @@ void GALGAS_outletClassBindingSpecificationList_2D_element::description (C_Strin
   if (! isValid ()) {
     ioString << " not built" ;
   }else{
+    mProperty_mOutletClassName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
     mProperty_mIsUserDefined.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mBindingName.description (ioString, inIndentation+1) ;
@@ -8380,6 +8297,12 @@ void GALGAS_outletClassBindingSpecificationList_2D_element::description (C_Strin
     mProperty_mBindingOptionList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_outletClassBindingSpecificationList_2D_element::getter_mOutletClassName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletClassName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8455,6 +8378,7 @@ GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingS
 
 GALGAS_bindingSpecificationMap_2D_element::GALGAS_bindingSpecificationMap_2D_element (void) :
 mProperty_lkey (),
+mProperty_mOutletSuperClassName (),
 mProperty_mBindingMap () {
 }
 
@@ -8466,26 +8390,30 @@ GALGAS_bindingSpecificationMap_2D_element::~ GALGAS_bindingSpecificationMap_2D_e
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_bindingSpecificationMap_2D_element::GALGAS_bindingSpecificationMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand1) :
+                                                                                      const GALGAS_lstring & inOperand1,
+                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand2) :
 mProperty_lkey (inOperand0),
-mProperty_mBindingMap (inOperand1) {
+mProperty_mOutletSuperClassName (inOperand1),
+mProperty_mBindingMap (inOperand2) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_bindingSpecificationMap_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                                    GALGAS_lstring::constructor_default (HERE),
                                                     GALGAS_outletBindingSpecificationMap::constructor_emptyMap (HERE)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand1 
+                                                                                                      const GALGAS_lstring & inOperand1,
+                                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand2 
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_bindingSpecificationMap_2D_element (inOperand0, inOperand1) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_bindingSpecificationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
   }
   return result ;
 }
@@ -8498,6 +8426,9 @@ typeComparisonResult GALGAS_bindingSpecificationMap_2D_element::objectCompare (c
     result = mProperty_lkey.objectCompare (inOperand.mProperty_lkey) ;
   }
   if (result == kOperandEqual) {
+    result = mProperty_mOutletSuperClassName.objectCompare (inOperand.mProperty_mOutletSuperClassName) ;
+  }
+  if (result == kOperandEqual) {
     result = mProperty_mBindingMap.objectCompare (inOperand.mProperty_mBindingMap) ;
   }
   return result ;
@@ -8506,13 +8437,14 @@ typeComparisonResult GALGAS_bindingSpecificationMap_2D_element::objectCompare (c
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_bindingSpecificationMap_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mBindingMap.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void GALGAS_bindingSpecificationMap_2D_element::drop (void) {
   mProperty_lkey.drop () ;
+  mProperty_mOutletSuperClassName.drop () ;
   mProperty_mBindingMap.drop () ;
 }
 
@@ -8526,6 +8458,8 @@ void GALGAS_bindingSpecificationMap_2D_element::description (C_String & ioString
   }else{
     mProperty_lkey.description (ioString, inIndentation+1) ;
     ioString << ", " ;
+    mProperty_mOutletSuperClassName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
     mProperty_mBindingMap.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
@@ -8535,6 +8469,12 @@ void GALGAS_bindingSpecificationMap_2D_element::description (C_String & ioString
 
 GALGAS_lstring GALGAS_bindingSpecificationMap_2D_element::getter_lkey (UNUSED_LOCATION_ARGS) const {
   return mProperty_lkey ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_bindingSpecificationMap_2D_element::getter_mOutletSuperClassName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletSuperClassName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10879,7 +10819,7 @@ GALGAS_astDeclarationStruct::~ GALGAS_astDeclarationStruct (void) {
 
 GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (const GALGAS_astDeclarationList & inOperand0,
                                                           const GALGAS_outletClassDeclarationList & inOperand1,
-                                                          const GALGAS_bindingSpecificationListMap & inOperand2,
+                                                          const GALGAS_outletClassBindingSpecificationList & inOperand2,
                                                           const GALGAS_prefDeclaration & inOperand3,
                                                           const GALGAS_lstring & inOperand4) :
 mProperty_mDeclarationList (inOperand0),
@@ -10894,7 +10834,7 @@ mProperty_mXcodeProject (inOperand4) {
 GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_astDeclarationStruct (GALGAS_astDeclarationList::constructor_emptyList (HERE),
                                       GALGAS_outletClassDeclarationList::constructor_emptyList (HERE),
-                                      GALGAS_bindingSpecificationListMap::constructor_emptyMap (HERE),
+                                      GALGAS_outletClassBindingSpecificationList::constructor_emptyList (HERE),
                                       GALGAS_prefDeclaration::constructor_default (HERE),
                                       GALGAS_lstring::constructor_default (HERE)) ;
 }
@@ -10903,7 +10843,7 @@ GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_default (UN
 
 GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_new (const GALGAS_astDeclarationList & inOperand0,
                                                                           const GALGAS_outletClassDeclarationList & inOperand1,
-                                                                          const GALGAS_bindingSpecificationListMap & inOperand2,
+                                                                          const GALGAS_outletClassBindingSpecificationList & inOperand2,
                                                                           const GALGAS_prefDeclaration & inOperand3,
                                                                           const GALGAS_lstring & inOperand4 
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
@@ -10987,7 +10927,7 @@ GALGAS_outletClassDeclarationList GALGAS_astDeclarationStruct::getter_mOutletCla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bindingSpecificationListMap GALGAS_astDeclarationStruct::getter_mBindingSpecificationListMap (UNUSED_LOCATION_ARGS) const {
+GALGAS_outletClassBindingSpecificationList GALGAS_astDeclarationStruct::getter_mBindingSpecificationListMap (UNUSED_LOCATION_ARGS) const {
   return mProperty_mBindingSpecificationListMap ;
 }
 
