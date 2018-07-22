@@ -8,8 +8,6 @@ property class NSColor (
   text, white, windowBackground, windowFrame, windowFrameText, yellow
 ) ;
 
-transient property class CALayer ;
-
 transient property struct CGFloat ;
 
 transient property class NSImage ;

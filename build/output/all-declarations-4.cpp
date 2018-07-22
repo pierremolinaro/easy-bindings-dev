@@ -11523,8 +11523,6 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "  text, white, windowBackground, windowFrame, windowFrameText, yellow\n"
     ") ;\n"
     "\n"
-    "transient property class CALayer ;\n"
-    "\n"
     "transient property struct CGFloat ;\n"
     "\n"
     "transient property class NSImage ;\n"
