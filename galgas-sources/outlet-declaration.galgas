@@ -404,25 +404,28 @@ proc analyzeRegularBinding
     @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
     @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     var outletTypeName = inOutletTypeName
-    var found = false
-    loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & not found do
+    var continues = true
+    loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & continues do
+      continues = false
       [inSemanticContext.mBindingSpecificationMap searchKey
-        !inOutletTypeName
+        !outletTypeName
         ?let superOutletClassName
         ?let @outletBindingSpecificationMap bindingMap
       ]
       if [bindingMap hasKey !mBindingName.string] then
-        found = true
         [bindingMap searchKey
           !mBindingName
           ?outletBindingSpecificationModelList
           ?controllerBindingOptionDecoratedList
         ]
       else
+        continues = true
         outletTypeName = superOutletClassName
       end
     end
-    if [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
+    if continues then
+      error mBindingName : "this binding is not defined"
+    elsif [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
       error mBindingName : [[outletBindingSpecificationModelList length] string] + " model(s) required for this binding"
     else
       for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do

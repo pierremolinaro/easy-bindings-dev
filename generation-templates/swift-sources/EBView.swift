@@ -74,7 +74,6 @@ fileprivate let DRAWS_ASYNCHRONOUSLY = true ;
    private weak var mViewController : EBViewControllerProtocol? = nil
    fileprivate var mObjectLayer = CALayer ()
    private var mObjectSelectionLayer = CALayer ()
-   private var mSelectionRectangleLayer = CALayer ()
 
   //····················································································································
   //  awakeFromNib
@@ -88,7 +87,6 @@ fileprivate let DRAWS_ASYNCHRONOUSLY = true ;
     self.mObjectLayer.isOpaque = OPAQUE_LAYERS
     self.layer?.addSublayer (mObjectLayer)
     self.layer?.addSublayer (mObjectSelectionLayer)
-    self.layer?.addSublayer (mSelectionRectangleLayer)
   }
 
   //····················································································································
@@ -121,12 +119,32 @@ fileprivate let DRAWS_ASYNCHRONOUSLY = true ;
   //····················································································································
 
   var objectSelectionLayer : CALayer { return mObjectSelectionLayer }
-  var selectionRectangleLayer : CALayer { return mSelectionRectangleLayer }
+
+  //····················································································································
+  //    Selection Rectangle Layer
+  //····················································································································
+
+  var selectionRectangleLayer : EBShapeLayer? = nil {
+    didSet {
+      if let oldSelectionRectangleLayer = oldValue {
+        self.setNeedsDisplay (oldSelectionRectangleLayer.boundingBox)
+      }
+      if let newSelectionRectangleLayer = selectionRectangleLayer {
+        self.setNeedsDisplay (newSelectionRectangleLayer.boundingBox)
+      }
+    }
+  }
 
   //····················································································································
 
   func indexesOfObjects (intersecting inRect : CGRect) -> Set <Int> {
-    return self.mObjectLayer.findIndexesOfObjects (intersecting: inRect)
+    var result = Set <Int> ()
+    for object in self.mObjects {
+      if (object.userIndex >= 0) && object.intersects (inRect) {
+        result.insert (object.userIndex)
+      }
+    }
+    return result
   }
 
   //····················································································································
@@ -264,6 +282,66 @@ fileprivate let DRAWS_ASYNCHRONOUSLY = true ;
   }
 
   //····················································································································
+  //    $objects binding
+  //····················································································································
+
+  private var mObjectsController : Controller_EBView_objects?
+
+  func bind_objects (_ objects:EBReadOnlyProperty_EBShapeLayerArray, file:String, line:Int) {
+    mObjectsController = Controller_EBView_objects (objects, outlet:self)
+  }
+
+  func unbind_objects () {
+    mObjectsController?.unregister ()
+    mObjectsController = nil
+  }
+
+  //····················································································································
+
+   private var mObjects = [EBShapeLayer] ()
+
+  //····················································································································
+
+  func setObjects (_ inObjects : [EBShapeLayer]) {
+    var invalidRect = NSZeroRect
+    let commonCount = min (self.mObjects.count, inObjects.count)
+    var idx = 0
+    while idx < commonCount {
+      let currentObjet = self.mObjects [idx]
+      let newObject = inObjects [idx]
+      if !newObject.sameDisplay(as: currentObjet) {
+        invalidRect = invalidRect.union (currentObjet.boundingBox)
+        invalidRect = invalidRect.union (newObject.boundingBox)
+      }
+      idx += 1
+    }
+  //--- Enter in invalid rect removed objects
+    while idx < self.mObjects.count {
+      invalidRect = invalidRect.union (self.mObjects [idx].boundingBox)
+      idx += 1
+    }
+  //--- Enter in invalid rect new objects
+    idx = commonCount
+    while idx < inObjects.count {
+      invalidRect = invalidRect.union (inObjects [idx].boundingBox)
+      idx += 1
+    }
+    self.mObjects = inObjects
+    self.setNeedsDisplay (invalidRect)
+  }
+
+  //····················································································································
+  //  Draw Dirty rect
+  //····················································································································
+
+  override func draw (_ inDirtyRect: NSRect) {
+    for object in self.mObjects {
+      object.draw (inDirtyRect)
+    }
+    self.selectionRectangleLayer?.draw (inDirtyRect)
+  }
+
+  //····················································································································
 
 }
 
@@ -365,6 +443,41 @@ final class Controller_EBView_shiftArrowKeyMagnitude : EBSimpleController {
       mOutlet.set (shiftArrowKeyMagnitude:v)
     case .multiple :
       break
+    }
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Controller_EBView_objects
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class Controller_EBView_objects : EBSimpleController {
+
+  private let mLayer : EBReadOnlyProperty_EBShapeLayerArray
+  private let mOutlet : EBView
+
+  //····················································································································
+
+  init (_ layer : EBReadOnlyProperty_EBShapeLayerArray, outlet : EBView) {
+    mLayer = layer
+    mOutlet = outlet
+    super.init (observedObjects:[layer], outlet:outlet)
+    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+  }
+
+  //····················································································································
+
+  private func updateOutlet () {
+    switch mLayer.prop {
+    case .empty :
+      mOutlet.setObjects ([])
+    case .single (let v) :
+      mOutlet.setObjects (v.objects)
+    case .multiple :
+      mOutlet.setObjects ([])
     }
   }
 

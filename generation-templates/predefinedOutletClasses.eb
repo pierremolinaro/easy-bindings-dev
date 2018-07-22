@@ -14,6 +14,15 @@ transient property struct CGFloat ;
 
 transient property class NSImage ;
 
+transient property struct EBShapes ;
+transient property struct EBShapeLayer ;
+transient property struct EBShapeLayerArray ;
+
+extern outlet class EBView : NSView ;
+binding EBView $objects : transient EBShapeLayerArray ;
+binding EBView $arrowKeyMagnitude : transient CGFloat ;
+binding EBView $shiftArrowKeyMagnitude : transient CGFloat ;
+
 extern outlet class NSView $hidden ;
 
 extern outlet class NSControl : NSView $enabled ;

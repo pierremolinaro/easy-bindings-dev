@@ -99,7 +99,7 @@ method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutle
     if mSuperClassName.string == "" then
       [!?outOutletClassMap insertKey
         !mOutletClassName
-        !["" nowhere] # No super class
+        !["" nowhere]  # No super class
         !mHasRunAction
         !mHandlesTableValueBinding
         !mHasEnabled

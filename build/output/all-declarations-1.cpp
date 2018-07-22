@@ -10463,78 +10463,78 @@ void extensionMethod_buildOutletClassMap (const GALGAS_outletClassDeclarationLis
     }
     enumerator_3678.gotoNextObject () ;
   }
-  GALGAS_bool var_continue_4330 = GALGAS_bool (true) ;
+  GALGAS_bool var_continue_4331 = GALGAS_bool (true) ;
   if (var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).isValid ()) {
-    uint32_t variant_4344 = var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).uintValue () ;
-    bool loop_4344 = true ;
-    while (loop_4344) {
-      loop_4344 = GALGAS_bool (kIsStrictSup, var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (var_continue_4330 COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).isValid () ;
-      if (loop_4344) {
-        loop_4344 = GALGAS_bool (kIsStrictSup, var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (var_continue_4330 COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).boolValue () ;
+    uint32_t variant_4345 = var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).uintValue () ;
+    bool loop_4345 = true ;
+    while (loop_4345) {
+      loop_4345 = GALGAS_bool (kIsStrictSup, var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (var_continue_4331 COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).isValid () ;
+      if (loop_4345) {
+        loop_4345 = GALGAS_bool (kIsStrictSup, var_remainingList_3656.getter_length (SOURCE_FILE ("outlet-class.galgas", 124)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (var_continue_4331 COMMA_SOURCE_FILE ("outlet-class.galgas", 124)).boolValue () ;
       }
-      if (loop_4344 && (0 == variant_4344)) {
-        loop_4344 = false ;
+      if (loop_4345 && (0 == variant_4345)) {
+        loop_4345 = false ;
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("outlet-class.galgas", 124)) ;
       }
-      if (loop_4344) {
-        variant_4344 -- ;
-        GALGAS_outletClassDeclarationList var_currentList_4442 = var_remainingList_3656 ;
+      if (loop_4345) {
+        variant_4345 -- ;
+        GALGAS_outletClassDeclarationList var_currentList_4443 = var_remainingList_3656 ;
         var_remainingList_3656 = GALGAS_outletClassDeclarationList::constructor_emptyList (SOURCE_FILE ("outlet-class.galgas", 126)) ;
-        var_continue_4330 = GALGAS_bool (false) ;
-        cEnumerator_outletClassDeclarationList enumerator_4528 (var_currentList_4442, kENUMERATION_UP) ;
-        while (enumerator_4528.hasCurrentObject ()) {
-          const enumGalgasBool test_2 = outArgument_outOutletClassMap.getter_hasKey (enumerator_4528.current_mSuperClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("outlet-class.galgas", 129)).boolEnum () ;
+        var_continue_4331 = GALGAS_bool (false) ;
+        cEnumerator_outletClassDeclarationList enumerator_4529 (var_currentList_4443, kENUMERATION_UP) ;
+        while (enumerator_4529.hasCurrentObject ()) {
+          const enumGalgasBool test_2 = outArgument_outOutletClassMap.getter_hasKey (enumerator_4529.current_mSuperClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("outlet-class.galgas", 129)).boolEnum () ;
           if (kBoolTrue == test_2) {
-            GALGAS_bool var_hasRunAction_4701 ;
-            GALGAS_bool var_handlesTableValueBinding_4741 ;
-            GALGAS_bool var_hasEnabled_4767 ;
-            GALGAS_bool var_hasHidden_4792 ;
-            GALGAS_bool var_handlesGraphicControllerBinding_4839 ;
-            GALGAS_lstring joker_4672 ; // Joker input parameter
-            GALGAS_bool joker_4851 ; // Joker input parameter
-            outArgument_outOutletClassMap.method_searchKey (enumerator_4528.current_mSuperClassName (HERE), joker_4672, var_hasRunAction_4701, var_handlesTableValueBinding_4741, var_hasEnabled_4767, var_hasHidden_4792, var_handlesGraphicControllerBinding_4839, joker_4851, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 130)) ;
-            const enumGalgasBool test_3 = enumerator_4528.current_mHasRunAction (HERE).operator_and (var_hasRunAction_4701 COMMA_SOURCE_FILE ("outlet-class.galgas", 140)).boolEnum () ;
+            GALGAS_bool var_hasRunAction_4702 ;
+            GALGAS_bool var_handlesTableValueBinding_4742 ;
+            GALGAS_bool var_hasEnabled_4768 ;
+            GALGAS_bool var_hasHidden_4793 ;
+            GALGAS_bool var_handlesGraphicControllerBinding_4840 ;
+            GALGAS_lstring joker_4673 ; // Joker input parameter
+            GALGAS_bool joker_4852 ; // Joker input parameter
+            outArgument_outOutletClassMap.method_searchKey (enumerator_4529.current_mSuperClassName (HERE), joker_4673, var_hasRunAction_4702, var_handlesTableValueBinding_4742, var_hasEnabled_4768, var_hasHidden_4793, var_handlesGraphicControllerBinding_4840, joker_4852, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 130)) ;
+            const enumGalgasBool test_3 = enumerator_4529.current_mHasRunAction (HERE).operator_and (var_hasRunAction_4702 COMMA_SOURCE_FILE ("outlet-class.galgas", 140)).boolEnum () ;
             if (kBoolTrue == test_3) {
               TC_Array <C_FixItDescription> fixItArray4 ;
-              inCompiler->emitSemanticError (enumerator_4528.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 141)), GALGAS_string ("$run binding already defined in superclass"), fixItArray4  COMMA_SOURCE_FILE ("outlet-class.galgas", 141)) ;
+              inCompiler->emitSemanticError (enumerator_4529.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 141)), GALGAS_string ("$run binding already defined in superclass"), fixItArray4  COMMA_SOURCE_FILE ("outlet-class.galgas", 141)) ;
             }
-            const enumGalgasBool test_5 = enumerator_4528.current_mHandlesTableValueBinding (HERE).operator_and (var_handlesTableValueBinding_4741 COMMA_SOURCE_FILE ("outlet-class.galgas", 143)).boolEnum () ;
+            const enumGalgasBool test_5 = enumerator_4529.current_mHandlesTableValueBinding (HERE).operator_and (var_handlesTableValueBinding_4742 COMMA_SOURCE_FILE ("outlet-class.galgas", 143)).boolEnum () ;
             if (kBoolTrue == test_5) {
               TC_Array <C_FixItDescription> fixItArray6 ;
-              inCompiler->emitSemanticError (enumerator_4528.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 144)), GALGAS_string ("$tableview binding already defined in superclass"), fixItArray6  COMMA_SOURCE_FILE ("outlet-class.galgas", 144)) ;
+              inCompiler->emitSemanticError (enumerator_4529.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 144)), GALGAS_string ("$tableview binding already defined in superclass"), fixItArray6  COMMA_SOURCE_FILE ("outlet-class.galgas", 144)) ;
             }
-            const enumGalgasBool test_7 = enumerator_4528.current_mHasEnabled (HERE).operator_and (var_hasEnabled_4767 COMMA_SOURCE_FILE ("outlet-class.galgas", 146)).boolEnum () ;
+            const enumGalgasBool test_7 = enumerator_4529.current_mHasEnabled (HERE).operator_and (var_hasEnabled_4768 COMMA_SOURCE_FILE ("outlet-class.galgas", 146)).boolEnum () ;
             if (kBoolTrue == test_7) {
               TC_Array <C_FixItDescription> fixItArray8 ;
-              inCompiler->emitSemanticError (enumerator_4528.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 147)), GALGAS_string ("$enabled binding already defined in superclass"), fixItArray8  COMMA_SOURCE_FILE ("outlet-class.galgas", 147)) ;
+              inCompiler->emitSemanticError (enumerator_4529.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 147)), GALGAS_string ("$enabled binding already defined in superclass"), fixItArray8  COMMA_SOURCE_FILE ("outlet-class.galgas", 147)) ;
             }
-            const enumGalgasBool test_9 = enumerator_4528.current_mHasHidden (HERE).operator_and (var_hasHidden_4792 COMMA_SOURCE_FILE ("outlet-class.galgas", 149)).boolEnum () ;
+            const enumGalgasBool test_9 = enumerator_4529.current_mHasHidden (HERE).operator_and (var_hasHidden_4793 COMMA_SOURCE_FILE ("outlet-class.galgas", 149)).boolEnum () ;
             if (kBoolTrue == test_9) {
               TC_Array <C_FixItDescription> fixItArray10 ;
-              inCompiler->emitSemanticError (enumerator_4528.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 150)), GALGAS_string ("$hidden binding already defined in superclass"), fixItArray10  COMMA_SOURCE_FILE ("outlet-class.galgas", 150)) ;
+              inCompiler->emitSemanticError (enumerator_4529.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 150)), GALGAS_string ("$hidden binding already defined in superclass"), fixItArray10  COMMA_SOURCE_FILE ("outlet-class.galgas", 150)) ;
             }
-            const enumGalgasBool test_11 = enumerator_4528.current_mHandlesGraphicControllerBinding (HERE).operator_and (var_handlesGraphicControllerBinding_4839 COMMA_SOURCE_FILE ("outlet-class.galgas", 152)).boolEnum () ;
+            const enumGalgasBool test_11 = enumerator_4529.current_mHandlesGraphicControllerBinding (HERE).operator_and (var_handlesGraphicControllerBinding_4840 COMMA_SOURCE_FILE ("outlet-class.galgas", 152)).boolEnum () ;
             if (kBoolTrue == test_11) {
               TC_Array <C_FixItDescription> fixItArray12 ;
-              inCompiler->emitSemanticError (enumerator_4528.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 153)), GALGAS_string ("$graphicControler binding already defined in superclass"), fixItArray12  COMMA_SOURCE_FILE ("outlet-class.galgas", 153)) ;
+              inCompiler->emitSemanticError (enumerator_4529.current_mOutletClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 153)), GALGAS_string ("$graphicControler binding already defined in superclass"), fixItArray12  COMMA_SOURCE_FILE ("outlet-class.galgas", 153)) ;
             }
             {
-            outArgument_outOutletClassMap.setter_insertKey (enumerator_4528.current_mOutletClassName (HERE), enumerator_4528.current_mSuperClassName (HERE), enumerator_4528.current_mHasRunAction (HERE).operator_or (var_hasRunAction_4701 COMMA_SOURCE_FILE ("outlet-class.galgas", 158)), enumerator_4528.current_mHandlesTableValueBinding (HERE).operator_or (var_handlesTableValueBinding_4741 COMMA_SOURCE_FILE ("outlet-class.galgas", 159)), enumerator_4528.current_mHasEnabled (HERE).operator_or (var_hasEnabled_4767 COMMA_SOURCE_FILE ("outlet-class.galgas", 160)), enumerator_4528.current_mHasHidden (HERE).operator_or (var_hasHidden_4792 COMMA_SOURCE_FILE ("outlet-class.galgas", 161)), enumerator_4528.current_mHandlesGraphicControllerBinding (HERE).operator_or (var_handlesGraphicControllerBinding_4839 COMMA_SOURCE_FILE ("outlet-class.galgas", 162)), enumerator_4528.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 155)) ;
+            outArgument_outOutletClassMap.setter_insertKey (enumerator_4529.current_mOutletClassName (HERE), enumerator_4529.current_mSuperClassName (HERE), enumerator_4529.current_mHasRunAction (HERE).operator_or (var_hasRunAction_4702 COMMA_SOURCE_FILE ("outlet-class.galgas", 158)), enumerator_4529.current_mHandlesTableValueBinding (HERE).operator_or (var_handlesTableValueBinding_4742 COMMA_SOURCE_FILE ("outlet-class.galgas", 159)), enumerator_4529.current_mHasEnabled (HERE).operator_or (var_hasEnabled_4768 COMMA_SOURCE_FILE ("outlet-class.galgas", 160)), enumerator_4529.current_mHasHidden (HERE).operator_or (var_hasHidden_4793 COMMA_SOURCE_FILE ("outlet-class.galgas", 161)), enumerator_4529.current_mHandlesGraphicControllerBinding (HERE).operator_or (var_handlesGraphicControllerBinding_4840 COMMA_SOURCE_FILE ("outlet-class.galgas", 162)), enumerator_4529.current_mUserDefined (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 155)) ;
             }
           }else if (kBoolFalse == test_2) {
-            var_continue_4330 = GALGAS_bool (true) ;
-            var_remainingList_3656.addAssign_operation (enumerator_4528.current_mUserDefined (HERE), enumerator_4528.current_mOutletClassName (HERE), enumerator_4528.current_mSuperClassName (HERE), enumerator_4528.current_mHasRunAction (HERE), enumerator_4528.current_mHasEnabled (HERE), enumerator_4528.current_mHandlesTableValueBinding (HERE), enumerator_4528.current_mHandlesGraphicControllerBinding (HERE), enumerator_4528.current_mHasHidden (HERE)  COMMA_SOURCE_FILE ("outlet-class.galgas", 167)) ;
+            var_continue_4331 = GALGAS_bool (true) ;
+            var_remainingList_3656.addAssign_operation (enumerator_4529.current_mUserDefined (HERE), enumerator_4529.current_mOutletClassName (HERE), enumerator_4529.current_mSuperClassName (HERE), enumerator_4529.current_mHasRunAction (HERE), enumerator_4529.current_mHasEnabled (HERE), enumerator_4529.current_mHandlesTableValueBinding (HERE), enumerator_4529.current_mHandlesGraphicControllerBinding (HERE), enumerator_4529.current_mHasHidden (HERE)  COMMA_SOURCE_FILE ("outlet-class.galgas", 167)) ;
           }
-          enumerator_4528.gotoNextObject () ;
+          enumerator_4529.gotoNextObject () ;
         }
       }
     }
   }
-  cEnumerator_outletClassDeclarationList enumerator_6450 (var_remainingList_3656, kENUMERATION_UP) ;
-  while (enumerator_6450.hasCurrentObject ()) {
+  cEnumerator_outletClassDeclarationList enumerator_6451 (var_remainingList_3656, kENUMERATION_UP) ;
+  while (enumerator_6451.hasCurrentObject ()) {
     TC_Array <C_FixItDescription> fixItArray13 ;
-    inCompiler->emitSemanticError (enumerator_6450.current_mSuperClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 181)), GALGAS_string ("undefined outlet class"), fixItArray13  COMMA_SOURCE_FILE ("outlet-class.galgas", 181)) ;
-    enumerator_6450.gotoNextObject () ;
+    inCompiler->emitSemanticError (enumerator_6451.current_mSuperClassName (HERE).getter_location (SOURCE_FILE ("outlet-class.galgas", 181)), GALGAS_string ("undefined outlet class"), fixItArray13  COMMA_SOURCE_FILE ("outlet-class.galgas", 181)) ;
+    enumerator_6451.gotoNextObject () ;
   }
 }
 
