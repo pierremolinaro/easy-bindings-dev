@@ -1171,6 +1171,27 @@ typealias EBReadOnlyPropertyArray_NSImage  = EBReadOnlyClassProperty <[NSImage]>
 typealias EBTransientPropertyArray_NSImage = EBTransientClassProperty <[NSImage]>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Transient property class EBShapes
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_EBShapes  = EBReadOnlyClassProperty <EBShapes>
+typealias EBTransientProperty_EBShapes = EBTransientClassProperty <EBShapes>
+typealias EBReadOnlyPropertyArray_EBShapes  = EBReadOnlyClassProperty <[EBShapes]>
+typealias EBTransientPropertyArray_EBShapes = EBTransientClassProperty <[EBShapes]>
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Property EBShapeLayer
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_EBShapeLayer  = EBReadOnlyValueProperty <EBShapeLayer>
+typealias EBTransientProperty_EBShapeLayer = EBTransientValueProperty <EBShapeLayer>
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Property EBShapeLayerArray
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_EBShapeLayerArray  = EBReadOnlyValueProperty <EBShapeLayerArray>
+typealias EBTransientProperty_EBShapeLayerArray = EBTransientValueProperty <EBShapeLayerArray>
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Property Date
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
