@@ -1567,7 +1567,7 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  CE426F7F9B2BEF0706315E0C /* easy_bindings_icns.icns */ = {
+  CE426F7F9B2BEF0706315E0C /* eb_icns.icns */ = {
     isa = PBXBuildFile;
     fileRef = B37FEEDFDEAAB192EAD4AC0E ;
     settings = {ATTRIBUTES = (); };
@@ -5328,8 +5328,8 @@
   B37FEEDFDEAAB192EAD4AC0E = {
     isa = PBXFileReference;
     lastKnownFileType = image.icns;
-    name = "easy_bindings_icns.icns";
-    path = "easy_bindings_icns.icns";
+    name = "eb_icns.icns";
+    path = "eb_icns.icns";
     sourceTree = "<group>";
   };
 
