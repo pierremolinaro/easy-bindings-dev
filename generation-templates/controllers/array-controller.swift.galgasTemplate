@@ -706,6 +706,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func mouseDown (with inEvent: NSEvent, objectIndex inObjectIndex : Int) {
+    mModel?.owner?.undoManager ()?.beginUndoGrouping ()
     mLastMouseDraggedLocation = mEBView?.convert (inEvent.locationInWindow, from:nil)
     let objects = mModel?.propval ?? []
     let controlKey = inEvent.modifierFlags.contains (.control)
@@ -789,6 +790,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func mouseUp (with inEvent : NSEvent) {
+    mModel?.owner?.undoManager ()?.endUndoGrouping ()
     mLastMouseDraggedLocation = nil
     mSelectionRectangleOrigin = nil
     mEBView?.selectionRectangleLayer = nil
