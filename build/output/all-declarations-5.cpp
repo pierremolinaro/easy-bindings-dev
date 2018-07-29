@@ -2400,9 +2400,9 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext 
     }
     if (nonEmpty_enumerator_9216) {
       result << "    }else{\n"
-        "       let dictionary : [NSObject : Any] = [\n"
-        "        NSLocalizedDescriptionKey as NSObject : \"Cannot read document\",\n"
-        "        NSLocalizedRecoverySuggestionErrorKey as NSObject : \"Cannot create object of \\(inEntityTypeName) class\",\n"
+        "       let dictionary : [String : Any] = [\n"
+        "        NSLocalizedDescriptionKey : \"Cannot read document\",\n"
+        "        NSLocalizedRecoverySuggestionErrorKey : \"Cannot create object of \\(inEntityTypeName) class\",\n"
         "      ]\n"
         "      throw NSError (\n"
         "        domain:Bundle.main.bundleIdentifier!,\n"
