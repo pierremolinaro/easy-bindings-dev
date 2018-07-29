@@ -38,9 +38,9 @@ end
       for tableView in mTableViewArray {
         var first = true
         for (key, ascending) in mSortDescriptorArray {
-          if let column = tableView.tableColumn (withIdentifier: key) {
+          if let column = sw34_tableColumn (tableView, withIdentifier: key) {
             tableView.setIndicatorImage (
-              first ? NSImage (named:ascending ? "NSAscendingSortIndicator" : "NSDescendingSortIndicator") : nil,
+              first ? (ascending ? sw34_imageNamed ("NSAscendingSortIndicator") : sw34_imageNamed ("NSDescendingSortIndicator")) : nil,
               in:column
             )
             first = false
@@ -282,7 +282,7 @@ end
     mTableViewSelectionControllerArray.append (selectionTableViewController)
 %for () in BOUND_COLUMNS do
 %  //--- Check '%!mColumnName%' column
-    if let column : NSTableColumn = tableView.tableColumn (withIdentifier: "%!mColumnName%") {
+    if let column : NSTableColumn = sw34_tableColumn (tableView, withIdentifier: "%!mColumnName%") {
       column.sortDescriptorPrototype = nil
     }else{
       presentErrorWindow (file: file, line: line, errorMessage:"\"%!mColumnName%\" column view unknown")
@@ -292,7 +292,7 @@ end
 %  //--- Set descriptors from first column of table view
     var newSortDescriptorArray = [(String, Bool)] ()
     for column in tableView.tableColumns {
-      newSortDescriptorArray.append ((column.identifier, true)) // Ascending
+      newSortDescriptorArray.append ((sw34_columnIdentifier (column), true)) // Ascending
     }
     mSortDescriptorArray = newSortDescriptorArray
   }
@@ -377,7 +377,7 @@ end
   //····················································································································
 
   func tableView (_ tableView : NSTableView,
-                  viewFor tableColumn: NSTableColumn?,
+                  viewFor inTableColumn: NSTableColumn?,
                   row inRowIndex: Int) -> NSView? {
     if DEBUG_EVENT {
       print ("\(#function)")
@@ -389,8 +389,11 @@ else
     case .empty, .multiple :
       return nil
     case .single (let v) :
-      let columnIdentifier = tableColumn!.identifier
-      let result : NSTableCellView = tableView.make (withIdentifier: columnIdentifier, owner:self) as! NSTableCellView
+      #if swift(>=4)
+        let result : NSTableCellView = tableView.makeView (withIdentifier: (inTableColumn?.identifier)!, owner:self) as! NSTableCellView
+      #else
+        let result : NSTableCellView = tableView.make (withIdentifier: (inTableColumn?.identifier)!, owner:self) as! NSTableCellView
+      #endif
       if !reuseTableViewCells () {
         result.identifier = nil // So result cannot be reused, will be freed
       }
@@ -398,7 +401,7 @@ else
       %
 for () in BOUND_COLUMNS
   do
-    %if columnIdentifier == "%!mColumnName%" {\n%
+    %if sw34_isColumn (inTableColumn, hasIdentifier: "%!mColumnName%") {\n%
     %        if let cell : %!mColumnOutletTypeName%_TableViewCell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
     %          cell.mUnbindFunction = { [weak cell] in\n%
     if mRunAction != "" then
@@ -427,7 +430,7 @@ for () in BOUND_COLUMNS
     %}else %
   after
    %}else{\n%
-   %        NSLog ("Unknown column '\(columnIdentifier)'")\n%
+   %        NSLog ("Unknown column '\(String (describing: inTableColumn?.identifier))'")\n%
    %      }\n% 
 end
 %      return result
@@ -462,7 +465,7 @@ case storedArrayModel :
   //    add
   //····················································································································
 
-   func add (_ sender : Any) {
+   @objc func add (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -487,7 +490,7 @@ case storedArrayModel :
   //    remove
   //····················································································································
 
-  func remove (_ sender : Any) {
+  @objc func remove (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -586,7 +589,7 @@ case relationshipModel :
   //    add
   //····················································································································
 
-   func add (_ sender : Any) {
+   @objc func add (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -611,7 +614,7 @@ case relationshipModel :
   //    remove
   //····················································································································
 
-  func remove (_ sender : Any) {
+  @objc func remove (_ sender : Any) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }

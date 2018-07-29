@@ -71,11 +71,14 @@ import Cocoa
       alert.informativeText = "Please provide a valid value."
       alert.addButtonWithTitle ("Ok")
       alert.addButtonWithTitle ("Discard Change")
-      alert.beginSheetModalForWindow (window, completionHandler:{(response : NSModalResponse) -> Void in
-        if response == NSAlertSecondButtonReturn { // Discard Change
+      alert.beginSheetModalForWindow (
+        window,
+        completionHandler:{ (response : NSApplication.ModalResponse) -> Void in
+          if response == sw34_AlertSecondButtonReturn { // Discard Change
        //   self.integerValue = self.integerValue
+          }
         }
-      })
+      )
     }
     return false
   }

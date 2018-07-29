@@ -74,21 +74,21 @@ final class Controller_EBCheckedMenuItem_check : EBSimpleController {
     switch mIsChecked.prop {
     case .empty :
       mOutlet.isEnabled = false
-      mOutlet.state = 0
+      mOutlet.state = sw34_OffState
     case .single (let v) :
       mOutlet.isEnabled = true
-      mOutlet.state = v ? 1 : 0
+      mOutlet.state = v ? sw34_OnState : sw34_OffState
     case .multiple :
       mOutlet.isEnabled = false
-      mOutlet.state = 0
+      mOutlet.state = sw34_OffState
     }
   }
 
   //····················································································································
 
-  func menuItemAction (_ sender : AnyObject?) {
-   mOutlet.state = (mOutlet.state == 0) ? 1 : 0
-    _ = mIsChecked.validateAndSetProp (mOutlet.state == 1, windowForSheet:nil)
+  @objc func menuItemAction (_ sender : AnyObject?) {
+    mOutlet.state = (mOutlet.state == sw34_OffState) ? sw34_OnState : sw34_OffState
+    _ = mIsChecked.validateAndSetProp (mOutlet.state == sw34_OnState, windowForSheet:nil)
   }
 
   //····················································································································

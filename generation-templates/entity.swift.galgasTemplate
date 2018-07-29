@@ -743,7 +743,7 @@ end
 
   //····················································································································
 
-  func performUndo (_ oldValue : [%![mRelationshipType swiftTypeName]%]) {
+  @objc func performUndo (_ oldValue : [%![mRelationshipType swiftTypeName]%]) {
     mValue = oldValue
   }
 
@@ -906,7 +906,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
 
   //····················································································································
 
-  func performUndo (_ oldValue : %![mRelationshipType swiftTypeName]%?) {
+  @objc func performUndo (_ oldValue : %![mRelationshipType swiftTypeName]%?) {
     mValue = oldValue
   }
 
