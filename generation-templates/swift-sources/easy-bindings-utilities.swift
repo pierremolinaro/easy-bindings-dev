@@ -12,27 +12,19 @@ extension String {
 
   //····················································································································
   
-  var lastPathComponent : String {
-    get {
-      return (self as NSString).lastPathComponent
-    }
-  }
+  var lastPathComponent : String { return (self as NSString).lastPathComponent }
 
   //····················································································································
   
-  var deletingPathExtension : String {
-    get {
-      return (self as NSString).deletingPathExtension
-    }
-  }
+  var deletingPathExtension : String { return (self as NSString).deletingPathExtension }
 
   //····················································································································
   
-  var pathExtension : String {
-    get {
-      return (self as NSString).pathExtension
-    }
-  }
+  var pathExtension : String { return (self as NSString).pathExtension }
+
+  //····················································································································
+
+  var deletingLastPathComponent : String { return (self as NSString).deletingLastPathComponent }
 
   //····················································································································
 
