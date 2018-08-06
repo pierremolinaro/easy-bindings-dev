@@ -32,7 +32,7 @@ class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS
   public : GALGAS_simpleStoredPropertyListForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_simpleStoredPropertyListForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_simpleStoredPropertyListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_simpleStoredPropertyListForGeneration_2D_element (const GALGAS_typeKind & in_mType,
@@ -143,6 +143,10 @@ class GALGAS_transientDependencyListForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_transientDependencyListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_observablePropertyAST constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_string constinArgument2,
@@ -267,7 +271,7 @@ class GALGAS_transientDefinitionListForGeneration_2D_element : public AC_GALGAS_
   public : GALGAS_transientDefinitionListForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_transientDefinitionListForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_transientDefinitionListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_transientDefinitionListForGeneration_2D_element (const GALGAS_string & in_mOwnerName,
@@ -354,7 +358,7 @@ class GALGAS_entityObservablePropertyMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_entityObservablePropertyMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_entityObservablePropertyMap_2D_element (void) ;
+  public : virtual ~ GALGAS_entityObservablePropertyMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_entityObservablePropertyMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -478,6 +482,10 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_entityListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_simpleStoredPropertyListForGeneration constinArgument2,
@@ -690,7 +698,7 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_entityListForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_entityListForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_entityListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_entityListForGeneration_2D_element (const GALGAS_string & in_mEntityName,
@@ -802,7 +810,7 @@ class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
   public : GALGAS_outletDeclarationList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletDeclarationList_2D_element (void) ;
+  public : virtual ~ GALGAS_outletDeclarationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_outletDeclarationList_2D_element (const GALGAS_lstring & in_mOutletTypeName,
@@ -925,7 +933,7 @@ class GALGAS_documentObservablePropertyMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_documentObservablePropertyMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_documentObservablePropertyMap_2D_element (void) ;
+  public : virtual ~ GALGAS_documentObservablePropertyMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_documentObservablePropertyMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -1058,6 +1066,10 @@ class GALGAS_documentListForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_documentListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_simpleStoredPropertyListForGeneration constinArgument2,
@@ -1322,6 +1334,10 @@ class GALGAS_actionBindingListForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_actionBindingListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_string constinArgument2,
@@ -1481,6 +1497,10 @@ class GALGAS_ebViewGraphicControllerBindingGenerationList : public AC_GALGAS_lis
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -1621,6 +1641,10 @@ class GALGAS_multipleBindingGenerationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_multipleBindingGenerationList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration constinArgument2,
@@ -1775,6 +1799,10 @@ class GALGAS_regularBindingsGenerationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_regularBindingsGenerationList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_boundObjectList constinArgument2,
@@ -1934,6 +1962,10 @@ class GALGAS_tableViewBindingGenerationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_tableViewBindingGenerationList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -2196,7 +2228,7 @@ class GALGAS_documentListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_documentListForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_documentListForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_documentListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_documentListForGeneration_2D_element (const GALGAS_string & in_mDocumentName,
@@ -2311,7 +2343,7 @@ class GALGAS_decoratedOutletMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_decoratedOutletMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_decoratedOutletMap_2D_element (void) ;
+  public : virtual ~ GALGAS_decoratedOutletMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_decoratedOutletMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -2386,7 +2418,7 @@ class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_actionBindingListForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_actionBindingListForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_actionBindingListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_actionBindingListForGeneration_2D_element (const GALGAS_string & in_mOutletName,
@@ -2497,6 +2529,10 @@ class GALGAS_boundObjectList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_boundObjectList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_typeKind constinArgument1,
                                                        class GALGAS_propertyKind constinArgument2,
@@ -2620,7 +2656,7 @@ class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
   public : GALGAS_regularBindingsGenerationList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_regularBindingsGenerationList_2D_element (void) ;
+  public : virtual ~ GALGAS_regularBindingsGenerationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_regularBindingsGenerationList_2D_element (const GALGAS_string & in_mOutletName,
@@ -2767,7 +2803,7 @@ class GALGAS_multipleBindingGenerationList_2D_element : public AC_GALGAS_root {
   public : GALGAS_multipleBindingGenerationList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_multipleBindingGenerationList_2D_element (void) ;
+  public : virtual ~ GALGAS_multipleBindingGenerationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_multipleBindingGenerationList_2D_element (const GALGAS_string & in_mOutletName,
@@ -2949,6 +2985,10 @@ class GALGAS_arrayControllerBoundColumnListForGeneration : public AC_GALGAS_list
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_string constinArgument2,
@@ -3108,6 +3148,10 @@ class GALGAS_arrayControllerFilterListForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_arrayControllerFilterListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_typeKind constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -3248,6 +3292,10 @@ class GALGAS_arrayControllerSortedColumnListForGeneration : public AC_GALGAS_lis
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_typeKind constinArgument1,
                                                        class GALGAS_string constinArgument2,
@@ -3384,7 +3432,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_arrayControllerForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_arrayControllerForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_arrayControllerForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_arrayControllerForGeneration_2D_element (const GALGAS_string & in_mOwnerName,
@@ -3495,7 +3543,7 @@ class GALGAS_tableViewBindingGenerationList_2D_element : public AC_GALGAS_root {
   public : GALGAS_tableViewBindingGenerationList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_tableViewBindingGenerationList_2D_element (void) ;
+  public : virtual ~ GALGAS_tableViewBindingGenerationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_tableViewBindingGenerationList_2D_element (const GALGAS_string & in_mTableValueBindingOutletName,
@@ -3566,7 +3614,7 @@ class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element : public AC
   public : GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) ;
+  public : virtual ~ GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (const GALGAS_string & in_mEBViewOutletName,
@@ -3645,7 +3693,7 @@ class GALGAS_selectionControllerForGeneration_2D_element : public AC_GALGAS_root
   public : GALGAS_selectionControllerForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_selectionControllerForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_selectionControllerForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_selectionControllerForGeneration_2D_element (const GALGAS_string & in_mOwnerName,
@@ -3738,7 +3786,7 @@ class GALGAS_customObjectControllerForGeneration_2D_element : public AC_GALGAS_r
   public : GALGAS_customObjectControllerForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_customObjectControllerForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_customObjectControllerForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_customObjectControllerForGeneration_2D_element (const GALGAS_string & in_mOwnerName,
@@ -3819,7 +3867,7 @@ class GALGAS_mainXibDescriptorList_2D_element : public AC_GALGAS_root {
   public : GALGAS_mainXibDescriptorList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_mainXibDescriptorList_2D_element (void) ;
+  public : virtual ~ GALGAS_mainXibDescriptorList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_mainXibDescriptorList_2D_element (const GALGAS_mainXibLineDescriptorList & in_mLine) ;
@@ -3886,7 +3934,7 @@ class GALGAS_storedArrayPropertyList_2D_element : public AC_GALGAS_root {
   public : GALGAS_storedArrayPropertyList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_storedArrayPropertyList_2D_element (void) ;
+  public : virtual ~ GALGAS_storedArrayPropertyList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_storedArrayPropertyList_2D_element (const GALGAS_lstring & in_mElementClassName,
@@ -3986,6 +4034,10 @@ class GALGAS_storedArrayPropertyListForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_storedArrayPropertyListForGeneration_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -4094,7 +4146,7 @@ class GALGAS_storedArrayPropertyListForGeneration_2D_element : public AC_GALGAS_
   public : GALGAS_storedArrayPropertyListForGeneration_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_storedArrayPropertyListForGeneration_2D_element (void) ;
+  public : virtual ~ GALGAS_storedArrayPropertyListForGeneration_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_storedArrayPropertyListForGeneration_2D_element (const GALGAS_string & in_mElementClassName,
@@ -4217,7 +4269,7 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_outletClassMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletClassMap_2D_element (void) ;
+  public : virtual ~ GALGAS_outletClassMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_outletClassMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -4323,7 +4375,7 @@ class GALGAS_controllerBindingOptionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_controllerBindingOptionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_controllerBindingOptionList_2D_element (void) ;
+  public : virtual ~ GALGAS_controllerBindingOptionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_controllerBindingOptionList_2D_element (const GALGAS_lstring & in_mOptionName,
@@ -4394,7 +4446,7 @@ class GALGAS_outletClassBindingSpecificationModelList_2D_element : public AC_GAL
   public : GALGAS_outletClassBindingSpecificationModelList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletClassBindingSpecificationModelList_2D_element (void) ;
+  public : virtual ~ GALGAS_outletClassBindingSpecificationModelList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_outletClassBindingSpecificationModelList_2D_element (const GALGAS_lstring & in_mModelTypeName,
@@ -4614,7 +4666,7 @@ class GALGAS_bindingSpecificationMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_bindingSpecificationMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_bindingSpecificationMap_2D_element (void) ;
+  public : virtual ~ GALGAS_bindingSpecificationMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_bindingSpecificationMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -4718,6 +4770,10 @@ class GALGAS_controllerBindingOptionDecoratedList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_controllerBindingOptionDecoratedList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_typeKind constinArgument0,
                                                        class GALGAS_lstring constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -4855,6 +4911,10 @@ class GALGAS_outletBindingSpecificationModelList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_outletBindingSpecificationModelList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_typeKind constinArgument0,
                                                        class GALGAS_bool constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -4995,7 +5055,7 @@ class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_outletBindingSpecificationMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletBindingSpecificationMap_2D_element (void) ;
+  public : virtual ~ GALGAS_outletBindingSpecificationMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_outletBindingSpecificationMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -5067,7 +5127,7 @@ class GALGAS_outletBindingSpecificationModelList_2D_element : public AC_GALGAS_r
   public : GALGAS_outletBindingSpecificationModelList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_outletBindingSpecificationModelList_2D_element (void) ;
+  public : virtual ~ GALGAS_outletBindingSpecificationModelList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_outletBindingSpecificationModelList_2D_element (const GALGAS_typeKind & in_mModelType,
@@ -5135,7 +5195,7 @@ class GALGAS_controllerBindingOptionDecoratedList_2D_element : public AC_GALGAS_
   public : GALGAS_controllerBindingOptionDecoratedList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_controllerBindingOptionDecoratedList_2D_element (void) ;
+  public : virtual ~ GALGAS_controllerBindingOptionDecoratedList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_controllerBindingOptionDecoratedList_2D_element (const GALGAS_typeKind & in_mOptionType,
@@ -5182,72 +5242,4 @@ class GALGAS_controllerBindingOptionDecoratedList_2D_element : public AC_GALGAS_
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        @bindingOptionList_2D_element struct                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_bindingOptionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_mOptionName ;
-
-  public : GALGAS_abstractDefaultValue mProperty_mOptionValue ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_bindingOptionList_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_bindingOptionList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_bindingOptionList_2D_element (const GALGAS_lstring & in_mOptionName,
-                                                const GALGAS_abstractDefaultValue & in_mOptionValue) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_bindingOptionList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_bindingOptionList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                             const class GALGAS_abstractDefaultValue & inOperand1
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_bindingOptionList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOptionName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mOptionValue (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_bindingOptionList_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList_2D_element ;
 

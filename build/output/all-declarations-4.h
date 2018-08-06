@@ -135,7 +135,7 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
   public : GALGAS_preferencesForGeneration (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_preferencesForGeneration (void) ;
+  public : virtual ~ GALGAS_preferencesForGeneration (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_preferencesForGeneration (const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
@@ -272,7 +272,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : GALGAS_structForGeneration (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_structForGeneration (void) ;
+  public : virtual ~ GALGAS_structForGeneration (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_structForGeneration (const GALGAS_transientDefinitionListForGeneration & in_mTransientListForGeneration,
@@ -644,7 +644,7 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
   public : GALGAS_XcodeProjectDescriptor (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_XcodeProjectDescriptor (void) ;
+  public : virtual ~ GALGAS_XcodeProjectDescriptor (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_XcodeProjectDescriptor (const GALGAS_uint & in_mSequenceNumber,
