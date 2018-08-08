@@ -23,9 +23,9 @@ binding EBView $shiftArrowKeyMagnitude : transient CGFloat ;
 
 extern outlet class NSView $hidden ;
 
-extern outlet class NSControl : NSView $enabled ;
+extern outlet class NSControl : NSView $enabled $run ;
 
-extern outlet class EBButton : NSControl $run ;
+extern outlet class EBButton : NSControl ;
 binding EBButton $title : transient String ;
 
 extern outlet class EBColorObserverWell : NSControl ;

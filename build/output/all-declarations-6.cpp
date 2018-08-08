@@ -1343,7 +1343,7 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (C_C
   result << " {\n"
     "  @objc func " ;
   result << in_ACTION_5F_NAME.stringValue () ;
-  result << " (_ sender : NSObject) {\n" ;
+  result << " (_ sender : NSObject\?) {\n" ;
   return GALGAS_string (result) ;
 }
 
