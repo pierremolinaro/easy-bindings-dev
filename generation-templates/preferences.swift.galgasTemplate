@@ -10,6 +10,12 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+%for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
+  %let Preferences_%![mStoredPropertyName identifierRepresentation]% = "Preferences:%!mStoredPropertyName%"\n%
+end
+%
+//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 @objc(%!preferencesName ()%) class %!preferencesName ()% : EBObject {
 
   //····················································································································
@@ -73,7 +79,7 @@ end
 
 %
 for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  var %!mStoredPropertyName%_property = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
+%  var %!mStoredPropertyName%_property = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%, prefKey: Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
 end
 %
   //····················································································································
@@ -116,10 +122,10 @@ end
   //--- Read from preferences
 %
 for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    self.%!mStoredPropertyName%_property.readInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
+  %//    self.%!mStoredPropertyName%_property.readInPreferencesWithKey (inKey: Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
 end
 for () in STORED_ARRAY_LIST do
-  %    self.%!mStoredPropertyName%_property.readInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
+  %    self.%!mStoredPropertyName%_property.readInPreferencesWithKey (inKey: "Preferences:%!mStoredPropertyName%")\n%
 end
 %  //--- Property validation function
 %
@@ -252,10 +258,10 @@ end
   func applicationWillTerminateAction (_ : NSNotification) {
 %
 for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-  %    self.%!mStoredPropertyName%_property.storeInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
+  %//    self.%!mStoredPropertyName%_property.storeInPreferencesWithKey (inKey: Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
 end
 for () in STORED_ARRAY_LIST do
-  %    self.%!mStoredPropertyName%_property.storeInPreferencesWithKey (inKey:"Preferences:%!mStoredPropertyName%")\n%
+  %    self.%!mStoredPropertyName%_property.storeInPreferencesWithKey (inKey: "Preferences:%!mStoredPropertyName%")\n%
 end
 %  }
 
