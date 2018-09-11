@@ -184,7 +184,6 @@ override method @documentDeclaration semanticAnalysis
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
-  @customObjectControllerForGeneration customObjectControllerListForGeneration = {}
   @objectControllerForGeneration objectControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
@@ -196,7 +195,6 @@ override method @documentDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?documentArrayControllerListForGeneration
       !?selectionControllerListForGeneration
-      !?customObjectControllerListForGeneration
       !?objectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]
@@ -204,7 +202,6 @@ override method @documentDeclaration semanticAnalysis
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
-  ioGeneration.mCustomObjectControllerListForGeneration += customObjectControllerListForGeneration
   ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
@@ -244,7 +241,6 @@ override method @documentDeclaration semanticAnalysis
     !tableViewBindingGenerationList
     !ebViewBindingGenerationList
     !selectionControllerListForGeneration
-    !customObjectControllerListForGeneration
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -264,7 +260,7 @@ list @documentListForGeneration {
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   @selectionControllerForGeneration mSelectionControllerListForGeneration
-  @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
+#  @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
 }
 
 #·······················································································································
@@ -285,7 +281,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
     ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
-    ?@customObjectControllerForGeneration CUSTOM_OBJECT_CONTROLLER_LIST
+#    ?@customObjectControllerForGeneration CUSTOM_OBJECT_CONTROLLER_LIST
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -322,7 +318,7 @@ proc generateDocuments
       !mTableViewBindingGenerationList
       !mEBViewBindingGenerationList
       !mSelectionControllerListForGeneration
-      !mCustomObjectControllerListForGeneration
+#      !mCustomObjectControllerListForGeneration
     ]
     let fileName = mDocumentName + ".swift"
     ioGeneratedFileSet += !fileName

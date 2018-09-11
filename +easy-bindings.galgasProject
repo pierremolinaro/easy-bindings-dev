@@ -47,7 +47,6 @@ project (0:0:1) -> "eb" {
   "galgas-sources/array-controller.galgas"
   "galgas-sources/selection-controller.galgas"
   "galgas-sources/object-controller.galgas"
-  "galgas-sources/custom-object-controller.galgas"
 
 #--- Semantics, code generation
   "galgas-sources/explicit-default-value.galgas"

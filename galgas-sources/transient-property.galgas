@@ -115,7 +115,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
-  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
+#  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
   ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
   ?!@stringset unused ioNeededOutletClasses
 {

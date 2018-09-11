@@ -339,48 +339,6 @@ void routine_generateObjectControllers (const class GALGAS_objectControllerForGe
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               Filewrapper 'customObjectControllerGenerationTemplate'                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_customObjectControllerGenerationTemplate ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                   Filewrapper template 'customObjectControllerGenerationTemplate implementation'                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string filewrapperTemplate_customObjectControllerGenerationTemplate_implementation (class C_Compiler * inCompiler,
-                                                                                           const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                           const class GALGAS_string & in_CUSTOM_5F_OBJECT_5F_CONTROLLER_5F_NAME,
-                                                                                           const class GALGAS_string & in_ENTITY_5F_TYPE_5F_NAME,
-                                                                                           const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
-                                                                                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                      Routine 'generateCustomObjectControllers'                                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateCustomObjectControllers (const class GALGAS_customObjectControllerForGeneration constinArgument0,
-                                              const class GALGAS_string constinArgument1,
-                                              class GALGAS_stringset & ioArgument2,
-                                              class C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                             Function 'predefinedDates'                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

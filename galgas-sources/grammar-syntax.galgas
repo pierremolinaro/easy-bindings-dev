@@ -117,7 +117,7 @@ abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysis
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
-  ?!@customObjectControllerForGeneration ioCustomObjectControllerDeclaration
+#  ?!@customObjectControllerForGeneration ioCustomObjectControllerDeclaration
   ?!@objectControllerForGeneration ioObjectControllerDeclaration
   ?!@stringset ioNeededOutletClasses
 

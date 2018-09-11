@@ -112,7 +112,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
-  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
+#  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
   ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
   ?!@stringset unused ioNeededOutletClasses
 {

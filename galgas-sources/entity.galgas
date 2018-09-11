@@ -227,7 +227,6 @@ override method @entityDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
-      !?* # No custom object controller
       !?objectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]

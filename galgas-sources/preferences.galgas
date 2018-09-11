@@ -156,7 +156,7 @@ method @prefDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?arrayControllerListForGeneration
       !?* # No selection controller
-      !?* # No Custom Object Controller
+#      !?* # No Custom Object Controller
       !?* # No Object Controller
       !?ioGeneration.mNeededOutletClasses
     ]

@@ -76,15 +76,6 @@ for () in SELECTION_CONTROLLER_LIST do
 end
 %
   //····················································································································
-  //    Custom object Controllers
-  //····················································································································
-
-%
-for () in CUSTOM_OBJECT_CONTROLLER_LIST do
-%  var %!mCustomObjectControllerName% = %!mClassNameForSwift% ()\n%
-end
-%
-  //····················································································································
   //    Document file path
   //····················································································································
   // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
@@ -193,11 +184,6 @@ for () in SELECTION_CONTROLLER_LIST do
       file: #file,
       line: #line
     )\n%
-end
-%  //--------------------------- Custom object controllers
-%
-for () in CUSTOM_OBJECT_CONTROLLER_LIST do
-%    %!mCustomObjectControllerName%.setModel (self.rootObject)\n%
 end
 %  //--------------------------- Transient compute functions
 %
