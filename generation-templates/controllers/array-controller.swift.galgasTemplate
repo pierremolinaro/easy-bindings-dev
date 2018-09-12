@@ -67,7 +67,7 @@ end
     )
     super.init ()
 %if ELEMENT_TYPE_IS_GRAPHIC then
- %    self.mSelectedSet.set (callBack: { [weak self] in self?.computeSelectionLayer () } )\n%
+ %    self.mSelectedSet.set (callBack: { [weak self] in self?.computeSelectionShape () } )\n%
 end%  //--- Set selected array compute function
     setSelectedArrayComputeFunction ()
   //--- Set sorted array compute function
@@ -1005,10 +1005,10 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //   Compute selection layer
   //····················································································································
 
-  private func computeSelectionLayer () {
+  private func computeSelectionShape () {
     let shapes = EBShape ()
     for object in mSelectedSet.mSet {
-      if let shape = object.selectionLayer {
+      if let shape = object.selectionDisplay {
         shapes.append (shape: shape)
       }
     }
@@ -1060,11 +1060,11 @@ end
 %if ELEMENT_TYPE_IS_GRAPHIC then
   %        let addedSet = mPrivateSet.subtracting (oldValue)\n%
   %        for object in addedSet {\n%
-  %          object.selectionLayer_property.addEBObserver (mObserverOfSelectionLayerOfSelectedObjects)\n%
+  %          object.selectionDisplay_property.addEBObserver (mObserverOfSelectionLayerOfSelectedObjects)\n%
   %        }\n%
   %        let removedSet = oldValue.subtracting (mPrivateSet)\n%
   %        for object in removedSet {\n%
-  %          object.selectionLayer_property.removeEBObserver (mObserverOfSelectionLayerOfSelectedObjects)\n%
+  %          object.selectionDisplay_property.removeEBObserver (mObserverOfSelectionLayerOfSelectedObjects)\n%
   %        }\n%
   %        mObserverOfSelectionLayerOfSelectedObjects.postEvent ()\n%
 end%      }
