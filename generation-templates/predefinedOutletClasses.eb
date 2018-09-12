@@ -13,10 +13,9 @@ transient property struct CGFloat ;
 transient property class NSImage ;
 
 transient property class EBShape ;
-transient property struct EBShapeArray ;
 
 extern outlet class EBView : NSView ;
-binding EBView $objects : transient EBShapeArray ;
+binding EBView $objects : transient EBShape ;
 binding EBView $arrowKeyMagnitude : transient CGFloat ;
 binding EBView $shiftArrowKeyMagnitude : transient CGFloat ;
 
