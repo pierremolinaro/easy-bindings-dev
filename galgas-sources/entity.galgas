@@ -246,11 +246,11 @@ override method @entityDeclaration semanticAnalysis
       ]
       if kind != .transient then
         error [observablePropertyMap locationForKey !"selectionLayer"] : "the 'selectionLayer' property should be a transient"
-      elsif [type swiftTypeName] != "EBShapes" then
-        error [observablePropertyMap locationForKey !"selectionLayer"] : "the 'selectionLayer' transient type should be 'EBShapes'"
+      elsif [type swiftTypeName] != "EBShape" then
+        error [observablePropertyMap locationForKey !"selectionLayer"] : "the 'selectionLayer' transient type should be 'EBShape'"
       end
     else
-      error mEntityName : "a graphic entity should declare the 'selectionLayer' transient, with 'CaLayer' type"
+      error mEntityName : "a graphic entity should declare the 'selectionLayer' transient, with 'EBShape' type"
     end
   end
 #--- Analyze toOne relationships

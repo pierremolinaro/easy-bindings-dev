@@ -11298,7 +11298,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "transient property class NSImage ;\n"
     "\n"
-    "transient property class EBShapes ;\n"
+    "transient property class EBShape ;\n"
     "transient property struct EBShapeLayer ;\n"
     "transient property struct EBShapeLayerArray ;\n"
     "\n"

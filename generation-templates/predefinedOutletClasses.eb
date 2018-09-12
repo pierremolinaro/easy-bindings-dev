@@ -12,7 +12,7 @@ transient property struct CGFloat ;
 
 transient property class NSImage ;
 
-transient property class EBShapes ;
+transient property class EBShape ;
 transient property struct EBShapeLayer ;
 transient property struct EBShapeLayerArray ;
 
