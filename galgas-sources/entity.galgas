@@ -252,6 +252,22 @@ override method @entityDeclaration semanticAnalysis
     else
       error mEntityName : "a graphic entity should declare the 'selectionDisplay' transient, with 'EBShape' type"
     end
+    transientsDeclaredInSuperEntity += !"objectDisplay"
+    if [observablePropertyMap hasKey !"objectDisplay"] then
+      [observablePropertyMap searchKey
+        !["objectDisplay" here]
+        ?let @typeKind type
+        ?let @propertyKind kind
+        ?4*
+      ]
+      if kind != .transient then
+        error [observablePropertyMap locationForKey !"objectDisplay"] : "the 'objectDisplay' property should be a transient"
+      elsif [type swiftTypeName] != "EBShape" then
+        error [observablePropertyMap locationForKey !"objectDisplay"] : "the 'objectDisplay' transient type should be 'EBShape'"
+      end
+    else
+      error mEntityName : "a graphic entity should declare the 'objectDisplay' transient, with 'EBShape' type"
+    end
   end
 #--- Analyze toOne relationships
   [mToOneRelationshipList semanticAnalysis
