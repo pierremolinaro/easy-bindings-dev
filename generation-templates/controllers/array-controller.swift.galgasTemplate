@@ -32,6 +32,14 @@ end
   private var mEBView : EBView? = nil
   private var mManagedObjectContext : EBManagedObjectContext? = nil
 
+%if ELEMENT_TYPE_IS_GRAPHIC then
+  %//--- Oberser for object display\n%
+  %  private var mObjectDisplayObserver = EBOutletEvent ()\n%
+end
+%  //····················································································································
+  //    Sort Array
+  //····················································································································
+
   private var mSortDescriptorArray = [(String, Bool)] () { // Key, ascending
     didSet {
       self.sortedArray_property.postEvent ()
@@ -197,10 +205,10 @@ end
   //····················································································································
 
   func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%,
-                         tableViewArray:[EBTableView],
-                         ebView: EBView?,
-                         managedObjectContext : EBManagedObjectContext?,
-                         file:String, line:Int) {
+                          tableViewArray:[EBTableView],
+                          ebView: EBView?,
+                          managedObjectContext : EBManagedObjectContext?,
+                          file:String, line:Int) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
@@ -219,6 +227,8 @@ end
     mEBView = ebView
 %if ELEMENT_TYPE_IS_GRAPHIC then
  %    self.mEBView?.set (controller: self)\n%
+ %    model.addEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
+ %    self.mObjectDisplayObserver.eventCallBack = { self.updateObjectDisplay () }\n%
 end%  //--- Bind table views
     mTableViewArray = tableViewArray
     for tableView in tableViewArray {
@@ -234,7 +244,10 @@ end%  //--- Bind table views
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    mModel?.removeEBObserver (self.sortedArray_property)
+%if ELEMENT_TYPE_IS_GRAPHIC then
+ %    mModel?.removeEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
+end
+%    mModel?.removeEBObserver (self.sortedArray_property)
     self.sortedArray_property.removeEBObserver (mSelectedSet)
     mSelectedSet.removeEBObserver (self.selectedArray_property)
   //--- Remove observed properties (for filtering and sorting)
@@ -700,7 +713,73 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   }
 
   //····················································································································
+  // Object display should be updated
+  //····················································································································
+
+  private var mObjectDisplayArray = [EBShape] ()
+
+  //····················································································································
+
+  private func updateObjectDisplay () {
+  //--- Build new object display array
+    var newObjectDisplayArray = [EBShape] ()
+    for object in mModel?.propval ?? [] {
+      newObjectDisplayArray.append (object.objectDisplay ?? EBShape ())
+    }
+  //--- Find invalid rectangle
+    var invalidRect = NSZeroRect
+    let minCount = min (self.mObjectDisplayArray.count, newObjectDisplayArray.count)
+    var idx = 0
+    while idx < minCount {
+      if !newObjectDisplayArray [idx].sameDisplay(as: self.mObjectDisplayArray [idx]) {
+        invalidRect = invalidRect.union (newObjectDisplayArray [idx].boundingBox)
+        invalidRect = invalidRect.union (self.mObjectDisplayArray [idx].boundingBox)
+      }
+      idx += 1
+    }
+    while idx < self.mObjectDisplayArray.count {
+      invalidRect = invalidRect.union (self.mObjectDisplayArray [idx].boundingBox)
+      idx += 1
+    }
+    while idx < newObjectDisplayArray.count {
+      invalidRect = invalidRect.union (newObjectDisplayArray [idx].boundingBox)
+      idx += 1
+    }
+  //--- Store new object array and tell view to display
+    self.mObjectDisplayArray = newObjectDisplayArray
+    mEBView?.requestObjectDisplay (newObjectDisplayArray, invalidRect)
+  }
+
+  //····················································································································
   // Mouse Events
+  //····················································································································
+
+   private func indexOfFrontmostObject (at inLocation : NSPoint) -> Int? {
+    var possibleObjectIndex : Int? = nil
+    var idx = self.mObjectDisplayArray.count
+    while (idx > 0) && (possibleObjectIndex == nil) {
+      idx -= 1
+      if self.mObjectDisplayArray [idx].contains (point: inLocation) {
+        possibleObjectIndex = idx
+      }
+    }
+    return possibleObjectIndex
+  }
+
+  //····················································································································
+
+  private func indexesOfObjects (intersecting inRect : NSRect) -> Set <Int> {
+    var result = Set <Int> ()
+    var idx = 0
+    for object in self.mObjectDisplayArray {
+      if object.intersects (inRect) {
+        result.insert (idx)
+      }
+      idx += 1
+    }
+    return result
+  }
+
   //····················································································································
 
   private var mLastMouseDraggedLocation : NSPoint? = nil
@@ -709,21 +788,24 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   //····················································································································
 
-  func mouseDown (with inEvent: NSEvent, objectIndex inObjectIndex : Int?) {
-    mLastMouseDraggedLocation = mEBView?.convert (inEvent.locationInWindow, from:nil)
+  func mouseDown (with inEvent: NSEvent) {
+    let mouseDownLocation = mEBView?.convert (inEvent.locationInWindow, from:nil) ?? NSZeroPoint
+    mLastMouseDraggedLocation = mouseDownLocation
+  //--- Find index of object under mouse down
+    let possibleObjectIndex : Int? = self.indexOfFrontmostObject (at: mouseDownLocation)
     let objects = mModel?.propval ?? []
     let controlKey = inEvent.modifierFlags.contains (.control)
     if !controlKey {
       let shiftKey = inEvent.modifierFlags.contains (.shift)
       let commandKey = inEvent.modifierFlags.contains (.command)
       if shiftKey { // Shift key extends selection
-        if let objectIndex = inObjectIndex {
+        if let objectIndex = possibleObjectIndex {
           var newSet = mSelectedSet.mSet
           newSet.insert (objects [objectIndex])
           mSelectedSet.mSet = newSet
         }
       }else if commandKey { // Command key toggles selection of object under click
-        if let objectIndex = inObjectIndex {
+        if let objectIndex = possibleObjectIndex {
           let object = objects [objectIndex]
           if mSelectedSet.mSet.contains (object) {
             var newSet = mSelectedSet.mSet
@@ -735,7 +817,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
             mSelectedSet.mSet = newSet
           }
         }
-      }else if let objectIndex = inObjectIndex {
+      }else if let objectIndex = possibleObjectIndex {
         // NSLog ("Clicked objectindex \(objectIndex)")
         let clickedObject = objects [objectIndex]
         if !mSelectedSet.mSet.contains (clickedObject) {
@@ -767,7 +849,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
         shapes.append (EBFilledBezierPathShape ([bp], NSColor.lightGray.withAlphaComponent (0.2)))
         shapes.append (EBStrokeBezierPathShape ([bp], NSColor.lightGray))
         mEBView?.selectionRectangleLayer = EBShape (shapes: shapes)
-        let indexSet = boardView.indexesOfObjects (intersecting:r)
+        let indexSet = self.indexesOfObjects (intersecting:r)
         var newSelectedSet = Set <MergerBoardInstance> ()
         var objects = mModel?.propval ?? []
         for idx in indexSet {
@@ -806,6 +888,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     mSelectionRectangleOrigin = nil
     mEBView?.selectionRectangleLayer = nil
   }
+
 
   //····················································································································
   // key Events
