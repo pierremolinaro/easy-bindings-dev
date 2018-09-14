@@ -638,9 +638,15 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
 
   //····················································································································
+
+  weak var owner : %!ENTITY_NAME%?
+
+  //····················································································································
  
   func setProp (_ value :  [%![mRelationshipType swiftTypeName]%]) { } // Abstract method
-  
+ 
+  var propval : [%![mRelationshipType swiftTypeName]%] { return [] } // Abstract method
+ 
   //····················································································································
 
 }
@@ -650,8 +656,8 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : Re
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
-ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%, EBSignatureObserverProtocol {
-  weak var owner : %!ENTITY_NAME%?
+       ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%,
+       EBSignatureObserverProtocol {
 
   var mValueExplorer : NSPopUpButton? {
     didSet {
@@ -739,7 +745,7 @@ end
 
   override func setProp (_ inValue : [%![mRelationshipType swiftTypeName]%]) { mValue = inValue }
 
-  var propval : [%![mRelationshipType swiftTypeName]%] { return mValue }
+  override var propval : [%![mRelationshipType swiftTypeName]%] { return mValue }
 
   //····················································································································
 

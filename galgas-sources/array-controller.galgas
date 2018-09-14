@@ -306,7 +306,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
-#  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
   ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
   ?!@stringset ioNeededOutletClasses
 {
@@ -603,14 +602,14 @@ getter @arrayControllerModel modelTypeName2
       outResult = "<< selectionController >>"
     end
   case rootToManyRelationship (@lstring rootRelationshipName) :
-    outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
+    outResult = "ToManyRelationshipReadWrite_" + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
     [inObservablePropertyMap searchKey
       !controllerName
       ?let modelType
       ?5*
     ]
-    outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
+    outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName]
   end
 }
 

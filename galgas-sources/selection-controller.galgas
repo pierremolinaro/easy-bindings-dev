@@ -20,7 +20,13 @@ syntax extension easyBindings_syntax {
     $selectionController$
     $identifier$ ?let @lstring selectionControllerName
     $:$
-    $identifier$ ?let @lstring modelControllerName
+    @lstring modelControllerName
+    select
+      $self$
+      modelControllerName = ["self" here]
+    or
+      $identifier$ ?modelControllerName
+    end
     $.$
     $identifier$ ?let @lstring propertyName
     $;$
@@ -52,7 +58,44 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
 {
-  if [ioObservableProperties hasKey !mModelControllerName.string] then
+  if mModelControllerName.string == "self" then
+    [ioObservableProperties searchKey
+      !mModelControllerPropertyName
+      ?let type
+      ?let unused kind
+      ?let multiplicity
+      ?3*
+    ]
+  #--- Check type
+    @string entityName
+    switch type
+    case stringType, boolType, dateType, doubleType, integerType, fontType :
+      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
+    case enumType (* *) :
+      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
+    case classType (*) :
+      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
+    case propertyClassType (**) :
+      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
+    case transientPropertyExternType (*) :
+      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
+    case entityType (kEntityName *) :
+      entityName = kEntityName
+      if multiplicity != .collection then
+        error mModelControllerPropertyName : "the model should be a collection of entities"
+      end
+    end
+  #--- Store selection controller
+    [!?ioObservableProperties insertKey
+      !mSelectionControllerName
+      !type
+      !.selectionController
+      !.collection
+      !"" # No inverse relationship
+      !{} # No action
+      !false
+    ]
+  elsif [ioObservableProperties hasKey !mModelControllerName.string] then
   #--- Get model controller
     [ioObservableProperties searchKey
       !mModelControllerName
@@ -94,8 +137,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       !"" # No inverse relationship
       !{} # No action
       !false
-    ]
-  
+    ]  
   else
     ioUnsolvedProperties += !self
   end
@@ -112,39 +154,70 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
-#  ?!@customObjectControllerForGeneration unused ioCustomObjectControllerDeclaration
   ?!@objectControllerForGeneration unused ioObjectControllerDeclaration
   ?!@stringset unused ioNeededOutletClasses
 {
 #--- Get model controller
-  [inObservableProperties searchKey
-    !mModelControllerName
-    ?let type
-    ?let unused kind
-    ?let unused multiplicity
-    ?3*
-  ]
-#--- Check type
   @string selectionEntityName
-  switch type
-  case stringType, boolType, dateType, doubleType, integerType, fontType :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case enumType (* *) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case classType (*) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case propertyClassType (**) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-  case entityType (kEntityName *) :
-    selectionEntityName = kEntityName
-  case transientPropertyExternType (*) :
-    error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+  @observablePropertyMap selectionObservablePropertyMap
+  if mModelControllerName.string == "self" then
+    [inObservableProperties searchKey
+      !mModelControllerPropertyName
+      ?let type
+      ?let unused kind
+      ?let multiplicity
+      ?3*
+    ]
+  #--- Check type
+    switch type
+    case stringType, boolType, dateType, doubleType, integerType, fontType :
+      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+    case enumType (* *) :
+      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+    case classType (*) :
+      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+    case propertyClassType (**) :
+      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+    case entityType (kEntityName *) :
+      selectionEntityName = kEntityName
+      if multiplicity != .collection then
+        error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+      end
+    case transientPropertyExternType (*) :
+      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+    end
+  #--- Find root entity observable properties
+    [inSemanticContext.mEntityObservablePropertyMap searchKey
+      !.new {!selectionEntityName !mSelectionControllerName.location}
+      ?selectionObservablePropertyMap
+    ]
+  else
+    [inObservableProperties searchKey
+      !mModelControllerName
+      ?let type
+      ?5*
+    ]
+  #--- Check type
+    switch type
+    case stringType, boolType, dateType, doubleType, integerType, fontType :
+      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+    case enumType (* *) :
+      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+    case classType (*) :
+      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+    case propertyClassType (**) :
+      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+    case entityType (kEntityName *) :
+      selectionEntityName = kEntityName
+    case transientPropertyExternType (*) :
+      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
+    end
+  #--- Find root entity observable properties
+    [inSemanticContext.mEntityObservablePropertyMap searchKey
+      !.new {!selectionEntityName !mSelectionControllerName.location}
+      ?selectionObservablePropertyMap
+    ]
   end
-#--- Find root entity observable properties
-  [inSemanticContext.mEntityObservablePropertyMap searchKey
-    !.new {!selectionEntityName !mSelectionControllerName.location}
-    ?let @observablePropertyMap selectionObservablePropertyMap
-  ]
 #--- Generation
   ioSelectionControllerForGeneration +=
     !inOwnerName
