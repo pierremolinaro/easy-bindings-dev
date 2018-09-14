@@ -7988,6 +7988,7 @@ GALGAS_classListForGeneration_2D_element GALGAS_classListForGeneration_2D_elemen
 GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_element (void) :
 mProperty_mEntityName (),
 mProperty_mSuperEntityName (),
+mProperty_mObservablePropertyMap (),
 mProperty_mSimpleStoredPropertyListForGeneration (),
 mProperty_mDecoratedTransientListForGeneration (),
 mProperty_mToOneEntityRelationshipList (),
@@ -8007,24 +8008,26 @@ GALGAS_entityListForGeneration_2D_element::~ GALGAS_entityListForGeneration_2D_e
 
 GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_element (const GALGAS_string & inOperand0,
                                                                                       const GALGAS_string & inOperand1,
-                                                                                      const GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                      const GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                      const GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                      const GALGAS_stringset & inOperand6,
-                                                                                      const GALGAS_lstringlist & inOperand7,
-                                                                                      const GALGAS_bool & inOperand8,
-                                                                                      const GALGAS_stringset & inOperand9) :
+                                                                                      const GALGAS_observablePropertyMap & inOperand2,
+                                                                                      const GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                                                      const GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                                                      const GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                                                      const GALGAS_stringset & inOperand7,
+                                                                                      const GALGAS_lstringlist & inOperand8,
+                                                                                      const GALGAS_bool & inOperand9,
+                                                                                      const GALGAS_stringset & inOperand10) :
 mProperty_mEntityName (inOperand0),
 mProperty_mSuperEntityName (inOperand1),
-mProperty_mSimpleStoredPropertyListForGeneration (inOperand2),
-mProperty_mDecoratedTransientListForGeneration (inOperand3),
-mProperty_mToOneEntityRelationshipList (inOperand4),
-mProperty_mToManyEntityRelationshipList (inOperand5),
-mProperty_mSignatureSet (inOperand6),
-mProperty_mObsoleteEntityNames (inOperand7),
-mProperty_mIsGraphicEntity (inOperand8),
-mProperty_mTransientsDeclaredInSuperEntity (inOperand9) {
+mProperty_mObservablePropertyMap (inOperand2),
+mProperty_mSimpleStoredPropertyListForGeneration (inOperand3),
+mProperty_mDecoratedTransientListForGeneration (inOperand4),
+mProperty_mToOneEntityRelationshipList (inOperand5),
+mProperty_mToManyEntityRelationshipList (inOperand6),
+mProperty_mSignatureSet (inOperand7),
+mProperty_mObsoleteEntityNames (inOperand8),
+mProperty_mIsGraphicEntity (inOperand9),
+mProperty_mTransientsDeclaredInSuperEntity (inOperand10) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8032,6 +8035,7 @@ mProperty_mTransientsDeclaredInSuperEntity (inOperand9) {
 GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_entityListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
                                                     GALGAS_string::constructor_default (HERE),
+                                                    GALGAS_observablePropertyMap::constructor_emptyMap (HERE),
                                                     GALGAS_simpleStoredPropertyListForGeneration::constructor_emptyList (HERE),
                                                     GALGAS_transientDefinitionListForGeneration::constructor_emptyList (HERE),
                                                     GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (HERE),
@@ -8046,18 +8050,19 @@ GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_elem
 
 GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
                                                                                                       const GALGAS_string & inOperand1,
-                                                                                                      const GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                                      const GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                                      const GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                                      const GALGAS_stringset & inOperand6,
-                                                                                                      const GALGAS_lstringlist & inOperand7,
-                                                                                                      const GALGAS_bool & inOperand8,
-                                                                                                      const GALGAS_stringset & inOperand9 
+                                                                                                      const GALGAS_observablePropertyMap & inOperand2,
+                                                                                                      const GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                                                                      const GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                                                                      const GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                                                                      const GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                                                                      const GALGAS_stringset & inOperand7,
+                                                                                                      const GALGAS_lstringlist & inOperand8,
+                                                                                                      const GALGAS_bool & inOperand9,
+                                                                                                      const GALGAS_stringset & inOperand10 
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_entityListForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
-    result = GALGAS_entityListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
+    result = GALGAS_entityListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10) ;
   }
   return result ;
 }
@@ -8071,6 +8076,9 @@ typeComparisonResult GALGAS_entityListForGeneration_2D_element::objectCompare (c
   }
   if (result == kOperandEqual) {
     result = mProperty_mSuperEntityName.objectCompare (inOperand.mProperty_mSuperEntityName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mObservablePropertyMap.objectCompare (inOperand.mProperty_mObservablePropertyMap) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mSimpleStoredPropertyListForGeneration.objectCompare (inOperand.mProperty_mSimpleStoredPropertyListForGeneration) ;
@@ -8102,7 +8110,7 @@ typeComparisonResult GALGAS_entityListForGeneration_2D_element::objectCompare (c
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_entityListForGeneration_2D_element::isValid (void) const {
-  return mProperty_mEntityName.isValid () && mProperty_mSuperEntityName.isValid () && mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mDecoratedTransientListForGeneration.isValid () && mProperty_mToOneEntityRelationshipList.isValid () && mProperty_mToManyEntityRelationshipList.isValid () && mProperty_mSignatureSet.isValid () && mProperty_mObsoleteEntityNames.isValid () && mProperty_mIsGraphicEntity.isValid () && mProperty_mTransientsDeclaredInSuperEntity.isValid () ;
+  return mProperty_mEntityName.isValid () && mProperty_mSuperEntityName.isValid () && mProperty_mObservablePropertyMap.isValid () && mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mDecoratedTransientListForGeneration.isValid () && mProperty_mToOneEntityRelationshipList.isValid () && mProperty_mToManyEntityRelationshipList.isValid () && mProperty_mSignatureSet.isValid () && mProperty_mObsoleteEntityNames.isValid () && mProperty_mIsGraphicEntity.isValid () && mProperty_mTransientsDeclaredInSuperEntity.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8110,6 +8118,7 @@ bool GALGAS_entityListForGeneration_2D_element::isValid (void) const {
 void GALGAS_entityListForGeneration_2D_element::drop (void) {
   mProperty_mEntityName.drop () ;
   mProperty_mSuperEntityName.drop () ;
+  mProperty_mObservablePropertyMap.drop () ;
   mProperty_mSimpleStoredPropertyListForGeneration.drop () ;
   mProperty_mDecoratedTransientListForGeneration.drop () ;
   mProperty_mToOneEntityRelationshipList.drop () ;
@@ -8131,6 +8140,8 @@ void GALGAS_entityListForGeneration_2D_element::description (C_String & ioString
     mProperty_mEntityName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mSuperEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mObservablePropertyMap.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mSimpleStoredPropertyListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -8161,6 +8172,12 @@ GALGAS_string GALGAS_entityListForGeneration_2D_element::getter_mEntityName (UNU
 
 GALGAS_string GALGAS_entityListForGeneration_2D_element::getter_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mSuperEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_entityListForGeneration_2D_element::getter_mObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mObservablePropertyMap ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -50,6 +50,7 @@ extern const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate ;
 
 GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (class C_Compiler * inCompiler,
                                                                                         const class GALGAS_string & in_ENTITY_5F_NAME,
+                                                                                        const class GALGAS_observablePropertyMap & in_OBSERVABLE_5F_PROPERTY_5F_MAP,
                                                                                         const class GALGAS_simpleStoredPropertyListForGeneration & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                         const class GALGAS_transientDefinitionListForGeneration & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                         const class GALGAS_toOneEntityRelationshipListForGeneration & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,

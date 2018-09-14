@@ -287,6 +287,7 @@ override method @entityDeclaration semanticAnalysis
   ioGeneration.mEntityListForGeneration +=
     !mEntityName.string
     !mSuperEntityName.string
+    !observablePropertyMap
     !simpleStoredPropertyListForGeneration
     !transientDefinitionListForGeneration
     !toOneEntityRelationshipListForGeneration
@@ -304,6 +305,7 @@ override method @entityDeclaration semanticAnalysis
 list @entityListForGeneration {
   @string mEntityName
   @string mSuperEntityName
+  @observablePropertyMap mObservablePropertyMap
   @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
   @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
@@ -321,6 +323,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
 }{
   template entityImplementationInSwift "entity.swift.galgasTemplate"
     ?@string ENTITY_NAME
+    ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
     ?@simpleStoredPropertyListForGeneration SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
@@ -345,6 +348,7 @@ proc generateEntities
   for () in inEntityListForGeneration do
     let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
       !mEntityName
+      !mObservablePropertyMap
       !mSimpleStoredPropertyListForGeneration
       !mDecoratedTransientListForGeneration
       !mToOneEntityRelationshipList

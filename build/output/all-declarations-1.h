@@ -423,6 +423,7 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mEntityName,
                                                   const class GALGAS_string & in_mSuperEntityName,
+                                                  const class GALGAS_observablePropertyMap & in_mObservablePropertyMap,
                                                   const class GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                   const class GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
@@ -448,14 +449,15 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
 
   public : static class GALGAS_entityListForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
                                                                                   const class GALGAS_string & inOperand1,
-                                                                                  const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                  const class GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                  const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                  const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                  const class GALGAS_stringset & inOperand6,
-                                                                                  const class GALGAS_lstringlist & inOperand7,
-                                                                                  const class GALGAS_bool & inOperand8,
-                                                                                  const class GALGAS_stringset & inOperand9
+                                                                                  const class GALGAS_observablePropertyMap & inOperand2,
+                                                                                  const class GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                                                  const class GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                                                  const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                                                  const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                                                  const class GALGAS_stringset & inOperand7,
+                                                                                  const class GALGAS_lstringlist & inOperand8,
+                                                                                  const class GALGAS_bool & inOperand9,
+                                                                                  const class GALGAS_stringset & inOperand10
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -466,14 +468,15 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
                                                       const class GALGAS_string & inOperand1,
-                                                      const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                      const class GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                      const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                      const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                      const class GALGAS_stringset & inOperand6,
-                                                      const class GALGAS_lstringlist & inOperand7,
-                                                      const class GALGAS_bool & inOperand8,
-                                                      const class GALGAS_stringset & inOperand9
+                                                      const class GALGAS_observablePropertyMap & inOperand2,
+                                                      const class GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                      const class GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                      const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                      const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                      const class GALGAS_stringset & inOperand7,
+                                                      const class GALGAS_lstringlist & inOperand8,
+                                                      const class GALGAS_bool & inOperand9,
+                                                      const class GALGAS_stringset & inOperand10
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_entityListForGeneration add_operation (const GALGAS_entityListForGeneration & inOperand,
@@ -488,55 +491,59 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
 
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_string constinArgument1,
-                                                       class GALGAS_simpleStoredPropertyListForGeneration constinArgument2,
-                                                       class GALGAS_transientDefinitionListForGeneration constinArgument3,
-                                                       class GALGAS_toOneEntityRelationshipListForGeneration constinArgument4,
-                                                       class GALGAS_toManyEntityRelationshipListForGeneration constinArgument5,
-                                                       class GALGAS_stringset constinArgument6,
-                                                       class GALGAS_lstringlist constinArgument7,
-                                                       class GALGAS_bool constinArgument8,
-                                                       class GALGAS_stringset constinArgument9,
-                                                       class GALGAS_uint constinArgument10,
+                                                       class GALGAS_observablePropertyMap constinArgument2,
+                                                       class GALGAS_simpleStoredPropertyListForGeneration constinArgument3,
+                                                       class GALGAS_transientDefinitionListForGeneration constinArgument4,
+                                                       class GALGAS_toOneEntityRelationshipListForGeneration constinArgument5,
+                                                       class GALGAS_toManyEntityRelationshipListForGeneration constinArgument6,
+                                                       class GALGAS_stringset constinArgument7,
+                                                       class GALGAS_lstringlist constinArgument8,
+                                                       class GALGAS_bool constinArgument9,
+                                                       class GALGAS_stringset constinArgument10,
+                                                       class GALGAS_uint constinArgument11,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
                                                   class GALGAS_string & outArgument1,
-                                                  class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
-                                                  class GALGAS_transientDefinitionListForGeneration & outArgument3,
-                                                  class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
-                                                  class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
-                                                  class GALGAS_stringset & outArgument6,
-                                                  class GALGAS_lstringlist & outArgument7,
-                                                  class GALGAS_bool & outArgument8,
-                                                  class GALGAS_stringset & outArgument9,
+                                                  class GALGAS_observablePropertyMap & outArgument2,
+                                                  class GALGAS_simpleStoredPropertyListForGeneration & outArgument3,
+                                                  class GALGAS_transientDefinitionListForGeneration & outArgument4,
+                                                  class GALGAS_toOneEntityRelationshipListForGeneration & outArgument5,
+                                                  class GALGAS_toManyEntityRelationshipListForGeneration & outArgument6,
+                                                  class GALGAS_stringset & outArgument7,
+                                                  class GALGAS_lstringlist & outArgument8,
+                                                  class GALGAS_bool & outArgument9,
+                                                  class GALGAS_stringset & outArgument10,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
                                                  class GALGAS_string & outArgument1,
-                                                 class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
-                                                 class GALGAS_transientDefinitionListForGeneration & outArgument3,
-                                                 class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
-                                                 class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
-                                                 class GALGAS_stringset & outArgument6,
-                                                 class GALGAS_lstringlist & outArgument7,
-                                                 class GALGAS_bool & outArgument8,
-                                                 class GALGAS_stringset & outArgument9,
+                                                 class GALGAS_observablePropertyMap & outArgument2,
+                                                 class GALGAS_simpleStoredPropertyListForGeneration & outArgument3,
+                                                 class GALGAS_transientDefinitionListForGeneration & outArgument4,
+                                                 class GALGAS_toOneEntityRelationshipListForGeneration & outArgument5,
+                                                 class GALGAS_toManyEntityRelationshipListForGeneration & outArgument6,
+                                                 class GALGAS_stringset & outArgument7,
+                                                 class GALGAS_lstringlist & outArgument8,
+                                                 class GALGAS_bool & outArgument9,
+                                                 class GALGAS_stringset & outArgument10,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
                                                        class GALGAS_string & outArgument1,
-                                                       class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
-                                                       class GALGAS_transientDefinitionListForGeneration & outArgument3,
-                                                       class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
-                                                       class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
-                                                       class GALGAS_stringset & outArgument6,
-                                                       class GALGAS_lstringlist & outArgument7,
-                                                       class GALGAS_bool & outArgument8,
-                                                       class GALGAS_stringset & outArgument9,
-                                                       class GALGAS_uint constinArgument10,
+                                                       class GALGAS_observablePropertyMap & outArgument2,
+                                                       class GALGAS_simpleStoredPropertyListForGeneration & outArgument3,
+                                                       class GALGAS_transientDefinitionListForGeneration & outArgument4,
+                                                       class GALGAS_toOneEntityRelationshipListForGeneration & outArgument5,
+                                                       class GALGAS_toManyEntityRelationshipListForGeneration & outArgument6,
+                                                       class GALGAS_stringset & outArgument7,
+                                                       class GALGAS_lstringlist & outArgument8,
+                                                       class GALGAS_bool & outArgument9,
+                                                       class GALGAS_stringset & outArgument10,
+                                                       class GALGAS_uint constinArgument11,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -544,27 +551,29 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
                                                class GALGAS_string & outArgument1,
-                                               class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
-                                               class GALGAS_transientDefinitionListForGeneration & outArgument3,
-                                               class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
-                                               class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
-                                               class GALGAS_stringset & outArgument6,
-                                               class GALGAS_lstringlist & outArgument7,
-                                               class GALGAS_bool & outArgument8,
-                                               class GALGAS_stringset & outArgument9,
+                                               class GALGAS_observablePropertyMap & outArgument2,
+                                               class GALGAS_simpleStoredPropertyListForGeneration & outArgument3,
+                                               class GALGAS_transientDefinitionListForGeneration & outArgument4,
+                                               class GALGAS_toOneEntityRelationshipListForGeneration & outArgument5,
+                                               class GALGAS_toManyEntityRelationshipListForGeneration & outArgument6,
+                                               class GALGAS_stringset & outArgument7,
+                                               class GALGAS_lstringlist & outArgument8,
+                                               class GALGAS_bool & outArgument9,
+                                               class GALGAS_stringset & outArgument10,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
                                               class GALGAS_string & outArgument1,
-                                              class GALGAS_simpleStoredPropertyListForGeneration & outArgument2,
-                                              class GALGAS_transientDefinitionListForGeneration & outArgument3,
-                                              class GALGAS_toOneEntityRelationshipListForGeneration & outArgument4,
-                                              class GALGAS_toManyEntityRelationshipListForGeneration & outArgument5,
-                                              class GALGAS_stringset & outArgument6,
-                                              class GALGAS_lstringlist & outArgument7,
-                                              class GALGAS_bool & outArgument8,
-                                              class GALGAS_stringset & outArgument9,
+                                              class GALGAS_observablePropertyMap & outArgument2,
+                                              class GALGAS_simpleStoredPropertyListForGeneration & outArgument3,
+                                              class GALGAS_transientDefinitionListForGeneration & outArgument4,
+                                              class GALGAS_toOneEntityRelationshipListForGeneration & outArgument5,
+                                              class GALGAS_toManyEntityRelationshipListForGeneration & outArgument6,
+                                              class GALGAS_stringset & outArgument7,
+                                              class GALGAS_lstringlist & outArgument8,
+                                              class GALGAS_bool & outArgument9,
+                                              class GALGAS_stringset & outArgument10,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -582,6 +591,10 @@ class GALGAS_entityListForGeneration : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntityAtIndex (const class GALGAS_uint & constinOperand0,
                                                                               C_Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap getter_mObservablePropertyMapAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                     C_Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNamesAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                          C_Compiler * inCompiler
@@ -643,6 +656,7 @@ class cEnumerator_entityListForGeneration : public cGenericAbstractEnumerator {
 //--- Current element access
   public : class GALGAS_string current_mEntityName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mSuperEntityName (LOCATION_ARGS) const ;
+  public : class GALGAS_observablePropertyMap current_mObservablePropertyMap (LOCATION_ARGS) const ;
   public : class GALGAS_simpleStoredPropertyListForGeneration current_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_transientDefinitionListForGeneration current_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
   public : class GALGAS_toOneEntityRelationshipListForGeneration current_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
@@ -670,6 +684,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
   public : GALGAS_string mProperty_mEntityName ;
 
   public : GALGAS_string mProperty_mSuperEntityName ;
+
+  public : GALGAS_observablePropertyMap mProperty_mObservablePropertyMap ;
 
   public : GALGAS_simpleStoredPropertyListForGeneration mProperty_mSimpleStoredPropertyListForGeneration ;
 
@@ -703,6 +719,7 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public : GALGAS_entityListForGeneration_2D_element (const GALGAS_string & in_mEntityName,
                                                       const GALGAS_string & in_mSuperEntityName,
+                                                      const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
                                                       const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                       const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                       const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
@@ -725,14 +742,15 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_entityListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
                                                                                    const class GALGAS_string & inOperand1,
-                                                                                   const class GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                   const class GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                   const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                   const class GALGAS_stringset & inOperand6,
-                                                                                   const class GALGAS_lstringlist & inOperand7,
-                                                                                   const class GALGAS_bool & inOperand8,
-                                                                                   const class GALGAS_stringset & inOperand9
+                                                                                   const class GALGAS_observablePropertyMap & inOperand2,
+                                                                                   const class GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                                                   const class GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                                                   const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                                                   const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                                                   const class GALGAS_stringset & inOperand7,
+                                                                                   const class GALGAS_lstringlist & inOperand8,
+                                                                                   const class GALGAS_bool & inOperand9,
+                                                                                   const class GALGAS_stringset & inOperand10
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -752,6 +770,8 @@ class GALGAS_entityListForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap getter_mObservablePropertyMap (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
 

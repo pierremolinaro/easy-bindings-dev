@@ -165,8 +165,8 @@ end
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    self.%!mToManyRelationshipName%_property.undoManager = self.undoManager ()\n%
   if mOppositeRelationshipName != "" then
-  %    self.%!mToManyRelationshipName%_property.setOppositeRelationship = { (_ inManagedObject : %![mRelationshipType swiftTypeName]%) in\n%
-  %      inManagedObject.%!mOppositeRelationshipName%_property.setProp (self)\n%
+  %    self.%!mToManyRelationshipName%_property.setOppositeRelationship = { (_ inManagedObject : %![mRelationshipType swiftTypeName]%?) in\n%
+  %      inManagedObject?.%!mOppositeRelationshipName%_property.setProp (self)\n%
   %    }\n%
   end
 end
@@ -616,6 +616,201 @@ end
 
 }
 
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"To many relationship read write: " + ENTITY_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class ToManyRelationshipReadWrite_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
+
+  //····················································································································
+
+  weak var undoManager : EBUndoManager?
+
+  //····················································································································
+ 
+  func setProp (_ value :  [%!ENTITY_NAME%]) { } // Abstract method
+ 
+  var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
+ 
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"To many relationship: " + ENTITY_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+final class ToManyRelationship_%!ENTITY_NAME% :
+       ToManyRelationshipReadWrite_%!ENTITY_NAME%,
+       EBSignatureObserverProtocol {
+
+  //····················································································································
+
+  var setOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%?) -> Void > = nil
+
+  //····················································································································
+
+  var mValueExplorer : NSPopUpButton? {
+    didSet {
+      if let unwrappedExplorer = mValueExplorer {
+        switch prop {
+        case .empty, .multiple :
+          break ;
+        case .single (let v) :
+          updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    self.count_property.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
+          return .single (v.count)
+        }
+      }else{
+        return .empty
+      }
+    }
+  }
+
+  //····················································································································
+
+  private var mSet = Set <%!ENTITY_NAME%> ()
+  private var mValue = [%!ENTITY_NAME%] () {
+    didSet {
+      postEvent ()
+      if oldValue != mValue {
+        let oldSet = mSet
+        mSet = Set (mValue)
+      //--- Register old value in undo manager
+        self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
+      //--- Update explorer
+        if let valueExplorer = mValueExplorer {
+          updateManagedObjectToManyRelationshipDisplay (objectArray: mValue, popUpButton: valueExplorer)
+        }
+      //--- Removed object set
+        let removedObjectSet = oldSet.subtracting (mSet)
+        for managedObject in removedObjectSet {
+          managedObject.setSignatureObserver (observer: nil)
+          self.setOppositeRelationship? (nil)
+        }
+%for () in OBSERVABLE_PROPERTY_MAP do
+  if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
+    %        removeEBObserversOf_%!lkey.string%_fromElementsOfSet (removedObjectSet)\n%
+  end
+end
+%      //--- Added object set
+        let addedObjectSet = mSet.subtracting (oldSet)
+        for managedObject : %!ENTITY_NAME% in addedObjectSet {
+          managedObject.setSignatureObserver (observer: self)
+          self.setOppositeRelationship? (managedObject)
+        }
+%for () in OBSERVABLE_PROPERTY_MAP do
+  if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
+    %        addEBObserversOf_%!lkey.string%_toElementsOfSet (addedObjectSet)\n%
+  end
+end
+%      //--- Notify observers
+        clearSignatureCache ()
+      }
+    }
+  }
+
+  override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (mValue) }
+
+  override func setProp (_ inValue : [%!ENTITY_NAME%]) { mValue = inValue }
+
+  override var propval : [%!ENTITY_NAME%] { return mValue }
+
+  //····················································································································
+
+  @objc func performUndo (_ oldValue : [%!ENTITY_NAME%]) {
+    mValue = oldValue
+  }
+
+  //····················································································································
+
+  func remove (_ object : %!ENTITY_NAME%) {
+    if mSet.contains (object) {
+      var array = mValue
+      let idx = array.index (of: object)
+      array.remove (at: idx!)
+      mValue = array
+    }
+  }
+  
+  //····················································································································
+
+  func add (_ object : %!ENTITY_NAME%) {
+    if !mSet.contains (object) {
+      var array = mValue
+      array.append (object)
+      mValue = array
+    }
+  }
+  
+  //····················································································································
+  //   signature
+  //····················································································································
+
+  private weak var mSignatureObserver : EBSignatureObserverProtocol?
+  private var mSignatureCache : UInt32?
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
+    mSignatureObserver = observer
+    for object in mValue {
+      object.setSignatureObserver (observer: self)
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = computeSignature ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
+  //····················································································································
+
+  final func computeSignature () -> UInt32 {
+    var crc : UInt32 = 0
+    for object in mValue {
+      crc.accumulateUInt32 (object.signature ())
+    }
+    return crc
+  }
+
+  //····················································································································
+
+  final func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+ 
+}
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -666,7 +861,7 @@ final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
 
   //····················································································································
 
-  var setOppositeRelationship : Optional < (_ inManagedObject : %![mRelationshipType swiftTypeName]%) -> Void > = nil
+  var setOppositeRelationship : Optional < (_ inManagedObject : %![mRelationshipType swiftTypeName]%?) -> Void > = nil
 
   //····················································································································
 

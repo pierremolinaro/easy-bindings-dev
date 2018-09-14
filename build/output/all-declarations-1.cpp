@@ -1435,6 +1435,7 @@ class cCollectionElement_entityListForGeneration : public cCollectionElement {
 //--- Constructors
   public : cCollectionElement_entityListForGeneration (const GALGAS_string & in_mEntityName,
                                                        const GALGAS_string & in_mSuperEntityName,
+                                                       const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
                                                        const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                        const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                        const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
@@ -1463,6 +1464,7 @@ class cCollectionElement_entityListForGeneration : public cCollectionElement {
 
 cCollectionElement_entityListForGeneration::cCollectionElement_entityListForGeneration (const GALGAS_string & in_mEntityName,
                                                                                         const GALGAS_string & in_mSuperEntityName,
+                                                                                        const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
                                                                                         const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                                                         const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                                                         const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
@@ -1473,14 +1475,14 @@ cCollectionElement_entityListForGeneration::cCollectionElement_entityListForGene
                                                                                         const GALGAS_stringset & in_mTransientsDeclaredInSuperEntity
                                                                                         COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mEntityName, in_mSuperEntityName, in_mSimpleStoredPropertyListForGeneration, in_mDecoratedTransientListForGeneration, in_mToOneEntityRelationshipList, in_mToManyEntityRelationshipList, in_mSignatureSet, in_mObsoleteEntityNames, in_mIsGraphicEntity, in_mTransientsDeclaredInSuperEntity) {
+mObject (in_mEntityName, in_mSuperEntityName, in_mObservablePropertyMap, in_mSimpleStoredPropertyListForGeneration, in_mDecoratedTransientListForGeneration, in_mToOneEntityRelationshipList, in_mToManyEntityRelationshipList, in_mSignatureSet, in_mObsoleteEntityNames, in_mIsGraphicEntity, in_mTransientsDeclaredInSuperEntity) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cCollectionElement_entityListForGeneration::cCollectionElement_entityListForGeneration (const GALGAS_entityListForGeneration_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mEntityName, inElement.mProperty_mSuperEntityName, inElement.mProperty_mSimpleStoredPropertyListForGeneration, inElement.mProperty_mDecoratedTransientListForGeneration, inElement.mProperty_mToOneEntityRelationshipList, inElement.mProperty_mToManyEntityRelationshipList, inElement.mProperty_mSignatureSet, inElement.mProperty_mObsoleteEntityNames, inElement.mProperty_mIsGraphicEntity, inElement.mProperty_mTransientsDeclaredInSuperEntity) {
+mObject (inElement.mProperty_mEntityName, inElement.mProperty_mSuperEntityName, inElement.mProperty_mObservablePropertyMap, inElement.mProperty_mSimpleStoredPropertyListForGeneration, inElement.mProperty_mDecoratedTransientListForGeneration, inElement.mProperty_mToOneEntityRelationshipList, inElement.mProperty_mToManyEntityRelationshipList, inElement.mProperty_mSignatureSet, inElement.mProperty_mObsoleteEntityNames, inElement.mProperty_mIsGraphicEntity, inElement.mProperty_mTransientsDeclaredInSuperEntity) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1493,7 +1495,7 @@ bool cCollectionElement_entityListForGeneration::isValid (void) const {
 
 cCollectionElement * cCollectionElement_entityListForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_entityListForGeneration (mObject.mProperty_mEntityName, mObject.mProperty_mSuperEntityName, mObject.mProperty_mSimpleStoredPropertyListForGeneration, mObject.mProperty_mDecoratedTransientListForGeneration, mObject.mProperty_mToOneEntityRelationshipList, mObject.mProperty_mToManyEntityRelationshipList, mObject.mProperty_mSignatureSet, mObject.mProperty_mObsoleteEntityNames, mObject.mProperty_mIsGraphicEntity, mObject.mProperty_mTransientsDeclaredInSuperEntity COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_entityListForGeneration (mObject.mProperty_mEntityName, mObject.mProperty_mSuperEntityName, mObject.mProperty_mObservablePropertyMap, mObject.mProperty_mSimpleStoredPropertyListForGeneration, mObject.mProperty_mDecoratedTransientListForGeneration, mObject.mProperty_mToOneEntityRelationshipList, mObject.mProperty_mToManyEntityRelationshipList, mObject.mProperty_mSignatureSet, mObject.mProperty_mObsoleteEntityNames, mObject.mProperty_mIsGraphicEntity, mObject.mProperty_mTransientsDeclaredInSuperEntity COMMA_HERE)) ;
   return result ;
 }
 
@@ -1508,6 +1510,10 @@ void cCollectionElement_entityListForGeneration::description (C_String & ioStrin
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mSuperEntityName" ":" ;
   mObject.mProperty_mSuperEntityName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mObservablePropertyMap" ":" ;
+  mObject.mProperty_mObservablePropertyMap.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mSimpleStoredPropertyListForGeneration" ":" ;
@@ -1572,20 +1578,21 @@ GALGAS_entityListForGeneration GALGAS_entityListForGeneration::constructor_empty
 
 GALGAS_entityListForGeneration GALGAS_entityListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
                                                                                           const GALGAS_string & inOperand1,
-                                                                                          const GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                                                          const GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                                                          const GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                                                          const GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                                                          const GALGAS_stringset & inOperand6,
-                                                                                          const GALGAS_lstringlist & inOperand7,
-                                                                                          const GALGAS_bool & inOperand8,
-                                                                                          const GALGAS_stringset & inOperand9
+                                                                                          const GALGAS_observablePropertyMap & inOperand2,
+                                                                                          const GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                                                          const GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                                                          const GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                                                          const GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                                                          const GALGAS_stringset & inOperand7,
+                                                                                          const GALGAS_lstringlist & inOperand8,
+                                                                                          const GALGAS_bool & inOperand9,
+                                                                                          const GALGAS_stringset & inOperand10
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_entityListForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
     result = GALGAS_entityListForGeneration (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_entityListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9 COMMA_THERE) ;
+    GALGAS_entityListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -1596,6 +1603,7 @@ GALGAS_entityListForGeneration GALGAS_entityListForGeneration::constructor_listW
 void GALGAS_entityListForGeneration::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                 const GALGAS_string & in_mEntityName,
                                                                 const GALGAS_string & in_mSuperEntityName,
+                                                                const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
                                                                 const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
                                                                 const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                                 const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
@@ -1608,6 +1616,7 @@ void GALGAS_entityListForGeneration::makeAttributesFromObjects (capCollectionEle
   cCollectionElement_entityListForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_entityListForGeneration (in_mEntityName,
                                                              in_mSuperEntityName,
+                                                             in_mObservablePropertyMap,
                                                              in_mSimpleStoredPropertyListForGeneration,
                                                              in_mDecoratedTransientListForGeneration,
                                                              in_mToOneEntityRelationshipList,
@@ -1624,18 +1633,19 @@ void GALGAS_entityListForGeneration::makeAttributesFromObjects (capCollectionEle
 
 void GALGAS_entityListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
                                                           const GALGAS_string & inOperand1,
-                                                          const GALGAS_simpleStoredPropertyListForGeneration & inOperand2,
-                                                          const GALGAS_transientDefinitionListForGeneration & inOperand3,
-                                                          const GALGAS_toOneEntityRelationshipListForGeneration & inOperand4,
-                                                          const GALGAS_toManyEntityRelationshipListForGeneration & inOperand5,
-                                                          const GALGAS_stringset & inOperand6,
-                                                          const GALGAS_lstringlist & inOperand7,
-                                                          const GALGAS_bool & inOperand8,
-                                                          const GALGAS_stringset & inOperand9
+                                                          const GALGAS_observablePropertyMap & inOperand2,
+                                                          const GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                          const GALGAS_transientDefinitionListForGeneration & inOperand4,
+                                                          const GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                          const GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                          const GALGAS_stringset & inOperand7,
+                                                          const GALGAS_lstringlist & inOperand8,
+                                                          const GALGAS_bool & inOperand9,
+                                                          const GALGAS_stringset & inOperand10
                                                           COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_entityListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_entityListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -1662,20 +1672,21 @@ void GALGAS_entityListForGeneration::setter_append (GALGAS_entityListForGenerati
 
 void GALGAS_entityListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
                                                            const GALGAS_string inOperand1,
-                                                           const GALGAS_simpleStoredPropertyListForGeneration inOperand2,
-                                                           const GALGAS_transientDefinitionListForGeneration inOperand3,
-                                                           const GALGAS_toOneEntityRelationshipListForGeneration inOperand4,
-                                                           const GALGAS_toManyEntityRelationshipListForGeneration inOperand5,
-                                                           const GALGAS_stringset inOperand6,
-                                                           const GALGAS_lstringlist inOperand7,
-                                                           const GALGAS_bool inOperand8,
-                                                           const GALGAS_stringset inOperand9,
+                                                           const GALGAS_observablePropertyMap inOperand2,
+                                                           const GALGAS_simpleStoredPropertyListForGeneration inOperand3,
+                                                           const GALGAS_transientDefinitionListForGeneration inOperand4,
+                                                           const GALGAS_toOneEntityRelationshipListForGeneration inOperand5,
+                                                           const GALGAS_toManyEntityRelationshipListForGeneration inOperand6,
+                                                           const GALGAS_stringset inOperand7,
+                                                           const GALGAS_lstringlist inOperand8,
+                                                           const GALGAS_bool inOperand9,
+                                                           const GALGAS_stringset inOperand10,
                                                            const GALGAS_uint inInsertionIndex,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_entityListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_entityListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -1687,14 +1698,15 @@ void GALGAS_entityListForGeneration::setter_insertAtIndex (const GALGAS_string i
 
 void GALGAS_entityListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
                                                            GALGAS_string & outOperand1,
-                                                           GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                           GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                           GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                           GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                           GALGAS_stringset & outOperand6,
-                                                           GALGAS_lstringlist & outOperand7,
-                                                           GALGAS_bool & outOperand8,
-                                                           GALGAS_stringset & outOperand9,
+                                                           GALGAS_observablePropertyMap & outOperand2,
+                                                           GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                           GALGAS_transientDefinitionListForGeneration & outOperand4,
+                                                           GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
+                                                           GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
+                                                           GALGAS_stringset & outOperand7,
+                                                           GALGAS_lstringlist & outOperand8,
+                                                           GALGAS_bool & outOperand9,
+                                                           GALGAS_stringset & outOperand10,
                                                            const GALGAS_uint inRemoveIndex,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
@@ -1713,18 +1725,20 @@ void GALGAS_entityListForGeneration::setter_removeAtIndex (GALGAS_string & outOp
       outOperand7.drop () ;
       outOperand8.drop () ;
       outOperand9.drop () ;
+      outOperand10.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
       outOperand0 = p->mObject.mProperty_mEntityName ;
       outOperand1 = p->mObject.mProperty_mSuperEntityName ;
-      outOperand2 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
-      outOperand3 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
-      outOperand4 = p->mObject.mProperty_mToOneEntityRelationshipList ;
-      outOperand5 = p->mObject.mProperty_mToManyEntityRelationshipList ;
-      outOperand6 = p->mObject.mProperty_mSignatureSet ;
-      outOperand7 = p->mObject.mProperty_mObsoleteEntityNames ;
-      outOperand8 = p->mObject.mProperty_mIsGraphicEntity ;
-      outOperand9 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
+      outOperand2 = p->mObject.mProperty_mObservablePropertyMap ;
+      outOperand3 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
+      outOperand4 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
+      outOperand5 = p->mObject.mProperty_mToOneEntityRelationshipList ;
+      outOperand6 = p->mObject.mProperty_mToManyEntityRelationshipList ;
+      outOperand7 = p->mObject.mProperty_mSignatureSet ;
+      outOperand8 = p->mObject.mProperty_mObsoleteEntityNames ;
+      outOperand9 = p->mObject.mProperty_mIsGraphicEntity ;
+      outOperand10 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
     }
   }
 }
@@ -1733,14 +1747,15 @@ void GALGAS_entityListForGeneration::setter_removeAtIndex (GALGAS_string & outOp
 
 void GALGAS_entityListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
                                                       GALGAS_string & outOperand1,
-                                                      GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                      GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                      GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                      GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                      GALGAS_stringset & outOperand6,
-                                                      GALGAS_lstringlist & outOperand7,
-                                                      GALGAS_bool & outOperand8,
-                                                      GALGAS_stringset & outOperand9,
+                                                      GALGAS_observablePropertyMap & outOperand2,
+                                                      GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                      GALGAS_transientDefinitionListForGeneration & outOperand4,
+                                                      GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
+                                                      GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
+                                                      GALGAS_stringset & outOperand7,
+                                                      GALGAS_lstringlist & outOperand8,
+                                                      GALGAS_bool & outOperand9,
+                                                      GALGAS_stringset & outOperand10,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -1757,18 +1772,20 @@ void GALGAS_entityListForGeneration::setter_popFirst (GALGAS_string & outOperand
     outOperand7.drop () ;
     outOperand8.drop () ;
     outOperand9.drop () ;
+    outOperand10.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mEntityName ;
     outOperand1 = p->mObject.mProperty_mSuperEntityName ;
-    outOperand2 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
-    outOperand3 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
-    outOperand4 = p->mObject.mProperty_mToOneEntityRelationshipList ;
-    outOperand5 = p->mObject.mProperty_mToManyEntityRelationshipList ;
-    outOperand6 = p->mObject.mProperty_mSignatureSet ;
-    outOperand7 = p->mObject.mProperty_mObsoleteEntityNames ;
-    outOperand8 = p->mObject.mProperty_mIsGraphicEntity ;
-    outOperand9 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
+    outOperand2 = p->mObject.mProperty_mObservablePropertyMap ;
+    outOperand3 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
+    outOperand4 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
+    outOperand5 = p->mObject.mProperty_mToOneEntityRelationshipList ;
+    outOperand6 = p->mObject.mProperty_mToManyEntityRelationshipList ;
+    outOperand7 = p->mObject.mProperty_mSignatureSet ;
+    outOperand8 = p->mObject.mProperty_mObsoleteEntityNames ;
+    outOperand9 = p->mObject.mProperty_mIsGraphicEntity ;
+    outOperand10 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
   }
 }
 
@@ -1776,14 +1793,15 @@ void GALGAS_entityListForGeneration::setter_popFirst (GALGAS_string & outOperand
 
 void GALGAS_entityListForGeneration::setter_popLast (GALGAS_string & outOperand0,
                                                      GALGAS_string & outOperand1,
-                                                     GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                     GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                     GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                     GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                     GALGAS_stringset & outOperand6,
-                                                     GALGAS_lstringlist & outOperand7,
-                                                     GALGAS_bool & outOperand8,
-                                                     GALGAS_stringset & outOperand9,
+                                                     GALGAS_observablePropertyMap & outOperand2,
+                                                     GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                     GALGAS_transientDefinitionListForGeneration & outOperand4,
+                                                     GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
+                                                     GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
+                                                     GALGAS_stringset & outOperand7,
+                                                     GALGAS_lstringlist & outOperand8,
+                                                     GALGAS_bool & outOperand9,
+                                                     GALGAS_stringset & outOperand10,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -1800,18 +1818,20 @@ void GALGAS_entityListForGeneration::setter_popLast (GALGAS_string & outOperand0
     outOperand7.drop () ;
     outOperand8.drop () ;
     outOperand9.drop () ;
+    outOperand10.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mEntityName ;
     outOperand1 = p->mObject.mProperty_mSuperEntityName ;
-    outOperand2 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
-    outOperand3 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
-    outOperand4 = p->mObject.mProperty_mToOneEntityRelationshipList ;
-    outOperand5 = p->mObject.mProperty_mToManyEntityRelationshipList ;
-    outOperand6 = p->mObject.mProperty_mSignatureSet ;
-    outOperand7 = p->mObject.mProperty_mObsoleteEntityNames ;
-    outOperand8 = p->mObject.mProperty_mIsGraphicEntity ;
-    outOperand9 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
+    outOperand2 = p->mObject.mProperty_mObservablePropertyMap ;
+    outOperand3 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
+    outOperand4 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
+    outOperand5 = p->mObject.mProperty_mToOneEntityRelationshipList ;
+    outOperand6 = p->mObject.mProperty_mToManyEntityRelationshipList ;
+    outOperand7 = p->mObject.mProperty_mSignatureSet ;
+    outOperand8 = p->mObject.mProperty_mObsoleteEntityNames ;
+    outOperand9 = p->mObject.mProperty_mIsGraphicEntity ;
+    outOperand10 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
   }
 }
 
@@ -1819,14 +1839,15 @@ void GALGAS_entityListForGeneration::setter_popLast (GALGAS_string & outOperand0
 
 void GALGAS_entityListForGeneration::method_first (GALGAS_string & outOperand0,
                                                    GALGAS_string & outOperand1,
-                                                   GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                   GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                   GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                   GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                   GALGAS_stringset & outOperand6,
-                                                   GALGAS_lstringlist & outOperand7,
-                                                   GALGAS_bool & outOperand8,
-                                                   GALGAS_stringset & outOperand9,
+                                                   GALGAS_observablePropertyMap & outOperand2,
+                                                   GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                   GALGAS_transientDefinitionListForGeneration & outOperand4,
+                                                   GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
+                                                   GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
+                                                   GALGAS_stringset & outOperand7,
+                                                   GALGAS_lstringlist & outOperand8,
+                                                   GALGAS_bool & outOperand9,
+                                                   GALGAS_stringset & outOperand10,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -1843,18 +1864,20 @@ void GALGAS_entityListForGeneration::method_first (GALGAS_string & outOperand0,
     outOperand7.drop () ;
     outOperand8.drop () ;
     outOperand9.drop () ;
+    outOperand10.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mEntityName ;
     outOperand1 = p->mObject.mProperty_mSuperEntityName ;
-    outOperand2 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
-    outOperand3 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
-    outOperand4 = p->mObject.mProperty_mToOneEntityRelationshipList ;
-    outOperand5 = p->mObject.mProperty_mToManyEntityRelationshipList ;
-    outOperand6 = p->mObject.mProperty_mSignatureSet ;
-    outOperand7 = p->mObject.mProperty_mObsoleteEntityNames ;
-    outOperand8 = p->mObject.mProperty_mIsGraphicEntity ;
-    outOperand9 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
+    outOperand2 = p->mObject.mProperty_mObservablePropertyMap ;
+    outOperand3 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
+    outOperand4 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
+    outOperand5 = p->mObject.mProperty_mToOneEntityRelationshipList ;
+    outOperand6 = p->mObject.mProperty_mToManyEntityRelationshipList ;
+    outOperand7 = p->mObject.mProperty_mSignatureSet ;
+    outOperand8 = p->mObject.mProperty_mObsoleteEntityNames ;
+    outOperand9 = p->mObject.mProperty_mIsGraphicEntity ;
+    outOperand10 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
   }
 }
 
@@ -1862,14 +1885,15 @@ void GALGAS_entityListForGeneration::method_first (GALGAS_string & outOperand0,
 
 void GALGAS_entityListForGeneration::method_last (GALGAS_string & outOperand0,
                                                   GALGAS_string & outOperand1,
-                                                  GALGAS_simpleStoredPropertyListForGeneration & outOperand2,
-                                                  GALGAS_transientDefinitionListForGeneration & outOperand3,
-                                                  GALGAS_toOneEntityRelationshipListForGeneration & outOperand4,
-                                                  GALGAS_toManyEntityRelationshipListForGeneration & outOperand5,
-                                                  GALGAS_stringset & outOperand6,
-                                                  GALGAS_lstringlist & outOperand7,
-                                                  GALGAS_bool & outOperand8,
-                                                  GALGAS_stringset & outOperand9,
+                                                  GALGAS_observablePropertyMap & outOperand2,
+                                                  GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                  GALGAS_transientDefinitionListForGeneration & outOperand4,
+                                                  GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
+                                                  GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
+                                                  GALGAS_stringset & outOperand7,
+                                                  GALGAS_lstringlist & outOperand8,
+                                                  GALGAS_bool & outOperand9,
+                                                  GALGAS_stringset & outOperand10,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -1886,18 +1910,20 @@ void GALGAS_entityListForGeneration::method_last (GALGAS_string & outOperand0,
     outOperand7.drop () ;
     outOperand8.drop () ;
     outOperand9.drop () ;
+    outOperand10.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mEntityName ;
     outOperand1 = p->mObject.mProperty_mSuperEntityName ;
-    outOperand2 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
-    outOperand3 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
-    outOperand4 = p->mObject.mProperty_mToOneEntityRelationshipList ;
-    outOperand5 = p->mObject.mProperty_mToManyEntityRelationshipList ;
-    outOperand6 = p->mObject.mProperty_mSignatureSet ;
-    outOperand7 = p->mObject.mProperty_mObsoleteEntityNames ;
-    outOperand8 = p->mObject.mProperty_mIsGraphicEntity ;
-    outOperand9 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
+    outOperand2 = p->mObject.mProperty_mObservablePropertyMap ;
+    outOperand3 = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
+    outOperand4 = p->mObject.mProperty_mDecoratedTransientListForGeneration ;
+    outOperand5 = p->mObject.mProperty_mToOneEntityRelationshipList ;
+    outOperand6 = p->mObject.mProperty_mToManyEntityRelationshipList ;
+    outOperand7 = p->mObject.mProperty_mSignatureSet ;
+    outOperand8 = p->mObject.mProperty_mObsoleteEntityNames ;
+    outOperand9 = p->mObject.mProperty_mIsGraphicEntity ;
+    outOperand10 = p->mObject.mProperty_mTransientsDeclaredInSuperEntity ;
   }
 }
 
@@ -1978,6 +2004,21 @@ GALGAS_string GALGAS_entityListForGeneration::getter_mSuperEntityNameAtIndex (co
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
     result = p->mObject.mProperty_mSuperEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_entityListForGeneration::getter_mObservablePropertyMapAtIndex (const GALGAS_uint & inIndex,
+                                                                                                   C_Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_entityListForGeneration * p = (cCollectionElement_entityListForGeneration *) attributes.ptr () ;
+  GALGAS_observablePropertyMap result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
+    result = p->mObject.mProperty_mObservablePropertyMap ;
   }
   return result ;
 }
@@ -2135,6 +2176,14 @@ GALGAS_string cEnumerator_entityListForGeneration::current_mSuperEntityName (LOC
   const cCollectionElement_entityListForGeneration * p = (const cCollectionElement_entityListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
   return p->mObject.mProperty_mSuperEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap cEnumerator_entityListForGeneration::current_mObservablePropertyMap (LOCATION_ARGS) const {
+  const cCollectionElement_entityListForGeneration * p = (const cCollectionElement_entityListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
+  return p->mObject.mProperty_mObservablePropertyMap ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
