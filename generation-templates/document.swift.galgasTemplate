@@ -149,18 +149,19 @@ end
 
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
+%for () in OUTLET_GENERATION_MAP do
+%    if let outlet : Any = self.%!lkey.string% {
+      if !(outlet is %!mOutletTypeName%) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the '%!lkey.string%' outlet is nil") ;
+    }
 %
-
-for () in OUTLET_GENERATION_MAP do
-   %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the '%!lkey.string%' outlet is nil") ;\n%
-   %//    }else if !%!lkey.string%!.isKindOfClass (%!mOutletTypeName%) {\n%
-   %//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;\n%
-   %    }\n%
 end
 %  //--------------------------- Array controllers
 %

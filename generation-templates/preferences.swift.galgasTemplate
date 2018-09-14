@@ -167,11 +167,18 @@ end
 %
 ![MAIN_XIB_DESCRIPTOR_LIST generateCode]
 for () in OUTLET_MAP do
-   %  //--------------------------- Check %!lkey.string%' outlet not nil\n%
-   %    if nil == %!lkey.string% {\n%
-   %      presentErrorWindow (file: #file, line: #line, errorMessage: "the '%!lkey.string%' outlet is nil")\n%
-   %    }\n%
-end
+%    if let outlet : Any = self.%!lkey.string% {
+      if !(outlet is %!mOutletTypeName%) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the '%!lkey.string%' outlet is nil") ;
+    }
+%end
 %  //--------------------------- Install compute functions for transients
 %
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
