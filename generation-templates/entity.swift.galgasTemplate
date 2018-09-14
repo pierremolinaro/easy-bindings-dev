@@ -108,7 +108,8 @@ end
 
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-  %  var %!mToManyRelationshipName%_property = ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% ()\n%
+  %  var %!mToManyRelationshipName%_property = ToManyRelationship_%![mRelationshipType swiftTypeName]% ()\n%
+  % // var %!mToManyRelationshipName%_property = ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% ()\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   %  var %!mToOneRelationshipName%_property = ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% ()\n%
@@ -835,7 +836,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 //    %!"To many relationship read write: " + mToManyRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
+class ToManyRelationshipReadWrite_EX_%!ENTITY_NAME%_%!mToManyRelationshipName% : ReadOnlyArrayOf_%![mRelationshipType swiftTypeName]% {
 
   //····················································································································
 
@@ -855,8 +856,8 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : Re
 //    %!"To many relationship: " + mToManyRelationshipName%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
-       ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%,
+final class ToManyRelationship_EX_%!ENTITY_NAME%_%!mToManyRelationshipName% :
+       ToManyRelationshipReadWrite_EX_%!ENTITY_NAME%_%!mToManyRelationshipName%,
        EBSignatureObserverProtocol {
 
   //····················································································································

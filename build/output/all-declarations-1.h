@@ -3419,8 +3419,6 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_string mProperty_mModelTypeName ;
 
-  public : GALGAS_string mProperty_mModelTypeName_32_ ;
-
   public : GALGAS_arrayControllerModelKind mProperty_mModelKind ;
 
   public : GALGAS_string mProperty_mElementTypeName ;
@@ -3447,7 +3445,6 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                            const GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
                                                            const GALGAS_arrayControllerSortedColumnListForGeneration & in_mArrayControllerSortedColumnListForGeneration,
                                                            const GALGAS_string & in_mModelTypeName,
-                                                           const GALGAS_string & in_mModelTypeName_32_,
                                                            const GALGAS_arrayControllerModelKind & in_mModelKind,
                                                            const GALGAS_string & in_mElementTypeName,
                                                            const GALGAS_bool & in_mElementTypeIsGraphic,
@@ -3471,11 +3468,10 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                                                         const class GALGAS_arrayControllerBoundColumnListForGeneration & inOperand4,
                                                                                         const class GALGAS_arrayControllerSortedColumnListForGeneration & inOperand5,
                                                                                         const class GALGAS_string & inOperand6,
-                                                                                        const class GALGAS_string & inOperand7,
-                                                                                        const class GALGAS_arrayControllerModelKind & inOperand8,
-                                                                                        const class GALGAS_string & inOperand9,
-                                                                                        const class GALGAS_bool & inOperand10,
-                                                                                        const class GALGAS__32_stringlist & inOperand11
+                                                                                        const class GALGAS_arrayControllerModelKind & inOperand7,
+                                                                                        const class GALGAS_string & inOperand8,
+                                                                                        const class GALGAS_bool & inOperand9,
+                                                                                        const class GALGAS__32_stringlist & inOperand10
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -3509,8 +3505,6 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelTypeName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelTypeName_32_ (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
 

@@ -18,7 +18,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 end
 % {
 
-  private var mModel : %!MODEL_TYPE_NAME_2%? = nil
+  private var mModel : %!MODEL_TYPE_NAME%? = nil
 
   let sortedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
@@ -204,7 +204,7 @@ end
   //    bind_modelAndView
   //····················································································································
 
-  func bind_modelAndView (model:%!MODEL_TYPE_NAME_2%,
+  func bind_modelAndView (model:%!MODEL_TYPE_NAME%,
                           tableViewArray:[EBTableView],
                           ebView: EBView?,
                           managedObjectContext : EBManagedObjectContext?,

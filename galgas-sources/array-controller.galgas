@@ -299,7 +299,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 
 override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
-  ?let @string inRootEntityName
+  ?let @string unused inRootEntityName
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservableProperties
@@ -333,6 +333,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
 #------
   @typeKind modelType
   @propertyKind kind
+  @string elementSwiftTypeName
   @location errorLocation
   @arrayControllerModelKind modelKind
   @string entityName
@@ -350,6 +351,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?actionMap
       ?*
     ]
+    elementSwiftTypeName = [modelType swiftTypeName]
     modelKind = if [kind isStored] then .storedArrayModel else .transientModel end
   #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
@@ -385,6 +387,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?actionMap
       ?*
     ]
+    elementSwiftTypeName = [modelType swiftTypeName]
   #------------------------------------------------------------ Check bound model is a collection
     if multiplicity != .collection then
       error errorLocation : "the bound property should be a collection"
@@ -416,6 +419,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?actionMap
       ?*
     ]
+    elementSwiftTypeName = [modelType swiftTypeName]
     if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
       error errorLocation : "'sortedArray' or 'selectedArray' are required here"
     end
@@ -508,8 +512,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ![mArrayControllerModel modelString]
     !arrayControllerBoundColumnListForGeneration
     !arrayControllerSortedColumnListForGeneration
-    ![mArrayControllerModel modelTypeName !inRootEntityName !inObservableProperties]
-    ![mArrayControllerModel modelTypeName2 !inRootEntityName !inOwnerName !inObservableProperties]
+    ![mArrayControllerModel modelTypeName !elementSwiftTypeName !inObservableProperties]
     !modelKind
     ![modelType swiftTypeName]
     !entityTypeIsGraphic
@@ -537,7 +540,6 @@ list @arrayControllerForGeneration {
   @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
   @arrayControllerSortedColumnListForGeneration mArrayControllerSortedColumnListForGeneration
   @string mModelTypeName
-  @string mModelTypeName2
   @arrayControllerModelKind mModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
@@ -560,30 +562,7 @@ getter @arrayControllerModel modelString -> @string outResult {
 #·······················································································································
 
 getter @arrayControllerModel modelTypeName
-  ?let @string inRootEntityName
-  ?let @observablePropertyMap inObservablePropertyMap
-   -> @string outResult
-{
-  switch self
-  case selfCollection (@lstring storedPropertyName) :
-    outResult = "Ligne328_" + inRootEntityName + "_" + storedPropertyName
-  case toManyRelationship (@lstring rootRelationshipName) :
-    outResult = "ToManyRelationship_" + inRootEntityName + "_" + rootRelationshipName
-  case controllerArray (@lstring controllerName *) :
-    [inObservablePropertyMap searchKey
-      !controllerName
-      ?let modelType
-      ?5*
-    ]
-    outResult = "TransientArrayOf_" + [modelType swiftTypeName] # ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
-  end
-}
-
-#·······················································································································
-
-getter @arrayControllerModel modelTypeName2
-  ?let @string inRootEntityName
-  ?let @string inCurrentEntityName
+  ?let @string inElementSwiftTypeName
   ?let @observablePropertyMap inObservablePropertyMap
    -> @string outResult
 {
@@ -598,7 +577,7 @@ getter @arrayControllerModel modelTypeName2
     switch kind
     case stored :
       if [modelType isEntityType] then
-        outResult = "ToManyRelationshipReadWrite_" + inCurrentEntityName + "_" + storedPropertyName
+        outResult = "ToManyRelationshipReadWrite_" + [modelType swiftTypeName] # inCurrentEntityName + "_" + storedPropertyName
       else
         outResult = "EBClassArray_" + [modelType swiftTypeName]
       end
@@ -609,8 +588,8 @@ getter @arrayControllerModel modelTypeName2
     case selectionController :
       outResult = "<< selectionController >>"
     end
-  case toManyRelationship (@lstring rootRelationshipName) :
-    outResult = "ToManyRelationshipReadWrite_" + inRootEntityName + "_" + rootRelationshipName
+  case toManyRelationship (*) :
+    outResult = "ToManyRelationshipReadWrite_" + inElementSwiftTypeName # + inRootEntityName + "_" + rootRelationshipName
   case controllerArray (@lstring controllerName *) :
     [inObservablePropertyMap searchKey
       !controllerName
@@ -691,7 +670,6 @@ private filewrapper collectionControllerGenerationTemplate in "../generation-tem
     ?@string MODEL_STRING
     ?@arrayControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
-    ?@string MODEL_TYPE_NAME_2
     ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@arrayControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
@@ -730,7 +708,6 @@ proc generateArrayControllers
       !mModelString
       !mModelKind
       !mModelTypeName
-      !mModelTypeName2
       !mArrayControllerBoundColumnListForGeneration
       !mArrayControllerSortedColumnListForGeneration
       !mElementTypeName

@@ -219,7 +219,6 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayCo
                                                                                                                const class GALGAS_string & in_MODEL_5F_STRING,
                                                                                                                const class GALGAS_arrayControllerModelKind & in_MODEL_5F_KIND,
                                                                                                                const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME_5F__32_,
                                                                                                                const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
                                                                                                                const class GALGAS_arrayControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
                                                                                                                const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
