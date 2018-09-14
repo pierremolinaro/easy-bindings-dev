@@ -2848,7 +2848,8 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_relationshipModel,
+    kEnum_selfRelationshipModel,
+    kEnum_rootRelationshipModel,
     kEnum_storedArrayModel,
     kEnum_transientModel
   } enumeration ;
@@ -2872,7 +2873,9 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_arrayControllerModelKind constructor_relationshipModel (LOCATION_ARGS) ;
+  public : static class GALGAS_arrayControllerModelKind constructor_rootRelationshipModel (LOCATION_ARGS) ;
+
+  public : static class GALGAS_arrayControllerModelKind constructor_selfRelationshipModel (LOCATION_ARGS) ;
 
   public : static class GALGAS_arrayControllerModelKind constructor_storedArrayModel (LOCATION_ARGS) ;
 
@@ -2890,7 +2893,9 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRelationshipModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootRelationshipModel (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfRelationshipModel (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isStoredArrayModel (LOCATION_ARGS) const ;
 

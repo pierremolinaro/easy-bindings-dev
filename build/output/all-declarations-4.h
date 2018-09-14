@@ -247,7 +247,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_stringset mProperty_mNeededOutletClasses ;
 
-  public : GALGAS_arrayControllerForGeneration mProperty_mAllArrayControllerForGeneration ;
+  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerListForGeneration ;
 
   public : GALGAS_validationStubRoutineListForGeneration mProperty_mValidationStubRoutineListForGeneration ;
 
@@ -281,7 +281,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_classListForGeneration & in_mClassListForGeneration,
                                        const GALGAS_enumListForGeneration & in_mEnumListForGeneration,
                                        const GALGAS_stringset & in_mNeededOutletClasses,
-                                       const GALGAS_arrayControllerForGeneration & in_mAllArrayControllerForGeneration,
+                                       const GALGAS_arrayControllerForGeneration & in_mArrayControllerListForGeneration,
                                        const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
                                        const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
                                        const GALGAS_objectControllerForGeneration & in_mObjectControllerListForGeneration,
@@ -329,7 +329,7 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_actionListForGeneration getter_mActionListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mAllArrayControllerForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mArrayControllerListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_classListForGeneration getter_mClassListForGeneration (LOCATION_ARGS) const ;
 

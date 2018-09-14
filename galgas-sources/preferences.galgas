@@ -162,7 +162,7 @@ method @prefDeclaration semanticAnalysis
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-  ioGeneration.mAllArrayControllerForGeneration += arrayControllerListForGeneration
+  ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do

@@ -1047,7 +1047,7 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_rootToManyRelationship,
+    kEnum_toManyRelationship,
     kEnum_selfCollection,
     kEnum_controllerArray
   } enumeration ;
@@ -1080,11 +1080,11 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                                                  const class GALGAS_lstring & inOperand1
                                                                                  COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_arrayControllerModel constructor_rootToManyRelationship (const class GALGAS_lstring & inOperand0
-                                                                                        COMMA_LOCATION_ARGS) ;
-
   public : static class GALGAS_arrayControllerModel constructor_selfCollection (const class GALGAS_lstring & inOperand0
                                                                                 COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_arrayControllerModel constructor_toManyRelationship (const class GALGAS_lstring & inOperand0
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -1100,22 +1100,22 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_rootToManyRelationship (class GALGAS_lstring & outArgument0,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG void method_selfCollection (class GALGAS_lstring & outArgument0,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_toManyRelationship (class GALGAS_lstring & outArgument0,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isControllerArray (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootToManyRelationship (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfCollection (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToManyRelationship (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -1134,18 +1134,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMode
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship : public cEnumAssociatedValues {
+class cEnumAssociatedValues_arrayControllerModel_toManyRelationship : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (const GALGAS_lstring & inAssociatedValue0
-                                                                              COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_arrayControllerModel_toManyRelationship (const GALGAS_lstring & inAssociatedValue0
+                                                                          COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (void) {}
+  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_toManyRelationship (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

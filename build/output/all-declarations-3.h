@@ -38,7 +38,8 @@ class GALGAS_string extensionGetter_modelTypeName (const class GALGAS_arrayContr
 
 class GALGAS_string extensionGetter_modelTypeName_32_ (const class GALGAS_arrayControllerModel & inObject,
                                                        const class GALGAS_string & constinArgument0,
-                                                       const class GALGAS_observablePropertyMap & constinArgument1,
+                                                       const class GALGAS_string & constinArgument1,
+                                                       const class GALGAS_observablePropertyMap & constinArgument2,
                                                        class C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 

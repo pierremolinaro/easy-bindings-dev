@@ -18,10 +18,9 @@ struct @structForGeneration {
   @classListForGeneration mClassListForGeneration
   @enumListForGeneration mEnumListForGeneration
   @stringset mNeededOutletClasses
-  @arrayControllerForGeneration mAllArrayControllerForGeneration
+  @arrayControllerForGeneration mArrayControllerListForGeneration
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
-#  @customObjectControllerForGeneration mCustomObjectControllerListForGeneration
   @objectControllerForGeneration mObjectControllerListForGeneration
   @stringlist mPropertyClassList
   @transientExternTypeList mTransientPropertyTypeList
@@ -81,7 +80,7 @@ proc generateCode
     !?generatedFileSet
   )
   generateArrayControllers (
-    !inGeneration.mAllArrayControllerForGeneration
+    !inGeneration.mArrayControllerListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )

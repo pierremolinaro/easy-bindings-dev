@@ -578,7 +578,7 @@ case storedArrayModel :
     }
   }
 %
-case relationshipModel :
+case rootRelationshipModel, selfRelationshipModel :
 %  //····················································································································
   //    select
   //····················································································································
@@ -606,7 +606,7 @@ case relationshipModel :
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {
+    if let model = mModel, let managedObjectContext = self.mManagedObjectContext {
       switch model.prop {
       case .empty, .multiple :
         break
@@ -631,7 +631,7 @@ case relationshipModel :
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let model = mModel, let owner = model.owner, let managedObjectContext = owner.managedObjectContext () {
+    if let model = mModel, let managedObjectContext = self.mManagedObjectContext {
       switch model.prop {
       case .empty, .multiple :
         break
@@ -865,7 +865,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
         if (translation.x != 0.0) || (translation.y != 0.0) {
           if !self.mPerformEndUndoGroupingOnMouseUp {
             self.mPerformEndUndoGroupingOnMouseUp = true
-            mModel?.owner?.undoManager ()?.beginUndoGrouping ()
+            mModel?.undoManager?.beginUndoGrouping ()
           }
           for object in mSelectedSet.mSet {
             object.translate (xBy: translation.x, yBy:translation.y)
@@ -882,7 +882,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   func mouseUp (with inEvent : NSEvent) {
     if self.mPerformEndUndoGroupingOnMouseUp {
       self.mPerformEndUndoGroupingOnMouseUp = false
-      mModel?.owner?.undoManager ()?.endUndoGrouping ()
+      mModel?.undoManager?.endUndoGrouping ()
     }
     mLastMouseDraggedLocation = nil
     mSelectionRectangleOrigin = nil
@@ -929,7 +929,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     for object in mSelectedSet.mSet {
       if let idx = objects.index (of: object) {
         objects.remove(at: idx)
-        mManagedObjectContext?.removeManagedObject (object)
+        self.mManagedObjectContext?.removeManagedObject (object)
       }
     }
     mModel?.setProp (objects)

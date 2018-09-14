@@ -200,7 +200,7 @@ override method @documentDeclaration semanticAnalysis
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-  ioGeneration.mAllArrayControllerForGeneration += documentArrayControllerListForGeneration
+  ioGeneration.mArrayControllerListForGeneration += documentArrayControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
   ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
 #--- Build action map

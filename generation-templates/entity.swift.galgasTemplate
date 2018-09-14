@@ -155,15 +155,20 @@ end
 %  //--- Install undoers for properties
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.%!mStoredPropertyName%_property.undoManager = undoManager ()\n%
+  %    self.%!mStoredPropertyName%_property.undoManager = self.undoManager ()\n%
 end
-%  //--- Install owner for relationships
+%  //--- Install undoers and opposite setter for relationships
 %
 for () in TO_ONE_RELATIONSHIP_LIST do
   %    self.%!mToOneRelationshipName%_property.owner = self\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-  %    self.%!mToManyRelationshipName%_property.owner = self\n%
+  %    self.%!mToManyRelationshipName%_property.undoManager = self.undoManager ()\n%
+  if mOppositeRelationshipName != "" then
+  %    self.%!mToManyRelationshipName%_property.setOppositeRelationship = { (_ inManagedObject : %![mRelationshipType swiftTypeName]%) in\n%
+  %      inManagedObject.%!mOppositeRelationshipName%_property.setProp (self)\n%
+  %    }\n%
+  end
 end
 %  //--- register properties for handling signature
 %
@@ -639,7 +644,7 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : Re
 
   //····················································································································
 
-  weak var owner : %!ENTITY_NAME%?
+  weak var undoManager : EBUndoManager?
 
   //····················································································································
  
@@ -658,6 +663,12 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName% : Re
 final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
        ToManyRelationshipReadWrite_%!ENTITY_NAME%_%!mToManyRelationshipName%,
        EBSignatureObserverProtocol {
+
+  //····················································································································
+
+  var setOppositeRelationship : Optional < (_ inManagedObject : %![mRelationshipType swiftTypeName]%) -> Void > = nil
+
+  //····················································································································
 
   var mValueExplorer : NSPopUpButton? {
     didSet {
@@ -702,7 +713,7 @@ final class ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% :
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        owner?.undoManager()?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
+        self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let valueExplorer = mValueExplorer {
           updateManagedObjectToManyRelationshipDisplay (objectArray: mValue, popUpButton: valueExplorer)
@@ -725,10 +736,11 @@ end
         let addedObjectSet = mSet.subtracting (oldSet)
         for managedObject : %![mRelationshipType swiftTypeName]% in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
-% if mOppositeRelationshipName != "" then
-%          managedObject.%!mOppositeRelationshipName%_property.setProp (owner)
+% # if mOppositeRelationshipName != "" then
+%          self.setOppositeRelationship? (managedObject)
+         //  managedObject.%!mOppositeRelationshipName%_property.setProp (owner)
 %
-end
+# end
 %        }
 %for () in mDestinationEntityObservablePropertyMap do
   if (not [mMultiplicity isCollection]) & not [mType isEntityType] then

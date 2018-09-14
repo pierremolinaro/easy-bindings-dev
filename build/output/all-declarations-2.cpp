@@ -11371,16 +11371,16 @@ GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::ext
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship::cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (const GALGAS_lstring & inAssociatedValue0
-                                                                                                                                      COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues_arrayControllerModel_toManyRelationship::cEnumAssociatedValues_arrayControllerModel_toManyRelationship (const GALGAS_lstring & inAssociatedValue0
+                                                                                                                              COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
 mAssociatedValue0 (inAssociatedValue0) {
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship::description (C_String & ioString,
-                                                                                     const int32_t inIndentation) const {
+void cEnumAssociatedValues_arrayControllerModel_toManyRelationship::description (C_String & ioString,
+                                                                                 const int32_t inIndentation) const {
   ioString << "(\n" ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   ioString << ")" ;
@@ -11388,8 +11388,8 @@ void cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship::descript
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typeComparisonResult cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *> (inOperand) ;
+typeComparisonResult cEnumAssociatedValues_arrayControllerModel_toManyRelationship::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_arrayControllerModel_toManyRelationship * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_toManyRelationship *> (inOperand) ;
   macroValidPointer (ptr) ;
   typeComparisonResult result = kOperandEqual ;
   if (result == kOperandEqual) {
@@ -11471,13 +11471,13 @@ mEnum (kNotBuilt) {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_rootToManyRelationship (const GALGAS_lstring & inAssociatedValue0
-                                                                                             COMMA_LOCATION_ARGS) {
+GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_toManyRelationship (const GALGAS_lstring & inAssociatedValue0
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerModel result ;
   if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_rootToManyRelationship ;
+    result.mEnum = kEnum_toManyRelationship ;
     cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (inAssociatedValue0 COMMA_THERE)) ;
+    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_toManyRelationship (inAssociatedValue0 COMMA_THERE)) ;
     result.mAssociatedValues.setPointer (ptr) ;
     macroDetachSharedObject (ptr) ;
   }
@@ -11517,16 +11517,16 @@ GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_controllerA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_arrayControllerModel::method_rootToManyRelationship (GALGAS_lstring & outAssociatedValue0,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_rootToManyRelationship) {
+void GALGAS_arrayControllerModel::method_toManyRelationship (GALGAS_lstring & outAssociatedValue0,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_toManyRelationship) {
     outAssociatedValue0.drop () ;
     C_String s ;
-    s << "method @arrayControllerModel rootToManyRelationship invoked with an invalid enum value" ;
+    s << "method @arrayControllerModel toManyRelationship invoked with an invalid enum value" ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
-    const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * ptr = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) unsafePointer () ;
+    const cEnumAssociatedValues_arrayControllerModel_toManyRelationship * ptr = (const cEnumAssociatedValues_arrayControllerModel_toManyRelationship *) unsafePointer () ;
     outAssociatedValue0 = ptr->mAssociatedValue0 ;
   }
 }
@@ -11570,15 +11570,15 @@ void GALGAS_arrayControllerModel::method_controllerArray (GALGAS_lstring & outAs
 
 static const char * gEnumNameArrayFor_arrayControllerModel [4] = {
   "(not built)",
-  "rootToManyRelationship",
+  "toManyRelationship",
   "selfCollection",
   "controllerArray"
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bool GALGAS_arrayControllerModel::getter_isRootToManyRelationship (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_rootToManyRelationship == mEnum) ;
+GALGAS_bool GALGAS_arrayControllerModel::getter_isToManyRelationship (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_toManyRelationship == mEnum) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -11669,9 +11669,17 @@ mEnum (kNotBuilt) {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::constructor_relationshipModel (UNUSED_LOCATION_ARGS) {
+GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::constructor_selfRelationshipModel (UNUSED_LOCATION_ARGS) {
   GALGAS_arrayControllerModelKind result ;
-  result.mEnum = kEnum_relationshipModel ;
+  result.mEnum = kEnum_selfRelationshipModel ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::constructor_rootRelationshipModel (UNUSED_LOCATION_ARGS) {
+  GALGAS_arrayControllerModelKind result ;
+  result.mEnum = kEnum_rootRelationshipModel ;
   return result ;
 }
 
@@ -11693,17 +11701,24 @@ GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::constructor_tra
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const char * gEnumNameArrayFor_arrayControllerModelKind [4] = {
+static const char * gEnumNameArrayFor_arrayControllerModelKind [5] = {
   "(not built)",
-  "relationshipModel",
+  "selfRelationshipModel",
+  "rootRelationshipModel",
   "storedArrayModel",
   "transientModel"
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bool GALGAS_arrayControllerModelKind::getter_isRelationshipModel (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_relationshipModel == mEnum) ;
+GALGAS_bool GALGAS_arrayControllerModelKind::getter_isSelfRelationshipModel (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_selfRelationshipModel == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_arrayControllerModelKind::getter_isRootRelationshipModel (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_rootRelationshipModel == mEnum) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

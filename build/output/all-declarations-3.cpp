@@ -23,24 +23,24 @@ GALGAS_string extensionGetter_modelString (const GALGAS_arrayControllerModel & i
     break ;
   case GALGAS_arrayControllerModel::kEnum_selfCollection:
     {
-      const cEnumAssociatedValues_arrayControllerModel_selfCollection * extractPtr_21013 = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_storedPropertyName = extractPtr_21013->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("self.").add_operation (extractedValue_storedPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 549)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 549)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 549)) ;
+      const cEnumAssociatedValues_arrayControllerModel_selfCollection * extractPtr_21035 = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_storedPropertyName = extractPtr_21035->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("self.").add_operation (extractedValue_storedPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 552)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 552)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 552)) ;
     }
     break ;
-  case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
+  case GALGAS_arrayControllerModel::kEnum_toManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_21149 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_21149->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("self.rootObject.").add_operation (extractedValue_rootRelationshipName.getter_string (SOURCE_FILE ("array-controller.galgas", 551)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 551)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 551)) ;
+      const cEnumAssociatedValues_arrayControllerModel_toManyRelationship * extractPtr_21167 = (const cEnumAssociatedValues_arrayControllerModel_toManyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_21167->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("self.rootObject.").add_operation (extractedValue_rootRelationshipName.getter_string (SOURCE_FILE ("array-controller.galgas", 554)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 554)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 554)) ;
     }
     break ;
   case GALGAS_arrayControllerModel::kEnum_controllerArray:
     {
-      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_21305 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_21305->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_propertyName = extractPtr_21305->mAssociatedValue1 ;
-      result_outResult = GALGAS_string ("self.").add_operation (extractedValue_controllerName.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 553)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 553)).add_operation (extractedValue_propertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 553)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 553)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 553)) ;
+      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_21323 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_21323->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_propertyName = extractPtr_21323->mAssociatedValue1 ;
+      result_outResult = GALGAS_string ("self.").add_operation (extractedValue_controllerName.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556)).add_operation (extractedValue_propertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 556)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 556)) ;
     }
     break ;
   }
@@ -69,30 +69,30 @@ GALGAS_string extensionGetter_modelTypeName (const GALGAS_arrayControllerModel &
     break ;
   case GALGAS_arrayControllerModel::kEnum_selfCollection:
     {
-      const cEnumAssociatedValues_arrayControllerModel_selfCollection * extractPtr_21733 = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_storedPropertyName = extractPtr_21733->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("Ligne328_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 566)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 566)).add_operation (extractedValue_storedPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 566)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 566)) ;
+      const cEnumAssociatedValues_arrayControllerModel_selfCollection * extractPtr_21751 = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_storedPropertyName = extractPtr_21751->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("Ligne328_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 569)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 569)).add_operation (extractedValue_storedPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 569)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 569)) ;
     }
     break ;
-  case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
+  case GALGAS_arrayControllerModel::kEnum_toManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_21883 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_21883->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("ToManyRelationship_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 568)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 568)).add_operation (extractedValue_rootRelationshipName.getter_string (SOURCE_FILE ("array-controller.galgas", 568)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 568)) ;
+      const cEnumAssociatedValues_arrayControllerModel_toManyRelationship * extractPtr_21897 = (const cEnumAssociatedValues_arrayControllerModel_toManyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_21897->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("ToManyRelationship_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 571)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 571)).add_operation (extractedValue_rootRelationshipName.getter_string (SOURCE_FILE ("array-controller.galgas", 571)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 571)) ;
     }
     break ;
   case GALGAS_arrayControllerModel::kEnum_controllerArray:
     {
-      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_22098 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_22098->mAssociatedValue0 ;
-      GALGAS_typeKind var_modelType_22018 ;
-      GALGAS_propertyKind joker_22026_5 ; // Joker input parameter
-      GALGAS_propertyMultiplicity joker_22026_4 ; // Joker input parameter
-      GALGAS_string joker_22026_3 ; // Joker input parameter
-      GALGAS_actionMap joker_22026_2 ; // Joker input parameter
-      GALGAS_bool joker_22026_1 ; // Joker input parameter
-      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_modelType_22018, joker_22026_5, joker_22026_4, joker_22026_3, joker_22026_2, joker_22026_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 570)) ;
-      result_outResult = GALGAS_string ("TransientArrayOf_").add_operation (extensionGetter_swiftTypeName (var_modelType_22018, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 575)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 575)) ;
+      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_22112 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_22112->mAssociatedValue0 ;
+      GALGAS_typeKind var_modelType_22032 ;
+      GALGAS_propertyKind joker_22040_5 ; // Joker input parameter
+      GALGAS_propertyMultiplicity joker_22040_4 ; // Joker input parameter
+      GALGAS_string joker_22040_3 ; // Joker input parameter
+      GALGAS_actionMap joker_22040_2 ; // Joker input parameter
+      GALGAS_bool joker_22040_1 ; // Joker input parameter
+      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_modelType_22032, joker_22040_5, joker_22040_4, joker_22040_3, joker_22040_2, joker_22040_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 573)) ;
+      result_outResult = GALGAS_string ("TransientArrayOf_").add_operation (extensionGetter_swiftTypeName (var_modelType_22032, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 578)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 578)) ;
     }
     break ;
   }
@@ -111,6 +111,7 @@ GALGAS_string extensionGetter_modelTypeName (const GALGAS_arrayControllerModel &
 
 GALGAS_string extensionGetter_modelTypeName_32_ (const GALGAS_arrayControllerModel & inObject,
                                                  const GALGAS_string & constinArgument_inRootEntityName,
+                                                 const GALGAS_string & constinArgument_inCurrentEntityName,
                                                  const GALGAS_observablePropertyMap & constinArgument_inObservablePropertyMap,
                                                  C_Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
@@ -121,26 +122,31 @@ GALGAS_string extensionGetter_modelTypeName_32_ (const GALGAS_arrayControllerMod
     break ;
   case GALGAS_arrayControllerModel::kEnum_selfCollection:
     {
-      const cEnumAssociatedValues_arrayControllerModel_selfCollection * extractPtr_22959 = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_storedProprtyName = extractPtr_22959->mAssociatedValue0 ;
-      GALGAS_typeKind var_modelType_22577 ;
-      GALGAS_propertyKind var_kind_22607 ;
-      GALGAS_propertyMultiplicity joker_22615_4 ; // Joker input parameter
-      GALGAS_string joker_22615_3 ; // Joker input parameter
-      GALGAS_actionMap joker_22615_2 ; // Joker input parameter
-      GALGAS_bool joker_22615_1 ; // Joker input parameter
-      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_storedProprtyName, var_modelType_22577, var_kind_22607, joker_22615_4, joker_22615_3, joker_22615_2, joker_22615_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 588)) ;
-      switch (var_kind_22607.enumValue ()) {
+      const cEnumAssociatedValues_arrayControllerModel_selfCollection * extractPtr_23172 = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_storedPropertyName = extractPtr_23172->mAssociatedValue0 ;
+      GALGAS_typeKind var_modelType_22628 ;
+      GALGAS_propertyKind var_kind_22658 ;
+      GALGAS_propertyMultiplicity joker_22666_4 ; // Joker input parameter
+      GALGAS_string joker_22666_3 ; // Joker input parameter
+      GALGAS_actionMap joker_22666_2 ; // Joker input parameter
+      GALGAS_bool joker_22666_1 ; // Joker input parameter
+      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_storedPropertyName, var_modelType_22628, var_kind_22658, joker_22666_4, joker_22666_3, joker_22666_2, joker_22666_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 592)) ;
+      switch (var_kind_22658.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_stored:
         {
-          result_outResult = GALGAS_string ("EBClassArray_").add_operation (extensionGetter_swiftTypeName (var_modelType_22577, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 596)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 596)) ;
+          const enumGalgasBool test_1 = var_modelType_22628.getter_isEntityType (SOURCE_FILE ("array-controller.galgas", 600)).boolEnum () ;
+          if (kBoolTrue == test_1) {
+            result_outResult = GALGAS_string ("ToManyRelationshipReadWrite_").add_operation (constinArgument_inCurrentEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 601)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 601)).add_operation (extractedValue_storedPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 601)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 601)) ;
+          }else if (kBoolFalse == test_1) {
+            result_outResult = GALGAS_string ("EBClassArray_").add_operation (extensionGetter_swiftTypeName (var_modelType_22628, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 603)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 603)) ;
+          }
         }
         break ;
       case GALGAS_propertyKind::kEnum_transient:
         {
-          result_outResult = GALGAS_string ("ReadOnlyArrayOf_").add_operation (extensionGetter_swiftTypeName (var_modelType_22577, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 598)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 598)) ;
+          result_outResult = GALGAS_string ("ReadOnlyArrayOf_").add_operation (extensionGetter_swiftTypeName (var_modelType_22628, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 606)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 606)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
@@ -156,25 +162,25 @@ GALGAS_string extensionGetter_modelTypeName_32_ (const GALGAS_arrayControllerMod
       }
     }
     break ;
-  case GALGAS_arrayControllerModel::kEnum_rootToManyRelationship:
+  case GALGAS_arrayControllerModel::kEnum_toManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship * extractPtr_23118 = (const cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_23118->mAssociatedValue0 ;
-      result_outResult = GALGAS_string ("ToManyRelationshipReadWrite_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 605)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 605)).add_operation (extractedValue_rootRelationshipName.getter_string (SOURCE_FILE ("array-controller.galgas", 605)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 605)) ;
+      const cEnumAssociatedValues_arrayControllerModel_toManyRelationship * extractPtr_23327 = (const cEnumAssociatedValues_arrayControllerModel_toManyRelationship *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootRelationshipName = extractPtr_23327->mAssociatedValue0 ;
+      result_outResult = GALGAS_string ("ToManyRelationshipReadWrite_").add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 613)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 613)).add_operation (extractedValue_rootRelationshipName.getter_string (SOURCE_FILE ("array-controller.galgas", 613)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 613)) ;
     }
     break ;
   case GALGAS_arrayControllerModel::kEnum_controllerArray:
     {
-      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_23332 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_controllerName = extractPtr_23332->mAssociatedValue0 ;
-      GALGAS_typeKind var_modelType_23253 ;
-      GALGAS_propertyKind joker_23261_5 ; // Joker input parameter
-      GALGAS_propertyMultiplicity joker_23261_4 ; // Joker input parameter
-      GALGAS_string joker_23261_3 ; // Joker input parameter
-      GALGAS_actionMap joker_23261_2 ; // Joker input parameter
-      GALGAS_bool joker_23261_1 ; // Joker input parameter
-      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_modelType_23253, joker_23261_5, joker_23261_4, joker_23261_3, joker_23261_2, joker_23261_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 607)) ;
-      result_outResult = GALGAS_string ("ReadOnlyArrayOf_").add_operation (extensionGetter_swiftTypeName (var_modelType_23253, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 612)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 612)) ;
+      const cEnumAssociatedValues_arrayControllerModel_controllerArray * extractPtr_23541 = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_controllerName = extractPtr_23541->mAssociatedValue0 ;
+      GALGAS_typeKind var_modelType_23462 ;
+      GALGAS_propertyKind joker_23470_5 ; // Joker input parameter
+      GALGAS_propertyMultiplicity joker_23470_4 ; // Joker input parameter
+      GALGAS_string joker_23470_3 ; // Joker input parameter
+      GALGAS_actionMap joker_23470_2 ; // Joker input parameter
+      GALGAS_bool joker_23470_1 ; // Joker input parameter
+      constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_modelType_23462, joker_23470_5, joker_23470_4, joker_23470_3, joker_23470_2, joker_23470_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 615)) ;
+      result_outResult = GALGAS_string ("ReadOnlyArrayOf_").add_operation (extensionGetter_swiftTypeName (var_modelType_23462, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 620)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 620)) ;
     }
     break ;
   }
@@ -197,41 +203,41 @@ GALGAS_string extensionGetter_filterCode (const GALGAS_arrayControllerFilterList
                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_arrayControllerFilterListForGeneration temp_0 = inObject ;
-  GALGAS_arrayControllerFilterListForGeneration var_filterProperties_24445 = temp_0 ;
-  GALGAS_string var_firstFilterProperty_24508 ;
+  GALGAS_arrayControllerFilterListForGeneration var_filterProperties_24654 = temp_0 ;
+  GALGAS_string var_firstFilterProperty_24717 ;
   {
-  GALGAS_typeKind joker_24510 ; // Joker input parameter
-  var_filterProperties_24445.setter_popFirst (var_firstFilterProperty_24508, joker_24510, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 644)) ;
+  GALGAS_typeKind joker_24719 ; // Joker input parameter
+  var_filterProperties_24654.setter_popFirst (var_firstFilterProperty_24717, joker_24719, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 652)) ;
   }
-  GALGAS_string var_indent_24529 = GALGAS_string ("            ") ;
-  result_outResult = var_indent_24529.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 646)).add_operation (var_firstFilterProperty_24508, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 646)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 646)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 647)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 647)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 648)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 648)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 649)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 649)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 650)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 650)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 651)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 651)) ;
-  GALGAS_uint var_idx_24880 = GALGAS_uint ((uint32_t) 2U) ;
-  GALGAS_string var_args_24899 = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd_24923 = var_indent_24529.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 654)) ;
-  cEnumerator_arrayControllerFilterListForGeneration enumerator_24969 (var_filterProperties_24445, kENUMERATION_UP) ;
-  while (enumerator_24969.hasCurrentObject ()) {
-    var_indent_24529.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 656)) ;
-    result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 657)).add_operation (enumerator_24969.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 657)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 657)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 657)) ;
-    result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 658)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 658)) ;
-    result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 659)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 659)) ;
-    result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 660)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 660)) ;
-    result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 661)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 661)) ;
-    result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 662)).add_operation (var_idx_24880.getter_string (SOURCE_FILE ("array-controller.galgas", 662)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 662)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 662)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 662)) ;
-    var_blockEnd_24923 = var_indent_24529.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 663)).add_operation (var_blockEnd_24923, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 663)) ;
-    var_args_24899.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_24880.getter_string (SOURCE_FILE ("array-controller.galgas", 664)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 664)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 664)) ;
-    var_idx_24880.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 665)) ;
-    enumerator_24969.gotoNextObject () ;
+  GALGAS_string var_indent_24738 = GALGAS_string ("            ") ;
+  result_outResult = var_indent_24738.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 654)).add_operation (var_firstFilterProperty_24717, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 654)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 654)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 655)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 655)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 656)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 656)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 657)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 657)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 658)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 658)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 659)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 659)) ;
+  GALGAS_uint var_idx_25089 = GALGAS_uint ((uint32_t) 2U) ;
+  GALGAS_string var_args_25108 = GALGAS_string::makeEmptyString () ;
+  GALGAS_string var_blockEnd_25132 = var_indent_24738.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 662)) ;
+  cEnumerator_arrayControllerFilterListForGeneration enumerator_25178 (var_filterProperties_24654, kENUMERATION_UP) ;
+  while (enumerator_25178.hasCurrentObject ()) {
+    var_indent_24738.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 664)) ;
+    result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 665)).add_operation (enumerator_25178.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 665)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 665)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 665)) ;
+    result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 666)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 666)) ;
+    result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 667)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 667)) ;
+    result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 668)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 668)) ;
+    result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 669)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 669)) ;
+    result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 670)).add_operation (var_idx_25089.getter_string (SOURCE_FILE ("array-controller.galgas", 670)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 670)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 670)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 670)) ;
+    var_blockEnd_25132 = var_indent_24738.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 671)).add_operation (var_blockEnd_25132, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 671)) ;
+    var_args_25108.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_25089.getter_string (SOURCE_FILE ("array-controller.galgas", 672)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 672)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 672)) ;
+    var_idx_25089.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 673)) ;
+    enumerator_25178.gotoNextObject () ;
   }
-  var_indent_24529.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 667)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 668)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 668)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 668)).add_operation (var_args_24899, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 668)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 668)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 668)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 669)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 669)) ;
-  result_outResult.plusAssign_operation(var_indent_24529.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 670)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 670)) ;
-  result_outResult.plusAssign_operation(var_blockEnd_24923, inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 671)) ;
+  var_indent_24738.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 675)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 676)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 676)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 676)).add_operation (var_args_25108, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 676)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 676)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 676)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 677)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 677)) ;
+  result_outResult.plusAssign_operation(var_indent_24738.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 678)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 678)) ;
+  result_outResult.plusAssign_operation(var_blockEnd_25132, inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 679)) ;
 //---
   return result_outResult ;
 }

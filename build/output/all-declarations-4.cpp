@@ -2055,37 +2055,37 @@ void extensionMethod_semanticAnalysis (const GALGAS_prefDeclaration inObject,
     enumerator_6230.gotoNextObject () ;
   }
   ioArgument_ioGeneration.mProperty_mTransientListForGeneration.plusAssign_operation(var_transientDefinitionListForGeneration_6116, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 164)) ;
-  ioArgument_ioGeneration.mProperty_mAllArrayControllerForGeneration.plusAssign_operation(var_arrayControllerListForGeneration_6186, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 165)) ;
-  GALGAS_actionMap var_actionMap_6953 ;
+  ioArgument_ioGeneration.mProperty_mArrayControllerListForGeneration.plusAssign_operation(var_arrayControllerListForGeneration_6186, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 165)) ;
+  GALGAS_actionMap var_actionMap_6954 ;
   {
-  routine_buildActionMap (inObject.mProperty_mActionDeclarationList, var_actionMap_6953, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 167)) ;
+  routine_buildActionMap (inObject.mProperty_mActionDeclarationList, var_actionMap_6954, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 167)) ;
   }
-  cEnumerator_actionMap enumerator_6976 (var_actionMap_6953, kENUMERATION_UP) ;
-  while (enumerator_6976.hasCurrentObject ()) {
-    ioArgument_ioGeneration.mProperty_mActionListForGeneration.addAssign_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 170)), enumerator_6976.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("preferences.galgas", 169)) ;
-    enumerator_6976.gotoNextObject () ;
+  cEnumerator_actionMap enumerator_6977 (var_actionMap_6954, kENUMERATION_UP) ;
+  while (enumerator_6977.hasCurrentObject ()) {
+    ioArgument_ioGeneration.mProperty_mActionListForGeneration.addAssign_operation (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 170)), enumerator_6977.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("preferences.galgas", 169)) ;
+    enumerator_6977.gotoNextObject () ;
   }
-  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList_7414 ;
-  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList_7484 ;
-  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration_7556 ;
-  GALGAS_decoratedOutletMap var_outletMap_7595 ;
-  GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList_7667 ;
-  GALGAS_ebViewGraphicControllerBindingGenerationList var_ebViewGraphicControllerBindingGenerationList_7767 ;
+  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList_7415 ;
+  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList_7485 ;
+  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration_7557 ;
+  GALGAS_decoratedOutletMap var_outletMap_7596 ;
+  GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList_7668 ;
+  GALGAS_ebViewGraphicControllerBindingGenerationList var_ebViewGraphicControllerBindingGenerationList_7768 ;
   {
-  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 175)), GALGAS_string::makeEmptyString (), constinArgument_inSemanticContext, inObject.mProperty_mOutletDeclarationList, constinArgument_inSemanticContext.getter_mPreferencesObservablePropertyMap (HERE), var_actionMap_6953, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 181)), ioArgument_ioGeneration, var_regularBindingsGenerationList_7414, var_multipleBindingGenerationList_7484, var_actionBindingListForGeneration_7556, var_outletMap_7595, var_tableViewBindingGenerationList_7667, var_ebViewGraphicControllerBindingGenerationList_7767, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 174)) ;
+  routine_analyzeOutlets (GALGAS_observablePropertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.galgas", 175)), GALGAS_string::makeEmptyString (), constinArgument_inSemanticContext, inObject.mProperty_mOutletDeclarationList, constinArgument_inSemanticContext.getter_mPreferencesObservablePropertyMap (HERE), var_actionMap_6954, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 181)), ioArgument_ioGeneration, var_regularBindingsGenerationList_7415, var_multipleBindingGenerationList_7485, var_actionBindingListForGeneration_7557, var_outletMap_7596, var_tableViewBindingGenerationList_7668, var_ebViewGraphicControllerBindingGenerationList_7768, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 174)) ;
   }
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mSimpleStoredPropertyListForGeneration = var_simpleStoredPropertyListForGeneration_5791 ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTransientDefinitionListForGeneration = var_transientDefinitionListForGeneration_6116 ;
-  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mRegularBindingsGenerationList = var_regularBindingsGenerationList_7414 ;
-  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mActionBindingListForGeneration = var_actionBindingListForGeneration_7556 ;
-  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mMultipleBindingGenerationList = var_multipleBindingGenerationList_7484 ;
-  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mOutletMap = var_outletMap_7595 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mRegularBindingsGenerationList = var_regularBindingsGenerationList_7415 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mActionBindingListForGeneration = var_actionBindingListForGeneration_7557 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mMultipleBindingGenerationList = var_multipleBindingGenerationList_7485 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mOutletMap = var_outletMap_7596 ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mMainXibDescriptorList = inObject.mProperty_mMainXibDescriptorList ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mExternSwiftFunctionList = constinArgument_inExternSwiftFunctionList ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mStoredArrayPropertyListForGeneration = var_storedArrayPropertyListForGeneration_6011 ;
   ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mArrayControllerForGeneration = var_arrayControllerListForGeneration_6186 ;
-  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTableViewBindingGenerationList = var_tableViewBindingGenerationList_7667 ;
-  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mEBViewBindingGenerationList = var_ebViewGraphicControllerBindingGenerationList_7767 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mTableViewBindingGenerationList = var_tableViewBindingGenerationList_7668 ;
+  ioArgument_ioGeneration.mProperty_mPreferencesForGeneration.mProperty_mEBViewBindingGenerationList = var_ebViewGraphicControllerBindingGenerationList_7768 ;
 }
 
 
@@ -4575,7 +4575,7 @@ mProperty_mEntityListForGeneration (),
 mProperty_mClassListForGeneration (),
 mProperty_mEnumListForGeneration (),
 mProperty_mNeededOutletClasses (),
-mProperty_mAllArrayControllerForGeneration (),
+mProperty_mArrayControllerListForGeneration (),
 mProperty_mValidationStubRoutineListForGeneration (),
 mProperty_mSelectionControllerListForGeneration (),
 mProperty_mObjectControllerListForGeneration (),
@@ -4612,7 +4612,7 @@ mProperty_mEntityListForGeneration (inOperand4),
 mProperty_mClassListForGeneration (inOperand5),
 mProperty_mEnumListForGeneration (inOperand6),
 mProperty_mNeededOutletClasses (inOperand7),
-mProperty_mAllArrayControllerForGeneration (inOperand8),
+mProperty_mArrayControllerListForGeneration (inOperand8),
 mProperty_mValidationStubRoutineListForGeneration (inOperand9),
 mProperty_mSelectionControllerListForGeneration (inOperand10),
 mProperty_mObjectControllerListForGeneration (inOperand11),
@@ -4692,7 +4692,7 @@ typeComparisonResult GALGAS_structForGeneration::objectCompare (const GALGAS_str
     result = mProperty_mNeededOutletClasses.objectCompare (inOperand.mProperty_mNeededOutletClasses) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mAllArrayControllerForGeneration.objectCompare (inOperand.mProperty_mAllArrayControllerForGeneration) ;
+    result = mProperty_mArrayControllerListForGeneration.objectCompare (inOperand.mProperty_mArrayControllerListForGeneration) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mValidationStubRoutineListForGeneration.objectCompare (inOperand.mProperty_mValidationStubRoutineListForGeneration) ;
@@ -4715,7 +4715,7 @@ typeComparisonResult GALGAS_structForGeneration::objectCompare (const GALGAS_str
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_structForGeneration::isValid (void) const {
-  return mProperty_mTransientListForGeneration.isValid () && mProperty_mActionListForGeneration.isValid () && mProperty_mPreferencesForGeneration.isValid () && mProperty_mDocumentListForGeneration.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mClassListForGeneration.isValid () && mProperty_mEnumListForGeneration.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mAllArrayControllerForGeneration.isValid () && mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mObjectControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
+  return mProperty_mTransientListForGeneration.isValid () && mProperty_mActionListForGeneration.isValid () && mProperty_mPreferencesForGeneration.isValid () && mProperty_mDocumentListForGeneration.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mClassListForGeneration.isValid () && mProperty_mEnumListForGeneration.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mArrayControllerListForGeneration.isValid () && mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mObjectControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4729,7 +4729,7 @@ void GALGAS_structForGeneration::drop (void) {
   mProperty_mClassListForGeneration.drop () ;
   mProperty_mEnumListForGeneration.drop () ;
   mProperty_mNeededOutletClasses.drop () ;
-  mProperty_mAllArrayControllerForGeneration.drop () ;
+  mProperty_mArrayControllerListForGeneration.drop () ;
   mProperty_mValidationStubRoutineListForGeneration.drop () ;
   mProperty_mSelectionControllerListForGeneration.drop () ;
   mProperty_mObjectControllerListForGeneration.drop () ;
@@ -4761,7 +4761,7 @@ void GALGAS_structForGeneration::description (C_String & ioString,
     ioString << ", " ;
     mProperty_mNeededOutletClasses.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mProperty_mAllArrayControllerForGeneration.description (ioString, inIndentation+1) ;
+    mProperty_mArrayControllerListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mValidationStubRoutineListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -4826,8 +4826,8 @@ GALGAS_stringset GALGAS_structForGeneration::getter_mNeededOutletClasses (UNUSED
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerForGeneration GALGAS_structForGeneration::getter_mAllArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mAllArrayControllerForGeneration ;
+GALGAS_arrayControllerForGeneration GALGAS_structForGeneration::getter_mArrayControllerListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerListForGeneration ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

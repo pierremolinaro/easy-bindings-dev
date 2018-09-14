@@ -152,9 +152,6 @@ override method @entityDeclaration buildObservablePropertyMapsFromStoredProperti
     !inUnifiedTypeMap
     !?observablePropertyMap
   ]
-#--- Analyze selection controller
-#  for (selectionControllerName modelControllerName modelControllerPropertyName) in 
-
 #--- Enter in semantics context  
   [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
     !mEntityName
@@ -219,6 +216,7 @@ override method @entityDeclaration semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  @arrayControllerForGeneration arrayControllerListForGeneration = {}
   @objectControllerForGeneration objectControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerForGeneration = {}
   for (item) in mSecondaryPropertyList do
@@ -229,7 +227,7 @@ override method @entityDeclaration semanticAnalysis
       !inSemanticContext
       !observablePropertyMap
       !?transientDefinitionListForGeneration
-      !?* # no array controller
+      !?arrayControllerListForGeneration
       !?selectionControllerForGeneration
       !?objectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
@@ -238,6 +236,7 @@ override method @entityDeclaration semanticAnalysis
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerForGeneration
+  ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
 #--- Check requireds transients are implemented
   @stringset transientsDeclaredInSuperEntity = {}
   if mIsGraphicEntity then
