@@ -180,7 +180,7 @@ override method @documentDeclaration semanticAnalysis
     !?ioGeneration.mValidationStubRoutineListForGeneration
     ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
   ]
-#--- Analyze transients
+#--- Analyze secondary
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}

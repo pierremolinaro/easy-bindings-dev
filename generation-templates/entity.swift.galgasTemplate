@@ -166,7 +166,7 @@ end
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    self.%!mToManyRelationshipName%_property.undoManager = self.undoManager ()\n%
   if mOppositeRelationshipName != "" then
-  %    self.%!mToManyRelationshipName%_property.setOppositeRelationship = { (_ inManagedObject : %![mRelationshipType swiftTypeName]%?) in\n%
+  %    self.%!mToManyRelationshipName%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![mRelationshipType swiftTypeName]%?) in\n%
   %      inManagedObject?.%!mOppositeRelationshipName%_property.setProp (self)\n%
   %    }\n%
   end

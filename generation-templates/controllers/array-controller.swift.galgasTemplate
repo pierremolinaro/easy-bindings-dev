@@ -4,7 +4,7 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 private let DEBUG_EVENT = false
 
@@ -29,12 +29,12 @@ end
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
   private var mTableViewArray = [EBTableView] ()
-  private var mEBView : EBView? = nil
+  private weak var mEBView : EBView? = nil
   private var mManagedObjectContext : EBManagedObjectContext? = nil
 
 %if ELEMENT_TYPE_IS_GRAPHIC then
   %//--- Oberser for object display\n%
-  %  private var mObjectDisplayObserver = EBOutletEvent ()\n%
+  %  private var mObjectDisplayObserver = EBOutletEvent ()\n\n%
 end
 %  //····················································································································
   //    Sort Array
@@ -228,7 +228,7 @@ end
 %if ELEMENT_TYPE_IS_GRAPHIC then
  %    self.mEBView?.set (controller: self)\n%
  %    model.addEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
- %    self.mObjectDisplayObserver.eventCallBack = { self.updateObjectDisplay () }\n%
+ %    self.mObjectDisplayObserver.eventCallBack = { [weak self] in self?.updateObjectDisplay () }\n%
 end%  //--- Bind table views
     mTableViewArray = tableViewArray
     for tableView in tableViewArray {
@@ -245,7 +245,7 @@ end%  //--- Bind table views
       print ("\(#function)")
     }
 %if ELEMENT_TYPE_IS_GRAPHIC then
- %    mModel?.removeEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
+ %    self.mModel?.removeEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
 end
 %    mModel?.removeEBObserver (self.sortedArray_property)
     self.sortedArray_property.removeEBObserver (mSelectedSet)

@@ -177,6 +177,26 @@ override method @entityDeclaration solveSecondaryProperty
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
+#  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+#  @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
+#  @selectionControllerForGeneration selectionControllerListForGeneration = {}
+#  @objectControllerForGeneration objectControllerListForGeneration = {}
+#  for (item) in inPropertiesToSolve do
+#    [item secondaryPropertySemanticAnalysis
+#      !mDocumentName.string
+#      !mRootEntityName.string
+#      !rootObservablePropertyMap
+#      !inSemanticContext
+#      !observablePropertyMap
+#      !?transientDefinitionListForGeneration
+#      !?documentArrayControllerListForGeneration
+#      !?selectionControllerListForGeneration
+#      !?objectControllerListForGeneration
+#      !?ioGeneration.mNeededOutletClasses
+#    ]
+#  end
+
+
   outUnsolvedProperties = {}
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
     !mEntityName

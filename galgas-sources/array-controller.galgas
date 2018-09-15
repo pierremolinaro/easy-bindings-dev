@@ -28,7 +28,8 @@ list @arrayControllerAttributListAST {
 #·······················································································································
 
 enum @arrayControllerModel {
-  case toManyRelationship (@lstring rootRelationshipName)
+  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName)
+  case rootToManyRelationship (@lstring rootRelationshipName)
   case selfCollection (@lstring collectionPropertyName)
   case controllerArray (@lstring controllerName @lstring propertyName)
 }
@@ -73,7 +74,16 @@ syntax extension easyBindings_syntax {
       $root$
       $.$
       $identifier$ ?let @lstring relationshipName
-      arrayControllerModel = .toManyRelationship {!rootRelationshipName:relationshipName}
+      select
+        arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
+      or
+        $.$
+        $identifier$ ?let @lstring controllerPropertyName
+        arrayControllerModel = .rootControllerProperty {
+          !rootControllerName: relationshipName
+          !controllerPropertyName: controllerPropertyName
+        }
+      end
     or
       $self$
       $.$
@@ -211,6 +221,18 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 {
   @bool solved
   switch mArrayControllerModel
+  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
+    solved = [ioObservableProperties hasKey !rootControllerName.string]
+    if solved then
+      [ioObservableProperties searchKey
+        !rootControllerName
+        ?let type
+        ?let kind
+        ?let multiplicity
+        ?3*
+      ]
+      error rootControllerName : "NOT HANDLED YET"
+    end
   case selfCollection (@lstring storedPropertyName) :
     solved = [ioObservableProperties hasKey !storedPropertyName.string]
     if solved then
@@ -237,7 +259,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         !cascading
       ]
     end
-  case toManyRelationship (@lstring relationshipName) :
+  case rootToManyRelationship (@lstring relationshipName) :
     solved = [inRootObservableProperties hasKey !relationshipName.string]
     if solved then
       [inRootObservableProperties searchKey
@@ -340,6 +362,10 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @bool entityTypeIsGraphic
   @actionMap actionMap
   switch mArrayControllerModel
+  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
+    error rootControllerName
+    : "NOT HANDLED YET"
+    : elementSwiftTypeName, modelKind, actionMap, entityName, errorLocation, entityTypeIsGraphic, kind, modelType
   case selfCollection (@lstring storedPropertyName) :
     errorLocation = storedPropertyName.location
     [inObservableProperties searchKey
@@ -375,7 +401,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       entityTypeIsGraphic = kIsGraphic
       modelKind = .selfRelationshipModel
     end
-  case toManyRelationship (@lstring relationshipName) :
+  case rootToManyRelationship (@lstring relationshipName) :
     errorLocation = relationshipName.location
     modelKind = .rootRelationshipModel
     [inRootObservableProperties searchKey
@@ -550,9 +576,11 @@ list @arrayControllerForGeneration {
 
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
+  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
+    error rootControllerName : "NOT HANDLED YET" : outResult
   case selfCollection (@lstring storedPropertyName) :
     outResult = "self." + storedPropertyName + "_property"
-  case toManyRelationship (@lstring rootRelationshipName) :
+  case rootToManyRelationship (@lstring rootRelationshipName) :
     outResult = "self.rootObject." + rootRelationshipName + "_property"
   case controllerArray (@lstring controllerName @lstring propertyName) :
     outResult = "self." + controllerName.string + "." + propertyName + "_property"
@@ -577,26 +605,23 @@ getter @arrayControllerModel modelTypeName
     switch kind
     case stored :
       if [modelType isEntityType] then
-        outResult = "ToManyRelationshipReadWrite_" + [modelType swiftTypeName] # inCurrentEntityName + "_" + storedPropertyName
+        outResult = "ToManyRelationshipReadWrite_" + inElementSwiftTypeName
       else
-        outResult = "EBClassArray_" + [modelType swiftTypeName]
+        outResult = "EBClassArray_" + inElementSwiftTypeName
       end
     case transient :
-      outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName]
+      outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
     case arrayController :
       outResult = "<< arrayController >>"
     case selectionController :
       outResult = "<< selectionController >>"
     end
-  case toManyRelationship (*) :
-    outResult = "ToManyRelationshipReadWrite_" + inElementSwiftTypeName # + inRootEntityName + "_" + rootRelationshipName
-  case controllerArray (@lstring controllerName *) :
-    [inObservablePropertyMap searchKey
-      !controllerName
-      ?let modelType
-      ?5*
-    ]
-    outResult = "ReadOnlyArrayOf_" + [modelType swiftTypeName]
+  case rootToManyRelationship (*) :
+    outResult = "ToManyRelationshipReadWrite_" + inElementSwiftTypeName
+  case controllerArray (2*) :
+    outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
+  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
+    error rootControllerName : "NOT HANDLED YET" : outResult
   end
 }
 
