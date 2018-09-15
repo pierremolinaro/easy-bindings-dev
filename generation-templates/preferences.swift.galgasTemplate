@@ -225,15 +225,13 @@ end
 %  //--------------------------- Array controller
 %
 for () in ARRAY_CONTROLLER_LIST do
-%    self.%!mControllerName.string%.bind_modelAndView (
-      model: %!mModelString%,
-      tableViewArray: [%
-      ![TABLE_VALUE_BINDING_GENERATION_LIST tableViewNameListForController !mControllerName]
-      %],
-      optionalEBView: %![EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST ebViewNameListForController !mControllerName]%,
-      file: #file,
-      line: #line
-    )\n%
+%    self.%!mControllerName.string%.bind_model (%!mModelString%)\n%
+end
+for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+  %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
+end
+for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+  %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -268,6 +266,18 @@ for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
 end
 for () in STORED_ARRAY_LIST do
   %    self.%!mStoredPropertyName%_property.storeInPreferencesWithKey (inKey: "Preferences:%!mStoredPropertyName%")\n%
+end
+%  //--------------------------- Array controller
+%
+for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+  %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
+end
+for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+  %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
+end
+for () in ARRAY_CONTROLLER_LIST do
+%//    self.%!mControllerName.string%.unbind_modelAndView ()
+    self.%!mControllerName.string%.unbind_model ()\n%
 end
 %  }
 

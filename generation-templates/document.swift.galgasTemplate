@@ -172,15 +172,13 @@ end
 %
 for () in ARRAY_CONTROLLER_LIST do
 %    self.%!mControllerName.string%.setManagedObjectContext (self.managedObjectContext ())\n%
-%    self.%!mControllerName.string%.bind_modelAndView (
-      model: %!mModelString%,
-      tableViewArray: [%
-      ![TABLE_VALUE_BINDING_GENERATION_LIST tableViewNameListForController !mControllerName]
-      %],
-      optionalEBView: %![EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST ebViewNameListForController !mControllerName]%,
-      file: #file,
-      line: #line
-    )\n%
+%    self.%!mControllerName.string%.bind_model (%!mModelString%)\n%
+end
+for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+  %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
+end
+for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+  %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
 %  //--------------------------- Selection controllers
 %
@@ -273,8 +271,15 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 end
 %  //--------------------------- Unbind array controllers
 %
+for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+  %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
+end
+for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+  %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
+end
 for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName.string%.unbind_modelAndView ()\n%
+%//    %!mControllerName.string%.unbind_modelAndView ()\n%
+%    %!mControllerName.string%.unbind_model ()\n%
 end
 %  //--------------------------- Unbind selection controllers
 %

@@ -161,42 +161,6 @@ list @ebViewGraphicControllerBindingGenerationList {
 
 #·······················································································································
 
-getter @tableViewBindingGenerationList tableViewNameListForController ?let @lstring inControllerName -> @string outResult {
-  outResult = ""
-  @bool first = true
-  for (outlet controller) in self do
-    if controller == inControllerName.string then
-      if first then
-        first = false
-      else
-        outResult += ", "
-      end
-      outResult += outlet + "!"
-    end
-  end
-}
-
-#·······················································································································
-
-getter @ebViewGraphicControllerBindingGenerationList ebViewNameListForController ?let @lstring inControllerName -> @string {
-  @stringlist outletList = {}
-  for (outlet controller) in self do
-    if controller == inControllerName.string then
-      outletList += !outlet
-    end
-  end
-  if [outletList length] == 0 then
-    result = "nil"
-  elsif [outletList length] == 1 then
-    [outletList first ?result]
-  else
-    result = "<<error>>"
-    error inControllerName : "this controller has several views bound with $graphicController binding"
-  end
-}
-
-#·······················································································································
-
 proc analyzeOutlets
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @string unused inRootEntityName
