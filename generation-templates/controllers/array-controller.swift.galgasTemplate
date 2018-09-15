@@ -25,8 +25,7 @@ end
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
   private var mTableViewArray = [EBTableView] ()
-  private var mEBView : EBView? = nil
-  private var mManagedObjectContext : EBManagedObjectContext? = nil
+  private var mEBViews = [EBView] ()
 
 %if ELEMENT_TYPE_IS_GRAPHIC then
   %//--- Observer for object display\n%
@@ -78,6 +77,16 @@ end%  //--- Set selected array compute function
     setFilterAndSortFunction ()
   }
 
+  //····················································································································
+  //    Managed object context
+  //····················································································································
+
+  private var mManagedObjectContext : EBManagedObjectContext? = nil
+
+  func setManagedObjectContext (_ inManagedObjectContext : EBManagedObjectContext?) {
+    self.mManagedObjectContext = inManagedObjectContext
+  }
+  
   //····················································································································
   //    Undo manager
   //····················································································································
@@ -147,7 +156,9 @@ end%  //--- Set selected array compute function
         selectionDisplayArray.append (EBShape ())
       }
     }
-    mEBView?.updateSelectionShape (selectionDisplayArray)
+    for view in self.mEBViews {
+      view.updateSelectionShape (selectionDisplayArray)
+    }
   }
 
   //····················································································································
@@ -161,7 +172,9 @@ end%  //--- Set selected array compute function
         displayArray.append (EBShape ())
       }
     }
-    mEBView?.updateObjectDisplay (displayArray)
+    for view in self.mEBViews {
+      view.updateObjectDisplay (displayArray)
+    }
   }
 %end%
   //····················································································································
@@ -274,15 +287,13 @@ end
 
   func bind_modelAndView (model:%!MODEL_TYPE_NAME%,
                           tableViewArray:[EBTableView],
-                          ebView: EBView?,
-                          managedObjectContext : EBManagedObjectContext?,
+                          optionalEBView: EBView?,
                           file:String, line:Int) {
     if DEBUG_EVENT {
       print ("\(#function)")
     }
   //--- Add observers
     self.mModel = model
-    self.mManagedObjectContext = managedObjectContext
     model.addEBObserver (self.sortedArray_property)
     self.sortedArray_property.addEBObserver (mSelectedSet)
     mSelectedSet.addEBObserver (self.selectedArray_property)
@@ -292,9 +303,11 @@ for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
   %    model.addEBObserverOf_%!key% (self.sortedArray_property)\n%
 end
 %  //--- Bind ebView
-    mEBView = ebView
+    if let ebView = optionalEBView {
+      self.mEBViews.append (ebView)
+    }
 %if ELEMENT_TYPE_IS_GRAPHIC then
- %    self.mEBView?.set (controller: self)\n%
+ %    optionalEBView?.set (controller: self)\n%
  %    model.addEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
  %    self.mObjectDisplayObserver.eventCallBack = { [weak self] in self?.updateObjectDisplay () }\n%
 end%  //--- Bind table views

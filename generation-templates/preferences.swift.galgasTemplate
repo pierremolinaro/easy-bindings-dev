@@ -230,8 +230,7 @@ for () in ARRAY_CONTROLLER_LIST do
       tableViewArray: [%
       ![TABLE_VALUE_BINDING_GENERATION_LIST tableViewNameListForController !mControllerName]
       %],
-      ebView: %![EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST ebViewNameListForController !mControllerName]%,
-      managedObjectContext: nil,
+      optionalEBView: %![EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST ebViewNameListForController !mControllerName]%,
       file: #file,
       line: #line
     )\n%
