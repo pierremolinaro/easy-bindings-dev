@@ -15,7 +15,6 @@ project (0:0:1) -> "eb" {
   "galgas-sources/extern-swift-func.galgas"
 
 #--- Property class
-  "galgas-sources/property-class.galgas"
   "galgas-sources/transient-property-class.galgas"
 
 #--- Components  

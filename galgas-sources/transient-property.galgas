@@ -134,8 +134,6 @@ override method @transientAST secondaryPropertySemanticAnalysis
     typeList = {!type}
   case transientPropertyExternType (*) :
     typeList = {!type}
-  case propertyClassType (**) :
-    typeList = {!type}
   end
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}

@@ -278,7 +278,6 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "a class cannot be observed"
   case transientPropertyExternType (*) :
     error [mProperty location] : "a class cannot be observed"
-  case propertyClassType (**) : # Ok
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
     ![mProperty modelStringForSelf !"self"]

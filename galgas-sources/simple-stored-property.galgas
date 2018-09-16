@@ -96,8 +96,6 @@ method @simpleStoredPropertyList buildObservablePropertyMap
       typeList = {!type}
     case classType (*) :
       error mPropertyName: "a class cannot be used as simple property type" : typeList
-    case propertyClassType (**) :
-      typeList = {!type}
     case transientPropertyExternType (*) :
       typeList = {!type}
     case entityType (2*) :
@@ -137,8 +135,6 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
       typeList = {!type}
     case classType (*) :
       error mPropertyName: "a class cannot be used as simple property type" : typeList
-    case propertyClassType (**) :
-      typeList = {!type}
     case transientPropertyExternType (*) :
       error mPropertyName: "a transient property class cannot be used as simple property type" : typeList
     case entityType (2*) :

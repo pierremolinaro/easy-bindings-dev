@@ -394,8 +394,6 @@ method @observablePropertyAST analyzeObservableProperty
         ?*
       ]
        outType = .boolType
-    case propertyClassType (**) :
-      error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName *) :
@@ -460,8 +458,6 @@ method @observablePropertyAST analyzeObservableProperty
     case enumType (* *) :
       error relationshipName : "a property cannot accept 'all'" : outType
     case classType (*) :
-      error relationshipName : "a property cannot accept 'all'" : outType
-    case propertyClassType (**) :
       error relationshipName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
@@ -547,8 +543,6 @@ method @observablePropertyAST analyzeObservableProperty
       if outMultiplicity == .collection then
         error elementPropertyName : "the observed property cannot be a collection"
       end
-    case propertyClassType (**) :
-      error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName *) :
@@ -600,8 +594,6 @@ method @observablePropertyAST analyzeObservableProperty
       if outMultiplicity == .collection then
         error elementPropertyName : "the observed property cannot be a collection"
       end
-    case propertyClassType (**) :
-      error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName *) :
@@ -643,8 +635,6 @@ method @observablePropertyAST analyzeObservableProperty
         ?*
       ]
        outType = .boolType
-    case propertyClassType (**) :
-      error propertyName : "a property cannot accept 'all'" : outType
     case transientPropertyExternType (*) :
       error propertyName : "a property cannot accept 'all'" : outType
     case entityType (@string entityName *) :
@@ -700,8 +690,6 @@ method @observablePropertyAST analyzeObservableProperty
       case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case classType (*) :
-        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case propertyClassType (**) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case transientPropertyExternType (*) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

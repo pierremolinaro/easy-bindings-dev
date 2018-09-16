@@ -79,8 +79,6 @@ override method @objectControllerDeclaration tryToSolveSecondaryProperty
         error mToOneRelationshipName : "the controller model should be an entity" : entityName
       case classType (*) :
         error mToOneRelationshipName : "the controller model should be an entity" : entityName
-      case propertyClassType (**) :
-        error mToOneRelationshipName : "the controller model should be an entity" : entityName
       case transientPropertyExternType (*) :
         error mToOneRelationshipName : "the controller model should be an entity" : entityName
       case entityType (kEntityName *) :

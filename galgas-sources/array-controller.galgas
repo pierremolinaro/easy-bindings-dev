@@ -389,8 +389,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case propertyClassType (**) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case transientPropertyExternType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case classType (@string kClassTypeName) :
@@ -426,8 +424,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case classType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case propertyClassType (**) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case transientPropertyExternType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case entityType (@string kEntityName @bool isGraphic) :
@@ -456,8 +452,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case classType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case propertyClassType (**) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case transientPropertyExternType (*) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic

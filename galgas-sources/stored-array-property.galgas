@@ -62,8 +62,6 @@ method @storedArrayPropertyList buildObservablePropertyMap
     switch type
     case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
       error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
-    case propertyClassType (**) :
-      error mStoredArrayPropertyName: "a simple type cannot be used as array element type" : typeList
     case transientPropertyExternType (*) :
       error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
     case enumType (* *) :
@@ -107,8 +105,6 @@ method @storedArrayPropertyList storedArrayPropertySemanticAnalysis
       error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
     case classType (*) :
       typeList = {!type}
-    case propertyClassType (**) :
-      error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
     case transientPropertyExternType (*) :
       error mStoredArrayPropertyName: "a property class type cannot be used as array element type" : typeList
     end

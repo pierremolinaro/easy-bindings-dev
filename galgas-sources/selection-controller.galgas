@@ -75,8 +75,6 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
     case classType (*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case propertyClassType (**) :
-      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
     case transientPropertyExternType (*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
     case entityType (kEntityName *) :
@@ -120,8 +118,6 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
     case enumType (* *) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case classType (*) :
-      error mModelControllerName : "the array controller model should be an entity" : entityName
-    case propertyClassType (**) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case transientPropertyExternType (*) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
@@ -176,8 +172,6 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     case classType (*) :
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case propertyClassType (**) :
-      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     case entityType (kEntityName *) :
       selectionEntityName = kEntityName
       if multiplicity != .collection then
@@ -204,8 +198,6 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     case enumType (* *) :
       error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
     case classType (*) :
-      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-    case propertyClassType (**) :
       error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
     case entityType (kEntityName *) :
       selectionEntityName = kEntityName

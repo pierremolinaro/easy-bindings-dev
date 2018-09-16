@@ -117,7 +117,6 @@ override method @boolAsDefaultValue analyzeDefaultValueType
       found = true
     case integerType, dateType, doubleType, stringType, fontType, colorType :
     case entityType (2*) :
-    case propertyClassType (* *) :
     case classType (*) :
     case enumType (* *) :
     case transientPropertyExternType (*) :
@@ -149,7 +148,6 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case entityType (* *) :
     case enumType (* *) :
     case classType (*) :
-    case propertyClassType (**) :
     case transientPropertyExternType (*) :
     end
   end
@@ -176,7 +174,6 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case entityType (* *) :
     case enumType (* *) :
     case classType (*) :
-    case propertyClassType (**) :
     case transientPropertyExternType (*) :
     end
   end
@@ -203,7 +200,6 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case entityType (* *) :
     case enumType (* *) :
     case classType (*) :
-    case propertyClassType (**) :
     case transientPropertyExternType (*) :
     end
   end
@@ -315,16 +311,6 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       end
     case transientPropertyExternType (*) :
       error mValue : "invalid image type"  
-    case propertyClassType (@string propertyClassTypeName @propertyClassDefaultValues defaultValues) :
-      found = true
-      switch defaultValues
-      case string (@stringset values) :
-        if [values hasKey !mValue.string] then
-          outSwiftDefaultValueAsString = propertyClassTypeName + "." + mValue
-        else
-          error mValue : "invalid default value" : outSwiftDefaultValueAsString
-        end
-      end
     end
   end
   if not found then
