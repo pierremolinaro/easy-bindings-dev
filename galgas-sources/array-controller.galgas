@@ -80,9 +80,12 @@ syntax extension easyBindings_syntax {
       $identifier$ ?let @lstring storedPropertyName
       arrayControllerModel = .selfCollection {!collectionPropertyName:storedPropertyName}
     or
+      $self$
+      $.$
       $identifier$ ?let @lstring controllerName
       $.$
       $identifier$ ?let @lstring propertyName
+      warning propertyName : "????"
       arrayControllerModel = .controllerArray {!controllerName:controllerName !propertyName:propertyName}
     end
     @lstringlist filterProperties = {}
