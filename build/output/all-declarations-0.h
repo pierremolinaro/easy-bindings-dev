@@ -1034,7 +1034,6 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_rootToManyRelationship,
     kEnum_selfCollection,
     kEnum_controllerArray
   } enumeration ;
@@ -1067,10 +1066,8 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                                                  const class GALGAS_lstring & inOperand1
                                                                                  COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_arrayControllerModel constructor_rootToManyRelationship (const class GALGAS_lstring & inOperand0
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_arrayControllerModel constructor_selfCollection (const class GALGAS_lstring & inOperand0
+  public : static class GALGAS_arrayControllerModel constructor_selfCollection (const class GALGAS_bool & inOperand0,
+                                                                                const class GALGAS_lstring & inOperand1
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1087,11 +1084,8 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_rootToManyRelationship (class GALGAS_lstring & outArgument0,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_selfCollection (class GALGAS_lstring & outArgument0,
+  public : VIRTUAL_IN_DEBUG void method_selfCollection (class GALGAS_bool & outArgument0,
+                                                        class GALGAS_lstring & outArgument1,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const ;
 
@@ -1099,8 +1093,6 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isControllerArray (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootToManyRelationship (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfCollection (LOCATION_ARGS) const ;
 
@@ -1121,27 +1113,13 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMode
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship : public cEnumAssociatedValues {
-  public : const GALGAS_lstring mAssociatedValue0 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (const GALGAS_lstring & inAssociatedValue0
-                                                                              COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (void) {}
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 class cEnumAssociatedValues_arrayControllerModel_selfCollection : public cEnumAssociatedValues {
-  public : const GALGAS_lstring mAssociatedValue0 ;
+  public : const GALGAS_bool mAssociatedValue0 ;
+  public : const GALGAS_lstring mAssociatedValue1 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_arrayControllerModel_selfCollection (const GALGAS_lstring & inAssociatedValue0
+  public : cEnumAssociatedValues_arrayControllerModel_selfCollection (const GALGAS_bool & inAssociatedValue0,
+                                                                      const GALGAS_lstring & inAssociatedValue1
                                                                       COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
@@ -9570,6 +9548,11 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   } enumeration ;
   
 //--------------------------------- Private data member
+  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
+  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
+    return mAssociatedValues.unsafePointer () ;
+  }
+
   private : enumeration mEnum ;
 
 //--------------------------------- Accessors
@@ -9588,7 +9571,9 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_propertyKind constructor_arrayController (LOCATION_ARGS) ;
+  public : static class GALGAS_propertyKind constructor_arrayController (const class GALGAS_typeKind & inOperand0,
+                                                                         const class GALGAS_bool & inOperand1
+                                                                         COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_propertyKind constructor_selectionController (LOCATION_ARGS) ;
 
@@ -9605,6 +9590,11 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_arrayController (class GALGAS_typeKind & outArgument0,
+                                                         class GALGAS_bool & outArgument1,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
@@ -11500,6 +11490,28 @@ class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumA
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_typeKind_transientPropertyExternType (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                        @propertyKind enum, associated values                                        *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_propertyKind_arrayController : public cEnumAssociatedValues {
+  public : const GALGAS_typeKind mAssociatedValue0 ;
+  public : const GALGAS_bool mAssociatedValue1 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_propertyKind_arrayController (const GALGAS_typeKind & inAssociatedValue0,
+                                                               const GALGAS_bool & inAssociatedValue1
+                                                               COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_propertyKind_arrayController (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

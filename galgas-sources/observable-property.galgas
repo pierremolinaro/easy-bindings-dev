@@ -708,7 +708,7 @@ method @observablePropertyAST analyzeObservableProperty
           ?3*
         ]
       end
-    case arrayController :
+    case arrayController (2*) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
         outMultiplicity = .collection
         outKind = .transient

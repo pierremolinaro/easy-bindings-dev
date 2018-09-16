@@ -208,13 +208,13 @@ proc analyzeOutlets
         [inObservablePropertyMap searchKey
           !controllerName
           ?let unused type
-          ?let @propertyKind kind
+          ?let @propertyKind unused kind
           ?let multiplicity
           ?3*
         ]
-        if kind != .arrayController then
-          error controllerName : "the bound model should be an array controller"
-        end
+#        if kind != .arrayController then
+#          error controllerName : "the bound model should be an array controller"
+#        end
         if multiplicity != .collection then
           error controllerName : "the controller is not bound to a collection"
         end
@@ -231,13 +231,13 @@ proc analyzeOutlets
         [inObservablePropertyMap searchKey
           !controllerName
           ?let unused type
-          ?let @propertyKind kind
+          ?let @propertyKind unused kind
           ?let multiplicity
           ?3*
         ]
-        if kind != .arrayController then
-          error controllerName : "the bound model should be an array controller"
-        end
+#        if kind != .arrayController then
+#          error controllerName : "the bound model should be an array controller"
+#        end
         if multiplicity != .collection then
           error controllerName : "the controller is not bound to a collection"
         end

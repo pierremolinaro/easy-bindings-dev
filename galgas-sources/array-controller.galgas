@@ -28,8 +28,8 @@ list @arrayControllerAttributListAST {
 #·······················································································································
 
 enum @arrayControllerModel {
-  case rootToManyRelationship (@lstring rootRelationshipName)
-  case selfCollection (@lstring collectionPropertyName)
+#  case rootToManyRelationship (@lstring rootRelationshipName)
+  case selfCollection (@bool isRoot @lstring collectionPropertyName)
   case controllerArray (@lstring controllerName @lstring propertyName)
 }
 
@@ -73,12 +73,12 @@ syntax extension easyBindings_syntax {
       $root$
       $.$
       $identifier$ ?let @lstring relationshipName
-      arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
+      arrayControllerModel = .selfCollection {!isRoot: true !collectionPropertyName:relationshipName}
     or
       $self$
       $.$
       $identifier$ ?let @lstring storedPropertyName
-      arrayControllerModel = .selfCollection {!collectionPropertyName:storedPropertyName}
+      arrayControllerModel = .selfCollection {!isRoot: false !collectionPropertyName:storedPropertyName}
     or
       $self$
       $.$
@@ -214,84 +214,81 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 {
   @bool solved
   switch mArrayControllerModel
-  case selfCollection (@lstring storedPropertyName) :
-    solved = [ioObservableProperties hasKey !storedPropertyName.string]
+  case selfCollection (@bool isRoot @lstring storedPropertyName) :
+    let observablePropertyMap = if isRoot then inRootObservableProperties else ioObservableProperties end
+    solved = [observablePropertyMap hasKey !storedPropertyName.string]
     if solved then
-      [ioObservableProperties searchKey
+      [observablePropertyMap searchKey
         !storedPropertyName
         ?let type
         ?let kind
         ?let multiplicity
-        ?2*
-        ?let cascading
+        ?3*
       ]
       @actionMap controllerActions = {}
-      if kind == .stored then
-        [!?controllerActions insertKey !["add" nowhere]]
-        [!?controllerActions insertKey !["remove" nowhere]]
+      @propertyKind arrayControllerKind
+      switch kind 
+      case stored :
+        if multiplicity != .collection then
+          error storedPropertyName : "this property is not a collection" : arrayControllerKind
+        elsif not ([type isEntityType] | [type isClassType]) then
+          error storedPropertyName : "the property is neither an entity neither a class" : arrayControllerKind
+        else
+          [!?controllerActions insertKey !["add" nowhere]]
+          [!?controllerActions insertKey !["remove" nowhere]]
+          arrayControllerKind = .arrayController {!type: type !isGraphic: false}
+        end
+      case transient :
+        if multiplicity != .collection then
+          error storedPropertyName : "this property is not a collection" : arrayControllerKind
+        elsif not [type isEntityType] then
+          error storedPropertyName : "the property is not an entity" : arrayControllerKind
+        else
+          arrayControllerKind = .arrayController {!type: type !isGraphic: false}
+        end
+      case arrayController (@typeKind unused type @bool unused isGraphic) :
+        error storedPropertyName : "Array Controller ????" : arrayControllerKind
+      case selectionController :
+        error storedPropertyName : "Selection Controller ????" : arrayControllerKind
       end
       [!?ioObservableProperties insertKey
         !mControllerName
         !type
-        !.arrayController
+        !arrayControllerKind
         !multiplicity
         !""
         !controllerActions
-        !cascading
-      ]
-    end
-  case rootToManyRelationship (@lstring relationshipName) :
-    solved = [inRootObservableProperties hasKey !relationshipName.string]
-    if solved then
-      [inRootObservableProperties searchKey
-        !relationshipName
-        ?let type
-        ?let kind
-        ?let multiplicity
-        ?2*
-        ?let cascading
-      ]
-      @actionMap controllerActions = {}
-      if kind == .stored then
-        [!?controllerActions insertKey !["add" nowhere]]
-        [!?controllerActions insertKey !["remove" nowhere]]
-      end
-      [!?ioObservableProperties insertKey
-        !mControllerName
-        !type
-        !.arrayController
-        !multiplicity
-        !""
-        !controllerActions
-        !cascading
+        !false
       ]
     end
   case controllerArray (@lstring controllerName @lstring unused propertyName) :
-    solved = [ioObservableProperties hasKey !controllerName.string]
-    if solved then
-      [ioObservableProperties searchKey
-        !controllerName
-        ?let type
-        ?let kind
-        ?let multiplicity
-        ?2*
-        ?let cascading
-      ]
-      @actionMap controllerActions = {}
-      if kind == .stored then
-        [!?controllerActions insertKey !["add" nowhere]]
-        [!?controllerActions insertKey !["remove" nowhere]]
-      end
-      [!?ioObservableProperties insertKey
-        !mControllerName
-        !type
-        !.arrayController
-        !multiplicity
-        !""
-        !controllerActions
-        !cascading
-      ]
-    end
+
+    error controllerName : "NOT HANDLED YET" : solved
+#    solved = [ioObservableProperties hasKey !controllerName.string]
+#    if solved then
+#      [ioObservableProperties searchKey
+#        !controllerName
+#        ?let type
+#        ?let kind
+#        ?let multiplicity
+#        ?2*
+#        ?let cascading
+#      ]
+#      @actionMap controllerActions = {}
+#      if kind == .stored then
+#        [!?controllerActions insertKey !["add" nowhere]]
+#        [!?controllerActions insertKey !["remove" nowhere]]
+#      end
+#      [!?ioObservableProperties insertKey
+#        !mControllerName
+#        !type
+#        !.arrayController
+#        !multiplicity
+#        !""
+#        !controllerActions
+#        !cascading
+#      ]
+#    end
   end
   if not solved then
     ioUnsolvedProperties += !self
@@ -342,9 +339,10 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @bool entityTypeIsGraphic
   @actionMap actionMap
   switch mArrayControllerModel
-  case selfCollection (@lstring storedPropertyName) :
+  case selfCollection (@bool isRoot @lstring storedPropertyName) :
+    let observablePropertyMap = if isRoot then inRootObservableProperties else inObservableProperties end
     errorLocation = storedPropertyName.location
-    [inObservableProperties searchKey
+    [observablePropertyMap searchKey
       !storedPropertyName
       ?modelType
       ?kind
@@ -375,37 +373,37 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       entityTypeIsGraphic = kIsGraphic
       modelKind = .selfRelationshipModel
     end
-  case rootToManyRelationship (@lstring relationshipName) :
-    errorLocation = relationshipName.location
-    modelKind = .rootRelationshipModel
-    [inRootObservableProperties searchKey
-      !relationshipName
-      ?modelType
-      ?kind
-      ?let multiplicity
-      ?*
-      ?actionMap
-      ?*
-    ]
-    elementSwiftTypeName = [modelType swiftTypeName]
-  #------------------------------------------------------------ Check bound model is a collection
-    if multiplicity != .collection then
-      error errorLocation : "the bound property should be a collection"
-    end
-  #------------------------------------------------------------ Check bound model type is an entity
-    switch modelType
-    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case classType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case transientPropertyExternType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case entityType (@string kEntityName @bool isGraphic) :
-      entityName = kEntityName
-      entityTypeIsGraphic = isGraphic
-    end
+#  case rootToManyRelationship (@lstring relationshipName) :
+#    errorLocation = relationshipName.location
+#    modelKind = .rootRelationshipModel
+#    [inRootObservableProperties searchKey
+#      !relationshipName
+#      ?modelType
+#      ?kind
+#      ?let multiplicity
+#      ?*
+#      ?actionMap
+#      ?*
+#    ]
+#    elementSwiftTypeName = [modelType swiftTypeName]
+#  #------------------------------------------------------------ Check bound model is a collection
+#    if multiplicity != .collection then
+#      error errorLocation : "the bound property should be a collection"
+#    end
+#  #------------------------------------------------------------ Check bound model type is an entity
+#    switch modelType
+#    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
+#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
+#    case enumType (* *) :
+#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
+#    case classType (*) :
+#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
+#    case transientPropertyExternType (*) :
+#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
+#    case entityType (@string kEntityName @bool isGraphic) :
+#      entityName = kEntityName
+#      entityTypeIsGraphic = isGraphic
+#    end
   case controllerArray (@lstring controllerName @lstring propertyName) :
     errorLocation = propertyName.location
     modelKind = .transientModel
@@ -508,7 +506,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     ![mArrayControllerModel modelString]
     !arrayControllerBoundColumnListForGeneration
     !arrayControllerSortedColumnListForGeneration
-    ![mArrayControllerModel modelTypeName !elementSwiftTypeName !inObservableProperties]
+    ![mArrayControllerModel modelTypeName !elementSwiftTypeName]
     !modelKind
     ![modelType swiftTypeName]
     !entityTypeIsGraphic
@@ -546,10 +544,12 @@ list @arrayControllerForGeneration {
 
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
-  case selfCollection (@lstring storedPropertyName) :
-    outResult = "self." + storedPropertyName + "_property"
-  case rootToManyRelationship (@lstring rootRelationshipName) :
-    outResult = "self.rootObject." + rootRelationshipName + "_property"
+  case selfCollection (@bool isRoot @lstring storedPropertyName) :
+    if isRoot then
+      outResult = "self.rootObject." + storedPropertyName + "_property"
+    else
+      outResult = "self." + storedPropertyName + "_property"
+    end
   case controllerArray (@lstring controllerName @lstring propertyName) :
     outResult = "self." + controllerName.string + "." + propertyName + "_property"
   end
@@ -559,28 +559,10 @@ getter @arrayControllerModel modelString -> @string outResult {
 
 getter @arrayControllerModel modelTypeName
   ?let @string inElementSwiftTypeName
-  ?let @observablePropertyMap inObservablePropertyMap
    -> @string outResult
 {
   switch self
-  case selfCollection (@lstring storedPropertyName) :
-    [inObservablePropertyMap searchKey
-      !storedPropertyName
-      ?*
-      ?let @propertyKind kind
-      ?4*
-    ]
-    switch kind
-    case stored :
-      outResult = "ReadWriteArrayOf_" + inElementSwiftTypeName
-    case transient :
-      outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
-    case arrayController :
-      outResult = "<< arrayController >>"
-    case selectionController :
-      outResult = "<< selectionController >>"
-    end
-  case rootToManyRelationship (*) :
+  case selfCollection (@bool unused isRoot @lstring unused storedPropertyName) :
     outResult = "ReadWriteArrayOf_" + inElementSwiftTypeName
   case controllerArray (2*) :
     outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName

@@ -98,14 +98,14 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
     [ioObservableProperties searchKey
       !mModelControllerName
       ?let type
-      ?let kind
+      ?let unused kind
       ?let multiplicity
       ?3*
     ]
   #--- Check kind
-    if kind != .arrayController then
-      error mModelControllerName : "the model should be an array controller"
-    end
+#    if kind != .arrayController then
+#      error mModelControllerName : "the model should be an array controller"
+#    end
   #--- Check multiplicity
     if multiplicity != .collection then
       error mModelControllerName : "the model should be an array controller"

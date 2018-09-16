@@ -59,9 +59,11 @@ abstract method @astDeclaration typeInventory
 #·······················································································································
 
 enum @propertyKind {
+#  case property (@typeKind type @bool readOnly)
+
   case stored
   case transient
-  case arrayController
+  case arrayController (@typeKind type @bool isGraphic)
   case selectionController
 }
 
