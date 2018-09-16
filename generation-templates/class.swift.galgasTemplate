@@ -18,7 +18,14 @@ end
   //  Undo manager
   //····················································································································
 
-  var undoManager : EBUndoManager? = nil
+  var undoManager : EBUndoManager? = nil {
+    didSet {
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %      self.%!mStoredPropertyName%_property.undoManager = self.undoManager\n%
+end
+%    }
+  }
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
@@ -440,29 +447,36 @@ class EBClassArray_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
       if oldValue != mValue {
         let oldSet = mSet
         mSet = Set (mValue)
-      //--- Update explorer
-       // if explorer != nil {
-       //   owner?.updateManagedObjectToManyRelationshipDisplay (mValue, popUpButton:explorer!)
-       // }
+      //--- Register old value in undo manager
+        self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Removed object set
         let removedSet = oldSet.subtracting (mSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        removeEBObserversOf_%!mStoredPropertyName%_fromElementsOfSet (removedSet)\n%
 end
-%      //--- Added object set
+%        for object in removedSet {
+          object.undoManager = nil
+        }
+      //--- Added object set
         let addedSet = mSet.subtracting (oldSet)
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %        addEBObserversOf_%!mStoredPropertyName%_toElementsOfSet (addedSet)\n%
 end
-%      //--- Notify observers object count did change
+%        for object in addedSet {
+          object.undoManager = self.undoManager
+        }
+      //--- Notify observers object count did change
         postEvent ()
-/*        if oldValue.count != mValue.count {
-          count.postEvent ()
-        } */
       }
     }
+  }
+
+  //····················································································································
+
+  @objc func performUndo (_ oldValue : [%!CLASS_NAME%]) {
+    mValue = oldValue
   }
 
   //····················································································································

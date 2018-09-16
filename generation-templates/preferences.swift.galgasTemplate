@@ -136,6 +136,7 @@ for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   %    self.%!mStoredPropertyName%_property.undoManager = self.mUndoManager\n%
 end
 for () in STORED_ARRAY_LIST do
+  %    self.%!mStoredPropertyName%_property.undoManager = self.mUndoManager\n%
   %    self.%!mStoredPropertyName%_property.readInPreferencesWithKey (inKey: "Preferences:%!mStoredPropertyName%")\n%
 end
 %  //--- Property validation function
