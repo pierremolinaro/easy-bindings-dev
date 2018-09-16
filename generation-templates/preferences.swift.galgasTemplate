@@ -13,6 +13,9 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 %for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
   %let Preferences_%![mStoredPropertyName identifierRepresentation]% = "Preferences:%!mStoredPropertyName%"\n%
 end
+for () in STORED_ARRAY_LIST do
+  %let Preferences_%![mStoredPropertyName identifierRepresentation]% = "Preferences:%!mStoredPropertyName%"\n%
+end
 %
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -88,7 +91,7 @@ end
 
 %
 for () in STORED_ARRAY_LIST do
-%  var %!mStoredPropertyName%_property = EBClassArray_%!mElementClassName% ()\n%
+%  var %!mStoredPropertyName%_property = EBClassArray_%!mElementClassName% (Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
 end
 %
   //····················································································································
@@ -108,6 +111,14 @@ end
 %
 for () in ARRAY_CONTROLLER_LIST do
 %  private var %!mControllerName.string% = ArrayController_%!mOwnerName%_%!mControllerName.string% ()\n%
+end
+%
+  //····················································································································
+  //    Multiple bindings controllers
+  //····················································································································
+
+%for () in MULTIPLE_BINDING_GENERATION_LIST do
+  %  private var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
 end
 %
   //····················································································································
@@ -137,7 +148,6 @@ for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
 end
 for () in STORED_ARRAY_LIST do
   %    self.%!mStoredPropertyName%_property.undoManager = self.mUndoManager\n%
-  %    self.%!mStoredPropertyName%_property.readInPreferencesWithKey (inKey: "Preferences:%!mStoredPropertyName%")\n%
 end
 %  //--- Property validation function
 %
@@ -260,23 +270,11 @@ end
 %  }
 
   //····················································································································
-  //    Multiple bindings controller
-  //····················································································································
-
-%for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %  fileprivate var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
-end
-%
-  //····················································································································
   //    applicationWillTerminateAction
   //····················································································································
 
   func applicationWillTerminateAction (_ : NSNotification) {
-%
-for () in STORED_ARRAY_LIST do
-  %    self.%!mStoredPropertyName%_property.storeInPreferencesWithKey (inKey: "Preferences:%!mStoredPropertyName%")\n%
-end
-%  //--------------------------- Array controller
+  //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
