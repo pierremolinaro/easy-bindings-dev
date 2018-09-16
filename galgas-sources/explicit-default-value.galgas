@@ -115,7 +115,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, dateType, doubleType, stringType, fontType :
+    case integerType, dateType, doubleType, stringType, fontType, colorType :
     case entityType (2*) :
     case propertyClassType (* *) :
     case classType (*) :
@@ -145,7 +145,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + mValue.uint + ".0)"
       found = true
-    case boolType, dateType, doubleType, stringType :
+    case boolType, dateType, doubleType, stringType, colorType :
     case entityType (* *) :
     case enumType (* *) :
     case classType (*) :
@@ -172,7 +172,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, dateType, integerType, stringType, fontType :
+    case boolType, dateType, integerType, stringType, fontType, colorType :
     case entityType (* *) :
     case enumType (* *) :
     case classType (*) :
@@ -199,7 +199,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case stringType :
       outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
       found = true
-    case boolType, dateType, integerType, doubleType, fontType :
+    case boolType, dateType, integerType, doubleType, fontType, colorType :
     case entityType (* *) :
     case enumType (* *) :
     case classType (*) :
@@ -215,11 +215,57 @@ override method @stringAsDefaultValue analyzeDefaultValueType
 
 #·······················································································································
 
-func %once predefinedDates -> @stringset outResult {
-  outResult = @stringset. emptySet
-  outResult += !"date"
+func %once predefinedDates -> @stringset {
+  result = {}
+  result += !"date"
 }
 
+#·······················································································································
+
+func %once predefinedColors -> @stringset {
+  result = {}
+  result += !"black"
+  result += !"blue"
+  result += !"brown"
+  result += !"clear"
+  result += !"control"
+  result += !"controlDarkShadow"
+  result += !"controlHighlight"
+  result += !"controlLightHighlight"
+  result += !"controlShadow"
+  result += !"controlText"
+  result += !"cyan"
+  result += !"darkGray"
+  result += !"disabledControlText"
+  result += !"gray"
+  result += !"green"
+  result += !"grid"
+  result += !"header"
+  result += !"headerText"
+  result += !"highlight"
+  result += !"keyboardFocusIndicator"
+  result += !"knob"
+  result += !"lightGray"
+  result += !"magenta"
+  result += !"orange"
+  result += !"purple"
+  result += !"red"
+  result += !"scrollBar"
+  result += !"selectedControl"
+  result += !"selectedControlText"
+  result += !"selectedKnob"
+  result += !"selectedMenuItem"
+  result += !"selectedMenuItemText"
+  result += !"selectedTextBackground"
+  result += !"selectedText"
+  result += !"shadow"
+  result += !"textBackground"
+  result += !"white"
+  result += !"windowBackground"
+  result += !"windowFrame"
+  result += !"windowFrameText"
+  result += !"yellow"
+}
 #·······················································································································
   
 override method @identifierAsDefaultValue analyzeDefaultValueType 
@@ -259,7 +305,14 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
     case stringType :
       error mValue : "invalid string type"  
     case fontType :
-      error mValue : "invalid font type"  
+      error mValue : "invalid font type"
+    case colorType :
+      if [predefinedColors () hasKey !mValue.string] then
+        outSwiftDefaultValueAsString = "NSColor." + mValue.string
+        found = true
+      else
+        error mValue : "unknown predefined color"  
+      end
     case transientPropertyExternType (*) :
       error mValue : "invalid image type"  
     case propertyClassType (@string propertyClassTypeName @propertyClassDefaultValues defaultValues) :
@@ -267,7 +320,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       switch defaultValues
       case string (@stringset values) :
         if [values hasKey !mValue.string] then
-          outSwiftDefaultValueAsString = propertyClassTypeName + "." + mValue # + " ()"
+          outSwiftDefaultValueAsString = propertyClassTypeName + "." + mValue
         else
           error mValue : "invalid default value" : outSwiftDefaultValueAsString
         end

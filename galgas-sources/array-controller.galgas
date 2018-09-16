@@ -385,7 +385,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
   #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
-    case boolType, dateType, doubleType, integerType, stringType, fontType :
+    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
@@ -420,7 +420,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
   #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
-    case boolType, dateType, doubleType, integerType, stringType, fontType :
+    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
@@ -451,7 +451,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
   #------------------------------------------------------------ Check bound model type is an entity
     switch modelType
-    case boolType, dateType, doubleType, integerType, stringType, fontType :
+    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
     case enumType (* *) :
       error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic

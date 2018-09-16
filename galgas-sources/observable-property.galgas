@@ -379,7 +379,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "an array property cannot accept 'one'"
     end
     switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error propertyName : "a property cannot accept 'one'" : outType
     case enumType (* *) :
       error propertyName : "an enum property cannot accept 'one'" : outType
@@ -455,7 +455,7 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'"
     end
     switch relationshipType
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error relationshipName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
       error relationshipName : "a property cannot accept 'all'" : outType
@@ -528,7 +528,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept 'all'"
     end
     switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error propertyName : "a property cannot accept 'all'" : outType
     case enumType (* *) :
       error propertyName : "an enum property cannot accept 'all'" : outType
@@ -581,7 +581,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "an array property cannot accept 'one'"
     end
     switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error propertyName : "a property cannot accept 'one'" : outType
     case enumType (* *) :
       error propertyName : "an enum property cannot accept 'one'" : outType
@@ -633,7 +633,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "an array property cannot accept 'one'"
     end
     switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error propertyName : "a property cannot accept 'one'" : outType
     case enumType (* *) :
       error propertyName : "an enum property cannot accept 'one'" : outType
@@ -697,7 +697,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch propertyKind
     case selectionController :
       switch type
-      case stringType, boolType, dateType, doubleType, integerType, fontType :
+      case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
       case classType (*) :
         error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType

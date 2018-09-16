@@ -124,7 +124,7 @@ override method @transientAST secondaryPropertySemanticAnalysis
 #--- Check type
   @typeKindList typeList
   switch type
-  case boolType, integerType, stringType, dateType, doubleType, fontType : # Ok
+  case boolType, integerType, stringType, dateType, doubleType, fontType, colorType : # Ok
     typeList = {!type}
   case enumType (* *) : # Ok
     typeList = {!type}

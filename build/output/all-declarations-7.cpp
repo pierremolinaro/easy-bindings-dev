@@ -1328,10 +1328,11 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
   }
   var_contents_6523.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Date"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 222))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 222)) ;
   var_contents_6523.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 223))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 223)) ;
-  GALGAS_string var_fileName_7583 = GALGAS_string ("standard-properties.swift") ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7583  COMMA_SOURCE_FILE ("code-generation.galgas", 226)) ;
+  var_contents_6523.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 224))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 224)) ;
+  GALGAS_string var_fileName_7670 = GALGAS_string ("standard-properties.swift") ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7670  COMMA_SOURCE_FILE ("code-generation.galgas", 227)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7583, var_contents_6523, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 227)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7670, var_contents_6523, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 228)) ;
   }
 }
 

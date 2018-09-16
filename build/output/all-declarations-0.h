@@ -9091,6 +9091,7 @@ class GALGAS_typeKind : public AC_GALGAS_root {
     kEnum_stringType,
     kEnum_dateType,
     kEnum_fontType,
+    kEnum_colorType,
     kEnum_enumType,
     kEnum_entityType,
     kEnum_classType,
@@ -9126,6 +9127,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
 
   public : static class GALGAS_typeKind constructor_classType (const class GALGAS_string & inOperand0
                                                                COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_typeKind constructor_colorType (LOCATION_ARGS) ;
 
   public : static class GALGAS_typeKind constructor_dateType (LOCATION_ARGS) ;
 
@@ -9190,6 +9193,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBoolType (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isClassType (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isColorType (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isDateType (LOCATION_ARGS) const ;
 

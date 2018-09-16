@@ -11268,17 +11268,7 @@ const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses (
 GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "property class NSColor (\n"
-    "  black, blue, brown, clear, control, controlDarkShadow, controlHighlight,\n"
-    "  controlLightHighlight, controlShadow, controlText, cyan, darkGray,\n"
-    "  disabledControlText, gray, green, grid, header, headerText, highlight,\n"
-    "  keyboardFocusIndicator, knob, lightGray, magenta, orange, purple, red,\n"
-    "  scrollBar, selectedControl, selectedControlText, selectedKnob, selectedMenuItem,\n"
-    "  selectedMenuItemText, selectedTextBackground, selectedText, shadow, textBackground,\n"
-    "  text, white, windowBackground, windowFrame, windowFrameText, yellow\n"
-    ") ;\n"
-    "\n"
-    "transient property struct CGFloat ;\n"
+  result << "transient property struct CGFloat ;\n"
     "\n"
     "transient property class NSImage ;\n"
     "\n"

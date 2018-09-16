@@ -1,13 +1,3 @@
-property class NSColor (
-  black, blue, brown, clear, control, controlDarkShadow, controlHighlight,
-  controlLightHighlight, controlShadow, controlText, cyan, darkGray,
-  disabledControlText, gray, green, grid, header, headerText, highlight,
-  keyboardFocusIndicator, knob, lightGray, magenta, orange, purple, red,
-  scrollBar, selectedControl, selectedControlText, selectedKnob, selectedMenuItem,
-  selectedMenuItemText, selectedTextBackground, selectedText, shadow, textBackground,
-  text, white, windowBackground, windowFrame, windowFrameText, yellow
-) ;
-
 transient property struct CGFloat ;
 
 transient property class NSImage ;

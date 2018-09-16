@@ -69,7 +69,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   #--- Check type
     @string entityName
     switch type
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
     case enumType (* *) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
@@ -115,7 +115,7 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
   #--- Check type
     @string entityName
     switch type
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error mModelControllerName : "the array controller model should be an entity" : entityName
     case enumType (* *) :
       error mModelControllerName : "the array controller model should be an entity" : entityName
@@ -170,21 +170,21 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     ]
   #--- Check type
     switch type
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
-      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
+      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     case enumType (* *) :
-      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     case classType (*) :
-      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     case propertyClassType (**) :
-      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     case entityType (kEntityName *) :
       selectionEntityName = kEntityName
       if multiplicity != .collection then
-        error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+        error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
       end
     case transientPropertyExternType (*) :
-      error mModelControllerPropertyName : "the property should be a collecttion of entities" : selectionEntityName
+      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     end
   #--- Find root entity observable properties
     [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -199,7 +199,7 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     ]
   #--- Check type
     switch type
-    case stringType, boolType, dateType, doubleType, integerType, fontType :
+    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
       error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
     case enumType (* *) :
       error mModelControllerName : "the array controller model should be an entity" : selectionEntityName

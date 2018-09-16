@@ -160,7 +160,7 @@ method @toOneRelationshipList buildObservablePropertyMap
     [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
   #--- Check type
     switch type
-    case boolType, integerType, stringType, dateType, doubleType, fontType :
+    case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
       error mDestinationEntityName: "a simple type cannot be used as entitytype"
     case enumType (* *) :
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
@@ -196,7 +196,7 @@ method @toManyRelationshipList buildObservablePropertyMap
     [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
   #--- Check type
     switch type
-    case boolType, integerType, stringType, dateType, doubleType, fontType :
+    case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
       error mDestinationEntityName: "a simple type cannot be used as entitytype"
     case enumType (* *) :
       error mDestinationEntityName: "an enumeration type cannot be used as entitytype"
@@ -255,7 +255,7 @@ method @toOneRelationshipList semanticAnalysis
        ]
      #--- Check opposite type
        switch oppositeType
-       case boolType, integerType, stringType, dateType, doubleType, fontType :
+       case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
        case enumType (* *) :
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
@@ -311,7 +311,7 @@ method @toManyRelationshipList semanticAnalysis
          ?2*
        ]
        switch oppositeType
-       case boolType, integerType, stringType, dateType, doubleType, fontType :
+       case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"
        case enumType (* *) :
          error mInverseRelationshipName: "the opposite type cannot be used as entity type"

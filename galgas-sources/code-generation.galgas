@@ -221,6 +221,7 @@ private proc generateStandardProperties
   end
   contents += [filewrapper standard_properties.scalarProperty !"Date" !false]
   contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
+  contents += [filewrapper standard_properties.classProperty !"NSColor" !false !false]
 #--- Generate file
   let fileName = "standard-properties.swift"
   ioGeneratedFileSet += !fileName
