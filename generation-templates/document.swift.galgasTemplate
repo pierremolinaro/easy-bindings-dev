@@ -278,7 +278,6 @@ for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
 end
 for () in ARRAY_CONTROLLER_LIST do
-%//    %!mControllerName.string%.unbind_modelAndView ()\n%
 %    %!mControllerName.string%.unbind_model ()\n%
 end
 %  //--------------------------- Unbind selection controllers

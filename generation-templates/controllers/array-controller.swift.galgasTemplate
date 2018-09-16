@@ -17,19 +17,65 @@ if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBViewControllerProtocol%
 end
 % {
+ 
+  //····················································································································
+  //    init
+  //····················································································································
+
+  override init () {
+    mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
+      allowsEmptySelection:allowsEmptySelection,
+      allowsMultipleSelection:allowsMultipleSelection,
+      sortedArray:self.sortedArray_property
+    )
+    super.init ()
+%if ELEMENT_TYPE_IS_GRAPHIC then
+  %    self.mSelectedSet.set (callBack: { [weak self] in self?.computeSelectionShape () } )\n%
+  %  //--- Selection observers\n%
+  %    self.canBringForward_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canBringForward)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canBringToFront_property)\n%
+  %    self.canBringToFront_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canBringToFront)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canBringToFront_property)\n%
+  %    self.canSendBackward_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canSendBackward)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canSendBackward_property)\n%
+  %    self.canSendToBack_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canSendToBack)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
+end%  //--- Set selected array compute function
+    setSelectedArrayComputeFunction ()
+  //--- Set sorted array compute function
+    setFilterAndSortFunction ()
+  }
+
+  //····················································································································
+  //    Sort Array
+  //····················································································································
 
   let sortedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
-  private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
-  private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
-  private var mTableViewArray = [EBTableView] ()
-
-%if ELEMENT_TYPE_IS_GRAPHIC then
-  %//--- Observer for object display\n%
-  %  private var mObjectDisplayObserver = EBOutletEvent ()\n\n%
-end
-%  //····················································································································
-  //    Sort Array
   //····················································································································
 
   private var mSortDescriptorArray = [(String, Bool)] () { // Key, ascending
@@ -50,30 +96,15 @@ end
     }
   }
 
+  //····················································································································
+  //    Attributes
+  //····················································································································
+
 %
 for () in ATTRIBUTE_VALUES do
 %  private let %!mValue0% = %!mValue1%\n%
 end
 %  
-  //····················································································································
-  //    init
-  //····················································································································
-
-  override init () {
-    mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
-      allowsEmptySelection:allowsEmptySelection,
-      allowsMultipleSelection:allowsMultipleSelection,
-      sortedArray:self.sortedArray_property
-    )
-    super.init ()
-%if ELEMENT_TYPE_IS_GRAPHIC then
-  %    self.mSelectedSet.set (callBack: { [weak self] in self?.computeSelectionShape () } )\n%
-end%  //--- Set selected array compute function
-    setSelectedArrayComputeFunction ()
-  //--- Set sorted array compute function
-    setFilterAndSortFunction ()
-  }
-
   //····················································································································
   //    Model
   //····················································································································
@@ -186,6 +217,7 @@ end
   //  EBView interface
   //····················································································································
 
+  private var mObjectDisplayObserver = EBOutletEvent ()
   private var mEBViews = [EBView] ()
 
   //····················································································································
@@ -356,6 +388,12 @@ end
 
   //····················································································································
   //    bind_tableView
+  //····················································································································
+
+  private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
+  private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
+  private var mTableViewArray = [EBTableView] ()
+
   //····················································································································
 
   func bind_tableView (_ inTableView : EBTableView?, file : String, line : Int) {
@@ -843,6 +881,10 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // BRING FORWARD
   //····················································································································
 
+  var canBringForward_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
   var canBringForward : Bool {
     let objects = mModel?.propval ?? []
     var result = (objects.count > 1) && (mSelectedSet.mSet.count > 0)
@@ -868,6 +910,10 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   //····················································································································
   // BRING TO FRONT
+  //····················································································································
+
+  var canBringToFront_property = EBTransientProperty_Bool ()
+
   //····················································································································
 
   var canBringToFront : Bool {
@@ -902,6 +948,10 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // SEND BACKWARD
   //····················································································································
 
+  var canSendBackward_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
   var canSendBackward : Bool {
     let objects = mModel?.propval ?? []
     var result = (objects.count > 1) && (mSelectedSet.mSet.count > 0)
@@ -927,6 +977,10 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   
   //····················································································································
   // SEND TO BACK
+  //····················································································································
+
+  var canSendToBack_property = EBTransientProperty_Bool ()
+
   //····················································································································
 
   func sendToBack () {
