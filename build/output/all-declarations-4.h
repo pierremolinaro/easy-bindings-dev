@@ -253,8 +253,6 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
 
-  public : GALGAS_objectControllerForGeneration mProperty_mObjectControllerListForGeneration ;
-
   public : GALGAS_stringlist mProperty_mPropertyClassList ;
 
   public : GALGAS_transientExternTypeList mProperty_mTransientPropertyTypeList ;
@@ -284,7 +282,6 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                        const GALGAS_arrayControllerForGeneration & in_mArrayControllerListForGeneration,
                                        const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
                                        const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
-                                       const GALGAS_objectControllerForGeneration & in_mObjectControllerListForGeneration,
                                        const GALGAS_stringlist & in_mPropertyClassList,
                                        const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList) ;
 
@@ -310,9 +307,8 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
                                                                     const class GALGAS_arrayControllerForGeneration & inOperand8,
                                                                     const class GALGAS_validationStubRoutineListForGeneration & inOperand9,
                                                                     const class GALGAS_selectionControllerForGeneration & inOperand10,
-                                                                    const class GALGAS_objectControllerForGeneration & inOperand11,
-                                                                    const class GALGAS_stringlist & inOperand12,
-                                                                    const class GALGAS_transientExternTypeList & inOperand13
+                                                                    const class GALGAS_stringlist & inOperand11,
+                                                                    const class GALGAS_transientExternTypeList & inOperand12
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -340,8 +336,6 @@ class GALGAS_structForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_enumListForGeneration getter_mEnumListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mNeededOutletClasses (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_objectControllerForGeneration getter_mObjectControllerListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_preferencesForGeneration getter_mPreferencesForGeneration (LOCATION_ARGS) const ;
 

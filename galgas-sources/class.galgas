@@ -175,7 +175,6 @@ override method @classDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?* # no array controller
       !?* # No selection controller
-      !?* # No object controller
       !?ioGeneration.mNeededOutletClasses
     ]
   end

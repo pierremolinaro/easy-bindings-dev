@@ -146,6 +146,7 @@ method @prefDeclaration semanticAnalysis
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration arrayControllerListForGeneration = {}
+  @selectionControllerForGeneration selectionControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
       !preferencesName ()
@@ -155,14 +156,13 @@ method @prefDeclaration semanticAnalysis
       !inSemanticContext.mPreferencesObservablePropertyMap
       !?transientDefinitionListForGeneration
       !?arrayControllerListForGeneration
-      !?* # No selection controller
-#      !?* # No Custom Object Controller
-      !?* # No Object Controller
+      !?selectionControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
+  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do

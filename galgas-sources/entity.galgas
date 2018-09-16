@@ -177,26 +177,6 @@ override method @entityDeclaration solveSecondaryProperty
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
 {
-#  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-#  @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
-#  @selectionControllerForGeneration selectionControllerListForGeneration = {}
-#  @objectControllerForGeneration objectControllerListForGeneration = {}
-#  for (item) in inPropertiesToSolve do
-#    [item secondaryPropertySemanticAnalysis
-#      !mDocumentName.string
-#      !mRootEntityName.string
-#      !rootObservablePropertyMap
-#      !inSemanticContext
-#      !observablePropertyMap
-#      !?transientDefinitionListForGeneration
-#      !?documentArrayControllerListForGeneration
-#      !?selectionControllerListForGeneration
-#      !?objectControllerListForGeneration
-#      !?ioGeneration.mNeededOutletClasses
-#    ]
-#  end
-
-
   outUnsolvedProperties = {}
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
     !mEntityName
@@ -237,7 +217,6 @@ override method @entityDeclaration semanticAnalysis
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration arrayControllerListForGeneration = {}
-  @objectControllerForGeneration objectControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerForGeneration = {}
   for (item) in mSecondaryPropertyList do
     [item secondaryPropertySemanticAnalysis
@@ -249,12 +228,10 @@ override method @entityDeclaration semanticAnalysis
       !?transientDefinitionListForGeneration
       !?arrayControllerListForGeneration
       !?selectionControllerForGeneration
-      !?objectControllerListForGeneration
       !?ioGeneration.mNeededOutletClasses
     ]
   end
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-  ioGeneration.mObjectControllerListForGeneration += objectControllerListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerForGeneration
   ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
 #--- Check requireds transients are implemented
