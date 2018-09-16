@@ -665,8 +665,6 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
 
 } ;
 
@@ -1041,7 +1039,6 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_rootControllerProperty,
     kEnum_rootToManyRelationship,
     kEnum_selfCollection,
     kEnum_controllerArray
@@ -1075,10 +1072,6 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                                                  const class GALGAS_lstring & inOperand1
                                                                                  COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_arrayControllerModel constructor_rootControllerProperty (const class GALGAS_lstring & inOperand0,
-                                                                                        const class GALGAS_lstring & inOperand1
-                                                                                        COMMA_LOCATION_ARGS) ;
-
   public : static class GALGAS_arrayControllerModel constructor_rootToManyRelationship (const class GALGAS_lstring & inOperand0
                                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -1099,11 +1092,6 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_rootControllerProperty (class GALGAS_lstring & outArgument0,
-                                                                class GALGAS_lstring & outArgument1,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG void method_rootToManyRelationship (class GALGAS_lstring & outArgument0,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const ;
@@ -1116,8 +1104,6 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isControllerArray (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootControllerProperty (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootToManyRelationship (LOCATION_ARGS) const ;
 
@@ -1138,24 +1124,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMode
 //                                                                                                                     *
 //                                    @arrayControllerModel enum, associated values                                    *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumAssociatedValues_arrayControllerModel_rootControllerProperty : public cEnumAssociatedValues {
-  public : const GALGAS_lstring mAssociatedValue0 ;
-  public : const GALGAS_lstring mAssociatedValue1 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_arrayControllerModel_rootControllerProperty (const GALGAS_lstring & inAssociatedValue0,
-                                                                              const GALGAS_lstring & inAssociatedValue1
-                                                                              COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_rootControllerProperty (void) {}
-} ;
-
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship : public cEnumAssociatedValues {
@@ -6476,8 +6444,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

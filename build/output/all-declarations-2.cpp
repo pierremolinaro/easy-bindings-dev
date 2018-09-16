@@ -11233,41 +11233,6 @@ GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::ext
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cEnumAssociatedValues_arrayControllerModel_rootControllerProperty::cEnumAssociatedValues_arrayControllerModel_rootControllerProperty (const GALGAS_lstring & inAssociatedValue0,
-                                                                                                                                      const GALGAS_lstring & inAssociatedValue1
-                                                                                                                                      COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0),
-mAssociatedValue1 (inAssociatedValue1) {
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cEnumAssociatedValues_arrayControllerModel_rootControllerProperty::description (C_String & ioString,
-                                                                                     const int32_t inIndentation) const {
-  ioString << "(\n" ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString << ")" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cEnumAssociatedValues_arrayControllerModel_rootControllerProperty::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_arrayControllerModel_rootControllerProperty * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_rootControllerProperty *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  if (result == kOperandEqual) {
-    result = mAssociatedValue1.objectCompare (ptr->mAssociatedValue1) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship::cEnumAssociatedValues_arrayControllerModel_rootToManyRelationship (const GALGAS_lstring & inAssociatedValue0
                                                                                                                                       COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
@@ -11368,22 +11333,6 @@ mEnum (kNotBuilt) {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_rootControllerProperty (const GALGAS_lstring & inAssociatedValue0,
-                                                                                             const GALGAS_lstring & inAssociatedValue1
-                                                                                             COMMA_LOCATION_ARGS) {
-  GALGAS_arrayControllerModel result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
-    result.mEnum = kEnum_rootControllerProperty ;
-    cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_rootControllerProperty (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_rootToManyRelationship (const GALGAS_lstring & inAssociatedValue0
                                                                                              COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerModel result ;
@@ -11426,25 +11375,6 @@ GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_controllerA
     macroDetachSharedObject (ptr) ;
   }
   return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_arrayControllerModel::method_rootControllerProperty (GALGAS_lstring & outAssociatedValue0,
-                                                                 GALGAS_lstring & outAssociatedValue1,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_rootControllerProperty) {
-    outAssociatedValue0.drop () ;
-    outAssociatedValue1.drop () ;
-    C_String s ;
-    s << "method @arrayControllerModel rootControllerProperty invoked with an invalid enum value" ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_arrayControllerModel_rootControllerProperty * ptr = (const cEnumAssociatedValues_arrayControllerModel_rootControllerProperty *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-    outAssociatedValue1 = ptr->mAssociatedValue1 ;
-  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -11500,19 +11430,12 @@ void GALGAS_arrayControllerModel::method_controllerArray (GALGAS_lstring & outAs
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const char * gEnumNameArrayFor_arrayControllerModel [5] = {
+static const char * gEnumNameArrayFor_arrayControllerModel [4] = {
   "(not built)",
-  "rootControllerProperty",
   "rootToManyRelationship",
   "selfCollection",
   "controllerArray"
 } ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_arrayControllerModel::getter_isRootControllerProperty (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_rootControllerProperty == mEnum) ;
-}
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

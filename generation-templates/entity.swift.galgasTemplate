@@ -108,8 +108,8 @@ end
 
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-  %  var %!mToManyRelationshipName%_property = ToManyRelationship_%![mRelationshipType swiftTypeName]% ()\n%
-  % // var %!mToManyRelationshipName%_property = ToManyRelationship_%!ENTITY_NAME%_%!mToManyRelationshipName% ()\n%
+  %  var %!mToManyRelationshipName%_property = StoredArrayOf_%![mRelationshipType swiftTypeName]% ()\n%
+  % // var %!mToManyRelationshipName%_property = StoredArrayOf_%!ENTITY_NAME%_%!mToManyRelationshipName% ()\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   %  var %!mToOneRelationshipName%_property = ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% ()\n%
@@ -621,11 +621,11 @@ end
 //    %!"To many relationship read write: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ToManyRelationshipReadWrite_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
+class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  weak var undoManager : EBUndoManager?
+  var undoManager : EBUndoManager?
 
   //····················································································································
  
@@ -641,9 +641,7 @@ class ToManyRelationshipReadWrite_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME
 //    %!"To many relationship: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ToManyRelationship_%!ENTITY_NAME% :
-       ToManyRelationshipReadWrite_%!ENTITY_NAME%,
-       EBSignatureObserverProtocol {
+final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatureObserverProtocol {
 
   //····················································································································
 
@@ -980,3 +978,4 @@ end
 %
 end
 %
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

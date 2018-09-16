@@ -91,7 +91,7 @@ end
 
 %
 for () in STORED_ARRAY_LIST do
-%  var %!mStoredPropertyName%_property = EBClassArray_%!mElementClassName% (Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
+%  var %!mStoredPropertyName%_property = StoredArrayOf_%!mElementClassName% (Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
 end
 %
   //····················································································································

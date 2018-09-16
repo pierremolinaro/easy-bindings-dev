@@ -28,7 +28,6 @@ list @arrayControllerAttributListAST {
 #·······················································································································
 
 enum @arrayControllerModel {
-  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName)
   case rootToManyRelationship (@lstring rootRelationshipName)
   case selfCollection (@lstring collectionPropertyName)
   case controllerArray (@lstring controllerName @lstring propertyName)
@@ -74,16 +73,7 @@ syntax extension easyBindings_syntax {
       $root$
       $.$
       $identifier$ ?let @lstring relationshipName
-      select
-        arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
-      or
-        $.$
-        $identifier$ ?let @lstring controllerPropertyName
-        arrayControllerModel = .rootControllerProperty {
-          !rootControllerName: relationshipName
-          !controllerPropertyName: controllerPropertyName
-        }
-      end
+      arrayControllerModel = .rootToManyRelationship {!rootRelationshipName:relationshipName}
     or
       $self$
       $.$
@@ -221,18 +211,6 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 {
   @bool solved
   switch mArrayControllerModel
-  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
-    solved = [ioObservableProperties hasKey !rootControllerName.string]
-    if solved then
-      [ioObservableProperties searchKey
-        !rootControllerName
-        ?let type
-        ?let kind
-        ?let multiplicity
-        ?3*
-      ]
-      error rootControllerName : "NOT HANDLED YET"
-    end
   case selfCollection (@lstring storedPropertyName) :
     solved = [ioObservableProperties hasKey !storedPropertyName.string]
     if solved then
@@ -362,10 +340,6 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @bool entityTypeIsGraphic
   @actionMap actionMap
   switch mArrayControllerModel
-  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
-    error rootControllerName
-    : "NOT HANDLED YET"
-    : elementSwiftTypeName, modelKind, actionMap, entityName, errorLocation, entityTypeIsGraphic, kind, modelType
   case selfCollection (@lstring storedPropertyName) :
     errorLocation = storedPropertyName.location
     [inObservableProperties searchKey
@@ -570,8 +544,6 @@ list @arrayControllerForGeneration {
 
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
-  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
-    error rootControllerName : "NOT HANDLED YET" : outResult
   case selfCollection (@lstring storedPropertyName) :
     outResult = "self." + storedPropertyName + "_property"
   case rootToManyRelationship (@lstring rootRelationshipName) :
@@ -592,17 +564,13 @@ getter @arrayControllerModel modelTypeName
   case selfCollection (@lstring storedPropertyName) :
     [inObservablePropertyMap searchKey
       !storedPropertyName
-      ?let modelType
+      ?*
       ?let @propertyKind kind
       ?4*
     ]
     switch kind
     case stored :
-      if [modelType isEntityType] then
-        outResult = "ToManyRelationshipReadWrite_" + inElementSwiftTypeName
-      else
-        outResult = "EBClassArray_" + inElementSwiftTypeName
-      end
+      outResult = "ReadWriteArrayOf_" + inElementSwiftTypeName
     case transient :
       outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
     case arrayController :
@@ -611,11 +579,9 @@ getter @arrayControllerModel modelTypeName
       outResult = "<< selectionController >>"
     end
   case rootToManyRelationship (*) :
-    outResult = "ToManyRelationshipReadWrite_" + inElementSwiftTypeName
+    outResult = "ReadWriteArrayOf_" + inElementSwiftTypeName
   case controllerArray (2*) :
     outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
-  case rootControllerProperty (@lstring rootControllerName @lstring controllerPropertyName) :
-    error rootControllerName : "NOT HANDLED YET" : outResult
   end
 }
 
