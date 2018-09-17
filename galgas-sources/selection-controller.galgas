@@ -1,6 +1,6 @@
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   AST                                                                                                                *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST   
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @selectionControllerDeclaration : @abstractSecondaryProperty {
   @lstring mSelectionControllerName
@@ -8,9 +8,9 @@ class @selectionControllerDeclaration : @abstractSecondaryProperty {
   @lstring mModelControllerPropertyName
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SYNTAX                                                                                                             *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SYNTAX
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 syntax extension easyBindings_syntax {
 
@@ -41,9 +41,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC ANALYSIS                                                                                                  *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC ANALYSIS                     
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @selectionControllerDeclaration typeInventory
   ?!@unifiedTypeMap unused ioUnifiedTypeMap
@@ -190,26 +190,11 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     case selectionController (2*) :
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     end
-  #--- Check type
-#    switch type
-#    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-#      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-#    case enumType (* *) :
-#      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-#    case classType (*) :
-#      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-#    case entityType (kEntityName *) :
-#      selectionEntityName = kEntityName
-#      if multiplicity != .collection then
-#        error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-#      end
-#    case transientPropertyExternType (*) :
-#      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-#    end
   #--- Find root entity observable properties
     [inSemanticContext.mEntityObservablePropertyMap searchKey
       !.new {!selectionEntityName !mSelectionControllerName.location}
       ?selectionObservablePropertyMap
+      ?*
     ]
   else
     [inObservableProperties searchKey
@@ -229,23 +214,11 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     case selectionController (2*) :
       error mModelControllerName : "the model should be an array controller" : selectionEntityName
     end
-  #--- Check type
-#    switch type
-#    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-#      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-#    case enumType (* *) :
-#      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-#    case classType (*) :
-#      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-#    case entityType (kEntityName *) :
-#      selectionEntityName = kEntityName
-#    case transientPropertyExternType (*) :
-#      error mModelControllerName : "the array controller model should be an entity" : selectionEntityName
-#    end
   #--- Find root entity observable properties
     [inSemanticContext.mEntityObservablePropertyMap searchKey
       !.new {!selectionEntityName !mSelectionControllerName.location}
       ?selectionObservablePropertyMap
+      ?*
     ]
   end
 #--- Generation
@@ -258,9 +231,9 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     !selectionObservablePropertyMap
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION TYPES                                                                                                   *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION TYPES                      
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @selectionControllerForGeneration {
   @string mOwnerName # document name, prefs name, ...
@@ -283,9 +256,9 @@ private filewrapper selectionControllerGenerationTemplate in "../generation-temp
     ?@observablePropertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION                                                                                                         *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION                            
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc generateSelectionControllers
   ?let @selectionControllerForGeneration inArrayControllerListForGeneration
@@ -309,4 +282,4 @@ proc generateSelectionControllers
   end
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

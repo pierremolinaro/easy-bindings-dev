@@ -1,6 +1,6 @@
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#  AST                                                                                                                 *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#  AST    
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 enum @observablePropertyAST {
   case rootProperty (@lstring propertyName)
@@ -27,9 +27,9 @@ list @observablePropertyList {
   @observablePropertyAST mObservableProperty
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#  SYNTAX                                                                                                              *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#  SYNTAX 
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 syntax extension easyBindings_syntax {
 
@@ -127,9 +127,9 @@ syntax extension easyBindings_syntax {
 
 }
    
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#  SEMANTICS                                                                                                           *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#  SEMANTICS                              
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string outResult {
   switch self
@@ -168,7 +168,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   end  
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
   switch self
@@ -329,9 +329,9 @@ getter @observablePropertyAST location -> @location outResult {
   end  
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC ANALYSIS                                                                                                  *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC ANALYSIS                     
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 method @observablePropertyAST analyzeObservableProperty
   ?let @observablePropertyMap inRootObservablePropertyMap
@@ -421,6 +421,7 @@ method @observablePropertyAST analyzeObservableProperty
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         !.new {!typeName !relationshipName.location}
         ?let observablePropertyMap
+        ?*
       ]
       [observablePropertyMap searchKey
         !propertyName
@@ -495,6 +496,7 @@ method @observablePropertyAST analyzeObservableProperty
      [inSemanticContext.mEntityObservablePropertyMap searchKey
         !typeName
         ?let @observablePropertyMap entityObservablePropertyMap
+        ?*
       ]
       [entityObservablePropertyMap searchKey
         !elementPropertyName
@@ -525,6 +527,7 @@ method @observablePropertyAST analyzeObservableProperty
      [inSemanticContext.mEntityObservablePropertyMap searchKey
         !typeName
         ?let @observablePropertyMap entityObservablePropertyMap
+        ?*
       ]
       [entityObservablePropertyMap searchKey
         !elementPropertyName
@@ -613,6 +616,7 @@ method @observablePropertyAST analyzeObservableProperty
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         !.new {!entityName !controllerName.location}
         ?let observablePropertyMap
+        ?*
       ]
       [observablePropertyMap searchKey !propertyName ?outKind ?3*]
     end
@@ -630,5 +634,5 @@ method @observablePropertyAST analyzeObservableProperty
   end  
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

@@ -1,6 +1,6 @@
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   AST                                                                                                                *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @classDeclaration : @astDeclaration {
   @lstring mClassName
@@ -11,9 +11,9 @@ class @classDeclaration : @astDeclaration {
   @lstringlist mActionDeclarationList
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SYNTAX                                                                                                             *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SYNTAX
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 syntax extension easyBindings_syntax {
 
@@ -62,9 +62,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   TYPE INVENTORY                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   TYPE INVENTORY
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @classDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
@@ -80,9 +80,9 @@ override method @classDeclaration typeInventory
   [!?ioUnifiedTypeMap insertKey !mClassName !.classType {!className:mClassName.string} !actionMap]
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC ANALYSIS                                                                                                  *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC ANALYSIS
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 # Only get current entity observable properties, do not collect in super entities
 override method @classDeclaration buildObservablePropertyMapsFromStoredProperties
@@ -99,6 +99,7 @@ override method @classDeclaration buildObservablePropertyMapsFromStoredPropertie
   [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
     !mClassName
     !observablePropertyMap
+    !.classObject
   ]
 }
 
@@ -124,6 +125,7 @@ override method @classDeclaration solveSecondaryProperty
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
     !mClassName
     ?@observablePropertyMap observablePropertyMap
+    ?*
   ]
   for (property) in inPropertiesToSolve do
     [property tryToSolveSecondaryProperty
@@ -154,6 +156,7 @@ override method @classDeclaration semanticAnalysis
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mClassName
     ?let @observablePropertyMap observablePropertyMap
+    ?*
   ]
 #--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
 #--- Analyze simple stored properties
@@ -205,9 +208,9 @@ override method @classDeclaration semanticAnalysis
     !mExternSwiftDelegateList
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION TYPES                                                                                                   *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION TYPES
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @classListForGeneration {
   @string mClassName
@@ -231,9 +234,9 @@ private filewrapper classGenerationTemplate in "../generation-templates" {
     ?@string EXPLORER_ACCESS
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION                                                                                                         *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc generateClasses
   ?let @classListForGeneration inClassListForGeneration
@@ -259,4 +262,4 @@ proc generateClasses
   end
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

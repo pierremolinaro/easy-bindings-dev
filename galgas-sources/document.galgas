@@ -1,6 +1,6 @@
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   AST                                                                                                                *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @documentDeclaration : @astDeclaration {
   @lstring mDocumentName
@@ -11,9 +11,9 @@ class @documentDeclaration : @astDeclaration {
   @secondaryPropertyList mSecondaryPropertyList
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SYNTAX                                                                                                             *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SYNTAX
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 syntax extension easyBindings_syntax {
 
@@ -71,9 +71,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   TYPE INVENTORY                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   TYPE INVENTORY
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @documentDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
@@ -87,9 +87,9 @@ override method @documentDeclaration typeInventory
   [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mRootEntityName ?*]
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC TYPES                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC TYPES                        
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @documentObservablePropertyMap {
   @observablePropertyMap mObservablePropertyMap
@@ -107,9 +107,9 @@ override method @documentDeclaration buildInitialSecondaryPropertyListMap
   ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC ANALYSIS                                                                                                  *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC ANALYSIS                     
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @documentDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
@@ -144,6 +144,7 @@ override method @documentDeclaration solveSecondaryProperty
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
     !mRootEntityName
     ?@observablePropertyMap rootObservablePropertyMap
+    ?*
   ]
   for (property) in inPropertiesToSolve do
     [property tryToSolveSecondaryProperty
@@ -172,6 +173,7 @@ override method @documentDeclaration semanticAnalysis
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mRootEntityName
     ?let @observablePropertyMap rootObservablePropertyMap
+    ?*
   ]
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
@@ -240,9 +242,9 @@ override method @documentDeclaration semanticAnalysis
     !selectionControllerListForGeneration
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION TYPES                                                                                                   *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION TYPES                      
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @documentListForGeneration {
   @string mDocumentName
@@ -281,9 +283,9 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
 #    ?@customObjectControllerForGeneration CUSTOM_OBJECT_CONTROLLER_LIST
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION                                                                                                         *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION                            
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc generateDocuments
   ?let @documentListForGeneration inDocumentListForGeneration
@@ -327,4 +329,4 @@ proc generateDocuments
   end
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

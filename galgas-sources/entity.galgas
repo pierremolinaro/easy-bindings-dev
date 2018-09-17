@@ -1,6 +1,6 @@
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   AST                                                                                                                *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST   
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @entityDeclaration : @astDeclaration {
   @lstring mEntityName
@@ -15,9 +15,9 @@ class @entityDeclaration : @astDeclaration {
   @bool mIsGraphicEntity
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SYNTAX                                                                                                             *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SYNTAX
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 syntax extension easyBindings_syntax {
 
@@ -93,9 +93,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   TYPE INVENTORY                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   TYPE INVENTORY                        
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @entityDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
@@ -122,19 +122,28 @@ override method @entityDeclaration typeInventory
   end
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC TYPES                                                                                                     *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC TYPES
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+enum @objectKind {
+  case classObject
+  case entityObject
+  case graphicEntityObject
+}
+
+#·······················································································································
 
 map @entityObservablePropertyMap {
   @observablePropertyMap mObservablePropertyMap
+  @objectKind mObjectKind
   insert insertKey error message "the '%K' document is already declared in %L"
   search searchKey error message "there is no '%K' document"
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   SEMANTIC ANALYSIS                                                                                                  *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC ANALYSIS                     
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 # Only get current entity observable properties, do not collect in super entities
 override method @entityDeclaration buildObservablePropertyMapsFromStoredProperties
@@ -160,6 +169,7 @@ override method @entityDeclaration buildObservablePropertyMapsFromStoredProperti
   [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
     !mEntityName
     !observablePropertyMap
+    !if mIsGraphicEntity then .graphicEntityObject else .entityObject end
   ]
 }
 
@@ -185,6 +195,7 @@ override method @entityDeclaration solveSecondaryProperty
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
     !mEntityName
     ?@observablePropertyMap observablePropertyMap
+    ?*
   ]
   for (property) in inPropertiesToSolve do
     [property tryToSolveSecondaryProperty
@@ -209,6 +220,7 @@ override method @entityDeclaration semanticAnalysis
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mEntityName
     ?let @observablePropertyMap observablePropertyMap
+    ?*
   ]
 #--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
 #--- Analyze simple stored properties
@@ -321,9 +333,9 @@ override method @entityDeclaration semanticAnalysis
     !transientsDeclaredInSuperEntity
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION TYPES                                                                                                   *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION TYPES                      
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @entityListForGeneration {
   @string mEntityName
@@ -359,9 +371,9 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@entityListForGeneration ENTITY_LIST
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-#   GENERATION                                                                                                         *
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION                            
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc generateEntities
   ?let @entityListForGeneration inEntityListForGeneration
@@ -403,4 +415,4 @@ proc generateEntities
   end
 }
 
-#——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
