@@ -269,14 +269,9 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
       case toOne (4*) :
         error controllerName : "an array controller is required here"
       case arrayController (entityType entityName graphic) :
-#        [ioSemanticContext.mEntityObservablePropertyMap searchKey
-#          !controllerEntityName
-#          ?let observablePropertyMap
-#          ?*
-#        ]
         if propertyName.string == "sortedArray" then
           [!?ioObservableProperties insertKey
-            !controllerName
+            !mControllerName
             !.arrayController {!type: entityType !typeName: entityName !graphic: graphic}
             !""
             !{}
@@ -365,10 +360,11 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
     elementSwiftTypeName = [[kind type] swiftTypeName]
     modelType = [kind type]
-  case controller (@bool unused isRoot @lstring controllerName @lstring propertyName) :
+  case controller (@bool isRoot @lstring controllerName @lstring propertyName) :
+    let observablePropertyMap = if isRoot then inRootObservableProperties else inObservableProperties end
     errorLocation = propertyName.location
     modelKind = .transientArray
-    [inObservableProperties searchKey
+    [observablePropertyMap searchKey
       !controllerName
       ?kind
       ?*

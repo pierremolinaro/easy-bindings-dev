@@ -145,7 +145,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBUndoManager"
     swiftFiles += !"EBDataScanner"
     swiftFiles += !"graphic-classes-and-utilities"
-    swiftFiles += !"EBView"
+#    swiftFiles += !"EBView"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
   var fw = [filewrapper swift_sources]

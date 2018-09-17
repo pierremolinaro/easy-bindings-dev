@@ -10867,7 +10867,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "transient property class EBShape ;\n"
     "\n"
-    "extern outlet class EBView : NSView ;\n"
+    "extern outlet class EBView : NSView $graphicController ;\n"
     "binding EBView $overObjectsDisplay : transient EBShape ;\n"
     "binding EBView $arrowKeyMagnitude : transient CGFloat ;\n"
     "binding EBView $shiftArrowKeyMagnitude : transient CGFloat ;\n"
