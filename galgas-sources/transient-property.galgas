@@ -90,11 +90,17 @@ override method @transientAST tryToSolveSecondaryProperty
   end
   if solved then
     [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?let actionMap]
+    @propertyKind kind
+    if mIsArray then
+      kind = .toMany {!type:type !typeName: mTransientTypeName !readOnly: true !graphic:[type isGraphic]}
+    elsif [type isEntityType] then
+      kind = .toOne {!type:type !typeName: mTransientTypeName !readOnly: true !graphic:[type isGraphic]}
+    else
+      kind = .property {!type:type !readOnly: true}
+    end
     [!?ioObservableProperties insertKey
       !mTransientName
-      !type
-      !.transient
-      !if mIsArray then .collection else .single end
+      !kind
       !""
       !actionMap
       !false
@@ -122,11 +128,11 @@ override method @transientAST secondaryPropertySemanticAnalysis
 #--- Check type
   @typeKindList typeList
   switch type
-  case boolType, integerType, stringType, dateType, doubleType, fontType, colorType : # Ok
+  case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
     typeList = {!type}
-  case enumType (* *) : # Ok
+  case enumType (* *) :
     typeList = {!type}
-  case entityType (* *) :
+  case entityType (2*) :
     error mTransientName: "an entity cannot be used as simple property type" : typeList
   case classType (*) :
     typeList = {!type}
@@ -135,23 +141,28 @@ override method @transientAST secondaryPropertySemanticAnalysis
   end
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}
-  for () in mDependencyList do # (idx)
+  for () in mDependencyList do
     [mObservableProperty analyzeObservableProperty
       !inRootObservableProperties
       !inSemanticContext
       !inObservableProperties
-      ?let @typeKind unused dependencyType
-      ?let @propertyKind unused dependencyKind
-      ?@propertyMultiplicity outMultiplicity
+      ?let @propertyKind dependencyKind
       ?let @string swiftTypeStringForTransientFunctionArgument
     ]
-    if (outMultiplicity == .collection) && (dependencyKind == .stored)  then
-      error [mObservableProperty location] : "a collection property cannot be observed"
+    switch dependencyKind
+    case property (* *) :
+    case toMany (4*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    case toOne (4*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    case arrayController (3*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    case selectionController (2*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
     end
     dependencies +=
       !mObservableProperty
-    #  ![[mObservableProperty modelStringForSelf !"self"] stringByReplacingStringByString !"." !"_"] + "_" + idx
-      ![mObservableProperty modelStringFunctionArgument] # + "_" + idx
+      ![mObservableProperty modelStringFunctionArgument]
       !swiftTypeStringForTransientFunctionArgument
   end
 #--- Code generation

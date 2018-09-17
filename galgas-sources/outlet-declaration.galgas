@@ -207,17 +207,15 @@ proc analyzeOutlets
       else
         [inObservablePropertyMap searchKey
           !controllerName
-          ?let unused type
-          ?let @propertyKind unused kind
-          ?let multiplicity
+          ?let @propertyKind kind
           ?3*
         ]
-#        if kind != .arrayController then
-#          error controllerName : "the bound model should be an array controller"
-#        end
-        if multiplicity != .collection then
-          error controllerName : "the controller is not bound to a collection"
+        if not [kind isArrayController] then
+          error controllerName : "the bound model should be an array controller"
         end
+#        if multiplicity != .collection then
+#          error controllerName : "the controller is not bound to a collection"
+#        end
         outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
     end
@@ -230,17 +228,15 @@ proc analyzeOutlets
       else
         [inObservablePropertyMap searchKey
           !controllerName
-          ?let unused type
           ?let @propertyKind unused kind
-          ?let multiplicity
           ?3*
         ]
-#        if kind != .arrayController then
-#          error controllerName : "the bound model should be an array controller"
-#        end
-        if multiplicity != .collection then
-          error controllerName : "the controller is not bound to a collection"
+        if not [kind isArrayController] then
+          error controllerName : "the bound model should be an array controller"
         end
+#        if multiplicity != .collection then
+#          error controllerName : "the controller is not bound to a collection"
+#        end
         outTableViewBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
     end
@@ -260,7 +256,7 @@ proc analyzeOutlets
       else # It is a controller
         [inObservablePropertyMap searchKey
           !target
-          ?4*
+          ?2*
           ?let @actionMap controllerActionMap
           ?*
         ]
@@ -346,23 +342,29 @@ proc analyzeRegularBinding
 {
   for () in inRegularBindingList do
   #--- Analyze model
-    var @outletBindingModelList boundModelTypeList = {}
-    var @boundObjectList boundModelListForGeneration = {}
+    @outletBindingModelList boundModelTypeList = {}
+    @boundObjectList boundModelListForGeneration = {}
     for () in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
-        ?@typeKind type
         ?@propertyKind kind
-        ?@propertyMultiplicity multiplicity
         ?let @string unused swiftTypeStringForTransientFunctionArgument
       ]
-      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] !type !kind
-      if multiplicity != .single then
-        error [mObservableProperty location]:"a collection cannot be bound"
+      switch kind
+      case property (2*) : # Ok
+      case toMany (4*) :
+        error [mObservableProperty location]:"a toMany property cannot be bound"
+      case toOne (4*) :
+        error [mObservableProperty location]:"a toOne property cannot be bound"
+      case arrayController (3*) :
+        error [mObservableProperty location]:"an array controller cannot be bound"
+      case selectionController (2*) :
+        error [mObservableProperty location]:"a selection controller cannot be bound"
       end
-      boundModelTypeList += !type !kind ![mObservableProperty location]
+      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] ![kind type] !kind
+      boundModelTypeList += ![kind type] !kind ![mObservableProperty location]
     end
   #--- Analyze outlet binding
     @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
@@ -390,10 +392,13 @@ proc analyzeRegularBinding
     if continues then
       error mBindingName : "this binding is not defined"
     elsif [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
-      error mBindingName : [[outletBindingSpecificationModelList length] string] + " model(s) required for this binding"
+      error mBindingName
+      : [[outletBindingSpecificationModelList length] string]
+        + " model(s) required for this binding (found: "
+        + [boundModelTypeList length] + ")"
     else
       for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do
-        if required_mModelShouldBeWritableProperty && (found_mKind == .transient) then
+        if required_mModelShouldBeWritableProperty && [found_mKind isTransient] then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
         if [required_mModelType isEnumType] && [found_mModelType isEnumType] then # Ok

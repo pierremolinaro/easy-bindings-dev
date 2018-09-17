@@ -145,7 +145,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + mValue.uint + ".0)"
       found = true
     case boolType, dateType, doubleType, stringType, colorType :
-    case entityType (* *) :
+    case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
     case transientPropertyExternType (*) :
@@ -171,7 +171,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
     case boolType, dateType, integerType, stringType, fontType, colorType :
-    case entityType (* *) :
+    case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
     case transientPropertyExternType (*) :
@@ -197,7 +197,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
       outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
       found = true
     case boolType, dateType, integerType, doubleType, fontType, colorType :
-    case entityType (* *) :
+    case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
     case transientPropertyExternType (*) :
@@ -288,7 +288,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
         : "the '" + enumTypeName + "' enumeration does not define '" + mValue + "' constant"
         : outSwiftDefaultValueAsString  
       end
-    case entityType (* *) :
+    case entityType (2*) :
       error mValue : "invalid entity type"  
     case classType (*) :
       error mValue : "invalid class type"  

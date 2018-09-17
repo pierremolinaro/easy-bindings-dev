@@ -17,13 +17,13 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
   //····················································································································
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [mType isEntityType] then
+  if not [[mKind type] isEntityType] then
     if [mKind isTransient] then
-      %  var %!lkey.string%_property = EBTransientProperty_%![mType swiftTypeName]% ()\n\n%
+      %  var %!lkey.string%_property = EBTransientProperty_%![[mKind type] swiftTypeName]% ()\n\n%
     else
-      %  var %!lkey.string%_property = EBPropertyProxy_%![mType swiftTypeName]% ()\n\n%
+      %  var %!lkey.string%_property = EBPropertyProxy_%![[mKind type] swiftTypeName]% ()\n\n%
     end
-      %  var %!lkey.string%_property_selection : EBSelection <%![mType swiftTypeName]%> {\n%
+      %  var %!lkey.string%_property_selection : EBSelection <%![[mKind type] swiftTypeName]%> {\n%
       %    get {\n%
       %      return self.%!lkey.string%_property.prop\n%
       %    }\n%
@@ -37,7 +37,7 @@ end%
   func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
     mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [mType isEntityType] then
+  if not [[mKind type] isEntityType] then
     %    bind_property_%!lkey.string% (model: model)\n%
   end
 end%  }
@@ -79,7 +79,7 @@ end%  }
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] & not [mKind isTransient] then
+if not [[mKind type] isEntityType] & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
   %      idx:self.%!lkey.string%_property.mEasyBindingsObjectIndex,\n%
@@ -142,7 +142,7 @@ end
   }
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [mType isEntityType] then
+if not [[mKind type] isEntityType] then
 %  //···················································································································*\n\n% 
 %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
 %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
@@ -154,7 +154,7 @@ if not [mType isEntityType] then
 %        case .multiple :\n%
 %          return .multiple\n%
 %        case .single (let v) :\n%
-%          var s = Set<%![mType swiftTypeName]%> ()\n%
+%          var s = Set<%![[mKind type] swiftTypeName]%> ()\n%
 %          var isMultipleSelection = false\n%
 %          for object in v {\n%
 %            switch object.%!lkey.string%_property_selection {\n%
@@ -181,7 +181,7 @@ if not [mType isEntityType] then
 %      }\n%
 %    }\n%
 if not [mKind isTransient] then
-%    self.%!lkey.string%_property.writeModelFunction = { (inValue : %![mType swiftTypeName]%) in\n%
+%    self.%!lkey.string%_property.writeModelFunction = { (inValue : %![[mKind type] swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty, .multiple :\n%
@@ -193,7 +193,7 @@ if not [mKind isTransient] then
 %        }\n%
 %      }\n%
 %    }\n%
-%    self.%!lkey.string%_property.validateAndWriteModelFunction = { (candidateValue : %![mType swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+%    self.%!lkey.string%_property.validateAndWriteModelFunction = { (candidateValue : %![[mKind type] swiftTypeName]%, windowForSheet : NSWindow?) in\n%
 %      if let model = self.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty, .multiple :\n%
@@ -222,7 +222,7 @@ end%
 
   func unbind_selection () {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [mType isEntityType] then
+  if not [[mKind type] isEntityType] then
     %  //--- %!lkey.string%\n%
     %    self.%!lkey.string%_property.readModelFunction = nil \n%
     if not [mKind isTransient] then

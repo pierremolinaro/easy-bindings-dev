@@ -11,9 +11,19 @@ enum @typeKind {
   case fontType
   case colorType
   case enumType (@string enumTypeName @enumConstantMap constantMap)
-  case entityType (@string entityName @bool isGraphic)
+  case entityType (@string entityName @bool graphic)
   case classType (@string className)
   case transientPropertyExternType (@string externTypeName)
+}
+
+#·······················································································································
+
+enum @propertyKind {
+  case property (@typeKind type @bool readOnly)
+  case toMany (@typeKind type @lstring typeName @bool readOnly @bool graphic)
+  case toOne (@typeKind type @lstring typeName @bool readOnly @bool graphic)
+  case arrayController (@typeKind type @lstring typeName @bool graphic)
+  case selectionController (@typeKind type @string typeName)
 }
 
 #·······················································································································
@@ -26,7 +36,7 @@ getter @typeKind isComparable -> @bool outResult {
     outResult = false
   case enumType (* *) :
     outResult = false
-  case entityType (* *) :
+  case entityType (2*) :
     outResult = false
   case classType (*) :
     outResult = false
@@ -35,6 +45,24 @@ getter @typeKind isComparable -> @bool outResult {
   end
 }
 
+#·······················································································································
+
+getter @typeKind isGraphic -> @bool outResult {
+  switch self
+  case boolType, integerType, doubleType, stringType, dateType :
+    outResult = false
+  case fontType, colorType :
+    outResult = false
+  case enumType (* *) :
+    outResult = false
+  case entityType (* isGraphic) :
+    outResult = isGraphic
+  case classType (*) :
+    outResult = false
+  case transientPropertyExternType (*) :
+    outResult = false
+  end
+}
 
 #·······················································································································
 
@@ -58,13 +86,26 @@ abstract method @astDeclaration typeInventory
 
 #·······················································································································
 
-enum @propertyKind {
-#  case property (@typeKind type @bool readOnly)
+getter @propertyKind type -> @typeKind {
+  switch self
+  case property (type *) : result = type
+  case toMany (type 3*) : result = type
+  case toOne (type 3*) : result = type
+  case arrayController (type 2*) : result = type
+  case selectionController (type *) : result = type
+  end
+}
 
-  case stored
-  case transient
-  case arrayController (@typeKind type @bool isGraphic)
-  case selectionController
+#·······················································································································
+
+getter @propertyKind isTransient -> @bool {
+  switch self
+  case property (* readOnly) : result = readOnly
+  case toMany (2* readOnly *) : result = readOnly
+  case toOne (2* readOnly *) : result = readOnly
+  case arrayController (3*) : result = false
+  case selectionController (2*) : result = false
+  end
 }
 
 #·······················································································································
@@ -77,9 +118,7 @@ enum @propertyMultiplicity {
 #·······················································································································
 
 map @observablePropertyMap {
-  @typeKind mType
   @propertyKind mKind
-  @propertyMultiplicity mMultiplicity
   @string mInverseRelationshipName # "" if not a relationship
   @actionMap mActionMap
   @bool mCascade

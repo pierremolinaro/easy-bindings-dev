@@ -9835,9 +9835,7 @@ GALGAS_arrayControllerForGeneration_2D_element GALGAS_arrayControllerForGenerati
 
 GALGAS_observablePropertyMap_2D_element::GALGAS_observablePropertyMap_2D_element (void) :
 mProperty_lkey (),
-mProperty_mType (),
 mProperty_mKind (),
-mProperty_mMultiplicity (),
 mProperty_mInverseRelationshipName (),
 mProperty_mActionMap (),
 mProperty_mCascade () {
@@ -9851,34 +9849,28 @@ GALGAS_observablePropertyMap_2D_element::~ GALGAS_observablePropertyMap_2D_eleme
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_observablePropertyMap_2D_element::GALGAS_observablePropertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                  const GALGAS_typeKind & inOperand1,
-                                                                                  const GALGAS_propertyKind & inOperand2,
-                                                                                  const GALGAS_propertyMultiplicity & inOperand3,
-                                                                                  const GALGAS_string & inOperand4,
-                                                                                  const GALGAS_actionMap & inOperand5,
-                                                                                  const GALGAS_bool & inOperand6) :
+                                                                                  const GALGAS_propertyKind & inOperand1,
+                                                                                  const GALGAS_string & inOperand2,
+                                                                                  const GALGAS_actionMap & inOperand3,
+                                                                                  const GALGAS_bool & inOperand4) :
 mProperty_lkey (inOperand0),
-mProperty_mType (inOperand1),
-mProperty_mKind (inOperand2),
-mProperty_mMultiplicity (inOperand3),
-mProperty_mInverseRelationshipName (inOperand4),
-mProperty_mActionMap (inOperand5),
-mProperty_mCascade (inOperand6) {
+mProperty_mKind (inOperand1),
+mProperty_mInverseRelationshipName (inOperand2),
+mProperty_mActionMap (inOperand3),
+mProperty_mCascade (inOperand4) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_observablePropertyMap_2D_element GALGAS_observablePropertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_typeKind & inOperand1,
-                                                                                                  const GALGAS_propertyKind & inOperand2,
-                                                                                                  const GALGAS_propertyMultiplicity & inOperand3,
-                                                                                                  const GALGAS_string & inOperand4,
-                                                                                                  const GALGAS_actionMap & inOperand5,
-                                                                                                  const GALGAS_bool & inOperand6 
+                                                                                                  const GALGAS_propertyKind & inOperand1,
+                                                                                                  const GALGAS_string & inOperand2,
+                                                                                                  const GALGAS_actionMap & inOperand3,
+                                                                                                  const GALGAS_bool & inOperand4 
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_observablePropertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
-    result = GALGAS_observablePropertyMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_observablePropertyMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
   }
   return result ;
 }
@@ -9891,13 +9883,7 @@ typeComparisonResult GALGAS_observablePropertyMap_2D_element::objectCompare (con
     result = mProperty_lkey.objectCompare (inOperand.mProperty_lkey) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mType.objectCompare (inOperand.mProperty_mType) ;
-  }
-  if (result == kOperandEqual) {
     result = mProperty_mKind.objectCompare (inOperand.mProperty_mKind) ;
-  }
-  if (result == kOperandEqual) {
-    result = mProperty_mMultiplicity.objectCompare (inOperand.mProperty_mMultiplicity) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mInverseRelationshipName.objectCompare (inOperand.mProperty_mInverseRelationshipName) ;
@@ -9914,16 +9900,14 @@ typeComparisonResult GALGAS_observablePropertyMap_2D_element::objectCompare (con
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_observablePropertyMap_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mType.isValid () && mProperty_mKind.isValid () && mProperty_mMultiplicity.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mActionMap.isValid () && mProperty_mCascade.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mKind.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mActionMap.isValid () && mProperty_mCascade.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void GALGAS_observablePropertyMap_2D_element::drop (void) {
   mProperty_lkey.drop () ;
-  mProperty_mType.drop () ;
   mProperty_mKind.drop () ;
-  mProperty_mMultiplicity.drop () ;
   mProperty_mInverseRelationshipName.drop () ;
   mProperty_mActionMap.drop () ;
   mProperty_mCascade.drop () ;
@@ -9939,11 +9923,7 @@ void GALGAS_observablePropertyMap_2D_element::description (C_String & ioString,
   }else{
     mProperty_lkey.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mProperty_mType.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
     mProperty_mKind.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mMultiplicity.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mInverseRelationshipName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -9962,20 +9942,8 @@ GALGAS_lstring GALGAS_observablePropertyMap_2D_element::getter_lkey (UNUSED_LOCA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_typeKind GALGAS_observablePropertyMap_2D_element::getter_mType (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mType ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 GALGAS_propertyKind GALGAS_observablePropertyMap_2D_element::getter_mKind (UNUSED_LOCATION_ARGS) const {
   return mProperty_mKind ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMultiplicity GALGAS_observablePropertyMap_2D_element::getter_mMultiplicity (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mMultiplicity ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

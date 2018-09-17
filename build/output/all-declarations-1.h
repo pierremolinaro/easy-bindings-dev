@@ -2868,10 +2868,9 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_selfRelationshipModel,
-    kEnum_rootRelationshipModel,
-    kEnum_storedArrayModel,
-    kEnum_transientModel
+    kEnum_entityArray,
+    kEnum_classArray,
+    kEnum_transientArray
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -2893,13 +2892,11 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_arrayControllerModelKind constructor_rootRelationshipModel (LOCATION_ARGS) ;
+  public : static class GALGAS_arrayControllerModelKind constructor_classArray (LOCATION_ARGS) ;
 
-  public : static class GALGAS_arrayControllerModelKind constructor_selfRelationshipModel (LOCATION_ARGS) ;
+  public : static class GALGAS_arrayControllerModelKind constructor_entityArray (LOCATION_ARGS) ;
 
-  public : static class GALGAS_arrayControllerModelKind constructor_storedArrayModel (LOCATION_ARGS) ;
-
-  public : static class GALGAS_arrayControllerModelKind constructor_transientModel (LOCATION_ARGS) ;
+  public : static class GALGAS_arrayControllerModelKind constructor_transientArray (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -2913,13 +2910,11 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootRelationshipModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isClassArray (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfRelationshipModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityArray (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isStoredArrayModel (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection

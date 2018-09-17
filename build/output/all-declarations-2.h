@@ -523,9 +523,7 @@ void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePro
                                                 const class GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
                                                 const class GALGAS_semanticContext constin_inSemanticContext,
                                                 const class GALGAS_observablePropertyMap constin_inObservablePropertyMap,
-                                                class GALGAS_typeKind & out_outType,
                                                 class GALGAS_propertyKind & out_outKind,
-                                                class GALGAS_propertyMultiplicity & out_outMultiplicity,
                                                 class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;

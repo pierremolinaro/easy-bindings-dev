@@ -28,7 +28,6 @@ list @arrayControllerAttributListAST {
 #·······················································································································
 
 enum @arrayControllerModel {
-#  case rootToManyRelationship (@lstring rootRelationshipName)
   case selfCollection (@bool isRoot @lstring collectionPropertyName)
   case controllerArray (@lstring controllerName @lstring propertyName)
 }
@@ -220,75 +219,35 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
     if solved then
       [observablePropertyMap searchKey
         !storedPropertyName
-        ?let type
         ?let kind
-        ?let multiplicity
         ?3*
       ]
       @actionMap controllerActions = {}
       @propertyKind arrayControllerKind
       switch kind 
-      case stored :
-        if multiplicity != .collection then
-          error storedPropertyName : "this property is not a collection" : arrayControllerKind
-        elsif not ([type isEntityType] | [type isClassType]) then
-          error storedPropertyName : "the property is neither an entity neither a class" : arrayControllerKind
-        else
-          [!?controllerActions insertKey !["add" nowhere]]
-          [!?controllerActions insertKey !["remove" nowhere]]
-          arrayControllerKind = .arrayController {!type: type !isGraphic: false}
-        end
-      case transient :
-        if multiplicity != .collection then
-          error storedPropertyName : "this property is not a collection" : arrayControllerKind
-        elsif not [type isEntityType] then
-          error storedPropertyName : "the property is not an entity" : arrayControllerKind
-        else
-          arrayControllerKind = .arrayController {!type: type !isGraphic: false}
-        end
-      case arrayController (@typeKind unused type @bool unused isGraphic) :
+      case property (2*) :
+        error storedPropertyName : "an atomic property is not a collection" : arrayControllerKind
+      case toMany (type typeName * graphic) :
+        arrayControllerKind = .arrayController {!type: type !typeName: typeName !graphic: graphic}
+        [!?controllerActions insertKey !["add" nowhere]]
+        [!?controllerActions insertKey !["remove" nowhere]]
+      case toOne (4*) :
+        error storedPropertyName : "a toOne property is not a collection" : arrayControllerKind
+      case arrayController (3*) :
         error storedPropertyName : "Array Controller ????" : arrayControllerKind
-      case selectionController :
+      case selectionController (2*) :
         error storedPropertyName : "Selection Controller ????" : arrayControllerKind
-      end
+       end
       [!?ioObservableProperties insertKey
         !mControllerName
-        !type
         !arrayControllerKind
-        !multiplicity
         !""
         !controllerActions
         !false
       ]
     end
   case controllerArray (@lstring controllerName @lstring unused propertyName) :
-
     error controllerName : "NOT HANDLED YET" : solved
-#    solved = [ioObservableProperties hasKey !controllerName.string]
-#    if solved then
-#      [ioObservableProperties searchKey
-#        !controllerName
-#        ?let type
-#        ?let kind
-#        ?let multiplicity
-#        ?2*
-#        ?let cascading
-#      ]
-#      @actionMap controllerActions = {}
-#      if kind == .stored then
-#        [!?controllerActions insertKey !["add" nowhere]]
-#        [!?controllerActions insertKey !["remove" nowhere]]
-#      end
-#      [!?ioObservableProperties insertKey
-#        !mControllerName
-#        !type
-#        !.arrayController
-#        !multiplicity
-#        !""
-#        !controllerActions
-#        !cascading
-#      ]
-#    end
   end
   if not solved then
     ioUnsolvedProperties += !self
@@ -339,100 +298,60 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @bool entityTypeIsGraphic
   @actionMap actionMap
   switch mArrayControllerModel
-  case selfCollection (@bool isRoot @lstring storedPropertyName) :
+  case selfCollection (@bool isRoot @lstring storedToManyPropertyName) :
     let observablePropertyMap = if isRoot then inRootObservableProperties else inObservableProperties end
-    errorLocation = storedPropertyName.location
+    errorLocation = storedToManyPropertyName.location
     [observablePropertyMap searchKey
-      !storedPropertyName
-      ?modelType
+      !storedToManyPropertyName
       ?kind
-      ?let multiplicity
       ?*
       ?actionMap
       ?*
     ]
-    elementSwiftTypeName = [modelType swiftTypeName]
-    modelKind = if [kind isStored] then .storedArrayModel else .transientModel end
-  #------------------------------------------------------------ Check bound model is a collection
-    if multiplicity != .collection then
-      error errorLocation : "the bound property should be a collection"
+    switch kind 
+    case property (2*) :
+      error storedToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
+    case toMany (* typeName readOnly graphic) :
+      entityName = typeName
+      entityTypeIsGraphic = graphic
+      modelKind = if readOnly then .transientArray else  if [[kind type] isEntityType] then .entityArray else .classArray end end
+    case toOne (4*) :
+      error storedToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
+    case arrayController (3*) :
+      error storedToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
+    case selectionController (2*) :
+      error storedToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
     end
-  #------------------------------------------------------------ Check bound model type is an entity
-    switch modelType
-    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case transientPropertyExternType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case classType (@string kClassTypeName) :
-      entityName = kClassTypeName
-      entityTypeIsGraphic = false
-    case entityType (kClassTypeName kIsGraphic) :
-      entityName = kClassTypeName
-      entityTypeIsGraphic = kIsGraphic
-      modelKind = .selfRelationshipModel
-    end
-#  case rootToManyRelationship (@lstring relationshipName) :
-#    errorLocation = relationshipName.location
-#    modelKind = .rootRelationshipModel
-#    [inRootObservableProperties searchKey
-#      !relationshipName
-#      ?modelType
-#      ?kind
-#      ?let multiplicity
-#      ?*
-#      ?actionMap
-#      ?*
-#    ]
-#    elementSwiftTypeName = [modelType swiftTypeName]
-#  #------------------------------------------------------------ Check bound model is a collection
-#    if multiplicity != .collection then
-#      error errorLocation : "the bound property should be a collection"
-#    end
-#  #------------------------------------------------------------ Check bound model type is an entity
-#    switch modelType
-#    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
-#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-#    case enumType (* *) :
-#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-#    case classType (*) :
-#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-#    case transientPropertyExternType (*) :
-#      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-#    case entityType (@string kEntityName @bool isGraphic) :
-#      entityName = kEntityName
-#      entityTypeIsGraphic = isGraphic
-#    end
+    elementSwiftTypeName = [[kind type] swiftTypeName]
+    modelType = [kind type]
   case controllerArray (@lstring controllerName @lstring propertyName) :
     errorLocation = propertyName.location
-    modelKind = .transientModel
+    modelKind = .transientArray
     [inObservableProperties searchKey
       !controllerName
-      ?modelType
       ?kind
-      ?2*
+      ?*
       ?actionMap
       ?*
     ]
-    elementSwiftTypeName = [modelType swiftTypeName]
+    elementSwiftTypeName = [[kind type] swiftTypeName]
+    switch kind 
+    case property (2*) :
+      error controllerName : "an array controller is required here" : entityName, entityTypeIsGraphic
+    case toMany (4*) :
+      error controllerName : "an array controller is required here" : entityName, entityTypeIsGraphic
+    case toOne (4*) :
+      error controllerName : "an array controller is required here" : entityName, entityTypeIsGraphic
+    case arrayController (* kEntityName isGraphic) :
+      entityName = kEntityName
+      entityTypeIsGraphic = isGraphic
+    case selectionController (2*) :
+      error controllerName : "an array controller is required here" : entityName, entityTypeIsGraphic
+    end
     if (propertyName.string != "sortedArray") && (propertyName.string != "selectedArray") then
       error errorLocation : "'sortedArray' or 'selectedArray' are required here"
     end
-  #------------------------------------------------------------ Check bound model type is an entity
-    switch modelType
-    case boolType, dateType, doubleType, integerType, stringType, fontType, colorType :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case enumType (* *) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case classType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case transientPropertyExternType (*) :
-      error errorLocation : "the model should be a tomany relationship" : entityName, entityTypeIsGraphic
-    case entityType (@string kEntityName @bool isGraphic) :
-      entityName = kEntityName
-      entityTypeIsGraphic = isGraphic
-    end
+    modelType = [kind type]
   end
 #------------------------------------------------------------ Check colum bound models
 # (TODO : get also super entity observable property)
@@ -463,9 +382,10 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     if mSortPropertyName.string != "" then
       [boundModelObservablePropertyMap searchKey
         !mSortPropertyName
-        ?let sortPropertyType
-        ?5*
+        ?let sortPropertyKind
+        ?3*
       ]
+      let sortPropertyType = [sortPropertyKind type]
       if not [sortPropertyType isComparable] then
         error mSortPropertyName : "this property is not comparable"
       end 
@@ -487,16 +407,10 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   for (filterPropertyName) in mFilterProperties do
     [boundModelObservablePropertyMap searchKey
       !filterPropertyName
-      ?let @typeKind filterType
-      ?let @propertyKind unused columnKind
-      ?let @propertyMultiplicity filterMultiplicity
-      ?let @string unused inverseRelationshipName # "" if not a relationship
-      ?2*
+      ?let @propertyKind columnKind
+      ?3*
     ]
-    if filterMultiplicity == .collection then
-      error filterPropertyName : "the filter property should not be a collection"
-    end
-    arrayControllerFilterListForGeneration += !filterPropertyName.string !filterType
+    arrayControllerFilterListForGeneration += !filterPropertyName.string ![columnKind type]
   end
 #---
   ioArrayControllerForGeneration +=
@@ -518,10 +432,9 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 enum @arrayControllerModelKind {
-  case selfRelationshipModel
-  case rootRelationshipModel
-  case storedArrayModel
-  case transientModel
+  case entityArray
+  case classArray
+  case transientArray
 }
 
 #——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

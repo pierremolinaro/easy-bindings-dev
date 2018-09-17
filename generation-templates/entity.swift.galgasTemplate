@@ -704,7 +704,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
           self.setOppositeRelationship? (nil)
         }
 %for () in OBSERVABLE_PROPERTY_MAP do
-  if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
+  if [mKind isProperty] then # (not [mMultiplicity isCollection]) & not [mType isEntityType] then
     %        removeEBObserversOf_%!lkey.string%_fromElementsOfSet (removedObjectSet)\n%
   end
 end
@@ -715,7 +715,7 @@ end
           self.setOppositeRelationship? (managedObject)
         }
 %for () in OBSERVABLE_PROPERTY_MAP do
-  if (not [mMultiplicity isCollection]) & not [mType isEntityType] then
+  if [mKind isProperty] then #(not [mMultiplicity isCollection]) & not [mType isEntityType] then
     %        addEBObserversOf_%!lkey.string%_toElementsOfSet (addedObjectSet)\n%
   end
 end
@@ -890,13 +890,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
      end
 %      //--- Remove property observers of old object
 %    for () in mDestinationEntityObservablePropertyMap do
-       if not [mType isEntityType] then
+       if [mKind isProperty] then # not [mType isEntityType] then
        %        oldValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
      end
 %      //--- Add property observers to new object
 %    for () in mDestinationEntityObservablePropertyMap do
-       if not [mType isEntityType] then
+       if [mKind isProperty] then # not [mType isEntityType] then
        %        mValue?.%!lkey.string%_property.addEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
      end
@@ -934,13 +934,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
 
 %
 for () in mDestinationEntityObservablePropertyMap do
-  if not [mType isEntityType] then
+  if [mKind isProperty] then # not [mType isEntityType] then
   %  //····················································································································\n%
   %  //   Observable property: %!lkey.string%\n%
   %  //····················································································································\n\n%
   %  private var mObserversOf_%!lkey.string% = EBWeakEventSet ()\n\n%
   %  //····················································································································\n\n%
-  %  var %!lkey.string%_property_selection : EBSelection <%![mType swiftTypeName]%?> {\n%
+  %  var %!lkey.string%_property_selection : EBSelection <%![[mKind type] swiftTypeName]%?> {\n%
   %    get {\n%
   %      if let model = self.propval {\n%
   %        switch (model.%!lkey.string%_property_selection) {\n%

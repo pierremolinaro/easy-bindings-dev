@@ -261,18 +261,17 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     !inRootObservablePropertyMap
     !inSemanticContext
     !inCurrentObservablePropertyMap
-    ?outType
-    ?let @propertyKind unused outKind
-    ?let @propertyMultiplicity outMultiplicity
+    ?let @propertyKind kind
     ?let @string unused swiftTypeStringForTransientFunctionArgument
   ]
-  if outMultiplicity == .collection then
-    error [mProperty location] : "a collection cannot be observed"
+  if not [kind isProperty] then #  outMultiplicity == .collection then
+    error [mProperty location] : "only an atomic property can be observed"
   end
+  outType = [kind type]
   switch outType
   case stringType, boolType, dateType, doubleType, integerType, fontType, colorType : # Ok
   case enumType (* *) : # Ok
-  case entityType (* *) :
+  case entityType (2*) :
     error [mProperty location] : "an entity cannot be observed"
   case classType (*) :
     error [mProperty location] : "a class cannot be observed"

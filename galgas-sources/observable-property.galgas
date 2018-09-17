@@ -337,407 +337,296 @@ method @observablePropertyAST analyzeObservableProperty
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContext inSemanticContext
   ?let @observablePropertyMap inObservablePropertyMap
-  !@typeKind outType
   !@propertyKind outKind
-  !@propertyMultiplicity outMultiplicity
   !@string outSwiftTypeStringForTransientFunctionArgument
 {
   switch self
   case versionShouldChangeProperty (*) :
-    outKind = .transient
-    outMultiplicity = .single
-    outType = .boolType
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    let type = @typeKind.boolType
+    outKind = .property {!type: type !readOnly: true}
+    outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case versionProperty (*) :
-    outKind = .transient
-    outMultiplicity = .single
-    outType = .integerType
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    let type = @typeKind.integerType
+    outKind = .property {!type: type !readOnly: true}
+    outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case signatureProperty (*) :
-    outKind = .transient
-    outMultiplicity = .single
-    outType = .integerType
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    let type = @typeKind.integerType
+    outKind = .property {!type: type !readOnly: true}
+    outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case rootProperty (@lstring propertyName) :
     [inRootObservablePropertyMap searchKey
       !propertyName
-      ?outType
       ?outKind
-      ?outMultiplicity
       ?3*
     ]
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case rootPropertyNone (@lstring propertyName) :
     [inRootObservablePropertyMap searchKey
       !propertyName
-      ?let propertyType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .collection then
-      error propertyName : "an array property cannot accept 'one'"
+    switch kind
+    case property (2*) :
+      error propertyName : "a property cannot accept 'one'" : outKind
+    case toMany (4*) :
+      error propertyName : "an array property cannot accept 'one'" : outKind
+    case toOne (4*) : # Ok
+      outKind = .property {!type: .boolType !readOnly: true}
+    case arrayController (3*) :
+      error propertyName : "an array controller cannot accept 'one'" : outKind
+    case selectionController (2*) :
+      error propertyName : "a selection controller cannot accept 'one'" : outKind
     end
-    switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-      error propertyName : "a property cannot accept 'one'" : outType
-    case enumType (* *) :
-      error propertyName : "an enum property cannot accept 'one'" : outType
-    case classType (@string className) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![className nowhere]
-        ?*
-      ]
-       outType = .boolType
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![className nowhere]
-        ?*
-      ]
-       outType = .boolType
-    case transientPropertyExternType (*) :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName *) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![entityName nowhere]
-        ?*
-      ]
-      if outMultiplicity == .collection then
-        error propertyName : "the observed property cannot be a collection"
-      end
-      outType = .boolType
-    end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
-#    [inRootObservablePropertyMap searchKey
-#      !propertyName
-#      ?2*
-#      ?outMultiplicity
-#      ?3*
-#    ]
-#    if outMultiplicity == .collection then
-#      error propertyName : "this porty cannot be a collection"
-#    end
-#    outKind = .transient
-#    outType = .boolType
-#    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inRootObservablePropertyMap searchKey
       !propertyName
-      ?outType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .single then
-      error optionName : "a property cannot accept any option"
-    else
-      outKind = .transient
-      outMultiplicity = .single
+    switch kind
+    case property (2*) :
+      error propertyName : "a property cannot accept any option" : outKind
+    case toMany (4*) :
       if optionName.string == "count" then
-        outType = .integerType
-      elsif optionName.string == "empty" then
-        outType = .boolType
+        outKind = .property {!type: .integerType !readOnly: true}
       else
-        error optionName : "uknown option (accepted : 'count', 'empty')"
+        error optionName : "unknown option (accepted : 'count')" : outKind
       end
+    case toOne (4*) :
+      error propertyName : "a toOne property cannot accept any option" : outKind
+    case arrayController (3*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !readOnly: true}
+      elsif optionName.string == "empty" then
+        outKind = .property {!type: .boolType !readOnly: true}
+      else
+        error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
+      end
+    case selectionController (2*) :
+      error propertyName : "a selection controller cannot accept any option" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
-  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) : # xxx.all.xxx
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) : # root.xxx.all.xxx
     [inRootObservablePropertyMap searchKey
       !relationshipName
-      ?let relationshipType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .single then
-      error relationshipName : "a property cannot accept 'all'"
-    end
-    switch relationshipType
-    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-      error relationshipName : "a property cannot accept 'all'" : outType
-    case enumType (* *) :
-      error relationshipName : "a property cannot accept 'all'" : outType
-    case classType (*) :
-      error relationshipName : "a property cannot accept 'all'" : outType
-    case transientPropertyExternType (*) :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName *) :
+    switch kind
+    case property (2*) :
+      error relationshipName : "a property cannot accept 'all'" : outKind
+    case toMany (* typeName 2*) : # Ok
       [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![entityName nowhere]
-        ?let @observablePropertyMap entityObservablePropertyMap
+        !.new {!typeName !relationshipName.location}
+        ?let observablePropertyMap
       ]
-      [entityObservablePropertyMap searchKey
+      [observablePropertyMap searchKey
         !propertyName
-        ?outType
         ?outKind
-        ?outMultiplicity
         ?3*
       ]
-      if outMultiplicity == .collection then
-        error propertyName : "the observed property cannot be a collection"
-      end
+    case toOne (4*) :
+      error relationshipName : "a toOne property cannot accept 'all'" : outKind
+    case arrayController (3*) :
+      error relationshipName : "an array controller cannot accept 'all'" : outKind
+    case selectionController (2*) :
+      error relationshipName : "an array controller cannot accept 'all'" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = "[" + [relationshipType swiftTypeName]
-       + "_" + propertyName + "]"
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [[kind type] swiftTypeName] + "_" + propertyName + "]"
   case selfProperty (@lstring propertyName) :
     [inObservablePropertyMap searchKey
       !propertyName
-      ?outType
       ?outKind
-      ?outMultiplicity
       ?3*
     ]
-    if [outMultiplicity isCollection] then
-      outSwiftTypeStringForTransientFunctionArgument = "[" + [outType swiftTypeName] + "]"
-    else
-      outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    switch outKind
+    case property (2*) :
+      outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
+    case toMany (4*) :
+      error propertyName : "a toMany property cannot accept be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case toOne (4*) :
+      error propertyName : "a toOne property cannot accept be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case arrayController (3*) :
+      error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case selectionController (2*) :
+      error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     end
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inObservablePropertyMap searchKey
       !propertyName
-      ?outType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .single then
-      error optionName : "a property cannot accept any option"
-    elsif outMultiplicity == .collection then
-      outKind = .transient
-      outMultiplicity = .single
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property accepts no option" : outKind
+    case toMany (4*) :
       if optionName.string == "count" then
-        outType = .integerType
+        outKind = .property {!type: .integerType !readOnly: true}
       else
-        error optionName : "uknown option (accepted : 'count', 'empty')"
+        error optionName : "unknown option (accepted : 'count')" : outKind
       end
+    case toOne (4*) :
+      error propertyName : "a toOne property accepts no option" : outKind
+    case arrayController (3*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !readOnly: true}
+      elsif optionName.string == "empty" then
+        outKind = .property {!type: .boolType !readOnly: true}
+      else
+        error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
+      end
+    case selectionController (2*) :
+      error propertyName : "a selection controller accepts no option" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) : # self.xxx.all.xxx
     [inObservablePropertyMap searchKey
       !propertyName
-      ?let propertyType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .single then
-      error propertyName : "a property cannot accept 'all'"
-    end
-    switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case enumType (* *) :
-      error propertyName : "an enum property cannot accept 'all'" : outType
-    case classType (@string className) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![className nowhere]
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property accepts no option" : outKind
+    case toMany (* typeName 2*) :
+     [inSemanticContext.mEntityObservablePropertyMap searchKey
+        !typeName
         ?let @observablePropertyMap entityObservablePropertyMap
       ]
       [entityObservablePropertyMap searchKey
         !elementPropertyName
-        ?outType
         ?outKind
-        ?outMultiplicity
         ?3*
       ]
-      if outMultiplicity == .collection then
-        error elementPropertyName : "the observed property cannot be a collection"
-      end
-    case transientPropertyExternType (*) :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName *) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![entityName nowhere]
-        ?let @observablePropertyMap entityObservablePropertyMap
-      ]
-      [entityObservablePropertyMap searchKey
-        !elementPropertyName
-        ?outType
-        ?outKind
-        ?outMultiplicity
-        ?3*
-      ]
-      if outMultiplicity == .collection then
-        error elementPropertyName : "the observed property cannot be a collection"
-      end
+    case toOne (4*) :
+      error propertyName : "a toOne property accepts no option" : outKind
+    case arrayController (3*) :
+      error propertyName : "an array controller accepts no option" : outKind
+    case selectionController (2*) :
+      error propertyName : "a selection controller accepts no option" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = "[" + [propertyType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [[kind type] swiftTypeName]
        + "_" + elementPropertyName + "]"
   case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) : # self.xxx.one.xxx
     [inObservablePropertyMap searchKey
       !propertyName
-      ?let propertyType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .collection then
-      error propertyName : "an array property cannot accept 'one'"
-    end
-    switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-      error propertyName : "a property cannot accept 'one'" : outType
-    case enumType (* *) :
-      error propertyName : "an enum property cannot accept 'one'" : outType
-    case classType (@string className) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![className nowhere]
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property does not accept 'one'" : outKind
+    case toMany (4*) :
+      error propertyName : "a toOne property does not accept 'one'" : outKind
+    case toOne (* typeName 2*) :
+     [inSemanticContext.mEntityObservablePropertyMap searchKey
+        !typeName
         ?let @observablePropertyMap entityObservablePropertyMap
       ]
       [entityObservablePropertyMap searchKey
         !elementPropertyName
-        ?outType
         ?outKind
-        ?outMultiplicity
         ?3*
       ]
-      if outMultiplicity == .collection then
-        error elementPropertyName : "the observed property cannot be a collection"
-      end
-    case transientPropertyExternType (*) :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName *) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![entityName nowhere]
-        ?let @observablePropertyMap entityObservablePropertyMap
-      ]
-      [entityObservablePropertyMap searchKey
-        !elementPropertyName
-        ?outType
-        ?outKind
-        ?outMultiplicity
-        ?3*
-      ]
-      if outMultiplicity == .collection then
-        error elementPropertyName : "the observed property cannot be a collection"
-      end
+    case arrayController (3*) :
+      error propertyName : "an array controller does not accept 'one'" : outKind
+    case selectionController (2*) :
+      error propertyName : "a selection controller does not accept 'one'" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName] + "?"
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName] + "?"
   case selfPropertyNone (@lstring propertyName) : # self.xxx.none
     [inObservablePropertyMap searchKey
       !propertyName
-      ?let propertyType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .collection then
-      error propertyName : "an array property cannot accept 'one'"
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property does not accept 'none'" : outKind
+    case toMany (4*) :
+      error propertyName : "a toOne property does not accept 'none'" : outKind
+    case toOne (4*) :
+      outKind = .property {!type: .boolType !readOnly: true}
+    case arrayController (3*) :
+      error propertyName : "an array controller does not accept 'none'" : outKind
+    case selectionController (2*) :
+      error propertyName : "a selection controller does not accept 'none'" : outKind
     end
-    switch propertyType
-    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-      error propertyName : "a property cannot accept 'one'" : outType
-    case enumType (* *) :
-      error propertyName : "an enum property cannot accept 'one'" : outType
-    case classType (@string className) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![className nowhere]
-        ?*
-      ]
-       outType = .boolType
-    case transientPropertyExternType (*) :
-      error propertyName : "a property cannot accept 'all'" : outType
-    case entityType (@string entityName *) :
-      [inSemanticContext.mEntityObservablePropertyMap searchKey
-        ![entityName nowhere]
-        ?*
-      ]
-      if outMultiplicity == .collection then
-        error propertyName : "the observed property cannot be a collection"
-      end
-      outType = .boolType
-    end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case prefsProperty (@lstring propertyName) :
     [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName
-      ?outType
       ?outKind
-      ?outMultiplicity
       ?3*
     ]
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inSemanticContext.mPreferencesObservablePropertyMap searchKey
       !propertyName
-      ?outType
-      ?outKind
-      ?outMultiplicity
+      ?let kind
       ?3*
     ]
-    if outMultiplicity == .single then
-      error optionName : "a single property cannot accept any option"
-    elsif outMultiplicity == .collection then
-      outKind = .transient
-      outMultiplicity = .single
+    switch kind
+    case property (2*) :
+      error propertyName : "a property cannot accept any option" : outKind
+    case toMany (4*) :
+      error propertyName : "a toMany property cannot accept any option" : outKind
+    case toOne (4*) :
+      error propertyName : "a toOne property cannot accept any option" : outKind
+    case arrayController (3*) :
       if optionName.string == "count" then
-        outType = .integerType
+        outKind = .property {!type: .integerType !readOnly: true}
+      elsif optionName.string == "empty" then
+        outKind = .property {!type: .boolType !readOnly: true}
       else
-        error optionName : "uknown option (accepted : 'count', 'empty')"
+        error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
       end
+    case selectionController (2*) :
+      error propertyName : "a selection controller cannot accept any option" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case controllerProperty (@lstring controllerName @lstring propertyName) :
     [inObservablePropertyMap searchKey
       !controllerName
-      ?let @typeKind type
       ?let @propertyKind propertyKind
-      ?4*
+      ?3*
     ]
     switch propertyKind
-    case selectionController :
-      switch type
-      case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case classType (*) :
-        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case transientPropertyExternType (*) :
-        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case enumType (* *) :
-        error controllerName : "the bound model should be an entity" : outMultiplicity, outKind, outType
-      case entityType (entityName *) :
-        [inSemanticContext.mEntityObservablePropertyMap searchKey
-          !.new {!entityName !controllerName.location}
-          ?let @observablePropertyMap observablePropertyMap
-        ]
-        [observablePropertyMap searchKey
-          !propertyName
-          ?outType
-          ?outKind
-          ?outMultiplicity
-          ?3*
-        ]
-      end
-    case arrayController (2*) :
+    case property (2*) :
+      error propertyName : "a property cannot accept any option" : outKind
+    case toMany (4*) :
+      error propertyName : "a toMany property cannot accept any option" : outKind
+    case toOne (4*) :
+      error propertyName : "a toOne property cannot accept any option" : outKind
+    case arrayController (* typeName graphic) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
-        outMultiplicity = .collection
-        outKind = .transient
-        outType = type
+        outKind = .toMany {!type: [propertyKind type] !typeName: typeName !readOnly: true !graphic: graphic}
       else
         error propertyName
-          : "uknown option (accepted : 'sortedArray' or 'selectedArray')"
-          : outMultiplicity, outKind, outType
+          : "unknown option (accepted : 'sortedArray' or 'selectedArray')"
+          : outKind
       end
-    case stored, transient :
-      error controllerName : "this property should be a controller" : outMultiplicity, outKind, outType
+    case selectionController (* entityName) :
+      [inSemanticContext.mEntityObservablePropertyMap searchKey
+        !.new {!entityName !controllerName.location}
+        ?let observablePropertyMap
+      ]
+      [observablePropertyMap searchKey !propertyName ?outKind ?3*]
     end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    [inObservablePropertyMap searchKey !controllerName ?6*]
+    [inObservablePropertyMap searchKey !controllerName ?4*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
-      outMultiplicity = .single
-      outKind = .transient
-      outType = .integerType
+      outKind = .property {!type: .integerType !readOnly: true}
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
-      outMultiplicity = .single
-      outKind = .transient
-      outType = .integerType
+      outKind = .property {!type: .integerType !readOnly: true}
     else
-      error propertyName
-        : "uknown option"
-        : outMultiplicity, outKind, outType
+      error propertyName : "unknown option" : outKind
     end
-    outSwiftTypeStringForTransientFunctionArgument = [outType swiftTypeName]
+    outSwiftTypeStringForTransientFunctionArgument = [[outKind type] swiftTypeName]
   end  
 }
 

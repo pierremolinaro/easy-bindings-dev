@@ -70,13 +70,12 @@ method @storedArrayPropertyList buildObservablePropertyMap
       error mStoredArrayPropertyName: "an entity cannot be used as array element type" : typeList
     case classType (*) :
       typeList = {!type}
+      
     end
   #--- Enter in property map
     [!?ioObservableProperties insertKey
       !mStoredArrayPropertyName
-      !type
-      !.stored
-      !.collection
+      !.toMany {!type: type !typeName: mElementClassName !readOnly: false !graphic:false}
       !""
       !actionMap
       !false
