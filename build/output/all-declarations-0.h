@@ -1034,8 +1034,8 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_selfCollection,
-    kEnum_controllerArray
+    kEnum_toMany,
+    kEnum_controller
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -1062,13 +1062,14 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_arrayControllerModel constructor_controllerArray (const class GALGAS_lstring & inOperand0,
-                                                                                 const class GALGAS_lstring & inOperand1
-                                                                                 COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_arrayControllerModel constructor_controller (const class GALGAS_bool & inOperand0,
+                                                                            const class GALGAS_lstring & inOperand1,
+                                                                            const class GALGAS_lstring & inOperand2
+                                                                            COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_arrayControllerModel constructor_selfCollection (const class GALGAS_bool & inOperand0,
-                                                                                const class GALGAS_lstring & inOperand1
-                                                                                COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_arrayControllerModel constructor_toMany (const class GALGAS_bool & inOperand0,
+                                                                        const class GALGAS_lstring & inOperand1
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -1079,22 +1080,23 @@ class GALGAS_arrayControllerModel : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_controllerArray (class GALGAS_lstring & outArgument0,
-                                                         class GALGAS_lstring & outArgument1,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void method_controller (class GALGAS_bool & outArgument0,
+                                                    class GALGAS_lstring & outArgument1,
+                                                    class GALGAS_lstring & outArgument2,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_selfCollection (class GALGAS_bool & outArgument0,
-                                                        class GALGAS_lstring & outArgument1,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void method_toMany (class GALGAS_bool & outArgument0,
+                                                class GALGAS_lstring & outArgument1,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isControllerArray (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isController (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfCollection (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToMany (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -1113,38 +1115,40 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMode
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_arrayControllerModel_selfCollection : public cEnumAssociatedValues {
+class cEnumAssociatedValues_arrayControllerModel_toMany : public cEnumAssociatedValues {
   public : const GALGAS_bool mAssociatedValue0 ;
   public : const GALGAS_lstring mAssociatedValue1 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_arrayControllerModel_selfCollection (const GALGAS_bool & inAssociatedValue0,
-                                                                      const GALGAS_lstring & inAssociatedValue1
-                                                                      COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_arrayControllerModel_toMany (const GALGAS_bool & inAssociatedValue0,
+                                                              const GALGAS_lstring & inAssociatedValue1
+                                                              COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_selfCollection (void) {}
+  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_toMany (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_arrayControllerModel_controllerArray : public cEnumAssociatedValues {
-  public : const GALGAS_lstring mAssociatedValue0 ;
+class cEnumAssociatedValues_arrayControllerModel_controller : public cEnumAssociatedValues {
+  public : const GALGAS_bool mAssociatedValue0 ;
   public : const GALGAS_lstring mAssociatedValue1 ;
+  public : const GALGAS_lstring mAssociatedValue2 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_arrayControllerModel_controllerArray (const GALGAS_lstring & inAssociatedValue0,
-                                                                       const GALGAS_lstring & inAssociatedValue1
-                                                                       COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_arrayControllerModel_controller (const GALGAS_bool & inAssociatedValue0,
+                                                                  const GALGAS_lstring & inAssociatedValue1,
+                                                                  const GALGAS_lstring & inAssociatedValue2
+                                                                  COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_controllerArray (void) {}
+  public : virtual ~ cEnumAssociatedValues_arrayControllerModel_controller (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

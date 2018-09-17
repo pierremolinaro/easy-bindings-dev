@@ -11577,9 +11577,9 @@ GALGAS_arrayControllerAttributListAST GALGAS_arrayControllerAttributListAST::ext
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cEnumAssociatedValues_arrayControllerModel_selfCollection::cEnumAssociatedValues_arrayControllerModel_selfCollection (const GALGAS_bool & inAssociatedValue0,
-                                                                                                                      const GALGAS_lstring & inAssociatedValue1
-                                                                                                                      COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues_arrayControllerModel_toMany::cEnumAssociatedValues_arrayControllerModel_toMany (const GALGAS_bool & inAssociatedValue0,
+                                                                                                      const GALGAS_lstring & inAssociatedValue1
+                                                                                                      COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
 mAssociatedValue0 (inAssociatedValue0),
 mAssociatedValue1 (inAssociatedValue1) {
@@ -11587,8 +11587,8 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void cEnumAssociatedValues_arrayControllerModel_selfCollection::description (C_String & ioString,
-                                                                             const int32_t inIndentation) const {
+void cEnumAssociatedValues_arrayControllerModel_toMany::description (C_String & ioString,
+                                                                     const int32_t inIndentation) const {
   ioString << "(\n" ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
@@ -11597,8 +11597,8 @@ void cEnumAssociatedValues_arrayControllerModel_selfCollection::description (C_S
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typeComparisonResult cEnumAssociatedValues_arrayControllerModel_selfCollection::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_arrayControllerModel_selfCollection * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_selfCollection *> (inOperand) ;
+typeComparisonResult cEnumAssociatedValues_arrayControllerModel_toMany::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_arrayControllerModel_toMany * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_toMany *> (inOperand) ;
   macroValidPointer (ptr) ;
   typeComparisonResult result = kOperandEqual ;
   if (result == kOperandEqual) {
@@ -11612,28 +11612,31 @@ typeComparisonResult cEnumAssociatedValues_arrayControllerModel_selfCollection::
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cEnumAssociatedValues_arrayControllerModel_controllerArray::cEnumAssociatedValues_arrayControllerModel_controllerArray (const GALGAS_lstring & inAssociatedValue0,
-                                                                                                                        const GALGAS_lstring & inAssociatedValue1
-                                                                                                                        COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues_arrayControllerModel_controller::cEnumAssociatedValues_arrayControllerModel_controller (const GALGAS_bool & inAssociatedValue0,
+                                                                                                              const GALGAS_lstring & inAssociatedValue1,
+                                                                                                              const GALGAS_lstring & inAssociatedValue2
+                                                                                                              COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
 mAssociatedValue0 (inAssociatedValue0),
-mAssociatedValue1 (inAssociatedValue1) {
+mAssociatedValue1 (inAssociatedValue1),
+mAssociatedValue2 (inAssociatedValue2) {
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void cEnumAssociatedValues_arrayControllerModel_controllerArray::description (C_String & ioString,
-                                                                              const int32_t inIndentation) const {
+void cEnumAssociatedValues_arrayControllerModel_controller::description (C_String & ioString,
+                                                                         const int32_t inIndentation) const {
   ioString << "(\n" ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
+  mAssociatedValue2.description (ioString, inIndentation) ;
   ioString << ")" ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typeComparisonResult cEnumAssociatedValues_arrayControllerModel_controllerArray::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_arrayControllerModel_controllerArray * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_controllerArray *> (inOperand) ;
+typeComparisonResult cEnumAssociatedValues_arrayControllerModel_controller::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_arrayControllerModel_controller * ptr = dynamic_cast<const cEnumAssociatedValues_arrayControllerModel_controller *> (inOperand) ;
   macroValidPointer (ptr) ;
   typeComparisonResult result = kOperandEqual ;
   if (result == kOperandEqual) {
@@ -11641,6 +11644,9 @@ typeComparisonResult cEnumAssociatedValues_arrayControllerModel_controllerArray:
   }
   if (result == kOperandEqual) {
     result = mAssociatedValue1.objectCompare (ptr->mAssociatedValue1) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAssociatedValue2.objectCompare (ptr->mAssociatedValue2) ;
   }
   return result ;
 }
@@ -11654,14 +11660,14 @@ mEnum (kNotBuilt) {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_selfCollection (const GALGAS_bool & inAssociatedValue0,
-                                                                                     const GALGAS_lstring & inAssociatedValue1
-                                                                                     COMMA_LOCATION_ARGS) {
+GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_toMany (const GALGAS_bool & inAssociatedValue0,
+                                                                             const GALGAS_lstring & inAssociatedValue1
+                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerModel result ;
   if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
-    result.mEnum = kEnum_selfCollection ;
+    result.mEnum = kEnum_toMany ;
     cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_selfCollection (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
+    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_toMany (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
     result.mAssociatedValues.setPointer (ptr) ;
     macroDetachSharedObject (ptr) ;
   }
@@ -11670,14 +11676,15 @@ GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_selfCollect
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_controllerArray (const GALGAS_lstring & inAssociatedValue0,
-                                                                                      const GALGAS_lstring & inAssociatedValue1
-                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_controller (const GALGAS_bool & inAssociatedValue0,
+                                                                                 const GALGAS_lstring & inAssociatedValue1,
+                                                                                 const GALGAS_lstring & inAssociatedValue2
+                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerModel result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
-    result.mEnum = kEnum_controllerArray ;
+  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid ()) {
+    result.mEnum = kEnum_controller ;
     cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_controllerArray (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
+    macroMyNew (ptr, cEnumAssociatedValues_arrayControllerModel_controller (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2 COMMA_THERE)) ;
     result.mAssociatedValues.setPointer (ptr) ;
     macroDetachSharedObject (ptr) ;
   }
@@ -11686,18 +11693,18 @@ GALGAS_arrayControllerModel GALGAS_arrayControllerModel::constructor_controllerA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_arrayControllerModel::method_selfCollection (GALGAS_bool & outAssociatedValue0,
-                                                         GALGAS_lstring & outAssociatedValue1,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_selfCollection) {
+void GALGAS_arrayControllerModel::method_toMany (GALGAS_bool & outAssociatedValue0,
+                                                 GALGAS_lstring & outAssociatedValue1,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_toMany) {
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     C_String s ;
-    s << "method @arrayControllerModel selfCollection invoked with an invalid enum value" ;
+    s << "method @arrayControllerModel toMany invoked with an invalid enum value" ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
-    const cEnumAssociatedValues_arrayControllerModel_selfCollection * ptr = (const cEnumAssociatedValues_arrayControllerModel_selfCollection *) unsafePointer () ;
+    const cEnumAssociatedValues_arrayControllerModel_toMany * ptr = (const cEnumAssociatedValues_arrayControllerModel_toMany *) unsafePointer () ;
     outAssociatedValue0 = ptr->mAssociatedValue0 ;
     outAssociatedValue1 = ptr->mAssociatedValue1 ;
   }
@@ -11705,20 +11712,23 @@ void GALGAS_arrayControllerModel::method_selfCollection (GALGAS_bool & outAssoci
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_arrayControllerModel::method_controllerArray (GALGAS_lstring & outAssociatedValue0,
-                                                          GALGAS_lstring & outAssociatedValue1,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_controllerArray) {
+void GALGAS_arrayControllerModel::method_controller (GALGAS_bool & outAssociatedValue0,
+                                                     GALGAS_lstring & outAssociatedValue1,
+                                                     GALGAS_lstring & outAssociatedValue2,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_controller) {
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
+    outAssociatedValue2.drop () ;
     C_String s ;
-    s << "method @arrayControllerModel controllerArray invoked with an invalid enum value" ;
+    s << "method @arrayControllerModel controller invoked with an invalid enum value" ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
-    const cEnumAssociatedValues_arrayControllerModel_controllerArray * ptr = (const cEnumAssociatedValues_arrayControllerModel_controllerArray *) unsafePointer () ;
+    const cEnumAssociatedValues_arrayControllerModel_controller * ptr = (const cEnumAssociatedValues_arrayControllerModel_controller *) unsafePointer () ;
     outAssociatedValue0 = ptr->mAssociatedValue0 ;
     outAssociatedValue1 = ptr->mAssociatedValue1 ;
+    outAssociatedValue2 = ptr->mAssociatedValue2 ;
   }
 }
 
@@ -11726,20 +11736,20 @@ void GALGAS_arrayControllerModel::method_controllerArray (GALGAS_lstring & outAs
 
 static const char * gEnumNameArrayFor_arrayControllerModel [3] = {
   "(not built)",
-  "selfCollection",
-  "controllerArray"
+  "toMany",
+  "controller"
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bool GALGAS_arrayControllerModel::getter_isSelfCollection (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_selfCollection == mEnum) ;
+GALGAS_bool GALGAS_arrayControllerModel::getter_isToMany (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_toMany == mEnum) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bool GALGAS_arrayControllerModel::getter_isControllerArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_controllerArray == mEnum) ;
+GALGAS_bool GALGAS_arrayControllerModel::getter_isController (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_controller == mEnum) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

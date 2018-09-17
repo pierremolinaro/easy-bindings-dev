@@ -28,8 +28,8 @@ list @arrayControllerAttributListAST {
 #·······················································································································
 
 enum @arrayControllerModel {
-  case selfCollection (@bool isRoot @lstring collectionPropertyName)
-  case controllerArray (@lstring controllerName @lstring propertyName)
+  case toMany (@bool isRoot @lstring collectionPropertyName)
+  case controller (@bool isRoot @lstring controllerName @lstring propertyName)
 }
 
 #·······················································································································
@@ -72,20 +72,26 @@ syntax extension easyBindings_syntax {
       $root$
       $.$
       $identifier$ ?let @lstring relationshipName
-      arrayControllerModel = .selfCollection {!isRoot: true !collectionPropertyName:relationshipName}
+      arrayControllerModel = .toMany {!isRoot: true !collectionPropertyName:relationshipName}
     or
       $self$
       $.$
       $identifier$ ?let @lstring storedPropertyName
-      arrayControllerModel = .selfCollection {!isRoot: false !collectionPropertyName:storedPropertyName}
+      arrayControllerModel = .toMany {!isRoot: false !collectionPropertyName:storedPropertyName}
     or
       $self$
       $.$
       $identifier$ ?let @lstring controllerName
       $.$
       $identifier$ ?let @lstring propertyName
-      warning propertyName : "????"
-      arrayControllerModel = .controllerArray {!controllerName:controllerName !propertyName:propertyName}
+      arrayControllerModel = .controller {!isRoot: false !controllerName:controllerName !propertyName:propertyName}
+    or
+      $root$
+      $.$
+      $identifier$ ?let @lstring controllerName
+      $.$
+      $identifier$ ?let @lstring propertyName
+      arrayControllerModel = .controller {!isRoot: true !controllerName:controllerName !propertyName:propertyName}
     end
     @lstringlist filterProperties = {}
     select
@@ -213,7 +219,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
 {
   @bool solved
   switch mArrayControllerModel
-  case selfCollection (@bool isRoot @lstring storedPropertyName) :
+  case toMany (@bool isRoot @lstring storedPropertyName) :
     let observablePropertyMap = if isRoot then inRootObservableProperties else ioObservableProperties end
     solved = [observablePropertyMap hasKey !storedPropertyName.string]
     if solved then
@@ -246,8 +252,43 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
         !false
       ]
     end
-  case controllerArray (@lstring controllerName @lstring unused propertyName) :
-    error controllerName : "NOT HANDLED YET" : solved
+  case controller (@bool isRoot @lstring controllerName @lstring propertyName) :
+    let observablePropertyMap = if isRoot then inRootObservableProperties else ioObservableProperties end
+    solved = [observablePropertyMap hasKey !controllerName.string]
+    if solved then
+      [observablePropertyMap searchKey
+        !controllerName
+        ?let kind
+        ?3*
+      ]
+      switch kind 
+      case property (2*) :
+        error controllerName : "an array controller is required here"
+      case toMany (4*) :
+        error controllerName : "an array controller is required here"
+      case toOne (4*) :
+        error controllerName : "an array controller is required here"
+      case arrayController (entityType entityName graphic) :
+#        [ioSemanticContext.mEntityObservablePropertyMap searchKey
+#          !controllerEntityName
+#          ?let observablePropertyMap
+#          ?*
+#        ]
+        if propertyName.string == "sortedArray" then
+          [!?ioObservableProperties insertKey
+            !controllerName
+            !.arrayController {!type: entityType !typeName: entityName !graphic: graphic}
+            !""
+            !{}
+            !false
+          ]
+        else
+          error propertyName : "only the 'sortedArray' property is accepted here"
+        end
+      case selectionController (2*) :
+        error controllerName : "an array controller is required here"
+      end
+    end
   end
   if not solved then
     ioUnsolvedProperties += !self
@@ -298,7 +339,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   @bool entityTypeIsGraphic
   @actionMap actionMap
   switch mArrayControllerModel
-  case selfCollection (@bool isRoot @lstring storedToManyPropertyName) :
+  case toMany (@bool isRoot @lstring storedToManyPropertyName) :
     let observablePropertyMap = if isRoot then inRootObservableProperties else inObservableProperties end
     errorLocation = storedToManyPropertyName.location
     [observablePropertyMap searchKey
@@ -324,7 +365,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
     end
     elementSwiftTypeName = [[kind type] swiftTypeName]
     modelType = [kind type]
-  case controllerArray (@lstring controllerName @lstring propertyName) :
+  case controller (@bool unused isRoot @lstring controllerName @lstring propertyName) :
     errorLocation = propertyName.location
     modelKind = .transientArray
     [inObservableProperties searchKey
@@ -458,14 +499,15 @@ list @arrayControllerForGeneration {
 
 getter @arrayControllerModel modelString -> @string outResult {
   switch self
-  case selfCollection (@bool isRoot @lstring storedPropertyName) :
+  case toMany (@bool isRoot @lstring storedPropertyName) :
     if isRoot then
       outResult = "self.rootObject." + storedPropertyName + "_property"
     else
       outResult = "self." + storedPropertyName + "_property"
     end
-  case controllerArray (@lstring controllerName @lstring propertyName) :
-    outResult = "self." + controllerName.string + "." + propertyName + "_property"
+  case controller (@bool isRoot @lstring controllerName @lstring propertyName) :
+    outResult = if isRoot then "self.rootObject." else "self." end
+    outResult += controllerName.string + "." + propertyName + "_property"
   end
 }
 
@@ -476,9 +518,9 @@ getter @arrayControllerModel modelTypeName
    -> @string outResult
 {
   switch self
-  case selfCollection (@bool unused isRoot @lstring unused storedPropertyName) :
+  case toMany (2*) :
     outResult = "ReadWriteArrayOf_" + inElementSwiftTypeName
-  case controllerArray (2*) :
+  case controller (3*) :
     outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
   end
 }

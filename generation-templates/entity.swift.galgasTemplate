@@ -468,6 +468,14 @@ end
 
 class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_NAME%> {
 
+  //····················································································································
+
+  var undoManager : EBUndoManager?
+
+  //····················································································································
+
+  var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
@@ -600,7 +608,24 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   var readModelFunction : Optional<() -> EBSelection < [%!ENTITY_NAME%] > >
 
-  private var prop_cache : EBSelection < [%!ENTITY_NAME%] >? 
+  //····················································································································
+
+   private var prop_cache : EBSelection < [%!ENTITY_NAME%] >? 
+
+  //····················································································································
+
+  override var propval : [%!ENTITY_NAME%] {
+    if let value = prop_cache {
+      switch value {
+      case .empty, .multiple :
+        return []
+      case .single (let v) :
+        return v
+      }
+    }else{
+      return []
+    }
+  }
 
   //····················································································································
 
@@ -681,14 +706,10 @@ end
 class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
-
-  var undoManager : EBUndoManager?
-
-  //····················································································································
  
   func setProp (_ value :  [%!ENTITY_NAME%]) { } // Abstract method
  
-  var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
+  // var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
  
   //····················································································································
 
