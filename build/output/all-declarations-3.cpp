@@ -7475,7 +7475,9 @@ mProperty_mToManyEntityRelationshipList (),
 mProperty_mSignatureSet (),
 mProperty_mObsoleteEntityNames (),
 mProperty_mIsGraphicEntity (),
-mProperty_mTransientsDeclaredInSuperEntity () {
+mProperty_mTransientsDeclaredInSuperEntity (),
+mProperty_mArrayControllerForGeneration (),
+mProperty_mSelectionControllerListForGeneration () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7495,7 +7497,9 @@ GALGAS_entityListForGeneration_2D_element::GALGAS_entityListForGeneration_2D_ele
                                                                                       const GALGAS_stringset & inOperand7,
                                                                                       const GALGAS_lstringlist & inOperand8,
                                                                                       const GALGAS_bool & inOperand9,
-                                                                                      const GALGAS_stringset & inOperand10) :
+                                                                                      const GALGAS_stringset & inOperand10,
+                                                                                      const GALGAS_arrayControllerForGeneration & inOperand11,
+                                                                                      const GALGAS_selectionControllerForGeneration & inOperand12) :
 mProperty_mEntityName (inOperand0),
 mProperty_mSuperEntityName (inOperand1),
 mProperty_mObservablePropertyMap (inOperand2),
@@ -7506,7 +7510,9 @@ mProperty_mToManyEntityRelationshipList (inOperand6),
 mProperty_mSignatureSet (inOperand7),
 mProperty_mObsoleteEntityNames (inOperand8),
 mProperty_mIsGraphicEntity (inOperand9),
-mProperty_mTransientsDeclaredInSuperEntity (inOperand10) {
+mProperty_mTransientsDeclaredInSuperEntity (inOperand10),
+mProperty_mArrayControllerForGeneration (inOperand11),
+mProperty_mSelectionControllerListForGeneration (inOperand12) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7522,7 +7528,9 @@ GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_elem
                                                     GALGAS_stringset::constructor_emptySet (HERE),
                                                     GALGAS_lstringlist::constructor_emptyList (HERE),
                                                     GALGAS_bool::constructor_default (HERE),
-                                                    GALGAS_stringset::constructor_emptySet (HERE)) ;
+                                                    GALGAS_stringset::constructor_emptySet (HERE),
+                                                    GALGAS_arrayControllerForGeneration::constructor_emptyList (HERE),
+                                                    GALGAS_selectionControllerForGeneration::constructor_emptyList (HERE)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7537,11 +7545,13 @@ GALGAS_entityListForGeneration_2D_element GALGAS_entityListForGeneration_2D_elem
                                                                                                       const GALGAS_stringset & inOperand7,
                                                                                                       const GALGAS_lstringlist & inOperand8,
                                                                                                       const GALGAS_bool & inOperand9,
-                                                                                                      const GALGAS_stringset & inOperand10 
+                                                                                                      const GALGAS_stringset & inOperand10,
+                                                                                                      const GALGAS_arrayControllerForGeneration & inOperand11,
+                                                                                                      const GALGAS_selectionControllerForGeneration & inOperand12 
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_entityListForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
-    result = GALGAS_entityListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid ()) {
+    result = GALGAS_entityListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12) ;
   }
   return result ;
 }
@@ -7583,13 +7593,19 @@ typeComparisonResult GALGAS_entityListForGeneration_2D_element::objectCompare (c
   if (result == kOperandEqual) {
     result = mProperty_mTransientsDeclaredInSuperEntity.objectCompare (inOperand.mProperty_mTransientsDeclaredInSuperEntity) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mArrayControllerForGeneration.objectCompare (inOperand.mProperty_mArrayControllerForGeneration) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mSelectionControllerListForGeneration.objectCompare (inOperand.mProperty_mSelectionControllerListForGeneration) ;
+  }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_entityListForGeneration_2D_element::isValid (void) const {
-  return mProperty_mEntityName.isValid () && mProperty_mSuperEntityName.isValid () && mProperty_mObservablePropertyMap.isValid () && mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mDecoratedTransientListForGeneration.isValid () && mProperty_mToOneEntityRelationshipList.isValid () && mProperty_mToManyEntityRelationshipList.isValid () && mProperty_mSignatureSet.isValid () && mProperty_mObsoleteEntityNames.isValid () && mProperty_mIsGraphicEntity.isValid () && mProperty_mTransientsDeclaredInSuperEntity.isValid () ;
+  return mProperty_mEntityName.isValid () && mProperty_mSuperEntityName.isValid () && mProperty_mObservablePropertyMap.isValid () && mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mDecoratedTransientListForGeneration.isValid () && mProperty_mToOneEntityRelationshipList.isValid () && mProperty_mToManyEntityRelationshipList.isValid () && mProperty_mSignatureSet.isValid () && mProperty_mObsoleteEntityNames.isValid () && mProperty_mIsGraphicEntity.isValid () && mProperty_mTransientsDeclaredInSuperEntity.isValid () && mProperty_mArrayControllerForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7606,6 +7622,8 @@ void GALGAS_entityListForGeneration_2D_element::drop (void) {
   mProperty_mObsoleteEntityNames.drop () ;
   mProperty_mIsGraphicEntity.drop () ;
   mProperty_mTransientsDeclaredInSuperEntity.drop () ;
+  mProperty_mArrayControllerForGeneration.drop () ;
+  mProperty_mSelectionControllerListForGeneration.drop () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7637,6 +7655,10 @@ void GALGAS_entityListForGeneration_2D_element::description (C_String & ioString
     mProperty_mIsGraphicEntity.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mTransientsDeclaredInSuperEntity.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mArrayControllerForGeneration.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mSelectionControllerListForGeneration.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -7707,6 +7729,18 @@ GALGAS_stringset GALGAS_entityListForGeneration_2D_element::getter_mTransientsDe
   return mProperty_mTransientsDeclaredInSuperEntity ;
 }
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_arrayControllerForGeneration GALGAS_entityListForGeneration_2D_element::getter_mArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_selectionControllerForGeneration GALGAS_entityListForGeneration_2D_element::getter_mSelectionControllerListForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSelectionControllerListForGeneration ;
+}
+
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7763,7 +7797,7 @@ mProperty_mOutletMap (),
 mProperty_mTargetActionList (),
 mProperty_mRegularBindingsGenerationList (),
 mProperty_multipleBindingGenerationList (),
-mProperty_mDocumentArrayControllerForGeneration (),
+mProperty_mArrayControllerForGeneration (),
 mProperty_mTableViewBindingGenerationList (),
 mProperty_mEBViewBindingGenerationList (),
 mProperty_mSelectionControllerListForGeneration () {
@@ -7796,7 +7830,7 @@ mProperty_mOutletMap (inOperand4),
 mProperty_mTargetActionList (inOperand5),
 mProperty_mRegularBindingsGenerationList (inOperand6),
 mProperty_multipleBindingGenerationList (inOperand7),
-mProperty_mDocumentArrayControllerForGeneration (inOperand8),
+mProperty_mArrayControllerForGeneration (inOperand8),
 mProperty_mTableViewBindingGenerationList (inOperand9),
 mProperty_mEBViewBindingGenerationList (inOperand10),
 mProperty_mSelectionControllerListForGeneration (inOperand11) {
@@ -7870,7 +7904,7 @@ typeComparisonResult GALGAS_documentListForGeneration_2D_element::objectCompare 
     result = mProperty_multipleBindingGenerationList.objectCompare (inOperand.mProperty_multipleBindingGenerationList) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mDocumentArrayControllerForGeneration.objectCompare (inOperand.mProperty_mDocumentArrayControllerForGeneration) ;
+    result = mProperty_mArrayControllerForGeneration.objectCompare (inOperand.mProperty_mArrayControllerForGeneration) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mTableViewBindingGenerationList.objectCompare (inOperand.mProperty_mTableViewBindingGenerationList) ;
@@ -7887,7 +7921,7 @@ typeComparisonResult GALGAS_documentListForGeneration_2D_element::objectCompare 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_documentListForGeneration_2D_element::isValid (void) const {
-  return mProperty_mDocumentName.isValid () && mProperty_mRootEntityName.isValid () && mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mTransientListForGeneration.isValid () && mProperty_mOutletMap.isValid () && mProperty_mTargetActionList.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_multipleBindingGenerationList.isValid () && mProperty_mDocumentArrayControllerForGeneration.isValid () && mProperty_mTableViewBindingGenerationList.isValid () && mProperty_mEBViewBindingGenerationList.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () ;
+  return mProperty_mDocumentName.isValid () && mProperty_mRootEntityName.isValid () && mProperty_mSimpleStoredPropertyListForGeneration.isValid () && mProperty_mTransientListForGeneration.isValid () && mProperty_mOutletMap.isValid () && mProperty_mTargetActionList.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_multipleBindingGenerationList.isValid () && mProperty_mArrayControllerForGeneration.isValid () && mProperty_mTableViewBindingGenerationList.isValid () && mProperty_mEBViewBindingGenerationList.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7901,7 +7935,7 @@ void GALGAS_documentListForGeneration_2D_element::drop (void) {
   mProperty_mTargetActionList.drop () ;
   mProperty_mRegularBindingsGenerationList.drop () ;
   mProperty_multipleBindingGenerationList.drop () ;
-  mProperty_mDocumentArrayControllerForGeneration.drop () ;
+  mProperty_mArrayControllerForGeneration.drop () ;
   mProperty_mTableViewBindingGenerationList.drop () ;
   mProperty_mEBViewBindingGenerationList.drop () ;
   mProperty_mSelectionControllerListForGeneration.drop () ;
@@ -7931,7 +7965,7 @@ void GALGAS_documentListForGeneration_2D_element::description (C_String & ioStri
     ioString << ", " ;
     mProperty_multipleBindingGenerationList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mProperty_mDocumentArrayControllerForGeneration.description (ioString, inIndentation+1) ;
+    mProperty_mArrayControllerForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -7992,8 +8026,8 @@ GALGAS_multipleBindingGenerationList GALGAS_documentListForGeneration_2D_element
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_arrayControllerForGeneration GALGAS_documentListForGeneration_2D_element::getter_mDocumentArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mDocumentArrayControllerForGeneration ;
+GALGAS_arrayControllerForGeneration GALGAS_documentListForGeneration_2D_element::getter_mArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mArrayControllerForGeneration ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

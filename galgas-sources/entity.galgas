@@ -331,6 +331,8 @@ override method @entityDeclaration semanticAnalysis
     !mObsoleteEntityNames
     !mIsGraphicEntity
     !transientsDeclaredInSuperEntity
+    !arrayControllerListForGeneration
+    !selectionControllerForGeneration
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -349,6 +351,8 @@ list @entityListForGeneration {
   @lstringlist mObsoleteEntityNames
   @bool mIsGraphicEntity
   @stringset mTransientsDeclaredInSuperEntity
+  @arrayControllerForGeneration mArrayControllerForGeneration
+  @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
 #·······················································································································
@@ -366,6 +370,8 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
     ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
+    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
+    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneration ENTITY_LIST
@@ -391,6 +397,8 @@ proc generateEntities
       !mSignatureSet
       !mIsGraphicEntity
       !mTransientsDeclaredInSuperEntity
+      !mArrayControllerForGeneration
+      !mSelectionControllerListForGeneration
     ]
     let fileName = "entity-" + mEntityName + ".swift"
     ioGeneratedFileSet += !fileName

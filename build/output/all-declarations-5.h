@@ -57,7 +57,9 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
                                                                                         const class GALGAS_toManyEntityRelationshipListForGeneration & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                         const class GALGAS_stringset & in_SIGNATURE_5F_SET,
                                                                                         const class GALGAS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
-                                                                                        const class GALGAS_stringset & in_TRANSIENTS_5F_DECLARED_5F_IN_5F_SUPER_5F_ENTITY
+                                                                                        const class GALGAS_stringset & in_TRANSIENTS_5F_DECLARED_5F_IN_5F_SUPER_5F_ENTITY,
+                                                                                        const class GALGAS_arrayControllerForGeneration & in_ARRAY_5F_CONTROLLER_5F_LIST,
+                                                                                        const class GALGAS_selectionControllerForGeneration & in_SELECTION_5F_CONTROLLER_5F_LIST
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

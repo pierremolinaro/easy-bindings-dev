@@ -25,7 +25,6 @@ syntax extension easyBindings_syntax {
       isArray = false
     or
       $array$
-#      warning .here : "Transient Array !"
       isArray = true
     end
     $Identifier$ ?var @lstring transientTypeName
