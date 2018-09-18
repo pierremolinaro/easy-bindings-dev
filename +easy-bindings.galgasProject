@@ -31,6 +31,7 @@ project (0:0:1) -> "eb" {
   "galgas-sources/outlet-declaration.galgas"
 
 #--- Properties
+  "galgas-sources/property.galgas"
   "galgas-sources/observable-property.galgas"
   "galgas-sources/transient-property.galgas"
   "galgas-sources/simple-stored-property.galgas"
@@ -45,6 +46,7 @@ project (0:0:1) -> "eb" {
 #--- Controllers
   "galgas-sources/array-controller.galgas"
   "galgas-sources/selection-controller.galgas"
+  "galgas-sources/proxy.galgas"
 
 #--- Semantics, code generation
   "galgas-sources/explicit-default-value.galgas"

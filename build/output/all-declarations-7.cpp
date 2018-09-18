@@ -3516,42 +3516,46 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   GALGAS_location var_endOfSourceFile_892 ;
   var_endOfSourceFile_892.drop () ;
   cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile, GALGAS_bool (true), var_declarationStruct_475, var_endOfSourceFile_892  COMMA_SOURCE_FILE ("program.galgas", 17)) ;
-  GALGAS_unifiedTypeMap var_unifiedTypeMap_1049 ;
+  GALGAS_propertyDeclarationListAST var_outSortedDeclarationListAST_1046 ;
   {
-  routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct_475.getter_mDeclarationList (HERE), var_unifiedTypeMap_1049, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
+  routine_sortProperties (var_declarationStruct_475.getter_mPropertyDeclarationList (HERE), var_outSortedDeclarationListAST_1046, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 22)) ;
   }
-  GALGAS_lstringlist var_unsolvedProxyList_1145 = var_unifiedTypeMap_1049.getter_unsolvedProxyList (SOURCE_FILE ("program.galgas", 24)) ;
-  cEnumerator_lstringlist enumerator_1213 (var_unsolvedProxyList_1145, kENUMERATION_UP) ;
-  while (enumerator_1213.hasCurrentObject ()) {
+  GALGAS_unifiedTypeMap var_unifiedTypeMap_1204 ;
+  {
+  routine_typeInventory (constinArgument_inSourceFile, var_declarationStruct_475.getter_mDeclarationList (HERE), var_unifiedTypeMap_1204, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 24)) ;
+  }
+  GALGAS_lstringlist var_unsolvedProxyList_1300 = var_unifiedTypeMap_1204.getter_unsolvedProxyList (SOURCE_FILE ("program.galgas", 26)) ;
+  cEnumerator_lstringlist enumerator_1368 (var_unsolvedProxyList_1300, kENUMERATION_UP) ;
+  while (enumerator_1368.hasCurrentObject ()) {
     TC_Array <C_FixItDescription> fixItArray0 ;
-    inCompiler->emitSemanticError (enumerator_1213.current_mValue (HERE).getter_location (SOURCE_FILE ("program.galgas", 26)), GALGAS_string ("type ").add_operation (enumerator_1213.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("program.galgas", 26)), fixItArray0  COMMA_SOURCE_FILE ("program.galgas", 26)) ;
-    enumerator_1213.gotoNextObject () ;
+    inCompiler->emitSemanticError (enumerator_1368.current_mValue (HERE).getter_location (SOURCE_FILE ("program.galgas", 28)), GALGAS_string ("type ").add_operation (enumerator_1368.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 28)).add_operation (GALGAS_string (" is undefined"), inCompiler COMMA_SOURCE_FILE ("program.galgas", 28)), fixItArray0  COMMA_SOURCE_FILE ("program.galgas", 28)) ;
+    enumerator_1368.gotoNextObject () ;
   }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_unsolvedProxyList_1145.getter_length (SOURCE_FILE ("program.galgas", 29)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_unsolvedProxyList_1300.getter_length (SOURCE_FILE ("program.galgas", 31)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_1) {
-    GALGAS_lstringlist var_sortedTypeNames_1472 ;
-    GALGAS_lstringlist var_unsortedTypeNames_1514 ;
-    var_unifiedTypeMap_1049.method_topologicalSort (var_sortedTypeNames_1472, var_unsortedTypeNames_1514, inCompiler COMMA_SOURCE_FILE ("program.galgas", 30)) ;
-    const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, var_unsortedTypeNames_1514.getter_length (SOURCE_FILE ("program.galgas", 34)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    GALGAS_lstringlist var_sortedTypeNames_1627 ;
+    GALGAS_lstringlist var_unsortedTypeNames_1669 ;
+    var_unifiedTypeMap_1204.method_topologicalSort (var_sortedTypeNames_1627, var_unsortedTypeNames_1669, inCompiler COMMA_SOURCE_FILE ("program.galgas", 32)) ;
+    const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, var_unsortedTypeNames_1669.getter_length (SOURCE_FILE ("program.galgas", 36)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_2) {
-      GALGAS_string var_s_1575 = GALGAS_string ("cannot sort types ; the following types are involved in circular dependence:") ;
-      cEnumerator_lstringlist enumerator_1691 (var_unsortedTypeNames_1514, kENUMERATION_UP) ;
-      while (enumerator_1691.hasCurrentObject ()) {
-        var_s_1575.plusAssign_operation(GALGAS_string ("\n"
-          "-- ").add_operation (enumerator_1691.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 37)), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 37)) ;
-        enumerator_1691.gotoNextObject () ;
+      GALGAS_string var_s_1730 = GALGAS_string ("cannot sort types ; the following types are involved in circular dependence:") ;
+      cEnumerator_lstringlist enumerator_1846 (var_unsortedTypeNames_1669, kENUMERATION_UP) ;
+      while (enumerator_1846.hasCurrentObject ()) {
+        var_s_1730.plusAssign_operation(GALGAS_string ("\n"
+          "-- ").add_operation (enumerator_1846.current_mValue (HERE).getter_string (SOURCE_FILE ("program.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("program.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 39)) ;
+        enumerator_1846.gotoNextObject () ;
       }
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("program.galgas", 39)), var_s_1575, fixItArray3  COMMA_SOURCE_FILE ("program.galgas", 39)) ;
+      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("program.galgas", 41)), var_s_1730, fixItArray3  COMMA_SOURCE_FILE ("program.galgas", 41)) ;
     }else if (kBoolFalse == test_2) {
-      GALGAS_structForGeneration var_generation_1924 ;
+      GALGAS_structForGeneration var_generation_2079 ;
       {
-      routine_semanticAnalysis (var_unifiedTypeMap_1049, constinArgument_inSourceFile.getter_string (HERE), var_declarationStruct_475, var_generation_1924, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 41)) ;
+      routine_semanticAnalysis (var_unifiedTypeMap_1204, constinArgument_inSourceFile.getter_string (HERE), var_declarationStruct_475, var_generation_2079, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 43)) ;
       }
-      const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 47)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 49)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_4) {
         {
-        routine_generateCode (var_declarationStruct_475.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_1924, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 48)) ;
+        routine_generateCode (var_declarationStruct_475.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_2079, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 50)) ;
         }
       }
     }

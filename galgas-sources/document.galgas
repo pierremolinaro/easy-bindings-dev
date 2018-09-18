@@ -36,7 +36,7 @@ syntax extension easyBindings_syntax {
     @stringset signatureList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredPropertyList !?signatureList
+      <simple_stored_declaration> !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST
     while
       <action_declaration> !?actionDeclarationList
     while
@@ -134,6 +134,7 @@ override method @documentDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   [ioSemanticContext.mDocumentObservablePropertyMap searchKey
@@ -146,11 +147,12 @@ override method @documentDeclaration solveSecondaryProperty
     ?*
   ]
   for (property) in inPropertiesToSolve do
-    [property tryToSolveSecondaryProperty
+    [property tryToDefineSecondaryProperty
       !?ioSemanticContext
       !rootObservablePropertyMap
       !?observablePropertyMap
       !?outUnsolvedProperties
+      !?ioSimpleStoredPropertyListForGeneration
     ]
   end
   [!?ioSemanticContext.mDocumentObservablePropertyMap setMObservablePropertyMapForKey

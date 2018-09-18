@@ -1,0 +1,339 @@
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @proxyDeclaration : @abstractSecondaryProperty {
+#  @lstring mTypeName
+  @lstring mProxyName
+  @lstring mControllerName
+  @lstring mPropertyName
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SYNTAX
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <controller_declaration> ?!@secondaryPropertyList ioSecondaryPropertyList {
+    $proxy$
+#    $Identifier$ ?let @lstring typeName
+    $identifier$ ?let @lstring proxyName
+    @arrayControllerAttributListAST arrayControllerAttributListAST = {}
+    $:$
+    $self$
+    $.$
+    $identifier$ ?let @lstring controllerName
+    $.$
+    $identifier$ ?let @lstring propertyName
+    $;$
+    ioSecondaryPropertyList += !@proxyDeclaration.new {
+#      !typeName
+      !proxyName
+      !controllerName
+      !propertyName
+    }
+  }
+
+  #·····················································································································
+
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC ANALYSIS
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @proxyDeclaration typeInventory
+  ?!@unifiedTypeMap unused ioUnifiedTypeMap
+{
+}
+
+#·······················································································································
+
+override method @proxyDeclaration tryToDefineSecondaryProperty
+  ?!@semanticContext ioSemanticContext
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?!@observablePropertyMap ioObservableProperties
+  ?!@secondaryPropertyList ioUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+{
+  if [ioObservableProperties hasKey !mControllerName] then
+    [ioObservableProperties searchKey
+      !mControllerName
+      ?let kind
+      ?3*
+    ]
+    switch kind 
+    case property (2*) :
+      error mControllerName : "an array controller is required here"
+    case toMany (4*) :
+      error mControllerName : "an array controller is required here"
+    case toOne (4*) :
+      error mControllerName : "an array controller is required here"
+    case arrayController (* entityName *) :
+      [ioSemanticContext.mEntityObservablePropertyMap searchKey
+        !entityName
+        ?let observablePropertyMap
+        ?*
+      ]
+      [observablePropertyMap searchKey
+        !mPropertyName
+        ?let kind
+        ?3*
+      ]
+      switch kind 
+      case property (2*) :
+        [!?ioObservableProperties insertKey
+          !mProxyName
+          !.property {!type: [kind propertyType] !accessibility: .proxy}
+          !""
+          !{}
+          !false
+        ]
+      #--- Code Generation
+        ioSimpleStoredPropertyListForGeneration +=
+          ![kind propertyType]
+          !mPropertyName.string
+          !true
+          !""
+          !false
+      case toMany (type typeName * graphic) :
+        [!?ioObservableProperties insertKey
+          !mProxyName
+          !.toMany {!type: type !typeName: typeName !accessibility: .proxy !graphic: graphic}
+          !""
+          !{}
+          !false
+        ]
+      case toOne (4*) :
+        error mPropertyName : "<<toOne property>>" 
+      case arrayController (3*) :
+        error mPropertyName : "a property is required here"
+      case selectionController (2*) :
+        error mPropertyName : "a property is required here"
+      end
+    case selectionController (2*) :
+      error mControllerName : "an array controller is required here"
+    end  
+  else
+    ioUnsolvedProperties += !self
+  end
+}
+
+#·······················································································································
+
+override method @proxyDeclaration secondaryPropertySemanticAnalysis
+  ?let @string inOwnerName
+  ?let @string unused inRootEntityName
+  ?let @observablePropertyMap inRootObservableProperties
+  ?let @semanticContext inSemanticContext
+  ?let @observablePropertyMap inObservableProperties
+  ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
+  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
+  ?!@stringset ioNeededOutletClasses
+{
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION TYPES
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+#enum @arrayControllerModelKind {
+#  case entityArray
+#  case classArray
+#  case transientArray
+#}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+#list @arrayControllerForGeneration {
+#  @string mOwnerName # document name, prefs name, ...
+#  @lstring mControllerName
+#  @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
+#  @string mModelString
+#  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
+#  @arrayControllerSortedColumnListForGeneration mArrayControllerSortedColumnListForGeneration
+#  @string mModelTypeName
+#  @arrayControllerModelKind mModelKind
+#  @string mElementTypeName
+#  @bool mElementTypeIsGraphic
+#  @2stringlist mAttributeListForGeneration
+#}
+
+#·······················································································································
+
+#getter @arrayControllerModel modelString -> @string outResult {
+#  switch self
+#  case toMany (@bool isRoot @lstring storedPropertyName) :
+#    if isRoot then
+#      outResult = "self.rootObject." + storedPropertyName + "_property"
+#    else
+#      outResult = "self." + storedPropertyName + "_property"
+#    end
+#  case controller (@bool isRoot @lstring controllerName @lstring propertyName) :
+#    outResult = if isRoot then "self.rootObject." else "self." end
+#    outResult += controllerName.string + "." + propertyName + "_property"
+#  end
+#}
+
+#·······················································································································
+
+#getter @arrayControllerModel modelTypeName
+#  ?let @string inElementSwiftTypeName
+#   -> @string outResult
+#{
+#  switch self
+#  case toMany (2*) :
+#    outResult = "ReadWriteArrayOf_" + inElementSwiftTypeName
+#  case controller (3*) :
+#    outResult = "ReadOnlyArrayOf_" + inElementSwiftTypeName
+#  end
+#}
+
+#·······················································································································
+
+#list @arrayControllerFilterListForGeneration {
+#  @string mFilterPropertyName
+#  @typeKind mFilterPropertyType
+#}
+
+#·······················································································································
+
+#list @arrayControllerBoundColumnListForGeneration {
+#  @string mColumnName
+#  @string mColumnOutletTypeName
+#  @string mRunAction # Empty string if no action
+#  @regularBindingsGenerationList mRegularBindingsGenerationList
+#}
+
+#·······················································································································
+
+#list @arrayControllerSortedColumnListForGeneration {
+#  @string mColumnName
+#  @typeKind mSortPropertyType
+#  @string mObservablePropertyForSorting
+#}
+
+#·······················································································································
+
+#getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
+#  var filterProperties = self
+#  [!?filterProperties popFirst ?let firstFilterProperty ?*]
+#  @string indent = "            "
+#  outResult  = indent + "switch object." + firstFilterProperty + "_property_selection {\n"
+#  outResult += indent + "case .empty :\n"
+#  outResult += indent + "  return .empty\n"
+#  outResult += indent + "case .multiple :\n"
+#  outResult += indent + "  isMultiple = true\n"
+#  outResult += indent + "case .single (let v1) :\n"
+#  @uint idx = 2
+#  @string args = ""
+#  @string blockEnd = indent + "}\n"
+#  for () in filterProperties do
+#    indent += "  "
+#    outResult += indent + "switch object." + mFilterPropertyName + "_property_selection {\n"
+#    outResult += indent + "case .empty :\n"
+#    outResult += indent + "  return .empty\n"
+#    outResult += indent + "case .multiple :\n"
+#    outResult += indent + "  isMultiple = true\n"
+#    outResult += indent + "case .single (let v" + idx + ") :\n"
+#    blockEnd = indent + "}\n" + blockEnd
+#    args += ", v" + idx
+#    idx ++
+#  end
+#  indent += "  "
+#  outResult += indent + "if " + inFilterFunction + " (v1" + args + ") {\n"
+#  outResult += indent + "  filteredArray.append (object)\n"
+#  outResult += indent + "}\n"
+#  outResult += blockEnd
+#}
+
+#·······················································································································
+
+#private filewrapper collectionControllerGenerationTemplate in "../generation-templates/controllers" {
+#}{
+#}{
+#  template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
+#    ?@string OWNER_NAME
+#    ?@string ARRAY_CONTROLLER_NAME
+#    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
+#    ?@string MODEL_STRING
+#    ?@arrayControllerModelKind MODEL_KIND
+#    ?@string MODEL_TYPE_NAME
+#    ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
+#    ?@arrayControllerSortedColumnListForGeneration SORTED_COLUMNS
+#    ?@string ELEMENT_TYPE_NAME
+#    ?@bool ELEMENT_TYPE_IS_GRAPHIC
+#    ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
+#    ?@2stringlist ATTRIBUTE_VALUES
+#
+#  template filterFunction "array-controller-filter-function.swift.galgasTemplate"
+#    ?@string OWNER_NAME
+#    ?@string ARRAY_CONTROLLER_NAME
+#    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
+#}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+#proc generateArrayControllers
+#  ?let @arrayControllerForGeneration inArrayControllerListForGeneration
+#  ?let @string inOutputDirectory
+#  ?!@stringset ioGeneratedFileSet
+#{
+#  for () in inArrayControllerListForGeneration do
+#  #--- Build observed property set (for sorting and filtering)
+#    @stringset observedProperties = {}
+#    for () in mArrayControllerSortedColumnListForGeneration do
+#      observedProperties += !mObservablePropertyForSorting
+#    end
+#    for () in mArrayControllerFilterListForGeneration do
+#      observedProperties += !mFilterPropertyName
+#    end
+#    let s = [filewrapper collectionControllerGenerationTemplate.arrayControllerImplementationInSwift
+#      !mOwnerName
+#      !mControllerName
+#      !mArrayControllerFilterListForGeneration
+#      !mModelString
+#      !mModelKind
+#      !mModelTypeName
+#      !mArrayControllerBoundColumnListForGeneration
+#      !mArrayControllerSortedColumnListForGeneration
+#      !mElementTypeName
+#      !mElementTypeIsGraphic
+#      !observedProperties
+#      !mAttributeListForGeneration
+#    ]
+#    [@string generateFile
+#      !inOutputDirectory
+#      !"arrayController-" + mOwnerName + "-" +  mControllerName + ".swift"
+#      !s
+#    ]
+#    if [mArrayControllerFilterListForGeneration length] > 0 then
+#    let s = [filewrapper collectionControllerGenerationTemplate.filterFunction
+#      !mOwnerName
+#      !mControllerName
+#      !mArrayControllerFilterListForGeneration
+#    ]
+#    let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
+#    ioGeneratedFileSet += !fileName
+#    [@string generateFileWithPattern
+#      !startPath:inOutputDirectory
+#      !fileName:fileName
+#      !lineComment:"//"
+#      !header:""
+#      !defaultUserZone1:"\n\n" # Defaut user zone1
+#      !generatedZone2:s
+#      !defaultUserZone2:"  return WHAT ?\n" # Defaut user zone2
+#      !generatedZone3:"}\n\n//" + ["" stringByRightPadding !117 !'—'] + "\n"
+#      !makeExecutable:false
+#    ]
+#    end
+#  end
+#}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

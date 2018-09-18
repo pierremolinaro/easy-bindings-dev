@@ -267,7 +267,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   if not [kind isProperty] then #  outMultiplicity == .collection then
     error [mProperty location] : "only an atomic property can be observed"
   end
-  outType = [kind type]
+  outType = [kind propertyType]
   switch outType
   case stringType, boolType, dateType, doubleType, integerType, fontType, colorType : # Ok
   case enumType (* *) : # Ok

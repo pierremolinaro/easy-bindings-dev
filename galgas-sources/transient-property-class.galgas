@@ -82,6 +82,7 @@ override method @transientPropertyTypeDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList unused inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
 }

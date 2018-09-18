@@ -18,6 +18,8 @@ case . "eb"
     !userDefined:true
     !?declarationStruct
     ?var @location endOfSourceFile
+#----------------------------------------- Sort properties
+  sortProperties (!declarationStruct.mPropertyDeclarationList ?let outSortedDeclarationListAST)
 #----------------------------------------- Type inventory
   typeInventory (!inSourceFile !declarationStruct.mDeclarationList ?@unifiedTypeMap unifiedTypeMap)
 #----------------------------------------- Check all types are defined

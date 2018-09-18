@@ -52,6 +52,17 @@ void routine_analyzeRegularBinding (const class GALGAS_observablePropertyMap con
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                              Routine 'sortProperties'                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_sortProperties (const class GALGAS_propertyDeclarationListAST constinArgument0,
+                             class GALGAS_propertyDeclarationListAST & outArgument1,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                            Routine 'generateTransients'                                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

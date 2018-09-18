@@ -52,11 +52,12 @@ override method @selectionControllerDeclaration typeInventory
 
 #·······················································································································
 
-override method @selectionControllerDeclaration tryToSolveSecondaryProperty
+override method @selectionControllerDeclaration tryToDefineSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
 {
   if mModelControllerName.string == "self" then
     [ioObservableProperties searchKey
@@ -78,25 +79,10 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
     case selectionController (2*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
     end
-#    switch type
-#    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-#      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-#    case enumType (* *) :
-#      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-#    case classType (*) :
-#      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-#    case transientPropertyExternType (*) :
-#      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-#    case entityType (kEntityName *) :
-#      entityName = kEntityName
-#      if multiplicity != .collection then
-#        error mModelControllerPropertyName : "the model should be a collection of entities"
-#      end
-#    end
   #--- Store selection controller
     [!?ioObservableProperties insertKey
       !mSelectionControllerName
-      !.selectionController {!type: [kind type] !typeName:entityName}
+      !.selectionController {!type: [kind propertyType] !typeName:entityName}
       !"" # No inverse relationship
       !{} # No action
       !false
@@ -121,32 +107,10 @@ override method @selectionControllerDeclaration tryToSolveSecondaryProperty
     case selectionController (2*) :
       error mModelControllerName : "the model should be an array controller" : entityName
     end
-  #--- Check kind
-#    if kind != .arrayController then
-#      error mModelControllerName : "the model should be an array controller"
-#    end
-#  #--- Check multiplicity
-#    if multiplicity != .collection then
-#      error mModelControllerName : "the model should be an array controller"
-#    end
-#  #--- Check type
-#    @string entityName
-#    switch type
-#    case stringType, boolType, dateType, doubleType, integerType, fontType, colorType :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case enumType (* *) :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case classType (*) :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case transientPropertyExternType (*) :
-#      error mModelControllerName : "the array controller model should be an entity" : entityName
-#    case entityType (kEntityName *) :
-#      entityName = kEntityName
-#    end
   #--- Store selection controller
     [!?ioObservableProperties insertKey
       !mSelectionControllerName
-      !.selectionController {!type: [kind type] !typeName:entityName}
+      !.selectionController {!type: [kind propertyType] !typeName:entityName}
       !"" # No inverse relationship
       !{} # No action
       !false

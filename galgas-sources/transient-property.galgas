@@ -64,11 +64,12 @@ override method @transientAST typeInventory
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @transientAST tryToSolveSecondaryProperty
+override method @transientAST tryToDefineSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
 {
   @bool solved = true
   for () in mDependencyList while solved do
@@ -82,9 +83,9 @@ override method @transientAST tryToSolveSecondaryProperty
     [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?let actionMap]
     @propertyKind kind
     if [type isEntityType] then
-      kind = .toOne {!type:type !typeName: mTransientTypeName !readOnly: true !graphic:[type isGraphic]}
+      kind = .toOne {!type:type !typeName: mTransientTypeName !accessibility: .transient !graphic:[type isGraphic]}
     else
-      kind = .property {!type:type !readOnly: true}
+      kind = .property {!type:type !accessibility: .transient}
     end
     [!?ioObservableProperties insertKey
       !mTransientName

@@ -23,7 +23,7 @@ end
 
 %
 for () in SIMPLE_PROPERTY_LIST_FOR_GENERATION do
-%  var %!mStoredPropertyName%_property = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
+%  var %!mStoredOrProxyPropertyName%_property = EBEntityProperty <%![mType swiftTypeName]%> (%!mDefaultValueInSwift%)\n%
 end
 
 

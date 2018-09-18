@@ -9,6 +9,28 @@ list @simpleStoredPropertyList {
   @bool mNeedsValidation
 }
 
+#·······················································································································
+
+class @atomicPropertyDeclarationAST : @propertyAbstractDeclarationAST {
+  @lstring mPropertyTypeName
+  @lstring mPropertyName
+  @abstractDefaultValue mDefaultValue
+  @bool mNeedsValidation
+}
+
+#·······················································································································
+
+override method @atomicPropertyDeclarationAST enterInPrecedenceGraph ?!@propertyPrecedenceGraph ioGraph {
+  let node = @lstring.new {!mClassName.string + " " + mPropertyName !mPropertyName.location}
+  [!?ioGraph addNode !node !self]
+}
+
+#·······················································································································
+
+override getter @atomicPropertyDeclarationAST lkey -> @lstring {
+  result = @lstring.new {!mClassName.string + " " + mPropertyName !mPropertyName.location}
+}
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SYNTAX
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -20,6 +42,7 @@ syntax extension easyBindings_syntax {
   rule <simple_stored_declaration>
     ?!@simpleStoredPropertyList ioAttributeList
     ?!@stringset ioSignatureList
+    ?!@astDeclarationStruct ioDeclarationAST
   {
     $property$
     @bool usedForSignature = false
@@ -104,7 +127,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
   #--- Enter in property map
     [!?ioObservableProperties insertKey
       !mPropertyName
-      !.property {!type: type !readOnly: false}
+      !.property {!type: type !accessibility: .stored}
       !""
       !actionMap
       !false
@@ -144,6 +167,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
     outSimpleStoredPropertyListForGeneration +=
       !type
       !mPropertyName.string
+      !false
       !swiftDefaultValueAsString
       !mNeedsValidation
     if mNeedsValidation then
@@ -161,7 +185,8 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
 
 list @simpleStoredPropertyListForGeneration {
   @typeKind mType
-  @string mStoredPropertyName
+  @string mStoredOrProxyPropertyName
+  @bool mIsProxy
   @string mDefaultValueInSwift
   @bool mNeedsValidation
 }

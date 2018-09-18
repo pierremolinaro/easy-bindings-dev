@@ -32,14 +32,16 @@ abstract method @astDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
 
 #·······················································································································
 
-abstract method @abstractSecondaryProperty tryToSolveSecondaryProperty
+abstract method @abstractSecondaryProperty tryToDefineSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
 
 #·······················································································································
 
@@ -99,6 +101,7 @@ proc semanticAnalysis
     [mDeclaration buildInitialSecondaryPropertyListMap !?secondaryDeclarationListWorkingList !?secondaryDeclarationCount]
   end
 #--- Iterate for building observable property maps
+  @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration = {}
   @bool continue = true
   loop (secondaryDeclarationCount) while continue do
     [inAstDeclarationStruct.mPreferences solveSecondaryProperty
@@ -106,6 +109,7 @@ proc semanticAnalysis
       !inUnifiedTypeMap
       !preferencesSecondaryPropertyList
       ?let @secondaryPropertyList newPreferencesSecondaryPropertyList
+      !?simpleStoredPropertyListForGeneration
     ]
     @secondaryDeclarationListWorkingList newSecondaryDeclarationListWorkingList = {}
     for (declaration aList) in secondaryDeclarationListWorkingList do
@@ -114,6 +118,7 @@ proc semanticAnalysis
         !inUnifiedTypeMap
         !aList
         ?@secondaryPropertyList unsolvedProperties
+        !?simpleStoredPropertyListForGeneration
       ]
       newSecondaryDeclarationListWorkingList += !declaration !unsolvedProperties
     end
@@ -124,8 +129,9 @@ proc semanticAnalysis
     secondaryDeclarationListWorkingList = newSecondaryDeclarationListWorkingList
     preferencesSecondaryPropertyList = newPreferencesSecondaryPropertyList
   end
-#--- Semantic analysis of declarations
   outGeneration = .default
+  outGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
+#--- Semantic analysis of declarations
   for () in inAstDeclarationStruct.mDeclarationList do
     [mDeclaration semanticAnalysis
       !semanticContext

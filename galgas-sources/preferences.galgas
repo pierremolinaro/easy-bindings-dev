@@ -33,9 +33,12 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> !?ioDeclarationAST.mPreferences.mActionDeclarationList
     while
+      @simpleStoredPropertyList simpleStoredPropertyList = {}
       <simple_stored_declaration>
-        !?ioDeclarationAST.mPreferences.mSimpleStoredAttributeList
+        !?simpleStoredPropertyList
         !?signatureList
+        !?ioDeclarationAST
+      ioDeclarationAST.mPreferences.mSimpleStoredAttributeList += simpleStoredPropertyList
     while
       <outlet_declaration> !?ioDeclarationAST.mPreferences.mOutletDeclarationList
     while
@@ -77,15 +80,17 @@ method @prefDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   var preferencesObservablePropertyMap = ioSemanticContext.mPreferencesObservablePropertyMap
   for (property) in inPropertiesToSolve do
-    [property tryToSolveSecondaryProperty
+    [property tryToDefineSecondaryProperty
       !?ioSemanticContext
       !{} # No root entity
       !?preferencesObservablePropertyMap
       !?outUnsolvedProperties
+      !?ioSimpleStoredPropertyListForGeneration
     ]
   end
   ioSemanticContext.mPreferencesObservablePropertyMap = preferencesObservablePropertyMap

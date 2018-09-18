@@ -30,6 +30,7 @@ void extensionMethod_solveSecondaryProperty (const class GALGAS_prefDeclaration 
                                              const class GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
                                              const class GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
                                              class GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
+                                             class GALGAS_simpleStoredPropertyListForGeneration & io_ioSimpleStoredPropertyListForGeneration,
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
@@ -362,6 +363,151 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_structForGeneration
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                 Abstract extension method '@propertyAbstractDeclarationAST enterInPrecedenceGraph'                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef void (*extensionMethodSignature_propertyAbstractDeclarationAST_enterInPrecedenceGraph) (const class cPtr_propertyAbstractDeclarationAST * inObject,
+                                                                                                class GALGAS_propertyPrecedenceGraph & ioArgument0,
+                                                                                                class C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_enterInPrecedenceGraph (const int32_t inClassIndex,
+                                                  extensionMethodSignature_propertyAbstractDeclarationAST_enterInPrecedenceGraph inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_enterInPrecedenceGraph (const class cPtr_propertyAbstractDeclarationAST * inObject,
+                                                 GALGAS_propertyPrecedenceGraph & io_ioGraph,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                          Abstract extension getter '@propertyAbstractDeclarationAST lkey'                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_lstring (*enterExtensionGetter_propertyAbstractDeclarationAST_lkey) (const class cPtr_propertyAbstractDeclarationAST * inObject,
+                                                                                          class C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_lkey (const int32_t inClassIndex,
+                                enterExtensionGetter_propertyAbstractDeclarationAST_lkey inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_lstring callExtensionGetter_lkey (const class cPtr_propertyAbstractDeclarationAST * inObject,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                         @atomicPropertyDeclarationAST class                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_atomicPropertyDeclarationAST : public GALGAS_propertyAbstractDeclarationAST {
+//--- Constructor
+  public : GALGAS_atomicPropertyDeclarationAST (void) ;
+
+//---
+  public : inline const class cPtr_atomicPropertyDeclarationAST * ptr (void) const { return (const cPtr_atomicPropertyDeclarationAST *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_atomicPropertyDeclarationAST (const cPtr_atomicPropertyDeclarationAST * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_atomicPropertyDeclarationAST extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_atomicPropertyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1,
+                                                                             const class GALGAS_lstring & inOperand2,
+                                                                             const class GALGAS_abstractDefaultValue & inOperand3,
+                                                                             const class GALGAS_bool & inOperand4
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_atomicPropertyDeclarationAST & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValue (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_atomicPropertyDeclarationAST class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyDeclarationAST ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                Pointer class for @atomicPropertyDeclarationAST class                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_atomicPropertyDeclarationAST : public cPtr_propertyAbstractDeclarationAST {
+//--- Attributes
+  public : GALGAS_lstring mProperty_mPropertyTypeName ;
+  public : GALGAS_lstring mProperty_mPropertyName ;
+  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
+  public : GALGAS_bool mProperty_mNeedsValidation ;
+
+//--- Constructor
+  public : cPtr_atomicPropertyDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                              const GALGAS_lstring & in_mPropertyTypeName,
+                                              const GALGAS_lstring & in_mPropertyName,
+                                              const GALGAS_abstractDefaultValue & in_mDefaultValue,
+                                              const GALGAS_bool & in_mNeedsValidation
+                                              COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_abstractDefaultValue getter_mDefaultValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                @booleanMultipleBindingLiteralIntForGeneration class                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -553,6 +699,7 @@ typedef void (*extensionMethodSignature_astDeclaration_solveSecondaryProperty) (
                                                                                 const class GALGAS_unifiedTypeMap constinArgument1,
                                                                                 const class GALGAS_secondaryPropertyList constinArgument2,
                                                                                 class GALGAS_secondaryPropertyList & outArgument3,
+                                                                                class GALGAS_simpleStoredPropertyListForGeneration & ioArgument4,
                                                                                 class C_Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -568,6 +715,7 @@ void callExtensionMethod_solveSecondaryProperty (const class cPtr_astDeclaration
                                                  const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
                                                  const GALGAS_secondaryPropertyList constin_inPropertiesToSolve,
                                                  GALGAS_secondaryPropertyList & out_outUnsolvedProperties,
+                                                 GALGAS_simpleStoredPropertyListForGeneration & io_ioSimpleStoredPropertyListForGeneration,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 

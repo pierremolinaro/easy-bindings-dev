@@ -18,7 +18,9 @@ class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS
 //--------------------------------- Properties
   public : GALGAS_typeKind mProperty_mType ;
 
-  public : GALGAS_string mProperty_mStoredPropertyName ;
+  public : GALGAS_string mProperty_mStoredOrProxyPropertyName ;
+
+  public : GALGAS_bool mProperty_mIsProxy ;
 
   public : GALGAS_string mProperty_mDefaultValueInSwift ;
 
@@ -36,7 +38,8 @@ class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS
 
 //--------------------------------- Native constructor
   public : GALGAS_simpleStoredPropertyListForGeneration_2D_element (const GALGAS_typeKind & in_mType,
-                                                                    const GALGAS_string & in_mStoredPropertyName,
+                                                                    const GALGAS_string & in_mStoredOrProxyPropertyName,
+                                                                    const GALGAS_bool & in_mIsProxy,
                                                                     const GALGAS_string & in_mDefaultValueInSwift,
                                                                     const GALGAS_bool & in_mNeedsValidation) ;
 
@@ -53,8 +56,9 @@ class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_simpleStoredPropertyListForGeneration_2D_element constructor_new (const class GALGAS_typeKind & inOperand0,
                                                                                                  const class GALGAS_string & inOperand1,
-                                                                                                 const class GALGAS_string & inOperand2,
-                                                                                                 const class GALGAS_bool & inOperand3
+                                                                                                 const class GALGAS_bool & inOperand2,
+                                                                                                 const class GALGAS_string & inOperand3,
+                                                                                                 const class GALGAS_bool & inOperand4
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -71,9 +75,11 @@ class GALGAS_simpleStoredPropertyListForGeneration_2D_element : public AC_GALGAS
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDefaultValueInSwift (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mStoredPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mStoredOrProxyPropertyName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
 
@@ -1394,7 +1400,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_string mProperty_mModelTypeName ;
 
-  public : GALGAS_arrayControllerModelKind mProperty_mModelKind ;
+  public : GALGAS_arrayControllerModelKind mProperty_mArrayControllerModelKind ;
 
   public : GALGAS_string mProperty_mElementTypeName ;
 
@@ -1420,7 +1426,7 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
                                                            const GALGAS_arrayControllerBoundColumnListForGeneration & in_mArrayControllerBoundColumnListForGeneration,
                                                            const GALGAS_arrayControllerSortedColumnListForGeneration & in_mArrayControllerSortedColumnListForGeneration,
                                                            const GALGAS_string & in_mModelTypeName,
-                                                           const GALGAS_arrayControllerModelKind & in_mModelKind,
+                                                           const GALGAS_arrayControllerModelKind & in_mArrayControllerModelKind,
                                                            const GALGAS_string & in_mElementTypeName,
                                                            const GALGAS_bool & in_mElementTypeIsGraphic,
                                                            const GALGAS__32_stringlist & in_mAttributeListForGeneration) ;
@@ -1465,6 +1471,8 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerFilterListForGeneration getter_mArrayControllerFilterListForGeneration (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModelKind getter_mArrayControllerModelKind (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerSortedColumnListForGeneration getter_mArrayControllerSortedColumnListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS__32_stringlist getter_mAttributeListForGeneration (LOCATION_ARGS) const ;
@@ -1474,8 +1482,6 @@ class GALGAS_arrayControllerForGeneration_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mElementTypeIsGraphic (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mElementTypeName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerModelKind getter_mModelKind (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
 
@@ -5184,72 +5190,4 @@ class GALGAS_controllerBindingOptionDecoratedList_2D_element : public AC_GALGAS_
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        @bindingOptionList_2D_element struct                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_bindingOptionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_mOptionName ;
-
-  public : GALGAS_abstractDefaultValue mProperty_mOptionValue ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_bindingOptionList_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_bindingOptionList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_bindingOptionList_2D_element (const GALGAS_lstring & in_mOptionName,
-                                                const GALGAS_abstractDefaultValue & in_mOptionValue) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_bindingOptionList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_bindingOptionList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                             const class GALGAS_abstractDefaultValue & inOperand1
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_bindingOptionList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOptionName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mOptionValue (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_bindingOptionList_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList_2D_element ;
 

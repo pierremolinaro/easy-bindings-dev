@@ -16,7 +16,6 @@ $Identifier$ ! tokenString  style IdfStyle error message "an identifier (beginni
 list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "action",
   "all",
-#  "array",
   "arrayController",
   "binding",
   "calledBy",
@@ -43,6 +42,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "outlet",
   "prefs",
   "property",
+  "proxy",
   "root",
   "selectionController",
   "self",

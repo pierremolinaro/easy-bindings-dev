@@ -88,6 +88,7 @@ override method @enumDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap unused mUnifiedTypeMap
   ?let @secondaryPropertyList unused inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
 }

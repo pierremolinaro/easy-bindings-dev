@@ -61,7 +61,7 @@ syntax extension easyBindings_syntax {
     @lstringlist actionDeclarationList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList
+      <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
     while
       <transient_declaration> !?secondaryPropertyList
     while
@@ -190,6 +190,7 @@ override method @entityDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
+  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
@@ -198,11 +199,12 @@ override method @entityDeclaration solveSecondaryProperty
     ?*
   ]
   for (property) in inPropertiesToSolve do
-    [property tryToSolveSecondaryProperty
+    [property tryToDefineSecondaryProperty
       !?ioSemanticContext
       !{} # No root entity
       !?observablePropertyMap
       !?outUnsolvedProperties
+      !?ioSimpleStoredPropertyListForGeneration
     ]
   end
   [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
@@ -250,7 +252,28 @@ override method @entityDeclaration semanticAnalysis
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerForGeneration
   ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
-#--- Check requireds transients are implemented
+#---
+#  outUnsolvedProperties = {}
+#  [ioSemanticContext.mEntityObservablePropertyMap searchKey
+#    !mEntityName
+#    ?@observablePropertyMap observablePropertyMap
+#    ?*
+#  ]
+#  for (property) in inPropertiesToSolve do
+#    [property tryToDefineSecondaryProperty
+#      !?ioSemanticContext
+#      !{} # No root entity
+#      !?observablePropertyMap
+#      !?outUnsolvedProperties
+#      !?ioSimpleStoredPropertyListForGeneration
+#    ]
+#  end
+#  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
+#    !observablePropertyMap
+#    !mEntityName.string
+#  ]
+
+#--- Check required transients are implemented
   @stringset transientsDeclaredInSuperEntity = {}
   if mIsGraphicEntity then
     transientsDeclaredInSuperEntity += !"selectionDisplay"
@@ -262,8 +285,8 @@ override method @entityDeclaration semanticAnalysis
       ]
       let errorLocation = [observablePropertyMap locationForKey !"selectionDisplay"]
       switch kind
-      case property (type readOnly) :
-        if not readOnly then
+      case property (type accessibility) :
+        if not [accessibility isTransient] then
           error errorLocation : "the 'selectionDisplay' property should be a transient"
         elsif [type swiftTypeName] != "EBShape" then
           error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
@@ -289,8 +312,8 @@ override method @entityDeclaration semanticAnalysis
       ]
       let errorLocation = [observablePropertyMap locationForKey !"objectDisplay"]
       switch kind
-      case property (type readOnly) :
-        if not readOnly then
+      case property (type accessibility) :
+        if not [accessibility isTransient] then
           error errorLocation : "the 'selectionDisplay' property should be a transient"
         elsif [type swiftTypeName] != "EBShape" then
           error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"

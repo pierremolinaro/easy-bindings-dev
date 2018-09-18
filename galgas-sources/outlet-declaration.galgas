@@ -23,6 +23,13 @@ enum @graphicController {
 
 #·······················································································································
 
+#enum @multipleBindingType {
+#  case bool
+#  case int
+#}
+
+#·······················································································································
+
 list @outletDeclarationList {
   @lstring mOutletTypeName
   @lstring mOutletName
@@ -401,8 +408,8 @@ proc analyzeRegularBinding
       case selectionController (2*) :
         error [mObservableProperty location]:"a selection controller cannot be bound"
       end
-      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] ![kind type] !kind
-      boundModelTypeList += ![kind type] !kind ![mObservableProperty location]
+      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] ![kind propertyType] !kind
+      boundModelTypeList += ![kind propertyType] !kind ![mObservableProperty location]
     end
   #--- Analyze outlet binding
     @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}

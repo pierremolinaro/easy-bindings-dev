@@ -1,0 +1,67 @@
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+abstract class @propertyAbstractDeclarationAST {
+  @lstring mClassName
+}
+
+#·······················································································································
+
+abstract method @propertyAbstractDeclarationAST enterInPrecedenceGraph ?!@propertyPrecedenceGraph ioGraph
+
+#·······················································································································
+
+abstract getter @propertyAbstractDeclarationAST lkey -> @lstring
+
+#·······················································································································
+
+list @propertyDeclarationListAST {
+  @propertyAbstractDeclarationAST mPropertyDeclaration
+}
+
+#·······················································································································
+
+graph @propertyPrecedenceGraph (@propertyDeclarationListAST) {
+  insert addNode error message "the '%K' symbol is already declared at %L"
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+proc sortProperties
+      ?let @propertyDeclarationListAST inPropertyDeclarationListAST
+      !@propertyDeclarationListAST outSortedDeclarationListAST
+{
+  @propertyPrecedenceGraph propertyPrecedenceGraph = .emptyGraph
+  for (declaration) in inPropertyDeclarationListAST do
+    [declaration enterInPrecedenceGraph !?propertyPrecedenceGraph]
+  end
+#------------------------------------------  Get ordered declaration list
+  outSortedDeclarationListAST = {}
+  if [propertyPrecedenceGraph undefinedNodeCount] > 0 then
+    for () in  [propertyPrecedenceGraph undefinedNodeReferenceList] do
+      error mValue : "the property " + mValue.string + " is not defined"
+    end
+  else
+    [propertyPrecedenceGraph topologicalSort
+      ?outSortedDeclarationListAST
+      ?*
+      ?let unsortedSemanticDeclarationListAST
+      ?*
+    ]
+    if [unsortedSemanticDeclarationListAST length] > 0 then
+      var s = "semantic analysis not performed, "
+            + [unsortedSemanticDeclarationListAST length]
+            + " declarations are involved in circular definition:"
+      for (declaration) in  unsortedSemanticDeclarationListAST do
+        s += "\n-  " + [declaration lkey]
+      end
+      error .nowhere : s
+      for (declaration) in  unsortedSemanticDeclarationListAST do
+        error [declaration lkey] : "the " + [declaration lkey] + " property is declared here"
+      end
+    end
+  end
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
