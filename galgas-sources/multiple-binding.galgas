@@ -264,19 +264,17 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     ?let @propertyKind kind
     ?let @string unused swiftTypeStringForTransientFunctionArgument
   ]
-  if not [kind isProperty] then #  outMultiplicity == .collection then
-    error [mProperty location] : "only an atomic property can be observed"
-  end
-  outType = [kind propertyType]
-  switch outType
-  case stringType, boolType, dateType, doubleType, integerType, fontType, colorType : # Ok
-  case enumType (* *) : # Ok
-  case entityType (2*) :
-    error [mProperty location] : "an entity cannot be observed"
-  case classType (*) :
-    error [mProperty location] : "a class cannot be observed"
-  case transientPropertyExternType (*) :
-    error [mProperty location] : "a class cannot be observed"
+  switch kind
+  case property (type *) :
+    outType = type
+  case toMany (4*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  case toOne (3*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  case arrayController (3*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  case selectionController (*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
     ![mProperty modelStringForSelf !"self"]

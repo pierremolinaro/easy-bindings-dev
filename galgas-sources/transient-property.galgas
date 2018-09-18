@@ -83,7 +83,7 @@ override method @transientAST tryToDefineSecondaryProperty
     [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?let actionMap]
     @propertyKind kind
     if [type isEntityType] then
-      kind = .toOne {!type:type !typeName: mTransientTypeName !accessibility: .transient !graphic:[type isGraphic]}
+      kind = .toOne {!typeName: mTransientTypeName !accessibility: .transient !graphic:[type isGraphic]}
     else
       kind = .property {!type:type !accessibility: .transient}
     end
@@ -140,13 +140,13 @@ override method @transientAST secondaryPropertySemanticAnalysis
     ]
     switch dependencyKind
     case property (* *) :
-    case toMany (5*) :
+    case toMany (4*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
-    case toOne (4*) :
+    case toOne (3*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
-    case arrayController (4*) :
+    case arrayController (3*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
-    case selectionController (2*) :
+    case selectionController (*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     end
     dependencies +=

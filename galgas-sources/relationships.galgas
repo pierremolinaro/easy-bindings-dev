@@ -186,7 +186,7 @@ method @toOneRelationshipList buildObservablePropertyMap
   #--- Enter in property map
     [!?ioObservableProperties insertKey
       !mToOneRelationshipName
-      !.toOne {!type: type !typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic}
+      !.toOne {!typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic}
       !mInverseRelationshipName.string
       !actionMap
       !mCascading
@@ -220,7 +220,7 @@ method @toManyRelationshipList buildObservablePropertyMap
   #--- Enter in property map
     [!?ioObservableProperties insertKey
       !mToManyRelationshipName
-      !.toMany {!type: type !typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic !isEntity: true}
+      !.toMany {!typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic !isEntity: true}
       !mInverseRelationshipName.string
       !actionMap
       !mCascading
@@ -268,23 +268,23 @@ method @toOneRelationshipList semanticAnalysis
       switch oppositeKind 
       case property (2*) :
         error mInverseRelationshipName : "a property cannot be an opposite of a relationship"
-      case toMany (2* accessibility 2*) :
+      case toMany (* accessibility 2*) :
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
         if mInverseRelationMultiplicity != .collection then
           error mInverseRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
         end
-      case toOne (2* accessibility *) :
+      case toOne (* accessibility *) :
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
         if mInverseRelationMultiplicity != .single then
           error mInverseRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
         end
-      case arrayController (4*) :
+      case arrayController (3*) :
          error mInverseRelationshipName : "an array controller cannot be an opposite of a relationship"
-      case selectionController (2*) :
+      case selectionController (*) :
          error mInverseRelationshipName : "a selection controller cannot be an opposite of a relationship"
       end
       if oppositeOfOpposite != mToOneRelationshipName.string then
@@ -331,17 +331,17 @@ method @toManyRelationshipList semanticAnalysis
       switch oppositeKind 
       case property (2*) :
         error mInverseRelationshipName : "a property cannot be an opposite of a relationship"
-      case toMany (2* accessibility 2*) :
+      case toMany (* accessibility 2*) :
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
-      case toOne (2* accessibility *) :
+      case toOne (* accessibility *) :
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
-      case arrayController (4*) :
+      case arrayController (3*) :
          error mInverseRelationshipName : "an array controller cannot be an opposite of a relationship"
-      case selectionController (2*) :
+      case selectionController (*) :
          error mInverseRelationshipName : "a selection controller cannot be an opposite of a relationship"
       end
       if oppositeOfOpposite != mToManyRelationshipName.string then

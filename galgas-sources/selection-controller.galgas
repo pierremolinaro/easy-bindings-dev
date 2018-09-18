@@ -70,19 +70,19 @@ override method @selectionControllerDeclaration tryToDefineSecondaryProperty
     switch kind
     case property (2*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case toMany (* @lstring typeName 3*) :
+    case toMany (typeName 3*) :
       entityName = typeName
-    case toOne (4*) :
+    case toOne (3*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case arrayController (4*) :
+    case arrayController (3*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case selectionController (2*) :
+    case selectionController (*) :
       error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
     end
   #--- Store selection controller
     [!?ioObservableProperties insertKey
       !mSelectionControllerName
-      !.selectionController {!type: [kind propertyType] !typeName:entityName}
+      !.selectionController {!typeName:entityName}
       !"" # No inverse relationship
       !{} # No action
       !false
@@ -98,19 +98,19 @@ override method @selectionControllerDeclaration tryToDefineSecondaryProperty
     switch kind
     case property (2*) :
       error mModelControllerName : "the model should be an array controller" : entityName
-    case toMany (5*) :
+    case toMany (4*) :
       error mModelControllerName : "the model should be an array controller" : entityName
-    case toOne (4*) :
+    case toOne (3*) :
       error mModelControllerName : "the model should be an array controller" : entityName
-    case arrayController (* typeName 2*) :
+    case arrayController (typeName 2*) :
       entityName = typeName
-    case selectionController (2*) :
+    case selectionController (*) :
       error mModelControllerName : "the model should be an array controller" : entityName
     end
   #--- Store selection controller
     [!?ioObservableProperties insertKey
       !mSelectionControllerName
-      !.selectionController {!type: [kind propertyType] !typeName:entityName}
+      !.selectionController {!typeName:entityName}
       !"" # No inverse relationship
       !{} # No action
       !false
@@ -145,13 +145,13 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     switch kind
     case property (2*) :
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case toMany (* typeName 3*) :
+    case toMany (typeName 3*) :
       selectionEntityName = typeName
-    case toOne (4*) :
+    case toOne (3*) :
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case arrayController (4*) :
+    case arrayController (3*) :
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case selectionController (2*) :
+    case selectionController (*) :
       error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
     end
   #--- Find root entity observable properties
@@ -169,13 +169,13 @@ override method @selectionControllerDeclaration secondaryPropertySemanticAnalysi
     switch kind
     case property (2*) :
       error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    case toMany (5*) :
+    case toMany (4*) :
       error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    case toOne (4*) :
+    case toOne (3*) :
       error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    case arrayController (* typeName 2*) :
+    case arrayController (typeName 2*) :
       selectionEntityName = typeName
-    case selectionController (2*) :
+    case selectionController (*) :
       error mModelControllerName : "the model should be an array controller" : selectionEntityName
     end
   #--- Find root entity observable properties

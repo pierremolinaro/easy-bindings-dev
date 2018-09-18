@@ -209,15 +209,15 @@ override method @arrayControllerDeclaration tryToDefineSecondaryProperty
     switch kind 
     case property (2*) :
       error mToManyPropertyName : "an atomic property is not a collection" : arrayControllerKind
-    case toMany (type typeName * graphic isEntity) :
-      arrayControllerKind = .arrayController {!type: type !typeName: typeName !graphic: graphic !isEntity: isEntity}
+    case toMany (typeName * graphic isEntity) :
+      arrayControllerKind = .arrayController {!typeName: typeName !graphic: graphic !isEntity: isEntity}
       [!?controllerActions insertKey !["add" nowhere]]
       [!?controllerActions insertKey !["remove" nowhere]]
-    case toOne (4*) :
+    case toOne (3*) :
       error mToManyPropertyName : "a toOne property is not a collection" : arrayControllerKind
-    case arrayController (4*) :
+    case arrayController (3*) :
       error mToManyPropertyName : "Array Controller ????" : arrayControllerKind
-    case selectionController (2*) :
+    case selectionController (*) :
       error mToManyPropertyName : "Selection Controller ????" : arrayControllerKind
      end
     [!?ioObservableProperties insertKey
@@ -281,18 +281,18 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   switch kind 
   case property (2*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
-  case toMany (* typeName accessibility graphic isEntity) :
+  case toMany (typeName accessibility graphic isEntity) :
     entityName = typeName
     entityTypeIsGraphic = graphic
     modelKind = if [accessibility isTransient]
       then .transientArray
       else if isEntity then .entityArray else .classArray end
     end
-  case toOne (4*) :
+  case toOne (3*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
-  case arrayController (4*) :
+  case arrayController (3*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
-  case selectionController (2*) :
+  case selectionController (*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
   end
 #------------------------------------------------------------ Check colum bound models

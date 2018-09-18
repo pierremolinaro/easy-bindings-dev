@@ -291,13 +291,13 @@ override method @entityDeclaration semanticAnalysis
         elsif [type swiftTypeName] != "EBShape" then
           error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
         end
-      case toMany (5*) :
+      case toMany (4*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case toOne (4*) :
+      case toOne (3*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case arrayController (4*) :
+      case arrayController (3*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case selectionController (2*) :
+      case selectionController (*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       end
     else
@@ -318,13 +318,13 @@ override method @entityDeclaration semanticAnalysis
         elsif [type swiftTypeName] != "EBShape" then
           error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
         end
-      case toMany (5*) :
+      case toMany (4*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case toOne (4*) :
+      case toOne (3*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case arrayController (4*) :
+      case arrayController (3*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case selectionController (2*) :
+      case selectionController (*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       end
     else

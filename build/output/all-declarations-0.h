@@ -9846,31 +9846,27 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_propertyKind constructor_arrayController (const class GALGAS_typeKind & inOperand0,
-                                                                         const class GALGAS_lstring & inOperand1,
-                                                                         const class GALGAS_bool & inOperand2,
-                                                                         const class GALGAS_bool & inOperand3
+  public : static class GALGAS_propertyKind constructor_arrayController (const class GALGAS_lstring & inOperand0,
+                                                                         const class GALGAS_bool & inOperand1,
+                                                                         const class GALGAS_bool & inOperand2
                                                                          COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_propertyKind constructor_property (const class GALGAS_typeKind & inOperand0,
                                                                   const class GALGAS_propertyAccessibility & inOperand1
                                                                   COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_propertyKind constructor_selectionController (const class GALGAS_typeKind & inOperand0,
-                                                                             const class GALGAS_string & inOperand1
+  public : static class GALGAS_propertyKind constructor_selectionController (const class GALGAS_string & inOperand0
                                                                              COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_propertyKind constructor_toMany (const class GALGAS_typeKind & inOperand0,
-                                                                const class GALGAS_lstring & inOperand1,
-                                                                const class GALGAS_propertyAccessibility & inOperand2,
-                                                                const class GALGAS_bool & inOperand3,
-                                                                const class GALGAS_bool & inOperand4
+  public : static class GALGAS_propertyKind constructor_toMany (const class GALGAS_lstring & inOperand0,
+                                                                const class GALGAS_propertyAccessibility & inOperand1,
+                                                                const class GALGAS_bool & inOperand2,
+                                                                const class GALGAS_bool & inOperand3
                                                                 COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_propertyKind constructor_toOne (const class GALGAS_typeKind & inOperand0,
-                                                               const class GALGAS_lstring & inOperand1,
-                                                               const class GALGAS_propertyAccessibility & inOperand2,
-                                                               const class GALGAS_bool & inOperand3
+  public : static class GALGAS_propertyKind constructor_toOne (const class GALGAS_lstring & inOperand0,
+                                                               const class GALGAS_propertyAccessibility & inOperand1,
+                                                               const class GALGAS_bool & inOperand2
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -9882,10 +9878,9 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_arrayController (class GALGAS_typeKind & outArgument0,
-                                                         class GALGAS_lstring & outArgument1,
+  public : VIRTUAL_IN_DEBUG void method_arrayController (class GALGAS_lstring & outArgument0,
+                                                         class GALGAS_bool & outArgument1,
                                                          class GALGAS_bool & outArgument2,
-                                                         class GALGAS_bool & outArgument3,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
@@ -9894,23 +9889,20 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_selectionController (class GALGAS_typeKind & outArgument0,
-                                                             class GALGAS_string & outArgument1,
+  public : VIRTUAL_IN_DEBUG void method_selectionController (class GALGAS_string & outArgument0,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_toMany (class GALGAS_typeKind & outArgument0,
-                                                class GALGAS_lstring & outArgument1,
-                                                class GALGAS_propertyAccessibility & outArgument2,
+  public : VIRTUAL_IN_DEBUG void method_toMany (class GALGAS_lstring & outArgument0,
+                                                class GALGAS_propertyAccessibility & outArgument1,
+                                                class GALGAS_bool & outArgument2,
                                                 class GALGAS_bool & outArgument3,
-                                                class GALGAS_bool & outArgument4,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_toOne (class GALGAS_typeKind & outArgument0,
-                                               class GALGAS_lstring & outArgument1,
-                                               class GALGAS_propertyAccessibility & outArgument2,
-                                               class GALGAS_bool & outArgument3,
+  public : VIRTUAL_IN_DEBUG void method_toOne (class GALGAS_lstring & outArgument0,
+                                               class GALGAS_propertyAccessibility & outArgument1,
+                                               class GALGAS_bool & outArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -11903,18 +11895,16 @@ class cEnumAssociatedValues_propertyKind_property : public cEnumAssociatedValues
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class cEnumAssociatedValues_propertyKind_toMany : public cEnumAssociatedValues {
-  public : const GALGAS_typeKind mAssociatedValue0 ;
-  public : const GALGAS_lstring mAssociatedValue1 ;
-  public : const GALGAS_propertyAccessibility mAssociatedValue2 ;
+  public : const GALGAS_lstring mAssociatedValue0 ;
+  public : const GALGAS_propertyAccessibility mAssociatedValue1 ;
+  public : const GALGAS_bool mAssociatedValue2 ;
   public : const GALGAS_bool mAssociatedValue3 ;
-  public : const GALGAS_bool mAssociatedValue4 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_propertyKind_toMany (const GALGAS_typeKind & inAssociatedValue0,
-                                                      const GALGAS_lstring & inAssociatedValue1,
-                                                      const GALGAS_propertyAccessibility & inAssociatedValue2,
-                                                      const GALGAS_bool & inAssociatedValue3,
-                                                      const GALGAS_bool & inAssociatedValue4
+  public : cEnumAssociatedValues_propertyKind_toMany (const GALGAS_lstring & inAssociatedValue0,
+                                                      const GALGAS_propertyAccessibility & inAssociatedValue1,
+                                                      const GALGAS_bool & inAssociatedValue2,
+                                                      const GALGAS_bool & inAssociatedValue3
                                                       COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
@@ -11927,16 +11917,14 @@ class cEnumAssociatedValues_propertyKind_toMany : public cEnumAssociatedValues {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class cEnumAssociatedValues_propertyKind_toOne : public cEnumAssociatedValues {
-  public : const GALGAS_typeKind mAssociatedValue0 ;
-  public : const GALGAS_lstring mAssociatedValue1 ;
-  public : const GALGAS_propertyAccessibility mAssociatedValue2 ;
-  public : const GALGAS_bool mAssociatedValue3 ;
+  public : const GALGAS_lstring mAssociatedValue0 ;
+  public : const GALGAS_propertyAccessibility mAssociatedValue1 ;
+  public : const GALGAS_bool mAssociatedValue2 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_propertyKind_toOne (const GALGAS_typeKind & inAssociatedValue0,
-                                                     const GALGAS_lstring & inAssociatedValue1,
-                                                     const GALGAS_propertyAccessibility & inAssociatedValue2,
-                                                     const GALGAS_bool & inAssociatedValue3
+  public : cEnumAssociatedValues_propertyKind_toOne (const GALGAS_lstring & inAssociatedValue0,
+                                                     const GALGAS_propertyAccessibility & inAssociatedValue1,
+                                                     const GALGAS_bool & inAssociatedValue2
                                                      COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
@@ -11949,16 +11937,14 @@ class cEnumAssociatedValues_propertyKind_toOne : public cEnumAssociatedValues {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class cEnumAssociatedValues_propertyKind_arrayController : public cEnumAssociatedValues {
-  public : const GALGAS_typeKind mAssociatedValue0 ;
-  public : const GALGAS_lstring mAssociatedValue1 ;
+  public : const GALGAS_lstring mAssociatedValue0 ;
+  public : const GALGAS_bool mAssociatedValue1 ;
   public : const GALGAS_bool mAssociatedValue2 ;
-  public : const GALGAS_bool mAssociatedValue3 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_propertyKind_arrayController (const GALGAS_typeKind & inAssociatedValue0,
-                                                               const GALGAS_lstring & inAssociatedValue1,
-                                                               const GALGAS_bool & inAssociatedValue2,
-                                                               const GALGAS_bool & inAssociatedValue3
+  public : cEnumAssociatedValues_propertyKind_arrayController (const GALGAS_lstring & inAssociatedValue0,
+                                                               const GALGAS_bool & inAssociatedValue1,
+                                                               const GALGAS_bool & inAssociatedValue2
                                                                COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
@@ -11971,12 +11957,10 @@ class cEnumAssociatedValues_propertyKind_arrayController : public cEnumAssociate
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class cEnumAssociatedValues_propertyKind_selectionController : public cEnumAssociatedValues {
-  public : const GALGAS_typeKind mAssociatedValue0 ;
-  public : const GALGAS_string mAssociatedValue1 ;
+  public : const GALGAS_string mAssociatedValue0 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_propertyKind_selectionController (const GALGAS_typeKind & inAssociatedValue0,
-                                                                   const GALGAS_string & inAssociatedValue1
+  public : cEnumAssociatedValues_propertyKind_selectionController (const GALGAS_string & inAssociatedValue0
                                                                    COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,

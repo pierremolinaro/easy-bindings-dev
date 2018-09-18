@@ -68,11 +68,11 @@ override method @proxyDeclaration tryToDefineSecondaryProperty
     switch kind 
     case property (2*) :
       error mControllerName : "an array controller is required here"
-    case toMany (5*) :
+    case toMany (4*) :
       error mControllerName : "an array controller is required here"
-    case toOne (4*) :
+    case toOne (3*) :
       error mControllerName : "an array controller is required here"
-    case arrayController (* entityName 2*) :
+    case arrayController (entityName 2*) :
       [ioSemanticContext.mEntityObservablePropertyMap searchKey
         !entityName
         ?let observablePropertyMap
@@ -84,37 +84,37 @@ override method @proxyDeclaration tryToDefineSecondaryProperty
         ?3*
       ]
       switch kind 
-      case property (2*) :
+      case property (type *) :
         [!?ioObservableProperties insertKey
           !mProxyName
-          !.property {!type: [kind propertyType] !accessibility: .proxy}
+          !.property {!type: type !accessibility: .proxy}
           !""
           !{}
           !false
         ]
       #--- Code Generation
         ioSimpleStoredPropertyListForGeneration +=
-          ![kind propertyType]
+          !type
           !mPropertyName.string
           !true
           !""
           !false
-      case toMany (type typeName * graphic isEntity) :
+      case toMany (typeName * graphic isEntity) :
         [!?ioObservableProperties insertKey
           !mProxyName
-          !.toMany {!type: type !typeName: typeName !accessibility: .proxy !graphic: graphic !isEntity: isEntity}
+          !.toMany {!typeName: typeName !accessibility: .proxy !graphic: graphic !isEntity: isEntity}
           !""
           !{}
           !false
         ]
-      case toOne (4*) :
+      case toOne (3*) :
         error mPropertyName : "<<toOne property>>" 
-      case arrayController (4*) :
+      case arrayController (3*) :
         error mPropertyName : "a property is required here"
-      case selectionController (2*) :
+      case selectionController (*) :
         error mPropertyName : "a property is required here"
       end
-    case selectionController (2*) :
+    case selectionController (*) :
       error mControllerName : "an array controller is required here"
     end  
   else

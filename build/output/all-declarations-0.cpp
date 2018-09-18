@@ -10773,7 +10773,7 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toOneRelationshipL
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (enumerator_5448.current_mToOneRelationshipName (HERE), GALGAS_propertyKind::constructor_toOne (var_type_5538, enumerator_5448.current_mDestinationEntityName (HERE), GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("relationships.galgas", 189)), var_graphic_5590  COMMA_SOURCE_FILE ("relationships.galgas", 189)), enumerator_5448.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_5553, enumerator_5448.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 187)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_5448.current_mToOneRelationshipName (HERE), GALGAS_propertyKind::constructor_toOne (enumerator_5448.current_mDestinationEntityName (HERE), GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("relationships.galgas", 189)), var_graphic_5590  COMMA_SOURCE_FILE ("relationships.galgas", 189)), enumerator_5448.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_5553, enumerator_5448.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 187)) ;
     }
     enumerator_5448.gotoNextObject () ;
   }
@@ -10792,13 +10792,13 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toManyRelationship
                                                  C_Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_6820 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_6820.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_6910 ;
-    GALGAS_actionMap var_actionMap_6925 ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_6820.current_mDestinationEntityName (HERE), var_type_6910, var_actionMap_6925, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 205)) ;
-    GALGAS_bool var_graphic_6962 ;
-    switch (var_type_6910.enumValue ()) {
+  cEnumerator_toManyRelationshipList enumerator_6808 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_6808.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_6898 ;
+    GALGAS_actionMap var_actionMap_6913 ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_6808.current_mDestinationEntityName (HERE), var_type_6898, var_actionMap_6913, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 205)) ;
+    GALGAS_bool var_graphic_6950 ;
+    switch (var_type_6898.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -10810,43 +10810,43 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_toManyRelationship
     case GALGAS_typeKind::kEnum_colorType:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_6820.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 210)), GALGAS_string ("a simple type cannot be used as entitytype"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 210)) ;
-        var_graphic_6962.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6808.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 210)), GALGAS_string ("a simple type cannot be used as entitytype"), fixItArray1  COMMA_SOURCE_FILE ("relationships.galgas", 210)) ;
+        var_graphic_6950.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_6820.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 212)), GALGAS_string ("an enumeration type cannot be used as entitytype"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 212)) ;
-        var_graphic_6962.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6808.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 212)), GALGAS_string ("an enumeration type cannot be used as entitytype"), fixItArray2  COMMA_SOURCE_FILE ("relationships.galgas", 212)) ;
+        var_graphic_6950.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_6820.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 214)), GALGAS_string ("a class type cannot be used as entitytype"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 214)) ;
-        var_graphic_6962.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6808.current_mDestinationEntityName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 214)), GALGAS_string ("a class type cannot be used as entitytype"), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 214)) ;
+        var_graphic_6950.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyExternType:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_6820.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 216)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 216)) ;
-        var_graphic_6962.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6808.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 216)), GALGAS_string ("the opposite type cannot be used as entity type"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 216)) ;
+        var_graphic_6950.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
-        const cEnumAssociatedValues_typeKind_entityType * extractPtr_7603 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type_6910.unsafePointer ()) ;
-        const GALGAS_bool extractedValue_isGraphic = extractPtr_7603->mAssociatedValue1 ;
-        var_graphic_6962 = extractedValue_isGraphic ;
+        const cEnumAssociatedValues_typeKind_entityType * extractPtr_7591 = (const cEnumAssociatedValues_typeKind_entityType *) (var_type_6898.unsafePointer ()) ;
+        const GALGAS_bool extractedValue_isGraphic = extractPtr_7591->mAssociatedValue1 ;
+        var_graphic_6950 = extractedValue_isGraphic ;
       }
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (enumerator_6820.current_mToManyRelationshipName (HERE), GALGAS_propertyKind::constructor_toMany (var_type_6910, enumerator_6820.current_mDestinationEntityName (HERE), GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("relationships.galgas", 223)), var_graphic_6962, GALGAS_bool (true)  COMMA_SOURCE_FILE ("relationships.galgas", 223)), enumerator_6820.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_6925, enumerator_6820.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 221)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_6808.current_mToManyRelationshipName (HERE), GALGAS_propertyKind::constructor_toMany (enumerator_6808.current_mDestinationEntityName (HERE), GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("relationships.galgas", 223)), var_graphic_6950, GALGAS_bool (true)  COMMA_SOURCE_FILE ("relationships.galgas", 223)), enumerator_6808.current_mInverseRelationshipName (HERE).getter_string (HERE), var_actionMap_6913, enumerator_6808.current_mCascading (HERE), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 221)) ;
     }
-    enumerator_6820.gotoNextObject () ;
+    enumerator_6808.gotoNextObject () ;
   }
 }
 
@@ -10865,88 +10865,88 @@ void extensionMethod_semanticAnalysis (const GALGAS_toOneRelationshipList inObje
   outArgument_outToOneEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
   outArgument_outToOneEntityRelationshipListForGeneration = GALGAS_toOneEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 239)) ;
   const GALGAS_toOneRelationshipList temp_0 = inObject ;
-  cEnumerator_toOneRelationshipList enumerator_8455 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_8455.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_8541 ;
-    GALGAS_actionMap joker_8543 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_8455.current_mDestinationEntityName (HERE), var_type_8541, joker_8543, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 241)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_8706 ;
-    GALGAS_objectKind joker_8714 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_8455.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_8706, joker_8714, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 242)) ;
-    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_8455.current_mToOneRelationshipName (HERE).getter_string (HERE), var_type_8541, enumerator_8455.current_mInverseRelationshipName (HERE).getter_string (HERE), enumerator_8455.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap_8706, enumerator_8455.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 247)) ;
-    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, enumerator_8455.current_mInverseRelationshipName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+  cEnumerator_toOneRelationshipList enumerator_8431 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_8431.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_8517 ;
+    GALGAS_actionMap joker_8519 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_8431.current_mDestinationEntityName (HERE), var_type_8517, joker_8519, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 241)) ;
+    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_8682 ;
+    GALGAS_objectKind joker_8690 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_8431.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_8682, joker_8690, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 242)) ;
+    outArgument_outToOneEntityRelationshipListForGeneration.addAssign_operation (enumerator_8431.current_mToOneRelationshipName (HERE).getter_string (HERE), var_type_8517, enumerator_8431.current_mInverseRelationshipName (HERE).getter_string (HERE), enumerator_8431.current_mInverseRelationMultiplicity (HERE), var_destinationEntityObservablePropertyMap_8682, enumerator_8431.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 247)) ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, enumerator_8431.current_mInverseRelationshipName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
     if (kBoolTrue == test_1) {
-      GALGAS_propertyKind var_oppositeKind_9195 ;
-      GALGAS_string var_oppositeOfOpposite_9236 ;
-      GALGAS_actionMap joker_9247_2 ; // Joker input parameter
-      GALGAS_bool joker_9247_1 ; // Joker input parameter
-      var_destinationEntityObservablePropertyMap_8706.method_searchForInverseRelationship (enumerator_8455.current_mInverseRelationshipName (HERE), var_oppositeKind_9195, var_oppositeOfOpposite_9236, joker_9247_2, joker_9247_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 256)) ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (var_oppositeKind_9195, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 263)).objectCompare (enumerator_8455.current_mCurrentEntityName (HERE).getter_string (HERE))).boolEnum () ;
+      GALGAS_propertyKind var_oppositeKind_9171 ;
+      GALGAS_string var_oppositeOfOpposite_9212 ;
+      GALGAS_actionMap joker_9223_2 ; // Joker input parameter
+      GALGAS_bool joker_9223_1 ; // Joker input parameter
+      var_destinationEntityObservablePropertyMap_8682.method_searchForInverseRelationship (enumerator_8431.current_mInverseRelationshipName (HERE), var_oppositeKind_9171, var_oppositeOfOpposite_9212, joker_9223_2, joker_9223_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 256)) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (var_oppositeKind_9171, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 263)).objectCompare (enumerator_8431.current_mCurrentEntityName (HERE).getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_2) {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 264)), GALGAS_string ("the type of the opposite property '").add_operation (enumerator_8455.current_mInverseRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 265)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 265)).add_operation (GALGAS_string ("' should be '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 265)).add_operation (enumerator_8455.current_mCurrentEntityName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)).add_operation (GALGAS_string ("' (found '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)).add_operation (extensionGetter_swiftTypeName (var_oppositeKind_9195, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)).add_operation (GALGAS_string ("')"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 264)) ;
+        inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 264)), GALGAS_string ("the type of the opposite property '").add_operation (enumerator_8431.current_mInverseRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 265)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 265)).add_operation (GALGAS_string ("' should be '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 265)).add_operation (enumerator_8431.current_mCurrentEntityName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)).add_operation (GALGAS_string ("' (found '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)).add_operation (extensionGetter_swiftTypeName (var_oppositeKind_9171, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)).add_operation (GALGAS_string ("')"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 266)), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 264)) ;
       }
-      switch (var_oppositeKind_9195.enumValue ()) {
+      switch (var_oppositeKind_9171.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_property:
         {
           TC_Array <C_FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 270)), GALGAS_string ("a property cannot be an opposite of a relationship"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 270)) ;
+          inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 270)), GALGAS_string ("a property cannot be an opposite of a relationship"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 270)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_toMany:
         {
-          const cEnumAssociatedValues_propertyKind_toMany * extractPtr_10102 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_oppositeKind_9195.unsafePointer ()) ;
-          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_10102->mAssociatedValue2 ;
+          const cEnumAssociatedValues_propertyKind_toMany * extractPtr_10077 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_oppositeKind_9171.unsafePointer ()) ;
+          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_10077->mAssociatedValue1 ;
           const enumGalgasBool test_5 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("relationships.galgas", 272)).boolEnum () ;
           if (kBoolTrue == test_5) {
             TC_Array <C_FixItDescription> fixItArray6 ;
-            inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 273)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 273)) ;
+            inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 273)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 273)) ;
           }
-          const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, enumerator_8455.current_mInverseRelationMultiplicity (HERE).objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 275)))).boolEnum () ;
+          const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, enumerator_8431.current_mInverseRelationMultiplicity (HERE).objectCompare (GALGAS_propertyMultiplicity::constructor_collection (SOURCE_FILE ("relationships.galgas", 275)))).boolEnum () ;
           if (kBoolTrue == test_7) {
             TC_Array <C_FixItDescription> fixItArray8 ;
-            inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 276)), GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)"), fixItArray8  COMMA_SOURCE_FILE ("relationships.galgas", 276)) ;
+            inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 276)), GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)"), fixItArray8  COMMA_SOURCE_FILE ("relationships.galgas", 276)) ;
           }
         }
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
-          const cEnumAssociatedValues_propertyKind_toOne * extractPtr_10464 = (const cEnumAssociatedValues_propertyKind_toOne *) (var_oppositeKind_9195.unsafePointer ()) ;
-          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_10464->mAssociatedValue2 ;
+          const cEnumAssociatedValues_propertyKind_toOne * extractPtr_10438 = (const cEnumAssociatedValues_propertyKind_toOne *) (var_oppositeKind_9171.unsafePointer ()) ;
+          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_10438->mAssociatedValue1 ;
           const enumGalgasBool test_9 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("relationships.galgas", 279)).boolEnum () ;
           if (kBoolTrue == test_9) {
             TC_Array <C_FixItDescription> fixItArray10 ;
-            inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 280)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray10  COMMA_SOURCE_FILE ("relationships.galgas", 280)) ;
+            inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 280)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray10  COMMA_SOURCE_FILE ("relationships.galgas", 280)) ;
           }
-          const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, enumerator_8455.current_mInverseRelationMultiplicity (HERE).objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 282)))).boolEnum () ;
+          const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, enumerator_8431.current_mInverseRelationMultiplicity (HERE).objectCompare (GALGAS_propertyMultiplicity::constructor_single (SOURCE_FILE ("relationships.galgas", 282)))).boolEnum () ;
           if (kBoolTrue == test_11) {
             TC_Array <C_FixItDescription> fixItArray12 ;
-            inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 283)), GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)"), fixItArray12  COMMA_SOURCE_FILE ("relationships.galgas", 283)) ;
+            inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 283)), GALGAS_string ("inverse relationship multiplicity error (toMany <-> toOne)"), fixItArray12  COMMA_SOURCE_FILE ("relationships.galgas", 283)) ;
           }
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
         {
           TC_Array <C_FixItDescription> fixItArray13 ;
-          inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 286)), GALGAS_string ("an array controller cannot be an opposite of a relationship"), fixItArray13  COMMA_SOURCE_FILE ("relationships.galgas", 286)) ;
+          inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 286)), GALGAS_string ("an array controller cannot be an opposite of a relationship"), fixItArray13  COMMA_SOURCE_FILE ("relationships.galgas", 286)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_selectionController:
         {
           TC_Array <C_FixItDescription> fixItArray14 ;
-          inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 288)), GALGAS_string ("a selection controller cannot be an opposite of a relationship"), fixItArray14  COMMA_SOURCE_FILE ("relationships.galgas", 288)) ;
+          inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 288)), GALGAS_string ("a selection controller cannot be an opposite of a relationship"), fixItArray14  COMMA_SOURCE_FILE ("relationships.galgas", 288)) ;
         }
         break ;
       }
-      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_9236.objectCompare (enumerator_8455.current_mToOneRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
+      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_9212.objectCompare (enumerator_8431.current_mToOneRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_15) {
         TC_Array <C_FixItDescription> fixItArray16 ;
-        inCompiler->emitSemanticError (enumerator_8455.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 291)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8455.current_mToOneRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 291)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 292)), fixItArray16  COMMA_SOURCE_FILE ("relationships.galgas", 291)) ;
+        inCompiler->emitSemanticError (enumerator_8431.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 291)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_8431.current_mToOneRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 291)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 292)), fixItArray16  COMMA_SOURCE_FILE ("relationships.galgas", 291)) ;
       }
     }
-    enumerator_8455.gotoNextObject () ;
+    enumerator_8431.gotoNextObject () ;
   }
 }
 
@@ -10965,78 +10965,78 @@ void extensionMethod_semanticAnalysis (const GALGAS_toManyRelationshipList inObj
   outArgument_outToManyEntityRelationshipListForGeneration.drop () ; // Release 'out' argument
   outArgument_outToManyEntityRelationshipListForGeneration = GALGAS_toManyEntityRelationshipListForGeneration::constructor_emptyList (SOURCE_FILE ("relationships.galgas", 304)) ;
   const GALGAS_toManyRelationshipList temp_0 = inObject ;
-  cEnumerator_toManyRelationshipList enumerator_11358 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_11358.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_11444 ;
-    GALGAS_actionMap joker_11446 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_11358.current_mDestinationEntityName (HERE), var_type_11444, joker_11446, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 306)) ;
-    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_11609 ;
-    GALGAS_objectKind joker_11617 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_11358.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_11609, joker_11617, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 307)) ;
-    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_11358.current_mToManyRelationshipName (HERE).getter_string (HERE), var_type_11444, enumerator_11358.current_mInverseRelationshipName (HERE).getter_string (HERE), var_destinationEntityObservablePropertyMap_11609, enumerator_11358.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 312)) ;
-    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, enumerator_11358.current_mInverseRelationshipName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+  cEnumerator_toManyRelationshipList enumerator_11331 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_11331.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_11417 ;
+    GALGAS_actionMap joker_11419 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mUnifiedTypeMap (HERE).method_searchKey (enumerator_11331.current_mDestinationEntityName (HERE), var_type_11417, joker_11419, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 306)) ;
+    GALGAS_observablePropertyMap var_destinationEntityObservablePropertyMap_11582 ;
+    GALGAS_objectKind joker_11590 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (enumerator_11331.current_mDestinationEntityName (HERE), var_destinationEntityObservablePropertyMap_11582, joker_11590, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 307)) ;
+    outArgument_outToManyEntityRelationshipListForGeneration.addAssign_operation (enumerator_11331.current_mToManyRelationshipName (HERE).getter_string (HERE), var_type_11417, enumerator_11331.current_mInverseRelationshipName (HERE).getter_string (HERE), var_destinationEntityObservablePropertyMap_11582, enumerator_11331.current_mCascading (HERE)  COMMA_SOURCE_FILE ("relationships.galgas", 312)) ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, enumerator_11331.current_mInverseRelationshipName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
     if (kBoolTrue == test_1) {
-      GALGAS_propertyKind var_oppositeKind_12064 ;
-      GALGAS_string var_oppositeOfOpposite_12105 ;
-      GALGAS_actionMap joker_12116_2 ; // Joker input parameter
-      GALGAS_bool joker_12116_1 ; // Joker input parameter
-      var_destinationEntityObservablePropertyMap_11609.method_searchForInverseRelationship (enumerator_11358.current_mInverseRelationshipName (HERE), var_oppositeKind_12064, var_oppositeOfOpposite_12105, joker_12116_2, joker_12116_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 320)) ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (var_oppositeKind_12064, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 326)).objectCompare (enumerator_11358.current_mCurrentEntityName (HERE).getter_string (HERE))).boolEnum () ;
+      GALGAS_propertyKind var_oppositeKind_12037 ;
+      GALGAS_string var_oppositeOfOpposite_12078 ;
+      GALGAS_actionMap joker_12089_2 ; // Joker input parameter
+      GALGAS_bool joker_12089_1 ; // Joker input parameter
+      var_destinationEntityObservablePropertyMap_11582.method_searchForInverseRelationship (enumerator_11331.current_mInverseRelationshipName (HERE), var_oppositeKind_12037, var_oppositeOfOpposite_12078, joker_12089_2, joker_12089_1, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 320)) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (var_oppositeKind_12037, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 326)).objectCompare (enumerator_11331.current_mCurrentEntityName (HERE).getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_2) {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 327)), GALGAS_string ("the type of the opposite property '").add_operation (enumerator_11358.current_mInverseRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 328)).add_operation (GALGAS_string ("' should be '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 328)).add_operation (enumerator_11358.current_mCurrentEntityName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (GALGAS_string ("' (found '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (extensionGetter_swiftTypeName (var_oppositeKind_12064, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (GALGAS_string ("')"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 327)) ;
+        inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 327)), GALGAS_string ("the type of the opposite property '").add_operation (enumerator_11331.current_mInverseRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 328)).add_operation (GALGAS_string ("' should be '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 328)).add_operation (enumerator_11331.current_mCurrentEntityName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (GALGAS_string ("' (found '"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (extensionGetter_swiftTypeName (var_oppositeKind_12037, inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)).add_operation (GALGAS_string ("')"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 329)), fixItArray3  COMMA_SOURCE_FILE ("relationships.galgas", 327)) ;
       }
-      switch (var_oppositeKind_12064.enumValue ()) {
+      switch (var_oppositeKind_12037.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_property:
         {
           TC_Array <C_FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 333)), GALGAS_string ("a property cannot be an opposite of a relationship"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 333)) ;
+          inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 333)), GALGAS_string ("a property cannot be an opposite of a relationship"), fixItArray4  COMMA_SOURCE_FILE ("relationships.galgas", 333)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_toMany:
         {
-          const cEnumAssociatedValues_propertyKind_toMany * extractPtr_12764 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_oppositeKind_12064.unsafePointer ()) ;
-          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_12764->mAssociatedValue2 ;
+          const cEnumAssociatedValues_propertyKind_toMany * extractPtr_12736 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_oppositeKind_12037.unsafePointer ()) ;
+          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_12736->mAssociatedValue1 ;
           const enumGalgasBool test_5 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("relationships.galgas", 335)).boolEnum () ;
           if (kBoolTrue == test_5) {
             TC_Array <C_FixItDescription> fixItArray6 ;
-            inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 336)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 336)) ;
+            inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 336)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray6  COMMA_SOURCE_FILE ("relationships.galgas", 336)) ;
           }
         }
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
-          const cEnumAssociatedValues_propertyKind_toOne * extractPtr_12954 = (const cEnumAssociatedValues_propertyKind_toOne *) (var_oppositeKind_12064.unsafePointer ()) ;
-          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_12954->mAssociatedValue2 ;
+          const cEnumAssociatedValues_propertyKind_toOne * extractPtr_12925 = (const cEnumAssociatedValues_propertyKind_toOne *) (var_oppositeKind_12037.unsafePointer ()) ;
+          const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_12925->mAssociatedValue1 ;
           const enumGalgasBool test_7 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("relationships.galgas", 339)).boolEnum () ;
           if (kBoolTrue == test_7) {
             TC_Array <C_FixItDescription> fixItArray8 ;
-            inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 340)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray8  COMMA_SOURCE_FILE ("relationships.galgas", 340)) ;
+            inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 340)), GALGAS_string ("this relationship is transient, should be stored"), fixItArray8  COMMA_SOURCE_FILE ("relationships.galgas", 340)) ;
           }
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
         {
           TC_Array <C_FixItDescription> fixItArray9 ;
-          inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 343)), GALGAS_string ("an array controller cannot be an opposite of a relationship"), fixItArray9  COMMA_SOURCE_FILE ("relationships.galgas", 343)) ;
+          inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 343)), GALGAS_string ("an array controller cannot be an opposite of a relationship"), fixItArray9  COMMA_SOURCE_FILE ("relationships.galgas", 343)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_selectionController:
         {
           TC_Array <C_FixItDescription> fixItArray10 ;
-          inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 345)), GALGAS_string ("a selection controller cannot be an opposite of a relationship"), fixItArray10  COMMA_SOURCE_FILE ("relationships.galgas", 345)) ;
+          inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 345)), GALGAS_string ("a selection controller cannot be an opposite of a relationship"), fixItArray10  COMMA_SOURCE_FILE ("relationships.galgas", 345)) ;
         }
         break ;
       }
-      const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_12105.objectCompare (enumerator_11358.current_mToManyRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
+      const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_oppositeOfOpposite_12078.objectCompare (enumerator_11331.current_mToManyRelationshipName (HERE).getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_11) {
         TC_Array <C_FixItDescription> fixItArray12 ;
-        inCompiler->emitSemanticError (enumerator_11358.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 348)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_11358.current_mToManyRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 348)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 348)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 349)), fixItArray12  COMMA_SOURCE_FILE ("relationships.galgas", 348)) ;
+        inCompiler->emitSemanticError (enumerator_11331.current_mInverseRelationshipName (HERE).getter_location (SOURCE_FILE ("relationships.galgas", 348)), GALGAS_string ("inverse relationship does not name '").add_operation (enumerator_11331.current_mToManyRelationshipName (HERE).getter_string (SOURCE_FILE ("relationships.galgas", 348)), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 348)).add_operation (GALGAS_string ("' as opposite"), inCompiler COMMA_SOURCE_FILE ("relationships.galgas", 349)), fixItArray12  COMMA_SOURCE_FILE ("relationships.galgas", 348)) ;
       }
     }
-    enumerator_11358.gotoNextObject () ;
+    enumerator_11331.gotoNextObject () ;
   }
 }
 
