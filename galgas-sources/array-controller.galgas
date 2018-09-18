@@ -269,7 +269,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
       case toOne (4*) :
         error controllerName : "an array controller is required here"
       case arrayController (entityType entityName graphic) :
-        if propertyName.string == "sortedArray" then
+        if propertyName.string == "selectedArray" then
           [!?ioObservableProperties insertKey
             !mControllerName
             !.arrayController {!type: entityType !typeName: entityName !graphic: graphic}
@@ -278,7 +278,7 @@ override method @arrayControllerDeclaration tryToSolveSecondaryProperty
             !false
           ]
         else
-          error propertyName : "only the 'sortedArray' property is accepted here"
+          error propertyName : "only the 'selectedArray' property is accepted here"
         end
       case selectionController (2*) :
         error controllerName : "an array controller is required here"

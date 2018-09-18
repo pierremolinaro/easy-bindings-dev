@@ -4,7 +4,6 @@
 
 class @transientAST : @abstractSecondaryProperty {
   @lstring mTransientTypeName
-  @bool mIsArray
   @lstring mTransientName
   @observablePropertyList mDependencyList
   @lstring mExternFunctionName
@@ -20,14 +19,7 @@ syntax extension easyBindings_syntax {
   
   rule <transient_declaration> ?!@secondaryPropertyList ioSecondaryPropertyList {
     $transient$
-    @bool isArray
-    select
-      isArray = false
-    or
-      $array$
-      isArray = true
-    end
-    $Identifier$ ?var @lstring transientTypeName
+    $Identifier$ ?let transientTypeName
     $identifier$ ?let @lstring transientName
     @lstring externFunctionName
     select
@@ -47,7 +39,6 @@ syntax extension easyBindings_syntax {
     $;$
     ioSecondaryPropertyList += !@transientAST.new {
       !transientTypeName
-      !isArray
       !transientName
       !dependanceList
       !externFunctionName
@@ -90,9 +81,7 @@ override method @transientAST tryToSolveSecondaryProperty
   if solved then
     [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?let actionMap]
     @propertyKind kind
-    if mIsArray then
-      kind = .toMany {!type:type !typeName: mTransientTypeName !readOnly: true !graphic:[type isGraphic]}
-    elsif [type isEntityType] then
+    if [type isEntityType] then
       kind = .toOne {!type:type !typeName: mTransientTypeName !readOnly: true !graphic:[type isGraphic]}
     else
       kind = .property {!type:type !readOnly: true}
@@ -168,7 +157,6 @@ override method @transientAST secondaryPropertySemanticAnalysis
   ioTransientDefinitionListForGeneration +=
     !inOwnerName
     !mTransientName.string
-    !mIsArray
     !type
     !dependencies
     !mExternFunctionName.string
@@ -181,7 +169,6 @@ override method @transientAST secondaryPropertySemanticAnalysis
 list @transientDefinitionListForGeneration {
   @string mOwnerName
   @string mTransientName
-  @bool mIsArray
   @typeKind mTransientType
   @transientDependencyListForGeneration mDependencyList
   @string mExternFunctionName
@@ -358,7 +345,6 @@ proc generateTransients
       let s = [filewrapper transientManager.transientComputationFunctionFile
         !mOwnerName
         !mTransientName
-        !mIsArray
         !mDependencyList
         !mTransientType 
       ]
@@ -387,7 +373,6 @@ private filewrapper transientManager in "../generation-templates" {
   template transientComputationFunctionFile "transient-computation-function.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string TRANSIENT_NAME
-    ?@bool IS_ARRAY
     ?@transientDependencyListForGeneration DEPENDENCY_LIST
     ?@typeKind TRANSIENT_TYPE
 }

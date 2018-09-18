@@ -549,7 +549,6 @@ class cCollectionElement_transientDefinitionListForGeneration : public cCollecti
 //--- Constructors
   public : cCollectionElement_transientDefinitionListForGeneration (const GALGAS_string & in_mOwnerName,
                                                                     const GALGAS_string & in_mTransientName,
-                                                                    const GALGAS_bool & in_mIsArray,
                                                                     const GALGAS_typeKind & in_mTransientType,
                                                                     const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
                                                                     const GALGAS_string & in_mExternFunctionName
@@ -573,20 +572,19 @@ class cCollectionElement_transientDefinitionListForGeneration : public cCollecti
 
 cCollectionElement_transientDefinitionListForGeneration::cCollectionElement_transientDefinitionListForGeneration (const GALGAS_string & in_mOwnerName,
                                                                                                                   const GALGAS_string & in_mTransientName,
-                                                                                                                  const GALGAS_bool & in_mIsArray,
                                                                                                                   const GALGAS_typeKind & in_mTransientType,
                                                                                                                   const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
                                                                                                                   const GALGAS_string & in_mExternFunctionName
                                                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mOwnerName, in_mTransientName, in_mIsArray, in_mTransientType, in_mDependencyList, in_mExternFunctionName) {
+mObject (in_mOwnerName, in_mTransientName, in_mTransientType, in_mDependencyList, in_mExternFunctionName) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cCollectionElement_transientDefinitionListForGeneration::cCollectionElement_transientDefinitionListForGeneration (const GALGAS_transientDefinitionListForGeneration_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mOwnerName, inElement.mProperty_mTransientName, inElement.mProperty_mIsArray, inElement.mProperty_mTransientType, inElement.mProperty_mDependencyList, inElement.mProperty_mExternFunctionName) {
+mObject (inElement.mProperty_mOwnerName, inElement.mProperty_mTransientName, inElement.mProperty_mTransientType, inElement.mProperty_mDependencyList, inElement.mProperty_mExternFunctionName) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -599,7 +597,7 @@ bool cCollectionElement_transientDefinitionListForGeneration::isValid (void) con
 
 cCollectionElement * cCollectionElement_transientDefinitionListForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_transientDefinitionListForGeneration (mObject.mProperty_mOwnerName, mObject.mProperty_mTransientName, mObject.mProperty_mIsArray, mObject.mProperty_mTransientType, mObject.mProperty_mDependencyList, mObject.mProperty_mExternFunctionName COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_transientDefinitionListForGeneration (mObject.mProperty_mOwnerName, mObject.mProperty_mTransientName, mObject.mProperty_mTransientType, mObject.mProperty_mDependencyList, mObject.mProperty_mExternFunctionName COMMA_HERE)) ;
   return result ;
 }
 
@@ -614,10 +612,6 @@ void cCollectionElement_transientDefinitionListForGeneration::description (C_Str
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mTransientName" ":" ;
   mObject.mProperty_mTransientName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mIsArray" ":" ;
-  mObject.mProperty_mIsArray.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mTransientType" ":" ;
@@ -662,16 +656,15 @@ GALGAS_transientDefinitionListForGeneration GALGAS_transientDefinitionListForGen
 
 GALGAS_transientDefinitionListForGeneration GALGAS_transientDefinitionListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
                                                                                                                     const GALGAS_string & inOperand1,
-                                                                                                                    const GALGAS_bool & inOperand2,
-                                                                                                                    const GALGAS_typeKind & inOperand3,
-                                                                                                                    const GALGAS_transientDependencyListForGeneration & inOperand4,
-                                                                                                                    const GALGAS_string & inOperand5
+                                                                                                                    const GALGAS_typeKind & inOperand2,
+                                                                                                                    const GALGAS_transientDependencyListForGeneration & inOperand3,
+                                                                                                                    const GALGAS_string & inOperand4
                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_transientDefinitionListForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     result = GALGAS_transientDefinitionListForGeneration (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_transientDefinitionListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE) ;
+    GALGAS_transientDefinitionListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -682,7 +675,6 @@ GALGAS_transientDefinitionListForGeneration GALGAS_transientDefinitionListForGen
 void GALGAS_transientDefinitionListForGeneration::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                              const GALGAS_string & in_mOwnerName,
                                                                              const GALGAS_string & in_mTransientName,
-                                                                             const GALGAS_bool & in_mIsArray,
                                                                              const GALGAS_typeKind & in_mTransientType,
                                                                              const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
                                                                              const GALGAS_string & in_mExternFunctionName
@@ -690,7 +682,6 @@ void GALGAS_transientDefinitionListForGeneration::makeAttributesFromObjects (cap
   cCollectionElement_transientDefinitionListForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_transientDefinitionListForGeneration (in_mOwnerName,
                                                                           in_mTransientName,
-                                                                          in_mIsArray,
                                                                           in_mTransientType,
                                                                           in_mDependencyList,
                                                                           in_mExternFunctionName COMMA_THERE)) ;
@@ -702,14 +693,13 @@ void GALGAS_transientDefinitionListForGeneration::makeAttributesFromObjects (cap
 
 void GALGAS_transientDefinitionListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
                                                                        const GALGAS_string & inOperand1,
-                                                                       const GALGAS_bool & inOperand2,
-                                                                       const GALGAS_typeKind & inOperand3,
-                                                                       const GALGAS_transientDependencyListForGeneration & inOperand4,
-                                                                       const GALGAS_string & inOperand5
+                                                                       const GALGAS_typeKind & inOperand2,
+                                                                       const GALGAS_transientDependencyListForGeneration & inOperand3,
+                                                                       const GALGAS_string & inOperand4
                                                                        COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDefinitionListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_transientDefinitionListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -736,16 +726,15 @@ void GALGAS_transientDefinitionListForGeneration::setter_append (GALGAS_transien
 
 void GALGAS_transientDefinitionListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
                                                                         const GALGAS_string inOperand1,
-                                                                        const GALGAS_bool inOperand2,
-                                                                        const GALGAS_typeKind inOperand3,
-                                                                        const GALGAS_transientDependencyListForGeneration inOperand4,
-                                                                        const GALGAS_string inOperand5,
+                                                                        const GALGAS_typeKind inOperand2,
+                                                                        const GALGAS_transientDependencyListForGeneration inOperand3,
+                                                                        const GALGAS_string inOperand4,
                                                                         const GALGAS_uint inInsertionIndex,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDefinitionListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_transientDefinitionListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -757,10 +746,9 @@ void GALGAS_transientDefinitionListForGeneration::setter_insertAtIndex (const GA
 
 void GALGAS_transientDefinitionListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
                                                                         GALGAS_string & outOperand1,
-                                                                        GALGAS_bool & outOperand2,
-                                                                        GALGAS_typeKind & outOperand3,
-                                                                        GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                        GALGAS_string & outOperand5,
+                                                                        GALGAS_typeKind & outOperand2,
+                                                                        GALGAS_transientDependencyListForGeneration & outOperand3,
+                                                                        GALGAS_string & outOperand4,
                                                                         const GALGAS_uint inRemoveIndex,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) {
@@ -774,15 +762,13 @@ void GALGAS_transientDefinitionListForGeneration::setter_removeAtIndex (GALGAS_s
       outOperand2.drop () ;
       outOperand3.drop () ;
       outOperand4.drop () ;
-      outOperand5.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
       outOperand0 = p->mObject.mProperty_mOwnerName ;
       outOperand1 = p->mObject.mProperty_mTransientName ;
-      outOperand2 = p->mObject.mProperty_mIsArray ;
-      outOperand3 = p->mObject.mProperty_mTransientType ;
-      outOperand4 = p->mObject.mProperty_mDependencyList ;
-      outOperand5 = p->mObject.mProperty_mExternFunctionName ;
+      outOperand2 = p->mObject.mProperty_mTransientType ;
+      outOperand3 = p->mObject.mProperty_mDependencyList ;
+      outOperand4 = p->mObject.mProperty_mExternFunctionName ;
     }
   }
 }
@@ -791,10 +777,9 @@ void GALGAS_transientDefinitionListForGeneration::setter_removeAtIndex (GALGAS_s
 
 void GALGAS_transientDefinitionListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
                                                                    GALGAS_string & outOperand1,
-                                                                   GALGAS_bool & outOperand2,
-                                                                   GALGAS_typeKind & outOperand3,
-                                                                   GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                   GALGAS_string & outOperand5,
+                                                                   GALGAS_typeKind & outOperand2,
+                                                                   GALGAS_transientDependencyListForGeneration & outOperand3,
+                                                                   GALGAS_string & outOperand4,
                                                                    C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -806,15 +791,13 @@ void GALGAS_transientDefinitionListForGeneration::setter_popFirst (GALGAS_string
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
-    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mOwnerName ;
     outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mIsArray ;
-    outOperand3 = p->mObject.mProperty_mTransientType ;
-    outOperand4 = p->mObject.mProperty_mDependencyList ;
-    outOperand5 = p->mObject.mProperty_mExternFunctionName ;
+    outOperand2 = p->mObject.mProperty_mTransientType ;
+    outOperand3 = p->mObject.mProperty_mDependencyList ;
+    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
   }
 }
 
@@ -822,10 +805,9 @@ void GALGAS_transientDefinitionListForGeneration::setter_popFirst (GALGAS_string
 
 void GALGAS_transientDefinitionListForGeneration::setter_popLast (GALGAS_string & outOperand0,
                                                                   GALGAS_string & outOperand1,
-                                                                  GALGAS_bool & outOperand2,
-                                                                  GALGAS_typeKind & outOperand3,
-                                                                  GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                  GALGAS_string & outOperand5,
+                                                                  GALGAS_typeKind & outOperand2,
+                                                                  GALGAS_transientDependencyListForGeneration & outOperand3,
+                                                                  GALGAS_string & outOperand4,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -837,15 +819,13 @@ void GALGAS_transientDefinitionListForGeneration::setter_popLast (GALGAS_string 
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
-    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mOwnerName ;
     outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mIsArray ;
-    outOperand3 = p->mObject.mProperty_mTransientType ;
-    outOperand4 = p->mObject.mProperty_mDependencyList ;
-    outOperand5 = p->mObject.mProperty_mExternFunctionName ;
+    outOperand2 = p->mObject.mProperty_mTransientType ;
+    outOperand3 = p->mObject.mProperty_mDependencyList ;
+    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
   }
 }
 
@@ -853,10 +833,9 @@ void GALGAS_transientDefinitionListForGeneration::setter_popLast (GALGAS_string 
 
 void GALGAS_transientDefinitionListForGeneration::method_first (GALGAS_string & outOperand0,
                                                                 GALGAS_string & outOperand1,
-                                                                GALGAS_bool & outOperand2,
-                                                                GALGAS_typeKind & outOperand3,
-                                                                GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                                GALGAS_string & outOperand5,
+                                                                GALGAS_typeKind & outOperand2,
+                                                                GALGAS_transientDependencyListForGeneration & outOperand3,
+                                                                GALGAS_string & outOperand4,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -868,15 +847,13 @@ void GALGAS_transientDefinitionListForGeneration::method_first (GALGAS_string & 
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
-    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mOwnerName ;
     outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mIsArray ;
-    outOperand3 = p->mObject.mProperty_mTransientType ;
-    outOperand4 = p->mObject.mProperty_mDependencyList ;
-    outOperand5 = p->mObject.mProperty_mExternFunctionName ;
+    outOperand2 = p->mObject.mProperty_mTransientType ;
+    outOperand3 = p->mObject.mProperty_mDependencyList ;
+    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
   }
 }
 
@@ -884,10 +861,9 @@ void GALGAS_transientDefinitionListForGeneration::method_first (GALGAS_string & 
 
 void GALGAS_transientDefinitionListForGeneration::method_last (GALGAS_string & outOperand0,
                                                                GALGAS_string & outOperand1,
-                                                               GALGAS_bool & outOperand2,
-                                                               GALGAS_typeKind & outOperand3,
-                                                               GALGAS_transientDependencyListForGeneration & outOperand4,
-                                                               GALGAS_string & outOperand5,
+                                                               GALGAS_typeKind & outOperand2,
+                                                               GALGAS_transientDependencyListForGeneration & outOperand3,
+                                                               GALGAS_string & outOperand4,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -899,15 +875,13 @@ void GALGAS_transientDefinitionListForGeneration::method_last (GALGAS_string & o
     outOperand2.drop () ;
     outOperand3.drop () ;
     outOperand4.drop () ;
-    outOperand5.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
     outOperand0 = p->mObject.mProperty_mOwnerName ;
     outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mIsArray ;
-    outOperand3 = p->mObject.mProperty_mTransientType ;
-    outOperand4 = p->mObject.mProperty_mDependencyList ;
-    outOperand5 = p->mObject.mProperty_mExternFunctionName ;
+    outOperand2 = p->mObject.mProperty_mTransientType ;
+    outOperand3 = p->mObject.mProperty_mDependencyList ;
+    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
   }
 }
 
@@ -994,21 +968,6 @@ GALGAS_string GALGAS_transientDefinitionListForGeneration::getter_mTransientName
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_bool GALGAS_transientDefinitionListForGeneration::getter_mIsArrayAtIndex (const GALGAS_uint & inIndex,
-                                                                                 C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGeneration * p = (cCollectionElement_transientDefinitionListForGeneration *) attributes.ptr () ;
-  GALGAS_bool result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
-    result = p->mObject.mProperty_mIsArray ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 GALGAS_typeKind GALGAS_transientDefinitionListForGeneration::getter_mTransientTypeAtIndex (const GALGAS_uint & inIndex,
                                                                                            C_Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) const {
@@ -1085,14 +1044,6 @@ GALGAS_string cEnumerator_transientDefinitionListForGeneration::current_mTransie
   const cCollectionElement_transientDefinitionListForGeneration * p = (const cCollectionElement_transientDefinitionListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
   return p->mObject.mProperty_mTransientName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool cEnumerator_transientDefinitionListForGeneration::current_mIsArray (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGeneration * p = (const cCollectionElement_transientDefinitionListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGeneration) ;
-  return p->mObject.mProperty_mIsArray ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

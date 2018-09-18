@@ -93,7 +93,6 @@ extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
 GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class C_Compiler * inCompiler,
                                                                                      const class GALGAS_string & in_OWNER_5F_NAME,
                                                                                      const class GALGAS_string & in_TRANSIENT_5F_NAME,
-                                                                                     const class GALGAS_bool & in_IS_5F_ARRAY,
                                                                                      const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                      COMMA_LOCATION_ARGS) ;

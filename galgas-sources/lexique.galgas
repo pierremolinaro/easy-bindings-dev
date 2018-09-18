@@ -16,7 +16,7 @@ $Identifier$ ! tokenString  style IdfStyle error message "an identifier (beginni
 list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "action",
   "all",
-  "array",
+#  "array",
   "arrayController",
   "binding",
   "calledBy",

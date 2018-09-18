@@ -50,7 +50,6 @@ syntax extension easyBindings_syntax {
   #--- Add documentFilePath transient property
     secondaryPropertyList += !@transientAST.new {
       !["String" here]
-      !false
       !["documentFilePath" here]
       !{}
       !["" here]

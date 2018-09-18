@@ -2225,9 +2225,6 @@ typeComparisonResult cPtr_transientAST::dynamicObjectCompare (const acPtr_class 
     result = mProperty_mTransientTypeName.objectCompare (p->mProperty_mTransientTypeName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mIsArray.objectCompare (p->mProperty_mIsArray) ;
-  }
-  if (kOperandEqual == result) {
     result = mProperty_mTransientName.objectCompare (p->mProperty_mTransientName) ;
   }
   if (kOperandEqual == result) {
@@ -2268,7 +2265,6 @@ GALGAS_abstractSecondaryProperty () {
 
 GALGAS_transientAST GALGAS_transientAST::constructor_default (LOCATION_ARGS) {
   return GALGAS_transientAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                               GALGAS_bool::constructor_default (HERE),
                                                GALGAS_lstring::constructor_default (HERE),
                                                GALGAS_observablePropertyList::constructor_emptyList (HERE),
                                                GALGAS_lstring::constructor_default (HERE)
@@ -2285,14 +2281,13 @@ GALGAS_abstractSecondaryProperty (inSourcePtr) {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_transientAST GALGAS_transientAST::constructor_new (const GALGAS_lstring & inAttribute_mTransientTypeName,
-                                                          const GALGAS_bool & inAttribute_mIsArray,
                                                           const GALGAS_lstring & inAttribute_mTransientName,
                                                           const GALGAS_observablePropertyList & inAttribute_mDependencyList,
                                                           const GALGAS_lstring & inAttribute_mExternFunctionName
                                                           COMMA_LOCATION_ARGS) {
   GALGAS_transientAST result ;
-  if (inAttribute_mTransientTypeName.isValid () && inAttribute_mIsArray.isValid () && inAttribute_mTransientName.isValid () && inAttribute_mDependencyList.isValid () && inAttribute_mExternFunctionName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_transientAST (inAttribute_mTransientTypeName, inAttribute_mIsArray, inAttribute_mTransientName, inAttribute_mDependencyList, inAttribute_mExternFunctionName COMMA_THERE)) ;
+  if (inAttribute_mTransientTypeName.isValid () && inAttribute_mTransientName.isValid () && inAttribute_mDependencyList.isValid () && inAttribute_mExternFunctionName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_transientAST (inAttribute_mTransientTypeName, inAttribute_mTransientName, inAttribute_mDependencyList, inAttribute_mExternFunctionName COMMA_THERE)) ;
   }
   return result ;
 }
@@ -2313,24 +2308,6 @@ GALGAS_lstring GALGAS_transientAST::getter_mTransientTypeName (UNUSED_LOCATION_A
 
 GALGAS_lstring cPtr_transientAST::getter_mTransientTypeName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mTransientTypeName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_transientAST::getter_mIsArray (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientAST * p = (const cPtr_transientAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientAST) ;
-    result = p->mProperty_mIsArray ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool cPtr_transientAST::getter_mIsArray (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mIsArray ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2392,14 +2369,12 @@ GALGAS_lstring cPtr_transientAST::getter_mExternFunctionName (UNUSED_LOCATION_AR
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cPtr_transientAST::cPtr_transientAST (const GALGAS_lstring & in_mTransientTypeName,
-                                      const GALGAS_bool & in_mIsArray,
                                       const GALGAS_lstring & in_mTransientName,
                                       const GALGAS_observablePropertyList & in_mDependencyList,
                                       const GALGAS_lstring & in_mExternFunctionName
                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractSecondaryProperty (THERE),
 mProperty_mTransientTypeName (in_mTransientTypeName),
-mProperty_mIsArray (in_mIsArray),
 mProperty_mTransientName (in_mTransientName),
 mProperty_mDependencyList (in_mDependencyList),
 mProperty_mExternFunctionName (in_mExternFunctionName) {
@@ -2416,8 +2391,6 @@ void cPtr_transientAST::description (C_String & ioString,
   ioString << "[@transientAST:" ;
   mProperty_mTransientTypeName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mIsArray.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
   mProperty_mTransientName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mDependencyList.description (ioString, inIndentation+1) ;
@@ -2430,7 +2403,7 @@ void cPtr_transientAST::description (C_String & ioString,
 
 acPtr_class * cPtr_transientAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_transientAST (mProperty_mTransientTypeName, mProperty_mIsArray, mProperty_mTransientName, mProperty_mDependencyList, mProperty_mExternFunctionName COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_transientAST (mProperty_mTransientTypeName, mProperty_mTransientName, mProperty_mDependencyList, mProperty_mExternFunctionName COMMA_THERE)) ;
   return ptr ;
 }
 

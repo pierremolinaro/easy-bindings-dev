@@ -18,7 +18,7 @@ enum @tableValueBinding {
 
 enum @graphicController {
   case none
-  case defined (@lstring controller)
+  case defined (@lstring controller @lstring propertyName)
 }
 
 #·······················································································································
@@ -112,8 +112,15 @@ syntax extension easyBindings_syntax {
       $self$
       $.$
       $identifier$ ?let @lstring graphicControllerName
+      @lstring propertyName
+      select
+        propertyName = ["" here]
+      or
+        $.$
+        $identifier$ ?propertyName
+      end
       if [graphicController isNone] then
-        graphicController = .defined {!controller:graphicControllerName}
+        graphicController = .defined {!controller:graphicControllerName !propertyName: propertyName}
       else
         error graphicControllerName : "binding already defined" ;
       end   
@@ -201,7 +208,7 @@ proc analyzeOutlets
   #--- $graphicController
     switch outlet_mGraphicController
     case none :
-    case defined (@lstring controllerName) :
+    case defined (@lstring controllerName @lstring propertyName) :
       if not handleGraphicControllerBinding then
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
       else
@@ -210,12 +217,46 @@ proc analyzeOutlets
           ?let @propertyKind kind
           ?3*
         ]
-        if not [kind isArrayController] then
+        switch kind 
+        case property (2*) :
+          error controllerName : "the bound model should be an array controller"
+        case toMany (4*) :
+          error controllerName : "the bound model should be an array controller"
+        case toOne (4*) :
+          error controllerName : "the bound model should be an array controller"
+        case arrayController (* entityName graphic) :
+          if propertyName.string == "" then
+            if not graphic then
+              error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
+            end
+          else
+            [inSemanticContext.mEntityObservablePropertyMap searchKey
+              !entityName
+              ?let observablePropertyMap
+              ?*
+            ]
+            [observablePropertyMap searchKey
+              !propertyName
+              ?let propertyKind ?3*
+            ]
+            switch propertyKind 
+            case property (2*) :
+              error controllerName : "the bound model should be a toMany property"
+            case toMany (* kEntityName * isGraphic) :
+              if not isGraphic then
+                error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
+              end
+            case toOne (4*) :
+              error controllerName : "the bound model should be a toMany property"
+            case arrayController (3*) :
+              error controllerName : "the bound model should be a toMany property"
+            case selectionController (2*) :
+              error controllerName : "the bound model should be a toMany property"
+            end
+         end
+        case selectionController (2*) :
           error controllerName : "the bound model should be an array controller"
         end
-#        if multiplicity != .collection then
-#          error controllerName : "the controller is not bound to a collection"
-#        end
         outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
     end
@@ -234,9 +275,6 @@ proc analyzeOutlets
         if not [kind isArrayController] then
           error controllerName : "the bound model should be an array controller"
         end
-#        if multiplicity != .collection then
-#          error controllerName : "the controller is not bound to a collection"
-#        end
         outTableViewBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
     end
