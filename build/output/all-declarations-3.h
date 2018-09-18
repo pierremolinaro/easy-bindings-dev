@@ -18,7 +18,7 @@ class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element : public AC
 //--------------------------------- Properties
   public : GALGAS_string mProperty_mColumnName ;
 
-  public : GALGAS_typeKind mProperty_mSortPropertyType ;
+  public : GALGAS_propertyKind mProperty_mSortPropertyKind ;
 
   public : GALGAS_string mProperty_mObservablePropertyForSorting ;
 
@@ -34,7 +34,7 @@ class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element : public AC
 
 //--------------------------------- Native constructor
   public : GALGAS_arrayControllerSortedColumnListForGeneration_2D_element (const GALGAS_string & in_mColumnName,
-                                                                           const GALGAS_typeKind & in_mSortPropertyType,
+                                                                           const GALGAS_propertyKind & in_mSortPropertyKind,
                                                                            const GALGAS_string & in_mObservablePropertyForSorting) ;
 
 //-- Start of generic part --*
@@ -49,7 +49,7 @@ class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element : public AC
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                                                        const class GALGAS_typeKind & inOperand1,
+                                                                                                        const class GALGAS_propertyKind & inOperand1,
                                                                                                         const class GALGAS_string & inOperand2
                                                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -69,7 +69,7 @@ class GALGAS_arrayControllerSortedColumnListForGeneration_2D_element : public AC
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservablePropertyForSorting (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mSortPropertyType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mSortPropertyKind (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -246,6 +246,36 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKindList_2D_ele
 class GALGAS_bool extensionGetter_isTransient (const class GALGAS_propertyKind & inObject,
                                                class C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                             Extension getter '@propertyKind isComparable' (as function)                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_bool extensionGetter_isComparable (const class GALGAS_propertyKind & inObject,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                             Extension getter '@propertyKind isEntityType' (as function)                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_bool extensionGetter_isEntityType (const class GALGAS_propertyKind & inObject,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                              Extension getter '@propertyKind isEnumType' (as function)                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_bool extensionGetter_isEnumType (const class GALGAS_propertyKind & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

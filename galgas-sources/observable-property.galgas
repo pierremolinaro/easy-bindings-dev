@@ -369,11 +369,11 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "a property cannot accept 'none'" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       error propertyName : "an array property cannot accept 'none'" : outKind
     case toOne (4*) : # Ok
       outKind = .property {!type: .boolType !accessibility: .transient}
-    case arrayController (3*) :
+    case arrayController (4*) :
       error propertyName : "an array controller cannot accept 'none'" : outKind
     case selectionController (2*) :
       error propertyName : "a selection controller cannot accept 'none'" : outKind
@@ -388,7 +388,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "a property cannot accept any option" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       if optionName.string == "count" then
         outKind = .property {!type: .integerType !accessibility: .transient}
       else
@@ -396,7 +396,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     case toOne (4*) :
       error propertyName : "a toOne property cannot accept any option" : outKind
-    case arrayController (3*) :
+    case arrayController (4*) :
       if optionName.string == "count" then
         outKind = .property {!type: .integerType !accessibility: .transient}
       elsif optionName.string == "empty" then
@@ -417,7 +417,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error relationshipName : "a property cannot accept 'all'" : outKind
-    case toMany (* typeName 2*) : # Ok
+    case toMany (* typeName 3*) : # Ok
       [inSemanticContext.mEntityObservablePropertyMap searchKey
         !.new {!typeName !relationshipName.location}
         ?let observablePropertyMap
@@ -430,7 +430,7 @@ method @observablePropertyAST analyzeObservableProperty
       ]
     case toOne (4*) :
       error relationshipName : "a toOne property cannot accept 'all'" : outKind
-    case arrayController (3*) :
+    case arrayController (4*) :
       error relationshipName : "an array controller cannot accept 'all'" : outKind
     case selectionController (2*) :
       error relationshipName : "an array controller cannot accept 'all'" : outKind
@@ -445,11 +445,11 @@ method @observablePropertyAST analyzeObservableProperty
     switch outKind
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
-    case toMany (4*) :
+    case toMany (5*) :
       error propertyName : "a toMany property cannot accept be observed" : outSwiftTypeStringForTransientFunctionArgument
     case toOne (4*) :
       error propertyName : "a toOne property cannot accept be observed" : outSwiftTypeStringForTransientFunctionArgument
-    case arrayController (3*) :
+    case arrayController (4*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (2*) :
       error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
@@ -463,7 +463,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "an atomic property accepts no option" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       if optionName.string == "count" then
         outKind = .property {!type: .integerType !accessibility: .transient}
       else
@@ -471,7 +471,7 @@ method @observablePropertyAST analyzeObservableProperty
       end
     case toOne (4*) :
       error propertyName : "a toOne property accepts no option" : outKind
-    case arrayController (3*) :
+    case arrayController (4*) :
       if optionName.string == "count" then
         outKind = .property {!type: .integerType !accessibility: .transient}
       elsif optionName.string == "empty" then
@@ -492,7 +492,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "an atomic property accepts no option" : outKind
-    case toMany (* typeName 2*) :
+    case toMany (* typeName 3*) :
      [inSemanticContext.mEntityObservablePropertyMap searchKey
         !typeName
         ?let @observablePropertyMap entityObservablePropertyMap
@@ -505,7 +505,7 @@ method @observablePropertyAST analyzeObservableProperty
       ]
     case toOne (4*) :
       error propertyName : "a toOne property accepts no option" : outKind
-    case arrayController (3*) :
+    case arrayController (4*) :
       error propertyName : "an array controller accepts no option" : outKind
     case selectionController (2*) :
       error propertyName : "a selection controller accepts no option" : outKind
@@ -521,7 +521,7 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "an atomic property does not accept 'one'" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       error propertyName : "a toOne property does not accept 'one'" : outKind
     case toOne (* typeName 2*) :
      [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -534,7 +534,7 @@ method @observablePropertyAST analyzeObservableProperty
         ?outKind
         ?3*
       ]
-    case arrayController (3*) :
+    case arrayController (4*) :
       error propertyName : "an array controller does not accept 'one'" : outKind
     case selectionController (2*) :
       error propertyName : "a selection controller does not accept 'one'" : outKind
@@ -549,11 +549,11 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "an atomic property does not accept 'none'" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       error propertyName : "a toOne property does not accept 'none'" : outKind
     case toOne (4*) :
       outKind = .property {!type: .boolType !accessibility: .transient}
-    case arrayController (3*) :
+    case arrayController (4*) :
       error propertyName : "an array controller does not accept 'none'" : outKind
     case selectionController (2*) :
       error propertyName : "a selection controller does not accept 'none'" : outKind
@@ -575,11 +575,11 @@ method @observablePropertyAST analyzeObservableProperty
     switch kind
     case property (2*) :
       error propertyName : "a property cannot accept any option" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       error propertyName : "a toMany property cannot accept any option" : outKind
     case toOne (4*) :
       error propertyName : "a toOne property cannot accept any option" : outKind
-    case arrayController (3*) :
+    case arrayController (4*) :
       if optionName.string == "count" then
         outKind = .property {!type: .integerType !accessibility: .transient}
       elsif optionName.string == "empty" then
@@ -600,13 +600,19 @@ method @observablePropertyAST analyzeObservableProperty
     switch propertyKind
     case property (2*) :
       error propertyName : "a property cannot accept any option" : outKind
-    case toMany (4*) :
+    case toMany (5*) :
       error propertyName : "a toMany property cannot accept any option" : outKind
     case toOne (4*) :
       error propertyName : "a toOne property cannot accept any option" : outKind
-    case arrayController (* typeName graphic) :
+    case arrayController (* typeName graphic isEntity) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
-        outKind = .toMany {!type: [propertyKind propertyType] !typeName: typeName !accessibility: .transient !graphic: graphic}
+        outKind = .toMany {
+          !type: [propertyKind propertyType]
+          !typeName: typeName
+          !accessibility: .transient
+          !graphic: graphic
+          !isEntity: isEntity
+        }
       else
         error propertyName
           : "unknown option (accepted : 'sortedArray' or 'selectedArray')"

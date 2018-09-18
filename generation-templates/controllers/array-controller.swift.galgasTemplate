@@ -315,7 +315,7 @@ for () in SORTED_COLUMNS
   %      %
   do
   %if column == "%!mColumnName%" {\n%
-  %        order = compare_%![mSortPropertyType swiftTypeName]% (left: left.%!mObservablePropertyForSorting%_property, right:right.%!mObservablePropertyForSorting%_property)\n%
+  %        order = compare_%![mSortPropertyKind swiftTypeName]% (left: left.%!mObservablePropertyForSorting%_property, right:right.%!mObservablePropertyForSorting%_property)\n%
   between
   %      }else %
   after

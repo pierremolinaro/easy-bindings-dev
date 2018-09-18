@@ -68,11 +68,11 @@ override method @proxyDeclaration tryToDefineSecondaryProperty
     switch kind 
     case property (2*) :
       error mControllerName : "an array controller is required here"
-    case toMany (4*) :
+    case toMany (5*) :
       error mControllerName : "an array controller is required here"
     case toOne (4*) :
       error mControllerName : "an array controller is required here"
-    case arrayController (* entityName *) :
+    case arrayController (* entityName 2*) :
       [ioSemanticContext.mEntityObservablePropertyMap searchKey
         !entityName
         ?let observablePropertyMap
@@ -99,17 +99,17 @@ override method @proxyDeclaration tryToDefineSecondaryProperty
           !true
           !""
           !false
-      case toMany (type typeName * graphic) :
+      case toMany (type typeName * graphic isEntity) :
         [!?ioObservableProperties insertKey
           !mProxyName
-          !.toMany {!type: type !typeName: typeName !accessibility: .proxy !graphic: graphic}
+          !.toMany {!type: type !typeName: typeName !accessibility: .proxy !graphic: graphic !isEntity: isEntity}
           !""
           !{}
           !false
         ]
       case toOne (4*) :
         error mPropertyName : "<<toOne property>>" 
-      case arrayController (3*) :
+      case arrayController (4*) :
         error mPropertyName : "a property is required here"
       case selectionController (2*) :
         error mPropertyName : "a property is required here"
@@ -125,15 +125,15 @@ override method @proxyDeclaration tryToDefineSecondaryProperty
 #·······················································································································
 
 override method @proxyDeclaration secondaryPropertySemanticAnalysis
-  ?let @string inOwnerName
+  ?let @string unused inOwnerName
   ?let @string unused inRootEntityName
-  ?let @observablePropertyMap inRootObservableProperties
-  ?let @semanticContext inSemanticContext
-  ?let @observablePropertyMap inObservableProperties
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?let @semanticContext unused inSemanticContext
+  ?let @observablePropertyMap unused inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
+  ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
-  ?!@stringset ioNeededOutletClasses
+  ?!@stringset unused ioNeededOutletClasses
 {
 }
 

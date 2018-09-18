@@ -65,9 +65,9 @@ syntax extension easyBindings_syntax {
     while
       <transient_declaration> !?secondaryPropertyList
     while
-      <toMany_relationship> !?toManyRelationshipList !?signatureList
+      <toMany_relationship> !entityName !?toManyRelationshipList !?signatureList
     while
-      <toOne_relationship> !?toOneRelationshipList
+      <toOne_relationship> !entityName !?toOneRelationshipList
     while
       <action_declaration> !?actionDeclarationList
     while
@@ -291,11 +291,11 @@ override method @entityDeclaration semanticAnalysis
         elsif [type swiftTypeName] != "EBShape" then
           error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
         end
-      case toMany (4*) :
+      case toMany (5*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       case toOne (4*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case arrayController (3*) :
+      case arrayController (4*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       case selectionController (2*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
@@ -318,11 +318,11 @@ override method @entityDeclaration semanticAnalysis
         elsif [type swiftTypeName] != "EBShape" then
           error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
         end
-      case toMany (4*) :
+      case toMany (5*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       case toOne (4*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case arrayController (3*) :
+      case arrayController (4*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       case selectionController (2*) :
         error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"

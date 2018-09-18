@@ -6887,6 +6887,7 @@ GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::extractObje
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_toOneRelationshipList_2D_element::GALGAS_toOneRelationshipList_2D_element (void) :
+mProperty_mCurrentEntityName (),
 mProperty_mDestinationEntityName (),
 mProperty_mToOneRelationshipName (),
 mProperty_mInverseRelationshipName (),
@@ -6904,13 +6905,15 @@ GALGAS_toOneRelationshipList_2D_element::~ GALGAS_toOneRelationshipList_2D_eleme
 GALGAS_toOneRelationshipList_2D_element::GALGAS_toOneRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
                                                                                   const GALGAS_lstring & inOperand1,
                                                                                   const GALGAS_lstring & inOperand2,
-                                                                                  const GALGAS_propertyMultiplicity & inOperand3,
-                                                                                  const GALGAS_bool & inOperand4) :
-mProperty_mDestinationEntityName (inOperand0),
-mProperty_mToOneRelationshipName (inOperand1),
-mProperty_mInverseRelationshipName (inOperand2),
-mProperty_mInverseRelationMultiplicity (inOperand3),
-mProperty_mCascading (inOperand4) {
+                                                                                  const GALGAS_lstring & inOperand3,
+                                                                                  const GALGAS_propertyMultiplicity & inOperand4,
+                                                                                  const GALGAS_bool & inOperand5) :
+mProperty_mCurrentEntityName (inOperand0),
+mProperty_mDestinationEntityName (inOperand1),
+mProperty_mToOneRelationshipName (inOperand2),
+mProperty_mInverseRelationshipName (inOperand3),
+mProperty_mInverseRelationMultiplicity (inOperand4),
+mProperty_mCascading (inOperand5) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6918,12 +6921,13 @@ mProperty_mCascading (inOperand4) {
 GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
                                                                                                   const GALGAS_lstring & inOperand1,
                                                                                                   const GALGAS_lstring & inOperand2,
-                                                                                                  const GALGAS_propertyMultiplicity & inOperand3,
-                                                                                                  const GALGAS_bool & inOperand4 
+                                                                                                  const GALGAS_lstring & inOperand3,
+                                                                                                  const GALGAS_propertyMultiplicity & inOperand4,
+                                                                                                  const GALGAS_bool & inOperand5 
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toOneRelationshipList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_toOneRelationshipList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_toOneRelationshipList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
   }
   return result ;
 }
@@ -6932,6 +6936,9 @@ GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element:
 
 typeComparisonResult GALGAS_toOneRelationshipList_2D_element::objectCompare (const GALGAS_toOneRelationshipList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mCurrentEntityName.objectCompare (inOperand.mProperty_mCurrentEntityName) ;
+  }
   if (result == kOperandEqual) {
     result = mProperty_mDestinationEntityName.objectCompare (inOperand.mProperty_mDestinationEntityName) ;
   }
@@ -6953,12 +6960,13 @@ typeComparisonResult GALGAS_toOneRelationshipList_2D_element::objectCompare (con
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_toOneRelationshipList_2D_element::isValid (void) const {
-  return mProperty_mDestinationEntityName.isValid () && mProperty_mToOneRelationshipName.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mInverseRelationMultiplicity.isValid () && mProperty_mCascading.isValid () ;
+  return mProperty_mCurrentEntityName.isValid () && mProperty_mDestinationEntityName.isValid () && mProperty_mToOneRelationshipName.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mInverseRelationMultiplicity.isValid () && mProperty_mCascading.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void GALGAS_toOneRelationshipList_2D_element::drop (void) {
+  mProperty_mCurrentEntityName.drop () ;
   mProperty_mDestinationEntityName.drop () ;
   mProperty_mToOneRelationshipName.drop () ;
   mProperty_mInverseRelationshipName.drop () ;
@@ -6974,6 +6982,8 @@ void GALGAS_toOneRelationshipList_2D_element::description (C_String & ioString,
   if (! isValid ()) {
     ioString << " not built" ;
   }else{
+    mProperty_mCurrentEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
     mProperty_mDestinationEntityName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mToOneRelationshipName.description (ioString, inIndentation+1) ;
@@ -6985,6 +6995,12 @@ void GALGAS_toOneRelationshipList_2D_element::description (C_String & ioString,
     mProperty_mCascading.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_toOneRelationshipList_2D_element::getter_mCurrentEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mCurrentEntityName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7065,6 +7081,7 @@ GALGAS_toOneRelationshipList_2D_element GALGAS_toOneRelationshipList_2D_element:
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (void) :
+mProperty_mCurrentEntityName (),
 mProperty_mDestinationEntityName (),
 mProperty_mToManyRelationshipName (),
 mProperty_mInverseRelationshipName (),
@@ -7081,17 +7098,20 @@ GALGAS_toManyRelationshipList_2D_element::~ GALGAS_toManyRelationshipList_2D_ele
 GALGAS_toManyRelationshipList_2D_element::GALGAS_toManyRelationshipList_2D_element (const GALGAS_lstring & inOperand0,
                                                                                     const GALGAS_lstring & inOperand1,
                                                                                     const GALGAS_lstring & inOperand2,
-                                                                                    const GALGAS_bool & inOperand3) :
-mProperty_mDestinationEntityName (inOperand0),
-mProperty_mToManyRelationshipName (inOperand1),
-mProperty_mInverseRelationshipName (inOperand2),
-mProperty_mCascading (inOperand3) {
+                                                                                    const GALGAS_lstring & inOperand3,
+                                                                                    const GALGAS_bool & inOperand4) :
+mProperty_mCurrentEntityName (inOperand0),
+mProperty_mDestinationEntityName (inOperand1),
+mProperty_mToManyRelationshipName (inOperand2),
+mProperty_mInverseRelationshipName (inOperand3),
+mProperty_mCascading (inOperand4) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_toManyRelationshipList_2D_element (GALGAS_lstring::constructor_default (HERE),
+                                                   GALGAS_lstring::constructor_default (HERE),
                                                    GALGAS_lstring::constructor_default (HERE),
                                                    GALGAS_lstring::constructor_default (HERE),
                                                    GALGAS_bool::constructor_default (HERE)) ;
@@ -7102,11 +7122,12 @@ GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_elemen
 GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
                                                                                                     const GALGAS_lstring & inOperand1,
                                                                                                     const GALGAS_lstring & inOperand2,
-                                                                                                    const GALGAS_bool & inOperand3 
+                                                                                                    const GALGAS_lstring & inOperand3,
+                                                                                                    const GALGAS_bool & inOperand4 
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toManyRelationshipList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_toManyRelationshipList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_toManyRelationshipList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
   }
   return result ;
 }
@@ -7115,6 +7136,9 @@ GALGAS_toManyRelationshipList_2D_element GALGAS_toManyRelationshipList_2D_elemen
 
 typeComparisonResult GALGAS_toManyRelationshipList_2D_element::objectCompare (const GALGAS_toManyRelationshipList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mCurrentEntityName.objectCompare (inOperand.mProperty_mCurrentEntityName) ;
+  }
   if (result == kOperandEqual) {
     result = mProperty_mDestinationEntityName.objectCompare (inOperand.mProperty_mDestinationEntityName) ;
   }
@@ -7133,12 +7157,13 @@ typeComparisonResult GALGAS_toManyRelationshipList_2D_element::objectCompare (co
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_toManyRelationshipList_2D_element::isValid (void) const {
-  return mProperty_mDestinationEntityName.isValid () && mProperty_mToManyRelationshipName.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mCascading.isValid () ;
+  return mProperty_mCurrentEntityName.isValid () && mProperty_mDestinationEntityName.isValid () && mProperty_mToManyRelationshipName.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mCascading.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void GALGAS_toManyRelationshipList_2D_element::drop (void) {
+  mProperty_mCurrentEntityName.drop () ;
   mProperty_mDestinationEntityName.drop () ;
   mProperty_mToManyRelationshipName.drop () ;
   mProperty_mInverseRelationshipName.drop () ;
@@ -7153,6 +7178,8 @@ void GALGAS_toManyRelationshipList_2D_element::description (C_String & ioString,
   if (! isValid ()) {
     ioString << " not built" ;
   }else{
+    mProperty_mCurrentEntityName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
     mProperty_mDestinationEntityName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mToManyRelationshipName.description (ioString, inIndentation+1) ;
@@ -7162,6 +7189,12 @@ void GALGAS_toManyRelationshipList_2D_element::description (C_String & ioString,
     mProperty_mCascading.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_toManyRelationshipList_2D_element::getter_mCurrentEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mCurrentEntityName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

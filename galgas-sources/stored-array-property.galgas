@@ -74,7 +74,7 @@ method @storedArrayPropertyList buildObservablePropertyMap
   #--- Enter in property map
     [!?ioObservableProperties insertKey
       !mStoredArrayPropertyName
-      !.toMany {!type: type !typeName: mElementClassName !accessibility: .stored !graphic:false}
+      !.toMany {!type: type !typeName: mElementClassName !accessibility: .stored !graphic:false !isEntity: false}
       !""
       !actionMap
       !false

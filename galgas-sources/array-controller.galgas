@@ -27,13 +27,6 @@ list @arrayControllerAttributListAST {
 
 #·······················································································································
 
-enum @arrayControllerModel {
-  case toMany (@bool isRoot @lstring collectionPropertyName)
-  case controller (@bool isRoot @lstring controllerName @lstring propertyName)
-}
-
-#·······················································································································
-
 class @arrayControllerDeclaration : @abstractSecondaryProperty {
   @lstring mControllerName
   @bool mIsRoot
@@ -216,13 +209,13 @@ override method @arrayControllerDeclaration tryToDefineSecondaryProperty
     switch kind 
     case property (2*) :
       error mToManyPropertyName : "an atomic property is not a collection" : arrayControllerKind
-    case toMany (type typeName * graphic) :
-      arrayControllerKind = .arrayController {!type: type !typeName: typeName !graphic: graphic}
+    case toMany (type typeName * graphic isEntity) :
+      arrayControllerKind = .arrayController {!type: type !typeName: typeName !graphic: graphic !isEntity: isEntity}
       [!?controllerActions insertKey !["add" nowhere]]
       [!?controllerActions insertKey !["remove" nowhere]]
     case toOne (4*) :
       error mToManyPropertyName : "a toOne property is not a collection" : arrayControllerKind
-    case arrayController (3*) :
+    case arrayController (4*) :
       error mToManyPropertyName : "Array Controller ????" : arrayControllerKind
     case selectionController (2*) :
       error mToManyPropertyName : "Selection Controller ????" : arrayControllerKind
@@ -288,13 +281,16 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
   switch kind 
   case property (2*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
-  case toMany (* typeName accessibility graphic) :
+  case toMany (* typeName accessibility graphic isEntity) :
     entityName = typeName
     entityTypeIsGraphic = graphic
-    modelKind = if [accessibility isTransient] then .transientArray else  if [[kind propertyType] isEntityType] then .entityArray else .classArray end end
+    modelKind = if [accessibility isTransient]
+      then .transientArray
+      else if isEntity then .entityArray else .classArray end
+    end
   case toOne (4*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
-  case arrayController (3*) :
+  case arrayController (4*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
   case selectionController (2*) :
     error mToManyPropertyName : "a to many property is required here" : entityName, entityTypeIsGraphic, modelKind
@@ -332,13 +328,12 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
         ?let sortPropertyKind
         ?3*
       ]
-      let sortPropertyType = [sortPropertyKind propertyType]
-      if not [sortPropertyType isComparable] then
+      if not [sortPropertyKind isComparable] then
         error mSortPropertyName : "this property is not comparable"
       end 
       arrayControllerSortedColumnListForGeneration +=    
         !mColumnName.string
-        !sortPropertyType
+        !sortPropertyKind
         !mSortPropertyName.string
     end
   #-------- Binding generation
@@ -357,7 +352,7 @@ override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
       ?let @propertyKind columnKind
       ?3*
     ]
-    arrayControllerFilterListForGeneration += !filterPropertyName.string ![columnKind propertyType]
+    arrayControllerFilterListForGeneration += !filterPropertyName.string !columnKind
   end
   let modelString = if mIsRoot
     then "self.rootObject." + mToManyPropertyName + "_property"
@@ -408,7 +403,7 @@ list @arrayControllerForGeneration {
 
 list @arrayControllerFilterListForGeneration {
   @string mFilterPropertyName
-  @typeKind mFilterPropertyType
+  @propertyKind mFilterPropertyKind
 }
 
 #·······················································································································
@@ -424,7 +419,7 @@ list @arrayControllerBoundColumnListForGeneration {
 
 list @arrayControllerSortedColumnListForGeneration {
   @string mColumnName
-  @typeKind mSortPropertyType
+  @propertyKind mSortPropertyKind
   @string mObservablePropertyForSorting
 }
 

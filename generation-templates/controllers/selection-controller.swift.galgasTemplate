@@ -17,7 +17,7 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
   //····················································································································
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [[mKind propertyType] isEntityType] then
+  if not [mKind isEntityType] then
     if [mKind isTransient] then
       %  var %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
     else
@@ -37,7 +37,7 @@ end%
   func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
     mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [[mKind propertyType] isEntityType] then
+  if not [mKind isEntityType] then
     %    bind_property_%!lkey.string% (model: model)\n%
   end
 end%  }
@@ -79,7 +79,7 @@ end%  }
     let view = NSView (frame:r)
     var y : CGFloat = 0.0
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [[mKind propertyType] isEntityType] & not [mKind isTransient] then
+if not [mKind isEntityType] & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
   %      idx:self.%!lkey.string%_property.mEasyBindingsObjectIndex,\n%
@@ -142,7 +142,7 @@ end
   }
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-if not [[mKind propertyType] isEntityType] then
+if not [mKind isEntityType] then
 %  //···················································································································*\n\n% 
 %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
 %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
@@ -222,7 +222,7 @@ end%
 
   func unbind_selection () {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [[mKind propertyType] isEntityType] then
+  if not [mKind isEntityType] then
     %  //--- %!lkey.string%\n%
     %    self.%!lkey.string%_property.readModelFunction = nil \n%
     if not [mKind isTransient] then

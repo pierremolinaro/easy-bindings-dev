@@ -140,11 +140,11 @@ override method @transientAST secondaryPropertySemanticAnalysis
     ]
     switch dependencyKind
     case property (* *) :
-    case toMany (4*) :
+    case toMany (5*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     case toOne (4*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
-    case arrayController (3*) :
+    case arrayController (4*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     case selectionController (2*) :
       error [mObservableProperty location] : "only an atomic property can be observed"

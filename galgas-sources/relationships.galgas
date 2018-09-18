@@ -3,6 +3,7 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @toOneRelationshipList {
+  @lstring mCurrentEntityName
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
   @lstring mInverseRelationshipName # Empty string if not inverse relation ship
@@ -13,6 +14,7 @@ list @toOneRelationshipList {
 #·······················································································································
 
 list @toManyRelationshipList {
+  @lstring mCurrentEntityName
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
   @lstring mInverseRelationshipName
@@ -27,7 +29,11 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <toMany_relationship> ?!@toManyRelationshipList ioToManyRelationshipList ?!@stringset ioSignatureList {
+  rule <toMany_relationship>
+            ?let @lstring inCurrentEntity
+            ?!@toManyRelationshipList ioToManyRelationshipList
+            ?!@stringset ioSignatureList
+  {
     $toMany$
     @bool usedForSignature = false
     @bool cascading = false
@@ -63,6 +69,7 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioToManyRelationshipList +=
+      !inCurrentEntity
       !destinationEntityName
       !relationshipName
       !inserseRelationshipName
@@ -71,7 +78,10 @@ syntax extension easyBindings_syntax {
   
   #·····················································································································
 
-   rule <toOne_relationship> ?!@toOneRelationshipList ioToOneRelationshipList {
+  rule <toOne_relationship>
+            ?let @lstring inCurrentEntity
+            ?!@toOneRelationshipList ioToOneRelationshipList
+  {
     $toOne$
     @bool cascading = false
     repeat
@@ -106,6 +116,7 @@ syntax extension easyBindings_syntax {
       end
     $;$
     ioToOneRelationshipList +=
+      !inCurrentEntity
       !destinationEntityName
       !relationshipName
       !inverseRelationshipName
@@ -209,7 +220,7 @@ method @toManyRelationshipList buildObservablePropertyMap
   #--- Enter in property map
     [!?ioObservableProperties insertKey
       !mToManyRelationshipName
-      !.toMany {!type: type !typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic}
+      !.toMany {!type: type !typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic !isEntity: true}
       !mInverseRelationshipName.string
       !actionMap
       !mCascading
@@ -249,21 +260,15 @@ method @toOneRelationshipList semanticAnalysis
          ?2*
        ]
      #--- Check opposite type
-      switch [oppositeKind propertyType]
-      case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case enumType (* *) :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case classType (*) :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case transientPropertyExternType (*) :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case entityType (2*) : # Ok
+      if [oppositeKind swiftTypeName] != mCurrentEntityName.string then
+        error mInverseRelationshipName
+        : "the type of the opposite property '" + mInverseRelationshipName
+          + "' should be '" + mCurrentEntityName + "' (found '" + [oppositeKind swiftTypeName] + "')"
       end
       switch oppositeKind 
       case property (2*) :
         error mInverseRelationshipName : "a property cannot be an opposite of a relationship"
-      case toMany (2* accessibility *) :
+      case toMany (2* accessibility 2*) :
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
@@ -277,7 +282,7 @@ method @toOneRelationshipList semanticAnalysis
         if mInverseRelationMultiplicity != .single then
           error mInverseRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
         end
-      case arrayController (3*) :
+      case arrayController (4*) :
          error mInverseRelationshipName : "an array controller cannot be an opposite of a relationship"
       case selectionController (2*) :
          error mInverseRelationshipName : "a selection controller cannot be an opposite of a relationship"
@@ -318,21 +323,15 @@ method @toManyRelationshipList semanticAnalysis
          ?let @string oppositeOfOpposite
          ?2*
       ]
-      switch [oppositeKind propertyType]
-      case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case enumType (* *) :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case classType (*) :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case transientPropertyExternType (*) :
-        error mInverseRelationshipName: "the opposite type cannot be used as entity type"
-      case entityType (2*) : # Ok
+      if [oppositeKind swiftTypeName] != mCurrentEntityName.string then
+        error mInverseRelationshipName
+        : "the type of the opposite property '" + mInverseRelationshipName
+          + "' should be '" + mCurrentEntityName + "' (found '" + [oppositeKind swiftTypeName] + "')"
       end
       switch oppositeKind 
       case property (2*) :
         error mInverseRelationshipName : "a property cannot be an opposite of a relationship"
-      case toMany (2* accessibility *) :
+      case toMany (2* accessibility 2*) :
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
@@ -340,7 +339,7 @@ method @toManyRelationshipList semanticAnalysis
         if [accessibility isTransient] then
           error mInverseRelationshipName : "this relationship is transient, should be stored"
         end
-      case arrayController (3*) :
+      case arrayController (4*) :
          error mInverseRelationshipName : "an array controller cannot be an opposite of a relationship"
       case selectionController (2*) :
          error mInverseRelationshipName : "a selection controller cannot be an opposite of a relationship"
