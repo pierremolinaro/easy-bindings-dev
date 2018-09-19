@@ -27,6 +27,7 @@ override method @toOneRelationshipAST enterInPrecedenceGraph ?!@declarationPrece
   let node = @lstring.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
+  [!?ioGraph addEdge !node !mDestinationEntityName]
 }
 
 #·······················································································································
@@ -107,6 +108,29 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @toOneRelationshipAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  with mClassName in !?ioClassMap 
+    error message searchKey
+  do
+    [ioClassMap searchKey !mDestinationEntityName ?let classKind ?*]
+    switch classKind
+    case prefs :
+      error mDestinationEntityName : "an entity is required here"
+    case simpleClass :
+      error mDestinationEntityName : "an entity is required here"
+    case atomic (*) :
+      error mDestinationEntityName : "an entity is required here"
+    case document (*) :
+      error mDestinationEntityName : "an entity is required here"
+    case entity (graphic) :
+      let kind = @propertyKind.toMany {
+        !typeName: mClassName
+        !accessibility: .stored
+        !graphic: graphic
+        !isEntity: true
+      }
+      [!?mPropertyMap insertKey !mToOneRelationshipName !kind]
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

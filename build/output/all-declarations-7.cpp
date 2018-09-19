@@ -1401,6 +1401,9 @@ static void extensionMethod_toOneRelationshipAST_enterInPrecedenceGraph (const c
   {
   ioArgument_ioGraph.setter_addEdge (var_node_1172, object->mProperty_mClassName COMMA_SOURCE_FILE ("to-one-relationship.galgas", 29)) ;
   }
+  {
+  ioArgument_ioGraph.setter_addEdge (var_node_1172, object->mProperty_mDestinationEntityName COMMA_SOURCE_FILE ("to-one-relationship.galgas", 30)) ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1426,7 +1429,7 @@ static GALGAS_lstring extensionGetter_toOneRelationshipAST_lkey (const cPtr_abst
   GALGAS_lstring result_result ; // Returned variable
   const cPtr_toOneRelationshipAST * object = (const cPtr_toOneRelationshipAST *) inObject ;
   macroValidSharedObject (object, cPtr_toOneRelationshipAST) ;
-  result_result = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 35)).add_operation (object->mProperty_mToOneRelationshipName.getter_string (SOURCE_FILE ("to-one-relationship.galgas", 35)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 35)), object->mProperty_mToOneRelationshipName.getter_location (HERE)  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 35)) ;
+  result_result = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 36)).add_operation (object->mProperty_mToOneRelationshipName.getter_string (SOURCE_FILE ("to-one-relationship.galgas", 36)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 36)), object->mProperty_mToOneRelationshipName.getter_location (HERE)  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 36)) ;
 //---
   return result_result ;
 }
@@ -1449,10 +1452,57 @@ C_PrologueEpilogue gGetter_toOneRelationshipAST_lkey (defineExtensionGetter_toOn
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void extensionMethod_toOneRelationshipAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * /* inObject */,
-                                                                                   GALGAS_classMap & /* ioArgument_ioClassMap */,
-                                                                                   C_Compiler * /* inCompiler */
+static void extensionMethod_toOneRelationshipAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * inObject,
+                                                                                   GALGAS_classMap & ioArgument_ioClassMap,
+                                                                                   C_Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_toOneRelationshipAST * object = (const cPtr_toOneRelationshipAST *) inObject ;
+  macroValidSharedObject (object, cPtr_toOneRelationshipAST) ;
+  cMapElement_classMap * objectArray_4200 = (cMapElement_classMap *) ioArgument_ioClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 111)) ;
+  if (NULL != objectArray_4200) {
+      macroValidSharedObject (objectArray_4200, cMapElement_classMap) ;
+    GALGAS_classKind var_classKind_4326 ;
+    GALGAS_propertyMap joker_4328 ; // Joker input parameter
+    ioArgument_ioClassMap.method_searchKey (object->mProperty_mDestinationEntityName, var_classKind_4326, joker_4328, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 114)) ;
+    switch (var_classKind_4326.enumValue ()) {
+    case GALGAS_classKind::kNotBuilt:
+      break ;
+    case GALGAS_classKind::kEnum_prefs:
+      {
+        TC_Array <C_FixItDescription> fixItArray0 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 117)), GALGAS_string ("an entity is required here"), fixItArray0  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 117)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_simpleClass:
+      {
+        TC_Array <C_FixItDescription> fixItArray1 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 119)), GALGAS_string ("an entity is required here"), fixItArray1  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 119)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_atomic:
+      {
+        TC_Array <C_FixItDescription> fixItArray2 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 121)), GALGAS_string ("an entity is required here"), fixItArray2  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 121)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_document:
+      {
+        TC_Array <C_FixItDescription> fixItArray3 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 123)), GALGAS_string ("an entity is required here"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 123)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_entity:
+      {
+        const cEnumAssociatedValues_classKind_entity * extractPtr_4952 = (const cEnumAssociatedValues_classKind_entity *) (var_classKind_4326.unsafePointer ()) ;
+        const GALGAS_bool extractedValue_graphic = extractPtr_4952->mAssociatedValue0 ;
+        GALGAS_propertyKind var_kind_4744 = GALGAS_propertyKind::constructor_toMany (object->mProperty_mClassName, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("to-one-relationship.galgas", 127)), extractedValue_graphic, GALGAS_bool (true)  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 125)) ;
+        {
+        objectArray_4200->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mToOneRelationshipName, var_kind_4744, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 131)) ;
+        }
+      }
+      break ;
+    }
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1486,6 +1536,9 @@ static void extensionMethod_toManyRelationshipAST_enterInPrecedenceGraph (const 
   {
   ioArgument_ioGraph.setter_addEdge (var_node_983, object->mProperty_mClassName COMMA_SOURCE_FILE ("to-many-relationship.galgas", 27)) ;
   }
+  {
+  ioArgument_ioGraph.setter_addEdge (var_node_983, object->mProperty_mDestinationEntityName COMMA_SOURCE_FILE ("to-many-relationship.galgas", 28)) ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1511,7 +1564,7 @@ static GALGAS_lstring extensionGetter_toManyRelationshipAST_lkey (const cPtr_abs
   GALGAS_lstring result_result ; // Returned variable
   const cPtr_toManyRelationshipAST * object = (const cPtr_toManyRelationshipAST *) inObject ;
   macroValidSharedObject (object, cPtr_toManyRelationshipAST) ;
-  result_result = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 33)).add_operation (object->mProperty_mToManyRelationshipName.getter_string (SOURCE_FILE ("to-many-relationship.galgas", 33)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 33)), object->mProperty_mToManyRelationshipName.getter_location (HERE)  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 33)) ;
+  result_result = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 34)).add_operation (object->mProperty_mToManyRelationshipName.getter_string (SOURCE_FILE ("to-many-relationship.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 34)), object->mProperty_mToManyRelationshipName.getter_location (HERE)  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 34)) ;
 //---
   return result_result ;
 }
@@ -1534,10 +1587,57 @@ C_PrologueEpilogue gGetter_toManyRelationshipAST_lkey (defineExtensionGetter_toM
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void extensionMethod_toManyRelationshipAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * /* inObject */,
-                                                                                    GALGAS_classMap & /* ioArgument_ioClassMap */,
-                                                                                    C_Compiler * /* inCompiler */
+static void extensionMethod_toManyRelationshipAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * inObject,
+                                                                                    GALGAS_classMap & ioArgument_ioClassMap,
+                                                                                    C_Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_toManyRelationshipAST * object = (const cPtr_toManyRelationshipAST *) inObject ;
+  macroValidSharedObject (object, cPtr_toManyRelationshipAST) ;
+  cMapElement_classMap * objectArray_4104 = (cMapElement_classMap *) ioArgument_ioClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 109)) ;
+  if (NULL != objectArray_4104) {
+      macroValidSharedObject (objectArray_4104, cMapElement_classMap) ;
+    GALGAS_classKind var_classKind_4230 ;
+    GALGAS_propertyMap joker_4232 ; // Joker input parameter
+    ioArgument_ioClassMap.method_searchKey (object->mProperty_mDestinationEntityName, var_classKind_4230, joker_4232, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 112)) ;
+    switch (var_classKind_4230.enumValue ()) {
+    case GALGAS_classKind::kNotBuilt:
+      break ;
+    case GALGAS_classKind::kEnum_prefs:
+      {
+        TC_Array <C_FixItDescription> fixItArray0 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 115)), GALGAS_string ("an entity is required here"), fixItArray0  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 115)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_simpleClass:
+      {
+        TC_Array <C_FixItDescription> fixItArray1 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 117)), GALGAS_string ("an entity is required here"), fixItArray1  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 117)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_atomic:
+      {
+        TC_Array <C_FixItDescription> fixItArray2 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 119)), GALGAS_string ("an entity is required here"), fixItArray2  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 119)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_document:
+      {
+        TC_Array <C_FixItDescription> fixItArray3 ;
+        inCompiler->emitSemanticError (object->mProperty_mDestinationEntityName.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 121)), GALGAS_string ("an entity is required here"), fixItArray3  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 121)) ;
+      }
+      break ;
+    case GALGAS_classKind::kEnum_entity:
+      {
+        const cEnumAssociatedValues_classKind_entity * extractPtr_4857 = (const cEnumAssociatedValues_classKind_entity *) (var_classKind_4230.unsafePointer ()) ;
+        const GALGAS_bool extractedValue_graphic = extractPtr_4857->mAssociatedValue0 ;
+        GALGAS_propertyKind var_kind_4648 = GALGAS_propertyKind::constructor_toMany (object->mProperty_mClassName, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("to-many-relationship.galgas", 125)), extractedValue_graphic, GALGAS_bool (true)  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 123)) ;
+        {
+        objectArray_4104->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mToManyRelationshipName, var_kind_4648, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 129)) ;
+        }
+      }
+      break ;
+    }
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
