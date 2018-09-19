@@ -13,7 +13,6 @@ class @documentDeclarationEX : @astDeclaration {
 #·······················································································································
 
 class @documentDeclarationAST : @abstractDeclarationAST {
-  @bool mIsUserDefined
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
   @lstringlist mActionDeclarationList
@@ -83,7 +82,6 @@ syntax extension easyBindings_syntax {
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
       !documentName
-      !inIsUserDefined
       !rootEntityName
       !outletDeclarationList
       !actionDeclarationList
@@ -101,6 +99,18 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
 
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @documentDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  [!?ioClassMap insertKey
+    !mClassName
+    !.document {!rootEntityName: mRootEntityName}
+    !{}
+  ]
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

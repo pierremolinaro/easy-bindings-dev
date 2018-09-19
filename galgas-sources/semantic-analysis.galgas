@@ -2,6 +2,80 @@
 #   SEMANTIC TYPES                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+enum @classKind {
+  case prefs
+  case simpleClass
+  case atomic (@typeKind kind)
+  case document (@lstring rootEntityName)
+  case entity (@bool isGraphic)
+}
+
+#·······················································································································
+
+map @classMap {
+  @classKind mClassKind
+  @propertyMap mPropertyMap
+  insert insertKey error message "the '%K' class is already declared in %L"
+  search searchKey error message "there is no '%K' class"
+}
+
+#·······················································································································
+
+enum @atomicClassKind {
+  case boolType 
+  case integerType 
+  case doubleType
+  case stringType 
+  case dateType
+  case fontType
+  case colorType
+  case transientPropertyExternType (@string externTypeName)
+}
+
+#·······················································································································
+
+enum @propertyAccessibility {
+  case stored
+  case proxy
+  case transient
+}
+
+#·······················································································································
+
+enum @typeKind {
+  case boolType 
+  case integerType 
+  case doubleType
+  case stringType 
+  case dateType
+  case fontType
+  case colorType
+  case enumType (@string enumTypeName @enumConstantMap constantMap)
+  case entityType (@string entityName @bool graphic)
+  case classType (@string className)
+  case transientPropertyExternType (@string externTypeName)
+}
+
+#·······················································································································
+
+enum @propertyKind {
+  case property (@typeKind type @propertyAccessibility accessibility)
+  case toMany (@lstring typeName @propertyAccessibility accessibility @bool graphic @bool isEntity)
+  case toOne (@lstring typeName @propertyAccessibility accessibility @bool graphic)
+  case arrayController (@lstring typeName @bool graphic @bool isEntity)
+  case selectionController (@string typeName)
+}
+
+#·······················································································································
+
+map @propertyMap {
+  @propertyKind mKind
+  insert insertKey error message "the '%K' property is already declared in %L"
+  search searchKey error message "there is no '%K' property"
+}
+
+#·······················································································································
+
 abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext

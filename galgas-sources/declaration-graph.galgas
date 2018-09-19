@@ -16,6 +16,10 @@ abstract getter @abstractDeclarationAST lkey -> @lstring
 
 #·······················································································································
 
+abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap
+
+#·······················································································································
+
 list @declarationListAST {
   @abstractDeclarationAST mPropertyDeclaration
 }

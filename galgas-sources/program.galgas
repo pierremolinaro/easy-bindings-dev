@@ -18,8 +18,19 @@ case . "eb"
     !userDefined:true
     !?declarationStruct
     ?var @location endOfSourceFile
+#----------------------------------------- Add Atomic type declarations
+  enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)
 #----------------------------------------- Sort properties
-  sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let outSortedDeclarationListAST)
+  sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
+#----------------------------------------- Semantic Analysis
+  @classMap classMap = {}
+  for (declaration) in sortedDeclarationListAST do
+    [declaration classAndPropertySemanticAnalysis !?classMap]
+  end
+
+
+
+
 #----------------------------------------- Type inventory
   typeInventory (!declarationStruct.mDeclarationList ?@unifiedTypeMap unifiedTypeMap)
 #----------------------------------------- Check all types are defined

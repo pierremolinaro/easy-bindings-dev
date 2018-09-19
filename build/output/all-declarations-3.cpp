@@ -500,41 +500,41 @@ GALGAS_string extensionGetter_filterCode (const GALGAS_arrayControllerFilterList
                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_arrayControllerFilterListForGeneration temp_0 = inObject ;
-  GALGAS_arrayControllerFilterListForGeneration var_filterProperties_17608 = temp_0 ;
-  GALGAS_string var_firstFilterProperty_17671 ;
+  GALGAS_arrayControllerFilterListForGeneration var_filterProperties_18023 = temp_0 ;
+  GALGAS_string var_firstFilterProperty_18086 ;
   {
-  GALGAS_propertyKind joker_17673 ; // Joker input parameter
-  var_filterProperties_17608.setter_popFirst (var_firstFilterProperty_17671, joker_17673, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 474)) ;
+  GALGAS_propertyKind joker_18088 ; // Joker input parameter
+  var_filterProperties_18023.setter_popFirst (var_firstFilterProperty_18086, joker_18088, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 481)) ;
   }
-  GALGAS_string var_indent_17692 = GALGAS_string ("            ") ;
-  result_outResult = var_indent_17692.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 476)).add_operation (var_firstFilterProperty_17671, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 476)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 476)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 477)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 477)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 478)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 478)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 479)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 479)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 480)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 480)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 481)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 481)) ;
-  GALGAS_uint var_idx_18043 = GALGAS_uint ((uint32_t) 2U) ;
-  GALGAS_string var_args_18062 = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd_18086 = var_indent_17692.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 484)) ;
-  cEnumerator_arrayControllerFilterListForGeneration enumerator_18132 (var_filterProperties_17608, kENUMERATION_UP) ;
-  while (enumerator_18132.hasCurrentObject ()) {
-    var_indent_17692.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 486)) ;
-    result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 487)).add_operation (enumerator_18132.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 487)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 487)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 487)) ;
-    result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 488)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 488)) ;
-    result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 489)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 489)) ;
-    result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 490)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 490)) ;
-    result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 491)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 491)) ;
-    result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 492)).add_operation (var_idx_18043.getter_string (SOURCE_FILE ("array-controller.galgas", 492)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 492)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 492)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 492)) ;
-    var_blockEnd_18086 = var_indent_17692.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 493)).add_operation (var_blockEnd_18086, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 493)) ;
-    var_args_18062.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_18043.getter_string (SOURCE_FILE ("array-controller.galgas", 494)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 494)) ;
-    var_idx_18043.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 495)) ;
-    enumerator_18132.gotoNextObject () ;
+  GALGAS_string var_indent_18107 = GALGAS_string ("            ") ;
+  result_outResult = var_indent_18107.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 483)).add_operation (var_firstFilterProperty_18086, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 483)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 483)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 484)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 484)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 485)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 485)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 486)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 486)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 487)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 487)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 488)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 488)) ;
+  GALGAS_uint var_idx_18458 = GALGAS_uint ((uint32_t) 2U) ;
+  GALGAS_string var_args_18477 = GALGAS_string::makeEmptyString () ;
+  GALGAS_string var_blockEnd_18501 = var_indent_18107.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 491)) ;
+  cEnumerator_arrayControllerFilterListForGeneration enumerator_18547 (var_filterProperties_18023, kENUMERATION_UP) ;
+  while (enumerator_18547.hasCurrentObject ()) {
+    var_indent_18107.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 493)) ;
+    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)).add_operation (enumerator_18547.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 494)) ;
+    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 495)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 495)) ;
+    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 496)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 496)) ;
+    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 497)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 497)) ;
+    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 498)) ;
+    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)).add_operation (var_idx_18458.getter_string (SOURCE_FILE ("array-controller.galgas", 499)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 499)) ;
+    var_blockEnd_18501 = var_indent_18107.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)).add_operation (var_blockEnd_18501, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)) ;
+    var_args_18477.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_18458.getter_string (SOURCE_FILE ("array-controller.galgas", 501)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 501)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 501)) ;
+    var_idx_18458.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 502)) ;
+    enumerator_18547.gotoNextObject () ;
   }
-  var_indent_17692.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 497)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)).add_operation (var_args_18062, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 498)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 499)) ;
-  result_outResult.plusAssign_operation(var_indent_17692.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 500)) ;
-  result_outResult.plusAssign_operation(var_blockEnd_18086, inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 501)) ;
+  var_indent_18107.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 504)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (var_args_18477, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 505)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 506)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 506)) ;
+  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 507)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 507)) ;
+  result_outResult.plusAssign_operation(var_blockEnd_18501, inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 508)) ;
 //---
   return result_outResult ;
 }
@@ -1172,130 +1172,6 @@ void callExtensionMethod_analyzeDefaultValueType (const cPtr_abstractDefaultValu
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyAccessibility::GALGAS_propertyAccessibility (void) :
-mEnum (kNotBuilt) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_stored (UNUSED_LOCATION_ARGS) {
-  GALGAS_propertyAccessibility result ;
-  result.mEnum = kEnum_stored ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_proxy (UNUSED_LOCATION_ARGS) {
-  GALGAS_propertyAccessibility result ;
-  result.mEnum = kEnum_proxy ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_transient (UNUSED_LOCATION_ARGS) {
-  GALGAS_propertyAccessibility result ;
-  result.mEnum = kEnum_transient ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static const char * gEnumNameArrayFor_propertyAccessibility [4] = {
-  "(not built)",
-  "stored",
-  "proxy",
-  "transient"
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_propertyAccessibility::getter_isStored (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_stored == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_propertyAccessibility::getter_isProxy (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_proxy == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_propertyAccessibility::getter_isTransient (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_transient == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyAccessibility::description (C_String & ioString,
-                                                const int32_t /* inIndentation */) const {
-  ioString << "<enum @propertyAccessibility: " << gEnumNameArrayFor_propertyAccessibility [mEnum] ;
-  ioString << ">" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult GALGAS_propertyAccessibility::objectCompare (const GALGAS_propertyAccessibility & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             @propertyAccessibility type                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_propertyAccessibility ("propertyAccessibility",
-                                              NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_propertyAccessibility::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyAccessibility ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_propertyAccessibility::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_propertyAccessibility (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::extractObject (const GALGAS_object & inObject,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_propertyAccessibility result ;
-  const GALGAS_propertyAccessibility * p = (const GALGAS_propertyAccessibility *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_propertyAccessibility *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("propertyAccessibility", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                                      Extension Getter '@typeKind isComparable'                                      *
 //                                                                                                                     *
@@ -1388,8 +1264,8 @@ GALGAS_bool extensionGetter_isGraphic (const GALGAS_typeKind & inObject,
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_2292 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_bool extractedValue_isGraphic = extractPtr_2292->mAssociatedValue1 ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_1092 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_bool extractedValue_isGraphic = extractPtr_1092->mAssociatedValue1 ;
       result_outResult = extractedValue_isGraphic ;
     }
     break ;
@@ -2227,36 +2103,36 @@ GALGAS_string extensionGetter_swiftTypeName (const GALGAS_propertyKind & inObjec
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_3790 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_type = extractPtr_3790->mAssociatedValue0 ;
-      result_result = extensionGetter_swiftTypeName (extractedValue_type, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 112)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_2590 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_type = extractPtr_2590->mAssociatedValue0 ;
+      result_result = extensionGetter_swiftTypeName (extractedValue_type, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 78)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_3842 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_typeName = extractPtr_3842->mAssociatedValue0 ;
-      result_result = extractedValue_typeName.getter_string (SOURCE_FILE ("unified-type.galgas", 114)) ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_2642 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_typeName = extractPtr_2642->mAssociatedValue0 ;
+      result_result = extractedValue_typeName.getter_string (SOURCE_FILE ("unified-type.galgas", 80)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
     {
-      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_3893 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_typeName = extractPtr_3893->mAssociatedValue0 ;
-      result_result = extractedValue_typeName.getter_string (SOURCE_FILE ("unified-type.galgas", 116)) ;
+      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_2693 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_typeName = extractPtr_2693->mAssociatedValue0 ;
+      result_result = extractedValue_typeName.getter_string (SOURCE_FILE ("unified-type.galgas", 82)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
     {
-      const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_3954 = (const cEnumAssociatedValues_propertyKind_arrayController *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_typeName = extractPtr_3954->mAssociatedValue0 ;
-      result_result = extractedValue_typeName.getter_string (SOURCE_FILE ("unified-type.galgas", 118)) ;
+      const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_2754 = (const cEnumAssociatedValues_propertyKind_arrayController *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_typeName = extractPtr_2754->mAssociatedValue0 ;
+      result_result = extractedValue_typeName.getter_string (SOURCE_FILE ("unified-type.galgas", 84)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_selectionController:
     {
-      const cEnumAssociatedValues_propertyKind_selectionController * extractPtr_4016 = (const cEnumAssociatedValues_propertyKind_selectionController *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_typeName = extractPtr_4016->mAssociatedValue0 ;
+      const cEnumAssociatedValues_propertyKind_selectionController * extractPtr_2816 = (const cEnumAssociatedValues_propertyKind_selectionController *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_typeName = extractPtr_2816->mAssociatedValue0 ;
       result_result = extractedValue_typeName ;
     }
     break ;
@@ -2319,29 +2195,29 @@ GALGAS_string extensionGetter_swiftTypeName (const GALGAS_typeKind & inObject,
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_4556 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_entityName = extractPtr_4556->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_3356 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_entityName = extractPtr_3356->mAssociatedValue0 ;
       result_outResult = extractedValue_entityName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_enumType:
     {
-      const cEnumAssociatedValues_typeKind_enumType * extractPtr_4624 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_enumTypeName = extractPtr_4624->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_enumType * extractPtr_3424 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_enumTypeName = extractPtr_3424->mAssociatedValue0 ;
       result_outResult = extractedValue_enumTypeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_classType:
     {
-      const cEnumAssociatedValues_typeKind_classType * extractPtr_4693 = (const cEnumAssociatedValues_typeKind_classType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_classTypeName = extractPtr_4693->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_classType * extractPtr_3493 = (const cEnumAssociatedValues_typeKind_classType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_classTypeName = extractPtr_3493->mAssociatedValue0 ;
       result_outResult = extractedValue_classTypeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_transientPropertyExternType:
     {
-      const cEnumAssociatedValues_typeKind_transientPropertyExternType * extractPtr_4780 = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_classTypeName = extractPtr_4780->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_transientPropertyExternType * extractPtr_3580 = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_classTypeName = extractPtr_3580->mAssociatedValue0 ;
       result_outResult = extractedValue_classTypeName ;
     }
     break ;
@@ -2369,23 +2245,23 @@ GALGAS_bool extensionGetter_isTransient (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_5042 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_5042->mAssociatedValue1 ;
-      result_result = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.galgas", 146)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_3842 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_3842->mAssociatedValue1 ;
+      result_result = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.galgas", 112)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5116 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
-      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_5116->mAssociatedValue1 ;
-      result_result = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.galgas", 147)) ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_3916 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
+      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_3916->mAssociatedValue1 ;
+      result_result = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.galgas", 113)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
     {
-      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_5188 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
-      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_5188->mAssociatedValue1 ;
-      result_result = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.galgas", 148)) ;
+      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_3988 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
+      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_3988->mAssociatedValue1 ;
+      result_result = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.galgas", 114)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
@@ -2422,9 +2298,9 @@ GALGAS_bool extensionGetter_isComparable (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_5527 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_type = extractPtr_5527->mAssociatedValue0 ;
-      result_result = extensionGetter_isComparable (extractedValue_type, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 158)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_4327 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_type = extractPtr_4327->mAssociatedValue0 ;
+      result_result = extensionGetter_isComparable (extractedValue_type, inCompiler COMMA_SOURCE_FILE ("unified-type.galgas", 124)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
@@ -2476,8 +2352,8 @@ GALGAS_bool extensionGetter_isEntityType (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5967 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
-      const GALGAS_bool extractedValue_isEntity = extractPtr_5967->mAssociatedValue3 ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_4767 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
+      const GALGAS_bool extractedValue_isEntity = extractPtr_4767->mAssociatedValue3 ;
       result_result = extractedValue_isEntity ;
     }
     break ;
@@ -2520,9 +2396,9 @@ GALGAS_bool extensionGetter_isEnumType (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_6336 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_type = extractPtr_6336->mAssociatedValue0 ;
-      result_result = extractedValue_type.getter_isEnumType (SOURCE_FILE ("unified-type.galgas", 182)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_5136 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_type = extractPtr_5136->mAssociatedValue0 ;
+      result_result = extractedValue_type.getter_isEnumType (SOURCE_FILE ("unified-type.galgas", 148)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
@@ -2552,6 +2428,1262 @@ GALGAS_bool extensionGetter_isEnumType (const GALGAS_propertyKind & inObject,
 
 
 
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumAssociatedValues_classKind_atomic::cEnumAssociatedValues_classKind_atomic (const GALGAS_typeKind & inAssociatedValue0
+                                                                                COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues (THERE),
+mAssociatedValue0 (inAssociatedValue0) {
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cEnumAssociatedValues_classKind_atomic::description (C_String & ioString,
+                                                          const int32_t inIndentation) const {
+  ioString << "(\n" ;
+  mAssociatedValue0.description (ioString, inIndentation) ;
+  ioString << ")" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cEnumAssociatedValues_classKind_atomic::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_classKind_atomic * ptr = dynamic_cast<const cEnumAssociatedValues_classKind_atomic *> (inOperand) ;
+  macroValidPointer (ptr) ;
+  typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumAssociatedValues_classKind_document::cEnumAssociatedValues_classKind_document (const GALGAS_lstring & inAssociatedValue0
+                                                                                    COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues (THERE),
+mAssociatedValue0 (inAssociatedValue0) {
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cEnumAssociatedValues_classKind_document::description (C_String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString << "(\n" ;
+  mAssociatedValue0.description (ioString, inIndentation) ;
+  ioString << ")" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cEnumAssociatedValues_classKind_document::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_classKind_document * ptr = dynamic_cast<const cEnumAssociatedValues_classKind_document *> (inOperand) ;
+  macroValidPointer (ptr) ;
+  typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumAssociatedValues_classKind_entity::cEnumAssociatedValues_classKind_entity (const GALGAS_bool & inAssociatedValue0
+                                                                                COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues (THERE),
+mAssociatedValue0 (inAssociatedValue0) {
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cEnumAssociatedValues_classKind_entity::description (C_String & ioString,
+                                                          const int32_t inIndentation) const {
+  ioString << "(\n" ;
+  mAssociatedValue0.description (ioString, inIndentation) ;
+  ioString << ")" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cEnumAssociatedValues_classKind_entity::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_classKind_entity * ptr = dynamic_cast<const cEnumAssociatedValues_classKind_entity *> (inOperand) ;
+  macroValidPointer (ptr) ;
+  typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind::GALGAS_classKind (void) :
+mAssociatedValues (),
+mEnum (kNotBuilt) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classKind::constructor_prefs (UNUSED_LOCATION_ARGS) {
+  GALGAS_classKind result ;
+  result.mEnum = kEnum_prefs ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classKind::constructor_simpleClass (UNUSED_LOCATION_ARGS) {
+  GALGAS_classKind result ;
+  result.mEnum = kEnum_simpleClass ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classKind::constructor_atomic (const GALGAS_typeKind & inAssociatedValue0
+                                                       COMMA_LOCATION_ARGS) {
+  GALGAS_classKind result ;
+  if (inAssociatedValue0.isValid ()) {
+    result.mEnum = kEnum_atomic ;
+    cEnumAssociatedValues * ptr = NULL ;
+    macroMyNew (ptr, cEnumAssociatedValues_classKind_atomic (inAssociatedValue0 COMMA_THERE)) ;
+    result.mAssociatedValues.setPointer (ptr) ;
+    macroDetachSharedObject (ptr) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classKind::constructor_document (const GALGAS_lstring & inAssociatedValue0
+                                                         COMMA_LOCATION_ARGS) {
+  GALGAS_classKind result ;
+  if (inAssociatedValue0.isValid ()) {
+    result.mEnum = kEnum_document ;
+    cEnumAssociatedValues * ptr = NULL ;
+    macroMyNew (ptr, cEnumAssociatedValues_classKind_document (inAssociatedValue0 COMMA_THERE)) ;
+    result.mAssociatedValues.setPointer (ptr) ;
+    macroDetachSharedObject (ptr) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classKind::constructor_entity (const GALGAS_bool & inAssociatedValue0
+                                                       COMMA_LOCATION_ARGS) {
+  GALGAS_classKind result ;
+  if (inAssociatedValue0.isValid ()) {
+    result.mEnum = kEnum_entity ;
+    cEnumAssociatedValues * ptr = NULL ;
+    macroMyNew (ptr, cEnumAssociatedValues_classKind_entity (inAssociatedValue0 COMMA_THERE)) ;
+    result.mAssociatedValues.setPointer (ptr) ;
+    macroDetachSharedObject (ptr) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classKind::method_atomic (GALGAS_typeKind & outAssociatedValue0,
+                                      C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_atomic) {
+    outAssociatedValue0.drop () ;
+    C_String s ;
+    s << "method @classKind atomic invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_classKind_atomic * ptr = (const cEnumAssociatedValues_classKind_atomic *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classKind::method_document (GALGAS_lstring & outAssociatedValue0,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_document) {
+    outAssociatedValue0.drop () ;
+    C_String s ;
+    s << "method @classKind document invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_classKind_document * ptr = (const cEnumAssociatedValues_classKind_document *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classKind::method_entity (GALGAS_bool & outAssociatedValue0,
+                                      C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_entity) {
+    outAssociatedValue0.drop () ;
+    C_String s ;
+    s << "method @classKind entity invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_classKind_entity * ptr = (const cEnumAssociatedValues_classKind_entity *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static const char * gEnumNameArrayFor_classKind [6] = {
+  "(not built)",
+  "prefs",
+  "simpleClass",
+  "atomic",
+  "document",
+  "entity"
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_classKind::getter_isPrefs (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_prefs == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_classKind::getter_isSimpleClass (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_simpleClass == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_classKind::getter_isAtomic (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_atomic == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_classKind::getter_isDocument (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_document == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_classKind::getter_isEntity (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_entity == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classKind::description (C_String & ioString,
+                                    const int32_t inIndentation) const {
+  ioString << "<enum @classKind: " << gEnumNameArrayFor_classKind [mEnum] ;
+  mAssociatedValues.description (ioString, inIndentation) ;
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_classKind::objectCompare (const GALGAS_classKind & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mEnum < inOperand.mEnum) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mEnum > inOperand.mEnum) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                   @classKind type                                                   *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_classKind ("classKind",
+                                  NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_classKind::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_classKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_classKind::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_classKind (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classKind::extractObject (const GALGAS_object & inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_classKind result ;
+  const GALGAS_classKind * p = (const GALGAS_classKind *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_classKind *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("classKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_classMap::cMapElement_classMap (const GALGAS_lstring & inKey,
+                                            const GALGAS_classKind & in_mClassKind,
+                                            const GALGAS_propertyMap & in_mPropertyMap
+                                            COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mClassKind (in_mClassKind),
+mProperty_mPropertyMap (in_mPropertyMap) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cMapElement_classMap::isValid (void) const {
+  return mProperty_lkey.isValid () && mProperty_mClassKind.isValid () && mProperty_mPropertyMap.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement * cMapElement_classMap::copy (void) {
+  cMapElement * result = NULL ;
+  macroMyNew (result, cMapElement_classMap (mProperty_lkey, mProperty_mClassKind, mProperty_mPropertyMap COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cMapElement_classMap::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mClassKind" ":" ;
+  mProperty_mClassKind.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mPropertyMap" ":" ;
+  mProperty_mPropertyMap.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cMapElement_classMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_classMap * operand = (cMapElement_classMap *) inOperand ;
+  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mClassKind.objectCompare (operand->mProperty_mClassKind) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mPropertyMap.objectCompare (operand->mProperty_mPropertyMap) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap::GALGAS_classMap (void) :
+AC_GALGAS_map () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap::GALGAS_classMap (const GALGAS_classMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap & GALGAS_classMap::operator = (const GALGAS_classMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap GALGAS_classMap::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_classMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap GALGAS_classMap::constructor_mapWithMapToOverride (const GALGAS_classMap & inMapToOverride
+                                                                   COMMA_LOCATION_ARGS) {
+  GALGAS_classMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap GALGAS_classMap::getter_overriddenMap (C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const {
+  GALGAS_classMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                           const GALGAS_classKind & inArgument0,
+                                           const GALGAS_propertyMap & inArgument1,
+                                           C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) {
+  cMapElement_classMap * p = NULL ;
+  macroMyNew (p, cMapElement_classMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@classMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classMap::setter_insertKey (GALGAS_lstring inKey,
+                                        GALGAS_classKind inArgument0,
+                                        GALGAS_propertyMap inArgument1,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) {
+  cMapElement_classMap * p = NULL ;
+  macroMyNew (p, cMapElement_classMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' class is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const char * kSearchErrorMessage_classMap_searchKey = "there is no '%K' class" ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classMap::method_searchKey (GALGAS_lstring inKey,
+                                        GALGAS_classKind & outArgument0,
+                                        GALGAS_propertyMap & outArgument1,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) const {
+  const cMapElement_classMap * p = (const cMapElement_classMap *) performSearch (inKey,
+                                                                                 inCompiler,
+                                                                                 kSearchErrorMessage_classMap_searchKey
+                                                                                 COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_classMap) ;
+    outArgument0 = p->mProperty_mClassKind ;
+    outArgument1 = p->mProperty_mPropertyMap ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind GALGAS_classMap::getter_mClassKindForKey (const GALGAS_string & inKey,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_classMap * p = (const cMapElement_classMap *) attributes ;
+  GALGAS_classKind result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_classMap) ;
+    result = p->mProperty_mClassKind ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap GALGAS_classMap::getter_mPropertyMapForKey (const GALGAS_string & inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_classMap * p = (const cMapElement_classMap *) attributes ;
+  GALGAS_propertyMap result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_classMap) ;
+    result = p->mProperty_mPropertyMap ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classMap::setter_setMClassKindForKey (GALGAS_classKind inAttributeValue,
+                                                  GALGAS_string inKey,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_classMap * p = (cMapElement_classMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_classMap) ;
+    p->mProperty_mClassKind = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_classMap::setter_setMPropertyMapForKey (GALGAS_propertyMap inAttributeValue,
+                                                    GALGAS_string inKey,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_classMap * p = (cMapElement_classMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_classMap) ;
+    p->mProperty_mPropertyMap = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_classMap * GALGAS_classMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                           const GALGAS_string & inKey
+                                                                           COMMA_LOCATION_ARGS) {
+  cMapElement_classMap * result = (cMapElement_classMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_classMap) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_classMap::cEnumerator_classMap (const GALGAS_classMap & inEnumeratedObject,
+                                            const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap_2D_element cEnumerator_classMap::current (LOCATION_ARGS) const {
+  const cMapElement_classMap * p = (const cMapElement_classMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_classMap) ;
+  return GALGAS_classMap_2D_element (p->mProperty_lkey, p->mProperty_mClassKind, p->mProperty_mPropertyMap) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cEnumerator_classMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classKind cEnumerator_classMap::current_mClassKind (LOCATION_ARGS) const {
+  const cMapElement_classMap * p = (const cMapElement_classMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_classMap) ;
+  return p->mProperty_mClassKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap cEnumerator_classMap::current_mPropertyMap (LOCATION_ARGS) const {
+  const cMapElement_classMap * p = (const cMapElement_classMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_classMap) ;
+  return p->mProperty_mPropertyMap ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                   @classMap type                                                    *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_classMap ("classMap",
+                                 NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_classMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_classMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_classMap::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_classMap (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_classMap GALGAS_classMap::extractObject (const GALGAS_object & inObject,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
+  GALGAS_classMap result ;
+  const GALGAS_classMap * p = (const GALGAS_classMap *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_classMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("classMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_propertyMap::cMapElement_propertyMap (const GALGAS_lstring & inKey,
+                                                  const GALGAS_propertyKind & in_mKind
+                                                  COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mKind (in_mKind) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cMapElement_propertyMap::isValid (void) const {
+  return mProperty_lkey.isValid () && mProperty_mKind.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement * cMapElement_propertyMap::copy (void) {
+  cMapElement * result = NULL ;
+  macroMyNew (result, cMapElement_propertyMap (mProperty_lkey, mProperty_mKind COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cMapElement_propertyMap::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mKind" ":" ;
+  mProperty_mKind.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cMapElement_propertyMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_propertyMap * operand = (cMapElement_propertyMap *) inOperand ;
+  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mKind.objectCompare (operand->mProperty_mKind) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap::GALGAS_propertyMap (void) :
+AC_GALGAS_map () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap::GALGAS_propertyMap (const GALGAS_propertyMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap & GALGAS_propertyMap::operator = (const GALGAS_propertyMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap GALGAS_propertyMap::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_propertyMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap GALGAS_propertyMap::constructor_mapWithMapToOverride (const GALGAS_propertyMap & inMapToOverride
+                                                                         COMMA_LOCATION_ARGS) {
+  GALGAS_propertyMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap GALGAS_propertyMap::getter_overriddenMap (C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const {
+  GALGAS_propertyMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_propertyMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                              const GALGAS_propertyKind & inArgument0,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  cMapElement_propertyMap * p = NULL ;
+  macroMyNew (p, cMapElement_propertyMap (inKey, inArgument0 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@propertyMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_propertyMap::setter_insertKey (GALGAS_lstring inKey,
+                                           GALGAS_propertyKind inArgument0,
+                                           C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) {
+  cMapElement_propertyMap * p = NULL ;
+  macroMyNew (p, cMapElement_propertyMap (inKey, inArgument0 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' property is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const char * kSearchErrorMessage_propertyMap_searchKey = "there is no '%K' property" ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_propertyMap::method_searchKey (GALGAS_lstring inKey,
+                                           GALGAS_propertyKind & outArgument0,
+                                           C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) const {
+  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) performSearch (inKey,
+                                                                                       inCompiler,
+                                                                                       kSearchErrorMessage_propertyMap_searchKey
+                                                                                       COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_propertyMap) ;
+    outArgument0 = p->mProperty_mKind ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind GALGAS_propertyMap::getter_mKindForKey (const GALGAS_string & inKey,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) attributes ;
+  GALGAS_propertyKind result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_propertyMap) ;
+    result = p->mProperty_mKind ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_propertyMap::setter_setMKindForKey (GALGAS_propertyKind inAttributeValue,
+                                                GALGAS_string inKey,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_propertyMap * p = (cMapElement_propertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_propertyMap) ;
+    p->mProperty_mKind = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_propertyMap * GALGAS_propertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                 const GALGAS_string & inKey
+                                                                                 COMMA_LOCATION_ARGS) {
+  cMapElement_propertyMap * result = (cMapElement_propertyMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_propertyMap) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_propertyMap::cEnumerator_propertyMap (const GALGAS_propertyMap & inEnumeratedObject,
+                                                  const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap_2D_element cEnumerator_propertyMap::current (LOCATION_ARGS) const {
+  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_propertyMap) ;
+  return GALGAS_propertyMap_2D_element (p->mProperty_lkey, p->mProperty_mKind) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cEnumerator_propertyMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind cEnumerator_propertyMap::current_mKind (LOCATION_ARGS) const {
+  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_propertyMap) ;
+  return p->mProperty_mKind ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                  @propertyMap type                                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_propertyMap ("propertyMap",
+                                    NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_propertyMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_propertyMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_propertyMap::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_propertyMap (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap GALGAS_propertyMap::extractObject (const GALGAS_object & inObject,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_propertyMap result ;
+  const GALGAS_propertyMap * p = (const GALGAS_propertyMap *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_propertyMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("propertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumAssociatedValues_atomicClassKind_transientPropertyExternType::cEnumAssociatedValues_atomicClassKind_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
+                                                                                                                                      COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues (THERE),
+mAssociatedValue0 (inAssociatedValue0) {
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cEnumAssociatedValues_atomicClassKind_transientPropertyExternType::description (C_String & ioString,
+                                                                                     const int32_t inIndentation) const {
+  ioString << "(\n" ;
+  mAssociatedValue0.description (ioString, inIndentation) ;
+  ioString << ")" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cEnumAssociatedValues_atomicClassKind_transientPropertyExternType::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType * ptr = dynamic_cast<const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType *> (inOperand) ;
+  macroValidPointer (ptr) ;
+  typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind::GALGAS_atomicClassKind (void) :
+mAssociatedValues (),
+mEnum (kNotBuilt) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_boolType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_boolType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_integerType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_integerType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_doubleType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_doubleType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_stringType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_stringType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_dateType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_dateType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_fontType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_fontType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_colorType (UNUSED_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  result.mEnum = kEnum_colorType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
+                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  if (inAssociatedValue0.isValid ()) {
+    result.mEnum = kEnum_transientPropertyExternType ;
+    cEnumAssociatedValues * ptr = NULL ;
+    macroMyNew (ptr, cEnumAssociatedValues_atomicClassKind_transientPropertyExternType (inAssociatedValue0 COMMA_THERE)) ;
+    result.mAssociatedValues.setPointer (ptr) ;
+    macroDetachSharedObject (ptr) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicClassKind::method_transientPropertyExternType (GALGAS_string & outAssociatedValue0,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_transientPropertyExternType) {
+    outAssociatedValue0.drop () ;
+    C_String s ;
+    s << "method @atomicClassKind transientPropertyExternType invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType * ptr = (const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static const char * gEnumNameArrayFor_atomicClassKind [9] = {
+  "(not built)",
+  "boolType",
+  "integerType",
+  "doubleType",
+  "stringType",
+  "dateType",
+  "fontType",
+  "colorType",
+  "transientPropertyExternType"
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isBoolType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_boolType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isIntegerType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_integerType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isDoubleType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_doubleType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isStringType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_stringType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isDateType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_dateType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isFontType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_fontType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isColorType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_colorType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_atomicClassKind::getter_isTransientPropertyExternType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_transientPropertyExternType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicClassKind::description (C_String & ioString,
+                                          const int32_t inIndentation) const {
+  ioString << "<enum @atomicClassKind: " << gEnumNameArrayFor_atomicClassKind [mEnum] ;
+  mAssociatedValues.description (ioString, inIndentation) ;
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_atomicClassKind::objectCompare (const GALGAS_atomicClassKind & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mEnum < inOperand.mEnum) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mEnum > inOperand.mEnum) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                @atomicClassKind type                                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_atomicClassKind ("atomicClassKind",
+                                        NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_atomicClassKind::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_atomicClassKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_atomicClassKind::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_atomicClassKind (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicClassKind GALGAS_atomicClassKind::extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_atomicClassKind result ;
+  const GALGAS_atomicClassKind * p = (const GALGAS_atomicClassKind *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_atomicClassKind *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("atomicClassKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyAccessibility::GALGAS_propertyAccessibility (void) :
+mEnum (kNotBuilt) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_stored (UNUSED_LOCATION_ARGS) {
+  GALGAS_propertyAccessibility result ;
+  result.mEnum = kEnum_stored ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_proxy (UNUSED_LOCATION_ARGS) {
+  GALGAS_propertyAccessibility result ;
+  result.mEnum = kEnum_proxy ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_transient (UNUSED_LOCATION_ARGS) {
+  GALGAS_propertyAccessibility result ;
+  result.mEnum = kEnum_transient ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static const char * gEnumNameArrayFor_propertyAccessibility [4] = {
+  "(not built)",
+  "stored",
+  "proxy",
+  "transient"
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_propertyAccessibility::getter_isStored (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_stored == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_propertyAccessibility::getter_isProxy (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_proxy == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_propertyAccessibility::getter_isTransient (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_transient == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_propertyAccessibility::description (C_String & ioString,
+                                                const int32_t /* inIndentation */) const {
+  ioString << "<enum @propertyAccessibility: " << gEnumNameArrayFor_propertyAccessibility [mEnum] ;
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_propertyAccessibility::objectCompare (const GALGAS_propertyAccessibility & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mEnum < inOperand.mEnum) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mEnum > inOperand.mEnum) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                             @propertyAccessibility type                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_propertyAccessibility ("propertyAccessibility",
+                                              NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_propertyAccessibility::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_propertyAccessibility ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_propertyAccessibility::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_propertyAccessibility (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_propertyAccessibility result ;
+  const GALGAS_propertyAccessibility * p = (const GALGAS_propertyAccessibility *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_propertyAccessibility *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("propertyAccessibility", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

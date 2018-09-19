@@ -2,40 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum @typeKind {
-  case boolType 
-  case integerType 
-  case doubleType
-  case stringType 
-  case dateType
-  case fontType
-  case colorType
-  case enumType (@string enumTypeName @enumConstantMap constantMap)
-  case entityType (@string entityName @bool graphic)
-  case classType (@string className)
-  case transientPropertyExternType (@string externTypeName)
-}
-
-#·······················································································································
-
-enum @propertyAccessibility {
-  case stored
-  case proxy
-  case transient
-}
-
-#·······················································································································
-
-enum @propertyKind {
-  case property (@typeKind type @propertyAccessibility accessibility)
-  case toMany (@lstring typeName @propertyAccessibility accessibility @bool graphic @bool isEntity)
-  case toOne (@lstring typeName @propertyAccessibility accessibility @bool graphic)
-  case arrayController (@lstring typeName @bool graphic @bool isEntity)
-  case selectionController (@string typeName)
-}
-
-#·······················································································································
-
 getter @typeKind isComparable -> @bool outResult {
   switch self
   case boolType, integerType, doubleType, stringType, dateType :

@@ -2,9 +2,27 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @enumDeclaration : @astDeclaration {
+class @enumDeclarationEX : @astDeclaration {
   @lstring mEnumTypeName
   @lstringlist mEnumConstantNameList
+}
+
+#·······················································································································
+
+class @enumerationDeclarationAST : @abstractDeclarationAST {
+  @lstringlist mEnumConstantNameList
+}
+
+#·······················································································································
+
+override method @enumerationDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+}
+
+#·······················································································································
+
+override getter @enumerationDeclarationAST lkey -> @lstring {
+  result = mClassName
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -29,7 +47,8 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@enumDeclaration. new { !inIsUserDefined !enumName !enumConstants}
+    ioDeclarationAST.mDeclarationList += !@enumDeclarationEX. new { !inIsUserDefined !enumName !enumConstants}
+    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST.new {!enumName !enumConstants}
   }
 
   #·····················································································································
@@ -37,7 +56,7 @@ syntax extension easyBindings_syntax {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTICS                             
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @enumConstantMap {
@@ -45,11 +64,27 @@ map @enumConstantMap {
   search searchKey error message "the '%K' constant is not defined"
 }
 
+#·······················································································································
+
+override method @enumerationDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  @enumConstantMap enumConstantMap = {}
+  for (s) in mEnumConstantNameList do
+    [!?enumConstantMap insertKey !s]
+  end
+  [!?ioClassMap insertKey
+    !mClassName
+    !.atomic {!kind: .enumType {!enumTypeName:mClassName !constantMap: enumConstantMap}}
+    !{}
+  ]
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTICS                             
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   TYPE INVENTORY                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @enumDeclaration typeInventory
+override method @enumDeclarationEX typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   @enumConstantMap enumConstantMap = {}
@@ -67,7 +102,7 @@ override method @enumDeclaration typeInventory
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @enumDeclaration buildObservablePropertyMapsFromStoredProperties
+override method @enumDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?!@semanticContext unused ioSemanticContext
 {
@@ -75,7 +110,7 @@ override method @enumDeclaration buildObservablePropertyMapsFromStoredProperties
 
 #·······················································································································
 
-override method @enumDeclaration buildInitialSecondaryPropertyListMap
+override method @enumDeclarationEX buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
   ?!@uint unused ioSecondaryDeclarationCount 
 {
@@ -83,7 +118,7 @@ override method @enumDeclaration buildInitialSecondaryPropertyListMap
 
 #·······················································································································
 
-override method @enumDeclaration solveSecondaryProperty
+override method @enumDeclarationEX solveSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
   ?let @unifiedTypeMap unused mUnifiedTypeMap
   ?let @secondaryPropertyList unused inPropertiesToSolve
@@ -95,7 +130,7 @@ override method @enumDeclaration solveSecondaryProperty
 
 #·······················································································································
 
-override method @enumDeclaration semanticAnalysis
+override method @enumDeclarationEX semanticAnalysis
   ?let @semanticContext unused inSemanticContext
   ?!@structForGeneration ioGeneration
 {

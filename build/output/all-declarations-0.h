@@ -2880,11 +2880,10 @@ class GALGAS_documentDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_documentDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_bool & inOperand1,
-                                                                       const class GALGAS_lstring & inOperand2,
-                                                                       const class GALGAS_outletDeclarationList & inOperand3,
-                                                                       const class GALGAS_lstringlist & inOperand4,
-                                                                       const class GALGAS_secondaryPropertyList & inOperand5
+                                                                       const class GALGAS_lstring & inOperand1,
+                                                                       const class GALGAS_outletDeclarationList & inOperand2,
+                                                                       const class GALGAS_lstringlist & inOperand3,
+                                                                       const class GALGAS_secondaryPropertyList & inOperand4
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2897,8 +2896,6 @@ class GALGAS_documentDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_outletDeclarationList getter_mOutletDeclarationList (LOCATION_ARGS) const ;
 
@@ -3150,7 +3147,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationLi
 
 class cPtr_documentDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
-  public : GALGAS_bool mProperty_mIsUserDefined ;
   public : GALGAS_lstring mProperty_mRootEntityName ;
   public : GALGAS_outletDeclarationList mProperty_mOutletDeclarationList ;
   public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
@@ -3158,7 +3154,6 @@ class cPtr_documentDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //--- Constructor
   public : cPtr_documentDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                        const GALGAS_bool & in_mIsUserDefined,
                                         const GALGAS_lstring & in_mRootEntityName,
                                         const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
                                         const GALGAS_lstringlist & in_mActionDeclarationList,
@@ -3169,7 +3164,6 @@ class cPtr_documentDeclarationAST : public cPtr_abstractDeclarationAST {
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mRootEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_outletDeclarationList getter_mOutletDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
@@ -4040,22 +4034,22 @@ class cPtr_entityDeclarationEX : public cPtr_astDeclaration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @enumDeclaration class                                                *
+//                                              @enumDeclarationEX class                                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_enumDeclaration : public GALGAS_astDeclaration {
+class GALGAS_enumDeclarationEX : public GALGAS_astDeclaration {
 //--- Constructor
-  public : GALGAS_enumDeclaration (void) ;
+  public : GALGAS_enumDeclarationEX (void) ;
 
 //--------------------------------- Default GALGAS constructor
-  public : static GALGAS_enumDeclaration constructor_default (LOCATION_ARGS) ;
+  public : static GALGAS_enumDeclarationEX constructor_default (LOCATION_ARGS) ;
 
 //---
-  public : inline const class cPtr_enumDeclaration * ptr (void) const { return (const cPtr_enumDeclaration *) mObjectPtr ; }
+  public : inline const class cPtr_enumDeclarationEX * ptr (void) const { return (const cPtr_enumDeclarationEX *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_enumDeclaration (const cPtr_enumDeclaration * inSourcePtr) ;
+  public : GALGAS_enumDeclarationEX (const cPtr_enumDeclarationEX * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -4063,18 +4057,18 @@ class GALGAS_enumDeclaration : public GALGAS_astDeclaration {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_enumDeclaration extractObject (const GALGAS_object & inObject,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_enumDeclarationEX extractObject (const GALGAS_object & inObject,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_enumDeclaration constructor_new (const class GALGAS_bool & inOperand0,
-                                                                const class GALGAS_lstring & inOperand1,
-                                                                const class GALGAS_lstringlist & inOperand2
-                                                                COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_enumDeclarationEX constructor_new (const class GALGAS_bool & inOperand0,
+                                                                  const class GALGAS_lstring & inOperand1,
+                                                                  const class GALGAS_lstringlist & inOperand2
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_enumDeclaration & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_enumDeclarationEX & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -4090,35 +4084,121 @@ class GALGAS_enumDeclaration : public GALGAS_astDeclaration {
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_enumDeclaration class
+} ; // End of GALGAS_enumDeclarationEX class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumDeclaration ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumDeclarationEX ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      Pointer class for @enumDeclaration class                                       *
+//                                     Pointer class for @enumDeclarationEX class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cPtr_enumDeclaration : public cPtr_astDeclaration {
+class cPtr_enumDeclarationEX : public cPtr_astDeclaration {
 //--- Attributes
   public : GALGAS_lstring mProperty_mEnumTypeName ;
   public : GALGAS_lstringlist mProperty_mEnumConstantNameList ;
 
 //--- Constructor
-  public : cPtr_enumDeclaration (const GALGAS_bool & in_mUserDefined,
-                                 const GALGAS_lstring & in_mEnumTypeName,
-                                 const GALGAS_lstringlist & in_mEnumConstantNameList
-                                 COMMA_LOCATION_ARGS) ;
+  public : cPtr_enumDeclarationEX (const GALGAS_bool & in_mUserDefined,
+                                   const GALGAS_lstring & in_mEnumTypeName,
+                                   const GALGAS_lstringlist & in_mEnumConstantNameList
+                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mEnumTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mEnumConstantNameList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                          @enumerationDeclarationAST class                                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_enumerationDeclarationAST : public GALGAS_abstractDeclarationAST {
+//--- Constructor
+  public : GALGAS_enumerationDeclarationAST (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_enumerationDeclarationAST constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_enumerationDeclarationAST * ptr (void) const { return (const cPtr_enumerationDeclarationAST *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_enumerationDeclarationAST (const cPtr_enumerationDeclarationAST * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_enumerationDeclarationAST extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_enumerationDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                          const class GALGAS_lstringlist & inOperand1
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_enumerationDeclarationAST & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mEnumConstantNameList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_enumerationDeclarationAST class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationDeclarationAST ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                 Pointer class for @enumerationDeclarationAST class                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_enumerationDeclarationAST : public cPtr_abstractDeclarationAST {
+//--- Attributes
+  public : GALGAS_lstringlist mProperty_mEnumConstantNameList ;
+
+//--- Constructor
+  public : cPtr_enumerationDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                           const GALGAS_lstringlist & in_mEnumConstantNameList
+                                           COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mEnumConstantNameList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
@@ -12766,6 +12846,78 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumListForGenerati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                          @typeKind enum, associated values                                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_typeKind_enumType : public cEnumAssociatedValues {
+  public : const GALGAS_string mAssociatedValue0 ;
+  public : const GALGAS_enumConstantMap mAssociatedValue1 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_typeKind_enumType (const GALGAS_string & inAssociatedValue0,
+                                                    const GALGAS_enumConstantMap & inAssociatedValue1
+                                                    COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_typeKind_enumType (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_typeKind_entityType : public cEnumAssociatedValues {
+  public : const GALGAS_string mAssociatedValue0 ;
+  public : const GALGAS_bool mAssociatedValue1 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_typeKind_entityType (const GALGAS_string & inAssociatedValue0,
+                                                      const GALGAS_bool & inAssociatedValue1
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_typeKind_entityType (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_typeKind_classType : public cEnumAssociatedValues {
+  public : const GALGAS_string mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_typeKind_classType (const GALGAS_string & inAssociatedValue0
+                                                     COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_typeKind_classType (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumAssociatedValues {
+  public : const GALGAS_string mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_typeKind_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
+                                                                       COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_typeKind_transientPropertyExternType (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                     @simpleStoredPropertyList_2D_element struct                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -13298,78 +13450,6 @@ class GALGAS_classListForGeneration_2D_element : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classListForGeneration_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                          @typeKind enum, associated values                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumAssociatedValues_typeKind_enumType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-  public : const GALGAS_enumConstantMap mAssociatedValue1 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_enumType (const GALGAS_string & inAssociatedValue0,
-                                                    const GALGAS_enumConstantMap & inAssociatedValue1
-                                                    COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_enumType (void) {}
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumAssociatedValues_typeKind_entityType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-  public : const GALGAS_bool mAssociatedValue1 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_entityType (const GALGAS_string & inAssociatedValue0,
-                                                      const GALGAS_bool & inAssociatedValue1
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_entityType (void) {}
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumAssociatedValues_typeKind_classType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_classType (const GALGAS_string & inAssociatedValue0
-                                                     COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_classType (void) {}
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
-                                                                       COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_transientPropertyExternType (void) {}
-} ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -14054,90 +14134,4 @@ class GALGAS_entityObservablePropertyMap_2D_element : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityObservablePropertyMap_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                      @observablePropertyMap_2D_element struct                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_observablePropertyMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_lkey ;
-
-  public : GALGAS_propertyKind mProperty_mKind ;
-
-  public : GALGAS_string mProperty_mInverseRelationshipName ;
-
-  public : GALGAS_actionMap mProperty_mActionMap ;
-
-  public : GALGAS_bool mProperty_mCascade ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_observablePropertyMap_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_observablePropertyMap_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_observablePropertyMap_2D_element (const GALGAS_lstring & in_lkey,
-                                                    const GALGAS_propertyKind & in_mKind,
-                                                    const GALGAS_string & in_mInverseRelationshipName,
-                                                    const GALGAS_actionMap & in_mActionMap,
-                                                    const GALGAS_bool & in_mCascade) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_observablePropertyMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_observablePropertyMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                 const class GALGAS_propertyKind & inOperand1,
-                                                                                 const class GALGAS_string & inOperand2,
-                                                                                 const class GALGAS_actionMap & inOperand3,
-                                                                                 const class GALGAS_bool & inOperand4
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_observablePropertyMap_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMap (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCascade (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mInverseRelationshipName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKind (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_observablePropertyMap_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyMap_2D_element ;
 

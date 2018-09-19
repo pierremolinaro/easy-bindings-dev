@@ -1,0 +1,48 @@
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   AST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @atomicClassDeclarationAST : @abstractDeclarationAST {
+  @typeKind mKind
+}
+
+#·······················································································································
+
+override method @atomicClassDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+}
+
+#·······················································································································
+
+override getter @atomicClassDeclarationAST lkey -> @lstring {
+  result = mClassName
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   ENTER ATOMIC CLASSES IN DECLARATION LIST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+proc enterAtomicClassesIn ?!declarationList: @declarationListAST ioDeclarationListAST {
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Double" nowhere] !.doubleType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["String" nowhere] !.stringType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Int" nowhere]    !.integerType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Bool" nowhere]   !.boolType}
+
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSColor" nowhere] !.colorType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSFont" nowhere] !.fontType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Date" nowhere]!.dateType}
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @atomicClassDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  [!?ioClassMap insertKey
+    !mClassName
+    !.atomic {!kind: mKind}
+    !{}
+  ]
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
