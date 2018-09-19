@@ -2,10 +2,32 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @selectionControllerDeclaration : @abstractSecondaryProperty {
+class @selectionControllerDeclarationEX : @abstractSecondaryProperty {
   @lstring mSelectionControllerName
   @lstring mModelControllerName
   @lstring mModelControllerPropertyName
+}
+
+#·······················································································································
+
+class @selectionControllerDeclarationAST : @abstractDeclarationAST {
+  @lstring mSelectionControllerName
+  @lstring mModelControllerName
+  @lstring mModelControllerPropertyName
+}
+
+#·······················································································································
+
+override method @selectionControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  let node = @lstring.new {!mClassName.string + " " + mSelectionControllerName !mSelectionControllerName.location}
+  [!?ioGraph addNode !node !self]
+  [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mModelControllerName !mModelControllerName.location}]
+}
+
+#·······················································································································
+
+override getter @selectionControllerDeclarationAST lkey -> @lstring {
+  result = @lstring.new {!mClassName.string + " " + mSelectionControllerName !mSelectionControllerName.location}
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -16,21 +38,28 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <controller_declaration> ?!@secondaryPropertyList ioSecondaryPropertyList {
+  rule <controller_declaration>
+            ?let @lstring inCurrentEntity
+            ?let @lstring unused inRootEntity
+            ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?!@astDeclarationStruct ioDeclarationAST
+  {
     $selectionController$
     $identifier$ ?let @lstring selectionControllerName
     $:$
-    @lstring modelControllerName
-    select
-      $self$
-      modelControllerName = ["self" here]
-    or
-      $identifier$ ?modelControllerName
-    end
+    $self$
+    $.$
+    $identifier$ ?let modelControllerName
     $.$
     $identifier$ ?let @lstring propertyName
     $;$
-    ioSecondaryPropertyList += !@selectionControllerDeclaration.new {
+    ioSecondaryPropertyList += !@selectionControllerDeclarationEX.new {
+      !selectionControllerName
+      !modelControllerName
+      !propertyName
+    }
+    ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST.new {
+      !inCurrentEntity
       !selectionControllerName
       !modelControllerName
       !propertyName
@@ -45,14 +74,14 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @selectionControllerDeclaration typeInventory
+override method @selectionControllerDeclarationEX typeInventory
   ?!@unifiedTypeMap unused ioUnifiedTypeMap
 {
 }
 
 #·······················································································································
 
-override method @selectionControllerDeclaration tryToDefineSecondaryProperty
+override method @selectionControllerDeclarationEX tryToDefineSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
@@ -122,7 +151,7 @@ override method @selectionControllerDeclaration tryToDefineSecondaryProperty
 
 #·······················································································································
 
-override method @selectionControllerDeclaration secondaryPropertySemanticAnalysis
+override method @selectionControllerDeclarationEX secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
   ?let @string unused inRootEntityName
   ?let @observablePropertyMap unused inRootObservableProperties

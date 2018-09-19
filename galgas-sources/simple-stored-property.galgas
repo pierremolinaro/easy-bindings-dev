@@ -11,7 +11,7 @@ list @simpleStoredPropertyList {
 
 #·······················································································································
 
-class @atomicPropertyDeclarationAST : @propertyAbstractDeclarationAST {
+class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   @lstring mPropertyTypeName
   @lstring mPropertyName
   @abstractDefaultValue mDefaultValue
@@ -20,9 +20,10 @@ class @atomicPropertyDeclarationAST : @propertyAbstractDeclarationAST {
 
 #·······················································································································
 
-override method @atomicPropertyDeclarationAST enterInPrecedenceGraph ?!@propertyPrecedenceGraph ioGraph {
+override method @atomicPropertyDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
   let node = @lstring.new {!mClassName.string + " " + mPropertyName !mPropertyName.location}
   [!?ioGraph addNode !node !self]
+  [!?ioGraph addEdge !node !mClassName]
 }
 
 #·······················································································································
@@ -40,6 +41,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <simple_stored_declaration>
+    ?let @lstring inClassName
     ?!@simpleStoredPropertyList ioAttributeList
     ?!@stringset ioSignatureList
     ?!@astDeclarationStruct ioDeclarationAST
@@ -72,6 +74,14 @@ syntax extension easyBindings_syntax {
     $default$
     <explicit_value> ?var @abstractDefaultValue defaultValue
     $;$
+    ioDeclarationAST.mUnifiedDeclarationList += !@atomicPropertyDeclarationAST.new{
+      !inClassName
+      !attributeTypeName
+      !attributeName
+      !defaultValue
+      !needsValidation
+
+    }
     ioAttributeList +=
       !attributeTypeName
       !attributeName

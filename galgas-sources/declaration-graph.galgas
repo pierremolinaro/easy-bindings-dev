@@ -2,48 +2,60 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract class @propertyAbstractDeclarationAST {
+abstract class @abstractDeclarationAST {
   @lstring mClassName
 }
 
 #·······················································································································
 
-abstract method @propertyAbstractDeclarationAST enterInPrecedenceGraph ?!@propertyPrecedenceGraph ioGraph
+abstract method @abstractDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph
 
 #·······················································································································
 
-abstract getter @propertyAbstractDeclarationAST lkey -> @lstring
+abstract getter @abstractDeclarationAST lkey -> @lstring
 
 #·······················································································································
 
-list @propertyDeclarationListAST {
-  @propertyAbstractDeclarationAST mPropertyDeclaration
+list @declarationListAST {
+  @abstractDeclarationAST mPropertyDeclaration
 }
 
 #·······················································································································
 
-graph @propertyPrecedenceGraph (@propertyDeclarationListAST) {
+graph @declarationPrecedenceGraph (@declarationListAST) {
   insert addNode error message "the '%K' symbol is already declared at %L"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc sortProperties
-      ?let @propertyDeclarationListAST inPropertyDeclarationListAST
-      !@propertyDeclarationListAST outSortedDeclarationListAST
+      ?let @string inSourceFile
+      ?let @declarationListAST inDeclarationListAST
+      !@declarationListAST outSortedDeclarationListAST
 {
-  @propertyPrecedenceGraph propertyPrecedenceGraph = .emptyGraph
-  for (declaration) in inPropertyDeclarationListAST do
-    [declaration enterInPrecedenceGraph !?propertyPrecedenceGraph]
+#------------------------ Add prefs declaration
+  let prefsDeclaration = @prefsDeclarationAST.new {!.new{!"prefs" !.nowhere}}
+  var declarationListAST = inDeclarationListAST
+  declarationListAST += !prefsDeclaration
+#--- Enter declarations in graph
+  @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
+  for (declaration) in declarationListAST do
+    [declaration enterInPrecedenceGraph !?declarationPrecedenceGraph]
+  end
+#------------------------ dot files
+  if [option easyBindings_options.outputDeclarationDependencyGraph value] then
+    let s = [declarationPrecedenceGraph graphviz]
+    let path = inSourceFile + ".declarationDependancy.dot"
+    [s writeToFileWhenDifferentContents !path ?*]
   end
 #------------------------------------------  Get ordered declaration list
   outSortedDeclarationListAST = {}
-  if [propertyPrecedenceGraph undefinedNodeCount] > 0 then
-    for () in  [propertyPrecedenceGraph undefinedNodeReferenceList] do
+  if [declarationPrecedenceGraph undefinedNodeCount] > 0 then
+    for () in  [declarationPrecedenceGraph undefinedNodeReferenceList] do
       error mValue : "the property " + mValue.string + " is not defined"
     end
   else
-    [propertyPrecedenceGraph topologicalSort
+    [declarationPrecedenceGraph topologicalSort
       ?outSortedDeclarationListAST
       ?*
       ?let unsortedSemanticDeclarationListAST

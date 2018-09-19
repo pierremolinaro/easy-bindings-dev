@@ -9,9 +9,26 @@ struct @prefDeclaration {
   @secondaryPropertyList mSecondaryPropertyList
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
-  @storedArrayPropertyList mStoredArrayList
+  @storedArrayPropertyListAST mStoredArrayList
   @arrayControllerForGeneration mArrayControllerForGeneration
   @stringset mSignatureList
+}
+
+#·······················································································································
+
+class @prefsDeclarationAST : @abstractDeclarationAST {
+}
+
+#·······················································································································
+
+override method @prefsDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+}
+
+#·······················································································································
+
+override getter @prefsDeclarationAST lkey -> @lstring {
+  result = mClassName
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -27,6 +44,7 @@ syntax extension easyBindings_syntax {
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $prefs$
+    let prefs = @lstring.new {!"prefs" !.here}
     ${$
     @stringset signatureList = {}
     repeat
@@ -35,6 +53,7 @@ syntax extension easyBindings_syntax {
     while
       @simpleStoredPropertyList simpleStoredPropertyList = {}
       <simple_stored_declaration>
+        !prefs
         !?simpleStoredPropertyList
         !?signatureList
         !?ioDeclarationAST
@@ -42,13 +61,19 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?ioDeclarationAST.mPreferences.mOutletDeclarationList
     while
-      <transient_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
+     @secondaryPropertyList secondaryPropertyList = {}
+      <transient_declaration> !prefs !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
+      ioDeclarationAST.mPreferences.mSecondaryPropertyList += secondaryPropertyList
     while
       <extern_swift_func> !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList
     while
-      <stored_array_declaration>  !?ioDeclarationAST.mPreferences.mStoredArrayList
+      @storedArrayPropertyListAST storedArrayList = {}
+      <stored_array_declaration> !prefs !?storedArrayList !?ioDeclarationAST
+      ioDeclarationAST.mPreferences.mStoredArrayList += storedArrayList
     while
-      <controller_declaration> !?ioDeclarationAST.mPreferences.mSecondaryPropertyList
+     @secondaryPropertyList secondaryPropertyList = {}
+      <controller_declaration> !prefs !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
+      ioDeclarationAST.mPreferences.mSecondaryPropertyList += secondaryPropertyList
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$

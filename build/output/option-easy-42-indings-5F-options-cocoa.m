@@ -25,10 +25,10 @@ void enterOptionsFor_easyBindings_5F_options (NSMutableArray * ioBoolOptionArray
   [ioBoolOptionArray addObject:option] ;
   option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"easyBindings_options"
-    identifier:@"outputClassDependencyGraph"
-    commandChar:99
-    commandString:@"output-class-graph"
-    comment:@"Output a class dependancy graph graphviz file"
+    identifier:@"outputDeclarationDependencyGraph"
+    commandChar:103
+    commandString:@"output-declaration-graph"
+    comment:@"Output a declaration dependancy graph graphviz file"
     defaultValue:@""
   ] ;
   [ioBoolOptionArray addObject:option] ;

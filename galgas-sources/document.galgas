@@ -2,13 +2,34 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @documentDeclaration : @astDeclaration {
+class @documentDeclarationEX : @astDeclaration {
   @lstring mDocumentName
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
-  @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
   @secondaryPropertyList mSecondaryPropertyList
+}
+
+#·······················································································································
+
+class @documentDeclarationAST : @abstractDeclarationAST {
+  @bool mIsUserDefined
+  @lstring mRootEntityName
+  @outletDeclarationList mOutletDeclarationList
+  @lstringlist mActionDeclarationList
+  @secondaryPropertyList mSecondaryPropertyList
+}
+
+#·······················································································································
+
+override method @documentDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+}
+
+#·······················································································································
+
+override getter @documentDeclarationAST lkey -> @lstring {
+  result = mClassName
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -32,19 +53,16 @@ syntax extension easyBindings_syntax {
     @outletDeclarationList outletDeclarationList = {}
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
-    @simpleStoredPropertyList simpleStoredPropertyList = {}
     @stringset signatureList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST
-    while
       <action_declaration> !?actionDeclarationList
     while
-      <transient_declaration> !?secondaryPropertyList
+      <transient_declaration> !documentName !rootEntityName !?secondaryPropertyList !?ioDeclarationAST
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <controller_declaration> !?secondaryPropertyList
+      <controller_declaration> !documentName !rootEntityName !?secondaryPropertyList !?ioDeclarationAST
     end
     $}$
   #--- Add documentFilePath transient property
@@ -55,12 +73,19 @@ syntax extension easyBindings_syntax {
       !["" here]
     }
   #---
-    ioDeclarationAST.mDeclarationList += !@documentDeclaration.new {
+    ioDeclarationAST.mDeclarationList += !@documentDeclarationEX.new {
       !inIsUserDefined
       !documentName
       !rootEntityName
       !outletDeclarationList
-      !simpleStoredPropertyList
+      !actionDeclarationList
+      !secondaryPropertyList
+    }
+    ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
+      !documentName
+      !inIsUserDefined
+      !rootEntityName
+      !outletDeclarationList
       !actionDeclarationList
       !secondaryPropertyList
     }
@@ -74,10 +99,10 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @documentDeclaration typeInventory
+override method @documentDeclarationEX typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
-  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
+#  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
       !?ioUnifiedTypeMap
@@ -98,7 +123,7 @@ map @documentObservablePropertyMap {
 
 #·······················································································································
 
-override method @documentDeclaration buildInitialSecondaryPropertyListMap
+override method @documentDeclarationEX buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
   ?!@uint ioSecondaryDeclarationCount
 {
@@ -110,16 +135,16 @@ override method @documentDeclaration buildInitialSecondaryPropertyListMap
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @documentDeclaration buildObservablePropertyMapsFromStoredProperties
+override method @documentDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
   @observablePropertyMap observablePropertyMap = {}
 #--- Analyze simple stored properties
-  [mSimpleStoredAttributeList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
+#  [mSimpleStoredAttributeList buildObservablePropertyMap
+#    !inUnifiedTypeMap
+#    !?observablePropertyMap
+#  ]
 #--- Enter in semantics context  
   [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
     !mDocumentName
@@ -129,7 +154,7 @@ override method @documentDeclaration buildObservablePropertyMapsFromStoredProper
 
 #·······················································································································
 
-override method @documentDeclaration solveSecondaryProperty
+override method @documentDeclarationEX solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
@@ -163,7 +188,7 @@ override method @documentDeclaration solveSecondaryProperty
 
 #·······················································································································
 
-override method @documentDeclaration semanticAnalysis
+override method @documentDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
 {
@@ -177,12 +202,12 @@ override method @documentDeclaration semanticAnalysis
     ?*
   ]
 #--- Analyze simple stored properties
-  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-    !mDocumentName.string
-    !inSemanticContext.mUnifiedTypeMap
-    !?ioGeneration.mValidationStubRoutineListForGeneration
-    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
-  ]
+#  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
+#    !mDocumentName.string
+#    !inSemanticContext.mUnifiedTypeMap
+#    !?ioGeneration.mValidationStubRoutineListForGeneration
+#    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+#  ]
 #--- Analyze secondary
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
@@ -231,7 +256,6 @@ override method @documentDeclaration semanticAnalysis
   ioGeneration.mDocumentListForGeneration +=
     !mDocumentName.string
     !mRootEntityName.string
-    !simpleStoredPropertyListForGeneration
     !transientDefinitionListForGeneration
     !outletMap
     !actionBindingListForGeneration
@@ -250,7 +274,6 @@ override method @documentDeclaration semanticAnalysis
 list @documentListForGeneration {
   @string mDocumentName
   @string mRootEntityName
-  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mTransientListForGeneration
   @decoratedOutletMap mOutletMap
   @actionBindingListForGeneration mTargetActionList 
@@ -270,7 +293,6 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
   template documentImplementation "document.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
-    ?@simpleStoredPropertyListForGeneration SIMPLE_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
@@ -306,7 +328,6 @@ proc generateDocuments
     let s = [filewrapper documentGenerationTemplate.documentImplementation
       !mDocumentName
       !mRootEntityName
-      !mSimpleStoredPropertyListForGeneration
       !mTransientListForGeneration
       !mOutletMap
       !mArrayControllerForGeneration

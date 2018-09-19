@@ -2,7 +2,7 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @toOneRelationshipList {
+list @toOneRelationshipListEX {
   @lstring mCurrentEntityName
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
@@ -13,12 +13,26 @@ list @toOneRelationshipList {
 
 #·······················································································································
 
-list @toManyRelationshipList {
-  @lstring mCurrentEntityName
+class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
-  @lstring mToManyRelationshipName
-  @lstring mInverseRelationshipName
+  @lstring mToOneRelationshipName
+  @lstring mInverseRelationshipName # Empty string if not inverse relation ship
+  @propertyMultiplicity mInverseRelationMultiplicity
   @bool mCascading
+}
+
+#·······················································································································
+
+override method @toOneRelationshipAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  let node = @lstring.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}
+  [!?ioGraph addNode !node !self]
+  [!?ioGraph addEdge !node !mClassName]
+}
+
+#·······················································································································
+
+override getter @toOneRelationshipAST lkey -> @lstring {
+  result = @lstring.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -28,59 +42,11 @@ list @toManyRelationshipList {
 syntax extension easyBindings_syntax {
 
   #·····················································································································
-  
-  rule <toMany_relationship>
-            ?let @lstring inCurrentEntity
-            ?!@toManyRelationshipList ioToManyRelationshipList
-            ?!@stringset ioSignatureList
-  {
-    $toMany$
-    @bool usedForSignature = false
-    @bool cascading = false
-    repeat
-    while
-      $@attribute$ ?let attributeName
-      if attributeName.string == "signature" then
-        if usedForSignature then
-          error attributeName : "duplicated attribute" fixit { remove }
-        end
-        usedForSignature = true
-      elsif attributeName.string == "cascading" then
-        if cascading then
-          error attributeName : "duplicated attribute" fixit { remove }
-        end
-        cascading = true
-      else
-        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@cascading" }
-      end
-    end
-    $Identifier$ ?let destinationEntityName
-    $identifier$ ?let relationshipName
-    if usedForSignature then
-      ioSignatureList += !relationshipName.string
-    end
-    @lstring inserseRelationshipName
-    select
-      $inverse$
-      $toOne$
-      $identifier$ ?inserseRelationshipName
-    or
-      inserseRelationshipName = .new {!"" !relationshipName.location}
-    end
-    $;$
-    ioToManyRelationshipList +=
-      !inCurrentEntity
-      !destinationEntityName
-      !relationshipName
-      !inserseRelationshipName
-      !cascading
-  }
-  
-  #·····················································································································
 
   rule <toOne_relationship>
             ?let @lstring inCurrentEntity
-            ?!@toOneRelationshipList ioToOneRelationshipList
+            ?!@toOneRelationshipListEX ioToOneRelationshipList
+            ?!@astDeclarationStruct ioDeclarationAST
   {
     $toOne$
     @bool cascading = false
@@ -122,6 +88,14 @@ syntax extension easyBindings_syntax {
       !inverseRelationshipName
       !inverseRelationMultiplicity
       !cascading
+    ioDeclarationAST.mUnifiedDeclarationList += !@toOneRelationshipAST.new {
+      !inCurrentEntity
+      !destinationEntityName
+      !relationshipName
+      !inverseRelationshipName
+      !inverseRelationMultiplicity
+      !cascading
+    }
   }
   
   #·····················································································································
@@ -132,21 +106,7 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-method @toOneRelationshipList typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  for () in self do
-    [@unifiedTypeMap-proxy makeProxy
-      !?ioUnifiedTypeMap
-      !mDestinationEntityName
-      ?*
-    ]
-  end
-}
-
-#·······················································································································
-
-method @toManyRelationshipList typeInventory
+method @toOneRelationshipListEX typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   for () in self do
@@ -162,7 +122,7 @@ method @toManyRelationshipList typeInventory
 #   OBSERVABLE PROPERTY MAP               
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-method @toOneRelationshipList buildObservablePropertyMap
+method @toOneRelationshipListEX buildObservablePropertyMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@observablePropertyMap ioObservableProperties
 {
@@ -194,45 +154,11 @@ method @toOneRelationshipList buildObservablePropertyMap
   end
 }
 
-#·······················································································································
-
-method @toManyRelationshipList buildObservablePropertyMap
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMap ioObservableProperties
-{
-  for () in self do
-  #--- Property type
-    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
-  #--- Check type
-    @bool graphic
-    switch type
-    case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
-      error mDestinationEntityName: "a simple type cannot be used as entitytype" : graphic
-    case enumType (* *) :
-      error mDestinationEntityName: "an enumeration type cannot be used as entitytype" : graphic
-    case classType (*) :
-      error mDestinationEntityName: "a class type cannot be used as entitytype" : graphic
-    case transientPropertyExternType (*) :
-      error mInverseRelationshipName: "the opposite type cannot be used as entity type" : graphic
-    case entityType (* isGraphic) : # Ok
-      graphic = isGraphic
-    end
-  #--- Enter in property map
-    [!?ioObservableProperties insertKey
-      !mToManyRelationshipName
-      !.toMany {!typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic !isEntity: true}
-      !mInverseRelationshipName.string
-      !actionMap
-      !mCascading
-    ]
-  end
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-method @toOneRelationshipList semanticAnalysis
+method @toOneRelationshipListEX semanticAnalysis
   ?let @semanticContext inSemanticContext
   !@toOneEntityRelationshipListForGeneration outToOneEntityRelationshipListForGeneration
 {
@@ -295,63 +221,6 @@ method @toOneRelationshipList semanticAnalysis
   end
 }
 
-#·······················································································································
-
-method @toManyRelationshipList semanticAnalysis
-  ?let @semanticContext inSemanticContext
-  !@toManyEntityRelationshipListForGeneration outToManyEntityRelationshipListForGeneration
-{
-  outToManyEntityRelationshipListForGeneration = {}
-  for () in self do
-    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?*]
-    [inSemanticContext.mEntityObservablePropertyMap searchKey
-      !mDestinationEntityName
-      ?@observablePropertyMap destinationEntityObservablePropertyMap
-      ?*
-    ]
-    outToManyEntityRelationshipListForGeneration +=
-      !mToManyRelationshipName.string
-      !type
-      !mInverseRelationshipName.string
-      !destinationEntityObservablePropertyMap
-      !mCascading
-  #--- Check inverse relationship
-    if mInverseRelationshipName.string != "" then
-      [destinationEntityObservablePropertyMap searchForInverseRelationship
-         !mInverseRelationshipName
-         ?let @propertyKind oppositeKind
-         ?let @string oppositeOfOpposite
-         ?2*
-      ]
-      if [oppositeKind swiftTypeName] != mCurrentEntityName.string then
-        error mInverseRelationshipName
-        : "the type of the opposite property '" + mInverseRelationshipName
-          + "' should be '" + mCurrentEntityName + "' (found '" + [oppositeKind swiftTypeName] + "')"
-      end
-      switch oppositeKind 
-      case property (2*) :
-        error mInverseRelationshipName : "a property cannot be an opposite of a relationship"
-      case toMany (* accessibility 2*) :
-        if [accessibility isTransient] then
-          error mInverseRelationshipName : "this relationship is transient, should be stored"
-        end
-      case toOne (* accessibility *) :
-        if [accessibility isTransient] then
-          error mInverseRelationshipName : "this relationship is transient, should be stored"
-        end
-      case arrayController (3*) :
-         error mInverseRelationshipName : "an array controller cannot be an opposite of a relationship"
-      case selectionController (*) :
-         error mInverseRelationshipName : "a selection controller cannot be an opposite of a relationship"
-      end
-      if oppositeOfOpposite != mToManyRelationshipName.string then
-        error mInverseRelationshipName : "inverse relationship does not name '"
-           + mToManyRelationshipName + "' as opposite"
-      end
-    end
-  end
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPES                      
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -361,16 +230,6 @@ list @toOneEntityRelationshipListForGeneration {
   @typeKind mRelationshipType
   @string mOppositeRelationshipName
   @propertyMultiplicity mInverseRelationMultiplicity
-  @observablePropertyMap mDestinationEntityObservablePropertyMap
-  @bool mCascading
-}
-
-#·······················································································································
-
-list @toManyEntityRelationshipListForGeneration {
-  @string mToManyRelationshipName
-  @typeKind mRelationshipType
-  @string mOppositeRelationshipName
   @observablePropertyMap mDestinationEntityObservablePropertyMap
   @bool mCascading
 }

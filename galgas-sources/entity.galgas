@@ -2,17 +2,47 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @entityDeclaration : @astDeclaration {
+class @entityDeclarationEX : @astDeclaration {
   @lstring mEntityName
   @lstring mSuperEntityName
   @simpleStoredPropertyList mSimpleStoredAttributeList
-  @toOneRelationshipList mToOneRelationshipList
-  @toManyRelationshipList mToManyRelationshipList
+  @toOneRelationshipListEX mToOneRelationshipList
+  @toManyRelationshipListEX mToManyRelationshipList
   @secondaryPropertyList mSecondaryPropertyList
   @stringset mSignatureList
   @lstringlist mActionDeclarationList
   @lstringlist mObsoleteEntityNames
   @bool mIsGraphicEntity
+}
+
+#·······················································································································
+
+class @entityDeclarationAST : @abstractDeclarationAST {
+  @bool mIsUserDefined
+  @lstring mSuperEntityName
+  @simpleStoredPropertyList mSimpleStoredAttributeList
+  @toOneRelationshipListEX mToOneRelationshipList
+  @toManyRelationshipListEX mToManyRelationshipList
+  @secondaryPropertyList mSecondaryPropertyList
+  @stringset mSignatureList
+  @lstringlist mActionDeclarationList
+  @lstringlist mObsoleteEntityNames
+  @bool mIsGraphicEntity
+}
+
+#·······················································································································
+
+override method @entityDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+  if mSuperEntityName.string != "" then
+    [!?ioGraph addEdge !mClassName !mSuperEntityName]
+  end
+}
+
+#·······················································································································
+
+override getter @entityDeclarationAST lkey -> @lstring {
+  result = mClassName
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -55,26 +85,26 @@ syntax extension easyBindings_syntax {
     ${$
     @secondaryPropertyList secondaryPropertyList = {}
     @simpleStoredPropertyList simpleStoredAttributeList = {}
-    @toOneRelationshipList toOneRelationshipList = {}
-    @toManyRelationshipList toManyRelationshipList = {}
+    @toOneRelationshipListEX toOneRelationshipList = {}
+    @toManyRelationshipListEX toManyRelationshipList = {}
     @stringset signatureList = {}
     @lstringlist actionDeclarationList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
+      <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
     while
-      <transient_declaration> !?secondaryPropertyList
+      <transient_declaration> !entityName !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
     while
-      <toMany_relationship> !entityName !?toManyRelationshipList !?signatureList
+      <toMany_relationship> !entityName !?toManyRelationshipList !?signatureList !?ioDeclarationAST
     while
-      <toOne_relationship> !entityName !?toOneRelationshipList
+      <toOne_relationship> !entityName !?toOneRelationshipList !?ioDeclarationAST
     while
       <action_declaration> !?actionDeclarationList
     while
-      <controller_declaration> !?secondaryPropertyList
+      <controller_declaration> !entityName !["" nowhere] !?secondaryPropertyList  !?ioDeclarationAST
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@entityDeclaration.new {
+    ioDeclarationAST.mDeclarationList += !@entityDeclarationEX.new {
       !inIsUserDefined
       !entityName
       !superEntityName
@@ -87,8 +117,21 @@ syntax extension easyBindings_syntax {
       !obsoleteEntityNames
       !graphicEntity
     }
+    ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
+      !entityName
+      !inIsUserDefined
+      !superEntityName
+      !simpleStoredAttributeList
+      !toOneRelationshipList
+      !toManyRelationshipList
+      !secondaryPropertyList
+      !signatureList
+      !actionDeclarationList
+      !obsoleteEntityNames
+      !graphicEntity
+    }
   }
-
+ 
   #·····················································································································
 
 }
@@ -97,7 +140,7 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @entityDeclaration typeInventory
+override method @entityDeclarationEX typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
@@ -146,7 +189,7 @@ map @entityObservablePropertyMap {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 # Only get current entity observable properties, do not collect in super entities
-override method @entityDeclaration buildObservablePropertyMapsFromStoredProperties
+override method @entityDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
@@ -175,7 +218,7 @@ override method @entityDeclaration buildObservablePropertyMapsFromStoredProperti
 
 #·······················································································································
 
-override method @entityDeclaration buildInitialSecondaryPropertyListMap
+override method @entityDeclarationEX buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
   ?!@uint ioSecondaryDeclarationCount
 {
@@ -185,7 +228,7 @@ override method @entityDeclaration buildInitialSecondaryPropertyListMap
 
 #·······················································································································
 
-override method @entityDeclaration solveSecondaryProperty
+override method @entityDeclarationEX solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
@@ -215,7 +258,7 @@ override method @entityDeclaration solveSecondaryProperty
 
 #·······················································································································
 
-override method @entityDeclaration semanticAnalysis
+override method @entityDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
 {

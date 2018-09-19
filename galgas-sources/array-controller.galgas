@@ -27,13 +27,44 @@ list @arrayControllerAttributListAST {
 
 #·······················································································································
 
-class @arrayControllerDeclaration : @abstractSecondaryProperty {
+class @arrayControllerDeclarationEX : @abstractSecondaryProperty {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mToManyPropertyName
   @lstringlist mFilterProperties
   @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
   @arrayControllerAttributListAST mArrayControllerAttributListAST
+}
+
+#·······················································································································
+
+class @arrayControllerDeclarationAST : @abstractDeclarationAST {
+  @lstring mControllerName
+  @bool mIsRoot
+  @lstring mRootEntityName
+  @lstring mToManyPropertyName
+  @lstringlist mFilterProperties
+  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
+  @arrayControllerAttributListAST mArrayControllerAttributListAST
+}
+
+#·······················································································································
+
+override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  let node = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
+  [!?ioGraph addNode !node !self]
+  [!?ioGraph addEdge !node !mClassName]
+  if not mIsRoot then
+    [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+  elsif mRootEntityName.string != "" then
+    [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+  end
+}
+
+#·······················································································································
+
+override getter @arrayControllerDeclarationAST lkey -> @lstring {
+  result = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -45,7 +76,10 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>
-    ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?let @lstring inCurrentEntity
+            ?let @lstring inRootEntity
+            ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?!@astDeclarationStruct ioDeclarationAST
   {
     $arrayController$
     $identifier$ ?let @lstring controllerName
@@ -108,9 +142,19 @@ syntax extension easyBindings_syntax {
       end
       $}$
     end
-    ioSecondaryPropertyList += !@arrayControllerDeclaration.new {
+    ioSecondaryPropertyList += !@arrayControllerDeclarationEX.new {
       !controllerName
       !isRoot
+      !relationshipName
+      !filterProperties
+      !arrayControllerBoundColumnListAST
+      !arrayControllerAttributListAST
+    }
+    ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
+      !inCurrentEntity
+      !controllerName
+      !isRoot
+      !inRootEntity
       !relationshipName
       !filterProperties
       !arrayControllerBoundColumnListAST
@@ -183,14 +227,14 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclaration typeInventory
+override method @arrayControllerDeclarationEX typeInventory
   ?!@unifiedTypeMap unused ioUnifiedTypeMap
 {
 }
 
 #·······················································································································
 
-override method @arrayControllerDeclaration tryToDefineSecondaryProperty
+override method @arrayControllerDeclarationEX tryToDefineSecondaryProperty
   ?!@semanticContext unused ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
@@ -234,7 +278,7 @@ override method @arrayControllerDeclaration tryToDefineSecondaryProperty
 
 #·······················································································································
 
-override method @arrayControllerDeclaration secondaryPropertySemanticAnalysis
+override method @arrayControllerDeclarationEX secondaryPropertySemanticAnalysis
   ?let @string inOwnerName
   ?let @string unused inRootEntityName
   ?let @observablePropertyMap inRootObservableProperties

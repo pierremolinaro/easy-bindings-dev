@@ -27,7 +27,7 @@ list @astDeclarationList {
 #·······················································································································
 
 struct @astDeclarationStruct {
-  @propertyDeclarationListAST mPropertyDeclarationList
+  @declarationListAST mUnifiedDeclarationList
   @astDeclarationList mDeclarationList
   @outletClassDeclarationList mOutletClassDeclarationList
   @outletClassBindingSpecificationList mBindingSpecificationListMap

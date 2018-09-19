@@ -9,6 +9,7 @@ project (0:0:1) -> "eb" {
   "galgas-sources/grammar-syntax.galgas"
   "galgas-sources/easyBindings-cocoa.galgas"
   "galgas-sources/program.galgas"
+  "galgas-sources/declaration-graph.galgas"
 
 #--- Extern Swift functions
   "galgas-sources/extern-delegate.galgas"
@@ -19,7 +20,6 @@ project (0:0:1) -> "eb" {
 
 #--- Components  
   "galgas-sources/enumeration.galgas"
-  "galgas-sources/relationships.galgas"
   "galgas-sources/class.galgas"
   "galgas-sources/entity.galgas"
   "galgas-sources/document.galgas"
@@ -31,10 +31,11 @@ project (0:0:1) -> "eb" {
   "galgas-sources/outlet-declaration.galgas"
 
 #--- Properties
-  "galgas-sources/property.galgas"
   "galgas-sources/observable-property.galgas"
   "galgas-sources/transient-property.galgas"
   "galgas-sources/simple-stored-property.galgas"
+  "galgas-sources/to-one-relationship.galgas"
+  "galgas-sources/to-many-relationship.galgas"
   "galgas-sources/stored-array-property.galgas"
   "galgas-sources/property-validation-stub-routine.galgas"
   "galgas-sources/run-action.galgas"

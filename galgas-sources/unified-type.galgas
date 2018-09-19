@@ -211,7 +211,6 @@ map @observablePropertyMap {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc typeInventory
-  ?let @lstring inSourceFile
   ?let @astDeclarationList inDeclarationList
   !@unifiedTypeMap outUnifiedTypeMap
 {
@@ -230,12 +229,6 @@ proc typeInventory
 #------------------------ Add user defined types and compute transient dependancy graph
   for () in inDeclarationList do
     [mDeclaration typeInventory !?outUnifiedTypeMap]
-  end
-#------------------------ dot files
-  if [option easyBindings_options.outputClassDependencyGraph value] then
-    let s = [outUnifiedTypeMap edgeGraphvizRepresentation]
-    let path = inSourceFile.string + ".typeDependancy.dot"
-    [s writeToFileWhenDifferentContents !path ?*]
   end
 }
 

@@ -19,9 +19,9 @@ case . "eb"
     !?declarationStruct
     ?var @location endOfSourceFile
 #----------------------------------------- Sort properties
-  sortProperties (!declarationStruct.mPropertyDeclarationList ?let outSortedDeclarationListAST)
+  sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let outSortedDeclarationListAST)
 #----------------------------------------- Type inventory
-  typeInventory (!inSourceFile !declarationStruct.mDeclarationList ?@unifiedTypeMap unifiedTypeMap)
+  typeInventory (!declarationStruct.mDeclarationList ?@unifiedTypeMap unifiedTypeMap)
 #----------------------------------------- Check all types are defined
   let unsolvedProxyList = [unifiedTypeMap unsolvedProxyList]
   for () in  unsolvedProxyList do

@@ -2,13 +2,36 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @classDeclaration : @astDeclaration {
+class @classDeclarationEX : @astDeclaration {
   @lstring mClassName
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @secondaryPropertyList mSecondaryPropertyList
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
   @lstringlist mActionDeclarationList
+}
+
+#·······················································································································
+
+class @classDeclarationAST : @abstractDeclarationAST {
+  @bool mIsUserDefined
+  @simpleStoredPropertyList mSimpleStoredAttributeList
+  @secondaryPropertyList mSecondaryPropertyList
+  @externSwiftFunctionList mExternSwiftFunctionList
+  @externSwiftDelegateList mExternSwiftDelegateList
+  @lstringlist mActionDeclarationList
+}
+
+#·······················································································································
+
+override method @classDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+}
+
+#·······················································································································
+
+override getter @classDeclarationAST lkey -> @lstring {
+  result = mClassName
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -28,17 +51,17 @@ syntax extension easyBindings_syntax {
     ${$
     @secondaryPropertyList secondaryPropertyList = {}
     @simpleStoredPropertyList simpleStoredAttributeList = {}
-    @toOneRelationshipList toOneRelationshipList = {}
-    @toManyRelationshipList toManyRelationshipList = {}
+    @toOneRelationshipListEX toOneRelationshipList = {}
+    @toManyRelationshipListEX toManyRelationshipList = {}
     @stringset signatureList = {}
     @externSwiftFunctionList externSwiftFunctionList = {}
     @externSwiftDelegateList externSwiftDelegateList = {}
     @lstringlist actionDeclarationList = {}
     repeat
     while
-      <simple_stored_declaration> !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
+      <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
     while
-      <transient_declaration> !?secondaryPropertyList
+      <transient_declaration> !entityName !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
     while
       <extern_swift_func> !?externSwiftFunctionList
     while
@@ -47,9 +70,18 @@ syntax extension easyBindings_syntax {
       <action_declaration> !?actionDeclarationList
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@classDeclaration.new {
+    ioDeclarationAST.mDeclarationList += !@classDeclarationEX.new {
       !inIsUserDefined
       !entityName
+      !simpleStoredAttributeList
+      !secondaryPropertyList
+      !externSwiftFunctionList
+      !externSwiftDelegateList
+      !actionDeclarationList
+    }
+    ioDeclarationAST.mUnifiedDeclarationList += !@classDeclarationAST.new {
+      !entityName
+      !inIsUserDefined
       !simpleStoredAttributeList
       !secondaryPropertyList
       !externSwiftFunctionList
@@ -66,7 +98,7 @@ syntax extension easyBindings_syntax {
 #   TYPE INVENTORY
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @classDeclaration typeInventory
+override method @classDeclarationEX typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
@@ -85,7 +117,7 @@ override method @classDeclaration typeInventory
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 # Only get current entity observable properties, do not collect in super entities
-override method @classDeclaration buildObservablePropertyMapsFromStoredProperties
+override method @classDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
@@ -105,7 +137,7 @@ override method @classDeclaration buildObservablePropertyMapsFromStoredPropertie
 
 #·······················································································································
 
-override method @classDeclaration buildInitialSecondaryPropertyListMap
+override method @classDeclarationEX buildInitialSecondaryPropertyListMap
   ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
   ?!@uint ioSecondaryDeclarationCount
 {
@@ -115,7 +147,7 @@ override method @classDeclaration buildInitialSecondaryPropertyListMap
 
 #·······················································································································
 
-override method @classDeclaration solveSecondaryProperty
+override method @classDeclarationEX solveSecondaryProperty
   ?!@semanticContext ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
@@ -151,7 +183,7 @@ func %once externSwiftFunctionCallerSet -> @stringset outResult {
 
 #·······················································································································
 
-override method @classDeclaration semanticAnalysis
+override method @classDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
   ?!@structForGeneration ioGeneration
 {

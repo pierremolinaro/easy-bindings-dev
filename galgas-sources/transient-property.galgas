@@ -9,6 +9,53 @@ class @transientAST : @abstractSecondaryProperty {
   @lstring mExternFunctionName
 }
 
+#·······················································································································
+
+class @transientDeclarationAST : @abstractDeclarationAST {
+  @lstring mRootEntityName
+  @lstring mTransientTypeName
+  @lstring mTransientName
+  @observablePropertyList mDependencyList
+  @lstring mExternFunctionName
+}
+
+#·······················································································································
+
+override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  let node = @lstring.new {!mClassName.string + " " + mTransientName !mTransientName.location}
+  [!?ioGraph addNode !node !self]
+  [!?ioGraph addEdge !node !mClassName]
+  for dependency in mDependencyList do
+    switch dependency.mObservableProperty
+    case rootProperty (propertyName) :
+      if mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + propertyName !propertyName.location}]
+      end
+    case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+    case rootPropertyNone (@lstring relationshipName) :
+    case selfProperty (@lstring propertyName) :
+    case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+    case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) :
+    case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
+    case selfPropertyNone (@lstring propertyName) :
+    case prefsProperty (@lstring propertyName) :
+    case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+    case controllerProperty (@lstring controllerName @lstring propertyName) :
+    case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    case signatureProperty (*) :
+    case versionProperty (*) :
+    case versionShouldChangeProperty (*) :
+    end
+  end
+}
+
+#·······················································································································
+
+override getter @transientDeclarationAST lkey -> @lstring {
+  result = @lstring.new {!mClassName.string + " " + mTransientName !mTransientName.location}
+}
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SYNTAX
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -17,7 +64,12 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <transient_declaration> ?!@secondaryPropertyList ioSecondaryPropertyList {
+  rule <transient_declaration>
+            ?let @lstring inCurrentEntity
+            ?let @lstring inRootEntity
+            ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?!@astDeclarationStruct ioDeclarationAST
+  {
     $transient$
     $Identifier$ ?let transientTypeName
     $identifier$ ?let @lstring transientName
@@ -38,6 +90,14 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioSecondaryPropertyList += !@transientAST.new {
+      !transientTypeName
+      !transientName
+      !dependanceList
+      !externFunctionName
+    }
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
+      !inCurrentEntity
+      !inRootEntity
       !transientTypeName
       !transientName
       !dependanceList
