@@ -75,6 +75,29 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @selectionControllerDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  with mClassName in !?ioClassMap 
+    error message searchKey
+  do
+    [mPropertyMap searchKey !mModelControllerName ?let classKind]
+    switch classKind
+    case property (2*) :
+      error mModelControllerName : "an array controller is required here"
+    case toMany (4*) :
+      error mModelControllerName : "an array controller is required here"
+    case toOne (3*) :
+      error mModelControllerName : "an array controller is required here"
+    case arrayController (typeName 2*) :
+      if mModelControllerPropertyName.string != "selectedArray" then
+        error mModelControllerPropertyName : "'selectedArray' is required here"
+      end
+      let kind = @propertyKind.selectionController {
+        !typeName: typeName
+      }
+      [!?mPropertyMap insertKey !mSelectionControllerName !kind]
+    case selectionController (*) :
+      error mModelControllerName : "an array controller is required here"
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

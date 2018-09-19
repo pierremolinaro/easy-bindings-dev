@@ -5120,10 +5120,61 @@ C_PrologueEpilogue gGetter_selectionControllerDeclarationAST_lkey (defineExtensi
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void extensionMethod_selectionControllerDeclarationAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * /* inObject */,
-                                                                                                GALGAS_classMap & /* ioArgument_ioClassMap */,
-                                                                                                C_Compiler * /* inCompiler */
+static void extensionMethod_selectionControllerDeclarationAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * inObject,
+                                                                                                GALGAS_classMap & ioArgument_ioClassMap,
+                                                                                                C_Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_selectionControllerDeclarationAST * object = (const cPtr_selectionControllerDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_selectionControllerDeclarationAST) ;
+  cMapElement_classMap * objectArray_3319 = (cMapElement_classMap *) ioArgument_ioClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("selection-controller.galgas", 78)) ;
+  if (NULL != objectArray_3319) {
+      macroValidSharedObject (objectArray_3319, cMapElement_classMap) ;
+    GALGAS_propertyKind var_classKind_3445 ;
+    objectArray_3319->mProperty_mPropertyMap.method_searchKey (object->mProperty_mModelControllerName, var_classKind_3445, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 81)) ;
+    switch (var_classKind_3445.enumValue ()) {
+    case GALGAS_propertyKind::kNotBuilt:
+      break ;
+    case GALGAS_propertyKind::kEnum_property:
+      {
+        TC_Array <C_FixItDescription> fixItArray0 ;
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 84)), GALGAS_string ("an array controller is required here"), fixItArray0  COMMA_SOURCE_FILE ("selection-controller.galgas", 84)) ;
+      }
+      break ;
+    case GALGAS_propertyKind::kEnum_toMany:
+      {
+        TC_Array <C_FixItDescription> fixItArray1 ;
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 86)), GALGAS_string ("an array controller is required here"), fixItArray1  COMMA_SOURCE_FILE ("selection-controller.galgas", 86)) ;
+      }
+      break ;
+    case GALGAS_propertyKind::kEnum_toOne:
+      {
+        TC_Array <C_FixItDescription> fixItArray2 ;
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 88)), GALGAS_string ("an array controller is required here"), fixItArray2  COMMA_SOURCE_FILE ("selection-controller.galgas", 88)) ;
+      }
+      break ;
+    case GALGAS_propertyKind::kEnum_arrayController:
+      {
+        const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_4113 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_classKind_3445.unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_typeName = extractPtr_4113->mAssociatedValue0 ;
+        const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, object->mProperty_mModelControllerPropertyName.getter_string (HERE).objectCompare (GALGAS_string ("selectedArray"))).boolEnum () ;
+        if (kBoolTrue == test_3) {
+          TC_Array <C_FixItDescription> fixItArray4 ;
+          inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 91)), GALGAS_string ("'selectedArray' is required here"), fixItArray4  COMMA_SOURCE_FILE ("selection-controller.galgas", 91)) ;
+        }
+        GALGAS_propertyKind var_kind_3974 = GALGAS_propertyKind::constructor_selectionController (extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 94))  COMMA_SOURCE_FILE ("selection-controller.galgas", 93)) ;
+        {
+        objectArray_3319->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mSelectionControllerName, var_kind_3974, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 96)) ;
+        }
+      }
+      break ;
+    case GALGAS_propertyKind::kEnum_selectionController:
+      {
+        TC_Array <C_FixItDescription> fixItArray5 ;
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 98)), GALGAS_string ("an array controller is required here"), fixItArray5  COMMA_SOURCE_FILE ("selection-controller.galgas", 98)) ;
+      }
+      break ;
+    }
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5178,108 +5229,108 @@ static void extensionMethod_selectionControllerDeclarationEX_tryToDefineSecondar
   macroValidSharedObject (object, cPtr_selectionControllerDeclarationEX) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, object->mProperty_mModelControllerName.getter_string (HERE).objectCompare (GALGAS_string ("self"))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_propertyKind var_kind_4353 ;
-    GALGAS_string joker_4361_3 ; // Joker input parameter
-    GALGAS_actionMap joker_4361_2 ; // Joker input parameter
-    GALGAS_bool joker_4361_1 ; // Joker input parameter
-    ioArgument_ioObservableProperties.method_searchKey (object->mProperty_mModelControllerPropertyName, var_kind_4353, joker_4361_3, joker_4361_2, joker_4361_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 99)) ;
-    GALGAS_string var_entityName_4410 ;
-    switch (var_kind_4353.enumValue ()) {
+    GALGAS_propertyKind var_kind_5277 ;
+    GALGAS_string joker_5285_3 ; // Joker input parameter
+    GALGAS_actionMap joker_5285_2 ; // Joker input parameter
+    GALGAS_bool joker_5285_1 ; // Joker input parameter
+    ioArgument_ioObservableProperties.method_searchKey (object->mProperty_mModelControllerPropertyName, var_kind_5277, joker_5285_3, joker_5285_2, joker_5285_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 122)) ;
+    GALGAS_string var_entityName_5334 ;
+    switch (var_kind_5277.enumValue ()) {
     case GALGAS_propertyKind::kNotBuilt:
       break ;
     case GALGAS_propertyKind::kEnum_property:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 108)), GALGAS_string ("the model should be a collection of entities"), fixItArray1  COMMA_SOURCE_FILE ("selection-controller.galgas", 108)) ;
-        var_entityName_4410.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 131)), GALGAS_string ("the model should be a collection of entities"), fixItArray1  COMMA_SOURCE_FILE ("selection-controller.galgas", 131)) ;
+        var_entityName_5334.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_toMany:
       {
-        const cEnumAssociatedValues_propertyKind_toMany * extractPtr_4614 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_kind_4353.unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_typeName = extractPtr_4614->mAssociatedValue0 ;
-        var_entityName_4410 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 110)) ;
+        const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5538 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_kind_5277.unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_typeName = extractPtr_5538->mAssociatedValue0 ;
+        var_entityName_5334 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 133)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_toOne:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 112)), GALGAS_string ("the model should be a collection of entities"), fixItArray2  COMMA_SOURCE_FILE ("selection-controller.galgas", 112)) ;
-        var_entityName_4410.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 135)), GALGAS_string ("the model should be a collection of entities"), fixItArray2  COMMA_SOURCE_FILE ("selection-controller.galgas", 135)) ;
+        var_entityName_5334.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_arrayController:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 114)), GALGAS_string ("the model should be a collection of entities"), fixItArray3  COMMA_SOURCE_FILE ("selection-controller.galgas", 114)) ;
-        var_entityName_4410.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 137)), GALGAS_string ("the model should be a collection of entities"), fixItArray3  COMMA_SOURCE_FILE ("selection-controller.galgas", 137)) ;
+        var_entityName_5334.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_selectionController:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 116)), GALGAS_string ("the model should be a collection of entities"), fixItArray4  COMMA_SOURCE_FILE ("selection-controller.galgas", 116)) ;
-        var_entityName_4410.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 139)), GALGAS_string ("the model should be a collection of entities"), fixItArray4  COMMA_SOURCE_FILE ("selection-controller.galgas", 139)) ;
+        var_entityName_5334.drop () ; // Release error dropped variable
       }
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (object->mProperty_mSelectionControllerName, GALGAS_propertyKind::constructor_selectionController (var_entityName_4410  COMMA_SOURCE_FILE ("selection-controller.galgas", 121)), GALGAS_string::makeEmptyString (), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("selection-controller.galgas", 123)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 119)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (object->mProperty_mSelectionControllerName, GALGAS_propertyKind::constructor_selectionController (var_entityName_5334  COMMA_SOURCE_FILE ("selection-controller.galgas", 144)), GALGAS_string::makeEmptyString (), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("selection-controller.galgas", 146)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 142)) ;
     }
   }else if (kBoolFalse == test_0) {
-    const enumGalgasBool test_5 = ioArgument_ioObservableProperties.getter_hasKey (object->mProperty_mModelControllerName.getter_string (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 126)).boolEnum () ;
+    const enumGalgasBool test_5 = ioArgument_ioObservableProperties.getter_hasKey (object->mProperty_mModelControllerName.getter_string (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 149)).boolEnum () ;
     if (kBoolTrue == test_5) {
-      GALGAS_propertyKind var_kind_5438 ;
-      GALGAS_string joker_5446_3 ; // Joker input parameter
-      GALGAS_actionMap joker_5446_2 ; // Joker input parameter
-      GALGAS_bool joker_5446_1 ; // Joker input parameter
-      ioArgument_ioObservableProperties.method_searchKey (object->mProperty_mModelControllerName, var_kind_5438, joker_5446_3, joker_5446_2, joker_5446_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 128)) ;
-      GALGAS_string var_entityName_5477 ;
-      switch (var_kind_5438.enumValue ()) {
+      GALGAS_propertyKind var_kind_6362 ;
+      GALGAS_string joker_6370_3 ; // Joker input parameter
+      GALGAS_actionMap joker_6370_2 ; // Joker input parameter
+      GALGAS_bool joker_6370_1 ; // Joker input parameter
+      ioArgument_ioObservableProperties.method_searchKey (object->mProperty_mModelControllerName, var_kind_6362, joker_6370_3, joker_6370_2, joker_6370_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 151)) ;
+      GALGAS_string var_entityName_6401 ;
+      switch (var_kind_6362.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_property:
         {
           TC_Array <C_FixItDescription> fixItArray6 ;
-          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 136)), GALGAS_string ("the model should be an array controller"), fixItArray6  COMMA_SOURCE_FILE ("selection-controller.galgas", 136)) ;
-          var_entityName_5477.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 159)), GALGAS_string ("the model should be an array controller"), fixItArray6  COMMA_SOURCE_FILE ("selection-controller.galgas", 159)) ;
+          var_entityName_6401.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_propertyKind::kEnum_toMany:
         {
           TC_Array <C_FixItDescription> fixItArray7 ;
-          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 138)), GALGAS_string ("the model should be an array controller"), fixItArray7  COMMA_SOURCE_FILE ("selection-controller.galgas", 138)) ;
-          var_entityName_5477.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 161)), GALGAS_string ("the model should be an array controller"), fixItArray7  COMMA_SOURCE_FILE ("selection-controller.galgas", 161)) ;
+          var_entityName_6401.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
           TC_Array <C_FixItDescription> fixItArray8 ;
-          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 140)), GALGAS_string ("the model should be an array controller"), fixItArray8  COMMA_SOURCE_FILE ("selection-controller.galgas", 140)) ;
-          var_entityName_5477.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 163)), GALGAS_string ("the model should be an array controller"), fixItArray8  COMMA_SOURCE_FILE ("selection-controller.galgas", 163)) ;
+          var_entityName_6401.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
         {
-          const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_5902 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_kind_5438.unsafePointer ()) ;
-          const GALGAS_lstring extractedValue_typeName = extractPtr_5902->mAssociatedValue0 ;
-          var_entityName_5477 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 142)) ;
+          const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_6826 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_kind_6362.unsafePointer ()) ;
+          const GALGAS_lstring extractedValue_typeName = extractPtr_6826->mAssociatedValue0 ;
+          var_entityName_6401 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 165)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_selectionController:
         {
           TC_Array <C_FixItDescription> fixItArray9 ;
-          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 144)), GALGAS_string ("the model should be an array controller"), fixItArray9  COMMA_SOURCE_FILE ("selection-controller.galgas", 144)) ;
-          var_entityName_5477.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 167)), GALGAS_string ("the model should be an array controller"), fixItArray9  COMMA_SOURCE_FILE ("selection-controller.galgas", 167)) ;
+          var_entityName_6401.drop () ; // Release error dropped variable
         }
         break ;
       }
       {
-      ioArgument_ioObservableProperties.setter_insertKey (object->mProperty_mSelectionControllerName, GALGAS_propertyKind::constructor_selectionController (var_entityName_5477  COMMA_SOURCE_FILE ("selection-controller.galgas", 149)), GALGAS_string::makeEmptyString (), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("selection-controller.galgas", 151)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 147)) ;
+      ioArgument_ioObservableProperties.setter_insertKey (object->mProperty_mSelectionControllerName, GALGAS_propertyKind::constructor_selectionController (var_entityName_6401  COMMA_SOURCE_FILE ("selection-controller.galgas", 172)), GALGAS_string::makeEmptyString (), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("selection-controller.galgas", 174)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 170)) ;
       }
     }else if (kBoolFalse == test_5) {
       const GALGAS_selectionControllerDeclarationEX temp_10 = object ;
-      ioArgument_ioUnsolvedProperties.addAssign_operation (temp_10  COMMA_SOURCE_FILE ("selection-controller.galgas", 155)) ;
+      ioArgument_ioUnsolvedProperties.addAssign_operation (temp_10  COMMA_SOURCE_FILE ("selection-controller.galgas", 178)) ;
     }
   }
 }
@@ -5315,105 +5366,105 @@ static void extensionMethod_selectionControllerDeclarationEX_secondaryPropertySe
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_selectionControllerDeclarationEX * object = (const cPtr_selectionControllerDeclarationEX *) inObject ;
   macroValidSharedObject (object, cPtr_selectionControllerDeclarationEX) ;
-  GALGAS_string var_selectionEntityName_7087 ;
-  GALGAS_observablePropertyMap var_selectionObservablePropertyMap_7143 ;
+  GALGAS_string var_selectionEntityName_8011 ;
+  GALGAS_observablePropertyMap var_selectionObservablePropertyMap_8067 ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, object->mProperty_mModelControllerName.getter_string (HERE).objectCompare (GALGAS_string ("self"))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_propertyKind var_kind_7281 ;
-    GALGAS_string joker_7289_3 ; // Joker input parameter
-    GALGAS_actionMap joker_7289_2 ; // Joker input parameter
-    GALGAS_bool joker_7289_1 ; // Joker input parameter
-    constinArgument_inObservableProperties.method_searchKey (object->mProperty_mModelControllerPropertyName, var_kind_7281, joker_7289_3, joker_7289_2, joker_7289_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 176)) ;
-    switch (var_kind_7281.enumValue ()) {
+    GALGAS_propertyKind var_kind_8205 ;
+    GALGAS_string joker_8213_3 ; // Joker input parameter
+    GALGAS_actionMap joker_8213_2 ; // Joker input parameter
+    GALGAS_bool joker_8213_1 ; // Joker input parameter
+    constinArgument_inObservableProperties.method_searchKey (object->mProperty_mModelControllerPropertyName, var_kind_8205, joker_8213_3, joker_8213_2, joker_8213_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 199)) ;
+    switch (var_kind_8205.enumValue ()) {
     case GALGAS_propertyKind::kNotBuilt:
       break ;
     case GALGAS_propertyKind::kEnum_property:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 183)), GALGAS_string ("the property should be a collection of entities"), fixItArray1  COMMA_SOURCE_FILE ("selection-controller.galgas", 183)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 206)), GALGAS_string ("the property should be a collection of entities"), fixItArray1  COMMA_SOURCE_FILE ("selection-controller.galgas", 206)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_toMany:
       {
-        const cEnumAssociatedValues_propertyKind_toMany * extractPtr_7522 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_kind_7281.unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_typeName = extractPtr_7522->mAssociatedValue0 ;
-        var_selectionEntityName_7087 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 185)) ;
+        const cEnumAssociatedValues_propertyKind_toMany * extractPtr_8446 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_kind_8205.unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_typeName = extractPtr_8446->mAssociatedValue0 ;
+        var_selectionEntityName_8011 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 208)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_toOne:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 187)), GALGAS_string ("the property should be a collection of entities"), fixItArray2  COMMA_SOURCE_FILE ("selection-controller.galgas", 187)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 210)), GALGAS_string ("the property should be a collection of entities"), fixItArray2  COMMA_SOURCE_FILE ("selection-controller.galgas", 210)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_arrayController:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 189)), GALGAS_string ("the property should be a collection of entities"), fixItArray3  COMMA_SOURCE_FILE ("selection-controller.galgas", 189)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 212)), GALGAS_string ("the property should be a collection of entities"), fixItArray3  COMMA_SOURCE_FILE ("selection-controller.galgas", 212)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_selectionController:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 191)), GALGAS_string ("the property should be a collection of entities"), fixItArray4  COMMA_SOURCE_FILE ("selection-controller.galgas", 191)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerPropertyName.getter_location (SOURCE_FILE ("selection-controller.galgas", 214)), GALGAS_string ("the property should be a collection of entities"), fixItArray4  COMMA_SOURCE_FILE ("selection-controller.galgas", 214)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     }
-    GALGAS_objectKind joker_8188 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (GALGAS_lstring::constructor_new (var_selectionEntityName_7087, object->mProperty_mSelectionControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("selection-controller.galgas", 195)), var_selectionObservablePropertyMap_7143, joker_8188, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 194)) ;
+    GALGAS_objectKind joker_9112 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (GALGAS_lstring::constructor_new (var_selectionEntityName_8011, object->mProperty_mSelectionControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("selection-controller.galgas", 218)), var_selectionObservablePropertyMap_8067, joker_9112, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 217)) ;
   }else if (kBoolFalse == test_0) {
-    GALGAS_propertyKind var_kind_8284 ;
-    GALGAS_string joker_8292_3 ; // Joker input parameter
-    GALGAS_actionMap joker_8292_2 ; // Joker input parameter
-    GALGAS_bool joker_8292_1 ; // Joker input parameter
-    constinArgument_inObservableProperties.method_searchKey (object->mProperty_mModelControllerName, var_kind_8284, joker_8292_3, joker_8292_2, joker_8292_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 200)) ;
-    switch (var_kind_8284.enumValue ()) {
+    GALGAS_propertyKind var_kind_9208 ;
+    GALGAS_string joker_9216_3 ; // Joker input parameter
+    GALGAS_actionMap joker_9216_2 ; // Joker input parameter
+    GALGAS_bool joker_9216_1 ; // Joker input parameter
+    constinArgument_inObservableProperties.method_searchKey (object->mProperty_mModelControllerName, var_kind_9208, joker_9216_3, joker_9216_2, joker_9216_1, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 223)) ;
+    switch (var_kind_9208.enumValue ()) {
     case GALGAS_propertyKind::kNotBuilt:
       break ;
     case GALGAS_propertyKind::kEnum_property:
       {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 207)), GALGAS_string ("the model should be an array controller"), fixItArray5  COMMA_SOURCE_FILE ("selection-controller.galgas", 207)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 230)), GALGAS_string ("the model should be an array controller"), fixItArray5  COMMA_SOURCE_FILE ("selection-controller.galgas", 230)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_toMany:
       {
         TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 209)), GALGAS_string ("the model should be an array controller"), fixItArray6  COMMA_SOURCE_FILE ("selection-controller.galgas", 209)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 232)), GALGAS_string ("the model should be an array controller"), fixItArray6  COMMA_SOURCE_FILE ("selection-controller.galgas", 232)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_toOne:
       {
         TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 211)), GALGAS_string ("the model should be an array controller"), fixItArray7  COMMA_SOURCE_FILE ("selection-controller.galgas", 211)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 234)), GALGAS_string ("the model should be an array controller"), fixItArray7  COMMA_SOURCE_FILE ("selection-controller.galgas", 234)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_propertyKind::kEnum_arrayController:
       {
-        const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_8761 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_kind_8284.unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_typeName = extractPtr_8761->mAssociatedValue0 ;
-        var_selectionEntityName_7087 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 213)) ;
+        const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_9685 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_kind_9208.unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_typeName = extractPtr_9685->mAssociatedValue0 ;
+        var_selectionEntityName_8011 = extractedValue_typeName.getter_string (SOURCE_FILE ("selection-controller.galgas", 236)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_selectionController:
       {
         TC_Array <C_FixItDescription> fixItArray8 ;
-        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 215)), GALGAS_string ("the model should be an array controller"), fixItArray8  COMMA_SOURCE_FILE ("selection-controller.galgas", 215)) ;
-        var_selectionEntityName_7087.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (object->mProperty_mModelControllerName.getter_location (SOURCE_FILE ("selection-controller.galgas", 238)), GALGAS_string ("the model should be an array controller"), fixItArray8  COMMA_SOURCE_FILE ("selection-controller.galgas", 238)) ;
+        var_selectionEntityName_8011.drop () ; // Release error dropped variable
       }
       break ;
     }
-    GALGAS_objectKind joker_9127 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (GALGAS_lstring::constructor_new (var_selectionEntityName_7087, object->mProperty_mSelectionControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("selection-controller.galgas", 219)), var_selectionObservablePropertyMap_7143, joker_9127, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 218)) ;
+    GALGAS_objectKind joker_10051 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mEntityObservablePropertyMap (HERE).method_searchKey (GALGAS_lstring::constructor_new (var_selectionEntityName_8011, object->mProperty_mSelectionControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("selection-controller.galgas", 242)), var_selectionObservablePropertyMap_8067, joker_10051, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 241)) ;
   }
-  ioArgument_ioSelectionControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mProperty_mSelectionControllerName.getter_string (HERE), object->mProperty_mModelControllerName.getter_string (HERE), object->mProperty_mModelControllerPropertyName.getter_string (HERE), var_selectionEntityName_7087, var_selectionObservablePropertyMap_7143  COMMA_SOURCE_FILE ("selection-controller.galgas", 225)) ;
+  ioArgument_ioSelectionControllerForGeneration.addAssign_operation (constinArgument_inOwnerName, object->mProperty_mSelectionControllerName.getter_string (HERE), object->mProperty_mModelControllerName.getter_string (HERE), object->mProperty_mModelControllerPropertyName.getter_string (HERE), var_selectionEntityName_8011, var_selectionObservablePropertyMap_8067  COMMA_SOURCE_FILE ("selection-controller.galgas", 248)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5863,15 +5914,15 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
                                            GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_selectionControllerForGeneration enumerator_10952 (constinArgument_inArrayControllerListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_10952.hasCurrentObject ()) {
-    GALGAS_string var_s_10965 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_10952.current_mOwnerName (HERE), enumerator_10952.current_mSelectionControllerName (HERE), enumerator_10952.current_mSelectionTypeName (HERE), enumerator_10952.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 269))) ;
-    GALGAS_string var_fileName_11190 = GALGAS_string ("selectionController-").add_operation (enumerator_10952.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 275)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 275)).add_operation (enumerator_10952.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 275)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 275)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11190  COMMA_SOURCE_FILE ("selection-controller.galgas", 276)) ;
+  cEnumerator_selectionControllerForGeneration enumerator_11876 (constinArgument_inArrayControllerListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_11876.hasCurrentObject ()) {
+    GALGAS_string var_s_11889 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (inCompiler, enumerator_11876.current_mOwnerName (HERE), enumerator_11876.current_mSelectionControllerName (HERE), enumerator_11876.current_mSelectionTypeName (HERE), enumerator_11876.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.galgas", 292))) ;
+    GALGAS_string var_fileName_12114 = GALGAS_string ("selectionController-").add_operation (enumerator_11876.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 298)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 298)).add_operation (enumerator_11876.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 298)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 298)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_12114  COMMA_SOURCE_FILE ("selection-controller.galgas", 299)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11190, var_s_10965, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 277)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12114, var_s_11889, inCompiler COMMA_SOURCE_FILE ("selection-controller.galgas", 300)) ;
     }
-    enumerator_10952.gotoNextObject () ;
+    enumerator_11876.gotoNextObject () ;
   }
 }
 
