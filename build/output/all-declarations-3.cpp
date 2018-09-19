@@ -500,41 +500,41 @@ GALGAS_string extensionGetter_filterCode (const GALGAS_arrayControllerFilterList
                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_arrayControllerFilterListForGeneration temp_0 = inObject ;
-  GALGAS_arrayControllerFilterListForGeneration var_filterProperties_18023 = temp_0 ;
-  GALGAS_string var_firstFilterProperty_18086 ;
+  GALGAS_arrayControllerFilterListForGeneration var_filterProperties_20027 = temp_0 ;
+  GALGAS_string var_firstFilterProperty_20090 ;
   {
-  GALGAS_propertyKind joker_18088 ; // Joker input parameter
-  var_filterProperties_18023.setter_popFirst (var_firstFilterProperty_18086, joker_18088, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 481)) ;
+  GALGAS_propertyKind joker_20092 ; // Joker input parameter
+  var_filterProperties_20027.setter_popFirst (var_firstFilterProperty_20090, joker_20092, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 533)) ;
   }
-  GALGAS_string var_indent_18107 = GALGAS_string ("            ") ;
-  result_outResult = var_indent_18107.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 483)).add_operation (var_firstFilterProperty_18086, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 483)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 483)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 484)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 484)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 485)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 485)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 486)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 486)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 487)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 487)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 488)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 488)) ;
-  GALGAS_uint var_idx_18458 = GALGAS_uint ((uint32_t) 2U) ;
-  GALGAS_string var_args_18477 = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd_18501 = var_indent_18107.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 491)) ;
-  cEnumerator_arrayControllerFilterListForGeneration enumerator_18547 (var_filterProperties_18023, kENUMERATION_UP) ;
-  while (enumerator_18547.hasCurrentObject ()) {
-    var_indent_18107.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 493)) ;
-    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)).add_operation (enumerator_18547.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 494)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 494)) ;
-    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 495)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 495)) ;
-    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 496)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 496)) ;
-    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 497)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 497)) ;
-    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 498)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 498)) ;
-    result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)).add_operation (var_idx_18458.getter_string (SOURCE_FILE ("array-controller.galgas", 499)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 499)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 499)) ;
-    var_blockEnd_18501 = var_indent_18107.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)).add_operation (var_blockEnd_18501, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 500)) ;
-    var_args_18477.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_18458.getter_string (SOURCE_FILE ("array-controller.galgas", 501)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 501)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 501)) ;
-    var_idx_18458.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 502)) ;
-    enumerator_18547.gotoNextObject () ;
+  GALGAS_string var_indent_20111 = GALGAS_string ("            ") ;
+  result_outResult = var_indent_20111.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 535)).add_operation (var_firstFilterProperty_20090, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 535)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 535)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 536)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 536)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 537)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 538)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 538)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 539)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 539)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 540)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 540)) ;
+  GALGAS_uint var_idx_20462 = GALGAS_uint ((uint32_t) 2U) ;
+  GALGAS_string var_args_20481 = GALGAS_string::makeEmptyString () ;
+  GALGAS_string var_blockEnd_20505 = var_indent_20111.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 543)) ;
+  cEnumerator_arrayControllerFilterListForGeneration enumerator_20551 (var_filterProperties_20027, kENUMERATION_UP) ;
+  while (enumerator_20551.hasCurrentObject ()) {
+    var_indent_20111.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 545)) ;
+    result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 546)).add_operation (enumerator_20551.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 546)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 546)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 546)) ;
+    result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 547)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 547)) ;
+    result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 548)) ;
+    result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 549)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 549)) ;
+    result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 550)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 550)) ;
+    result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 551)).add_operation (var_idx_20462.getter_string (SOURCE_FILE ("array-controller.galgas", 551)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 551)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 551)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 551)) ;
+    var_blockEnd_20505 = var_indent_20111.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 552)).add_operation (var_blockEnd_20505, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 552)) ;
+    var_args_20481.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_20462.getter_string (SOURCE_FILE ("array-controller.galgas", 553)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 553)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 553)) ;
+    var_idx_20462.increment_operation (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 554)) ;
+    enumerator_20551.gotoNextObject () ;
   }
-  var_indent_18107.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 504)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (var_args_18477, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 505)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 505)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 506)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 506)) ;
-  result_outResult.plusAssign_operation(var_indent_18107.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 507)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 507)) ;
-  result_outResult.plusAssign_operation(var_blockEnd_18501, inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 508)) ;
+  var_indent_20111.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 556)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 557)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 557)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 557)).add_operation (var_args_20481, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 557)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 557)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 557)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 558)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 558)) ;
+  result_outResult.plusAssign_operation(var_indent_20111.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 559)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 559)) ;
+  result_outResult.plusAssign_operation(var_blockEnd_20505, inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 560)) ;
 //---
   return result_outResult ;
 }
@@ -3303,259 +3303,6 @@ GALGAS_propertyMap GALGAS_propertyMap::extractObject (const GALGAS_object & inOb
       result = *p ;
     }else{
       inCompiler->castError ("propertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumAssociatedValues_atomicClassKind_transientPropertyExternType::cEnumAssociatedValues_atomicClassKind_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
-                                                                                                                                      COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cEnumAssociatedValues_atomicClassKind_transientPropertyExternType::description (C_String & ioString,
-                                                                                     const int32_t inIndentation) const {
-  ioString << "(\n" ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString << ")" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cEnumAssociatedValues_atomicClassKind_transientPropertyExternType::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType * ptr = dynamic_cast<const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind::GALGAS_atomicClassKind (void) :
-mAssociatedValues (),
-mEnum (kNotBuilt) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_boolType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_boolType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_integerType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_integerType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_doubleType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_doubleType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_stringType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_stringType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_dateType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_dateType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_fontType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_fontType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_colorType (UNUSED_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  result.mEnum = kEnum_colorType ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::constructor_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
-                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_transientPropertyExternType ;
-    cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_atomicClassKind_transientPropertyExternType (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_atomicClassKind::method_transientPropertyExternType (GALGAS_string & outAssociatedValue0,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_transientPropertyExternType) {
-    outAssociatedValue0.drop () ;
-    C_String s ;
-    s << "method @atomicClassKind transientPropertyExternType invoked with an invalid enum value" ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType * ptr = (const cEnumAssociatedValues_atomicClassKind_transientPropertyExternType *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static const char * gEnumNameArrayFor_atomicClassKind [9] = {
-  "(not built)",
-  "boolType",
-  "integerType",
-  "doubleType",
-  "stringType",
-  "dateType",
-  "fontType",
-  "colorType",
-  "transientPropertyExternType"
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isBoolType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_boolType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isIntegerType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_integerType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isDoubleType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_doubleType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isStringType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_stringType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isDateType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_dateType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isFontType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_fontType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isColorType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_colorType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_atomicClassKind::getter_isTransientPropertyExternType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_transientPropertyExternType == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_atomicClassKind::description (C_String & ioString,
-                                          const int32_t inIndentation) const {
-  ioString << "<enum @atomicClassKind: " << gEnumNameArrayFor_atomicClassKind [mEnum] ;
-  mAssociatedValues.description (ioString, inIndentation) ;
-  ioString << ">" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult GALGAS_atomicClassKind::objectCompare (const GALGAS_atomicClassKind & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                                @atomicClassKind type                                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_atomicClassKind ("atomicClassKind",
-                                        NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_atomicClassKind::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_atomicClassKind ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_atomicClassKind::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_atomicClassKind (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_atomicClassKind GALGAS_atomicClassKind::extractObject (const GALGAS_object & inObject,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_atomicClassKind result ;
-  const GALGAS_atomicClassKind * p = (const GALGAS_atomicClassKind *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_atomicClassKind *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("atomicClassKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

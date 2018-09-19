@@ -154,7 +154,7 @@ override method @documentDeclarationEX buildInitialSecondaryPropertyListMap
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @documentDeclarationEX buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap inUnifiedTypeMap
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
   @observablePropertyMap observablePropertyMap = {}

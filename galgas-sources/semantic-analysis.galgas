@@ -21,19 +21,6 @@ map @classMap {
 
 #·······················································································································
 
-enum @atomicClassKind {
-  case boolType 
-  case integerType 
-  case doubleType
-  case stringType 
-  case dateType
-  case fontType
-  case colorType
-  case transientPropertyExternType (@string externTypeName)
-}
-
-#·······················································································································
-
 enum @propertyAccessibility {
   case stored
   case proxy

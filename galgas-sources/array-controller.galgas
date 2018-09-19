@@ -227,7 +227,59 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+#  @lstring mControllerName
+#  @bool mIsRoot
+#  @lstring mRootEntityName
+#  @lstring mToManyPropertyName
+#  @lstringlist mFilterProperties
+#  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
+#  @arrayControllerAttributListAST mArrayControllerAttributListAST
+
 override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  with mClassName in !?ioClassMap 
+    error message searchKey
+  do
+    if mIsRoot then
+      [ioClassMap searchKey !mRootEntityName ?* ?let rootProperties]
+      [rootProperties searchKey !mToManyPropertyName ?let classKind]
+      switch classKind
+      case property (2*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      case toMany (typeName * graphic isEntity) :
+        let kind = @propertyKind.arrayController {
+          !typeName: typeName
+          !graphic: graphic
+          !isEntity: isEntity
+        }
+        [!?mPropertyMap insertKey !mControllerName !kind]
+      case toOne (3*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      case arrayController (3*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      case selectionController (*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      end
+    else
+      [mPropertyMap searchKey !mToManyPropertyName ?let classKind]
+      switch classKind
+      case property (2*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      case toMany (typeName * graphic isEntity) :
+        let kind = @propertyKind.arrayController {
+          !typeName: typeName
+          !graphic: graphic
+          !isEntity: isEntity
+        }
+        [!?mPropertyMap insertKey !mControllerName !kind]
+      case toOne (3*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      case arrayController (3*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      case selectionController (*) :
+        error mRootEntityName : "a tomany relationship is required here"
+      end
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

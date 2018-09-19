@@ -7552,13 +7552,13 @@ void extensionMethod_typeInventory (const GALGAS_storedArrayPropertyListAST inOb
                                     C_Compiler * /* inCompiler */
                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_storedArrayPropertyListAST temp_0 = inObject ;
-  cEnumerator_storedArrayPropertyListAST enumerator_3205 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_3205.hasCurrentObject ()) {
+  cEnumerator_storedArrayPropertyListAST enumerator_4022 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_4022.hasCurrentObject ()) {
     {
-    GALGAS_unifiedTypeMap_2D_proxy joker_3303 ; // Joker input parameter
-    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_3205.current_mElementClassName (HERE), joker_3303 COMMA_SOURCE_FILE ("stored-array-property.galgas", 75)) ;
+    GALGAS_unifiedTypeMap_2D_proxy joker_4120 ; // Joker input parameter
+    GALGAS_unifiedTypeMap_2D_proxy::class_method_makeProxy (ioArgument_ioUnifiedTypeMap, enumerator_4022.current_mElementClassName (HERE), joker_4120 COMMA_SOURCE_FILE ("stored-array-property.galgas", 99)) ;
     }
-    enumerator_3205.gotoNextObject () ;
+    enumerator_4022.gotoNextObject () ;
   }
 }
 
@@ -7575,13 +7575,13 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_storedArrayPropert
                                                  C_Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_storedArrayPropertyListAST temp_0 = inObject ;
-  cEnumerator_storedArrayPropertyListAST enumerator_3776 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_3776.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_3861 ;
-    GALGAS_actionMap var_actionMap_3876 ;
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_3776.current_mElementClassName (HERE), var_type_3861, var_actionMap_3876, inCompiler COMMA_SOURCE_FILE ("stored-array-property.galgas", 93)) ;
-    GALGAS_typeKindList var_typeList_3922 ;
-    switch (var_type_3861.enumValue ()) {
+  cEnumerator_storedArrayPropertyListAST enumerator_4593 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_4593.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_4678 ;
+    GALGAS_actionMap var_actionMap_4693 ;
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4593.current_mElementClassName (HERE), var_type_4678, var_actionMap_4693, inCompiler COMMA_SOURCE_FILE ("stored-array-property.galgas", 117)) ;
+    GALGAS_typeKindList var_typeList_4739 ;
+    switch (var_type_4678.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -7593,43 +7593,43 @@ void extensionMethod_buildObservablePropertyMap (const GALGAS_storedArrayPropert
     case GALGAS_typeKind::kEnum_colorType:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_3776.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 98)), GALGAS_string ("a simple type cannot be used as array element type"), fixItArray1  COMMA_SOURCE_FILE ("stored-array-property.galgas", 98)) ;
-        var_typeList_3922.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4593.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 122)), GALGAS_string ("a simple type cannot be used as array element type"), fixItArray1  COMMA_SOURCE_FILE ("stored-array-property.galgas", 122)) ;
+        var_typeList_4739.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyExternType:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_3776.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 100)), GALGAS_string ("a property class type cannot be used as array element type"), fixItArray2  COMMA_SOURCE_FILE ("stored-array-property.galgas", 100)) ;
-        var_typeList_3922.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4593.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 124)), GALGAS_string ("a property class type cannot be used as array element type"), fixItArray2  COMMA_SOURCE_FILE ("stored-array-property.galgas", 124)) ;
+        var_typeList_4739.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_3776.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 102)), GALGAS_string ("ae enumeration cannot be used as array element type"), fixItArray3  COMMA_SOURCE_FILE ("stored-array-property.galgas", 102)) ;
-        var_typeList_3922.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4593.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 126)), GALGAS_string ("ae enumeration cannot be used as array element type"), fixItArray3  COMMA_SOURCE_FILE ("stored-array-property.galgas", 126)) ;
+        var_typeList_4739.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_3776.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 104)), GALGAS_string ("an entity cannot be used as array element type"), fixItArray4  COMMA_SOURCE_FILE ("stored-array-property.galgas", 104)) ;
-        var_typeList_3922.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_4593.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 128)), GALGAS_string ("an entity cannot be used as array element type"), fixItArray4  COMMA_SOURCE_FILE ("stored-array-property.galgas", 128)) ;
+        var_typeList_4739.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_typeKindList temp_5 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("stored-array-property.galgas", 106)) ;
-        temp_5.addAssign_operation (var_type_3861  COMMA_SOURCE_FILE ("stored-array-property.galgas", 106)) ;
-        var_typeList_3922 = temp_5 ;
+        GALGAS_typeKindList temp_5 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("stored-array-property.galgas", 130)) ;
+        temp_5.addAssign_operation (var_type_4678  COMMA_SOURCE_FILE ("stored-array-property.galgas", 130)) ;
+        var_typeList_4739 = temp_5 ;
       }
       break ;
     }
     {
-    ioArgument_ioObservableProperties.setter_insertKey (enumerator_3776.current_mStoredArrayPropertyName (HERE), GALGAS_propertyKind::constructor_toMany (enumerator_3776.current_mElementClassName (HERE), GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("stored-array-property.galgas", 112)), GALGAS_bool (false), GALGAS_bool (false)  COMMA_SOURCE_FILE ("stored-array-property.galgas", 112)), GALGAS_string::makeEmptyString (), var_actionMap_3876, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("stored-array-property.galgas", 110)) ;
+    ioArgument_ioObservableProperties.setter_insertKey (enumerator_4593.current_mStoredArrayPropertyName (HERE), GALGAS_propertyKind::constructor_toMany (enumerator_4593.current_mElementClassName (HERE), GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("stored-array-property.galgas", 136)), GALGAS_bool (false), GALGAS_bool (false)  COMMA_SOURCE_FILE ("stored-array-property.galgas", 136)), GALGAS_string::makeEmptyString (), var_actionMap_4693, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("stored-array-property.galgas", 134)) ;
     }
-    enumerator_3776.gotoNextObject () ;
+    enumerator_4593.gotoNextObject () ;
   }
 }
 
@@ -7646,15 +7646,15 @@ void extensionMethod_storedArrayPropertySemanticAnalysis (const GALGAS_storedArr
                                                           C_Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSimpleStoredPropertyListForGeneration.drop () ; // Release 'out' argument
-  outArgument_outSimpleStoredPropertyListForGeneration = GALGAS_storedArrayPropertyListForGeneration::constructor_emptyList (SOURCE_FILE ("stored-array-property.galgas", 126)) ;
+  outArgument_outSimpleStoredPropertyListForGeneration = GALGAS_storedArrayPropertyListForGeneration::constructor_emptyList (SOURCE_FILE ("stored-array-property.galgas", 150)) ;
   const GALGAS_storedArrayPropertyListAST temp_0 = inObject ;
-  cEnumerator_storedArrayPropertyListAST enumerator_5240 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_5240.hasCurrentObject ()) {
-    GALGAS_typeKind var_type_5325 ;
-    GALGAS_actionMap joker_5327 ; // Joker input parameter
-    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5240.current_mElementClassName (HERE), var_type_5325, joker_5327, inCompiler COMMA_SOURCE_FILE ("stored-array-property.galgas", 129)) ;
-    GALGAS_typeKindList var_typeList_5374 ;
-    switch (var_type_5325.enumValue ()) {
+  cEnumerator_storedArrayPropertyListAST enumerator_6057 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_6057.hasCurrentObject ()) {
+    GALGAS_typeKind var_type_6142 ;
+    GALGAS_actionMap joker_6144 ; // Joker input parameter
+    constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_6057.current_mElementClassName (HERE), var_type_6142, joker_6144, inCompiler COMMA_SOURCE_FILE ("stored-array-property.galgas", 153)) ;
+    GALGAS_typeKindList var_typeList_6191 ;
+    switch (var_type_6142.enumValue ()) {
     case GALGAS_typeKind::kNotBuilt:
       break ;
     case GALGAS_typeKind::kEnum_boolType:
@@ -7666,41 +7666,41 @@ void extensionMethod_storedArrayPropertySemanticAnalysis (const GALGAS_storedArr
     case GALGAS_typeKind::kEnum_colorType:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_5240.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 134)), GALGAS_string ("a simple type cannot be used as array element type"), fixItArray1  COMMA_SOURCE_FILE ("stored-array-property.galgas", 134)) ;
-        var_typeList_5374.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6057.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 158)), GALGAS_string ("a simple type cannot be used as array element type"), fixItArray1  COMMA_SOURCE_FILE ("stored-array-property.galgas", 158)) ;
+        var_typeList_6191.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_enumType:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_5240.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 136)), GALGAS_string ("ae enumeration cannot be used as array element type"), fixItArray2  COMMA_SOURCE_FILE ("stored-array-property.galgas", 136)) ;
-        var_typeList_5374.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6057.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 160)), GALGAS_string ("ae enumeration cannot be used as array element type"), fixItArray2  COMMA_SOURCE_FILE ("stored-array-property.galgas", 160)) ;
+        var_typeList_6191.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_entityType:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_5240.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 138)), GALGAS_string ("an entity cannot be used as array element type"), fixItArray3  COMMA_SOURCE_FILE ("stored-array-property.galgas", 138)) ;
-        var_typeList_5374.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6057.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 162)), GALGAS_string ("an entity cannot be used as array element type"), fixItArray3  COMMA_SOURCE_FILE ("stored-array-property.galgas", 162)) ;
+        var_typeList_6191.drop () ; // Release error dropped variable
       }
       break ;
     case GALGAS_typeKind::kEnum_classType:
       {
-        GALGAS_typeKindList temp_4 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("stored-array-property.galgas", 140)) ;
-        temp_4.addAssign_operation (var_type_5325  COMMA_SOURCE_FILE ("stored-array-property.galgas", 140)) ;
-        var_typeList_5374 = temp_4 ;
+        GALGAS_typeKindList temp_4 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("stored-array-property.galgas", 164)) ;
+        temp_4.addAssign_operation (var_type_6142  COMMA_SOURCE_FILE ("stored-array-property.galgas", 164)) ;
+        var_typeList_6191 = temp_4 ;
       }
       break ;
     case GALGAS_typeKind::kEnum_transientPropertyExternType:
       {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_5240.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 142)), GALGAS_string ("a property class type cannot be used as array element type"), fixItArray5  COMMA_SOURCE_FILE ("stored-array-property.galgas", 142)) ;
-        var_typeList_5374.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (enumerator_6057.current_mStoredArrayPropertyName (HERE).getter_location (SOURCE_FILE ("stored-array-property.galgas", 166)), GALGAS_string ("a property class type cannot be used as array element type"), fixItArray5  COMMA_SOURCE_FILE ("stored-array-property.galgas", 166)) ;
+        var_typeList_6191.drop () ; // Release error dropped variable
       }
       break ;
     }
-    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (enumerator_5240.current_mElementClassName (HERE).getter_string (HERE), enumerator_5240.current_mStoredArrayPropertyName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("stored-array-property.galgas", 145)) ;
-    enumerator_5240.gotoNextObject () ;
+    outArgument_outSimpleStoredPropertyListForGeneration.addAssign_operation (enumerator_6057.current_mElementClassName (HERE).getter_string (HERE), enumerator_6057.current_mStoredArrayPropertyName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("stored-array-property.galgas", 169)) ;
+    enumerator_6057.gotoNextObject () ;
   }
 }
 

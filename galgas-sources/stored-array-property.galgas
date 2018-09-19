@@ -20,6 +20,7 @@ override method @propertyArrayDeclarationAST enterInPrecedenceGraph ?!@declarati
   let node = @lstring.new {!mClassName.string + " " + mStoredArrayPropertyName !mStoredArrayPropertyName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
+  [!?ioGraph addEdge !node !mElementClassName]
 }
 
 #·······················································································································
@@ -62,6 +63,29 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+  with mClassName in !?ioClassMap 
+    error message searchKey
+  do
+    [ioClassMap searchKey !mElementClassName ?let classKind ?*]
+    switch classKind
+    case prefs :
+      error mElementClassName : "a simple class is required here"
+    case simpleClass :
+      let kind = @propertyKind.toMany {
+        !typeName: mElementClassName
+        !accessibility: .stored
+        !graphic: false
+        !isEntity: false
+      }
+      [!?mPropertyMap insertKey !mStoredArrayPropertyName !kind]
+    case atomic (*) :
+      error mElementClassName : "a simple class is required here"
+    case document (*) :
+      error mElementClassName : "a simple class is required here"
+    case entity (*) :
+      error mElementClassName : "a simple class is required here"
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
