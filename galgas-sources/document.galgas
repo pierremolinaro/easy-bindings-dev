@@ -89,6 +89,14 @@ syntax extension easyBindings_syntax {
       !actionDeclarationList
       !secondaryPropertyList
     }
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
+      !documentName
+      !rootEntityName
+      !["String" here]
+      !["documentFilePath" here]
+      !{}
+      !["" here]
+    }
   }
 
   #·····················································································································

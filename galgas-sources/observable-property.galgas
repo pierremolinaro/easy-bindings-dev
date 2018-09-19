@@ -14,8 +14,8 @@ enum @observablePropertyAST {
   case selfPropertyNone (@lstring propertyName)
   case prefsProperty (@lstring propertyName)
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName)
-  case controllerProperty (@lstring controllerName @lstring propertyName)
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
+  case selfControllerProperty (@lstring controllerName @lstring propertyName)
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
   case signatureProperty (@location location)
   case versionProperty (@location location)
   case versionShouldChangeProperty (@location location)
@@ -101,11 +101,11 @@ syntax extension easyBindings_syntax {
       $.$
       $identifier$ ?let propertyName
       select
-        outObservablePropertyAST = .controllerProperty {!controllerName:controllerName !propertyName:propertyName}
+        outObservablePropertyAST = .selfControllerProperty {!controllerName:controllerName !propertyName:propertyName}
       or
         $.$
         $identifier$ ?let secondaryPropertyName
-        outObservablePropertyAST = .controllerSecondaryProperty {
+        outObservablePropertyAST = .selfControllerSecondaryProperty {
           !controllerName:controllerName
           !propertyName:propertyName
           !secondaryPropertyName:secondaryPropertyName
@@ -155,9 +155,9 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
     outResult = "g_" + preferencesName () + "!." + propertyName + "_property"
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
     outResult = "g_" + preferencesName () + "!." + propertyName + "_property" + "." + optionName + "_property"
-  case controllerProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
     outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     outResult = inSelf + "." + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property"
   case signatureProperty (*) :
     outResult = "self.signatureObserver_property"
@@ -194,9 +194,9 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
     outResult = "prefs_" + propertyName
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
     outResult = "prefs_" + propertyName + "_" + optionName
-  case controllerProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
     outResult = "self_" + controllerName + "_" + propertyName
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     outResult = "self_" + controllerName + "_" + propertyName + "_" + secondaryPropertyName
   case signatureProperty (*) :
     outResult = "self_signatureObserver"
@@ -233,9 +233,9 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
     outResult = false
   case prefsPropertyWithOption (* *) :
     outResult = false
-  case controllerProperty (* *) :
+  case selfControllerProperty (* *) :
     outResult = true
-  case controllerSecondaryProperty (* * *) :
+  case selfControllerSecondaryProperty (* * *) :
     outResult = true
   case signatureProperty (*) :
     outResult = true
@@ -277,9 +277,9 @@ getter @observablePropertyAST isPropertyDefined
     outResult = [inSemanticContext.mPreferencesObservablePropertyMap hasKey !propertyName.string]
   case prefsPropertyWithOption (@lstring propertyName @lstring unused optionName) :
     outResult = [inSemanticContext.mPreferencesObservablePropertyMap hasKey !propertyName.string]
-  case controllerProperty (@lstring controllerName @lstring unused propertyName) :
+  case selfControllerProperty (@lstring controllerName @lstring unused propertyName) :
     outResult = [inObservableProperties hasKey !controllerName.string]
-  case controllerSecondaryProperty (@lstring controllerName @lstring unused propertyName @lstring unused secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring unused propertyName @lstring unused secondaryPropertyName) :
     outResult = [inObservableProperties hasKey !controllerName.string]
   case signatureProperty (*) :
     outResult = true
@@ -316,9 +316,9 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = propertyName.location
   case prefsPropertyWithOption (@lstring propertyName *) :
     outResult = propertyName.location
-  case controllerProperty (* @lstring propertyName) :
+  case selfControllerProperty (* @lstring propertyName) :
     outResult = propertyName.location
-  case controllerSecondaryProperty (* * @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (* * @lstring secondaryPropertyName) :
     outResult = secondaryPropertyName.location
   case signatureProperty (@location location) :
     outResult = location
@@ -591,7 +591,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a selection controller cannot accept any option" : outKind
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
-  case controllerProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
     [inObservablePropertyMap searchKey
       !controllerName
       ?let @propertyKind propertyKind
@@ -626,7 +626,7 @@ method @observablePropertyAST analyzeObservableProperty
       [observablePropertyMap searchKey !propertyName ?outKind ?3*]
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     [inObservablePropertyMap searchKey !controllerName ?4*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property {!type: .integerType !accessibility: .transient}

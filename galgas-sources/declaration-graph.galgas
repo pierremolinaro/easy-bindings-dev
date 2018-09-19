@@ -34,7 +34,7 @@ proc sortProperties
       !@declarationListAST outSortedDeclarationListAST
 {
 #------------------------ Add prefs declaration
-  let prefsDeclaration = @prefsDeclarationAST.new {!.new{!"prefs" !.nowhere}}
+  let prefsDeclaration = @prefsDeclarationAST.new {!.new{!prefsKey () !.nowhere}}
   var declarationListAST = inDeclarationListAST
   declarationListAST += !prefsDeclaration
 #--- Enter declarations in graph

@@ -31,6 +31,13 @@ override getter @prefsDeclarationAST lkey -> @lstring {
   result = mClassName
 }
 
+
+#·······················································································································
+
+func %once prefsKey -> @string {
+  result = "prefs"
+}
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SYNTAX
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -44,7 +51,7 @@ syntax extension easyBindings_syntax {
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $prefs$
-    let prefs = @lstring.new {!"prefs" !.here}
+    let prefs = @lstring.new {!prefsKey () !.here}
     ${$
     @stringset signatureList = {}
     repeat

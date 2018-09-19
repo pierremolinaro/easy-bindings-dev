@@ -31,18 +31,36 @@ override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPr
       if mRootEntityName.string != "" then
         [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + propertyName !propertyName.location}]
       end
-    case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    case rootPropertyNone (@lstring relationshipName) :
-    case selfProperty (@lstring propertyName) :
-    case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
-    case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) :
-    case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
+    case rootPropertyWithOption (propertyName *) :
+      if mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + propertyName !propertyName.location}]
+      end
+    case rootPropertyRelationship (relationshipName *) :
+      if mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + relationshipName !relationshipName.location}]
+      end
+    case rootPropertyNone (relationshipName) :
+      if mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + relationshipName !relationshipName.location}]
+      end
+    case selfProperty (propertyName) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+    case selfPropertyWithOption (@lstring propertyName *) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+    case selfPropertyArray (@lstring propertyName *) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+    case selfPropertyObject (@lstring propertyName *) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
     case selfPropertyNone (@lstring propertyName) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
     case prefsProperty (@lstring propertyName) :
-    case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
-    case controllerProperty (@lstring controllerName @lstring propertyName) :
-    case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+      [!?ioGraph addEdge !node !.new {!prefsKey () + " " + propertyName !propertyName.location}]
+    case prefsPropertyWithOption (@lstring propertyName *) :
+      [!?ioGraph addEdge !node !.new {!prefsKey () + " " + propertyName !propertyName.location}]
+    case selfControllerProperty (@lstring controllerName unused propertyName) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
+    case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
@@ -317,9 +335,9 @@ getter @transientDependencyListForGeneration needs_unwSelf
 
 getter @observablePropertyAST generateAddObserverCall -> @string outResult {
   switch self
-  case controllerProperty (@lstring controllerName @lstring propertyName) : 
+  case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property.addEBObserver"
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.addEBObserver"
   case selfProperty (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.addEBObserver"
@@ -356,9 +374,9 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
 
 getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   switch self
-  case controllerProperty (@lstring controllerName @lstring propertyName) : 
+  case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property.removeEBObserver"
-  case controllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.removeEBObserver"
   case selfProperty (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.removeEBObserver"

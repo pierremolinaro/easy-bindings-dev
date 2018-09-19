@@ -4756,8 +4756,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_selfPropertyNone,
     kEnum_prefsProperty,
     kEnum_prefsPropertyWithOption,
-    kEnum_controllerProperty,
-    kEnum_controllerSecondaryProperty,
+    kEnum_selfControllerProperty,
+    kEnum_selfControllerSecondaryProperty,
     kEnum_signatureProperty,
     kEnum_versionProperty,
     kEnum_versionShouldChangeProperty
@@ -4787,15 +4787,6 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_observablePropertyAST constructor_controllerProperty (const class GALGAS_lstring & inOperand0,
-                                                                                     const class GALGAS_lstring & inOperand1
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_observablePropertyAST constructor_controllerSecondaryProperty (const class GALGAS_lstring & inOperand0,
-                                                                                              const class GALGAS_lstring & inOperand1,
-                                                                                              const class GALGAS_lstring & inOperand2
-                                                                                              COMMA_LOCATION_ARGS) ;
-
   public : static class GALGAS_observablePropertyAST constructor_prefsProperty (const class GALGAS_lstring & inOperand0
                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -4816,6 +4807,15 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : static class GALGAS_observablePropertyAST constructor_rootPropertyWithOption (const class GALGAS_lstring & inOperand0,
                                                                                          const class GALGAS_lstring & inOperand1
                                                                                          COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_observablePropertyAST constructor_selfControllerProperty (const class GALGAS_lstring & inOperand0,
+                                                                                         const class GALGAS_lstring & inOperand1
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_observablePropertyAST constructor_selfControllerSecondaryProperty (const class GALGAS_lstring & inOperand0,
+                                                                                                  const class GALGAS_lstring & inOperand1,
+                                                                                                  const class GALGAS_lstring & inOperand2
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_observablePropertyAST constructor_selfProperty (const class GALGAS_lstring & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
@@ -4853,17 +4853,6 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_controllerProperty (class GALGAS_lstring & outArgument0,
-                                                            class GALGAS_lstring & outArgument1,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_controllerSecondaryProperty (class GALGAS_lstring & outArgument0,
-                                                                     class GALGAS_lstring & outArgument1,
-                                                                     class GALGAS_lstring & outArgument2,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG void method_prefsProperty (class GALGAS_lstring & outArgument0,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) const ;
@@ -4890,6 +4879,17 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                                 class GALGAS_lstring & outArgument1,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_selfControllerProperty (class GALGAS_lstring & outArgument0,
+                                                                class GALGAS_lstring & outArgument1,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_selfControllerSecondaryProperty (class GALGAS_lstring & outArgument0,
+                                                                         class GALGAS_lstring & outArgument1,
+                                                                         class GALGAS_lstring & outArgument2,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_selfProperty (class GALGAS_lstring & outArgument0,
                                                       C_Compiler * inCompiler
@@ -4929,10 +4929,6 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isControllerProperty (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isControllerSecondaryProperty (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefsProperty (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefsPropertyWithOption (LOCATION_ARGS) const ;
@@ -4944,6 +4940,10 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyRelationship (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyWithOption (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfControllerProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfControllerSecondaryProperty (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfProperty (LOCATION_ARGS) const ;
 
@@ -5166,40 +5166,40 @@ class cEnumAssociatedValues_observablePropertyAST_prefsPropertyWithOption : publ
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_observablePropertyAST_controllerProperty : public cEnumAssociatedValues {
+class cEnumAssociatedValues_observablePropertyAST_selfControllerProperty : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
   public : const GALGAS_lstring mAssociatedValue1 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_observablePropertyAST_controllerProperty (const GALGAS_lstring & inAssociatedValue0,
-                                                                           const GALGAS_lstring & inAssociatedValue1
-                                                                           COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_observablePropertyAST_selfControllerProperty (const GALGAS_lstring & inAssociatedValue0,
+                                                                               const GALGAS_lstring & inAssociatedValue1
+                                                                               COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_controllerProperty (void) {}
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_selfControllerProperty (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty : public cEnumAssociatedValues {
+class cEnumAssociatedValues_observablePropertyAST_selfControllerSecondaryProperty : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
   public : const GALGAS_lstring mAssociatedValue1 ;
   public : const GALGAS_lstring mAssociatedValue2 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty (const GALGAS_lstring & inAssociatedValue0,
-                                                                                    const GALGAS_lstring & inAssociatedValue1,
-                                                                                    const GALGAS_lstring & inAssociatedValue2
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_observablePropertyAST_selfControllerSecondaryProperty (const GALGAS_lstring & inAssociatedValue0,
+                                                                                        const GALGAS_lstring & inAssociatedValue1,
+                                                                                        const GALGAS_lstring & inAssociatedValue2
+                                                                                        COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_controllerSecondaryProperty (void) {}
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_selfControllerSecondaryProperty (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7243,6 +7243,15 @@ class cEnumAssociatedValues_tableValueBinding_tableValueBinding : public cEnumAs
 
   public : virtual ~ cEnumAssociatedValues_tableValueBinding_tableValueBinding (void) {}
 } ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                 Function 'prefsKey'                                                 *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string function_prefsKey (class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //  GRAMMAR easyBindings_grammar
