@@ -154,9 +154,9 @@ AC_OutputStream & operator << (AC_OutputStream & inStream,
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string GALGAS_string::constructor_stringByRepeating (const class GALGAS_string & inString,
-                                                            const class GALGAS_uint & inCount
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_string GALGAS_string::constructor_stringByRepeatingString (const GALGAS_string & inString,
+                                                                  const GALGAS_uint & inCount
+                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result ;
   if (inString.isValid () && inCount.isValid ()) {
     C_String s ;

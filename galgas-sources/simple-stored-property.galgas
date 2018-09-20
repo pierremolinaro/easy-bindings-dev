@@ -151,13 +151,13 @@ class @atomicPropertyGeneration : @propertyGeneration {
 #·······················································································································
 
 override getter @atomicPropertyGeneration code -> @string {
-  result  = "  //" + @string.stringByRepeating {!"·" !116} + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Property: " + mPropertyName + "\n"
-  result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
          + "(" + mDefaultValueInSwift + ", prefKey: Preferences_"
          + [mPropertyName identifierRepresentation] + ")\n\n"
-  result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
   result += "    get {\n"
   result += "      return self." + mPropertyName + "_property.propval\n"
@@ -166,14 +166,14 @@ override getter @atomicPropertyGeneration code -> @string {
   result += "      self." + mPropertyName + "_property.setProp (newValue)\n"
   result += "    }\n"
   result += "  }\n\n"
-  result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
   result += "    get {\n"
   result += "      return self." + mPropertyName + "_property.prop\n"
   result += "    }\n"
   result += "  }\n\n"
   if mNeedsValidation then
-    result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  func " + mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [mType swiftTypeName] + ", windowForSheet inWindow:NSWindow?) -> Bool {\n"
     result += "    return self." + mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)\n"
     result += "  }\n\n"
