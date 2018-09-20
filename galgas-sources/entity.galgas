@@ -276,7 +276,7 @@ override method @entityDeclarationEX solveSecondaryProperty
 
 override method @entityDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
 {
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mEntityName
@@ -286,9 +286,7 @@ override method @entityDeclarationEX semanticAnalysis
 #--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-    !mEntityName.string
     !inSemanticContext.mUnifiedTypeMap
-    !?ioGeneration.mValidationStubRoutineListForGeneration
     ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients

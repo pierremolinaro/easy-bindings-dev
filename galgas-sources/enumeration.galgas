@@ -136,7 +136,7 @@ override method @enumDeclarationEX solveSecondaryProperty
 
 override method @enumDeclarationEX semanticAnalysis
   ?let @semanticContext unused inSemanticContext
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
 {
   ioGeneration.mEnumListForGeneration +=
     !mEnumTypeName.string

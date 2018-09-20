@@ -98,16 +98,6 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @atomicPropertyGeneration : @propertyGeneration {
-  @typeKind mType
-  @string mStoredOrProxyPropertyName
-  @bool mIsProxy
-  @string mDefaultValueInSwift
-  @bool mNeedsValidation
-}
-
-#·······················································································································
-
 override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
        ?!@classMap ioClassMap
        ?!@generationStruct ioGeneration
@@ -127,11 +117,11 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
       [mDefaultValue analyzeDefaultValueType !{!kind} ?let @string swiftDefaultValueAsString]
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration.new {
-        !kind
         !mPropertyName.string
+        !mNeedsValidation
+        !kind
         !false
         !swiftDefaultValueAsString
-        !mNeedsValidation
       }
     #--- Needs validation ?
       if mNeedsValidation then
@@ -145,6 +135,48 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
     case entity (*) :
       error mPropertyTypeName : "an atomic class is required here"
     end
+  end
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CODE GENERATION                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @atomicPropertyGeneration : @propertyGeneration {
+  @typeKind mType
+  @bool mIsProxy
+  @string mDefaultValueInSwift
+}
+
+#·······················································································································
+
+override getter @atomicPropertyGeneration code -> @string {
+  result  = "  //" + @string.stringByRepeating {!"·" !116} + "\n"
+  result += "  //   Property: " + mPropertyName + "\n"
+  result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
+         + "(" + mDefaultValueInSwift + ", prefKey: Preferences_"
+         + [mPropertyName identifierRepresentation] + ")\n\n"
+  result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+  result += "  var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
+  result += "    get {\n"
+  result += "      return self." + mPropertyName + "_property.propval\n"
+  result += "    }\n"
+  result += "    set {\n"
+  result += "      self." + mPropertyName + "_property.setProp (newValue)\n"
+  result += "    }\n"
+  result += "  }\n\n"
+  result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+  result += "    get {\n"
+  result += "      return self." + mPropertyName + "_property.prop\n"
+  result += "    }\n"
+  result += "  }\n\n"
+  if mNeedsValidation then
+    result += "  //" + @string.stringByRepeating {!"·" !116} + "\n\n"
+    result += "  func " + mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [mType swiftTypeName] + ", windowForSheet inWindow:NSWindow?) -> Bool {\n"
+    result += "    return self." + mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)\n"
+    result += "  }\n\n"
   end
 }
 
@@ -203,9 +235,7 @@ method @simpleStoredPropertyList buildObservablePropertyMap
 #·······················································································································
 
 method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
-  ?let @string inSwiftClassName
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@validationStubRoutineListForGeneration ioValidationStubRoutineListForGeneration
   !@simpleStoredPropertyListForGenerationEX outSimpleStoredPropertyListForGeneration
 {
   outSimpleStoredPropertyListForGeneration = {}
@@ -235,12 +265,12 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
       !false
       !swiftDefaultValueAsString
       !mNeedsValidation
-    if mNeedsValidation then
-      ioValidationStubRoutineListForGeneration +=
-        !inSwiftClassName
-        !mPropertyName.string
-        ![type swiftTypeName]
-    end
+#    if mNeedsValidation then
+#      ioValidationStubRoutineListForGeneration +=
+#        !inSwiftClassName
+#        !mPropertyName.string
+#        ![type swiftTypeName]
+#    end
   end
 }
 

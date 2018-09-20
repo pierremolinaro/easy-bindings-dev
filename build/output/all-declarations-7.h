@@ -331,7 +331,7 @@ void routine_semanticAnalysis (const class GALGAS_classMap constinArgument0,
                                const class GALGAS_unifiedTypeMap constinArgument1,
                                const class GALGAS_string constinArgument2,
                                const class GALGAS_astDeclarationStruct constinArgument3,
-                               class GALGAS_structForGenerationEX & outArgument4,
+                               class GALGAS_generationStruct & ioArgument4,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
@@ -343,8 +343,7 @@ void routine_semanticAnalysis (const class GALGAS_classMap constinArgument0,
 
 void routine_generateCode (const class GALGAS_string constinArgument0,
                            const class GALGAS_generationStruct constinArgument1,
-                           const class GALGAS_structForGenerationEX constinArgument2,
-                           const class GALGAS_string constinArgument3,
+                           const class GALGAS_string constinArgument2,
                            class C_Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 

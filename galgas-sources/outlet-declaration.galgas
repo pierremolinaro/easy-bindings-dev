@@ -176,7 +176,7 @@ proc analyzeOutlets
   ?let @observablePropertyMap inObservablePropertyMap
   ?let @actionMap inActionMap
   ?let @string inReceiverSwiftTypeName
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
   !@regularBindingsGenerationList outRegularBindingsGenerationList
   !@multipleBindingGenerationList outMultipleBindingGenerationList
   !@actionBindingListForGeneration outTargetActionList

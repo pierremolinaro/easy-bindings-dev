@@ -10,6 +10,29 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                              Abstract extension method '@astDeclaration typeInventory'                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef void (*extensionMethodSignature_astDeclaration_typeInventory) (const class cPtr_astDeclaration * inObject,
+                                                                       class GALGAS_unifiedTypeMap & ioArgument0,
+                                                                       class C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_typeInventory (const int32_t inClassIndex,
+                                         extensionMethodSignature_astDeclaration_typeInventory inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_typeInventory (const class cPtr_astDeclaration * inObject,
+                                        GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //             Abstract extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -41,7 +64,7 @@ void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const 
 
 typedef void (*extensionMethodSignature_astDeclaration_semanticAnalysis) (const class cPtr_astDeclaration * inObject,
                                                                           const class GALGAS_semanticContext constinArgument0,
-                                                                          class GALGAS_structForGenerationEX & ioArgument1,
+                                                                          class GALGAS_generationStruct & ioArgument1,
                                                                           class C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -54,7 +77,7 @@ void enterExtensionMethod_semanticAnalysis (const int32_t inClassIndex,
 
 void callExtensionMethod_semanticAnalysis (const class cPtr_astDeclaration * inObject,
                                            const GALGAS_semanticContext constin_inSemanticContext,
-                                           GALGAS_structForGenerationEX & io_ioGeneration,
+                                           GALGAS_generationStruct & io_ioGeneration,
                                            C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 

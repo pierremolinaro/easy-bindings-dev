@@ -13,7 +13,13 @@ enum @classKind {
 #·······················································································································
 
 abstract class @propertyGeneration {
+  @string mPropertyName
+  @bool mNeedsValidation
 }
+
+#·······················································································································
+
+abstract getter @propertyGeneration code -> @string
 
 #·······················································································································
 
@@ -83,7 +89,7 @@ abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
 
 abstract method @astDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
 
 #·······················································································································
 
@@ -137,7 +143,7 @@ proc semanticAnalysis
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @string inSourceFile
   ?let @astDeclarationStruct inAstDeclarationStruct
-  !@structForGenerationEX outGeneration
+  ?!@generationStruct ioGeneration
 {
 #--- Build outlet class map
   [inAstDeclarationStruct.mOutletClassDeclarationList buildOutletClassMap ?let @outletClassMap outletClassMap]
@@ -205,19 +211,17 @@ proc semanticAnalysis
     secondaryDeclarationListWorkingList = newSecondaryDeclarationListWorkingList
     preferencesSecondaryPropertyList = newPreferencesSecondaryPropertyList
   end
-  outGeneration = .default
-  outGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
 #--- Semantic analysis of declarations
   for () in inAstDeclarationStruct.mDeclarationList do
     [mDeclaration semanticAnalysis
       !semanticContext
-      !?outGeneration
+      !?ioGeneration
     ]  
   end
   [inAstDeclarationStruct.mPreferences semanticAnalysis
     !inAstDeclarationStruct.mPreferences.mExternSwiftFunctionList
     !semanticContext
-    !?outGeneration
+    !?ioGeneration
   ]
 #----------------------------------------- Output a binding description in latex
   if [option easyBindings_options.latexBindingDescription value] then

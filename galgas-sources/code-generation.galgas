@@ -11,11 +11,9 @@ list @transientExternTypeList {
 
 struct @generationStruct {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
-}
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-struct @structForGenerationEX {
+
   @transientDefinitionListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
   @preferencesForGeneration mPreferencesForGeneration
@@ -25,7 +23,6 @@ struct @structForGenerationEX {
   @enumListForGeneration mEnumListForGeneration
   @stringset mNeededOutletClasses
   @arrayControllerForGeneration mArrayControllerListForGeneration
-  @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @stringlist mPropertyClassList
   @transientExternTypeList mTransientPropertyTypeList
@@ -37,8 +34,7 @@ struct @structForGenerationEX {
 
 proc generateCode
   ?let @string inXcodeProjectString
-  ?let @generationStruct inGeneration
-  ?let @structForGenerationEX inGenerationEX
+  ?let @generationStruct inGenerationEX
   ?let @string inSourceFile
 {
   let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
@@ -102,7 +98,7 @@ proc generateCode
   )
   generateValidationRoutineStubs (
     !fileOutputDirectory
-    !inGeneration.mValidationStubRoutineListForGeneration
+    !inGenerationEX.mValidationStubRoutineListForGeneration
     !?generatedFileSet
   )
   generateStandardProperties (

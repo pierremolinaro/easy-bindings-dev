@@ -52,18 +52,17 @@ case . "eb"
       end
       error @location.here : s
     else
-      semanticAnalysis (
+     semanticAnalysis (
         !classMap
         !unifiedTypeMap
         !inSourceFile.string
         !declarationStruct
-        ?let @structForGenerationEX generationEX
+        !?generation
       )
       if @uint.errorCount == 0 then
         generateCode (
           !declarationStruct.mXcodeProject.string
           !generation
-          !generationEX
           !inSourceFile.string
         )
       end

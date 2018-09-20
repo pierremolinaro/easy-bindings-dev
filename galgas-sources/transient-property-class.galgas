@@ -129,7 +129,7 @@ override method @transientPropertyTypeDeclarationEX solveSecondaryProperty
 
 override method @transientPropertyTypeDeclarationEX semanticAnalysis
   ?let @semanticContext unused inSemanticContext
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
 {
   ioGeneration.mTransientPropertyTypeList += !mPropertyTypeName.string !mIsClass
 }

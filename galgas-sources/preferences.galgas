@@ -169,7 +169,7 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
 method @prefDeclaration semanticAnalysis
   ?let @externSwiftFunctionList inExternSwiftFunctionList
   ?let @semanticContext inSemanticContext
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
 {
 #--- Analyze extern functions
   let @stringset availableCallers = {!"awakeFromNib", !"init"}
@@ -185,14 +185,7 @@ method @prefDeclaration semanticAnalysis
     end
   end
 #--- Get preference property map
-  [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?* ?let propertyMap ?let propertyGenerationList]
-#--- Analyze simple stored properties
-  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-    !preferencesName ()
-    !inSemanticContext.mUnifiedTypeMap
-    !?ioGeneration.mValidationStubRoutineListForGeneration
-    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
-  ]
+  [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?2* ?let propertyGenerationList]
 #--- Analyze stored array properties
   [mStoredArrayList storedArrayPropertySemanticAnalysis
     !inSemanticContext.mUnifiedTypeMap
@@ -243,7 +236,7 @@ method @prefDeclaration semanticAnalysis
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 #--- Code generation
-  ioGeneration.mPreferencesForGeneration.mSimpleStoredPropertyListForGeneration = simpleStoredPropertyListForGeneration
+  ioGeneration.mPreferencesForGeneration.mPropertyListForGeneration = propertyGenerationList
   ioGeneration.mPreferencesForGeneration.mTransientDefinitionListForGeneration = transientDefinitionListForGeneration
   ioGeneration.mPreferencesForGeneration.mRegularBindingsGenerationList = regularBindingsGenerationList
   ioGeneration.mPreferencesForGeneration.mActionBindingListForGeneration = actionBindingListForGeneration
@@ -262,7 +255,8 @@ method @prefDeclaration semanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @preferencesForGeneration {
-  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
+  @propertyGenerationList mPropertyListForGeneration
+
   @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
   @regularBindingsGenerationList mRegularBindingsGenerationList
   @multipleBindingGenerationList mMultipleBindingGenerationList
@@ -282,7 +276,8 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
   template preferences "preferences.swift.galgasTemplate"
-    ?@simpleStoredPropertyListForGenerationEX SIMPLE_PROPERTY_LIST_FOR_GENERATION
+    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
+
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
@@ -306,7 +301,7 @@ proc generatePreferences
   ?!@stringset ioGeneratedFileSet
 {
   let s = [filewrapper prefsGenerationTemplate.preferences
-    !inPreferenceListForGeneration.mSimpleStoredPropertyListForGeneration
+    !inPreferenceListForGeneration.mPropertyListForGeneration
     !inPreferenceListForGeneration.mTransientDefinitionListForGeneration
     !inPreferenceListForGeneration.mOutletMap
     !inPreferenceListForGeneration.mRegularBindingsGenerationList

@@ -201,7 +201,7 @@ func %once externSwiftFunctionCallerSet -> @stringset outResult {
 
 override method @classDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGenerationEX ioGeneration
+  ?!@generationStruct ioGeneration
 {
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mClassName
@@ -211,9 +211,7 @@ override method @classDeclarationEX semanticAnalysis
 #--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-    !mClassName.string
     !inSemanticContext.mUnifiedTypeMap
-    !?ioGeneration.mValidationStubRoutineListForGeneration
     ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients
