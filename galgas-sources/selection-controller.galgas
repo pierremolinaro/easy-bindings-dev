@@ -74,7 +74,10 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @selectionControllerDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @selectionControllerDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   with mClassName in !?ioClassMap 
     error message searchKey
   do
@@ -116,7 +119,7 @@ override method @selectionControllerDeclarationEX tryToDefineSecondaryProperty
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
 {
   if mModelControllerName.string == "self" then
     [ioObservableProperties searchKey

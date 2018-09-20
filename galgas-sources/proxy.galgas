@@ -75,7 +75,36 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @proxyDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+#  @lstring mProxyName
+#  @lstring mControllerName
+#  @lstring mPropertyName
+
+override method @proxyDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+  with mClassName in !?ioClassMap 
+    error message searchKey
+  do
+    [mPropertyMap searchKey !mControllerName ?let classKind]
+    switch classKind
+    case property (2*) :
+      error mControllerName : "an array controller is required here"
+    case toMany (4*) :
+      error mControllerName : "an array controller is required here"
+    case toOne (3*) :
+      error mControllerName : "an array controller is required here"
+    case arrayController (typeName 2*) :
+      [ioClassMap searchKey !typeName ?* ?let propertyMap ?*]
+      [propertyMap searchKey !mPropertyName ?let unused propertyKind]
+#      let kind = @propertyKind.selectionController {
+#        !typeName: typeName
+#      }
+#      [!?mPropertyMap insertKey !mProxyName !kind]
+    case selectionController (*) :
+      error mControllerName : "an array controller is required here"
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -94,7 +123,7 @@ override method @proxyDeclarationEX tryToDefineSecondaryProperty
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 {
   if [ioObservableProperties hasKey !mControllerName] then
     [ioObservableProperties searchKey

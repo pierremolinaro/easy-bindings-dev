@@ -235,12 +235,15 @@ syntax extension easyBindings_syntax {
 #  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
 #  @arrayControllerAttributListAST mArrayControllerAttributListAST
 
-override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis 
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   with mClassName in !?ioClassMap 
     error message searchKey
   do
     if mIsRoot then
-      [ioClassMap searchKey !mRootEntityName ?* ?let rootProperties]
+      [ioClassMap searchKey !mRootEntityName ?* ?let rootProperties ?*]
       [rootProperties searchKey !mToManyPropertyName ?let classKind]
       switch classKind
       case property (2*) :
@@ -298,7 +301,7 @@ override method @arrayControllerDeclarationEX tryToDefineSecondaryProperty
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
 {
   let observablePropertyMap = if mIsRoot then inRootObservableProperties else ioObservableProperties end
   if [observablePropertyMap hasKey !mToManyPropertyName.string] then

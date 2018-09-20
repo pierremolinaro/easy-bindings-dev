@@ -462,7 +462,7 @@ class cCollectionElement_entityListForGeneration : public cCollectionElement {
   public : cCollectionElement_entityListForGeneration (const GALGAS_string & in_mEntityName,
                                                        const GALGAS_string & in_mSuperEntityName,
                                                        const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
-                                                       const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
+                                                       const GALGAS_simpleStoredPropertyListForGenerationEX & in_mSimpleStoredPropertyListForGeneration,
                                                        const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                        const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
                                                        const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
@@ -493,7 +493,7 @@ class cCollectionElement_entityListForGeneration : public cCollectionElement {
 cCollectionElement_entityListForGeneration::cCollectionElement_entityListForGeneration (const GALGAS_string & in_mEntityName,
                                                                                         const GALGAS_string & in_mSuperEntityName,
                                                                                         const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
-                                                                                        const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
+                                                                                        const GALGAS_simpleStoredPropertyListForGenerationEX & in_mSimpleStoredPropertyListForGeneration,
                                                                                         const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                                                         const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
                                                                                         const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
@@ -617,7 +617,7 @@ GALGAS_entityListForGeneration GALGAS_entityListForGeneration::constructor_empty
 GALGAS_entityListForGeneration GALGAS_entityListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
                                                                                           const GALGAS_string & inOperand1,
                                                                                           const GALGAS_observablePropertyMap & inOperand2,
-                                                                                          const GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                                                          const GALGAS_simpleStoredPropertyListForGenerationEX & inOperand3,
                                                                                           const GALGAS_transientDefinitionListForGeneration & inOperand4,
                                                                                           const GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
                                                                                           const GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
@@ -644,7 +644,7 @@ void GALGAS_entityListForGeneration::makeAttributesFromObjects (capCollectionEle
                                                                 const GALGAS_string & in_mEntityName,
                                                                 const GALGAS_string & in_mSuperEntityName,
                                                                 const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
-                                                                const GALGAS_simpleStoredPropertyListForGeneration & in_mSimpleStoredPropertyListForGeneration,
+                                                                const GALGAS_simpleStoredPropertyListForGenerationEX & in_mSimpleStoredPropertyListForGeneration,
                                                                 const GALGAS_transientDefinitionListForGeneration & in_mDecoratedTransientListForGeneration,
                                                                 const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
                                                                 const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
@@ -678,7 +678,7 @@ void GALGAS_entityListForGeneration::makeAttributesFromObjects (capCollectionEle
 void GALGAS_entityListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
                                                           const GALGAS_string & inOperand1,
                                                           const GALGAS_observablePropertyMap & inOperand2,
-                                                          const GALGAS_simpleStoredPropertyListForGeneration & inOperand3,
+                                                          const GALGAS_simpleStoredPropertyListForGenerationEX & inOperand3,
                                                           const GALGAS_transientDefinitionListForGeneration & inOperand4,
                                                           const GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
                                                           const GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
@@ -719,7 +719,7 @@ void GALGAS_entityListForGeneration::setter_append (GALGAS_entityListForGenerati
 void GALGAS_entityListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
                                                            const GALGAS_string inOperand1,
                                                            const GALGAS_observablePropertyMap inOperand2,
-                                                           const GALGAS_simpleStoredPropertyListForGeneration inOperand3,
+                                                           const GALGAS_simpleStoredPropertyListForGenerationEX inOperand3,
                                                            const GALGAS_transientDefinitionListForGeneration inOperand4,
                                                            const GALGAS_toOneEntityRelationshipListForGeneration inOperand5,
                                                            const GALGAS_toManyEntityRelationshipListForGeneration inOperand6,
@@ -747,7 +747,7 @@ void GALGAS_entityListForGeneration::setter_insertAtIndex (const GALGAS_string i
 void GALGAS_entityListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
                                                            GALGAS_string & outOperand1,
                                                            GALGAS_observablePropertyMap & outOperand2,
-                                                           GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                           GALGAS_simpleStoredPropertyListForGenerationEX & outOperand3,
                                                            GALGAS_transientDefinitionListForGeneration & outOperand4,
                                                            GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
                                                            GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
@@ -802,7 +802,7 @@ void GALGAS_entityListForGeneration::setter_removeAtIndex (GALGAS_string & outOp
 void GALGAS_entityListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
                                                       GALGAS_string & outOperand1,
                                                       GALGAS_observablePropertyMap & outOperand2,
-                                                      GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                      GALGAS_simpleStoredPropertyListForGenerationEX & outOperand3,
                                                       GALGAS_transientDefinitionListForGeneration & outOperand4,
                                                       GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
                                                       GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
@@ -854,7 +854,7 @@ void GALGAS_entityListForGeneration::setter_popFirst (GALGAS_string & outOperand
 void GALGAS_entityListForGeneration::setter_popLast (GALGAS_string & outOperand0,
                                                      GALGAS_string & outOperand1,
                                                      GALGAS_observablePropertyMap & outOperand2,
-                                                     GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                     GALGAS_simpleStoredPropertyListForGenerationEX & outOperand3,
                                                      GALGAS_transientDefinitionListForGeneration & outOperand4,
                                                      GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
                                                      GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
@@ -906,7 +906,7 @@ void GALGAS_entityListForGeneration::setter_popLast (GALGAS_string & outOperand0
 void GALGAS_entityListForGeneration::method_first (GALGAS_string & outOperand0,
                                                    GALGAS_string & outOperand1,
                                                    GALGAS_observablePropertyMap & outOperand2,
-                                                   GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                   GALGAS_simpleStoredPropertyListForGenerationEX & outOperand3,
                                                    GALGAS_transientDefinitionListForGeneration & outOperand4,
                                                    GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
                                                    GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
@@ -958,7 +958,7 @@ void GALGAS_entityListForGeneration::method_first (GALGAS_string & outOperand0,
 void GALGAS_entityListForGeneration::method_last (GALGAS_string & outOperand0,
                                                   GALGAS_string & outOperand1,
                                                   GALGAS_observablePropertyMap & outOperand2,
-                                                  GALGAS_simpleStoredPropertyListForGeneration & outOperand3,
+                                                  GALGAS_simpleStoredPropertyListForGenerationEX & outOperand3,
                                                   GALGAS_transientDefinitionListForGeneration & outOperand4,
                                                   GALGAS_toOneEntityRelationshipListForGeneration & outOperand5,
                                                   GALGAS_toManyEntityRelationshipListForGeneration & outOperand6,
@@ -1103,12 +1103,12 @@ GALGAS_observablePropertyMap GALGAS_entityListForGeneration::getter_mObservableP
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_simpleStoredPropertyListForGeneration GALGAS_entityListForGeneration::getter_mSimpleStoredPropertyListForGenerationAtIndex (const GALGAS_uint & inIndex,
-                                                                                                                                   C_Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) const {
+GALGAS_simpleStoredPropertyListForGenerationEX GALGAS_entityListForGeneration::getter_mSimpleStoredPropertyListForGenerationAtIndex (const GALGAS_uint & inIndex,
+                                                                                                                                     C_Compiler * inCompiler
+                                                                                                                                     COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_entityListForGeneration * p = (cCollectionElement_entityListForGeneration *) attributes.ptr () ;
-  GALGAS_simpleStoredPropertyListForGeneration result ;
+  GALGAS_simpleStoredPropertyListForGenerationEX result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
     result = p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;
@@ -1296,7 +1296,7 @@ GALGAS_observablePropertyMap cEnumerator_entityListForGeneration::current_mObser
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_simpleStoredPropertyListForGeneration cEnumerator_entityListForGeneration::current_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const {
+GALGAS_simpleStoredPropertyListForGenerationEX cEnumerator_entityListForGeneration::current_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const {
   const cCollectionElement_entityListForGeneration * p = (const cCollectionElement_entityListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_entityListForGeneration) ;
   return p->mObject.mProperty_mSimpleStoredPropertyListForGeneration ;

@@ -34,8 +34,8 @@ override getter @prefsDeclarationAST lkey -> @lstring {
 
 #·······················································································································
 
-func %once prefsKey -> @string {
-  result = "prefs"
+func %once preferencesName -> @string outResult {
+  outResult = "Preferences"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -51,7 +51,7 @@ syntax extension easyBindings_syntax {
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $prefs$
-    let prefs = @lstring.new {!prefsKey () !.here}
+    let prefs = @lstring.new {!preferencesName () !.here}
     ${$
     @stringset signatureList = {}
     repeat
@@ -94,10 +94,14 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @prefsDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @prefsDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   [!?ioClassMap insertKey
-    !.new {!prefsKey () !.here}
+    !.new {!preferencesName () !.here}
     !.prefs
+    !{}
     !{}
   ]
 }
@@ -124,7 +128,7 @@ method @prefDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   var preferencesObservablePropertyMap = ioSemanticContext.mPreferencesObservablePropertyMap
@@ -165,7 +169,7 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
 method @prefDeclaration semanticAnalysis
   ?let @externSwiftFunctionList inExternSwiftFunctionList
   ?let @semanticContext inSemanticContext
-  ?!@structForGeneration ioGeneration
+  ?!@structForGenerationEX ioGeneration
 {
 #--- Analyze extern functions
   let @stringset availableCallers = {!"awakeFromNib", !"init"}
@@ -180,12 +184,14 @@ method @prefDeclaration semanticAnalysis
       error mCallerName : s
     end
   end
+#--- Get preference property map
+  [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?* ?let propertyMap ?let propertyGenerationList]
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
     !preferencesName ()
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration
-    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
   ]
 #--- Analyze stored array properties
   [mStoredArrayList storedArrayPropertySemanticAnalysis
@@ -256,7 +262,7 @@ method @prefDeclaration semanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @preferencesForGeneration {
-  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
   @regularBindingsGenerationList mRegularBindingsGenerationList
   @multipleBindingGenerationList mMultipleBindingGenerationList
@@ -276,7 +282,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
 }{
   template preferences "preferences.swift.galgasTemplate"
-    ?@simpleStoredPropertyListForGeneration SIMPLE_PROPERTY_LIST_FOR_GENERATION
+    ?@simpleStoredPropertyListForGenerationEX SIMPLE_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
@@ -320,12 +326,6 @@ proc generatePreferences
     !fileName
     !s
   ]
-}
-
-#·······················································································································
-
-func %once preferencesName -> @string outResult {
-  outResult = "Preferences"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

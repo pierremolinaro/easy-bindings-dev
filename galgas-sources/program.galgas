@@ -24,8 +24,9 @@ case . "eb"
   sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
 #----------------------------------------- Semantic Analysis
   @classMap classMap = {}
+  @generationStruct generation = .default
   for (declaration) in sortedDeclarationListAST do
-    [declaration classAndPropertySemanticAnalysis !?classMap]
+    [declaration classAndPropertySemanticAnalysis !?classMap !?generation]
   end
 
 
@@ -52,15 +53,17 @@ case . "eb"
       error @location.here : s
     else
       semanticAnalysis (
+        !classMap
         !unifiedTypeMap
         !inSourceFile.string
         !declarationStruct
-        ?let @structForGeneration generation
+        ?let @structForGenerationEX generationEX
       )
       if @uint.errorCount == 0 then
         generateCode (
           !declarationStruct.mXcodeProject.string
           !generation
+          !generationEX
           !inSourceFile.string
         )
       end

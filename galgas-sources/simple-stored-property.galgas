@@ -98,11 +98,24 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+class @atomicPropertyGeneration : @propertyGeneration {
+  @typeKind mType
+  @string mStoredOrProxyPropertyName
+  @bool mIsProxy
+  @string mDefaultValueInSwift
+  @bool mNeedsValidation
+}
+
+#·······················································································································
+
+override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct ioGeneration
+{
   with mClassName in !?ioClassMap 
     error message searchKey
   do
-    [ioClassMap searchKey !mPropertyTypeName ?let classKind ?*]
+    [ioClassMap searchKey !mPropertyTypeName ?let classKind ?2*]
     switch classKind
     case prefs :
       error mPropertyTypeName : "an atomic class is required here"
@@ -110,6 +123,23 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis ?
       error mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
       [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored}]
+    #--- Analyze default value
+      [mDefaultValue analyzeDefaultValueType !{!kind} ?let @string swiftDefaultValueAsString]
+    #--- Code Generation
+      mPropertyGenerationList += !@atomicPropertyGeneration.new {
+        !kind
+        !mPropertyName.string
+        !false
+        !swiftDefaultValueAsString
+        !mNeedsValidation
+      }
+    #--- Needs validation ?
+      if mNeedsValidation then
+        ioGeneration.mValidationStubRoutineListForGeneration +=
+          !mClassName
+          !mPropertyName.string
+          ![kind swiftTypeName]
+      end
     case document (*) :
       error mPropertyTypeName : "an atomic class is required here"
     case entity (*) :
@@ -176,7 +206,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
   ?let @string inSwiftClassName
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?!@validationStubRoutineListForGeneration ioValidationStubRoutineListForGeneration
-  !@simpleStoredPropertyListForGeneration outSimpleStoredPropertyListForGeneration
+  !@simpleStoredPropertyListForGenerationEX outSimpleStoredPropertyListForGeneration
 {
   outSimpleStoredPropertyListForGeneration = {}
   for () in self do
@@ -197,7 +227,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
       error mPropertyName: "an entity cannot be used as simple property type" : typeList
     end
   #--- Analyze default value
-    [mDefaultValue analyzeDefaultValueType !typeList ?let@string swiftDefaultValueAsString]
+    [mDefaultValue analyzeDefaultValueType !typeList ?let @string swiftDefaultValueAsString]
   #--- Code Generation
     outSimpleStoredPropertyListForGeneration +=
       !type
@@ -218,7 +248,7 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @simpleStoredPropertyListForGeneration {
+list @simpleStoredPropertyListForGenerationEX {
   @typeKind mType
   @string mStoredOrProxyPropertyName
   @bool mIsProxy

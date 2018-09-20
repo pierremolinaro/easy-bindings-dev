@@ -140,10 +140,14 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @entityDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @entityDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   [!?ioClassMap insertKey
     !mClassName
     !.entity {!isGraphic: mIsGraphicEntity}
+    !{}
     !{}
   ]
 }
@@ -245,7 +249,7 @@ override method @entityDeclarationEX solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
@@ -272,7 +276,7 @@ override method @entityDeclarationEX solveSecondaryProperty
 
 override method @entityDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGeneration ioGeneration
+  ?!@structForGenerationEX ioGeneration
 {
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mEntityName
@@ -285,7 +289,7 @@ override method @entityDeclarationEX semanticAnalysis
     !mEntityName.string
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration
-    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
@@ -421,7 +425,7 @@ list @entityListForGeneration {
   @string mEntityName
   @string mSuperEntityName
   @observablePropertyMap mObservablePropertyMap
-  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mDecoratedTransientListForGeneration
   @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
   @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
@@ -441,7 +445,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
   template entityImplementationInSwift "entity.swift.galgasTemplate"
     ?@string ENTITY_NAME
     ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
-    ?@simpleStoredPropertyListForGeneration SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
+    ?@simpleStoredPropertyListForGenerationEX SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
     ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST

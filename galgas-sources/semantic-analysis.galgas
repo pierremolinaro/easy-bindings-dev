@@ -12,9 +12,21 @@ enum @classKind {
 
 #·······················································································································
 
+abstract class @propertyGeneration {
+}
+
+#·······················································································································
+
+list @propertyGenerationList {
+  @propertyGeneration mProperty
+}
+
+#·······················································································································
+
 map @classMap {
   @classKind mClassKind
   @propertyMap mPropertyMap
+  @propertyGenerationList mPropertyGenerationList
   insert insertKey error message "the '%K' class is already declared in %L"
   search searchKey error message "there is no '%K' class"
 }
@@ -71,7 +83,7 @@ abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
 
 abstract method @astDeclaration semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGeneration ioGeneration
+  ?!@structForGenerationEX ioGeneration
 
 #·······················································································································
 
@@ -93,7 +105,7 @@ abstract method @astDeclaration solveSecondaryProperty
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 
 #·······················································································································
 
@@ -102,11 +114,12 @@ abstract method @abstractSecondaryProperty tryToDefineSecondaryProperty
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 
 #·······················································································································
 
 struct @semanticContext {
+  @classMap mClassMap
   @unifiedTypeMap mUnifiedTypeMap
   @outletClassMap mOutletClassMap
   @bindingSpecificationMap mBindingSpecificationMap
@@ -120,10 +133,11 @@ struct @semanticContext {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc semanticAnalysis
+  ?let @classMap inClassMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @string inSourceFile
   ?let @astDeclarationStruct inAstDeclarationStruct
-  !@structForGeneration outGeneration
+  !@structForGenerationEX outGeneration
 {
 #--- Build outlet class map
   [inAstDeclarationStruct.mOutletClassDeclarationList buildOutletClassMap ?let @outletClassMap outletClassMap]
@@ -136,6 +150,7 @@ proc semanticAnalysis
   )
 #--- Semantic context
   @semanticContext semanticContext = .new {
+    !inClassMap
     !inUnifiedTypeMap
     !outletClassMap
     !bindingSpecificationMap
@@ -162,7 +177,7 @@ proc semanticAnalysis
     [mDeclaration buildInitialSecondaryPropertyListMap !?secondaryDeclarationListWorkingList !?secondaryDeclarationCount]
   end
 #--- Iterate for building observable property maps
-  @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration = {}
+  @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration = {}
   @bool continue = true
   loop (secondaryDeclarationCount) while continue do
     [inAstDeclarationStruct.mPreferences solveSecondaryProperty

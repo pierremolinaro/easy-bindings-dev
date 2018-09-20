@@ -62,11 +62,14 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   with mClassName in !?ioClassMap 
     error message searchKey
   do
-    [ioClassMap searchKey !mElementClassName ?let classKind ?*]
+    [ioClassMap searchKey !mElementClassName ?let classKind ?2*]
     switch classKind
     case prefs :
       error mElementClassName : "a simple class is required here"

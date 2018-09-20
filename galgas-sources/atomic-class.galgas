@@ -37,10 +37,14 @@ proc enterAtomicClassesIn ?!declarationList: @declarationListAST ioDeclarationLi
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @atomicClassDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @atomicClassDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   [!?ioClassMap insertKey
     !mClassName
     !.atomic {!kind: mKind}
+    !{}
     !{}
   ]
 }

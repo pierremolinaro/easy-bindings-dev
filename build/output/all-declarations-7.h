@@ -327,10 +327,11 @@ void routine_typeInventory (const class GALGAS_astDeclarationList constinArgumen
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               const class GALGAS_astDeclarationStruct constinArgument2,
-                               class GALGAS_structForGeneration & outArgument3,
+void routine_semanticAnalysis (const class GALGAS_classMap constinArgument0,
+                               const class GALGAS_unifiedTypeMap constinArgument1,
+                               const class GALGAS_string constinArgument2,
+                               const class GALGAS_astDeclarationStruct constinArgument3,
+                               class GALGAS_structForGenerationEX & outArgument4,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
@@ -341,8 +342,9 @@ void routine_semanticAnalysis (const class GALGAS_unifiedTypeMap constinArgument
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void routine_generateCode (const class GALGAS_string constinArgument0,
-                           const class GALGAS_structForGeneration constinArgument1,
-                           const class GALGAS_string constinArgument2,
+                           const class GALGAS_generationStruct constinArgument1,
+                           const class GALGAS_structForGenerationEX constinArgument2,
+                           const class GALGAS_string constinArgument3,
                            class C_Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 

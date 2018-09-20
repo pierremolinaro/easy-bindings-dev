@@ -98,10 +98,14 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @classDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @classDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   [!?ioClassMap insertKey
     !mClassName
     !.simpleClass
+    !{}
     !{}
   ]
 }
@@ -164,7 +168,7 @@ override method @classDeclarationEX solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   [ioSemanticContext.mEntityObservablePropertyMap searchKey
@@ -197,7 +201,7 @@ func %once externSwiftFunctionCallerSet -> @stringset outResult {
 
 override method @classDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGeneration ioGeneration
+  ?!@structForGenerationEX ioGeneration
 {
   [inSemanticContext.mEntityObservablePropertyMap searchKey
     !mClassName
@@ -210,7 +214,7 @@ override method @classDeclarationEX semanticAnalysis
     !mClassName.string
     !inSemanticContext.mUnifiedTypeMap
     !?ioGeneration.mValidationStubRoutineListForGeneration
-    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
+    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
@@ -260,7 +264,7 @@ override method @classDeclarationEX semanticAnalysis
 
 list @classListForGeneration {
   @string mClassName
-  @simpleStoredPropertyListForGeneration mSimpleStoredPropertyListForGeneration
+  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGeneration mTransientListForGeneration
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
@@ -273,7 +277,7 @@ private filewrapper classGenerationTemplate in "../generation-templates" {
 }{
   template classImplementationInSwift "class.swift.galgasTemplate"
     ?@string CLASS_NAME
-    ?@simpleStoredPropertyListForGeneration SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
+    ?@simpleStoredPropertyListForGenerationEX SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@externSwiftFunctionList EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION
     ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION

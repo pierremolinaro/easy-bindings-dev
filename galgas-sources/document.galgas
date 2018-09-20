@@ -105,10 +105,14 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @documentDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @documentDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   [!?ioClassMap insertKey
     !mClassName
     !.document {!rootEntityName: mRootEntityName}
+    !{}
     !{}
   ]
 }
@@ -157,16 +161,9 @@ override method @documentDeclarationEX buildObservablePropertyMapsFromStoredProp
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?!@semanticContext ioSemanticContext
 {
-  @observablePropertyMap observablePropertyMap = {}
-#--- Analyze simple stored properties
-#  [mSimpleStoredAttributeList buildObservablePropertyMap
-#    !inUnifiedTypeMap
-#    !?observablePropertyMap
-#  ]
-#--- Enter in semantics context  
   [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
     !mDocumentName
-    !observablePropertyMap
+    !{}
   ]
 }
 
@@ -177,7 +174,7 @@ override method @documentDeclarationEX solveSecondaryProperty
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
   [ioSemanticContext.mDocumentObservablePropertyMap searchKey
@@ -208,7 +205,7 @@ override method @documentDeclarationEX solveSecondaryProperty
 
 override method @documentDeclarationEX semanticAnalysis
   ?let @semanticContext inSemanticContext
-  ?!@structForGeneration ioGeneration
+  ?!@structForGenerationEX ioGeneration
 {
   [inSemanticContext.mDocumentObservablePropertyMap searchKey
     !mDocumentName
@@ -219,13 +216,6 @@ override method @documentDeclarationEX semanticAnalysis
     ?let @observablePropertyMap rootObservablePropertyMap
     ?*
   ]
-#--- Analyze simple stored properties
-#  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-#    !mDocumentName.string
-#    !inSemanticContext.mUnifiedTypeMap
-#    !?ioGeneration.mValidationStubRoutineListForGeneration
-#    ?let @simpleStoredPropertyListForGeneration simpleStoredPropertyListForGeneration
-#  ]
 #--- Analyze secondary
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration documentArrayControllerListForGeneration = {}

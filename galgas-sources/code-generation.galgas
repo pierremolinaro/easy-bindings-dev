@@ -9,7 +9,13 @@ list @transientExternTypeList {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-struct @structForGeneration {
+struct @generationStruct {
+  @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+struct @structForGenerationEX {
   @transientDefinitionListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
   @preferencesForGeneration mPreferencesForGeneration
@@ -31,7 +37,8 @@ struct @structForGeneration {
 
 proc generateCode
   ?let @string inXcodeProjectString
-  ?let @structForGeneration inGeneration
+  ?let @generationStruct inGeneration
+  ?let @structForGenerationEX inGenerationEX
   ?let @string inSourceFile
 {
   let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
@@ -40,57 +47,57 @@ proc generateCode
   @stringset generatedFileSet = {}
   generateTransients (
     !fileOutputDirectory
-    !inGeneration.mTransientListForGeneration
+    !inGenerationEX.mTransientListForGeneration
     !?generatedFileSet
   )
   generateActions (
     !fileOutputDirectory
-    !inGeneration.mActionListForGeneration
+    !inGenerationEX.mActionListForGeneration
     !?generatedFileSet
   )
   generatePreferences (
-    !inGeneration.mPreferencesForGeneration
+    !inGenerationEX.mPreferencesForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateOutletClasses (
-    !inGeneration.mNeededOutletClasses
+    !inGenerationEX.mNeededOutletClasses
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateClasses (
-    !inGeneration.mClassListForGeneration
+    !inGenerationEX.mClassListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateEntities (
-    !inGeneration.mEntityListForGeneration
+    !inGenerationEX.mEntityListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateEnums (
-    !inGeneration.mEnumListForGeneration
+    !inGenerationEX.mEnumListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateDocuments (
-    !inGeneration.mDocumentListForGeneration
+    !inGenerationEX.mDocumentListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateArrayControllers (
-    !inGeneration.mArrayControllerListForGeneration
+    !inGenerationEX.mArrayControllerListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateSelectionControllers (
-    !inGeneration.mSelectionControllerListForGeneration
+    !inGenerationEX.mSelectionControllerListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )
   generateSwiftApplicationFiles (
     !fileOutputDirectory
-    ![inGeneration.mEntityListForGeneration length] > 0
+    ![inGenerationEX.mEntityListForGeneration length] > 0
     !?generatedFileSet
   )
   generateValidationRoutineStubs (
@@ -100,8 +107,8 @@ proc generateCode
   )
   generateStandardProperties (
     !fileOutputDirectory
-    !inGeneration.mPropertyClassList
-    !inGeneration.mTransientPropertyTypeList
+    !inGenerationEX.mPropertyClassList
+    !inGenerationEX.mTransientPropertyTypeList
     !?generatedFileSet
   )
   generateXcodeProject (
@@ -113,7 +120,7 @@ proc generateCode
   generateTestFile (
     !inXcodeProjectString
     !projectName
-    !inGeneration.mPreferencesForGeneration.mMainXibDescriptorList
+    !inGenerationEX.mPreferencesForGeneration.mMainXibDescriptorList
     !outputDirectory
   )
 }

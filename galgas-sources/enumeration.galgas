@@ -66,7 +66,10 @@ map @enumConstantMap {
 
 #·······················································································································
 
-override method @enumerationDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @enumerationDeclarationAST classAndPropertySemanticAnalysis
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   @enumConstantMap enumConstantMap = {}
   for (s) in mEnumConstantNameList do
     [!?enumConstantMap insertKey !s]
@@ -74,6 +77,7 @@ override method @enumerationDeclarationAST classAndPropertySemanticAnalysis ?!@c
   [!?ioClassMap insertKey
     !mClassName
     !.atomic {!kind: .enumType {!enumTypeName:mClassName !constantMap: enumConstantMap}}
+    !{}
     !{}
   ]
 }
@@ -123,7 +127,7 @@ override method @enumDeclarationEX solveSecondaryProperty
   ?let @unifiedTypeMap unused mUnifiedTypeMap
   ?let @secondaryPropertyList unused inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGeneration unused ioSimpleStoredPropertyListForGeneration
+  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
 }
@@ -132,7 +136,7 @@ override method @enumDeclarationEX solveSecondaryProperty
 
 override method @enumDeclarationEX semanticAnalysis
   ?let @semanticContext unused inSemanticContext
-  ?!@structForGeneration ioGeneration
+  ?!@structForGenerationEX ioGeneration
 {
   ioGeneration.mEnumListForGeneration +=
     !mEnumTypeName.string

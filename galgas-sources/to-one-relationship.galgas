@@ -107,11 +107,14 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @toOneRelationshipAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap {
+override method @toOneRelationshipAST classAndPropertySemanticAnalysis 
+       ?!@classMap ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
   with mClassName in !?ioClassMap 
     error message searchKey
   do
-    [ioClassMap searchKey !mDestinationEntityName ?let classKind ?*]
+    [ioClassMap searchKey !mDestinationEntityName ?let classKind ?2*]
     switch classKind
     case prefs :
       error mDestinationEntityName : "an entity is required here"

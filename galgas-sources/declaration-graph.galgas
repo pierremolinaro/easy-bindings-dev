@@ -16,7 +16,7 @@ abstract getter @abstractDeclarationAST lkey -> @lstring
 
 #·······················································································································
 
-abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap
+abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap ?!@generationStruct ioGeneration
 
 #·······················································································································
 
@@ -38,7 +38,7 @@ proc sortProperties
       !@declarationListAST outSortedDeclarationListAST
 {
 #------------------------ Add prefs declaration
-  let prefsDeclaration = @prefsDeclarationAST.new {!.new{!prefsKey () !.nowhere}}
+  let prefsDeclaration = @prefsDeclarationAST.new {!.new{!preferencesName () !.nowhere}}
   var declarationListAST = inDeclarationListAST
   declarationListAST += !prefsDeclaration
 #--- Enter declarations in graph
