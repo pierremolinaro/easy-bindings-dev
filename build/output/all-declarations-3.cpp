@@ -3705,54 +3705,114 @@ GALGAS_classKind GALGAS_classKind::extractObject (const GALGAS_object & inObject
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                Abstract extension getter '@propertyGeneration code'                                 *
+//                           Abstract extension getter '@propertyGeneration declarationCode'                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static TC_UniqueArray <enterExtensionGetter_propertyGeneration_code> gExtensionGetterTable_propertyGeneration_code ;
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_declarationCode> gExtensionGetterTable_propertyGeneration_declarationCode ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void enterExtensionGetter_code (const int32_t inClassIndex,
-                                enterExtensionGetter_propertyGeneration_code inGetter) {
-  gExtensionGetterTable_propertyGeneration_code.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+void enterExtensionGetter_declarationCode (const int32_t inClassIndex,
+                                           enterExtensionGetter_propertyGeneration_declarationCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_declarationCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void freeExtensionGetter_propertyGeneration_code (void) {
-  gExtensionGetterTable_propertyGeneration_code.free () ;
+static void freeExtensionGetter_propertyGeneration_declarationCode (void) {
+  gExtensionGetterTable_propertyGeneration_declarationCode.free () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_propertyGeneration_code (NULL,
-                                                    freeExtensionGetter_propertyGeneration_code) ;
+C_PrologueEpilogue gGetter_propertyGeneration_declarationCode (NULL,
+                                                               freeExtensionGetter_propertyGeneration_declarationCode) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string callExtensionGetter_code (const cPtr_propertyGeneration * inObject,
-                                        C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
+GALGAS_string callExtensionGetter_declarationCode (const cPtr_propertyGeneration * inObject,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
   GALGAS_string result ;
 //--- Find Reader
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
     const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
     const int32_t classIndex = info->mSlotID ;
-    enterExtensionGetter_propertyGeneration_code f = NULL ;
-    if (classIndex < gExtensionGetterTable_propertyGeneration_code.count ()) {
-      f = gExtensionGetterTable_propertyGeneration_code (classIndex COMMA_HERE) ;
+    enterExtensionGetter_propertyGeneration_declarationCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_declarationCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_declarationCode (classIndex COMMA_HERE) ;
     }
     if (NULL == f) {
        const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
        while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_code.count ()) {
-           f = gExtensionGetterTable_propertyGeneration_code (p->mSlotID COMMA_HERE) ;
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_declarationCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_declarationCode (p->mSlotID COMMA_HERE) ;
          }
          p = p->mSuperclassDescriptor ;
        }
-       gExtensionGetterTable_propertyGeneration_code.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+       gExtensionGetterTable_propertyGeneration_declarationCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                          Abstract extension getter '@propertyGeneration configurationCode'                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_configurationCode> gExtensionGetterTable_propertyGeneration_configurationCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_configurationCode (const int32_t inClassIndex,
+                                             enterExtensionGetter_propertyGeneration_configurationCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_configurationCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_configurationCode (void) {
+  gExtensionGetterTable_propertyGeneration_configurationCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_configurationCode (NULL,
+                                                                 freeExtensionGetter_propertyGeneration_configurationCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_configurationCode (const cPtr_propertyGeneration * inObject,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_configurationCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_configurationCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_configurationCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_configurationCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_configurationCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_configurationCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
     }
     if (NULL == f) {
       fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;

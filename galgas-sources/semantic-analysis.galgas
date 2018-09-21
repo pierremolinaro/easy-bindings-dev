@@ -14,12 +14,15 @@ enum @classKind {
 
 abstract class @propertyGeneration {
   @string mPropertyName
-  @bool mNeedsValidation
 }
 
 #·······················································································································
 
-abstract getter @propertyGeneration code -> @string
+abstract getter @propertyGeneration declarationCode -> @string
+
+#·······················································································································
+
+abstract getter @propertyGeneration configurationCode -> @string
 
 #·······················································································································
 

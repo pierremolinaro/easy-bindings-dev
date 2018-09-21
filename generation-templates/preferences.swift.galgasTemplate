@@ -22,7 +22,7 @@ end
 @objc(%!preferencesName ()%) class %!preferencesName ()% : EBObject, NSWindowDelegate {
 
 %for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty code]
+  ![mProperty declarationCode]
 end
 %
   //····················································································································
@@ -115,23 +115,15 @@ end
   //--- Read from preferences
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  %    self.%![mProperty mPropertyName]%_property.undoManager = self.mUndoManager\n%
+  ![mProperty configurationCode]
 end
 for () in STORED_ARRAY_LIST do
   %    self.%!mStoredPropertyName%_property.undoManager = self.mUndoManager\n%
 end
-%  //--- Property validation function
-%
-for () in PROPERTY_LIST_FOR_GENERATION do
-  if [mProperty mNeedsValidation] then
-%    self.%![mProperty mPropertyName]%_property.validationFunction = self.validate_%![mProperty mPropertyName]%\n%
-  end
-end
-%  //---
-    NotificationCenter.default.addObserver (self,
-     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSNotification.Name.NSApplicationWillTerminate,
-     object:nil
+%    NotificationCenter.default.addObserver (self,
+      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
+      name:NSNotification.Name.NSApplicationWillTerminate,
+      object:nil
     )
   //--- Extern functions
 %

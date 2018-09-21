@@ -143,6 +143,7 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @atomicPropertyGeneration : @propertyGeneration {
+  @bool mNeedsValidation
   @typeKind mType
   @bool mIsProxy
   @string mDefaultValueInSwift
@@ -150,9 +151,9 @@ class @atomicPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @atomicPropertyGeneration code -> @string {
+override getter @atomicPropertyGeneration declarationCode -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Property: " + mPropertyName + "\n"
+  result += "  //   Atomic property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
          + "(" + mDefaultValueInSwift + ", prefKey: Preferences_"
@@ -179,6 +180,24 @@ override getter @atomicPropertyGeneration code -> @string {
     result += "  }\n\n"
   end
 }
+
+#·······················································································································
+
+override getter @atomicPropertyGeneration configurationCode -> @string {
+  result = "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
+  if mNeedsValidation then
+    result += "    self." + mPropertyName + "_property.validationFunction = self.validate_" + mPropertyName + "\n"
+  end
+}
+
+
+
+
+
+
+
+
+
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   TYPE INVENTORY                        

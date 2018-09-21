@@ -12338,6 +12338,24 @@ GALGAS_atomicPropertyGeneration GALGAS_atomicPropertyGeneration::constructor_new
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+GALGAS_bool GALGAS_atomicPropertyGeneration::getter_mNeedsValidation (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_atomicPropertyGeneration * p = (const cPtr_atomicPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
+    result = p->mProperty_mNeedsValidation ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_atomicPropertyGeneration::getter_mNeedsValidation (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mNeedsValidation ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_typeKind GALGAS_atomicPropertyGeneration::getter_mType (UNUSED_LOCATION_ARGS) const {
   GALGAS_typeKind result ;
   if (NULL != mObjectPtr) {
@@ -12400,7 +12418,8 @@ cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GALGAS_strin
                                                               const GALGAS_bool & in_mIsProxy,
                                                               const GALGAS_string & in_mDefaultValueInSwift
                                                               COMMA_LOCATION_ARGS) :
-cPtr_propertyGeneration (in_mPropertyName, in_mNeedsValidation COMMA_THERE),
+cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
+mProperty_mNeedsValidation (in_mNeedsValidation),
 mProperty_mType (in_mType),
 mProperty_mIsProxy (in_mIsProxy),
 mProperty_mDefaultValueInSwift (in_mDefaultValueInSwift) {

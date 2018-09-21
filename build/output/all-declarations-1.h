@@ -4301,8 +4301,6 @@ class GALGAS_propertyGeneration : public AC_GALGAS_class {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mPropertyName (LOCATION_ARGS) const ;
 
 
@@ -4325,16 +4323,13 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGeneration 
 class cPtr_propertyGeneration : public acPtr_class {
 //--- Attributes
   public : GALGAS_string mProperty_mPropertyName ;
-  public : GALGAS_bool mProperty_mNeedsValidation ;
 
 //--- Constructor
-  public : cPtr_propertyGeneration (const GALGAS_string & in_mPropertyName,
-                                    const GALGAS_bool & in_mNeedsValidation
+  public : cPtr_propertyGeneration (const GALGAS_string & in_mPropertyName
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mPropertyName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const = 0 ;

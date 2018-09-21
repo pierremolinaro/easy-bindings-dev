@@ -640,6 +640,8 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
 
 
@@ -661,6 +663,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGener
 
 class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
+  public : GALGAS_bool mProperty_mNeedsValidation ;
   public : GALGAS_typeKind mProperty_mType ;
   public : GALGAS_bool mProperty_mIsProxy ;
   public : GALGAS_string mProperty_mDefaultValueInSwift ;
@@ -677,6 +680,7 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDefaultValueInSwift (LOCATION_ARGS) const ;
