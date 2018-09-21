@@ -13,9 +13,6 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 %for () in PROPERTY_LIST_FOR_GENERATION do
   %let Preferences_%![[mProperty mPropertyName] identifierRepresentation]% = "Preferences:%![mProperty mPropertyName]%"\n%
 end
-for () in STORED_ARRAY_LIST do
-  %let Preferences_%![mStoredPropertyName identifierRepresentation]% = "Preferences:%!mStoredPropertyName%"\n%
-end
 %
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -45,24 +42,6 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      return self.%!mTransientName%_property.prop\n%
   %    }\n%
   %  }\n\n%
-end
-for () in STORED_ARRAY_LIST do
-  %  //····················································································································\n%
-  %  //   Accessing %!mStoredPropertyName% stored array properties\n%
-  %  //····················································································································\n\n%
-  %  var %!mStoredPropertyName%_property_selection : EBSelection < [%!mElementClassName%] > {\n%
-  %    get {\n%
-  %      return self.%!mStoredPropertyName%_property.prop\n%
-  %    }\n%
-  %  }\n\n%
-end
-%  //····················································································································
-  //    Stored Array Properties
-  //····················································································································
-
-%
-for () in STORED_ARRAY_LIST do
-%  var %!mStoredPropertyName%_property = StoredArrayOf_%!mElementClassName% (Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
 end
 %
   //····················································································································
@@ -116,9 +95,6 @@ end
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode]
-end
-for () in STORED_ARRAY_LIST do
-  %    self.%!mStoredPropertyName%_property.undoManager = self.mUndoManager\n%
 end
 %    NotificationCenter.default.addObserver (self,
       selector:#selector(Preferences.applicationWillTerminateAction(_:)),

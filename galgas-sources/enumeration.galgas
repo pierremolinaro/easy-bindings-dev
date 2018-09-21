@@ -83,6 +83,24 @@ override method @enumerationDeclarationAST classAndPropertySemanticAnalysis
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @enumerationDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+
+
+
+
+
+
+
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTICS                             
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   TYPE INVENTORY                        

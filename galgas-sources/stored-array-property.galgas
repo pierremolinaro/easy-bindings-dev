@@ -81,6 +81,11 @@ override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
         !isEntity: false
       }
       [!?mPropertyMap insertKey !mStoredArrayPropertyName !kind]
+    #--- Code Generation
+      mPropertyGenerationList += !@atomicArrayGeneration.new {
+        !mStoredArrayPropertyName
+        !mElementClassName
+      }
     case atomic (*) :
       error mElementClassName : "a simple class is required here"
     case document (*) :
@@ -90,6 +95,64 @@ override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
     end
   end
 }
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @propertyArrayDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CODE GENERATION                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @atomicArrayGeneration : @propertyGeneration {
+  @string mElementTypeName
+}
+
+#·······················································································································
+
+#%  var %!mStoredPropertyName%_property = StoredArrayOf_%!mElementClassName% (Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
+#  %  var %!mStoredPropertyName%_property_selection : EBSelection < [%!mElementClassName%] > {\n%
+#  %    get {\n%
+#  %      return self.%!mStoredPropertyName%_property.prop\n%
+#  %    }\n%
+
+override getter @atomicArrayGeneration declarationCode -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  //   Property array: " + mPropertyName + "\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property = StoredArrayOf_" + mElementTypeName
+         + "(Preferences_" + mPropertyName + ")\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + mElementTypeName + "] > {\n"
+  result += "    return self." + mPropertyName + "_property.prop\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @atomicArrayGeneration configurationCode -> @string {
+  result = "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   TYPE INVENTORY                        

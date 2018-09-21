@@ -107,6 +107,16 @@ override method @prefsDeclarationAST classAndPropertySemanticAnalysis
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @prefsDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   TYPE INVENTORY                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -186,11 +196,6 @@ method @prefDeclaration semanticAnalysis
   end
 #--- Get preference property map
   [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?2* ?let propertyGenerationList]
-#--- Analyze stored array properties
-  [mStoredArrayList storedArrayPropertySemanticAnalysis
-    !inSemanticContext.mUnifiedTypeMap
-    ?let @storedArrayPropertyListForGeneration storedArrayPropertyListForGeneration
-  ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   @arrayControllerForGeneration arrayControllerListForGeneration = {}
@@ -244,7 +249,6 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mOutletMap = outletMap
   ioGeneration.mPreferencesForGeneration.mMainXibDescriptorList = mMainXibDescriptorList
   ioGeneration.mPreferencesForGeneration.mExternSwiftFunctionList = inExternSwiftFunctionList
-  ioGeneration.mPreferencesForGeneration.mStoredArrayPropertyListForGeneration = storedArrayPropertyListForGeneration
   ioGeneration.mPreferencesForGeneration.mArrayControllerForGeneration = arrayControllerListForGeneration
   ioGeneration.mPreferencesForGeneration.mTableViewBindingGenerationList = tableViewBindingGenerationList
   ioGeneration.mPreferencesForGeneration.mEBViewBindingGenerationList = ebViewGraphicControllerBindingGenerationList
@@ -264,7 +268,6 @@ struct @preferencesForGeneration {
   @decoratedOutletMap mOutletMap
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
-  @storedArrayPropertyListForGeneration mStoredArrayPropertyListForGeneration
   @arrayControllerForGeneration mArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
@@ -285,7 +288,6 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
-    ?@storedArrayPropertyListForGeneration STORED_ARRAY_LIST
     ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
@@ -309,7 +311,6 @@ proc generatePreferences
     !inPreferenceListForGeneration.mActionBindingListForGeneration
     !inPreferenceListForGeneration.mMultipleBindingGenerationList
     !inPreferenceListForGeneration.mExternSwiftFunctionList
-    !inPreferenceListForGeneration.mStoredArrayPropertyListForGeneration
     !inPreferenceListForGeneration.mArrayControllerForGeneration
     !inPreferenceListForGeneration.mTableViewBindingGenerationList
     !inPreferenceListForGeneration.mEBViewBindingGenerationList

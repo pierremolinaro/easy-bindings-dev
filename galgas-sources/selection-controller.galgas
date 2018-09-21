@@ -104,6 +104,19 @@ override method @selectionControllerDeclarationAST classAndPropertySemanticAnaly
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @selectionControllerDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+
+
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

@@ -81,6 +81,17 @@ override method @transientClassDeclarationAST classAndPropertySemanticAnalysis
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @transientClassDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   TYPE INVENTORY                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

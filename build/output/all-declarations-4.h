@@ -101,8 +101,6 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
 
-  public : GALGAS_storedArrayPropertyListForGeneration mProperty_mStoredArrayPropertyListForGeneration ;
-
   public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
 
   public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
@@ -131,7 +129,6 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                             const GALGAS_decoratedOutletMap & in_mOutletMap,
                                             const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
                                             const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                            const GALGAS_storedArrayPropertyListForGeneration & in_mStoredArrayPropertyListForGeneration,
                                             const GALGAS_arrayControllerForGeneration & in_mArrayControllerForGeneration,
                                             const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                             const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList) ;
@@ -155,10 +152,9 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                          const class GALGAS_decoratedOutletMap & inOperand5,
                                                                          const class GALGAS_mainXibDescriptorList & inOperand6,
                                                                          const class GALGAS_externSwiftFunctionList & inOperand7,
-                                                                         const class GALGAS_storedArrayPropertyListForGeneration & inOperand8,
-                                                                         const class GALGAS_arrayControllerForGeneration & inOperand9,
-                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand10,
-                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand11
+                                                                         const class GALGAS_arrayControllerForGeneration & inOperand8,
+                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand9,
+                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand10
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -190,8 +186,6 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mPropertyListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_storedArrayPropertyListForGeneration getter_mStoredArrayPropertyListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
 
@@ -344,6 +338,31 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generationStruct ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                       Abstract extension method '@abstractDeclarationAST secondAnalysisPhase'                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef void (*extensionMethodSignature_abstractDeclarationAST_secondAnalysisPhase) (const class cPtr_abstractDeclarationAST * inObject,
+                                                                                     class GALGAS_classMap & ioArgument0,
+                                                                                     class GALGAS_generationStruct & ioArgument1,
+                                                                                     class C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_secondAnalysisPhase (const int32_t inClassIndex,
+                                               extensionMethodSignature_abstractDeclarationAST_secondAnalysisPhase inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_secondAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
+                                              GALGAS_classMap & io_ioClassMap,
+                                              GALGAS_generationStruct & io_ioGeneration,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

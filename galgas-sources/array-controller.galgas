@@ -227,14 +227,6 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-#  @lstring mControllerName
-#  @bool mIsRoot
-#  @lstring mRootEntityName
-#  @lstring mToManyPropertyName
-#  @lstringlist mFilterProperties
-#  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
-#  @arrayControllerAttributListAST mArrayControllerAttributListAST
-
 override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis 
        ?!@classMap ioClassMap
        ?!@generationStruct unused ioGeneration
@@ -283,6 +275,16 @@ override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis
       end
     end
   end
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @arrayControllerDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

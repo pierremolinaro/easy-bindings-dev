@@ -50,3 +50,13 @@ override method @atomicClassDeclarationAST classAndPropertySemanticAnalysis
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @atomicClassDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

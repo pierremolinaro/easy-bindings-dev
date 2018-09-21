@@ -28,6 +28,9 @@ case . "eb"
   for (declaration) in sortedDeclarationListAST do
     [declaration classAndPropertySemanticAnalysis !?classMap !?generation]
   end
+  for (declaration) in sortedDeclarationListAST do
+    [declaration secondAnalysisPhase !?classMap !?generation]
+  end
 
 
 

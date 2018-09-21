@@ -75,10 +75,6 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-#  @lstring mProxyName
-#  @lstring mControllerName
-#  @lstring mPropertyName
-
 override method @proxyDeclarationAST classAndPropertySemanticAnalysis
        ?!@classMap ioClassMap
        ?!@generationStruct unused ioGeneration
@@ -97,15 +93,26 @@ override method @proxyDeclarationAST classAndPropertySemanticAnalysis
     case arrayController (typeName 2*) :
       [ioClassMap searchKey !typeName ?* ?let propertyMap ?*]
       [propertyMap searchKey !mPropertyName ?let unused propertyKind]
-#      let kind = @propertyKind.selectionController {
-#        !typeName: typeName
-#      }
-#      [!?mPropertyMap insertKey !mProxyName !kind]
     case selectionController (*) :
       error mControllerName : "an array controller is required here"
     end
   end
 }
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @proxyDeclarationAST secondAnalysisPhase
+       ?!@classMap unused ioClassMap
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+
+
+
+
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTIC ANALYSIS
