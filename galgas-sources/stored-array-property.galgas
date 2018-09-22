@@ -116,12 +116,6 @@ class @atomicArrayGeneration : @propertyGeneration {
 
 #·······················································································································
 
-#%  var %!mStoredPropertyName%_property = StoredArrayOf_%!mElementClassName% (Preferences_%![mStoredPropertyName identifierRepresentation]%)\n%
-#  %  var %!mStoredPropertyName%_property_selection : EBSelection < [%!mElementClassName%] > {\n%
-#  %    get {\n%
-#  %      return self.%!mStoredPropertyName%_property.prop\n%
-#  %    }\n%
-
 override getter @atomicArrayGeneration declarationCode -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Property array: " + mPropertyName + "\n"
@@ -137,7 +131,8 @@ override getter @atomicArrayGeneration declarationCode -> @string {
 #·······················································································································
 
 override getter @atomicArrayGeneration configurationCode -> @string {
-  result = "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
+  result  = "  //--- Property array: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
 }
 
 

@@ -26,6 +26,10 @@ abstract getter @propertyGeneration configurationCode -> @string
 
 #·······················································································································
 
+getter @propertyGeneration terminationCode -> @string { result = "" }
+
+#·······················································································································
+
 list @propertyGenerationList {
   @propertyGeneration mProperty
 }

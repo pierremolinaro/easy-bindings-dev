@@ -17,6 +17,7 @@ abstract getter @abstractDeclarationAST lkey -> @lstring
 #·······················································································································
 
 abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap ?!@generationStruct ioGeneration
+
 #·······················································································································
 
 abstract method @abstractDeclarationAST secondAnalysisPhase ?!@classMap ioClassMap ?!@generationStruct ioGeneration

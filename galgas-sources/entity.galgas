@@ -329,27 +329,6 @@ override method @entityDeclarationEX semanticAnalysis
   ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
   ioGeneration.mSelectionControllerListForGeneration += selectionControllerForGeneration
   ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
-#---
-#  outUnsolvedProperties = {}
-#  [ioSemanticContext.mEntityObservablePropertyMap searchKey
-#    !mEntityName
-#    ?@observablePropertyMap observablePropertyMap
-#    ?*
-#  ]
-#  for (property) in inPropertiesToSolve do
-#    [property tryToDefineSecondaryProperty
-#      !?ioSemanticContext
-#      !{} # No root entity
-#      !?observablePropertyMap
-#      !?outUnsolvedProperties
-#      !?ioSimpleStoredPropertyListForGeneration
-#    ]
-#  end
-#  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
-#    !observablePropertyMap
-#    !mEntityName.string
-#  ]
-
 #--- Check required transients are implemented
   @stringset transientsDeclaredInSuperEntity = {}
   if mIsGraphicEntity then

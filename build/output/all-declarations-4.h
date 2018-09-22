@@ -101,8 +101,6 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 
   public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
 
-  public : GALGAS_arrayControllerForGeneration mProperty_mArrayControllerForGeneration ;
-
   public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
 
   public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
@@ -129,7 +127,6 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                             const GALGAS_decoratedOutletMap & in_mOutletMap,
                                             const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
                                             const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                            const GALGAS_arrayControllerForGeneration & in_mArrayControllerForGeneration,
                                             const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                             const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList) ;
 
@@ -152,9 +149,8 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
                                                                          const class GALGAS_decoratedOutletMap & inOperand5,
                                                                          const class GALGAS_mainXibDescriptorList & inOperand6,
                                                                          const class GALGAS_externSwiftFunctionList & inOperand7,
-                                                                         const class GALGAS_arrayControllerForGeneration & inOperand8,
-                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand9,
-                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand10
+                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand8,
+                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand9
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -170,8 +166,6 @@ class GALGAS_preferencesForGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_mActionBindingListForGeneration (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGeneration getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
 

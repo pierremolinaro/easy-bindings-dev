@@ -247,6 +247,12 @@ override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis
           !isEntity: isEntity
         }
         [!?mPropertyMap insertKey !mControllerName !kind]
+    #--- Code Generation
+      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+        !mControllerName.string
+        !mToManyPropertyName
+        !mClassName
+      }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
       case arrayController (3*) :
@@ -266,6 +272,12 @@ override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis
           !isEntity: isEntity
         }
         [!?mPropertyMap insertKey !mControllerName !kind]
+    #--- Code Generation
+      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+        !mControllerName.string
+        !mToManyPropertyName
+        !mClassName
+      }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
       case arrayController (3*) :
@@ -286,6 +298,53 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
        ?!@generationStruct unused ioGeneration
 {
 }
+
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CODE GENERATION                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @arrayControllerPropertyGeneration : @propertyGeneration {
+  @string mModelString
+  @string mOwnerName
+}
+
+#·······················································································································
+
+override getter @arrayControllerPropertyGeneration declarationCode -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  //   Array controller: " + mPropertyName + "\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + " = ArrayController_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+}
+
+#·······················································································································
+
+override getter @arrayControllerPropertyGeneration configurationCode -> @string {
+  result  = "  //--- Array controller property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property)\n"
+}
+
+#·······················································································································
+
+override getter @arrayControllerPropertyGeneration terminationCode -> @string {
+  result  = "  //--- Array controller property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + ".unbind_model ()\n"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTIC ANALYSIS

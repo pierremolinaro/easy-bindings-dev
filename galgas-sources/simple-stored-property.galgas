@@ -148,8 +148,6 @@ override method @atomicPropertyDeclarationAST secondAnalysisPhase
 {
 }
 
-
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -196,7 +194,8 @@ override getter @atomicPropertyGeneration declarationCode -> @string {
 #·······················································································································
 
 override getter @atomicPropertyGeneration configurationCode -> @string {
-  result = "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
+  result  = "  //--- Atomic property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
   if mNeedsValidation then
     result += "    self." + mPropertyName + "_property.validationFunction = self.validate_" + mPropertyName + "\n"
   end

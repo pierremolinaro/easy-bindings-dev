@@ -249,7 +249,6 @@ method @prefDeclaration semanticAnalysis
   ioGeneration.mPreferencesForGeneration.mOutletMap = outletMap
   ioGeneration.mPreferencesForGeneration.mMainXibDescriptorList = mMainXibDescriptorList
   ioGeneration.mPreferencesForGeneration.mExternSwiftFunctionList = inExternSwiftFunctionList
-  ioGeneration.mPreferencesForGeneration.mArrayControllerForGeneration = arrayControllerListForGeneration
   ioGeneration.mPreferencesForGeneration.mTableViewBindingGenerationList = tableViewBindingGenerationList
   ioGeneration.mPreferencesForGeneration.mEBViewBindingGenerationList = ebViewGraphicControllerBindingGenerationList
 }
@@ -268,7 +267,6 @@ struct @preferencesForGeneration {
   @decoratedOutletMap mOutletMap
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
-  @arrayControllerForGeneration mArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
 }
@@ -288,7 +286,6 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
-    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
 }
@@ -311,7 +308,6 @@ proc generatePreferences
     !inPreferenceListForGeneration.mActionBindingListForGeneration
     !inPreferenceListForGeneration.mMultipleBindingGenerationList
     !inPreferenceListForGeneration.mExternSwiftFunctionList
-    !inPreferenceListForGeneration.mArrayControllerForGeneration
     !inPreferenceListForGeneration.mTableViewBindingGenerationList
     !inPreferenceListForGeneration.mEBViewBindingGenerationList
   ]
